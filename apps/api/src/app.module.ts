@@ -1,0 +1,51 @@
+import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
+import { GraphQLModule } from '@nestjs/graphql'
+import path from 'path'
+import { mongoForRoot } from '../../../libs/common/src/utils/mongodb'
+import { AccountCredentialsModule } from './account-credentials/account-credentials.module'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
+import { AuthModule } from './auth/auth.module'
+import { ContractsModule } from './contracts/contracts.module'
+import { IntegrationAccountsModule } from './integration-accounts/integration-accounts.module'
+import { IntegrationActionsModule } from './integration-actions/integration-actions.module'
+import { IntegrationTriggersModule } from './integration-triggers/integration-triggers.module'
+import { IntegrationsModule } from './integrations/integrations.module'
+import { ProjectsModule } from './projects/projects.module'
+import { UsersModule } from './users/users.module'
+import { WorkflowActionsModule } from './workflow-actions/workflow-actions.module'
+import { WorkflowRunsModule } from './workflow-runs/workflow-runs.module'
+import { WorkflowTriggersModule } from './workflow-triggers/workflow-triggers.module'
+import { WorkflowsModule } from './workflows/workflows.module'
+
+@Module({
+  imports: [
+    ConfigModule.forRoot(),
+    mongoForRoot(),
+    GraphQLModule.forRoot({
+      context: ({ req }) => ({ req }),
+      autoSchemaFile: path.join(process.cwd(), 'generated/schema.graphql'),
+      definitions: {
+        path: path.join(process.cwd(), 'generated/graphql.ts'),
+        // emitTypenameField: true,
+      },
+    }),
+    AuthModule,
+    UsersModule,
+    ProjectsModule,
+    IntegrationsModule,
+    IntegrationAccountsModule,
+    IntegrationActionsModule,
+    IntegrationTriggersModule,
+    WorkflowsModule,
+    WorkflowActionsModule,
+    AccountCredentialsModule,
+    WorkflowTriggersModule,
+    WorkflowRunsModule,
+    ContractsModule,
+  ],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}

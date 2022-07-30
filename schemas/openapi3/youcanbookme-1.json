@@ -1,0 +1,5874 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0",
+    "title": "YouCanBook.me",
+    "description": "Simple online scheduling tool to eliminate the back and forth emails, with customer bookings straight into your calendar.",
+    "x-categories": [
+      "events"
+    ],
+    "x-logo": {
+      "url": "https://flowoid.s3.amazonaws.com/logos/youcanbookme.png"
+    },
+    "termsOfService": "https://youcanbook.me/terms",
+    "contact": {
+      "name": "YouCanBook.Me",
+      "url": "https://youcanbook.me",
+      "email": "team@youcanbook.me"
+    }
+  },
+  "tags": [
+    {
+      "name": "Accounts"
+    },
+    {
+      "name": "Appointment Types"
+    },
+    {
+      "name": "Bookings"
+    },
+    {
+      "name": "Calendars"
+    },
+    {
+      "name": "Events"
+    },
+    {
+      "name": "Profiles"
+    },
+    {
+      "name": "Queries"
+    },
+    {
+      "name": "Remote Accounts"
+    },
+    {
+      "name": "Team Members"
+    }
+  ],
+  "paths": {
+    "/v1": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Create account",
+        "operationId": "postUsingPOST",
+        "parameters": [
+          {
+            "name": "createProfile",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            },
+            "description": ""
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "currency,email,id,gmailAddress,oneTimeToken,plan,planMonths,quantityAllocated,quantityForFree,quantityFreeTrial,quantityPaidFor,sessionToken,smsCredits,trialEndsAt"
+            },
+            "description": ""
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account"
+              }
+            }
+          },
+          "description": "newAccount",
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/{accountId}": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Get account by id",
+        "operationId": "getUsingGET",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "currency,email,id,gmailAddress,oneTimeToken,plan,planMonths,quantityAllocated,quantityForFree,quantityFreeTrial,quantityPaidFor,sessionToken,smsCredits,trialEndsAt"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Account delete",
+        "operationId": "deleteUsingDELETE",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Update your account",
+        "operationId": "patchUsingPATCH",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,email,sessionToken,oneTimeToken,trialEndsAt,quantityPaidFor,quantityForFree,quantityFreeTrial,quantityAllocated,currency,plan,planMonths"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account"
+              }
+            }
+          },
+          "description": "providedAccount",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/v1/{accountId}/bookings": {
+      "get": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "List bookings",
+        "x-triggerName": "New booking",
+        "operationId": "getAllUsingGET",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "name": "boundaryId",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "boundaryStartsAt",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "direction",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "displayTimeZone",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,title,accountId,profileId,createdAt,startsAt,endsAt,location,tentative,timeZone,cancelled,numberOfSlots"
+            }
+          },
+          {
+            "name": "jumpToDate",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "title": "Profile ID or booking page settings URL",
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileIds",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Booking"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/v1/{accountId}/profiles": {
+      "get": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "List profiles",
+        "x-triggerName": "New profile",
+        "operationId": "getAllUsingGET_3",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,accountId,title,description,subdomain,timeZone,status,calendarIds,targetCalendarId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Profile"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Create profile",
+        "operationId": "postUsingPOST_6",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Profile"
+              }
+            }
+          },
+          "description": "profile"
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Profile"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/v1/{accountId}/profiles/{profileId}": {
+      "get": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Get profile by id",
+        "operationId": "getUsingGET_4",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,accountId,title,description,subdomain,timeZone,status,calendarIds,targetCalendarId"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "title": "Profile ID or booking page settings URL",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Profile"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Delete profile",
+        "operationId": "deleteUsingDELETE_6",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "title": "Profile ID or booking page settings URL",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Update a profile",
+        "operationId": "patchUsingPATCH_6",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "title": "Profile ID or booking page settings URL",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Profile"
+              }
+            }
+          },
+          "description": "profile",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Profile"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/v1/{accountId}/profiles/{profileId}/appointmenttypes/items": {
+      "post": {
+        "tags": [
+          "Appointment Types"
+        ],
+        "summary": "Post appointment type",
+        "operationId": "postUsingPOST_4",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,name,description,pic,slotLengthMinutes,numberOfSlots,price"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "title": "Profile ID or booking page settings URL",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileAppointmentType"
+              }
+            }
+          },
+          "description": "newAppointmentType",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileAppointmentType"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/v1/{accountId}/profiles/{profileId}/appointmenttypes/items/{appointmentTypeId}": {
+      "delete": {
+        "tags": [
+          "Appointment Types"
+        ],
+        "summary": "Delete appointment type",
+        "operationId": "deleteUsingDELETE_4",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "name": "appointmentTypeId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "title": "Profile ID or booking page settings URL",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "Appointment Types"
+        ],
+        "summary": "Update an appointment type",
+        "operationId": "patchUsingPATCH_4",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "name": "appointmentTypeId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,name,description,pic,slotLengthMinutes,numberOfSlots,price"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "title": "Profile ID or booking page settings URL",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileAppointmentType"
+              }
+            }
+          },
+          "description": "partialAppointmentType",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileAppointmentType"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/v1/{accountId}/profiles/{profileId}/bookings": {
+      "get": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "List bookings by profile",
+        "x-triggerName": "New booking on profile",
+        "operationId": "getAllUsingGET_1",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "name": "boundaryId",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "boundaryStartsAt",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "direction",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "displayTimeZone",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,title,accountId,profileId,createdAt,startsAt,endsAt,location,tentative,timeZone,cancelled,numberOfSlots"
+            }
+          },
+          {
+            "name": "jumpToDate",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "title": "Profile ID or booking page settings URL",
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileIds",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Booking"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "Create booking",
+        "operationId": "postUsingPOST_1",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "title": "Profile ID or booking page settings URL",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Booking"
+              }
+            }
+          },
+          "description": "partialProvidedBooking",
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/v1/{accountId}/profiles/{profileId}/bookings/{bookingId}": {
+      "get": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "Get booking by id",
+        "operationId": "getUsingGET_2",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "name": "bookingId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bsec",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "displayTimeZone",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,title,accountId,profileId,createdAt,startsAt,endsAt,location,tentative,timeZone,cancelled,numberOfSlots"
+            }
+          },
+          {
+            "name": "osec",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "title": "Profile ID or booking page settings URL",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "Delete booking",
+        "operationId": "deleteUsingDELETE_1",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "name": "bookingId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "title": "Profile ID or booking page settings URL",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "Update a booking",
+        "operationId": "patchUsingPATCH_1",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "name": "bookingId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bsec",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id"
+            }
+          },
+          {
+            "name": "osec",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "title": "Profile ID or booking page settings URL",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Booking"
+              }
+            }
+          },
+          "description": "partialBooking",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/v1/{accountId}/profiles/{profileId}/teammembers/items": {
+      "post": {
+        "tags": [
+          "Team Members"
+        ],
+        "summary": "Post team member",
+        "operationId": "postUsingPOST_5",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,name,description,pic,calendarId,targetCalendarTitle,targetCalendatTimeZone"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "title": "Profile ID or booking page settings URL",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileTeamMember"
+              }
+            }
+          },
+          "description": "newTeamMember",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileTeamMember"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/v1/{accountId}/profiles/{profileId}/teammembers/items/{teamMemberId}": {
+      "delete": {
+        "tags": [
+          "Team Members"
+        ],
+        "summary": "Delete team member",
+        "operationId": "deleteUsingDELETE_5",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "title": "Profile ID or booking page settings URL",
+              "type": "string"
+            }
+          },
+          {
+            "name": "teamMemberId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "Team Members"
+        ],
+        "summary": "Update a team member",
+        "operationId": "patchUsingPATCH_5",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,name,description,pic,calendarId,targetCalendarTitle,targetCalendatTimeZone"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "title": "Profile ID or booking page settings URL",
+              "type": "string"
+            }
+          },
+          {
+            "name": "teamMemberId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileTeamMember"
+              }
+            }
+          },
+          "description": "partialTeamMember",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileTeamMember"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/v1/{accountId}/queries": {
+      "post": {
+        "tags": [
+          "Queries"
+        ],
+        "summary": "Execute a query",
+        "operationId": "postUsingPOST_7",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "results,results.id,results.title,results.description,results.location,results.start,results.startTimeZone,results.end,results.endTimeZone,results.status"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryDTO"
+              }
+            }
+          },
+          "description": "queryDTO",
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Query"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/v1/{accountId}/remoteaccounts": {
+      "get": {
+        "tags": [
+          "Remote Accounts"
+        ],
+        "summary": "List remote accounts",
+        "x-triggerName": "New remote account",
+        "operationId": "getAllUsingGET_4",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,type,username,failed"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RemoteAccount"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Remote Accounts"
+        ],
+        "summary": "Create remote account",
+        "operationId": "postUsingPOST_8",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,type,username,failed"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoteAccount"
+              }
+            }
+          },
+          "description": "partialAccount",
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoteAccount"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/v1/{accountId}/remoteaccounts/{remoteAccountId}": {
+      "get": {
+        "tags": [
+          "Remote Accounts"
+        ],
+        "summary": "Get remote account by id",
+        "operationId": "getUsingGET_5",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,type,username,failed"
+            }
+          },
+          {
+            "name": "remoteAccountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoteAccount"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Remote Accounts"
+        ],
+        "summary": "Delete remote account",
+        "operationId": "deleteUsingDELETE_7",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "name": "remoteAccountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "Remote Accounts"
+        ],
+        "summary": "Update a remote account",
+        "operationId": "patchUsingPATCH_7",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,type,username,failed"
+            }
+          },
+          {
+            "name": "remoteAccountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoteAccount"
+              }
+            }
+          },
+          "description": "partialRemoteAccount",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoteAccount"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars": {
+      "get": {
+        "tags": [
+          "Calendars"
+        ],
+        "summary": "List calendars",
+        "x-triggerName": "New calendar",
+        "operationId": "getAllUsingGET_2",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,title,description,timeZone,primary"
+            }
+          },
+          {
+            "name": "remoteAccountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Calendar"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Calendars"
+        ],
+        "summary": "Create calendar",
+        "operationId": "postUsingPOST_2",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,title,description,timeZone,primary"
+            }
+          },
+          {
+            "name": "remoteAccountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Calendar"
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Calendar"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}": {
+      "get": {
+        "tags": [
+          "Calendars"
+        ],
+        "summary": "Get calendar by id",
+        "operationId": "getUsingGET_3",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "name": "calendarId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,title,description,timeZone,primary"
+            }
+          },
+          {
+            "name": "remoteAccountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Calendar"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Calendars"
+        ],
+        "summary": "Delete calendar",
+        "operationId": "deleteUsingDELETE_2",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "name": "calendarId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "remoteAccountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "Calendars"
+        ],
+        "summary": "Update a calendar",
+        "operationId": "patchUsingPATCH_2",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "name": "calendarId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,title,description,timeZone,primary"
+            }
+          },
+          {
+            "name": "remoteAccountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Calendar"
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Calendar"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}/events": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Create event",
+        "operationId": "postUsingPOST_3",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "name": "calendarId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,title,description,location,start,startTimeZone,end,endTimeZone,status"
+            }
+          },
+          {
+            "name": "remoteAccountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Event"
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Event"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}/events/{eventId}": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Get event by id",
+        "operationId": "getOneUsingGET",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "name": "calendarId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "eventId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,title,description,location,start,startTimeZone,end,endTimeZone,status"
+            }
+          },
+          {
+            "name": "remoteAccountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Event"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Delete event",
+        "operationId": "deleteUsingDELETE_3",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "name": "calendarId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "eventId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "remoteAccountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Update an event",
+        "operationId": "patchUsingPATCH_3",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "name": "calendarId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "eventId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "x-ignore": true,
+            "name": "fields",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id,title,description,location,start,startTimeZone,end,endTimeZone,status"
+            }
+          },
+          {
+            "name": "remoteAccountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Event"
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Event"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/v1/requestEmailVerification": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Request email verification",
+        "operationId": "requestEmailVerificationUsingPOST",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/AccountEmailVerifyRequestDTO"
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/v1/verifyEmail": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Verify an email address",
+        "operationId": "verifyEmailUsingPOST",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/AccountEmailVerifyRequestDTO"
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.youcanbook.me/"
+    }
+  ],
+  "components": {
+    "requestBodies": {
+      "Calendar": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Calendar"
+            }
+          }
+        },
+        "description": "calendar",
+        "required": true
+      },
+      "Event": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Event"
+            }
+          }
+        },
+        "description": "event",
+        "required": true
+      },
+      "AccountEmailVerifyRequestDTO": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AccountEmailVerifyRequestDTO"
+            }
+          }
+        },
+        "description": "accountEmailVerifyRequestDTO",
+        "required": true
+      }
+    },
+    "securitySchemes": {
+      "basic": {
+        "type": "http",
+        "scheme": "basic",
+        "x-displayName": {
+          "username": "Email address",
+          "password": "Password or access token"
+        }
+      }
+    },
+    "schemas": {
+      "Account": {
+        "type": "object",
+        "properties": {
+          "accountIntegrations": {
+            "$ref": "#/components/schemas/AccountIntegrations"
+          },
+          "accountType": {
+            "type": "string",
+            "enum": [
+              "standard",
+              "owner",
+              "administrator",
+              "editor",
+              "contributor",
+              "child",
+              "booker"
+            ]
+          },
+          "addressHibernate": {
+            "type": "string"
+          },
+          "allocations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountAllocation"
+            }
+          },
+          "apiKey": {
+            "type": "string"
+          },
+          "billingNameAndAddress": {
+            "$ref": "#/components/schemas/NameAndAddress"
+          },
+          "blocked": {
+            "type": "boolean"
+          },
+          "caligraphId": {
+            "type": "string"
+          },
+          "cards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Card"
+            }
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountChild"
+            }
+          },
+          "cityHibernate": {
+            "type": "string"
+          },
+          "clientState": {
+            "type": "string"
+          },
+          "contactHigh": {
+            "type": "boolean"
+          },
+          "contactImportant": {
+            "type": "boolean"
+          },
+          "contactLow": {
+            "type": "boolean"
+          },
+          "contactMobile": {
+            "type": "string"
+          },
+          "countryHibernate": {
+            "type": "string"
+          },
+          "covidStatus": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "credit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "creditEUR": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "creditGBP": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "creditUSD": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "debugModeUntil": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deleteBookingsAfterDays": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "deletedBookingsCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "email": {
+            "type": "string"
+          },
+          "familyName": {
+            "type": "string"
+          },
+          "familyNameHibernate": {
+            "type": "string"
+          },
+          "feeCredit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ghost": {
+            "type": "boolean"
+          },
+          "givenName": {
+            "type": "string"
+          },
+          "givenNameHibernate": {
+            "type": "string"
+          },
+          "gmailAddress": {
+            "type": "string"
+          },
+          "googleAppsAccount": {
+            "type": "boolean"
+          },
+          "gridBranding": {
+            "type": "boolean"
+          },
+          "hasBookings": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "inDebugMode": {
+            "type": "boolean"
+          },
+          "killBillId": {
+            "type": "string"
+          },
+          "lastWarningPushAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastWarningPushLevel": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lifecycle": {
+            "type": "string",
+            "enum": [
+              "free",
+              "trial",
+              "subscriber",
+              "churning",
+              "paused",
+              "churned",
+              "deleted"
+            ]
+          },
+          "locale": {
+            "$ref": "#/components/schemas/Locale"
+          },
+          "loggedIn": {
+            "$ref": "#/components/schemas/Account"
+          },
+          "mfaMethod": {
+            "type": "string",
+            "enum": [
+              "none",
+              "totp",
+              "webauthn"
+            ]
+          },
+          "needsSyncToPurchases": {
+            "type": "boolean"
+          },
+          "negotiatedDiscountPermyriad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nextPurchase": {
+            "$ref": "#/components/schemas/Purchase"
+          },
+          "oneTimeToken": {
+            "type": "string"
+          },
+          "oneTimeTokenExpiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "organisation": {
+            "type": "string"
+          },
+          "organizationNameHibernate": {
+            "type": "string"
+          },
+          "parent": {
+            "$ref": "#/components/schemas/AccountParent"
+          },
+          "parentEmail": {
+            "type": "string"
+          },
+          "parentForBilling": {
+            "$ref": "#/components/schemas/AccountParent"
+          },
+          "parentId": {
+            "type": "string"
+          },
+          "parentIdForBilling": {
+            "type": "string"
+          },
+          "parentQuantityPaidFor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "password": {
+            "type": "string"
+          },
+          "passwordHash": {
+            "type": "string"
+          },
+          "pastDue": {
+            "type": "boolean"
+          },
+          "pausePlanMonths": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pauseQuantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pauseRemainingSeconds": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "paused": {
+            "type": "boolean"
+          },
+          "permissionsIn": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Permission"
+            }
+          },
+          "permissionsOut": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Permission"
+            }
+          },
+          "plan": {
+            "type": "string"
+          },
+          "planExpiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "planMonths": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "planMonthsWas": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "postalCodeHibernate": {
+            "type": "string"
+          },
+          "profiles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Profile"
+            }
+          },
+          "purchases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Purchase"
+            }
+          },
+          "quantityAllocated": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quantityForFree": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quantityFreeTrial": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quantityPaidFor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "realtimeTopic": {
+            "type": "string"
+          },
+          "regionHibernate": {
+            "type": "string"
+          },
+          "remoteAccounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemoteAccount"
+            }
+          },
+          "requestedAction": {
+            "type": "string",
+            "enum": [
+              "churn",
+              "pause",
+              "resetQuota",
+              "review",
+              "revokeParentLink",
+              "revokeTermsDate",
+              "startTrial",
+              "syncToPurchases",
+              "resetZapierIntegration",
+              "revokeGmailAddon",
+              "revokeSalesforceIntegration",
+              "revokeStripeIntegration",
+              "revokeZapierIntegration",
+              "revokeZoomIntegration",
+              "resetApiKey",
+              "resetOneTimeToken",
+              "resetSessionToken",
+              "revokeOneTimeToken",
+              "revokeSessionToken"
+            ]
+          },
+          "reviewAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "salesforceEmailAddress": {
+            "type": "string"
+          },
+          "sector": {
+            "type": "string"
+          },
+          "sessionToken": {
+            "type": "string"
+          },
+          "sessionTokenExpiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "smsCredits": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "source": {
+            "type": "string"
+          },
+          "stripeId": {
+            "type": "string"
+          },
+          "stripeUserId": {
+            "type": "string"
+          },
+          "syncToPurchasesChanges": {
+            "$ref": "#/components/schemas/PurchasesSyncChanges"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "taxNumber": {
+            "type": "string"
+          },
+          "terms": {
+            "type": "boolean"
+          },
+          "termsDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "timeZone": {
+            "$ref": "#/components/schemas/ZoneId"
+          },
+          "totpSecret": {
+            "type": "string"
+          },
+          "trialEndsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "type": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "uploadCode": {
+            "type": "string"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Warning"
+            }
+          },
+          "welcomed": {
+            "type": "boolean"
+          },
+          "xeroId": {
+            "type": "string"
+          },
+          "zapierKey": {
+            "type": "string"
+          },
+          "zoomEmailAddress": {
+            "type": "string"
+          },
+          "reducedPolicing": {
+            "type": "boolean"
+          }
+        },
+        "title": "Account"
+      },
+      "AccountAllocation": {
+        "type": "object",
+        "properties": {
+          "caligraphId": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "ghost": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "parentCaligraphId": {
+            "type": "string"
+          },
+          "parentId": {
+            "type": "string"
+          },
+          "quantityAllocated": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "title": "AccountAllocation"
+      },
+      "AccountChild": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "parentId": {
+            "type": "string"
+          },
+          "profiles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Profile"
+            }
+          }
+        },
+        "title": "AccountChild"
+      },
+      "AccountIntegrations": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string"
+          },
+          "gmailAccessToken": {
+            "type": "string"
+          },
+          "gmailAccessTokenExpires": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "gmailAddress": {
+            "type": "string"
+          },
+          "gmailRefreshToken": {
+            "type": "string"
+          },
+          "salesforceAccessToken": {
+            "type": "string"
+          },
+          "salesforceEmailAddress": {
+            "type": "string"
+          },
+          "salesforceInstanceUrl": {
+            "type": "string"
+          },
+          "salesforceRefreshToken": {
+            "type": "string"
+          },
+          "stripeConnectAccessToken": {
+            "type": "string"
+          },
+          "stripeConnectPublishableKey": {
+            "type": "string"
+          },
+          "stripeConnectRefreshToken": {
+            "type": "string"
+          },
+          "stripeConnectUserId": {
+            "type": "string"
+          },
+          "zapierKey": {
+            "type": "string"
+          },
+          "zoomAccessToken": {
+            "type": "string"
+          },
+          "zoomAccessTokenExpires": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "zoomEmailAddress": {
+            "type": "string"
+          },
+          "zoomRefreshToken": {
+            "type": "string"
+          }
+        },
+        "title": "AccountIntegrations"
+      },
+      "AccountParent": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "quantityPaidFor": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "title": "AccountParent"
+      },
+      "Action": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string"
+          },
+          "anchor": {
+            "type": "string",
+            "enum": [
+              "BOOKING_CREATED",
+              "BOOKING_RESCHEDULED",
+              "BOOKING_CANCELLED",
+              "BOOKING_RESCHEDULED_BY_OWNER",
+              "BOOKING_RESCHEDULED_BY_BOOKER",
+              "BOOKING_CANCELLED_BY_OWNER",
+              "BOOKING_CANCELLED_BY_BOOKER",
+              "BOOKING_ACCEPTED",
+              "BOOKING_REJECTED",
+              "BOOKING_STARTS",
+              "BOOKING_ENDS",
+              "booked",
+              "rescheduled",
+              "cancelled",
+              "start",
+              "end"
+            ]
+          },
+          "attachIcs": {
+            "type": "boolean"
+          },
+          "body": {
+            "type": "string"
+          },
+          "bookingId": {
+            "type": "string"
+          },
+          "cc": {
+            "type": "string"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creditsUsed": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "defaultAsString": {
+            "type": "string"
+          },
+          "deletable": {
+            "type": "boolean"
+          },
+          "displayFiredAtMediumMedium": {
+            "type": "string"
+          },
+          "displayFiredAtMediumShort": {
+            "type": "string"
+          },
+          "displayFiredAtShortShort": {
+            "type": "string"
+          },
+          "displayLocale": {
+            "$ref": "#/components/schemas/Locale"
+          },
+          "displayTimeZone": {
+            "$ref": "#/components/schemas/ZoneId"
+          },
+          "displayTypeLong": {
+            "type": "string"
+          },
+          "displayTypeShort": {
+            "type": "string"
+          },
+          "editable": {
+            "type": "boolean"
+          },
+          "emailId": {
+            "type": "string"
+          },
+          "failureCode": {
+            "type": "string"
+          },
+          "failureMessage": {
+            "type": "string"
+          },
+          "fireAt": {
+            "$ref": "#/components/schemas/LocalTime"
+          },
+          "fireAtForceWeekday": {
+            "type": "boolean"
+          },
+          "firedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fromAddress": {
+            "type": "string"
+          },
+          "fromName": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "imageUrl": {
+            "type": "string"
+          },
+          "locale": {
+            "$ref": "#/components/schemas/Locale"
+          },
+          "offsetMinutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "parentId": {
+            "type": "string"
+          },
+          "profileId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PREDICTION",
+              "TEMPLATE",
+              "OVERRIDEN",
+              "SKIPPED",
+              "SUCCEEDED",
+              "FAILED"
+            ]
+          },
+          "stylingTemplate": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "timeZone": {
+            "$ref": "#/components/schemas/ZoneId"
+          },
+          "timeline": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ZAP",
+              "WEBHOOK",
+              "EMAIL",
+              "SMS",
+              "SALESFORCE_TASK",
+              "SALESFORCE_UPSERT"
+            ]
+          },
+          "updated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "withinQuota": {
+            "type": "boolean"
+          },
+          "ycbmBranded": {
+            "type": "boolean"
+          }
+        },
+        "title": "Action"
+      },
+      "Answer": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "question": {
+            "$ref": "#/components/schemas/Question"
+          },
+          "string": {
+            "type": "string"
+          }
+        },
+        "title": "Answer"
+      },
+      "Booking": {
+        "type": "object",
+        "properties": {
+          "acceptedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "accountId": {
+            "type": "string"
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Action"
+            }
+          },
+          "answers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Answer"
+            }
+          },
+          "appointmentTypeIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "appointmentTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProfileAppointmentType"
+            }
+          },
+          "appointmentTypesIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "bookerSecret": {
+            "type": "string"
+          },
+          "cancelReasonRequired": {
+            "type": "boolean"
+          },
+          "cancellable": {
+            "type": "boolean"
+          },
+          "cancellationCode": {
+            "type": "string"
+          },
+          "cancellationReason": {
+            "type": "string"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "cancelledAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "cancelledBy": {
+            "type": "string",
+            "enum": [
+              "BOOKER",
+              "OWNER"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "currencyFactor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "databaseVersion": {
+            "$ref": "#/components/schemas/Booking"
+          },
+          "displayBookerEndsAtMediumShort": {
+            "type": "string"
+          },
+          "displayBookerStartsAtMediumShort": {
+            "type": "string"
+          },
+          "displayCreatedAtMedium": {
+            "type": "string"
+          },
+          "displayCreatedAtShortShort": {
+            "type": "string"
+          },
+          "displayDurationFull": {
+            "type": "string"
+          },
+          "displayDurationShort": {
+            "type": "string"
+          },
+          "displayEndsAtMediumShort": {
+            "type": "string"
+          },
+          "displayLocale": {
+            "$ref": "#/components/schemas/Locale"
+          },
+          "displayPrice": {
+            "type": "string"
+          },
+          "displayStartsAtFullShortAndDurationFull": {
+            "type": "string"
+          },
+          "displayStartsAtMediumShort": {
+            "type": "string"
+          },
+          "displayTimeZone": {
+            "$ref": "#/components/schemas/ZoneId"
+          },
+          "durationMinutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "endsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endsAtUTC": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "event": {
+            "$ref": "#/components/schemas/Optional_Event_"
+          },
+          "expectedPrice": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "id": {
+            "type": "string"
+          },
+          "initiatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ip": {
+            "type": "string"
+          },
+          "linkFields": {
+            "type": "string"
+          },
+          "lobby": {
+            "$ref": "#/components/schemas/BookingLobby"
+          },
+          "lobbyPassword": {
+            "type": "string"
+          },
+          "locale": {
+            "$ref": "#/components/schemas/Locale"
+          },
+          "noShow": {
+            "type": "boolean"
+          },
+          "numberOfSlots": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ownerSecret": {
+            "type": "string"
+          },
+          "paymentId": {
+            "type": "string"
+          },
+          "preview": {
+            "type": "boolean"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "profile": {
+            "$ref": "#/components/schemas/Profile"
+          },
+          "profileAccessCode": {
+            "type": "string"
+          },
+          "profileId": {
+            "type": "string"
+          },
+          "profilePassword": {
+            "type": "string"
+          },
+          "recaptchaResponse": {
+            "type": "string"
+          },
+          "ref": {
+            "type": "string"
+          },
+          "rejectedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "remoteId": {
+            "type": "string"
+          },
+          "rescheduledAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "rescheduledBy": {
+            "type": "string",
+            "enum": [
+              "BOOKER",
+              "OWNER"
+            ]
+          },
+          "reviewAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "serviceIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProfileAppointmentType"
+            }
+          },
+          "startRescheduledFrom": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "startRescheduledFromUTC": {
+            "$ref": "#/components/schemas/Optional_Instant_"
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "startsAtUTC": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "stripeToken": {
+            "type": "string"
+          },
+          "teamMember": {
+            "$ref": "#/components/schemas/ProfileTeamMember"
+          },
+          "teamMemberId": {
+            "type": "string"
+          },
+          "tentative": {
+            "type": "string",
+            "enum": [
+              "NOT_USED",
+              "UNDECIDED",
+              "REJECTED",
+              "ACCEPTED"
+            ]
+          },
+          "timeZone": {
+            "$ref": "#/components/schemas/ZoneId"
+          },
+          "timeline": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "units": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "updatedAt": {
+            "$ref": "#/components/schemas/Optional_Instant_"
+          }
+        },
+        "title": "Booking"
+      },
+      "BookingLobby": {
+        "type": "object",
+        "properties": {
+          "outboundUrl": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "UNKNOWN",
+              "PROBLEM_SUBSCRIPTION",
+              "PROBLEM_CANCELLED",
+              "PROBLEM_UNDECIDED",
+              "PROBLEM_TEMPORARY",
+              "PROBLEM_NO_INTEGRATION",
+              "PROBLEM_ONLY_NUMERIC_PASSWORD",
+              "WAITING",
+              "FORWARDING",
+              "CLOSED"
+            ]
+          }
+        },
+        "title": "BookingLobby"
+      },
+      "Calendar": {
+        "type": "object",
+        "properties": {
+          "backgroundColor": {
+            "type": "string"
+          },
+          "changesRarely": {
+            "type": "boolean"
+          },
+          "deleted": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Event"
+            }
+          },
+          "failed": {
+            "type": "boolean"
+          },
+          "failure": {
+            "type": "string"
+          },
+          "foregroundColor": {
+            "type": "string"
+          },
+          "freeBusy": {
+            "type": "boolean"
+          },
+          "freeBusyOnly": {
+            "type": "boolean"
+          },
+          "hidden": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            }
+          },
+          "permissionLevel": {
+            "type": "string",
+            "enum": [
+              "0",
+              "10",
+              "20",
+              "30"
+            ]
+          },
+          "primary": {
+            "type": "boolean"
+          },
+          "readable": {
+            "type": "boolean"
+          },
+          "readableOnly": {
+            "type": "boolean"
+          },
+          "remoteAccount": {
+            "$ref": "#/components/schemas/RemoteAccount"
+          },
+          "revision": {
+            "type": "string"
+          },
+          "systemUniqueId": {
+            "type": "string"
+          },
+          "timeZone": {
+            "$ref": "#/components/schemas/ZoneId"
+          },
+          "title": {
+            "type": "string"
+          },
+          "userName": {
+            "type": "string"
+          },
+          "writeable": {
+            "type": "boolean"
+          },
+          "writeableOnly": {
+            "type": "boolean"
+          }
+        },
+        "title": "Calendar"
+      },
+      "Card": {
+        "type": "object",
+        "properties": {
+          "brand": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "expDate": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "isDefault": {
+            "type": "boolean"
+          },
+          "last4": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          }
+        },
+        "title": "Card"
+      },
+      "Event": {
+        "type": "object",
+        "properties": {
+          "backgroundColor": {
+            "type": "string"
+          },
+          "calendar": {
+            "$ref": "#/components/schemas/Calendar"
+          },
+          "confidential": {
+            "type": "boolean"
+          },
+          "confidentialOnly": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateOnly": {
+            "type": "boolean"
+          },
+          "defaultShareLevel": {
+            "type": "string",
+            "enum": [
+              "0",
+              "10",
+              "20",
+              "25",
+              "30"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "end": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "endDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTimeZone": {
+            "$ref": "#/components/schemas/ZoneId"
+          },
+          "endZonedDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "failed": {
+            "type": "boolean"
+          },
+          "failure": {
+            "type": "string"
+          },
+          "foregroundColor": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            }
+          },
+          "location": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "participants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventParticipant"
+            }
+          },
+          "private": {
+            "type": "boolean"
+          },
+          "privateOnly": {
+            "type": "boolean"
+          },
+          "public": {
+            "type": "boolean"
+          },
+          "publicOnly": {
+            "type": "boolean"
+          },
+          "recurrences": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reminders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventReminder"
+            }
+          },
+          "restricted": {
+            "type": "boolean"
+          },
+          "restrictedOnly": {
+            "type": "boolean"
+          },
+          "revision": {
+            "type": "string"
+          },
+          "start": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "startDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "startTimeZone": {
+            "$ref": "#/components/schemas/ZoneId"
+          },
+          "startZonedDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "confirmed",
+              "cancelled",
+              "tentative"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "transparent": {
+            "type": "boolean"
+          }
+        },
+        "title": "Event"
+      },
+      "EventParticipant": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            }
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Attendee",
+              "Organizer",
+              "Performer",
+              "Speaker",
+              "Chair",
+              "None",
+              "Optional",
+              "Required"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Accepted",
+              "Declined",
+              "Invited",
+              "Tentative"
+            ]
+          }
+        },
+        "title": "EventParticipant"
+      },
+      "EventReminder": {
+        "type": "object",
+        "properties": {
+          "form": {
+            "type": "string",
+            "enum": [
+              "Email",
+              "PopUp",
+              "SMS"
+            ]
+          },
+          "id": {
+            "type": "string"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            }
+          },
+          "seconds": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "title": "EventReminder"
+      },
+      "Link": {
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "rel": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "title": "Link"
+      },
+      "LocalTime": {
+        "type": "object",
+        "title": "LocalTime"
+      },
+      "Locale": {
+        "type": "object",
+        "title": "Locale"
+      },
+      "MappingJacksonValue": {
+        "type": "object",
+        "title": "MappingJacksonValue"
+      },
+      "NameAndAddress": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "familyName": {
+            "type": "string"
+          },
+          "givenName": {
+            "type": "string"
+          },
+          "organizationName": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          }
+        },
+        "title": "NameAndAddress"
+      },
+      "Permission": {
+        "type": "object",
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "databaseVersion": {
+            "$ref": "#/components/schemas/Permission"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fromAccount": {
+            "$ref": "#/components/schemas/Account"
+          },
+          "fromLocalAccount": {
+            "$ref": "#/components/schemas/Account"
+          },
+          "id": {
+            "type": "string"
+          },
+          "requestedAction": {
+            "type": "string",
+            "enum": [
+              "pushRequest"
+            ]
+          },
+          "resource": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "REQUESTED",
+              "CONFIRMED",
+              "REJECTED"
+            ]
+          },
+          "statusHibernate": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "toAccount": {
+            "$ref": "#/components/schemas/Account"
+          },
+          "toLocalAccount": {
+            "$ref": "#/components/schemas/Account"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ACCOUNTANCY",
+              "ACCOUNT_ADMINISTRATE",
+              "ACCOUNT_MANAGER",
+              "ACCOUNT_READ",
+              "ACCOUNT_WRITE",
+              "CALENDAR_READ",
+              "CALENDAR_WRITE",
+              "GROUP_SUPPORT",
+              "PERMISSION_RECEIVE",
+              "PROFILE_CSS_WRITE",
+              "PROFILE_HTML",
+              "PROFILE_READ",
+              "PROFILE_WRITE",
+              "REFUND",
+              "REMOTE_ACCOUNT_READ",
+              "REMOTE_ACCOUNT_WRITE",
+              "USE_EMAIL_ADDRESS"
+            ]
+          },
+          "typeHibernate": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "title": "Permission"
+      },
+      "PermissionAccount": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "title": "PermissionAccount"
+      },
+      "Profile": {
+        "type": "object",
+        "properties": {
+          "accessCode": {
+            "type": "string"
+          },
+          "accountCanAccessRestrictedFeatures": {
+            "type": "boolean"
+          },
+          "accountEmail": {
+            "type": "string"
+          },
+          "accountId": {
+            "type": "string"
+          },
+          "accountLocale": {
+            "$ref": "#/components/schemas/Locale"
+          },
+          "accountMobile": {
+            "type": "string"
+          },
+          "accountTimeZone": {
+            "$ref": "#/components/schemas/ZoneId"
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Action"
+            }
+          },
+          "afterwards": {
+            "$ref": "#/components/schemas/ProfileAfterwards"
+          },
+          "appointmentTypes": {
+            "$ref": "#/components/schemas/ProfileAppointmentTypes"
+          },
+          "availableAccounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProfileAccount"
+            }
+          },
+          "calendars": {
+            "$ref": "#/components/schemas/ProfileCalendars"
+          },
+          "cancelOrReschedule": {
+            "$ref": "#/components/schemas/ProfileCancelOrReschedule"
+          },
+          "captchaActive": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "databaseVersion": {
+            "$ref": "#/components/schemas/Profile"
+          },
+          "datesPattern": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "display": {
+            "$ref": "#/components/schemas/ProfileDisplay"
+          },
+          "htmlAllowed": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "locale": {
+            "$ref": "#/components/schemas/Locale"
+          },
+          "logo": {
+            "type": "string"
+          },
+          "parentId": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "payments": {
+            "$ref": "#/components/schemas/ProfilePayments"
+          },
+          "protectedByAccessCode": {
+            "type": "boolean"
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Question"
+            }
+          },
+          "realtimeTopic": {
+            "type": "string"
+          },
+          "remoteReminders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProfileRemoteReminder"
+            }
+          },
+          "requestedAction": {
+            "type": "string",
+            "enum": [
+              "rescheduleBookingsForReview",
+              "migrateTo2049Theme"
+            ]
+          },
+          "services": {
+            "$ref": "#/components/schemas/ProfileAppointmentTypes"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ONLINE",
+              "OFFLINE"
+            ]
+          },
+          "subdomain": {
+            "type": "string"
+          },
+          "teamMembers": {
+            "$ref": "#/components/schemas/ProfileTeamMembers"
+          },
+          "tentative": {
+            "$ref": "#/components/schemas/ProfileTentative"
+          },
+          "timeZone": {
+            "$ref": "#/components/schemas/ZoneId"
+          },
+          "timeZoneOverride": {
+            "type": "boolean"
+          },
+          "times": {
+            "$ref": "#/components/schemas/ProfileTimes"
+          },
+          "timesPattern": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "vouchers": {
+            "$ref": "#/components/schemas/ProfileVouchers"
+          }
+        },
+        "title": "Profile"
+      },
+      "ProfileAccount": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "remoteAccounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProfileRemoteAccount"
+            }
+          }
+        },
+        "title": "ProfileAccount"
+      },
+      "ProfileAfterwards": {
+        "type": "object",
+        "properties": {
+          "bookerEvent": {
+            "$ref": "#/components/schemas/TemplateEvent"
+          },
+          "bookingDescription": {
+            "type": "string"
+          },
+          "bookingLocation": {
+            "type": "string"
+          },
+          "bookingTitle": {
+            "type": "string"
+          },
+          "isUrl": {
+            "type": "boolean"
+          },
+          "ownerEvent": {
+            "$ref": "#/components/schemas/TemplateEvent"
+          },
+          "scrollToTop": {
+            "type": "boolean"
+          },
+          "text": {
+            "type": "string"
+          },
+          "updateWholeBrowserWindow": {
+            "type": "boolean"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "title": "ProfileAfterwards"
+      },
+      "ProfileAppointmentType": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "numberOfSlots": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pic": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "slotLengthMinutes": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "title": "ProfileAppointmentType"
+      },
+      "ProfileAppointmentTypes": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          },
+          "combinable": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string"
+          },
+          "groupsActive": {
+            "type": "boolean"
+          },
+          "groupsDivider": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProfileAppointmentType"
+            }
+          },
+          "randomizable": {
+            "type": "boolean"
+          }
+        },
+        "title": "ProfileAppointmentTypes"
+      },
+      "ProfileCalendar": {
+        "type": "object",
+        "properties": {
+          "calendar": {
+            "$ref": "#/components/schemas/Calendar"
+          },
+          "id": {
+            "type": "string"
+          },
+          "timeZone": {
+            "$ref": "#/components/schemas/ZoneId"
+          },
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "userName": {
+            "type": "string"
+          },
+          "writeable": {
+            "type": "boolean"
+          }
+        },
+        "title": "ProfileCalendar"
+      },
+      "ProfileCalendars": {
+        "type": "object",
+        "properties": {
+          "calendarIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "targetCalendar": {
+            "$ref": "#/components/schemas/Optional_ProfileCalendar_"
+          },
+          "targetCalendarId": {
+            "type": "string"
+          }
+        },
+        "title": "ProfileCalendars"
+      },
+      "ProfileCancelOrReschedule": {
+        "type": "object",
+        "properties": {
+          "allowed": {
+            "type": "boolean"
+          },
+          "cancellationInstructions": {
+            "type": "string"
+          },
+          "limitMessage": {
+            "type": "string"
+          },
+          "limitMinutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "reasonRequired": {
+            "type": "boolean"
+          },
+          "showReasonTextBox": {
+            "type": "boolean"
+          }
+        },
+        "title": "ProfileCancelOrReschedule"
+      },
+      "ProfileDisplay": {
+        "type": "object",
+        "properties": {
+          "bustMobile": {
+            "type": "boolean"
+          },
+          "colorBusySlot": {
+            "type": "string"
+          },
+          "colorFreeSlot": {
+            "type": "string"
+          },
+          "colorHeader": {
+            "type": "string"
+          },
+          "css": {
+            "type": "string"
+          },
+          "fontHeader": {
+            "type": "string"
+          },
+          "fontHeaderColor": {
+            "type": "string"
+          },
+          "fontHeaderSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fontParagraph": {
+            "type": "string"
+          },
+          "fontParagraphColor": {
+            "type": "string"
+          },
+          "fontParagraphSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fontSub": {
+            "type": "string"
+          },
+          "fontSubColor": {
+            "type": "string"
+          },
+          "fontSubSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "footer": {
+            "type": "string"
+          },
+          "header": {
+            "type": "string"
+          },
+          "periodShownPerPageDays": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "showJumpDate": {
+            "type": "boolean"
+          },
+          "showPeriods": {
+            "type": "boolean"
+          },
+          "showTimeZone": {
+            "type": "boolean"
+          },
+          "showUncheckedDays": {
+            "type": "boolean"
+          },
+          "theme": {
+            "type": "string"
+          }
+        },
+        "title": "ProfileDisplay"
+      },
+      "ProfilePayments": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "currencyFactor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "partner": {
+            "type": "string",
+            "enum": [
+              "STRIPE",
+              "PAYMILL"
+            ]
+          },
+          "partnerDescription": {
+            "type": "string"
+          },
+          "pricePerSlot": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "roundingPrecision": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "title": "ProfilePayments"
+      },
+      "ProfileRemoteAccount": {
+        "type": "object",
+        "properties": {
+          "accountEmail": {
+            "type": "string"
+          },
+          "calendars": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProfileCalendar"
+            }
+          },
+          "id": {
+            "type": "string"
+          },
+          "lobbySupport": {
+            "type": "boolean"
+          },
+          "localAccountEmail": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          }
+        },
+        "title": "ProfileRemoteAccount"
+      },
+      "ProfileRemoteReminder": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "offsetMinutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "title": "ProfileRemoteReminder"
+      },
+      "ProfileTeamMember": {
+        "type": "object",
+        "properties": {
+          "account": {
+            "type": "string"
+          },
+          "calendarId": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "pic": {
+            "type": "string"
+          },
+          "targetCalendar": {
+            "$ref": "#/components/schemas/Optional_ProfileCalendar_"
+          },
+          "targetCalendarTimeZone": {
+            "$ref": "#/components/schemas/ZoneId"
+          },
+          "targetCalendarWriteable": {
+            "type": "boolean"
+          }
+        },
+        "title": "ProfileTeamMember"
+      },
+      "ProfileTeamMembers": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          },
+          "allocationStrategy": {
+            "type": "string",
+            "enum": [
+              "ORDERED_FIRST_FREE",
+              "RANDOM_FIRST_FREE"
+            ]
+          },
+          "allowTeamMemberChangeOnReschedule": {
+            "type": "boolean"
+          },
+          "assumeNoPreferenceOption": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string"
+          },
+          "includeNoPreferenceOption": {
+            "type": "boolean"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProfileTeamMember"
+            }
+          },
+          "randomOrder": {
+            "type": "boolean"
+          }
+        },
+        "title": "ProfileTeamMembers"
+      },
+      "ProfileTentative": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          },
+          "autoRejectActive": {
+            "type": "boolean"
+          },
+          "autoRejectAfterMinutes": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "title": "ProfileTentative"
+      },
+      "ProfileTimes": {
+        "type": "object",
+        "properties": {
+          "bookingPaddingMinutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "breakEnd": {
+            "$ref": "#/components/schemas/LocalTime"
+          },
+          "breakStart": {
+            "$ref": "#/components/schemas/LocalTime"
+          },
+          "defaultNumberOfSlots": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fixedEnd": {
+            "type": "string",
+            "format": "date"
+          },
+          "fixedStart": {
+            "type": "string",
+            "format": "date"
+          },
+          "friActive": {
+            "type": "boolean"
+          },
+          "friEnd": {
+            "$ref": "#/components/schemas/LocalTime"
+          },
+          "friStart": {
+            "$ref": "#/components/schemas/LocalTime"
+          },
+          "maxNoticeDays": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxNumberOfSlots": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minNoticeMinutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minNumberOfSlots": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "monActive": {
+            "type": "boolean"
+          },
+          "monEnd": {
+            "$ref": "#/components/schemas/LocalTime"
+          },
+          "monStart": {
+            "$ref": "#/components/schemas/LocalTime"
+          },
+          "onDutyToken": {
+            "type": "string"
+          },
+          "satActive": {
+            "type": "boolean"
+          },
+          "satEnd": {
+            "$ref": "#/components/schemas/LocalTime"
+          },
+          "satStart": {
+            "$ref": "#/components/schemas/LocalTime"
+          },
+          "slotLengthMinutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "startingDayOfWeek": {
+            "type": "string",
+            "enum": [
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY",
+              "SATURDAY",
+              "SUNDAY"
+            ]
+          },
+          "sunActive": {
+            "type": "boolean"
+          },
+          "sunEnd": {
+            "$ref": "#/components/schemas/LocalTime"
+          },
+          "sunStart": {
+            "$ref": "#/components/schemas/LocalTime"
+          },
+          "thuActive": {
+            "type": "boolean"
+          },
+          "thuEnd": {
+            "$ref": "#/components/schemas/LocalTime"
+          },
+          "thuStart": {
+            "$ref": "#/components/schemas/LocalTime"
+          },
+          "tueActive": {
+            "type": "boolean"
+          },
+          "tueEnd": {
+            "$ref": "#/components/schemas/LocalTime"
+          },
+          "tueStart": {
+            "$ref": "#/components/schemas/LocalTime"
+          },
+          "unitsPerSlot": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "wedActive": {
+            "type": "boolean"
+          },
+          "wedEnd": {
+            "$ref": "#/components/schemas/LocalTime"
+          },
+          "wedStart": {
+            "$ref": "#/components/schemas/LocalTime"
+          }
+        },
+        "title": "ProfileTimes"
+      },
+      "ProfileVouchers": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          },
+          "codeAlreadyUsedMessage": {
+            "type": "string"
+          },
+          "voucherAlreadyUsedMessage": {
+            "type": "string"
+          },
+          "vouchers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "title": "ProfileVouchers"
+      },
+      "Provider": {
+        "type": "object",
+        "properties": {
+          "flushCache": {
+            "type": "boolean"
+          },
+          "remoteAccount": {
+            "$ref": "#/components/schemas/RemoteAccount"
+          }
+        },
+        "title": "Provider"
+      },
+      "Purchase": {
+        "type": "object",
+        "properties": {
+          "account": {
+            "$ref": "#/components/schemas/Account"
+          },
+          "accountDiscount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "accountId": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "additionalDiscount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "additionalDiscountPermyriadRequested": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "addressHibernate": {
+            "type": "string"
+          },
+          "afterDiscounts": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "balance": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "beforeDiscounts": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cardId": {
+            "type": "string"
+          },
+          "cityHibernate": {
+            "type": "string"
+          },
+          "countryHibernate": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "currencyFactor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "date": {
+            "type": "string",
+            "xml": {
+              "name": "date",
+              "attribute": false,
+              "wrapped": false
+            }
+          },
+          "displayLocale": {
+            "$ref": "#/components/schemas/Locale"
+          },
+          "familyNameHibernate": {
+            "type": "string"
+          },
+          "givenNameHibernate": {
+            "type": "string"
+          },
+          "gross": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hasTax": {
+            "type": "boolean",
+            "xml": {
+              "name": "hasTax",
+              "attribute": false,
+              "wrapped": false
+            }
+          },
+          "id": {
+            "type": "string"
+          },
+          "liableForVAT": {
+            "type": "boolean",
+            "xml": {
+              "name": "liableForVAT",
+              "attribute": false,
+              "wrapped": false
+            }
+          },
+          "localAccountId": {
+            "type": "string"
+          },
+          "longPeriodDiscount": {
+            "type": "integer",
+            "format": "int32",
+            "xml": {
+              "name": "longPeriodDiscount",
+              "attribute": false,
+              "wrapped": false
+            }
+          },
+          "months": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nameAndAddress": {
+            "$ref": "#/components/schemas/NameAndAddress"
+          },
+          "needsPayment": {
+            "type": "boolean"
+          },
+          "net": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "number": {
+            "type": "string"
+          },
+          "organizationNameHibernate": {
+            "type": "string"
+          },
+          "payment": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "paymentIntentId": {
+            "type": "string"
+          },
+          "postalCodeHibernate": {
+            "type": "string"
+          },
+          "proRataPermyriadUsed": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "product": {
+            "type": "string"
+          },
+          "provisionEnd": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "provisionStart": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "refundCode": {
+            "type": "string"
+          },
+          "regionHibernate": {
+            "type": "string"
+          },
+          "requestedAction": {
+            "type": "string",
+            "enum": [
+              "setUpDispute",
+              "writeOff",
+              "retryPayment",
+              "refund"
+            ]
+          },
+          "retryPayment": {
+            "type": "boolean"
+          },
+          "setUpMode": {
+            "type": "string",
+            "enum": [
+              "ONGOING",
+              "PREVIEW",
+              "PERSIST",
+              "DAEMON",
+              "CHECKOUT",
+              "REAL",
+              "ONGOING_PREVIEW",
+              "RAW"
+            ]
+          },
+          "shortPeriodDiscount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string",
+            "xml": {
+              "name": "status",
+              "attribute": false,
+              "wrapped": false
+            }
+          },
+          "tax": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "taxNumber": {
+            "type": "string"
+          },
+          "totalDiscount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Transaction"
+            }
+          },
+          "transactionsSorted": {
+            "type": "array",
+            "xml": {
+              "name": "transactionsSorted",
+              "attribute": false,
+              "wrapped": false
+            },
+            "items": {
+              "$ref": "#/components/schemas/Transaction"
+            }
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "PURCHASE",
+              "RETURN",
+              "CASH_OUT",
+              "REVERSED_CHARGE",
+              "UNKNOWN"
+            ]
+          },
+          "unitPrice": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "volumeDiscount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "title": "Purchase"
+      },
+      "PurchasesSyncChanges": {
+        "type": "object",
+        "properties": {
+          "hasValue": {
+            "type": "boolean"
+          },
+          "plan": {
+            "type": "string"
+          },
+          "planExpiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "quantityPaidFor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "trialEndsAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "title": "PurchasesSyncChanges"
+      },
+      "Query": {
+        "type": "object",
+        "properties": {
+          "and": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Query"
+            }
+          },
+          "calendar": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "end": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            }
+          },
+          "or": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Query"
+            }
+          },
+          "processed": {
+            "type": "boolean"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Event"
+            }
+          },
+          "showDeleted": {
+            "type": "boolean"
+          },
+          "skipQuotaKey": {
+            "type": "string"
+          },
+          "start": {
+            "type": "string"
+          },
+          "timeZone": {
+            "$ref": "#/components/schemas/ZoneId"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "title": "Query"
+      },
+      "QueryDTO": {
+        "type": "object",
+        "properties": {
+          "and": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QueryDTO"
+            }
+          },
+          "calendar": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "end": {
+            "type": "string"
+          },
+          "ignoreUnauthorizedCalendars": {
+            "type": "boolean"
+          },
+          "or": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QueryDTO"
+            }
+          },
+          "showDeleted": {
+            "type": "boolean"
+          },
+          "skipQuotaKey": {
+            "type": "string"
+          },
+          "start": {
+            "type": "string"
+          },
+          "timeZone": {
+            "$ref": "#/components/schemas/ZoneId"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "title": "QueryDTO"
+      },
+      "Question": {
+        "type": "object",
+        "properties": {
+          "after": {
+            "type": "string"
+          },
+          "before": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "CHECKBOX",
+              "HIDDEN",
+              "MULTI_CHECKBOXES",
+              "MULTI_DROPDOWN",
+              "MULTI_RADIO",
+              "PARAGRAPH",
+              "PASSTHROUGH",
+              "SIMPLE",
+              "TEXT"
+            ]
+          },
+          "validation": {
+            "type": "string"
+          },
+          "validationMessage": {
+            "type": "string"
+          }
+        },
+        "title": "Question"
+      },
+      "RemoteAccount": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string"
+          },
+          "accessTokenExpiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "account": {
+            "$ref": "#/components/schemas/Account"
+          },
+          "accountEmail": {
+            "type": "string"
+          },
+          "accountId": {
+            "type": "string"
+          },
+          "calendarHome": {
+            "type": "string"
+          },
+          "calendars": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Calendar"
+            }
+          },
+          "databaseVersion": {
+            "$ref": "#/components/schemas/RemoteAccount"
+          },
+          "failed": {
+            "type": "boolean"
+          },
+          "failure": {
+            "type": "string"
+          },
+          "host": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            }
+          },
+          "localAccountEmail": {
+            "type": "string"
+          },
+          "localAccountId": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "principal": {
+            "type": "string"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/Provider"
+          },
+          "refreshToken": {
+            "type": "string"
+          },
+          "requestedAction": {
+            "type": "string",
+            "enum": [
+              "invalidateCache"
+            ]
+          },
+          "revision": {
+            "type": "string"
+          },
+          "statusCanceledDeletesEvent": {
+            "type": "boolean"
+          },
+          "type": {
+            "type": "string"
+          },
+          "upCalendarsRecordFailure": {
+            "type": "boolean"
+          },
+          "username": {
+            "type": "string"
+          }
+        },
+        "title": "RemoteAccount"
+      },
+      "TemplateEvent": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "participants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "title": "TemplateEvent"
+      },
+      "Transaction": {
+        "type": "object",
+        "properties": {
+          "account": {
+            "type": "string"
+          },
+          "accountId": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "description": {
+            "type": "string"
+          },
+          "gross": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "string"
+          },
+          "linked": {
+            "$ref": "#/components/schemas/Transaction"
+          },
+          "localAccountId": {
+            "type": "string"
+          },
+          "net": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "purchase": {
+            "$ref": "#/components/schemas/Purchase"
+          },
+          "purchaseId": {
+            "type": "string"
+          },
+          "remoteId": {
+            "type": "string"
+          },
+          "tax": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string",
+            "xml": {
+              "name": "type",
+              "attribute": false,
+              "wrapped": false
+            },
+            "enum": [
+              "INVOICE",
+              "CREDIT_NOTE",
+              "FAILED_PAYMENT",
+              "PAYMENT",
+              "REFUND",
+              "CREDIT",
+              "USE_OF_CREDIT"
+            ]
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "title": "Transaction"
+      },
+      "Warning": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "fixUrl": {
+            "type": "string"
+          },
+          "fixUrlText": {
+            "type": "string"
+          },
+          "frequency": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "level": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "longText": {
+            "type": "string"
+          },
+          "mediumText": {
+            "type": "string"
+          },
+          "push": {
+            "type": "boolean"
+          },
+          "shortText": {
+            "type": "string"
+          }
+        },
+        "title": "Warning"
+      },
+      "ZoneId": {
+        "type": "object",
+        "title": "ZoneId"
+      },
+      "Optional_Event_": {
+        "type": "object",
+        "title": "Optional«Event»"
+      },
+      "Optional_Instant_": {
+        "type": "object",
+        "title": "Optional«Instant»"
+      },
+      "Optional_ProfileCalendar_": {
+        "type": "object",
+        "title": "Optional«ProfileCalendar»"
+      },
+      "AccountEmailVerifyRequestDTO": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "verificationCode": {
+            "type": "string"
+          }
+        },
+        "title": "AccountEmailVerifyRequestDTO"
+      }
+    }
+  }
+}

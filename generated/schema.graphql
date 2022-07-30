@@ -1,0 +1,1986 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type IntegrationAccount {
+  id: ID!
+  createdAt: DateTime!
+  key: String!
+  name: String!
+  description: String
+  authType: IntegrationAuthType!
+  fieldsSchema: JSONObject
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+"""Authentication strategy"""
+enum IntegrationAuthType {
+  apiKey
+  http
+  oauth1
+  oauth2
+  openIdConnect
+}
+
+"""
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSONObject @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
+
+type DeleteManyResponse {
+  """The number of records deleted."""
+  deletedCount: Int!
+}
+
+type UpdateManyResponse {
+  """The number of records updated."""
+  updatedCount: Int!
+}
+
+type IntegrationAccountEdge {
+  """The node containing the IntegrationAccount"""
+  node: IntegrationAccount!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+"""Cursor for paging through collections"""
+scalar ConnectionCursor
+
+type PageInfo {
+  """true if paging forward and there are more records."""
+  hasNextPage: Boolean
+
+  """true if paging backwards and there are more records."""
+  hasPreviousPage: Boolean
+
+  """The cursor of the first returned record."""
+  startCursor: ConnectionCursor
+
+  """The cursor of the last returned record."""
+  endCursor: ConnectionCursor
+}
+
+type IntegrationAccountConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [IntegrationAccountEdge!]!
+}
+
+type IntegrationAccountCountAggregate {
+  id: Int
+  createdAt: Int
+  key: Int
+  name: Int
+}
+
+type IntegrationAccountMinAggregate {
+  id: ID
+  createdAt: DateTime
+  key: String
+  name: String
+}
+
+type IntegrationAccountMaxAggregate {
+  id: ID
+  createdAt: DateTime
+  key: String
+  name: String
+}
+
+type IntegrationTrigger {
+  id: ID!
+  createdAt: DateTime!
+  integration: Integration!
+  key: String!
+  name: String!
+  description: String
+  deprecated: Boolean!
+  category: String
+  skipAuth: Boolean!
+  schemaRequest: JSONObject!
+  schemaResponse: JSONObject
+  instant: Boolean!
+  isWebhook: Boolean!
+  hookInstructions: String
+  integrationAction: IntegrationAction!
+}
+
+type OperationCategory {
+  key: String!
+  name: String!
+  description: String
+  numberOfActions: Int!
+  numberOfTriggers: Int!
+}
+
+type Integration {
+  id: ID!
+  createdAt: DateTime!
+  key: String!
+  name: String!
+  logo: String
+  version: String!
+  deprecated: Boolean!
+  parentKey: String
+  integrationAccount: IntegrationAccount
+  integrationCategories: String!
+  operationCategories: [OperationCategory!]
+  numberOfTriggers: Int!
+  numberOfActions: Int!
+  actions(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: IntegrationActionFilter = {}
+
+    """Specify to sort results."""
+    sorting: [IntegrationActionSort!] = []
+  ): IntegrationActionsConnection!
+  triggers(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: IntegrationTriggerFilter = {}
+
+    """Specify to sort results."""
+    sorting: [IntegrationTriggerSort!] = []
+  ): IntegrationTriggersConnection!
+}
+
+input CursorPaging {
+  """Paginate before opaque cursor"""
+  before: ConnectionCursor
+
+  """Paginate after opaque cursor"""
+  after: ConnectionCursor
+
+  """Paginate first"""
+  first: Int
+
+  """Paginate last"""
+  last: Int
+}
+
+input IntegrationActionFilter {
+  and: [IntegrationActionFilter!]
+  or: [IntegrationActionFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  integration: IDFilterComparison
+  key: StringFieldComparison
+  name: StringFieldComparison
+  deprecated: BooleanFieldComparison
+  category: StringFieldComparison
+  skipAuth: BooleanFieldComparison
+}
+
+input IDFilterComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: ID
+  neq: ID
+  gt: ID
+  gte: ID
+  lt: ID
+  lte: ID
+  like: ID
+  notLike: ID
+  iLike: ID
+  notILike: ID
+  in: [ID!]
+  notIn: [ID!]
+}
+
+input DateFieldComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: DateTime
+  neq: DateTime
+  gt: DateTime
+  gte: DateTime
+  lt: DateTime
+  lte: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  between: DateFieldComparisonBetween
+  notBetween: DateFieldComparisonBetween
+}
+
+input DateFieldComparisonBetween {
+  lower: DateTime!
+  upper: DateTime!
+}
+
+input StringFieldComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: String
+  neq: String
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  like: String
+  notLike: String
+  iLike: String
+  notILike: String
+  in: [String!]
+  notIn: [String!]
+}
+
+input BooleanFieldComparison {
+  is: Boolean
+  isNot: Boolean
+}
+
+input IntegrationActionSort {
+  field: IntegrationActionSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum IntegrationActionSortFields {
+  id
+  createdAt
+  integration
+  key
+  name
+  deprecated
+  category
+  skipAuth
+}
+
+"""Sort Directions"""
+enum SortDirection {
+  ASC
+  DESC
+}
+
+"""Sort Nulls Options"""
+enum SortNulls {
+  NULLS_FIRST
+  NULLS_LAST
+}
+
+input IntegrationTriggerFilter {
+  and: [IntegrationTriggerFilter!]
+  or: [IntegrationTriggerFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  integration: IDFilterComparison
+  key: StringFieldComparison
+  name: StringFieldComparison
+  deprecated: BooleanFieldComparison
+  category: StringFieldComparison
+  skipAuth: BooleanFieldComparison
+}
+
+input IntegrationTriggerSort {
+  field: IntegrationTriggerSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum IntegrationTriggerSortFields {
+  id
+  createdAt
+  integration
+  key
+  name
+  deprecated
+  category
+  skipAuth
+}
+
+type IntegrationAction {
+  id: ID!
+  createdAt: DateTime!
+  integration: Integration!
+  key: String!
+  name: String!
+  description: String
+  deprecated: Boolean!
+  category: String
+  skipAuth: Boolean!
+  schemaRequest: JSONObject!
+  schemaResponse: JSONObject
+}
+
+type IntegrationActionEdge {
+  """The node containing the IntegrationAction"""
+  node: IntegrationAction!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type IntegrationActionConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [IntegrationActionEdge!]!
+}
+
+type IntegrationActionCountAggregate {
+  id: Int
+  createdAt: Int
+  integration: Int
+  key: Int
+  name: Int
+  deprecated: Int
+  category: Int
+  skipAuth: Int
+}
+
+type IntegrationActionMinAggregate {
+  id: ID
+  createdAt: DateTime
+  integration: ID
+  key: String
+  name: String
+  category: String
+}
+
+type IntegrationActionMaxAggregate {
+  id: ID
+  createdAt: DateTime
+  integration: ID
+  key: String
+  name: String
+  category: String
+}
+
+type IntegrationTriggerEdge {
+  """The node containing the IntegrationTrigger"""
+  node: IntegrationTrigger!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type IntegrationTriggerConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [IntegrationTriggerEdge!]!
+}
+
+type IntegrationTriggerCountAggregate {
+  id: Int
+  createdAt: Int
+  integration: Int
+  key: Int
+  name: Int
+  deprecated: Int
+  category: Int
+  skipAuth: Int
+}
+
+type IntegrationTriggerMinAggregate {
+  id: ID
+  createdAt: DateTime
+  integration: ID
+  key: String
+  name: String
+  category: String
+}
+
+type IntegrationTriggerMaxAggregate {
+  id: ID
+  createdAt: DateTime
+  integration: ID
+  key: String
+  name: String
+  category: String
+}
+
+type IntegrationCategory {
+  id: ID!
+  key: String!
+  name: String!
+}
+
+type IntegrationEdge {
+  """The node containing the Integration"""
+  node: Integration!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type IntegrationConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [IntegrationEdge!]!
+}
+
+type IntegrationCountAggregate {
+  id: Int
+  createdAt: Int
+  key: Int
+  name: Int
+  version: Int
+  deprecated: Int
+  parentKey: Int
+  integrationCategories: Int
+  numberOfTriggers: Int
+  numberOfActions: Int
+}
+
+type IntegrationSumAggregate {
+  numberOfTriggers: Float
+  numberOfActions: Float
+}
+
+type IntegrationAvgAggregate {
+  numberOfTriggers: Float
+  numberOfActions: Float
+}
+
+type IntegrationMinAggregate {
+  id: ID
+  createdAt: DateTime
+  key: String
+  name: String
+  version: String
+  parentKey: String
+  integrationCategories: String
+  numberOfTriggers: Int
+  numberOfActions: Int
+}
+
+type IntegrationMaxAggregate {
+  id: ID
+  createdAt: DateTime
+  key: String
+  name: String
+  version: String
+  parentKey: String
+  integrationCategories: String
+  numberOfTriggers: Int
+  numberOfActions: Int
+}
+
+type IntegrationActionsConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [IntegrationActionEdge!]!
+}
+
+type IntegrationTriggersConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [IntegrationTriggerEdge!]!
+}
+
+type User {
+  id: ID!
+  createdAt: DateTime!
+  username: String!
+  email: String!
+  operationsUsedMonth: Int!
+  name: String
+  website: String
+  company: String
+  apiKey: String
+}
+
+type GenerateApiTokenPayload {
+  apiKey: String!
+}
+
+type UserEdge {
+  """The node containing the User"""
+  node: User!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type UserCountAggregate {
+  id: Int
+  createdAt: Int
+  username: Int
+  email: Int
+}
+
+type UserMinAggregate {
+  id: ID
+  createdAt: DateTime
+  username: String
+  email: String
+}
+
+type UserMaxAggregate {
+  id: ID
+  createdAt: DateTime
+  username: String
+  email: String
+}
+
+type Project {
+  id: ID!
+  createdAt: DateTime!
+  owner: User!
+  name: String!
+  public: Boolean!
+  slug: String!
+}
+
+type AccountCredential {
+  id: ID!
+  createdAt: DateTime!
+  owner: User!
+  integrationAccount: IntegrationAccount!
+  name: String!
+  fields: JSONObject
+  schemaRefs: JSONObject
+}
+
+type WorkflowNextAction {
+  action: WorkflowAction!
+  condition: String
+}
+
+type WorkflowAction {
+  id: ID!
+  createdAt: DateTime!
+  owner: User!
+  workflow: Workflow!
+  isRootAction: Boolean!
+  integrationAction: IntegrationAction!
+  name: String!
+  inputs: JSONObject
+  nextActions: [WorkflowNextAction!]
+  credentials: AccountCredential
+  schemaResponse: JSONObject
+}
+
+type WorkflowTrigger {
+  id: ID!
+  createdAt: DateTime!
+  owner: User!
+  workflow: Workflow!
+  integrationTrigger: IntegrationTrigger!
+  name: String!
+  inputs: JSONObject
+  credentials: AccountCredential
+  schedule: JSONObject
+  enabled: Boolean!
+  maxConsecutiveFailures: Int!
+  hookId: String
+  schemaResponse: JSONObject
+}
+
+type Workflow {
+  id: ID!
+  createdAt: DateTime!
+  owner: User!
+  project: Project!
+  name: String!
+  slug: String!
+  state: String
+  runOnFailure: ID
+  actions(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: WorkflowActionFilter = {}
+
+    """Specify to sort results."""
+    sorting: [WorkflowActionSort!] = []
+  ): WorkflowActionsConnection
+  trigger: WorkflowTrigger
+}
+
+input WorkflowActionFilter {
+  and: [WorkflowActionFilter!]
+  or: [WorkflowActionFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  owner: IDFilterComparison
+  workflow: IDFilterComparison
+  isRootAction: BooleanFieldComparison
+}
+
+input WorkflowActionSort {
+  field: WorkflowActionSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum WorkflowActionSortFields {
+  id
+  createdAt
+  owner
+  workflow
+  isRootAction
+}
+
+type WorkflowDeleteResponse {
+  id: ID
+  createdAt: DateTime
+  owner: ID
+  project: ID
+  name: String
+  slug: String
+  state: String
+  runOnFailure: ID
+}
+
+type WorkflowEdge {
+  """The node containing the Workflow"""
+  node: Workflow!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type WorkflowConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [WorkflowEdge!]!
+}
+
+type WorkflowCountAggregate {
+  id: Int
+  createdAt: Int
+  owner: Int
+  project: Int
+  name: Int
+  slug: Int
+}
+
+type WorkflowMinAggregate {
+  id: ID
+  createdAt: DateTime
+  owner: ID
+  project: ID
+  name: String
+  slug: String
+}
+
+type WorkflowMaxAggregate {
+  id: ID
+  createdAt: DateTime
+  owner: ID
+  project: ID
+  name: String
+  slug: String
+}
+
+type WorkflowActionEdge {
+  """The node containing the WorkflowAction"""
+  node: WorkflowAction!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type WorkflowActionsConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [WorkflowActionEdge!]!
+}
+
+type ProjectDeleteResponse {
+  id: ID
+  createdAt: DateTime
+  owner: ID
+  name: String
+  public: Boolean
+  slug: String
+}
+
+type ProjectEdge {
+  """The node containing the Project"""
+  node: Project!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type ProjectConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [ProjectEdge!]!
+}
+
+type ProjectCountAggregate {
+  id: Int
+  createdAt: Int
+  owner: Int
+  name: Int
+  slug: Int
+}
+
+type ProjectMinAggregate {
+  id: ID
+  createdAt: DateTime
+  owner: ID
+  name: String
+  slug: String
+}
+
+type ProjectMaxAggregate {
+  id: ID
+  createdAt: DateTime
+  owner: ID
+  name: String
+  slug: String
+}
+
+type AuthToken {
+  accessToken: String!
+  accessTokenExpiration: DateTime!
+  refreshToken: String!
+}
+
+type LoginPayload {
+  user: User!
+  token: AuthToken!
+}
+
+type RegisterPayload {
+  user: User!
+  token: AuthToken!
+  project: Project!
+}
+
+type VerifyEmailPayload {
+  error: String
+}
+
+type ResetPasswordPayload {
+  result: Boolean!
+}
+
+type CompletePasswordPayload {
+  error: String
+}
+
+type CompleteExternalAuthPayload {
+  user: User!
+  token: AuthToken!
+  project: Project
+}
+
+type WorkflowRunAction {
+  id: ID!
+  createdAt: DateTime!
+  workflowAction: WorkflowAction!
+  integrationName: String!
+  operationName: String!
+  status: WorkflowRunStatus!
+  finishedAt: DateTime
+}
+
+"""Status of a workflow run (running, completed or failed)"""
+enum WorkflowRunStatus {
+  running
+  sleeping
+  completed
+  failed
+}
+
+type WorkflowRunTrigger {
+  workflowTrigger: WorkflowTrigger!
+  integrationName: String!
+  operationName: String!
+  status: WorkflowRunStatus!
+  workflowTriggered: Boolean
+  triggerIds: [String!]
+  finishedAt: DateTime
+}
+
+type WorkflowRun {
+  id: ID!
+  createdAt: DateTime!
+  workflow: Workflow!
+  status: WorkflowRunStatus!
+  triggerRun: WorkflowRunTrigger
+  actionRuns: [WorkflowRunAction!]!
+  startedBy: WorkflowRunStartedByOptions!
+  operationsUsed: Int!
+  errorMessage: String
+  errorResponse: String
+}
+
+"""Specifies who started the workflow run"""
+enum WorkflowRunStartedByOptions {
+  user
+  trigger
+  workflowFailure
+}
+
+type WorkflowRunEdge {
+  """The node containing the WorkflowRun"""
+  node: WorkflowRun!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type WorkflowRunConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [WorkflowRunEdge!]!
+}
+
+type WorkflowRunCountAggregate {
+  id: Int
+  createdAt: Int
+  workflow: Int
+  status: Int
+  startedBy: Int
+}
+
+type WorkflowRunMinAggregate {
+  id: ID
+  createdAt: DateTime
+  workflow: ID
+  status: WorkflowRunStatus
+  startedBy: WorkflowRunStartedByOptions
+}
+
+type WorkflowRunMaxAggregate {
+  id: ID
+  createdAt: DateTime
+  workflow: ID
+  status: WorkflowRunStatus
+  startedBy: WorkflowRunStartedByOptions
+}
+
+type WorkflowRunTriggerEdge {
+  """The node containing the WorkflowRunTrigger"""
+  node: WorkflowRunTrigger!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type WorkflowRunTriggerConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [WorkflowRunTriggerEdge!]!
+}
+
+type WorkflowRunTriggerCountAggregate {
+  status: Int
+}
+
+type WorkflowRunTriggerMinAggregate {
+  status: WorkflowRunStatus
+}
+
+type WorkflowRunTriggerMaxAggregate {
+  status: WorkflowRunStatus
+}
+
+type WorkflowRunActionEdge {
+  """The node containing the WorkflowRunAction"""
+  node: WorkflowRunAction!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type WorkflowRunActionConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [WorkflowRunActionEdge!]!
+}
+
+type WorkflowRunActionCountAggregate {
+  id: Int
+  createdAt: Int
+  status: Int
+}
+
+type WorkflowRunActionMinAggregate {
+  id: ID
+  createdAt: DateTime
+  status: WorkflowRunStatus
+}
+
+type WorkflowRunActionMaxAggregate {
+  id: ID
+  createdAt: DateTime
+  status: WorkflowRunStatus
+}
+
+type WorkflowTriggerDeleteResponse {
+  id: ID
+  createdAt: DateTime
+  owner: ID
+  workflow: ID
+  integrationTrigger: ID
+  name: String
+  inputs: JSONObject
+  credentials: AccountCredential
+  schedule: JSONObject
+  enabled: Boolean
+  maxConsecutiveFailures: Int
+  hookId: String
+  schemaResponse: JSONObject
+}
+
+type WorkflowTriggerEdge {
+  """The node containing the WorkflowTrigger"""
+  node: WorkflowTrigger!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type WorkflowTriggerConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [WorkflowTriggerEdge!]!
+}
+
+type WorkflowTriggerCountAggregate {
+  id: Int
+  createdAt: Int
+  owner: Int
+  workflow: Int
+}
+
+type WorkflowTriggerMinAggregate {
+  id: ID
+  createdAt: DateTime
+  owner: ID
+  workflow: ID
+}
+
+type WorkflowTriggerMaxAggregate {
+  id: ID
+  createdAt: DateTime
+  owner: ID
+  workflow: ID
+}
+
+type WorkflowActionDeleteResponse {
+  id: ID
+  createdAt: DateTime
+  owner: ID
+  workflow: ID
+  isRootAction: Boolean
+  integrationAction: ID
+  name: String
+  inputs: JSONObject
+  nextActions: [WorkflowNextAction!]
+  credentials: ID
+  schemaResponse: JSONObject
+}
+
+type WorkflowActionConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [WorkflowActionEdge!]!
+}
+
+type WorkflowActionCountAggregate {
+  id: Int
+  createdAt: Int
+  owner: Int
+  workflow: Int
+  isRootAction: Int
+}
+
+type WorkflowActionMinAggregate {
+  id: ID
+  createdAt: DateTime
+  owner: ID
+  workflow: ID
+}
+
+type WorkflowActionMaxAggregate {
+  id: ID
+  createdAt: DateTime
+  owner: ID
+  workflow: ID
+}
+
+type WorkflowNextActionEdge {
+  """The node containing the WorkflowNextAction"""
+  node: WorkflowNextAction!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type WorkflowNextActionConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [WorkflowNextActionEdge!]!
+}
+
+type WorkflowNextActionCountAggregate {
+  action: Int
+}
+
+type WorkflowNextActionMinAggregate {
+  action: ID
+}
+
+type WorkflowNextActionMaxAggregate {
+  action: ID
+}
+
+type AccountCredentialDeleteResponse {
+  id: ID
+  createdAt: DateTime
+  owner: ID
+  integrationAccount: ID
+  name: String
+  fields: JSONObject
+  schemaRefs: JSONObject
+}
+
+type AccountCredentialEdge {
+  """The node containing the AccountCredential"""
+  node: AccountCredential!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type AccountCredentialConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [AccountCredentialEdge!]!
+}
+
+type AccountCredentialCountAggregate {
+  id: Int
+  createdAt: Int
+  owner: Int
+  integrationAccount: Int
+}
+
+type AccountCredentialMinAggregate {
+  id: ID
+  createdAt: DateTime
+  owner: ID
+  integrationAccount: ID
+}
+
+type AccountCredentialMaxAggregate {
+  id: ID
+  createdAt: DateTime
+  owner: ID
+  integrationAccount: ID
+}
+
+type ContractSchema {
+  id: ID!
+  chainId: Int!
+  address: String!
+  schema: JSONObject!
+}
+
+type Query {
+  integrationAccount(
+    """The id of the record to find."""
+    id: ID!
+  ): IntegrationAccount
+  integrationAccounts(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: IntegrationAccountFilter = {}
+
+    """Specify to sort results."""
+    sorting: [IntegrationAccountSort!] = []
+  ): IntegrationAccountConnection!
+  integrationAction(
+    """The id of the record to find."""
+    id: ID!
+  ): IntegrationAction
+  integrationActions(
+    search: String
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: IntegrationActionFilter = {}
+
+    """Specify to sort results."""
+    sorting: [IntegrationActionSort!] = []
+  ): IntegrationActionConnection!
+  integrationTrigger(
+    """The id of the record to find."""
+    id: ID!
+  ): IntegrationTrigger
+  integrationTriggers(
+    search: String
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: IntegrationTriggerFilter = {}
+
+    """Specify to sort results."""
+    sorting: [IntegrationTriggerSort!] = []
+  ): IntegrationTriggerConnection!
+  integration(
+    """The id of the record to find."""
+    id: ID!
+  ): Integration
+  integrations(
+    search: String
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: IntegrationFilter = {}
+
+    """Specify to sort results."""
+    sorting: [IntegrationSort!] = []
+  ): IntegrationConnection!
+  integrationCategories: [IntegrationCategory!]!
+  integrationCategory(id: String!): IntegrationCategory
+  user(
+    """The id of the record to find."""
+    id: ID!
+  ): User
+  viewer: User!
+  workflow(
+    """The id of the record to find."""
+    id: ID!
+  ): Workflow
+  workflows(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: WorkflowFilter = {}
+
+    """Specify to sort results."""
+    sorting: [WorkflowSort!] = []
+  ): WorkflowConnection!
+  project(
+    """The id of the record to find."""
+    id: ID!
+  ): Project
+  projects(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: ProjectFilter = {}
+
+    """Specify to sort results."""
+    sorting: [ProjectSort!] = []
+  ): ProjectConnection!
+  workflowRun(
+    """The id of the record to find."""
+    id: ID!
+  ): WorkflowRun
+  workflowRuns(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: WorkflowRunFilter = {}
+
+    """Specify to sort results."""
+    sorting: [WorkflowRunSort!] = []
+  ): WorkflowRunConnection!
+  workflowRunTrigger(
+    """The id of the record to find."""
+    id: ID!
+  ): WorkflowRunTrigger
+  workflowRunTriggers(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: WorkflowRunTriggerFilter = {}
+
+    """Specify to sort results."""
+    sorting: [WorkflowRunTriggerSort!] = []
+  ): WorkflowRunTriggerConnection!
+  workflowRunAction(
+    """The id of the record to find."""
+    id: ID!
+  ): WorkflowRunAction
+  workflowRunActions(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: WorkflowRunActionFilter = {}
+
+    """Specify to sort results."""
+    sorting: [WorkflowRunActionSort!] = []
+  ): WorkflowRunActionConnection!
+  workflowTrigger(
+    """The id of the record to find."""
+    id: ID!
+  ): WorkflowTrigger
+  workflowTriggers(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: WorkflowTriggerFilter = {}
+
+    """Specify to sort results."""
+    sorting: [WorkflowTriggerSort!] = []
+  ): WorkflowTriggerConnection!
+  workflowAction(
+    """The id of the record to find."""
+    id: ID!
+  ): WorkflowAction
+  workflowActions(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: WorkflowActionFilter = {}
+
+    """Specify to sort results."""
+    sorting: [WorkflowActionSort!] = []
+  ): WorkflowActionConnection!
+  workflowNextAction(
+    """The id of the record to find."""
+    id: ID!
+  ): WorkflowNextAction
+  workflowNextActions(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: WorkflowNextActionFilter = {}
+
+    """Specify to sort results."""
+    sorting: [WorkflowNextActionSort!] = []
+  ): WorkflowNextActionConnection!
+  accountCredential(
+    """The id of the record to find."""
+    id: ID!
+  ): AccountCredential
+  accountCredentials(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: AccountCredentialFilter = {}
+
+    """Specify to sort results."""
+    sorting: [AccountCredentialSort!] = []
+  ): AccountCredentialConnection!
+  contractSchema(address: String!, chainId: Int!): ContractSchema!
+}
+
+input IntegrationAccountFilter {
+  and: [IntegrationAccountFilter!]
+  or: [IntegrationAccountFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  key: StringFieldComparison
+  name: StringFieldComparison
+}
+
+input IntegrationAccountSort {
+  field: IntegrationAccountSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum IntegrationAccountSortFields {
+  id
+  createdAt
+  key
+  name
+}
+
+input IntegrationFilter {
+  and: [IntegrationFilter!]
+  or: [IntegrationFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  key: StringFieldComparison
+  name: StringFieldComparison
+  version: StringFieldComparison
+  deprecated: BooleanFieldComparison
+  parentKey: StringFieldComparison
+  integrationCategories: StringFieldComparison
+  numberOfTriggers: IntFieldComparison
+  numberOfActions: IntFieldComparison
+}
+
+input IntFieldComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: Int
+  neq: Int
+  gt: Int
+  gte: Int
+  lt: Int
+  lte: Int
+  in: [Int!]
+  notIn: [Int!]
+  between: IntFieldComparisonBetween
+  notBetween: IntFieldComparisonBetween
+}
+
+input IntFieldComparisonBetween {
+  lower: Int!
+  upper: Int!
+}
+
+input IntegrationSort {
+  field: IntegrationSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum IntegrationSortFields {
+  id
+  createdAt
+  key
+  name
+  version
+  deprecated
+  parentKey
+  integrationCategories
+  numberOfTriggers
+  numberOfActions
+}
+
+input WorkflowFilter {
+  and: [WorkflowFilter!]
+  or: [WorkflowFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  owner: IDFilterComparison
+  project: IDFilterComparison
+  name: StringFieldComparison
+  slug: StringFieldComparison
+}
+
+input WorkflowSort {
+  field: WorkflowSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum WorkflowSortFields {
+  id
+  createdAt
+  owner
+  project
+  name
+  slug
+}
+
+input ProjectFilter {
+  and: [ProjectFilter!]
+  or: [ProjectFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  owner: IDFilterComparison
+  name: StringFieldComparison
+  slug: StringFieldComparison
+}
+
+input ProjectSort {
+  field: ProjectSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum ProjectSortFields {
+  id
+  createdAt
+  owner
+  name
+  slug
+}
+
+input WorkflowRunFilter {
+  and: [WorkflowRunFilter!]
+  or: [WorkflowRunFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  workflow: IDFilterComparison
+  status: WorkflowRunStatusFilterComparison
+  startedBy: WorkflowRunStartedByOptionsFilterComparison
+}
+
+input WorkflowRunStatusFilterComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: WorkflowRunStatus
+  neq: WorkflowRunStatus
+  gt: WorkflowRunStatus
+  gte: WorkflowRunStatus
+  lt: WorkflowRunStatus
+  lte: WorkflowRunStatus
+  like: WorkflowRunStatus
+  notLike: WorkflowRunStatus
+  iLike: WorkflowRunStatus
+  notILike: WorkflowRunStatus
+  in: [WorkflowRunStatus!]
+  notIn: [WorkflowRunStatus!]
+}
+
+input WorkflowRunStartedByOptionsFilterComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: WorkflowRunStartedByOptions
+  neq: WorkflowRunStartedByOptions
+  gt: WorkflowRunStartedByOptions
+  gte: WorkflowRunStartedByOptions
+  lt: WorkflowRunStartedByOptions
+  lte: WorkflowRunStartedByOptions
+  like: WorkflowRunStartedByOptions
+  notLike: WorkflowRunStartedByOptions
+  iLike: WorkflowRunStartedByOptions
+  notILike: WorkflowRunStartedByOptions
+  in: [WorkflowRunStartedByOptions!]
+  notIn: [WorkflowRunStartedByOptions!]
+}
+
+input WorkflowRunSort {
+  field: WorkflowRunSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum WorkflowRunSortFields {
+  id
+  createdAt
+  workflow
+  status
+  startedBy
+}
+
+input WorkflowRunTriggerFilter {
+  and: [WorkflowRunTriggerFilter!]
+  or: [WorkflowRunTriggerFilter!]
+  status: WorkflowRunStatusFilterComparison
+}
+
+input WorkflowRunTriggerSort {
+  field: WorkflowRunTriggerSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum WorkflowRunTriggerSortFields {
+  status
+}
+
+input WorkflowRunActionFilter {
+  and: [WorkflowRunActionFilter!]
+  or: [WorkflowRunActionFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  status: WorkflowRunStatusFilterComparison
+}
+
+input WorkflowRunActionSort {
+  field: WorkflowRunActionSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum WorkflowRunActionSortFields {
+  id
+  createdAt
+  status
+}
+
+input WorkflowTriggerFilter {
+  and: [WorkflowTriggerFilter!]
+  or: [WorkflowTriggerFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  owner: IDFilterComparison
+  workflow: IDFilterComparison
+}
+
+input WorkflowTriggerSort {
+  field: WorkflowTriggerSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum WorkflowTriggerSortFields {
+  id
+  createdAt
+  owner
+  workflow
+}
+
+input WorkflowNextActionFilter {
+  and: [WorkflowNextActionFilter!]
+  or: [WorkflowNextActionFilter!]
+  action: IDFilterComparison
+}
+
+input WorkflowNextActionSort {
+  field: WorkflowNextActionSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum WorkflowNextActionSortFields {
+  action
+}
+
+input AccountCredentialFilter {
+  and: [AccountCredentialFilter!]
+  or: [AccountCredentialFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  owner: IDFilterComparison
+  integrationAccount: IDFilterComparison
+}
+
+input AccountCredentialSort {
+  field: AccountCredentialSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum AccountCredentialSortFields {
+  id
+  createdAt
+  owner
+  integrationAccount
+}
+
+type Mutation {
+  updateOneUser(input: UpdateOneUserInput!): User!
+  changePassword(newPassword: String!, oldPassword: String!): User!
+  generateApiKey: GenerateApiTokenPayload!
+  deleteOneWorkflow(input: DeleteOneInput!): WorkflowDeleteResponse!
+  deleteManyWorkflows(input: DeleteManyWorkflowsInput!): DeleteManyResponse!
+  updateOneWorkflow(input: UpdateOneWorkflowInput!): Workflow!
+  updateManyWorkflows(input: UpdateManyWorkflowsInput!): UpdateManyResponse!
+  createOneWorkflow(input: CreateOneWorkflowInput!): Workflow!
+  createManyWorkflows(input: CreateManyWorkflowsInput!): [Workflow!]!
+  deleteOneProject(input: DeleteOneInput!): ProjectDeleteResponse!
+  deleteManyProjects(input: DeleteManyProjectsInput!): DeleteManyResponse!
+  updateOneProject(input: UpdateOneProjectInput!): Project!
+  updateManyProjects(input: UpdateManyProjectsInput!): UpdateManyResponse!
+  createOneProject(input: CreateOneProjectInput!): Project!
+  createManyProjects(input: CreateManyProjectsInput!): [Project!]!
+  login(password: String!, username: String!): LoginPayload!
+  register(password: String!, username: String!, email: String!): RegisterPayload!
+  logout: Boolean!
+  getAccessToken: String!
+  verifyEmail(code: String!, username: String!): VerifyEmailPayload!
+  requestPasswordReset(email: String!): ResetPasswordPayload!
+  completePasswordReset(password: String!, code: String!, username: String!): CompletePasswordPayload!
+  completeExternalAuth(email: String!, username: String!, code: String!, id: String!): CompleteExternalAuthPayload!
+  deleteOneWorkflowTrigger(input: DeleteOneInput!): WorkflowTriggerDeleteResponse!
+  deleteManyWorkflowTriggers(input: DeleteManyWorkflowTriggersInput!): DeleteManyResponse!
+  updateOneWorkflowTrigger(input: UpdateOneWorkflowTriggerInput!): WorkflowTrigger!
+  updateManyWorkflowTriggers(input: UpdateManyWorkflowTriggersInput!): UpdateManyResponse!
+  createOneWorkflowTrigger(input: CreateOneWorkflowTriggerInput!): WorkflowTrigger!
+  createManyWorkflowTriggers(input: CreateManyWorkflowTriggersInput!): [WorkflowTrigger!]!
+  checkWorkflowTrigger(id: String!): WorkflowTrigger!
+  deleteOneWorkflowAction(input: DeleteOneInput!): WorkflowActionDeleteResponse!
+  deleteManyWorkflowActions(input: DeleteManyWorkflowActionsInput!): DeleteManyResponse!
+  updateOneWorkflowAction(input: UpdateOneWorkflowActionInput!): WorkflowAction!
+  updateManyWorkflowActions(input: UpdateManyWorkflowActionsInput!): UpdateManyResponse!
+  createOneWorkflowAction(input: CreateOneWorkflowActionInput!): WorkflowAction!
+  createManyWorkflowActions(input: CreateManyWorkflowActionsInput!): [WorkflowAction!]!
+  deleteOneAccountCredential(input: DeleteOneInput!): AccountCredentialDeleteResponse!
+  deleteManyAccountCredentials(input: DeleteManyAccountCredentialsInput!): DeleteManyResponse!
+  updateOneAccountCredential(input: UpdateOneAccountCredentialInput!): AccountCredential!
+  updateManyAccountCredentials(input: UpdateManyAccountCredentialsInput!): UpdateManyResponse!
+  createOneAccountCredential(input: CreateOneAccountCredentialInput!): AccountCredential!
+  createManyAccountCredentials(input: CreateManyAccountCredentialsInput!): [AccountCredential!]!
+}
+
+input UpdateOneUserInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateUserInput!
+}
+
+input UpdateUserInput {
+  name: String
+  website: String
+  company: String
+  email: String
+}
+
+input DeleteOneInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyWorkflowsInput {
+  """Filter to find records to delete"""
+  filter: WorkflowDeleteFilter!
+}
+
+input WorkflowDeleteFilter {
+  and: [WorkflowDeleteFilter!]
+  or: [WorkflowDeleteFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  owner: IDFilterComparison
+  project: IDFilterComparison
+  name: StringFieldComparison
+  slug: StringFieldComparison
+}
+
+input UpdateOneWorkflowInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateWorkflowInput!
+}
+
+input UpdateWorkflowInput {
+  name: String
+  runOnFailure: ID
+}
+
+input UpdateManyWorkflowsInput {
+  """Filter used to find fields to update"""
+  filter: WorkflowUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateWorkflowInput!
+}
+
+input WorkflowUpdateFilter {
+  and: [WorkflowUpdateFilter!]
+  or: [WorkflowUpdateFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  owner: IDFilterComparison
+  project: IDFilterComparison
+  name: StringFieldComparison
+  slug: StringFieldComparison
+}
+
+input CreateOneWorkflowInput {
+  """The record to create"""
+  workflow: CreateWorkflowInput!
+}
+
+input CreateWorkflowInput {
+  name: String!
+  project: ID!
+  runOnFailure: ID
+}
+
+input CreateManyWorkflowsInput {
+  """Array of records to create"""
+  workflows: [CreateWorkflowInput!]!
+}
+
+input DeleteManyProjectsInput {
+  """Filter to find records to delete"""
+  filter: ProjectDeleteFilter!
+}
+
+input ProjectDeleteFilter {
+  and: [ProjectDeleteFilter!]
+  or: [ProjectDeleteFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  owner: IDFilterComparison
+  name: StringFieldComparison
+  slug: StringFieldComparison
+}
+
+input UpdateOneProjectInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateProjectInput!
+}
+
+input UpdateProjectInput {
+  name: String
+  public: Boolean
+}
+
+input UpdateManyProjectsInput {
+  """Filter used to find fields to update"""
+  filter: ProjectUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateProjectInput!
+}
+
+input ProjectUpdateFilter {
+  and: [ProjectUpdateFilter!]
+  or: [ProjectUpdateFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  owner: IDFilterComparison
+  name: StringFieldComparison
+  slug: StringFieldComparison
+}
+
+input CreateOneProjectInput {
+  """The record to create"""
+  project: CreateProjectInput!
+}
+
+input CreateProjectInput {
+  name: String!
+  public: Boolean = false
+}
+
+input CreateManyProjectsInput {
+  """Array of records to create"""
+  projects: [CreateProjectInput!]!
+}
+
+input DeleteManyWorkflowTriggersInput {
+  """Filter to find records to delete"""
+  filter: WorkflowTriggerDeleteFilter!
+}
+
+input WorkflowTriggerDeleteFilter {
+  and: [WorkflowTriggerDeleteFilter!]
+  or: [WorkflowTriggerDeleteFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  owner: IDFilterComparison
+  workflow: IDFilterComparison
+}
+
+input UpdateOneWorkflowTriggerInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateWorkflowTriggerInput!
+}
+
+input UpdateWorkflowTriggerInput {
+  name: String
+  inputs: JSONObject
+  credentials: ID
+  schedule: JSONObject
+  enabled: Boolean
+  maxConsecutiveFailures: Int
+}
+
+input UpdateManyWorkflowTriggersInput {
+  """Filter used to find fields to update"""
+  filter: WorkflowTriggerUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateWorkflowTriggerInput!
+}
+
+input WorkflowTriggerUpdateFilter {
+  and: [WorkflowTriggerUpdateFilter!]
+  or: [WorkflowTriggerUpdateFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  owner: IDFilterComparison
+  workflow: IDFilterComparison
+}
+
+input CreateOneWorkflowTriggerInput {
+  """The record to create"""
+  workflowTrigger: CreateWorkflowTriggerInput!
+}
+
+input CreateWorkflowTriggerInput {
+  workflow: ID!
+  integrationTrigger: ID!
+  inputs: JSONObject!
+  credentials: ID
+  schedule: JSONObject
+  enabled: Boolean
+  maxConsecutiveFailures: Int
+}
+
+input CreateManyWorkflowTriggersInput {
+  """Array of records to create"""
+  workflowTriggers: [CreateWorkflowTriggerInput!]!
+}
+
+input DeleteManyWorkflowActionsInput {
+  """Filter to find records to delete"""
+  filter: WorkflowActionDeleteFilter!
+}
+
+input WorkflowActionDeleteFilter {
+  and: [WorkflowActionDeleteFilter!]
+  or: [WorkflowActionDeleteFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  owner: IDFilterComparison
+  workflow: IDFilterComparison
+  isRootAction: BooleanFieldComparison
+}
+
+input UpdateOneWorkflowActionInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateWorkflowActionInput!
+}
+
+input UpdateWorkflowActionInput {
+  name: String!
+  inputs: JSONObject
+  credentials: ID
+}
+
+input UpdateManyWorkflowActionsInput {
+  """Filter used to find fields to update"""
+  filter: WorkflowActionUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateWorkflowActionInput!
+}
+
+input WorkflowActionUpdateFilter {
+  and: [WorkflowActionUpdateFilter!]
+  or: [WorkflowActionUpdateFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  owner: IDFilterComparison
+  workflow: IDFilterComparison
+  isRootAction: BooleanFieldComparison
+}
+
+input CreateOneWorkflowActionInput {
+  """The record to create"""
+  workflowAction: CreateWorkflowActionInput!
+}
+
+input CreateWorkflowActionInput {
+  workflow: ID!
+  integrationAction: ID!
+  inputs: JSONObject!
+  previousAction: ID
+  previousActionCondition: String
+  nextAction: ID
+  credentials: ID
+}
+
+input CreateManyWorkflowActionsInput {
+  """Array of records to create"""
+  workflowActions: [CreateWorkflowActionInput!]!
+}
+
+input DeleteManyAccountCredentialsInput {
+  """Filter to find records to delete"""
+  filter: AccountCredentialDeleteFilter!
+}
+
+input AccountCredentialDeleteFilter {
+  and: [AccountCredentialDeleteFilter!]
+  or: [AccountCredentialDeleteFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  owner: IDFilterComparison
+  integrationAccount: IDFilterComparison
+}
+
+input UpdateOneAccountCredentialInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateAccountCredentialInput!
+}
+
+input UpdateAccountCredentialInput {
+  name: String
+  credentials: JSONObject
+  fields: JSONObject
+}
+
+input UpdateManyAccountCredentialsInput {
+  """Filter used to find fields to update"""
+  filter: AccountCredentialUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateAccountCredentialInput!
+}
+
+input AccountCredentialUpdateFilter {
+  and: [AccountCredentialUpdateFilter!]
+  or: [AccountCredentialUpdateFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  owner: IDFilterComparison
+  integrationAccount: IDFilterComparison
+}
+
+input CreateOneAccountCredentialInput {
+  """The record to create"""
+  accountCredential: CreateAccountCredentialInput!
+}
+
+input CreateAccountCredentialInput {
+  integrationAccount: ID!
+  name: String!
+  credentials: JSONObject
+  fields: JSONObject
+}
+
+input CreateManyAccountCredentialsInput {
+  """Array of records to create"""
+  accountCredentials: [CreateAccountCredentialInput!]!
+}

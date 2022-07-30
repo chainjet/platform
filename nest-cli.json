@@ -1,0 +1,84 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/api/src",
+  "root": "apps/api",
+  "monorepo": true,
+  "projects": {
+    "common": {
+      "type": "library",
+      "root": "libs/common",
+      "entryFile": "index",
+      "sourceRoot": "libs/common/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/common/tsconfig.lib.json"
+      }
+    },
+    "definitions": {
+      "type": "library",
+      "root": "libs/definitions",
+      "entryFile": "index",
+      "sourceRoot": "libs/definitions/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/definitions/tsconfig.lib.json"
+      }
+    },
+    "api": {
+      "type": "application",
+      "root": "apps/api",
+      "entryFile": "main",
+      "sourceRoot": "apps/api/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/api/tsconfig.app.json"
+      }
+    },
+    "bootstrap": {
+      "type": "application",
+      "root": "apps/bootstrap",
+      "entryFile": "main",
+      "sourceRoot": "apps/bootstrap/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/bootstrap/tsconfig.app.json"
+      }
+    },
+    "scheduler": {
+      "type": "application",
+      "root": "apps/scheduler",
+      "entryFile": "main",
+      "sourceRoot": "apps/scheduler/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/scheduler/tsconfig.app.json"
+      }
+    },
+    "runner": {
+      "type": "application",
+      "root": "apps/runner",
+      "entryFile": "main",
+      "sourceRoot": "apps/runner/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/runner/tsconfig.app.json"
+      }
+    },
+    "emails": {
+      "type": "library",
+      "root": "libs/emails",
+      "entryFile": "index",
+      "sourceRoot": "libs/emails/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/emails/tsconfig.lib.json"
+      }
+    },
+    "blockchain": {
+      "type": "library",
+      "root": "libs/blockchain",
+      "entryFile": "index",
+      "sourceRoot": "libs/blockchain/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/blockchain/tsconfig.lib.json"
+      }
+    }
+  },
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/api/tsconfig.app.json"
+  }
+}

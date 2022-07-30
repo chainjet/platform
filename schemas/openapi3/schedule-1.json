@@ -1,0 +1,99 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Schedule",
+    "version": "1",
+    "description": "Run the workflow based on a schedule",
+    "x-categories": [
+      "chainjet"
+    ],
+    "x-logo": {
+      "url": "/logos/schedule.svg"
+    }
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "x-noAction": true,
+        "x-triggerName": "Schedule",
+        "x-triggerIdKey": "unixtime",
+        "operationId": "schedule",
+        "summary": "Schedule execution",
+        "description": "Run the workflow based on a schedule",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "title": "Date",
+                      "type": "string"
+                    },
+                    "time": {
+                      "title": "Time",
+                      "type": "string"
+                    },
+                    "unixtime": {
+                      "title": "Unix time in milliseconds",
+                      "type": "integer"
+                    },
+                    "isoString": {
+                      "title": "ISO 8601 string",
+                      "type": "string"
+                    },
+                    "year": {
+                      "type": "integer"
+                    },
+                    "monthName": {
+                      "title": "Month name",
+                      "type": "string"
+                    },
+                    "monthNumber": {
+                      "title": "Month number",
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 12
+                    },
+                    "dayName": {
+                      "title": "Day name",
+                      "type": "string"
+                    },
+                    "dayOfMonth": {
+                      "title": "Day of the month",
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 31
+                    },
+                    "hour": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 23
+                    },
+                    "minute": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 59
+                    },
+                    "second": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 59
+                    },
+                    "timezoneOffset": {
+                      "title": "Time-zone offset",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

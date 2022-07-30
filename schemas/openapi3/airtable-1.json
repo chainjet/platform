@@ -1,0 +1,235 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Airtable",
+    "version": "1",
+    "x-categories": [
+      "document",
+      "nocode"
+    ],
+    "x-logo": {
+      "url": "https://flowoid.s3.amazonaws.com/logos/airtable.svg"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.airtable.com/v0/{baseId}/{tableName}",
+      "variables": {
+        "baseId": {
+          "default": ""
+        },
+        "tableName": {
+          "default": ""
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "x-noTrigger": true,
+        "operationId": "listRecords",
+        "summary": "List records",
+        "description": "Returns a list of records on from the connected table.",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecordsResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "x-dynamicSchemaResponse": true,
+        "operationId": "createRecords",
+        "summary": "Create records",
+        "description": "Creates up to 10 records on the connected table.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "records"
+                ],
+                "properties": {
+                  "records": {
+                    "title": "List of records",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "fields": {
+                          "x-dynamicRef": "#/definitions/record"
+                        }
+                      }
+                    },
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecordsResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "x-dynamicSchemaResponse": true,
+        "operationId": "updateRecords",
+        "summary": "Update records",
+        "description": "Updates up to 10 records on the connected table.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "records"
+                ],
+                "properties": {
+                  "records": {
+                    "title": "List of records",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "title": "Record ID",
+                          "type": "string",
+                          "description": "It must start with 'rec'."
+                        },
+                        "fields": {
+                          "x-dynamicRef": "#/definitions/record"
+                        }
+                      }
+                    },
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecordsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{recordId}": {
+      "parameters": [
+        {
+          "name": "recordId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "title": "Record ID",
+            "type": "string",
+            "description": "It must start with 'rec'."
+          }
+        }
+      ],
+      "get": {
+        "operationId": "getRecord",
+        "summary": "Get a record",
+        "description": "Returns a specific record from the connected table.",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "fields": {
+                      "x-dynamicRef": "#/definitions/record"
+                    },
+                    "createdTime": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteRecord",
+        "summary": "Delete a record",
+        "description": "Delete a single record on the connected table.",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "deleted": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RecordsResponse": {
+        "type": "object",
+        "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "fields": {
+                  "x-dynamicRef": "#/definitions/record"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
