@@ -8,6 +8,6 @@ import { ExplorerService } from './explorer/explorer.service'
 @Module({
   imports: [ConfigModule.forRoot({ load: [blockchainConfigList] })],
   providers: [BlockchainService, ExplorerService, ProviderService, BlockchainConfig],
-  exports: [BlockchainService, ExplorerService],
+  exports: [BlockchainService, ExplorerService, ProviderService],
 })
 export class BlockchainModule {}

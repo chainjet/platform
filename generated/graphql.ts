@@ -1576,7 +1576,7 @@ export interface IQuery {
     workflowNextActions(paging?: CursorPaging, filter?: WorkflowNextActionFilter, sorting?: WorkflowNextActionSort[]): WorkflowNextActionConnection | Promise<WorkflowNextActionConnection>;
     accountCredential(id: string): AccountCredential | Promise<AccountCredential>;
     accountCredentials(paging?: CursorPaging, filter?: AccountCredentialFilter, sorting?: AccountCredentialSort[]): AccountCredentialConnection | Promise<AccountCredentialConnection>;
-    contractSchema(address: string, chainId: number): ContractSchema | Promise<ContractSchema>;
+    contractSchema(type: string, address: string, chainId: number): ContractSchema | Promise<ContractSchema>;
 }
 
 export interface IMutation {

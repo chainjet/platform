@@ -1,4 +1,5 @@
 import { BaseService } from '@app/common/base/base.service'
+import { IntegrationDefinitionFactory } from '@app/definitions'
 import { DeepPartial, UpdateOneOptions } from '@nestjs-query/core'
 import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
 import { ReturnModelType } from '@typegoose/typegoose'
@@ -13,6 +14,7 @@ import { capitalize } from '../../../../../libs/common/src/utils/string.utils'
 import { assertNever } from '../../../../../libs/common/src/utils/typescript.utils'
 import { AccountCredentialService } from '../../account-credentials/services/account-credentials.service'
 import { IntegrationTriggerService } from '../../integration-triggers/services/integration-trigger.service'
+import { IntegrationService } from '../../integrations/services/integration.service'
 import { Workflow } from '../../workflows/entities/workflow'
 import { WorkflowService } from '../../workflows/services/workflow.service'
 import { TriggerSchedule } from '../entities/trigger-schedule'
@@ -22,16 +24,18 @@ import { WorkflowTrigger } from '../entities/workflow-trigger'
 export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
   protected readonly logger = new Logger(WorkflowTriggerService.name)
 
-  constructor (
+  constructor(
     @InjectModel(WorkflowTrigger) protected readonly model: ReturnModelType<typeof WorkflowTrigger>,
     protected workflowService: WorkflowService,
     protected accountCredentialService: AccountCredentialService,
-    protected integrationTriggerService: IntegrationTriggerService
+    protected integrationService: IntegrationService,
+    protected integrationTriggerService: IntegrationTriggerService,
+    protected integrationDefinitionFactory: IntegrationDefinitionFactory,
   ) {
     super(model)
   }
 
-  async createOne (record: DeepPartial<WorkflowTrigger>): Promise<WorkflowTrigger> {
+  async createOne(record: DeepPartial<WorkflowTrigger>): Promise<WorkflowTrigger> {
     if (!record.owner || !record.workflow || !record.integrationTrigger) {
       throw new BadRequestException()
     }
@@ -56,19 +60,27 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       throw new NotFoundException(`Integration trigger ${record.integrationTrigger} not found`)
     }
 
+    const integration = await this.integrationService.findById(integrationTrigger.integration.toString())
+    if (!integration) {
+      throw new NotFoundException(`Integration ${integrationTrigger.integration} not found`)
+    }
+
     if (integrationTrigger.isWebhook) {
       record.hookId = SecurityUtils.generateRandomString(48)
     }
 
     record.name = capitalize(integrationTrigger.name)
 
-    return await super.createOne(record)
+    const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
+    const workflowTrigger = await definition.beforeCreateWorkflowTrigger(record, integrationTrigger)
+
+    return await super.createOne(workflowTrigger)
   }
 
-  async updateOne (
+  async updateOne(
     id: string,
     update: DeepPartial<WorkflowTrigger>,
-    opts?: UpdateOneOptions<WorkflowTrigger>
+    opts?: UpdateOneOptions<WorkflowTrigger>,
   ): Promise<WorkflowTrigger> {
     const currentTrigger = await this.findById(id)
     if (!currentTrigger) {
@@ -102,10 +114,25 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       }
     }
 
-    return await super.updateOne(id, update, opts)
+    const integrationTrigger = await this.integrationTriggerService.findById(
+      currentTrigger.integrationTrigger.toString(),
+    )
+    if (!integrationTrigger) {
+      throw new NotFoundException('Integration trigger not found')
+    }
+
+    const integration = await this.integrationService.findById(integrationTrigger.integration.toString())
+    if (!integration) {
+      throw new NotFoundException(`Integration ${integrationTrigger.integration} not found`)
+    }
+
+    const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
+    const updatedWorkflowTrigger = await definition.beforeUpdateWorkflowTrigger(update, integrationTrigger)
+
+    return await super.updateOne(id, updatedWorkflowTrigger, opts)
   }
 
-  async updateNextCheck (workflowTrigger: WorkflowTrigger): Promise<void> {
+  async updateNextCheck(workflowTrigger: WorkflowTrigger): Promise<void> {
     try {
       const nextCheck = this.getTriggerNextCheck(workflowTrigger)
       if (workflowTrigger.nextCheck !== nextCheck) {
@@ -116,7 +143,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     }
   }
 
-  getTriggerNextCheck (workflowTrigger: WorkflowTrigger, scheduleChanged: boolean = false): Date | undefined {
+  getTriggerNextCheck(workflowTrigger: WorkflowTrigger, scheduleChanged: boolean = false): Date | undefined {
     if (!workflowTrigger.enabled) {
       return
     }
@@ -162,12 +189,10 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
         const weekDate = new Date(Date.now())
         const [weekHours, weekMinutes] = parseTime(schedule.time)
         const useNextWeek =
-          (weekDate.getDay() > schedule.dayOfWeek) ||
+          weekDate.getDay() > schedule.dayOfWeek ||
           (weekDate.getDay() === schedule.dayOfWeek &&
             (weekDate.getHours() > weekHours ||
-              (weekDate.getHours() === weekHours && weekDate.getMinutes() >= weekMinutes)
-            )
-          )
+              (weekDate.getHours() === weekHours && weekDate.getMinutes() >= weekMinutes)))
         if (useNextWeek) {
           weekDate.setDate(weekDate.getDate() + 7)
         }
@@ -180,12 +205,10 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
         const monthDate = new Date(Date.now())
         const [monthHours, monthMinutes] = parseTime(schedule.time)
         const useNextMonth =
-          (monthDate.getDate() > schedule.dayOfMonth) ||
+          monthDate.getDate() > schedule.dayOfMonth ||
           (monthDate.getDate() === schedule.dayOfMonth &&
             (monthDate.getHours() > monthHours ||
-              (monthDate.getHours() === monthHours && monthDate.getMinutes() >= monthMinutes)
-            )
-          )
+              (monthDate.getHours() === monthHours && monthDate.getMinutes() >= monthMinutes)))
         if (useNextMonth) {
           monthDate.setMonth(monthDate.getMonth() + 1)
         }
@@ -206,19 +229,20 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     }
   }
 
-  async incrementWorkflowRunFailures (workflowId: Reference<Workflow, ObjectID>): Promise<void> {
+  async incrementWorkflowRunFailures(workflowId: Reference<Workflow, ObjectID>): Promise<void> {
     const trigger = await this.findOne({ workflow: workflowId })
     if (trigger) {
       trigger.consecutiveWorkflowFails++
       const shouldDisableWorkflow =
-        trigger.maxConsecutiveFailures &&
-        trigger.consecutiveWorkflowFails >= trigger.maxConsecutiveFailures
+        trigger.maxConsecutiveFailures && trigger.consecutiveWorkflowFails >= trigger.maxConsecutiveFailures
       await this.updateOne(trigger.id, {
         consecutiveWorkflowFails: trigger.consecutiveWorkflowFails,
-        ...(shouldDisableWorkflow ? { enabled: false } : {})
+        ...(shouldDisableWorkflow ? { enabled: false } : {}),
       })
       if (shouldDisableWorkflow) {
-        this.logger.log(`Workflow ${workflowId} was disabled due to ${trigger.maxConsecutiveFailures} consecutive failures`)
+        this.logger.log(
+          `Workflow ${workflowId} was disabled due to ${trigger.maxConsecutiveFailures} consecutive failures`,
+        )
       }
     }
   }

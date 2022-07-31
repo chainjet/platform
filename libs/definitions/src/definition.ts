@@ -1,6 +1,7 @@
 import { SchemaService } from '@app/definitions/schema/services/schema.service'
 import { DeepPartial } from '@nestjs-query/core'
 import { Logger } from '@nestjs/common'
+import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/integration-trigger'
 import { Request } from 'express'
 import { JSONSchema7 } from 'json-schema'
 import { OpenAPIObject, OperationObject } from 'openapi3-ts'
@@ -101,15 +102,41 @@ export abstract class Definition {
   /**
    * Allows definitions to modify the workflow action entity before it is created
    */
-  async beforeCreateWorkflowAction(workflowAction: DeepPartial<WorkflowAction>): Promise<DeepPartial<WorkflowAction>> {
+  async beforeCreateWorkflowAction(
+    workflowAction: DeepPartial<WorkflowAction>,
+    integrationAction: IntegrationAction,
+  ): Promise<DeepPartial<WorkflowAction>> {
     return workflowAction
   }
 
   /**
    * Allows definitions to modify the workflow action entity before it is updated
    */
-  async beforeUpdateWorkflowAction(workflowAction: DeepPartial<WorkflowAction>): Promise<DeepPartial<WorkflowAction>> {
+  async beforeUpdateWorkflowAction(
+    workflowAction: DeepPartial<WorkflowAction>,
+    integrationAction: IntegrationAction,
+  ): Promise<DeepPartial<WorkflowAction>> {
     return workflowAction
+  }
+
+  /**
+   * Allows definitions to modify the workflow trigger entity before it is created
+   */
+  async beforeCreateWorkflowTrigger(
+    workflowTrigger: DeepPartial<WorkflowTrigger>,
+    integrationTrigger: IntegrationTrigger,
+  ): Promise<DeepPartial<WorkflowTrigger>> {
+    return workflowTrigger
+  }
+
+  /**
+   * Allows definitions to modify the workflow trigger entity before it is updated
+   */
+  async beforeUpdateWorkflowTrigger(
+    workflowTrigger: DeepPartial<WorkflowTrigger>,
+    integrationTrigger: IntegrationTrigger,
+  ): Promise<DeepPartial<WorkflowTrigger>> {
+    return workflowTrigger
   }
 
   /**

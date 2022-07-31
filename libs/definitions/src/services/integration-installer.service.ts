@@ -287,6 +287,7 @@ export class IntegrationInstallerService {
     if (operationObject['x-noTrigger'] || !schemaResponse || !triggerSupported) {
       return null
     }
+    console.log(`triggerSupported =>`, triggerSupported)
 
     const actionRes = retrocycle(schemaResponse) as JSONSchema7
     let itemsSchema: JSONSchema7 | null | undefined

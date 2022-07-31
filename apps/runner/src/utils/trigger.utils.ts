@@ -1,10 +1,10 @@
 import { JSONSchema7 } from 'json-schema'
 import _ from 'lodash'
 
-export function extractTriggerItems (
+export function extractTriggerItems(
   idKey: string,
-  data: Record<string, unknown>
-): Array<{ id: string | number, item: Record<string, unknown> }> {
+  data: Record<string, unknown>,
+): Array<{ id: string | number; item: Record<string, unknown> }> {
   const keyParts = idKey.split('[].')
   if (keyParts.length !== 2) {
     const itemId = extractFirstItem(idKey, data)
@@ -13,7 +13,7 @@ export function extractTriggerItems (
 
   const items = _.get(data, keyParts[0]) as Array<Record<string, unknown>>
   return (sortByCreationDate(items) ?? [])
-    .map(item => {
+    .map((item) => {
       let itemValue
 
       // the item is only the object containing the id
@@ -25,16 +25,16 @@ export function extractTriggerItems (
 
       return {
         id: _.get(item, keyParts[1]) as string | number,
-        item: itemValue
+        item: itemValue,
       }
     })
-    .filter(item => !!item.id && (typeof item.id === 'string' || typeof item.id === 'number'))
+    .filter((item) => !!item.id && (typeof item.id === 'string' || typeof item.id === 'number'))
 }
 
-export function extractFirstItem (
+export function extractFirstItem(
   idKey: string,
-  data: Record<string, unknown>
-): { id: string | number, item: Record<string, unknown> } | null {
+  data: Record<string, unknown>,
+): { id: string | number; item: Record<string, unknown> } | null {
   const objectKeys = idKey.replace(/\[]\./g, '.0.').split('.')
 
   let iterationData: any = data
@@ -60,32 +60,42 @@ export function extractFirstItem (
  * Tries to sort a generic array of items by creation time
  * Ideally requests should return items sorted, but some integrations don't support sorting or pagination
  */
-export function sortByCreationDate<T extends Record<string, any>> (items: T[]): T[] {
+export function sortByCreationDate<T extends Record<string, any>>(items: T[]): T[] {
   if (!Array.isArray(items) || !items.length) {
     return items
   }
-  const createDateKey = Object.keys(items[0]).find(key => ['createdat', 'creationdate'].includes(key.toLowerCase()))
+  const createDateKey = Object.keys(items[0]).find((key) => ['createdat', 'creationdate'].includes(key.toLowerCase()))
   if (createDateKey) {
     const firstDate = new Date(items[0][createDateKey])
-    if (!isNaN(firstDate.getTime())) { // Check if it's a valid date
+    if (!isNaN(firstDate.getTime())) {
+      // Check if it's a valid date
       return items.sort((a, b) => new Date(b[createDateKey]).getTime() - new Date(a[createDateKey]).getTime())
     }
   }
   return items
 }
 
-export function getItemSchemaFromRes (idKey: string, schema: JSONSchema7): JSONSchema7 | null {
-  const objectKeys = idKey.replace(/\[]\./g, '.0.').split('.').filter(key => key)
+export function getItemSchemaFromRes(idKey: string, schema: JSONSchema7): JSONSchema7 | null {
+  const objectKeys = idKey
+    .replace(/\[]\./g, '.0.')
+    .split('.')
+    .filter((key) => key)
+
+  console.log(`schema:`, schema)
+  console.log(`objectKeys:`, objectKeys)
 
   let iterationSchema: JSONSchema7 = schema
   let resultSchema: JSONSchema7 = schema
   for (const key of objectKeys) {
     if (key.toString() === '0' && iterationSchema.items) {
       iterationSchema = iterationSchema.items as JSONSchema7
+      console.log(`iterationSchema (0) ===>`, iterationSchema)
     } else if (iterationSchema.properties?.[key]) {
       resultSchema = iterationSchema
       iterationSchema = iterationSchema.properties[key] as JSONSchema7
+      console.log(`iterationSchema (1) ===>`, iterationSchema)
     } else {
+      console.log(`returns null`)
       return null
     }
   }

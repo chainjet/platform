@@ -91,7 +91,7 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     data.name = capitalize(integrationAction.name)
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-    const workflowAction = await definition.beforeCreateWorkflowAction(data)
+    const workflowAction = await definition.beforeCreateWorkflowAction(data, integrationAction)
 
     this.logger.debug(`Creating record: ${JSON.stringify(workflowAction)}`)
     const createdWorkflowAction = await super.createOne(workflowAction)
@@ -155,7 +155,7 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     }
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-    const updatedWorkflowAction = await definition.beforeUpdateWorkflowAction(update)
+    const updatedWorkflowAction = await definition.beforeUpdateWorkflowAction(update, integrationAction)
     return await super.updateOne(id, updatedWorkflowAction, opts)
   }
 
