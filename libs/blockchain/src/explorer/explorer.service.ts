@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common'
 import { ContractAbi } from 'ethereum-types'
-import { BlockchainConfig } from '../blockchain.config'
+import { BlockchainConfigService } from '../blockchain.config'
 import { ChainId } from '../types/ChainId'
 
 @Injectable()
 export class ExplorerService {
   static instance: ExplorerService
 
-  constructor(private blockchainConfig: BlockchainConfig) {
+  constructor(private blockchainConfig: BlockchainConfigService) {
     ExplorerService.instance = this
   }
 

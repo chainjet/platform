@@ -21,6 +21,7 @@ import { AirtableDefinition } from './integration-definitions/airtable.definitio
 import { AppveyorDefinition } from './integration-definitions/appveyor.definition'
 import { AsanaDefinition } from './integration-definitions/asana.definition'
 import { AzureDefinition } from './integration-definitions/azure.definition'
+import { BlockchainDefinition } from './integration-definitions/blockchain.definition'
 import { BoxDefinition } from './integration-definitions/box.definition'
 import { CalendlyDefinition } from './integration-definitions/calendly.definition'
 import { ChecklyDefinition } from './integration-definitions/checkly.definition'
@@ -39,7 +40,6 @@ import { PagerdutyDefinition } from './integration-definitions/pagerduty.definit
 import { RssDefinition } from './integration-definitions/rss.definition'
 import { ScheduleDefinition } from './integration-definitions/schedule.definition'
 import { SleepDefinition } from './integration-definitions/sleep.definition'
-import { SmartContractDefinition } from './integration-definitions/smart-contract.definition'
 import { StatuspageDefinition } from './integration-definitions/statuspage.definition'
 import { TelegramDefinition } from './integration-definitions/telegram.definition'
 import { WebhookDefinition } from './integration-definitions/webhook.definition'
@@ -55,6 +55,7 @@ export class IntegrationDefinitionFactory {
     aws: AwsDefinition,
     azure: AzureDefinition,
     bitbucket: BitbucketDefinition,
+    blockchain: BlockchainDefinition,
     box: BoxDefinition,
     calendly: CalendlyDefinition,
     checkly: ChecklyDefinition,
@@ -76,7 +77,6 @@ export class IntegrationDefinitionFactory {
     rss: RssDefinition,
     schedule: ScheduleDefinition,
     sendgrid: SendgridDefinition,
-    'smart-contract': SmartContractDefinition,
     slack: SlackDefinition,
     sleep: SleepDefinition,
     statuspage: StatuspageDefinition,

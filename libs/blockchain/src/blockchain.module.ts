@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
-import { BlockchainConfig, blockchainConfigList } from './blockchain.config'
+import { blockchainConfigList, BlockchainConfigService } from './blockchain.config'
 import { BlockchainService } from './blockchain.service'
-import { ProviderService } from './calls/provider.service'
 import { ExplorerService } from './explorer/explorer.service'
+import { MulticallService } from './multicall/multicall.service'
+import { ProviderService } from './provider/provider.service'
 
 @Module({
   imports: [ConfigModule.forRoot({ load: [blockchainConfigList] })],
-  providers: [BlockchainService, ExplorerService, ProviderService, BlockchainConfig],
-  exports: [BlockchainService, ExplorerService, ProviderService],
+  providers: [BlockchainService, ExplorerService, ProviderService, BlockchainConfigService, MulticallService],
+  exports: [BlockchainService, ExplorerService, ProviderService, MulticallService],
 })
 export class BlockchainModule {}

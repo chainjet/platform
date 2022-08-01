@@ -1,7 +1,7 @@
 import { CeloProvider } from '@celo-tools/celo-ethers-wrapper'
 import { Injectable } from '@nestjs/common'
 import { ethers } from 'ethers'
-import { BlockchainConfig } from '../blockchain.config'
+import { BlockchainConfigService } from '../blockchain.config'
 import { ChainId } from '../types/ChainId'
 
 @Injectable()
@@ -9,7 +9,7 @@ export class ProviderService {
   static instance: ProviderService
   private readProviders: { [key: number]: ethers.providers.JsonRpcProvider } = {}
 
-  constructor(private blockchainConfig: BlockchainConfig) {
+  constructor(private blockchainConfig: BlockchainConfigService) {
     ProviderService.instance = this
   }
 

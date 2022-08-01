@@ -1,4 +1,4 @@
-import { ProviderService } from '@blockchain/blockchain/calls/provider.service'
+import { ProviderService } from '@blockchain/blockchain/provider/provider.service'
 import { ExplorerService } from '@blockchain/blockchain/explorer/explorer.service'
 import { Injectable, Logger } from '@nestjs/common'
 import { IntegrationTriggerService } from 'apps/api/src/integration-triggers/services/integration-trigger.service'
@@ -10,6 +10,7 @@ import { WorkflowService } from 'apps/api/src/workflows/services/workflow.servic
 import { RunnerService } from 'apps/runner/src/services/runner.service'
 import { EventAbi } from 'ethereum-types'
 import { ethers } from 'ethers'
+import { shuffle } from 'lodash'
 
 @Injectable()
 export class BlockchainListenerService {
@@ -31,6 +32,9 @@ export class BlockchainListenerService {
     this.startBlockchainEventsListener()
   }
 
+  // TODO it only listens workflows enabled when the server started
+  //      we need to start listening when a new workflow is enabled/created
+  //      we need to stop listening when a workflow is disabled/removed
   async startBlockchainEventsListener() {
     this.logger.log(`Starting blockchain events listener`)
 
@@ -53,12 +57,9 @@ export class BlockchainListenerService {
       integrationTrigger: integrationTrigger.id,
       enabled: true,
     })
+    const shuffledTriggers = shuffle(workflowTriggers)
 
-    let executed = false
-
-    // TODO randomnize workflowTriggers
-
-    for (const workflowTrigger of workflowTriggers) {
+    for (const workflowTrigger of shuffledTriggers) {
       if (workflowTrigger.inputs?.network && workflowTrigger.inputs?.address && workflowTrigger.inputs?.event) {
         const network = Number(workflowTrigger.inputs.network)
         const address = workflowTrigger.inputs.address as string
@@ -77,11 +78,6 @@ export class BlockchainListenerService {
         )
 
         contract.on(filter, async (...args) => {
-          if (executed) {
-            return
-          }
-          executed = true
-
           const log = args.pop()
 
           const workflow = await this.workflowService.findById(workflowTrigger.workflow.toString())

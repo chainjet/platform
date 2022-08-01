@@ -81,21 +81,15 @@ export function getItemSchemaFromRes(idKey: string, schema: JSONSchema7): JSONSc
     .split('.')
     .filter((key) => key)
 
-  console.log(`schema:`, schema)
-  console.log(`objectKeys:`, objectKeys)
-
   let iterationSchema: JSONSchema7 = schema
   let resultSchema: JSONSchema7 = schema
   for (const key of objectKeys) {
     if (key.toString() === '0' && iterationSchema.items) {
       iterationSchema = iterationSchema.items as JSONSchema7
-      console.log(`iterationSchema (0) ===>`, iterationSchema)
     } else if (iterationSchema.properties?.[key]) {
       resultSchema = iterationSchema
       iterationSchema = iterationSchema.properties[key] as JSONSchema7
-      console.log(`iterationSchema (1) ===>`, iterationSchema)
     } else {
-      console.log(`returns null`)
       return null
     }
   }
