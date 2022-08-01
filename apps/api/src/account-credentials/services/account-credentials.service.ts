@@ -14,21 +14,21 @@ import { AccountCredential } from '../entities/account-credential'
 export class AccountCredentialService extends BaseService<AccountCredential> {
   protected readonly logger = new Logger(AccountCredential.name)
 
-  constructor (
+  constructor(
     @InjectModel(AccountCredential)
     protected readonly model: ReturnModelType<typeof AccountCredential>,
     protected readonly configService: ConfigService,
     protected readonly integrationService: IntegrationService,
     protected readonly integrationAccountService: IntegrationAccountService,
-    @Inject(forwardRef(() => OperationRunnerService)) protected operationRunnerService: OperationRunnerService
+    @Inject(forwardRef(() => OperationRunnerService)) protected operationRunnerService: OperationRunnerService,
   ) {
     super(model)
   }
 
-  async createOne (record: DeepPartial<AccountCredential>): Promise<AccountCredential> {
+  async createOne(record: DeepPartial<AccountCredential>): Promise<AccountCredential> {
     const credentials: Record<string, any> = {
       ...(record.credentials ?? {}),
-      ...(record.fields ?? {})
+      ...(record.fields ?? {}),
     }
 
     // Encrypt credentials
@@ -41,7 +41,9 @@ export class AccountCredentialService extends BaseService<AccountCredential> {
       delete record.credentials
     }
 
-    const integrationAccount = await this.integrationAccountService.findById(record.integrationAccount?.toString() ?? '')
+    const integrationAccount = await this.integrationAccountService.findById(
+      record.integrationAccount?.toString() ?? '',
+    )
     if (!integrationAccount) {
       throw new Error(`Integration account ${record.integrationAccount} not found`)
     }
@@ -54,17 +56,17 @@ export class AccountCredentialService extends BaseService<AccountCredential> {
         integration: integrations[0],
         integrationAccount,
         accountCredential,
-        credentials
+        credentials,
       })
     }
 
     return accountCredential
   }
 
-  async updateOne (
+  async updateOne(
     id: string,
     update: DeepPartial<AccountCredential>,
-    opts?: UpdateOneOptions<AccountCredential>
+    opts?: UpdateOneOptions<AccountCredential>,
   ): Promise<AccountCredential> {
     if (update.credentials) {
       const key = this.configService.get('CREDENTIALS_AES_KEY')

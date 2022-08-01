@@ -39,7 +39,6 @@ export class Integration extends BaseEntity {
 
   /**
    * Parent integration key (e.g. aws)
-   * @todo replace with definition key
    */
   @FilterableField({ nullable: true })
   @prop()

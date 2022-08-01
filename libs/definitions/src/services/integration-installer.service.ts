@@ -379,7 +379,7 @@ export class IntegrationInstallerService {
     schema: OpenAPIObject,
     integrationData: SingleIntegrationData,
   ): Promise<{ integrationAccount: IntegrationAccount | null; integration: Integration }> {
-    this.logger.debug('Creating or updating integration')
+    this.logger.debug(`Creating or updating integration ${integrationData.integrationKey}`)
     const integrationAccount = await definition.createOrUpdateIntegrationAccount(schema, integrationData)
     const integration = await this.integrationService.createOrUpdateOne({
       parentKey: integrationData.parentKey,

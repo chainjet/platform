@@ -16,7 +16,7 @@ import { WorkflowTriggerService } from '../services/workflow-trigger.service'
 export class HooksController {
   private readonly logger = new Logger(HooksController.name)
 
-  constructor (
+  constructor(
     private readonly integrationService: IntegrationService,
     private readonly integrationTriggerService: IntegrationTriggerService,
     private readonly workflowService: WorkflowService,
@@ -24,14 +24,11 @@ export class HooksController {
     private readonly workflowActionService: WorkflowActionService,
     private readonly workflowRunService: WorkflowRunService,
     private readonly integrationDefinitionFactory: IntegrationDefinitionFactory,
-    private readonly runnerService: RunnerService
-  ) { }
+    private readonly runnerService: RunnerService,
+  ) {}
 
   @All(':hookId')
-  async receiveHook (
-    @Param('hookId') hookId: string,
-    @Req() req: Request
-  ): Promise<any> {
+  async receiveHook(@Param('hookId') hookId: string, @Req() req: Request): Promise<any> {
     this.logger.log(`${hookId} - Received hook`)
 
     const workflowTrigger = await this.workflowTriggerService.findOne({ hookId })
@@ -39,7 +36,9 @@ export class HooksController {
       this.logger.log(`${hookId} - Workflow trigger not found`)
       throw new NotFoundException('Webhook not found')
     }
-    const integrationTrigger = await this.integrationTriggerService.findById(workflowTrigger.integrationTrigger.toString())
+    const integrationTrigger = await this.integrationTriggerService.findById(
+      workflowTrigger.integrationTrigger.toString(),
+    )
     if (!integrationTrigger) {
       this.logger.error(`${hookId} - Integration trigger ${workflowTrigger.integrationTrigger} not found`)
       throw new NotFoundException(`Integration trigger ${workflowTrigger.integrationTrigger} not found`)
@@ -75,14 +74,16 @@ export class HooksController {
 
     let triggerOutputs: Record<string, unknown> = {
       ...(req.query ?? {}),
-      ...(req.body ?? {})
+      ...(req.body ?? {}),
     }
 
     if (integrationTrigger.dynamicSchemaResponse && !workflowTrigger.schemaResponse && !isEmptyObj(triggerOutputs)) {
       const schemaResponse = definition.getDynamicSchemaResponse(req)
       if (schemaResponse) {
         workflowTrigger.schemaResponse = schemaResponse
-        await this.workflowTriggerService.updateOne(workflowTrigger.id, { schemaResponse: workflowTrigger.schemaResponse })
+        await this.workflowTriggerService.updateOne(workflowTrigger.id, {
+          schemaResponse: workflowTrigger.schemaResponse,
+        })
       }
     }
 
@@ -91,7 +92,7 @@ export class HooksController {
     }
 
     const hookOutputs = {
-      [workflowTrigger.id]: triggerOutputs
+      [workflowTrigger.id]: triggerOutputs,
     }
 
     const rootActions = await this.workflowActionService.find({ workflow: workflow.id, isRootAction: true })
@@ -100,13 +101,13 @@ export class HooksController {
       integrationTrigger,
       workflow,
       workflowTrigger,
-      rootActions.length > 0
+      rootActions.length > 0,
     )
     void this.runnerService.runWorkflowActions(rootActions, [hookOutputs], workflowRun)
 
     return {
       message: 'Hook successfuly received',
-      workflowRunId: workflowRun.id
+      workflowRunId: workflowRun.id,
     }
   }
 }
