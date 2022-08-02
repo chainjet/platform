@@ -1,6 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common'
 import { mongoose } from '@typegoose/typegoose'
-import { ObjectId } from 'bson'
 import { JSONSchema7 } from 'json-schema'
 import { OpenAPIObject, OperationObject } from 'openapi3-ts'
 import { Definition, SingleIntegrationData } from '..'
@@ -183,7 +182,7 @@ export class IntegrationInstallerService {
     integrationData: SingleIntegrationData,
   ): Promise<OpenAPIObject | null> {
     // Never fetch external schemas on production
-    const schemaUrl = process.env.NODE_ENV !== 'production' ? integrationData.schemaUrl : null
+    const schemaUrl = process.env.NODE_ENV === 'development' ? integrationData.schemaUrl : null
 
     const { integrationKey, integrationVersion } = integrationData
 
@@ -196,7 +195,7 @@ export class IntegrationInstallerService {
     })
 
     // Don't create draft integrations on production
-    if (schema.info['x-draft'] && process.env.NODE_ENV === 'production') {
+    if (schema.info['x-draft'] && process.env.NODE_ENV !== 'development') {
       this.logger.log(`Integration ${integrationData.integrationKey} is marked as draft and won't be installed on prod`)
       return null
     }
