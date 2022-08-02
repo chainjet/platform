@@ -176,21 +176,24 @@ export class AuthResolver {
         verificationCode: plainVerificationToken,
       }
     }
-    await this.httpService
-      .request({
-        url: process.env.SIGN_UP_WORKFLOW_HOOK,
-        method: 'POST',
-        data: {
-          username: user.username,
-          email: user.email,
-          ...signUpWorkflowData,
-        },
-      })
-      .toPromise()
+
+    if (process.env.SIGN_UP_WORKFLOW_HOOK) {
+      await this.httpService
+        .request({
+          url: process.env.SIGN_UP_WORKFLOW_HOOK,
+          method: 'POST',
+          data: {
+            username: user.username,
+            email: user.email,
+            ...signUpWorkflowData,
+          },
+        })
+        .toPromise()
+    }
 
     const project = await this.projectService.createOne({
       owner: user._id,
-      name: 'First Project',
+      name: 'Main',
       public: false,
     })
 
