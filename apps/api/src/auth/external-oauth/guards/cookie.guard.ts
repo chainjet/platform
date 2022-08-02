@@ -16,7 +16,7 @@ export class CookieGuard implements CanActivate {
   getAccessTokenContext(context: ExecutionContext): string | null {
     try {
       const cookie = context.switchToHttp().getRequest()?.headers?.cookie
-      const tokenStr = decodeURIComponent(cookie.split('fw-token=')?.[1]?.split(';')?.[0])
+      const tokenStr = decodeURIComponent(cookie.split('cj-token=')?.[1]?.split(';')?.[0])
       const { accessToken } = JSON.parse(tokenStr)
       return accessToken
     } catch (e) {
