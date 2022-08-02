@@ -3,8 +3,9 @@ import strip from 'strip-markdown'
 
 export const capitalize = (str: string): string => str.charAt(0).toUpperCase() + str.substr(1)
 
-export function slugify (str: string): string {
-  return str.toLowerCase()
+export function slugify(str: string): string {
+  return str
+    .toLowerCase()
     .replace(/-/g, ' ')
     .replace(/[^\w\s]/g, ' ')
     .trim()
@@ -14,7 +15,7 @@ export function slugify (str: string): string {
 /**
  * Removes markdown and html from a string
  */
-export function stripMarkdown (str: string): Promise<string> {
+export function stripMarkdown(str: string): Promise<string> {
   // A @ is added at the beginning and then removed before returning, as a work around for an open issue:
   // https://github.com/remarkjs/strip-markdown/issues/19
   return new Promise((resolve, reject) => {
@@ -29,7 +30,7 @@ export function stripMarkdown (str: string): Promise<string> {
   })
 }
 
-export function stripMarkdownSync (str: string): string {
+export function stripMarkdownSync(str: string): string {
   // A @ is added at the beginning and then removed before returning, as a work around for an open issue:
   // https://github.com/remarkjs/strip-markdown/issues/19
   return remark()
@@ -40,7 +41,7 @@ export function stripMarkdownSync (str: string): string {
     .substr(1)
 }
 
-export function addEllipsis (str: string, maxLength: number): string {
+export function addEllipsis(str: string, maxLength: number): string {
   if (str.length > maxLength) {
     return str.substr(0, maxLength).trim() + '...'
   }

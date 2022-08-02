@@ -11,11 +11,8 @@ describe('ProjectResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        TypegooseModule.forFeature([Project]),
-        MockModule
-      ],
-      providers: [ProjectResolver, ProjectService, ProjectAuthorizer]
+      imports: [TypegooseModule.forFeature([Project]), MockModule],
+      providers: [ProjectResolver, ProjectService, ProjectAuthorizer],
     }).compile()
 
     resolver = module.get<ProjectResolver>(ProjectResolver)

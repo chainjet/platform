@@ -49,5 +49,5 @@ export class IntegrationAccount extends BaseEntity {
 // Create a GraphQL enum for IntegrationAuthType
 registerEnumType(IntegrationAuthType, {
   name: 'IntegrationAuthType',
-  description: 'Authentication strategy'
+  description: 'Authentication strategy',
 })

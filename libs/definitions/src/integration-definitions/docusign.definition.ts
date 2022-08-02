@@ -9,7 +9,7 @@ export class DocusignDefinition extends SingleIntegrationDefinition {
   schemaUrl =
     'https://raw.githubusercontent.com/docusign/eSign-OpenAPI-Specification/master/esignature.rest.swagger-v2.json'
 
-  mapSchemaOperation (operationSchema: OperationObject): OperationObject {
+  mapSchemaOperation(operationSchema: OperationObject): OperationObject {
     if (!operationSchema.operationId) {
       throw new Error('Operation must include operationId')
     }
@@ -19,11 +19,11 @@ export class DocusignDefinition extends SingleIntegrationDefinition {
     return {
       ...operationSchema,
       summary: summary.replace(/([a-z])([A-Z])/g, '$1 $2'),
-      description: operationSchema.description ?? operationSchema.summary
+      description: operationSchema.description ?? operationSchema.summary,
     }
   }
 
-  updateSchemaAfterFetch (schema: any): OpenAPIObject {
+  updateSchemaAfterFetch(schema: any): OpenAPIObject {
     // offlineAttributes is intentionally not defined and is marked as 'Reserved for DocuSign.'
     // https://github.com/docusign/eSign-OpenAPI-Specification/issues/22
     delete schema.definitions.witness.properties.offlineAttributes

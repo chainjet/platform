@@ -18,13 +18,15 @@ import { WorkflowActionService } from './services/workflow-action.service'
   imports: [
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([WorkflowAction, WorkflowNextAction])],
-      resolvers: [{
-        DTOClass: WorkflowNextAction,
-        EntityClass: WorkflowNextAction,
-        create: { disabled: true },
-        update: { disabled: true },
-        delete: { disabled: true }
-      }]
+      resolvers: [
+        {
+          DTOClass: WorkflowNextAction,
+          EntityClass: WorkflowNextAction,
+          create: { disabled: true },
+          update: { disabled: true },
+          delete: { disabled: true },
+        },
+      ],
     }),
     UsersModule, // required for GraphqlGuard
     AuthModule,
@@ -33,9 +35,9 @@ import { WorkflowActionService } from './services/workflow-action.service'
     WorkflowsModule,
     forwardRef(() => WorkflowTriggersModule),
     forwardRef(() => AccountCredentialsModule),
-    DefinitionsModule
+    DefinitionsModule,
   ],
   providers: [WorkflowActionResolver, WorkflowActionService, WorkflowActionAuthorizer],
-  exports: [WorkflowActionService]
+  exports: [WorkflowActionService],
 })
 export class WorkflowActionsModule {}

@@ -55,7 +55,7 @@ export class User extends BaseEntity {
     get: function (val) {
       return val ? `${this.username}:${val}` : val
     },
-    set: val => val
+    set: (val) => val,
   })
   apiKey?: string
 }

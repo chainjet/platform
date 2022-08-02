@@ -14,11 +14,8 @@ describe('ProjectService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        TypegooseModule.forFeature([Project]),
-        MockModule
-      ],
-      providers: [ProjectService]
+      imports: [TypegooseModule.forFeature([Project]), MockModule],
+      providers: [ProjectService],
     }).compile()
 
     service = module.get<ProjectService>(ProjectService)
@@ -38,7 +35,7 @@ describe('ProjectService', () => {
       const project = await service.createOne({
         name: 'Test Project',
         owner: user.id,
-        public: false
+        public: false,
       } as DeepPartial<Project>)
       expect(project.slug).toBe('testuser/test-project')
     })
@@ -65,15 +62,15 @@ describe('ProjectService', () => {
       for (const i of [0, 1, 2]) {
         await mock.createWorkflow({
           name: `workflow-${i}`,
-          slug: `test/test/workflow/workflow-${i}`
+          slug: `test/test/workflow/workflow-${i}`,
         })
       }
       await service.updateOne(mock.project.id, { name: 'Updated!' })
       const workflows = await mock.workflowService.find({ project: mock.project._id })
-      expect(workflows.map(workflow => workflow.slug)).toEqual([
+      expect(workflows.map((workflow) => workflow.slug)).toEqual([
         'test/updated/workflow/workflow-0',
         'test/updated/workflow/workflow-1',
-        'test/updated/workflow/workflow-2'
+        'test/updated/workflow/workflow-2',
       ])
     })
   })
@@ -90,17 +87,17 @@ describe('ProjectService', () => {
       await mock.workflowService.Model.insertMany([
         mock.getInstanceOfWorkflow({
           name: 'workflow-1',
-          slug: 'test/test/workflow-1'
+          slug: 'test/test/workflow-1',
         }),
         mock.getInstanceOfWorkflow({
           name: 'workflow-2',
-          slug: 'test/test/workflow-2'
+          slug: 'test/test/workflow-2',
         }),
         mock.getInstanceOfWorkflow({
           project: new ObjectID(),
           name: 'workflow-3',
-          slug: 'test/test/workflow-3'
-        })
+          slug: 'test/test/workflow-3',
+        }),
       ])
       await service.deleteOne(mock.project.id)
       expect(await mock.workflowService.find({ project: mock.project.id })).toHaveLength(0)

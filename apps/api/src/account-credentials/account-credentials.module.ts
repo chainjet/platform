@@ -15,14 +15,14 @@ import { AccountCredentialService } from './services/account-credentials.service
     ConfigModule.forRoot(),
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([AccountCredential])],
-      resolvers: []
+      resolvers: [],
     }),
     UsersModule, // required for GraphqlGuard
     IntegrationsModule,
     IntegrationAccountsModule,
-    forwardRef(() => RunnerModule)
+    forwardRef(() => RunnerModule),
   ],
   providers: [AccountCredentialResolver, AccountCredentialService, AccountCredentialAuthorizer],
-  exports: [AccountCredentialService]
+  exports: [AccountCredentialService],
 })
 export class AccountCredentialsModule {}

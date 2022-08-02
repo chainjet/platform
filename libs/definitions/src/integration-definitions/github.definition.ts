@@ -7,9 +7,10 @@ import { RequestInterceptorOptions } from '..'
 export class GithubDefinition extends SingleIntegrationDefinition {
   integrationKey = 'github'
   integrationVersion = '3'
-  schemaUrl = 'https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.json'
+  schemaUrl =
+    'https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.json'
 
-  updateSchemaBeforeSave (schema: OpenAPIObject): Promise<OpenAPIObject> {
+  updateSchemaBeforeSave(schema: OpenAPIObject): Promise<OpenAPIObject> {
     if (!schema.components?.examples) {
       return Promise.resolve(schema)
     }
@@ -19,14 +20,14 @@ export class GithubDefinition extends SingleIntegrationDefinition {
     for (const key of fixKeys) {
       schema.components.examples[key] = deleteObjectKeysDeep(
         schema.components.examples[key] as Record<string, any>,
-        key => key === '$ref'
+        (key) => key === '$ref',
       )
     }
 
     return Promise.resolve(schema)
   }
 
-  requestInterceptor ({ req }: RequestInterceptorOptions): request.OptionsWithUrl {
+  requestInterceptor({ req }: RequestInterceptorOptions): request.OptionsWithUrl {
     req.headers = req.headers ?? {}
     req.headers.Accept = 'application/vnd.github.v3+json'
     return req

@@ -23,31 +23,29 @@ import { OwnershipService } from './services/ownership.service'
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
         return {
-          secret: configService.get('JWT_SECRET')
+          secret: configService.get('JWT_SECRET'),
         }
-      }
+      },
     }),
 
     // Sessions are required for passport-oauth1
     SessionModule.forRoot({
       // An empty string will make the sesion fail if for some reason a secret is not defined
-      session: { secret: process.env.SESSION_SECRET ?? '' }
+      session: { secret: process.env.SESSION_SECRET ?? '' },
     }),
 
     UsersModule,
     forwardRef(() => AccountCredentialsModule),
     ProjectsModule,
     IntegrationAccountsModule,
-    EmailsModule
+    EmailsModule,
   ],
   providers: [AuthService, AuthResolver, JwtStrategy, OwnershipService, OAuthStrategyFactory],
   controllers: [ExternalOAuthController],
-  exports: [AuthService, OAuthStrategyFactory]
+  exports: [AuthService, OAuthStrategyFactory],
 })
 export class AuthModule {
-  configure (consumer: MiddlewareConsumer): void {
-    consumer
-      .apply(OAuthStrategyFactory.initializePassport())
-      .forRoutes(ExternalOAuthController)
+  configure(consumer: MiddlewareConsumer): void {
+    consumer.apply(OAuthStrategyFactory.initializePassport()).forRoutes(ExternalOAuthController)
   }
 }

@@ -6,11 +6,11 @@ export class KubernetesDefinition extends SingleIntegrationDefinition {
   integrationVersion = '1'
   schemaUrl = 'https://raw.githubusercontent.com/kubernetes/kubernetes/master/api/openapi-spec/swagger.json'
 
-  mapSchemaOperation (operationSchema: OperationObject): OperationObject {
+  mapSchemaOperation(operationSchema: OperationObject): OperationObject {
     return {
       ...operationSchema,
       summary: operationSchema.description ?? operationSchema.operationId,
-      description: undefined
+      description: undefined,
     }
   }
 }

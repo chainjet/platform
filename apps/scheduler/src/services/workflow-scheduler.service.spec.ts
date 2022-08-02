@@ -9,11 +9,8 @@ describe('WorkflowSchedulerService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        ScheduleModule.forRoot(),
-        MockModule
-      ],
-      providers: [WorkflowSchedulerService]
+      imports: [ScheduleModule.forRoot(), MockModule],
+      providers: [WorkflowSchedulerService],
     }).compile()
 
     service = module.get<WorkflowSchedulerService>(WorkflowSchedulerService)

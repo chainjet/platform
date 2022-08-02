@@ -9,37 +9,39 @@ describe('StringUtils', () => {
 
   describe('stripMarkdown', () => {
     it('should remove the markdown from a string', async () => {
-      expect(await stripMarkdown('Some *emphasis*, **importance**, and `code`.'))
-        .toBe('Some emphasis, importance, and code.')
+      expect(await stripMarkdown('Some *emphasis*, **importance**, and `code`.')).toBe(
+        'Some emphasis, importance, and code.',
+      )
     })
 
     it('should remove html from a string', async () => {
-      expect(await stripMarkdown('Some <i>emphasis</i>, <strong>importance</strong>, and <code>code</code>.'))
-        .toBe('Some emphasis, importance, and code.')
+      expect(await stripMarkdown('Some <i>emphasis</i>, <strong>importance</strong>, and <code>code</code>.')).toBe(
+        'Some emphasis, importance, and code.',
+      )
     })
 
     // https://github.com/remarkjs/strip-markdown/issues/19
     it('should remove html from a string starting with a html tag', async () => {
-      expect(await stripMarkdown('<p>foo</p> bar'))
-        .toBe('foo bar')
+      expect(await stripMarkdown('<p>foo</p> bar')).toBe('foo bar')
     })
   })
 
   describe('stripMarkdownSync', () => {
     it('should remove the markdown from a string', async () => {
-      expect(stripMarkdownSync('Some *emphasis*, **importance**, and `code`.'))
-        .toBe('Some emphasis, importance, and code.')
+      expect(stripMarkdownSync('Some *emphasis*, **importance**, and `code`.')).toBe(
+        'Some emphasis, importance, and code.',
+      )
     })
 
     it('should remove html from a string', async () => {
-      expect(stripMarkdownSync('Some <i>emphasis</i>, <strong>importance</strong>, and <code>code</code>.'))
-        .toBe('Some emphasis, importance, and code.')
+      expect(stripMarkdownSync('Some <i>emphasis</i>, <strong>importance</strong>, and <code>code</code>.')).toBe(
+        'Some emphasis, importance, and code.',
+      )
     })
 
     // https://github.com/remarkjs/strip-markdown/issues/19
     it('should remove html from a string starting with a html tag', async () => {
-      expect(stripMarkdownSync('<p>foo</p> bar'))
-        .toBe('foo bar')
+      expect(stripMarkdownSync('<p>foo</p> bar')).toBe('foo bar')
     })
   })
 

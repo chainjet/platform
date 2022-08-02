@@ -6,29 +6,29 @@ import { EmailTemplate } from '../templates/emailTemplate'
 export class EmailService {
   private readonly logger = new Logger(EmailService.name)
 
-  async sendEmailTemplate (template: EmailTemplate, toAddress: string): Promise<void> {
+  async sendEmailTemplate(template: EmailTemplate, toAddress: string): Promise<void> {
     const params = {
       Destination: {
-        ToAddresses: [toAddress]
+        ToAddresses: [toAddress],
       },
       Message: {
         Body: {
           Html: {
             Charset: 'UTF-8',
-            Data: template.getHtmlBody()
+            Data: template.getHtmlBody(),
           },
           Text: {
             Charset: 'UTF-8',
-            Data: template.getTextBody()
-          }
+            Data: template.getTextBody(),
+          },
         },
         Subject: {
           Charset: 'UTF-8',
-          Data: template.getSubject()
-        }
+          Data: template.getSubject(),
+        },
       },
       Source: template.sendFrom,
-      ReplyToAddresses: [template.sendFrom]
+      ReplyToAddresses: [template.sendFrom],
     }
 
     try {

@@ -20,10 +20,7 @@ describe('Hooks Controller', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [HooksController],
       providers: [WorkflowTriggerService],
-      imports: [
-        TypegooseModule.forFeature([WorkflowTrigger]),
-        MockModule
-      ]
+      imports: [TypegooseModule.forFeature([WorkflowTrigger]), MockModule],
     }).compile()
 
     app = module.createNestApplication()
@@ -44,26 +41,26 @@ describe('Hooks Controller', () => {
   describe('receiveHook', () => {
     beforeEach(async () => {
       await mock.createWorkflowTriggerDeep({
-        hookId: 'test-hook'
+        hookId: 'test-hook',
       })
       mock.runnerService.runWorkflowActions = jest.fn(() => Promise.resolve())
     })
 
     it('should run the workflow if onHookReceived returns true', async () => {
       integrationDefinitionFactory.getDefinition = jest.fn(() => ({
-        onHookReceived: () => true
+        onHookReceived: () => true,
       })) as jest.Mock
 
-      const res = await supertest(app.getHttpServer())
-        .get(`/hooks/${mock.workflowTrigger.hookId}`)
-        .expect(200)
+      const res = await supertest(app.getHttpServer()).get(`/hooks/${mock.workflowTrigger.hookId}`).expect(200)
 
-      expect(res.body).toEqual(expect.objectContaining({
-        message: 'Hook successfuly received'
-      }))
+      expect(res.body).toEqual(
+        expect.objectContaining({
+          message: 'Hook successfuly received',
+        }),
+      )
 
       const expectedOutputs = {
-        [mock.workflowTrigger.id]: {}
+        [mock.workflowTrigger.id]: {},
       }
       const workflowRun = await mock.workflowRunService.findOne({ workflow: mock.workflow })
       expect(mock.runnerService.runWorkflowActions).toHaveBeenCalledWith([], [expectedOutputs], workflowRun)
@@ -71,28 +68,30 @@ describe('Hooks Controller', () => {
 
     it('should merge query params with body params', async () => {
       integrationDefinitionFactory.getDefinition = jest.fn(() => ({
-        onHookReceived: () => true
+        onHookReceived: () => true,
       })) as jest.Mock
 
       const res = await supertest(app.getHttpServer())
         .post(`/hooks/${mock.workflowTrigger.hookId}?query1=foo&query2=bar`)
         .send({
           body1: 'foo',
-          body2: 'bar'
+          body2: 'bar',
         })
         .expect(200)
 
-      expect(res.body).toEqual(expect.objectContaining({
-        message: 'Hook successfuly received'
-      }))
+      expect(res.body).toEqual(
+        expect.objectContaining({
+          message: 'Hook successfuly received',
+        }),
+      )
 
       const expectedOutputs = {
         [mock.workflowTrigger.id]: {
           query1: 'foo',
           query2: 'bar',
           body1: 'foo',
-          body2: 'bar'
-        }
+          body2: 'bar',
+        },
       }
       const workflowRun = await mock.workflowRunService.findOne({ workflow: mock.workflow })
       expect(mock.runnerService.runWorkflowActions).toHaveBeenCalledWith([], [expectedOutputs], workflowRun)
@@ -100,26 +99,20 @@ describe('Hooks Controller', () => {
 
     it('should not run the workflow if onHookReceived returns false', async () => {
       integrationDefinitionFactory.getDefinition = jest.fn(() => ({
-        onHookReceived: () => false
+        onHookReceived: () => false,
       })) as jest.Mock
 
-      await supertest(app.getHttpServer())
-        .get(`/hooks/${mock.workflowTrigger.hookId}`)
-        .expect(200)
-        .expect({})
+      await supertest(app.getHttpServer()).get(`/hooks/${mock.workflowTrigger.hookId}`).expect(200).expect({})
 
       expect(mock.runnerService.runWorkflowActions).not.toHaveBeenCalled()
     })
 
     it('should throw an exception if the hook does not exist', async () => {
-      await supertest(app.getHttpServer())
-        .get('/hooks/not-existent-hook')
-        .expect(404)
-        .expect({
-          statusCode: 404,
-          message: 'Webhook not found',
-          error: 'Not Found'
-        })
+      await supertest(app.getHttpServer()).get('/hooks/not-existent-hook').expect(404).expect({
+        statusCode: 404,
+        message: 'Webhook not found',
+        error: 'Not Found',
+      })
       expect(mock.runnerService.runWorkflowActions).not.toHaveBeenCalled()
     })
   })

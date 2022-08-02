@@ -36,12 +36,12 @@ const moduleList = [
   WorkflowRunsModule,
   DefinitionsModule,
   RunnerModule,
-  EmailsModule
+  EmailsModule,
 ]
 
 @Module({
   imports: moduleList,
   exports: moduleList,
-  providers: [MockService]
+  providers: [MockService],
 })
 export class MockModule {}

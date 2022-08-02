@@ -14,16 +14,16 @@ export class WorkflowRunAuthorizer extends OwnedAuthorizer<WorkflowRun> {}
 @UseGuards(GraphqlGuard)
 export class WorkflowRunResolver extends BaseResolver(WorkflowRun, {
   read: {
-    maxResultsSize: 60
+    maxResultsSize: 60,
   },
   create: { disabled: true },
   update: { disabled: true },
   delete: { disabled: true },
-  guards: [GraphqlGuard]
+  guards: [GraphqlGuard],
 }) {
-  constructor (
+  constructor(
     protected workflowRunService: WorkflowRunService,
-    @InjectAuthorizer(WorkflowRun) readonly authorizer: Authorizer<WorkflowRun>
+    @InjectAuthorizer(WorkflowRun) readonly authorizer: Authorizer<WorkflowRun>,
   ) {
     super(workflowRunService)
   }

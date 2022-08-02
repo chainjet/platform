@@ -9,10 +9,10 @@ import { IntegrationService } from './services/integration.service'
   imports: [
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([Integration])],
-      resolvers: []
-    })
+      resolvers: [],
+    }),
   ],
   providers: [IntegrationResolver, IntegrationService],
-  exports: [IntegrationService]
+  exports: [IntegrationService],
 })
 export class IntegrationsModule {}

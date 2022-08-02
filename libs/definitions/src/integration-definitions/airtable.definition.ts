@@ -15,7 +15,7 @@ export class AirtableDefinition extends SingleIntegrationDefinition {
 
   protected integrationAccount: IntegrationAccount | undefined
 
-  async createOrUpdateIntegrationAccount (): Promise<IntegrationAccount | null> {
+  async createOrUpdateIntegrationAccount(): Promise<IntegrationAccount | null> {
     if (!this.integrationAccount) {
       const authDefinition: IntegrationAuthDefinition = {
         authType: IntegrationAuthType.http,
@@ -28,20 +28,23 @@ export class AirtableDefinition extends SingleIntegrationDefinition {
               type: 'string',
               format: 'password',
               title: 'API Key',
-              description: 'Go to https://airtable.com/account > Copy the API key, it should start with the word "key".'
+              description:
+                'Go to https://airtable.com/account > Copy the API key, it should start with the word "key".',
             },
             baseId: {
               type: 'string',
               title: 'Base ID or Base API URL',
-              description: 'Go to https://airtable.com/api > Select the base you would like to connect > Enter the URL here. It should start with "https://airtable.com/app".'
+              description:
+                'Go to https://airtable.com/api > Select the base you would like to connect > Enter the URL here. It should start with "https://airtable.com/app".',
             },
             tableName: {
               type: 'string',
               title: 'Table Name',
-              description: 'The name of the table you would like to connect. This is the name of the tab in your spreadsheet.'
-            }
-          }
-        }
+              description:
+                'The name of the table you would like to connect. This is the name of the tab in your spreadsheet.',
+            },
+          },
+        },
       }
 
       this.logger.debug('Creating or updating integration account for Airtable')
@@ -49,14 +52,14 @@ export class AirtableDefinition extends SingleIntegrationDefinition {
         key: this.integrationKey,
         name: 'Airtable',
         authType: authDefinition.authType,
-        fieldsSchema: authDefinition.schema
+        fieldsSchema: authDefinition.schema,
       })
     }
 
     return this.integrationAccount
   }
 
-  requestInterceptor (options: RequestInterceptorOptions): request.OptionsWithUrl {
+  requestInterceptor(options: RequestInterceptorOptions): request.OptionsWithUrl {
     const { req, credentials } = options
 
     req.headers = req.headers ?? {}
@@ -75,7 +78,7 @@ export class AirtableDefinition extends SingleIntegrationDefinition {
     return req
   }
 
-  async beforeOperationRun (opts: OperationRunOptions): Promise<OperationRunOptions> {
+  async beforeOperationRun(opts: OperationRunOptions): Promise<OperationRunOptions> {
     opts.inputs.tableName = opts.credentials.tableName
 
     // baseId accepts the ID or the URL
@@ -87,38 +90,40 @@ export class AirtableDefinition extends SingleIntegrationDefinition {
     return opts
   }
 
-  async getInitOperationOptions (opts: {
+  async getInitOperationOptions(opts: {
     integration: Integration
     integrationAccount: IntegrationAccount | null
     credentials: StepInputs
     accountCredential: AccountCredential | null
   }): Promise<OperationRunOptions | null> {
     const { integration } = opts
-    const integrationAction = await this.integrationActionService
-      .findOne({ integration: integration._id, key: 'listRecords' })
+    const integrationAction = await this.integrationActionService.findOne({
+      integration: integration._id,
+      key: 'listRecords',
+    })
     if (!integrationAction) {
       return null
     }
     return {
       ...opts,
       operation: integrationAction,
-      inputs: {}
+      inputs: {},
     }
   }
 
-  async afterInitOperationRun (
+  async afterInitOperationRun(
     outputs: Record<string, unknown>,
-    opts: OperationRunOptions
+    opts: OperationRunOptions,
   ): Promise<{ accountCredential?: AccountCredential }> {
-    const firstRecord = (outputs.records ?? [] as any)?.[0]
+    const firstRecord = (outputs.records ?? ([] as any))?.[0]
     if (opts.accountCredential && firstRecord?.fields) {
       const schema = generateSchemaFromObject(firstRecord?.fields)
       opts.accountCredential.schemaRefs = {
         ...(opts.accountCredential.schemaRefs ?? {}),
-        record: schema
+        record: schema,
       }
       return {
-        accountCredential: opts.accountCredential
+        accountCredential: opts.accountCredential,
       }
     }
     return {}

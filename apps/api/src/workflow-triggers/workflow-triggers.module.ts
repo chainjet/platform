@@ -20,7 +20,7 @@ import { WorkflowTriggerService } from './services/workflow-trigger.service'
   imports: [
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([WorkflowTrigger])],
-      resolvers: []
+      resolvers: [],
     }),
     AuthModule,
     UsersModule, // required for GraphqlGuard
@@ -33,10 +33,10 @@ import { WorkflowTriggerService } from './services/workflow-trigger.service'
     DefinitionsModule,
 
     // TODO remove forwardRef once Runner calls are replaced with queues
-    forwardRef(() => RunnerModule)
+    forwardRef(() => RunnerModule),
   ],
   providers: [WorkflowTriggerResolver, WorkflowTriggerService, WorkflowTriggerAuthorizer],
   exports: [WorkflowTriggerService],
-  controllers: [HooksController]
+  controllers: [HooksController],
 })
 export class WorkflowTriggersModule {}

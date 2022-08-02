@@ -1,9 +1,6 @@
 import { RequestInterceptorOptions, SingleIntegrationData } from '@app/definitions/definition'
 import { MultiIntegrationDefinition } from '@app/definitions/multi-integration.definition'
-import {
-  IntegrationAuthDefinition,
-  IntegrationAuthType
-} from '@app/definitions/typings/IntegrationAuthDefinition'
+import { IntegrationAuthDefinition, IntegrationAuthType } from '@app/definitions/typings/IntegrationAuthDefinition'
 import { HttpService, Logger } from '@nestjs/common'
 import { IntegrationAccount } from 'apps/api/src/integration-accounts/entities/integration-account'
 import aws4 from 'aws4'
@@ -59,24 +56,20 @@ export class AwsDefinition extends MultiIntegrationDefinition {
     'aws-cloudhsmv2': 'aws-cloudhsm',
     'aws-macie2': 'aws-macie',
     'aws-waf-regional': 'aws-waf',
-    'aws-wafv2': 'aws-waf'
+    'aws-wafv2': 'aws-waf',
   }
 
   // Skip non existent integration services
-  skipKeys = [
-    'aws-mturk-requester',
-    'aws-devops-guru',
-    'aws-airflow'
-  ]
+  skipKeys = ['aws-mturk-requester', 'aws-devops-guru', 'aws-airflow']
 
-  get triggerNamePrefixes (): string[] {
+  get triggerNamePrefixes(): string[] {
     return [...this._triggerNamePrefixes, 'describe']
   }
 
   /**
    * Create a single integration account which will be shared between all AWS integrations
    */
-  async createOrUpdateIntegrationAccount (): Promise<IntegrationAccount | null> {
+  async createOrUpdateIntegrationAccount(): Promise<IntegrationAccount | null> {
     if (!this.integrationAccount) {
       const authDefinition: IntegrationAuthDefinition = {
         authType: IntegrationAuthType.http,
@@ -89,20 +82,20 @@ export class AwsDefinition extends MultiIntegrationDefinition {
               type: 'string',
               title: 'Region',
               // enum: [], // TODO
-              default: 'us-east-1'
+              default: 'us-east-1',
             },
             accessKeyId: {
               type: 'string',
               title: 'Access key ID',
-              format: 'password'
+              format: 'password',
             },
             secretAccessKey: {
               type: 'string',
               title: 'Secret access key',
-              format: 'password'
-            }
-          }
-        }
+              format: 'password',
+            },
+          },
+        },
       }
 
       this.logger.debug(`Creating or updating integration account for ${this.parentKey}`)
@@ -111,19 +104,19 @@ export class AwsDefinition extends MultiIntegrationDefinition {
         name: this.parentName,
         description: '', // TODO
         authType: authDefinition.authType,
-        fieldsSchema: authDefinition.schema
+        fieldsSchema: authDefinition.schema,
       })
     }
 
     return this.integrationAccount
   }
 
-  async beforeOperationRun (opts: OperationRunOptions): Promise<OperationRunOptions> {
+  async beforeOperationRun(opts: OperationRunOptions): Promise<OperationRunOptions> {
     opts.inputs.Region = opts.credentials.region
     return opts
   }
 
-  requestInterceptor (options: RequestInterceptorOptions): request.OptionsWithUrl {
+  requestInterceptor(options: RequestInterceptorOptions): request.OptionsWithUrl {
     const { req, schema, action, credentials } = options
 
     const reqOptions: any = {
@@ -132,7 +125,7 @@ export class AwsDefinition extends MultiIntegrationDefinition {
       service: schema['x-metadata']?.endpointPrefix,
       region: credentials.region,
       headers: req.headers,
-      body: req.body
+      body: req.body,
     }
 
     switch (schema['x-metadata']?.protocol) {
@@ -154,7 +147,7 @@ export class AwsDefinition extends MultiIntegrationDefinition {
     return req
   }
 
-  mapSchemaOperation (operationSchema: OperationObject): OperationObject {
+  mapSchemaOperation(operationSchema: OperationObject): OperationObject {
     const summary = (operationSchema.summary ?? operationSchema.operationId ?? '')
       .replace(/([a-z])([A-Z])/g, '$1 $2')
       .replace(/^GET_/, '')
@@ -170,59 +163,52 @@ export class AwsDefinition extends MultiIntegrationDefinition {
 
     return {
       ...operationSchema,
-      summary
+      summary,
     }
   }
 
-  getTriggerIdField (
-    schema: JSONSchema7,
-    parentProperty: string,
-    operationObject: OperationObject
-  ): string | null {
+  getTriggerIdField(schema: JSONSchema7, parentProperty: string, operationObject: OperationObject): string | null {
     const keys: string[] = schema.required ?? Object.keys(schema.properties ?? {})
 
     // Try to find the id field using the parent name
     const singularParent = pluralize.singular(parentProperty)
-    const idKeys = ['id', 'arn'].map(id => `${singularParent.toLowerCase()}${id}`)
-    const idField = keys.find(field => idKeys.includes(field.toLowerCase())) ?? null
+    const idKeys = ['id', 'arn'].map((id) => `${singularParent.toLowerCase()}${id}`)
+    const idField = keys.find((field) => idKeys.includes(field.toLowerCase())) ?? null
     if (idField) {
       return idField
     }
 
     // Try to find the id field using the operation name
-    const operationName = operationObject?.summary
-      ?.toLowerCase()
-      .replace('describe', '')
-      .replace('list', '')
-      .trim()
-    const operationIdKeys = ['id', 'arn'].map(id => `${pluralize.singular(operationName)}${id}`)
-    const operationIdField = keys.find(field => operationIdKeys.includes(field.toLowerCase())) ?? null
+    const operationName = operationObject?.summary?.toLowerCase().replace('describe', '').replace('list', '').trim()
+    const operationIdKeys = ['id', 'arn'].map((id) => `${pluralize.singular(operationName)}${id}`)
+    const operationIdField = keys.find((field) => operationIdKeys.includes(field.toLowerCase())) ?? null
     if (operationIdField) {
       return operationIdField
     }
 
     // Select fields ending in id or arn
-    const idArn = keys.find(field => field.toLowerCase().endsWith('id') ?? field.toLowerCase().endsWith('arn')) ?? null
+    const idArn =
+      keys.find((field) => field.toLowerCase().endsWith('id') ?? field.toLowerCase().endsWith('arn')) ?? null
     if (idArn) {
       return idArn
     }
 
     // Select the name field
-    const nameField = keys.find(field => field.toLowerCase() === 'name')
+    const nameField = keys.find((field) => field.toLowerCase() === 'name')
     if (nameField) {
       return nameField
     }
 
     // Select fields ending in name
-    return keys.find(field => field.toLowerCase().endsWith('name')) ?? null
+    return keys.find((field) => field.toLowerCase().endsWith('name')) ?? null
   }
 
-  async getIntegrationsData (): Promise<SingleIntegrationData[]> {
+  async getIntegrationsData(): Promise<SingleIntegrationData[]> {
     const integrations: SingleIntegrationData[] = []
 
     this.logger.debug('Fetching api definitions')
     const apiDefinitionFiles = await getApiDefinitionFiles()
-    const normalAPIDefinitions = apiDefinitionFiles.filter(file => file.includes('.normal'))
+    const normalAPIDefinitions = apiDefinitionFiles.filter((file) => file.includes('.normal'))
 
     this.logger.log(`Found AWS API definitions for ${normalAPIDefinitions.length} integrations`)
 
@@ -232,9 +218,7 @@ export class AwsDefinition extends MultiIntegrationDefinition {
 
       const normalApiDefinitionUrl = `https://raw.githubusercontent.com/aws/aws-sdk-js/master/apis/${apiPath}`
       this.logger.debug(`[GET] ${normalApiDefinitionUrl}`)
-      const definitionRes = await new HttpService()
-        .request({ url: normalApiDefinitionUrl })
-        .toPromise()
+      const definitionRes = await new HttpService().request({ url: normalApiDefinitionUrl }).toPromise()
       const definition: NormalAPIDefinition = definitionRes.data
 
       let integrationKey = definition.metadata.endpointPrefix.replace(/\./g, '-')
@@ -260,21 +244,20 @@ export class AwsDefinition extends MultiIntegrationDefinition {
           integrationVersion,
           schemaUrl,
           deprecated: true,
-          metadata: definition.metadata
+          metadata: definition.metadata,
         })
       }
     }
 
-    return integrations.map(integration => ({
+    return integrations.map((integration) => ({
       ...integration,
-      deprecated: !!integrations.find(s =>
-        s.integrationKey === integration.integrationKey &&
-        s.integrationVersion > integration.integrationVersion
-      )
+      deprecated: !!integrations.find(
+        (s) => s.integrationKey === integration.integrationKey && s.integrationVersion > integration.integrationVersion,
+      ),
     }))
   }
 
-  async updateSchemaBeforeSave (schema: OpenAPIObject, integrationData: SingleIntegrationData): Promise<OpenAPIObject> {
+  async updateSchemaBeforeSave(schema: OpenAPIObject, integrationData: SingleIntegrationData): Promise<OpenAPIObject> {
     // Ensure all services have targetPrefix (protocol json have it in normal def, the rest we need to fetch from model)
     if (!schema.info['x-deprecated'] && !schema['x-metadata']?.targetPrefix) {
       const serviceId = schema['x-metadata'].serviceId.toLowerCase().replace(/\s/g, '-')
@@ -294,7 +277,7 @@ export class AwsDefinition extends MultiIntegrationDefinition {
     for (const [pathKey, pathValue] of Object.entries(schema.paths)) {
       const operations = Object.entries(pathValue)
         .filter((x: [string, OperationObject]) => x[1].summary ?? x[1].description)
-        .sort(a => a[0] === 'post' ? -1 : 1) as Array<[string, OperationObject]>
+        .sort((a) => (a[0] === 'post' ? -1 : 1)) as Array<[string, OperationObject]>
       const summarySet = new Set()
       for (const [method, operation] of operations) {
         if (summarySet.has(operation.summary)) {
@@ -314,7 +297,7 @@ export class AwsDefinition extends MultiIntegrationDefinition {
     return schema
   }
 
-  async onHookReceived (req: Request): Promise<boolean> {
+  async onHookReceived(req: Request): Promise<boolean> {
     if (req.body.Type === 'SubscriptionConfirmation' && req.body.SubscribeURL) {
       this.logger.log(`Confirmed subscription for hook ${req.params.hookId}`)
       await new HttpService().request(req.body.SubscribeURL).toPromise()
@@ -324,14 +307,12 @@ export class AwsDefinition extends MultiIntegrationDefinition {
   }
 }
 
-async function getApiDefinitionFiles (): Promise<string[]> {
+async function getApiDefinitionFiles(): Promise<string[]> {
   const httpService = new HttpService()
   const res = await httpService
     .request({ url: 'https://api.github.com/repos/aws/aws-sdk-js/git/trees/master' })
     .toPromise()
   const apisNode = res.data.tree.find((node: any) => node.path === 'apis')
-  const nodeDataRes = await httpService
-    .request({ url: apisNode.url })
-    .toPromise()
+  const nodeDataRes = await httpService.request({ url: apisNode.url }).toPromise()
   return nodeDataRes.data.tree.map((node: any) => node.path)
 }

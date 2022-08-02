@@ -8,11 +8,8 @@ describe('Schedule Definition', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        TestDatabaseModule,
-        DefinitionsModule
-      ],
-      providers: [ScheduleDefinition]
+      imports: [TestDatabaseModule, DefinitionsModule],
+      providers: [ScheduleDefinition],
     }).compile()
 
     const factory = module.get<IntegrationDefinitionFactory>(IntegrationDefinitionFactory)
@@ -25,9 +22,7 @@ describe('Schedule Definition', () => {
     })
 
     it('should return the current date', async () => {
-      expect(
-        await definition.run()
-      ).toEqual({
+      expect(await definition.run()).toEqual({
         outputs: {
           date: 'Wednesday 01, 2020',
           dayName: 'Wednesday',
@@ -41,8 +36,8 @@ describe('Schedule Definition', () => {
           time: '00:00:00',
           timezoneOffset: new Date('2020-01-01 00:00').getTimezoneOffset(),
           unixtime: 1577847600000,
-          year: 2020
-        }
+          year: 2020,
+        },
       })
     })
   })

@@ -14,11 +14,8 @@ describe('WorkflowActionService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        TypegooseModule.forFeature([WorkflowAction]),
-        MockModule
-      ],
-      providers: [WorkflowActionService]
+      imports: [TypegooseModule.forFeature([WorkflowAction]), MockModule],
+      providers: [WorkflowActionService],
     }).compile()
 
     service = module.get<WorkflowActionService>(WorkflowActionService)
@@ -33,13 +30,13 @@ describe('WorkflowActionService', () => {
     await mock.createWorkflowDeep()
   })
 
-  function createWorkflowAction (record: DeepPartial<CreateWorkflowActionInput> = {}): Promise<WorkflowAction> {
+  function createWorkflowAction(record: DeepPartial<CreateWorkflowActionInput> = {}): Promise<WorkflowAction> {
     return service.createOne({
       owner: mock.user._id,
       workflow: mock.workflow._id,
       integrationAction: mock.integrationAction._id,
       inputs: {},
-      ...record
+      ...record,
     })
   }
 
@@ -57,14 +54,14 @@ describe('WorkflowActionService', () => {
         inputs: '{}',
         isRootAction: true,
         nextActions: [],
-        __v: 0
+        __v: 0,
       })
     })
 
     it('should create an action at the beginning of a workflow', async () => {
       const existentAction = await createWorkflowAction()
       const newAction = await createWorkflowAction({
-        nextAction: new ObjectID(existentAction.id)
+        nextAction: new ObjectID(existentAction.id),
       })
 
       const existentActionDoc = (await service.Model.findOne({ _id: new ObjectID(existentAction.id) }))?.toObject()
@@ -78,7 +75,7 @@ describe('WorkflowActionService', () => {
     it('should create an action at the end of a workflow', async () => {
       const firstAction = await createWorkflowAction()
       const lastAction = await createWorkflowAction({
-        previousAction: new ObjectID(firstAction.id)
+        previousAction: new ObjectID(firstAction.id),
       })
 
       const firstActionDoc = (await service.Model.findOne({ _id: new ObjectID(firstAction.id) }))?.toObject()
@@ -92,11 +89,11 @@ describe('WorkflowActionService', () => {
     it('should create an action in between 2 actions', async () => {
       const firstAction = await createWorkflowAction()
       const lastAction = await createWorkflowAction({
-        previousAction: new ObjectID(firstAction.id)
+        previousAction: new ObjectID(firstAction.id),
       })
       const middleAction = await createWorkflowAction({
         previousAction: new ObjectID(firstAction.id),
-        nextAction: new ObjectID(lastAction.id)
+        nextAction: new ObjectID(lastAction.id),
       })
 
       const firstActionDoc = (await service.Model.findOne({ _id: new ObjectID(firstAction.id) }))?.toObject()
@@ -114,15 +111,17 @@ describe('WorkflowActionService', () => {
       const firstAction = await createWorkflowAction()
       const lastAction = await createWorkflowAction({
         previousAction: new ObjectID(firstAction.id),
-        previousActionCondition: 'test condition'
+        previousActionCondition: 'test condition',
       })
 
       const firstActionDoc = (await service.Model.findOne({ _id: new ObjectID(firstAction.id) }))?.toObject()
       expect(firstActionDoc.isRootAction).toEqual(true)
-      expect(firstActionDoc.nextActions).toEqual([{
-        action: new ObjectID(lastAction.id),
-        condition: 'test condition'
-      }])
+      expect(firstActionDoc.nextActions).toEqual([
+        {
+          action: new ObjectID(lastAction.id),
+          condition: 'test condition',
+        },
+      ])
     })
 
     it('should set the trigger next check if creating a root action', async () => {
@@ -132,9 +131,9 @@ describe('WorkflowActionService', () => {
         integrationTrigger: new ObjectID(),
         schedule: {
           frequency: 'interval',
-          interval: 300
+          interval: 300,
         },
-        inputs: {}
+        inputs: {},
       })
       await createWorkflowAction()
       const updatedTrigger = await mock.workflowTriggerService.findById(trigger.id)
@@ -148,9 +147,9 @@ describe('WorkflowActionService', () => {
         integrationTrigger: new ObjectID(),
         schedule: {
           frequency: 'interval',
-          interval: 300
+          interval: 300,
         },
-        inputs: {}
+        inputs: {},
       })
       const firstAction = await createWorkflowAction()
       await mock.workflowTriggerService.updateOne(trigger.id, { nextCheck: undefined })
@@ -171,7 +170,7 @@ describe('WorkflowActionService', () => {
     it('should remove the first action in a workflow', async () => {
       const firstAction = await createWorkflowAction()
       const lastAction = await createWorkflowAction({
-        previousAction: new ObjectID(firstAction.id)
+        previousAction: new ObjectID(firstAction.id),
       })
       await service.deleteOne(firstAction.id)
 
@@ -183,7 +182,7 @@ describe('WorkflowActionService', () => {
     it('should remove the last action in a workflow', async () => {
       const firstAction = await createWorkflowAction()
       const lastAction = await createWorkflowAction({
-        previousAction: new ObjectID(firstAction.id)
+        previousAction: new ObjectID(firstAction.id),
       })
       await service.deleteOne(lastAction.id)
 
@@ -195,11 +194,11 @@ describe('WorkflowActionService', () => {
     it('should remove an action between 2 actions', async () => {
       const firstAction = await createWorkflowAction()
       const lastAction = await createWorkflowAction({
-        previousAction: new ObjectID(firstAction.id)
+        previousAction: new ObjectID(firstAction.id),
       })
       const middleAction = await createWorkflowAction({
         previousAction: new ObjectID(firstAction.id),
-        nextAction: new ObjectID(lastAction.id)
+        nextAction: new ObjectID(lastAction.id),
       })
       await service.deleteOne(middleAction.id)
 

@@ -15,34 +15,31 @@ import { WorkflowSleepService } from './services/workflow-sleep.service'
 @Module({
   imports: [
     NestjsQueryGraphQLModule.forFeature({
-      imports: [NestjsQueryTypegooseModule.forFeature([
-        WorkflowRun,
-        WorkflowRunTrigger,
-        WorkflowRunAction,
-        WorkflowSleep
-      ])],
+      imports: [
+        NestjsQueryTypegooseModule.forFeature([WorkflowRun, WorkflowRunTrigger, WorkflowRunAction, WorkflowSleep]),
+      ],
       resolvers: [
         {
           DTOClass: WorkflowRunTrigger,
           EntityClass: WorkflowRunTrigger,
           create: { disabled: true },
           update: { disabled: true },
-          delete: { disabled: true }
+          delete: { disabled: true },
         },
         {
           DTOClass: WorkflowRunAction,
           EntityClass: WorkflowRunAction,
           create: { disabled: true },
           update: { disabled: true },
-          delete: { disabled: true }
-        }
-    ]
+          delete: { disabled: true },
+        },
+      ],
     }),
     UsersModule,
     WorkflowsModule,
-    forwardRef(() => WorkflowTriggersModule)
+    forwardRef(() => WorkflowTriggersModule),
   ],
   providers: [WorkflowRunService, WorkflowRunResolver, WorkflowRunAuthorizer, WorkflowSleepService],
-  exports: [WorkflowRunService, WorkflowSleepService]
+  exports: [WorkflowRunService, WorkflowSleepService],
 })
 export class WorkflowRunsModule {}

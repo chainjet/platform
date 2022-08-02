@@ -8,17 +8,17 @@ export class TrelloDefinition extends SingleIntegrationDefinition {
   integrationVersion = '1'
   schemaUrl = 'https://developer.atlassian.com/cloud/trello/swagger.v3.json'
 
-  mapSchemaOperation (operationSchema: OperationObject): OperationObject {
+  mapSchemaOperation(operationSchema: OperationObject): OperationObject {
     if (!operationSchema.operationId) {
       throw new Error('Operation must have an operationId')
     }
     return {
       ...operationSchema,
-      summary: operationSchema.summary ?? operationSchema.operationId.replace(/([a-z])([A-Z])/g, '$1 $2')
+      summary: operationSchema.summary ?? operationSchema.operationId.replace(/([a-z])([A-Z])/g, '$1 $2'),
     }
   }
 
-  updateSchemaBeforeSave (schema: OpenAPIObject): Promise<OpenAPIObject> {
+  updateSchemaBeforeSave(schema: OpenAPIObject): Promise<OpenAPIObject> {
     // Filter out key/token query parameters from all operations
     const filterParams = (param: ParameterObject): boolean => {
       return param?.in !== 'query' || !['key', 'token'].includes(param.name)
@@ -37,7 +37,7 @@ export class TrelloDefinition extends SingleIntegrationDefinition {
     // Tag operations
     for (const [pathKey, pathValue] of Object.entries(schema.paths)) {
       for (const methodKey of Object.keys(pathValue)) {
-        const tag = schema.tags?.find(tag => pathKey.startsWith(`/${tag.name}`))
+        const tag = schema.tags?.find((tag) => pathKey.startsWith(`/${tag.name}`))
         if (tag?.name) {
           schema.paths[pathKey][methodKey].tags = [tag.name]
         }

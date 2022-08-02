@@ -9,7 +9,15 @@ import mergeAllOf, { Options as MergeAllOfOptions } from 'json-schema-merge-allo
 import { OperationObject } from 'openapi3-ts'
 import { PathsObject } from 'openapi3-ts/src/model/OpenApi'
 import { isEmptyObj } from '../../../../common/src/utils/object.utils'
-import { fixSchemaWithOneOf, hideParamsWithSingleEnum, removeDeprecatedProperties, removeIgnoredProperties, removeSchemaMarkdown, transformConstExtension, transformDynamicRefExtension } from './jsonSchemaUtils'
+import {
+  fixSchemaWithOneOf,
+  hideParamsWithSingleEnum,
+  removeDeprecatedProperties,
+  removeIgnoredProperties,
+  removeSchemaMarkdown,
+  transformConstExtension,
+  transformDynamicRefExtension,
+} from './jsonSchemaUtils'
 
 interface OpenApi2SchemaOptions {
   dateToDateTime?: boolean
@@ -25,7 +33,10 @@ interface ToJsonSchemaOptions extends SchemaOptions {
   removeReadOnly?: boolean
 }
 
-export interface ConvertedJsonSchemaOperation { request?: JSONSchema7, responses?: Record<string, JSONSchema7> }
+export interface ConvertedJsonSchemaOperation {
+  request?: JSONSchema7
+  responses?: Record<string, JSONSchema7>
+}
 type ConvertedJsonSchema = Record<string, Record<string, ConvertedJsonSchemaOperation>>
 
 const logger = new Logger('openapi2schema')
@@ -33,11 +44,11 @@ const logger = new Logger('openapi2schema')
 const mergeAllOfOptions: MergeAllOfOptions = {
   resolvers: {
     // default resolver will catch any unknown keyword on the OpenAPI properties
-    defaultResolver: () => ''
-  }
+    defaultResolver: () => '',
+  },
 }
 
-export async function openapi2schema (spec: string, options: OpenApi2SchemaOptions = {}): Promise<ConvertedJsonSchema> {
+export async function openapi2schema(spec: string, options: OpenApi2SchemaOptions = {}): Promise<ConvertedJsonSchema> {
   logger.debug('Converting OpenAPI3 to JSON Schema')
 
   const schemaOptions: SchemaOptions = {
@@ -45,7 +56,7 @@ export async function openapi2schema (spec: string, options: OpenApi2SchemaOptio
     supportPatternProperties: !!options.supportPatternProperties,
 
     // keep deprecated value, so we can detect and remove deprecated propertise
-    keepNotSupported: ['deprecated']
+    keepNotSupported: ['deprecated'],
   }
 
   // $RefParser.dereference takes the file path of an OpenAPI3 schema and returns an object with all the $ref pointers
@@ -60,14 +71,19 @@ export async function openapi2schema (spec: string, options: OpenApi2SchemaOptio
   return result
 }
 
-function buildPaths (paths: PathsObject, options: OpenApi2SchemaOptions, schemaOptions: SchemaOptions): ConvertedJsonSchema {
+function buildPaths(
+  paths: PathsObject,
+  options: OpenApi2SchemaOptions,
+  schemaOptions: SchemaOptions,
+): ConvertedJsonSchema {
   const result: ConvertedJsonSchema = {}
 
   for (const [pathKey, pathSpec] of Object.entries(paths)) {
     result[pathKey] = {}
 
-    const pathEntries = Object.entries(pathSpec as Record<string, OperationObject>)
-      .filter(entry => ['get', 'post', 'put', 'patch', 'delete', 'head', 'options', 'trace'].includes(entry[0]))
+    const pathEntries = Object.entries(pathSpec as Record<string, OperationObject>).filter((entry) =>
+      ['get', 'post', 'put', 'patch', 'delete', 'head', 'options', 'trace'].includes(entry[0]),
+    )
     for (const [operationKey, operationSpec] of pathEntries) {
       const resultSchema: ConvertedJsonSchemaOperation = {}
       if (operationSpec.requestBody) {
@@ -77,14 +93,11 @@ function buildPaths (paths: PathsObject, options: OpenApi2SchemaOptions, schemaO
         type: 'object',
         required: [],
         properties: {},
-        ...resultSchema.request
+        ...resultSchema.request,
       }
 
       // Merge properties defined on the path with properties defined on the method.
-      operationSpec.parameters = [
-        ...(operationSpec.parameters ?? []),
-        ...(pathSpec.parameters ?? [])
-      ]
+      operationSpec.parameters = [...(operationSpec.parameters ?? []), ...(pathSpec.parameters ?? [])]
 
       if (operationSpec.parameters?.length) {
         resultSchema.request = appendParameters(resultSchema.request, operationSpec, schemaOptions)
@@ -115,7 +128,7 @@ function buildPaths (paths: PathsObject, options: OpenApi2SchemaOptions, schemaO
   return result
 }
 
-function buildResponses (responses: any, schemaOptions: SchemaOptions): Record<string, any> {
+function buildResponses(responses: any, schemaOptions: SchemaOptions): Record<string, any> {
   const resultResponses: Record<string, any> = {}
 
   for (const [statusCode, responseData] of Object.entries(responses)) {
@@ -126,7 +139,7 @@ function buildResponses (responses: any, schemaOptions: SchemaOptions): Record<s
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-function getConvertedSchema (type: 'request' | 'response', spec: any, schemaOptions: SchemaOptions): JSONSchema7 {
+function getConvertedSchema(type: 'request' | 'response', spec: any, schemaOptions: SchemaOptions): JSONSchema7 {
   const options: ToJsonSchemaOptions = { ...schemaOptions }
 
   let contentType: string
@@ -166,11 +179,11 @@ function getConvertedSchema (type: 'request' | 'response', spec: any, schemaOpti
 /**
  * Append parameters not in requestBody to the resulting schema
  */
-function appendParameters (resultSchema: JSONSchema7, spec: any, schemaOptions: SchemaOptions): JSONSchema7 {
+function appendParameters(resultSchema: JSONSchema7, spec: any, schemaOptions: SchemaOptions): JSONSchema7 {
   const options: ToJsonSchemaOptions = {
     ...schemaOptions,
     removeWriteOnly: true,
-    removeReadOnly: false
+    removeReadOnly: false,
   }
 
   // Detect circular dependencies and replace them with a special key
@@ -183,7 +196,7 @@ function appendParameters (resultSchema: JSONSchema7, spec: any, schemaOptions: 
 
   schema = mergeAllOf(schema, mergeAllOfOptions)
 
-  const parameters = schema.parameters.filter(param => !param['x-ignore'])
+  const parameters = schema.parameters.filter((param) => !param['x-ignore'])
   for (const param of parameters) {
     if (param.required) {
       resultSchema.required = resultSchema.required ?? []

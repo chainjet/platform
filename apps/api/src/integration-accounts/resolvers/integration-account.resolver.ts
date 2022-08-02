@@ -7,9 +7,9 @@ import { IntegrationAccountService } from '../services/integration-account.servi
 export class IntegrationAccountResolver extends BaseResolver(IntegrationAccount, {
   create: { disabled: true },
   update: { disabled: true },
-  delete: { disabled: true }
+  delete: { disabled: true },
 }) {
-  constructor (protected integrationAccountService: IntegrationAccountService) {
+  constructor(protected integrationAccountService: IntegrationAccountService) {
     super(integrationAccountService)
   }
 }

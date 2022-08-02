@@ -12,11 +12,8 @@ describe('IntegrationService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        TypegooseModule.forFeature([Integration]),
-        MockModule
-      ],
-      providers: [IntegrationService]
+      imports: [TypegooseModule.forFeature([Integration]), MockModule],
+      providers: [IntegrationService],
     }).compile()
 
     service = module.get<IntegrationService>(IntegrationService)
@@ -36,7 +33,7 @@ describe('IntegrationService', () => {
         name: 'Test 1',
         key: 'test-1',
         version: '1',
-        deprecated: false
+        deprecated: false,
       }
       await service.createOrUpdateOne(record)
       const doc = await service.findOne({ key: 'test-1', version: '1' })
@@ -48,7 +45,7 @@ describe('IntegrationService', () => {
         name: 'Test 1',
         key: 'test-1',
         version: '1',
-        deprecated: false
+        deprecated: false,
       }
       await service.createOrUpdateOne(record)
       await service.createOrUpdateOne({ ...record, name: 'UPDATED' })

@@ -15,17 +15,17 @@ export class ProjectAuthorizer extends OwnedAuthorizer<Project> {}
 export class ProjectResolver extends BaseResolver(Project, {
   CreateDTOClass: CreateProjectInput,
   UpdateDTOClass: UpdateProjectInput,
-  guards: [GraphqlGuard]
+  guards: [GraphqlGuard],
   // read: {},
   // create: { guards: [GraphqlGuard] },
   // update: { guards: [] },
   // delete: { guards: [], },
 }) {
-  constructor (
+  constructor(
     protected projectService: ProjectService,
-    @InjectAuthorizer(Project) readonly authorizer: Authorizer<Project>
-    // @InjectPubSub() readonly pubSub: PubSub,
-  ) {
+    @InjectAuthorizer(Project) readonly authorizer: Authorizer<Project>,
+  ) // @InjectPubSub() readonly pubSub: PubSub,
+  {
     super(projectService)
   }
 }

@@ -6,14 +6,14 @@ export class CircleciDefinition extends SingleIntegrationDefinition {
   integrationVersion = '2'
   schemaUrl = 'https://circleci.com/api/v2/openapi.json'
 
-  mapSchemaOperation (operationSchema: OperationObject): OperationObject {
+  mapSchemaOperation(operationSchema: OperationObject): OperationObject {
     if (!operationSchema.operationId) {
       throw new Error('Operation must include operationId')
     }
     return {
       ...operationSchema,
       summary: operationSchema.operationId,
-      description: operationSchema.description ?? operationSchema.summary
+      description: operationSchema.description ?? operationSchema.summary,
     }
   }
 }

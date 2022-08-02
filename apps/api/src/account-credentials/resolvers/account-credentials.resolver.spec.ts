@@ -13,11 +13,8 @@ describe('AccountCredentialResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        TypegooseModule.forFeature([AccountCredential]),
-        MockModule
-      ],
-      providers: [AccountCredentialResolver, AccountCredentialService, AccountCredentialAuthorizer]
+      imports: [TypegooseModule.forFeature([AccountCredential]), MockModule],
+      providers: [AccountCredentialResolver, AccountCredentialService, AccountCredentialAuthorizer],
     }).compile()
 
     resolver = module.get<AccountCredentialResolver>(AccountCredentialResolver)

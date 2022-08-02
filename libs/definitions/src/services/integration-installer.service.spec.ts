@@ -18,8 +18,8 @@ describe('IntegrationInstallerService', () => {
         IntegrationsModule,
         IntegrationAccountsModule,
         IntegrationActionsModule,
-        IntegrationTriggersModule
-      ]
+        IntegrationTriggersModule,
+      ],
     }).compile()
 
     service = module.get<IntegrationInstallerService>(IntegrationInstallerService)

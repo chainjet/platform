@@ -11,12 +11,12 @@ import { WorkflowService } from './services/workflow.service'
   imports: [
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([Workflow])],
-      resolvers: []
+      resolvers: [],
     }),
     UsersModule, // required for GraphqlGuard
-    forwardRef(() => ProjectsModule)
+    forwardRef(() => ProjectsModule),
   ],
   providers: [WorkflowResolver, WorkflowService, WorkflowAuthorizer],
-  exports: [WorkflowService]
+  exports: [WorkflowService],
 })
 export class WorkflowsModule {}

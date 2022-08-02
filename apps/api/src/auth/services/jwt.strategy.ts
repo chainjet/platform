@@ -6,15 +6,15 @@ import { GqlUserContext } from '../typings/gql-context'
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor (configService: ConfigService) {
+  constructor(configService: ConfigService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: configService.get('JWT_SECRET')
+      secretOrKey: configService.get('JWT_SECRET'),
     })
   }
 
-  validate (payload: GqlUserContext): GqlUserContext {
+  validate(payload: GqlUserContext): GqlUserContext {
     return payload
   }
 }

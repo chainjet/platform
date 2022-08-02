@@ -4,11 +4,11 @@ export enum WorkflowRunStatus {
   running = 'running',
   sleeping = 'sleeping',
   completed = 'completed',
-  failed = 'failed'
+  failed = 'failed',
 }
 
 // Create a GraphQL enum for WorkflowRunStatus
 registerEnumType(WorkflowRunStatus, {
   name: 'WorkflowRunStatus',
-  description: 'Status of a workflow run (running, completed or failed)'
+  description: 'Status of a workflow run (running, completed or failed)',
 })

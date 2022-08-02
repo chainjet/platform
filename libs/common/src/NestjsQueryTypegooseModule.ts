@@ -7,30 +7,27 @@ import { TypegooseClass } from 'nestjs-typegoose/dist/typegoose-class.interface'
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class NestjsQueryTypegooseModule {
-  static forFeature (models: TypegooseClass[], connectionName?: string): DynamicModule {
+  static forFeature(models: TypegooseClass[], connectionName?: string): DynamicModule {
     const queryServiceProviders = createTypeOrmQueryServiceProviders(models)
     const typegooseModule = TypegooseModule.forFeature(models, connectionName)
     return {
       imports: [typegooseModule],
       module: NestjsQueryTypegooseModule,
       providers: [...queryServiceProviders],
-      exports: [...queryServiceProviders, typegooseModule]
+      exports: [...queryServiceProviders, typegooseModule],
     }
   }
 }
 
-function createTypeOrmQueryServiceProvider<Entity> (
-  model: TypegooseClass
-): FactoryProvider {
+function createTypeOrmQueryServiceProvider<Entity>(model: TypegooseClass): FactoryProvider {
   return {
     provide: getQueryServiceToken(model),
-    useFactory (modelClass: ReturnModelType<new () => Entity>) {
+    useFactory(modelClass: ReturnModelType<new () => Entity>) {
       return new TypegooseQueryService(modelClass)
     },
-    inject: [getModelToken(model.name)]
+    inject: [getModelToken(model.name)],
   }
 }
 
-const createTypeOrmQueryServiceProviders = (
-  models: TypegooseClass[]
-): FactoryProvider[] => models.map((model) => createTypeOrmQueryServiceProvider(model))
+const createTypeOrmQueryServiceProviders = (models: TypegooseClass[]): FactoryProvider[] =>
+  models.map((model) => createTypeOrmQueryServiceProvider(model))

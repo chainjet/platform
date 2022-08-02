@@ -18,19 +18,19 @@ export class WorkflowTriggerAuthorizer extends OwnedAuthorizer<WorkflowTrigger> 
 export class WorkflowTriggerResolver extends BaseResolver(WorkflowTrigger, {
   CreateDTOClass: CreateWorkflowTriggerInput,
   UpdateDTOClass: UpdateWorkflowTriggerInput,
-  guards: [GraphqlGuard]
+  guards: [GraphqlGuard],
 }) {
-  constructor (
+  constructor(
     private readonly workflowTriggerService: WorkflowTriggerService,
     private readonly runnerService: RunnerService,
-    @InjectAuthorizer(WorkflowTrigger) readonly authorizer: Authorizer<WorkflowTrigger>
+    @InjectAuthorizer(WorkflowTrigger) readonly authorizer: Authorizer<WorkflowTrigger>,
   ) {
     super(workflowTriggerService)
   }
 
   // TODO owner guard
   @Mutation(() => WorkflowTrigger)
-  async checkWorkflowTrigger (@Args('id', { type: () => GraphQLString }) id: string): Promise<WorkflowTrigger | null> {
+  async checkWorkflowTrigger(@Args('id', { type: () => GraphQLString }) id: string): Promise<WorkflowTrigger | null> {
     const trigger = await this.workflowTriggerService.findById(id)
     if (!trigger || !trigger.schedule?.frequency) {
       return null

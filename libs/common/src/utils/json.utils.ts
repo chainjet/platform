@@ -3,7 +3,7 @@
 
 // Normally schemas will be decycled on the server and retrocycled on the client.
 
-export function decycle (object: unknown, refKey = '__ref__'): unknown {
+export function decycle(object: unknown, refKey = '__ref__'): unknown {
   // Make a deep copy of an object or array, assuring that there is at most
   // one instance of each object or array in the resulting structure. The
   // duplicate references (which might be forming cycles) are replaced with
@@ -22,7 +22,7 @@ export function decycle (object: unknown, refKey = '__ref__'): unknown {
 
   const objects = new WeakMap() // object to path mappings
 
-  return (function derez (value: unknown, path: string): unknown {
+  return (function derez(value: unknown, path: string): unknown {
     // The derez function recurses through the object, producing the deep copy.
 
     let oldPath // The path of an earlier occurance of value
@@ -74,7 +74,7 @@ export function decycle (object: unknown, refKey = '__ref__'): unknown {
   })(object, '$')
 }
 
-export function retrocycle ($: unknown, refKey = '__ref__'): unknown {
+export function retrocycle($: unknown, refKey = '__ref__'): unknown {
   // Restore an object that was reduced by decycle. Members whose values are
   // objects of the form
   //      {__ref__: PATH}
@@ -96,7 +96,7 @@ export function retrocycle ($: unknown, refKey = '__ref__'): unknown {
 
   // eslint-disable-next-line no-control-regex
   const px = /^\$(?:\[(?:\d+|"(?:[^\\"\u0000-\u001f]|\\(?:[\\"/bfnrt]|u[0-9a-zA-Z]{4}))*")\])*$/
-  ;(function rez (value: unknown) {
+  ;(function rez(value: unknown) {
     // The rez function walks recursively through the object looking for __ref__
     // properties. When it finds one that has a value that is a path, then it
     // replaces the __ref__ object with a reference to the value that is found by
@@ -123,7 +123,7 @@ export function retrocycle ($: unknown, refKey = '__ref__'): unknown {
             const path = (item as Record<string, unknown>)[refKey]
             if (typeof path === 'string' && px.test(path)) {
               try {
-                (value as Record<string, unknown>)[name] = eval(path)
+                ;(value as Record<string, unknown>)[name] = eval(path)
               } catch (e) {}
             } else {
               rez(item)

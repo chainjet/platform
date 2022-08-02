@@ -6,18 +6,18 @@ export class MakerlogDefinition extends SingleIntegrationDefinition {
   integrationVersion = '1'
   schemaUrl = 'https://api.getmakerlog.com/v1/docs/?format=openapi'
 
-  mapSchemaOperation (operationSchema: OperationObject): OperationObject {
+  mapSchemaOperation(operationSchema: OperationObject): OperationObject {
     return {
       ...operationSchema,
-      summary: operationSchema.summary ?? operationSchema.operationId?.replace(/_/g, ' ')
+      summary: operationSchema.summary ?? operationSchema.operationId?.replace(/_/g, ' '),
     }
   }
 
-  updateSchemaBeforeSave (schema: OpenAPIObject): Promise<OpenAPIObject> {
+  updateSchemaBeforeSave(schema: OpenAPIObject): Promise<OpenAPIObject> {
     schema.security = [
       {
-        OAuth2: []
-      }
+        OAuth2: [],
+      },
     ]
     return Promise.resolve(schema)
   }

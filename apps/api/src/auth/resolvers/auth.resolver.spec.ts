@@ -21,11 +21,8 @@ describe('AuthResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        JwtModule.register({ secret: 'test' }),
-        MockModule
-      ],
-      providers: [AuthResolver, AuthService]
+      imports: [JwtModule.register({ secret: 'test' }), MockModule],
+      providers: [AuthResolver, AuthService],
     }).compile()
 
     resolver = module.get<AuthResolver>(AuthResolver)
@@ -40,7 +37,9 @@ describe('AuthResolver', () => {
 
   beforeEach(() => {
     SecurityUtils.hashWithBcrypt = jest.fn((str: string) => Promise.resolve(`hashed(${str})`))
-    SecurityUtils.bcryptHashIsValid = jest.fn((value: string, hash: string) => Promise.resolve(hash === `hashed(${value})`))
+    SecurityUtils.bcryptHashIsValid = jest.fn((value: string, hash: string) =>
+      Promise.resolve(hash === `hashed(${value})`),
+    )
   })
 
   it('should be defined', () => {
@@ -100,7 +99,7 @@ describe('AuthResolver', () => {
       await mock.createUser({
         username: 'test',
         password: 'old-password',
-        resetPasswordToken: 'hashed(code)'
+        resetPasswordToken: 'hashed(code)',
       })
       const res = await resolver.completePasswordReset('test', 'code', 'new-password')
       expect(res?.error).toBeUndefined()
@@ -113,7 +112,7 @@ describe('AuthResolver', () => {
       await mock.createUser({
         username: 'test',
         password: 'old-password',
-        resetPasswordToken: 'hashed(code)'
+        resetPasswordToken: 'hashed(code)',
       })
       const res = await resolver.completePasswordReset('test', 'invalid-code', 'new-password')
       expect(res.error).toEqual('Reset password code is invalid or it has expired.')

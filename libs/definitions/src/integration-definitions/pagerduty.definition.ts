@@ -7,7 +7,7 @@ export class PagerdutyDefinition extends SingleIntegrationDefinition {
   integrationVersion = '2'
   schemaUrl = 'https://raw.githubusercontent.com/PagerDuty/api-schema/main/reference/REST/openapiv3.json'
 
-  requestInterceptor ({ req }: RequestInterceptorOptions): request.OptionsWithUrl {
+  requestInterceptor({ req }: RequestInterceptorOptions): request.OptionsWithUrl {
     // Authorization header should be prefixed with "Token token="
     // see https://developer.pagerduty.com/docs/rest-api-v2/authentication/
     if (req.headers?.Authorization && !req.headers.Authorization.startsWith('Token token=')) {

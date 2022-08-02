@@ -7,15 +7,12 @@ import { GqlUserContext } from '../typings/gql-context'
 
 @Injectable()
 export class AuthService {
-  constructor (
-    protected readonly jwtService: JwtService,
-    protected readonly userService: UserService
-  ) {}
+  constructor(protected readonly jwtService: JwtService, protected readonly userService: UserService) {}
 
-  generateAccessToken (user: User): { accessToken: string, accessTokenExpiration: Date } {
+  generateAccessToken(user: User): { accessToken: string; accessTokenExpiration: Date } {
     const accessToken = this.jwtService.sign({
       id: user.id,
-      username: user.username
+      username: user.username,
     })
 
     // TODO move to config
@@ -23,29 +20,29 @@ export class AuthService {
 
     return {
       accessToken,
-      accessTokenExpiration: new Date(Date.now() + expiration)
+      accessTokenExpiration: new Date(Date.now() + expiration),
     }
   }
 
-  async generateAndSaveRefreshToken (user: User): Promise<string> {
+  async generateAndSaveRefreshToken(user: User): Promise<string> {
     const plainRefreshToken = SecurityUtils.generateRandomString(48)
     const refreshTokenHash = await SecurityUtils.hashWithBcrypt(plainRefreshToken, 12)
     await this.userService.updateOne(user.id, { refreshTokenHash })
     return plainRefreshToken
   }
 
-  async generateAndSaveResetPasswordToken (user: User): Promise<string> {
+  async generateAndSaveResetPasswordToken(user: User): Promise<string> {
     const plainResetPasswordToken = SecurityUtils.generateRandomString(48)
     const resetPasswordToken = await SecurityUtils.hashWithBcrypt(plainResetPasswordToken, 12)
     await this.userService.updateOne(user.id, { resetPasswordToken })
     return plainResetPasswordToken
   }
 
-  decodeAccessToken (accessToken: string): GqlUserContext {
+  decodeAccessToken(accessToken: string): GqlUserContext {
     return this.jwtService.decode(accessToken) as GqlUserContext
   }
 
-  blacklistedUsername (username: string): boolean {
+  blacklistedUsername(username: string): boolean {
     return [
       'api',
       'graphql',
@@ -60,7 +57,7 @@ export class AuthService {
 
       'oauth',
       'apps',
-      'docs'
+      'docs',
     ].includes(username)
   }
 }

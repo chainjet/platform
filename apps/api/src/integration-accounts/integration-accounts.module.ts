@@ -9,10 +9,10 @@ import { IntegrationAccountService } from './services/integration-account.servic
   imports: [
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([IntegrationAccount])],
-      resolvers: []
-    })
+      resolvers: [],
+    }),
   ],
   providers: [IntegrationAccountResolver, IntegrationAccountService],
-  exports: [IntegrationAccountService]
+  exports: [IntegrationAccountService],
 })
 export class IntegrationAccountsModule {}

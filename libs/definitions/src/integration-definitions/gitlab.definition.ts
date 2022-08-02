@@ -6,7 +6,7 @@ export class GitlabDefinition extends SingleIntegrationDefinition {
   integrationVersion = '3'
   schemaUrl = 'https://api.apis.guru/v2/specs/gitlab.com/v3/swagger.json'
 
-  mapSchemaOperation (operationSchema: OperationObject): OperationObject {
+  mapSchemaOperation(operationSchema: OperationObject): OperationObject {
     if (!operationSchema.operationId) {
       throw new Error('Operation must have an operationId')
     }
@@ -15,11 +15,12 @@ export class GitlabDefinition extends SingleIntegrationDefinition {
       .replace('postV3', 'Create ')
       .replace('putV3', 'Update ')
       .replace('deleteV3', 'Delete ')
-      .replace(/([a-z])([A-Z])/g, '$1 $2').trim()
+      .replace(/([a-z])([A-Z])/g, '$1 $2')
+      .trim()
     return {
       ...operationSchema,
       summary,
-      description: operationSchema.description ?? operationSchema.summary
+      description: operationSchema.description ?? operationSchema.summary,
     }
   }
 }

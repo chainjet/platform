@@ -9,7 +9,7 @@ describe('EmailService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [EmailService]
+      providers: [EmailService],
     }).compile()
 
     service = module.get<EmailService>(EmailService)
@@ -29,29 +29,32 @@ describe('EmailService', () => {
       const template = new EmailVerificationTemplate('username', 'code')
       await service.sendEmailTemplate(template, 'example@example.org')
 
-      expect(mockSendEmail).toHaveBeenCalledWith({
-        Destination: {
-          ToAddresses: ['example@example.org']
-        },
-        Message: {
-          Body: {
-            Html: {
-              Charset: 'UTF-8',
-              Data: template.getHtmlBody()
-            },
-            Text: {
-              Charset: 'UTF-8',
-              Data: template.getTextBody()
-            }
+      expect(mockSendEmail).toHaveBeenCalledWith(
+        {
+          Destination: {
+            ToAddresses: ['example@example.org'],
           },
-          Subject: {
-            Charset: 'UTF-8',
-            Data: template.getSubject()
-          }
+          Message: {
+            Body: {
+              Html: {
+                Charset: 'UTF-8',
+                Data: template.getHtmlBody(),
+              },
+              Text: {
+                Charset: 'UTF-8',
+                Data: template.getTextBody(),
+              },
+            },
+            Subject: {
+              Charset: 'UTF-8',
+              Data: template.getSubject(),
+            },
+          },
+          Source: template.sendFrom,
+          ReplyToAddresses: [template.sendFrom],
         },
-        Source: template.sendFrom,
-        ReplyToAddresses: [template.sendFrom]
-      }, expect.any(Function))
+        expect.any(Function),
+      )
     })
   })
 })

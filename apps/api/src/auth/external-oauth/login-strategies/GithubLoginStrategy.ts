@@ -4,19 +4,25 @@ import { LoginProviderStrategy, LoginStrategyCallback } from './LoginProviderStr
 
 export class GithubLoginStrategy extends LoginProviderStrategy {
   strategyOptions = {
-    scope: ['user:email']
+    scope: ['user:email'],
   }
 
-  constructor (readonly strategyName: string, readonly callbackURL: string) {
+  constructor(readonly strategyName: string, readonly callbackURL: string) {
     super(strategyName, callbackURL)
   }
 
-  registerStrategy (callback: LoginStrategyCallback): void {
-    passport.use(this.strategyName, new Strategy({
-      clientID: process.env.GITHUB_CLIENT_ID ?? '',
-      clientSecret: process.env.GITHUB_CLIENT_SECRET ?? '',
-      callbackURL: this.callbackURL,
-      scope: ['user:email']
-    }, callback))
+  registerStrategy(callback: LoginStrategyCallback): void {
+    passport.use(
+      this.strategyName,
+      new Strategy(
+        {
+          clientID: process.env.GITHUB_CLIENT_ID ?? '',
+          clientSecret: process.env.GITHUB_CLIENT_SECRET ?? '',
+          callbackURL: this.callbackURL,
+          scope: ['user:email'],
+        },
+        callback,
+      ),
+    )
   }
 }

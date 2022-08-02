@@ -12,5 +12,5 @@ export const SecurityUtils = {
   generateRandomString: (chars: number): string => {
     const buffer = randomBytes((chars + 1) / 2)
     return buffer.toString('hex').substr(0, chars)
-  }
+  },
 }

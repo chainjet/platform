@@ -9,10 +9,10 @@ import { IntegrationTriggerService } from './services/integration-trigger.servic
   imports: [
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([IntegrationTrigger])],
-      resolvers: []
-    })
+      resolvers: [],
+    }),
   ],
   providers: [IntegrationTriggerResolver, IntegrationTriggerService],
-  exports: [IntegrationTriggerService]
+  exports: [IntegrationTriggerService],
 })
 export class IntegrationTriggersModule {}

@@ -13,11 +13,8 @@ describe('WorkflowTriggerService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        TypegooseModule.forFeature([WorkflowTrigger]),
-        MockModule
-      ],
-      providers: [WorkflowTriggerService, HooksController]
+      imports: [TypegooseModule.forFeature([WorkflowTrigger]), MockModule],
+      providers: [WorkflowTriggerService, HooksController],
     }).compile()
 
     service = module.get<WorkflowTriggerService>(WorkflowTriggerService)
@@ -37,14 +34,14 @@ describe('WorkflowTriggerService', () => {
         nextCheck,
         schedule: {
           frequency: 'interval',
-          interval: 120
-        }
+          interval: 120,
+        },
       })
       await service.updateOne(trigger.id, {
         schedule: {
           frequency: 'interval',
-          interval: 600
-        }
+          interval: 600,
+        },
       })
       const updated = await service.findById(trigger.id)
       expect(updated?.nextCheck?.getTime()).toBeGreaterThan(Date.now())
@@ -56,8 +53,8 @@ describe('WorkflowTriggerService', () => {
         nextCheck,
         schedule: {
           frequency: 'interval',
-          interval: 120
-        }
+          interval: 120,
+        },
       })
       await service.updateOne(trigger.id, { inputs: {} })
       const updated = await service.findById(trigger.id)
@@ -70,8 +67,8 @@ describe('WorkflowTriggerService', () => {
         nextCheck: undefined,
         schedule: {
           frequency: 'interval',
-          interval: 120
-        }
+          interval: 120,
+        },
       })
       await service.updateOne(trigger.id, { enabled: true })
       const updated = await service.findById(trigger.id)
@@ -84,8 +81,8 @@ describe('WorkflowTriggerService', () => {
         nextCheck: new Date('2100-01-01 UTC'),
         schedule: {
           frequency: 'interval',
-          interval: 120
-        }
+          interval: 120,
+        },
       })
       await service.updateOne(trigger.id, { enabled: false })
       const updated = await service.findById(trigger.id)
@@ -107,9 +104,9 @@ describe('WorkflowTriggerService', () => {
       const trigger = mock.getInstanceOfWorkflowTrigger({
         schedule: {
           frequency: 'once',
-          date: new Date('2100-01-01 UTC').toISOString()
+          date: new Date('2100-01-01 UTC').toISOString(),
         },
-        enabled: false
+        enabled: false,
       })
       expect(service.getTriggerNextCheck(trigger)).toBeUndefined()
     })
@@ -119,8 +116,8 @@ describe('WorkflowTriggerService', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
           schedule: {
             frequency: 'once',
-            date: new Date('2100-01-01 UTC').toISOString()
-          }
+            date: new Date('2100-01-01 UTC').toISOString(),
+          },
         })
         expect(service.getTriggerNextCheck(trigger)).toEqual(new Date('2100-01-01 UTC'))
       })
@@ -129,8 +126,8 @@ describe('WorkflowTriggerService', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
           schedule: {
             frequency: 'once',
-            date: new Date('2019-01-01').toISOString()
-          }
+            date: new Date('2019-01-01').toISOString(),
+          },
         })
         expect(service.getTriggerNextCheck(trigger)).toBeUndefined()
       })
@@ -139,8 +136,8 @@ describe('WorkflowTriggerService', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
           schedule: {
             frequency: 'once',
-            date: 'invalid date'
-          }
+            date: 'invalid date',
+          },
         })
         expect(() => service.getTriggerNextCheck(trigger)).toThrow(/Date is not valid/)
       })
@@ -151,8 +148,8 @@ describe('WorkflowTriggerService', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
           schedule: {
             frequency: 'interval',
-            interval: 300
-          }
+            interval: 300,
+          },
         })
         expect(service.getTriggerNextCheck(trigger, true)).toEqual(new Date('2020-01-01 00:05'))
         expect(service.getTriggerNextCheck(trigger, false)).toEqual(new Date('2020-01-01 00:05'))
@@ -162,9 +159,9 @@ describe('WorkflowTriggerService', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
           schedule: {
             frequency: 'interval',
-            interval: 300
+            interval: 300,
           },
-          nextCheck: new Date('2019-01-01')
+          nextCheck: new Date('2019-01-01'),
         })
         expect(service.getTriggerNextCheck(trigger, true)).toEqual(new Date('2020-01-01 00:05'))
         expect(service.getTriggerNextCheck(trigger, false)).toEqual(new Date('2020-01-01 00:05'))
@@ -174,9 +171,9 @@ describe('WorkflowTriggerService', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
           schedule: {
             frequency: 'interval',
-            interval: 300
+            interval: 300,
           },
-          nextCheck: new Date('2020-02-02 13:00')
+          nextCheck: new Date('2020-02-02 13:00'),
         })
         expect(service.getTriggerNextCheck(trigger, true)).toEqual(new Date('2020-01-01 00:05'))
         expect(service.getTriggerNextCheck(trigger, false)).toEqual(new Date('2020-02-02 13:05'))
@@ -188,8 +185,8 @@ describe('WorkflowTriggerService', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
           schedule: {
             frequency: 'hour',
-            minute: 22
-          }
+            minute: 22,
+          },
         })
         expect(service.getTriggerNextCheck(trigger)).toEqual(new Date('2020-01-01 00:22'))
       })
@@ -200,8 +197,8 @@ describe('WorkflowTriggerService', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
           schedule: {
             frequency: 'hour',
-            minute: 22
-          }
+            minute: 22,
+          },
         })
         expect(service.getTriggerNextCheck(trigger)).toEqual(new Date('2020-01-01 01:22'))
       })
@@ -212,8 +209,8 @@ describe('WorkflowTriggerService', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
           schedule: {
             frequency: 'day',
-            time: '12:23'
-          }
+            time: '12:23',
+          },
         })
         expect(service.getTriggerNextCheck(trigger)).toEqual(new Date('2020-01-01 12:23'))
       })
@@ -224,8 +221,8 @@ describe('WorkflowTriggerService', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
           schedule: {
             frequency: 'day',
-            time: '12:23'
-          }
+            time: '12:23',
+          },
         })
         expect(service.getTriggerNextCheck(trigger)).toEqual(new Date('2020-01-02 12:23'))
       })
@@ -234,8 +231,8 @@ describe('WorkflowTriggerService', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
           schedule: {
             frequency: 'day',
-            time: 'invalid time'
-          }
+            time: 'invalid time',
+          },
         })
         expect(() => service.getTriggerNextCheck(trigger)).toThrow(/Time is not valid/)
       })
@@ -247,8 +244,8 @@ describe('WorkflowTriggerService', () => {
           schedule: {
             frequency: 'week',
             dayOfWeek: 5,
-            time: '12:23'
-          }
+            time: '12:23',
+          },
         })
         expect(service.getTriggerNextCheck(trigger)).toEqual(new Date('2020-01-03 12:23'))
       })
@@ -260,8 +257,8 @@ describe('WorkflowTriggerService', () => {
           schedule: {
             frequency: 'week',
             dayOfWeek: 5,
-            time: '12:23'
-          }
+            time: '12:23',
+          },
         })
         expect(service.getTriggerNextCheck(trigger)).toEqual(new Date('2020-01-10 12:23'))
       })
@@ -273,8 +270,8 @@ describe('WorkflowTriggerService', () => {
           schedule: {
             frequency: 'week',
             dayOfWeek: 5,
-            time: '12:23'
-          }
+            time: '12:23',
+          },
         })
         expect(service.getTriggerNextCheck(trigger)).toEqual(new Date('2020-01-10 12:23'))
       })
@@ -286,8 +283,8 @@ describe('WorkflowTriggerService', () => {
           schedule: {
             frequency: 'month',
             dayOfMonth: 12,
-            time: '12:23'
-          }
+            time: '12:23',
+          },
         })
         expect(service.getTriggerNextCheck(trigger)).toEqual(new Date('2020-01-12 12:23'))
       })
@@ -299,8 +296,8 @@ describe('WorkflowTriggerService', () => {
           schedule: {
             frequency: 'month',
             dayOfMonth: 12,
-            time: '12:23'
-          }
+            time: '12:23',
+          },
         })
         expect(service.getTriggerNextCheck(trigger)).toEqual(new Date('2020-02-12 12:23'))
       })
@@ -312,8 +309,8 @@ describe('WorkflowTriggerService', () => {
           schedule: {
             frequency: 'month',
             dayOfMonth: 12,
-            time: '12:23'
-          }
+            time: '12:23',
+          },
         })
         expect(service.getTriggerNextCheck(trigger)).toEqual(new Date('2020-02-12 12:23'))
       })
@@ -324,8 +321,8 @@ describe('WorkflowTriggerService', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
           schedule: {
             frequency: 'cron',
-            expression: '10 12 * * *'
-          }
+            expression: '10 12 * * *',
+          },
         })
         expect(service.getTriggerNextCheck(trigger)).toEqual(new Date('2020-01-01 12:10'))
       })
@@ -334,8 +331,8 @@ describe('WorkflowTriggerService', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
           schedule: {
             frequency: 'cron',
-            expression: '* 10 12 * * *'
-          }
+            expression: '* 10 12 * * *',
+          },
         })
         expect(() => service.getTriggerNextCheck(trigger)).toThrow(/Invalid cron expression/)
       })

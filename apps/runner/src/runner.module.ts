@@ -32,9 +32,9 @@ import { RunnerService } from './services/runner.service'
 
     forwardRef(() => AccountCredentialsModule),
     AuthModule,
-    DefinitionsModule
+    DefinitionsModule,
   ],
   providers: [RunnerService, OperationRunnerService],
-  exports: [RunnerService, OperationRunnerService]
+  exports: [RunnerService, OperationRunnerService],
 })
 export class RunnerModule {}

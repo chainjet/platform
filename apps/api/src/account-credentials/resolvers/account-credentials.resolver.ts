@@ -7,7 +7,7 @@ import { GraphqlGuard } from '../../auth/guards/graphql.guard'
 import {
   AccountCredential,
   CreateAccountCredentialInput,
-  UpdateAccountCredentialInput
+  UpdateAccountCredentialInput,
 } from '../entities/account-credential'
 import { AccountCredentialService } from '../services/account-credentials.service'
 
@@ -19,11 +19,11 @@ export class AccountCredentialAuthorizer extends OwnedAuthorizer<AccountCredenti
 export class AccountCredentialResolver extends BaseResolver(AccountCredential, {
   CreateDTOClass: CreateAccountCredentialInput,
   UpdateDTOClass: UpdateAccountCredentialInput,
-  guards: [GraphqlGuard]
+  guards: [GraphqlGuard],
 }) {
-  constructor (
+  constructor(
     protected accountCredentialService: AccountCredentialService,
-    @InjectAuthorizer(AccountCredential) readonly authorizer: Authorizer<AccountCredential>
+    @InjectAuthorizer(AccountCredential) readonly authorizer: Authorizer<AccountCredential>,
   ) {
     super(accountCredentialService)
   }

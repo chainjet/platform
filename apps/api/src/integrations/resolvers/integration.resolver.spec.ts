@@ -9,11 +9,8 @@ describe('IntegrationResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        TypegooseModule.forFeature([Integration]),
-        MockModule
-      ],
-      providers: [IntegrationResolver]
+      imports: [TypegooseModule.forFeature([Integration]), MockModule],
+      providers: [IntegrationResolver],
     }).compile()
 
     resolver = module.get<IntegrationResolver>(IntegrationResolver)

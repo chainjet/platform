@@ -11,11 +11,8 @@ describe('IntegrationTriggerResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        TypegooseModule.forFeature([IntegrationTrigger]),
-        MockModule
-      ],
-      providers: [IntegrationTriggerResolver, IntegrationTriggerService]
+      imports: [TypegooseModule.forFeature([IntegrationTrigger]), MockModule],
+      providers: [IntegrationTriggerResolver, IntegrationTriggerService],
     }).compile()
 
     resolver = module.get<IntegrationTriggerResolver>(IntegrationTriggerResolver)

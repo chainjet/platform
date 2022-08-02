@@ -12,15 +12,15 @@ export function fixSchemaWithOneOf(schema: JSONSchema7): JSONSchema7 {
       delete schema.oneOf
     } else {
       // make sure type is not declared in both the parent property and the oneOf
-      if (schema.oneOf.some(oneOf => typeof oneOf === 'object' && oneOf.type)) {
+      if (schema.oneOf.some((oneOf) => typeof oneOf === 'object' && oneOf.type)) {
         delete schema.type
       }
 
       // fix oneOf for boolean and boolean enum
       if (schema.oneOf.length === 2) {
-        const booleanTypeIndex = schema.oneOf.findIndex(x => typeof x !== 'boolean' && x.type === 'boolean')
+        const booleanTypeIndex = schema.oneOf.findIndex((x) => typeof x !== 'boolean' && x.type === 'boolean')
         const booleanEnumIndex = schema.oneOf.findIndex(
-          x =>
+          (x) =>
             typeof x !== 'boolean' &&
             x.type === 'string' &&
             x.enum?.length === 2 &&
@@ -51,7 +51,7 @@ export function removeDeprecatedProperties(schema: JSONSchema7 & { deprecated?: 
 
   // Remove deprecated properties from required array
   if (schema.required) {
-    schema.required = schema.required.filter(item => {
+    schema.required = schema.required.filter((item) => {
       return !(schema.properties?.[item] as { deprecated?: boolean })?.deprecated
     })
   }
@@ -66,7 +66,7 @@ export function removeIgnoredProperties(schema: JSONSchema7 & { ['x-ignore']?: b
 
   // Remove ignored properties from required array
   if (schema.required) {
-    schema.required = schema.required.filter(item => {
+    schema.required = schema.required.filter((item) => {
       return !(schema.properties?.[item] as { ['x-ignore']?: boolean })?.['x-ignore']
     })
   }
@@ -105,7 +105,7 @@ export function hideParamsWithSingleEnum(schema: JSONSchema7): JSONSchema7 {
 }
 
 export function deleteSchemaProperties(schema: JSONSchema7, properties: string[]): JSONSchema7 {
-  properties.forEach(property => delete schema[property])
+  properties.forEach((property) => delete schema[property])
   return applySchemaChangeRecursively(schema, deleteSchemaProperties, properties)
 }
 
@@ -127,9 +127,9 @@ function applySchemaChangeRecursively<T>(
   if (schema.items) {
     if (Array.isArray(schema.items)) {
       schema.items = schema.items
-        .filter(item => typeof item !== 'boolean')
-        .map(item => fn(item as JSONSchema7, ...callbackArgs))
-        .filter(item => !!item)
+        .filter((item) => typeof item !== 'boolean')
+        .map((item) => fn(item as JSONSchema7, ...callbackArgs))
+        .filter((item) => !!item)
     } else if (typeof schema.items !== 'boolean') {
       schema.items = fn(schema.items, ...callbackArgs)
       if (!schema.items) {
@@ -152,25 +152,25 @@ function applySchemaChangeRecursively<T>(
   // Apply to oneOf
   if (schema.oneOf) {
     schema.oneOf = schema.oneOf
-      ?.filter(oneOf => typeof oneOf !== 'boolean')
-      ?.map(oneOf => fn(oneOf as JSONSchema7, ...callbackArgs))
-      ?.filter(oneOf => !!oneOf)
+      ?.filter((oneOf) => typeof oneOf !== 'boolean')
+      ?.map((oneOf) => fn(oneOf as JSONSchema7, ...callbackArgs))
+      ?.filter((oneOf) => !!oneOf)
   }
 
   // Apply to anyOf
   if (schema.anyOf) {
     schema.anyOf = schema.anyOf
-      ?.filter(anyOf => typeof anyOf !== 'boolean')
-      ?.map(anyOf => fn(anyOf as JSONSchema7, ...callbackArgs))
-      ?.filter(anyOf => !!anyOf)
+      ?.filter((anyOf) => typeof anyOf !== 'boolean')
+      ?.map((anyOf) => fn(anyOf as JSONSchema7, ...callbackArgs))
+      ?.filter((anyOf) => !!anyOf)
   }
 
   // Apply to allOf
   if (schema.allOf) {
     schema.allOf = schema.allOf
-      ?.filter(allOf => typeof allOf !== 'boolean')
-      ?.map(allOf => fn(allOf as JSONSchema7, ...callbackArgs))
-      ?.filter(allOf => !!allOf)
+      ?.filter((allOf) => typeof allOf !== 'boolean')
+      ?.map((allOf) => fn(allOf as JSONSchema7, ...callbackArgs))
+      ?.filter((allOf) => !!allOf)
   }
 
   return schema

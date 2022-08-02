@@ -7,11 +7,11 @@ describe('ObjectUtils', () => {
         key1: true,
         _key2: false,
         _key3: 1,
-        key4: 2
+        key4: 2,
       }
-      expect(deleteObjectKeysDeep(obj, key => key.startsWith('_'))).toEqual({
+      expect(deleteObjectKeysDeep(obj, (key) => key.startsWith('_'))).toEqual({
         key1: true,
-        key4: 2
+        key4: 2,
       })
     })
 
@@ -21,18 +21,18 @@ describe('ObjectUtils', () => {
         key2: {
           key1: {
             key1: 'test',
-            _key2: 123
+            _key2: 123,
           },
-          _key2: {}
-        }
+          _key2: {},
+        },
       }
-      expect(deleteObjectKeysDeep(obj, key => key.startsWith('_'))).toEqual({
+      expect(deleteObjectKeysDeep(obj, (key) => key.startsWith('_'))).toEqual({
         key1: true,
         key2: {
           key1: {
-            key1: 'test'
-          }
-        }
+            key1: 'test',
+          },
+        },
       })
     })
 
@@ -42,24 +42,24 @@ describe('ObjectUtils', () => {
         key2: [
           {
             key1: 1,
-            _key2: 2
+            _key2: 2,
           },
           {
             _key1: 1,
-            key2: 2
-          }
-        ]
+            key2: 2,
+          },
+        ],
       }
-      expect(deleteObjectKeysDeep(obj, key => key.startsWith('_'))).toEqual({
+      expect(deleteObjectKeysDeep(obj, (key) => key.startsWith('_'))).toEqual({
         key1: true,
         key2: [
           {
-            key1: 1
+            key1: 1,
           },
           {
-            key2: 2
-          }
-        ]
+            key2: 2,
+          },
+        ],
       })
     })
   })
@@ -77,7 +77,7 @@ describe('ObjectUtils', () => {
   describe('convertKeys', () => {
     it('should convert the keys of an object given a function', () => {
       const obj = { FoO: 'BaR', bAr: 'fOo' }
-      expect(convertKeys(obj, key => key.toLowerCase())).toEqual({ foo: 'BaR', bar: 'fOo' })
+      expect(convertKeys(obj, (key) => key.toLowerCase())).toEqual({ foo: 'BaR', bar: 'fOo' })
     })
   })
 })

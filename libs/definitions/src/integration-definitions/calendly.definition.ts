@@ -5,5 +5,6 @@ import { SingleIntegrationDefinition } from '@app/definitions/single-integration
 export class CalendlyDefinition extends SingleIntegrationDefinition {
   integrationKey = 'calendly'
   integrationVersion = '2'
-  schemaUrl = 'https://developer.calendly.com/api/v1/projects/calendly/api-docs/nodes/reference/calendly-api/openapi.yaml?branch=production&deref=bundle'
+  schemaUrl =
+    'https://developer.calendly.com/api/v1/projects/calendly/api-docs/nodes/reference/calendly-api/openapi.yaml?branch=production&deref=bundle'
 }

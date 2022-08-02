@@ -7,10 +7,8 @@ describe('BootstrapService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        MockModule
-      ],
-      providers: [BootstrapService]
+      imports: [MockModule],
+      providers: [BootstrapService],
     }).compile()
 
     service = module.get<BootstrapService>(BootstrapService)

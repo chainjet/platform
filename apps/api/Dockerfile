@@ -1,11 +1,11 @@
 FROM node:14
 
 # context path: ./backend
-COPY . /app/chainjet/backend
+COPY ../.. /app/chainjet/backend
 WORKDIR /app/chainjet/backend
 
 RUN yarn
-RUN yarn build
+RUN yarn build api
 
 CMD [ "yarn", "start:prod:api" ]
 

@@ -13,11 +13,11 @@ let mongod: MongoMemoryServer
           uri: await mongod.getUri(),
           useNewUrlParser: true,
           useFindAndModify: false,
-          useUnifiedTopology: true
+          useUnifiedTopology: true,
         }
-      }
-    })
-  ]
+      },
+    }),
+  ],
 })
 export class TestDatabaseModule {}
 

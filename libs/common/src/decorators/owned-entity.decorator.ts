@@ -5,9 +5,9 @@ export interface OwnedEntityOptions {
   ownerField?: string
 }
 
-export function OwnedEntity (opts: OwnedEntityOptions = {}): ClassDecorator {
+export function OwnedEntity(opts: OwnedEntityOptions = {}): ClassDecorator {
   // eslint-disable-next-line @typescript-eslint/ban-types
-  return <T extends Function> (target: T): T => {
+  return <T extends Function>(target: T): T => {
     const ownerField = opts.ownerField ?? 'owner'
 
     // Add the owner from the auth request
@@ -16,8 +16,8 @@ export function OwnedEntity (opts: OwnedEntityOptions = {}): ClassDecorator {
         ...query,
         input: {
           ...query.input,
-          [ownerField]: context.req.user.id
-        }
+          [ownerField]: context.req.user.id,
+        },
       }
     })(target)
 

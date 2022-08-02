@@ -15,11 +15,11 @@ export class WorkflowActionAuthorizer extends OwnedAuthorizer<WorkflowAction> {}
 export class WorkflowActionResolver extends BaseResolver(WorkflowAction, {
   CreateDTOClass: CreateWorkflowActionInput,
   UpdateDTOClass: UpdateWorkflowActionInput,
-  guards: [GraphqlGuard]
+  guards: [GraphqlGuard],
 }) {
-  constructor (
+  constructor(
     protected workflowActionService: WorkflowActionService,
-    @InjectAuthorizer(WorkflowAction) readonly authorizer: Authorizer<WorkflowAction>
+    @InjectAuthorizer(WorkflowAction) readonly authorizer: Authorizer<WorkflowAction>,
   ) {
     super(workflowActionService)
   }

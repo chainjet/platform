@@ -6,7 +6,7 @@ describe('Scheduler App (e2e)', () => {
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [SchedulerModule]
+      imports: [SchedulerModule],
     }).compile()
 
     app = moduleFixture.createNestApplication()

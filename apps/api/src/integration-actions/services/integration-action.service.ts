@@ -9,16 +9,14 @@ import { IntegrationAction } from '../entities/integration-action'
 export class IntegrationActionService extends BaseService<IntegrationAction> {
   protected readonly logger = new Logger(IntegrationActionService.name)
 
-  constructor (
-    @InjectModel(IntegrationAction) protected readonly model: ReturnModelType<typeof IntegrationAction>
-  ) {
+  constructor(@InjectModel(IntegrationAction) protected readonly model: ReturnModelType<typeof IntegrationAction>) {
     super(model)
   }
 
-  async createOrUpdateOne (record: DeepPartial<IntegrationAction>): Promise<IntegrationAction> {
+  async createOrUpdateOne(record: DeepPartial<IntegrationAction>): Promise<IntegrationAction> {
     const query = {
       integration: record.integration,
-      key: record.key
+      key: record.key,
     }
     return await super.createOrUpdateOne(query, record)
   }

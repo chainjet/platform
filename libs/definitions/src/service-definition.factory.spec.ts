@@ -21,8 +21,8 @@ describe('ServiceDefinitionFactory', () => {
         IntegrationAccountsModule,
         IntegrationActionsModule,
         IntegrationTriggersModule,
-        SchemaService
-      ]
+        SchemaService,
+      ],
     }).compile()
 
     service = module.get<IntegrationDefinitionFactory>(IntegrationDefinitionFactory)
@@ -39,8 +39,8 @@ describe('ServiceDefinitionFactory', () => {
 
   describe('getAllDefinitions', () => {
     it('should return all integration definitions', () => {
-      expect(service.getAllDefinitions().some(def => def instanceof AwsDefinition)).toBe(true)
-      expect(service.getAllDefinitions().some(def => def instanceof GithubDefinition)).toBe(true)
+      expect(service.getAllDefinitions().some((def) => def instanceof AwsDefinition)).toBe(true)
+      expect(service.getAllDefinitions().some((def) => def instanceof GithubDefinition)).toBe(true)
     })
   })
 })

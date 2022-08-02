@@ -13,11 +13,11 @@ import { UserService } from './services/user.service'
   imports: [
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([User, UserProvider])],
-      resolvers: []
+      resolvers: [],
     }),
-    EmailsModule
+    EmailsModule,
   ],
   providers: [UserResolver, UserService, UserAuthorizer, UserProviderService],
-  exports: [UserService, UserProviderService]
+  exports: [UserService, UserProviderService],
 })
 export class UsersModule {}

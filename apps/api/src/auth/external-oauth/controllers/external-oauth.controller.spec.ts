@@ -11,7 +11,7 @@ describe('ExternalOAuth Controller', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [MockModule],
       controllers: [ExternalOAuthController],
-      providers: [OAuthStrategyFactory]
+      providers: [OAuthStrategyFactory],
     }).compile()
 
     controller = module.get<ExternalOAuthController>(ExternalOAuthController)

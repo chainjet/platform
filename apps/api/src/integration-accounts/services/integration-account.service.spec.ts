@@ -10,11 +10,8 @@ describe('IntegrationAccountService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        TypegooseModule.forFeature([IntegrationAccount]),
-        MockModule
-      ],
-      providers: [IntegrationAccountService]
+      imports: [TypegooseModule.forFeature([IntegrationAccount]), MockModule],
+      providers: [IntegrationAccountService],
     }).compile()
 
     service = module.get<IntegrationAccountService>(IntegrationAccountService)

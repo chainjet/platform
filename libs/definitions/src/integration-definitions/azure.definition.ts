@@ -17,36 +17,39 @@ export class AzureDefinition extends MultiIntegrationDefinition {
 
   tags: Record<string, RegExp> = {
     'microsoft-onenote': /me\.onenote(\..+)?/,
-    'outlook-calendar': /me\.calendars(\..+)?/
+    'outlook-calendar': /me\.calendars(\..+)?/,
   }
 
-  getIntegrationsData (): SingleIntegrationData[] | Promise<SingleIntegrationData[]> {
+  getIntegrationsData(): SingleIntegrationData[] | Promise<SingleIntegrationData[]> {
     return [
       {
         parentKey: this.parentKey,
         integrationKey: 'microsoft-onenote',
         integrationVersion: '1',
         schemaUrl: 'https://raw.githubusercontent.com/microsoftgraph/microsoft-graph-openapi/master/v1.0.json',
-        deprecated: false
+        deprecated: false,
       },
       {
         parentKey: this.parentKey,
         integrationKey: 'outlook-calendar',
         integrationVersion: '1',
         schemaUrl: 'https://raw.githubusercontent.com/microsoftgraph/microsoft-graph-openapi/master/v1.0.json',
-        deprecated: false
-      }
+        deprecated: false,
+      },
     ]
   }
 
-  async updateSchemaBeforeSave (schema: OpenAPIObject, integrationData: SingleIntegrationData): Promise<OpenAPIObject> {
+  async updateSchemaBeforeSave(schema: OpenAPIObject, integrationData: SingleIntegrationData): Promise<OpenAPIObject> {
     if (!this.tags[integrationData.integrationKey]) {
       throw new Error(`Tag scope not found for ${integrationData.integrationKey}`)
     }
     for (const [pathKey, pathValue] of Object.entries(schema.paths)) {
       // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
       for (const [operationKey, operationValue] of Object.entries(pathValue) as Array<[string, OperationObject]>) {
-        if (!operationValue.tags || !operationValue.tags.some(tag => this.tags[integrationData.integrationKey].test(tag))) {
+        if (
+          !operationValue.tags ||
+          !operationValue.tags.some((tag) => this.tags[integrationData.integrationKey].test(tag))
+        ) {
           delete schema.paths[pathKey][operationKey]
         }
       }
@@ -54,14 +57,14 @@ export class AzureDefinition extends MultiIntegrationDefinition {
         delete schema.paths[pathKey]
       }
     }
-    schema.tags = schema.tags?.filter(tag => this.tags[integrationData.integrationKey].test(tag.name))
-    schema.tags = _.uniqBy(schema.tags, tag => tag.name)
+    schema.tags = schema.tags?.filter((tag) => this.tags[integrationData.integrationKey].test(tag.name))
+    schema.tags = _.uniqBy(schema.tags, (tag) => tag.name)
     return schema
   }
 
-  async createOrUpdateIntegrationAccount (
+  async createOrUpdateIntegrationAccount(
     schema: OpenAPIObject,
-    integrationData: SingleIntegrationData
+    integrationData: SingleIntegrationData,
   ): Promise<IntegrationAccount | null> {
     class MicrosoftIntegration extends SingleIntegrationDefinition {
       parentKey = 'azure'
@@ -74,7 +77,7 @@ export class AzureDefinition extends MultiIntegrationDefinition {
       this.integrationService,
       this.integrationAccountService,
       this.integrationActionService,
-      this.integrationTriggerService
+      this.integrationTriggerService,
     )
     return await integration.createOrUpdateIntegrationAccount(schema)
   }

@@ -9,13 +9,11 @@ import { IntegrationAccount } from '../entities/integration-account'
 export class IntegrationAccountService extends BaseService<IntegrationAccount> {
   protected readonly logger = new Logger(IntegrationAccountService.name)
 
-  constructor (
-    @InjectModel(IntegrationAccount) protected readonly model: ReturnModelType<typeof IntegrationAccount>
-  ) {
+  constructor(@InjectModel(IntegrationAccount) protected readonly model: ReturnModelType<typeof IntegrationAccount>) {
     super(model)
   }
 
-  async createOrUpdateOne (record: DeepPartial<IntegrationAccount>): Promise<IntegrationAccount> {
+  async createOrUpdateOne(record: DeepPartial<IntegrationAccount>): Promise<IntegrationAccount> {
     return await super.createOrUpdateOne({ key: record.key }, record)
   }
 }

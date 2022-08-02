@@ -7,7 +7,7 @@ export class ScheduleDefinition extends SingleIntegrationDefinition {
   integrationVersion = '1'
   schemaUrl = null
 
-  async run (): Promise<RunResponse> {
+  async run(): Promise<RunResponse> {
     const date = new Date(Date.now())
     const dateDayJs = dayjs(Date.now())
     return {
@@ -24,8 +24,8 @@ export class ScheduleDefinition extends SingleIntegrationDefinition {
         hour: date.getHours(),
         minute: date.getMinutes(),
         second: date.getSeconds(),
-        timezoneOffset: date.getTimezoneOffset()
-      }
+        timezoneOffset: date.getTimezoneOffset(),
+      },
     }
   }
 }

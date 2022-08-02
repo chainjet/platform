@@ -8,7 +8,7 @@ describe('API App (e2e)', () => {
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule]
+      imports: [AppModule],
     }).compile()
 
     app = moduleFixture.createNestApplication()
@@ -27,13 +27,10 @@ describe('API App (e2e)', () => {
       }
     `
 
-    const res = await request(app.getHttpServer())
-      .post('/graphql')
-      .send({ query: schemaQuery })
-      .expect(200)
+    const res = await request(app.getHttpServer()).post('/graphql').send({ query: schemaQuery }).expect(200)
 
     expect(res.body.data.__schema.types).toBeInstanceOf(Array)
-    const types: string[] = res.body.data.__schema.types.map(type => type.name)
+    const types: string[] = res.body.data.__schema.types.map((type) => type.name)
     expect(types).toEqual(expect.arrayContaining(['ID', 'Boolean', 'Int', 'String', 'DateTime', 'User', 'Workflow']))
   })
 })

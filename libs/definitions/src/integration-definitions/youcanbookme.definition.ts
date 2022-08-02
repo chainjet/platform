@@ -7,7 +7,7 @@ export class YoucanbookmeDefinition extends SingleIntegrationDefinition {
   integrationVersion = '1'
   schemaUrl = 'https://api.youcanbook.me/v1/api-docs?group=api'
 
-  async beforeOperationRun (opts: OperationRunOptions): Promise<OperationRunOptions> {
+  async beforeOperationRun(opts: OperationRunOptions): Promise<OperationRunOptions> {
     if (!opts.inputs.accountId) {
       opts.inputs.accountId = opts.credentials.username
     }

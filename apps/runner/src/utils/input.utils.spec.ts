@@ -32,8 +32,9 @@ describe('InputUtils', () => {
       expect(parseInput({ foo: '{{output.bar}}' }, { output: { bar: 'TEST' } })).toEqual({ foo: 'TEST' })
       expect(parseInput({ foo: '{{ output.bar }}' }, { output: { bar: 'TEST' } })).toEqual({ foo: 'TEST' })
       expect(parseInput({ foo: '{{   output.bar   }}' }, { output: { bar: 'TEST' } })).toEqual({ foo: 'TEST' })
-      expect(parseInput({ foo: 'Value: "{{output.bar}}"' }, { output: { bar: 'TEST' } }))
-        .toEqual({ foo: 'Value: "TEST"' })
+      expect(parseInput({ foo: 'Value: "{{output.bar}}"' }, { output: { bar: 'TEST' } })).toEqual({
+        foo: 'Value: "TEST"',
+      })
     })
 
     it('should parse non-string variables', () => {
@@ -52,8 +53,9 @@ describe('InputUtils', () => {
       expect(parseInput('{{output.bar}}', { output: { bar: {} } })).toEqual({})
       expect(parseInput({ foo: 'Value: {{output.bar}}' }, { output: { bar: {} } })).toEqual({ foo: 'Value: {}' })
       expect(parseInput('{{output.bar}}', { output: { bar: new Date('01/01/2020') } })).toEqual(new Date('01/01/2020'))
-      expect(parseInput({ foo: 'Value: {{output.bar}}' }, { output: { bar: new Date('01/01/2020') } }))
-        .toEqual({ foo: 'Value: 2020-01-01T03:00:00.000Z' })
+      expect(parseInput({ foo: 'Value: {{output.bar}}' }, { output: { bar: new Date('01/01/2020') } })).toEqual({
+        foo: 'Value: 2020-01-01T03:00:00.000Z',
+      })
     })
 
     it('should support multiple variables', () => {
@@ -116,8 +118,9 @@ describe('InputUtils', () => {
 
       it('should parse variables inside substring', () => {
         expect(calculateExpression('substring(foo.str, 5)', { foo: { str: 'some string' } })).toBe('string')
-        expect(calculateExpression('substring(foo.str, foo.s, foo.e)', { foo: { str: 'some string', s: 5, e: 8 } }))
-          .toBe('str')
+        expect(
+          calculateExpression('substring(foo.str, foo.s, foo.e)', { foo: { str: 'some string', s: 5, e: 8 } }),
+        ).toBe('str')
       })
     })
   })

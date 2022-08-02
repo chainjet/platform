@@ -5,9 +5,9 @@ import { isEmptyObj } from '../../../../libs/common/src/utils/object.utils'
 /**
  * parse references to other outputs (i.e. {{id.key}})
  */
-export function parseStepInputs (
+export function parseStepInputs(
   inputs: Record<string, unknown>,
-  outputs: Record<string, Record<string, unknown>>
+  outputs: Record<string, Record<string, unknown>>,
 ): Record<string, unknown> {
   const parsedInputs: Record<string, unknown> = {}
   for (const [key, value] of Object.entries(inputs)) {
@@ -16,7 +16,7 @@ export function parseStepInputs (
   return parsedInputs
 }
 
-export function parseInput (input: unknown, outputs: Record<string, Record<string, unknown>>): unknown {
+export function parseInput(input: unknown, outputs: Record<string, Record<string, unknown>>): unknown {
   const variableRegex = /{{\s*([^}]+)\s*}}/
 
   if (!input) {
@@ -36,7 +36,7 @@ export function parseInput (input: unknown, outputs: Record<string, Record<strin
     }, input)
   }
   if (Array.isArray(input)) {
-    return input.map(x => parseInput(x, outputs))
+    return input.map((x) => parseInput(x, outputs))
   }
   if (input && typeof input === 'object') {
     // Don't send empty objects, external integrations might fail validation because of them
@@ -58,7 +58,7 @@ export function parseInput (input: unknown, outputs: Record<string, Record<strin
  *   references: { foo: { bar: 5, baz: 3 } }
  *   returns: 2
  */
-export function calculateExpression (input: string, references: Record<string, Record<string, unknown>>): unknown {
+export function calculateExpression(input: string, references: Record<string, Record<string, unknown>>): unknown {
   // each "[\w[\]]" group matches the allowed characters for variables, including array access (e.g. a.b[0].c)
   const operatorsRegex = /[\w[\]]+\.[\w[\]]+(\.[\w[\]]+)*/g
 
@@ -86,7 +86,7 @@ export function calculateExpression (input: string, references: Record<string, R
   return parser.evaluate(expression)
 }
 
-function stringifyInput (input: unknown): string {
+function stringifyInput(input: unknown): string {
   if (_.isPlainObject(input)) {
     return JSON.stringify(input)
   } else if (_.isDate(input)) {

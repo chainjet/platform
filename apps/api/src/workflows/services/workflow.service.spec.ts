@@ -12,11 +12,8 @@ describe('WorkflowService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        TypegooseModule.forFeature([Workflow]),
-        MockModule
-      ],
-      providers: [WorkflowService]
+      imports: [TypegooseModule.forFeature([Workflow]), MockModule],
+      providers: [WorkflowService],
     }).compile()
 
     service = module.get<WorkflowService>(WorkflowService)
@@ -34,7 +31,7 @@ describe('WorkflowService', () => {
     it('should update workflow slug if workflow name changed', async () => {
       const workflow = await mock.createWorkflowDeep({
         name: 'test',
-        slug: 'test/test/workflow/test'
+        slug: 'test/test/workflow/test',
       })
       await service.updateOne(workflow.id, { name: 'new-name' })
       const updated = await service.findById(workflow.id)
@@ -44,7 +41,7 @@ describe('WorkflowService', () => {
     it('should not change the slug if workflow name is not changed', async () => {
       const workflow = await mock.createWorkflowDeep({
         name: 'test',
-        slug: 'test/test/workflow/test'
+        slug: 'test/test/workflow/test',
       })
       await service.updateOne(workflow.id, {})
       const updated = await service.findById(workflow.id)
@@ -53,8 +50,9 @@ describe('WorkflowService', () => {
 
     it('should throw an error if runOnFailure', async () => {
       const workflow = await mock.createWorkflowDeep()
-      await expect(service.updateOne(workflow.id, { runOnFailure: workflow._id }))
-        .rejects.toThrow(/Run On Failure cannot be set with the same workflow ID./)
+      await expect(service.updateOne(workflow.id, { runOnFailure: workflow._id })).rejects.toThrow(
+        /Run On Failure cannot be set with the same workflow ID./,
+      )
     })
   })
 })

@@ -6,7 +6,7 @@ export class MailchimpMarketingDefinition extends SingleIntegrationDefinition {
   integrationVersion = '3'
   schemaUrl = 'https://api.mailchimp.com/schema/3.0/Swagger.json?expand'
 
-  async updateSchemaBeforeSave (schema: OpenAPIObject): Promise<OpenAPIObject> {
+  async updateSchemaBeforeSave(schema: OpenAPIObject): Promise<OpenAPIObject> {
     // Add tags and remove uneccesary responses
     const tags = new Set<string>()
     delete schema.paths['/']
@@ -25,10 +25,10 @@ export class MailchimpMarketingDefinition extends SingleIntegrationDefinition {
 
     schema.tags = schema.tags ?? []
     for (const tag of Array.from(tags)) {
-      if (!schema.tags.find(t => t.name === tag)) {
+      if (!schema.tags.find((t) => t.name === tag)) {
         schema.tags.push({
           name: tag,
-          description: tag
+          description: tag,
         })
       }
     }

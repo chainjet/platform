@@ -4,18 +4,19 @@ import { extractFirstItem, extractTriggerItems, getItemSchemaFromRes } from './t
 describe('Trigger Utils', () => {
   describe('extratTriggerItems', () => {
     it('should extract the items from an array', async () => {
-      expect(extractTriggerItems('data[].id', { data: [{ id: 123, foo: 'bar' }, { id: 456 }] }))
-        .toEqual([
-          { id: 123, item: { id: 123, foo: 'bar' } },
-          { id: 456, item: { id: 456 } }
-        ])
+      expect(extractTriggerItems('data[].id', { data: [{ id: 123, foo: 'bar' }, { id: 456 }] })).toEqual([
+        { id: 123, item: { id: 123, foo: 'bar' } },
+        { id: 456, item: { id: 456 } },
+      ])
     })
 
     it('should extract the id from complex ids', async () => {
-      expect(extractTriggerItems('data.items[].id', { data: { items: [{ id: 123 }] } }))
-        .toEqual([{ id: 123, item: { id: 123 } }])
-      expect(extractTriggerItems('data.a[].b.c', { data: { a: [{ b: { c: 123 } }] } }))
-        .toEqual([{ id: 123, item: { c: 123 } }])
+      expect(extractTriggerItems('data.items[].id', { data: { items: [{ id: 123 }] } })).toEqual([
+        { id: 123, item: { id: 123 } },
+      ])
+      expect(extractTriggerItems('data.a[].b.c', { data: { a: [{ b: { c: 123 } }] } })).toEqual([
+        { id: 123, item: { c: 123 } },
+      ])
     })
 
     it('should return an empty array if the data does not match the key', async () => {
@@ -36,20 +37,25 @@ describe('Trigger Utils', () => {
     })
 
     it('should extract the first id from an array', async () => {
-      expect(extractFirstItem('data[].id', { data: [{ id: 123, foo: 'bar' }, { id: 456 }] }))
-        .toEqual({ id: 123, item: { id: 123, foo: 'bar' } })
+      expect(extractFirstItem('data[].id', { data: [{ id: 123, foo: 'bar' }, { id: 456 }] })).toEqual({
+        id: 123,
+        item: { id: 123, foo: 'bar' },
+      })
     })
 
     it('should extract the id from an object', async () => {
-      expect(extractFirstItem('data.id', { data: { id: 123 } }))
-        .toEqual({ id: 123, item: { id: 123 } })
+      expect(extractFirstItem('data.id', { data: { id: 123 } })).toEqual({ id: 123, item: { id: 123 } })
     })
 
     it('should extract the id from complex responses', async () => {
-      expect(extractFirstItem('data.items[].id', { data: { items: [{ id: 123 }] } }))
-        .toEqual({ id: 123, item: { id: 123 } })
-      expect(extractFirstItem('data.a[].b.c', { data: { a: [{ b: { c: 123 } }] } }))
-        .toEqual({ id: 123, item: { c: 123 } })
+      expect(extractFirstItem('data.items[].id', { data: { items: [{ id: 123 }] } })).toEqual({
+        id: 123,
+        item: { id: 123 },
+      })
+      expect(extractFirstItem('data.a[].b.c', { data: { a: [{ b: { c: 123 } }] } })).toEqual({
+        id: 123,
+        item: { c: 123 },
+      })
     })
 
     it('should return null if the data does not match the key', async () => {
@@ -72,17 +78,16 @@ describe('Trigger Utils', () => {
         items: {
           properties: {
             id: {
-              type: 'string'
-            }
-          }
-        }
+              type: 'string',
+            },
+          },
+        },
       }
-      expect(getItemSchemaFromRes('[].id', schema))
-        .toEqual({
-          properties: {
-            id: { type: 'string' }
-          }
-        })
+      expect(getItemSchemaFromRes('[].id', schema)).toEqual({
+        properties: {
+          id: { type: 'string' },
+        },
+      })
     })
 
     it('should get the item schema for an array inside a deep object', () => {
@@ -95,29 +100,28 @@ describe('Trigger Utils', () => {
                 items: {
                   properties: {
                     id: {
-                      type: 'string'
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
+                      type: 'string',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
       }
-      expect(getItemSchemaFromRes('res.items[].id', schema))
-        .toEqual({
-          properties: {
-            id: { type: 'string' }
-          }
-        })
+      expect(getItemSchemaFromRes('res.items[].id', schema)).toEqual({
+        properties: {
+          id: { type: 'string' },
+        },
+      })
     })
 
     it('should return null if the idKey is not on the schema', () => {
       const schema: JSONSchema7 = {
         type: 'array',
         items: {
-          properties: {}
-        }
+          properties: {},
+        },
       }
       expect(getItemSchemaFromRes('[].id', schema)).toBeNull()
     })

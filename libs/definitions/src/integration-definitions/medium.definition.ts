@@ -15,9 +15,10 @@ interface MediumProfile {
 export class MediumDefinition extends SingleIntegrationDefinition {
   integrationKey = 'medium'
   integrationVersion = '1'
-  schemaUrl = 'https://raw.githubusercontent.com/amardeshbd/medium-api-specification/master/medium-api-specification.yaml'
+  schemaUrl =
+    'https://raw.githubusercontent.com/amardeshbd/medium-api-specification/master/medium-api-specification.yaml'
 
-  async beforeOperationRun (opts: OperationRunOptions): Promise<OperationRunOptions> {
+  async beforeOperationRun(opts: OperationRunOptions): Promise<OperationRunOptions> {
     // Medium asks for user / author IDs on the path, we hidded those fields and fetch the values directly
     // TODO this could be stored in a profile field on the account credential
     const properties = opts.operation.schemaRequest.properties
@@ -37,14 +38,14 @@ export class MediumDefinition extends SingleIntegrationDefinition {
 
   // TODO
   // https://github.com/Medium/medium-api-docs#31-users
-  async getProfile (
+  async getProfile(
     integration: Integration,
     integrationAccount: IntegrationAccount | null,
-    credentials: StepInputs
+    credentials: StepInputs,
   ): Promise<MediumProfile | null> {
     const integrationAction = await this.integrationActionService.findOne({
       integration: integration.id,
-      key: '/me.get'
+      key: '/me.get',
     })
     if (integrationAction) {
       // const body = await this.run(integration, integrationAccount, integrationAction, {}, credentials)

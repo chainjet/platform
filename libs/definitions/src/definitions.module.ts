@@ -8,13 +8,8 @@ import { SchemaService } from './schema/services/schema.service'
 import { IntegrationInstallerService } from './services/integration-installer.service'
 
 @Module({
-  imports: [
-    IntegrationsModule,
-    IntegrationAccountsModule,
-    IntegrationActionsModule,
-    IntegrationTriggersModule
-  ],
+  imports: [IntegrationsModule, IntegrationAccountsModule, IntegrationActionsModule, IntegrationTriggersModule],
   providers: [IntegrationDefinitionFactory, SchemaService, IntegrationInstallerService],
-  exports: [IntegrationDefinitionFactory, IntegrationInstallerService, SchemaService]
+  exports: [IntegrationDefinitionFactory, IntegrationInstallerService, SchemaService],
 })
 export class DefinitionsModule {}

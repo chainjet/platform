@@ -6,7 +6,7 @@ export enum IntegrationAuthType {
   http = 'http',
   oauth1 = 'oauth1',
   oauth2 = 'oauth2',
-  openIdConnect = 'openIdConnect'
+  openIdConnect = 'openIdConnect',
 }
 
 export interface IntegrationAuthDefinition {

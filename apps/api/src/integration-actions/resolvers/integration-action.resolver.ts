@@ -10,13 +10,13 @@ export class IntegrationActionQuery extends SearchableQueryArgsType(IntegrationA
 @Resolver(() => IntegrationAction)
 export class IntegrationActionResolver extends BaseResolver(IntegrationAction, {
   read: {
-    maxResultsSize: 120
+    maxResultsSize: 120,
   },
   create: { disabled: true },
   update: { disabled: true },
-  delete: { disabled: true }
+  delete: { disabled: true },
 }) {
-  constructor (protected integrationActionService: IntegrationActionService) {
+  constructor(protected integrationActionService: IntegrationActionService) {
     super(integrationActionService)
   }
 
@@ -24,7 +24,7 @@ export class IntegrationActionResolver extends BaseResolver(IntegrationAction, {
    * This override makes integration actions searchable
    */
   @Query(() => ConnectionType(IntegrationAction, {}))
-  integrationActions (@Args() query: IntegrationActionQuery): Promise<CursorConnectionType<IntegrationAction>> {
+  integrationActions(@Args() query: IntegrationActionQuery): Promise<CursorConnectionType<IntegrationAction>> {
     return super.queryMany(query)
   }
 }

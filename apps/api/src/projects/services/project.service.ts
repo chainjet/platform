@@ -12,15 +12,15 @@ import { Project } from '../entities/project'
 export class ProjectService extends BaseService<Project> {
   protected readonly logger = new Logger(ProjectService.name)
 
-  constructor (
+  constructor(
     @InjectModel(Project) protected readonly model: ReturnModelType<typeof Project>,
     protected userService: UserService,
-    @Inject(forwardRef(() => WorkflowService)) protected workflowService: WorkflowService
+    @Inject(forwardRef(() => WorkflowService)) protected workflowService: WorkflowService,
   ) {
     super(model)
   }
 
-  async createOne (record: DeepPartial<Project>): Promise<Project> {
+  async createOne(record: DeepPartial<Project>): Promise<Project> {
     if (!record.owner) {
       throw new NotFoundException()
     }
@@ -40,7 +40,7 @@ export class ProjectService extends BaseService<Project> {
     return await super.createOne(record)
   }
 
-  async updateOne (id: string, record: DeepPartial<Project>): Promise<Project> {
+  async updateOne(id: string, record: DeepPartial<Project>): Promise<Project> {
     const project = await this.findById(id)
     if (!project) {
       throw new NotFoundException()
@@ -61,7 +61,7 @@ export class ProjectService extends BaseService<Project> {
     return await super.updateOne(id, record)
   }
 
-  async deleteOne (id: string, opts?: DeleteOneOptions<Project>): Promise<Project> {
+  async deleteOne(id: string, opts?: DeleteOneOptions<Project>): Promise<Project> {
     const workflows = await this.workflowService.find({ project: id })
 
     // TODO this could trigger large cascade effect. We should delete on background using a queue.

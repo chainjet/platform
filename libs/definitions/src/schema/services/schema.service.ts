@@ -24,35 +24,32 @@ export class SchemaService {
   private readonly logger = new Logger(SchemaService.name)
   private readonly schemaCache: Map<string, OpenAPIObject> = new Map()
 
-  getSchemaKey (integrationKey: string, integrationVersion: string): string {
+  getSchemaKey(integrationKey: string, integrationVersion: string): string {
     return `${integrationKey}-${integrationVersion}`
   }
 
-  async getSchema ({
+  async getSchema({
     integrationKey,
     integrationVersion,
     schemaUrl,
     refetch,
     ignoreCache,
-    updateSchemaAfterFetch
+    updateSchemaAfterFetch,
   }: GetSchemaOptions): Promise<OpenAPIObject> {
     const schemaKey = this.getSchemaKey(integrationKey, integrationVersion)
     if (!ignoreCache && this.schemaCache.has(schemaKey)) {
       return this.schemaCache.get(schemaKey) as OpenAPIObject
     }
 
-    let schema = await OpenApiUtils.getLocalIntegrationSchema(
-      integrationKey,
-      integrationVersion
-    )
+    let schema = await OpenApiUtils.getLocalIntegrationSchema(integrationKey, integrationVersion)
 
     schema = schema ?? {
       openapi: '3.0.0',
       info: {
         title: integrationKey,
-        version: integrationVersion
+        version: integrationVersion,
       },
-      paths: {}
+      paths: {},
     }
 
     if (refetch && schemaUrl) {
@@ -62,7 +59,7 @@ export class SchemaService {
       const schemaFromUrl = await OpenApiUtils.getSchemaFromUrl(schemaUrl, updateSchemaAfterFetch)
 
       // Delete OpenAPI extensions from external sources
-      const cleanSchema = deleteObjectKeysDeep(schemaFromUrl, key => key.startsWith('x-'))
+      const cleanSchema = deleteObjectKeysDeep(schemaFromUrl, (key) => key.startsWith('x-'))
 
       schema = defaultsDeep(schema ?? {}, cleanSchema)
     }
@@ -73,11 +70,7 @@ export class SchemaService {
     return schema as OpenAPIObject
   }
 
-  updateSchema ({
-    integrationKey,
-    integrationVersion,
-    schema
-  }: UpdateSchemaOptions): Promise<void> {
+  updateSchema({ integrationKey, integrationVersion, schema }: UpdateSchemaOptions): Promise<void> {
     const schemaKey = this.getSchemaKey(integrationKey, integrationVersion)
     this.schemaCache.set(schemaKey, schema)
     return OpenApiUtils.saveSchema(schema, integrationKey, integrationVersion)

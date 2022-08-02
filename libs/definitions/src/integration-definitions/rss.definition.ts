@@ -8,19 +8,19 @@ export class RssDefinition extends SingleIntegrationDefinition {
   integrationVersion = '1'
   schemaUrl = null
 
-  async run ({ inputs }: OperationRunOptions): Promise<RunResponse> {
+  async run({ inputs }: OperationRunOptions): Promise<RunResponse> {
     const parser = new RssParser()
     const res = await parser.parseURL(inputs.url)
 
     // rss-parser converts description fields into content
-    res.items = (res.items ?? []).map(item => {
+    res.items = (res.items ?? []).map((item) => {
       item.description = item.description ?? item.content
       item.descriptionPlainText = item.contentSnippet
       return item
     })
 
     return {
-      outputs: res
+      outputs: res,
     }
   }
 }

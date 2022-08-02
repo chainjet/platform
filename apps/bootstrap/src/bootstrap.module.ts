@@ -5,12 +5,8 @@ import { mongoForRoot } from '../../../libs/common/src/utils/mongodb'
 import { BootstrapService } from './services/bootstrap.service'
 
 @Module({
-  imports: [
-    ConfigModule.forRoot(),
-    mongoForRoot(),
-    DefinitionsModule
-  ],
+  imports: [ConfigModule.forRoot(), mongoForRoot(), DefinitionsModule],
   controllers: [],
-  providers: [BootstrapService]
+  providers: [BootstrapService],
 })
 export class BootstrapModule {}

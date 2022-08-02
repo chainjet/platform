@@ -8,7 +8,7 @@ export class SleepDefinition extends SingleIntegrationDefinition {
   integrationVersion = '1'
   schemaUrl = null
 
-  async run (opts: OperationRunOptions): Promise<RunResponse> {
+  async run(opts: OperationRunOptions): Promise<RunResponse> {
     switch (opts.operation.key) {
       case 'sleepFor':
         return await this.runSleepFor(opts)
@@ -16,7 +16,7 @@ export class SleepDefinition extends SingleIntegrationDefinition {
     throw new Error('Not implemented yet')
   }
 
-  private async runSleepFor (opts: OperationRunOptions): Promise<RunResponse> {
+  private async runSleepFor(opts: OperationRunOptions): Promise<RunResponse> {
     let secondsPerUnit: number
     switch (opts.inputs.unit) {
       case 'seconds':
@@ -39,7 +39,7 @@ export class SleepDefinition extends SingleIntegrationDefinition {
     }
     return {
       outputs: {},
-      sleepUntil: new Date(Date.now() + (opts.inputs.amount || 1) * secondsPerUnit * 1000)
+      sleepUntil: new Date(Date.now() + (opts.inputs.amount || 1) * secondsPerUnit * 1000),
     }
   }
 }

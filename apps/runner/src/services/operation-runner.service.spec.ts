@@ -8,7 +8,7 @@ describe('OperationRunService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [MockModule],
-      providers: [OperationRunnerService]
+      providers: [OperationRunnerService],
     }).compile()
 
     service = module.get<OperationRunnerService>(OperationRunnerService)

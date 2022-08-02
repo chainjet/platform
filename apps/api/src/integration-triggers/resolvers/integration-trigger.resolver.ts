@@ -10,13 +10,13 @@ export class IntegrationTriggerQuery extends SearchableQueryArgsType(Integration
 @Resolver(() => IntegrationTrigger)
 export class IntegrationTriggerResolver extends BaseResolver(IntegrationTrigger, {
   read: {
-    maxResultsSize: 120
+    maxResultsSize: 120,
   },
   create: { disabled: true },
   update: { disabled: true },
-  delete: { disabled: true }
+  delete: { disabled: true },
 }) {
-  constructor (protected integrationTriggerService: IntegrationTriggerService) {
+  constructor(protected integrationTriggerService: IntegrationTriggerService) {
     super(integrationTriggerService)
   }
 
@@ -24,7 +24,7 @@ export class IntegrationTriggerResolver extends BaseResolver(IntegrationTrigger,
    * This override makes integration triggers searchable
    */
   @Query(() => ConnectionType(IntegrationTrigger, {}))
-  integrationTriggers (@Args() query: IntegrationTriggerQuery): Promise<CursorConnectionType<IntegrationTrigger>> {
+  integrationTriggers(@Args() query: IntegrationTriggerQuery): Promise<CursorConnectionType<IntegrationTrigger>> {
     return super.queryMany(query)
   }
 }

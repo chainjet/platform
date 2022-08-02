@@ -11,12 +11,12 @@ import { ProjectService } from './services/project.service'
   imports: [
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([Project])],
-      resolvers: []
+      resolvers: [],
     }),
     UsersModule,
-    forwardRef(() => WorkflowsModule)
+    forwardRef(() => WorkflowsModule),
   ],
   providers: [ProjectResolver, ProjectService, ProjectAuthorizer],
-  exports: [ProjectService]
+  exports: [ProjectService],
 })
 export class ProjectsModule {}

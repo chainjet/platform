@@ -10,11 +10,8 @@ describe('WorkflowActionResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        TypegooseModule.forFeature([WorkflowAction]),
-        MockModule
-      ],
-      providers: [WorkflowActionResolver, WorkflowActionAuthorizer]
+      imports: [TypegooseModule.forFeature([WorkflowAction]), MockModule],
+      providers: [WorkflowActionResolver, WorkflowActionAuthorizer],
     }).compile()
 
     resolver = module.get<WorkflowActionResolver>(WorkflowActionResolver)

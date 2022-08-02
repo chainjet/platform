@@ -8,9 +8,7 @@ import { UserProvider } from '../entities/user-provider'
 export class UserProviderService extends BaseService<UserProvider> {
   protected readonly logger = new Logger(UserProviderService.name)
 
-  constructor (
-    @InjectModel(UserProvider) protected readonly model: ReturnModelType<typeof UserProvider>
-  ) {
+  constructor(@InjectModel(UserProvider) protected readonly model: ReturnModelType<typeof UserProvider>) {
     super(model)
   }
 }

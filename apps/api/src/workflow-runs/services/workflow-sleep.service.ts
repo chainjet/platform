@@ -8,11 +8,11 @@ import { WorkflowSleep } from '../entities/workflow-sleep'
 export class WorkflowSleepService extends BaseService<WorkflowSleep> {
   protected readonly logger = new Logger(WorkflowSleepService.name)
 
-  constructor (
-    @InjectModel(WorkflowSleep) protected readonly model: ReturnModelType<typeof WorkflowSleep>
-    // private readonly userService: UserService,
-    // private readonly workflowTriggerService: WorkflowTriggerService
-  ) {
+  constructor(
+    @InjectModel(WorkflowSleep) protected readonly model: ReturnModelType<typeof WorkflowSleep>,
+  ) // private readonly userService: UserService,
+  // private readonly workflowTriggerService: WorkflowTriggerService
+  {
     super(model)
   }
 }

@@ -17,11 +17,8 @@ describe('UserService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        TypegooseModule.forFeature([User, UserProvider]),
-        MockModule
-      ],
-      providers: [UserService, UserProviderService]
+      imports: [TypegooseModule.forFeature([User, UserProvider]), MockModule],
+      providers: [UserService, UserProviderService],
     }).compile()
 
     service = module.get<UserService>(UserService)
@@ -34,7 +31,9 @@ describe('UserService', () => {
 
   beforeEach(() => {
     SecurityUtils.hashWithBcrypt = jest.fn((str: string) => Promise.resolve(`hashed(${str})`))
-    SecurityUtils.bcryptHashIsValid = jest.fn((value: string, hash: string) => Promise.resolve(hash === `hashed(${value})`))
+    SecurityUtils.bcryptHashIsValid = jest.fn((value: string, hash: string) =>
+      Promise.resolve(hash === `hashed(${value})`),
+    )
     SecurityUtils.generateRandomString = jest.fn((chars: number) => `generated:${chars}`)
   })
 
@@ -62,7 +61,7 @@ describe('UserService', () => {
     it('should send a verification email if the email is updated', async () => {
       const user = await mock.createUser({
         email: 'test@example.org',
-        verified: true
+        verified: true,
       })
       await service.updateOne(user.id, { email: 'new-email@example.org' })
       const updated = await service.findById(user.id)
@@ -75,7 +74,7 @@ describe('UserService', () => {
     it('should not send a verification email if the email is not updated', async () => {
       const user = await mock.createUser({
         email: 'test@example.org',
-        verified: true
+        verified: true,
       })
       await service.updateOne(user.id, { email: 'test@example.org' })
       const updated = await service.findById(user.id)
@@ -90,7 +89,7 @@ describe('UserService', () => {
     it('should return whether the password is valid or not', async () => {
       const user = await mock.createUser({
         email: 'test@example.org',
-        password: 'hashed(password)'
+        password: 'hashed(password)',
       })
       expect(await service.passwordIsValid(user, 'password')).toEqual(true)
       expect(await service.passwordIsValid(user, 'wrong-password')).toEqual(false)
@@ -116,12 +115,12 @@ describe('UserService', () => {
         {
           provider: 'google',
           displayName: 'Test User',
-          id: '123'
+          id: '123',
         },
         {
           value: 'test@example.com',
-          verified: true
-        }
+          verified: true,
+        },
       )
       const userProvider = await mock.userProviderService.findById(res.userProviderId)
       expect(userProvider?.completeAuthCode).toBe('generated:48')
@@ -141,12 +140,12 @@ describe('UserService', () => {
         {
           provider: 'google',
           displayName: 'Test User',
-          id: '123'
+          id: '123',
         },
         {
           value: 'test@example.com',
-          verified: true
-        }
+          verified: true,
+        },
       )
       const userProvider = await mock.userProviderService.findById(res.userProviderId)
       expect(userProvider?.completeAuthCode).toBe('generated:48')
@@ -168,12 +167,12 @@ describe('UserService', () => {
         {
           provider: 'google',
           displayName: 'Test User',
-          id: '123'
+          id: '123',
         },
         {
           value: 'test@example.com',
-          verified: true
-        }
+          verified: true,
+        },
       )
       const userProvider = await mock.userProviderService.findById(res.userProviderId)
       expect(userProvider?.id).toBe(originalUserProvider.id)
@@ -195,12 +194,12 @@ describe('UserService', () => {
         {
           provider: 'google',
           displayName: 'Test User',
-          id: '123'
+          id: '123',
         },
         {
           value: 'test@example.com',
-          verified: true
-        }
+          verified: true,
+        },
       )
       const updatedUser = await service.findById(user.id)
       expect(updatedUser?.verified).toBe(true)
@@ -214,12 +213,12 @@ describe('UserService', () => {
         {
           provider: 'google',
           displayName: 'Test User',
-          id: '123'
+          id: '123',
         },
         {
           value: 'test@example.com',
-          verified: false
-        }
+          verified: false,
+        },
       )
       const updatedUser = await service.findById(user.id)
       expect(updatedUser?.verified).toBe(false)
@@ -238,8 +237,9 @@ describe('UserService', () => {
 
     it('should fail a login given an invalid code', async () => {
       const userProvider = await mock.createUserProviderDeep({ completeAuthCode: 'secret-code' })
-      await expect(service.completeProviderAuth(userProvider.id, 'WRONG-CODE'))
-        .rejects.toThrow(/Authentication code is invalid or it has expired/)
+      await expect(service.completeProviderAuth(userProvider.id, 'WRONG-CODE')).rejects.toThrow(
+        /Authentication code is invalid or it has expired/,
+      )
       const updatedUserProvider = await mock.userProviderService.findById(userProvider.id)
       expect(updatedUserProvider?.completeAuthCode).toBe('secret-code')
     })
@@ -248,14 +248,9 @@ describe('UserService', () => {
       const userProvider = await mock.createUserProvider({
         displayName: 'Test User',
         completeAuthCode: 'secret-code',
-        emails: [{ value: 'test@example.com', verified: false }]
+        emails: [{ value: 'test@example.com', verified: false }],
       })
-      const res = await service.completeProviderAuth(
-        userProvider.id,
-        'secret-code',
-        'test',
-        userProvider.primaryEmail
-      )
+      const res = await service.completeProviderAuth(userProvider.id, 'secret-code', 'test', userProvider.primaryEmail)
       const user = await service.findOne({ username: 'test', email: userProvider.primaryEmail })
       expect(user?.name).toEqual('Test User')
       expect(user?.verified).toBe(false)
@@ -267,14 +262,9 @@ describe('UserService', () => {
       const userProvider = await mock.createUserProvider({
         displayName: 'Test User',
         completeAuthCode: 'secret-code',
-        emails: [{ value: 'test@example.com', verified: true }]
+        emails: [{ value: 'test@example.com', verified: true }],
       })
-      const res = await service.completeProviderAuth(
-        userProvider.id,
-        'secret-code',
-        'test',
-        userProvider.primaryEmail
-      )
+      const res = await service.completeProviderAuth(userProvider.id, 'secret-code', 'test', userProvider.primaryEmail)
       const user = await service.findOne({ username: 'test', email: userProvider.primaryEmail })
       expect(user?.name).toEqual('Test User')
       expect(user?.verified).toBe(true)
@@ -286,14 +276,11 @@ describe('UserService', () => {
       const userProvider = await mock.createUserProvider({
         displayName: 'Test User',
         completeAuthCode: 'secret-code',
-        emails: [{ value: 'test@example.com', verified: true }]
+        emails: [{ value: 'test@example.com', verified: true }],
       })
-      await expect(service.completeProviderAuth(
-        userProvider.id,
-        'WRONG-CODE',
-        'test',
-        userProvider.primaryEmail
-      )).rejects.toThrow(/Authentication code is invalid or it has expired/)
+      await expect(
+        service.completeProviderAuth(userProvider.id, 'WRONG-CODE', 'test', userProvider.primaryEmail),
+      ).rejects.toThrow(/Authentication code is invalid or it has expired/)
       const updatedUserProvider = await mock.userProviderService.findById(userProvider.id)
       const user = await service.findOne({ username: 'test', email: userProvider.primaryEmail })
       expect(updatedUserProvider?.completeAuthCode).toBe('secret-code')

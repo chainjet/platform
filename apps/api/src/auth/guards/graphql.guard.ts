@@ -7,11 +7,11 @@ import { GqlContext } from '../typings/gql-context'
 
 @Injectable()
 export class GraphqlGuard extends AuthGuard('jwt') implements CanActivate {
-  constructor (private readonly userService: UserService) {
+  constructor(private readonly userService: UserService) {
     super()
   }
 
-  async canActivate (context: ExecutionContext): Promise<boolean> {
+  async canActivate(context: ExecutionContext): Promise<boolean> {
     const ctx = GqlExecutionContext.create(context)
     const req = ctx.getContext().req
 
@@ -21,8 +21,8 @@ export class GraphqlGuard extends AuthGuard('jwt') implements CanActivate {
       const [username, apiKey] = token.split(':')
       const user = await this.userService.findOne({ username })
       if (user && apiKey && (user.apiKey === apiKey || user.apiKey === `${username}:${apiKey}`)) {
-        (req.user as AuthPayload) = {
-          id: user.id
+        ;(req.user as AuthPayload) = {
+          id: user.id,
         }
         return true
       }
@@ -36,7 +36,7 @@ export class GraphqlGuard extends AuthGuard('jwt') implements CanActivate {
     return await canActivate.toPromise()
   }
 
-  getRequest (context: ExecutionContext): GqlContext['req'] {
+  getRequest(context: ExecutionContext): GqlContext['req'] {
     const ctx = GqlExecutionContext.create(context)
     return ctx.getContext().req
   }

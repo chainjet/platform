@@ -23,20 +23,15 @@ describe('BaseService', () => {
   class TestService extends BaseService<TestEntity> {
     protected readonly logger: Logger
 
-    constructor (
-      @InjectModel(TestEntity) protected readonly model: ReturnModelType<typeof TestEntity>
-    ) {
+    constructor(@InjectModel(TestEntity) protected readonly model: ReturnModelType<typeof TestEntity>) {
       super(model)
     }
   }
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        TypegooseModule.forFeature([TestEntity]),
-        TestDatabaseModule
-      ],
-      providers: [TestService]
+      imports: [TypegooseModule.forFeature([TestEntity]), TestDatabaseModule],
+      providers: [TestService],
     }).compile()
 
     service = module.get<TestService>(TestService)
@@ -72,7 +67,7 @@ describe('BaseService', () => {
       expect(result).toMatchObject([
         { name: 'test-1', num: 1 },
         { name: 'test-2', num: 2 },
-        { name: 'test-3', num: 3 }
+        { name: 'test-3', num: 3 },
       ])
     })
 
@@ -84,10 +79,7 @@ describe('BaseService', () => {
       const query = { search: 'foo' }
       const result = await service.query(query as any)
       expect(result).toHaveLength(2)
-      expect(result).toMatchObject([
-        { name: 'foo 1' },
-        { name: 'foo 2' }
-      ])
+      expect(result).toMatchObject([{ name: 'foo 1' }, { name: 'foo 2' }])
     })
   })
 

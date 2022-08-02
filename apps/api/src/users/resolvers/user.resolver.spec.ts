@@ -17,11 +17,8 @@ describe('UserResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        TypegooseModule.forFeature([User, UserProvider]),
-        MockModule
-      ],
-      providers: [UserResolver, UserService, UserAuthorizer, UserProviderService]
+      imports: [TypegooseModule.forFeature([User, UserProvider]), MockModule],
+      providers: [UserResolver, UserService, UserAuthorizer, UserProviderService],
     }).compile()
 
     resolver = module.get<UserResolver>(UserResolver)
@@ -33,7 +30,9 @@ describe('UserResolver', () => {
 
   beforeEach(() => {
     SecurityUtils.hashWithBcrypt = jest.fn((str: string) => Promise.resolve(`hashed(${str})`))
-    SecurityUtils.bcryptHashIsValid = jest.fn((value: string, hash: string) => Promise.resolve(hash === `hashed(${value})`))
+    SecurityUtils.bcryptHashIsValid = jest.fn((value: string, hash: string) =>
+      Promise.resolve(hash === `hashed(${value})`),
+    )
     SecurityUtils.generateRandomString = jest.fn((chars: number) => `generated:${chars}`)
   })
 
@@ -54,7 +53,7 @@ describe('UserResolver', () => {
     it('should update the password if the old password is correct', async () => {
       const user = await mock.createUser({
         email: 'test@example.org',
-        password: 'hashed(old-password)'
+        password: 'hashed(old-password)',
       })
       await resolver.changePassword(user._id, 'old-password', 'new-password')
       const updated = await mock.userService.findById(user.id)
@@ -64,10 +63,11 @@ describe('UserResolver', () => {
     it('should not update the password if the old password is incorrect', async () => {
       const user = await mock.createUser({
         email: 'test@example.org',
-        password: 'hashed(old-password)'
+        password: 'hashed(old-password)',
       })
-      await expect(resolver.changePassword(user._id, 'wrong-password', 'new-password'))
-        .rejects.toThrow('Old password is not correct.')
+      await expect(resolver.changePassword(user._id, 'wrong-password', 'new-password')).rejects.toThrow(
+        'Old password is not correct.',
+      )
       const updated = await mock.userService.findById(user.id)
       expect(updated?.password).toEqual('hashed(old-password)')
     })

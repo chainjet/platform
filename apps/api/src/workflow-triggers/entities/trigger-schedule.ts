@@ -1,4 +1,3 @@
-
 interface TriggerScheduleOnce {
   frequency: 'once'
   date: Date
@@ -37,10 +36,10 @@ interface TriggerScheduleCron {
 }
 
 export type TriggerSchedule =
-  TriggerScheduleOnce |
-  TriggerScheduleInterval |
-  TriggerScheduleHour |
-  TriggerScheduleDay |
-  TriggerScheduleWeek |
-  TriggerScheduleMonth |
-  TriggerScheduleCron
+  | TriggerScheduleOnce
+  | TriggerScheduleInterval
+  | TriggerScheduleHour
+  | TriggerScheduleDay
+  | TriggerScheduleWeek
+  | TriggerScheduleMonth
+  | TriggerScheduleCron

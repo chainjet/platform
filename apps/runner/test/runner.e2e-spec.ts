@@ -6,7 +6,7 @@ describe('Runner App (e2e)', () => {
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [RunnerModule]
+      imports: [RunnerModule],
     }).compile()
 
     app = moduleFixture.createNestApplication()

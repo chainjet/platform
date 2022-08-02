@@ -18,11 +18,8 @@ describe('WorkflowRunService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        TypegooseModule.forFeature([WorkflowRun]),
-        MockModule
-      ],
-      providers: [WorkflowRunService, WorkflowRunAuthorizer]
+      imports: [TypegooseModule.forFeature([WorkflowRun]), MockModule],
+      providers: [WorkflowRunService, WorkflowRunAuthorizer],
     }).compile()
 
     service = module.get<WorkflowRunService>(WorkflowRunService)
@@ -60,8 +57,13 @@ describe('WorkflowRunService', () => {
       const integrationTrigger = await mock.createIntegrationTrigger()
       const workflow = await mock.createWorkflowDeep()
       const workflowTrigger = await mock.createWorkflowTrigger()
-      const workflowRun = await service
-        .createOneByInstantTrigger(integration, integrationTrigger, workflow, workflowTrigger, true)
+      const workflowRun = await service.createOneByInstantTrigger(
+        integration,
+        integrationTrigger,
+        workflow,
+        workflowTrigger,
+        true,
+      )
 
       expect(workflowRun.startedBy).toEqual(WorkflowRunStartedByOptions.trigger)
       expect(workflowRun.owner).toEqual(mock.user._id)
@@ -82,8 +84,13 @@ describe('WorkflowRunService', () => {
       const integrationTrigger = await mock.createIntegrationTrigger()
       const workflow = await mock.createWorkflowDeep()
       const workflowTrigger = await mock.createWorkflowTrigger()
-      const workflowRun = await service
-        .createOneByInstantTrigger(integration, integrationTrigger, workflow, workflowTrigger, false)
+      const workflowRun = await service.createOneByInstantTrigger(
+        integration,
+        integrationTrigger,
+        workflow,
+        workflowTrigger,
+        false,
+      )
 
       expect(workflowRun.startedBy).toEqual(WorkflowRunStartedByOptions.trigger)
       expect(workflowRun.owner).toEqual(mock.user._id)
@@ -107,8 +114,8 @@ describe('WorkflowRunService', () => {
           integrationName: 'test',
           operationName: 'test',
           workflowTrigger: new ObjectID(),
-          status: WorkflowRunStatus.running
-        }
+          status: WorkflowRunStatus.running,
+        },
       })
       await service.markTriggerAsCompleted(new ObjectID(), workflowRun._id, false, ['123'])
       const updated = await service.findById(workflowRun.id)
@@ -125,8 +132,8 @@ describe('WorkflowRunService', () => {
           integrationName: 'test',
           operationName: 'test',
           workflowTrigger: new ObjectID(),
-          status: WorkflowRunStatus.running
-        }
+          status: WorkflowRunStatus.running,
+        },
       })
       await service.markTriggerAsCompleted(new ObjectID(), workflowRun._id, true, ['123'])
       const updated = await service.findById(workflowRun.id)
@@ -145,8 +152,8 @@ describe('WorkflowRunService', () => {
           integrationName: 'test',
           operationName: 'test',
           workflowTrigger: new ObjectID(),
-          status: WorkflowRunStatus.running
-        }
+          status: WorkflowRunStatus.running,
+        },
       })
       await service.markTriggerAsFailed(new ObjectID(), workflowRun, 'error message', 'response')
       const updated = await service.findById(workflowRun.id)
@@ -162,7 +169,12 @@ describe('WorkflowRunService', () => {
     it('should add a new action and mark it as running', async () => {
       const workflowRun = await mock.createWorkflowRunDeep({})
       const workflowActionId = new ObjectID()
-      const workflowRunAction = await service.addRunningAction(workflowRun._id, workflowActionId, 'service', 'operation')
+      const workflowRunAction = await service.addRunningAction(
+        workflowRun._id,
+        workflowActionId,
+        'service',
+        'operation',
+      )
       const updated = await service.findById(workflowRun.id)
       expect(updated?.actionRuns).toHaveLength(1)
       expect(updated?.actionRuns[0].status).toBe(WorkflowRunStatus.running)
@@ -183,7 +195,7 @@ describe('WorkflowRunService', () => {
         integrationName: 'test',
         operationName: 'test',
         workflowAction: new ObjectID(),
-        status: WorkflowRunStatus.running
+        status: WorkflowRunStatus.running,
       })
       const workflowRun = await mock.createWorkflowRunDeep({ actionRuns: [workflowRunAction] })
       await service.markActionAsCompleted(new ObjectID(), workflowRun._id, workflowRunAction)
@@ -202,7 +214,7 @@ describe('WorkflowRunService', () => {
         integrationName: 'test',
         operationName: 'test',
         workflowAction: new ObjectID(),
-        status: WorkflowRunStatus.running
+        status: WorkflowRunStatus.running,
       })
       const workflowRun = await mock.createWorkflowRunDeep({ actionRuns: [workflowRunAction] })
       await service.markActionAsFailed(new ObjectID(), workflowRun, workflowRunAction, 'error message', 'response')

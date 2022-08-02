@@ -8,7 +8,7 @@ import { GqlContext } from '../../../../apps/api/src/auth/typings/gql-context'
 
 @Injectable()
 export class OwnedAuthorizer<T extends BaseEntity> implements Authorizer<T> {
-  async authorize (context: GqlContext): Promise<Filter<any>> {
+  async authorize(context: GqlContext): Promise<Filter<any>> {
     if (ADMIN_USERS.includes(context.req.user.username)) {
       return {}
     }
@@ -16,7 +16,7 @@ export class OwnedAuthorizer<T extends BaseEntity> implements Authorizer<T> {
     return { owner: { eq: new Types.ObjectId(context.req.user.id.toString()) } }
   }
 
-  authorizeRelation (relationName: string, context: GqlContext): Promise<Filter<unknown>> {
+  authorizeRelation(relationName: string, context: GqlContext): Promise<Filter<unknown>> {
     return Promise.resolve({})
   }
 }

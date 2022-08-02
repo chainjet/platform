@@ -1,11 +1,22 @@
 import { JSONSchema7 } from 'json-schema'
-import { deleteSchemaProperties, fixSchemaWithOneOf, hideParamsWithSingleEnum, removeDeprecatedProperties, removeIgnoredProperties, removeSchemaMarkdown, transformConstExtension } from './jsonSchemaUtils'
+import {
+  deleteSchemaProperties,
+  fixSchemaWithOneOf,
+  hideParamsWithSingleEnum,
+  removeDeprecatedProperties,
+  removeIgnoredProperties,
+  removeSchemaMarkdown,
+  transformConstExtension,
+} from './jsonSchemaUtils'
 
 describe('jsonSchemaUtils', () => {
   describe('fixSchemaWithOneOf', () => {
     it('should not change a schema without oneOf', () => {
-      expect(fixSchemaWithOneOf({ title: 'test', type: 'number', default: 0 }))
-        .toEqual({ title: 'test', type: 'number', default: 0 })
+      expect(fixSchemaWithOneOf({ title: 'test', type: 'number', default: 0 })).toEqual({
+        title: 'test',
+        type: 'number',
+        default: 0,
+      })
     })
 
     it('should remove empty oneOf', () => {
@@ -13,104 +24,124 @@ describe('jsonSchemaUtils', () => {
     })
 
     it('should merge a single oneOf with the parent property', () => {
-      expect(fixSchemaWithOneOf({ title: 'test', oneOf: [{ type: 'boolean', default: true }] }))
-        .toEqual({ title: 'test', type: 'boolean', default: true })
+      expect(fixSchemaWithOneOf({ title: 'test', oneOf: [{ type: 'boolean', default: true }] })).toEqual({
+        title: 'test',
+        type: 'boolean',
+        default: true,
+      })
     })
 
     it('should remove the type from a parent property if there are multiple oneOf with type', () => {
-      expect(fixSchemaWithOneOf({
+      expect(
+        fixSchemaWithOneOf({
+          title: 'test',
+          type: 'boolean',
+          oneOf: [{ type: 'string', default: 'test' }, { type: 'number' }],
+        }),
+      ).toEqual({
         title: 'test',
-        type: 'boolean',
-        oneOf: [{ type: 'string', default: 'test' }, { type: 'number' }]
-      })).toEqual({
-        title: 'test',
-        oneOf: [{ type: 'string', default: 'test' }, { type: 'number' }]
+        oneOf: [{ type: 'string', default: 'test' }, { type: 'number' }],
       })
     })
 
     it('should conserve the type of the parent property if oneOf do not have type', () => {
-      expect(fixSchemaWithOneOf({
+      expect(
+        fixSchemaWithOneOf({
+          title: 'test',
+          type: 'string',
+          oneOf: [{ enum: ['a'] }, { enum: ['b'] }],
+        }),
+      ).toEqual({
         title: 'test',
         type: 'string',
-        oneOf: [{ enum: ['a'] }, { enum: ['b'] }]
-      })).toEqual({
-        title: 'test',
-        type: 'string',
-        oneOf: [{ enum: ['a'] }, { enum: ['b'] }]
+        oneOf: [{ enum: ['a'] }, { enum: ['b'] }],
       })
     })
 
     it('should format oneOf on items', () => {
-      expect(fixSchemaWithOneOf({ title: 'test', items: { oneOf: [{ type: 'boolean', default: true }] } }))
-        .toEqual({ title: 'test', items: { type: 'boolean', default: true } })
-      expect(fixSchemaWithOneOf({ title: 'test', items: [{ oneOf: [{ type: 'boolean', default: true }] }] }))
-        .toEqual({ title: 'test', items: [{ type: 'boolean', default: true }] })
+      expect(fixSchemaWithOneOf({ title: 'test', items: { oneOf: [{ type: 'boolean', default: true }] } })).toEqual({
+        title: 'test',
+        items: { type: 'boolean', default: true },
+      })
+      expect(fixSchemaWithOneOf({ title: 'test', items: [{ oneOf: [{ type: 'boolean', default: true }] }] })).toEqual({
+        title: 'test',
+        items: [{ type: 'boolean', default: true }],
+      })
     })
 
     it('should fix oneOf on sub-properties', () => {
-      expect(fixSchemaWithOneOf({
-        title: 'test',
-        properties: {
-          key1: {
-            type: 'integer',
-            oneOf: [{ minimum: 5, default: 0 }]
+      expect(
+        fixSchemaWithOneOf({
+          title: 'test',
+          properties: {
+            key1: {
+              type: 'integer',
+              oneOf: [{ minimum: 5, default: 0 }],
+            },
+            key2: {
+              type: 'integer',
+              oneOf: [{ minimum: 5 }, { maximum: 10 }],
+            },
           },
-          key2: {
-            type: 'integer',
-            oneOf: [{ minimum: 5 }, { maximum: 10 }]
-          }
-        }
-      })).toEqual({
+        }),
+      ).toEqual({
         title: 'test',
         properties: {
           key1: {
             type: 'integer',
             minimum: 5,
-            default: 0
+            default: 0,
           },
           key2: {
             type: 'integer',
-            oneOf: [{ minimum: 5 }, { maximum: 10 }]
-          }
-        }
+            oneOf: [{ minimum: 5 }, { maximum: 10 }],
+          },
+        },
       })
     })
 
     it('should fix oneOf for boolean and boolean enum', () => {
-      expect(fixSchemaWithOneOf({
-        title: 'test',
-        oneOf: [{ type: 'boolean', default: true }, { type: 'string', enum: ['true', 'false'], default: 'true' }]
-      })).toEqual({
+      expect(
+        fixSchemaWithOneOf({
+          title: 'test',
+          oneOf: [
+            { type: 'boolean', default: true },
+            { type: 'string', enum: ['true', 'false'], default: 'true' },
+          ],
+        }),
+      ).toEqual({
         title: 'test',
         type: 'boolean',
-        default: true
+        default: true,
       })
     })
   })
 
   describe('removeSchemaMarkdown', () => {
     it('should remove markdown from the description', () => {
-      expect(removeSchemaMarkdown({ description: '**test**' }))
-        .toEqual({ description: 'test' })
-      expect(removeSchemaMarkdown({ description: 'URL: [example](https://example.org)' }))
-        .toEqual({ description: 'URL: example' })
+      expect(removeSchemaMarkdown({ description: '**test**' })).toEqual({ description: 'test' })
+      expect(removeSchemaMarkdown({ description: 'URL: [example](https://example.org)' })).toEqual({
+        description: 'URL: example',
+      })
     })
 
     it('should remove HTML from the description', () => {
-      expect(removeSchemaMarkdown({ description: '<b>test</b>' }))
-        .toEqual({ description: 'test' })
-      expect(removeSchemaMarkdown({ description: 'URL: <a href="https://example.org">example</a>' }))
-        .toEqual({ description: 'URL: example' })
+      expect(removeSchemaMarkdown({ description: '<b>test</b>' })).toEqual({ description: 'test' })
+      expect(removeSchemaMarkdown({ description: 'URL: <a href="https://example.org">example</a>' })).toEqual({
+        description: 'URL: example',
+      })
     })
 
     it('should remove markdown from inner properties', () => {
-      expect(removeSchemaMarkdown({ properties: { test: { description: '**test**' } } }))
-        .toEqual({ properties: { test: { description: 'test' } } })
+      expect(removeSchemaMarkdown({ properties: { test: { description: '**test**' } } })).toEqual({
+        properties: { test: { description: 'test' } },
+      })
     })
 
     it('should remove markdown from inner items', () => {
-      expect(removeSchemaMarkdown({ items: [{ description: '**test**' }] }))
-        .toEqual({ items: [{ description: 'test' }] })
+      expect(removeSchemaMarkdown({ items: [{ description: '**test**' }] })).toEqual({
+        items: [{ description: 'test' }],
+      })
     })
   })
 
@@ -121,28 +152,28 @@ describe('jsonSchemaUtils', () => {
         properties: {
           foo: {
             type: 'string',
-            deprecated: true
+            deprecated: true,
           },
           bar: {
             type: 'string',
-            deprecated: false
+            deprecated: false,
           },
           baz: {
-            type: 'string'
-          }
-        }
+            type: 'string',
+          },
+        },
       } as JSONSchema7
       expect(removeDeprecatedProperties(schema)).toEqual({
         required: ['bar', 'baz'],
         properties: {
           bar: {
             type: 'string',
-            deprecated: false
+            deprecated: false,
           },
           baz: {
-            type: 'string'
-          }
-        }
+            type: 'string',
+          },
+        },
       })
     })
   })
@@ -154,28 +185,28 @@ describe('jsonSchemaUtils', () => {
         properties: {
           foo: {
             type: 'string',
-            'x-ignore': true
+            'x-ignore': true,
           },
           bar: {
             type: 'string',
-            'x-ignore': false
+            'x-ignore': false,
           },
           baz: {
-            type: 'string'
-          }
-        }
+            type: 'string',
+          },
+        },
       } as JSONSchema7
       expect(removeIgnoredProperties(schema)).toEqual({
         required: ['bar', 'baz'],
         properties: {
           bar: {
             type: 'string',
-            'x-ignore': false
+            'x-ignore': false,
           },
           baz: {
-            type: 'string'
-          }
-        }
+            type: 'string',
+          },
+        },
       })
     })
   })
@@ -192,11 +223,11 @@ describe('jsonSchemaUtils', () => {
             oneOf: [
               {
                 title: 'Test',
-                'x-const': 'test'
-              } as JSONSchema7
-            ]
-          }
-        }
+                'x-const': 'test',
+              } as JSONSchema7,
+            ],
+          },
+        },
       }
       expect(transformConstExtension(schema)).toEqual({
         properties: {
@@ -204,11 +235,11 @@ describe('jsonSchemaUtils', () => {
             oneOf: [
               {
                 title: 'Test',
-                const: 'test'
-              }
-            ]
-          }
-        }
+                const: 'test',
+              },
+            ],
+          },
+        },
       })
     })
   })
@@ -217,7 +248,7 @@ describe('jsonSchemaUtils', () => {
     it('should add x-hidden property to schemas with a single enum', () => {
       const schema: JSONSchema7 = {
         type: 'string',
-        enum: ['foo']
+        enum: ['foo'],
       }
       expect(hideParamsWithSingleEnum(schema)).toEqual({ type: 'string', enum: ['foo'], 'x-hidden': true })
     })
@@ -228,16 +259,16 @@ describe('jsonSchemaUtils', () => {
         properties: {
           foo: {
             type: 'string',
-            enum: ['foo']
+            enum: ['foo'],
           },
           bar: {
             type: 'array',
             items: {
               type: 'string',
-              enum: ['foo']
-            }
-          }
-        }
+              enum: ['foo'],
+            },
+          },
+        },
       }
       expect(hideParamsWithSingleEnum(schema)).toEqual({
         type: 'object',
@@ -245,17 +276,17 @@ describe('jsonSchemaUtils', () => {
           foo: {
             type: 'string',
             enum: ['foo'],
-            'x-hidden': true
+            'x-hidden': true,
           },
           bar: {
             type: 'array',
             items: {
               type: 'string',
               enum: ['foo'],
-              'x-hidden': true
-            }
-          }
-        }
+              'x-hidden': true,
+            },
+          },
+        },
       })
     })
   })
@@ -266,11 +297,11 @@ describe('jsonSchemaUtils', () => {
         type: 'object',
         title: 'test',
         description: 'test',
-        properties: {}
+        properties: {},
       }
       expect(deleteSchemaProperties(schema, ['title', 'description'])).toEqual({
         type: 'object',
-        properties: {}
+        properties: {},
       })
     })
 
@@ -282,30 +313,30 @@ describe('jsonSchemaUtils', () => {
         properties: {
           foo: {
             type: 'string',
-            title: 'test'
+            title: 'test',
           },
           bar: {
             type: 'array',
             items: {
               type: 'string',
-              description: 'test'
-            }
-          }
-        }
+              description: 'test',
+            },
+          },
+        },
       }
       expect(deleteSchemaProperties(schema, ['title', 'description'])).toEqual({
         type: 'object',
         properties: {
           foo: {
-            type: 'string'
+            type: 'string',
           },
           bar: {
             type: 'array',
             items: {
-              type: 'string'
-            }
-          }
-        }
+              type: 'string',
+            },
+          },
+        },
       })
     })
   })

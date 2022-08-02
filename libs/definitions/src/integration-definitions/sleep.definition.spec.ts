@@ -9,11 +9,8 @@ describe('Sleep definition', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        TestDatabaseModule,
-        DefinitionsModule
-      ],
-      providers: [SleepDefinition]
+      imports: [TestDatabaseModule, DefinitionsModule],
+      providers: [SleepDefinition],
     }).compile()
 
     const factory = module.get<IntegrationDefinitionFactory>(IntegrationDefinitionFactory)
@@ -28,12 +25,12 @@ describe('Sleep definition', () => {
     it('should return sleepUntil a given number of seconds', async () => {
       const opts: unknown = {
         operation: {
-          key: 'sleepFor'
+          key: 'sleepFor',
         },
         inputs: {
           amount: 30,
-          unit: 'seconds'
-        }
+          unit: 'seconds',
+        },
       }
       const res = await definition.run(opts as OperationRunOptions)
       expect(res.sleepUntil).toEqual(new Date('2020-01-01 00:00:30'))
@@ -42,12 +39,12 @@ describe('Sleep definition', () => {
     it('should return sleepUntil a given number of minutes', async () => {
       const opts: unknown = {
         operation: {
-          key: 'sleepFor'
+          key: 'sleepFor',
         },
         inputs: {
           amount: 5,
-          unit: 'minutes'
-        }
+          unit: 'minutes',
+        },
       }
       const res = await definition.run(opts as OperationRunOptions)
       expect(res.sleepUntil).toEqual(new Date('2020-01-01 00:05:00'))
@@ -56,12 +53,12 @@ describe('Sleep definition', () => {
     it('should return sleepUntil a given number of hours', async () => {
       const opts: unknown = {
         operation: {
-          key: 'sleepFor'
+          key: 'sleepFor',
         },
         inputs: {
           amount: 3,
-          unit: 'hours'
-        }
+          unit: 'hours',
+        },
       }
       const res = await definition.run(opts as OperationRunOptions)
       expect(res.sleepUntil).toEqual(new Date('2020-01-01 03:00:00'))
@@ -70,12 +67,12 @@ describe('Sleep definition', () => {
     it('should return sleepUntil a given number of days', async () => {
       const opts: unknown = {
         operation: {
-          key: 'sleepFor'
+          key: 'sleepFor',
         },
         inputs: {
           amount: 15,
-          unit: 'days'
-        }
+          unit: 'days',
+        },
       }
       const res = await definition.run(opts as OperationRunOptions)
       expect(res.sleepUntil).toEqual(new Date('2020-01-16 00:00:00'))

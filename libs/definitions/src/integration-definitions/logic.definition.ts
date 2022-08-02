@@ -12,7 +12,7 @@ export class LogicDefinition extends SingleIntegrationDefinition {
   readonly integrationVersion = '1'
   readonly schemaUrl = null
 
-  async run (opts: OperationRunOptions): Promise<RunResponse> {
+  async run(opts: OperationRunOptions): Promise<RunResponse> {
     switch (opts.operation.key) {
       case 'decision':
         return this.runDecisionAction(opts)
@@ -22,19 +22,20 @@ export class LogicDefinition extends SingleIntegrationDefinition {
     throw new Error('Unknown logic operation')
   }
 
-  protected runDecisionAction ({ inputs }: OperationRunOptions): RunResponse {
-    const condition = (inputs.expression ?? [])
-      .some(orExpression => orExpression.every((expression: Expression) => this.expressionSatisfied(expression)))
+  protected runDecisionAction({ inputs }: OperationRunOptions): RunResponse {
+    const condition = (inputs.expression ?? []).some((orExpression) =>
+      orExpression.every((expression: Expression) => this.expressionSatisfied(expression)),
+    )
     return {
       outputs: {},
-      condition
+      condition,
     }
   }
 
   /**
    * Throws an error if one of the assertions fail
    */
-  protected runAssertionsAction ({ inputs }: OperationRunOptions): RunResponse {
+  protected runAssertionsAction({ inputs }: OperationRunOptions): RunResponse {
     const results = (inputs.assertions ?? []).map((assertion: Expression) => this.expressionSatisfied(assertion))
     const failedAssertionIndex: number = results.indexOf(false)
     if (failedAssertionIndex > -1) {
@@ -43,21 +44,21 @@ export class LogicDefinition extends SingleIntegrationDefinition {
       throw new Error(`Assertion #${failedAssertionIndex + 1} failed. Expected "${expectation}".`)
     }
     return {
-      outputs: {}
+      outputs: {},
     }
   }
 
-  expressionSatisfied (expression: Expression): boolean {
+  expressionSatisfied(expression: Expression): boolean {
     const { comparator } = expression
     const comparatorNegated = comparator.startsWith('!')
     const expressionValue = this.evaluateNotNegatedCondition({
       ...expression,
-      comparator: comparatorNegated ? comparator.slice(1) : comparator
+      comparator: comparatorNegated ? comparator.slice(1) : comparator,
     })
     return comparatorNegated ? !expressionValue : expressionValue
   }
 
-  evaluateNotNegatedCondition (expression: Expression): boolean {
+  evaluateNotNegatedCondition(expression: Expression): boolean {
     const { leftValue, comparator, rightValue } = expression
     switch (comparator) {
       case '=':

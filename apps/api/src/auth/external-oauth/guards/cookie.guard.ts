@@ -5,15 +5,15 @@ import { GqlUserContext } from '../../typings/gql-context'
 
 @Injectable()
 export class CookieGuard implements CanActivate {
-  constructor (private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) {}
 
-  canActivate (context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
+  canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
     const user = this.getUserFromContext(context)
     context.switchToHttp().getRequest().user = user
     return !!user?.id
   }
 
-  getAccessTokenContext (context: ExecutionContext): string | null {
+  getAccessTokenContext(context: ExecutionContext): string | null {
     try {
       const cookie = context.switchToHttp().getRequest()?.headers?.cookie
       const tokenStr = decodeURIComponent(cookie.split('fw-token=')?.[1]?.split(';')?.[0])
@@ -24,7 +24,7 @@ export class CookieGuard implements CanActivate {
     }
   }
 
-  getUserFromContext (context: ExecutionContext): GqlUserContext | null {
+  getUserFromContext(context: ExecutionContext): GqlUserContext | null {
     try {
       const accessToken = this.getAccessTokenContext(context)
       if (!accessToken) {
@@ -42,7 +42,7 @@ export class CookieGuard implements CanActivate {
  * Loads the user from cookies into the request, but allows the request to continue
  */
 export class NotAuthRequiredCookieGuard extends CookieGuard {
-  async canActivate (context: ExecutionContext): Promise<true> {
+  async canActivate(context: ExecutionContext): Promise<true> {
     await super.canActivate(context)
     return true
   }

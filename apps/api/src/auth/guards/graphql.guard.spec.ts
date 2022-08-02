@@ -7,10 +7,8 @@ describe('GraphqlGuard', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        MockModule
-      ],
-      providers: []
+      imports: [MockModule],
+      providers: [],
     }).compile()
 
     guard = module.get<GraphqlGuard>(GraphqlGuard)
