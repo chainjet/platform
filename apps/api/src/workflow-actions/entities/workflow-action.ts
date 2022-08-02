@@ -62,25 +62,25 @@ export class WorkflowAction extends BaseEntity {
 @InputType()
 export class CreateWorkflowActionInput {
   @Field(() => ID)
-  workflow: Ref<Workflow>
+  workflow: Reference<Workflow>
 
   @Field(() => ID)
-  integrationAction: Ref<IntegrationAction>
+  integrationAction: Reference<IntegrationAction>
 
   @Field(() => GraphQLJSONObject)
   inputs: Record<string, any>
 
   @Field(() => ID, { nullable: true })
-  previousAction?: Ref<WorkflowAction>
+  previousAction?: Reference<WorkflowAction>
 
   @Field({ nullable: true })
   previousActionCondition?: string
 
   @Field(() => ID, { nullable: true })
-  nextAction?: Ref<WorkflowAction>
+  nextAction?: Reference<WorkflowAction>
 
   @Field(() => ID, { nullable: true })
-  credentials?: Ref<AccountCredential>
+  credentials?: Reference<AccountCredential>
 }
 
 @InputType()
@@ -92,5 +92,5 @@ export class UpdateWorkflowActionInput {
   inputs?: Record<string, any>
 
   @Field(() => ID, { nullable: true })
-  credentials?: Ref<AccountCredential>
+  credentials?: Reference<AccountCredential>
 }

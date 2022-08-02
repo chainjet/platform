@@ -5,7 +5,7 @@ import { jsonProp } from '@app/common/decorators/props/json-prop.decorator'
 import { Reference } from '@app/common/typings/mongodb'
 import { FilterableField } from '@nestjs-query/query-graphql'
 import { Field, ID, InputType, Int, ObjectType } from '@nestjs/graphql'
-import { modelOptions, prop, Ref, Severity } from '@typegoose/typegoose'
+import { modelOptions, prop, Severity } from '@typegoose/typegoose'
 import { GraphQLJSONObject } from 'graphql-type-json'
 import { JSONSchema7 } from 'json-schema'
 import { Schema } from 'mongoose'
@@ -42,7 +42,7 @@ export class WorkflowTrigger extends BaseEntity {
   // It should be nullable in order to return an empty object
   @Field(() => GraphQLJSONObject, { nullable: true })
   @jsonProp({ required: true })
-  inputs?: Record<string, unknown>
+  inputs?: Record<string, any>
 
   @Field(() => AccountCredential, { nullable: true })
   @prop({ ref: AccountCredential })
@@ -94,16 +94,16 @@ export class WorkflowTrigger extends BaseEntity {
 @InputType()
 export class CreateWorkflowTriggerInput {
   @Field(() => ID)
-  workflow: Ref<IntegrationTrigger>
+  workflow: Reference<Workflow>
 
   @Field(() => ID)
-  integrationTrigger: Ref<IntegrationTrigger>
+  integrationTrigger: Reference<IntegrationTrigger>
 
   @Field(() => GraphQLJSONObject)
   inputs: object
 
   @Field(() => ID, { nullable: true })
-  credentials?: Ref<AccountCredential>
+  credentials?: Reference<AccountCredential>
 
   @Field(() => GraphQLJSONObject, { nullable: true })
   schedule?: TriggerSchedule
@@ -124,7 +124,7 @@ export class UpdateWorkflowTriggerInput {
   inputs?: object
 
   @Field(() => ID, { nullable: true })
-  credentials?: Ref<AccountCredential>
+  credentials?: Reference<AccountCredential>
 
   @Field(() => GraphQLJSONObject, { nullable: true })
   schedule?: TriggerSchedule

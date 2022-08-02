@@ -2,7 +2,7 @@ import { BaseResolver } from '@app/common/base/base.resolver'
 import { Authorizer, InjectAuthorizer } from '@nestjs-query/query-graphql'
 import { Logger, NotFoundException, UseGuards } from '@nestjs/common'
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
-import { ObjectId } from 'mongodb'
+import { ObjectId } from 'bson'
 import { Types } from 'mongoose'
 import { SecurityUtils } from '../../../../../libs/common/src/utils/security.utils'
 import { UserId } from '../../auth/decorators/user-id.decorator'
@@ -19,29 +19,29 @@ export class UserResolver extends BaseResolver(User, {
   read: { many: { disabled: true } },
   create: { disabled: true },
   update: { many: { disabled: true } },
-  delete: { disabled: true }
+  delete: { disabled: true },
 }) {
   private readonly logger = new Logger(UserResolver.name)
 
-  constructor (
+  constructor(
     protected readonly userService: UserService,
-    @InjectAuthorizer(User) readonly authorizer: Authorizer<User>
+    @InjectAuthorizer(User) readonly authorizer: Authorizer<User>,
   ) {
     super(userService)
   }
 
   @Query(() => User)
   @UseGuards(GraphqlGuard)
-  viewer (@UserId() userId: Types.ObjectId): Promise<User | null> {
+  viewer(@UserId() userId: Types.ObjectId): Promise<User | null> {
     return this.userService.findOne({ _id: userId })
   }
 
   @Mutation(() => User)
   @UseGuards(GraphqlGuard)
-  async changePassword (
+  async changePassword(
     @UserId() userId: Types.ObjectId,
     @Args('oldPassword') oldPassword: string,
-    @Args('newPassword') newPassword: string
+    @Args('newPassword') newPassword: string,
   ): Promise<User> {
     const user = await this.userService.findById(userId.toString())
     if (!user) {
@@ -49,7 +49,7 @@ export class UserResolver extends BaseResolver(User, {
     }
     if (await this.userService.passwordIsValid(user, oldPassword)) {
       await this.userService.updateById(userId, {
-        password: await SecurityUtils.hashWithBcrypt(newPassword, 12)
+        password: await SecurityUtils.hashWithBcrypt(newPassword, 12),
       })
       return user
     }
@@ -58,7 +58,7 @@ export class UserResolver extends BaseResolver(User, {
 
   @Mutation(() => GenerateApiTokenPayload)
   @UseGuards(GraphqlGuard)
-  async generateApiKey (@UserId() userId: ObjectId): Promise<GenerateApiTokenPayload> {
+  async generateApiKey(@UserId() userId: ObjectId): Promise<GenerateApiTokenPayload> {
     const user = await this.userService.findById(userId.toString())
     if (!user) {
       throw new NotFoundException('User not found')
@@ -69,7 +69,7 @@ export class UserResolver extends BaseResolver(User, {
     const apiKey = SecurityUtils.generateRandomString(48)
     await this.userService.updateById(userId, { apiKey })
     return {
-      apiKey: `${user.username}:${apiKey}`
+      apiKey: `${user.username}:${apiKey}`,
     }
   }
 }

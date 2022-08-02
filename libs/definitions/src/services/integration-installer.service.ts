@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common'
 import { mongoose } from '@typegoose/typegoose'
+import { ObjectId } from 'bson'
 import { JSONSchema7 } from 'json-schema'
-import { ObjectID } from 'mongodb'
 import { OpenAPIObject, OperationObject } from 'openapi3-ts'
 import { Definition, SingleIntegrationData } from '..'
 import { IntegrationAccount } from '../../../../apps/api/src/integration-accounts/entities/integration-account'
@@ -389,7 +389,7 @@ export class IntegrationInstallerService {
       logo: schema.info['x-logo']?.url,
       version: integrationData.integrationVersion,
       deprecated: !!schema.info['x-deprecated'],
-      integrationAccount: integrationAccount ? new ObjectID(integrationAccount.id) : undefined,
+      integrationAccount: integrationAccount ? new mongoose.Types.ObjectId(integrationAccount.id) : undefined,
       integrationCategories: schema.info['x-categories'] ?? [],
       operationCategories: (schema.tags ?? []).map((tag) => ({
         key: tag.name,

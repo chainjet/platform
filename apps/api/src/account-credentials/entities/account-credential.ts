@@ -49,7 +49,7 @@ export class AccountCredential extends BaseEntity {
 @InputType()
 export class CreateAccountCredentialInput {
   @Field(() => ID)
-  integrationAccount: Ref<IntegrationAccount>
+  integrationAccount: Reference<IntegrationAccount>
 
   @Field()
   name: string

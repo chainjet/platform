@@ -11,7 +11,7 @@ import { WorkflowRunStatus } from './workflow-run-status'
 export class WorkflowRunTrigger {
   @Field(() => ID, { nullable: true })
   @prop({ ref: WorkflowTrigger })
-  workflowTrigger: Reference<WorkflowTrigger>
+  workflowTrigger?: Reference<WorkflowTrigger>
 
   @Field()
   @prop({ required: true })
@@ -27,13 +27,13 @@ export class WorkflowRunTrigger {
 
   @Field({ nullable: true })
   @prop()
-  workflowTriggered: boolean
+  workflowTriggered?: boolean
 
   @Field(() => [String], { nullable: true })
   @prop({ dim: 1, type: String })
-  triggerIds: string[]
+  triggerIds?: string[]
 
   @Field({ nullable: true })
   @prop()
-  finishedAt: Date
+  finishedAt?: Date
 }

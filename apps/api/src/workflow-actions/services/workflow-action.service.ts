@@ -101,7 +101,7 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
       const nextActions = [
         ...previousAction.nextActions,
         { action: new ObjectID(createdWorkflowAction.id), condition: data.previousActionCondition ?? undefined },
-      ] as Array<DeepPartial<WorkflowNextAction>>
+      ] as Array<WorkflowNextAction>
 
       // If both a previous and next actions were given, means that the action is being added in between 2 actions.
       // So we need to remove nextAction from the array.
@@ -179,9 +179,7 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     // Remove action from nextActions references. The workflow is included on the query so the index is used.
     const actions = await this.find({ workflow: workflowAction.workflow, 'nextActions.action': workflowAction._id })
     for (const action of actions) {
-      const nextActions = [...action.nextActions, ...workflowAction.nextActions] as Array<
-        DeepPartial<WorkflowNextAction>
-      >
+      const nextActions = [...action.nextActions, ...workflowAction.nextActions] as Array<WorkflowNextAction>
       const index = nextActions.findIndex((next) => next.action && next.action.toString() === workflowAction.id)
       if (index !== -1) {
         nextActions.splice(index, 1)

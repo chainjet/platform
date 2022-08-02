@@ -2,10 +2,9 @@ import { BaseService } from '@app/common/base/base.service'
 import { IntegrationDefinitionFactory } from '@app/definitions'
 import { DeepPartial, UpdateOneOptions } from '@nestjs-query/core'
 import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
-import { ReturnModelType } from '@typegoose/typegoose'
+import { mongoose, ReturnModelType } from '@typegoose/typegoose'
 import cronParser from 'cron-parser'
 import _ from 'lodash'
-import { ObjectID } from 'mongodb'
 import { InjectModel } from 'nestjs-typegoose'
 import { Reference } from '../../../../../libs/common/src/typings/mongodb'
 import { isValidDate, parseTime } from '../../../../../libs/common/src/utils/date.utils'
@@ -41,7 +40,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     }
 
     // Verify workflow exist and the user has access to it
-    const workflow = await this.workflowService.findById(record.workflow.toString())
+    const workflow = await this.workflowService.findById(record.workflow?.toString())
     if (!workflow?.owner || workflow.owner.toString() !== record.owner.toString()) {
       throw new NotFoundException(`Workflow ${record.workflow} not found`)
     }
@@ -229,7 +228,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     }
   }
 
-  async incrementWorkflowRunFailures(workflowId: Reference<Workflow, ObjectID>): Promise<void> {
+  async incrementWorkflowRunFailures(workflowId: Reference<Workflow, mongoose.Types.ObjectId>): Promise<void> {
     const trigger = await this.findOne({ workflow: workflowId })
     if (trigger) {
       trigger.consecutiveWorkflowFails++

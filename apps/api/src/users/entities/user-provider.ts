@@ -39,26 +39,26 @@ export class UserProvider extends BaseEntity {
   provider: LoginProvider
 
   @prop()
-  primaryEmail: string
+  primaryEmail?: string
 
   // User id on the provider
   @prop()
-  profileId: string
+  profileId?: string
 
   @prop()
-  displayName: string
+  displayName?: string
 
   @prop()
-  username: string
+  username?: string
 
   @prop({ type: UserProviderEmail })
-  name: UserProviderName
+  name?: UserProviderName
 
-  @prop({ dim: 1, type: UserProviderEmail })
-  emails: [UserProviderEmail]
+  @prop({})
+  emails?: UserProviderEmail[]
 
-  @prop({ dim: 1, type: UserProviderPhoto })
-  photos: [UserProviderPhoto]
+  @prop({})
+  photos?: UserProviderPhoto[]
 
   @prop()
   completeAuthCode?: string

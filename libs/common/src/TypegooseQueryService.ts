@@ -13,16 +13,16 @@ import {
   Query,
   QueryService,
   UpdateManyResponse,
-  UpdateOneOptions
+  UpdateOneOptions,
 } from '@nestjs-query/core'
 import { NotFoundException } from '@nestjs/common'
 import { ReturnModelType } from '@typegoose/typegoose'
 import escapeRegExp from 'lodash.escaperegexp'
 import merge from 'lodash.merge'
-import { DocumentToObjectOptions, FilterQuery, UpdateQuery } from 'mongoose'
+import { FilterQuery, ToObjectOptions, UpdateQuery } from 'mongoose'
 
 export interface TypegooseQueryServiceOpts {
-  documentToObjectOptions?: DocumentToObjectOptions
+  documentToObjectOptions?: ToObjectOptions
 }
 
 /**
@@ -42,7 +42,7 @@ export interface TypegooseQueryServiceOpts {
  * ```
  */
 export class TypegooseQueryService<Entity> implements QueryService<Entity> {
-  protected readonly documentToObjectOptions: DocumentToObjectOptions
+  protected readonly documentToObjectOptions: ToObjectOptions
 
   protected mongoOperatorMapper: Record<string, string> = {
     eq: '$eq',
@@ -54,84 +54,67 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
     in: '$in',
     notIn: '$nin',
     is: '$eq',
-    isNot: '$ne'
+    isNot: '$ne',
   }
 
-  constructor (
-    readonly Model: ReturnModelType<new () => Entity>,
-    opts?: TypegooseQueryServiceOpts
-  ) {
+  constructor(readonly Model: ReturnModelType<new () => Entity>, opts?: TypegooseQueryServiceOpts) {
     this.documentToObjectOptions = opts?.documentToObjectOptions || {
-      virtuals: true
+      virtuals: true,
     }
   }
 
-  protected buildExpression<T> (filter: Filter<T>): FilterQuery<new () => T> {
-    return Object.entries(filter).reduce(
-      (prev: FilterQuery<new () => T>, [key, value]) => {
-        if (!value) {
-          return prev
-        }
-        if (Array.isArray(value)) {
-          return {
-            ...prev,
-            [`$${key}`]: value.map(subFilter => this.buildExpression(subFilter))
-          }
-        }
-        const findConditions = Object.entries(value).reduce(
-          (
-            prevCondition: FilterQuery<new () => Entity>,
-            [fieldKey, fieldValue]
-          ) => {
-            if (this.mongoOperatorMapper[fieldKey]) {
-              return {
-                ...prevCondition,
-                [this.mongoOperatorMapper[fieldKey]]: fieldValue
-              }
-            }
-            if (['like', 'notLike', 'iLike', 'notILike'].includes(fieldKey)) {
-              const regExpStr = (escapeRegExp as (str: string) => string)(
-                fieldValue as string
-              ).replace('%', '.*')
-              const regExp = new RegExp(
-                regExpStr,
-                fieldKey.toLowerCase().includes('ilike') ? 'i' : undefined
-              )
-              if (fieldKey.startsWith('not')) {
-                return {
-                  ...prevCondition,
-                  $not: { $regex: regExp }
-                }
-              }
-              return {
-                ...prevCondition,
-                $regex: regExp
-              }
-            }
-            return prevCondition
-          },
-          {}
-        )
+  protected buildExpression<T>(filter: Filter<T>): FilterQuery<new () => T> {
+    return Object.entries(filter).reduce((prev: FilterQuery<new () => T>, [key, value]) => {
+      if (!value) {
+        return prev
+      }
+      if (Array.isArray(value)) {
         return {
           ...prev,
-          [this.getSchemaKey(key)]: findConditions
+          [`$${key}`]: value.map((subFilter) => this.buildExpression(subFilter)),
         }
-      },
-      {}
-    )
+      }
+      const findConditions = Object.entries(value).reduce(
+        (prevCondition: FilterQuery<new () => Entity>, [fieldKey, fieldValue]) => {
+          if (this.mongoOperatorMapper[fieldKey]) {
+            return {
+              ...prevCondition,
+              [this.mongoOperatorMapper[fieldKey]]: fieldValue,
+            }
+          }
+          if (['like', 'notLike', 'iLike', 'notILike'].includes(fieldKey)) {
+            const regExpStr = (escapeRegExp as (str: string) => string)(fieldValue as string).replace('%', '.*')
+            const regExp = new RegExp(regExpStr, fieldKey.toLowerCase().includes('ilike') ? 'i' : undefined)
+            if (fieldKey.startsWith('not')) {
+              return {
+                ...prevCondition,
+                $not: { $regex: regExp },
+              }
+            }
+            return {
+              ...prevCondition,
+              $regex: regExp,
+            }
+          }
+          return prevCondition
+        },
+        {},
+      )
+      return {
+        ...prev,
+        [this.getSchemaKey(key)]: findConditions,
+      }
+    }, {})
   }
 
-  private getSchemaKey (key: string): string {
+  private getSchemaKey(key: string): string {
     return key === 'id' ? '_id' : key
   }
 
-  private mergeFilterWithId<T> (
-    id: unknown,
-    filter?: Filter<T>
-  ): FilterQuery<new () => T> {
+  private mergeFilterWithId<T>(id: unknown, filter?: Filter<T>): FilterQuery<new () => T> {
     return merge({
       ...this.buildExpression(filter || {}),
-      [this.getSchemaKey('id')]: id
+      [this.getSchemaKey('id')]: id,
     }) as FilterQuery<new () => T>
   }
 
@@ -148,30 +131,26 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
    * ```
    * @param query - The Query used to filter, page, and sort rows.
    */
-  async query (query: Query<Entity>): Promise<Entity[]> {
+  async query(query: Query<Entity>): Promise<Entity[]> {
     const entities = await this.Model.find(
       this.buildExpression(query.filter || {}),
       {},
       {
         limit: query.paging?.limit,
         skip: query.paging?.offset,
-        sort: (query.sorting || []).map(sort => ({
-          [this.getSchemaKey(
-            sort.field.toString()
-          )]: sort.direction.toLowerCase()
-        }))
-      }
+        sort: (query.sorting || []).map((sort) => ({
+          [this.getSchemaKey(sort.field.toString())]: sort.direction.toLowerCase(),
+        })),
+      },
     ).exec()
-    return entities.map(
-      doc => doc.toObject(this.documentToObjectOptions) as Entity
-    )
+    return entities.map((doc) => doc.toObject(this.documentToObjectOptions) as Entity)
   }
 
-  aggregate (): Promise<AggregateResponse<Entity>> {
+  aggregate(): Promise<AggregateResponse<Entity>> {
     throw new Error('Not implemented yet')
   }
 
-  count (filter: Filter<Entity>): Promise<number> {
+  count(filter: Filter<Entity>): Promise<number> {
     return this.Model.count(this.buildExpression(filter)).exec()
   }
 
@@ -185,14 +164,9 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
    * @param id - The id of the record to find.
    * @param opts - Additional options
    */
-  async findById (
-    id: string,
-    opts?: FindByIdOptions<Entity>
-  ): Promise<Entity | undefined> {
-    const doc = await this.Model.findOne(
-      this.mergeFilterWithId(id, opts?.filter)
-    )
-    return doc?.toObject(this.documentToObjectOptions) as Entity
+  async findById(id: string, opts?: FindByIdOptions<Entity>): Promise<Entity | undefined> {
+    const doc = await this.Model.findOne(this.mergeFilterWithId(id, opts?.filter))
+    return (doc as any)?.toObject(this.documentToObjectOptions) as Entity // TODO
   }
 
   /**
@@ -209,12 +183,10 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
    * @param id - The id of the record to find.
    * @param opts - Additional options
    */
-  async getById (id: string, opts?: GetByIdOptions<Entity>): Promise<Entity> {
+  async getById(id: string, opts?: GetByIdOptions<Entity>): Promise<Entity> {
     const entity = await this.findById(id, opts)
     if (!entity) {
-      throw new NotFoundException(
-        `Unable to find ${this.Model.modelName} with id: ${id}`
-      )
+      throw new NotFoundException(`Unable to find ${this.Model.modelName} with id: ${id}`)
     }
     return entity
   }
@@ -228,7 +200,7 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
    * ```
    * @param record - The entity to create.
    */
-  async createOne<C extends DeepPartial<Entity>> (record: C): Promise<Entity> {
+  async createOne<C extends DeepPartial<Entity>>(record: C): Promise<Entity> {
     const doc = new this.Model(record)
     await doc.save(record)
     return doc.toObject(this.documentToObjectOptions) as Entity
@@ -246,8 +218,8 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
    * ```
    * @param records - The entities to create.
    */
-  createMany<C extends DeepPartial<Entity>> (records: C[]): Promise<Entity[]> {
-    return Promise.all(records.map(r => this.createOne(r)))
+  createMany<C extends DeepPartial<Entity>>(records: C[]): Promise<Entity[]> {
+    return Promise.all(records.map((r) => this.createOne(r)))
   }
 
   /**
@@ -261,23 +233,21 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
    * @param update - A `Partial` of the entity with fields to update.
    * @param opts - Additional options
    */
-  async updateOne<U extends DeepPartial<Entity>> (
+  async updateOne<U extends DeepPartial<Entity>>(
     id: string,
     update: U,
-    opts?: UpdateOneOptions<Entity>
+    opts?: UpdateOneOptions<Entity>,
   ): Promise<Entity> {
     this.ensureIdIsNotPresent(update)
     const doc = await this.Model.findOneAndUpdate(
       this.mergeFilterWithId(id, opts?.filter),
       update as UpdateQuery<new () => Entity>,
-      { new: true }
+      { new: true },
     )
     if (doc) {
       return doc.toObject(this.documentToObjectOptions) as Entity
     }
-    throw new NotFoundException(
-      `Unable to find ${this.Model.modelName} with id: ${id}`
-    )
+    throw new NotFoundException(`Unable to find ${this.Model.modelName} with id: ${id}`)
   }
 
   /**
@@ -293,16 +263,13 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
    * @param update - A `Partial` of entity with the fields to update
    * @param filter - A Filter used to find the records to update
    */
-  async updateMany<U extends DeepPartial<Entity>> (
-    update: U,
-    filter: Filter<Entity>
-  ): Promise<UpdateManyResponse> {
+  async updateMany<U extends DeepPartial<Entity>>(update: U, filter: Filter<Entity>): Promise<UpdateManyResponse> {
     this.ensureIdIsNotPresent(update)
-    const res = (await this.Model.updateMany(
+    const res = await this.Model.updateMany(
       this.buildExpression(filter),
-      update as UpdateQuery<new () => Entity>
-    ).exec()) as { nModified: number }
-    return { updatedCount: res.nModified || 0 }
+      update as UpdateQuery<new () => Entity>,
+    ).exec()
+    return { updatedCount: res.modifiedCount || 0 }
   }
 
   /**
@@ -317,19 +284,12 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
    * @param id - The `id` of the entity to delete.
    * @param opts - Additional filter to use when finding the entity to delete.
    */
-  async deleteOne (
-    id: string,
-    opts?: DeleteOneOptions<Entity>
-  ): Promise<Entity> {
-    const doc = await this.Model.findOneAndDelete(
-      this.mergeFilterWithId(id, opts?.filter)
-    )
+  async deleteOne(id: string, opts?: DeleteOneOptions<Entity>): Promise<Entity> {
+    const doc = await this.Model.findOneAndDelete(this.mergeFilterWithId(id, opts?.filter))
     if (doc) {
       return doc.toObject(this.documentToObjectOptions) as Entity
     }
-    throw new NotFoundException(
-      `Unable to find ${this.Model.modelName} with id: ${id}`
-    )
+    throw new NotFoundException(`Unable to find ${this.Model.modelName} with id: ${id}`)
   }
 
   /**
@@ -345,82 +305,80 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
    *
    * @param filter - A `Filter` to find records to delete.
    */
-  async deleteMany (filter: Filter<Entity>): Promise<DeleteManyResponse> {
+  async deleteMany(filter: Filter<Entity>): Promise<DeleteManyResponse> {
     const res = await this.Model.deleteMany(this.buildExpression(filter)).exec()
     return { deletedCount: res.deletedCount || 0 }
   }
 
-  private ensureIdIsNotPresent (e: DeepPartial<Entity>): void {
+  private ensureIdIsNotPresent(e: DeepPartial<Entity>): void {
     if (Object.keys(e).includes('id')) {
       throw new Error('Id cannot be specified when updating')
     }
   }
 
-  addRelations (): Promise<Entity> {
+  addRelations(): Promise<Entity> {
     throw new Error('Not implemented yet')
   }
 
-  aggregateRelations<Relation> (
+  aggregateRelations<Relation>(
     RelationClass: Class<Relation>,
     relationName: string,
     entities: Entity[],
     filter: Filter<Relation>,
-    aggregate: AggregateQuery<Relation>
+    aggregate: AggregateQuery<Relation>,
   ): Promise<Map<Entity, AggregateResponse<Relation>>>
 
-  aggregateRelations<Relation> (
+  aggregateRelations<Relation>(
     RelationClass: Class<Relation>,
     relationName: string,
     dto: Entity,
     filter: Filter<Relation>,
-    aggregate: AggregateQuery<Relation>
+    aggregate: AggregateQuery<Relation>,
   ): Promise<AggregateResponse<Relation>>
 
-  aggregateRelations<Relation> (): Promise<
-  AggregateResponse<Relation> | Map<Entity, AggregateResponse<Relation>>
-  > {
+  aggregateRelations<Relation>(): Promise<AggregateResponse<Relation> | Map<Entity, AggregateResponse<Relation>>> {
     throw new Error('Not implemented yet')
   }
 
-  countRelations<Relation> (
+  countRelations<Relation>(
     RelationClass: Class<Relation>,
     relationName: string,
     entities: Entity[],
-    filter: Filter<Relation>
+    filter: Filter<Relation>,
   ): Promise<Map<Entity, number>>
 
-  countRelations<Relation> (
+  countRelations<Relation>(
     RelationClass: Class<Relation>,
     relationName: string,
     dto: Entity,
-    filter: Filter<Relation>
+    filter: Filter<Relation>,
   ): Promise<number>
 
-  countRelations (): Promise<number | Map<Entity, number>> {
+  countRelations(): Promise<number | Map<Entity, number>> {
     throw new Error('Not implemented yet')
   }
 
-  findRelation<Relation> (
+  findRelation<Relation>(
     RelationClass: Class<Relation>,
     relationName: string,
     dtos: Entity[],
-    opts?: FindRelationOptions<Relation>
+    opts?: FindRelationOptions<Relation>,
   ): Promise<Map<Entity, Relation | undefined>>
 
-  findRelation<Relation> (
+  findRelation<Relation>(
     RelationClass: Class<Relation>,
     relationName: string,
     dto: Entity,
-    opts?: FindRelationOptions<Relation>
+    opts?: FindRelationOptions<Relation>,
   ): Promise<Relation | undefined>
 
-  findRelation<Relation> (
+  findRelation<Relation>(
     RelationClass: Class<Relation>,
     relationName: string,
     dto: Entity | Entity[],
-    opts?: FindRelationOptions<Relation>
+    opts?: FindRelationOptions<Relation>,
   ): Promise<(Relation | undefined) | Map<Entity, Relation | undefined>> {
-    const relationModel = this.Model.model(RelationClass.name)
+    const relationModel = this.Model.db.model(RelationClass.name) as ReturnModelType<new () => Relation>
     const dtos: Entity[] = Array.isArray(dto) ? dto : [dto]
     return dtos.reduce(async (prev, curr) => {
       const map = await prev
@@ -428,15 +386,13 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
         const entityId = curr[this.getSchemaKey('id') as keyof Entity]
         const relationDoc = await relationModel.findOne({
           [relationName.substr(1)]: entityId,
-          ...(opts?.filter || {})
+          ...(opts?.filter || {}),
         })
         map.set(curr, relationDoc?.toObject(this.documentToObjectOptions))
       } else {
         const referenceId = curr[relationName as keyof Entity]
         if (referenceId) {
-          const relationDoc = await relationModel.findOne(
-            this.mergeFilterWithId(referenceId, opts?.filter)
-          )
+          const relationDoc = await relationModel.findOne(this.mergeFilterWithId(referenceId, opts?.filter))
           map.set(curr, relationDoc?.toObject(this.documentToObjectOptions))
         }
       }
@@ -444,31 +400,29 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
     }, Promise.resolve(new Map<Entity, Relation | undefined>()))
   }
 
-  queryRelations<Relation> (
+  queryRelations<Relation>(
     RelationClass: Class<Relation>,
     relationName: string,
     entities: Entity[],
-    query: Query<Relation>
+    query: Query<Relation>,
   ): Promise<Map<Entity, Relation[]>>
 
-  queryRelations<Relation> (
+  queryRelations<Relation>(
     RelationClass: Class<Relation>,
     relationName: string,
     dto: Entity,
-    query: Query<Relation>
+    query: Query<Relation>,
   ): Promise<Relation[]>
 
-  queryRelations<Relation> (
+  queryRelations<Relation>(
     RelationClass: Class<Relation>,
     relationName: string,
     dto: Entity | Entity[],
-    query: Query<Relation>
+    query: Query<Relation>,
   ): Promise<Relation[] | Map<Entity, Relation[]>> {
-    const relationModel = this.Model.model(
-      RelationClass.name
-    ) as ReturnModelType<new () => Relation>
+    const relationModel = this.Model.db.model(RelationClass.name) as ReturnModelType<new () => Relation>
     const relationQS = new TypegooseQueryService(relationModel, {
-      documentToObjectOptions: this.documentToObjectOptions
+      documentToObjectOptions: this.documentToObjectOptions,
     })
     const dtos: Entity[] = Array.isArray(dto) ? dto : [dto]
     return dtos.reduce(async (prev, curr) => {
@@ -480,8 +434,8 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
             ...(query || {}),
             filter: {
               [relationName.substr(1)]: { eq: entityId },
-              ...(query?.filter || {})
-            }
+              ...(query?.filter || {}),
+            } as any, // MIG
           })
           map.set(curr, entities)
         }
@@ -492,20 +446,16 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
             ...query,
             filter: {
               ...query.filter,
-              id: { in: ids }
-            }
+              id: { in: ids },
+            },
           } as Query<Relation>
           const entities = await relationQS.query(relQuery)
           const sortedEntities = ids
             .map((id: string) => {
               const mongoDBKey = '_id' as keyof Relation // eslint complains about keys starting with underscore
-              return entities.find(
-                e =>
-                  ((e[mongoDBKey] as unknown) as string).toString() ===
-                  id.toString()
-              )
+              return entities.find((e) => (e[mongoDBKey] as unknown as string).toString() === id.toString())
             })
-            .filter(e => !!e)
+            .filter((e) => !!e)
           map.set(curr, sortedEntities as Relation[])
         }
       }
@@ -513,15 +463,15 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
     }, Promise.resolve(new Map<Entity, Relation[]>()))
   }
 
-  removeRelation (): Promise<Entity> {
+  removeRelation(): Promise<Entity> {
     throw new Error('Not implemented yet')
   }
 
-  removeRelations (): Promise<Entity> {
+  removeRelations(): Promise<Entity> {
     throw new Error('Not implemented yet')
   }
 
-  setRelation (): Promise<Entity> {
+  setRelation(): Promise<Entity> {
     throw new Error('Not implemented yet')
   }
 }

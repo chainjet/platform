@@ -6,7 +6,7 @@ export const ObjectID = mongoose.Types.ObjectId
 
 export const mongoForRoot = (): DynamicModule => {
   return TypegooseModule.forRoot(process.env.MONGO_URI as string, {
-    useFindAndModify: false,
-    useNewUrlParser: true
+    // useFindAndModify: false,
+    // useNewUrlParser: true
   })
 }

@@ -1,8 +1,9 @@
 import { Definition, IntegrationDefinitionFactory, RunResponse } from '@app/definitions'
 import { Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
+import { ObjectId } from 'bson'
 import CryptoJS from 'crypto-js'
-import { ObjectId, ObjectID } from 'mongodb'
+import mongoose from 'mongoose'
 import { Reference } from '../../../../libs/common/src/typings/mongodb'
 import { AccountCredential } from '../../../api/src/account-credentials/entities/account-credential'
 import { AccountCredentialService } from '../../../api/src/account-credentials/services/account-credentials.service'
@@ -53,7 +54,7 @@ export class RunnerService {
   ): Promise<void> {
     this.logger.debug(`Checking for trigger ${workflowTrigger.id}`)
 
-    const userId = new ObjectID(workflowTrigger.owner.toString())
+    const userId = new ObjectId(workflowTrigger.owner.toString())
 
     // Make sure the workflow has a first action, otherwise don't run it
     const rootActions = await this.workflowActionService.find({
@@ -184,7 +185,7 @@ export class RunnerService {
   }
 
   async startWorkflowRun(
-    workflowId: ObjectID,
+    workflowId: ObjectId,
     triggerOutputs: Record<string, Record<string, unknown>>,
     workflowRun: WorkflowRun,
   ): Promise<void> {
@@ -211,7 +212,7 @@ export class RunnerService {
   ): Promise<void> {
     this.logger.log(`Running workflow action ${workflowAction.id} for workflow ${workflowAction.workflow}`)
 
-    const userId = new ObjectID(workflowAction.owner.toString())
+    const userId = new ObjectId(workflowAction.owner.toString())
 
     const integrationAction = await this.integrationActionService.findById(workflowAction.integrationAction.toString())
     if (!integrationAction) {
@@ -378,7 +379,7 @@ export class RunnerService {
       await this.workflowRunService.wakeUpWorkflowRun(workflowRun)
       const nextActionInputs = (workflowSleep.nextActionInputs ?? {}) as Record<string, Record<string, unknown>>
       const actions = await this.workflowActionService.findByIds(
-        workflowAction.nextActions.map((next) => next.action) as ObjectId[],
+        workflowAction.nextActions.map((next) => next.action) as mongoose.Types.ObjectId[],
       )
       const promises = actions.map((action) => this.runWorkflowActionsTree(action, nextActionInputs, workflowRun))
       await Promise.all(promises)
@@ -387,8 +388,8 @@ export class RunnerService {
   }
 
   private async onTriggerFailure(
-    workflowId: ObjectID | Reference<Workflow, ObjectID>,
-    userId: ObjectID,
+    workflowId: ObjectId | Reference<Workflow, mongoose.Types.ObjectId>,
+    userId: ObjectId,
     workflowRun: WorkflowRun,
     errorMessage: string | undefined,
     errorResponse?: string,
@@ -398,8 +399,8 @@ export class RunnerService {
   }
 
   private async onActionFailure(
-    workflowId: ObjectID | Reference<Workflow, ObjectID>,
-    userId: ObjectID,
+    workflowId: ObjectId | Reference<Workflow, mongoose.Types.ObjectId>,
+    userId: ObjectId,
     workflowRun: WorkflowRun,
     workflowAction: WorkflowRunAction,
     errorMessage: string | undefined,
@@ -409,7 +410,9 @@ export class RunnerService {
     await this.runWorkflowOnFailure(workflowId)
   }
 
-  private async runWorkflowOnFailure(workflowId: ObjectID | Reference<Workflow, ObjectID>): Promise<void> {
+  private async runWorkflowOnFailure(
+    workflowId: ObjectId | Reference<Workflow, mongoose.Types.ObjectId>,
+  ): Promise<void> {
     const workflow = await this.workflowService.findById(workflowId.toString())
     if (workflow?.runOnFailure) {
       const workflowRun = await this.workflowRunService.createOne({
@@ -418,7 +421,7 @@ export class RunnerService {
         status: WorkflowRunStatus.running,
         startedBy: WorkflowRunStartedByOptions.workflowFailure,
       })
-      await this.startWorkflowRun(new ObjectID(workflow.runOnFailure.toString()), {}, workflowRun)
+      await this.startWorkflowRun(new ObjectId(workflow.runOnFailure.toString()), {}, workflowRun)
     }
   }
 }

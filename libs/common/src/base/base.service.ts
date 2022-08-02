@@ -2,21 +2,15 @@ import { BaseEntity } from '@app/common/base/base-entity'
 import { TypegooseQueryService } from '@app/common/TypegooseQueryService'
 import { DeepPartial, Filter, Query, UpdateManyResponse, UpdateOneOptions } from '@nestjs-query/core'
 import { Injectable, Logger } from '@nestjs/common'
-import { ReturnModelType } from '@typegoose/typegoose'
-import { ObjectId, ObjectID } from 'mongodb'
-import { FilterQuery, QueryFindOneAndUpdateOptions, QueryFindOptions, UpdateQuery } from 'mongoose'
-
-interface UpdateResponse {
-  nMatched: number
-  nUpserted: number
-  nModified: number
-}
+import { mongoose, ReturnModelType } from '@typegoose/typegoose'
+import { ObjectId, UpdateResult } from 'mongodb'
+import { FilterQuery, QueryOptions, UpdateQuery } from 'mongoose'
 
 @Injectable()
 export abstract class BaseService<T extends BaseEntity> extends TypegooseQueryService<T> {
   protected abstract readonly logger: Logger
 
-  constructor (protected readonly model: ReturnModelType<new () => T>) {
+  constructor(protected readonly model: ReturnModelType<new () => T>) {
     super(model, { documentToObjectOptions: { virtuals: true, getters: true } })
   }
 
@@ -28,7 +22,7 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
    */
   // abstract canCreateOrUpdate (record: DeepPartial<T>): Promise<boolean> | boolean
 
-  async query (query: Query<T>): Promise<T[]> {
+  async query(query: Query<T>): Promise<T[]> {
     // if a search was given, include it on the filter
     const search = (query as any).search as string
     if (search) {
@@ -37,9 +31,9 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
 
     // support sorting by createdAt (sort by _id on mongo)
     if (query.sorting?.length) {
-      query.sorting = query.sorting.map(sort => ({
+      query.sorting = query.sorting.map((sort) => ({
         ...sort,
-        field: sort.field === 'createdAt' ? '_id' : sort.field
+        field: sort.field === 'createdAt' ? '_id' : sort.field,
       }))
     }
 
@@ -50,45 +44,45 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
    * Run text search using MongoDB's text index
    * see https://docs.mongodb.com/manual/text-search/
    */
-  protected async searchQuery (query: Query<T> & { search: string }): Promise<T[]> {
+  protected async searchQuery(query: Query<T> & { search: string }): Promise<T[]> {
     const filter: FilterQuery<new () => T> = {
       ...this.buildExpression(query.filter ?? {}),
-      $text: { $search: query.search }
+      $text: { $search: query.search },
     }
     const projection = {
-      score: { $meta: 'textScore' }
+      score: { $meta: 'textScore' },
     }
     const options = {
       limit: query.paging?.limit,
       skip: query.paging?.offset,
       sort: {
-        score: { $meta: 'textScore' }
-      }
+        score: { $meta: 'textScore' },
+      },
     }
     const docs = await this.Model.find(filter, projection, options).exec()
     return docs.map((doc) => doc.toObject(this.documentToObjectOptions) as T)
   }
 
-  find (conditions: FilterQuery<new () => T>, projection?: any | null, options?: QueryFindOptions): Promise<T[]> {
+  find(conditions: FilterQuery<new () => T>, projection?: any | null, options?: QueryOptions): Promise<T[]> {
     return this.model.find(conditions, projection, options).exec()
   }
 
-  async findOne (conditions?: FilterQuery<new () => T>): Promise<T | null> {
+  async findOne(conditions?: FilterQuery<new () => T>): Promise<T | null> {
     if (!conditions) {
       return null
     }
     return (await this.model.findOne(conditions).exec())?.toObject(this.documentToObjectOptions) ?? null
   }
 
-  async findByIds (ids: ObjectId[], projection?: any | null, options?: QueryFindOptions): Promise<T[]> {
+  async findByIds(ids: mongoose.Types.ObjectId[], projection?: any | null, options?: QueryOptions): Promise<T[]> {
     const conditions = {
-      _id: { $in: ids }
+      _id: { $in: ids },
     } as FilterQuery<new () => T>
     const items = await this.model.find(conditions, projection, options)
     return items.map((item) => item.toObject(this.documentToObjectOptions))
   }
 
-  async createOrUpdateOne (query: FilterQuery<new () => T>, record: DeepPartial<T>): Promise<T> {
+  async createOrUpdateOne(query: FilterQuery<new () => T>, record: DeepPartial<T>): Promise<T> {
     const existentDocument = await this.findOne(query)
     if (existentDocument) {
       const res = await this.updateOne(existentDocument.id, record)
@@ -101,47 +95,47 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
     }
   }
 
-  createOne (record: DeepPartial<T>): Promise<T> {
+  createOne(record: DeepPartial<T>): Promise<T> {
     return super.createOne(record)
   }
 
-  createMany (records: Array<DeepPartial<T>>): Promise<T[]> {
+  createMany(records: Array<DeepPartial<T>>): Promise<T[]> {
     return super.createMany(records)
   }
 
-  updateOne (id: string, update: DeepPartial<T>, opts?: UpdateOneOptions<T>): Promise<T> {
+  updateOne(id: string, update: DeepPartial<T>, opts?: UpdateOneOptions<T>): Promise<T> {
     return super.updateOne(id, update, opts)
   }
 
-  updateMany (update: DeepPartial<T>, filter: Filter<T>): Promise<UpdateManyResponse> {
+  updateMany(update: DeepPartial<T>, filter: Filter<T>): Promise<UpdateManyResponse> {
     return super.updateMany(update, filter)
   }
 
-  update (conditions: FilterQuery<new () => T>, query: UpdateQuery<new () => T>): Promise<UpdateResponse> {
+  update(conditions: FilterQuery<new () => T>, query: UpdateQuery<new () => T>): Promise<UpdateResult> {
     return this.model.updateMany(conditions, query).exec()
   }
 
-  updateById (id: ObjectID, query: UpdateQuery<new () => T>): Promise<UpdateResponse> {
+  updateById(id: ObjectId, query: UpdateQuery<new () => T>): Promise<UpdateResult> {
     const conditions: FilterQuery<new () => T> = { _id: id }
     return this.model.updateOne(conditions, query).exec()
   }
 
-  updateOneNative (conditions: FilterQuery<new () => T>, query: UpdateQuery<new () => T>): Promise<UpdateResponse> {
+  updateOneNative(conditions: FilterQuery<new () => T>, query: UpdateQuery<new () => T>): Promise<UpdateResult> {
     return this.model.updateOne(conditions, query).exec()
   }
 
-  async deleteOneNative (conditions: FilterQuery<new () => T>): Promise<void> {
+  async deleteOneNative(conditions: FilterQuery<new () => T>): Promise<void> {
     await this.model.deleteOne(conditions).exec()
   }
 
-  async deleteManyNative (conditions: FilterQuery<new () => T>): Promise<void> {
+  async deleteManyNative(conditions: FilterQuery<new () => T>): Promise<void> {
     await this.model.deleteMany(conditions).exec()
   }
 
-  findByIdAndUpdate (
-    id: ObjectID,
+  findByIdAndUpdate(
+    id: mongoose.Types.ObjectId,
     query: UpdateQuery<new () => T>,
-    options: QueryFindOneAndUpdateOptions = {}
+    options: QueryOptions = {},
   ): Promise<T | null> {
     return this.model.findByIdAndUpdate(id, query, options).exec()
   }

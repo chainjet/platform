@@ -1,7 +1,7 @@
 import { BaseService } from '@app/common/base/base.service'
 import { Injectable, Logger } from '@nestjs/common'
-import { ReturnModelType } from '@typegoose/typegoose'
-import { ObjectID } from 'mongodb'
+import { mongoose, ReturnModelType } from '@typegoose/typegoose'
+import { ObjectId } from 'bson'
 import { InjectModel } from 'nestjs-typegoose'
 import { IntegrationTrigger } from '../../integration-triggers/entities/integration-trigger'
 import { Integration } from '../../integrations/entities/integration'
@@ -20,16 +20,16 @@ import { WorkflowSleepService } from './workflow-sleep.service'
 export class WorkflowRunService extends BaseService<WorkflowRun> {
   protected readonly logger = new Logger(WorkflowRunService.name)
 
-  constructor (
+  constructor(
     @InjectModel(WorkflowRun) protected readonly model: ReturnModelType<typeof WorkflowRun>,
     private readonly userService: UserService,
     private readonly workflowTriggerService: WorkflowTriggerService,
-    private readonly workflowSleepService: WorkflowSleepService
+    private readonly workflowSleepService: WorkflowSleepService,
   ) {
     super(model)
   }
 
-  async markWorkflowRunAsCompleted (workflowRunId: ObjectID): Promise<void> {
+  async markWorkflowRunAsCompleted(workflowRunId: ObjectId): Promise<void> {
     await this.updateWorkflowRunStatus(workflowRunId, WorkflowRunStatus.completed)
   }
 
@@ -37,19 +37,16 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
    * Update workflow run status respecting the status state machine.
    * Once the status is completed or failed it's final and cannot be updated
    */
-  protected async updateWorkflowRunStatus (workflowRunId: ObjectID, status: WorkflowRunStatus): Promise<void> {
-    await this.updateOneNative(
-      { _id: workflowRunId, status: WorkflowRunStatus.running },
-      { $set: { status } }
-    )
+  protected async updateWorkflowRunStatus(workflowRunId: ObjectId, status: WorkflowRunStatus): Promise<void> {
+    await this.updateOneNative({ _id: workflowRunId, status: WorkflowRunStatus.running }, { $set: { status } })
   }
 
-  async createOneByInstantTrigger (
+  async createOneByInstantTrigger(
     integration: Integration,
     integrationTrigger: IntegrationTrigger,
     workflow: Workflow,
     workflowTrigger: WorkflowTrigger,
-    hasRootAction: boolean
+    hasRootAction: boolean,
   ): Promise<WorkflowRun> {
     const workflowRun = await this.createOne({
       owner: workflow.owner,
@@ -63,27 +60,27 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
         workflowTrigger: workflowTrigger._id,
         workflowTriggered: hasRootAction,
         status: WorkflowRunStatus.completed,
-        finishedAt: Date.now()
-      }
+        finishedAt: new Date(),
+      },
     })
-    await this.userService.incrementOperationsUsed(workflow.owner as ObjectID)
+    await this.userService.incrementOperationsUsed(workflow.owner as ObjectId)
     return workflowRun
   }
 
-  async markTriggerAsCompleted (
-    userId: ObjectID,
-    workflowRunId: ObjectID,
+  async markTriggerAsCompleted(
+    userId: ObjectId,
+    workflowRunId: ObjectId,
     workflowTriggered: boolean,
-    triggerIds?: string[]
+    triggerIds?: string[],
   ): Promise<void> {
     await this.updateById(workflowRunId, {
       $set: {
         'triggerRun.status': WorkflowRunStatus.completed,
         'triggerRun.workflowTriggered': workflowTriggered,
         'triggerRun.triggerIds': triggerIds,
-        'triggerRun.finishedAt': Date.now()
+        'triggerRun.finishedAt': Date.now(),
       },
-      $inc: { operationsUsed: 1 }
+      $inc: { operationsUsed: 1 },
     })
     await this.userService.incrementOperationsUsed(userId)
     if (!workflowTriggered) {
@@ -92,102 +89,114 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
   }
 
   // TODO only increase operations used if failed was because of a client issue
-  async markTriggerAsFailed (
-    userId: ObjectID,
+  async markTriggerAsFailed(
+    userId: ObjectId,
     workflowRun: WorkflowRun,
     errorMessage: string | undefined,
-    errorResponse?: string
+    errorResponse?: string,
   ): Promise<void> {
     await this.updateById(workflowRun._id, {
       $set: {
         'triggerRun.status': WorkflowRunStatus.failed,
         'triggerRun.finishedAt': Date.now(),
         errorMessage,
-        errorResponse
+        errorResponse,
       },
-      $inc: { operationsUsed: 1 }
+      $inc: { operationsUsed: 1 },
     })
     await this.userService.incrementOperationsUsed(userId)
     await this.workflowTriggerService.incrementWorkflowRunFailures(workflowRun.workflow)
     await this.updateWorkflowRunStatus(workflowRun._id, WorkflowRunStatus.failed)
   }
 
-  async addRunningAction (
-    workflowRunId: ObjectID,
-    workflowAction: ObjectID,
+  async addRunningAction(
+    workflowRunId: mongoose.Types.ObjectId,
+    workflowAction: mongoose.Types.ObjectId,
     integrationName: string,
-    operationName: string
+    operationName: string,
   ): Promise<WorkflowRunAction> {
-    const run = await this.findByIdAndUpdate(workflowRunId, {
-      $push: {
-        actionRuns: {
-          integrationName,
-          operationName,
-          workflowAction,
-          status: WorkflowRunStatus.running
-        }
-      }
-    }, { new: true })
-    const runAction = run?.actionRuns.reverse().find(action => action.workflowAction.toString() === workflowAction.toString())
+    const run = await this.findByIdAndUpdate(
+      workflowRunId,
+      {
+        $push: {
+          actionRuns: {
+            integrationName,
+            operationName,
+            workflowAction,
+            status: WorkflowRunStatus.running,
+          },
+        },
+      },
+      { new: true },
+    )
+    const runAction = run?.actionRuns
+      .reverse()
+      .find((action) => action.workflowAction.toString() === workflowAction.toString())
     if (!runAction) {
       throw new Error('WorkflowRunAction not created')
     }
     return runAction
   }
 
-  async markActionAsCompleted (
-    userId: ObjectID,
-    workflowRunId: ObjectID,
-    workflowRunAction: WorkflowRunAction
+  async markActionAsCompleted(
+    userId: ObjectId,
+    workflowRunId: ObjectId,
+    workflowRunAction: WorkflowRunAction,
   ): Promise<void> {
-    await this.update({ _id: workflowRunId, 'actionRuns._id': workflowRunAction._id }, {
-      $set: {
-        'actionRuns.$.status': WorkflowRunStatus.completed,
-        'actionRuns.$.finishedAt': Date.now()
+    await this.update(
+      { _id: workflowRunId, 'actionRuns._id': workflowRunAction._id },
+      {
+        $set: {
+          'actionRuns.$.status': WorkflowRunStatus.completed,
+          'actionRuns.$.finishedAt': Date.now(),
+        },
+        $inc: { operationsUsed: 1 },
       },
-      $inc: { operationsUsed: 1 }
-    })
+    )
     await this.userService.incrementOperationsUsed(userId)
   }
 
   // TODO only increase operations used if failed was because of a client issue
-  async markActionAsFailed (
-    userId: ObjectID,
+  async markActionAsFailed(
+    userId: ObjectId,
     workflowRun: WorkflowRun,
     workflowAction: WorkflowRunAction,
     errorMessage: string | undefined,
-    errorResponse?: string
+    errorResponse?: string,
   ): Promise<void> {
-    await this.update({ _id: workflowRun._id, 'actionRuns._id': workflowAction._id }, {
-      $set: {
-        'actionRuns.$.status': WorkflowRunStatus.failed,
-        'actionRuns.$.finishedAt': Date.now(),
-        errorMessage,
-        errorResponse
+    await this.update(
+      { _id: workflowRun._id, 'actionRuns._id': workflowAction._id },
+      {
+        $set: {
+          'actionRuns.$.status': WorkflowRunStatus.failed,
+          'actionRuns.$.finishedAt': Date.now(),
+          errorMessage,
+          errorResponse,
+        },
+        $inc: { operationsUsed: 1 },
       },
-      $inc: { operationsUsed: 1 }
-    })
+    )
     await this.userService.incrementOperationsUsed(userId)
     await this.workflowTriggerService.incrementWorkflowRunFailures(workflowRun.workflow)
     await this.updateWorkflowRunStatus(workflowRun._id, WorkflowRunStatus.failed)
   }
 
-  async sleepWorkflowRun (
+  async sleepWorkflowRun(
     workflowRun: WorkflowRun,
     workflowAction: WorkflowAction,
     nextActionInputs: Record<string, Record<string, unknown>>,
-    sleepUntil: Date
+    sleepUntil: Date,
   ): Promise<void> {
     await this.workflowSleepService.createOne({
       workflowRun: workflowRun._id,
       workflowAction: workflowAction._id,
       nextActionInputs,
-      sleepUntil
+      sleepUntil,
     })
     await this.updateOne(workflowRun.id, { status: WorkflowRunStatus.sleeping })
   }
 
-  async wakeUpWorkflowRun (workflowRun: WorkflowRun): Promise<void> {
+  async wakeUpWorkflowRun(workflowRun: WorkflowRun): Promise<void> {
     workflowRun.status = WorkflowRunStatus.running
     await this.updateOne(workflowRun.id, { status: workflowRun.status })
   }

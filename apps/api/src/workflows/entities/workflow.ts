@@ -4,7 +4,7 @@ import { OwnedEntity } from '@app/common/decorators/owned-entity.decorator'
 import { Reference } from '@app/common/typings/mongodb'
 import { FilterableField } from '@nestjs-query/query-graphql'
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql'
-import { pre, prop, Ref } from '@typegoose/typegoose'
+import { pre, prop } from '@typegoose/typegoose'
 import { Project } from '../../projects/entities/project'
 import { User } from '../../users/entities/user'
 import { WorkflowAction } from '../../workflow-actions/entities/workflow-action'
@@ -13,7 +13,7 @@ import { WorkflowTrigger } from '../../workflow-triggers/entities/workflow-trigg
 enum WorkflowState {
   Waiting = 'waiting',
   Scheduling = 'scheduling',
-  Running = 'running'
+  Running = 'running',
 }
 
 @pre<Workflow>('save', function () {
@@ -21,7 +21,6 @@ enum WorkflowState {
     this.lastStateChange = new Date()
   }
 })
-
 @ObjectType()
 @OwnedEntity()
 @EntityRef('owner', () => User)
@@ -67,7 +66,7 @@ export class CreateWorkflowInput {
   name: string
 
   @Field(() => ID)
-  project: Ref<Project>
+  project: Reference<Project>
 
   @Field(() => ID, { nullable: true })
   runOnFailure?: Reference<Workflow>

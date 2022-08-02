@@ -11,14 +11,14 @@ import { Workflow } from '../entities/workflow'
 export class WorkflowService extends BaseService<Workflow> {
   protected readonly logger = new Logger(WorkflowService.name)
 
-  constructor (
+  constructor(
     @InjectModel(Workflow) protected readonly model: ReturnModelType<typeof Workflow>,
-    @Inject(forwardRef(() => ProjectService)) protected projectService: ProjectService
+    @Inject(forwardRef(() => ProjectService)) protected projectService: ProjectService,
   ) {
     super(model)
   }
 
-  async createOne (record: DeepPartial<Workflow>): Promise<Workflow> {
+  async createOne(record: DeepPartial<Workflow>): Promise<Workflow> {
     if (!record.project || !record.owner || !record.name) {
       throw new BadRequestException()
     }
@@ -36,7 +36,7 @@ export class WorkflowService extends BaseService<Workflow> {
     return await super.createOne(record)
   }
 
-  async updateOne (id: string, record: DeepPartial<Workflow>, opts?: UpdateOneOptions<Workflow>): Promise<Workflow> {
+  async updateOne(id: string, record: DeepPartial<Workflow>, opts?: UpdateOneOptions<Workflow>): Promise<Workflow> {
     const workflow = await this.findById(id)
     if (!workflow) {
       throw new NotFoundException()
@@ -55,7 +55,7 @@ export class WorkflowService extends BaseService<Workflow> {
 
   // TODO delete workflow trigger and actions. We could use a queue to avoid circular dependency
   //      and to remove everything on the background.
-  async deleteOne (id: string, opts?: DeleteOneOptions<Workflow>): Promise<Workflow> {
+  async deleteOne(id: string, opts?: DeleteOneOptions<Workflow>): Promise<Workflow> {
     return await super.deleteOne(id, opts)
   }
 }

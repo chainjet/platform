@@ -1,8 +1,9 @@
 import { BaseEntity } from '@app/common/base/base-entity'
 import { EntityConnection, EntityRef } from '@app/common/decorators/entity-ref.decorator'
+import { Reference } from '@app/common/typings/mongodb'
 import { FilterableField } from '@nestjs-query/query-graphql'
 import { Field, ID, Int, ObjectType } from '@nestjs/graphql'
-import { Index, mongoose, prop, Ref } from '@typegoose/typegoose'
+import { Index, mongoose, prop } from '@typegoose/typegoose'
 import { IntegrationAccount } from '../../integration-accounts/entities/integration-account'
 import { IntegrationAction } from '../../integration-actions/entities/integration-action'
 import { IntegrationTrigger } from '../../integration-triggers/entities/integration-trigger'
@@ -46,7 +47,7 @@ export class Integration extends BaseEntity {
 
   @Field(() => ID, { nullable: true })
   @prop({ ref: IntegrationAccount })
-  integrationAccount?: Ref<IntegrationAccount>
+  integrationAccount?: Reference<IntegrationAccount>
 
   @FilterableField(() => String)
   @prop({ type: () => mongoose.Schema.Types.String, dim: 1, index: true, default: [] })

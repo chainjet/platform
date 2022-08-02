@@ -18,9 +18,9 @@ export class OperationCategory {
 
   @Field(() => Int)
   @prop({ default: 0 })
-  numberOfActions: number
+  numberOfActions?: number
 
   @Field(() => Int)
   @prop({ default: 0 })
-  numberOfTriggers: number
+  numberOfTriggers?: number
 }
