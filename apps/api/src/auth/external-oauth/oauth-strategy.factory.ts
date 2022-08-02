@@ -52,12 +52,13 @@ export class OAuthStrategyFactory {
   private readonly integrationStrategies: Map<string, IntegrationAccount> = new Map()
   private readonly loginStrategies: Map<LoginProvider, LoginProviderStrategy> = new Map()
 
-  constructor (
+  constructor(
     private readonly integrationAccountService: IntegrationAccountService,
-    @Inject(forwardRef(() => AccountCredentialService)) private readonly accountCredentialService: AccountCredentialService
+    @Inject(forwardRef(() => AccountCredentialService))
+    private readonly accountCredentialService: AccountCredentialService,
   ) {}
 
-  static initializePassport (): Handler {
+  static initializePassport(): Handler {
     passport.serializeUser(function (user, done) {
       done(null, user)
     })
@@ -70,8 +71,8 @@ export class OAuthStrategyFactory {
   /**
    * Register OAuth1/2 strategy on passport if it wasn't registered
    */
-  async ensureStrategy (integrationAccountKey: string): Promise<IntegrationAccount> {
-    if (!process.env.ENDPOINT) {
+  async ensureStrategy(integrationAccountKey: string): Promise<IntegrationAccount> {
+    if (!process.env.API_ENDPOINT) {
       throw new Error('Endpoint not configured')
     }
 
@@ -98,7 +99,7 @@ export class OAuthStrategyFactory {
     return integrationAccount
   }
 
-  registerOauth1Strategy (integrationAccountKey: string, integrationAccount: IntegrationAccount): void {
+  registerOauth1Strategy(integrationAccountKey: string, integrationAccount: IntegrationAccount): void {
     const consumerKey = process.env[`${integrationAccount.key.toUpperCase().replace(/-/, '_')}_CONSUMER_KEY`]
     const consumerSecret = process.env[`${integrationAccount.key.toUpperCase().replace(/-/, '_')}_CONSUMER_SECRET`]
     const requestTokenURL = integrationAccount.securitySchema?.['x-requestTokenURL']
@@ -112,27 +113,35 @@ export class OAuthStrategyFactory {
     }
 
     if (!requestTokenURL || !accessTokenURL || !userAuthorizationURL || !signatureMethod) {
-      this.logger.error(`requestTokenURL, accessTokenURL, userAuthorizationURL or signatureMethod not defined for ${integrationAccountKey}`)
+      this.logger.error(
+        `requestTokenURL, accessTokenURL, userAuthorizationURL or signatureMethod not defined for ${integrationAccountKey}`,
+      )
       return
     }
 
-    passport.use(this.getOAuthStrategyName(integrationAccountKey), new OAuth1Strategy({
-      requestTokenURL,
-      accessTokenURL,
-      userAuthorizationURL,
-      consumerKey,
-      consumerSecret,
-      signatureMethod,
-      callbackURL: `${process.env.ENDPOINT}/api/account-credentials/oauth/${integrationAccountKey}/callback`
-    }, (token: string, tokenSecret: string, profile: Profile, cb: ProviderCallback) => {
-      cb(undefined, { type: 'oauth1', token, tokenSecret, profile, integrationAccount } as OAuth1Response)
-    }))
+    passport.use(
+      this.getOAuthStrategyName(integrationAccountKey),
+      new OAuth1Strategy(
+        {
+          requestTokenURL,
+          accessTokenURL,
+          userAuthorizationURL,
+          consumerKey,
+          consumerSecret,
+          signatureMethod,
+          callbackURL: `${process.env.API_ENDPOINT}/account-credentials/oauth/${integrationAccountKey}/callback`,
+        },
+        (token: string, tokenSecret: string, profile: Profile, cb: ProviderCallback) => {
+          cb(undefined, { type: 'oauth1', token, tokenSecret, profile, integrationAccount } as OAuth1Response)
+        },
+      ),
+    )
 
     this.integrationStrategies.set(integrationAccountKey, integrationAccount)
     this.logger.log(`OAuth1 strategy for ${integrationAccountKey} created`)
   }
 
-  registerOauth2Strategy (integrationAccountKey: string, integrationAccount: IntegrationAccount): void {
+  registerOauth2Strategy(integrationAccountKey: string, integrationAccount: IntegrationAccount): void {
     const authCode = integrationAccount.securitySchema?.flows?.authorizationCode
     if (authCode?.authorizationUrl && authCode.tokenUrl) {
       const credentialsKey = integrationAccount.securitySchema?.['x-credentialsKey'] ?? integrationAccount.key
@@ -145,16 +154,19 @@ export class OAuthStrategyFactory {
       }
 
       const strategyName = this.getOAuthStrategyName(integrationAccountKey)
-      const strategy = new OAuth2Strategy({
-        authorizationURL: authCode.authorizationUrl,
-        tokenURL: authCode.tokenUrl,
-        clientID: clientId,
-        clientSecret: clientSecret,
-        scope: Object.keys(authCode.scopes || []),
-        callbackURL: `${process.env.ENDPOINT}/api/account-credentials/oauth/${credentialsKey}/callback`
-      }, (accessToken: string, refreshToken: string, profile: Profile, cb: ProviderCallback) => {
-        cb(undefined, { type: 'oauth2', accessToken, refreshToken, profile, integrationAccount } as OAuth2Response)
-      })
+      const strategy = new OAuth2Strategy(
+        {
+          authorizationURL: authCode.authorizationUrl,
+          tokenURL: authCode.tokenUrl,
+          clientID: clientId,
+          clientSecret: clientSecret,
+          scope: Object.keys(authCode.scopes || []),
+          callbackURL: `${process.env.API_ENDPOINT}/account-credentials/oauth/${credentialsKey}/callback`,
+        },
+        (accessToken: string, refreshToken: string, profile: Profile, cb: ProviderCallback) => {
+          cb(undefined, { type: 'oauth2', accessToken, refreshToken, profile, integrationAccount } as OAuth2Response)
+        },
+      )
 
       passport.use(strategyName, strategy)
       refresh.use(strategyName, strategy)
@@ -166,20 +178,22 @@ export class OAuthStrategyFactory {
     }
   }
 
-  async refreshOauth2AccessToken (
+  async refreshOauth2AccessToken(
     integrationAccountKey: string,
     accountCredential: AccountCredential | null,
-    credentials: Record<string, any>
+    credentials: Record<string, any>,
   ): Promise<string> {
     this.logger.log(`Refreshing access token for "${integrationAccountKey}" - user ${accountCredential?.owner}`)
     await this.ensureStrategy(integrationAccountKey)
     try {
-      credentials.accessToken = await requestNewAccessToken(
+      credentials.accessToken = (await requestNewAccessToken(
         this.getOAuthStrategyName(integrationAccountKey),
-        credentials.refreshToken
-      ) as string
+        credentials.refreshToken,
+      )) as string
     } catch (e) {
-      this.logger.error(`Failed to refresh access token for "${integrationAccountKey}" - user ${accountCredential?.owner}`)
+      this.logger.error(
+        `Failed to refresh access token for "${integrationAccountKey}" - user ${accountCredential?.owner}`,
+      )
       throw e
     }
     if (accountCredential) {
@@ -188,15 +202,15 @@ export class OAuthStrategyFactory {
     return credentials.accessToken
   }
 
-  getOAuthStrategyName (integrationAccountKey: string): string {
+  getOAuthStrategyName(integrationAccountKey: string): string {
     return `integration-${integrationAccountKey}`
   }
 
-  getLoginStrategyName (providerKey: LoginProvider): string {
+  getLoginStrategyName(providerKey: LoginProvider): string {
     return `login-${providerKey}`
   }
 
-  ensureLoginProviderStrategy (providerKey: LoginProvider): LoginProviderStrategy {
+  ensureLoginProviderStrategy(providerKey: LoginProvider): LoginProviderStrategy {
     const cachedStrategy = this.loginStrategies.get(providerKey)
     if (cachedStrategy) {
       return cachedStrategy
@@ -205,7 +219,7 @@ export class OAuthStrategyFactory {
     this.logger.log(`Creating login strategy for ${providerKey}`)
 
     const strategyName = this.getLoginStrategyName(providerKey)
-    const callbackURL = `${process.env.ENDPOINT}/api/account-credentials/oauth/${providerKey}/callback`
+    const callbackURL = `${process.env.API_ENDPOINT}/account-credentials/oauth/${providerKey}/callback`
 
     let strategy: LoginProviderStrategy
     switch (providerKey) {
@@ -228,12 +242,12 @@ export class OAuthStrategyFactory {
     return strategy
   }
 
-  loginAuthCallback (
+  loginAuthCallback(
     providerKey: LoginProvider,
     accessToken: string,
     refreshToken: string,
     profile: Profile,
-    cb: ProviderCallback
+    cb: ProviderCallback,
   ): void {
     cb(undefined, { providerKey, profile })
   }

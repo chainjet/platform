@@ -19,6 +19,6 @@ export class EmailVerificationTemplate implements EmailTemplate {
     return `Thank you for creating an account on <a href="https://chainjet.io">ChainJet</a>.<br/><br/>
 
     Follow this link to verify your email:
-    ${process.env.ENDPOINT}/register/complete-signup?username=${this.username}&code=${this.verificationCode}`
+    ${process.env.FRONTEND_ENDPOINT}/register/complete-signup?username=${this.username}&code=${this.verificationCode}`
   }
 }

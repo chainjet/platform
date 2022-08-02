@@ -19,7 +19,7 @@ export class ResetPasswordTemplate implements EmailTemplate {
     return `Hello ${this.username},<br/><br/>
     
     Follow this link to reset your password:
-    ${process.env.ENDPOINT}/login/password-reset?username=${this.username}&code=${this.resetPasswordCode}<br/><br/>
+    ${process.env.FRONTEND_ENDPOINT}/login/password-reset?username=${this.username}&code=${this.resetPasswordCode}<br/><br/>
     
     If you didn't ask to reset your password, please ignore this email.<br/><br/>
     
