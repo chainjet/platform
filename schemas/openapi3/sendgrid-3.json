@@ -25908,81 +25908,6 @@
         ],
         "title": "ContactDB:: Segments with ID"
       },
-      "contacts": {
-        "properties": {
-          "address": {
-            "type": "string"
-          },
-          "address2": {
-            "type": "object"
-          },
-          "city": {
-            "type": "string"
-          },
-          "company": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "first_name": {
-            "type": "string"
-          },
-          "last_name": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "state": {
-            "type": "string"
-          },
-          "zip": {
-            "type": "string"
-          }
-        },
-        "title": "Contacts",
-        "type": "object"
-      },
-      "credentials": {
-        "example": {
-          "address": "1234 example street",
-          "address2": null,
-          "city": "Denver",
-          "company": "Company name",
-          "country": "US",
-          "email": "example@example.com",
-          "first_name": "Example",
-          "last_name": "User",
-          "phone": "(555) 555-5555",
-          "state": "CO",
-          "zip": "55555"
-        },
-        "properties": {
-          "permissions": {
-            "properties": {
-              "api": {
-                "type": "string"
-              },
-              "mail": {
-                "type": "string"
-              },
-              "web": {
-                "type": "string"
-              }
-            },
-            "type": "object"
-          },
-          "username": {
-            "type": "string"
-          }
-        },
-        "title": "Credentials",
-        "type": "object"
-      },
       "email_object": {
         "properties": {
           "email": {
@@ -26129,14 +26054,6 @@
         },
         "title": "Global: Error Response",
         "type": "object"
-      },
-      "global_empty_request": {
-        "nullable": true,
-        "title": "Global: Request Empty Body"
-      },
-      "global_id": {
-        "title": "Global: ID",
-        "type": "integer"
       },
       "google_analytics_settings": {
         "example": {
@@ -27187,33 +27104,6 @@
         "title": "subuser_stats",
         "type": "object"
       },
-      "suppression_bounce": {
-        "example": {
-          "created": 1250337600,
-          "email": "example@example.com",
-          "reason": "550 5.1.1 The email account that you tried to reach does not exist. Please try double-checking the recipient's email address for typos or unnecessary spaces. Learn more at  https://support.google.com/mail/answer/6596 o186si2389584ioe.63 - gsmtp ",
-          "status": "5.1.1"
-        },
-        "properties": {
-          "created": {
-            "description": "The unix timestamp for when the bounce record was created at SendGrid.",
-            "type": "number"
-          },
-          "email": {
-            "type": "string"
-          },
-          "reason": {
-            "description": "The reason for the bounce. This typically will be a bounce code, an enhanced code, and a description.",
-            "type": "string"
-          },
-          "status": {
-            "description": "Enhanced SMTP bounce response",
-            "type": "string"
-          }
-        },
-        "title": "Suppression: Bounce",
-        "type": "object"
-      },
       "suppression_group": {
         "properties": {
           "description": {
@@ -27245,26 +27135,6 @@
           "description"
         ],
         "title": "Suppressions: Suppression Group",
-        "type": "object"
-      },
-      "suppression_group_unsubscribes": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/suppression_group"
-          },
-          {
-            "properties": {
-              "unsubscribes": {
-                "description": "The unsubscribes associated with this group.",
-                "type": "integer"
-              }
-            },
-            "required": [
-              "unsubscribes"
-            ]
-          }
-        ],
-        "title": "Suppressions: Suppression Group with Unsubscribes",
         "type": "object"
       },
       "transactional_template": {

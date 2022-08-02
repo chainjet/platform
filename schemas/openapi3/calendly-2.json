@@ -1955,17 +1955,6 @@
           "updated_at"
         ]
       },
-      "Organization": {
-        "type": "object",
-        "properties": {
-          "uri": {
-            "type": "string",
-            "format": "uri",
-            "description": "Canonical resource reference",
-            "example": "https://api.calendly.com/organizations/012345678901234567890"
-          }
-        }
-      },
       "Event": {
         "type": "object",
         "description": "Information about a scheduled meeting",
@@ -3016,37 +3005,6 @@
                       "type": "string",
                       "enum": [
                         "The server encountered an unexpected condition that prevented it from fulfilling the request."
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        }
-      },
-      "ALREADY_EXISTS": {
-        "description": "Attempt to create a resource that already exists",
-        "content": {
-          "application/json": {
-            "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/responses/UNKNOWN/content/application~1json/schema/allOf/0"
-                },
-                {
-                  "type": "object",
-                  "properties": {
-                    "title": {
-                      "type": "string",
-                      "enum": [
-                        "Already Exists"
-                      ]
-                    },
-                    "message": {
-                      "type": "string",
-                      "enum": [
-                        "The resource already exists"
                       ]
                     }
                   }
