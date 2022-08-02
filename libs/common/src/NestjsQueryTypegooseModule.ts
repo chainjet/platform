@@ -5,7 +5,6 @@ import { ReturnModelType } from '@typegoose/typegoose'
 import { getModelToken, TypegooseModule } from 'nestjs-typegoose'
 import { TypegooseClass } from 'nestjs-typegoose/dist/typegoose-class.interface'
 
-// eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class NestjsQueryTypegooseModule {
   static forFeature(models: TypegooseClass[], connectionName?: string): DynamicModule {
     const queryServiceProviders = createTypeOrmQueryServiceProviders(models)

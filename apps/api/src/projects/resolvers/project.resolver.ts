@@ -23,9 +23,8 @@ export class ProjectResolver extends BaseResolver(Project, {
 }) {
   constructor(
     protected projectService: ProjectService,
-    @InjectAuthorizer(Project) readonly authorizer: Authorizer<Project>,
-  ) // @InjectPubSub() readonly pubSub: PubSub,
-  {
+    @InjectAuthorizer(Project) readonly authorizer: Authorizer<Project>, // @InjectPubSub() readonly pubSub: PubSub,
+  ) {
     super(projectService)
   }
 }
