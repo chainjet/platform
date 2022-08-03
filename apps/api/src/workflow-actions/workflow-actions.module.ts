@@ -9,6 +9,7 @@ import { IntegrationsModule } from '../integrations/integrations.module'
 import { UsersModule } from '../users/users.module'
 import { WorkflowTriggersModule } from '../workflow-triggers/workflow-triggers.module'
 import { WorkflowsModule } from '../workflows/workflows.module'
+import { WorkflowNextActionAssembler } from './assemblers/workflow-next-action.assembler'
 import { WorkflowAction } from './entities/workflow-action'
 import { WorkflowNextAction } from './entities/workflow-next-action'
 import { WorkflowActionAuthorizer, WorkflowActionResolver } from './resolvers/workflow-action.resolver'
@@ -18,6 +19,7 @@ import { WorkflowActionService } from './services/workflow-action.service'
   imports: [
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([WorkflowAction, WorkflowNextAction])],
+      assemblers: [WorkflowNextActionAssembler],
       resolvers: [
         {
           DTOClass: WorkflowNextAction,
@@ -25,6 +27,7 @@ import { WorkflowActionService } from './services/workflow-action.service'
           create: { disabled: true },
           update: { disabled: true },
           delete: { disabled: true },
+          AssemblerClass: WorkflowNextActionAssembler,
         },
       ],
     }),
