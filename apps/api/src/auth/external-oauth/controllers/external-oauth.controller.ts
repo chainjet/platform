@@ -102,7 +102,7 @@ export class ExternalOAuthController {
       const queryString = Object.entries(req.query)
         .map(([key, value]) => `key=${value}`)
         .join('&')
-      res.redirect(`/register?adding_integration_account=${key}&${queryString}`)
+      res.redirect(`${process.env.FRONTEND_ENDPOINT}/register?adding_integration_account=${key}&${queryString}`)
       return
     }
 
