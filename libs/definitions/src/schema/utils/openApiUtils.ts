@@ -251,10 +251,23 @@ export const OpenApiUtils = {
     return schema
   },
 
-  // TODO this method only modifies the components section, but it should modify all schema objects
   transformAllSchemaObjects(schema: OpenAPIObject, transform: (obj: SchemaObject) => SchemaObject): OpenAPIObject {
-    const schemas = Object.keys(schema.components?.schemas ?? {})
-    for (const key of schemas) {
+    // transform properties inside path operations
+    const pathKeys = Object.keys(schema.paths ?? {})
+    for (const key of pathKeys) {
+      const methodKeys = Object.keys(schema.paths[key]).filter((key) =>
+        ['get', 'put', 'post', 'delete', 'options', 'head', 'patch'].includes(key.toLowerCase()),
+      )
+      for (const methodKey of methodKeys) {
+        schema.paths[key][methodKey].parameters = (schema.paths[key][methodKey].parameters ?? []).map(
+          (param) => (schema.paths[key][methodKey].parameters = OpenApiUtils.transformSchemaObject(param, transform)),
+        )
+      }
+    }
+
+    // transform properties inside schema components
+    const componentKeys = Object.keys(schema.components?.schemas ?? {})
+    for (const key of componentKeys) {
       schema.components!.schemas![key] = OpenApiUtils.transformSchemaObject(schema.components!.schemas![key], transform)
     }
     return schema

@@ -37,6 +37,7 @@ import { LogicDefinition } from './integration-definitions/logic.definition'
 import { MailchimpMarketingDefinition } from './integration-definitions/mailchimp-marketing.definition'
 import { MakerlogDefinition } from './integration-definitions/makerlog.definition'
 import { MediumDefinition } from './integration-definitions/medium.definition'
+import { MoralisDefinition } from './integration-definitions/moralis.definition'
 import { PagerdutyDefinition } from './integration-definitions/pagerduty.definition'
 import { RssDefinition } from './integration-definitions/rss.definition'
 import { ScheduleDefinition } from './integration-definitions/schedule.definition'
@@ -75,6 +76,7 @@ export class IntegrationDefinitionFactory {
     'mailchimp-marketing': MailchimpMarketingDefinition,
     makerlog: MakerlogDefinition,
     medium: MediumDefinition,
+    moralis: MoralisDefinition,
     pagerduty: PagerdutyDefinition,
     rss: RssDefinition,
     schedule: ScheduleDefinition,
