@@ -25,6 +25,7 @@ import { BlockchainDefinition } from './integration-definitions/blockchain.defin
 import { BoxDefinition } from './integration-definitions/box.definition'
 import { CalendlyDefinition } from './integration-definitions/calendly.definition'
 import { ChecklyDefinition } from './integration-definitions/checkly.definition'
+import { CoinMarketCapDefinition } from './integration-definitions/coinmarketcap.definition'
 import { DocusignDefinition } from './integration-definitions/docusign.definition'
 import { GoogleApisDefinition } from './integration-definitions/google-apis.definition'
 import { GumroadDefinition } from './integration-definitions/gumroad.definition'
@@ -60,6 +61,7 @@ export class IntegrationDefinitionFactory {
     calendly: CalendlyDefinition,
     checkly: ChecklyDefinition,
     circleci: CircleciDefinition,
+    coinmarketcap: CoinMarketCapDefinition,
     docusign: DocusignDefinition,
     github: GithubDefinition,
     gitlab: GitlabDefinition,

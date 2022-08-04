@@ -4,7 +4,7 @@ import fs from 'fs'
 import yaml from 'js-yaml'
 import { JSONSchema7 } from 'json-schema'
 import { OpenAPIObject } from 'openapi3-ts'
-import { SecuritySchemeObject } from 'openapi3-ts/dist/model/OpenApi'
+import { SchemaObject, SecuritySchemeObject } from 'openapi3-ts/dist/model/OpenApi'
 import path from 'path'
 import { promisify } from 'util'
 import { stripMarkdown } from '../../../../common/src/utils/string.utils'
@@ -249,5 +249,22 @@ export const OpenApiUtils = {
       return OpenApiUtils.removeUnusedComponents(schema)
     }
     return schema
+  },
+
+  // TODO this method only modifies the components section, but it should modify all schema objects
+  transformAllSchemaObjects(schema: OpenAPIObject, transform: (obj: SchemaObject) => SchemaObject): OpenAPIObject {
+    const schemas = Object.keys(schema.components?.schemas ?? {})
+    for (const key of schemas) {
+      schema.components!.schemas![key] = OpenApiUtils.transformSchemaObject(schema.components!.schemas![key], transform)
+    }
+    return schema
+  },
+
+  transformSchemaObject(schemaObject: SchemaObject, transform: (obj: SchemaObject) => SchemaObject): SchemaObject {
+    const properties = Object.keys(schemaObject.properties ?? {})
+    for (const key of properties) {
+      schemaObject.properties![key] = OpenApiUtils.transformSchemaObject(schemaObject.properties![key], transform)
+    }
+    return transform(schemaObject)
   },
 }
