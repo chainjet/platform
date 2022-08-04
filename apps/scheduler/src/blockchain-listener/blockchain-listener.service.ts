@@ -1,5 +1,5 @@
-import { ProviderService } from '@blockchain/blockchain/provider/provider.service'
 import { ExplorerService } from '@blockchain/blockchain/explorer/explorer.service'
+import { ProviderService } from '@blockchain/blockchain/provider/provider.service'
 import { Injectable, Logger } from '@nestjs/common'
 import { IntegrationTriggerService } from 'apps/api/src/integration-triggers/services/integration-trigger.service'
 import { IntegrationService } from 'apps/api/src/integrations/services/integration.service'

@@ -181,6 +181,25 @@ export abstract class Definition {
     return operationSchema
   }
 
+  isValidTrigger(operation: OperationObject, schemaMethod: string, schemaResponse?: JSONSchema7): boolean {
+    const triggerSupported =
+      operation['x-triggerHook'] ||
+      operation['x-triggerInstant'] ||
+      operation['x-triggerName'] ||
+      this.allowedTriggerMethods.includes(schemaMethod ?? '')
+
+    if (operation['x-noTrigger'] || !schemaResponse || !triggerSupported) {
+      return false
+    }
+
+    // sorted methods cannot be triggers
+    if (operation.description?.toLowerCase().includes('sorted by')) {
+      return false
+    }
+
+    return true
+  }
+
   mapTriggerName(operationSchema: OperationObject): string {
     const name = operationSchema.summary
     if (!name) {
@@ -222,6 +241,7 @@ export abstract class Definition {
 
   /**
    * Allow integrations to apply modifications to the schema after fetching it from an external source
+   * This method is called before the schema is transformed to OpenApi V3
    */
   updateSchemaAfterFetch(schema: OpenAPIObject): OpenAPIObject {
     return schema

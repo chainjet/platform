@@ -278,12 +278,7 @@ export class IntegrationInstallerService {
     description: string | undefined
     fullDescription: string | undefined
   } | null> {
-    const triggerSupported =
-      operationObject['x-triggerHook'] ||
-      operationObject['x-triggerInstant'] ||
-      operationObject['x-triggerName'] ||
-      definition.allowedTriggerMethods.includes(schemaMethod ?? '')
-    if (operationObject['x-noTrigger'] || !schemaResponse || !triggerSupported) {
+    if (!definition.isValidTrigger(operationObject, schemaMethod, schemaResponse)) {
       return null
     }
 
