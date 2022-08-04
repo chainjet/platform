@@ -38,9 +38,9 @@ export class BlockchainListenerService {
   async startBlockchainEventsListener() {
     this.logger.log(`Starting blockchain events listener`)
 
-    const integration = await this.integrationService.findOne({ key: 'smart-contract', version: '1' })
+    const integration = await this.integrationService.findOne({ key: 'blockchain', version: '1' })
     if (!integration) {
-      this.logger.error(`Smart-contract integration not found`)
+      this.logger.error(`Blockchain integration not found`)
       return
     }
 
@@ -49,7 +49,7 @@ export class BlockchainListenerService {
       integration: integration.id,
     })
     if (!integrationTrigger) {
-      this.logger.error(`newEvent integration trigger from smart-contract not found`)
+      this.logger.error(`newEvent trigger from blockchain integration not found`)
       return
     }
 
