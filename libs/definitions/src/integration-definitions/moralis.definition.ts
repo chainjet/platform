@@ -19,8 +19,7 @@ export class MoralisDefinition extends SingleIntegrationDefinition {
 
       // remove 0x options from enums (the enums have the chain name and its id)
       if (obj.enum?.length) {
-        console.log('has enum', obj.enum)
-        obj.enum = obj.enum.filter((e) => !e.startsWith('0x'))
+        obj.enum = Array.from(new Set(obj.enum.filter((e) => !e.startsWith('0x'))))
       }
 
       return obj
