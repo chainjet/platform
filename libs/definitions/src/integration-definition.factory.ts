@@ -16,6 +16,7 @@ import { IntegrationAccountService } from '../../../apps/api/src/integration-acc
 import { IntegrationActionService } from '../../../apps/api/src/integration-actions/services/integration-action.service'
 import { IntegrationTriggerService } from '../../../apps/api/src/integration-triggers/services/integration-trigger.service'
 import { IntegrationService } from '../../../apps/api/src/integrations/services/integration.service'
+import { OneInchDefinition } from './integration-definitions/1inch.definition'
 import { AdafruitIoDefinition } from './integration-definitions/adafruit-io.definition'
 import { AirtableDefinition } from './integration-definitions/airtable.definition'
 import { AppveyorDefinition } from './integration-definitions/appveyor.definition'
@@ -50,6 +51,7 @@ import { YoucanbookmeDefinition } from './integration-definitions/youcanbookme.d
 @Injectable()
 export class IntegrationDefinitionFactory {
   protected readonly definitions: Record<string, Class<Definition>> = {
+    '1inch': OneInchDefinition,
     'adafruit-io': AdafruitIoDefinition,
     airtable: AirtableDefinition,
     appveyor: AppveyorDefinition,
