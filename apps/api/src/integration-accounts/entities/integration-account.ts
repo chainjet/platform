@@ -24,6 +24,10 @@ export class IntegrationAccount extends BaseEntity {
   @prop({ required: true, enum: IntegrationAuthType, type: String })
   authType: IntegrationAuthType
 
+  // OAuth2 strategies can have extra authorization params that must be set in the strategy
+  @jsonProp()
+  authParams?: Record<string, any>
+
   /**
    * JSON Schema with the authentication fields users can enter.
    * Only exposed fields can be sent back after creation (e.g. account region).

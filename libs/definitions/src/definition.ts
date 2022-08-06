@@ -17,7 +17,7 @@ import { Integration } from '../../../apps/api/src/integrations/entities/integra
 import { IntegrationService } from '../../../apps/api/src/integrations/services/integration.service'
 import { WorkflowAction } from '../../../apps/api/src/workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from '../../../apps/api/src/workflow-triggers/entities/workflow-trigger'
-import { OperationRunOptions } from '../../../apps/runner/src/services/operation-runner.service'
+import { OperationRunnerService, OperationRunOptions } from '../../../apps/runner/src/services/operation-runner.service'
 
 export interface StepInputs {
   [key: string]: any
@@ -47,6 +47,15 @@ export interface RunResponse {
   outputs: Record<string, unknown>
   condition?: boolean
   sleepUntil?: Date
+}
+
+export interface GetAsyncSchemasProps {
+  integration: Integration
+  integrationAccount: IntegrationAccount | null
+  inputs: StepInputs
+  credentials: StepInputs
+  accountCredential: AccountCredential | null
+  operationRunnerService: OperationRunnerService
 }
 
 export abstract class Definition {
@@ -277,4 +286,6 @@ export abstract class Definition {
   async getDynamicSchemaOutputs(req: Request): Promise<Record<string, unknown>> {
     return req?.body
   }
+
+  asyncSchemas: { [key: string]: (props: GetAsyncSchemasProps) => Promise<JSONSchema7> } = {}
 }

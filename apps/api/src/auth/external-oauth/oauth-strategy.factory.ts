@@ -168,6 +168,10 @@ export class OAuthStrategyFactory {
         },
       )
 
+      if (integrationAccount.authParams) {
+        strategy.authorizationParams = () => integrationAccount.authParams ?? {}
+      }
+
       passport.use(strategyName, strategy)
       refresh.use(strategyName, strategy)
 

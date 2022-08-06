@@ -1,4 +1,5 @@
-import { forwardRef, Inject, Injectable, InternalServerErrorException, Logger } from '@nestjs/common'
+import { forwardRef, Inject, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common'
+import { IntegrationActionService } from 'apps/api/src/integration-actions/services/integration-action.service'
 import { OAuth } from 'oauth'
 import { OpenAPIObject } from 'openapi3-ts'
 import request from 'request'
@@ -21,13 +22,20 @@ import { IntegrationAction } from '../../../api/src/integration-actions/entities
 import { IntegrationTrigger } from '../../../api/src/integration-triggers/entities/integration-trigger'
 import { Integration } from '../../../api/src/integrations/entities/integration'
 
-export interface OperationRunOptions {
+export type BaseRunOptions = {
   integration: Integration
   integrationAccount: IntegrationAccount | null
-  operation: IntegrationAction | IntegrationTrigger
   inputs: StepInputs
   credentials: StepInputs
   accountCredential: AccountCredential | null
+}
+
+export type OperationRunOptions = BaseRunOptions & {
+  operation: IntegrationAction | IntegrationTrigger
+}
+
+export type RunActionByKeyOptions = BaseRunOptions & {
+  key: string
 }
 
 @Injectable()
@@ -38,6 +46,7 @@ export class OperationRunnerService {
     private readonly schemaService: SchemaService,
     private readonly oauthStrategyFactory: OAuthStrategyFactory,
     private readonly integrationDefinitionFactory: IntegrationDefinitionFactory,
+    private readonly integrationActionService: IntegrationActionService,
     @Inject(forwardRef(() => AccountCredentialService)) protected accountCredentialService: AccountCredentialService,
   ) {}
 
@@ -176,6 +185,17 @@ export class OperationRunnerService {
       }
       throw e
     }
+  }
+
+  async runActionByKey(definition: Definition, opts: RunActionByKeyOptions): Promise<RunResponse> {
+    const operation = await this.integrationActionService.findOne({
+      integration: opts.integration.id,
+      key: opts.key,
+    })
+    if (!operation) {
+      throw new NotFoundException(`Integration Action ${opts.key} not found`)
+    }
+    return this.run(definition, { ...opts, operation })
   }
 
   requestInterceptor(definition: Definition, opts: RequestInterceptorOptions): request.OptionsWithUrl {

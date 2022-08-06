@@ -434,8 +434,8 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
             ...(query || {}),
             filter: {
               [relationName.substr(1)]: { eq: entityId },
-              ...(query?.filter || {}),
-            } as any, // MIG
+              ...((query?.filter || {}) as Filter<Relation>),
+            },
           })
           map.set(curr, entities)
         }

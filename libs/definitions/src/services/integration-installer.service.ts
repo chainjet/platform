@@ -118,6 +118,10 @@ export class IntegrationInstallerService {
     schemaResponse: JSONSchema7 | undefined,
   ): Promise<void> {
     if (!operationObject['x-noAction']) {
+      if (operationObject['x-asyncSchemas']) {
+        schemaRequest['x-asyncSchemas'] = operationObject['x-asyncSchemas']
+      }
+
       const plainTextDescription = operationObject.description && (await stripMarkdown(operationObject.description))
       await this.integrationActionService.createOrUpdateOne({
         key: operationObject.operationId,

@@ -1545,6 +1545,10 @@ export interface ContractSchema {
     schema: JSONObject;
 }
 
+export interface AsyncSchema {
+    schemas: JSONObject;
+}
+
 export interface IQuery {
     integrationAccount(id: string): IntegrationAccount | Promise<IntegrationAccount>;
     integrationAccounts(paging?: CursorPaging, filter?: IntegrationAccountFilter, sorting?: IntegrationAccountSort[]): IntegrationAccountConnection | Promise<IntegrationAccountConnection>;
@@ -1577,6 +1581,7 @@ export interface IQuery {
     accountCredential(id: string): AccountCredential | Promise<AccountCredential>;
     accountCredentials(paging?: CursorPaging, filter?: AccountCredentialFilter, sorting?: AccountCredentialSort[]): AccountCredentialConnection | Promise<AccountCredentialConnection>;
     contractSchema(type: string, address: string, chainId: number): ContractSchema | Promise<ContractSchema>;
+    asyncSchemas(names: string[], accountCredentialId: string, integrationId: string): AsyncSchema | Promise<AsyncSchema>;
 }
 
 export interface IMutation {

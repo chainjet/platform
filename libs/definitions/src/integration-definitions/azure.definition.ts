@@ -44,7 +44,6 @@ export class AzureDefinition extends MultiIntegrationDefinition {
       throw new Error(`Tag scope not found for ${integrationData.integrationKey}`)
     }
     for (const [pathKey, pathValue] of Object.entries(schema.paths)) {
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
       for (const [operationKey, operationValue] of Object.entries(pathValue) as Array<[string, OperationObject]>) {
         if (
           !operationValue.tags ||

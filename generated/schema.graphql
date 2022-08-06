@@ -1119,6 +1119,10 @@ type ContractSchema {
   schema: JSONObject!
 }
 
+type AsyncSchema {
+  schemas: JSONObject!
+}
+
 type Query {
   integrationAccount(
     """The id of the record to find."""
@@ -1316,6 +1320,7 @@ type Query {
     sorting: [AccountCredentialSort!] = []
   ): AccountCredentialConnection!
   contractSchema(type: String!, address: String!, chainId: Int!): ContractSchema!
+  asyncSchemas(names: [String!]!, accountCredentialId: String!, integrationId: String!): AsyncSchema!
 }
 
 input IntegrationAccountFilter {
