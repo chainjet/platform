@@ -1,7 +1,7 @@
 import { BaseEntity } from '@app/common/base/base-entity'
 import { TypegooseQueryService } from '@app/common/TypegooseQueryService'
-import { DeepPartial, Filter, Query, UpdateManyResponse, UpdateOneOptions } from '@nestjs-query/core'
 import { Injectable, Logger } from '@nestjs/common'
+import { DeepPartial, Filter, Query, UpdateManyResponse, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { mongoose, ReturnModelType } from '@typegoose/typegoose'
 import { ObjectId, UpdateResult } from 'mongodb'
 import { FilterQuery, QueryOptions, UpdateQuery } from 'mongoose'

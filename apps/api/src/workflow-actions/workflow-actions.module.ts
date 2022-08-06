@@ -1,6 +1,6 @@
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
-import { NestjsQueryGraphQLModule } from '@nestjs-query/query-graphql'
 import { forwardRef, Module } from '@nestjs/common'
+import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { DefinitionsModule } from '../../../../libs/definitions/src/definitions.module'
 import { AccountCredentialsModule } from '../account-credentials/account-credentials.module'
 import { AuthModule } from '../auth/auth.module'
@@ -19,6 +19,7 @@ import { WorkflowActionService } from './services/workflow-action.service'
   imports: [
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([WorkflowAction, WorkflowNextAction])],
+      dtos: [{ DTOClass: WorkflowAction }, { DTOClass: WorkflowNextAction }],
       assemblers: [WorkflowNextActionAssembler],
       resolvers: [
         {

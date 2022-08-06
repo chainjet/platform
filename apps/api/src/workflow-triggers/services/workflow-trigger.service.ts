@@ -1,7 +1,7 @@
 import { BaseService } from '@app/common/base/base.service'
 import { IntegrationDefinitionFactory } from '@app/definitions'
-import { DeepPartial, UpdateOneOptions } from '@nestjs-query/core'
 import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
+import { DeepPartial, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { mongoose, ReturnModelType } from '@typegoose/typegoose'
 import cronParser from 'cron-parser'
 import _ from 'lodash'

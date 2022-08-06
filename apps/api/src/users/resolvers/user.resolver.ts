@@ -1,7 +1,7 @@
 import { BaseResolver } from '@app/common/base/base.resolver'
-import { Authorizer, InjectAuthorizer } from '@nestjs-query/query-graphql'
-import { Logger, NotFoundException, UseGuards } from '@nestjs/common'
+import { Logger, NotFoundException, UseGuards, UseInterceptors } from '@nestjs/common'
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
+import { AuthorizerInterceptor } from '@ptc-org/nestjs-query-graphql'
 import { ObjectId } from 'bson'
 import { Types } from 'mongoose'
 import { SecurityUtils } from '../../../../../libs/common/src/utils/security.utils'
@@ -13,6 +13,7 @@ import { UserService } from '../services/user.service'
 
 @Resolver(() => User)
 @UseGuards(GraphqlGuard)
+@UseInterceptors(AuthorizerInterceptor(User))
 export class UserResolver extends BaseResolver(User, {
   guards: [GraphqlGuard],
   UpdateDTOClass: UpdateUserInput,
@@ -23,10 +24,7 @@ export class UserResolver extends BaseResolver(User, {
 }) {
   private readonly logger = new Logger(UserResolver.name)
 
-  constructor(
-    protected readonly userService: UserService,
-    @InjectAuthorizer(User) readonly authorizer: Authorizer<User>,
-  ) {
+  constructor(protected readonly userService: UserService) {
     super(userService)
   }
 

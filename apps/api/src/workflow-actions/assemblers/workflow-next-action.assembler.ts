@@ -1,5 +1,5 @@
 import { DefaultEntityAssembler } from '@app/common/base/base.resolver'
-import { Assembler, Class } from '@nestjs-query/core'
+import { Assembler, Class } from '@ptc-org/nestjs-query-core'
 import { ObjectId } from 'mongodb'
 import { WorkflowNextAction } from '../entities/workflow-next-action'
 

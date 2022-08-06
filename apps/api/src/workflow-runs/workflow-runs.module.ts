@@ -1,5 +1,5 @@
-import { NestjsQueryGraphQLModule } from '@nestjs-query/query-graphql'
 import { forwardRef, Module } from '@nestjs/common'
+import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { NestjsQueryTypegooseModule } from '../../../../libs/common/src/NestjsQueryTypegooseModule'
 import { UsersModule } from '../users/users.module'
 import { WorkflowTriggersModule } from '../workflow-triggers/workflow-triggers.module'

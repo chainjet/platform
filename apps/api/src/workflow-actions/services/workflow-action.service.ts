@@ -1,7 +1,7 @@
 import { BaseService } from '@app/common/base/base.service'
 import { ObjectID } from '@app/common/utils/mongodb'
-import { DeepPartial, UpdateOneOptions } from '@nestjs-query/core'
 import { Injectable, Logger, NotFoundException } from '@nestjs/common'
+import { DeepPartial, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
 import { capitalize } from '../../../../../libs/common/src/utils/string.utils'
@@ -133,7 +133,7 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     return createdWorkflowAction
   }
 
-  // TODO are permissions verified here???
+  // TODO permissions are not verified yet!!! Use @OwnedEntity
   async updateOne(
     id: string,
     update: DeepPartial<WorkflowAction>,

@@ -1,6 +1,6 @@
-import { Filter } from '@nestjs-query/core'
-import { Authorizer } from '@nestjs-query/query-graphql'
 import { Injectable } from '@nestjs/common'
+import { Filter } from '@ptc-org/nestjs-query-core'
+import { Authorizer } from '@ptc-org/nestjs-query-graphql'
 import { GqlContext } from '../../auth/typings/gql-context'
 import { User } from '../entities/user'
 

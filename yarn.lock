@@ -1205,25 +1205,6 @@
   resolved "https://registry.yarnpkg.com/@jsdevtools/ono/-/ono-7.1.3.tgz#9df03bbd7c696a5c58885c34aa06da41c8543796"
   integrity sha512-4JQNk+3mVzK3xh2rqd6RB4J46qUR19azEHBneZyTZM+c456qOrbbM/5xcR8huNCCcbVt7+UmizG6GuUvPvKUYg==
 
-"@nestjs-query/core@0.22.0":
-  version "0.22.0"
-  resolved "https://registry.yarnpkg.com/@nestjs-query/core/-/core-0.22.0.tgz#22efc934d95fde55b19b165d369d78efabe4f8ea"
-  integrity sha512-7M4BKkU8C+cfnHM2HBu3LFSRyzCFhh8gnusoNMd8DL6Zm9uTeyDkJplQKj8CUp6I62rc3xvQvtz4t6cbEqu6sg==
-  dependencies:
-    lodash.merge "^4.6.2"
-
-"@nestjs-query/query-graphql@0.22.0":
-  version "0.22.0"
-  resolved "https://registry.yarnpkg.com/@nestjs-query/query-graphql/-/query-graphql-0.22.0.tgz#cdb34987bc8b9071ee330c7a74ec41f4aa7d86ae"
-  integrity sha512-RjitWjFqa72JT8H14GOydzJ8cLBeycTwcHwRwnIYx81HRoyaQlHVsjHFZAf7YYd7y2/On/VDI/S6RYObok0x4w==
-  dependencies:
-    "@nestjs-query/core" "0.22.0"
-    graphql-fields "^2.0.3"
-    lodash.omit "^4.5.0"
-    lower-case-first "^2.0.1"
-    pluralize "^8.0.0"
-    upper-case-first "^2.0.1"
-
 "@nestjs/axios@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@nestjs/axios/-/axios-0.1.0.tgz#6cf93df11ef93b598b3c7411adb980eedd13b3e3"
@@ -1471,6 +1452,38 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
+
+"@ptc-org/nestjs-query-core@1.0.0-alpha.3":
+  version "1.0.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/@ptc-org/nestjs-query-core/-/nestjs-query-core-1.0.0-alpha.3.tgz#7b06fd9350bf64ccfff61ce74c9dd23481aac248"
+  integrity sha512-UU6cyYC+goGmMh5IUOd/TuV0M8jdo5KuYp661G0MBzqFuOcl7gcL4IBsupTl8800mD0p0Vk4pm9+hUpDZ8Wp5A==
+  dependencies:
+    lodash.merge "^4.6.2"
+    reflect-metadata "^0.1.13"
+    tslib "^2.4.0"
+
+"@ptc-org/nestjs-query-core@^1.0.0-alpha.4":
+  version "1.0.0-alpha.4"
+  resolved "https://registry.yarnpkg.com/@ptc-org/nestjs-query-core/-/nestjs-query-core-1.0.0-alpha.4.tgz#f99577685f7e5814b022ceaf9461eb4600898446"
+  integrity sha512-9XW17v84wX8yFI661KVjm6nGQrohfIn/1Zi3xyoecU6q8PD0QUy6sc6Hp0IcnpfjtEVwM4tkrwYgPy5VeVshsA==
+  dependencies:
+    lodash.merge "^4.6.2"
+    reflect-metadata "^0.1.13"
+    tslib "^2.4.0"
+
+"@ptc-org/nestjs-query-graphql@^1.0.0-alpha.5":
+  version "1.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@ptc-org/nestjs-query-graphql/-/nestjs-query-graphql-1.0.0-alpha.5.tgz#8370e92b09af74e759fe5bc3a917a9d929ef46ef"
+  integrity sha512-KMWElI1azPtD/J/i6ZM4iTcsAJER+bW47vfQdsp6qmC2irP/iChKX4blTbyKodkL1ArJHwK7tXMnQJu86sDoWw==
+  dependencies:
+    "@ptc-org/nestjs-query-core" "1.0.0-alpha.3"
+    graphql-fields "^2.0.3"
+    lodash.omit "^4.5.0"
+    lower-case-first "^2.0.2"
+    pluralize "^8.0.0"
+    reflect-metadata "^0.1.13"
+    tslib "^2.4.0"
+    upper-case-first "^2.0.2"
 
 "@rushstack/eslint-patch@^1.1.3":
   version "1.1.4"
@@ -7860,7 +7873,7 @@ lodash.merge@^4.6.2:
 lodash.omit@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.omit/-/lodash.omit-4.5.0.tgz#6eb19ae5a1ee1dd9df0b969e66ce0b7fa30b5e60"
-  integrity sha1-brGa5aHuHdnfC5aeZs4Lf6MLXmA=
+  integrity sha512-XeqSp49hNGmlkj2EJlfrQFIzQ6lXdNro9sddtQzcJY8QaoC2GO0DT7xaIokHeyM+mIT0mPMlPvkYzg2xCuHdZg==
 
 lodash.once@^4.0.0:
   version "4.1.1"
@@ -7931,12 +7944,12 @@ loose-envify@^1.4.0:
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
-lower-case-first@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/lower-case-first/-/lower-case-first-2.0.1.tgz#ecd03e25d9abc32aeab8d52b5fd7072772dd0ccf"
-  integrity sha512-Z5fqHsaDN4FkWtPjTkhZDBy3uD4ir9L/ooqrNzOyyruDW6nCn/05AbC9HupxEIjlIoeT4bdrtChUllcU+cNgmg==
+lower-case-first@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/lower-case-first/-/lower-case-first-2.0.2.tgz#64c2324a2250bf7c37c5901e76a5b5309301160b"
+  integrity sha512-EVm/rR94FJTZi3zefZ82fLWab+GX14LJN4HrWBcuo6Evmsl9hEfnqxgcHCKb9q+mNf6EVdsjx/qucYFIIB84pg==
   dependencies:
-    tslib "^1.10.0"
+    tslib "^2.0.3"
 
 lower-case@^2.0.2:
   version "2.0.2"
@@ -11517,12 +11530,12 @@ upath@^1.1.1:
   resolved "https://registry.yarnpkg.com/upath/-/upath-1.2.0.tgz#8f66dbcd55a883acdae4408af8b035a5044c1894"
   integrity sha512-aZwGpamFO61g3OlfT7OQCHqhGnW43ieH9WZeP7QxN/G/jS4jfqUkZxoryvJgVPEcrl5NL/ggHsSmLMHuH64Lhg==
 
-upper-case-first@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/upper-case-first/-/upper-case-first-2.0.1.tgz#32ab436747d891cc20ab1e43d601cb4d0a7fbf4a"
-  integrity sha512-105J8XqQ+9RxW3l9gHZtgve5oaiR9TIwvmZAMAIZWRHe00T21cdvewKORTlOJf/zXW6VukuTshM+HXZNWz7N5w==
+upper-case-first@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/upper-case-first/-/upper-case-first-2.0.2.tgz#992c3273f882abd19d1e02894cc147117f844324"
+  integrity sha512-514ppYHBaKwfJRK/pNC6c/OxfGa0obSnAl106u97Ed0I625Nin96KAjttZF6ZL3e1XLtphxnqrOi9iWgm+u+bg==
   dependencies:
-    tslib "^1.10.0"
+    tslib "^2.0.3"
 
 uri-js@^4.2.2:
   version "4.2.2"

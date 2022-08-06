@@ -1,7 +1,7 @@
 import { BaseService } from '@app/common/base/base.service'
 import { slugify } from '@app/common/utils/string.utils'
-import { DeepPartial, DeleteOneOptions, UpdateOneOptions } from '@nestjs-query/core'
 import { BadRequestException, forwardRef, Inject, Injectable, Logger, NotFoundException } from '@nestjs/common'
+import { DeepPartial, DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
 import { ProjectService } from '../../projects/services/project.service'

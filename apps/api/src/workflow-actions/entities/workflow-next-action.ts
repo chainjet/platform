@@ -1,7 +1,7 @@
 import { EntityRef } from '@app/common/decorators/entity-ref.decorator'
 import { Reference } from '@app/common/typings/mongodb'
-import { FilterableField } from '@nestjs-query/query-graphql'
 import { Field, ID, ObjectType } from '@nestjs/graphql'
+import { FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
 import { WorkflowAction } from './workflow-action'
 

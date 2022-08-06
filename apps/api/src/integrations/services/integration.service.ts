@@ -1,6 +1,6 @@
 import { BaseService } from '@app/common/base/base.service'
-import { DeepPartial } from '@nestjs-query/core'
 import { Injectable, Logger } from '@nestjs/common'
+import { DeepPartial } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
 import { Integration } from '../entities/integration'

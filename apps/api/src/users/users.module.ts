@@ -1,6 +1,6 @@
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
-import { NestjsQueryGraphQLModule } from '@nestjs-query/query-graphql'
 import { Module } from '@nestjs/common'
+import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { EmailsModule } from '../../../../libs/emails/src'
 import { User } from './entities/user'
 import { UserProvider } from './entities/user-provider'

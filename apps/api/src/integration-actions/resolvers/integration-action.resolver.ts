@@ -1,6 +1,6 @@
 import { BaseResolver, SearchableQueryArgsType } from '@app/common/base/base.resolver'
-import { ConnectionType, CursorConnectionType } from '@nestjs-query/query-graphql'
 import { Args, ArgsType, Query, Resolver } from '@nestjs/graphql'
+import { CursorConnectionType, QueryArgsType } from '@ptc-org/nestjs-query-graphql'
 import { IntegrationAction } from '../entities/integration-action'
 import { IntegrationActionService } from '../services/integration-action.service'
 
@@ -23,7 +23,7 @@ export class IntegrationActionResolver extends BaseResolver(IntegrationAction, {
   /**
    * This override makes integration actions searchable
    */
-  @Query(() => ConnectionType(IntegrationAction, {}))
+  @Query(() => QueryArgsType(IntegrationAction).ConnectionType)
   integrationActions(@Args() query: IntegrationActionQuery): Promise<CursorConnectionType<IntegrationAction>> {
     return super.queryMany(query)
   }

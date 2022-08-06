@@ -1,5 +1,5 @@
-import { FilterableField } from '@nestjs-query/query-graphql'
 import { GraphQLISODateTime, ID, ObjectType } from '@nestjs/graphql'
+import { FilterableField } from '@ptc-org/nestjs-query-graphql'
 import mongoose from 'mongoose'
 
 @ObjectType({ isAbstract: true })

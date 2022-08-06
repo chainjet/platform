@@ -1,6 +1,6 @@
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
-import { NestjsQueryGraphQLModule } from '@nestjs-query/query-graphql'
 import { forwardRef, Module } from '@nestjs/common'
+import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { DefinitionsModule } from '../../../../libs/definitions/src'
 import { RunnerModule } from '../../../runner/src/runner.module'
 import { AccountCredentialsModule } from '../account-credentials/account-credentials.module'
@@ -20,7 +20,7 @@ import { WorkflowTriggerService } from './services/workflow-trigger.service'
   imports: [
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([WorkflowTrigger])],
-      resolvers: [],
+      dtos: [{ DTOClass: WorkflowTrigger }],
     }),
     AuthModule,
     UsersModule, // required for GraphqlGuard

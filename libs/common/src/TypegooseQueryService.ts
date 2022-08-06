@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { NotFoundException } from '@nestjs/common'
 import {
   AggregateQuery,
   AggregateResponse,
@@ -10,12 +11,12 @@ import {
   FindByIdOptions,
   FindRelationOptions,
   GetByIdOptions,
+  ModifyRelationOptions,
   Query,
   QueryService,
   UpdateManyResponse,
   UpdateOneOptions,
-} from '@nestjs-query/core'
-import { NotFoundException } from '@nestjs/common'
+} from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
 import escapeRegExp from 'lodash.escaperegexp'
 import merge from 'lodash.merge'
@@ -41,7 +42,7 @@ export interface TypegooseQueryServiceOpts {
  * }
  * ```
  */
-export class TypegooseQueryService<Entity> implements QueryService<Entity> {
+export class TypegooseQueryService<Entity> implements QueryService<Entity, DeepPartial<Entity>, DeepPartial<Entity>> {
   protected readonly documentToObjectOptions: ToObjectOptions
 
   protected mongoOperatorMapper: Record<string, string> = {
@@ -119,7 +120,7 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
   }
 
   /**
-   * Query for multiple entities, using a Query from `@nestjs-query/core`.
+   * Query for multiple entities, using a Query from `@ptc-org/nestjs-query-core`.
    *
    * @example
    * ```ts
@@ -146,7 +147,7 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
     return entities.map((doc) => doc.toObject(this.documentToObjectOptions) as Entity)
   }
 
-  aggregate(): Promise<AggregateResponse<Entity>> {
+  aggregate(filter: Filter<Entity>, aggregate: AggregateQuery<Entity>): Promise<AggregateResponse<Entity>[]> {
     throw new Error('Not implemented yet')
   }
 
@@ -251,7 +252,7 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
   }
 
   /**
-   * Update multiple entities with a `@nestjs-query/core` Filter.
+   * Update multiple entities with a `@ptc-org/nestjs-query-core` Filter.
    *
    * @example
    * ```ts
@@ -293,7 +294,7 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
   }
 
   /**
-   * Delete multiple records with a `@nestjs-query/core` `Filter`.
+   * Delete multiple records with a `@ptc-org/nestjs-query-core` `Filter`.
    *
    * @example
    *
@@ -323,20 +324,20 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
   aggregateRelations<Relation>(
     RelationClass: Class<Relation>,
     relationName: string,
-    entities: Entity[],
+    dto: Entity,
     filter: Filter<Relation>,
     aggregate: AggregateQuery<Relation>,
-  ): Promise<Map<Entity, AggregateResponse<Relation>>>
+  ): Promise<AggregateResponse<Relation>[]>
 
   aggregateRelations<Relation>(
     RelationClass: Class<Relation>,
     relationName: string,
-    dto: Entity,
+    dtos: Entity[],
     filter: Filter<Relation>,
     aggregate: AggregateQuery<Relation>,
-  ): Promise<AggregateResponse<Relation>>
+  ): Promise<Map<Entity, AggregateResponse<Relation>[]>>
 
-  aggregateRelations<Relation>(): Promise<AggregateResponse<Relation> | Map<Entity, AggregateResponse<Relation>>> {
+  aggregateRelations<Relation>(): Promise<AggregateResponse<Relation>[] | Map<Entity, AggregateResponse<Relation>[]>> {
     throw new Error('Not implemented yet')
   }
 
@@ -472,6 +473,15 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity> {
   }
 
   setRelation(): Promise<Entity> {
+    throw new Error('Not implemented yet')
+  }
+
+  setRelations<Relation>(
+    relationName: string,
+    id: string | number,
+    relationIds: (string | number)[],
+    opts?: ModifyRelationOptions<Entity, Relation>,
+  ): Promise<Entity> {
     throw new Error('Not implemented yet')
   }
 }

@@ -1,5 +1,5 @@
-import { FilterableField } from '@nestjs-query/query-graphql'
 import { Field, ID, ObjectType } from '@nestjs/graphql'
+import { FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
 import { BaseEntity } from '../../../../../libs/common/src/base/base-entity'
 import { EntityRef } from '../../../../../libs/common/src/decorators/entity-ref.decorator'

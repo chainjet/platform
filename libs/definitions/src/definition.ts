@@ -1,6 +1,6 @@
 import { SchemaService } from '@app/definitions/schema/services/schema.service'
-import { DeepPartial } from '@nestjs-query/core'
 import { Logger } from '@nestjs/common'
+import { DeepPartial } from '@ptc-org/nestjs-query-core'
 import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/integration-trigger'
 import { Request } from 'express'
 import { JSONSchema7 } from 'json-schema'

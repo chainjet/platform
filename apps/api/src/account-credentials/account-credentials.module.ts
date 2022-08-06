@@ -1,7 +1,7 @@
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
-import { NestjsQueryGraphQLModule } from '@nestjs-query/query-graphql'
 import { forwardRef, Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
+import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { RunnerModule } from '../../../runner/src/runner.module'
 import { IntegrationAccountsModule } from '../integration-accounts/integration-accounts.module'
 import { IntegrationsModule } from '../integrations/integrations.module'
@@ -15,7 +15,7 @@ import { AccountCredentialService } from './services/account-credentials.service
     ConfigModule.forRoot(),
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([AccountCredential])],
-      resolvers: [],
+      dtos: [{ DTOClass: AccountCredential }],
     }),
     UsersModule, // required for GraphqlGuard
     IntegrationsModule,

@@ -1,9 +1,9 @@
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
-import { NestjsQueryGraphQLModule } from '@nestjs-query/query-graphql'
 import { Module } from '@nestjs/common'
+import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { IntegrationAccount } from './entities/integration-account'
 import { IntegrationAccountResolver } from './resolvers/integration-account.resolver'
-import { IntegrationAccountService } from './services/integration-account.service'
+import { IntegrationAccountAuthorizer, IntegrationAccountService } from './services/integration-account.service'
 
 @Module({
   imports: [
@@ -12,7 +12,7 @@ import { IntegrationAccountService } from './services/integration-account.servic
       resolvers: [],
     }),
   ],
-  providers: [IntegrationAccountResolver, IntegrationAccountService],
+  providers: [IntegrationAccountResolver, IntegrationAccountService, IntegrationAccountAuthorizer],
   exports: [IntegrationAccountService],
 })
 export class IntegrationAccountsModule {}

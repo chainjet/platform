@@ -1,6 +1,6 @@
 import { BaseService } from '@app/common/base/base.service'
-import { DeepPartial, UpdateOneOptions } from '@nestjs-query/core'
 import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
+import { DeepPartial, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { ObjectId } from 'bson'
 import { InjectModel } from 'nestjs-typegoose'

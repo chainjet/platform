@@ -1,6 +1,6 @@
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
-import { NestjsQueryGraphQLModule } from '@nestjs-query/query-graphql'
 import { forwardRef, Module } from '@nestjs/common'
+import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { UsersModule } from '../users/users.module'
 import { WorkflowsModule } from '../workflows/workflows.module'
 import { Project } from './entities/project'
@@ -11,7 +11,7 @@ import { ProjectService } from './services/project.service'
   imports: [
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([Project])],
-      resolvers: [],
+      dtos: [{ DTOClass: Project }],
     }),
     UsersModule,
     forwardRef(() => WorkflowsModule),

@@ -1,6 +1,6 @@
 import { BaseEntity } from '@app/common/base/base-entity'
-import { FilterableField } from '@nestjs-query/query-graphql'
 import { Field, InputType, Int, ObjectType } from '@nestjs/graphql'
+import { FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
 import { IsEmail } from 'class-validator'
 

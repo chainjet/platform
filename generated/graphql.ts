@@ -520,7 +520,7 @@ export interface AccountCredentialUpdateFilter {
     integrationAccount?: IDFilterComparison;
 }
 
-export interface DeleteOneInput {
+export interface DeleteOneAccountCredentialInput {
     id: string;
 }
 
@@ -577,6 +577,10 @@ export interface WorkflowUpdateFilter {
     slug?: StringFieldComparison;
 }
 
+export interface DeleteOneWorkflowInput {
+    id: string;
+}
+
 export interface DeleteManyWorkflowsInput {
     filter: WorkflowDeleteFilter;
 }
@@ -628,6 +632,10 @@ export interface ProjectUpdateFilter {
     owner?: IDFilterComparison;
     name?: StringFieldComparison;
     slug?: StringFieldComparison;
+}
+
+export interface DeleteOneProjectInput {
+    id: string;
 }
 
 export interface DeleteManyProjectsInput {
@@ -686,6 +694,10 @@ export interface WorkflowActionUpdateFilter {
     owner?: IDFilterComparison;
     workflow?: IDFilterComparison;
     isRootAction?: BooleanFieldComparison;
+}
+
+export interface DeleteOneWorkflowActionInput {
+    id: string;
 }
 
 export interface DeleteManyWorkflowActionsInput {
@@ -748,6 +760,10 @@ export interface WorkflowTriggerUpdateFilter {
     workflow?: IDFilterComparison;
 }
 
+export interface DeleteOneWorkflowTriggerInput {
+    id: string;
+}
+
 export interface DeleteManyWorkflowTriggersInput {
     filter: WorkflowTriggerDeleteFilter;
 }
@@ -794,27 +810,6 @@ export interface PageInfo {
 export interface IntegrationAccountConnection {
     pageInfo: PageInfo;
     edges: IntegrationAccountEdge[];
-}
-
-export interface IntegrationAccountCountAggregate {
-    id?: number;
-    createdAt?: number;
-    key?: number;
-    name?: number;
-}
-
-export interface IntegrationAccountMinAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    key?: string;
-    name?: string;
-}
-
-export interface IntegrationAccountMaxAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    key?: string;
-    name?: string;
 }
 
 export interface IntegrationTrigger {
@@ -885,35 +880,6 @@ export interface IntegrationActionConnection {
     edges: IntegrationActionEdge[];
 }
 
-export interface IntegrationActionCountAggregate {
-    id?: number;
-    createdAt?: number;
-    integration?: number;
-    key?: number;
-    name?: number;
-    deprecated?: number;
-    category?: number;
-    skipAuth?: number;
-}
-
-export interface IntegrationActionMinAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    integration?: string;
-    key?: string;
-    name?: string;
-    category?: string;
-}
-
-export interface IntegrationActionMaxAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    integration?: string;
-    key?: string;
-    name?: string;
-    category?: string;
-}
-
 export interface IntegrationTriggerEdge {
     node: IntegrationTrigger;
     cursor: ConnectionCursor;
@@ -922,35 +888,6 @@ export interface IntegrationTriggerEdge {
 export interface IntegrationTriggerConnection {
     pageInfo: PageInfo;
     edges: IntegrationTriggerEdge[];
-}
-
-export interface IntegrationTriggerCountAggregate {
-    id?: number;
-    createdAt?: number;
-    integration?: number;
-    key?: number;
-    name?: number;
-    deprecated?: number;
-    category?: number;
-    skipAuth?: number;
-}
-
-export interface IntegrationTriggerMinAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    integration?: string;
-    key?: string;
-    name?: string;
-    category?: string;
-}
-
-export interface IntegrationTriggerMaxAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    integration?: string;
-    key?: string;
-    name?: string;
-    category?: string;
 }
 
 export interface IntegrationCategory {
@@ -967,53 +904,6 @@ export interface IntegrationEdge {
 export interface IntegrationConnection {
     pageInfo: PageInfo;
     edges: IntegrationEdge[];
-}
-
-export interface IntegrationCountAggregate {
-    id?: number;
-    createdAt?: number;
-    key?: number;
-    name?: number;
-    version?: number;
-    deprecated?: number;
-    parentKey?: number;
-    integrationCategories?: number;
-    numberOfTriggers?: number;
-    numberOfActions?: number;
-}
-
-export interface IntegrationSumAggregate {
-    numberOfTriggers?: number;
-    numberOfActions?: number;
-}
-
-export interface IntegrationAvgAggregate {
-    numberOfTriggers?: number;
-    numberOfActions?: number;
-}
-
-export interface IntegrationMinAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    key?: string;
-    name?: string;
-    version?: string;
-    parentKey?: string;
-    integrationCategories?: string;
-    numberOfTriggers?: number;
-    numberOfActions?: number;
-}
-
-export interface IntegrationMaxAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    key?: string;
-    name?: string;
-    version?: string;
-    parentKey?: string;
-    integrationCategories?: string;
-    numberOfTriggers?: number;
-    numberOfActions?: number;
 }
 
 export interface IntegrationActionsConnection {
@@ -1045,27 +935,6 @@ export interface GenerateApiTokenPayload {
 export interface UserEdge {
     node: User;
     cursor: ConnectionCursor;
-}
-
-export interface UserCountAggregate {
-    id?: number;
-    createdAt?: number;
-    username?: number;
-    email?: number;
-}
-
-export interface UserMinAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    username?: string;
-    email?: string;
-}
-
-export interface UserMaxAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    username?: string;
-    email?: string;
 }
 
 export interface Project {
@@ -1156,33 +1025,6 @@ export interface WorkflowConnection {
     edges: WorkflowEdge[];
 }
 
-export interface WorkflowCountAggregate {
-    id?: number;
-    createdAt?: number;
-    owner?: number;
-    project?: number;
-    name?: number;
-    slug?: number;
-}
-
-export interface WorkflowMinAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    owner?: string;
-    project?: string;
-    name?: string;
-    slug?: string;
-}
-
-export interface WorkflowMaxAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    owner?: string;
-    project?: string;
-    name?: string;
-    slug?: string;
-}
-
 export interface WorkflowActionEdge {
     node: WorkflowAction;
     cursor: ConnectionCursor;
@@ -1210,30 +1052,6 @@ export interface ProjectEdge {
 export interface ProjectConnection {
     pageInfo: PageInfo;
     edges: ProjectEdge[];
-}
-
-export interface ProjectCountAggregate {
-    id?: number;
-    createdAt?: number;
-    owner?: number;
-    name?: number;
-    slug?: number;
-}
-
-export interface ProjectMinAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    owner?: string;
-    name?: string;
-    slug?: string;
-}
-
-export interface ProjectMaxAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    owner?: string;
-    name?: string;
-    slug?: string;
 }
 
 export interface AuthToken {
@@ -1314,30 +1132,6 @@ export interface WorkflowRunConnection {
     edges: WorkflowRunEdge[];
 }
 
-export interface WorkflowRunCountAggregate {
-    id?: number;
-    createdAt?: number;
-    workflow?: number;
-    status?: number;
-    startedBy?: number;
-}
-
-export interface WorkflowRunMinAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    workflow?: string;
-    status?: WorkflowRunStatus;
-    startedBy?: WorkflowRunStartedByOptions;
-}
-
-export interface WorkflowRunMaxAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    workflow?: string;
-    status?: WorkflowRunStatus;
-    startedBy?: WorkflowRunStartedByOptions;
-}
-
 export interface WorkflowRunTriggerEdge {
     node: WorkflowRunTrigger;
     cursor: ConnectionCursor;
@@ -1348,18 +1142,6 @@ export interface WorkflowRunTriggerConnection {
     edges: WorkflowRunTriggerEdge[];
 }
 
-export interface WorkflowRunTriggerCountAggregate {
-    status?: number;
-}
-
-export interface WorkflowRunTriggerMinAggregate {
-    status?: WorkflowRunStatus;
-}
-
-export interface WorkflowRunTriggerMaxAggregate {
-    status?: WorkflowRunStatus;
-}
-
 export interface WorkflowRunActionEdge {
     node: WorkflowRunAction;
     cursor: ConnectionCursor;
@@ -1368,24 +1150,6 @@ export interface WorkflowRunActionEdge {
 export interface WorkflowRunActionConnection {
     pageInfo: PageInfo;
     edges: WorkflowRunActionEdge[];
-}
-
-export interface WorkflowRunActionCountAggregate {
-    id?: number;
-    createdAt?: number;
-    status?: number;
-}
-
-export interface WorkflowRunActionMinAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    status?: WorkflowRunStatus;
-}
-
-export interface WorkflowRunActionMaxAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    status?: WorkflowRunStatus;
 }
 
 export interface WorkflowTriggerDeleteResponse {
@@ -1414,27 +1178,6 @@ export interface WorkflowTriggerConnection {
     edges: WorkflowTriggerEdge[];
 }
 
-export interface WorkflowTriggerCountAggregate {
-    id?: number;
-    createdAt?: number;
-    owner?: number;
-    workflow?: number;
-}
-
-export interface WorkflowTriggerMinAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    owner?: string;
-    workflow?: string;
-}
-
-export interface WorkflowTriggerMaxAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    owner?: string;
-    workflow?: string;
-}
-
 export interface WorkflowActionDeleteResponse {
     id?: string;
     createdAt?: DateTime;
@@ -1454,28 +1197,6 @@ export interface WorkflowActionConnection {
     edges: WorkflowActionEdge[];
 }
 
-export interface WorkflowActionCountAggregate {
-    id?: number;
-    createdAt?: number;
-    owner?: number;
-    workflow?: number;
-    isRootAction?: number;
-}
-
-export interface WorkflowActionMinAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    owner?: string;
-    workflow?: string;
-}
-
-export interface WorkflowActionMaxAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    owner?: string;
-    workflow?: string;
-}
-
 export interface WorkflowNextActionEdge {
     node: WorkflowNextAction;
     cursor: ConnectionCursor;
@@ -1484,18 +1205,6 @@ export interface WorkflowNextActionEdge {
 export interface WorkflowNextActionConnection {
     pageInfo: PageInfo;
     edges: WorkflowNextActionEdge[];
-}
-
-export interface WorkflowNextActionCountAggregate {
-    action?: number;
-}
-
-export interface WorkflowNextActionMinAggregate {
-    action?: string;
-}
-
-export interface WorkflowNextActionMaxAggregate {
-    action?: string;
 }
 
 export interface AccountCredentialDeleteResponse {
@@ -1516,27 +1225,6 @@ export interface AccountCredentialEdge {
 export interface AccountCredentialConnection {
     pageInfo: PageInfo;
     edges: AccountCredentialEdge[];
-}
-
-export interface AccountCredentialCountAggregate {
-    id?: number;
-    createdAt?: number;
-    owner?: number;
-    integrationAccount?: number;
-}
-
-export interface AccountCredentialMinAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    owner?: string;
-    integrationAccount?: string;
-}
-
-export interface AccountCredentialMaxAggregate {
-    id?: string;
-    createdAt?: DateTime;
-    owner?: string;
-    integrationAccount?: string;
 }
 
 export interface ContractSchema {
@@ -1601,31 +1289,31 @@ export interface IMutation {
     createManyAccountCredentials(input: CreateManyAccountCredentialsInput): AccountCredential[] | Promise<AccountCredential[]>;
     updateOneAccountCredential(input: UpdateOneAccountCredentialInput): AccountCredential | Promise<AccountCredential>;
     updateManyAccountCredentials(input: UpdateManyAccountCredentialsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
-    deleteOneAccountCredential(input: DeleteOneInput): AccountCredentialDeleteResponse | Promise<AccountCredentialDeleteResponse>;
+    deleteOneAccountCredential(input: DeleteOneAccountCredentialInput): AccountCredentialDeleteResponse | Promise<AccountCredentialDeleteResponse>;
     deleteManyAccountCredentials(input: DeleteManyAccountCredentialsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
     createOneWorkflow(input: CreateOneWorkflowInput): Workflow | Promise<Workflow>;
     createManyWorkflows(input: CreateManyWorkflowsInput): Workflow[] | Promise<Workflow[]>;
     updateOneWorkflow(input: UpdateOneWorkflowInput): Workflow | Promise<Workflow>;
     updateManyWorkflows(input: UpdateManyWorkflowsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
-    deleteOneWorkflow(input: DeleteOneInput): WorkflowDeleteResponse | Promise<WorkflowDeleteResponse>;
+    deleteOneWorkflow(input: DeleteOneWorkflowInput): WorkflowDeleteResponse | Promise<WorkflowDeleteResponse>;
     deleteManyWorkflows(input: DeleteManyWorkflowsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
     createOneProject(input: CreateOneProjectInput): Project | Promise<Project>;
     createManyProjects(input: CreateManyProjectsInput): Project[] | Promise<Project[]>;
     updateOneProject(input: UpdateOneProjectInput): Project | Promise<Project>;
     updateManyProjects(input: UpdateManyProjectsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
-    deleteOneProject(input: DeleteOneInput): ProjectDeleteResponse | Promise<ProjectDeleteResponse>;
+    deleteOneProject(input: DeleteOneProjectInput): ProjectDeleteResponse | Promise<ProjectDeleteResponse>;
     deleteManyProjects(input: DeleteManyProjectsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
     createOneWorkflowAction(input: CreateOneWorkflowActionInput): WorkflowAction | Promise<WorkflowAction>;
     createManyWorkflowActions(input: CreateManyWorkflowActionsInput): WorkflowAction[] | Promise<WorkflowAction[]>;
     updateOneWorkflowAction(input: UpdateOneWorkflowActionInput): WorkflowAction | Promise<WorkflowAction>;
     updateManyWorkflowActions(input: UpdateManyWorkflowActionsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
-    deleteOneWorkflowAction(input: DeleteOneInput): WorkflowActionDeleteResponse | Promise<WorkflowActionDeleteResponse>;
+    deleteOneWorkflowAction(input: DeleteOneWorkflowActionInput): WorkflowActionDeleteResponse | Promise<WorkflowActionDeleteResponse>;
     deleteManyWorkflowActions(input: DeleteManyWorkflowActionsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
     createOneWorkflowTrigger(input: CreateOneWorkflowTriggerInput): WorkflowTrigger | Promise<WorkflowTrigger>;
     createManyWorkflowTriggers(input: CreateManyWorkflowTriggersInput): WorkflowTrigger[] | Promise<WorkflowTrigger[]>;
     updateOneWorkflowTrigger(input: UpdateOneWorkflowTriggerInput): WorkflowTrigger | Promise<WorkflowTrigger>;
     updateManyWorkflowTriggers(input: UpdateManyWorkflowTriggersInput): UpdateManyResponse | Promise<UpdateManyResponse>;
-    deleteOneWorkflowTrigger(input: DeleteOneInput): WorkflowTriggerDeleteResponse | Promise<WorkflowTriggerDeleteResponse>;
+    deleteOneWorkflowTrigger(input: DeleteOneWorkflowTriggerInput): WorkflowTriggerDeleteResponse | Promise<WorkflowTriggerDeleteResponse>;
     deleteManyWorkflowTriggers(input: DeleteManyWorkflowTriggersInput): DeleteManyResponse | Promise<DeleteManyResponse>;
     checkWorkflowTrigger(id: string): WorkflowTrigger | Promise<WorkflowTrigger>;
 }

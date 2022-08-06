@@ -1,6 +1,6 @@
 import { TypegooseQueryService } from '@app/common/TypegooseQueryService'
-import { getQueryServiceToken } from '@nestjs-query/core'
 import { DynamicModule, FactoryProvider } from '@nestjs/common'
+import { getQueryServiceToken } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { getModelToken, TypegooseModule } from 'nestjs-typegoose'
 import { TypegooseClass } from 'nestjs-typegoose/dist/typegoose-class.interface'

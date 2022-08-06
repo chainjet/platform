@@ -1,12 +1,17 @@
 import { BaseResolver, SearchableQueryArgsType } from '@app/common/base/base.resolver'
-import { ConnectionType, CursorConnectionType } from '@nestjs-query/query-graphql'
+import { NotOwnedAuthorizer } from '@app/common/base/owned.authorizer'
+import { Injectable } from '@nestjs/common'
 import { Args, ArgsType, Query, Resolver } from '@nestjs/graphql'
+import { CursorConnectionType, QueryArgsType } from '@ptc-org/nestjs-query-graphql'
 import { GraphQLString } from 'graphql'
 import { Integration } from '../entities/integration'
 import { integrationCategories, IntegrationCategory } from '../entities/integration-categories'
 import { IntegrationService } from '../services/integration.service'
 
 // TODO set default filter to deprecated: false
+
+@Injectable()
+export class IntegrationAuthorizer extends NotOwnedAuthorizer<Integration> {}
 
 @ArgsType()
 export class IntegrationQuery extends SearchableQueryArgsType(Integration) {}
@@ -27,7 +32,7 @@ export class IntegrationResolver extends BaseResolver(Integration, {
   /**
    * This override makes integrations searchable
    */
-  @Query(() => ConnectionType(Integration, {}))
+  @Query(() => QueryArgsType(Integration).ConnectionType)
   integrations(@Args() query: IntegrationQuery): Promise<CursorConnectionType<Integration>> {
     return super.queryMany(query)
   }

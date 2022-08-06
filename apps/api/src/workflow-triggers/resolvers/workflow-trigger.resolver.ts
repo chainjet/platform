@@ -1,8 +1,8 @@
 import { BaseResolver } from '@app/common/base/base.resolver'
 import { OwnedAuthorizer } from '@app/common/base/owned.authorizer'
-import { Authorizer, InjectAuthorizer } from '@nestjs-query/query-graphql'
-import { Injectable, UseGuards } from '@nestjs/common'
+import { Injectable, UseGuards, UseInterceptors } from '@nestjs/common'
 import { Args, Mutation, Resolver } from '@nestjs/graphql'
+import { AuthorizerInterceptor } from '@ptc-org/nestjs-query-graphql'
 import { GraphQLString } from 'graphql'
 import { RunnerService } from '../../../../runner/src/services/runner.service'
 import { GraphqlGuard } from '../../auth/guards/graphql.guard'
@@ -15,6 +15,7 @@ export class WorkflowTriggerAuthorizer extends OwnedAuthorizer<WorkflowTrigger> 
 
 @Resolver(() => WorkflowTrigger)
 @UseGuards(GraphqlGuard)
+@UseInterceptors(AuthorizerInterceptor(WorkflowTrigger))
 export class WorkflowTriggerResolver extends BaseResolver(WorkflowTrigger, {
   CreateDTOClass: CreateWorkflowTriggerInput,
   UpdateDTOClass: UpdateWorkflowTriggerInput,
@@ -23,7 +24,6 @@ export class WorkflowTriggerResolver extends BaseResolver(WorkflowTrigger, {
   constructor(
     private readonly workflowTriggerService: WorkflowTriggerService,
     private readonly runnerService: RunnerService,
-    @InjectAuthorizer(WorkflowTrigger) readonly authorizer: Authorizer<WorkflowTrigger>,
   ) {
     super(workflowTriggerService)
   }

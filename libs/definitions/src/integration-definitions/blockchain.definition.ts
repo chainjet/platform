@@ -3,7 +3,7 @@ import { ExplorerService } from '@blockchain/blockchain/explorer/explorer.servic
 import { MulticallService } from '@blockchain/blockchain/multicall/multicall.service'
 import { ProviderService } from '@blockchain/blockchain/provider/provider.service'
 import { eventsAbiToOutputJsonSchema, methodsAbiToOutputJsonSchema } from '@blockchain/blockchain/utils/abi.utils'
-import { DeepPartial } from '@nestjs-query/core'
+import { DeepPartial } from '@ptc-org/nestjs-query-core'
 import { IntegrationAction } from 'apps/api/src/integration-actions/entities/integration-action'
 import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/integration-trigger'
 import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-action'

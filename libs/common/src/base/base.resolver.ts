@@ -1,3 +1,4 @@
+import { ArgsType, Field } from '@nestjs/graphql'
 import {
   Assembler,
   AssemblerQueryService,
@@ -5,21 +6,17 @@ import {
   DeepPartial,
   DefaultAssembler,
   QueryService,
-} from '@nestjs-query/core'
-import { getAssemblerDeserializer } from '@nestjs-query/core/dist/src/assemblers/assembler.deserializer'
+} from '@ptc-org/nestjs-query-core'
+import { getAssemblerDeserializer } from '@ptc-org/nestjs-query-core/src/assemblers/assembler.deserializer'
 import {
   CRUDResolver,
   CRUDResolverOpts,
   PagingStrategies,
   QueryArgsType,
   ReadResolverOpts,
-  StaticQueryArgsType,
-} from '@nestjs-query/query-graphql'
-import {
-  MergePagingStrategyOpts,
-  ResolverClass,
-} from '@nestjs-query/query-graphql/dist/src/resolvers/resolver.interface'
-import { ArgsType, Field } from '@nestjs/graphql'
+} from '@ptc-org/nestjs-query-graphql'
+import { MergePagingStrategyOpts, ResolverClass } from '@ptc-org/nestjs-query-graphql/src/resolvers/resolver.interface'
+import { StaticQueryType } from '@ptc-org/nestjs-query-graphql/src/types/query'
 import { plainToClass } from 'class-transformer'
 import { ObjectId } from 'mongodb'
 
@@ -58,7 +55,7 @@ function getEntityAssembler<From, To, C = DeepPartial<From>, CE = DeepPartial<To
 
 const getResolverToken = <DTO>(DTOClass: Class<DTO>): string => `${DTOClass.name}AutoResolver`
 
-export function SearchableQueryArgsType<DTO>(DTOClass: Class<DTO>): StaticQueryArgsType<DTO> {
+export function SearchableQueryArgsType<DTO>(DTOClass: Class<DTO>): StaticQueryType<DTO, PagingStrategies.CURSOR> {
   @ArgsType()
   class QueryArgsTypeWithSearch extends QueryArgsType(DTOClass) {
     @Field({ nullable: true })

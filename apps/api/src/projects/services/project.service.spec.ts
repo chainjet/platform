@@ -1,5 +1,5 @@
-import { DeepPartial } from '@nestjs-query/core'
 import { Test, TestingModule } from '@nestjs/testing'
+import { DeepPartial } from '@ptc-org/nestjs-query-core'
 import { ObjectID } from 'mongodb'
 import { TypegooseModule } from 'nestjs-typegoose'
 import { closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'

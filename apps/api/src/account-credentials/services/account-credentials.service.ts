@@ -1,7 +1,7 @@
 import { BaseService } from '@app/common/base/base.service'
-import { DeepPartial, UpdateOneOptions } from '@nestjs-query/core'
 import { forwardRef, Inject, Injectable, Logger } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
+import { DeepPartial, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
 import CryptoJS from 'crypto-js'
 import { InjectModel } from 'nestjs-typegoose'

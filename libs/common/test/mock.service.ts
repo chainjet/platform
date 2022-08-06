@@ -1,5 +1,5 @@
-import { DeepPartial } from '@nestjs-query/core'
 import { Injectable } from '@nestjs/common'
+import { DeepPartial } from '@ptc-org/nestjs-query-core'
 import { plainToClass } from 'class-transformer'
 import { AuthService } from '../../../apps/api/src/auth/services/auth.service'
 import { IntegrationAction } from '../../../apps/api/src/integration-actions/entities/integration-action'

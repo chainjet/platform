@@ -1,4 +1,4 @@
-import { BeforeCreateOne, CreateOneInputType } from '@nestjs-query/query-graphql'
+import { BeforeCreateOne, CreateOneInputType } from '@ptc-org/nestjs-query-graphql'
 import { GqlContext } from '../../../../apps/api/src/auth/typings/gql-context'
 
 export interface OwnedEntityOptions {
@@ -6,7 +6,6 @@ export interface OwnedEntityOptions {
 }
 
 export function OwnedEntity(opts: OwnedEntityOptions = {}): ClassDecorator {
-  // eslint-disable-next-line @typescript-eslint/ban-types
   return <T extends Function>(target: T): T => {
     const ownerField = opts.ownerField ?? 'owner'
 

@@ -1,9 +1,9 @@
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
-import { NestjsQueryGraphQLModule } from '@nestjs-query/query-graphql'
 import { Module } from '@nestjs/common'
+import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { IntegrationTrigger } from './entities/integration-trigger'
 import { IntegrationTriggerResolver } from './resolvers/integration-trigger.resolver'
-import { IntegrationTriggerService } from './services/integration-trigger.service'
+import { IntegrationTriggerAuthorizer, IntegrationTriggerService } from './services/integration-trigger.service'
 
 @Module({
   imports: [
@@ -12,7 +12,7 @@ import { IntegrationTriggerService } from './services/integration-trigger.servic
       resolvers: [],
     }),
   ],
-  providers: [IntegrationTriggerResolver, IntegrationTriggerService],
+  providers: [IntegrationTriggerResolver, IntegrationTriggerService, IntegrationTriggerAuthorizer],
   exports: [IntegrationTriggerService],
 })
 export class IntegrationTriggersModule {}

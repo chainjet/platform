@@ -1,17 +1,14 @@
-import { Class } from '@nestjs-query/core'
-import { Relation } from '@nestjs-query/query-graphql'
+import { Class } from '@ptc-org/nestjs-query-core'
+import { CursorConnection, Relation } from '@ptc-org/nestjs-query-graphql'
 import {
-  Connection,
-  ConnectionTypeFunc,
-  RelationDecoratorOpts,
+  RelationOneDecoratorOpts,
   RelationTypeFunc,
-} from '@nestjs-query/query-graphql/dist/src/decorators/relation.decorator'
+} from '@ptc-org/nestjs-query-graphql/src/decorators/relation.decorator'
 
 export function EntityRef<DTO, Rel>(
   name: string,
   relationTypeFunc: RelationTypeFunc<Rel>,
-  options?: RelationDecoratorOpts<Rel>,
-  // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+  options?: RelationOneDecoratorOpts<Rel>,
 ): <Cls extends Class<DTO>>(DTOClass: Cls) => void | Cls {
   return Relation(name, relationTypeFunc, {
     disableUpdate: true,
@@ -22,11 +19,10 @@ export function EntityRef<DTO, Rel>(
 
 export function EntityConnection<DTO, Rel>(
   name: string,
-  relationTypeFunc: ConnectionTypeFunc<Rel>,
-  options?: RelationDecoratorOpts<Rel>,
-  // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+  relationTypeFunc: RelationTypeFunc<Rel>,
+  options?: RelationOneDecoratorOpts<Rel>,
 ): <Cls extends Class<DTO>>(DTOClass: Cls) => void | Cls {
-  return Connection(name, relationTypeFunc, {
+  return CursorConnection(name, relationTypeFunc, {
     disableUpdate: true,
     disableRemove: true,
     ...(options ?? {}),

@@ -74,27 +74,6 @@ type IntegrationAccountConnection {
   edges: [IntegrationAccountEdge!]!
 }
 
-type IntegrationAccountCountAggregate {
-  id: Int
-  createdAt: Int
-  key: Int
-  name: Int
-}
-
-type IntegrationAccountMinAggregate {
-  id: ID
-  createdAt: DateTime
-  key: String
-  name: String
-}
-
-type IntegrationAccountMaxAggregate {
-  id: ID
-  createdAt: DateTime
-  key: String
-  name: String
-}
-
 type IntegrationTrigger {
   id: ID!
   createdAt: DateTime!
@@ -332,35 +311,6 @@ type IntegrationActionConnection {
   edges: [IntegrationActionEdge!]!
 }
 
-type IntegrationActionCountAggregate {
-  id: Int
-  createdAt: Int
-  integration: Int
-  key: Int
-  name: Int
-  deprecated: Int
-  category: Int
-  skipAuth: Int
-}
-
-type IntegrationActionMinAggregate {
-  id: ID
-  createdAt: DateTime
-  integration: ID
-  key: String
-  name: String
-  category: String
-}
-
-type IntegrationActionMaxAggregate {
-  id: ID
-  createdAt: DateTime
-  integration: ID
-  key: String
-  name: String
-  category: String
-}
-
 type IntegrationTriggerEdge {
   """The node containing the IntegrationTrigger"""
   node: IntegrationTrigger!
@@ -375,35 +325,6 @@ type IntegrationTriggerConnection {
 
   """Array of edges."""
   edges: [IntegrationTriggerEdge!]!
-}
-
-type IntegrationTriggerCountAggregate {
-  id: Int
-  createdAt: Int
-  integration: Int
-  key: Int
-  name: Int
-  deprecated: Int
-  category: Int
-  skipAuth: Int
-}
-
-type IntegrationTriggerMinAggregate {
-  id: ID
-  createdAt: DateTime
-  integration: ID
-  key: String
-  name: String
-  category: String
-}
-
-type IntegrationTriggerMaxAggregate {
-  id: ID
-  createdAt: DateTime
-  integration: ID
-  key: String
-  name: String
-  category: String
 }
 
 type IntegrationCategory {
@@ -426,53 +347,6 @@ type IntegrationConnection {
 
   """Array of edges."""
   edges: [IntegrationEdge!]!
-}
-
-type IntegrationCountAggregate {
-  id: Int
-  createdAt: Int
-  key: Int
-  name: Int
-  version: Int
-  deprecated: Int
-  parentKey: Int
-  integrationCategories: Int
-  numberOfTriggers: Int
-  numberOfActions: Int
-}
-
-type IntegrationSumAggregate {
-  numberOfTriggers: Float
-  numberOfActions: Float
-}
-
-type IntegrationAvgAggregate {
-  numberOfTriggers: Float
-  numberOfActions: Float
-}
-
-type IntegrationMinAggregate {
-  id: ID
-  createdAt: DateTime
-  key: String
-  name: String
-  version: String
-  parentKey: String
-  integrationCategories: String
-  numberOfTriggers: Int
-  numberOfActions: Int
-}
-
-type IntegrationMaxAggregate {
-  id: ID
-  createdAt: DateTime
-  key: String
-  name: String
-  version: String
-  parentKey: String
-  integrationCategories: String
-  numberOfTriggers: Int
-  numberOfActions: Int
 }
 
 type IntegrationActionsConnection {
@@ -513,27 +387,6 @@ type UserEdge {
 
   """Cursor for this node."""
   cursor: ConnectionCursor!
-}
-
-type UserCountAggregate {
-  id: Int
-  createdAt: Int
-  username: Int
-  email: Int
-}
-
-type UserMinAggregate {
-  id: ID
-  createdAt: DateTime
-  username: String
-  email: String
-}
-
-type UserMaxAggregate {
-  id: ID
-  createdAt: DateTime
-  username: String
-  email: String
 }
 
 type Project {
@@ -663,33 +516,6 @@ type WorkflowConnection {
   edges: [WorkflowEdge!]!
 }
 
-type WorkflowCountAggregate {
-  id: Int
-  createdAt: Int
-  owner: Int
-  project: Int
-  name: Int
-  slug: Int
-}
-
-type WorkflowMinAggregate {
-  id: ID
-  createdAt: DateTime
-  owner: ID
-  project: ID
-  name: String
-  slug: String
-}
-
-type WorkflowMaxAggregate {
-  id: ID
-  createdAt: DateTime
-  owner: ID
-  project: ID
-  name: String
-  slug: String
-}
-
 type WorkflowActionEdge {
   """The node containing the WorkflowAction"""
   node: WorkflowAction!
@@ -729,30 +555,6 @@ type ProjectConnection {
 
   """Array of edges."""
   edges: [ProjectEdge!]!
-}
-
-type ProjectCountAggregate {
-  id: Int
-  createdAt: Int
-  owner: Int
-  name: Int
-  slug: Int
-}
-
-type ProjectMinAggregate {
-  id: ID
-  createdAt: DateTime
-  owner: ID
-  name: String
-  slug: String
-}
-
-type ProjectMaxAggregate {
-  id: ID
-  createdAt: DateTime
-  owner: ID
-  name: String
-  slug: String
 }
 
 type AuthToken {
@@ -854,30 +656,6 @@ type WorkflowRunConnection {
   edges: [WorkflowRunEdge!]!
 }
 
-type WorkflowRunCountAggregate {
-  id: Int
-  createdAt: Int
-  workflow: Int
-  status: Int
-  startedBy: Int
-}
-
-type WorkflowRunMinAggregate {
-  id: ID
-  createdAt: DateTime
-  workflow: ID
-  status: WorkflowRunStatus
-  startedBy: WorkflowRunStartedByOptions
-}
-
-type WorkflowRunMaxAggregate {
-  id: ID
-  createdAt: DateTime
-  workflow: ID
-  status: WorkflowRunStatus
-  startedBy: WorkflowRunStartedByOptions
-}
-
 type WorkflowRunTriggerEdge {
   """The node containing the WorkflowRunTrigger"""
   node: WorkflowRunTrigger!
@@ -894,18 +672,6 @@ type WorkflowRunTriggerConnection {
   edges: [WorkflowRunTriggerEdge!]!
 }
 
-type WorkflowRunTriggerCountAggregate {
-  status: Int
-}
-
-type WorkflowRunTriggerMinAggregate {
-  status: WorkflowRunStatus
-}
-
-type WorkflowRunTriggerMaxAggregate {
-  status: WorkflowRunStatus
-}
-
 type WorkflowRunActionEdge {
   """The node containing the WorkflowRunAction"""
   node: WorkflowRunAction!
@@ -920,24 +686,6 @@ type WorkflowRunActionConnection {
 
   """Array of edges."""
   edges: [WorkflowRunActionEdge!]!
-}
-
-type WorkflowRunActionCountAggregate {
-  id: Int
-  createdAt: Int
-  status: Int
-}
-
-type WorkflowRunActionMinAggregate {
-  id: ID
-  createdAt: DateTime
-  status: WorkflowRunStatus
-}
-
-type WorkflowRunActionMaxAggregate {
-  id: ID
-  createdAt: DateTime
-  status: WorkflowRunStatus
 }
 
 type WorkflowTriggerDeleteResponse {
@@ -972,27 +720,6 @@ type WorkflowTriggerConnection {
   edges: [WorkflowTriggerEdge!]!
 }
 
-type WorkflowTriggerCountAggregate {
-  id: Int
-  createdAt: Int
-  owner: Int
-  workflow: Int
-}
-
-type WorkflowTriggerMinAggregate {
-  id: ID
-  createdAt: DateTime
-  owner: ID
-  workflow: ID
-}
-
-type WorkflowTriggerMaxAggregate {
-  id: ID
-  createdAt: DateTime
-  owner: ID
-  workflow: ID
-}
-
 type WorkflowActionDeleteResponse {
   id: ID
   createdAt: DateTime
@@ -1015,28 +742,6 @@ type WorkflowActionConnection {
   edges: [WorkflowActionEdge!]!
 }
 
-type WorkflowActionCountAggregate {
-  id: Int
-  createdAt: Int
-  owner: Int
-  workflow: Int
-  isRootAction: Int
-}
-
-type WorkflowActionMinAggregate {
-  id: ID
-  createdAt: DateTime
-  owner: ID
-  workflow: ID
-}
-
-type WorkflowActionMaxAggregate {
-  id: ID
-  createdAt: DateTime
-  owner: ID
-  workflow: ID
-}
-
 type WorkflowNextActionEdge {
   """The node containing the WorkflowNextAction"""
   node: WorkflowNextAction!
@@ -1051,18 +756,6 @@ type WorkflowNextActionConnection {
 
   """Array of edges."""
   edges: [WorkflowNextActionEdge!]!
-}
-
-type WorkflowNextActionCountAggregate {
-  action: Int
-}
-
-type WorkflowNextActionMinAggregate {
-  action: ID
-}
-
-type WorkflowNextActionMaxAggregate {
-  action: ID
 }
 
 type AccountCredentialDeleteResponse {
@@ -1091,27 +784,6 @@ type AccountCredentialConnection {
   edges: [AccountCredentialEdge!]!
 }
 
-type AccountCredentialCountAggregate {
-  id: Int
-  createdAt: Int
-  owner: Int
-  integrationAccount: Int
-}
-
-type AccountCredentialMinAggregate {
-  id: ID
-  createdAt: DateTime
-  owner: ID
-  integrationAccount: ID
-}
-
-type AccountCredentialMaxAggregate {
-  id: ID
-  createdAt: DateTime
-  owner: ID
-  integrationAccount: ID
-}
-
 type ContractSchema {
   id: ID!
   chainId: Int!
@@ -1127,12 +799,12 @@ type Query {
   user(
     """The id of the record to find."""
     id: ID!
-  ): User
+  ): User!
   viewer: User!
   accountCredential(
     """The id of the record to find."""
     id: ID!
-  ): AccountCredential
+  ): AccountCredential!
   accountCredentials(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -1146,7 +818,7 @@ type Query {
   integration(
     """The id of the record to find."""
     id: ID!
-  ): Integration
+  ): Integration!
   integrations(
     search: String
 
@@ -1164,7 +836,7 @@ type Query {
   integrationAccount(
     """The id of the record to find."""
     id: ID!
-  ): IntegrationAccount
+  ): IntegrationAccount!
   integrationAccounts(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -1178,7 +850,7 @@ type Query {
   integrationAction(
     """The id of the record to find."""
     id: ID!
-  ): IntegrationAction
+  ): IntegrationAction!
   integrationActions(
     search: String
 
@@ -1194,7 +866,7 @@ type Query {
   integrationTrigger(
     """The id of the record to find."""
     id: ID!
-  ): IntegrationTrigger
+  ): IntegrationTrigger!
   integrationTriggers(
     search: String
 
@@ -1210,7 +882,7 @@ type Query {
   workflow(
     """The id of the record to find."""
     id: ID!
-  ): Workflow
+  ): Workflow!
   workflows(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -1224,7 +896,7 @@ type Query {
   project(
     """The id of the record to find."""
     id: ID!
-  ): Project
+  ): Project!
   projects(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -1238,7 +910,7 @@ type Query {
   workflowAction(
     """The id of the record to find."""
     id: ID!
-  ): WorkflowAction
+  ): WorkflowAction!
   workflowActions(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -1252,7 +924,7 @@ type Query {
   workflowNextAction(
     """The id of the record to find."""
     id: ID!
-  ): WorkflowNextAction
+  ): WorkflowNextAction!
   workflowNextActions(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -1266,7 +938,7 @@ type Query {
   workflowTrigger(
     """The id of the record to find."""
     id: ID!
-  ): WorkflowTrigger
+  ): WorkflowTrigger!
   workflowTriggers(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -1280,7 +952,7 @@ type Query {
   workflowRun(
     """The id of the record to find."""
     id: ID!
-  ): WorkflowRun
+  ): WorkflowRun!
   workflowRuns(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -1294,7 +966,7 @@ type Query {
   workflowRunTrigger(
     """The id of the record to find."""
     id: ID!
-  ): WorkflowRunTrigger
+  ): WorkflowRunTrigger!
   workflowRunTriggers(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -1308,7 +980,7 @@ type Query {
   workflowRunAction(
     """The id of the record to find."""
     id: ID!
-  ): WorkflowRunAction
+  ): WorkflowRunAction!
   workflowRunActions(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -1619,31 +1291,31 @@ type Mutation {
   createManyAccountCredentials(input: CreateManyAccountCredentialsInput!): [AccountCredential!]!
   updateOneAccountCredential(input: UpdateOneAccountCredentialInput!): AccountCredential!
   updateManyAccountCredentials(input: UpdateManyAccountCredentialsInput!): UpdateManyResponse!
-  deleteOneAccountCredential(input: DeleteOneInput!): AccountCredentialDeleteResponse!
+  deleteOneAccountCredential(input: DeleteOneAccountCredentialInput!): AccountCredentialDeleteResponse!
   deleteManyAccountCredentials(input: DeleteManyAccountCredentialsInput!): DeleteManyResponse!
   createOneWorkflow(input: CreateOneWorkflowInput!): Workflow!
   createManyWorkflows(input: CreateManyWorkflowsInput!): [Workflow!]!
   updateOneWorkflow(input: UpdateOneWorkflowInput!): Workflow!
   updateManyWorkflows(input: UpdateManyWorkflowsInput!): UpdateManyResponse!
-  deleteOneWorkflow(input: DeleteOneInput!): WorkflowDeleteResponse!
+  deleteOneWorkflow(input: DeleteOneWorkflowInput!): WorkflowDeleteResponse!
   deleteManyWorkflows(input: DeleteManyWorkflowsInput!): DeleteManyResponse!
   createOneProject(input: CreateOneProjectInput!): Project!
   createManyProjects(input: CreateManyProjectsInput!): [Project!]!
   updateOneProject(input: UpdateOneProjectInput!): Project!
   updateManyProjects(input: UpdateManyProjectsInput!): UpdateManyResponse!
-  deleteOneProject(input: DeleteOneInput!): ProjectDeleteResponse!
+  deleteOneProject(input: DeleteOneProjectInput!): ProjectDeleteResponse!
   deleteManyProjects(input: DeleteManyProjectsInput!): DeleteManyResponse!
   createOneWorkflowAction(input: CreateOneWorkflowActionInput!): WorkflowAction!
   createManyWorkflowActions(input: CreateManyWorkflowActionsInput!): [WorkflowAction!]!
   updateOneWorkflowAction(input: UpdateOneWorkflowActionInput!): WorkflowAction!
   updateManyWorkflowActions(input: UpdateManyWorkflowActionsInput!): UpdateManyResponse!
-  deleteOneWorkflowAction(input: DeleteOneInput!): WorkflowActionDeleteResponse!
+  deleteOneWorkflowAction(input: DeleteOneWorkflowActionInput!): WorkflowActionDeleteResponse!
   deleteManyWorkflowActions(input: DeleteManyWorkflowActionsInput!): DeleteManyResponse!
   createOneWorkflowTrigger(input: CreateOneWorkflowTriggerInput!): WorkflowTrigger!
   createManyWorkflowTriggers(input: CreateManyWorkflowTriggersInput!): [WorkflowTrigger!]!
   updateOneWorkflowTrigger(input: UpdateOneWorkflowTriggerInput!): WorkflowTrigger!
   updateManyWorkflowTriggers(input: UpdateManyWorkflowTriggersInput!): UpdateManyResponse!
-  deleteOneWorkflowTrigger(input: DeleteOneInput!): WorkflowTriggerDeleteResponse!
+  deleteOneWorkflowTrigger(input: DeleteOneWorkflowTriggerInput!): WorkflowTriggerDeleteResponse!
   deleteManyWorkflowTriggers(input: DeleteManyWorkflowTriggersInput!): DeleteManyResponse!
   checkWorkflowTrigger(id: String!): WorkflowTrigger!
 }
@@ -1711,7 +1383,7 @@ input AccountCredentialUpdateFilter {
   integrationAccount: IDFilterComparison
 }
 
-input DeleteOneInput {
+input DeleteOneAccountCredentialInput {
   """The id of the record to delete."""
   id: ID!
 }
@@ -1778,6 +1450,11 @@ input WorkflowUpdateFilter {
   slug: StringFieldComparison
 }
 
+input DeleteOneWorkflowInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
 input DeleteManyWorkflowsInput {
   """Filter to find records to delete"""
   filter: WorkflowDeleteFilter!
@@ -1838,6 +1515,11 @@ input ProjectUpdateFilter {
   owner: IDFilterComparison
   name: StringFieldComparison
   slug: StringFieldComparison
+}
+
+input DeleteOneProjectInput {
+  """The id of the record to delete."""
+  id: ID!
 }
 
 input DeleteManyProjectsInput {
@@ -1907,6 +1589,11 @@ input WorkflowActionUpdateFilter {
   isRootAction: BooleanFieldComparison
 }
 
+input DeleteOneWorkflowActionInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
 input DeleteManyWorkflowActionsInput {
   """Filter to find records to delete"""
   filter: WorkflowActionDeleteFilter!
@@ -1974,6 +1661,11 @@ input WorkflowTriggerUpdateFilter {
   createdAt: DateFieldComparison
   owner: IDFilterComparison
   workflow: IDFilterComparison
+}
+
+input DeleteOneWorkflowTriggerInput {
+  """The id of the record to delete."""
+  id: ID!
 }
 
 input DeleteManyWorkflowTriggersInput {
