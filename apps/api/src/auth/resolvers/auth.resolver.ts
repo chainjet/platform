@@ -1,5 +1,6 @@
 import { SecurityUtils } from '@app/common/utils/security.utils'
-import { BadRequestException, HttpService, Logger, UnauthorizedException } from '@nestjs/common'
+import { HttpService } from '@nestjs/axios'
+import { BadRequestException, Logger, UnauthorizedException } from '@nestjs/common'
 import { UseGuards } from '@nestjs/common/decorators/core/use-guards.decorator'
 import { Args, Mutation, Resolver } from '@nestjs/graphql'
 import { ObjectId } from 'bson'

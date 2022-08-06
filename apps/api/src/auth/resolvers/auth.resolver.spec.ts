@@ -1,4 +1,4 @@
-import { HttpService } from '@nestjs/common'
+import { HttpService } from '@nestjs/axios'
 import { JwtModule } from '@nestjs/jwt'
 import { Test, TestingModule } from '@nestjs/testing'
 import { ReturnModelType } from '@typegoose/typegoose'

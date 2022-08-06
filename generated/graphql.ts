@@ -1,5 +1,6 @@
 
-/** ------------------------------------------------------
+/*
+ * ------------------------------------------------------
  * THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
  * -------------------------------------------------------
  */
@@ -14,7 +15,7 @@ export enum IntegrationAuthType {
     openIdConnect = "openIdConnect"
 }
 
-export enum IntegrationActionSortFields {
+export enum IntegrationTriggerSortFields {
     id = "id",
     createdAt = "createdAt",
     integration = "integration",
@@ -35,7 +36,7 @@ export enum SortNulls {
     NULLS_LAST = "NULLS_LAST"
 }
 
-export enum IntegrationTriggerSortFields {
+export enum IntegrationActionSortFields {
     id = "id",
     createdAt = "createdAt",
     integration = "integration",
@@ -67,11 +68,11 @@ export enum WorkflowRunStartedByOptions {
     workflowFailure = "workflowFailure"
 }
 
-export enum IntegrationAccountSortFields {
+export enum AccountCredentialSortFields {
     id = "id",
     createdAt = "createdAt",
-    key = "key",
-    name = "name"
+    owner = "owner",
+    integrationAccount = "integrationAccount"
 }
 
 export enum IntegrationSortFields {
@@ -85,6 +86,13 @@ export enum IntegrationSortFields {
     integrationCategories = "integrationCategories",
     numberOfTriggers = "numberOfTriggers",
     numberOfActions = "numberOfActions"
+}
+
+export enum IntegrationAccountSortFields {
+    id = "id",
+    createdAt = "createdAt",
+    key = "key",
+    name = "name"
 }
 
 export enum WorkflowSortFields {
@@ -102,6 +110,17 @@ export enum ProjectSortFields {
     owner = "owner",
     name = "name",
     slug = "slug"
+}
+
+export enum WorkflowNextActionSortFields {
+    action = "action"
+}
+
+export enum WorkflowTriggerSortFields {
+    id = "id",
+    createdAt = "createdAt",
+    owner = "owner",
+    workflow = "workflow"
 }
 
 export enum WorkflowRunSortFields {
@@ -122,24 +141,6 @@ export enum WorkflowRunActionSortFields {
     status = "status"
 }
 
-export enum WorkflowTriggerSortFields {
-    id = "id",
-    createdAt = "createdAt",
-    owner = "owner",
-    workflow = "workflow"
-}
-
-export enum WorkflowNextActionSortFields {
-    action = "action"
-}
-
-export enum AccountCredentialSortFields {
-    id = "id",
-    createdAt = "createdAt",
-    owner = "owner",
-    integrationAccount = "integrationAccount"
-}
-
 export interface CursorPaging {
     before?: ConnectionCursor;
     after?: ConnectionCursor;
@@ -147,9 +148,9 @@ export interface CursorPaging {
     last?: number;
 }
 
-export interface IntegrationActionFilter {
-    and?: IntegrationActionFilter[];
-    or?: IntegrationActionFilter[];
+export interface IntegrationTriggerFilter {
+    and?: IntegrationTriggerFilter[];
+    or?: IntegrationTriggerFilter[];
     id?: IDFilterComparison;
     createdAt?: DateFieldComparison;
     integration?: IDFilterComparison;
@@ -219,15 +220,15 @@ export interface BooleanFieldComparison {
     isNot?: boolean;
 }
 
-export interface IntegrationActionSort {
-    field: IntegrationActionSortFields;
+export interface IntegrationTriggerSort {
+    field: IntegrationTriggerSortFields;
     direction: SortDirection;
     nulls?: SortNulls;
 }
 
-export interface IntegrationTriggerFilter {
-    and?: IntegrationTriggerFilter[];
-    or?: IntegrationTriggerFilter[];
+export interface IntegrationActionFilter {
+    and?: IntegrationActionFilter[];
+    or?: IntegrationActionFilter[];
     id?: IDFilterComparison;
     createdAt?: DateFieldComparison;
     integration?: IDFilterComparison;
@@ -238,8 +239,8 @@ export interface IntegrationTriggerFilter {
     skipAuth?: BooleanFieldComparison;
 }
 
-export interface IntegrationTriggerSort {
-    field: IntegrationTriggerSortFields;
+export interface IntegrationActionSort {
+    field: IntegrationActionSortFields;
     direction: SortDirection;
     nulls?: SortNulls;
 }
@@ -260,17 +261,17 @@ export interface WorkflowActionSort {
     nulls?: SortNulls;
 }
 
-export interface IntegrationAccountFilter {
-    and?: IntegrationAccountFilter[];
-    or?: IntegrationAccountFilter[];
+export interface AccountCredentialFilter {
+    and?: AccountCredentialFilter[];
+    or?: AccountCredentialFilter[];
     id?: IDFilterComparison;
     createdAt?: DateFieldComparison;
-    key?: StringFieldComparison;
-    name?: StringFieldComparison;
+    owner?: IDFilterComparison;
+    integrationAccount?: IDFilterComparison;
 }
 
-export interface IntegrationAccountSort {
-    field: IntegrationAccountSortFields;
+export interface AccountCredentialSort {
+    field: AccountCredentialSortFields;
     direction: SortDirection;
     nulls?: SortNulls;
 }
@@ -316,6 +317,21 @@ export interface IntegrationSort {
     nulls?: SortNulls;
 }
 
+export interface IntegrationAccountFilter {
+    and?: IntegrationAccountFilter[];
+    or?: IntegrationAccountFilter[];
+    id?: IDFilterComparison;
+    createdAt?: DateFieldComparison;
+    key?: StringFieldComparison;
+    name?: StringFieldComparison;
+}
+
+export interface IntegrationAccountSort {
+    field: IntegrationAccountSortFields;
+    direction: SortDirection;
+    nulls?: SortNulls;
+}
+
 export interface WorkflowFilter {
     and?: WorkflowFilter[];
     or?: WorkflowFilter[];
@@ -345,6 +361,33 @@ export interface ProjectFilter {
 
 export interface ProjectSort {
     field: ProjectSortFields;
+    direction: SortDirection;
+    nulls?: SortNulls;
+}
+
+export interface WorkflowNextActionFilter {
+    and?: WorkflowNextActionFilter[];
+    or?: WorkflowNextActionFilter[];
+    action?: IDFilterComparison;
+}
+
+export interface WorkflowNextActionSort {
+    field: WorkflowNextActionSortFields;
+    direction: SortDirection;
+    nulls?: SortNulls;
+}
+
+export interface WorkflowTriggerFilter {
+    and?: WorkflowTriggerFilter[];
+    or?: WorkflowTriggerFilter[];
+    id?: IDFilterComparison;
+    createdAt?: DateFieldComparison;
+    owner?: IDFilterComparison;
+    workflow?: IDFilterComparison;
+}
+
+export interface WorkflowTriggerSort {
+    field: WorkflowTriggerSortFields;
     direction: SortDirection;
     nulls?: SortNulls;
 }
@@ -425,48 +468,6 @@ export interface WorkflowRunActionSort {
     nulls?: SortNulls;
 }
 
-export interface WorkflowTriggerFilter {
-    and?: WorkflowTriggerFilter[];
-    or?: WorkflowTriggerFilter[];
-    id?: IDFilterComparison;
-    createdAt?: DateFieldComparison;
-    owner?: IDFilterComparison;
-    workflow?: IDFilterComparison;
-}
-
-export interface WorkflowTriggerSort {
-    field: WorkflowTriggerSortFields;
-    direction: SortDirection;
-    nulls?: SortNulls;
-}
-
-export interface WorkflowNextActionFilter {
-    and?: WorkflowNextActionFilter[];
-    or?: WorkflowNextActionFilter[];
-    action?: IDFilterComparison;
-}
-
-export interface WorkflowNextActionSort {
-    field: WorkflowNextActionSortFields;
-    direction: SortDirection;
-    nulls?: SortNulls;
-}
-
-export interface AccountCredentialFilter {
-    and?: AccountCredentialFilter[];
-    or?: AccountCredentialFilter[];
-    id?: IDFilterComparison;
-    createdAt?: DateFieldComparison;
-    owner?: IDFilterComparison;
-    integrationAccount?: IDFilterComparison;
-}
-
-export interface AccountCredentialSort {
-    field: AccountCredentialSortFields;
-    direction: SortDirection;
-    nulls?: SortNulls;
-}
-
 export interface UpdateOneUserInput {
     id: string;
     update: UpdateUserInput;
@@ -479,23 +480,75 @@ export interface UpdateUserInput {
     email?: string;
 }
 
+export interface CreateOneAccountCredentialInput {
+    accountCredential: CreateAccountCredentialInput;
+}
+
+export interface CreateAccountCredentialInput {
+    integrationAccount: string;
+    name: string;
+    credentials?: JSONObject;
+    fields?: JSONObject;
+}
+
+export interface CreateManyAccountCredentialsInput {
+    accountCredentials: CreateAccountCredentialInput[];
+}
+
+export interface UpdateOneAccountCredentialInput {
+    id: string;
+    update: UpdateAccountCredentialInput;
+}
+
+export interface UpdateAccountCredentialInput {
+    name?: string;
+    credentials?: JSONObject;
+    fields?: JSONObject;
+}
+
+export interface UpdateManyAccountCredentialsInput {
+    filter: AccountCredentialUpdateFilter;
+    update: UpdateAccountCredentialInput;
+}
+
+export interface AccountCredentialUpdateFilter {
+    and?: AccountCredentialUpdateFilter[];
+    or?: AccountCredentialUpdateFilter[];
+    id?: IDFilterComparison;
+    createdAt?: DateFieldComparison;
+    owner?: IDFilterComparison;
+    integrationAccount?: IDFilterComparison;
+}
+
 export interface DeleteOneInput {
     id: string;
 }
 
-export interface DeleteManyWorkflowsInput {
-    filter: WorkflowDeleteFilter;
+export interface DeleteManyAccountCredentialsInput {
+    filter: AccountCredentialDeleteFilter;
 }
 
-export interface WorkflowDeleteFilter {
-    and?: WorkflowDeleteFilter[];
-    or?: WorkflowDeleteFilter[];
+export interface AccountCredentialDeleteFilter {
+    and?: AccountCredentialDeleteFilter[];
+    or?: AccountCredentialDeleteFilter[];
     id?: IDFilterComparison;
     createdAt?: DateFieldComparison;
     owner?: IDFilterComparison;
-    project?: IDFilterComparison;
-    name?: StringFieldComparison;
-    slug?: StringFieldComparison;
+    integrationAccount?: IDFilterComparison;
+}
+
+export interface CreateOneWorkflowInput {
+    workflow: CreateWorkflowInput;
+}
+
+export interface CreateWorkflowInput {
+    name: string;
+    project: string;
+    runOnFailure?: string;
+}
+
+export interface CreateManyWorkflowsInput {
+    workflows: CreateWorkflowInput[];
 }
 
 export interface UpdateOneWorkflowInput {
@@ -524,32 +577,32 @@ export interface WorkflowUpdateFilter {
     slug?: StringFieldComparison;
 }
 
-export interface CreateOneWorkflowInput {
-    workflow: CreateWorkflowInput;
+export interface DeleteManyWorkflowsInput {
+    filter: WorkflowDeleteFilter;
 }
 
-export interface CreateWorkflowInput {
-    name: string;
-    project: string;
-    runOnFailure?: string;
-}
-
-export interface CreateManyWorkflowsInput {
-    workflows: CreateWorkflowInput[];
-}
-
-export interface DeleteManyProjectsInput {
-    filter: ProjectDeleteFilter;
-}
-
-export interface ProjectDeleteFilter {
-    and?: ProjectDeleteFilter[];
-    or?: ProjectDeleteFilter[];
+export interface WorkflowDeleteFilter {
+    and?: WorkflowDeleteFilter[];
+    or?: WorkflowDeleteFilter[];
     id?: IDFilterComparison;
     createdAt?: DateFieldComparison;
     owner?: IDFilterComparison;
+    project?: IDFilterComparison;
     name?: StringFieldComparison;
     slug?: StringFieldComparison;
+}
+
+export interface CreateOneProjectInput {
+    project: CreateProjectInput;
+}
+
+export interface CreateProjectInput {
+    name: string;
+    public?: boolean;
+}
+
+export interface CreateManyProjectsInput {
+    projects: CreateProjectInput[];
 }
 
 export interface UpdateOneProjectInput {
@@ -577,30 +630,94 @@ export interface ProjectUpdateFilter {
     slug?: StringFieldComparison;
 }
 
-export interface CreateOneProjectInput {
-    project: CreateProjectInput;
+export interface DeleteManyProjectsInput {
+    filter: ProjectDeleteFilter;
 }
 
-export interface CreateProjectInput {
+export interface ProjectDeleteFilter {
+    and?: ProjectDeleteFilter[];
+    or?: ProjectDeleteFilter[];
+    id?: IDFilterComparison;
+    createdAt?: DateFieldComparison;
+    owner?: IDFilterComparison;
+    name?: StringFieldComparison;
+    slug?: StringFieldComparison;
+}
+
+export interface CreateOneWorkflowActionInput {
+    workflowAction: CreateWorkflowActionInput;
+}
+
+export interface CreateWorkflowActionInput {
+    workflow: string;
+    integrationAction: string;
+    inputs: JSONObject;
+    previousAction?: string;
+    previousActionCondition?: string;
+    nextAction?: string;
+    credentials?: string;
+}
+
+export interface CreateManyWorkflowActionsInput {
+    workflowActions: CreateWorkflowActionInput[];
+}
+
+export interface UpdateOneWorkflowActionInput {
+    id: string;
+    update: UpdateWorkflowActionInput;
+}
+
+export interface UpdateWorkflowActionInput {
     name: string;
-    public?: boolean;
+    inputs?: JSONObject;
+    credentials?: string;
 }
 
-export interface CreateManyProjectsInput {
-    projects: CreateProjectInput[];
+export interface UpdateManyWorkflowActionsInput {
+    filter: WorkflowActionUpdateFilter;
+    update: UpdateWorkflowActionInput;
 }
 
-export interface DeleteManyWorkflowTriggersInput {
-    filter: WorkflowTriggerDeleteFilter;
-}
-
-export interface WorkflowTriggerDeleteFilter {
-    and?: WorkflowTriggerDeleteFilter[];
-    or?: WorkflowTriggerDeleteFilter[];
+export interface WorkflowActionUpdateFilter {
+    and?: WorkflowActionUpdateFilter[];
+    or?: WorkflowActionUpdateFilter[];
     id?: IDFilterComparison;
     createdAt?: DateFieldComparison;
     owner?: IDFilterComparison;
     workflow?: IDFilterComparison;
+    isRootAction?: BooleanFieldComparison;
+}
+
+export interface DeleteManyWorkflowActionsInput {
+    filter: WorkflowActionDeleteFilter;
+}
+
+export interface WorkflowActionDeleteFilter {
+    and?: WorkflowActionDeleteFilter[];
+    or?: WorkflowActionDeleteFilter[];
+    id?: IDFilterComparison;
+    createdAt?: DateFieldComparison;
+    owner?: IDFilterComparison;
+    workflow?: IDFilterComparison;
+    isRootAction?: BooleanFieldComparison;
+}
+
+export interface CreateOneWorkflowTriggerInput {
+    workflowTrigger: CreateWorkflowTriggerInput;
+}
+
+export interface CreateWorkflowTriggerInput {
+    workflow: string;
+    integrationTrigger: string;
+    inputs: JSONObject;
+    credentials?: string;
+    schedule?: JSONObject;
+    enabled?: boolean;
+    maxConsecutiveFailures?: number;
+}
+
+export interface CreateManyWorkflowTriggersInput {
+    workflowTriggers: CreateWorkflowTriggerInput[];
 }
 
 export interface UpdateOneWorkflowTriggerInput {
@@ -631,133 +748,17 @@ export interface WorkflowTriggerUpdateFilter {
     workflow?: IDFilterComparison;
 }
 
-export interface CreateOneWorkflowTriggerInput {
-    workflowTrigger: CreateWorkflowTriggerInput;
+export interface DeleteManyWorkflowTriggersInput {
+    filter: WorkflowTriggerDeleteFilter;
 }
 
-export interface CreateWorkflowTriggerInput {
-    workflow: string;
-    integrationTrigger: string;
-    inputs: JSONObject;
-    credentials?: string;
-    schedule?: JSONObject;
-    enabled?: boolean;
-    maxConsecutiveFailures?: number;
-}
-
-export interface CreateManyWorkflowTriggersInput {
-    workflowTriggers: CreateWorkflowTriggerInput[];
-}
-
-export interface DeleteManyWorkflowActionsInput {
-    filter: WorkflowActionDeleteFilter;
-}
-
-export interface WorkflowActionDeleteFilter {
-    and?: WorkflowActionDeleteFilter[];
-    or?: WorkflowActionDeleteFilter[];
+export interface WorkflowTriggerDeleteFilter {
+    and?: WorkflowTriggerDeleteFilter[];
+    or?: WorkflowTriggerDeleteFilter[];
     id?: IDFilterComparison;
     createdAt?: DateFieldComparison;
     owner?: IDFilterComparison;
     workflow?: IDFilterComparison;
-    isRootAction?: BooleanFieldComparison;
-}
-
-export interface UpdateOneWorkflowActionInput {
-    id: string;
-    update: UpdateWorkflowActionInput;
-}
-
-export interface UpdateWorkflowActionInput {
-    name: string;
-    inputs?: JSONObject;
-    credentials?: string;
-}
-
-export interface UpdateManyWorkflowActionsInput {
-    filter: WorkflowActionUpdateFilter;
-    update: UpdateWorkflowActionInput;
-}
-
-export interface WorkflowActionUpdateFilter {
-    and?: WorkflowActionUpdateFilter[];
-    or?: WorkflowActionUpdateFilter[];
-    id?: IDFilterComparison;
-    createdAt?: DateFieldComparison;
-    owner?: IDFilterComparison;
-    workflow?: IDFilterComparison;
-    isRootAction?: BooleanFieldComparison;
-}
-
-export interface CreateOneWorkflowActionInput {
-    workflowAction: CreateWorkflowActionInput;
-}
-
-export interface CreateWorkflowActionInput {
-    workflow: string;
-    integrationAction: string;
-    inputs: JSONObject;
-    previousAction?: string;
-    previousActionCondition?: string;
-    nextAction?: string;
-    credentials?: string;
-}
-
-export interface CreateManyWorkflowActionsInput {
-    workflowActions: CreateWorkflowActionInput[];
-}
-
-export interface DeleteManyAccountCredentialsInput {
-    filter: AccountCredentialDeleteFilter;
-}
-
-export interface AccountCredentialDeleteFilter {
-    and?: AccountCredentialDeleteFilter[];
-    or?: AccountCredentialDeleteFilter[];
-    id?: IDFilterComparison;
-    createdAt?: DateFieldComparison;
-    owner?: IDFilterComparison;
-    integrationAccount?: IDFilterComparison;
-}
-
-export interface UpdateOneAccountCredentialInput {
-    id: string;
-    update: UpdateAccountCredentialInput;
-}
-
-export interface UpdateAccountCredentialInput {
-    name?: string;
-    credentials?: JSONObject;
-    fields?: JSONObject;
-}
-
-export interface UpdateManyAccountCredentialsInput {
-    filter: AccountCredentialUpdateFilter;
-    update: UpdateAccountCredentialInput;
-}
-
-export interface AccountCredentialUpdateFilter {
-    and?: AccountCredentialUpdateFilter[];
-    or?: AccountCredentialUpdateFilter[];
-    id?: IDFilterComparison;
-    createdAt?: DateFieldComparison;
-    owner?: IDFilterComparison;
-    integrationAccount?: IDFilterComparison;
-}
-
-export interface CreateOneAccountCredentialInput {
-    accountCredential: CreateAccountCredentialInput;
-}
-
-export interface CreateAccountCredentialInput {
-    integrationAccount: string;
-    name: string;
-    credentials?: JSONObject;
-    fields?: JSONObject;
-}
-
-export interface CreateManyAccountCredentialsInput {
-    accountCredentials: CreateAccountCredentialInput[];
 }
 
 export interface IntegrationAccount {
@@ -856,8 +857,8 @@ export interface Integration {
     operationCategories?: OperationCategory[];
     numberOfTriggers: number;
     numberOfActions: number;
-    actions: IntegrationActionsConnection;
     triggers: IntegrationTriggersConnection;
+    actions: IntegrationActionsConnection;
 }
 
 export interface IntegrationAction {
@@ -1130,8 +1131,8 @@ export interface Workflow {
     slug: string;
     state?: string;
     runOnFailure?: string;
-    actions?: WorkflowActionsConnection;
     trigger?: WorkflowTrigger;
+    actions?: WorkflowActionsConnection;
 }
 
 export interface WorkflowDeleteResponse {
@@ -1550,56 +1551,41 @@ export interface AsyncSchema {
 }
 
 export interface IQuery {
+    user(id: string): User | Promise<User>;
+    viewer(): User | Promise<User>;
+    accountCredential(id: string): AccountCredential | Promise<AccountCredential>;
+    accountCredentials(paging?: CursorPaging, filter?: AccountCredentialFilter, sorting?: AccountCredentialSort[]): AccountCredentialConnection | Promise<AccountCredentialConnection>;
+    integration(id: string): Integration | Promise<Integration>;
+    integrations(search?: string, paging?: CursorPaging, filter?: IntegrationFilter, sorting?: IntegrationSort[]): IntegrationConnection | Promise<IntegrationConnection>;
+    integrationCategories(): IntegrationCategory[] | Promise<IntegrationCategory[]>;
+    integrationCategory(id: string): IntegrationCategory | Promise<IntegrationCategory>;
     integrationAccount(id: string): IntegrationAccount | Promise<IntegrationAccount>;
     integrationAccounts(paging?: CursorPaging, filter?: IntegrationAccountFilter, sorting?: IntegrationAccountSort[]): IntegrationAccountConnection | Promise<IntegrationAccountConnection>;
     integrationAction(id: string): IntegrationAction | Promise<IntegrationAction>;
     integrationActions(search?: string, paging?: CursorPaging, filter?: IntegrationActionFilter, sorting?: IntegrationActionSort[]): IntegrationActionConnection | Promise<IntegrationActionConnection>;
     integrationTrigger(id: string): IntegrationTrigger | Promise<IntegrationTrigger>;
     integrationTriggers(search?: string, paging?: CursorPaging, filter?: IntegrationTriggerFilter, sorting?: IntegrationTriggerSort[]): IntegrationTriggerConnection | Promise<IntegrationTriggerConnection>;
-    integration(id: string): Integration | Promise<Integration>;
-    integrations(search?: string, paging?: CursorPaging, filter?: IntegrationFilter, sorting?: IntegrationSort[]): IntegrationConnection | Promise<IntegrationConnection>;
-    integrationCategories(): IntegrationCategory[] | Promise<IntegrationCategory[]>;
-    integrationCategory(id: string): IntegrationCategory | Promise<IntegrationCategory>;
-    user(id: string): User | Promise<User>;
-    viewer(): User | Promise<User>;
     workflow(id: string): Workflow | Promise<Workflow>;
     workflows(paging?: CursorPaging, filter?: WorkflowFilter, sorting?: WorkflowSort[]): WorkflowConnection | Promise<WorkflowConnection>;
     project(id: string): Project | Promise<Project>;
     projects(paging?: CursorPaging, filter?: ProjectFilter, sorting?: ProjectSort[]): ProjectConnection | Promise<ProjectConnection>;
+    workflowAction(id: string): WorkflowAction | Promise<WorkflowAction>;
+    workflowActions(paging?: CursorPaging, filter?: WorkflowActionFilter, sorting?: WorkflowActionSort[]): WorkflowActionConnection | Promise<WorkflowActionConnection>;
+    workflowNextAction(id: string): WorkflowNextAction | Promise<WorkflowNextAction>;
+    workflowNextActions(paging?: CursorPaging, filter?: WorkflowNextActionFilter, sorting?: WorkflowNextActionSort[]): WorkflowNextActionConnection | Promise<WorkflowNextActionConnection>;
+    workflowTrigger(id: string): WorkflowTrigger | Promise<WorkflowTrigger>;
+    workflowTriggers(paging?: CursorPaging, filter?: WorkflowTriggerFilter, sorting?: WorkflowTriggerSort[]): WorkflowTriggerConnection | Promise<WorkflowTriggerConnection>;
     workflowRun(id: string): WorkflowRun | Promise<WorkflowRun>;
     workflowRuns(paging?: CursorPaging, filter?: WorkflowRunFilter, sorting?: WorkflowRunSort[]): WorkflowRunConnection | Promise<WorkflowRunConnection>;
     workflowRunTrigger(id: string): WorkflowRunTrigger | Promise<WorkflowRunTrigger>;
     workflowRunTriggers(paging?: CursorPaging, filter?: WorkflowRunTriggerFilter, sorting?: WorkflowRunTriggerSort[]): WorkflowRunTriggerConnection | Promise<WorkflowRunTriggerConnection>;
     workflowRunAction(id: string): WorkflowRunAction | Promise<WorkflowRunAction>;
     workflowRunActions(paging?: CursorPaging, filter?: WorkflowRunActionFilter, sorting?: WorkflowRunActionSort[]): WorkflowRunActionConnection | Promise<WorkflowRunActionConnection>;
-    workflowTrigger(id: string): WorkflowTrigger | Promise<WorkflowTrigger>;
-    workflowTriggers(paging?: CursorPaging, filter?: WorkflowTriggerFilter, sorting?: WorkflowTriggerSort[]): WorkflowTriggerConnection | Promise<WorkflowTriggerConnection>;
-    workflowAction(id: string): WorkflowAction | Promise<WorkflowAction>;
-    workflowActions(paging?: CursorPaging, filter?: WorkflowActionFilter, sorting?: WorkflowActionSort[]): WorkflowActionConnection | Promise<WorkflowActionConnection>;
-    workflowNextAction(id: string): WorkflowNextAction | Promise<WorkflowNextAction>;
-    workflowNextActions(paging?: CursorPaging, filter?: WorkflowNextActionFilter, sorting?: WorkflowNextActionSort[]): WorkflowNextActionConnection | Promise<WorkflowNextActionConnection>;
-    accountCredential(id: string): AccountCredential | Promise<AccountCredential>;
-    accountCredentials(paging?: CursorPaging, filter?: AccountCredentialFilter, sorting?: AccountCredentialSort[]): AccountCredentialConnection | Promise<AccountCredentialConnection>;
     contractSchema(type: string, address: string, chainId: number): ContractSchema | Promise<ContractSchema>;
     asyncSchemas(names: string[], accountCredentialId: string, integrationId: string): AsyncSchema | Promise<AsyncSchema>;
 }
 
 export interface IMutation {
-    updateOneUser(input: UpdateOneUserInput): User | Promise<User>;
-    changePassword(newPassword: string, oldPassword: string): User | Promise<User>;
-    generateApiKey(): GenerateApiTokenPayload | Promise<GenerateApiTokenPayload>;
-    deleteOneWorkflow(input: DeleteOneInput): WorkflowDeleteResponse | Promise<WorkflowDeleteResponse>;
-    deleteManyWorkflows(input: DeleteManyWorkflowsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
-    updateOneWorkflow(input: UpdateOneWorkflowInput): Workflow | Promise<Workflow>;
-    updateManyWorkflows(input: UpdateManyWorkflowsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
-    createOneWorkflow(input: CreateOneWorkflowInput): Workflow | Promise<Workflow>;
-    createManyWorkflows(input: CreateManyWorkflowsInput): Workflow[] | Promise<Workflow[]>;
-    deleteOneProject(input: DeleteOneInput): ProjectDeleteResponse | Promise<ProjectDeleteResponse>;
-    deleteManyProjects(input: DeleteManyProjectsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
-    updateOneProject(input: UpdateOneProjectInput): Project | Promise<Project>;
-    updateManyProjects(input: UpdateManyProjectsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
-    createOneProject(input: CreateOneProjectInput): Project | Promise<Project>;
-    createManyProjects(input: CreateManyProjectsInput): Project[] | Promise<Project[]>;
     login(password: string, username: string): LoginPayload | Promise<LoginPayload>;
     register(password: string, username: string, email: string): RegisterPayload | Promise<RegisterPayload>;
     logout(): boolean | Promise<boolean>;
@@ -1608,25 +1594,40 @@ export interface IMutation {
     requestPasswordReset(email: string): ResetPasswordPayload | Promise<ResetPasswordPayload>;
     completePasswordReset(password: string, code: string, username: string): CompletePasswordPayload | Promise<CompletePasswordPayload>;
     completeExternalAuth(email: string, username: string, code: string, id: string): CompleteExternalAuthPayload | Promise<CompleteExternalAuthPayload>;
-    deleteOneWorkflowTrigger(input: DeleteOneInput): WorkflowTriggerDeleteResponse | Promise<WorkflowTriggerDeleteResponse>;
-    deleteManyWorkflowTriggers(input: DeleteManyWorkflowTriggersInput): DeleteManyResponse | Promise<DeleteManyResponse>;
-    updateOneWorkflowTrigger(input: UpdateOneWorkflowTriggerInput): WorkflowTrigger | Promise<WorkflowTrigger>;
-    updateManyWorkflowTriggers(input: UpdateManyWorkflowTriggersInput): UpdateManyResponse | Promise<UpdateManyResponse>;
-    createOneWorkflowTrigger(input: CreateOneWorkflowTriggerInput): WorkflowTrigger | Promise<WorkflowTrigger>;
-    createManyWorkflowTriggers(input: CreateManyWorkflowTriggersInput): WorkflowTrigger[] | Promise<WorkflowTrigger[]>;
-    checkWorkflowTrigger(id: string): WorkflowTrigger | Promise<WorkflowTrigger>;
-    deleteOneWorkflowAction(input: DeleteOneInput): WorkflowActionDeleteResponse | Promise<WorkflowActionDeleteResponse>;
-    deleteManyWorkflowActions(input: DeleteManyWorkflowActionsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
-    updateOneWorkflowAction(input: UpdateOneWorkflowActionInput): WorkflowAction | Promise<WorkflowAction>;
-    updateManyWorkflowActions(input: UpdateManyWorkflowActionsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
-    createOneWorkflowAction(input: CreateOneWorkflowActionInput): WorkflowAction | Promise<WorkflowAction>;
-    createManyWorkflowActions(input: CreateManyWorkflowActionsInput): WorkflowAction[] | Promise<WorkflowAction[]>;
-    deleteOneAccountCredential(input: DeleteOneInput): AccountCredentialDeleteResponse | Promise<AccountCredentialDeleteResponse>;
-    deleteManyAccountCredentials(input: DeleteManyAccountCredentialsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
-    updateOneAccountCredential(input: UpdateOneAccountCredentialInput): AccountCredential | Promise<AccountCredential>;
-    updateManyAccountCredentials(input: UpdateManyAccountCredentialsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
+    updateOneUser(input: UpdateOneUserInput): User | Promise<User>;
+    changePassword(newPassword: string, oldPassword: string): User | Promise<User>;
+    generateApiKey(): GenerateApiTokenPayload | Promise<GenerateApiTokenPayload>;
     createOneAccountCredential(input: CreateOneAccountCredentialInput): AccountCredential | Promise<AccountCredential>;
     createManyAccountCredentials(input: CreateManyAccountCredentialsInput): AccountCredential[] | Promise<AccountCredential[]>;
+    updateOneAccountCredential(input: UpdateOneAccountCredentialInput): AccountCredential | Promise<AccountCredential>;
+    updateManyAccountCredentials(input: UpdateManyAccountCredentialsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
+    deleteOneAccountCredential(input: DeleteOneInput): AccountCredentialDeleteResponse | Promise<AccountCredentialDeleteResponse>;
+    deleteManyAccountCredentials(input: DeleteManyAccountCredentialsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
+    createOneWorkflow(input: CreateOneWorkflowInput): Workflow | Promise<Workflow>;
+    createManyWorkflows(input: CreateManyWorkflowsInput): Workflow[] | Promise<Workflow[]>;
+    updateOneWorkflow(input: UpdateOneWorkflowInput): Workflow | Promise<Workflow>;
+    updateManyWorkflows(input: UpdateManyWorkflowsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
+    deleteOneWorkflow(input: DeleteOneInput): WorkflowDeleteResponse | Promise<WorkflowDeleteResponse>;
+    deleteManyWorkflows(input: DeleteManyWorkflowsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
+    createOneProject(input: CreateOneProjectInput): Project | Promise<Project>;
+    createManyProjects(input: CreateManyProjectsInput): Project[] | Promise<Project[]>;
+    updateOneProject(input: UpdateOneProjectInput): Project | Promise<Project>;
+    updateManyProjects(input: UpdateManyProjectsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
+    deleteOneProject(input: DeleteOneInput): ProjectDeleteResponse | Promise<ProjectDeleteResponse>;
+    deleteManyProjects(input: DeleteManyProjectsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
+    createOneWorkflowAction(input: CreateOneWorkflowActionInput): WorkflowAction | Promise<WorkflowAction>;
+    createManyWorkflowActions(input: CreateManyWorkflowActionsInput): WorkflowAction[] | Promise<WorkflowAction[]>;
+    updateOneWorkflowAction(input: UpdateOneWorkflowActionInput): WorkflowAction | Promise<WorkflowAction>;
+    updateManyWorkflowActions(input: UpdateManyWorkflowActionsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
+    deleteOneWorkflowAction(input: DeleteOneInput): WorkflowActionDeleteResponse | Promise<WorkflowActionDeleteResponse>;
+    deleteManyWorkflowActions(input: DeleteManyWorkflowActionsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
+    createOneWorkflowTrigger(input: CreateOneWorkflowTriggerInput): WorkflowTrigger | Promise<WorkflowTrigger>;
+    createManyWorkflowTriggers(input: CreateManyWorkflowTriggersInput): WorkflowTrigger[] | Promise<WorkflowTrigger[]>;
+    updateOneWorkflowTrigger(input: UpdateOneWorkflowTriggerInput): WorkflowTrigger | Promise<WorkflowTrigger>;
+    updateManyWorkflowTriggers(input: UpdateManyWorkflowTriggersInput): UpdateManyResponse | Promise<UpdateManyResponse>;
+    deleteOneWorkflowTrigger(input: DeleteOneInput): WorkflowTriggerDeleteResponse | Promise<WorkflowTriggerDeleteResponse>;
+    deleteManyWorkflowTriggers(input: DeleteManyWorkflowTriggersInput): DeleteManyResponse | Promise<DeleteManyResponse>;
+    checkWorkflowTrigger(id: string): WorkflowTrigger | Promise<WorkflowTrigger>;
 }
 
 export type DateTime = any;

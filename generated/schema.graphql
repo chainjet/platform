@@ -135,16 +135,6 @@ type Integration {
   operationCategories: [OperationCategory!]
   numberOfTriggers: Int!
   numberOfActions: Int!
-  actions(
-    """Limit or page results."""
-    paging: CursorPaging = {first: 10}
-
-    """Specify to filter the records returned."""
-    filter: IntegrationActionFilter = {}
-
-    """Specify to sort results."""
-    sorting: [IntegrationActionSort!] = []
-  ): IntegrationActionsConnection!
   triggers(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -155,6 +145,16 @@ type Integration {
     """Specify to sort results."""
     sorting: [IntegrationTriggerSort!] = []
   ): IntegrationTriggersConnection!
+  actions(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: IntegrationActionFilter = {}
+
+    """Specify to sort results."""
+    sorting: [IntegrationActionSort!] = []
+  ): IntegrationActionsConnection!
 }
 
 input CursorPaging {
@@ -171,9 +171,9 @@ input CursorPaging {
   last: Int
 }
 
-input IntegrationActionFilter {
-  and: [IntegrationActionFilter!]
-  or: [IntegrationActionFilter!]
+input IntegrationTriggerFilter {
+  and: [IntegrationTriggerFilter!]
+  or: [IntegrationTriggerFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
   integration: IDFilterComparison
@@ -243,13 +243,13 @@ input BooleanFieldComparison {
   isNot: Boolean
 }
 
-input IntegrationActionSort {
-  field: IntegrationActionSortFields!
+input IntegrationTriggerSort {
+  field: IntegrationTriggerSortFields!
   direction: SortDirection!
   nulls: SortNulls
 }
 
-enum IntegrationActionSortFields {
+enum IntegrationTriggerSortFields {
   id
   createdAt
   integration
@@ -272,9 +272,9 @@ enum SortNulls {
   NULLS_LAST
 }
 
-input IntegrationTriggerFilter {
-  and: [IntegrationTriggerFilter!]
-  or: [IntegrationTriggerFilter!]
+input IntegrationActionFilter {
+  and: [IntegrationActionFilter!]
+  or: [IntegrationActionFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
   integration: IDFilterComparison
@@ -285,13 +285,13 @@ input IntegrationTriggerFilter {
   skipAuth: BooleanFieldComparison
 }
 
-input IntegrationTriggerSort {
-  field: IntegrationTriggerSortFields!
+input IntegrationActionSort {
+  field: IntegrationActionSortFields!
   direction: SortDirection!
   nulls: SortNulls
 }
 
-enum IntegrationTriggerSortFields {
+enum IntegrationActionSortFields {
   id
   createdAt
   integration
@@ -599,6 +599,7 @@ type Workflow {
   slug: String!
   state: String
   runOnFailure: ID
+  trigger: WorkflowTrigger
   actions(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -609,7 +610,6 @@ type Workflow {
     """Specify to sort results."""
     sorting: [WorkflowActionSort!] = []
   ): WorkflowActionsConnection
-  trigger: WorkflowTrigger
 }
 
 input WorkflowActionFilter {
@@ -1124,6 +1124,43 @@ type AsyncSchema {
 }
 
 type Query {
+  user(
+    """The id of the record to find."""
+    id: ID!
+  ): User
+  viewer: User!
+  accountCredential(
+    """The id of the record to find."""
+    id: ID!
+  ): AccountCredential
+  accountCredentials(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: AccountCredentialFilter = {}
+
+    """Specify to sort results."""
+    sorting: [AccountCredentialSort!] = []
+  ): AccountCredentialConnection!
+  integration(
+    """The id of the record to find."""
+    id: ID!
+  ): Integration
+  integrations(
+    search: String
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: IntegrationFilter = {}
+
+    """Specify to sort results."""
+    sorting: [IntegrationSort!] = []
+  ): IntegrationConnection!
+  integrationCategories: [IntegrationCategory!]!
+  integrationCategory(id: String!): IntegrationCategory
   integrationAccount(
     """The id of the record to find."""
     id: ID!
@@ -1170,29 +1207,6 @@ type Query {
     """Specify to sort results."""
     sorting: [IntegrationTriggerSort!] = []
   ): IntegrationTriggerConnection!
-  integration(
-    """The id of the record to find."""
-    id: ID!
-  ): Integration
-  integrations(
-    search: String
-
-    """Limit or page results."""
-    paging: CursorPaging = {first: 10}
-
-    """Specify to filter the records returned."""
-    filter: IntegrationFilter = {}
-
-    """Specify to sort results."""
-    sorting: [IntegrationSort!] = []
-  ): IntegrationConnection!
-  integrationCategories: [IntegrationCategory!]!
-  integrationCategory(id: String!): IntegrationCategory
-  user(
-    """The id of the record to find."""
-    id: ID!
-  ): User
-  viewer: User!
   workflow(
     """The id of the record to find."""
     id: ID!
@@ -1221,6 +1235,48 @@ type Query {
     """Specify to sort results."""
     sorting: [ProjectSort!] = []
   ): ProjectConnection!
+  workflowAction(
+    """The id of the record to find."""
+    id: ID!
+  ): WorkflowAction
+  workflowActions(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: WorkflowActionFilter = {}
+
+    """Specify to sort results."""
+    sorting: [WorkflowActionSort!] = []
+  ): WorkflowActionConnection!
+  workflowNextAction(
+    """The id of the record to find."""
+    id: ID!
+  ): WorkflowNextAction
+  workflowNextActions(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: WorkflowNextActionFilter = {}
+
+    """Specify to sort results."""
+    sorting: [WorkflowNextActionSort!] = []
+  ): WorkflowNextActionConnection!
+  workflowTrigger(
+    """The id of the record to find."""
+    id: ID!
+  ): WorkflowTrigger
+  workflowTriggers(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: WorkflowTriggerFilter = {}
+
+    """Specify to sort results."""
+    sorting: [WorkflowTriggerSort!] = []
+  ): WorkflowTriggerConnection!
   workflowRun(
     """The id of the record to find."""
     id: ID!
@@ -1263,86 +1319,30 @@ type Query {
     """Specify to sort results."""
     sorting: [WorkflowRunActionSort!] = []
   ): WorkflowRunActionConnection!
-  workflowTrigger(
-    """The id of the record to find."""
-    id: ID!
-  ): WorkflowTrigger
-  workflowTriggers(
-    """Limit or page results."""
-    paging: CursorPaging = {first: 10}
-
-    """Specify to filter the records returned."""
-    filter: WorkflowTriggerFilter = {}
-
-    """Specify to sort results."""
-    sorting: [WorkflowTriggerSort!] = []
-  ): WorkflowTriggerConnection!
-  workflowAction(
-    """The id of the record to find."""
-    id: ID!
-  ): WorkflowAction
-  workflowActions(
-    """Limit or page results."""
-    paging: CursorPaging = {first: 10}
-
-    """Specify to filter the records returned."""
-    filter: WorkflowActionFilter = {}
-
-    """Specify to sort results."""
-    sorting: [WorkflowActionSort!] = []
-  ): WorkflowActionConnection!
-  workflowNextAction(
-    """The id of the record to find."""
-    id: ID!
-  ): WorkflowNextAction
-  workflowNextActions(
-    """Limit or page results."""
-    paging: CursorPaging = {first: 10}
-
-    """Specify to filter the records returned."""
-    filter: WorkflowNextActionFilter = {}
-
-    """Specify to sort results."""
-    sorting: [WorkflowNextActionSort!] = []
-  ): WorkflowNextActionConnection!
-  accountCredential(
-    """The id of the record to find."""
-    id: ID!
-  ): AccountCredential
-  accountCredentials(
-    """Limit or page results."""
-    paging: CursorPaging = {first: 10}
-
-    """Specify to filter the records returned."""
-    filter: AccountCredentialFilter = {}
-
-    """Specify to sort results."""
-    sorting: [AccountCredentialSort!] = []
-  ): AccountCredentialConnection!
   contractSchema(type: String!, address: String!, chainId: Int!): ContractSchema!
   asyncSchemas(names: [String!]!, accountCredentialId: String!, integrationId: String!): AsyncSchema!
 }
 
-input IntegrationAccountFilter {
-  and: [IntegrationAccountFilter!]
-  or: [IntegrationAccountFilter!]
+input AccountCredentialFilter {
+  and: [AccountCredentialFilter!]
+  or: [AccountCredentialFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
-  key: StringFieldComparison
-  name: StringFieldComparison
+  owner: IDFilterComparison
+  integrationAccount: IDFilterComparison
 }
 
-input IntegrationAccountSort {
-  field: IntegrationAccountSortFields!
+input AccountCredentialSort {
+  field: AccountCredentialSortFields!
   direction: SortDirection!
   nulls: SortNulls
 }
 
-enum IntegrationAccountSortFields {
+enum AccountCredentialSortFields {
   id
   createdAt
-  key
-  name
+  owner
+  integrationAccount
 }
 
 input IntegrationFilter {
@@ -1399,6 +1399,28 @@ enum IntegrationSortFields {
   numberOfActions
 }
 
+input IntegrationAccountFilter {
+  and: [IntegrationAccountFilter!]
+  or: [IntegrationAccountFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  key: StringFieldComparison
+  name: StringFieldComparison
+}
+
+input IntegrationAccountSort {
+  field: IntegrationAccountSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum IntegrationAccountSortFields {
+  id
+  createdAt
+  key
+  name
+}
+
 input WorkflowFilter {
   and: [WorkflowFilter!]
   or: [WorkflowFilter!]
@@ -1447,6 +1469,44 @@ enum ProjectSortFields {
   owner
   name
   slug
+}
+
+input WorkflowNextActionFilter {
+  and: [WorkflowNextActionFilter!]
+  or: [WorkflowNextActionFilter!]
+  action: IDFilterComparison
+}
+
+input WorkflowNextActionSort {
+  field: WorkflowNextActionSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum WorkflowNextActionSortFields {
+  action
+}
+
+input WorkflowTriggerFilter {
+  and: [WorkflowTriggerFilter!]
+  or: [WorkflowTriggerFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  owner: IDFilterComparison
+  workflow: IDFilterComparison
+}
+
+input WorkflowTriggerSort {
+  field: WorkflowTriggerSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum WorkflowTriggerSortFields {
+  id
+  createdAt
+  owner
+  workflow
 }
 
 input WorkflowRunFilter {
@@ -1543,82 +1603,7 @@ enum WorkflowRunActionSortFields {
   status
 }
 
-input WorkflowTriggerFilter {
-  and: [WorkflowTriggerFilter!]
-  or: [WorkflowTriggerFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-  owner: IDFilterComparison
-  workflow: IDFilterComparison
-}
-
-input WorkflowTriggerSort {
-  field: WorkflowTriggerSortFields!
-  direction: SortDirection!
-  nulls: SortNulls
-}
-
-enum WorkflowTriggerSortFields {
-  id
-  createdAt
-  owner
-  workflow
-}
-
-input WorkflowNextActionFilter {
-  and: [WorkflowNextActionFilter!]
-  or: [WorkflowNextActionFilter!]
-  action: IDFilterComparison
-}
-
-input WorkflowNextActionSort {
-  field: WorkflowNextActionSortFields!
-  direction: SortDirection!
-  nulls: SortNulls
-}
-
-enum WorkflowNextActionSortFields {
-  action
-}
-
-input AccountCredentialFilter {
-  and: [AccountCredentialFilter!]
-  or: [AccountCredentialFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-  owner: IDFilterComparison
-  integrationAccount: IDFilterComparison
-}
-
-input AccountCredentialSort {
-  field: AccountCredentialSortFields!
-  direction: SortDirection!
-  nulls: SortNulls
-}
-
-enum AccountCredentialSortFields {
-  id
-  createdAt
-  owner
-  integrationAccount
-}
-
 type Mutation {
-  updateOneUser(input: UpdateOneUserInput!): User!
-  changePassword(newPassword: String!, oldPassword: String!): User!
-  generateApiKey: GenerateApiTokenPayload!
-  deleteOneWorkflow(input: DeleteOneInput!): WorkflowDeleteResponse!
-  deleteManyWorkflows(input: DeleteManyWorkflowsInput!): DeleteManyResponse!
-  updateOneWorkflow(input: UpdateOneWorkflowInput!): Workflow!
-  updateManyWorkflows(input: UpdateManyWorkflowsInput!): UpdateManyResponse!
-  createOneWorkflow(input: CreateOneWorkflowInput!): Workflow!
-  createManyWorkflows(input: CreateManyWorkflowsInput!): [Workflow!]!
-  deleteOneProject(input: DeleteOneInput!): ProjectDeleteResponse!
-  deleteManyProjects(input: DeleteManyProjectsInput!): DeleteManyResponse!
-  updateOneProject(input: UpdateOneProjectInput!): Project!
-  updateManyProjects(input: UpdateManyProjectsInput!): UpdateManyResponse!
-  createOneProject(input: CreateOneProjectInput!): Project!
-  createManyProjects(input: CreateManyProjectsInput!): [Project!]!
   login(password: String!, username: String!): LoginPayload!
   register(password: String!, username: String!, email: String!): RegisterPayload!
   logout: Boolean!
@@ -1627,25 +1612,40 @@ type Mutation {
   requestPasswordReset(email: String!): ResetPasswordPayload!
   completePasswordReset(password: String!, code: String!, username: String!): CompletePasswordPayload!
   completeExternalAuth(email: String!, username: String!, code: String!, id: String!): CompleteExternalAuthPayload!
-  deleteOneWorkflowTrigger(input: DeleteOneInput!): WorkflowTriggerDeleteResponse!
-  deleteManyWorkflowTriggers(input: DeleteManyWorkflowTriggersInput!): DeleteManyResponse!
-  updateOneWorkflowTrigger(input: UpdateOneWorkflowTriggerInput!): WorkflowTrigger!
-  updateManyWorkflowTriggers(input: UpdateManyWorkflowTriggersInput!): UpdateManyResponse!
-  createOneWorkflowTrigger(input: CreateOneWorkflowTriggerInput!): WorkflowTrigger!
-  createManyWorkflowTriggers(input: CreateManyWorkflowTriggersInput!): [WorkflowTrigger!]!
-  checkWorkflowTrigger(id: String!): WorkflowTrigger!
-  deleteOneWorkflowAction(input: DeleteOneInput!): WorkflowActionDeleteResponse!
-  deleteManyWorkflowActions(input: DeleteManyWorkflowActionsInput!): DeleteManyResponse!
-  updateOneWorkflowAction(input: UpdateOneWorkflowActionInput!): WorkflowAction!
-  updateManyWorkflowActions(input: UpdateManyWorkflowActionsInput!): UpdateManyResponse!
-  createOneWorkflowAction(input: CreateOneWorkflowActionInput!): WorkflowAction!
-  createManyWorkflowActions(input: CreateManyWorkflowActionsInput!): [WorkflowAction!]!
-  deleteOneAccountCredential(input: DeleteOneInput!): AccountCredentialDeleteResponse!
-  deleteManyAccountCredentials(input: DeleteManyAccountCredentialsInput!): DeleteManyResponse!
-  updateOneAccountCredential(input: UpdateOneAccountCredentialInput!): AccountCredential!
-  updateManyAccountCredentials(input: UpdateManyAccountCredentialsInput!): UpdateManyResponse!
+  updateOneUser(input: UpdateOneUserInput!): User!
+  changePassword(newPassword: String!, oldPassword: String!): User!
+  generateApiKey: GenerateApiTokenPayload!
   createOneAccountCredential(input: CreateOneAccountCredentialInput!): AccountCredential!
   createManyAccountCredentials(input: CreateManyAccountCredentialsInput!): [AccountCredential!]!
+  updateOneAccountCredential(input: UpdateOneAccountCredentialInput!): AccountCredential!
+  updateManyAccountCredentials(input: UpdateManyAccountCredentialsInput!): UpdateManyResponse!
+  deleteOneAccountCredential(input: DeleteOneInput!): AccountCredentialDeleteResponse!
+  deleteManyAccountCredentials(input: DeleteManyAccountCredentialsInput!): DeleteManyResponse!
+  createOneWorkflow(input: CreateOneWorkflowInput!): Workflow!
+  createManyWorkflows(input: CreateManyWorkflowsInput!): [Workflow!]!
+  updateOneWorkflow(input: UpdateOneWorkflowInput!): Workflow!
+  updateManyWorkflows(input: UpdateManyWorkflowsInput!): UpdateManyResponse!
+  deleteOneWorkflow(input: DeleteOneInput!): WorkflowDeleteResponse!
+  deleteManyWorkflows(input: DeleteManyWorkflowsInput!): DeleteManyResponse!
+  createOneProject(input: CreateOneProjectInput!): Project!
+  createManyProjects(input: CreateManyProjectsInput!): [Project!]!
+  updateOneProject(input: UpdateOneProjectInput!): Project!
+  updateManyProjects(input: UpdateManyProjectsInput!): UpdateManyResponse!
+  deleteOneProject(input: DeleteOneInput!): ProjectDeleteResponse!
+  deleteManyProjects(input: DeleteManyProjectsInput!): DeleteManyResponse!
+  createOneWorkflowAction(input: CreateOneWorkflowActionInput!): WorkflowAction!
+  createManyWorkflowActions(input: CreateManyWorkflowActionsInput!): [WorkflowAction!]!
+  updateOneWorkflowAction(input: UpdateOneWorkflowActionInput!): WorkflowAction!
+  updateManyWorkflowActions(input: UpdateManyWorkflowActionsInput!): UpdateManyResponse!
+  deleteOneWorkflowAction(input: DeleteOneInput!): WorkflowActionDeleteResponse!
+  deleteManyWorkflowActions(input: DeleteManyWorkflowActionsInput!): DeleteManyResponse!
+  createOneWorkflowTrigger(input: CreateOneWorkflowTriggerInput!): WorkflowTrigger!
+  createManyWorkflowTriggers(input: CreateManyWorkflowTriggersInput!): [WorkflowTrigger!]!
+  updateOneWorkflowTrigger(input: UpdateOneWorkflowTriggerInput!): WorkflowTrigger!
+  updateManyWorkflowTriggers(input: UpdateManyWorkflowTriggersInput!): UpdateManyResponse!
+  deleteOneWorkflowTrigger(input: DeleteOneInput!): WorkflowTriggerDeleteResponse!
+  deleteManyWorkflowTriggers(input: DeleteManyWorkflowTriggersInput!): DeleteManyResponse!
+  checkWorkflowTrigger(id: String!): WorkflowTrigger!
 }
 
 input UpdateOneUserInput {
@@ -1663,25 +1663,87 @@ input UpdateUserInput {
   email: String
 }
 
+input CreateOneAccountCredentialInput {
+  """The record to create"""
+  accountCredential: CreateAccountCredentialInput!
+}
+
+input CreateAccountCredentialInput {
+  integrationAccount: ID!
+  name: String!
+  credentials: JSONObject
+  fields: JSONObject
+}
+
+input CreateManyAccountCredentialsInput {
+  """Array of records to create"""
+  accountCredentials: [CreateAccountCredentialInput!]!
+}
+
+input UpdateOneAccountCredentialInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateAccountCredentialInput!
+}
+
+input UpdateAccountCredentialInput {
+  name: String
+  credentials: JSONObject
+  fields: JSONObject
+}
+
+input UpdateManyAccountCredentialsInput {
+  """Filter used to find fields to update"""
+  filter: AccountCredentialUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateAccountCredentialInput!
+}
+
+input AccountCredentialUpdateFilter {
+  and: [AccountCredentialUpdateFilter!]
+  or: [AccountCredentialUpdateFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  owner: IDFilterComparison
+  integrationAccount: IDFilterComparison
+}
+
 input DeleteOneInput {
   """The id of the record to delete."""
   id: ID!
 }
 
-input DeleteManyWorkflowsInput {
+input DeleteManyAccountCredentialsInput {
   """Filter to find records to delete"""
-  filter: WorkflowDeleteFilter!
+  filter: AccountCredentialDeleteFilter!
 }
 
-input WorkflowDeleteFilter {
-  and: [WorkflowDeleteFilter!]
-  or: [WorkflowDeleteFilter!]
+input AccountCredentialDeleteFilter {
+  and: [AccountCredentialDeleteFilter!]
+  or: [AccountCredentialDeleteFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
   owner: IDFilterComparison
-  project: IDFilterComparison
-  name: StringFieldComparison
-  slug: StringFieldComparison
+  integrationAccount: IDFilterComparison
+}
+
+input CreateOneWorkflowInput {
+  """The record to create"""
+  workflow: CreateWorkflowInput!
+}
+
+input CreateWorkflowInput {
+  name: String!
+  project: ID!
+  runOnFailure: ID
+}
+
+input CreateManyWorkflowsInput {
+  """Array of records to create"""
+  workflows: [CreateWorkflowInput!]!
 }
 
 input UpdateOneWorkflowInput {
@@ -1716,35 +1778,35 @@ input WorkflowUpdateFilter {
   slug: StringFieldComparison
 }
 
-input CreateOneWorkflowInput {
-  """The record to create"""
-  workflow: CreateWorkflowInput!
-}
-
-input CreateWorkflowInput {
-  name: String!
-  project: ID!
-  runOnFailure: ID
-}
-
-input CreateManyWorkflowsInput {
-  """Array of records to create"""
-  workflows: [CreateWorkflowInput!]!
-}
-
-input DeleteManyProjectsInput {
+input DeleteManyWorkflowsInput {
   """Filter to find records to delete"""
-  filter: ProjectDeleteFilter!
+  filter: WorkflowDeleteFilter!
 }
 
-input ProjectDeleteFilter {
-  and: [ProjectDeleteFilter!]
-  or: [ProjectDeleteFilter!]
+input WorkflowDeleteFilter {
+  and: [WorkflowDeleteFilter!]
+  or: [WorkflowDeleteFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
   owner: IDFilterComparison
+  project: IDFilterComparison
   name: StringFieldComparison
   slug: StringFieldComparison
+}
+
+input CreateOneProjectInput {
+  """The record to create"""
+  project: CreateProjectInput!
+}
+
+input CreateProjectInput {
+  name: String!
+  public: Boolean = false
+}
+
+input CreateManyProjectsInput {
+  """Array of records to create"""
+  projects: [CreateProjectInput!]!
 }
 
 input UpdateOneProjectInput {
@@ -1778,33 +1840,106 @@ input ProjectUpdateFilter {
   slug: StringFieldComparison
 }
 
-input CreateOneProjectInput {
-  """The record to create"""
-  project: CreateProjectInput!
-}
-
-input CreateProjectInput {
-  name: String!
-  public: Boolean = false
-}
-
-input CreateManyProjectsInput {
-  """Array of records to create"""
-  projects: [CreateProjectInput!]!
-}
-
-input DeleteManyWorkflowTriggersInput {
+input DeleteManyProjectsInput {
   """Filter to find records to delete"""
-  filter: WorkflowTriggerDeleteFilter!
+  filter: ProjectDeleteFilter!
 }
 
-input WorkflowTriggerDeleteFilter {
-  and: [WorkflowTriggerDeleteFilter!]
-  or: [WorkflowTriggerDeleteFilter!]
+input ProjectDeleteFilter {
+  and: [ProjectDeleteFilter!]
+  or: [ProjectDeleteFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  owner: IDFilterComparison
+  name: StringFieldComparison
+  slug: StringFieldComparison
+}
+
+input CreateOneWorkflowActionInput {
+  """The record to create"""
+  workflowAction: CreateWorkflowActionInput!
+}
+
+input CreateWorkflowActionInput {
+  workflow: ID!
+  integrationAction: ID!
+  inputs: JSONObject!
+  previousAction: ID
+  previousActionCondition: String
+  nextAction: ID
+  credentials: ID
+}
+
+input CreateManyWorkflowActionsInput {
+  """Array of records to create"""
+  workflowActions: [CreateWorkflowActionInput!]!
+}
+
+input UpdateOneWorkflowActionInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateWorkflowActionInput!
+}
+
+input UpdateWorkflowActionInput {
+  name: String!
+  inputs: JSONObject
+  credentials: ID
+}
+
+input UpdateManyWorkflowActionsInput {
+  """Filter used to find fields to update"""
+  filter: WorkflowActionUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateWorkflowActionInput!
+}
+
+input WorkflowActionUpdateFilter {
+  and: [WorkflowActionUpdateFilter!]
+  or: [WorkflowActionUpdateFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
   owner: IDFilterComparison
   workflow: IDFilterComparison
+  isRootAction: BooleanFieldComparison
+}
+
+input DeleteManyWorkflowActionsInput {
+  """Filter to find records to delete"""
+  filter: WorkflowActionDeleteFilter!
+}
+
+input WorkflowActionDeleteFilter {
+  and: [WorkflowActionDeleteFilter!]
+  or: [WorkflowActionDeleteFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  owner: IDFilterComparison
+  workflow: IDFilterComparison
+  isRootAction: BooleanFieldComparison
+}
+
+input CreateOneWorkflowTriggerInput {
+  """The record to create"""
+  workflowTrigger: CreateWorkflowTriggerInput!
+}
+
+input CreateWorkflowTriggerInput {
+  workflow: ID!
+  integrationTrigger: ID!
+  inputs: JSONObject!
+  credentials: ID
+  schedule: JSONObject
+  enabled: Boolean
+  maxConsecutiveFailures: Int
+}
+
+input CreateManyWorkflowTriggersInput {
+  """Array of records to create"""
+  workflowTriggers: [CreateWorkflowTriggerInput!]!
 }
 
 input UpdateOneWorkflowTriggerInput {
@@ -1841,151 +1976,16 @@ input WorkflowTriggerUpdateFilter {
   workflow: IDFilterComparison
 }
 
-input CreateOneWorkflowTriggerInput {
-  """The record to create"""
-  workflowTrigger: CreateWorkflowTriggerInput!
-}
-
-input CreateWorkflowTriggerInput {
-  workflow: ID!
-  integrationTrigger: ID!
-  inputs: JSONObject!
-  credentials: ID
-  schedule: JSONObject
-  enabled: Boolean
-  maxConsecutiveFailures: Int
-}
-
-input CreateManyWorkflowTriggersInput {
-  """Array of records to create"""
-  workflowTriggers: [CreateWorkflowTriggerInput!]!
-}
-
-input DeleteManyWorkflowActionsInput {
+input DeleteManyWorkflowTriggersInput {
   """Filter to find records to delete"""
-  filter: WorkflowActionDeleteFilter!
+  filter: WorkflowTriggerDeleteFilter!
 }
 
-input WorkflowActionDeleteFilter {
-  and: [WorkflowActionDeleteFilter!]
-  or: [WorkflowActionDeleteFilter!]
+input WorkflowTriggerDeleteFilter {
+  and: [WorkflowTriggerDeleteFilter!]
+  or: [WorkflowTriggerDeleteFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
   owner: IDFilterComparison
   workflow: IDFilterComparison
-  isRootAction: BooleanFieldComparison
-}
-
-input UpdateOneWorkflowActionInput {
-  """The id of the record to update"""
-  id: ID!
-
-  """The update to apply."""
-  update: UpdateWorkflowActionInput!
-}
-
-input UpdateWorkflowActionInput {
-  name: String!
-  inputs: JSONObject
-  credentials: ID
-}
-
-input UpdateManyWorkflowActionsInput {
-  """Filter used to find fields to update"""
-  filter: WorkflowActionUpdateFilter!
-
-  """The update to apply to all records found using the filter"""
-  update: UpdateWorkflowActionInput!
-}
-
-input WorkflowActionUpdateFilter {
-  and: [WorkflowActionUpdateFilter!]
-  or: [WorkflowActionUpdateFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-  owner: IDFilterComparison
-  workflow: IDFilterComparison
-  isRootAction: BooleanFieldComparison
-}
-
-input CreateOneWorkflowActionInput {
-  """The record to create"""
-  workflowAction: CreateWorkflowActionInput!
-}
-
-input CreateWorkflowActionInput {
-  workflow: ID!
-  integrationAction: ID!
-  inputs: JSONObject!
-  previousAction: ID
-  previousActionCondition: String
-  nextAction: ID
-  credentials: ID
-}
-
-input CreateManyWorkflowActionsInput {
-  """Array of records to create"""
-  workflowActions: [CreateWorkflowActionInput!]!
-}
-
-input DeleteManyAccountCredentialsInput {
-  """Filter to find records to delete"""
-  filter: AccountCredentialDeleteFilter!
-}
-
-input AccountCredentialDeleteFilter {
-  and: [AccountCredentialDeleteFilter!]
-  or: [AccountCredentialDeleteFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-  owner: IDFilterComparison
-  integrationAccount: IDFilterComparison
-}
-
-input UpdateOneAccountCredentialInput {
-  """The id of the record to update"""
-  id: ID!
-
-  """The update to apply."""
-  update: UpdateAccountCredentialInput!
-}
-
-input UpdateAccountCredentialInput {
-  name: String
-  credentials: JSONObject
-  fields: JSONObject
-}
-
-input UpdateManyAccountCredentialsInput {
-  """Filter used to find fields to update"""
-  filter: AccountCredentialUpdateFilter!
-
-  """The update to apply to all records found using the filter"""
-  update: UpdateAccountCredentialInput!
-}
-
-input AccountCredentialUpdateFilter {
-  and: [AccountCredentialUpdateFilter!]
-  or: [AccountCredentialUpdateFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-  owner: IDFilterComparison
-  integrationAccount: IDFilterComparison
-}
-
-input CreateOneAccountCredentialInput {
-  """The record to create"""
-  accountCredential: CreateAccountCredentialInput!
-}
-
-input CreateAccountCredentialInput {
-  integrationAccount: ID!
-  name: String!
-  credentials: JSONObject
-  fields: JSONObject
-}
-
-input CreateManyAccountCredentialsInput {
-  """Array of records to create"""
-  accountCredentials: [CreateAccountCredentialInput!]!
 }

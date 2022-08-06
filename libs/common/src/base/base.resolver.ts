@@ -6,7 +6,6 @@ import {
   DefaultAssembler,
   QueryService,
 } from '@nestjs-query/core'
-import { getAssembler } from '@nestjs-query/core/dist/src/assemblers'
 import { getAssemblerDeserializer } from '@nestjs-query/core/dist/src/assemblers/assembler.deserializer'
 import {
   CRUDResolver,
@@ -52,10 +51,6 @@ function getEntityAssembler<From, To, C = DeepPartial<From>, CE = DeepPartial<To
   FromClass: Class<From>,
   ToClass: Class<To>,
 ): Assembler<From, To, C, CE, U, UE> {
-  const AssemblerClass = getAssembler<From, To, C, CE, U, UE>(FromClass, ToClass)
-  if (AssemblerClass) {
-    return new AssemblerClass()
-  }
   const defaultAssember = new DefaultEntityAssembler(FromClass, ToClass)
   // if its a default just assume the types can be converted for all types
   return defaultAssember as unknown as Assembler<From, To, C, CE, U, UE>

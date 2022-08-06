@@ -1,5 +1,6 @@
 import { IntegrationAuthDefinition, IntegrationAuthType } from '@app/definitions/typings/IntegrationAuthDefinition'
-import { HttpService, Logger } from '@nestjs/common'
+import { HttpService } from '@nestjs/axios'
+import { Logger } from '@nestjs/common'
 import fs from 'fs'
 import yaml from 'js-yaml'
 import { JSONSchema7 } from 'json-schema'

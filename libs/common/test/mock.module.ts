@@ -1,4 +1,5 @@
-import { HttpModule, Module } from '@nestjs/common'
+import { HttpModule } from '@nestjs/axios'
+import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { AccountCredentialsModule } from '../../../apps/api/src/account-credentials/account-credentials.module'
 import { AuthModule } from '../../../apps/api/src/auth/auth.module'

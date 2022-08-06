@@ -1,5 +1,5 @@
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
-import { HttpService } from '@nestjs/common'
+import { HttpService } from '@nestjs/axios'
 import { RunResponse } from '..'
 import { OperationRunOptions } from '../../../../apps/runner/src/services/operation-runner.service'
 import { convertKeys } from '../../../common/src/utils/object.utils'
