@@ -194,6 +194,21 @@ export async function runPipedreamAction(action: PipedreamAction, opts: Operatio
 
   const [appKey, app] = appData
   const appMethods = 'methods' in app ? { ...app.methods, $auth } : {}
+
+  if ('_getHeaders' in appMethods) {
+    const headers = (appMethods as Methods)._getHeaders() as object
+    const userAgentKey = Object.keys(headers).find((key) => key.toLowerCase() === 'user-agent')
+    if (userAgentKey) {
+      delete headers[userAgentKey]
+    }
+    ;(appMethods as Methods)._getHeaders = function () {
+      return {
+        ...headers,
+        [userAgentKey ?? 'User-Agent']: 'ChainJet.io - admin@chainjet.io',
+      }
+    }.bind(appMethods)
+  }
+
   const bindData = {
     ...opts.inputs,
     [appKey]: appMethods,
