@@ -10,6 +10,7 @@ import { JSONSchema7 } from 'json-schema'
 import { OpenAPIObject, OperationObject } from 'openapi3-ts'
 import pluralize from 'pluralize'
 import request from 'request'
+import { firstValueFrom } from 'rxjs'
 import { OperationRunOptions } from '../../../../apps/runner/src/services/operation-runner.service'
 
 interface NormalAPIDefinition {
@@ -219,7 +220,7 @@ export class AwsDefinition extends MultiIntegrationDefinition {
 
       const normalApiDefinitionUrl = `https://raw.githubusercontent.com/aws/aws-sdk-js/master/apis/${apiPath}`
       this.logger.debug(`[GET] ${normalApiDefinitionUrl}`)
-      const definitionRes = await new HttpService().request({ url: normalApiDefinitionUrl }).toPromise()
+      const definitionRes = await firstValueFrom(new HttpService().request({ url: normalApiDefinitionUrl }))
       const definition: NormalAPIDefinition = definitionRes.data
 
       let integrationKey = definition.metadata.endpointPrefix.replace(/\./g, '-')
@@ -265,7 +266,7 @@ export class AwsDefinition extends MultiIntegrationDefinition {
       const key = `${serviceId}.${schema['x-metadata'].apiVersion}`
       const url = `https://raw.githubusercontent.com/aws/aws-sdk-js-v3/master/codegen/sdk-codegen/aws-models/${key}.json`
       this.logger.log(`Fetching targetPrefix from ${url}`)
-      const res = (await new HttpService().request({ url }).toPromise()).data
+      const res = (await firstValueFrom(new HttpService().request({ url }))).data
       const serviceShape = Object.entries(res.shapes).find((shape: any) => shape[1].type === 'service')
       if (!serviceShape || !serviceShape?.[0].includes('#')) {
         throw new Error(`Failed to find targetPrefix for ${key}`)
@@ -310,10 +311,10 @@ export class AwsDefinition extends MultiIntegrationDefinition {
 
 async function getApiDefinitionFiles(): Promise<string[]> {
   const httpService = new HttpService()
-  const res = await httpService
-    .request({ url: 'https://api.github.com/repos/aws/aws-sdk-js/git/trees/master' })
-    .toPromise()
+  const res = await firstValueFrom(
+    httpService.request({ url: 'https://api.github.com/repos/aws/aws-sdk-js/git/trees/master' }),
+  )
   const apisNode = res.data.tree.find((node: any) => node.path === 'apis')
-  const nodeDataRes = await httpService.request({ url: apisNode.url }).toPromise()
+  const nodeDataRes = await firstValueFrom(httpService.request({ url: apisNode.url }))
   return nodeDataRes.data.tree.map((node: any) => node.path)
 }

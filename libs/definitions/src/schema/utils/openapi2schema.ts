@@ -24,8 +24,18 @@ interface OpenApi2SchemaOptions {
   supportPatternProperties?: boolean
 }
 
+type NotSupported =
+  | 'nullable'
+  | 'discriminator'
+  | 'readOnly'
+  | 'writeOnly'
+  | 'xml'
+  | 'externalDocs'
+  | 'example'
+  | 'deprecated'
+
 interface SchemaOptions extends OpenApi2SchemaOptions {
-  keepNotSupported: string[]
+  keepNotSupported?: NotSupported[]
 }
 
 interface ToJsonSchemaOptions extends SchemaOptions {
@@ -138,7 +148,6 @@ function buildResponses(responses: any, schemaOptions: SchemaOptions): Record<st
   return resultResponses
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 function getConvertedSchema(type: 'request' | 'response', spec: any, schemaOptions: SchemaOptions): JSONSchema7 {
   const options: ToJsonSchemaOptions = { ...schemaOptions }
 

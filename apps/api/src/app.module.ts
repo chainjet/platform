@@ -1,3 +1,4 @@
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { GraphQLModule } from '@nestjs/graphql'
@@ -6,6 +7,7 @@ import { mongoForRoot } from '../../../libs/common/src/utils/mongodb'
 import { AccountCredentialsModule } from './account-credentials/account-credentials.module'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
+import { AsyncSchemaModule } from './async-schema/async-schema.module'
 import { AuthModule } from './auth/auth.module'
 import { ContractsModule } from './contracts/contracts.module'
 import { IntegrationAccountsModule } from './integration-accounts/integration-accounts.module'
@@ -18,13 +20,13 @@ import { WorkflowActionsModule } from './workflow-actions/workflow-actions.modul
 import { WorkflowRunsModule } from './workflow-runs/workflow-runs.module'
 import { WorkflowTriggersModule } from './workflow-triggers/workflow-triggers.module'
 import { WorkflowsModule } from './workflows/workflows.module'
-import { AsyncSchemaModule } from './async-schema/async-schema.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     mongoForRoot(),
-    GraphQLModule.forRoot({
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
       context: ({ req }) => ({ req }),
       autoSchemaFile: path.join(process.cwd(), 'generated/schema.graphql'),
       definitions: {

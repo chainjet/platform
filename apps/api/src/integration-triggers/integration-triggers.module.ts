@@ -9,7 +9,7 @@ import { IntegrationTriggerAuthorizer, IntegrationTriggerService } from './servi
   imports: [
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([IntegrationTrigger])],
-      resolvers: [],
+      dtos: [{ DTOClass: IntegrationTrigger }],
     }),
   ],
   providers: [IntegrationTriggerResolver, IntegrationTriggerService, IntegrationTriggerAuthorizer],

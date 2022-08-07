@@ -9,7 +9,7 @@ import { IntegrationAccountAuthorizer, IntegrationAccountService } from './servi
   imports: [
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([IntegrationAccount])],
-      resolvers: [],
+      dtos: [{ DTOClass: IntegrationAccount }],
     }),
   ],
   providers: [IntegrationAccountResolver, IntegrationAccountService, IntegrationAccountAuthorizer],

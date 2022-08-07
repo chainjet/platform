@@ -784,15 +784,15 @@ type AccountCredentialConnection {
   edges: [AccountCredentialEdge!]!
 }
 
+type AsyncSchema {
+  schemas: JSONObject!
+}
+
 type ContractSchema {
   id: ID!
   chainId: Int!
   address: String!
   schema: JSONObject!
-}
-
-type AsyncSchema {
-  schemas: JSONObject!
 }
 
 type Query {
@@ -991,8 +991,8 @@ type Query {
     """Specify to sort results."""
     sorting: [WorkflowRunActionSort!] = []
   ): WorkflowRunActionConnection!
-  contractSchema(type: String!, address: String!, chainId: Int!): ContractSchema!
-  asyncSchemas(names: [String!]!, accountCredentialId: String!, integrationId: String!): AsyncSchema!
+  contractSchema(chainId: Int!, address: String!, type: String!): ContractSchema!
+  asyncSchemas(integrationId: String!, accountCredentialId: String!, names: [String!]!): AsyncSchema!
 }
 
 input AccountCredentialFilter {
@@ -1276,16 +1276,16 @@ enum WorkflowRunActionSortFields {
 }
 
 type Mutation {
-  login(password: String!, username: String!): LoginPayload!
-  register(password: String!, username: String!, email: String!): RegisterPayload!
+  login(username: String!, password: String!): LoginPayload!
+  register(email: String!, username: String!, password: String!): RegisterPayload!
   logout: Boolean!
   getAccessToken: String!
-  verifyEmail(code: String!, username: String!): VerifyEmailPayload!
+  verifyEmail(username: String!, code: String!): VerifyEmailPayload!
   requestPasswordReset(email: String!): ResetPasswordPayload!
-  completePasswordReset(password: String!, code: String!, username: String!): CompletePasswordPayload!
-  completeExternalAuth(email: String!, username: String!, code: String!, id: String!): CompleteExternalAuthPayload!
+  completePasswordReset(username: String!, code: String!, password: String!): CompletePasswordPayload!
+  completeExternalAuth(id: String!, code: String!, username: String!, email: String!): CompleteExternalAuthPayload!
   updateOneUser(input: UpdateOneUserInput!): User!
-  changePassword(newPassword: String!, oldPassword: String!): User!
+  changePassword(oldPassword: String!, newPassword: String!): User!
   generateApiKey: GenerateApiTokenPayload!
   createOneAccountCredential(input: CreateOneAccountCredentialInput!): AccountCredential!
   createManyAccountCredentials(input: CreateManyAccountCredentialsInput!): [AccountCredential!]!

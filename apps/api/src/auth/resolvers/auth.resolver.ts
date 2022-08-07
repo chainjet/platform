@@ -5,6 +5,7 @@ import { UseGuards } from '@nestjs/common/decorators/core/use-guards.decorator'
 import { Args, Mutation, Resolver } from '@nestjs/graphql'
 import { ObjectId } from 'bson'
 import { GraphQLBoolean, GraphQLString } from 'graphql'
+import { firstValueFrom } from 'rxjs'
 import { EmailService } from '../../../../../libs/emails/src/services/email.service'
 import { ResetPasswordTemplate } from '../../../../../libs/emails/src/templates/resetPasswordTemplate'
 import { ProjectService } from '../../projects/services/project.service'
@@ -179,8 +180,8 @@ export class AuthResolver {
     }
 
     if (process.env.SIGN_UP_WORKFLOW_HOOK) {
-      await this.httpService
-        .request({
+      await firstValueFrom(
+        this.httpService.request({
           url: process.env.SIGN_UP_WORKFLOW_HOOK,
           method: 'POST',
           data: {
@@ -188,8 +189,8 @@ export class AuthResolver {
             email: user.email,
             ...signUpWorkflowData,
           },
-        })
-        .toPromise()
+        }),
+      )
     }
 
     const project = await this.projectService.createOne({

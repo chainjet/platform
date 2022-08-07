@@ -13,7 +13,7 @@ import { UserService } from './services/user.service'
   imports: [
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([User, UserProvider])],
-      resolvers: [],
+      dtos: [{ DTOClass: User }],
     }),
     EmailsModule,
   ],

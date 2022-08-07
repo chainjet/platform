@@ -9,7 +9,7 @@ import { IntegrationService } from './services/integration.service'
   imports: [
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([Integration])],
-      resolvers: [],
+      dtos: [{ DTOClass: Integration }],
     }),
   ],
   providers: [IntegrationResolver, IntegrationService, IntegrationAuthorizer],

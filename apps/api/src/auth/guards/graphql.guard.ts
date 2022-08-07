@@ -1,6 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common'
 import { GqlExecutionContext } from '@nestjs/graphql'
 import { AuthGuard } from '@nestjs/passport'
+import { firstValueFrom } from 'rxjs'
 import { UserService } from '../../users/services/user.service'
 import { AuthPayload } from '../typings/AccessToken'
 import { GqlContext } from '../typings/gql-context'
@@ -33,7 +34,7 @@ export class GraphqlGuard extends AuthGuard('jwt') implements CanActivate {
     if (typeof canActivate === 'boolean') {
       return canActivate
     }
-    return await canActivate.toPromise()
+    return await firstValueFrom(canActivate)
   }
 
   getRequest(context: ExecutionContext): GqlContext['req'] {

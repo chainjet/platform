@@ -34,6 +34,7 @@ import { WorkflowSleepService } from './services/workflow-sleep.service'
           delete: { disabled: true },
         },
       ],
+      dtos: [{ DTOClass: WorkflowRun }, { DTOClass: WorkflowSleep }],
     }),
     UsersModule,
     WorkflowsModule,

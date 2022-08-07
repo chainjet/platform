@@ -7,6 +7,7 @@ import { JSONSchema7 } from 'json-schema'
 import { OpenAPIObject } from 'openapi3-ts'
 import { SchemaObject, SecuritySchemeObject } from 'openapi3-ts/dist/model/OpenApi'
 import path from 'path'
+import { firstValueFrom } from 'rxjs'
 import { promisify } from 'util'
 import { stripMarkdown } from '../../../../common/src/utils/string.utils'
 
@@ -20,7 +21,7 @@ export const OpenApiUtils = {
     fixSchemaAfterFetch: (schema: OpenAPIObject) => OpenAPIObject,
   ): Promise<OpenAPIObject> {
     logger.log(`[GET] ${url}`)
-    const schemaRes = await new HttpService().request({ url }).toPromise()
+    const schemaRes = await firstValueFrom(new HttpService().request({ url }))
     let spec: OpenAPIObject
     if (typeof schemaRes.data === 'object') {
       spec = schemaRes.data

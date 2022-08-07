@@ -31,7 +31,7 @@ export class CoinMarketCapDefinition extends SingleIntegrationDefinition {
     // The schema has objects with type = hidden, which is invalid according to the OpenAPI 3.0 spec.
     // This function replaces these types with the x-hidden property.
     const transform = (obj: SchemaObject) => {
-      if (obj.type === 'hidden') {
+      if ((obj.type as string) === 'hidden') {
         delete obj.type
         obj['x-hidden'] = true
       }
