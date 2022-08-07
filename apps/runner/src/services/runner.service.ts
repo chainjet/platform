@@ -1,4 +1,6 @@
+import { isEmptyObj } from '@app/common/utils/object.utils'
 import { Definition, IntegrationDefinitionFactory, RunResponse } from '@app/definitions'
+import { generateSchemaFromObject } from '@app/definitions/schema/utils/jsonSchemaUtils'
 import { Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { ObjectId } from 'bson'
@@ -123,6 +125,18 @@ export class RunnerService {
         credentials,
         accountCredential,
       })
+
+      // learn response at integration level
+      if (
+        integrationTrigger.learnResponseIntegration &&
+        !integrationTrigger.schemaResponse &&
+        !isEmptyObj(runResponse?.outputs ?? {})
+      ) {
+        integrationTrigger.schemaResponse = generateSchemaFromObject(runResponse.outputs)
+        await this.integrationActionService.updateOne(integrationTrigger.id, {
+          schemaResponse: integrationTrigger.schemaResponse,
+        })
+      }
     } catch (e) {
       await this.onTriggerFailure(
         workflowTrigger.workflow,
@@ -264,6 +278,19 @@ export class RunnerService {
         credentials,
         accountCredential,
       })
+
+      // learn response at integration level
+      if (
+        integrationAction.learnResponseIntegration &&
+        !integrationAction.schemaResponse &&
+        !isEmptyObj(runResponse?.outputs ?? {})
+      ) {
+        integrationAction.schemaResponse = generateSchemaFromObject(runResponse.outputs)
+        await this.integrationActionService.updateOne(integrationAction.id, {
+          schemaResponse: integrationAction.schemaResponse,
+        })
+      }
+
       await this.workflowRunService.markActionAsCompleted(userId, workflowRun._id, workflowRunAction)
     } catch (e) {
       await this.onActionFailure(

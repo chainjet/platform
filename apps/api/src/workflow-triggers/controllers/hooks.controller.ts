@@ -77,7 +77,7 @@ export class HooksController {
       ...(req.body ?? {}),
     }
 
-    if (integrationTrigger.dynamicSchemaResponse && !workflowTrigger.schemaResponse && !isEmptyObj(triggerOutputs)) {
+    if (integrationTrigger.learnResponseWorkflow && !workflowTrigger.schemaResponse && !isEmptyObj(triggerOutputs)) {
       const schemaResponse = definition.getDynamicSchemaResponse(req)
       if (schemaResponse) {
         workflowTrigger.schemaResponse = schemaResponse
@@ -87,7 +87,7 @@ export class HooksController {
       }
     }
 
-    if (integrationTrigger.dynamicSchemaResponse) {
+    if (integrationTrigger.learnResponseWorkflow) {
       triggerOutputs = await definition.getDynamicSchemaOutputs(req)
     }
 

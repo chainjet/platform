@@ -283,7 +283,7 @@ export abstract class Definition {
    * Currently this is only implemented for hook based triggers
    */
   getDynamicSchemaResponse(req: Request): JSONSchema7 | null {
-    return null
+    return null // TODO
   }
 
   /**

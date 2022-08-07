@@ -138,6 +138,8 @@ export class IntegrationInstallerService {
         schemaMethod,
         schemaRequest,
         schemaResponse,
+        learnResponseWorkflow: !!operationObject['x-learnResponseWorkflow'],
+        learnResponseIntegration: !!operationObject['x-learnResponseIntegration'],
       })
     }
   }
@@ -177,7 +179,8 @@ export class IntegrationInstallerService {
         instant: !!operationObject['x-triggerInstant'] || !!operationObject['x-triggerHook'],
         isWebhook: !!operationObject['x-triggerHook'],
         hookInstructions: operationObject['x-triggerHookInstructions'],
-        dynamicSchemaResponse: !!operationObject['x-dynamicSchemaResponse'],
+        learnResponseWorkflow: !!operationObject['x-learnResponseWorkflow'],
+        learnResponseIntegration: !!operationObject['x-learnResponseIntegration'],
       })
     }
   }

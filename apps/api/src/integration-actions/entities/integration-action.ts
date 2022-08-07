@@ -80,4 +80,18 @@ export class IntegrationAction extends BaseEntity {
   @Field(() => GraphQLJSONObject, { nullable: true })
   @jsonProp()
   schemaResponse?: JSONSchema7
+
+  /**
+   * Schema response is learn from the first request and stored on the integration action
+   * Used when the schema doesn't change between different user invocations
+   */
+  @prop()
+  learnResponseIntegration?: boolean
+
+  /**
+   * Schema response is learn from the first request and stored on the workflow action
+   * Used when the schema changes between different user invocations
+   */
+  @prop()
+  learnResponseWorkflow?: boolean
 }

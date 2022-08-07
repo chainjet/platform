@@ -114,8 +114,16 @@ export class IntegrationTrigger extends BaseEntity {
   idKey?: string
 
   /**
-   * Schema response is "learn" from the first request and stored on the workflow trigger
+   * Schema response is learn from the first request and stored on the integration trigger
+   * Used when the schema doesn't change between different user invocations
    */
   @prop()
-  dynamicSchemaResponse: boolean
+  learnResponseIntegration?: boolean
+
+  /**
+   * Schema response is learn from the first request and stored on the workflow trigger
+   * Used when the schema changes between different user invocations
+   */
+  @prop()
+  learnResponseWorkflow?: boolean
 }
