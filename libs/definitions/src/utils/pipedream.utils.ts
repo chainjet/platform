@@ -152,15 +152,21 @@ export async function updatePipedreamSchemaBeforeInstall(
     }
 
     const operationData = mapPipedreamActionToOpenApi(action)
+    const schemaParams = schemaOperation.parameters ?? []
 
     // parameters are merged by name to avoid duplicates
     const mergedParams = (operationData.operation.parameters ?? []).reduce((prev, curr, i) => {
-      const schemaParam = 'name' in curr && prev.find((param) => param?.name === curr.name)
+      const schemaParam = 'name' in curr && schemaParams.find((param) => param?.name === curr.name)
       if (schemaParam) {
         return [...prev.slice(0, i), deepmerge(curr, schemaParam), ...prev.slice(i + 1)]
       }
       return [...prev, curr]
-    }, schemaOperation.parameters ?? [])
+    }, [])
+    for (const param of schemaParams) {
+      if (!mergedParams.find((p) => (p as any)?.name === param.name)) {
+        mergedParams.push(param)
+      }
+    }
 
     schema.paths[actionKey].get = deepmerge(operationData.operation, schemaOperation)
     schema.paths[actionKey].get.parameters = mergedParams
