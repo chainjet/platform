@@ -6,7 +6,7 @@ import { IntegrationAccount } from '../../../../apps/api/src/integration-account
 import { Integration } from '../../../../apps/api/src/integrations/entities/integration'
 import { OperationRunOptions } from '../../../../apps/runner/src/services/operation-runner.service'
 import { generateSchemaFromObject } from '../schema/utils/jsonSchemaUtils'
-import { IntegrationAuthDefinition, IntegrationAuthType } from '../typings/IntegrationAuthDefinition'
+import { IntegrationAuthDefinition, IntegrationAuthType } from '../types/IntegrationAuthDefinition'
 
 export class AirtableDefinition extends SingleIntegrationDefinition {
   integrationKey = 'airtable'

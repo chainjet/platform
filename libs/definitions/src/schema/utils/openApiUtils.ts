@@ -1,4 +1,4 @@
-import { IntegrationAuthDefinition, IntegrationAuthType } from '@app/definitions/typings/IntegrationAuthDefinition'
+import { IntegrationAuthDefinition, IntegrationAuthType } from '@app/definitions/types/IntegrationAuthDefinition'
 import { HttpService } from '@nestjs/axios'
 import { Logger } from '@nestjs/common'
 import fs from 'fs'

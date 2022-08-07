@@ -1,6 +1,6 @@
 import { RequestInterceptorOptions, SingleIntegrationData } from '@app/definitions/definition'
 import { MultiIntegrationDefinition } from '@app/definitions/multi-integration.definition'
-import { IntegrationAuthDefinition, IntegrationAuthType } from '@app/definitions/typings/IntegrationAuthDefinition'
+import { IntegrationAuthDefinition, IntegrationAuthType } from '@app/definitions/types/IntegrationAuthDefinition'
 import { HttpService } from '@nestjs/axios'
 import { Logger } from '@nestjs/common'
 import { IntegrationAccount } from 'apps/api/src/integration-accounts/entities/integration-account'

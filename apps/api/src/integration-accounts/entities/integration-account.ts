@@ -1,6 +1,6 @@
 import { BaseEntity } from '@app/common/base/base-entity'
 import { jsonProp } from '@app/common/decorators/props/json-prop.decorator'
-import { IntegrationAuthDefinition, IntegrationAuthType } from '@app/definitions/typings/IntegrationAuthDefinition'
+import { IntegrationAuthDefinition, IntegrationAuthType } from '@app/definitions/types/IntegrationAuthDefinition'
 import { Field, ObjectType, registerEnumType } from '@nestjs/graphql'
 import { FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'

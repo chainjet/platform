@@ -6,7 +6,7 @@ import { Logger } from '@nestjs/common'
 import toJsonSchema, { fromParameter } from '@openapi-contrib/openapi-schema-to-json-schema'
 import { JSONSchema7 } from 'json-schema'
 import mergeAllOf, { Options as MergeAllOfOptions } from 'json-schema-merge-allof'
-import { OperationObject } from 'openapi3-ts'
+import { OpenAPIObject, OperationObject } from 'openapi3-ts'
 import { PathsObject } from 'openapi3-ts/src/model/OpenApi'
 import { isEmptyObj } from '../../../../common/src/utils/object.utils'
 import {
@@ -58,7 +58,10 @@ const mergeAllOfOptions: MergeAllOfOptions = {
   },
 }
 
-export async function openapi2schema(spec: string, options: OpenApi2SchemaOptions = {}): Promise<ConvertedJsonSchema> {
+export async function openapi2schema(
+  spec: OpenAPIObject,
+  options: OpenApi2SchemaOptions = {},
+): Promise<ConvertedJsonSchema> {
   logger.debug('Converting OpenAPI3 to JSON Schema')
 
   const schemaOptions: SchemaOptions = {

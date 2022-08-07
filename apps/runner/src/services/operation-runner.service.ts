@@ -13,7 +13,7 @@ import {
   StepInputs,
 } from '../../../../libs/definitions/src'
 import { SchemaService } from '../../../../libs/definitions/src/schema/services/schema.service'
-import { IntegrationAuthType } from '../../../../libs/definitions/src/typings/IntegrationAuthDefinition'
+import { IntegrationAuthType } from '../../../../libs/definitions/src/types/IntegrationAuthDefinition'
 import { AccountCredential } from '../../../api/src/account-credentials/entities/account-credential'
 import { AccountCredentialService } from '../../../api/src/account-credentials/services/account-credentials.service'
 import { OAuthStrategyFactory } from '../../../api/src/auth/external-oauth/oauth-strategy.factory'

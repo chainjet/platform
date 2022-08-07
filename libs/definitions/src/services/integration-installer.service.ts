@@ -55,7 +55,8 @@ export class IntegrationInstallerService {
     integration: Integration,
     schema: OpenAPIObject,
   ): Promise<void> {
-    const jsonSchema = await openapi2schema(OpenApiUtils.getSchemaFilePath(integration.key, integration.version))
+    schema = await definition.updateSchemaBeforeInstall(schema)
+    const jsonSchema = await openapi2schema(schema)
 
     for (const [schemaPath, pathSpec] of Object.entries(schema.paths)) {
       const operationEntries = Object.entries(pathSpec)

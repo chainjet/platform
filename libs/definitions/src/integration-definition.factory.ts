@@ -41,6 +41,7 @@ import { MakerlogDefinition } from './integration-definitions/makerlog.definitio
 import { MediumDefinition } from './integration-definitions/medium.definition'
 import { MoralisDefinition } from './integration-definitions/moralis.definition'
 import { PagerdutyDefinition } from './integration-definitions/pagerduty.definition'
+import { RedditDefinition } from './integration-definitions/reddit.definition'
 import { RssDefinition } from './integration-definitions/rss.definition'
 import { ScheduleDefinition } from './integration-definitions/schedule.definition'
 import { SleepDefinition } from './integration-definitions/sleep.definition'
@@ -82,6 +83,7 @@ export class IntegrationDefinitionFactory {
     medium: MediumDefinition,
     moralis: MoralisDefinition,
     pagerduty: PagerdutyDefinition,
+    reddit: RedditDefinition,
     rss: RssDefinition,
     schedule: ScheduleDefinition,
     sendgrid: SendgridDefinition,

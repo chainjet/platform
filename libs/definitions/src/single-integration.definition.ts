@@ -1,6 +1,6 @@
 import { Definition, SingleIntegrationData } from '@app/definitions/definition'
 import { OpenApiUtils } from '@app/definitions/schema/utils/openApiUtils'
-import { IntegrationAuthDefinition } from '@app/definitions/typings/IntegrationAuthDefinition'
+import { IntegrationAuthDefinition } from '@app/definitions/types/IntegrationAuthDefinition'
 import { Logger } from '@nestjs/common'
 import { OpenAPIObject } from 'openapi3-ts'
 import { IntegrationAccount } from '../../../apps/api/src/integration-accounts/entities/integration-account'

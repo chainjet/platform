@@ -1,4 +1,4 @@
-import { IntegrationAuthType } from '@app/definitions/typings/IntegrationAuthDefinition'
+import { IntegrationAuthType } from '@app/definitions/types/IntegrationAuthDefinition'
 import { BadRequestException, forwardRef, Inject, Injectable, Logger } from '@nestjs/common'
 import { Handler } from 'express'
 import passport, { Profile } from 'passport'

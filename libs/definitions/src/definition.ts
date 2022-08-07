@@ -264,6 +264,13 @@ export abstract class Definition {
   }
 
   /**
+   * Allows integrations to modify the schema before before installing the integration, but after the file was saved
+   */
+  async updateSchemaBeforeInstall(schema: OpenAPIObject): Promise<OpenAPIObject> {
+    return schema
+  }
+
+  /**
    * Returns the name of the field that identifies the target item in the response array (e.g. "id", "itemId")
    */
   getTriggerIdField(schema: JSONSchema7, parentProperty: string, operationObject: OperationObject): string | null {

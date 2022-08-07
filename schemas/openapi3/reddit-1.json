@@ -1,0 +1,119 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Reddit",
+    "version": "1"
+  },
+  "paths": {
+    "/reddit-list-comments-in-a-post": {
+      "get": {
+        "operationId": "reddit-list-comments-in-a-post",
+        "x-triggerName": "New comment in a post",
+        "x-triggerDesciption": "Triggers when a new comment is added to a post",
+        "summary": "",
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "x-triggerConst": "new",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reddit-list-subreddits-by-query": {
+      "get": {
+        "operationId": "reddit-list-subreddits-by-query",
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reddit-search-post": {
+      "get": {
+        "operationId": "reddit-search-post",
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reddit-submit-a-comment": {
+      "get": {
+        "operationId": "reddit-submit-a-comment",
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reddit-submit-a-post": {
+      "get": {
+        "operationId": "reddit-submit-a-post",
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://ssl.reddit.com/api/v1/authorize",
+            "tokenUrl": "https://ssl.reddit.com/api/v1/access_token",
+            "scopes": {
+              "identity": "identity",
+              "read": "read",
+              "save": "save",
+              "submit": "submit",
+              "vote": "vote"
+            }
+          }
+        }
+      }
+    }
+  }
+}
