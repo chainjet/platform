@@ -1,5 +1,4 @@
 import { forwardRef, Inject, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common'
-import { IntegrationActionService } from 'apps/api/src/integration-actions/services/integration-action.service'
 import { OAuth } from 'oauth'
 import { OpenAPIObject } from 'openapi3-ts'
 import request from 'request'
@@ -19,6 +18,7 @@ import { AccountCredentialService } from '../../../api/src/account-credentials/s
 import { OAuthStrategyFactory } from '../../../api/src/auth/external-oauth/oauth-strategy.factory'
 import { IntegrationAccount } from '../../../api/src/integration-accounts/entities/integration-account'
 import { IntegrationAction } from '../../../api/src/integration-actions/entities/integration-action'
+import { IntegrationActionService } from '../../../api/src/integration-actions/services/integration-action.service'
 import { IntegrationTrigger } from '../../../api/src/integration-triggers/entities/integration-trigger'
 import { Integration } from '../../../api/src/integrations/entities/integration'
 

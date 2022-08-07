@@ -1,7 +1,11 @@
+import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import deepmerge from 'deepmerge'
 import { OpenAPIObject, OperationObject, ParameterObject, ReferenceObject, SchemaObject } from 'openapi3-ts'
 import { Action, AppPropDefinitions, Methods, UserProp } from 'pipedream/types/src'
+import { RunResponse } from '../definition'
 import { AsyncSchema } from '../types/AsyncSchema'
+
+export type PipedreamAction = Action<Methods, AppPropDefinitions>
 
 function mapPipedreamTypeToOpenApi(type: UserProp['type']): SchemaObject {
   if (type.endsWith('[]')) {
@@ -32,7 +36,7 @@ function mapPipedreamTypeToOpenApi(type: UserProp['type']): SchemaObject {
   }
 }
 
-export function mapPipedreamActionToOpenApi(action: Action<Methods, AppPropDefinitions>): {
+export function mapPipedreamActionToOpenApi(action: PipedreamAction): {
   operation: OperationObject
   asyncSchemas: AsyncSchema
 } {
@@ -116,7 +120,7 @@ export function mapPipedreamActionToOpenApi(action: Action<Methods, AppPropDefin
 
 export async function updatePipedreamSchemaBeforeSave(
   schema: OpenAPIObject,
-  actions: Action<Methods, AppPropDefinitions>[],
+  actions: PipedreamAction[],
 ): Promise<OpenAPIObject> {
   schema.paths = schema.paths ?? {}
   for (const action of actions) {
@@ -142,7 +146,7 @@ export async function updatePipedreamSchemaBeforeSave(
 
 export async function updatePipedreamSchemaBeforeInstall(
   schema: OpenAPIObject,
-  actions: Action<Methods, AppPropDefinitions>[],
+  actions: PipedreamAction[],
 ): Promise<OpenAPIObject> {
   for (const action of actions) {
     const actionKey = '/' + action.key
@@ -177,4 +181,33 @@ export async function updatePipedreamSchemaBeforeInstall(
     }
   }
   return schema
+}
+
+export async function runPipedreamAction(action: PipedreamAction, opts: OperationRunOptions): Promise<RunResponse> {
+  const appData = Object.entries(action.props ?? {}).find(([_, prop]) => 'type' in prop && prop.type === 'app')
+  if (!appData) {
+    throw new Error(`Action ${opts.operation.key} is not configured correctly for integration ${opts.integration.key}`)
+  }
+
+  // TODO this only works for oauth2
+  const $auth = { oauth_access_token: opts.credentials.accessToken }
+
+  const [appKey, app] = appData
+  const appMethods = 'methods' in app ? { ...app.methods, $auth } : {}
+  const bindData = {
+    ...opts.inputs,
+    [appKey]: appMethods,
+  }
+
+  // TODO handle exports
+  const $ = {
+    export: (key: string, value: string) => {
+      console.log(`Export =>`, key, value)
+    },
+  }
+
+  const outputs = await action.run.bind(bindData)({ $ })
+  return {
+    outputs,
+  }
 }
