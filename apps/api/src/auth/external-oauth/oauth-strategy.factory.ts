@@ -87,19 +87,25 @@ export class OAuthStrategyFactory {
       throw new BadRequestException(`Integration account ${integrationAccountKey} not found`)
     }
 
+    const customStrategyClass = await this.getCustomStrategy(integrationAccount.customStrategyKey)
+
     switch (integrationAccount.authType) {
       case IntegrationAuthType.oauth1:
-        this.registerOauth1Strategy(integrationAccountKey, integrationAccount)
+        this.registerOauth1Strategy(integrationAccountKey, integrationAccount, customStrategyClass)
         break
       case IntegrationAuthType.oauth2:
-        this.registerOauth2Strategy(integrationAccountKey, integrationAccount)
+        this.registerOauth2Strategy(integrationAccountKey, integrationAccount, customStrategyClass)
         break
     }
 
     return integrationAccount
   }
 
-  registerOauth1Strategy(integrationAccountKey: string, integrationAccount: IntegrationAccount): void {
+  registerOauth1Strategy(
+    integrationAccountKey: string,
+    integrationAccount: IntegrationAccount,
+    customStrategyClass: typeof OAuth1Strategy,
+  ): void {
     const consumerKey = process.env[`${integrationAccount.key.toUpperCase().replace(/-/, '_')}_CONSUMER_KEY`]
     const consumerSecret = process.env[`${integrationAccount.key.toUpperCase().replace(/-/, '_')}_CONSUMER_SECRET`]
     const requestTokenURL = integrationAccount.securitySchema?.['x-requestTokenURL']
@@ -121,7 +127,7 @@ export class OAuthStrategyFactory {
 
     passport.use(
       this.getOAuthStrategyName(integrationAccountKey),
-      new OAuth1Strategy(
+      new (customStrategyClass ?? OAuth1Strategy)(
         {
           requestTokenURL,
           accessTokenURL,
@@ -141,7 +147,11 @@ export class OAuthStrategyFactory {
     this.logger.log(`OAuth1 strategy for ${integrationAccountKey} created`)
   }
 
-  registerOauth2Strategy(integrationAccountKey: string, integrationAccount: IntegrationAccount): void {
+  registerOauth2Strategy(
+    integrationAccountKey: string,
+    integrationAccount: IntegrationAccount,
+    customStrategyClass: typeof OAuth2Strategy,
+  ): void {
     const authCode = integrationAccount.securitySchema?.flows?.authorizationCode
     if (authCode?.authorizationUrl && authCode.tokenUrl) {
       const credentialsKey = integrationAccount.securitySchema?.['x-credentialsKey'] ?? integrationAccount.key
@@ -154,13 +164,14 @@ export class OAuthStrategyFactory {
       }
 
       const strategyName = this.getOAuthStrategyName(integrationAccountKey)
-      const strategy = new OAuth2Strategy(
+      const strategy = new (customStrategyClass ?? OAuth2Strategy)(
         {
           authorizationURL: authCode.authorizationUrl,
           tokenURL: authCode.tokenUrl,
           clientID: clientId,
           clientSecret: clientSecret,
           scope: Object.keys(authCode.scopes || []),
+          state: true, // adds a state random string to the authorization URL
           callbackURL: `${process.env.API_ENDPOINT}/account-credentials/oauth/${credentialsKey}/callback`,
         },
         (accessToken: string, refreshToken: string, profile: Profile, cb: ProviderCallback) => {
@@ -180,6 +191,18 @@ export class OAuthStrategyFactory {
     } else {
       this.logger.error(`OAuth2 missing authorizationUrl or tokenUrl for ${integrationAccountKey}`)
     }
+  }
+
+  /**
+   * Gets a strategy from a custom strategy key
+   * The strategy needs to be exported as default in the module
+   */
+  async getCustomStrategy(customStrategyKey: string | undefined) {
+    if (!customStrategyKey) {
+      return
+    }
+    const { default: strategy } = await import(`./integration-strategies/${customStrategyKey}-passport-strategy`)
+    return strategy
   }
 
   async refreshOauth2AccessToken(

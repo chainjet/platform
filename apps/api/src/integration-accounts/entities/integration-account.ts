@@ -28,6 +28,9 @@ export class IntegrationAccount extends BaseEntity {
   @jsonProp()
   authParams?: Record<string, any>
 
+  @prop()
+  customStrategyKey?: string
+
   /**
    * JSON Schema with the authentication fields users can enter.
    * Only exposed fields can be sent back after creation (e.g. account region).
