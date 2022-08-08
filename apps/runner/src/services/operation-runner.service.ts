@@ -2,12 +2,14 @@ import { forwardRef, Inject, Injectable, InternalServerErrorException, Logger, N
 import { OAuth } from 'oauth'
 import { OpenAPIObject } from 'openapi3-ts'
 import request from 'request'
+import { Observable } from 'rxjs'
 import SwaggerClient from 'swagger-client'
 import { isEmptyObj } from '../../../../libs/common/src/utils/object.utils'
 import {
   Definition,
   IntegrationDefinitionFactory,
   RequestInterceptorOptions,
+  RunOutputs,
   RunResponse,
   StepInputs,
 } from '../../../../libs/definitions/src'
@@ -50,9 +52,12 @@ export class OperationRunnerService {
     @Inject(forwardRef(() => AccountCredentialService)) protected accountCredentialService: AccountCredentialService,
   ) {}
 
-  async run(definition: Definition, opts: OperationRunOptions, retryCount: number = 0): Promise<RunResponse> {
+  async runTriggerCheck(
+    definition: Definition,
+    opts: OperationRunOptions,
+  ): Promise<RunResponse | Observable<RunOutputs>> {
     this.logger.debug(
-      `Running ${opts.operation.key} of ${opts.integration.key} with inputs "${JSON.stringify(opts.inputs)}"`,
+      `Running trigger ${opts.operation.key} of ${opts.integration.key} with inputs "${JSON.stringify(opts.inputs)}"`,
     )
 
     // If the definition has its own run definition, use it
@@ -61,6 +66,24 @@ export class OperationRunnerService {
       return definitionRunOutputs
     }
 
+    return this.runOperation(definition, opts)
+  }
+
+  async runAction(definition: Definition, opts: OperationRunOptions): Promise<RunResponse> {
+    this.logger.debug(
+      `Running action ${opts.operation.key} of ${opts.integration.key} with inputs "${JSON.stringify(opts.inputs)}"`,
+    )
+
+    // If the definition has its own run definition, use it
+    const definitionRunOutputs = await definition.run(opts)
+    if (definitionRunOutputs && 'outputs' in definitionRunOutputs) {
+      return definitionRunOutputs
+    }
+
+    return this.runOperation(definition, opts)
+  }
+
+  private async runOperation(definition: Definition, opts: OperationRunOptions, retryCount: number = 0) {
     const { integration, integrationAccount, operation, inputs, credentials, accountCredential } =
       await definition.beforeOperationRun(opts)
 
@@ -181,7 +204,7 @@ export class OperationRunnerService {
           accountCredential,
           credentials,
         )
-        return this.run(definition, opts, retryCount + 1)
+        return this.runOperation(definition, opts, retryCount + 1)
       }
       throw e
     }
@@ -195,7 +218,7 @@ export class OperationRunnerService {
     if (!operation) {
       throw new NotFoundException(`Integration Action ${opts.key} not found`)
     }
-    return this.run(definition, { ...opts, operation })
+    return this.runAction(definition, { ...opts, operation })
   }
 
   requestInterceptor(definition: Definition, opts: RequestInterceptorOptions): request.OptionsWithUrl {
@@ -297,7 +320,7 @@ export class OperationRunnerService {
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     const operationRunOptions = await definition.getInitOperationOptions(opts)
     if (operationRunOptions) {
-      const runResponse = await this.run(definition, operationRunOptions)
+      const runResponse = await this.runAction(definition, operationRunOptions)
       const result = await definition.afterInitOperationRun(runResponse.outputs, operationRunOptions)
       if (result.accountCredential) {
         await this.accountCredentialService.updateById(result.accountCredential._id, { ...result.accountCredential })

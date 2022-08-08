@@ -155,6 +155,10 @@
     {
       "name": "Workspace Memberships",
       "description": "This object determines if a user is a member of a workspace."
+    },
+    {
+      "name": "Workspace Memberships",
+      "description": "This object determines if a user is a member of a workspace."
     }
   ],
   "components": {
@@ -570,6 +574,16 @@
           "type": "string"
         },
         "example": "2012-02-22T02:06:58.158Z"
+      },
+      "goal_relationship_path_gid": {
+        "name": "goal_relationship_gid",
+        "in": "path",
+        "description": "Globally unique identifier for the goal relationship.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "12345"
       }
     },
     "responses": {
@@ -2055,6 +2069,18 @@
                     "nullable": true
                   }
                 ]
+              },
+              "project_brief": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ProjectBriefCompact"
+                  },
+                  {
+                    "type": "object",
+                    "description": "[Opt In](/docs/input-output-options). The project brief associated with this project.",
+                    "nullable": true
+                  }
+                ]
               }
             }
           }
@@ -2872,7 +2898,17 @@
                     "type": "string",
                     "example": "Bug Task"
                   }
-                }
+                },
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TaskCompact"
+                  },
+                  {
+                    "type": "object",
+                    "readOnly": true,
+                    "description": "The object this story is associated with. Currently may only be a task."
+                  }
+                ]
               },
               "created_by": {
                 "$ref": "#/components/schemas/UserCompact"
@@ -2892,6 +2928,21 @@
                   "$ref": "#/components/schemas/EnumOption"
                 },
                 "readOnly": true
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "comment",
+                  "system"
+                ],
+                "readOnly": true,
+                "example": "comment"
+              },
+              "is_editable": {
+                "description": "*Conditional*. Whether the text of the story can be edited after creation.",
+                "type": "boolean",
+                "readOnly": true,
+                "example": false
               }
             }
           }
@@ -3558,6 +3609,17 @@
                 "description": "The name of the task.",
                 "type": "string",
                 "example": "Bug Task"
+              },
+              "resource_subtype": {
+                "type": "string",
+                "description": "The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.\nThe resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.",
+                "enum": [
+                  "default_task",
+                  "milestone",
+                  "section",
+                  "approval"
+                ],
+                "example": "default_task"
               }
             }
           }
@@ -3831,6 +3893,15 @@
                 "type": "string",
                 "description": "The organization/workspace the team belongs to.\n",
                 "example": "123456789"
+              },
+              "visibility": {
+                "description": "The visibility of the team to users in the same organization\n",
+                "type": "string",
+                "enum": [
+                  "secret",
+                  "request_to_join",
+                  "public"
+                ]
               }
             }
           }
@@ -4659,6 +4730,17 @@
                 "type": "string",
                 "readOnly": true,
                 "example": "8.12"
+              },
+              "progress_source": {
+                "description": "This field defines how the progress value of a goal metric is being calculated. A goal's progress can be provided manually by the user, or calculated automatically from contributing subgoals or projects.",
+                "type": "string",
+                "enum": [
+                  "manual",
+                  "subgoal_progress",
+                  "project_task_completion",
+                  "project_milestone_completion"
+                ],
+                "example": "manual"
               }
             }
           }
@@ -5397,6 +5479,131 @@
             }
           }
         }
+      },
+      "GoalRemoveSupportingRelationshipRequest": {
+        "type": "object",
+        "required": [
+          "supporting_resource"
+        ],
+        "properties": {
+          "supporting_resource": {
+            "description": "The gid of the supporting resource to remove from the parent goal. Must be the gid of a goal, project, or portfolio.",
+            "type": "string",
+            "example": "12345"
+          }
+        }
+      },
+      "GoalAddSupportingRelationshipRequest": {
+        "type": "object",
+        "required": [
+          "supporting_resource"
+        ],
+        "properties": {
+          "supporting_resource": {
+            "description": "The gid of the supporting resource to add to the parent goal. Must be the gid of a goal, project, or portfolio.",
+            "type": "string",
+            "example": "12345"
+          },
+          "insert_before": {
+            "description": "An id of a subgoal of this parent goal. The new subgoal will be added before the one specified here. `insert_before` and `insert_after` parameters cannot both be specified. Currently only supported when adding a subgoal.",
+            "type": "string",
+            "example": "1331"
+          },
+          "insert_after": {
+            "description": "An id of a subgoal of this parent goal. The new subgoal will be added after the one specified here. `insert_before` and `insert_after` parameters cannot both be specified. Currently only supported when adding a subgoal.",
+            "type": "string",
+            "example": "1331"
+          },
+          "contribution_weight": {
+            "description": "The weight that the supporting resource's progress will contribute to the supported goal's progress. This can only be 0 or 1.",
+            "type": "number",
+            "example": 1
+          }
+        }
+      },
+      "GoalRelationshipBase": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GoalRelationshipCompact"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "supported_goal": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/GoalCompact"
+                  },
+                  {
+                    "type": "object",
+                    "readOnly": true,
+                    "description": "The goal that the supporting resource supports."
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "GoalRelationshipCompact": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AsanaResource"
+          },
+          {
+            "type": "object",
+            "description": "A *goal relationship* is an object representing the relationship between a goal and another goal, a project, or a portfolio.",
+            "properties": {
+              "resource_subtype": {
+                "description": "The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.",
+                "type": "string",
+                "readOnly": true,
+                "example": "subgoal",
+                "enum": [
+                  "subgoal",
+                  "supporting_work"
+                ]
+              },
+              "supporting_resource": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ProjectCompact"
+                  },
+                  {
+                    "type": "object",
+                    "readOnly": true,
+                    "description": "The supporting resource that supports the goal. This can be either a project, portfolio, or goal."
+                  }
+                ]
+              },
+              "contribution_weight": {
+                "description": "The weight that the supporting resource's progress contributes to the supported goal's progress. This can only be 0 or 1.",
+                "type": "number",
+                "example": 1
+              }
+            }
+          }
+        ]
+      },
+      "GoalRelationshipRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GoalRelationshipBase"
+          },
+          {
+            "type": "object"
+          }
+        ]
+      },
+      "GoalRelationshipResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GoalRelationshipBase"
+          },
+          {
+            "type": "object"
+          }
+        ]
       }
     },
     "securitySchemes": {
@@ -11167,7 +11374,8 @@
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/EmptyResponse"
-                      }
+                      },
+                      "$ref": "#/components/schemas/EmptyResponse"
                     }
                   }
                 }
@@ -11307,7 +11515,8 @@
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/TaskCompact"
-                      }
+                      },
+                      "$ref": "#/components/schemas/EmptyResponse"
                     }
                   }
                 }
@@ -11382,7 +11591,8 @@
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/EmptyResponse"
-                      }
+                      },
+                      "$ref": "#/components/schemas/EmptyResponse"
                     }
                   }
                 }
@@ -16521,6 +16731,62 @@
             "$ref": "#/components/responses/InternalServerError"
           }
         }
+      },
+      "put": {
+        "summary": "Update a team",
+        "description": "Updates a team within the current workspace.",
+        "tags": [
+          "Teams"
+        ],
+        "operationId": "updateTeam",
+        "requestBody": {
+          "description": "The team to update.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "$ref": "#/components/schemas/TeamRequest"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated the team.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/TeamResponse"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
       }
     },
     "/workspaces/{workspace_gid}/teams": {
@@ -16705,6 +16971,325 @@
                       "items": {
                         "$ref": "#/components/schemas/TimePeriodCompact"
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/goal_relationships/{goal_relationship_gid}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/goal_relationship_path_gid"
+        },
+        {
+          "$ref": "#/components/parameters/pretty"
+        },
+        {
+          "$ref": "#/components/parameters/fields"
+        }
+      ],
+      "get": {
+        "summary": "Get a goal relationship",
+        "description": "Returns the complete updated goal relationship record for a single goal relationship.",
+        "tags": [
+          "Goal Relationships"
+        ],
+        "operationId": "getGoalRelationship",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the record for the goal relationship.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/GoalRelationshipResponse"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a goal relationship",
+        "description": "An existing goal relationship can be updated by making a PUT request on the URL for\nthat goal relationship. Only the fields provided in the `data` block will be updated;\nany unspecified fields will remain unchanged.\n\nReturns the complete updated goal relationship record.",
+        "tags": [
+          "Goal Relationships"
+        ],
+        "operationId": "updateGoalRelationship",
+        "requestBody": {
+          "description": "The updated fields for the goal relationship.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "$ref": "#/components/schemas/GoalRelationshipRequest"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated the goal relationship.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/GoalRelationshipResponse"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/goal_relationships": {
+      "get": {
+        "summary": "Get goal relationships",
+        "description": "Returns compact goal relationship records.",
+        "tags": [
+          "Goal Relationships"
+        ],
+        "operationId": "getGoalRelationships",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/pretty"
+          },
+          {
+            "$ref": "#/components/parameters/fields"
+          },
+          {
+            "name": "supported_goal",
+            "required": true,
+            "in": "query",
+            "description": "Globally unique identifier for the supported goal in the goal relationship.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "12345"
+          },
+          {
+            "name": "resource_subtype",
+            "in": "query",
+            "description": "If provided, filter to goal relationships with a given resource_subtype.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "subgoal"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the requested goal relationships.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/GoalRelationshipCompact"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/goals/{goal_gid}/addSupportingRelationship": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/goal_path_gid"
+        },
+        {
+          "$ref": "#/components/parameters/pretty"
+        },
+        {
+          "$ref": "#/components/parameters/fields"
+        }
+      ],
+      "post": {
+        "summary": "Add a supporting goal relationship",
+        "description": "Creates a goal relationship by adding a supporting resource to a given goal.\n\nReturns the newly created goal relationship record.",
+        "tags": [
+          "Goal Relationships"
+        ],
+        "operationId": "addSupportingRelationship",
+        "requestBody": {
+          "description": "The supporting resource to be added to the goal",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "$ref": "#/components/schemas/GoalAddSupportingRelationshipRequest"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created the goal relationship.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/GoalRelationshipResponse"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/goals/{goal_gid}/removeSupportingRelationship": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/goal_path_gid"
+        },
+        {
+          "$ref": "#/components/parameters/pretty"
+        },
+        {
+          "$ref": "#/components/parameters/fields"
+        }
+      ],
+      "post": {
+        "summary": "Removes a supporting goal relationship",
+        "description": "Removes a goal relationship for a given parent goal.",
+        "tags": [
+          "Goal Relationships"
+        ],
+        "operationId": "removeSupportingRelationship",
+        "requestBody": {
+          "description": "The supporting resource to be removed from the goal",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "$ref": "#/components/schemas/GoalRemoveSupportingRelationshipRequest"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully removed the goal relationship.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/EmptyResponse"
                     }
                   }
                 }

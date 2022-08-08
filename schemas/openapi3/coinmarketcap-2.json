@@ -232,7 +232,7 @@
     },
     "/v1/cryptocurrency/categories": {
       "get": {
-        "x-noTrigger": true,
+        "x-actionOnly": true,
         "summary": "Categories",
         "operationId": "getV1CryptocurrencyCategories",
         "description": "Returns information about all coin categories available on CoinMarketCap. Includes a paginated list of cryptocurrency quotes and metadata from each category.\n\n  **This endpoint is available on the following <a href=\"https://coinmarketcap.com/api/features\" target=\"_blank\">API plans</a>:**\n  - Free\n  - Hobbyist\n  - Startup\n  - Standard\n  - Professional\n  - Enterprise\n\n**Cache / Update frequency:** Data is updated only as needed, every 30 seconds.  \n**Plan credit use:** 1 API call credit per request + 1 call credit per 200 cryptocurrencies returned (rounded up) and 1 call credit per `convert` option beyond the first.  \n**CMC equivalent pages:** Our free airdrops page [coinmarketcap.com/cryptocurrency-category/](https://coinmarketcap.com/cryptocurrency-category/).",
@@ -595,7 +595,7 @@
     },
     "/v1/cryptocurrency/map": {
       "get": {
-        "x-noTrigger": true,
+        "x-actionOnly": true,
         "summary": "CoinMarketCap ID Map",
         "operationId": "getV1CryptocurrencyMap",
         "description": "Returns a mapping of all cryptocurrencies to unique CoinMarketCap `id`s. Per our <a href=\"#section/Best-Practices\" target=\"_blank\">Best Practices</a> we recommend utilizing CMC ID instead of cryptocurrency symbols to securely identify cryptocurrencies with our other endpoints and in your own application logic.  Each cryptocurrency returned includes typical identifiers such as `name`, `symbol`, and `token_address` for flexible mapping to `id`.   \n  \n  By default this endpoint returns cryptocurrencies that have actively tracked markets on supported exchanges. You may receive a map of all inactive cryptocurrencies by passing `listing_status=inactive`. You may also receive a map of registered cryptocurrency projects that are listed but do not yet meet methodology requirements to have tracked markets via `listing_status=untracked`. Please review our <a target=\"_blank\" href=\"https://coinmarketcap.com/methodology/\">methodology documentation</a> for additional details on listing states. \n    \n  Cryptocurrencies returned include `first_historical_data` and `last_historical_data` timestamps to conveniently reference historical date ranges available to query with historical time-series data endpoints. You may also use the `aux` parameter to only include properties you require to slim down the payload if calling this endpoint frequently. \n\n  **This endpoint is available on the following <a href=\"https://coinmarketcap.com/api/features\" target=\"_blank\">API plans</a>:**\n  - Basic\n  - Hobbyist\n  - Startup\n  - Standard\n  - Professional\n  - Enterprise\n\n**Cache / Update frequency:** Mapping data is updated only as needed, every 30 seconds.  \n**Plan credit use:** 1 API call credit per request no matter query size.  \n**CMC equivalent pages:** No equivalent, this data is only available via API.",
@@ -834,7 +834,7 @@
     },
     "/v1/exchange/map": {
       "get": {
-        "x-noTrigger": true,
+        "x-actionOnly": true,
         "summary": "CoinMarketCap ID Map",
         "operationId": "getV1ExchangeMap",
         "description": "Returns a paginated list of all active cryptocurrency exchanges by CoinMarketCap ID. We recommend using this convenience endpoint to lookup and utilize our unique exchange `id` across all endpoints as typical exchange identifiers may change over time. As a convenience you may pass a comma-separated list of exchanges by `slug` to filter this list to only those you require or the `aux` parameter to slim down the payload.\n\nBy default this endpoint returns exchanges that have at least 1 actively tracked market. You may receive a map of all inactive cryptocurrencies by passing `listing_status=inactive`. You may also receive a map of registered exchanges that are listed but do not yet meet methodology requirements to have tracked markets available via `listing_status=untracked`. Please review **(3) Listing Tiers** in our <a target=\"_blank\" href=\"https://coinmarketcap.com/methodology/\">methodology documentation</a> for additional details on listing states. \n\n**This endpoint is available on the following <a href=\"https://coinmarketcap.com/api/features\" target=\"_blank\">API plans</a>:**\n  - Basic\n  - Hobbyist\n  - Startup\n  - Standard\n  - Professional\n  - Enterprise\n\n**Cache / Update frequency:** Mapping data is updated only as needed, every 30 seconds.  \n**Plan credit use:** 1 call credit per call.  \n**CMC equivalent pages:** No equivalent, this data is only available via API.  ",
@@ -980,7 +980,7 @@
     },
     "/v1/fiat/map": {
       "get": {
-        "x-noTrigger": true,
+        "x-actionOnly": true,
         "summary": "CoinMarketCap ID Map",
         "operationId": "getV1FiatMap",
         "description": "Returns a mapping of all supported fiat currencies to unique CoinMarketCap ids. Per our Best Practices we recommend utilizing CMC ID instead of currency symbols to securely identify assets with our other endpoints and in your own application logic. \n\n  **This endpoint is available on the following <a href=\"https://coinmarketcap.com/api/features\" target=\"_blank\">API plans</a>:**\n  - Basic\n  - Hobbyist\n  - Startup\n  - Standard\n  - Professional\n  - Enterprise\n\n**Cache / Update frequency:** Mapping data is updated only as needed, every 30 seconds.  \n**Plan credit use:** 1 API call credit per request no matter query size.  \n**CMC equivalent pages:** No equivalent, this data is only available via API.",
@@ -1164,7 +1164,8 @@
               }
             }
           }
-        }
+        },
+        "parameters": []
       }
     },
     "/v1/tools/price-conversion": {
@@ -1647,7 +1648,7 @@
     },
     "/v1/cryptocurrency/listings/historical": {
       "get": {
-        "x-noTrigger": true,
+        "x-actionOnly": true,
         "summary": "Listings Historical",
         "operationId": "getV1CryptocurrencyListingsHistorical",
         "description": "Returns a ranked and sorted list of all cryptocurrencies for a historical UTC date.  \n\n\n**Technical Notes**\n- This endpoint is identical in format to our [/cryptocurrency/listings/latest](#operation/getV1CryptocurrencyListingsLatest) endpoint but is used to retrieve historical daily ranking snapshots from the end of each UTC day.  \n- Daily snapshots reflect market data at the end of each UTC day and may be requested as far back as 2013-04-28 (as supported by your plan's historical limits).  \n- The required \"date\" parameter can be passed as a Unix timestamp or ISO 8601 date but only the date portion of the timestamp will be referenced. It is recommended to send an ISO date format like \"2019-10-10\" without time.\n- This endpoint is for retrieving paginated and sorted lists of all currencies. If you require historical market data on specific cryptocurrencies you should use [/cryptocurrency/quotes/historical](#operation/getV1CryptocurrencyQuotesHistorical).\n   \n\n\nCryptocurrencies are listed by cmc_rank by default. You may optionally sort against any of the following:  \n**cmc_rank**: CoinMarketCap's market cap rank as outlined in <a href=\"https://coinmarketcap.com/methodology/\" target=\"_blank\">our methodology</a>.  \n**name**: The cryptocurrency name.  \n**symbol**: The cryptocurrency symbol.  \n**market_cap**: market cap (latest trade price x circulating supply).  \n**price**: latest average trade price across markets.  \n**circulating_supply**: approximate number of coins currently in circulation.  \n**total_supply**: approximate total amount of coins in existence right now (minus any coins that have been verifiably burned).  \n**max_supply**: our best approximation of the maximum amount of coins that will ever exist in the lifetime of the currency.  \n**num_market_pairs**: number of market pairs across all exchanges trading each currency.  \n**volume_24h**: 24 hour trading volume for each currency.  \n**percent_change_1h**: 1 hour trading price percentage change for each currency.  \n**percent_change_24h**: 24 hour trading price percentage change for each currency.  \n**percent_change_7d**: 7 day trading price percentage change for each currency.  \n \n  **This endpoint is available on the following <a href=\"https://coinmarketcap.com/api/features\" target=\"_blank\">API plans</a>:**\n  - ~~Basic~~\n  - ~~Hobbyist~~\n  - ~~Startup~~\n  - Standard (3 months)\n  - Professional (12 months)\n  - Enterprise (Up to 6 years)\n\n**Cache / Update frequency:** The last completed UTC day is available 30 minutes after midnight on the next UTC day.  \n**Plan credit use:** 1 call credit per 100 cryptocurrencies returned (rounded up) and 1 call credit per `convert` option beyond the first.  \n**CMC equivalent pages:** Our historical daily crypto ranking snapshot pages like this one on [February 02, 2014](https://coinmarketcap.com/historical/20140202/).",
@@ -1830,7 +1831,7 @@
     },
     "/v1/cryptocurrency/listings/latest": {
       "get": {
-        "x-noTrigger": true,
+        "x-actionOnly": true,
         "summary": "Listings Latest",
         "operationId": "getV1CryptocurrencyListingsLatest",
         "description": "Returns a paginated list of all active cryptocurrencies with latest market data. The default \"market_cap\" sort returns cryptocurrency in order of CoinMarketCap's market cap rank (as outlined in <a href=\"https://coinmarketcap.com/methodology/\" target=\"_blank\">our methodology</a>) but you may configure this call to order by another market ranking field. Use the \"convert\" option to return market values in multiple fiat and cryptocurrency conversions in the same call.\n\n\nYou may sort against any of the following:  \n**market_cap**: CoinMarketCap's market cap rank as outlined in <a href=\"https://coinmarketcap.com/methodology/\" target=\"_blank\">our methodology</a>.  \n**market_cap_strict**: A strict market cap sort (latest trade price x circulating supply).  \n**name**: The cryptocurrency name.  \n**symbol**: The cryptocurrency symbol.  \n**date_added**: Date cryptocurrency was added to the system.  \n**price**: latest average trade price across markets.  \n**circulating_supply**: approximate number of coins currently in circulation.  \n**total_supply**: approximate total amount of coins in existence right now (minus any coins that have been verifiably burned).  \n**max_supply**: our best approximation of the maximum amount of coins that will ever exist in the lifetime of the currency.  \n**num_market_pairs**: number of market pairs across all exchanges trading each currency.  \n**market_cap_by_total_supply_strict**: market cap by total supply.  \n**volume_24h**: rolling 24 hour adjusted trading volume.  \n**volume_7d**: rolling 24 hour adjusted trading volume.  \n**volume_30d**: rolling 24 hour adjusted trading volume.  \n**percent_change_1h**: 1 hour trading price percentage change for each currency.  \n**percent_change_24h**: 24 hour trading price percentage change for each currency.  \n**percent_change_7d**: 7 day trading price percentage change for each currency.  \n\n  **This endpoint is available on the following <a href=\"https://coinmarketcap.com/api/features\" target=\"_blank\">API plans</a>:**\n  - Basic\n  - Hobbyist\n  - Startup\n  - Standard\n  - Professional\n  - Enterprise\n\n**Cache / Update frequency:** Every 60 seconds.  \n**Plan credit use:** 1 call credit per 200 cryptocurrencies returned (rounded up) and 1 call credit per `convert` option beyond the first.\n**CMC equivalent pages:** Our latest cryptocurrency listing and ranking pages like [coinmarketcap.com/all/views/all/](https://coinmarketcap.com/all/views/all/), [coinmarketcap.com/tokens/](https://coinmarketcap.com/tokens/), [coinmarketcap.com/gainers-losers/](https://coinmarketcap.com/gainers-losers/), [coinmarketcap.com/new/](https://coinmarketcap.com/new/).     \n  \n***NOTE:** Use this endpoint if you need a sorted and paginated list of all cryptocurrencies. If you want to query for market data on a few specific cryptocurrencies use [/v1/cryptocurrency/quotes/latest](#operation/getV1CryptocurrencyQuotesLatest) which is optimized for that purpose. The response data between these endpoints is otherwise the same.* ",
@@ -3670,7 +3671,7 @@
     },
     "/v1/exchange/listings/latest": {
       "get": {
-        "x-noTrigger": true,
+        "x-actionOnly": true,
         "summary": "Listings Latest",
         "operationId": "getV1ExchangeListingsLatest",
         "description": "Returns a paginated list of all cryptocurrency exchanges including the latest aggregate market data for each exchange. Use the \"convert\" option to return market values in multiple fiat and cryptocurrency conversions in the same call.  \n  \n**This endpoint is available on the following <a href=\"https://coinmarketcap.com/api/features\" target=\"_blank\">API plans</a>:**\n  - ~~Basic~~\n  - ~~Hobbyist~~\n  - ~~Startup~~\n  - Standard\n  - Professional\n  - Enterprise\n\n**Cache / Update frequency:** Every 1 minute.  \n**Plan credit use:** 1 call credit per 100 exchanges returned (rounded up) and 1 call credit per `convert` option beyond the first.  \n**CMC equivalent pages:** Our latest exchange listing and ranking pages like [coinmarketcap.com/rankings/exchanges/](https://coinmarketcap.com/rankings/exchanges/).    \n  \n  ***NOTE:** Use this endpoint if you need a sorted and paginated list of exchanges. If you want to query for market data on a few specific exchanges use /v1/exchange/quotes/latest which is optimized for that purpose. The response data between these endpoints is otherwise the same.*  ",
@@ -5616,7 +5617,7 @@
     },
     "/v1/partners/flipside-crypto/fcas/listings/latest": {
       "get": {
-        "x-noTrigger": true,
+        "x-actionOnly": true,
         "summary": "FCAS Listings Latest (deprecated)",
         "operationId": "getV1PartnersFlipsidecryptoFcasListingsLatest",
         "description": "Returns a paginated list of FCAS scores for all cryptocurrencies currently supported by FCAS. FCAS ratings are on a 0-1000 point scale with a corresponding letter grade and is updated once a day at UTC midnight.    \n\n\n   \nFCAS stands for Fundamental Crypto Asset Score, a single, consistently comparable value for measuring cryptocurrency project health. FCAS measures User Activity, Developer Behavior and Market Maturity and is provided by <a rel=\"noopener noreferrer\" href=\"https://www.flipsidecrypto.com/\" target=\"_blank\">FlipSide Crypto</a>. Find out more about <a rel=\"noopener noreferrer\" href=\"https://www.flipsidecrypto.com/fcas-explained\" target=\"_blank\">FCAS methodology</a>. Users interested in FCAS historical data including sub-component scoring may inquire through our <a rel=\"noopener noreferrer\" href=\"https://pro.coinmarketcap.com/contact-data/\" target=\"_blank\">CSV Data Delivery</a> request form.  \n  \n*Disclaimer: Ratings that are calculated by third party organizations and are not influenced or endorsed by CoinMarketCap in any way.*  \n  \n  **This endpoint is available on the following <a href=\"https://coinmarketcap.com/api/features\" target=\"_blank\">API plans</a>:**\n  - Basic\n  - Hobbyist\n  - Startup\n  - Standard\n  - Professional\n  - Enterprise\n\n**Cache / Update frequency:** Once a day at UTC midnight.  \n**Plan credit use:** 1 call credit per 100 FCAS scores returned (rounded up).  \n**CMC equivalent pages:** The FCAS ratings available under our cryptocurrency ratings tab like [coinmarketcap.com/currencies/bitcoin/#ratings](https://coinmarketcap.com/currencies/bitcoin/#ratings).     \n  \n***NOTE:** Use this endpoint to request the latest FCAS score for all supported cryptocurrencies at the same time. If you require FCAS for only specific cryptocurrencies use [/v1/partners/flipside-crypto/fcas/quotes/latest](#operation/getV1PartnersFlipsidecryptoFcasQuotesLatest) which is optimized for that purpose. The response data between these endpoints is otherwise the same.* ",
@@ -5890,7 +5891,8 @@
               }
             }
           }
-        }
+        },
+        "parameters": []
       }
     }
   },

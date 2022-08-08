@@ -1,13 +1,36 @@
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import deepmerge from 'deepmerge'
 import { OpenAPIObject, OperationObject, ParameterObject, ReferenceObject, SchemaObject } from 'openapi3-ts'
-import { Action, AppPropDefinitions, Methods, UserProp } from 'pipedream/types/src'
-import { RunResponse } from '../definition'
+import {
+  Action,
+  AppPropDefinitions,
+  DataStoreProp,
+  EmitMetadata,
+  HttpRequestProp,
+  InterfaceProp,
+  JSONValue,
+  Methods,
+  ServiceDBProp,
+  Source,
+  SourcePropDefinitions,
+  UserProp,
+} from 'pipedream/types/src'
+import { Observable } from 'rxjs'
+import { RunOutputs, RunResponse } from '../definition'
 import { AsyncSchema } from '../types/AsyncSchema'
 
 export type PipedreamAction = Action<Methods, AppPropDefinitions>
+export type PipedreamSource = Source<Methods, SourcePropDefinitions>
+export type PipedreamOperation = PipedreamAction | PipedreamSource
 
-function mapPipedreamTypeToOpenApi(type: UserProp['type']): SchemaObject {
+type PropType =
+  | UserProp['type']
+  | InterfaceProp['type']
+  | ServiceDBProp['type']
+  | DataStoreProp['type']
+  | HttpRequestProp['type']
+
+function mapPipedreamTypeToOpenApi(type: PropType): SchemaObject {
   if (type.endsWith('[]')) {
     return { type: 'array', items: mapPipedreamTypeToOpenApi(type.slice(0, -2) as UserProp['type']) }
   }
@@ -36,13 +59,17 @@ function mapPipedreamTypeToOpenApi(type: UserProp['type']): SchemaObject {
   }
 }
 
-export function mapPipedreamActionToOpenApi(action: PipedreamAction): {
+export function mapPipedreamOperationToOpenApi(operation: PipedreamOperation): {
   operation: OperationObject
   asyncSchemas: AsyncSchema
 } {
   const asyncSchemas: AsyncSchema = []
-  const parameters: (ParameterObject | ReferenceObject)[] = Object.entries(action.props ?? {})
+  const parameters: (ParameterObject | ReferenceObject)[] = Object.entries(operation.props ?? {})
     .map(([key, value]) => {
+      if (typeof value !== 'object') {
+        return null
+      }
+
       if ('propDefinition' in value) {
         if (value.propDefinition.length >= 2) {
           value = {
@@ -56,7 +83,7 @@ export function mapPipedreamActionToOpenApi(action: PipedreamAction): {
         throw new Error(`property without a type on key ${key}`)
       }
 
-      if ('type' in value && value.type === 'app') {
+      if (value.type === 'app' || value.type.startsWith('$') || value.type === 'http_request') {
         return null
       }
 
@@ -73,6 +100,21 @@ export function mapPipedreamActionToOpenApi(action: PipedreamAction): {
 
       if ('description' in value && value.description) {
         param.description = value.description
+      }
+
+      if ('default' in value && value.default) {
+        schema.default = value.default
+      }
+
+      if ('secret' in value && value.secret) {
+        // TODO https://trello.com/c/11fTX1dC/6-encrypted-secret-params
+      }
+
+      if ('min' in value && value.min) {
+        schema.minimum = value.min
+      }
+      if ('max' in value && value.max) {
+        schema.maximum = value.max
       }
 
       if ('options' in value && value.options) {
@@ -93,13 +135,6 @@ export function mapPipedreamActionToOpenApi(action: PipedreamAction): {
         }
       }
 
-      if (value.min) {
-        schema.minimum = value.min
-      }
-      if (value.max) {
-        schema.maximum = value.max
-      }
-
       return {
         ...param,
         schema,
@@ -109,8 +144,8 @@ export function mapPipedreamActionToOpenApi(action: PipedreamAction): {
 
   return {
     operation: {
-      summary: action.name,
-      description: action.description,
+      summary: operation.name,
+      description: operation.description,
       parameters,
       responses: {},
     },
@@ -121,12 +156,17 @@ export function mapPipedreamActionToOpenApi(action: PipedreamAction): {
 export async function updatePipedreamSchemaBeforeSave(
   schema: OpenAPIObject,
   actions: PipedreamAction[],
+  sources: PipedreamSource[],
 ): Promise<OpenAPIObject> {
   schema.paths = schema.paths ?? {}
-  for (const action of actions) {
-    schema.paths['/' + action.key] = schema.paths['/' + action.key] ?? {
+  for (const operation of [...actions, ...sources]) {
+    schema.paths['/' + operation.key] = schema.paths['/' + operation.key] ?? {
       get: {
-        operationId: action.key,
+        operationId: operation.key,
+
+        // Components without a type are considered sources
+        [operation.type === 'action' ? 'x-actionOnly' : 'x-triggerOnly']: true,
+
         summary: '',
         responses: {
           '200': {
@@ -147,15 +187,16 @@ export async function updatePipedreamSchemaBeforeSave(
 export async function updatePipedreamSchemaBeforeInstall(
   schema: OpenAPIObject,
   actions: PipedreamAction[],
+  sources: PipedreamSource[],
 ): Promise<OpenAPIObject> {
-  for (const action of actions) {
-    const actionKey = '/' + action.key
+  for (const operation of [...actions, ...sources]) {
+    const actionKey = '/' + operation.key
     const schemaOperation = schema.paths[actionKey].get
     if (schemaOperation.summary === '') {
       delete schemaOperation.summary
     }
 
-    const operationData = mapPipedreamActionToOpenApi(action)
+    const operationData = mapPipedreamOperationToOpenApi(operation)
     const schemaParams = schemaOperation.parameters ?? []
 
     // parameters are merged by name to avoid duplicates
@@ -172,6 +213,8 @@ export async function updatePipedreamSchemaBeforeInstall(
       }
     }
 
+    operationData.operation['x-triggerIdKey'] = 'items[].id'
+
     schema.paths[actionKey].get = deepmerge(operationData.operation, schemaOperation)
     schema.paths[actionKey].get.parameters = mergedParams
 
@@ -183,8 +226,11 @@ export async function updatePipedreamSchemaBeforeInstall(
   return schema
 }
 
-export async function runPipedreamAction(action: PipedreamAction, opts: OperationRunOptions): Promise<RunResponse> {
-  const appData = Object.entries(action.props ?? {}).find(([_, prop]) => 'type' in prop && prop.type === 'app')
+export async function runPipedreamOperation(
+  operation: PipedreamOperation,
+  opts: OperationRunOptions,
+): Promise<RunResponse | Observable<RunOutputs>> {
+  const appData = Object.entries(operation.props ?? {}).find(([_, prop]) => 'type' in prop && prop.type === 'app')
   if (!appData) {
     throw new Error(`Action ${opts.operation.key} is not configured correctly for integration ${opts.integration.key}`)
   }
@@ -211,18 +257,65 @@ export async function runPipedreamAction(action: PipedreamAction, opts: Operatio
 
   const bindData = {
     ...opts.inputs,
-    [appKey]: appMethods,
+    [appKey]: appMethods, // include methods defined at app level
+    ...operation.methods, // include methods defined at operation level
   }
 
-  // TODO handle exports
-  const $ = {
-    export: (key: string, value: string) => {
-      console.log(`Export =>`, key, value)
-    },
-  }
+  if (operation.type === 'action') {
+    for (const key of Object.keys(operation.methods ?? {})) {
+      operation.methods![key] = operation.methods![key].bind(bindData)
+      bindData[key] = operation.methods![key]
+    }
 
-  const outputs = await action.run.bind(bindData)({ $ })
-  return {
-    outputs,
+    // TODO handle exports
+    const $ = {
+      export: (key: string, value: string) => {
+        console.log(`Export =>`, key, value)
+      },
+    }
+
+    const outputs = await operation.run.bind(bindData)({ $ })
+    return {
+      outputs,
+    }
+  } else {
+    return new Observable((subscriber) => {
+      const $emit: (event: JSONValue, metadata: EmitMetadata) => Promise<void> = async (
+        event: JSONValue,
+        metadata: EmitMetadata,
+      ) => {
+        if (!event) {
+          return
+        }
+        if (typeof event !== 'object') {
+          throw new Error(`Non object events not supported yet`)
+        }
+        if (Array.isArray(event)) {
+          throw new Error(`Array events not supported yet`)
+        }
+        if (!metadata.id) {
+          throw new Error(`Events without id not supported yet`)
+        }
+        subscriber.next({
+          id: metadata.id,
+          ...event,
+        })
+      }
+      bindData['$emit'] = $emit
+
+      for (const key of Object.keys(operation.methods ?? {})) {
+        operation.methods![key] = operation.methods![key].bind(bindData)
+        bindData[key] = operation.methods![key]
+      }
+
+      operation.run
+        .bind(bindData)()
+        .then(() => {
+          subscriber.complete()
+        })
+        .catch((e: Error) => {
+          subscriber.error(e)
+        })
+    })
   }
 }

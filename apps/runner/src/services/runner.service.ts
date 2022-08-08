@@ -1,11 +1,12 @@
 import { isEmptyObj } from '@app/common/utils/object.utils'
-import { Definition, IntegrationDefinitionFactory, RunResponse } from '@app/definitions'
+import { Definition, IntegrationDefinitionFactory, RunOutputs, RunResponse } from '@app/definitions'
 import { generateSchemaFromObject } from '@app/definitions/schema/utils/jsonSchemaUtils'
 import { Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { ObjectId } from 'bson'
 import CryptoJS from 'crypto-js'
 import mongoose from 'mongoose'
+import { Observable } from 'rxjs'
 import { Reference } from '../../../../libs/common/src/typings/mongodb'
 import { AccountCredential } from '../../../api/src/account-credentials/entities/account-credential'
 import { AccountCredentialService } from '../../../api/src/account-credentials/services/account-credentials.service'
@@ -114,10 +115,10 @@ export class RunnerService {
       return
     }
 
-    let runResponse: RunResponse
+    let runResponse: RunResponse | Observable<RunOutputs>
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     try {
-      runResponse = await this.operationRunnerService.run(definition, {
+      runResponse = await this.operationRunnerService.runTriggerCheck(definition, {
         integration,
         integrationAccount,
         operation: integrationTrigger,
@@ -130,7 +131,9 @@ export class RunnerService {
       if (
         integrationTrigger.learnResponseIntegration &&
         !integrationTrigger.schemaResponse &&
-        !isEmptyObj(runResponse?.outputs ?? {})
+        runResponse &&
+        'outputs' in runResponse &&
+        !isEmptyObj(runResponse.outputs)
       ) {
         integrationTrigger.schemaResponse = generateSchemaFromObject(runResponse.outputs)
         await this.integrationActionService.updateOne(integrationTrigger.id, {
@@ -145,11 +148,34 @@ export class RunnerService {
         e.message,
         e.response?.text || undefined,
       )
-      this.logger.error(`Run WorkflowTrigger ${workflowTrigger.id} failed with error ${e.response?.text ?? e.response}`)
+      this.logger.error(
+        `Run WorkflowTrigger ${workflowTrigger.id} failed with error ${e.response?.text ?? e.response ?? e}`,
+      )
       return
     }
 
-    const triggerItems = extractTriggerItems(integrationTrigger.idKey, runResponse.outputs)
+    // triggers can return a promise with the outputs or an observable which will emit one or more outputs
+    let outputs: RunResponse['outputs']
+    if ('outputs' in runResponse) {
+      outputs = runResponse.outputs
+    } else {
+      outputs = await new Promise((resolve, reject) => {
+        const items: any[] = []
+        ;(runResponse as Observable<RunOutputs>).subscribe({
+          next(item) {
+            items.push(item)
+          },
+          error(err) {
+            reject(err)
+          },
+          complete() {
+            resolve({ items })
+          },
+        })
+      })
+    }
+
+    const triggerItems = extractTriggerItems(integrationTrigger.idKey, outputs)
     const triggerIds = triggerItems.map((item) => item.id.toString())
 
     let newItems: Array<{ id: string | number; item: Record<string, unknown> }> = []
@@ -270,7 +296,7 @@ export class RunnerService {
     let runResponse: RunResponse
     try {
       const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-      runResponse = await this.operationRunnerService.run(definition, {
+      runResponse = await this.operationRunnerService.runAction(definition, {
         integration,
         integrationAccount,
         operation: integrationAction,
@@ -389,7 +415,7 @@ export class RunnerService {
         inputs: opts.inputs,
         outputs,
       })
-      const populateOutputs = await this.operationRunnerService.run(definition, {
+      const populateOutputs = await this.operationRunnerService.runAction(definition, {
         ...opts,
         inputs: parsedInputs,
         operation: integrationAction,

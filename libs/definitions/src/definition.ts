@@ -7,6 +7,7 @@ import { JSONSchema7 } from 'json-schema'
 import { OpenAPIObject, OperationObject } from 'openapi3-ts'
 import pluralize from 'pluralize'
 import request from 'request'
+import { Observable } from 'rxjs'
 import { AccountCredential } from '../../../apps/api/src/account-credentials/entities/account-credential'
 import { IntegrationAccount } from '../../../apps/api/src/integration-accounts/entities/integration-account'
 import { IntegrationAccountService } from '../../../apps/api/src/integration-accounts/services/integration-account.service'
@@ -43,8 +44,10 @@ export interface RequestInterceptorOptions {
   authorizations: any
 }
 
+export type RunOutputs = Record<string, unknown>
+
 export interface RunResponse {
-  outputs: Record<string, unknown>
+  outputs: RunOutputs
   condition?: boolean
   sleepUntil?: Date
 }
@@ -174,8 +177,10 @@ export abstract class Definition {
 
   /**
    * Allows integrations to entirely replace the run functionality
+   * Response is either directly the object with the response or an observable which emits one or more responses
+   * Observable responses are only used by triggers
    */
-  run(opts: OperationRunOptions): Promise<RunResponse> | null {
+  run(opts: OperationRunOptions): Promise<RunResponse | Observable<RunOutputs>> | null {
     return null
   }
 
@@ -197,7 +202,7 @@ export abstract class Definition {
       operation['x-triggerName'] ||
       this.allowedTriggerMethods.includes(schemaMethod ?? '')
 
-    if (operation['x-noTrigger'] || !schemaResponse || !triggerSupported) {
+    if (operation['x-actionOnly'] || !schemaResponse || !triggerSupported) {
       return false
     }
 

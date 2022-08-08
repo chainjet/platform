@@ -43,6 +43,7 @@ export class IntegrationInstallerService {
         }
       } catch (e) {
         this.logger.error(`Error installing ${integrationData.integrationKey}: ${e.message}`)
+        throw e
       }
     }
   }
@@ -118,7 +119,7 @@ export class IntegrationInstallerService {
     schemaRequest: JSONSchema7,
     schemaResponse: JSONSchema7 | undefined,
   ): Promise<void> {
-    if (!operationObject['x-noAction']) {
+    if (!operationObject['x-triggerOnly']) {
       if (operationObject['x-asyncSchemas']) {
         schemaRequest['x-asyncSchemas'] = operationObject['x-asyncSchemas']
       }
@@ -281,7 +282,7 @@ export class IntegrationInstallerService {
     schemaResponse?: JSONSchema7,
   ): Promise<{
     idKey: string | undefined
-    schemaRes: JSONSchema7
+    schemaRes?: JSONSchema7
     name: string
     description: string | undefined
     fullDescription: string | undefined
@@ -325,15 +326,17 @@ export class IntegrationInstallerService {
     } else if (operationObject['x-triggerInstant'] || operationObject['x-triggerHook']) {
       idField = '.'
       itemsSchema = getItemSchemaFromRes(idField, actionRes)
+    } else if (operationObject['x-triggerOnly']) {
+      idField = '.'
     }
 
-    if (itemsSchema && (operationObject['x-triggerIdKey'] || idField)) {
+    if (operationObject['x-triggerIdKey'] || idField) {
       const triggerName = operationObject['x-triggerName'] ?? definition.mapTriggerName(operationObject)
       const description = operationObject['x-triggerDescription'] ?? definition.mapTriggerDescription(operationObject)
       const plainTextDescription = description && (await stripMarkdown(description))
       return {
         idKey: operationObject['x-triggerIdKey'] ?? `${idKey}[].${idField}`,
-        schemaRes: decycle(itemsSchema) as JSONSchema7,
+        schemaRes: itemsSchema ? (decycle(itemsSchema) as JSONSchema7) : undefined,
         name: triggerName,
         description: plainTextDescription && addEllipsis(plainTextDescription, 500),
         fullDescription: description,
