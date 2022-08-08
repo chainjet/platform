@@ -115,10 +115,10 @@ export class RunnerService {
       return
     }
 
-    let runResponse: RunResponse | Observable<RunOutputs>
+    let outputs: RunResponse['outputs']
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     try {
-      runResponse = await this.operationRunnerService.runTriggerCheck(definition, {
+      const runResponse = await this.operationRunnerService.runTriggerCheck(definition, {
         integration,
         integrationAccount,
         operation: integrationTrigger,
@@ -126,6 +126,26 @@ export class RunnerService {
         credentials,
         accountCredential,
       })
+
+      // triggers can return a promise with the outputs or an observable which will emit one or more outputs
+      if ('outputs' in runResponse) {
+        outputs = runResponse.outputs
+      } else {
+        outputs = await new Promise((resolve, reject) => {
+          const items: any[] = []
+          ;(runResponse as Observable<RunOutputs>).subscribe({
+            next(item) {
+              items.push(item)
+            },
+            error(err) {
+              reject(err)
+            },
+            complete() {
+              resolve({ items })
+            },
+          })
+        })
+      }
 
       // learn response at integration level
       if (
@@ -152,27 +172,6 @@ export class RunnerService {
         `Run WorkflowTrigger ${workflowTrigger.id} failed with error ${e.response?.text ?? e.response ?? e}`,
       )
       return
-    }
-
-    // triggers can return a promise with the outputs or an observable which will emit one or more outputs
-    let outputs: RunResponse['outputs']
-    if ('outputs' in runResponse) {
-      outputs = runResponse.outputs
-    } else {
-      outputs = await new Promise((resolve, reject) => {
-        const items: any[] = []
-        ;(runResponse as Observable<RunOutputs>).subscribe({
-          next(item) {
-            items.push(item)
-          },
-          error(err) {
-            reject(err)
-          },
-          complete() {
-            resolve({ items })
-          },
-        })
-      })
     }
 
     const triggerItems = extractTriggerItems(integrationTrigger.idKey, outputs)
