@@ -1,10 +1,12 @@
 import { BaseEntity } from '@app/common/base/base-entity'
+import { OwnedAuthorizer } from '@app/common/base/owned.authorizer'
 import { EntityRef } from '@app/common/decorators/entity-ref.decorator'
 import { OwnedEntity } from '@app/common/decorators/owned-entity.decorator'
 import { jsonProp } from '@app/common/decorators/props/json-prop.decorator'
 import { Reference } from '@app/common/typings/mongodb'
+import { Injectable } from '@nestjs/common'
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql'
-import { FilterableField } from '@ptc-org/nestjs-query-graphql'
+import { Authorize, FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
 import { GraphQLJSONObject } from 'graphql-type-json'
 import { JSONSchema7 } from 'json-schema'
@@ -14,8 +16,12 @@ import { User } from '../../users/entities/user'
 import { Workflow } from '../../workflows/entities/workflow'
 import { WorkflowNextAction } from './workflow-next-action'
 
+@Injectable()
+export class WorkflowActionAuthorizer extends OwnedAuthorizer<WorkflowAction> {}
+
 @ObjectType()
 @OwnedEntity()
+@Authorize<WorkflowAction>(WorkflowActionAuthorizer)
 @EntityRef('owner', () => User)
 @EntityRef('workflow', () => Workflow)
 @EntityRef('integrationAction', () => IntegrationAction)

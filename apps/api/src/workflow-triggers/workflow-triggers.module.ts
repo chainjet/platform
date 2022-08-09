@@ -12,8 +12,8 @@ import { WorkflowActionsModule } from '../workflow-actions/workflow-actions.modu
 import { WorkflowRunsModule } from '../workflow-runs/workflow-runs.module'
 import { WorkflowsModule } from '../workflows/workflows.module'
 import { HooksController } from './controllers/hooks.controller'
-import { WorkflowTrigger } from './entities/workflow-trigger'
-import { WorkflowTriggerAuthorizer, WorkflowTriggerResolver } from './resolvers/workflow-trigger.resolver'
+import { WorkflowTrigger, WorkflowTriggerAuthorizer } from './entities/workflow-trigger'
+import { WorkflowTriggerResolver } from './resolvers/workflow-trigger.resolver'
 import { WorkflowTriggerService } from './services/workflow-trigger.service'
 
 @Module({

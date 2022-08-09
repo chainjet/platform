@@ -1,10 +1,12 @@
 import { BaseEntity } from '@app/common/base/base-entity'
+import { OwnedAuthorizer } from '@app/common/base/owned.authorizer'
 import { EntityRef } from '@app/common/decorators/entity-ref.decorator'
 import { OwnedEntity } from '@app/common/decorators/owned-entity.decorator'
 import { jsonProp } from '@app/common/decorators/props/json-prop.decorator'
 import { Reference } from '@app/common/typings/mongodb'
+import { Injectable } from '@nestjs/common'
 import { Field, ID, InputType, Int, ObjectType } from '@nestjs/graphql'
-import { FilterableField } from '@ptc-org/nestjs-query-graphql'
+import { Authorize, FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { modelOptions, prop, Severity } from '@typegoose/typegoose'
 import { GraphQLJSONObject } from 'graphql-type-json'
 import { JSONSchema7 } from 'json-schema'
@@ -15,8 +17,12 @@ import { User } from '../../users/entities/user'
 import { Workflow } from '../../workflows/entities/workflow'
 import { TriggerSchedule } from './trigger-schedule'
 
+@Injectable()
+export class WorkflowTriggerAuthorizer extends OwnedAuthorizer<WorkflowTrigger> {}
+
 @ObjectType()
 @OwnedEntity()
+@Authorize<WorkflowTrigger>(WorkflowTriggerAuthorizer)
 @modelOptions({ options: { allowMixed: Severity.ALLOW } })
 @EntityRef('owner', () => User)
 @EntityRef('workflow', () => Workflow)

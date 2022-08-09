@@ -10,9 +10,9 @@ import { UsersModule } from '../users/users.module'
 import { WorkflowTriggersModule } from '../workflow-triggers/workflow-triggers.module'
 import { WorkflowsModule } from '../workflows/workflows.module'
 import { WorkflowNextActionAssembler } from './assemblers/workflow-next-action.assembler'
-import { WorkflowAction } from './entities/workflow-action'
+import { WorkflowAction, WorkflowActionAuthorizer } from './entities/workflow-action'
 import { WorkflowNextAction } from './entities/workflow-next-action'
-import { WorkflowActionAuthorizer, WorkflowActionResolver } from './resolvers/workflow-action.resolver'
+import { WorkflowActionResolver } from './resolvers/workflow-action.resolver'
 import { WorkflowActionService } from './services/workflow-action.service'
 
 @Module({

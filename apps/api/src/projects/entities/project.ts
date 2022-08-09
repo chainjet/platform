@@ -1,14 +1,20 @@
 import { BaseEntity } from '@app/common/base/base-entity'
+import { OwnedAuthorizer } from '@app/common/base/owned.authorizer'
 import { EntityRef } from '@app/common/decorators/entity-ref.decorator'
 import { OwnedEntity } from '@app/common/decorators/owned-entity.decorator'
 import { Reference } from '@app/common/typings/mongodb'
+import { Injectable } from '@nestjs/common'
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql'
-import { FilterableField } from '@ptc-org/nestjs-query-graphql'
+import { Authorize, FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
 import { User } from '../../users/entities/user'
 
+@Injectable()
+export class ProjectAuthorizer extends OwnedAuthorizer<Project> {}
+
 @ObjectType()
 @OwnedEntity()
+@Authorize<Project>(ProjectAuthorizer)
 @EntityRef('owner', () => User)
 export class Project extends BaseEntity {
   @FilterableField(() => ID)

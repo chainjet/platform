@@ -1,18 +1,24 @@
 import { BaseEntity } from '@app/common/base/base-entity'
+import { OwnedAuthorizer } from '@app/common/base/owned.authorizer'
 import { EntityRef } from '@app/common/decorators/entity-ref.decorator'
 import { OwnedEntity } from '@app/common/decorators/owned-entity.decorator'
 import { jsonProp } from '@app/common/decorators/props/json-prop.decorator'
 import { Reference } from '@app/common/typings/mongodb'
+import { Injectable } from '@nestjs/common'
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql'
-import { FilterableField } from '@ptc-org/nestjs-query-graphql'
+import { Authorize, FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
 import { GraphQLJSONObject } from 'graphql-type-json'
 import { JSONSchema7 } from 'json-schema'
 import { IntegrationAccount } from '../../integration-accounts/entities/integration-account'
 import { User } from '../../users/entities/user'
 
+@Injectable()
+export class AccountCredentialAuthorizer extends OwnedAuthorizer<AccountCredential> {}
+
 @ObjectType()
 @OwnedEntity()
+@Authorize<AccountCredential>(AccountCredentialAuthorizer)
 @EntityRef('owner', () => User)
 @EntityRef('integrationAccount', () => IntegrationAccount)
 export class AccountCredential extends BaseEntity {

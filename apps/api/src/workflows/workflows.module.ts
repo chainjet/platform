@@ -3,8 +3,8 @@ import { forwardRef, Module } from '@nestjs/common'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { ProjectsModule } from '../projects/projects.module'
 import { UsersModule } from '../users/users.module'
-import { Workflow } from './entities/workflow'
-import { WorkflowAuthorizer, WorkflowResolver } from './resolvers/workflow.resolver'
+import { Workflow, WorkflowAuthorizer } from './entities/workflow'
+import { WorkflowResolver } from './resolvers/workflow.resolver'
 import { WorkflowService } from './services/workflow.service'
 
 @Module({

@@ -6,8 +6,8 @@ import { RunnerModule } from '../../../runner/src/runner.module'
 import { IntegrationAccountsModule } from '../integration-accounts/integration-accounts.module'
 import { IntegrationsModule } from '../integrations/integrations.module'
 import { UsersModule } from '../users/users.module'
-import { AccountCredential } from './entities/account-credential'
-import { AccountCredentialAuthorizer, AccountCredentialResolver } from './resolvers/account-credentials.resolver'
+import { AccountCredential, AccountCredentialAuthorizer } from './entities/account-credential'
+import { AccountCredentialResolver } from './resolvers/account-credentials.resolver'
 import { AccountCredentialService } from './services/account-credentials.service'
 
 @Module({

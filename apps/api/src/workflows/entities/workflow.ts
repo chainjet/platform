@@ -1,9 +1,11 @@
 import { BaseEntity } from '@app/common/base/base-entity'
+import { OwnedAuthorizer } from '@app/common/base/owned.authorizer'
 import { EntityConnection, EntityRef } from '@app/common/decorators/entity-ref.decorator'
 import { OwnedEntity } from '@app/common/decorators/owned-entity.decorator'
 import { Reference } from '@app/common/typings/mongodb'
+import { Injectable } from '@nestjs/common'
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql'
-import { FilterableField } from '@ptc-org/nestjs-query-graphql'
+import { Authorize, FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { pre, prop } from '@typegoose/typegoose'
 import { Project } from '../../projects/entities/project'
 import { User } from '../../users/entities/user'
@@ -16,6 +18,9 @@ enum WorkflowState {
   Running = 'running',
 }
 
+@Injectable()
+export class WorkflowAuthorizer extends OwnedAuthorizer<Workflow> {}
+
 @pre<Workflow>('save', function () {
   if (this.isModified('state')) {
     this.lastStateChange = new Date()
@@ -23,6 +28,7 @@ enum WorkflowState {
 })
 @ObjectType()
 @OwnedEntity()
+@Authorize<Workflow>(WorkflowAuthorizer)
 @EntityRef('owner', () => User)
 @EntityRef('project', () => Project)
 @EntityRef('trigger', () => WorkflowTrigger, { nullable: true, relationName: '.workflow' })
