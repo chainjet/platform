@@ -39,6 +39,7 @@ import { LogicDefinition } from './integration-definitions/logic.definition'
 import { MailchimpMarketingDefinition } from './integration-definitions/mailchimp-marketing.definition'
 import { MakerlogDefinition } from './integration-definitions/makerlog.definition'
 import { MediumDefinition } from './integration-definitions/medium.definition'
+import { MongoDBDefinition } from './integration-definitions/mongodb.definition'
 import { MoralisDefinition } from './integration-definitions/moralis.definition'
 import { PagerdutyDefinition } from './integration-definitions/pagerduty.definition'
 import { RedditDefinition } from './integration-definitions/reddit.definition'
@@ -81,6 +82,7 @@ export class IntegrationDefinitionFactory {
     'mailchimp-marketing': MailchimpMarketingDefinition,
     makerlog: MakerlogDefinition,
     medium: MediumDefinition,
+    mongodb: MongoDBDefinition,
     moralis: MoralisDefinition,
     pagerduty: PagerdutyDefinition,
     reddit: RedditDefinition,
