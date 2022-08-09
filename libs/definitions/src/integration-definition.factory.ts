@@ -26,6 +26,7 @@ import { BlockchainDefinition } from './integration-definitions/blockchain.defin
 import { BoxDefinition } from './integration-definitions/box.definition'
 import { CalendlyDefinition } from './integration-definitions/calendly.definition'
 import { ChecklyDefinition } from './integration-definitions/checkly.definition'
+import { CoinbaseDefinition } from './integration-definitions/coinbase.definition'
 import { CoinMarketCapDefinition } from './integration-definitions/coinmarketcap.definition'
 import { DiscordDefinition } from './integration-definitions/discord.definition'
 import { DocusignDefinition } from './integration-definitions/docusign.definition'
@@ -67,6 +68,7 @@ export class IntegrationDefinitionFactory {
     calendly: CalendlyDefinition,
     checkly: ChecklyDefinition,
     circleci: CircleciDefinition,
+    coinbase: CoinbaseDefinition,
     coinmarketcap: CoinMarketCapDefinition,
     discord: DiscordDefinition,
     docusign: DocusignDefinition,
