@@ -78,7 +78,7 @@ export class HooksController {
     }
 
     if (integrationTrigger.learnResponseWorkflow && !workflowTrigger.schemaResponse && !isEmptyObj(triggerOutputs)) {
-      const schemaResponse = definition.getDynamicSchemaResponse(req)
+      const schemaResponse = definition.getDynamicSchemaResponseFromRequest(req)
       if (schemaResponse) {
         workflowTrigger.schemaResponse = schemaResponse
         await this.workflowTriggerService.updateOne(workflowTrigger.id, {

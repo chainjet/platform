@@ -288,7 +288,7 @@ export abstract class Definition {
    * Operations with dynamic schemas must override this method and return their schema
    * Currently this is only implemented for hook based triggers
    */
-  getDynamicSchemaResponse(req: Request): JSONSchema7 | null {
+  getDynamicSchemaResponseFromRequest(req: Request): JSONSchema7 | null {
     return null // TODO
   }
 

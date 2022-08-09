@@ -149,20 +149,6 @@ export class RunnerService {
           })
         })
       }
-
-      // learn response at integration level
-      if (
-        integrationTrigger.learnResponseIntegration &&
-        !integrationTrigger.schemaResponse &&
-        runResponse &&
-        'outputs' in runResponse &&
-        !isEmptyObj(runResponse.outputs)
-      ) {
-        integrationTrigger.schemaResponse = generateSchemaFromObject(runResponse.outputs)
-        await this.integrationActionService.updateOne(integrationTrigger.id, {
-          schemaResponse: integrationTrigger.schemaResponse,
-        })
-      }
     } catch (e) {
       await this.onTriggerFailure(
         workflowTrigger.workflow,
@@ -179,6 +165,22 @@ export class RunnerService {
 
     const triggerItems = extractTriggerItems(integrationTrigger.idKey, runResponse.outputs)
     const triggerIds = triggerItems.map((item) => item.id.toString())
+
+    // learn schema response at integration or workflow level
+    if (triggerItems.length && !isEmptyObj(triggerItems[0].item)) {
+      if (integrationTrigger.learnResponseIntegration && !integrationTrigger.schemaResponse) {
+        integrationTrigger.schemaResponse = generateSchemaFromObject(triggerItems[0].item)
+        await this.integrationTriggerService.updateOne(integrationTrigger.id, {
+          schemaResponse: integrationTrigger.schemaResponse,
+        })
+      }
+      if (integrationTrigger.learnResponseWorkflow && !workflowTrigger.schemaResponse) {
+        workflowTrigger.schemaResponse = generateSchemaFromObject(triggerItems[0].item)
+        await this.workflowTriggerService.updateOne(workflowTrigger.id, {
+          schemaResponse: workflowTrigger.schemaResponse,
+        })
+      }
+    }
 
     let newItems: Array<{ id: string | number; item: Record<string, unknown> }> = []
     if (workflowTrigger.lastId) {
@@ -308,19 +310,6 @@ export class RunnerService {
         accountCredential,
         workflowOperation: workflowAction,
       })
-
-      // learn response at integration level
-      if (
-        integrationAction.learnResponseIntegration &&
-        !integrationAction.schemaResponse &&
-        !isEmptyObj(runResponse?.outputs ?? {})
-      ) {
-        integrationAction.schemaResponse = generateSchemaFromObject(runResponse.outputs)
-        await this.integrationActionService.updateOne(integrationAction.id, {
-          schemaResponse: integrationAction.schemaResponse,
-        })
-      }
-
       await this.workflowRunService.markActionAsCompleted(userId, workflowRun._id, workflowRunAction)
     } catch (e) {
       await this.onActionFailure(
@@ -333,6 +322,22 @@ export class RunnerService {
       )
       this.logger.error(`Run WorkflowAction ${workflowAction.id} failed with error ${e.response?.text ?? e.response}`)
       return
+    }
+
+    // learn schema response at integration or workflow level
+    if (!isEmptyObj(runResponse?.outputs ?? {})) {
+      if (integrationAction.learnResponseIntegration && !integrationAction.schemaResponse) {
+        integrationAction.schemaResponse = generateSchemaFromObject(runResponse.outputs)
+        await this.integrationActionService.updateOne(integrationAction.id, {
+          schemaResponse: integrationAction.schemaResponse,
+        })
+      }
+      if (integrationAction.learnResponseWorkflow && !workflowAction.schemaResponse) {
+        workflowAction.schemaResponse = generateSchemaFromObject(runResponse.outputs)
+        await this.workflowActionService.updateOne(workflowAction.id, {
+          schemaResponse: workflowAction.schemaResponse,
+        })
+      }
     }
 
     const nextActionInputs = {

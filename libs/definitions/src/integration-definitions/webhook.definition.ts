@@ -8,7 +8,7 @@ export class WebhookDefinition extends SingleIntegrationDefinition {
   integrationVersion = '1'
   schemaUrl = null
 
-  getDynamicSchemaResponse(req: Request): JSONSchema7 | null {
+  getDynamicSchemaResponseFromRequest(req: Request): JSONSchema7 | null {
     const querySchema = generateSchemaFromObject(req.query ?? {})
     const bodySchema = generateSchemaFromObject(req.body ?? {})
     const headersSchema = generateSchemaFromObject(req.headers ?? {})

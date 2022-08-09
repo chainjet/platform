@@ -170,7 +170,7 @@ export async function updatePipedreamSchemaBeforeSave(
         // Components without a type are considered sources
         [operation.type === 'action' ? 'x-actionOnly' : 'x-triggerOnly']: true,
 
-        // 'x-learnResponseWorkflow': true,
+        'x-learnResponseWorkflow': true,
         summary: '',
         responses: {
           '200': {
