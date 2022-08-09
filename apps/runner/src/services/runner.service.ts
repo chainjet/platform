@@ -1,5 +1,5 @@
 import { isEmptyObj } from '@app/common/utils/object.utils'
-import { Definition, IntegrationDefinitionFactory, RunOutputs, RunResponse } from '@app/definitions'
+import { Definition, IntegrationDefinitionFactory, RunResponse } from '@app/definitions'
 import { generateSchemaFromObject } from '@app/definitions/schema/utils/jsonSchemaUtils'
 import { Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
@@ -115,33 +115,36 @@ export class RunnerService {
       return
     }
 
-    let outputs: RunResponse['outputs']
+    let runResponse: RunResponse
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     try {
-      const runResponse = await this.operationRunnerService.runTriggerCheck(definition, {
+      const res = await this.operationRunnerService.runTriggerCheck(definition, {
         integration,
         integrationAccount,
         operation: integrationTrigger,
         inputs,
         credentials,
         accountCredential,
+        workflowOperation: workflowTrigger,
       })
 
       // triggers can return a promise with the outputs or an observable which will emit one or more outputs
-      if ('outputs' in runResponse) {
-        outputs = runResponse.outputs
+      if ('outputs' in res) {
+        runResponse = res
       } else {
-        outputs = await new Promise((resolve, reject) => {
+        runResponse = await new Promise((resolve, reject) => {
           const items: any[] = []
-          ;(runResponse as Observable<RunOutputs>).subscribe({
+          let store: RunResponse['store']
+          ;(res as Observable<RunResponse>).subscribe({
             next(item) {
-              items.push(item)
+              items.push(item.outputs)
+              store = item.store
             },
             error(err) {
               reject(err)
             },
             complete() {
-              resolve({ items })
+              resolve({ outputs: { items }, store })
             },
           })
         })
@@ -174,7 +177,7 @@ export class RunnerService {
       return
     }
 
-    const triggerItems = extractTriggerItems(integrationTrigger.idKey, outputs)
+    const triggerItems = extractTriggerItems(integrationTrigger.idKey, runResponse.outputs)
     const triggerIds = triggerItems.map((item) => item.id.toString())
 
     let newItems: Array<{ id: string | number; item: Record<string, unknown> }> = []
@@ -208,6 +211,7 @@ export class RunnerService {
           inputs,
           credentials,
           accountCredential,
+          workflowOperation: workflowTrigger,
         })
         newItem.item = {
           ...populatedOutputs,
@@ -217,7 +221,7 @@ export class RunnerService {
     }
 
     await this.workflowRunService.markTriggerAsCompleted(userId, workflowRun._id, true, triggerIds)
-    await this.workflowTriggerService.updateOne(workflowTrigger.id, { lastId: triggerIds[0] })
+    await this.workflowTriggerService.updateOne(workflowTrigger.id, { lastId: triggerIds[0], store: runResponse.store })
 
     const triggerOutputsList = newItems.reverse().map((data) => ({ [workflowTrigger.id]: data.item }))
     await this.runWorkflowActions(rootActions, triggerOutputsList, workflowRun)
@@ -302,6 +306,7 @@ export class RunnerService {
         inputs,
         credentials,
         accountCredential,
+        workflowOperation: workflowAction,
       })
 
       // learn response at integration level

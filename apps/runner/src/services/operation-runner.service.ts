@@ -1,4 +1,6 @@
 import { forwardRef, Inject, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common'
+import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-action'
+import { WorkflowTrigger } from 'apps/api/src/workflow-triggers/entities/workflow-trigger'
 import { OAuth } from 'oauth'
 import { OpenAPIObject } from 'openapi3-ts'
 import request from 'request'
@@ -9,7 +11,6 @@ import {
   Definition,
   IntegrationDefinitionFactory,
   RequestInterceptorOptions,
-  RunOutputs,
   RunResponse,
   StepInputs,
 } from '../../../../libs/definitions/src'
@@ -34,6 +35,7 @@ export type BaseRunOptions = {
 
 export type OperationRunOptions = BaseRunOptions & {
   operation: IntegrationAction | IntegrationTrigger
+  workflowOperation?: WorkflowAction | WorkflowTrigger
 }
 
 export type RunActionByKeyOptions = BaseRunOptions & {
@@ -55,7 +57,7 @@ export class OperationRunnerService {
   async runTriggerCheck(
     definition: Definition,
     opts: OperationRunOptions,
-  ): Promise<RunResponse | Observable<RunOutputs>> {
+  ): Promise<RunResponse | Observable<RunResponse>> {
     this.logger.debug(
       `Running trigger ${opts.operation.key} of ${opts.integration.key} with inputs "${JSON.stringify(opts.inputs)}"`,
     )

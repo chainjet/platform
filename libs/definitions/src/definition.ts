@@ -50,6 +50,7 @@ export interface RunResponse {
   outputs: RunOutputs
   condition?: boolean
   sleepUntil?: Date
+  store?: Record<string, any>
 }
 
 export interface GetAsyncSchemasProps {
@@ -180,7 +181,7 @@ export abstract class Definition {
    * Response is either directly the object with the response or an observable which emits one or more responses
    * Observable responses are only used by triggers
    */
-  run(opts: OperationRunOptions): Promise<RunResponse | Observable<RunOutputs>> | null {
+  run(opts: OperationRunOptions): Promise<RunResponse | Observable<RunResponse>> | null {
     return null
   }
 

@@ -57,6 +57,10 @@ export class WorkflowAction extends BaseEntity {
   @Field(() => GraphQLJSONObject, { nullable: true })
   @jsonProp()
   schemaResponse?: JSONSchema7
+
+  // generic store to save data relative to the workflow trigger like ids fetched
+  @jsonProp()
+  store?: Record<string, any>
 }
 
 @InputType()
