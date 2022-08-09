@@ -238,9 +238,9 @@ export async function runPipedreamOperation(
     throw new Error(`Action ${opts.operation.key} is not configured correctly for integration ${opts.integration.key}`)
   }
 
-  // TODO oauth_refresh_token
   const $auth = {
     oauth_access_token: opts.credentials.accessToken,
+    oauth_refresh_token: opts.credentials.refreshToken,
     ...opts.credentials,
   }
 
