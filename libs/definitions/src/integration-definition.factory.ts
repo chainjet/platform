@@ -28,6 +28,7 @@ import { CalendlyDefinition } from './integration-definitions/calendly.definitio
 import { ChecklyDefinition } from './integration-definitions/checkly.definition'
 import { CoinbaseDefinition } from './integration-definitions/coinbase.definition'
 import { CoinMarketCapDefinition } from './integration-definitions/coinmarketcap.definition'
+import { DexScreenerDefinition } from './integration-definitions/dexscreener.definition'
 import { DiscordDefinition } from './integration-definitions/discord.definition'
 import { DocusignDefinition } from './integration-definitions/docusign.definition'
 import { GoogleApisDefinition } from './integration-definitions/google-apis.definition'
@@ -71,6 +72,7 @@ export class IntegrationDefinitionFactory {
     circleci: CircleciDefinition,
     coinbase: CoinbaseDefinition,
     coinmarketcap: CoinMarketCapDefinition,
+    dexscreener: DexScreenerDefinition,
     discord: DiscordDefinition,
     docusign: DocusignDefinition,
     github: GithubDefinition,
