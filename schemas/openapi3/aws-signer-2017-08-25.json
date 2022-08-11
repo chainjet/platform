@@ -32,9 +32,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -117,10 +115,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -131,10 +126,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -399,10 +391,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "signingMaterial",
-                  "platformId"
-                ],
+                "required": ["signingMaterial", "platformId"],
                 "properties": {
                   "signingMaterial": {
                     "description": "The ACM certificate that is used to sign your code.",
@@ -750,11 +739,7 @@
             "description": "A status value with which to filter your results.",
             "schema": {
               "type": "string",
-              "enum": [
-                "InProgress",
-                "Failed",
-                "Succeeded"
-              ]
+              "enum": ["InProgress", "Failed", "Succeeded"]
             }
           },
           {
@@ -944,12 +929,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "source",
-                  "destination",
-                  "clientRequestToken",
-                  "clientRequestToken"
-                ],
+                "required": ["source", "destination", "clientRequestToken", "clientRequestToken"],
                 "properties": {
                   "source": {
                     "description": "An <code>S3Source</code> object that contains information about the S3 bucket where you saved your unsigned code.",
@@ -1428,9 +1408,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "tags"
-                ],
+                "required": ["tags"],
                 "properties": {
                   "tags": {
                     "description": "One or more tags to be associated with the signing profile.",
@@ -1662,11 +1640,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "action",
-                  "principal",
-                  "statementId"
-                ],
+                "required": ["action", "principal", "statementId"],
                 "properties": {
                   "profileVersion": {
                     "description": "The version of the signing profile.",
@@ -2022,9 +1996,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "reason"
-                ],
+                "required": ["reason"],
                 "properties": {
                   "jobOwner": {
                     "description": "AWS account ID of the job owner.",
@@ -2149,11 +2121,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "profileVersion",
-                  "reason",
-                  "effectiveTime"
-                ],
+                "required": ["profileVersion", "reason", "effectiveTime"],
                 "properties": {
                   "profileVersion": {
                     "description": "The version of the signing profile to be revoked.",
@@ -2865,11 +2833,7 @@
       },
       "ImageFormat": {
         "type": "string",
-        "enum": [
-          "JSON",
-          "JSONEmbedded",
-          "JSONDetached"
-        ]
+        "enum": ["JSON", "JSONEmbedded", "JSONDetached"]
       },
       "SigningParameterValue": {
         "type": "string"
@@ -2905,11 +2869,7 @@
       },
       "S3Source": {
         "type": "object",
-        "required": [
-          "bucketName",
-          "key",
-          "version"
-        ],
+        "required": ["bucketName", "key", "version"],
         "properties": {
           "bucketName": {
             "allOf": [
@@ -2998,9 +2958,7 @@
       },
       "Category": {
         "type": "string",
-        "enum": [
-          "AWSIoT"
-        ]
+        "enum": ["AWSIoT"]
       },
       "CompletedAt": {
         "type": "string",
@@ -3031,9 +2989,7 @@
       },
       "SigningMaterial": {
         "type": "object",
-        "required": [
-          "certificateArn"
-        ],
+        "required": ["certificateArn"],
         "properties": {
           "certificateArn": {
             "allOf": [
@@ -3088,11 +3044,7 @@
       },
       "SigningStatus": {
         "type": "string",
-        "enum": [
-          "InProgress",
-          "Failed",
-          "Succeeded"
-        ]
+        "enum": ["InProgress", "Failed", "Succeeded"]
       },
       "StatusReason": {
         "type": "string"
@@ -3118,10 +3070,7 @@
       },
       "EncryptionAlgorithm": {
         "type": "string",
-        "enum": [
-          "RSA",
-          "ECDSA"
-        ]
+        "enum": ["RSA", "ECDSA"]
       },
       "EncryptionAlgorithms": {
         "type": "array",
@@ -3131,10 +3080,7 @@
       },
       "EncryptionAlgorithmOptions": {
         "type": "object",
-        "required": [
-          "allowedValues",
-          "defaultValue"
-        ],
+        "required": ["allowedValues", "defaultValue"],
         "properties": {
           "allowedValues": {
             "allOf": [
@@ -3164,10 +3110,7 @@
       },
       "SigningConfiguration": {
         "type": "object",
-        "required": [
-          "encryptionAlgorithmOptions",
-          "hashAlgorithmOptions"
-        ],
+        "required": ["encryptionAlgorithmOptions", "hashAlgorithmOptions"],
         "properties": {
           "encryptionAlgorithmOptions": {
             "allOf": [
@@ -3194,10 +3137,7 @@
       },
       "SigningImageFormat": {
         "type": "object",
-        "required": [
-          "supportedFormats",
-          "defaultFormat"
-        ],
+        "required": ["supportedFormats", "defaultFormat"],
         "properties": {
           "supportedFormats": {
             "allOf": [
@@ -3227,11 +3167,7 @@
       },
       "SigningProfileStatus": {
         "type": "string",
-        "enum": [
-          "Active",
-          "Canceled",
-          "Revoked"
-        ]
+        "enum": ["Active", "Canceled", "Revoked"]
       },
       "string": {
         "type": "string"
@@ -3246,10 +3182,7 @@
       },
       "HashAlgorithm": {
         "type": "string",
-        "enum": [
-          "SHA1",
-          "SHA256"
-        ]
+        "enum": ["SHA1", "SHA256"]
       },
       "HashAlgorithms": {
         "type": "array",
@@ -3259,10 +3192,7 @@
       },
       "HashAlgorithmOptions": {
         "type": "object",
-        "required": [
-          "allowedValues",
-          "defaultValue"
-        ],
+        "required": ["allowedValues", "defaultValue"],
         "properties": {
           "allowedValues": {
             "allOf": [
@@ -3771,11 +3701,7 @@
       },
       "ValidityType": {
         "type": "string",
-        "enum": [
-          "DAYS",
-          "MONTHS",
-          "YEARS"
-        ]
+        "enum": ["DAYS", "MONTHS", "YEARS"]
       },
       "RemoveProfilePermissionResponse": {
         "type": "object",

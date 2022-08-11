@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -239,11 +231,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "roleArn",
-                  "resourcesVpcConfig"
-                ],
+                "required": ["name", "roleArn", "resourcesVpcConfig"],
                 "properties": {
                   "name": {
                     "description": "The unique name to give to your cluster.",
@@ -584,10 +572,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "fargateProfileName",
-                  "podExecutionRoleArn"
-                ],
+                "required": ["fargateProfileName", "podExecutionRoleArn"],
                 "properties": {
                   "fargateProfileName": {
                     "description": "The name of the Fargate profile.",
@@ -846,11 +831,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "nodegroupName",
-                  "subnets",
-                  "nodeRole"
-                ],
+                "required": ["nodegroupName", "subnets", "nodeRole"],
                 "properties": {
                   "nodegroupName": {
                     "description": "The unique name to give your node group.",
@@ -913,12 +894,7 @@
                   "amiType": {
                     "description": "The AMI type for your node group. GPU instance types should use the <code>AL2_x86_64_GPU</code> AMI type, which uses the Amazon EKS-optimized Linux AMI with GPU support. Non-GPU instances should use the <code>AL2_x86_64</code> AMI type, which uses the Amazon EKS-optimized Linux AMI. If you specify <code>launchTemplate</code>, and your launch template uses a custom AMI, then don't specify <code>amiType</code>, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html\">Launch template support</a> in the Amazon EKS User Guide.",
                     "type": "string",
-                    "enum": [
-                      "AL2_x86_64",
-                      "AL2_x86_64_GPU",
-                      "AL2_ARM_64",
-                      "CUSTOM"
-                    ]
+                    "enum": ["AL2_x86_64", "AL2_x86_64_GPU", "AL2_ARM_64", "CUSTOM"]
                   },
                   "remoteAccess": {
                     "description": "An object representing the remote access configuration for the managed node group.",
@@ -1050,10 +1026,7 @@
                   "capacityType": {
                     "description": "The capacity type for your node group.",
                     "type": "string",
-                    "enum": [
-                      "ON_DEMAND",
-                      "SPOT"
-                    ]
+                    "enum": ["ON_DEMAND", "SPOT"]
                   }
                 }
               }
@@ -1987,9 +1960,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "tags"
-                ],
+                "required": ["tags"],
                 "properties": {
                   "tags": {
                     "description": "The tags to add to the resource. A tag is an array of key-value pairs.",
@@ -2232,9 +2203,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "version"
-                ],
+                "required": ["version"],
                 "properties": {
                   "version": {
                     "description": "The desired Kubernetes version following a successful update.",
@@ -3071,9 +3040,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "encryptionConfig"
-                ],
+                "required": ["encryptionConfig"],
                 "properties": {
                   "encryptionConfig": {
                     "description": "The configuration you are using for encryption.",
@@ -3211,9 +3178,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "oidc"
-                ],
+                "required": ["oidc"],
                 "properties": {
                   "oidc": {
                     "description": "An object representing an OpenID Connect (OIDC) configuration. Before associating an OIDC identity provider to your cluster, review the considerations in <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/authenticate-oidc-identity-provider.html\">Authenticating users for your cluster from an OpenID Connect identity provider</a> in the <i>Amazon EKS User Guide</i>.",
@@ -3441,9 +3406,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "addonName"
-                ],
+                "required": ["addonName"],
                 "properties": {
                   "addonName": {
                     "description": "The name of the add-on. The name must match one of the names returned by <a href=\"https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html\"> <code>DescribeAddonVersions</code> </a>.",
@@ -3462,10 +3425,7 @@
                   "resolveConflicts": {
                     "description": "How to resolve parameter value conflicts when migrating an existing add-on to an Amazon EKS add-on.",
                     "type": "string",
-                    "enum": [
-                      "OVERWRITE",
-                      "NONE"
-                    ]
+                    "enum": ["OVERWRITE", "NONE"]
                   },
                   "clientRequestToken": {
                     "description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
@@ -4124,9 +4084,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "identityProviderConfig"
-                ],
+                "required": ["identityProviderConfig"],
                 "properties": {
                   "identityProviderConfig": {
                     "description": "An object representing an identity provider configuration.",
@@ -4278,9 +4236,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "identityProviderConfig"
-                ],
+                "required": ["identityProviderConfig"],
                 "properties": {
                   "identityProviderConfig": {
                     "description": "An object representing an identity provider configuration.",
@@ -4539,10 +4495,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "connectorConfig"
-                ],
+                "required": ["name", "connectorConfig"],
                 "properties": {
                   "name": {
                     "description": "Define a unique name for this cluster within your AWS account.",
@@ -4731,10 +4684,7 @@
                   "resolveConflicts": {
                     "description": "How to resolve parameter value conflicts when applying the new version of the add-on to the cluster.",
                     "type": "string",
-                    "enum": [
-                      "OVERWRITE",
-                      "NONE"
-                    ]
+                    "enum": ["OVERWRITE", "NONE"]
                   },
                   "clientRequestToken": {
                     "description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
@@ -5045,13 +4995,8 @@
             "createdAt": 1527807879.988,
             "endpoint": "https://A0DCCD80A04F01705DD065655C30CC3D.yl4.us-west-2.eks.amazonaws.com",
             "resourcesVpcConfig": {
-              "securityGroupIds": [
-                "sg-6979fe18"
-              ],
-              "subnetIds": [
-                "subnet-6782e71e",
-                "subnet-e7e761ac"
-              ],
+              "securityGroupIds": ["sg-6979fe18"],
+              "subnetIds": ["subnet-6782e71e", "subnet-e7e761ac"],
               "vpcId": "vpc-950809ec"
             },
             "roleArn": "arn:aws:iam::012345678910:role/eks-service-role-AWSServiceRoleForAmazonEKS-J7ONKE3BQ4PI",
@@ -5119,10 +5064,7 @@
       "ListClustersResponse": {
         "type": "object",
         "example": {
-          "clusters": [
-            "devel",
-            "prod"
-          ]
+          "clusters": ["devel", "prod"]
         },
         "properties": {
           "clusters": {
@@ -5310,12 +5252,7 @@
       },
       "AMITypes": {
         "type": "string",
-        "enum": [
-          "AL2_x86_64",
-          "AL2_x86_64_GPU",
-          "AL2_ARM_64",
-          "CUSTOM"
-        ]
+        "enum": ["AL2_x86_64", "AL2_x86_64_GPU", "AL2_ARM_64", "CUSTOM"]
       },
       "AutoScalingGroup": {
         "type": "object",
@@ -5475,14 +5412,7 @@
       },
       "ClusterStatus": {
         "type": "string",
-        "enum": [
-          "CREATING",
-          "ACTIVE",
-          "DELETING",
-          "FAILED",
-          "UPDATING",
-          "PENDING"
-        ]
+        "enum": ["CREATING", "ACTIVE", "DELETING", "FAILED", "UPDATING", "PENDING"]
       },
       "TagMap": {
         "type": "object",
@@ -6265,13 +6195,7 @@
       },
       "FargateProfileStatus": {
         "type": "string",
-        "enum": [
-          "CREATING",
-          "ACTIVE",
-          "DELETING",
-          "CREATE_FAILED",
-          "DELETE_FAILED"
-        ]
+        "enum": ["CREATING", "ACTIVE", "DELETING", "CREATE_FAILED", "DELETE_FAILED"]
       },
       "FargateProfileLabel": {
         "type": "object",
@@ -6394,25 +6318,11 @@
       },
       "LogType": {
         "type": "string",
-        "enum": [
-          "api",
-          "audit",
-          "authenticator",
-          "controllerManager",
-          "scheduler"
-        ]
+        "enum": ["api", "audit", "authenticator", "controllerManager", "scheduler"]
       },
       "NodegroupStatus": {
         "type": "string",
-        "enum": [
-          "CREATING",
-          "ACTIVE",
-          "UPDATING",
-          "DELETING",
-          "CREATE_FAILED",
-          "DELETE_FAILED",
-          "DEGRADED"
-        ]
+        "enum": ["CREATING", "ACTIVE", "UPDATING", "DELETING", "CREATE_FAILED", "DELETE_FAILED", "DEGRADED"]
       },
       "NodegroupResources": {
         "type": "object",
@@ -6458,12 +6368,7 @@
       },
       "UpdateStatus": {
         "type": "string",
-        "enum": [
-          "InProgress",
-          "Failed",
-          "Cancelled",
-          "Successful"
-        ]
+        "enum": ["InProgress", "Failed", "Cancelled", "Successful"]
       },
       "UpdateType": {
         "type": "string",
@@ -6771,17 +6676,7 @@
       },
       "ConnectorConfigProvider": {
         "type": "string",
-        "enum": [
-          "EKS_ANYWHERE",
-          "ANTHOS",
-          "GKE",
-          "AKS",
-          "OPENSHIFT",
-          "TANZU",
-          "RANCHER",
-          "EC2",
-          "OTHER"
-        ]
+        "enum": ["EKS_ANYWHERE", "ANTHOS", "GKE", "AKS", "OPENSHIFT", "TANZU", "RANCHER", "EC2", "OTHER"]
       },
       "UpdateAddonResponse": {
         "type": "object",
@@ -6799,15 +6694,7 @@
       },
       "AddonStatus": {
         "type": "string",
-        "enum": [
-          "CREATING",
-          "ACTIVE",
-          "CREATE_FAILED",
-          "UPDATING",
-          "DELETING",
-          "DELETE_FAILED",
-          "DEGRADED"
-        ]
+        "enum": ["CREATING", "ACTIVE", "CREATE_FAILED", "UPDATING", "DELETING", "DELETE_FAILED", "DEGRADED"]
       },
       "AddonHealth": {
         "type": "object",
@@ -7078,10 +6965,7 @@
       },
       "CapacityTypes": {
         "type": "string",
-        "enum": [
-          "ON_DEMAND",
-          "SPOT"
-        ]
+        "enum": ["ON_DEMAND", "SPOT"]
       },
       "ConnectorConfigResponse": {
         "type": "object",
@@ -7203,10 +7087,7 @@
       },
       "IdentityProviderConfig": {
         "type": "object",
-        "required": [
-          "type",
-          "name"
-        ],
+        "required": ["type", "name"],
         "properties": {
           "type": {
             "allOf": [
@@ -7381,11 +7262,7 @@
       },
       "configStatus": {
         "type": "string",
-        "enum": [
-          "CREATING",
-          "DELETING",
-          "ACTIVE"
-        ]
+        "enum": ["CREATING", "DELETING", "ACTIVE"]
       },
       "taintKey": {
         "type": "string",
@@ -7399,11 +7276,7 @@
       },
       "TaintEffect": {
         "type": "string",
-        "enum": [
-          "NO_SCHEDULE",
-          "NO_EXECUTE",
-          "PREFER_NO_SCHEDULE"
-        ]
+        "enum": ["NO_SCHEDULE", "NO_EXECUTE", "PREFER_NO_SCHEDULE"]
       },
       "requiredClaimsValue": {
         "type": "string",

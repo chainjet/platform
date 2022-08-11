@@ -30,9 +30,7 @@
             "coinbaseAccessCode": []
           }
         ],
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "responses": {
           "200": {
             "description": "The requested user",
@@ -62,9 +60,7 @@
             "coinbaseAccessCode": []
           }
         ],
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "responses": {
           "200": {
             "description": "The requested user",
@@ -89,14 +85,10 @@
         "description": "Modify current user and their preferences.",
         "security": [
           {
-            "coinbaseAccessCode": [
-              "wallet:user:update"
-            ]
+            "coinbaseAccessCode": ["wallet:user:update"]
           }
         ],
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -147,9 +139,7 @@
             "coinbaseAccessCode": []
           }
         ],
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "responses": {
           "200": {
             "description": "The requested user",
@@ -191,14 +181,10 @@
         "x-triggerDescription": "Triggers when a new account is created",
         "security": [
           {
-            "coinbaseAccessCode": [
-              "wallet:accounts:read"
-            ]
+            "coinbaseAccessCode": ["wallet:accounts:read"]
           }
         ],
-        "tags": [
-          "Accounts"
-        ],
+        "tags": ["Accounts"],
         "responses": {
           "200": {
             "description": "The accounts",
@@ -229,14 +215,10 @@
         "description": "Creates a new account for user.",
         "security": [
           {
-            "coinbaseAccessCode": [
-              "wallet:accounts:create"
-            ]
+            "coinbaseAccessCode": ["wallet:accounts:create"]
           }
         ],
-        "tags": [
-          "Accounts"
-        ],
+        "tags": ["Accounts"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -279,9 +261,7 @@
         "description": "Show current user's account. To access user's primary account, primary keyword can be used instead of the account id in the URL.",
         "security": [
           {
-            "coinbaseAccessCode": [
-              "wallet:accounts:read"
-            ]
+            "coinbaseAccessCode": ["wallet:accounts:read"]
           }
         ],
         "parameters": [
@@ -296,9 +276,7 @@
             }
           }
         ],
-        "tags": [
-          "Accounts"
-        ],
+        "tags": ["Accounts"],
         "responses": {
           "200": {
             "description": "The account",
@@ -323,14 +301,10 @@
         "description": "Modifies user's account name.",
         "security": [
           {
-            "coinbaseAccessCode": [
-              "wallet:accounts:update"
-            ]
+            "coinbaseAccessCode": ["wallet:accounts:update"]
           }
         ],
-        "tags": [
-          "Accounts"
-        ],
+        "tags": ["Accounts"],
         "parameters": [
           {
             "name": "account_id",
@@ -383,14 +357,10 @@
         "description": "Removes user's account. In order to remove an account it can't be\n\n- Primary account\n- Account with non-zero balance\n- Fiat account\n- Vault with a pending withdrawal\n",
         "security": [
           {
-            "coinbaseAccessCode": [
-              "wallet:accounts:delete"
-            ]
+            "coinbaseAccessCode": ["wallet:accounts:delete"]
           }
         ],
-        "tags": [
-          "Accounts"
-        ],
+        "tags": ["Accounts"],
         "parameters": [
           {
             "name": "account_id",
@@ -417,14 +387,10 @@
         "description": "Promote an account as primary account.",
         "security": [
           {
-            "coinbaseAccessCode": [
-              "wallet:accounts:update"
-            ]
+            "coinbaseAccessCode": ["wallet:accounts:update"]
           }
         ],
-        "tags": [
-          "Accounts"
-        ],
+        "tags": ["Accounts"],
         "parameters": [
           {
             "name": "account_id",
@@ -464,14 +430,10 @@
         "x-triggerDescription": "Triggers when a new address is created",
         "security": [
           {
-            "coinbaseAccessCode": [
-              "wallet:addresses:read"
-            ]
+            "coinbaseAccessCode": ["wallet:addresses:read"]
           }
         ],
-        "tags": [
-          "Addresses"
-        ],
+        "tags": ["Addresses"],
         "parameters": [
           {
             "name": "account_id",
@@ -514,9 +476,7 @@
         "description": "Creates a new address for an account. As all the arguments are optinal, it's possible just to do a empty POST which will create a new address. This is handy if you need to create new receive addresses for an account on-demand.\nAddresses can be created for all account types. With fiat accounts, funds will be received with Instant Exchange.\n",
         "security": [
           {
-            "coinbaseAccessCode": [
-              "wallet:addresses:create"
-            ]
+            "coinbaseAccessCode": ["wallet:addresses:create"]
           }
         ],
         "parameters": [
@@ -547,9 +507,7 @@
           },
           "description": "Properties to update"
         },
-        "tags": [
-          "Addresses"
-        ],
+        "tags": ["Addresses"],
         "responses": {
           "201": {
             "description": "The created address",
@@ -576,14 +534,10 @@
         "description": "Show an individual address for an account.\nRegular bitcoin address can be used in place of address_id but the address has to be associated to the correct account.\n  \n*Important* Addresses should be considered one time use only. \n",
         "security": [
           {
-            "coinbaseAccessCode": [
-              "wallet:addresses:read"
-            ]
+            "coinbaseAccessCode": ["wallet:addresses:read"]
           }
         ],
-        "tags": [
-          "Addresses"
-        ],
+        "tags": ["Addresses"],
         "parameters": [
           {
             "name": "account_id",
@@ -632,14 +586,10 @@
         "x-triggerDescription": "Triggers when a new transaction has been sent to a specific address",
         "security": [
           {
-            "coinbaseAccessCode": [
-              "wallet:transactions:read"
-            ]
+            "coinbaseAccessCode": ["wallet:transactions:read"]
           }
         ],
-        "tags": [
-          "Addresses"
-        ],
+        "tags": ["Addresses"],
         "parameters": [
           {
             "name": "account_id",
@@ -694,14 +644,10 @@
         "x-triggerDescription": "Triggers when a new transaction has been sent to the account.",
         "security": [
           {
-            "coinbaseAccessCode": [
-              "wallet:transactions:read"
-            ]
+            "coinbaseAccessCode": ["wallet:transactions:read"]
           }
         ],
-        "tags": [
-          "Transactions"
-        ],
+        "tags": ["Transactions"],
         "parameters": [
           {
             "name": "account_id",
@@ -745,15 +691,10 @@
         "description": "Type=send\n=========\n\nSend funds to a bitcoin address or email address. No transaction fees are required for off blockchain transactions, and Coinbase waives fees for on-blockchain transactions greater than 0.0001 BTC, up to a threshold of 25 per day. Read more about free transactions.\n\nWhen used with OAuth2 authentication, this endpoint requires two factor authentication unless used with wallet:transactions:send:bypass-2fa scope.\n\nIf the user is able to buy bitcoin, they can send funds from their fiat account using instant exchange feature. Buy fees will be included in the created transaction and the recipient will receive the user defined amount.\n\nTo create a multisig transaction, visit Multisig documentation.\n\nType=request\n============\n\nRequests money from an email address.\n",
         "security": [
           {
-            "coinbaseAccessCode": [
-              "wallet:transactions:send",
-              "wallet:transactions:request"
-            ]
+            "coinbaseAccessCode": ["wallet:transactions:send", "wallet:transactions:request"]
           }
         ],
-        "tags": [
-          "Transactions"
-        ],
+        "tags": ["Transactions"],
         "parameters": [
           {
             "name": "account_id",
@@ -836,14 +777,10 @@
         "description": "Show an individual transaction for an account. See Transaction resource for more information.",
         "security": [
           {
-            "coinbaseAccessCode": [
-              "wallet:transactions:read"
-            ]
+            "coinbaseAccessCode": ["wallet:transactions:read"]
           }
         ],
-        "tags": [
-          "Transactions"
-        ],
+        "tags": ["Transactions"],
         "parameters": [
           {
             "name": "account_id",
@@ -889,14 +826,10 @@
         "description": "Lets a user cancel a money request. Money requests can be canceled by the sender or the recipient.",
         "security": [
           {
-            "coinbaseAccessCode": [
-              "wallet:transactions:request"
-            ]
+            "coinbaseAccessCode": ["wallet:transactions:request"]
           }
         ],
-        "tags": [
-          "Transactions"
-        ],
+        "tags": ["Transactions"],
         "parameters": [
           {
             "name": "account_id",
@@ -932,14 +865,10 @@
         "description": "Lets the recipient of a money request complete the request by sending money to the user who requested the money. This can only be completed by the user to whom the request was made, not the user who sent the request.",
         "security": [
           {
-            "coinbaseAccessCode": [
-              "wallet:transactions:request"
-            ]
+            "coinbaseAccessCode": ["wallet:transactions:request"]
           }
         ],
-        "tags": [
-          "Transactions"
-        ],
+        "tags": ["Transactions"],
         "parameters": [
           {
             "name": "account_id",
@@ -975,14 +904,10 @@
         "description": "Lets the user resend a money request. This will notify recipient with a new email.",
         "security": [
           {
-            "coinbaseAccessCode": [
-              "wallet:transactions:request"
-            ]
+            "coinbaseAccessCode": ["wallet:transactions:request"]
           }
         ],
-        "tags": [
-          "Transactions"
-        ],
+        "tags": ["Transactions"],
         "parameters": [
           {
             "name": "account_id",
@@ -1069,12 +994,7 @@
     "schemas": {
       "User": {
         "type": "object",
-        "required": [
-          "id",
-          "avatar_url",
-          "resource",
-          "resource_path"
-        ],
+        "required": ["id", "avatar_url", "resource", "resource_path"],
         "properties": {
           "id": {
             "type": "string",

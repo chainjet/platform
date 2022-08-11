@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -229,10 +221,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "analyzerName",
-                  "type"
-                ],
+                "required": ["analyzerName", "type"],
                 "properties": {
                   "analyzerName": {
                     "description": "The name of the analyzer to create.",
@@ -262,10 +251,7 @@
                   "type": {
                     "description": "The type of analyzer to create. Only ACCOUNT analyzers are supported. You can create only one analyzer per account per Region.",
                     "type": "string",
-                    "enum": [
-                      "ACCOUNT",
-                      "ORGANIZATION"
-                    ]
+                    "enum": ["ACCOUNT", "ORGANIZATION"]
                   }
                 }
               }
@@ -378,10 +364,7 @@
             "description": "The type of analyzer.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ACCOUNT",
-                "ORGANIZATION"
-              ]
+              "enum": ["ACCOUNT", "ORGANIZATION"]
             }
           }
         ],
@@ -487,10 +470,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "filter",
-                  "ruleName"
-                ],
+                "required": ["filter", "ruleName"],
                 "properties": {
                   "clientToken": {
                     "description": "A client token.",
@@ -1121,9 +1101,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "filter"
-                ],
+                "required": ["filter"],
                 "properties": {
                   "clientToken": {
                     "description": "A client token.",
@@ -1463,9 +1441,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "analyzerArn"
-                ],
+                "required": ["analyzerArn"],
                 "properties": {
                   "analyzerArn": {
                     "description": "The ARN of the analyzer to retrieve a list of analyzed resources from.",
@@ -1616,9 +1592,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "analyzerArn"
-                ],
+                "required": ["analyzerArn"],
                 "properties": {
                   "analyzerArn": {
                     "description": "The ARN of the analyzer to retrieve findings from.",
@@ -1761,10 +1735,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "analyzerArn",
-                  "status"
-                ],
+                "required": ["analyzerArn", "status"],
                 "properties": {
                   "analyzerArn": {
                     "description": "The ARN of the analyzer that generated the findings to update.",
@@ -1790,10 +1761,7 @@
                   "status": {
                     "description": "The state represents the action to take to update the finding Status. Use <code>ARCHIVE</code> to change an Active finding to an Archived finding. Use <code>ACTIVE</code> to change an Archived finding to an Active finding.",
                     "type": "string",
-                    "enum": [
-                      "ACTIVE",
-                      "ARCHIVED"
-                    ]
+                    "enum": ["ACTIVE", "ARCHIVED"]
                   }
                 }
               }
@@ -1987,9 +1955,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "tags"
-                ],
+                "required": ["tags"],
                 "properties": {
                   "tags": {
                     "description": "The tags to add to the resource.",
@@ -2072,10 +2038,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "analyzerArn",
-                  "resourceArn"
-                ],
+                "required": ["analyzerArn", "resourceArn"],
                 "properties": {
                   "analyzerArn": {
                     "description": "The ARN of the analyzer to use to scan the policies applied to the specified resource.",
@@ -2299,10 +2262,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "analyzerArn",
-                  "ruleName"
-                ],
+                "required": ["analyzerArn", "ruleName"],
                 "properties": {
                   "analyzerArn": {
                     "description": "The Amazon resource name (ARN) of the analyzer.",
@@ -2623,10 +2583,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "analyzerArn",
-                  "configurations"
-                ],
+                "required": ["analyzerArn", "configurations"],
                 "properties": {
                   "analyzerArn": {
                     "description": "The <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources\">ARN of the account analyzer</a> used to generate the access preview. You can only create an access preview for analyzers with an <code>Account</code> type and <code>Active</code> status.",
@@ -2901,9 +2858,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "analyzerArn"
-                ],
+                "required": ["analyzerArn"],
                 "properties": {
                   "analyzerArn": {
                     "description": "The <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources\">ARN of the analyzer</a> used to generate the access.",
@@ -3272,9 +3227,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "policyGenerationDetails"
-                ],
+                "required": ["policyGenerationDetails"],
                 "properties": {
                   "clientToken": {
                     "description": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect.</p> <p>If you do not specify a client token, one is automatically generated by the Amazon Web Services SDK.</p>",
@@ -3432,26 +3385,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "policyDocument",
-                  "policyType"
-                ],
+                "required": ["policyDocument", "policyType"],
                 "properties": {
                   "locale": {
                     "description": "The locale to use for localizing the findings.",
                     "type": "string",
-                    "enum": [
-                      "DE",
-                      "EN",
-                      "ES",
-                      "FR",
-                      "IT",
-                      "JA",
-                      "KO",
-                      "PT_BR",
-                      "ZH_CN",
-                      "ZH_TW"
-                    ]
+                    "enum": ["DE", "EN", "ES", "FR", "IT", "JA", "KO", "PT_BR", "ZH_CN", "ZH_TW"]
                   },
                   "policyDocument": {
                     "description": "The JSON policy document to use as the content for the policy.",
@@ -3460,11 +3399,7 @@
                   "policyType": {
                     "description": "<p>The type of policy to validate. Identity policies grant permissions to IAM principals. Identity policies include managed and inline policies for IAM roles, users, and groups. They also include service-control policies (SCPs) that are attached to an Amazon Web Services organization, organizational unit (OU), or an account.</p> <p>Resource policies grant permissions on Amazon Web Services resources. Resource policies include trust policies for IAM roles and bucket policies for Amazon S3 buckets. You can provide a generic input such as identity policy or resource policy or a specific input such as managed policy or Amazon S3 bucket policy. </p>",
                     "type": "string",
-                    "enum": [
-                      "IDENTITY_POLICY",
-                      "RESOURCE_POLICY",
-                      "SERVICE_CONTROL_POLICY"
-                    ]
+                    "enum": ["IDENTITY_POLICY", "RESOURCE_POLICY", "SERVICE_CONTROL_POLICY"]
                   }
                 }
               }
@@ -3592,10 +3527,7 @@
       },
       "InlineArchiveRule": {
         "type": "object",
-        "required": [
-          "filter",
-          "ruleName"
-        ],
+        "required": ["filter", "ruleName"],
         "properties": {
           "filter": {
             "allOf": [
@@ -3694,9 +3626,7 @@
       },
       "GetAnalyzerResponse": {
         "type": "object",
-        "required": [
-          "analyzer"
-        ],
+        "required": ["analyzer"],
         "properties": {
           "analyzer": {
             "allOf": [
@@ -3713,9 +3643,7 @@
       },
       "GetArchiveRuleResponse": {
         "type": "object",
-        "required": [
-          "archiveRule"
-        ],
+        "required": ["archiveRule"],
         "properties": {
           "archiveRule": {
             "$ref": "#/components/schemas/ArchiveRuleSummary"
@@ -3741,9 +3669,7 @@
       },
       "ListAnalyzedResourcesResponse": {
         "type": "object",
-        "required": [
-          "analyzedResources"
-        ],
+        "required": ["analyzedResources"],
         "properties": {
           "analyzedResources": {
             "allOf": [
@@ -3770,9 +3696,7 @@
       },
       "ListAnalyzersResponse": {
         "type": "object",
-        "required": [
-          "analyzers"
-        ],
+        "required": ["analyzers"],
         "properties": {
           "analyzers": {
             "allOf": [
@@ -3799,9 +3723,7 @@
       },
       "ListArchiveRulesResponse": {
         "type": "object",
-        "required": [
-          "archiveRules"
-        ],
+        "required": ["archiveRules"],
         "properties": {
           "archiveRules": {
             "allOf": [
@@ -3828,9 +3750,7 @@
       },
       "ListFindingsResponse": {
         "type": "object",
-        "required": [
-          "findings"
-        ],
+        "required": ["findings"],
         "properties": {
           "findings": {
             "allOf": [
@@ -3857,10 +3777,7 @@
       },
       "OrderBy": {
         "type": "string",
-        "enum": [
-          "ASC",
-          "DESC"
-        ]
+        "enum": ["ASC", "DESC"]
       },
       "ListTagsForResourceResponse": {
         "type": "object",
@@ -3928,11 +3845,7 @@
       },
       "FindingStatus": {
         "type": "string",
-        "enum": [
-          "ACTIVE",
-          "ARCHIVED",
-          "RESOLVED"
-        ]
+        "enum": ["ACTIVE", "ARCHIVED", "RESOLVED"]
       },
       "AnalyzedResource": {
         "type": "object",
@@ -4061,11 +3974,7 @@
       },
       "AnalyzedResourceSummary": {
         "type": "object",
-        "required": [
-          "resourceArn",
-          "resourceOwnerAccount",
-          "resourceType"
-        ],
+        "required": ["resourceArn", "resourceOwnerAccount", "resourceType"],
         "properties": {
           "resourceArn": {
             "allOf": [
@@ -4112,12 +4021,7 @@
       },
       "AnalyzerStatus": {
         "type": "string",
-        "enum": [
-          "ACTIVE",
-          "CREATING",
-          "DISABLED",
-          "FAILED"
-        ]
+        "enum": ["ACTIVE", "CREATING", "DISABLED", "FAILED"]
       },
       "Name": {
         "type": "string",
@@ -4127,9 +4031,7 @@
       },
       "StatusReason": {
         "type": "object",
-        "required": [
-          "code"
-        ],
+        "required": ["code"],
         "properties": {
           "code": {
             "allOf": [
@@ -4152,20 +4054,11 @@
       },
       "Type": {
         "type": "string",
-        "enum": [
-          "ACCOUNT",
-          "ORGANIZATION"
-        ]
+        "enum": ["ACCOUNT", "ORGANIZATION"]
       },
       "AnalyzerSummary": {
         "type": "object",
-        "required": [
-          "arn",
-          "createdAt",
-          "name",
-          "status",
-          "type"
-        ],
+        "required": ["arn", "createdAt", "name", "status", "type"],
         "properties": {
           "arn": {
             "allOf": [
@@ -4274,12 +4167,7 @@
       },
       "ArchiveRuleSummary": {
         "type": "object",
-        "required": [
-          "createdAt",
-          "filter",
-          "ruleName",
-          "updatedAt"
-        ],
+        "required": ["createdAt", "filter", "ruleName", "updatedAt"],
         "properties": {
           "createdAt": {
             "allOf": [
@@ -4530,17 +4418,11 @@
       },
       "FindingSourceType": {
         "type": "string",
-        "enum": [
-          "BUCKET_ACL",
-          "POLICY",
-          "S3_ACCESS_POINT"
-        ]
+        "enum": ["BUCKET_ACL", "POLICY", "S3_ACCESS_POINT"]
       },
       "FindingSource": {
         "type": "object",
-        "required": [
-          "type"
-        ],
+        "required": ["type"],
         "properties": {
           "detail": {
             "allOf": [
@@ -4748,9 +4630,7 @@
       },
       "CreateAccessPreviewResponse": {
         "type": "object",
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "properties": {
           "id": {
             "allOf": [
@@ -4822,9 +4702,7 @@
       },
       "GetAccessPreviewResponse": {
         "type": "object",
-        "required": [
-          "accessPreview"
-        ],
+        "required": ["accessPreview"],
         "properties": {
           "accessPreview": {
             "allOf": [
@@ -4840,10 +4718,7 @@
       },
       "GetGeneratedPolicyResponse": {
         "type": "object",
-        "required": [
-          "generatedPolicyResult",
-          "jobDetails"
-        ],
+        "required": ["generatedPolicyResult", "jobDetails"],
         "properties": {
           "generatedPolicyResult": {
             "allOf": [
@@ -4869,9 +4744,7 @@
       },
       "ListAccessPreviewFindingsResponse": {
         "type": "object",
-        "required": [
-          "findings"
-        ],
+        "required": ["findings"],
         "properties": {
           "findings": {
             "allOf": [
@@ -4897,9 +4770,7 @@
       },
       "ListAccessPreviewsResponse": {
         "type": "object",
-        "required": [
-          "accessPreviews"
-        ],
+        "required": ["accessPreviews"],
         "properties": {
           "accessPreviews": {
             "allOf": [
@@ -4925,9 +4796,7 @@
       },
       "ListPolicyGenerationsResponse": {
         "type": "object",
-        "required": [
-          "policyGenerations"
-        ],
+        "required": ["policyGenerations"],
         "properties": {
           "nextToken": {
             "allOf": [
@@ -4953,9 +4822,7 @@
       },
       "StartPolicyGenerationResponse": {
         "type": "object",
-        "required": [
-          "jobId"
-        ],
+        "required": ["jobId"],
         "properties": {
           "jobId": {
             "allOf": [
@@ -4985,9 +4852,7 @@
       },
       "ValidatePolicyResponse": {
         "type": "object",
-        "required": [
-          "findings"
-        ],
+        "required": ["findings"],
         "properties": {
           "findings": {
             "allOf": [
@@ -5026,17 +4891,11 @@
       },
       "AccessPreviewStatus": {
         "type": "string",
-        "enum": [
-          "COMPLETED",
-          "CREATING",
-          "FAILED"
-        ]
+        "enum": ["COMPLETED", "CREATING", "FAILED"]
       },
       "AccessPreviewStatusReason": {
         "type": "object",
-        "required": [
-          "code"
-        ],
+        "required": ["code"],
         "properties": {
           "code": {
             "allOf": [
@@ -5053,13 +4912,7 @@
       },
       "AccessPreview": {
         "type": "object",
-        "required": [
-          "analyzerArn",
-          "configurations",
-          "createdAt",
-          "id",
-          "status"
-        ],
+        "required": ["analyzerArn", "configurations", "createdAt", "id", "status"],
         "properties": {
           "analyzerArn": {
             "allOf": [
@@ -5126,25 +4979,14 @@
       },
       "FindingChangeType": {
         "type": "string",
-        "enum": [
-          "CHANGED",
-          "NEW",
-          "UNCHANGED"
-        ]
+        "enum": ["CHANGED", "NEW", "UNCHANGED"]
       },
       "AccessPreviewFindingId": {
         "type": "string"
       },
       "AccessPreviewFinding": {
         "type": "object",
-        "required": [
-          "changeType",
-          "createdAt",
-          "id",
-          "resourceOwnerAccount",
-          "resourceType",
-          "status"
-        ],
+        "required": ["changeType", "createdAt", "id", "resourceOwnerAccount", "resourceType", "status"],
         "properties": {
           "action": {
             "allOf": [
@@ -5307,19 +5149,11 @@
       },
       "AccessPreviewStatusReasonCode": {
         "type": "string",
-        "enum": [
-          "INTERNAL_ERROR",
-          "INVALID_CONFIGURATION"
-        ]
+        "enum": ["INTERNAL_ERROR", "INVALID_CONFIGURATION"]
       },
       "AccessPreviewSummary": {
         "type": "object",
-        "required": [
-          "analyzerArn",
-          "createdAt",
-          "id",
-          "status"
-        ],
+        "required": ["analyzerArn", "createdAt", "id", "status"],
         "properties": {
           "analyzerArn": {
             "allOf": [
@@ -5407,13 +5241,7 @@
       },
       "AclPermission": {
         "type": "string",
-        "enum": [
-          "READ",
-          "WRITE",
-          "READ_ACP",
-          "WRITE_ACP",
-          "FULL_CONTROL"
-        ]
+        "enum": ["READ", "WRITE", "READ_ACP", "WRITE_ACP", "FULL_CONTROL"]
       },
       "JobId": {
         "type": "string"
@@ -5554,9 +5382,7 @@
       },
       "GeneratedPolicy": {
         "type": "object",
-        "required": [
-          "policy"
-        ],
+        "required": ["policy"],
         "properties": {
           "policy": {
             "allOf": [
@@ -5579,9 +5405,7 @@
       },
       "GeneratedPolicyResult": {
         "type": "object",
-        "required": [
-          "properties"
-        ],
+        "required": ["properties"],
         "properties": {
           "generatedPolicies": {
             "allOf": [
@@ -5601,11 +5425,7 @@
       },
       "JobDetails": {
         "type": "object",
-        "required": [
-          "jobId",
-          "startedOn",
-          "status"
-        ],
+        "required": ["jobId", "startedOn", "status"],
         "properties": {
           "completedOn": {
             "allOf": [
@@ -5679,10 +5499,7 @@
       },
       "JobError": {
         "type": "object",
-        "required": [
-          "code",
-          "message"
-        ],
+        "required": ["code", "message"],
         "properties": {
           "code": {
             "allOf": [
@@ -5709,21 +5526,11 @@
       },
       "JobStatus": {
         "type": "string",
-        "enum": [
-          "IN_PROGRESS",
-          "SUCCEEDED",
-          "FAILED",
-          "CANCELED"
-        ]
+        "enum": ["IN_PROGRESS", "SUCCEEDED", "FAILED", "CANCELED"]
       },
       "JobErrorCode": {
         "type": "string",
-        "enum": [
-          "AUTHORIZATION_ERROR",
-          "RESOURCE_NOT_FOUND_ERROR",
-          "SERVICE_QUOTA_EXCEEDED_ERROR",
-          "SERVICE_ERROR"
-        ]
+        "enum": ["AUTHORIZATION_ERROR", "RESOURCE_NOT_FOUND_ERROR", "SERVICE_QUOTA_EXCEEDED_ERROR", "SERVICE_ERROR"]
       },
       "KmsConstraintsValue": {
         "type": "string"
@@ -5771,11 +5578,7 @@
       },
       "KmsGrantConfiguration": {
         "type": "object",
-        "required": [
-          "granteePrincipal",
-          "issuingAccount",
-          "operations"
-        ],
+        "required": ["granteePrincipal", "issuingAccount", "operations"],
         "properties": {
           "constraints": {
             "allOf": [
@@ -5881,10 +5684,7 @@
       },
       "Span": {
         "type": "object",
-        "required": [
-          "end",
-          "start"
-        ],
+        "required": ["end", "start"],
         "properties": {
           "end": {
             "allOf": [
@@ -5911,10 +5711,7 @@
       },
       "Location": {
         "type": "object",
-        "required": [
-          "path",
-          "span"
-        ],
+        "required": ["path", "span"],
         "properties": {
           "path": {
             "allOf": [
@@ -5947,9 +5744,7 @@
       },
       "VpcConfiguration": {
         "type": "object",
-        "required": [
-          "vpcId"
-        ],
+        "required": ["vpcId"],
         "properties": {
           "vpcId": {
             "allOf": [
@@ -5985,10 +5780,7 @@
       },
       "Substring": {
         "type": "object",
-        "required": [
-          "length",
-          "start"
-        ],
+        "required": ["length", "start"],
         "properties": {
           "length": {
             "allOf": [
@@ -6061,12 +5853,7 @@
       },
       "PolicyGeneration": {
         "type": "object",
-        "required": [
-          "jobId",
-          "principalArn",
-          "startedOn",
-          "status"
-        ],
+        "required": ["jobId", "principalArn", "startedOn", "status"],
         "properties": {
           "completedOn": {
             "allOf": [
@@ -6123,11 +5910,7 @@
       },
       "Position": {
         "type": "object",
-        "required": [
-          "column",
-          "line",
-          "offset"
-        ],
+        "required": ["column", "line", "offset"],
         "properties": {
           "column": {
             "allOf": [
@@ -6170,10 +5953,7 @@
       },
       "S3PublicAccessBlockConfiguration": {
         "type": "object",
-        "required": [
-          "ignorePublicAcls",
-          "restrictPublicBuckets"
-        ],
+        "required": ["ignorePublicAcls", "restrictPublicBuckets"],
         "properties": {
           "ignorePublicAcls": {
             "allOf": [
@@ -6242,10 +6022,7 @@
       },
       "S3BucketAclGrantConfiguration": {
         "type": "object",
-        "required": [
-          "grantee",
-          "permission"
-        ],
+        "required": ["grantee", "permission"],
         "properties": {
           "grantee": {
             "allOf": [
@@ -6290,9 +6067,7 @@
       },
       "Trail": {
         "type": "object",
-        "required": [
-          "cloudTrailArn"
-        ],
+        "required": ["cloudTrailArn"],
         "properties": {
           "allRegions": {
             "allOf": [
@@ -6329,22 +6104,11 @@
       },
       "ValidatePolicyFindingType": {
         "type": "string",
-        "enum": [
-          "ERROR",
-          "SECURITY_WARNING",
-          "SUGGESTION",
-          "WARNING"
-        ]
+        "enum": ["ERROR", "SECURITY_WARNING", "SUGGESTION", "WARNING"]
       },
       "ValidatePolicyFinding": {
         "type": "object",
-        "required": [
-          "findingDetails",
-          "findingType",
-          "issueCode",
-          "learnMoreLink",
-          "locations"
-        ],
+        "required": ["findingDetails", "findingType", "issueCode", "learnMoreLink", "locations"],
         "properties": {
           "findingDetails": {
             "allOf": [

@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -229,11 +221,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ttl",
-                  "apiCachingBehavior",
-                  "type"
-                ],
+                "required": ["ttl", "apiCachingBehavior", "type"],
                 "properties": {
                   "ttl": {
                     "description": "<p>TTL in seconds for cache entries.</p> <p>Valid values are between 1 and 3600 seconds.</p>",
@@ -250,10 +238,7 @@
                   "apiCachingBehavior": {
                     "description": "<p>Caching behavior.</p> <ul> <li> <p> <b>FULL_REQUEST_CACHING</b>: All requests are fully cached.</p> </li> <li> <p> <b>PER_RESOLVER_CACHING</b>: Individual resovlers that you specify are cached.</p> </li> </ul>",
                     "type": "string",
-                    "enum": [
-                      "FULL_REQUEST_CACHING",
-                      "PER_RESOLVER_CACHING"
-                    ]
+                    "enum": ["FULL_REQUEST_CACHING", "PER_RESOLVER_CACHING"]
                   },
                   "type": {
                     "description": "<p>The cache instance type. Valid values are </p> <ul> <li> <p> <code>SMALL</code> </p> </li> <li> <p> <code>MEDIUM</code> </p> </li> <li> <p> <code>LARGE</code> </p> </li> <li> <p> <code>XLARGE</code> </p> </li> <li> <p> <code>LARGE_2X</code> </p> </li> <li> <p> <code>LARGE_4X</code> </p> </li> <li> <p> <code>LARGE_8X</code> (not available in all regions)</p> </li> <li> <p> <code>LARGE_12X</code> </p> </li> </ul> <p>Historically, instance types were identified by an EC2-style value. As of July 2020, this is deprecated, and the generic identifiers above should be used.</p> <p>The following legacy instance types are avaible, but their use is discouraged:</p> <ul> <li> <p> <b>T2_SMALL</b>: A t2.small instance type.</p> </li> <li> <p> <b>T2_MEDIUM</b>: A t2.medium instance type.</p> </li> <li> <p> <b>R4_LARGE</b>: A r4.large instance type.</p> </li> <li> <p> <b>R4_XLARGE</b>: A r4.xlarge instance type.</p> </li> <li> <p> <b>R4_2XLARGE</b>: A r4.2xlarge instance type.</p> </li> <li> <p> <b>R4_4XLARGE</b>: A r4.4xlarge instance type.</p> </li> <li> <p> <b>R4_8XLARGE</b>: A r4.8xlarge instance type.</p> </li> </ul>",
@@ -790,10 +775,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "type"
-                ],
+                "required": ["name", "type"],
                 "properties": {
                   "name": {
                     "description": "A user-supplied name for the <code>DataSource</code>.",
@@ -1167,11 +1149,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "dataSourceName",
-                  "functionVersion"
-                ],
+                "required": ["name", "dataSourceName", "functionVersion"],
                 "properties": {
                   "name": {
                     "description": "The <code>Function</code> name. The function name does not have to be unique.",
@@ -1448,10 +1426,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "authenticationType"
-                ],
+                "required": ["name", "authenticationType"],
                 "properties": {
                   "name": {
                     "description": "A user-supplied name for the <code>GraphqlApi</code>.",
@@ -1496,13 +1471,7 @@
                   "authenticationType": {
                     "description": "The authentication type: API key, AWS IAM, OIDC, or Amazon Cognito user pools.",
                     "type": "string",
-                    "enum": [
-                      "API_KEY",
-                      "AWS_IAM",
-                      "AMAZON_COGNITO_USER_POOLS",
-                      "OPENID_CONNECT",
-                      "AWS_LAMBDA"
-                    ]
+                    "enum": ["API_KEY", "AWS_IAM", "AMAZON_COGNITO_USER_POOLS", "OPENID_CONNECT", "AWS_LAMBDA"]
                   },
                   "userPoolConfig": {
                     "description": "Describes an Amazon Cognito user pool configuration.",
@@ -1840,9 +1809,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "fieldName"
-                ],
+                "required": ["fieldName"],
                 "properties": {
                   "fieldName": {
                     "description": "The name of the field to attach the resolver to.",
@@ -1873,10 +1840,7 @@
                   "kind": {
                     "description": "<p>The resolver type.</p> <ul> <li> <p> <b>UNIT</b>: A UNIT resolver type. A UNIT resolver is the default resolver type. A UNIT resolver enables you to execute a GraphQL query against a single data source.</p> </li> <li> <p> <b>PIPELINE</b>: A PIPELINE resolver type. A PIPELINE resolver enables you to execute a series of <code>Function</code> in a serial manner. You can use a pipeline resolver to execute a GraphQL query against multiple data sources.</p> </li> </ul>",
                     "type": "string",
-                    "enum": [
-                      "UNIT",
-                      "PIPELINE"
-                    ]
+                    "enum": ["UNIT", "PIPELINE"]
                   },
                   "pipelineConfig": {
                     "description": "The pipeline configuration for a resolver of kind <code>PIPELINE</code>.",
@@ -2170,10 +2134,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "definition",
-                  "format"
-                ],
+                "required": ["definition", "format"],
                 "properties": {
                   "definition": {
                     "description": "<p>The type definition, in GraphQL Schema Definition Language (SDL) format.</p> <p>For more information, see the <a href=\"http://graphql.org/learn/schema/\">GraphQL SDL documentation</a>.</p>",
@@ -2182,10 +2143,7 @@
                   "format": {
                     "description": "The type format: SDL or JSON.",
                     "type": "string",
-                    "enum": [
-                      "SDL",
-                      "JSON"
-                    ]
+                    "enum": ["SDL", "JSON"]
                   }
                 }
               }
@@ -2735,9 +2693,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "type"
-                ],
+                "required": ["type"],
                 "properties": {
                   "description": {
                     "description": "The new description for the data source.",
@@ -3175,11 +3131,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "dataSourceName",
-                  "functionVersion"
-                ],
+                "required": ["name", "dataSourceName", "functionVersion"],
                 "properties": {
                   "name": {
                     "description": "The <code>Function</code> name.",
@@ -3541,9 +3493,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name"
-                ],
+                "required": ["name"],
                 "properties": {
                   "name": {
                     "description": "The new name for the <code>GraphqlApi</code> object.",
@@ -3588,13 +3538,7 @@
                   "authenticationType": {
                     "description": "The new authentication type for the <code>GraphqlApi</code> object.",
                     "type": "string",
-                    "enum": [
-                      "API_KEY",
-                      "AWS_IAM",
-                      "AMAZON_COGNITO_USER_POOLS",
-                      "OPENID_CONNECT",
-                      "AWS_LAMBDA"
-                    ]
+                    "enum": ["API_KEY", "AWS_IAM", "AMAZON_COGNITO_USER_POOLS", "OPENID_CONNECT", "AWS_LAMBDA"]
                   },
                   "userPoolConfig": {
                     "description": "Describes an Amazon Cognito user pool configuration.",
@@ -4060,10 +4004,7 @@
                   "kind": {
                     "description": "<p>The resolver type.</p> <ul> <li> <p> <b>UNIT</b>: A UNIT resolver type. A UNIT resolver is the default resolver type. A UNIT resolver enables you to execute a GraphQL query against a single data source.</p> </li> <li> <p> <b>PIPELINE</b>: A PIPELINE resolver type. A PIPELINE resolver enables you to execute a series of <code>Function</code> in a serial manner. You can use a pipeline resolver to execute a GraphQL query against multiple data sources.</p> </li> </ul>",
                     "type": "string",
-                    "enum": [
-                      "UNIT",
-                      "PIPELINE"
-                    ]
+                    "enum": ["UNIT", "PIPELINE"]
                   },
                   "pipelineConfig": {
                     "description": "The pipeline configuration for a resolver of kind <code>PIPELINE</code>.",
@@ -4359,9 +4300,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "format"
-                ],
+                "required": ["format"],
                 "properties": {
                   "definition": {
                     "description": "The new definition.",
@@ -4370,10 +4309,7 @@
                   "format": {
                     "description": "The new type format: SDL or JSON.",
                     "type": "string",
-                    "enum": [
-                      "SDL",
-                      "JSON"
-                    ]
+                    "enum": ["SDL", "JSON"]
                   }
                 }
               }
@@ -4559,10 +4495,7 @@
             "description": "The schema format: SDL or JSON.",
             "schema": {
               "type": "string",
-              "enum": [
-                "SDL",
-                "JSON"
-              ]
+              "enum": ["SDL", "JSON"]
             }
           },
           {
@@ -4775,9 +4708,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "definition"
-                ],
+                "required": ["definition"],
                 "properties": {
                   "definition": {
                     "description": "The schema definition, in GraphQL schema language format.",
@@ -4886,10 +4817,7 @@
             "description": "The type format: SDL or JSON.",
             "schema": {
               "type": "string",
-              "enum": [
-                "SDL",
-                "JSON"
-              ]
+              "enum": ["SDL", "JSON"]
             }
           }
         ],
@@ -5254,9 +5182,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "tags"
-                ],
+                "required": ["tags"],
                 "properties": {
                   "tags": {
                     "description": "A map with keys of <code>TagKey</code> objects and values of <code>TagValue</code> objects.",
@@ -5358,10 +5284,7 @@
             "description": "The type format: SDL or JSON.",
             "schema": {
               "type": "string",
-              "enum": [
-                "SDL",
-                "JSON"
-              ]
+              "enum": ["SDL", "JSON"]
             }
           },
           {
@@ -5627,11 +5550,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ttl",
-                  "apiCachingBehavior",
-                  "type"
-                ],
+                "required": ["ttl", "apiCachingBehavior", "type"],
                 "properties": {
                   "ttl": {
                     "description": "<p>TTL in seconds for cache entries.</p> <p>Valid values are between 1 and 3600 seconds.</p>",
@@ -5640,10 +5559,7 @@
                   "apiCachingBehavior": {
                     "description": "<p>Caching behavior.</p> <ul> <li> <p> <b>FULL_REQUEST_CACHING</b>: All requests are fully cached.</p> </li> <li> <p> <b>PER_RESOLVER_CACHING</b>: Individual resovlers that you specify are cached.</p> </li> </ul>",
                     "type": "string",
-                    "enum": [
-                      "FULL_REQUEST_CACHING",
-                      "PER_RESOLVER_CACHING"
-                    ]
+                    "enum": ["FULL_REQUEST_CACHING", "PER_RESOLVER_CACHING"]
                   },
                   "type": {
                     "description": "<p>The cache instance type. Valid values are </p> <ul> <li> <p> <code>SMALL</code> </p> </li> <li> <p> <code>MEDIUM</code> </p> </li> <li> <p> <code>LARGE</code> </p> </li> <li> <p> <code>XLARGE</code> </p> </li> <li> <p> <code>LARGE_2X</code> </p> </li> <li> <p> <code>LARGE_4X</code> </p> </li> <li> <p> <code>LARGE_8X</code> (not available in all regions)</p> </li> <li> <p> <code>LARGE_12X</code> </p> </li> </ul> <p>Historically, instance types were identified by an EC2-style value. As of July 2020, this is deprecated, and the generic identifiers above should be used.</p> <p>The following legacy instance types are avaible, but their use is discouraged:</p> <ul> <li> <p> <b>T2_SMALL</b>: A t2.small instance type.</p> </li> <li> <p> <b>T2_MEDIUM</b>: A t2.medium instance type.</p> </li> <li> <p> <b>R4_LARGE</b>: A r4.large instance type.</p> </li> <li> <p> <b>R4_XLARGE</b>: A r4.xlarge instance type.</p> </li> <li> <p> <b>R4_2XLARGE</b>: A r4.2xlarge instance type.</p> </li> <li> <p> <b>R4_4XLARGE</b>: A r4.4xlarge instance type.</p> </li> <li> <p> <b>R4_8XLARGE</b>: A r4.8xlarge instance type.</p> </li> </ul>",
@@ -5872,9 +5788,7 @@
       },
       "AuthorizationConfig": {
         "type": "object",
-        "required": [
-          "authorizationType"
-        ],
+        "required": ["authorizationType"],
         "properties": {
           "authorizationType": {
             "allOf": [
@@ -5901,9 +5815,7 @@
       },
       "RelationalDatabaseSourceType": {
         "type": "string",
-        "enum": [
-          "RDS_HTTP_ENDPOINT"
-        ]
+        "enum": ["RDS_HTTP_ENDPOINT"]
       },
       "RdsHttpEndpointConfig": {
         "type": "object",
@@ -5993,18 +5905,11 @@
       },
       "FieldLogLevel": {
         "type": "string",
-        "enum": [
-          "NONE",
-          "ERROR",
-          "ALL"
-        ]
+        "enum": ["NONE", "ERROR", "ALL"]
       },
       "DefaultAction": {
         "type": "string",
-        "enum": [
-          "ALLOW",
-          "DENY"
-        ]
+        "enum": ["ALLOW", "DENY"]
       },
       "Long": {
         "type": "integer"
@@ -6084,19 +5989,11 @@
       },
       "ConflictHandlerType": {
         "type": "string",
-        "enum": [
-          "OPTIMISTIC_CONCURRENCY",
-          "LAMBDA",
-          "AUTOMERGE",
-          "NONE"
-        ]
+        "enum": ["OPTIMISTIC_CONCURRENCY", "LAMBDA", "AUTOMERGE", "NONE"]
       },
       "ConflictDetectionType": {
         "type": "string",
-        "enum": [
-          "VERSION",
-          "NONE"
-        ]
+        "enum": ["VERSION", "NONE"]
       },
       "LambdaConflictHandlerConfig": {
         "type": "object",
@@ -6630,19 +6527,11 @@
       },
       "AuthenticationType": {
         "type": "string",
-        "enum": [
-          "API_KEY",
-          "AWS_IAM",
-          "AMAZON_COGNITO_USER_POOLS",
-          "OPENID_CONNECT",
-          "AWS_LAMBDA"
-        ]
+        "enum": ["API_KEY", "AWS_IAM", "AMAZON_COGNITO_USER_POOLS", "OPENID_CONNECT", "AWS_LAMBDA"]
       },
       "OpenIDConnectConfig": {
         "type": "object",
-        "required": [
-          "issuer"
-        ],
+        "required": ["issuer"],
         "properties": {
           "issuer": {
             "allOf": [
@@ -6689,10 +6578,7 @@
       },
       "CognitoUserPoolConfig": {
         "type": "object",
-        "required": [
-          "userPoolId",
-          "awsRegion"
-        ],
+        "required": ["userPoolId", "awsRegion"],
         "properties": {
           "userPoolId": {
             "allOf": [
@@ -6735,10 +6621,7 @@
       },
       "ApiCachingBehavior": {
         "type": "string",
-        "enum": [
-          "FULL_REQUEST_CACHING",
-          "PER_RESOLVER_CACHING"
-        ]
+        "enum": ["FULL_REQUEST_CACHING", "PER_RESOLVER_CACHING"]
       },
       "ApiCacheType": {
         "type": "string",
@@ -6762,13 +6645,7 @@
       },
       "ApiCacheStatus": {
         "type": "string",
-        "enum": [
-          "AVAILABLE",
-          "CREATING",
-          "DELETING",
-          "MODIFYING",
-          "FAILED"
-        ]
+        "enum": ["AVAILABLE", "CREATING", "DELETING", "MODIFYING", "FAILED"]
       },
       "ApiCache": {
         "type": "object",
@@ -6890,9 +6767,7 @@
       },
       "AuthorizationType": {
         "type": "string",
-        "enum": [
-          "AWS_IAM"
-        ]
+        "enum": ["AWS_IAM"]
       },
       "AwsIamConfig": {
         "type": "object",
@@ -6957,21 +6832,11 @@
       },
       "DataSourceType": {
         "type": "string",
-        "enum": [
-          "AWS_LAMBDA",
-          "AMAZON_DYNAMODB",
-          "AMAZON_ELASTICSEARCH",
-          "NONE",
-          "HTTP",
-          "RELATIONAL_DATABASE"
-        ]
+        "enum": ["AWS_LAMBDA", "AMAZON_DYNAMODB", "AMAZON_ELASTICSEARCH", "NONE", "HTTP", "RELATIONAL_DATABASE"]
       },
       "DynamodbDataSourceConfig": {
         "type": "object",
-        "required": [
-          "tableName",
-          "awsRegion"
-        ],
+        "required": ["tableName", "awsRegion"],
         "properties": {
           "tableName": {
             "allOf": [
@@ -7028,9 +6893,7 @@
       },
       "LambdaDataSourceConfig": {
         "type": "object",
-        "required": [
-          "lambdaFunctionArn"
-        ],
+        "required": ["lambdaFunctionArn"],
         "properties": {
           "lambdaFunctionArn": {
             "allOf": [
@@ -7047,10 +6910,7 @@
       },
       "ElasticsearchDataSourceConfig": {
         "type": "object",
-        "required": [
-          "endpoint",
-          "awsRegion"
-        ],
+        "required": ["endpoint", "awsRegion"],
         "properties": {
           "endpoint": {
             "allOf": [
@@ -7329,10 +7189,7 @@
       },
       "LogConfig": {
         "type": "object",
-        "required": [
-          "fieldLogLevel",
-          "cloudWatchLogsRoleArn"
-        ],
+        "required": ["fieldLogLevel", "cloudWatchLogsRoleArn"],
         "properties": {
           "fieldLogLevel": {
             "allOf": [
@@ -7369,11 +7226,7 @@
       },
       "UserPoolConfig": {
         "type": "object",
-        "required": [
-          "userPoolId",
-          "awsRegion",
-          "defaultAction"
-        ],
+        "required": ["userPoolId", "awsRegion", "defaultAction"],
         "properties": {
           "userPoolId": {
             "allOf": [
@@ -7565,10 +7418,7 @@
       },
       "ResolverKind": {
         "type": "string",
-        "enum": [
-          "UNIT",
-          "PIPELINE"
-        ]
+        "enum": ["UNIT", "PIPELINE"]
       },
       "PipelineConfig": {
         "type": "object",
@@ -7730,10 +7580,7 @@
       },
       "TypeDefinitionFormat": {
         "type": "string",
-        "enum": [
-          "SDL",
-          "JSON"
-        ]
+        "enum": ["SDL", "JSON"]
       },
       "Type": {
         "type": "object",
@@ -7805,14 +7652,7 @@
       },
       "SchemaStatus": {
         "type": "string",
-        "enum": [
-          "PROCESSING",
-          "ACTIVE",
-          "DELETING",
-          "FAILED",
-          "SUCCESS",
-          "NOT_APPLICABLE"
-        ]
+        "enum": ["PROCESSING", "ACTIVE", "DELETING", "FAILED", "SUCCESS", "NOT_APPLICABLE"]
       },
       "MapOfStringToString": {
         "type": "object",
@@ -7851,9 +7691,7 @@
       },
       "LambdaAuthorizerConfig": {
         "type": "object",
-        "required": [
-          "authorizerUri"
-        ],
+        "required": ["authorizerUri"],
         "properties": {
           "authorizerResultTtlInSeconds": {
             "allOf": [

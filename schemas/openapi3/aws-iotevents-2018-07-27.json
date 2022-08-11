@@ -5,9 +5,7 @@
     "x-release": "v4",
     "title": "AWS IoT Events",
     "description": "AWS IoT Events monitors your equipment or device fleets for failures or changes in operation, and triggers actions when such events occur. You can use AWS IoT Events API operations to create, read, update, and delete inputs and detector models, and to list their versions.",
-    "x-categories": [
-      "iot"
-    ],
+    "x-categories": ["iot"],
     "x-logo": {
       "url": "/logos/aws/Arch_AWS-IoT-Events_64.svg"
     },
@@ -38,9 +36,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -123,10 +119,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -137,10 +130,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -242,11 +232,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "detectorModelName",
-                  "detectorModelDefinition",
-                  "roleArn"
-                ],
+                "required": ["detectorModelName", "detectorModelDefinition", "roleArn"],
                 "properties": {
                   "detectorModelName": {
                     "description": "The name of the detector model.",
@@ -309,10 +295,7 @@
                   "evaluationMethod": {
                     "description": "Information about the order in which events are evaluated and how actions are executed. ",
                     "type": "string",
-                    "enum": [
-                      "BATCH",
-                      "SERIAL"
-                    ]
+                    "enum": ["BATCH", "SERIAL"]
                   }
                 }
               }
@@ -497,10 +480,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "inputName",
-                  "inputDefinition"
-                ],
+                "required": ["inputName", "inputDefinition"],
                 "properties": {
                   "inputName": {
                     "description": "The name you want to give to the input.",
@@ -949,10 +929,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "detectorModelDefinition",
-                  "roleArn"
-                ],
+                "required": ["detectorModelDefinition", "roleArn"],
                 "properties": {
                   "detectorModelDefinition": {
                     "description": "Information that defines how a detector operates.",
@@ -994,10 +971,7 @@
                   "evaluationMethod": {
                     "description": "Information about the order in which events are evaluated and how actions are executed. ",
                     "type": "string",
-                    "enum": [
-                      "BATCH",
-                      "SERIAL"
-                    ]
+                    "enum": ["BATCH", "SERIAL"]
                   }
                 }
               }
@@ -1298,9 +1272,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "inputDefinition"
-                ],
+                "required": ["inputDefinition"],
                 "properties": {
                   "inputDescription": {
                     "description": "A brief description of the input.",
@@ -1508,9 +1480,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "loggingOptions"
-                ],
+                "required": ["loggingOptions"],
                 "properties": {
                   "loggingOptions": {
                     "description": "The values of the AWS IoT Events logging options.",
@@ -1890,9 +1860,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "tags"
-                ],
+                "required": ["tags"],
                 "properties": {
                   "tags": {
                     "description": "The new or modified tags for the resource.",
@@ -2119,11 +2087,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "alarmModelName",
-                  "roleArn",
-                  "alarmRule"
-                ],
+                "required": ["alarmModelName", "roleArn", "alarmRule"],
                 "properties": {
                   "alarmModelName": {
                     "description": "A unique name that helps you identify the alarm model. You can't change this name after you create the alarm model.",
@@ -2649,10 +2613,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "roleArn",
-                  "alarmRule"
-                ],
+                "required": ["roleArn", "alarmRule"],
                 "properties": {
                   "alarmModelDescription": {
                     "description": "The description of the alarm model.",
@@ -3176,9 +3137,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "inputIdentifier"
-                ],
+                "required": ["inputIdentifier"],
                 "properties": {
                   "inputIdentifier": {
                     "description": " The identifer of the input. ",
@@ -3320,9 +3279,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "detectorModelDefinition"
-                ],
+                "required": ["detectorModelDefinition"],
                 "properties": {
                   "detectorModelDefinition": {
                     "description": "Information that defines how a detector operates.",
@@ -3487,10 +3444,7 @@
       },
       "Tag": {
         "type": "object",
-        "required": [
-          "key",
-          "value"
-        ],
+        "required": ["key", "value"],
         "properties": {
           "key": {
             "allOf": [
@@ -3697,11 +3651,7 @@
       },
       "LoggingLevel": {
         "type": "string",
-        "enum": [
-          "ERROR",
-          "INFO",
-          "DEBUG"
-        ]
+        "enum": ["ERROR", "INFO", "DEBUG"]
       },
       "LoggingEnabled": {
         "type": "boolean"
@@ -3758,10 +3708,7 @@
       },
       "SetVariableAction": {
         "type": "object",
-        "required": [
-          "variableName",
-          "value"
-        ],
+        "required": ["variableName", "value"],
         "properties": {
           "variableName": {
             "allOf": [
@@ -3788,9 +3735,7 @@
       },
       "SNSTopicPublishAction": {
         "type": "object",
-        "required": [
-          "targetArn"
-        ],
+        "required": ["targetArn"],
         "properties": {
           "targetArn": {
             "allOf": [
@@ -3817,9 +3762,7 @@
       },
       "IotTopicPublishAction": {
         "type": "object",
-        "required": [
-          "mqttTopic"
-        ],
+        "required": ["mqttTopic"],
         "properties": {
           "mqttTopic": {
             "allOf": [
@@ -3846,9 +3789,7 @@
       },
       "SetTimerAction": {
         "type": "object",
-        "required": [
-          "timerName"
-        ],
+        "required": ["timerName"],
         "properties": {
           "timerName": {
             "allOf": [
@@ -3886,9 +3827,7 @@
       },
       "ClearTimerAction": {
         "type": "object",
-        "required": [
-          "timerName"
-        ],
+        "required": ["timerName"],
         "properties": {
           "timerName": {
             "allOf": [
@@ -3905,9 +3844,7 @@
       },
       "ResetTimerAction": {
         "type": "object",
-        "required": [
-          "timerName"
-        ],
+        "required": ["timerName"],
         "properties": {
           "timerName": {
             "allOf": [
@@ -3924,9 +3861,7 @@
       },
       "LambdaAction": {
         "type": "object",
-        "required": [
-          "functionArn"
-        ],
+        "required": ["functionArn"],
         "properties": {
           "functionArn": {
             "allOf": [
@@ -3953,9 +3888,7 @@
       },
       "IotEventsAction": {
         "type": "object",
-        "required": [
-          "inputName"
-        ],
+        "required": ["inputName"],
         "properties": {
           "inputName": {
             "allOf": [
@@ -3982,9 +3915,7 @@
       },
       "SqsAction": {
         "type": "object",
-        "required": [
-          "queueUrl"
-        ],
+        "required": ["queueUrl"],
         "properties": {
           "queueUrl": {
             "allOf": [
@@ -4021,9 +3952,7 @@
       },
       "FirehoseAction": {
         "type": "object",
-        "required": [
-          "deliveryStreamName"
-        ],
+        "required": ["deliveryStreamName"],
         "properties": {
           "deliveryStreamName": {
             "allOf": [
@@ -4060,11 +3989,7 @@
       },
       "DynamoDBAction": {
         "type": "object",
-        "required": [
-          "hashKeyField",
-          "hashKeyValue",
-          "tableName"
-        ],
+        "required": ["hashKeyField", "hashKeyValue", "tableName"],
         "properties": {
           "hashKeyType": {
             "allOf": [
@@ -4164,9 +4089,7 @@
       },
       "DynamoDBv2Action": {
         "type": "object",
-        "required": [
-          "tableName"
-        ],
+        "required": ["tableName"],
         "properties": {
           "tableName": {
             "allOf": [
@@ -4186,9 +4109,7 @@
       },
       "IotSiteWiseAction": {
         "type": "object",
-        "required": [
-          "propertyValue"
-        ],
+        "required": ["propertyValue"],
         "properties": {
           "entryId": {
             "allOf": [
@@ -4420,9 +4341,7 @@
       },
       "AssetPropertyTimestamp": {
         "type": "object",
-        "required": [
-          "timeInSeconds"
-        ],
+        "required": ["timeInSeconds"],
         "properties": {
           "timeInSeconds": {
             "allOf": [
@@ -4495,9 +4414,7 @@
       },
       "AssetPropertyValue": {
         "type": "object",
-        "required": [
-          "value"
-        ],
+        "required": ["value"],
         "properties": {
           "value": {
             "allOf": [
@@ -4540,9 +4457,7 @@
       },
       "Attribute": {
         "type": "object",
-        "required": [
-          "jsonPath"
-        ],
+        "required": ["jsonPath"],
         "properties": {
           "jsonPath": {
             "allOf": [
@@ -4578,10 +4493,7 @@
       },
       "DetectorModelDefinition": {
         "type": "object",
-        "required": [
-          "states",
-          "initialStateName"
-        ],
+        "required": ["states", "initialStateName"],
         "properties": {
           "states": {
             "allOf": [
@@ -4618,10 +4530,7 @@
       },
       "EvaluationMethod": {
         "type": "string",
-        "enum": [
-          "BATCH",
-          "SERIAL"
-        ]
+        "enum": ["BATCH", "SERIAL"]
       },
       "DetectorModelConfiguration": {
         "type": "object",
@@ -4741,9 +4650,7 @@
       },
       "InputDefinition": {
         "type": "object",
-        "required": [
-          "attributes"
-        ],
+        "required": ["attributes"],
         "properties": {
           "attributes": {
             "allOf": [
@@ -4760,13 +4667,7 @@
       },
       "InputConfiguration": {
         "type": "object",
-        "required": [
-          "inputName",
-          "inputArn",
-          "creationTime",
-          "lastUpdateTime",
-          "status"
-        ],
+        "required": ["inputName", "inputArn", "creationTime", "lastUpdateTime", "status"],
         "properties": {
           "inputName": {
             "allOf": [
@@ -4893,11 +4794,7 @@
       },
       "LoggingOptions": {
         "type": "object",
-        "required": [
-          "roleArn",
-          "level",
-          "enabled"
-        ],
+        "required": ["roleArn", "level", "enabled"],
         "properties": {
           "roleArn": {
             "allOf": [
@@ -4950,9 +4847,7 @@
       },
       "DetectorDebugOption": {
         "type": "object",
-        "required": [
-          "detectorModelName"
-        ],
+        "required": ["detectorModelName"],
         "properties": {
           "detectorModelName": {
             "allOf": [
@@ -4986,15 +4881,7 @@
       },
       "DetectorModelVersionStatus": {
         "type": "string",
-        "enum": [
-          "ACTIVE",
-          "ACTIVATING",
-          "INACTIVE",
-          "DEPRECATED",
-          "DRAFT",
-          "PAUSED",
-          "FAILED"
-        ]
+        "enum": ["ACTIVE", "ACTIVATING", "INACTIVE", "DEPRECATED", "DRAFT", "PAUSED", "FAILED"]
       },
       "DetectorModelSummary": {
         "type": "object",
@@ -5147,10 +5034,7 @@
       },
       "Payload": {
         "type": "object",
-        "required": [
-          "contentExpression",
-          "type"
-        ],
+        "required": ["contentExpression", "type"],
         "properties": {
           "contentExpression": {
             "allOf": [
@@ -5181,9 +5065,7 @@
       },
       "Event": {
         "type": "object",
-        "required": [
-          "eventName"
-        ],
+        "required": ["eventName"],
         "properties": {
           "eventName": {
             "allOf": [
@@ -5233,12 +5115,7 @@
       },
       "InputStatus": {
         "type": "string",
-        "enum": [
-          "CREATING",
-          "UPDATING",
-          "ACTIVE",
-          "DELETING"
-        ]
+        "enum": ["CREATING", "UPDATING", "ACTIVE", "DELETING"]
       },
       "InputSummary": {
         "type": "object",
@@ -5386,10 +5263,7 @@
       },
       "PayloadType": {
         "type": "string",
-        "enum": [
-          "STRING",
-          "JSON"
-        ]
+        "enum": ["STRING", "JSON"]
       },
       "QueueUrl": {
         "type": "string"
@@ -5415,9 +5289,7 @@
       },
       "State": {
         "type": "object",
-        "required": [
-          "stateName"
-        ],
+        "required": ["stateName"],
         "properties": {
           "stateName": {
             "allOf": [
@@ -5469,11 +5341,7 @@
       },
       "TransitionEvent": {
         "type": "object",
-        "required": [
-          "eventName",
-          "condition",
-          "nextState"
-        ],
+        "required": ["eventName", "condition", "nextState"],
         "properties": {
           "eventName": {
             "allOf": [
@@ -5575,11 +5443,7 @@
       },
       "SimpleRule": {
         "type": "object",
-        "required": [
-          "inputProperty",
-          "comparisonOperator",
-          "threshold"
-        ],
+        "required": ["inputProperty", "comparisonOperator", "threshold"],
         "properties": {
           "inputProperty": {
             "allOf": [
@@ -5629,9 +5493,7 @@
       },
       "InitializationConfiguration": {
         "type": "object",
-        "required": [
-          "disabledOnInitialization"
-        ],
+        "required": ["disabledOnInitialization"],
         "properties": {
           "disabledOnInitialization": {
             "allOf": [
@@ -5648,9 +5510,7 @@
       },
       "AcknowledgeFlow": {
         "type": "object",
-        "required": [
-          "enabled"
-        ],
+        "required": ["enabled"],
         "properties": {
           "enabled": {
             "allOf": [
@@ -5941,9 +5801,7 @@
       },
       "IotEventsInputIdentifier": {
         "type": "object",
-        "required": [
-          "inputName"
-        ],
+        "required": ["inputName"],
         "properties": {
           "inputName": {
             "allOf": [
@@ -6184,12 +6042,7 @@
       },
       "AlarmModelVersionStatus": {
         "type": "string",
-        "enum": [
-          "ACTIVE",
-          "ACTIVATING",
-          "INACTIVE",
-          "FAILED"
-        ]
+        "enum": ["ACTIVE", "ACTIVATING", "INACTIVE", "FAILED"]
       },
       "AlarmModelVersionSummary": {
         "type": "object",
@@ -6329,11 +6182,7 @@
       },
       "AnalysisResultLevel": {
         "type": "string",
-        "enum": [
-          "INFO",
-          "WARNING",
-          "ERROR"
-        ]
+        "enum": ["INFO", "WARNING", "ERROR"]
       },
       "AnalysisResultLocations": {
         "type": "array",
@@ -6414,25 +6263,14 @@
       },
       "AnalysisStatus": {
         "type": "string",
-        "enum": [
-          "RUNNING",
-          "COMPLETE",
-          "FAILED"
-        ]
+        "enum": ["RUNNING", "COMPLETE", "FAILED"]
       },
       "AssetModelId": {
         "type": "string"
       },
       "ComparisonOperator": {
         "type": "string",
-        "enum": [
-          "GREATER",
-          "GREATER_OR_EQUAL",
-          "LESS",
-          "LESS_OR_EQUAL",
-          "EQUAL",
-          "NOT_EQUAL"
-        ]
+        "enum": ["GREATER", "GREATER_OR_EQUAL", "LESS", "LESS_OR_EQUAL", "EQUAL", "NOT_EQUAL"]
       },
       "Severity": {
         "type": "integer",
@@ -6489,10 +6327,7 @@
       },
       "EmailConfiguration": {
         "type": "object",
-        "required": [
-          "from",
-          "recipients"
-        ],
+        "required": ["from", "recipients"],
         "properties": {
           "from": {
             "allOf": [
@@ -6557,10 +6392,7 @@
       },
       "IotSiteWiseAssetModelPropertyIdentifier": {
         "type": "object",
-        "required": [
-          "assetModelId",
-          "propertyId"
-        ],
+        "required": ["assetModelId", "propertyId"],
         "properties": {
           "assetModelId": {
             "allOf": [
@@ -6609,9 +6441,7 @@
       },
       "NotificationAction": {
         "type": "object",
-        "required": [
-          "action"
-        ],
+        "required": ["action"],
         "properties": {
           "action": {
             "allOf": [
@@ -6648,9 +6478,7 @@
       },
       "SSOIdentity": {
         "type": "object",
-        "required": [
-          "identityStoreId"
-        ],
+        "required": ["identityStoreId"],
         "properties": {
           "identityStoreId": {
             "allOf": [
@@ -6725,9 +6553,7 @@
       },
       "SMSConfiguration": {
         "type": "object",
-        "required": [
-          "recipients"
-        ],
+        "required": ["recipients"],
         "properties": {
           "senderId": {
             "allOf": [

@@ -1,17 +1,8 @@
 {
   "openapi": "3.0.0",
-  "info": {
-    "title": "DEX Screener",
-    "version": "1"
-  },
-  "servers": [
-    {
-      "url": "https://api.dexscreener.com"
-    }
-  ],
-  "externalDocs": {
-    "url": "https://docs.dexscreener.com/"
-  },
+  "info": { "title": "DEX Screener", "version": "1" },
+  "servers": [{ "url": "https://api.dexscreener.com" }],
+  "externalDocs": { "url": "https://docs.dexscreener.com/" },
   "paths": {
     "/latest/dex/pairs/{chainId}/{pairAddresses}": {
       "get": {
@@ -24,9 +15,7 @@
             "in": "path",
             "description": "Chain ID",
             "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/ChainId"
-            }
+            "schema": { "$ref": "#/components/schemas/ChainId" }
           },
           {
             "name": "pairAddresses",
@@ -35,9 +24,7 @@
             "required": true,
             "schema": {
               "type": "array",
-              "items": {
-                "type": "string"
-              },
+              "items": { "type": "string" },
               "minItems": 1
             }
           }
@@ -47,9 +34,7 @@
             "description": "Successful operation",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pairs"
-                }
+                "schema": { "$ref": "#/components/schemas/Pairs" }
               }
             }
           }
@@ -69,9 +54,7 @@
             "required": true,
             "schema": {
               "type": "array",
-              "items": {
-                "type": "string"
-              },
+              "items": { "type": "string" },
               "minItems": 1
             }
           }
@@ -81,9 +64,7 @@
             "description": "Successful operation",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pairs"
-                }
+                "schema": { "$ref": "#/components/schemas/Pairs" }
               }
             }
           }
@@ -101,10 +82,7 @@
             "in": "query",
             "description": "Search query",
             "required": true,
-            "schema": {
-              "title": "Query",
-              "type": "string"
-            }
+            "schema": { "title": "Query", "type": "string" }
           }
         ],
         "responses": {
@@ -112,9 +90,7 @@
             "description": "Successful operation",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pairs"
-                }
+                "schema": { "$ref": "#/components/schemas/Pairs" }
               }
             }
           }
@@ -132,97 +108,57 @@
             "items": {
               "type": "object",
               "properties": {
-                "chainId": {
-                  "type": "string"
-                },
-                "dexId": {
-                  "type": "string"
-                },
-                "url": {
-                  "type": "string"
-                },
-                "pairAddress": {
-                  "type": "string"
-                },
+                "chainId": { "type": "string" },
+                "dexId": { "type": "string" },
+                "url": { "type": "string" },
+                "pairAddress": { "type": "string" },
                 "baseToken": {
                   "type": "object",
                   "properties": {
-                    "address": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "symbol": {
-                      "type": "string"
-                    }
+                    "address": { "type": "string" },
+                    "name": { "type": "string" },
+                    "symbol": { "type": "string" }
                   }
                 },
                 "quoteToken": {
                   "type": "object",
                   "properties": {
-                    "address": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "symbol": {
-                      "type": "string"
-                    }
+                    "address": { "type": "string" },
+                    "name": { "type": "string" },
+                    "symbol": { "type": "string" }
                   }
                 },
-                "priceNative": {
-                  "type": "string"
-                },
-                "priceUsd": {
-                  "type": "string"
-                },
+                "priceNative": { "type": "string" },
+                "priceUsd": { "type": "string" },
                 "txns": {
                   "type": "object",
                   "properties": {
                     "h24": {
                       "type": "object",
                       "properties": {
-                        "buys": {
-                          "type": "integer"
-                        },
-                        "sells": {
-                          "type": "integer"
-                        }
+                        "buys": { "type": "integer" },
+                        "sells": { "type": "integer" }
                       }
                     },
                     "h6": {
                       "type": "object",
                       "properties": {
-                        "buys": {
-                          "type": "integer"
-                        },
-                        "sells": {
-                          "type": "integer"
-                        }
+                        "buys": { "type": "integer" },
+                        "sells": { "type": "integer" }
                       }
                     },
                     "h1": {
                       "type": "object",
                       "properties": {
-                        "buys": {
-                          "type": "integer"
-                        },
-                        "sells": {
-                          "type": "integer"
-                        }
+                        "buys": { "type": "integer" },
+                        "sells": { "type": "integer" }
                       }
                     },
                     "m5": {
                       "type": "object",
                       "properties": {
-                        "buys": {
-                          "type": "integer"
-                        },
-                        "sells": {
-                          "type": "integer"
-                        }
+                        "buys": { "type": "integer" },
+                        "sells": { "type": "integer" }
                       }
                     }
                   }
@@ -230,54 +166,30 @@
                 "volume": {
                   "type": "object",
                   "properties": {
-                    "h24": {
-                      "type": "number"
-                    },
-                    "h6": {
-                      "type": "number"
-                    },
-                    "h1": {
-                      "type": "number"
-                    },
-                    "m5": {
-                      "type": "number"
-                    }
+                    "h24": { "type": "number" },
+                    "h6": { "type": "number" },
+                    "h1": { "type": "number" },
+                    "m5": { "type": "number" }
                   }
                 },
                 "priceChange": {
                   "type": "object",
                   "properties": {
-                    "h24": {
-                      "type": "number"
-                    },
-                    "h6": {
-                      "type": "number"
-                    },
-                    "h1": {
-                      "type": "number"
-                    },
-                    "m5": {
-                      "type": "number"
-                    }
+                    "h24": { "type": "number" },
+                    "h6": { "type": "number" },
+                    "h1": { "type": "number" },
+                    "m5": { "type": "number" }
                   }
                 },
                 "liquidity": {
                   "type": "object",
                   "properties": {
-                    "usd": {
-                      "type": "number"
-                    },
-                    "base": {
-                      "type": "number"
-                    },
-                    "quote": {
-                      "type": "integer"
-                    }
+                    "usd": { "type": "number" },
+                    "base": { "type": "number" },
+                    "quote": { "type": "integer" }
                   }
                 },
-                "fdv": {
-                  "type": "number"
-                }
+                "fdv": { "type": "number" }
               }
             }
           }
@@ -286,178 +198,49 @@
       "ChainId": {
         "type": "string",
         "oneOf": [
-          {
-            "title": "Ethereum",
-            "x-const": "ethereum"
-          },
-          {
-            "title": "BSC",
-            "x-const": "bsc"
-          },
-          {
-            "title": "Polygon",
-            "x-const": "polygon"
-          },
-          {
-            "title": "Avalanche",
-            "x-const": "avalanche"
-          },
-          {
-            "title": "Fantom",
-            "x-const": "fantom"
-          },
-          {
-            "title": "Harmony",
-            "x-const": "harmony"
-          },
-          {
-            "title": "Cronos",
-            "x-const": "cronos"
-          },
-          {
-            "title": "Osmosis",
-            "x-const": "osmosis"
-          },
-          {
-            "title": "Aurora",
-            "x-const": "aurora"
-          },
-          {
-            "title": "Moonriver",
-            "x-const": "moonriver"
-          },
-          {
-            "title": "Moonbeam",
-            "x-const": "moonbeam"
-          },
-          {
-            "title": "Metis",
-            "x-const": "metis"
-          },
-          {
-            "title": "Arbitrum",
-            "x-const": "arbitrum"
-          },
-          {
-            "title": "Optimism",
-            "x-const": "optimism"
-          },
-          {
-            "title": "HECO",
-            "x-const": "heco"
-          },
-          {
-            "title": "Oasis Emerald",
-            "x-const": "oasisemerald"
-          },
-          {
-            "title": "Astar",
-            "x-const": "astar"
-          },
-          {
-            "title": "Evmos",
-            "x-const": "evmos"
-          },
-          {
-            "title": "Milkomeda",
-            "x-const": "milkomedacardano"
-          },
-          {
-            "title": "Avalanche DFK",
-            "x-const": "avalanchedfk"
-          },
-          {
-            "title": "xDai (Gnosis Chain)",
-            "x-const": "xdai"
-          },
-          {
-            "title": "Velas",
-            "x-const": "velas"
-          },
-          {
-            "title": "KCC",
-            "x-const": "kcc"
-          },
-          {
-            "title": "OEC",
-            "x-const": "oec"
-          },
-          {
-            "title": "Celo",
-            "x-const": "celo"
-          },
-          {
-            "title": "Tomb Chain",
-            "x-const": "tombchain"
-          },
-          {
-            "title": "SmartBCH",
-            "x-const": "smartbch"
-          },
-          {
-            "title": "HSC",
-            "x-const": "hsc"
-          },
-          {
-            "title": "Fuse",
-            "x-const": "fuse"
-          },
-          {
-            "title": "Telos",
-            "x-const": "telos"
-          },
-          {
-            "title": "KardiaChain",
-            "x-const": "kardiachain"
-          },
-          {
-            "title": "IoTeX",
-            "x-const": "iotex"
-          },
-          {
-            "title": "Wanchain",
-            "x-const": "wanchain"
-          },
-          {
-            "title": "Conflux",
-            "x-const": "conflux"
-          },
-          {
-            "title": "Cube",
-            "x-const": "cube"
-          },
-          {
-            "title": "Boba",
-            "x-const": "boba"
-          },
-          {
-            "title": "Meter",
-            "x-const": "meter"
-          },
-          {
-            "title": "Elastos",
-            "x-const": "elastos"
-          },
-          {
-            "title": "Syscoin",
-            "x-const": "syscoin"
-          },
-          {
-            "title": "Echelon",
-            "x-const": "echelon"
-          },
-          {
-            "title": "Kava",
-            "x-const": "kava"
-          },
-          {
-            "title": "ThunderCore",
-            "x-const": "thundercore"
-          },
-          {
-            "title": "Dogechain",
-            "x-const": "dogechain"
-          }
+          { "title": "Ethereum", "x-const": "ethereum" },
+          { "title": "BSC", "x-const": "bsc" },
+          { "title": "Polygon", "x-const": "polygon" },
+          { "title": "Avalanche", "x-const": "avalanche" },
+          { "title": "Fantom", "x-const": "fantom" },
+          { "title": "Harmony", "x-const": "harmony" },
+          { "title": "Cronos", "x-const": "cronos" },
+          { "title": "Osmosis", "x-const": "osmosis" },
+          { "title": "Aurora", "x-const": "aurora" },
+          { "title": "Moonriver", "x-const": "moonriver" },
+          { "title": "Moonbeam", "x-const": "moonbeam" },
+          { "title": "Metis", "x-const": "metis" },
+          { "title": "Arbitrum", "x-const": "arbitrum" },
+          { "title": "Optimism", "x-const": "optimism" },
+          { "title": "HECO", "x-const": "heco" },
+          { "title": "Oasis Emerald", "x-const": "oasisemerald" },
+          { "title": "Astar", "x-const": "astar" },
+          { "title": "Evmos", "x-const": "evmos" },
+          { "title": "Milkomeda", "x-const": "milkomedacardano" },
+          { "title": "Avalanche DFK", "x-const": "avalanchedfk" },
+          { "title": "xDai (Gnosis Chain)", "x-const": "xdai" },
+          { "title": "Velas", "x-const": "velas" },
+          { "title": "KCC", "x-const": "kcc" },
+          { "title": "OEC", "x-const": "oec" },
+          { "title": "Celo", "x-const": "celo" },
+          { "title": "Tomb Chain", "x-const": "tombchain" },
+          { "title": "SmartBCH", "x-const": "smartbch" },
+          { "title": "HSC", "x-const": "hsc" },
+          { "title": "Fuse", "x-const": "fuse" },
+          { "title": "Telos", "x-const": "telos" },
+          { "title": "KardiaChain", "x-const": "kardiachain" },
+          { "title": "IoTeX", "x-const": "iotex" },
+          { "title": "Wanchain", "x-const": "wanchain" },
+          { "title": "Conflux", "x-const": "conflux" },
+          { "title": "Cube", "x-const": "cube" },
+          { "title": "Boba", "x-const": "boba" },
+          { "title": "Meter", "x-const": "meter" },
+          { "title": "Elastos", "x-const": "elastos" },
+          { "title": "Syscoin", "x-const": "syscoin" },
+          { "title": "Echelon", "x-const": "echelon" },
+          { "title": "Kava", "x-const": "kava" },
+          { "title": "ThunderCore", "x-const": "thundercore" },
+          { "title": "Dogechain", "x-const": "dogechain" }
         ]
       }
     }

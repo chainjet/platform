@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -189,9 +181,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name"
-                ],
+                "required": ["Name"],
                 "properties": {
                   "Name": {
                     "description": "A name for the application.",
@@ -388,10 +378,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name",
-                  "LocationUri"
-                ],
+                "required": ["Name", "LocationUri"],
                 "properties": {
                   "Name": {
                     "description": "A name for the configuration profile.",
@@ -609,12 +596,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name",
-                  "DeploymentDurationInMinutes",
-                  "GrowthFactor",
-                  "ReplicateTo"
-                ],
+                "required": ["Name", "DeploymentDurationInMinutes", "GrowthFactor", "ReplicateTo"],
                 "properties": {
                   "Name": {
                     "description": "A name for the deployment strategy.",
@@ -650,18 +632,12 @@
                   "GrowthType": {
                     "description": "<p>The algorithm used to define how percentage grows over time. AWS AppConfig supports the following growth types:</p> <p> <b>Linear</b>: For this type, AppConfig processes the deployment by dividing the total number of targets by the value specified for <code>Step percentage</code>. For example, a linear deployment that uses a <code>Step percentage</code> of 10 deploys the configuration to 10 percent of the hosts. After those deployments are complete, the system deploys the configuration to the next 10 percent. This continues until 100% of the targets have successfully received the configuration.</p> <p> <b>Exponential</b>: For this type, AppConfig processes the deployment exponentially using the following formula: <code>G*(2^N)</code>. In this formula, <code>G</code> is the growth factor specified by the user and <code>N</code> is the number of steps until the configuration is deployed to all targets. For example, if you specify a growth factor of 2, then the system rolls out the configuration as follows:</p> <p> <code>2*(2^0)</code> </p> <p> <code>2*(2^1)</code> </p> <p> <code>2*(2^2)</code> </p> <p>Expressed numerically, the deployment rolls out as follows: 2% of the targets, 4% of the targets, 8% of the targets, and continues until the configuration has been deployed to all targets.</p>",
                     "type": "string",
-                    "enum": [
-                      "LINEAR",
-                      "EXPONENTIAL"
-                    ]
+                    "enum": ["LINEAR", "EXPONENTIAL"]
                   },
                   "ReplicateTo": {
                     "description": "Save the deployment strategy to a Systems Manager (SSM) document.",
                     "type": "string",
-                    "enum": [
-                      "NONE",
-                      "SSM_DOCUMENT"
-                    ]
+                    "enum": ["NONE", "SSM_DOCUMENT"]
                   },
                   "Tags": {
                     "description": "Metadata to assign to the deployment strategy. Tags help organize and categorize your AppConfig resources. Each tag consists of a key and an optional value, both of which you define.",
@@ -846,9 +822,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name"
-                ],
+                "required": ["Name"],
                 "properties": {
                   "Name": {
                     "description": "A name for the environment.",
@@ -1145,9 +1119,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Content"
-                ],
+                "required": ["Content"],
                 "properties": {
                   "Content": {
                     "description": "The content of the configuration or the configuration data.",
@@ -2683,10 +2655,7 @@
                   "GrowthType": {
                     "description": "<p>The algorithm used to define how percentage grows over time. AWS AppConfig supports the following growth types:</p> <p> <b>Linear</b>: For this type, AppConfig processes the deployment by increments of the growth factor evenly distributed over the deployment time. For example, a linear deployment that uses a growth factor of 20 initially makes the configuration available to 20 percent of the targets. After 1/5th of the deployment time has passed, the system updates the percentage to 40 percent. This continues until 100% of the targets are set to receive the deployed configuration.</p> <p> <b>Exponential</b>: For this type, AppConfig processes the deployment exponentially using the following formula: <code>G*(2^N)</code>. In this formula, <code>G</code> is the growth factor specified by the user and <code>N</code> is the number of steps until the configuration is deployed to all targets. For example, if you specify a growth factor of 2, then the system rolls out the configuration as follows:</p> <p> <code>2*(2^0)</code> </p> <p> <code>2*(2^1)</code> </p> <p> <code>2*(2^2)</code> </p> <p>Expressed numerically, the deployment rolls out as follows: 2% of the targets, 4% of the targets, 8% of the targets, and continues until the configuration has been deployed to all targets.</p>",
                     "type": "string",
-                    "enum": [
-                      "LINEAR",
-                      "EXPONENTIAL"
-                    ]
+                    "enum": ["LINEAR", "EXPONENTIAL"]
                   }
                 }
               }
@@ -2912,11 +2881,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "DeploymentStrategyId",
-                  "ConfigurationProfileId",
-                  "ConfigurationVersion"
-                ],
+                "required": ["DeploymentStrategyId", "ConfigurationProfileId", "ConfigurationVersion"],
                 "properties": {
                   "DeploymentStrategyId": {
                     "description": "The deployment strategy ID.",
@@ -3234,9 +3199,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Tags"
-                ],
+                "required": ["Tags"],
                 "properties": {
                   "Tags": {
                     "description": "The key-value string map. The valid character set is [a-zA-Z+-=._:/]. The tag key can be up to 128 characters and must not start with <code>aws:</code>. The tag value can be up to 256 characters.",
@@ -3641,10 +3604,7 @@
       },
       "Validator": {
         "type": "object",
-        "required": [
-          "Type",
-          "Content"
-        ],
+        "required": ["Type", "Content"],
         "properties": {
           "Type": {
             "allOf": [
@@ -4378,17 +4338,11 @@
       },
       "GrowthType": {
         "type": "string",
-        "enum": [
-          "LINEAR",
-          "EXPONENTIAL"
-        ]
+        "enum": ["LINEAR", "EXPONENTIAL"]
       },
       "ReplicateTo": {
         "type": "string",
-        "enum": [
-          "NONE",
-          "SSM_DOCUMENT"
-        ]
+        "enum": ["NONE", "SSM_DOCUMENT"]
       },
       "MonitorList": {
         "type": "array",
@@ -4414,14 +4368,7 @@
       },
       "DeploymentState": {
         "type": "string",
-        "enum": [
-          "BAKING",
-          "VALIDATING",
-          "DEPLOYING",
-          "COMPLETE",
-          "ROLLING_BACK",
-          "ROLLED_BACK"
-        ]
+        "enum": ["BAKING", "VALIDATING", "DEPLOYING", "COMPLETE", "ROLLING_BACK", "ROLLED_BACK"]
       },
       "DeploymentEvents": {
         "type": "array",
@@ -4446,12 +4393,7 @@
       },
       "TriggeredBy": {
         "type": "string",
-        "enum": [
-          "USER",
-          "APPCONFIG",
-          "CLOUDWATCH_ALARM",
-          "INTERNAL_ERROR"
-        ]
+        "enum": ["USER", "APPCONFIG", "CLOUDWATCH_ALARM", "INTERNAL_ERROR"]
       },
       "DeploymentEvent": {
         "type": "object",
@@ -4629,12 +4571,7 @@
       },
       "EnvironmentState": {
         "type": "string",
-        "enum": [
-          "READY_FOR_DEPLOYMENT",
-          "DEPLOYING",
-          "ROLLING_BACK",
-          "ROLLED_BACK"
-        ]
+        "enum": ["READY_FOR_DEPLOYMENT", "DEPLOYING", "ROLLING_BACK", "ROLLED_BACK"]
       },
       "EnvironmentList": {
         "type": "array",
@@ -4712,10 +4649,7 @@
       },
       "ValidatorType": {
         "type": "string",
-        "enum": [
-          "JSON_SCHEMA",
-          "LAMBDA"
-        ]
+        "enum": ["JSON_SCHEMA", "LAMBDA"]
       }
     }
   },

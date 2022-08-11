@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -186,9 +184,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "VPC"
-                ],
+                "required": ["VPC"],
                 "properties": {
                   "VPC": {
                     "description": "(Private hosted zones only) A complex type that contains information about an Amazon VPC.",
@@ -328,9 +324,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ChangeBatch"
-                ],
+                "required": ["ChangeBatch"],
                 "properties": {
                   "ChangeBatch": {
                     "description": "The information for a change request.",
@@ -463,10 +457,7 @@
             "description": "<p>The type of the resource.</p> <ul> <li> <p>The resource type for health checks is <code>healthcheck</code>.</p> </li> <li> <p>The resource type for hosted zones is <code>hostedzone</code>.</p> </li> </ul>",
             "schema": {
               "type": "string",
-              "enum": [
-                "healthcheck",
-                "hostedzone"
-              ]
+              "enum": ["healthcheck", "hostedzone"]
             }
           },
           {
@@ -626,10 +617,7 @@
             "description": "<p>The type of the resource.</p> <ul> <li> <p>The resource type for health checks is <code>healthcheck</code>.</p> </li> <li> <p>The resource type for hosted zones is <code>hostedzone</code>.</p> </li> </ul>",
             "schema": {
               "type": "string",
-              "enum": [
-                "healthcheck",
-                "hostedzone"
-              ]
+              "enum": ["healthcheck", "hostedzone"]
             }
           },
           {
@@ -699,10 +687,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "CallerReference",
-                  "HealthCheckConfig"
-                ],
+                "required": ["CallerReference", "HealthCheckConfig"],
                 "properties": {
                   "CallerReference": {
                     "description": "<p>A unique string that identifies the request and that allows you to retry a failed <code>CreateHealthCheck</code> request without the risk of creating two identical health checks:</p> <ul> <li> <p>If you send a <code>CreateHealthCheck</code> request with the same <code>CallerReference</code> and settings as a previous request, and if the health check doesn't exist, Amazon Route 53 creates the health check. If the health check does exist, Route 53 returns the settings for the existing health check.</p> </li> <li> <p>If you send a <code>CreateHealthCheck</code> request with the same <code>CallerReference</code> as a deleted health check, regardless of the settings, Route 53 returns a <code>HealthCheckAlreadyExists</code> error.</p> </li> <li> <p>If you send a <code>CreateHealthCheck</code> request with the same <code>CallerReference</code> as an existing health check but with different settings, Route 53 returns a <code>HealthCheckAlreadyExists</code> error.</p> </li> <li> <p>If you send a <code>CreateHealthCheck</code> request with a unique <code>CallerReference</code> but settings identical to an existing health check, Route 53 creates the health check.</p> </li> </ul>",
@@ -1116,10 +1101,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name",
-                  "CallerReference"
-                ],
+                "required": ["Name", "CallerReference"],
                 "properties": {
                   "Name": {
                     "description": "<p>The name of the domain. Specify a fully qualified domain name, for example, <i>www.example.com</i>. The trailing dot is optional; Amazon Route 53 assumes that the domain name is fully qualified. This means that Route 53 treats <i>www.example.com</i> (without a trailing dot) and <i>www.example.com.</i> (with a trailing dot) as identical.</p> <p>If you're creating a public hosted zone, this is the name you have registered with your DNS registrar. If your domain name is registered with a registrar other than Route 53, change the name servers for your domain to the set of <code>NameServers</code> that <code>CreateHostedZone</code> returns in <code>DelegationSet</code>.</p>",
@@ -1392,10 +1374,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "HostedZoneId",
-                  "CloudWatchLogsLogGroupArn"
-                ],
+                "required": ["HostedZoneId", "CloudWatchLogsLogGroupArn"],
                 "properties": {
                   "HostedZoneId": {
                     "description": "The ID of the hosted zone that you want to log queries for. You can log queries only for public hosted zones.",
@@ -1626,9 +1605,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "CallerReference"
-                ],
+                "required": ["CallerReference"],
                 "properties": {
                   "CallerReference": {
                     "description": "A unique string that identifies the request, and that allows you to retry failed <code>CreateReusableDelegationSet</code> requests without the risk of executing the operation twice. You must use a unique <code>CallerReference</code> string every time you submit a <code>CreateReusableDelegationSet</code> request. <code>CallerReference</code> can be any unique string, for example a date/time stamp.",
@@ -1783,10 +1760,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name",
-                  "Document"
-                ],
+                "required": ["Name", "Document"],
                 "properties": {
                   "Name": {
                     "description": "The name of the traffic policy.",
@@ -1907,13 +1881,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "HostedZoneId",
-                  "Name",
-                  "TTL",
-                  "TrafficPolicyId",
-                  "TrafficPolicyVersion"
-                ],
+                "required": ["HostedZoneId", "Name", "TTL", "TrafficPolicyId", "TrafficPolicyVersion"],
                 "properties": {
                   "HostedZoneId": {
                     "description": "The ID of the hosted zone that you want Amazon Route 53 to create resource record sets in by using the configuration in a traffic policy.",
@@ -2059,9 +2027,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Document"
-                ],
+                "required": ["Document"],
                 "properties": {
                   "Document": {
                     "description": "The definition of this version of the traffic policy, in JSON format. You specified the JSON in the <code>CreateTrafficPolicyVersion</code> request. For more information about the JSON format, see <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_CreateTrafficPolicy.html\">CreateTrafficPolicy</a>.",
@@ -2188,9 +2154,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "VPC"
-                ],
+                "required": ["VPC"],
                 "properties": {
                   "VPC": {
                     "description": "(Private hosted zones only) A complex type that contains information about an Amazon VPC.",
@@ -2646,11 +2610,7 @@
                   "InsufficientDataHealthStatus": {
                     "description": "<p>When CloudWatch has insufficient data about the metric to determine the alarm state, the status that you want Amazon Route 53 to assign to the health check:</p> <ul> <li> <p> <code>Healthy</code>: Route 53 considers the health check to be healthy.</p> </li> <li> <p> <code>Unhealthy</code>: Route 53 considers the health check to be unhealthy.</p> </li> <li> <p> <code>LastKnownStatus</code>: Route 53 uses the status of the health check from the last time CloudWatch had sufficient data to determine the alarm state. For new health checks that have no last known status, the default status for the health check is healthy.</p> </li> </ul>",
                     "type": "string",
-                    "enum": [
-                      "Healthy",
-                      "Unhealthy",
-                      "LastKnownStatus"
-                    ]
+                    "enum": ["Healthy", "Unhealthy", "LastKnownStatus"]
                   },
                   "ResetElements": {
                     "description": "<p>A complex type that contains one <code>ResettableElementName</code> element for each element that you want to reset to the default value. Valid values for <code>ResettableElementName</code> include the following:</p> <ul> <li> <p> <code>ChildHealthChecks</code>: Amazon Route 53 resets <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_HealthCheckConfig.html#Route53-Type-HealthCheckConfig-ChildHealthChecks\">ChildHealthChecks</a> to null.</p> </li> <li> <p> <code>FullyQualifiedDomainName</code>: Route 53 resets <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_UpdateHealthCheck.html#Route53-UpdateHealthCheck-request-FullyQualifiedDomainName\">FullyQualifiedDomainName</a>. to null.</p> </li> <li> <p> <code>Regions</code>: Route 53 resets the <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_HealthCheckConfig.html#Route53-Type-HealthCheckConfig-Regions\">Regions</a> list to the default set of regions. </p> </li> <li> <p> <code>ResourcePath</code>: Route 53 resets <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_HealthCheckConfig.html#Route53-Type-HealthCheckConfig-ResourcePath\">ResourcePath</a> to null.</p> </li> </ul>",
@@ -3425,9 +3385,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Comment"
-                ],
+                "required": ["Comment"],
                 "properties": {
                   "Comment": {
                     "description": "The new comment for the specified traffic policy and version.",
@@ -3660,11 +3618,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "TTL",
-                  "TrafficPolicyId",
-                  "TrafficPolicyVersion"
-                ],
+                "required": ["TTL", "TrafficPolicyId", "TrafficPolicyVersion"],
                 "properties": {
                   "TTL": {
                     "description": "The TTL that you want Amazon Route 53 to assign to all of the updated resource record sets.",
@@ -3776,9 +3730,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "VPC"
-                ],
+                "required": ["VPC"],
                 "properties": {
                   "VPC": {
                     "description": "(Private hosted zones only) A complex type that contains information about an Amazon VPC.",
@@ -3914,9 +3866,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "VPC"
-                ],
+                "required": ["VPC"],
                 "properties": {
                   "VPC": {
                     "description": "(Private hosted zones only) A complex type that contains information about an Amazon VPC.",
@@ -4554,10 +4504,7 @@
             "description": "<p>The limit that you want to get. Valid values include the following:</p> <ul> <li> <p> <b>MAX_RRSETS_BY_ZONE</b>: The maximum number of records that you can create in the specified hosted zone.</p> </li> <li> <p> <b>MAX_VPCS_ASSOCIATED_BY_ZONE</b>: The maximum number of Amazon VPCs that you can associate with the specified private hosted zone.</p> </li> </ul>",
             "schema": {
               "type": "string",
-              "enum": [
-                "MAX_RRSETS_BY_ZONE",
-                "MAX_VPCS_ASSOCIATED_BY_ZONE"
-              ]
+              "enum": ["MAX_RRSETS_BY_ZONE", "MAX_VPCS_ASSOCIATED_BY_ZONE"]
             }
           },
           {
@@ -4641,9 +4588,7 @@
             "description": "Specify <code>MAX_ZONES_BY_REUSABLE_DELEGATION_SET</code> to get the maximum number of hosted zones that you can associate with the specified reusable delegation set.",
             "schema": {
               "type": "string",
-              "enum": [
-                "MAX_ZONES_BY_REUSABLE_DELEGATION_SET"
-              ]
+              "enum": ["MAX_ZONES_BY_REUSABLE_DELEGATION_SET"]
             }
           },
           {
@@ -5112,21 +5057,7 @@
             "description": "<p>The type of resource record set to begin the record listing from.</p> <p>Valid values for basic resource record sets: <code>A</code> | <code>AAAA</code> | <code>CAA</code> | <code>CNAME</code> | <code>MX</code> | <code>NAPTR</code> | <code>NS</code> | <code>PTR</code> | <code>SOA</code> | <code>SPF</code> | <code>SRV</code> | <code>TXT</code> </p> <p>Values for weighted, latency, geolocation, and failover resource record sets: <code>A</code> | <code>AAAA</code> | <code>CAA</code> | <code>CNAME</code> | <code>MX</code> | <code>NAPTR</code> | <code>PTR</code> | <code>SPF</code> | <code>SRV</code> | <code>TXT</code> </p> <p>Values for alias resource record sets: </p> <ul> <li> <p> <b>API Gateway custom regional API or edge-optimized API</b>: A</p> </li> <li> <p> <b>CloudFront distribution</b>: A or AAAA</p> </li> <li> <p> <b>Elastic Beanstalk environment that has a regionalized subdomain</b>: A</p> </li> <li> <p> <b>Elastic Load Balancing load balancer</b>: A | AAAA</p> </li> <li> <p> <b>S3 bucket</b>: A</p> </li> <li> <p> <b>VPC interface VPC endpoint</b>: A</p> </li> <li> <p> <b>Another resource record set in this hosted zone:</b> The type of the resource record set that the alias references.</p> </li> </ul> <p>Constraint: Specifying <code>type</code> without specifying <code>name</code> returns an <code>InvalidInput</code> error.</p>",
             "schema": {
               "type": "string",
-              "enum": [
-                "SOA",
-                "A",
-                "TXT",
-                "NS",
-                "CNAME",
-                "MX",
-                "NAPTR",
-                "PTR",
-                "SRV",
-                "SPF",
-                "AAAA",
-                "CAA",
-                "DS"
-              ]
+              "enum": ["SOA", "A", "TXT", "NS", "CNAME", "MX", "NAPTR", "PTR", "SRV", "SPF", "AAAA", "CAA", "DS"]
             }
           },
           {
@@ -5286,10 +5217,7 @@
             "description": "<p>The type of the resources.</p> <ul> <li> <p>The resource type for health checks is <code>healthcheck</code>.</p> </li> <li> <p>The resource type for hosted zones is <code>hostedzone</code>.</p> </li> </ul>",
             "schema": {
               "type": "string",
-              "enum": [
-                "healthcheck",
-                "hostedzone"
-              ]
+              "enum": ["healthcheck", "hostedzone"]
             }
           }
         ],
@@ -5299,9 +5227,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ResourceIds"
-                ],
+                "required": ["ResourceIds"],
                 "properties": {
                   "ResourceIds": {
                     "description": "A complex type that contains the ResourceId element for each resource for which you want to get a list of tags.",
@@ -5490,21 +5416,7 @@
             "description": "<p>If the value of <code>IsTruncated</code> in the previous response was <code>true</code>, you have more traffic policy instances. To get more traffic policy instances, submit another <code>ListTrafficPolicyInstances</code> request. For the value of <code>trafficpolicyinstancetype</code>, specify the value of <code>TrafficPolicyInstanceTypeMarker</code> from the previous response, which is the type of the first traffic policy instance in the next group of traffic policy instances.</p> <p>If the value of <code>IsTruncated</code> in the previous response was <code>false</code>, there are no more traffic policy instances to get.</p>",
             "schema": {
               "type": "string",
-              "enum": [
-                "SOA",
-                "A",
-                "TXT",
-                "NS",
-                "CNAME",
-                "MX",
-                "NAPTR",
-                "PTR",
-                "SRV",
-                "SPF",
-                "AAAA",
-                "CAA",
-                "DS"
-              ]
+              "enum": ["SOA", "A", "TXT", "NS", "CNAME", "MX", "NAPTR", "PTR", "SRV", "SPF", "AAAA", "CAA", "DS"]
             }
           },
           {
@@ -5617,21 +5529,7 @@
             "description": "<p>If the value of <code>IsTruncated</code> in the previous response is true, you have more traffic policy instances. To get more traffic policy instances, submit another <code>ListTrafficPolicyInstances</code> request. For the value of <code>trafficpolicyinstancetype</code>, specify the value of <code>TrafficPolicyInstanceTypeMarker</code> from the previous response, which is the type of the first traffic policy instance in the next group of traffic policy instances.</p> <p>If the value of <code>IsTruncated</code> in the previous response was <code>false</code>, there are no more traffic policy instances to get.</p>",
             "schema": {
               "type": "string",
-              "enum": [
-                "SOA",
-                "A",
-                "TXT",
-                "NS",
-                "CNAME",
-                "MX",
-                "NAPTR",
-                "PTR",
-                "SRV",
-                "SPF",
-                "AAAA",
-                "CAA",
-                "DS"
-              ]
+              "enum": ["SOA", "A", "TXT", "NS", "CNAME", "MX", "NAPTR", "PTR", "SRV", "SPF", "AAAA", "CAA", "DS"]
             }
           },
           {
@@ -5766,21 +5664,7 @@
             "description": "<p>If the value of <code>IsTruncated</code> in the previous response was <code>true</code>, you have more traffic policy instances. To get more traffic policy instances, submit another <code>ListTrafficPolicyInstancesByPolicy</code> request.</p> <p>For the value of <code>trafficpolicyinstancetype</code>, specify the value of <code>TrafficPolicyInstanceTypeMarker</code> from the previous response, which is the name of the first traffic policy instance that Amazon Route 53 will return if you submit another request.</p> <p>If the value of <code>IsTruncated</code> in the previous response was <code>false</code>, there are no more traffic policy instances to get.</p>",
             "schema": {
               "type": "string",
-              "enum": [
-                "SOA",
-                "A",
-                "TXT",
-                "NS",
-                "CNAME",
-                "MX",
-                "NAPTR",
-                "PTR",
-                "SRV",
-                "SPF",
-                "AAAA",
-                "CAA",
-                "DS"
-              ]
+              "enum": ["SOA", "A", "TXT", "NS", "CNAME", "MX", "NAPTR", "PTR", "SRV", "SPF", "AAAA", "CAA", "DS"]
             }
           },
           {
@@ -5977,21 +5861,7 @@
             "description": "The type of the resource record set.",
             "schema": {
               "type": "string",
-              "enum": [
-                "SOA",
-                "A",
-                "TXT",
-                "NS",
-                "CNAME",
-                "MX",
-                "NAPTR",
-                "PTR",
-                "SRV",
-                "SPF",
-                "AAAA",
-                "CAA",
-                "DS"
-              ]
+              "enum": ["SOA", "A", "TXT", "NS", "CNAME", "MX", "NAPTR", "PTR", "SRV", "SPF", "AAAA", "CAA", "DS"]
             }
           },
           {
@@ -6302,13 +6172,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "CallerReference",
-                  "HostedZoneId",
-                  "KeyManagementServiceArn",
-                  "Name",
-                  "Status"
-                ],
+                "required": ["CallerReference", "HostedZoneId", "KeyManagementServiceArn", "Name", "Status"],
                 "properties": {
                   "CallerReference": {
                     "description": "A unique string that identifies the request.",
@@ -7069,9 +6933,7 @@
     "schemas": {
       "AssociateVPCWithHostedZoneResponse": {
         "type": "object",
-        "required": [
-          "ChangeInfo"
-        ],
+        "required": ["ChangeInfo"],
         "example": {
           "ChangeInfo": {
             "Comment": "",
@@ -7142,9 +7004,7 @@
       "PriorRequestNotComplete": {},
       "ChangeResourceRecordSetsResponse": {
         "type": "object",
-        "required": [
-          "ChangeInfo"
-        ],
+        "required": ["ChangeInfo"],
         "example": {
           "ChangeInfo": {
             "Comment": "Geolocation alias configuration for example.com",
@@ -7228,9 +7088,7 @@
       "ThrottlingException": {},
       "CreateHealthCheckResponse": {
         "type": "object",
-        "required": [
-          "HealthCheck"
-        ],
+        "required": ["HealthCheck"],
         "properties": {
           "HealthCheck": {
             "allOf": [
@@ -7342,10 +7200,7 @@
       },
       "AlarmIdentifier": {
         "type": "object",
-        "required": [
-          "Region",
-          "Name"
-        ],
+        "required": ["Region", "Name"],
         "properties": {
           "Region": {
             "allOf": [
@@ -7372,21 +7227,13 @@
       },
       "InsufficientDataHealthStatus": {
         "type": "string",
-        "enum": [
-          "Healthy",
-          "Unhealthy",
-          "LastKnownStatus"
-        ]
+        "enum": ["Healthy", "Unhealthy", "LastKnownStatus"]
       },
       "TooManyHealthChecks": {},
       "HealthCheckAlreadyExists": {},
       "CreateHostedZoneResponse": {
         "type": "object",
-        "required": [
-          "HostedZone",
-          "ChangeInfo",
-          "DelegationSet"
-        ],
+        "required": ["HostedZone", "ChangeInfo", "DelegationSet"],
         "properties": {
           "HostedZone": {
             "allOf": [
@@ -7442,9 +7289,7 @@
       "DelegationSetNotReusable": {},
       "CreateQueryLoggingConfigResponse": {
         "type": "object",
-        "required": [
-          "QueryLoggingConfig"
-        ],
+        "required": ["QueryLoggingConfig"],
         "properties": {
           "QueryLoggingConfig": {
             "allOf": [
@@ -7464,9 +7309,7 @@
       "InsufficientCloudWatchLogsResourcePolicy": {},
       "CreateReusableDelegationSetResponse": {
         "type": "object",
-        "required": [
-          "DelegationSet"
-        ],
+        "required": ["DelegationSet"],
         "properties": {
           "DelegationSet": {
             "allOf": [
@@ -7486,9 +7329,7 @@
       "DelegationSetAlreadyReusable": {},
       "CreateTrafficPolicyResponse": {
         "type": "object",
-        "required": [
-          "TrafficPolicy"
-        ],
+        "required": ["TrafficPolicy"],
         "properties": {
           "TrafficPolicy": {
             "allOf": [
@@ -7508,9 +7349,7 @@
       "InvalidTrafficPolicyDocument": {},
       "CreateTrafficPolicyInstanceResponse": {
         "type": "object",
-        "required": [
-          "TrafficPolicyInstance"
-        ],
+        "required": ["TrafficPolicyInstance"],
         "properties": {
           "TrafficPolicyInstance": {
             "allOf": [
@@ -7530,9 +7369,7 @@
       "TrafficPolicyInstanceAlreadyExists": {},
       "CreateTrafficPolicyVersionResponse": {
         "type": "object",
-        "required": [
-          "TrafficPolicy"
-        ],
+        "required": ["TrafficPolicy"],
         "properties": {
           "TrafficPolicy": {
             "allOf": [
@@ -7550,10 +7387,7 @@
       "TooManyTrafficPolicyVersionsForCurrentPolicy": {},
       "CreateVPCAssociationAuthorizationResponse": {
         "type": "object",
-        "required": [
-          "HostedZoneId",
-          "VPC"
-        ],
+        "required": ["HostedZoneId", "VPC"],
         "properties": {
           "HostedZoneId": {
             "allOf": [
@@ -7587,9 +7421,7 @@
       "HealthCheckInUse": {},
       "DeleteHostedZoneResponse": {
         "type": "object",
-        "required": [
-          "ChangeInfo"
-        ],
+        "required": ["ChangeInfo"],
         "properties": {
           "ChangeInfo": {
             "allOf": [
@@ -7636,9 +7468,7 @@
       "VPCAssociationAuthorizationNotFound": {},
       "DisassociateVPCFromHostedZoneResponse": {
         "type": "object",
-        "required": [
-          "ChangeInfo"
-        ],
+        "required": ["ChangeInfo"],
         "properties": {
           "ChangeInfo": {
             "allOf": [
@@ -7657,10 +7487,7 @@
       "LastVPCAssociation": {},
       "GetAccountLimitResponse": {
         "type": "object",
-        "required": [
-          "Limit",
-          "Count"
-        ],
+        "required": ["Limit", "Count"],
         "properties": {
           "Limit": {
             "allOf": [
@@ -7687,9 +7514,7 @@
       },
       "GetChangeResponse": {
         "type": "object",
-        "required": [
-          "ChangeInfo"
-        ],
+        "required": ["ChangeInfo"],
         "properties": {
           "ChangeInfo": {
             "allOf": [
@@ -7707,9 +7532,7 @@
       "NoSuchChange": {},
       "GetCheckerIpRangesResponse": {
         "type": "object",
-        "required": [
-          "CheckerIpRanges"
-        ],
+        "required": ["CheckerIpRanges"],
         "properties": {
           "CheckerIpRanges": {
             "allOf": [
@@ -7726,9 +7549,7 @@
       },
       "GetGeoLocationResponse": {
         "type": "object",
-        "required": [
-          "GeoLocationDetails"
-        ],
+        "required": ["GeoLocationDetails"],
         "properties": {
           "GeoLocationDetails": {
             "allOf": [
@@ -7746,9 +7567,7 @@
       "NoSuchGeoLocation": {},
       "GetHealthCheckResponse": {
         "type": "object",
-        "required": [
-          "HealthCheck"
-        ],
+        "required": ["HealthCheck"],
         "properties": {
           "HealthCheck": {
             "allOf": [
@@ -7766,9 +7585,7 @@
       "IncompatibleVersion": {},
       "GetHealthCheckCountResponse": {
         "type": "object",
-        "required": [
-          "HealthCheckCount"
-        ],
+        "required": ["HealthCheckCount"],
         "properties": {
           "HealthCheckCount": {
             "allOf": [
@@ -7785,9 +7602,7 @@
       },
       "GetHealthCheckLastFailureReasonResponse": {
         "type": "object",
-        "required": [
-          "HealthCheckObservations"
-        ],
+        "required": ["HealthCheckObservations"],
         "properties": {
           "HealthCheckObservations": {
             "allOf": [
@@ -7804,9 +7619,7 @@
       },
       "GetHealthCheckStatusResponse": {
         "type": "object",
-        "required": [
-          "HealthCheckObservations"
-        ],
+        "required": ["HealthCheckObservations"],
         "properties": {
           "HealthCheckObservations": {
             "allOf": [
@@ -7823,9 +7636,7 @@
       },
       "GetHostedZoneResponse": {
         "type": "object",
-        "required": [
-          "HostedZone"
-        ],
+        "required": ["HostedZone"],
         "example": {
           "DelegationSet": {
             "NameServers": [
@@ -7881,9 +7692,7 @@
       },
       "GetHostedZoneCountResponse": {
         "type": "object",
-        "required": [
-          "HostedZoneCount"
-        ],
+        "required": ["HostedZoneCount"],
         "properties": {
           "HostedZoneCount": {
             "allOf": [
@@ -7900,10 +7709,7 @@
       },
       "GetHostedZoneLimitResponse": {
         "type": "object",
-        "required": [
-          "Limit",
-          "Count"
-        ],
+        "required": ["Limit", "Count"],
         "properties": {
           "Limit": {
             "allOf": [
@@ -7931,9 +7737,7 @@
       "HostedZoneNotPrivate": {},
       "GetQueryLoggingConfigResponse": {
         "type": "object",
-        "required": [
-          "QueryLoggingConfig"
-        ],
+        "required": ["QueryLoggingConfig"],
         "properties": {
           "QueryLoggingConfig": {
             "allOf": [
@@ -7949,9 +7753,7 @@
       },
       "GetReusableDelegationSetResponse": {
         "type": "object",
-        "required": [
-          "DelegationSet"
-        ],
+        "required": ["DelegationSet"],
         "properties": {
           "DelegationSet": {
             "allOf": [
@@ -7968,10 +7770,7 @@
       },
       "GetReusableDelegationSetLimitResponse": {
         "type": "object",
-        "required": [
-          "Limit",
-          "Count"
-        ],
+        "required": ["Limit", "Count"],
         "properties": {
           "Limit": {
             "allOf": [
@@ -7998,9 +7797,7 @@
       },
       "GetTrafficPolicyResponse": {
         "type": "object",
-        "required": [
-          "TrafficPolicy"
-        ],
+        "required": ["TrafficPolicy"],
         "properties": {
           "TrafficPolicy": {
             "allOf": [
@@ -8017,9 +7814,7 @@
       },
       "GetTrafficPolicyInstanceResponse": {
         "type": "object",
-        "required": [
-          "TrafficPolicyInstance"
-        ],
+        "required": ["TrafficPolicyInstance"],
         "properties": {
           "TrafficPolicyInstance": {
             "allOf": [
@@ -8036,9 +7831,7 @@
       },
       "GetTrafficPolicyInstanceCountResponse": {
         "type": "object",
-        "required": [
-          "TrafficPolicyInstanceCount"
-        ],
+        "required": ["TrafficPolicyInstanceCount"],
         "properties": {
           "TrafficPolicyInstanceCount": {
             "allOf": [
@@ -8055,11 +7848,7 @@
       },
       "ListGeoLocationsResponse": {
         "type": "object",
-        "required": [
-          "GeoLocationDetailsList",
-          "IsTruncated",
-          "MaxItems"
-        ],
+        "required": ["GeoLocationDetailsList", "IsTruncated", "MaxItems"],
         "properties": {
           "GeoLocationDetailsList": {
             "allOf": [
@@ -8126,12 +7915,7 @@
       },
       "ListHealthChecksResponse": {
         "type": "object",
-        "required": [
-          "HealthChecks",
-          "Marker",
-          "IsTruncated",
-          "MaxItems"
-        ],
+        "required": ["HealthChecks", "Marker", "IsTruncated", "MaxItems"],
         "properties": {
           "HealthChecks": {
             "allOf": [
@@ -8188,12 +7972,7 @@
       },
       "ListHostedZonesResponse": {
         "type": "object",
-        "required": [
-          "HostedZones",
-          "Marker",
-          "IsTruncated",
-          "MaxItems"
-        ],
+        "required": ["HostedZones", "Marker", "IsTruncated", "MaxItems"],
         "properties": {
           "HostedZones": {
             "allOf": [
@@ -8249,11 +8028,7 @@
       },
       "ListHostedZonesByNameResponse": {
         "type": "object",
-        "required": [
-          "HostedZones",
-          "IsTruncated",
-          "MaxItems"
-        ],
+        "required": ["HostedZones", "IsTruncated", "MaxItems"],
         "properties": {
           "HostedZones": {
             "allOf": [
@@ -8330,10 +8105,7 @@
       },
       "ListHostedZonesByVPCResponse": {
         "type": "object",
-        "required": [
-          "HostedZoneSummaries",
-          "MaxItems"
-        ],
+        "required": ["HostedZoneSummaries", "MaxItems"],
         "properties": {
           "HostedZoneSummaries": {
             "allOf": [
@@ -8370,9 +8142,7 @@
       "InvalidPaginationToken": {},
       "ListQueryLoggingConfigsResponse": {
         "type": "object",
-        "required": [
-          "QueryLoggingConfigs"
-        ],
+        "required": ["QueryLoggingConfigs"],
         "properties": {
           "QueryLoggingConfigs": {
             "allOf": [
@@ -8398,11 +8168,7 @@
       },
       "ListResourceRecordSetsResponse": {
         "type": "object",
-        "required": [
-          "ResourceRecordSets",
-          "IsTruncated",
-          "MaxItems"
-        ],
+        "required": ["ResourceRecordSets", "IsTruncated", "MaxItems"],
         "properties": {
           "ResourceRecordSets": {
             "allOf": [
@@ -8469,12 +8235,7 @@
       },
       "ListReusableDelegationSetsResponse": {
         "type": "object",
-        "required": [
-          "DelegationSets",
-          "Marker",
-          "IsTruncated",
-          "MaxItems"
-        ],
+        "required": ["DelegationSets", "Marker", "IsTruncated", "MaxItems"],
         "properties": {
           "DelegationSets": {
             "allOf": [
@@ -8531,9 +8292,7 @@
       },
       "ListTagsForResourceResponse": {
         "type": "object",
-        "required": [
-          "ResourceTagSet"
-        ],
+        "required": ["ResourceTagSet"],
         "properties": {
           "ResourceTagSet": {
             "allOf": [
@@ -8550,9 +8309,7 @@
       },
       "ListTagsForResourcesResponse": {
         "type": "object",
-        "required": [
-          "ResourceTagSets"
-        ],
+        "required": ["ResourceTagSets"],
         "properties": {
           "ResourceTagSets": {
             "allOf": [
@@ -8573,12 +8330,7 @@
       },
       "ListTrafficPoliciesResponse": {
         "type": "object",
-        "required": [
-          "TrafficPolicySummaries",
-          "IsTruncated",
-          "TrafficPolicyIdMarker",
-          "MaxItems"
-        ],
+        "required": ["TrafficPolicySummaries", "IsTruncated", "TrafficPolicyIdMarker", "MaxItems"],
         "properties": {
           "TrafficPolicySummaries": {
             "allOf": [
@@ -8625,11 +8377,7 @@
       },
       "ListTrafficPolicyInstancesResponse": {
         "type": "object",
-        "required": [
-          "TrafficPolicyInstances",
-          "IsTruncated",
-          "MaxItems"
-        ],
+        "required": ["TrafficPolicyInstances", "IsTruncated", "MaxItems"],
         "properties": {
           "TrafficPolicyInstances": {
             "allOf": [
@@ -8696,11 +8444,7 @@
       },
       "ListTrafficPolicyInstancesByHostedZoneResponse": {
         "type": "object",
-        "required": [
-          "TrafficPolicyInstances",
-          "IsTruncated",
-          "MaxItems"
-        ],
+        "required": ["TrafficPolicyInstances", "IsTruncated", "MaxItems"],
         "properties": {
           "TrafficPolicyInstances": {
             "allOf": [
@@ -8757,11 +8501,7 @@
       },
       "ListTrafficPolicyInstancesByPolicyResponse": {
         "type": "object",
-        "required": [
-          "TrafficPolicyInstances",
-          "IsTruncated",
-          "MaxItems"
-        ],
+        "required": ["TrafficPolicyInstances", "IsTruncated", "MaxItems"],
         "properties": {
           "TrafficPolicyInstances": {
             "allOf": [
@@ -8828,12 +8568,7 @@
       },
       "ListTrafficPolicyVersionsResponse": {
         "type": "object",
-        "required": [
-          "TrafficPolicies",
-          "IsTruncated",
-          "TrafficPolicyVersionMarker",
-          "MaxItems"
-        ],
+        "required": ["TrafficPolicies", "IsTruncated", "TrafficPolicyVersionMarker", "MaxItems"],
         "properties": {
           "TrafficPolicies": {
             "allOf": [
@@ -8880,10 +8615,7 @@
       },
       "ListVPCAssociationAuthorizationsResponse": {
         "type": "object",
-        "required": [
-          "HostedZoneId",
-          "VPCs"
-        ],
+        "required": ["HostedZoneId", "VPCs"],
         "properties": {
           "HostedZoneId": {
             "allOf": [
@@ -8920,14 +8652,7 @@
       },
       "TestDNSAnswerResponse": {
         "type": "object",
-        "required": [
-          "Nameserver",
-          "RecordName",
-          "RecordType",
-          "RecordData",
-          "ResponseCode",
-          "Protocol"
-        ],
+        "required": ["Nameserver", "RecordName", "RecordType", "RecordData", "ResponseCode", "Protocol"],
         "properties": {
           "Nameserver": {
             "allOf": [
@@ -8994,9 +8719,7 @@
       },
       "UpdateHealthCheckResponse": {
         "type": "object",
-        "required": [
-          "HealthCheck"
-        ],
+        "required": ["HealthCheck"],
         "properties": {
           "HealthCheck": {
             "allOf": [
@@ -9071,21 +8794,14 @@
       },
       "ResettableElementName": {
         "type": "string",
-        "enum": [
-          "FullyQualifiedDomainName",
-          "Regions",
-          "ResourcePath",
-          "ChildHealthChecks"
-        ],
+        "enum": ["FullyQualifiedDomainName", "Regions", "ResourcePath", "ChildHealthChecks"],
         "minLength": 1,
         "maxLength": 64
       },
       "HealthCheckVersionMismatch": {},
       "UpdateHostedZoneCommentResponse": {
         "type": "object",
-        "required": [
-          "HostedZone"
-        ],
+        "required": ["HostedZone"],
         "properties": {
           "HostedZone": {
             "allOf": [
@@ -9102,9 +8818,7 @@
       },
       "UpdateTrafficPolicyCommentResponse": {
         "type": "object",
-        "required": [
-          "TrafficPolicy"
-        ],
+        "required": ["TrafficPolicy"],
         "properties": {
           "TrafficPolicy": {
             "allOf": [
@@ -9121,9 +8835,7 @@
       },
       "UpdateTrafficPolicyInstanceResponse": {
         "type": "object",
-        "required": [
-          "TrafficPolicyInstance"
-        ],
+        "required": ["TrafficPolicyInstance"],
         "properties": {
           "TrafficPolicyInstance": {
             "allOf": [
@@ -9158,10 +8870,7 @@
       },
       "AccountLimit": {
         "type": "object",
-        "required": [
-          "Type",
-          "Value"
-        ],
+        "required": ["Type", "Value"],
         "properties": {
           "Type": {
             "allOf": [
@@ -9199,11 +8908,7 @@
       },
       "AliasTarget": {
         "type": "object",
-        "required": [
-          "HostedZoneId",
-          "DNSName",
-          "EvaluateTargetHealth"
-        ],
+        "required": ["HostedZoneId", "DNSName", "EvaluateTargetHealth"],
         "properties": {
           "HostedZoneId": {
             "allOf": [
@@ -9259,11 +8964,7 @@
       },
       "ChangeInfo": {
         "type": "object",
-        "required": [
-          "Id",
-          "Status",
-          "SubmittedAt"
-        ],
+        "required": ["Id", "Status", "SubmittedAt"],
         "properties": {
           "Id": {
             "allOf": [
@@ -9310,18 +9011,11 @@
       },
       "ChangeAction": {
         "type": "string",
-        "enum": [
-          "CREATE",
-          "DELETE",
-          "UPSERT"
-        ]
+        "enum": ["CREATE", "DELETE", "UPSERT"]
       },
       "ResourceRecordSet": {
         "type": "object",
-        "required": [
-          "Name",
-          "Type"
-        ],
+        "required": ["Name", "Type"],
         "properties": {
           "Name": {
             "allOf": [
@@ -9458,10 +9152,7 @@
       },
       "Change": {
         "type": "object",
-        "required": [
-          "Action",
-          "ResourceRecordSet"
-        ],
+        "required": ["Action", "ResourceRecordSet"],
         "properties": {
           "Action": {
             "allOf": [
@@ -9488,10 +9179,7 @@
       },
       "ChangeStatus": {
         "type": "string",
-        "enum": [
-          "PENDING",
-          "INSYNC"
-        ]
+        "enum": ["PENDING", "INSYNC"]
       },
       "TimeStamp": {
         "type": "string",
@@ -9499,10 +9187,7 @@
       },
       "TagResourceType": {
         "type": "string",
-        "enum": [
-          "healthcheck",
-          "hostedzone"
-        ]
+        "enum": ["healthcheck", "hostedzone"]
       },
       "TagList": {
         "type": "array",
@@ -9563,13 +9248,7 @@
       },
       "Statistic": {
         "type": "string",
-        "enum": [
-          "Average",
-          "Sum",
-          "SampleCount",
-          "Maximum",
-          "Minimum"
-        ]
+        "enum": ["Average", "Sum", "SampleCount", "Maximum", "Minimum"]
       },
       "DimensionList": {
         "type": "array",
@@ -9692,9 +9371,7 @@
       },
       "HealthCheckConfig": {
         "type": "object",
-        "required": [
-          "Type"
-        ],
+        "required": ["Type"],
         "properties": {
           "IPAddress": {
             "allOf": [
@@ -9881,12 +9558,7 @@
       },
       "HealthCheck": {
         "type": "object",
-        "required": [
-          "Id",
-          "CallerReference",
-          "HealthCheckConfig",
-          "HealthCheckVersion"
-        ],
+        "required": ["Id", "CallerReference", "HealthCheckConfig", "HealthCheckVersion"],
         "properties": {
           "Id": {
             "allOf": [
@@ -9984,11 +9656,7 @@
       },
       "HostedZone": {
         "type": "object",
-        "required": [
-          "Id",
-          "Name",
-          "CallerReference"
-        ],
+        "required": ["Id", "Name", "CallerReference"],
         "properties": {
           "Id": {
             "allOf": [
@@ -10055,9 +9723,7 @@
       },
       "DelegationSet": {
         "type": "object",
-        "required": [
-          "NameServers"
-        ],
+        "required": ["NameServers"],
         "properties": {
           "Id": {
             "allOf": [
@@ -10094,11 +9760,7 @@
       },
       "QueryLoggingConfig": {
         "type": "object",
-        "required": [
-          "Id",
-          "HostedZoneId",
-          "CloudWatchLogsLogGroupArn"
-        ],
+        "required": ["Id", "HostedZoneId", "CloudWatchLogsLogGroupArn"],
         "properties": {
           "Id": {
             "allOf": [
@@ -10269,13 +9931,7 @@
       },
       "TrafficPolicy": {
         "type": "object",
-        "required": [
-          "Id",
-          "Version",
-          "Name",
-          "Type",
-          "Document"
-        ],
+        "required": ["Id", "Version", "Name", "Type", "Document"],
         "properties": {
           "Id": {
             "allOf": [
@@ -10391,10 +10047,7 @@
       },
       "Dimension": {
         "type": "object",
-        "required": [
-          "Name",
-          "Value"
-        ],
+        "required": ["Name", "Value"],
         "properties": {
           "Name": {
             "allOf": [
@@ -10593,17 +10246,11 @@
       },
       "HostedZoneLimitType": {
         "type": "string",
-        "enum": [
-          "MAX_RRSETS_BY_ZONE",
-          "MAX_VPCS_ASSOCIATED_BY_ZONE"
-        ]
+        "enum": ["MAX_RRSETS_BY_ZONE", "MAX_VPCS_ASSOCIATED_BY_ZONE"]
       },
       "HostedZoneLimit": {
         "type": "object",
-        "required": [
-          "Type",
-          "Value"
-        ],
+        "required": ["Type", "Value"],
         "properties": {
           "Type": {
             "allOf": [
@@ -10647,16 +10294,11 @@
       },
       "ReusableDelegationSetLimitType": {
         "type": "string",
-        "enum": [
-          "MAX_ZONES_BY_REUSABLE_DELEGATION_SET"
-        ]
+        "enum": ["MAX_ZONES_BY_REUSABLE_DELEGATION_SET"]
       },
       "ReusableDelegationSetLimit": {
         "type": "object",
-        "required": [
-          "Type",
-          "Value"
-        ],
+        "required": ["Type", "Value"],
         "properties": {
           "Type": {
             "allOf": [
@@ -10826,11 +10468,7 @@
       },
       "HostedZoneSummary": {
         "type": "object",
-        "required": [
-          "HostedZoneId",
-          "Name",
-          "Owner"
-        ],
+        "required": ["HostedZoneId", "Name", "Owner"],
         "properties": {
           "HostedZoneId": {
             "allOf": [
@@ -10930,21 +10568,7 @@
       },
       "RRType": {
         "type": "string",
-        "enum": [
-          "SOA",
-          "A",
-          "TXT",
-          "NS",
-          "CNAME",
-          "MX",
-          "NAPTR",
-          "PTR",
-          "SRV",
-          "SPF",
-          "AAAA",
-          "CAA",
-          "DS"
-        ]
+        "enum": ["SOA", "A", "TXT", "NS", "CNAME", "MX", "NAPTR", "PTR", "SRV", "SPF", "AAAA", "CAA", "DS"]
       },
       "ResourceRecordSetIdentifier": {
         "type": "string",
@@ -11102,9 +10726,7 @@
       },
       "ResourceRecord": {
         "type": "object",
-        "required": [
-          "Value"
-        ],
+        "required": ["Value"],
         "properties": {
           "Value": {
             "allOf": [
@@ -11156,10 +10778,7 @@
       },
       "ResourceRecordSetFailover": {
         "type": "string",
-        "enum": [
-          "PRIMARY",
-          "SECONDARY"
-        ]
+        "enum": ["PRIMARY", "SECONDARY"]
       },
       "ResourceRecordSetMultiValueAnswer": {
         "type": "boolean"
@@ -11195,13 +10814,7 @@
       },
       "TrafficPolicySummary": {
         "type": "object",
-        "required": [
-          "Id",
-          "Name",
-          "Type",
-          "LatestVersion",
-          "TrafficPolicyCount"
-        ],
+        "required": ["Id", "Name", "Type", "LatestVersion", "TrafficPolicyCount"],
         "properties": {
           "Id": {
             "allOf": [
@@ -11258,9 +10871,7 @@
       },
       "ActivateKeySigningKeyResponse": {
         "type": "object",
-        "required": [
-          "ChangeInfo"
-        ],
+        "required": ["ChangeInfo"],
         "properties": {
           "ChangeInfo": {
             "$ref": "#/components/schemas/ChangeInfo"
@@ -11278,10 +10889,7 @@
       },
       "CreateKeySigningKeyResponse": {
         "type": "object",
-        "required": [
-          "ChangeInfo",
-          "KeySigningKey"
-        ],
+        "required": ["ChangeInfo", "KeySigningKey"],
         "properties": {
           "ChangeInfo": {
             "$ref": "#/components/schemas/ChangeInfo"
@@ -11303,9 +10911,7 @@
       "TooManyKeySigningKeys": {},
       "DeactivateKeySigningKeyResponse": {
         "type": "object",
-        "required": [
-          "ChangeInfo"
-        ],
+        "required": ["ChangeInfo"],
         "properties": {
           "ChangeInfo": {
             "$ref": "#/components/schemas/ChangeInfo"
@@ -11316,9 +10922,7 @@
       "KeySigningKeyInParentDSRecord": {},
       "DeleteKeySigningKeyResponse": {
         "type": "object",
-        "required": [
-          "ChangeInfo"
-        ],
+        "required": ["ChangeInfo"],
         "properties": {
           "ChangeInfo": {
             "$ref": "#/components/schemas/ChangeInfo"
@@ -11327,9 +10931,7 @@
       },
       "DisableHostedZoneDNSSECResponse": {
         "type": "object",
-        "required": [
-          "ChangeInfo"
-        ],
+        "required": ["ChangeInfo"],
         "properties": {
           "ChangeInfo": {
             "$ref": "#/components/schemas/ChangeInfo"
@@ -11339,9 +10941,7 @@
       "DNSSECNotFound": {},
       "EnableHostedZoneDNSSECResponse": {
         "type": "object",
-        "required": [
-          "ChangeInfo"
-        ],
+        "required": ["ChangeInfo"],
         "properties": {
           "ChangeInfo": {
             "$ref": "#/components/schemas/ChangeInfo"
@@ -11352,10 +10952,7 @@
       "HostedZonePartiallyDelegated": {},
       "GetDNSSECResponse": {
         "type": "object",
-        "required": [
-          "Status",
-          "KeySigningKeys"
-        ],
+        "required": ["Status", "KeySigningKeys"],
         "properties": {
           "Status": {
             "allOf": [

@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -229,10 +221,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ClientToken",
-                  "FileSystemId"
-                ],
+                "required": ["ClientToken", "FileSystemId"],
                 "properties": {
                   "ClientToken": {
                     "description": "A string of up to 64 ASCII characters that Amazon EFS uses to ensure idempotent creation.",
@@ -545,9 +534,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "CreationToken"
-                ],
+                "required": ["CreationToken"],
                 "properties": {
                   "CreationToken": {
                     "description": "A string of up to 64 ASCII characters. Amazon EFS uses this to ensure idempotent creation.",
@@ -559,10 +546,7 @@
                   "PerformanceMode": {
                     "description": "The performance mode of the file system. We recommend <code>generalPurpose</code> performance mode for most file systems. File systems using the <code>maxIO</code> performance mode can scale to higher levels of aggregate throughput and operations per second with a tradeoff of slightly higher latencies for most file operations. The performance mode can't be changed after the file system has been created.",
                     "type": "string",
-                    "enum": [
-                      "generalPurpose",
-                      "maxIO"
-                    ]
+                    "enum": ["generalPurpose", "maxIO"]
                   },
                   "Encrypted": {
                     "description": "A Boolean value that, if true, creates an encrypted file system. When creating an encrypted file system, you have the option of specifying <a>CreateFileSystemRequest$KmsKeyId</a> for an existing AWS Key Management Service (AWS KMS) customer master key (CMK). If you don't specify a CMK, then the default CMK for Amazon EFS, <code>/aws/elasticfilesystem</code>, is used to protect the encrypted file system. ",
@@ -577,10 +561,7 @@
                   "ThroughputMode": {
                     "description": "The throughput mode for the file system to be created. There are two throughput modes to choose from for your file system: <code>bursting</code> and <code>provisioned</code>. If you set <code>ThroughputMode</code> to <code>provisioned</code>, you must also set a value for <code>ProvisionedThroughPutInMibps</code>. You can decrease your file system's throughput in Provisioned Throughput mode or change between the throughput modes as long as it’s been more than 24 hours since the last decrease or throughput mode change. For more, see <a href=\"https://docs.aws.amazon.com/efs/latest/ug/performance.html#provisioned-throughput\">Specifying Throughput with Provisioned Mode</a> in the <i>Amazon EFS User Guide.</i> ",
                     "type": "string",
-                    "enum": [
-                      "bursting",
-                      "provisioned"
-                    ]
+                    "enum": ["bursting", "provisioned"]
                   },
                   "ProvisionedThroughputInMibps": {
                     "description": "The throughput, measured in MiB/s, that you want to provision for a file system that you're creating. Valid values are 1-1024. Required if <code>ThroughputMode</code> is set to <code>provisioned</code>. The upper limit for throughput is 1024 MiB/s. You can get this limit increased by contacting AWS Support. For more information, see <a href=\"https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits\">Amazon EFS Limits That You Can Increase</a> in the <i>Amazon EFS User Guide.</i> ",
@@ -884,10 +865,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "FileSystemId",
-                  "SubnetId"
-                ],
+                "required": ["FileSystemId", "SubnetId"],
                 "properties": {
                   "FileSystemId": {
                     "description": "The ID of the file system for which to create the mount target.",
@@ -1132,9 +1110,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Tags"
-                ],
+                "required": ["Tags"],
                 "properties": {
                   "Tags": {
                     "description": "An array of <code>Tag</code> objects to add. Each <code>Tag</code> object is a key-value pair. ",
@@ -1447,10 +1423,7 @@
                   "ThroughputMode": {
                     "description": "(Optional) The throughput mode that you want your file system to use. If you're not updating your throughput mode, you don't need to provide this value in your request. If you are changing the <code>ThroughputMode</code> to <code>provisioned</code>, you must also set a value for <code>ProvisionedThroughputInMibps</code>.",
                     "type": "string",
-                    "enum": [
-                      "bursting",
-                      "provisioned"
-                    ]
+                    "enum": ["bursting", "provisioned"]
                   },
                   "ProvisionedThroughputInMibps": {
                     "description": "(Optional) The amount of throughput, in MiB/s, that you want to provision for your file system. Valid values are 1-1024. Required if <code>ThroughputMode</code> is changed to <code>provisioned</code> on update. If you're not updating the amount of provisioned throughput for your file system, you don't need to provide this value in your request. ",
@@ -1677,9 +1650,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Policy"
-                ],
+                "required": ["Policy"],
                 "properties": {
                   "Policy": {
                     "description": "The <code>FileSystemPolicy</code> that you're creating. Accepts a JSON formatted policy definition. To find out more about the elements that make up a file system policy, see <a href=\"https://docs.aws.amazon.com/efs/latest/ug/access-control-overview.html#access-control-manage-access-intro-resource-policies\">EFS Resource-based Policies</a>. ",
@@ -1848,9 +1819,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "TagKeys"
-                ],
+                "required": ["TagKeys"],
                 "properties": {
                   "TagKeys": {
                     "description": "A list of tag keys to delete.",
@@ -2080,9 +2049,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "BackupPolicy"
-                ],
+                "required": ["BackupPolicy"],
                 "properties": {
                   "BackupPolicy": {
                     "description": "The backup policy for the file system, showing the curent status. If <code>ENABLED</code>, the file system is being backed up.",
@@ -2266,9 +2233,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "LifecyclePolicies"
-                ],
+                "required": ["LifecyclePolicies"],
                 "properties": {
                   "LifecyclePolicies": {
                     "description": "An array of <code>LifecyclePolicy</code> objects that define the file system's <code>LifecycleConfiguration</code> object. A <code>LifecycleConfiguration</code> object tells lifecycle management when to transition files from the Standard storage class to the Infrequent Access storage class.",
@@ -2779,9 +2744,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Tags"
-                ],
+                "required": ["Tags"],
                 "properties": {
                   "Tags": {
                     "description": "<p/>",
@@ -3008,17 +2971,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ResourceIdType"
-                ],
+                "required": ["ResourceIdType"],
                 "properties": {
                   "ResourceIdType": {
                     "description": "A preference indicating a choice to use 63bit/32bit IDs for all applicable resources.",
                     "type": "string",
-                    "enum": [
-                      "LONG_ID",
-                      "SHORT_ID"
-                    ]
+                    "enum": ["LONG_ID", "SHORT_ID"]
                   }
                 }
               }
@@ -3213,10 +3171,7 @@
       },
       "Tag": {
         "type": "object",
-        "required": [
-          "Key",
-          "Value"
-        ],
+        "required": ["Key", "Value"],
         "properties": {
           "Key": {
             "allOf": [
@@ -3267,11 +3222,7 @@
       },
       "CreationInfo": {
         "type": "object",
-        "required": [
-          "OwnerUid",
-          "OwnerGid",
-          "Permissions"
-        ],
+        "required": ["OwnerUid", "OwnerGid", "Permissions"],
         "properties": {
           "OwnerUid": {
             "allOf": [
@@ -3524,12 +3475,7 @@
       "ThroughputLimitExceeded": {},
       "MountTargetDescription": {
         "type": "object",
-        "required": [
-          "MountTargetId",
-          "FileSystemId",
-          "SubnetId",
-          "LifeCycleState"
-        ],
+        "required": ["MountTargetId", "FileSystemId", "SubnetId", "LifeCycleState"],
         "example": {
           "FileSystemId": "fs-01234567",
           "IpAddress": "192.0.0.2",
@@ -3816,13 +3762,9 @@
       },
       "DescribeMountTargetSecurityGroupsResponse": {
         "type": "object",
-        "required": [
-          "SecurityGroups"
-        ],
+        "required": ["SecurityGroups"],
         "example": {
-          "SecurityGroups": [
-            "sg-4567abcd"
-          ]
+          "SecurityGroups": ["sg-4567abcd"]
         },
         "properties": {
           "SecurityGroups": {
@@ -3889,9 +3831,7 @@
       },
       "DescribeTagsResponse": {
         "type": "object",
-        "required": [
-          "Tags"
-        ],
+        "required": ["Tags"],
         "example": {
           "Tags": [
             {
@@ -3961,12 +3901,7 @@
       },
       "Status": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "ENABLING",
-          "DISABLED",
-          "DISABLING"
-        ]
+        "enum": ["ENABLED", "ENABLING", "DISABLED", "DISABLING"]
       },
       "InvalidPolicyException": {},
       "LifecyclePolicy": {
@@ -4028,10 +3963,7 @@
       },
       "PosixUser": {
         "type": "object",
-        "required": [
-          "Uid",
-          "Gid"
-        ],
+        "required": ["Uid", "Gid"],
         "properties": {
           "Uid": {
             "allOf": [
@@ -4099,14 +4031,7 @@
       },
       "LifeCycleState": {
         "type": "string",
-        "enum": [
-          "creating",
-          "available",
-          "updating",
-          "deleting",
-          "deleted",
-          "error"
-        ]
+        "enum": ["creating", "available", "updating", "deleting", "deleted", "error"]
       },
       "AccessPointDescriptions": {
         "type": "array",
@@ -4125,9 +4050,7 @@
       },
       "BackupPolicy": {
         "type": "object",
-        "required": [
-          "Status"
-        ],
+        "required": ["Status"],
         "properties": {
           "Status": {
             "allOf": [
@@ -4150,10 +4073,7 @@
       },
       "PerformanceMode": {
         "type": "string",
-        "enum": [
-          "generalPurpose",
-          "maxIO"
-        ]
+        "enum": ["generalPurpose", "maxIO"]
       },
       "Encrypted": {
         "type": "boolean"
@@ -4165,10 +4085,7 @@
       },
       "ThroughputMode": {
         "type": "string",
-        "enum": [
-          "bursting",
-          "provisioned"
-        ]
+        "enum": ["bursting", "provisioned"]
       },
       "ProvisionedThroughputInMibps": {
         "type": "number",
@@ -4259,9 +4176,7 @@
       },
       "FileSystemSize": {
         "type": "object",
-        "required": [
-          "Value"
-        ],
+        "required": ["Value"],
         "properties": {
           "Value": {
             "allOf": [
@@ -4329,13 +4244,7 @@
       },
       "TransitionToIARules": {
         "type": "string",
-        "enum": [
-          "AFTER_7_DAYS",
-          "AFTER_14_DAYS",
-          "AFTER_30_DAYS",
-          "AFTER_60_DAYS",
-          "AFTER_90_DAYS"
-        ]
+        "enum": ["AFTER_7_DAYS", "AFTER_14_DAYS", "AFTER_30_DAYS", "AFTER_60_DAYS", "AFTER_90_DAYS"]
       },
       "NetworkInterfaceId": {
         "type": "string"
@@ -4405,24 +4314,16 @@
       },
       "TransitionToPrimaryStorageClassRules": {
         "type": "string",
-        "enum": [
-          "AFTER_1_ACCESS"
-        ]
+        "enum": ["AFTER_1_ACCESS"]
       },
       "ResourceIdType": {
         "type": "string",
-        "enum": [
-          "LONG_ID",
-          "SHORT_ID"
-        ],
+        "enum": ["LONG_ID", "SHORT_ID"],
         "description": "A preference indicating a choice to use 63bit/32bit IDs for all applicable resources."
       },
       "Resource": {
         "type": "string",
-        "enum": [
-          "FILE_SYSTEM",
-          "MOUNT_TARGET"
-        ],
+        "enum": ["FILE_SYSTEM", "MOUNT_TARGET"],
         "description": "An EFS resource, for example a file system or a mount target."
       },
       "Resources": {

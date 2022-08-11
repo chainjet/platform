@@ -5,9 +5,7 @@
     "x-release": "v4",
     "title": "Amazon Lex Runtime Service",
     "description": "Amazon Lex provides both build and runtime endpoints. Each endpoint provides a set of operations (API). Your conversational bot uses the runtime API to understand user utterances (user input text or voice). For example, suppose a user says \"I want pizza\", your bot sends this input to Amazon Lex using the runtime API. Amazon Lex recognizes that the user request is for the OrderPizza intent (one of the intents defined in the bot). Then Amazon Lex engages in user conversation on behalf of the bot to elicit required information (slot values, such as pizza size and crust type), and then performs fulfillment activity (that you configured when you created the bot). You use the build-time API to create and manage your Amazon Lex bot. For a list of build-time operations, see the build-time API, .",
-    "x-categories": [
-      "machine-learning"
-    ],
+    "x-categories": ["machine-learning"],
     "x-logo": {
       "url": "/logos/aws/Arch_Amazon-Lex_64.svg"
     },
@@ -38,9 +36,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -123,10 +119,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -137,10 +130,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -861,9 +851,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "inputStream"
-                ],
+                "required": ["inputStream"],
                 "properties": {
                   "inputStream": {
                     "description": "<p> User input in PCM or Opus audio format or text format as described in the <code>Content-Type</code> HTTP header. </p> <p>You can stream audio data to Amazon Lex or you can create a local buffer that captures all of the audio data before sending. In general, you get better performance if you stream audio data rather than buffering the data locally.</p>",
@@ -1034,9 +1022,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "inputText"
-                ],
+                "required": ["inputText"],
                 "properties": {
                   "sessionAttributes": {
                     "description": "<p>Application-specific information passed between Amazon Lex and a client application.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs\">Setting Session Attributes</a>.</p>",
@@ -1467,13 +1453,7 @@
       },
       "DialogActionType": {
         "type": "string",
-        "enum": [
-          "ElicitIntent",
-          "ConfirmIntent",
-          "ElicitSlot",
-          "Close",
-          "Delegate"
-        ]
+        "enum": ["ElicitIntent", "ConfirmIntent", "ElicitSlot", "Close", "Delegate"]
       },
       "IntentName": {
         "type": "string"
@@ -1486,11 +1466,7 @@
       },
       "FulfillmentState": {
         "type": "string",
-        "enum": [
-          "Fulfilled",
-          "Failed",
-          "ReadyForFulfillment"
-        ]
+        "enum": ["Fulfilled", "Failed", "ReadyForFulfillment"]
       },
       "Text": {
         "type": "string",
@@ -1500,18 +1476,11 @@
       },
       "MessageFormatType": {
         "type": "string",
-        "enum": [
-          "PlainText",
-          "CustomPayload",
-          "SSML",
-          "Composite"
-        ]
+        "enum": ["PlainText", "CustomPayload", "SSML", "Composite"]
       },
       "IntentSummary": {
         "type": "object",
-        "required": [
-          "dialogActionType"
-        ],
+        "required": ["dialogActionType"],
         "properties": {
           "intentName": {
             "allOf": [
@@ -1613,10 +1582,7 @@
       },
       "Button": {
         "type": "object",
-        "required": [
-          "text",
-          "value"
-        ],
+        "required": ["text", "value"],
         "properties": {
           "text": {
             "allOf": [
@@ -1643,17 +1609,11 @@
       },
       "ConfirmationStatus": {
         "type": "string",
-        "enum": [
-          "None",
-          "Confirmed",
-          "Denied"
-        ]
+        "enum": ["None", "Confirmed", "Denied"]
       },
       "ContentType": {
         "type": "string",
-        "enum": [
-          "application/vnd.amazonaws.card.generic"
-        ]
+        "enum": ["application/vnd.amazonaws.card.generic"]
       },
       "UserId": {
         "type": "string",
@@ -1663,9 +1623,7 @@
       },
       "DialogAction": {
         "type": "object",
-        "required": [
-          "type"
-        ],
+        "required": ["type"],
         "properties": {
           "type": {
             "allOf": [
@@ -1742,14 +1700,7 @@
       },
       "DialogState": {
         "type": "string",
-        "enum": [
-          "ElicitIntent",
-          "ConfirmIntent",
-          "ElicitSlot",
-          "Fulfilled",
-          "ReadyForFulfillment",
-          "Failed"
-        ]
+        "enum": ["ElicitIntent", "ConfirmIntent", "ElicitSlot", "Fulfilled", "ReadyForFulfillment", "Failed"]
       },
       "Double": {
         "type": "number",
@@ -1980,11 +1931,7 @@
       },
       "ActiveContext": {
         "type": "object",
-        "required": [
-          "name",
-          "timeToLive",
-          "parameters"
-        ],
+        "required": ["name", "timeToLive", "parameters"],
         "properties": {
           "name": {
             "allOf": [

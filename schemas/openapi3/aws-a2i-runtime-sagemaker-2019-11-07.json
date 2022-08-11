@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -408,10 +400,7 @@
             "description": "Optional. The order for displaying results. Valid values: <code>Ascending</code> and <code>Descending</code>.",
             "schema": {
               "type": "string",
-              "enum": [
-                "Ascending",
-                "Descending"
-              ]
+              "enum": ["Ascending", "Descending"]
             }
           },
           {
@@ -536,11 +525,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "HumanLoopName",
-                  "FlowDefinitionArn",
-                  "HumanLoopInput"
-                ],
+                "required": ["HumanLoopName", "FlowDefinitionArn", "HumanLoopInput"],
                 "properties": {
                   "HumanLoopName": {
                     "description": "The name of the human loop.",
@@ -681,9 +666,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "HumanLoopName"
-                ],
+                "required": ["HumanLoopName"],
                 "properties": {
                   "HumanLoopName": {
                     "description": "The name of the human loop that you want to stop.",
@@ -810,13 +793,7 @@
       "InternalServerException": {},
       "DescribeHumanLoopResponse": {
         "type": "object",
-        "required": [
-          "CreationTime",
-          "HumanLoopStatus",
-          "HumanLoopName",
-          "HumanLoopArn",
-          "FlowDefinitionArn"
-        ],
+        "required": ["CreationTime", "HumanLoopStatus", "HumanLoopName", "HumanLoopArn", "FlowDefinitionArn"],
         "properties": {
           "CreationTime": {
             "allOf": [
@@ -902,9 +879,7 @@
       },
       "ListHumanLoopsResponse": {
         "type": "object",
-        "required": [
-          "HumanLoopSummaries"
-        ],
+        "required": ["HumanLoopSummaries"],
         "properties": {
           "HumanLoopSummaries": {
             "allOf": [
@@ -962,10 +937,7 @@
       },
       "ContentClassifier": {
         "type": "string",
-        "enum": [
-          "FreeOfPersonallyIdentifiableInformation",
-          "FreeOfAdultContent"
-        ]
+        "enum": ["FreeOfPersonallyIdentifiableInformation", "FreeOfAdultContent"]
       },
       "HumanLoopName": {
         "type": "string",
@@ -982,13 +954,7 @@
       },
       "HumanLoopStatus": {
         "type": "string",
-        "enum": [
-          "InProgress",
-          "Failed",
-          "Completed",
-          "Stopped",
-          "Stopping"
-        ]
+        "enum": ["InProgress", "Failed", "Completed", "Stopped", "Stopping"]
       },
       "HumanLoopArn": {
         "type": "string",
@@ -1002,9 +968,7 @@
       },
       "HumanLoopOutput": {
         "type": "object",
-        "required": [
-          "OutputS3Uri"
-        ],
+        "required": ["OutputS3Uri"],
         "properties": {
           "OutputS3Uri": {
             "allOf": [

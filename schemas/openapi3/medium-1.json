@@ -4,9 +4,7 @@
     "title": "Medium",
     "description": "Medium is an open platform where readers find dynamic thinking, and where expert and undiscovered voices can share their writing on any topic.",
     "version": "1.0.0",
-    "x-categories": [
-      "blog"
-    ],
+    "x-categories": ["blog"],
     "x-logo": {
       "url": "/logos/medium.svg"
     },
@@ -21,17 +19,13 @@
       "get": {
         "summary": "Get User Details",
         "description": "Returns details of the user who has granted permission to the application.",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "security": [
           {
             "BearerToken": []
           },
           {
-            "OauthSecurity": [
-              "basicProfile"
-            ]
+            "OauthSecurity": ["basicProfile"]
           }
         ],
         "responses": {
@@ -58,17 +52,13 @@
         "description": "Returns a list of publications that the user is related to in some way. This includes all publications the user is subscribed to, writes to, or edits.",
         "x-triggerName": "New User Publication",
         "x-triggerIdKey": "data[].id",
-        "tags": [
-          "Publications"
-        ],
+        "tags": ["Publications"],
         "security": [
           {
             "BearerToken": []
           },
           {
-            "OauthSecurity": [
-              "listPublications"
-            ]
+            "OauthSecurity": ["listPublications"]
           }
         ],
         "parameters": [
@@ -110,18 +100,13 @@
         "description": "Returns a list of contributors for a given publication.",
         "x-triggerName": "New Publication Contributor",
         "x-triggerIdKey": "data[].userId",
-        "tags": [
-          "Publications",
-          "Users"
-        ],
+        "tags": ["Publications", "Users"],
         "security": [
           {
             "BearerToken": []
           },
           {
-            "OauthSecurity": [
-              "listPublications"
-            ]
+            "OauthSecurity": ["listPublications"]
           }
         ],
         "parameters": [
@@ -157,18 +142,13 @@
       "post": {
         "summary": "Create User Post",
         "description": "Creates a post on the authenticated user’s profile.",
-        "tags": [
-          "Users",
-          "Posts"
-        ],
+        "tags": ["Users", "Posts"],
         "security": [
           {
             "BearerToken": []
           },
           {
-            "OauthSecurity": [
-              "publishPost"
-            ]
+            "OauthSecurity": ["publishPost"]
           }
         ],
         "parameters": [
@@ -222,18 +202,13 @@
       "post": {
         "summary": "Create Publication Post",
         "description": "creating a post and associating it with a publication on Medium. The request also shows this association, considering posts a collection of resources under a publication\n\nThere are additional rules around publishing that each request to this API must respect:\n  - If the authenticated user is an 'editor' for the publication, they can create posts with any publish status. Posts published as 'public' or 'unlisted' will appear in collection immediately, while posts created as 'draft' will remain in pending state under publication.\n  - If the authenticated user is a 'writer' for the chosen publication, they can only create a post as a 'draft'. That post will remain in pending state under publication until an editor for the publication approves it.\n  - If the authenticated user is neither a 'writer' nor an 'editor', they are not allowed to create any posts in a publication.\n",
-        "tags": [
-          "Posts",
-          "Publications"
-        ],
+        "tags": ["Posts", "Publications"],
         "security": [
           {
             "BearerToken": []
           },
           {
-            "OauthSecurity": [
-              "publishPost"
-            ]
+            "OauthSecurity": ["publishPost"]
           }
         ],
         "parameters": [
@@ -495,11 +470,7 @@
       "Post": {
         "type": "object",
         "title": "Post",
-        "required": [
-          "title",
-          "contentFormat",
-          "content"
-        ],
+        "required": ["title", "contentFormat", "content"],
         "properties": {
           "title": {
             "type": "string",
@@ -508,10 +479,7 @@
           "contentFormat": {
             "type": "string",
             "description": "The format of the \"content\" field. There are two valid values, \"html\", and \"markdown\"",
-            "enum": [
-              "html",
-              "markdown"
-            ]
+            "enum": ["html", "markdown"]
           },
           "content": {
             "type": "string",
@@ -532,11 +500,7 @@
           "publishStatus": {
             "type": "string",
             "default": "public",
-            "enum": [
-              "public",
-              "draft",
-              "unlisted"
-            ],
+            "enum": ["public", "draft", "unlisted"],
             "description": "The status of the post. Valid values are `public`, `draft`, or `unlisted`. The default is `public`."
           },
           "license": {
@@ -561,11 +525,7 @@
           "contentFormat": "html",
           "content": "<h1>Liverpool FC</h1><p>You’ll never walk alone.</p>",
           "canonicalUrl": "http://jamietalbot.com/posts/liverpool-fc",
-          "tags": [
-            "football",
-            "sport",
-            "Liverpool"
-          ],
+          "tags": ["football", "sport", "Liverpool"],
           "publishStatus": "public"
         }
       },
@@ -634,11 +594,7 @@
             "id": "e6f36a",
             "title": "Liverpool FC",
             "authorId": "5303d74c64f66366f00cb9b2a94f3251bf5",
-            "tags": [
-              "football",
-              "sport",
-              "Liverpool"
-            ],
+            "tags": ["football", "sport", "Liverpool"],
             "url": "https://medium.com/@majelbstoat/liverpool-fc-e6f36a",
             "canonicalUrl": "http://jamietalbot.com/posts/liverpool-fc",
             "publishStatus": "public",

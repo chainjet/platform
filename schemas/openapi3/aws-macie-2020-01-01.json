@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -239,10 +231,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "invitationId",
-                  "masterAccount"
-                ],
+                "required": ["invitationId", "masterAccount"],
                 "properties": {
                   "invitationId": {
                     "description": "The unique identifier for the invitation to accept.",
@@ -512,12 +501,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "clientToken",
-                  "jobType",
-                  "name",
-                  "s3JobDefinition"
-                ],
+                "required": ["clientToken", "jobType", "name", "s3JobDefinition"],
                 "properties": {
                   "clientToken": {
                     "description": "A unique, case-sensitive token that you provide to ensure the idempotency of the request.",
@@ -541,10 +525,7 @@
                   "jobType": {
                     "description": "The schedule for running a classification job. Valid values are:",
                     "type": "string",
-                    "enum": [
-                      "ONE_TIME",
-                      "SCHEDULED"
-                    ]
+                    "enum": ["ONE_TIME", "SCHEDULED"]
                   },
                   "name": {
                     "description": "A custom name for the job. The name can contain as many as 500 characters.",
@@ -643,12 +624,7 @@
                   "managedDataIdentifierSelector": {
                     "description": "The selection type that determines which managed data identifiers a classification job uses to analyze data. Valid values are:",
                     "type": "string",
-                    "enum": [
-                      "ALL",
-                      "EXCLUDE",
-                      "INCLUDE",
-                      "NONE"
-                    ]
+                    "enum": ["ALL", "EXCLUDE", "INCLUDE", "NONE"]
                   }
                 }
               }
@@ -940,19 +916,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "action",
-                  "findingCriteria",
-                  "name"
-                ],
+                "required": ["action", "findingCriteria", "name"],
                 "properties": {
                   "action": {
                     "description": "The action to perform on findings that meet the filter criteria. To suppress (automatically archive) findings that meet the criteria, set this value to ARCHIVE. Valid values are:",
                     "type": "string",
-                    "enum": [
-                      "ARCHIVE",
-                      "NOOP"
-                    ]
+                    "enum": ["ARCHIVE", "NOOP"]
                   },
                   "clientToken": {
                     "description": "A unique, case-sensitive token that you provide to ensure the idempotency of the request.",
@@ -1226,9 +1195,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "accountIds"
-                ],
+                "required": ["accountIds"],
                 "properties": {
                   "accountIds": {
                     "description": "An array that lists AWS account IDs, one for each account to send the invitation to.",
@@ -1478,9 +1445,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "account"
-                ],
+                "required": ["account"],
                 "properties": {
                   "account": {
                     "description": "Specifies details for an account to associate with an Amazon Macie master account.",
@@ -1889,9 +1854,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "accountIds"
-                ],
+                "required": ["accountIds"],
                 "properties": {
                   "accountIds": {
                     "description": "An array that lists AWS account IDs, one for each account that sent an invitation to decline.",
@@ -2478,10 +2441,7 @@
                   "action": {
                     "description": "The action to perform on findings that meet the filter criteria. To suppress (automatically archive) findings that meet the criteria, set this value to ARCHIVE. Valid values are:",
                     "type": "string",
-                    "enum": [
-                      "ARCHIVE",
-                      "NOOP"
-                    ]
+                    "enum": ["ARCHIVE", "NOOP"]
                   },
                   "description": {
                     "description": "<p>A custom description of the filter. The description can contain as many as 512 characters.</p> <p>We strongly recommend that you avoid including any sensitive data in the description of a filter. Other users might be able to see the filter's description, depending on the actions that they're allowed to perform in Amazon Macie.</p>",
@@ -2616,9 +2576,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "accountIds"
-                ],
+                "required": ["accountIds"],
                 "properties": {
                   "accountIds": {
                     "description": "An array that lists AWS account IDs, one for each account that sent an invitation to delete.",
@@ -3288,21 +3246,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "jobStatus"
-                ],
+                "required": ["jobStatus"],
                 "properties": {
                   "jobStatus": {
                     "description": "The current status of a classification job. Possible values are:",
                     "type": "string",
-                    "enum": [
-                      "RUNNING",
-                      "PAUSED",
-                      "CANCELLED",
-                      "COMPLETE",
-                      "IDLE",
-                      "USER_PAUSED"
-                    ]
+                    "enum": ["RUNNING", "PAUSED", "CANCELLED", "COMPLETE", "IDLE", "USER_PAUSED"]
                   }
                 }
               }
@@ -3516,9 +3465,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "autoEnable"
-                ],
+                "required": ["autoEnable"],
                 "properties": {
                   "autoEnable": {
                     "description": "Specifies whether Amazon Macie is enabled automatically for each account, when the account is added to the AWS organization.",
@@ -3744,19 +3691,12 @@
                   "findingPublishingFrequency": {
                     "description": "The frequency with which Amazon Macie publishes updates to policy findings for an account. This includes publishing updates to AWS Security Hub and Amazon EventBridge (formerly called Amazon CloudWatch Events). Valid values are:",
                     "type": "string",
-                    "enum": [
-                      "FIFTEEN_MINUTES",
-                      "ONE_HOUR",
-                      "SIX_HOURS"
-                    ]
+                    "enum": ["FIFTEEN_MINUTES", "ONE_HOUR", "SIX_HOURS"]
                   },
                   "status": {
                     "description": "The status of an Amazon Macie account. Valid values are:",
                     "type": "string",
-                    "enum": [
-                      "PAUSED",
-                      "ENABLED"
-                    ]
+                    "enum": ["PAUSED", "ENABLED"]
                   }
                 }
               }
@@ -3949,19 +3889,12 @@
                   "findingPublishingFrequency": {
                     "description": "The frequency with which Amazon Macie publishes updates to policy findings for an account. This includes publishing updates to AWS Security Hub and Amazon EventBridge (formerly called Amazon CloudWatch Events). Valid values are:",
                     "type": "string",
-                    "enum": [
-                      "FIFTEEN_MINUTES",
-                      "ONE_HOUR",
-                      "SIX_HOURS"
-                    ]
+                    "enum": ["FIFTEEN_MINUTES", "ONE_HOUR", "SIX_HOURS"]
                   },
                   "status": {
                     "description": "The status of an Amazon Macie account. Valid values are:",
                     "type": "string",
-                    "enum": [
-                      "PAUSED",
-                      "ENABLED"
-                    ]
+                    "enum": ["PAUSED", "ENABLED"]
                   }
                 }
               }
@@ -4423,9 +4356,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "adminAccountId"
-                ],
+                "required": ["adminAccountId"],
                 "properties": {
                   "adminAccountId": {
                     "description": "The AWS account ID for the account.",
@@ -4908,9 +4839,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "configuration"
-                ],
+                "required": ["configuration"],
                 "properties": {
                   "configuration": {
                     "description": "Specifies where to store data classification results, and the encryption settings to use when storing results in that location. Currently, you can store classification results only in an S3 bucket.",
@@ -5029,9 +4958,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "groupBy"
-                ],
+                "required": ["groupBy"],
                 "properties": {
                   "findingCriteria": {
                     "description": "Specifies, as a map, one or more property-based conditions that filter the results of a query for findings.",
@@ -5213,9 +5140,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "findingIds"
-                ],
+                "required": ["findingIds"],
                 "properties": {
                   "findingIds": {
                     "description": "An array of strings that lists the unique identifiers for the findings to retrieve information about.",
@@ -5664,10 +5589,7 @@
                   "timeRange": {
                     "description": "An inclusive time period that Amazon Macie usage data applies to. Possible values are:",
                     "type": "string",
-                    "enum": [
-                      "MONTH_TO_DATE",
-                      "PAST_30_DAYS"
-                    ]
+                    "enum": ["MONTH_TO_DATE", "PAST_30_DAYS"]
                   }
                 }
               }
@@ -6457,9 +6379,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "tags"
-                ],
+                "required": ["tags"],
                 "properties": {
                   "tags": {
                     "description": "A string-to-string map of key-value pairs that specifies the tags (keys and values) for a classification job, custom data identifier, findings filter, or member account.",
@@ -6569,10 +6489,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "regex",
-                  "sampleText"
-                ],
+                "required": ["regex", "sampleText"],
                 "properties": {
                   "ignoreWords": {
                     "description": "An array that lists specific character sequences (ignore words) to exclude from the results. If the text matched by the regular expression is the same as any string in this array, Amazon Macie ignores it. The array can contain as many as 10 ignore words. Each ignore word can contain 4 - 90 characters. Ignore words are case sensitive.",
@@ -6799,17 +6716,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "status"
-                ],
+                "required": ["status"],
                 "properties": {
                   "status": {
                     "description": "The status of an Amazon Macie account. Valid values are:",
                     "type": "string",
-                    "enum": [
-                      "PAUSED",
-                      "ENABLED"
-                    ]
+                    "enum": ["PAUSED", "ENABLED"]
                   }
                 }
               }
@@ -8026,10 +7938,7 @@
       },
       "OrderBy": {
         "type": "string",
-        "enum": [
-          "ASC",
-          "DESC"
-        ]
+        "enum": ["ASC", "DESC"]
       },
       "DescribeClassificationJobResponse": {
         "type": "object",
@@ -8567,10 +8476,7 @@
       },
       "FindingStatisticsSortAttributeName": {
         "type": "string",
-        "enum": [
-          "groupKey",
-          "count"
-        ],
+        "enum": ["groupKey", "count"],
         "description": "The grouping to sort the results by. Valid values are:"
       },
       "GetFindingsResponse": {
@@ -8926,12 +8832,7 @@
       },
       "UsageStatisticsSortKey": {
         "type": "string",
-        "enum": [
-          "accountId",
-          "total",
-          "serviceLimitValue",
-          "freeTrialStartDate"
-        ],
+        "enum": ["accountId", "total", "serviceLimitValue", "freeTrialStartDate"],
         "description": "The field to use to sort the results of a query for account quotas and usage data. Valid values are:"
       },
       "GetUsageTotalsResponse": {
@@ -8992,12 +8893,7 @@
       },
       "ListJobsSortAttributeName": {
         "type": "string",
-        "enum": [
-          "createdAt",
-          "jobStatus",
-          "name",
-          "jobType"
-        ],
+        "enum": ["createdAt", "jobStatus", "name", "jobType"],
         "description": "The property to sort the results by. Valid values are:"
       },
       "ListCustomDataIdentifiersResponse": {
@@ -9182,10 +9078,7 @@
       },
       "S3Destination": {
         "type": "object",
-        "required": [
-          "bucketName",
-          "kmsKeyArn"
-        ],
+        "required": ["bucketName", "kmsKeyArn"],
         "properties": {
           "bucketName": {
             "allOf": [
@@ -9377,10 +9270,7 @@
       },
       "AdminStatus": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "DISABLING_IN_PROGRESS"
-        ],
+        "enum": ["ENABLED", "DISABLING_IN_PROGRESS"],
         "description": "The current status of an account as a delegated administrator of Amazon Macie for an AWS organization."
       },
       "AdminAccount": {
@@ -9984,12 +9874,7 @@
       },
       "SharedAccess": {
         "type": "string",
-        "enum": [
-          "EXTERNAL",
-          "INTERNAL",
-          "NOT_SHARED",
-          "UNKNOWN"
-        ]
+        "enum": ["EXTERNAL", "INTERNAL", "NOT_SHARED", "UNKNOWN"]
       },
       "__listOfKeyValuePair": {
         "type": "array",
@@ -10287,11 +10172,7 @@
       },
       "EffectivePermission": {
         "type": "string",
-        "enum": [
-          "PUBLIC",
-          "NOT_PUBLIC",
-          "UNKNOWN"
-        ]
+        "enum": ["PUBLIC", "NOT_PUBLIC", "UNKNOWN"]
       },
       "ClassificationResult": {
         "type": "object",
@@ -10482,10 +10363,7 @@
       },
       "JobType": {
         "type": "string",
-        "enum": [
-          "ONE_TIME",
-          "SCHEDULED"
-        ],
+        "enum": ["ONE_TIME", "SCHEDULED"],
         "description": "The schedule for running a classification job. Valid values are:"
       },
       "S3JobDefinition": {
@@ -10572,10 +10450,7 @@
       },
       "FindingsFilterAction": {
         "type": "string",
-        "enum": [
-          "ARCHIVE",
-          "NOOP"
-        ],
+        "enum": ["ARCHIVE", "NOOP"],
         "description": "The action to perform on findings that meet the filter criteria. To suppress (automatically archive) findings that meet the criteria, set this value to ARCHIVE. Valid values are:"
       },
       "FindingCriteria": {
@@ -10678,9 +10553,7 @@
       },
       "Currency": {
         "type": "string",
-        "enum": [
-          "USD"
-        ],
+        "enum": ["USD"],
         "description": "The type of currency that data for a usage metric is reported in. Possible values are:"
       },
       "CustomDataIdentifierSummary": {
@@ -10794,15 +10667,7 @@
       },
       "DayOfWeek": {
         "type": "string",
-        "enum": [
-          "SUNDAY",
-          "MONDAY",
-          "TUESDAY",
-          "WEDNESDAY",
-          "THURSDAY",
-          "FRIDAY",
-          "SATURDAY"
-        ]
+        "enum": ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"]
       },
       "DefaultDetection": {
         "type": "object",
@@ -10855,14 +10720,7 @@
       },
       "JobStatus": {
         "type": "string",
-        "enum": [
-          "RUNNING",
-          "PAUSED",
-          "CANCELLED",
-          "COMPLETE",
-          "IDLE",
-          "USER_PAUSED"
-        ],
+        "enum": ["RUNNING", "PAUSED", "CANCELLED", "COMPLETE", "IDLE", "USER_PAUSED"],
         "description": "The current status of a classification job. Possible values are:"
       },
       "Statistics": {
@@ -10909,37 +10767,22 @@
       },
       "FindingPublishingFrequency": {
         "type": "string",
-        "enum": [
-          "FIFTEEN_MINUTES",
-          "ONE_HOUR",
-          "SIX_HOURS"
-        ],
+        "enum": ["FIFTEEN_MINUTES", "ONE_HOUR", "SIX_HOURS"],
         "description": "The frequency with which Amazon Macie publishes updates to policy findings for an account. This includes publishing updates to AWS Security Hub and Amazon EventBridge (formerly called Amazon CloudWatch Events). Valid values are:"
       },
       "MacieStatus": {
         "type": "string",
-        "enum": [
-          "PAUSED",
-          "ENABLED"
-        ],
+        "enum": ["PAUSED", "ENABLED"],
         "description": "The status of an Amazon Macie account. Valid values are:"
       },
       "EncryptionType": {
         "type": "string",
-        "enum": [
-          "NONE",
-          "AES256",
-          "aws:kms",
-          "UNKNOWN"
-        ],
+        "enum": ["NONE", "AES256", "aws:kms", "UNKNOWN"],
         "description": "The type of server-side encryption that's used to encrypt objects in the S3 bucket. Valid values are:"
       },
       "ErrorCode": {
         "type": "string",
-        "enum": [
-          "ClientError",
-          "InternalError"
-        ],
+        "enum": ["ClientError", "InternalError"],
         "description": "The source of an error, issue, or delay. Possible values are:"
       },
       "FederatedUser": {
@@ -11000,10 +10843,7 @@
       },
       "FindingCategory": {
         "type": "string",
-        "enum": [
-          "CLASSIFICATION",
-          "POLICY"
-        ],
+        "enum": ["CLASSIFICATION", "POLICY"],
         "description": "The category of the finding. Valid values are:"
       },
       "PolicyDetails": {
@@ -11272,9 +11112,7 @@
       },
       "FindingActionType": {
         "type": "string",
-        "enum": [
-          "AWS_API_CALL"
-        ],
+        "enum": ["AWS_API_CALL"],
         "description": "The type of action that occurred for the resource and produced the policy finding:"
       },
       "FindingAction": {
@@ -11805,16 +11643,7 @@
       },
       "JobComparator": {
         "type": "string",
-        "enum": [
-          "EQ",
-          "GT",
-          "GTE",
-          "LT",
-          "LTE",
-          "NE",
-          "CONTAINS",
-          "STARTS_WITH"
-        ],
+        "enum": ["EQ", "GT", "GTE", "LT", "LTE", "NE", "CONTAINS", "STARTS_WITH"],
         "description": "The operator to use in a condition. Valid values are:"
       },
       "SimpleScopeTerm": {
@@ -12102,12 +11931,7 @@
       },
       "ListJobsFilterKey": {
         "type": "string",
-        "enum": [
-          "jobType",
-          "jobStatus",
-          "createdAt",
-          "name"
-        ],
+        "enum": ["jobType", "jobStatus", "createdAt", "name"],
         "description": "The property to use to filter the results. Valid values are:"
       },
       "ListJobsFilterTerm": {
@@ -12543,10 +12367,7 @@
           }
         },
         "description": "Specifies which S3 buckets contain the objects that a classification job analyzes.",
-        "required": [
-          "accountId",
-          "buckets"
-        ]
+        "required": ["accountId", "buckets"]
       },
       "StorageClass": {
         "type": "string",
@@ -12563,13 +12384,7 @@
       },
       "ScopeFilterKey": {
         "type": "string",
-        "enum": [
-          "BUCKET_CREATION_DATE",
-          "OBJECT_EXTENSION",
-          "OBJECT_LAST_MODIFIED_DATE",
-          "OBJECT_SIZE",
-          "TAG"
-        ],
+        "enum": ["BUCKET_CREATION_DATE", "OBJECT_EXTENSION", "OBJECT_LAST_MODIFIED_DATE", "OBJECT_SIZE", "TAG"],
         "description": "The property to use in a condition that determines which objects are analyzed by a classification job. Valid values are:"
       },
       "SensitiveDataItem": {
@@ -12610,19 +12425,12 @@
       },
       "SensitiveDataItemCategory": {
         "type": "string",
-        "enum": [
-          "FINANCIAL_INFORMATION",
-          "PERSONAL_INFORMATION",
-          "CREDENTIALS",
-          "CUSTOM_IDENTIFIER"
-        ],
+        "enum": ["FINANCIAL_INFORMATION", "PERSONAL_INFORMATION", "CREDENTIALS", "CUSTOM_IDENTIFIER"],
         "description": "The category of sensitive data that was detected and produced the finding. Possible values are:"
       },
       "Unit": {
         "type": "string",
-        "enum": [
-          "TERABYTES"
-        ]
+        "enum": ["TERABYTES"]
       },
       "ServiceLimit": {
         "type": "object",
@@ -12744,11 +12552,7 @@
       },
       "SeverityDescription": {
         "type": "string",
-        "enum": [
-          "Low",
-          "Medium",
-          "High"
-        ],
+        "enum": ["Low", "Medium", "High"],
         "description": "The textual representation of the finding's severity. Possible values are:"
       },
       "__listOfTagValuePair": {
@@ -12759,9 +12563,7 @@
       },
       "TagTarget": {
         "type": "string",
-        "enum": [
-          "S3_OBJECT"
-        ],
+        "enum": ["S3_OBJECT"],
         "description": "The type of object to apply a tag-based condition to. Valid values are:"
       },
       "TagValuePair": {
@@ -12828,10 +12630,7 @@
       },
       "UsageType": {
         "type": "string",
-        "enum": [
-          "DATA_INVENTORY_EVALUATION",
-          "SENSITIVE_DATA_DISCOVERY"
-        ],
+        "enum": ["DATA_INVENTORY_EVALUATION", "SENSITIVE_DATA_DISCOVERY"],
         "description": "The name of a usage metric for an account. Possible values are:"
       },
       "UsageByAccount": {
@@ -12924,25 +12723,12 @@
       },
       "UsageStatisticsFilterComparator": {
         "type": "string",
-        "enum": [
-          "GT",
-          "GTE",
-          "LT",
-          "LTE",
-          "EQ",
-          "NE",
-          "CONTAINS"
-        ],
+        "enum": ["GT", "GTE", "LT", "LTE", "EQ", "NE", "CONTAINS"],
         "description": "The operator to use in a condition that filters the results of a query for account quotas and usage data. Valid values are:"
       },
       "UsageStatisticsFilterKey": {
         "type": "string",
-        "enum": [
-          "accountId",
-          "serviceLimit",
-          "freeTrialStartDate",
-          "total"
-        ],
+        "enum": ["accountId", "serviceLimit", "freeTrialStartDate", "total"],
         "description": "The field to use in a condition that filters the results of a query for account quotas and usage data. Valid values are:"
       },
       "UsageTotal": {
@@ -13019,14 +12805,7 @@
       },
       "UserIdentityType": {
         "type": "string",
-        "enum": [
-          "AssumedRole",
-          "IAMUser",
-          "FederatedUser",
-          "Root",
-          "AWSAccount",
-          "AWSService"
-        ],
+        "enum": ["AssumedRole", "IAMUser", "FederatedUser", "Root", "AWSAccount", "AWSService"],
         "description": "The type of entity that performed the action on the affected resource. Possible values are:"
       },
       "Cell": {
@@ -13357,26 +13136,15 @@
       },
       "IsDefinedInJob": {
         "type": "string",
-        "enum": [
-          "TRUE",
-          "FALSE",
-          "UNKNOWN"
-        ]
+        "enum": ["TRUE", "FALSE", "UNKNOWN"]
       },
       "IsMonitoredByJob": {
         "type": "string",
-        "enum": [
-          "TRUE",
-          "FALSE",
-          "UNKNOWN"
-        ]
+        "enum": ["TRUE", "FALSE", "UNKNOWN"]
       },
       "LastRunErrorStatusCode": {
         "type": "string",
-        "enum": [
-          "NONE",
-          "ERROR"
-        ],
+        "enum": ["NONE", "ERROR"],
         "description": "Specifies whether any account- or bucket-level access errors occurred during the run of a one-time classification job or the most recent run of a recurring classification job. Possible values are:"
       },
       "S3BucketCriteriaForJob": {
@@ -13511,21 +13279,12 @@
       },
       "SearchResourcesSortAttributeName": {
         "type": "string",
-        "enum": [
-          "ACCOUNT_ID",
-          "RESOURCE_NAME",
-          "S3_CLASSIFIABLE_OBJECT_COUNT",
-          "S3_CLASSIFIABLE_SIZE_IN_BYTES"
-        ],
+        "enum": ["ACCOUNT_ID", "RESOURCE_NAME", "S3_CLASSIFIABLE_OBJECT_COUNT", "S3_CLASSIFIABLE_SIZE_IN_BYTES"],
         "description": "The property to sort the query results by. Valid values are:"
       },
       "AllowsUnencryptedObjectUploads": {
         "type": "string",
-        "enum": [
-          "TRUE",
-          "FALSE",
-          "UNKNOWN"
-        ]
+        "enum": ["TRUE", "FALSE", "UNKNOWN"]
       },
       "BucketCountPolicyAllowsUnencryptedObjectUploads": {
         "type": "object",
@@ -13591,20 +13350,11 @@
       },
       "Type": {
         "type": "string",
-        "enum": [
-          "NONE",
-          "AES256",
-          "aws:kms"
-        ]
+        "enum": ["NONE", "AES256", "aws:kms"]
       },
       "ManagedDataIdentifierSelector": {
         "type": "string",
-        "enum": [
-          "ALL",
-          "EXCLUDE",
-          "INCLUDE",
-          "NONE"
-        ],
+        "enum": ["ALL", "EXCLUDE", "INCLUDE", "NONE"],
         "description": "The selection type that determines which managed data identifiers a classification job uses to analyze data. Valid values are:"
       },
       "__listOfCriteriaForJob": {
@@ -13719,10 +13469,7 @@
       },
       "SecurityHubConfiguration": {
         "type": "object",
-        "required": [
-          "publishPolicyFindings",
-          "publishClassificationFindings"
-        ],
+        "required": ["publishPolicyFindings", "publishClassificationFindings"],
         "properties": {
           "publishClassificationFindings": {
             "allOf": [
@@ -13749,10 +13496,7 @@
       },
       "TimeRange": {
         "type": "string",
-        "enum": [
-          "MONTH_TO_DATE",
-          "PAST_30_DAYS"
-        ],
+        "enum": ["MONTH_TO_DATE", "PAST_30_DAYS"],
         "description": "An inclusive time period that Amazon Macie usage data applies to. Possible values are:"
       },
       "__listOfManagedDataIdentifierSummary": {
@@ -13921,10 +13665,7 @@
       },
       "SearchResourcesComparator": {
         "type": "string",
-        "enum": [
-          "EQ",
-          "NE"
-        ],
+        "enum": ["EQ", "NE"],
         "description": "The operator to use in a condition that filters the results of a query. Valid values are:"
       },
       "SearchResourcesSimpleCriterion": {
@@ -14029,12 +13770,7 @@
       },
       "SearchResourcesSimpleCriterionKey": {
         "type": "string",
-        "enum": [
-          "ACCOUNT_ID",
-          "S3_BUCKET_NAME",
-          "S3_BUCKET_EFFECTIVE_PERMISSION",
-          "S3_BUCKET_SHARED_ACCESS"
-        ],
+        "enum": ["ACCOUNT_ID", "S3_BUCKET_NAME", "S3_BUCKET_EFFECTIVE_PERMISSION", "S3_BUCKET_SHARED_ACCESS"],
         "description": "The property to use in a condition that filters the query results. Valid values are:"
       },
       "__listOfSearchResourcesTagCriterionPair": {
@@ -14071,12 +13807,7 @@
       },
       "SimpleCriterionKeyForJob": {
         "type": "string",
-        "enum": [
-          "ACCOUNT_ID",
-          "S3_BUCKET_NAME",
-          "S3_BUCKET_EFFECTIVE_PERMISSION",
-          "S3_BUCKET_SHARED_ACCESS"
-        ],
+        "enum": ["ACCOUNT_ID", "S3_BUCKET_NAME", "S3_BUCKET_EFFECTIVE_PERMISSION", "S3_BUCKET_SHARED_ACCESS"],
         "description": "The property to use in a condition that determines whether an S3 bucket is included or excluded from a classification job. Valid values are:"
       },
       "__listOfTagCriterionPairForJob": {

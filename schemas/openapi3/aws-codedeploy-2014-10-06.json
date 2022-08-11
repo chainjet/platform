@@ -5,9 +5,7 @@
     "x-release": "v4",
     "title": "AWS CodeDeploy",
     "description": "AWS CodeDeploy is a deployment service that automates application deployments to Amazon EC2 instances, on-premises instances running in your own facility, serverless AWS Lambda functions, or applications in an Amazon ECS service. You can deploy a nearly unlimited variety of application content, such as an updated Lambda function, updated applications in an Amazon ECS service, code, web and configuration files, executables, packages, scripts, multimedia files, and so on. AWS CodeDeploy can deploy application content stored in Amazon S3 buckets, GitHub repositories, or Bitbucket repositories. You do not need to make changes to your existing code before you can use AWS CodeDeploy. AWS CodeDeploy makes it easier for you to rapidly release new features, helps you avoid downtime during application deployment, and handles the complexity of updating your applications, without many of the risks associated with error-prone manual deployments.  AWS CodeDeploy Components  Use the information in this guide to help you work with the following AWS CodeDeploy components:    Application: A name that uniquely identifies the application you want to deploy. AWS CodeDeploy uses this name, which functions as a container, to ensure the correct combination of revision, deployment configuration, and deployment group are referenced during a deployment.    Deployment group: A set of individual instances, CodeDeploy Lambda deployment configuration settings, or an Amazon ECS service and network details. A Lambda deployment group specifies how to route traffic to a new version of a Lambda function. An Amazon ECS deployment group specifies the service created in Amazon ECS to deploy, a load balancer, and a listener to reroute production traffic to an updated containerized application. An EC2/On-premises deployment group contains individually tagged instances, Amazon EC2 instances in Amazon EC2 Auto Scaling groups, or both. All deployment groups can specify optional trigger, alarm, and rollback settings.    Deployment configuration: A set of deployment rules and deployment success and failure conditions used by AWS CodeDeploy during a deployment.    Deployment: The process and the components used when updating a Lambda function, a containerized application in an Amazon ECS service, or of installing content on one or more instances.     Application revisions: For an AWS Lambda deployment, this is an AppSpec file that specifies the Lambda function to be updated and one or more functions to validate deployment lifecycle events. For an Amazon ECS deployment, this is an AppSpec file that specifies the Amazon ECS task definition, container, and port where production traffic is rerouted. For an EC2/On-premises deployment, this is an archive file that contains source content—source code, webpages, executable files, and deployment scripts—along with an AppSpec file. Revisions are stored in Amazon S3 buckets or GitHub repositories. For Amazon S3, a revision is uniquely identified by its Amazon S3 object key and its ETag, version, or both. For GitHub, a revision is uniquely identified by its commit ID.   This guide also contains information to help you get details about the instances in your deployments, to make on-premises instances available for AWS CodeDeploy deployments, to get details about a Lambda function deployment, and to get details about Amazon ECS service deployments.  AWS CodeDeploy Information Resources     AWS CodeDeploy User Guide     AWS CodeDeploy API Reference Guide     AWS CLI Reference for AWS CodeDeploy     AWS CodeDeploy Developer Forum",
-    "x-categories": [
-      "software-development"
-    ],
+    "x-categories": ["software-development"],
     "x-logo": {
       "url": "/logos/aws/Arch_AWS-CodeDeploy_64.svg"
     },
@@ -38,9 +36,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -123,10 +119,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -137,10 +130,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -245,9 +235,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.AddTagsToOnPremisesInstances"
-              ]
+              "enum": ["CodeDeploy_20141006.AddTagsToOnPremisesInstances"]
             }
           }
         ],
@@ -370,9 +358,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.BatchGetApplicationRevisions"
-              ]
+              "enum": ["CodeDeploy_20141006.BatchGetApplicationRevisions"]
             }
           }
         ],
@@ -475,9 +461,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.BatchGetApplications"
-              ]
+              "enum": ["CodeDeploy_20141006.BatchGetApplications"]
             }
           }
         ],
@@ -610,9 +594,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.BatchGetDeploymentGroups"
-              ]
+              "enum": ["CodeDeploy_20141006.BatchGetDeploymentGroups"]
             }
           }
         ],
@@ -746,9 +728,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.BatchGetDeploymentInstances"
-              ]
+              "enum": ["CodeDeploy_20141006.BatchGetDeploymentInstances"]
             }
           }
         ],
@@ -901,9 +881,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.BatchGetDeploymentTargets"
-              ]
+              "enum": ["CodeDeploy_20141006.BatchGetDeploymentTargets"]
             }
           }
         ],
@@ -996,9 +974,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.BatchGetDeployments"
-              ]
+              "enum": ["CodeDeploy_20141006.BatchGetDeployments"]
             }
           }
         ],
@@ -1091,9 +1067,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.BatchGetOnPremisesInstances"
-              ]
+              "enum": ["CodeDeploy_20141006.BatchGetOnPremisesInstances"]
             }
           }
         ],
@@ -1229,9 +1203,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.ContinueDeployment"
-              ]
+              "enum": ["CodeDeploy_20141006.ContinueDeployment"]
             }
           }
         ],
@@ -1354,9 +1326,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.CreateApplication"
-              ]
+              "enum": ["CodeDeploy_20141006.CreateApplication"]
             }
           }
         ],
@@ -1659,9 +1629,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.CreateDeployment"
-              ]
+              "enum": ["CodeDeploy_20141006.CreateDeployment"]
             }
           }
         ],
@@ -1794,9 +1762,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.CreateDeploymentConfig"
-              ]
+              "enum": ["CodeDeploy_20141006.CreateDeploymentConfig"]
             }
           }
         ],
@@ -2189,9 +2155,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.CreateDeploymentGroup"
-              ]
+              "enum": ["CodeDeploy_20141006.CreateDeploymentGroup"]
             }
           }
         ],
@@ -2277,9 +2241,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.DeleteApplication"
-              ]
+              "enum": ["CodeDeploy_20141006.DeleteApplication"]
             }
           }
         ],
@@ -2375,9 +2337,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.DeleteDeploymentConfig"
-              ]
+              "enum": ["CodeDeploy_20141006.DeleteDeploymentConfig"]
             }
           }
         ],
@@ -2490,9 +2450,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.DeleteDeploymentGroup"
-              ]
+              "enum": ["CodeDeploy_20141006.DeleteDeploymentGroup"]
             }
           }
         ],
@@ -2605,9 +2563,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.DeleteGitHubAccountToken"
-              ]
+              "enum": ["CodeDeploy_20141006.DeleteGitHubAccountToken"]
             }
           }
         ],
@@ -2670,9 +2626,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.DeleteResourcesByExternalId"
-              ]
+              "enum": ["CodeDeploy_20141006.DeleteResourcesByExternalId"]
             }
           }
         ],
@@ -2748,9 +2702,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.DeregisterOnPremisesInstance"
-              ]
+              "enum": ["CodeDeploy_20141006.DeregisterOnPremisesInstance"]
             }
           }
         ],
@@ -2843,9 +2795,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.GetApplication"
-              ]
+              "enum": ["CodeDeploy_20141006.GetApplication"]
             }
           }
         ],
@@ -2968,9 +2918,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.GetApplicationRevision"
-              ]
+              "enum": ["CodeDeploy_20141006.GetApplicationRevision"]
             }
           }
         ],
@@ -3063,9 +3011,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.GetDeployment"
-              ]
+              "enum": ["CodeDeploy_20141006.GetDeployment"]
             }
           }
         ],
@@ -3168,9 +3114,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.GetDeploymentConfig"
-              ]
+              "enum": ["CodeDeploy_20141006.GetDeploymentConfig"]
             }
           }
         ],
@@ -3303,9 +3247,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.GetDeploymentGroup"
-              ]
+              "enum": ["CodeDeploy_20141006.GetDeploymentGroup"]
             }
           }
         ],
@@ -3439,9 +3381,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.GetDeploymentInstance"
-              ]
+              "enum": ["CodeDeploy_20141006.GetDeploymentInstance"]
             }
           }
         ],
@@ -3584,9 +3524,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.GetDeploymentTarget"
-              ]
+              "enum": ["CodeDeploy_20141006.GetDeploymentTarget"]
             }
           }
         ],
@@ -3679,9 +3617,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.GetOnPremisesInstance"
-              ]
+              "enum": ["CodeDeploy_20141006.GetOnPremisesInstance"]
             }
           }
         ],
@@ -3853,9 +3789,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.ListApplicationRevisions"
-              ]
+              "enum": ["CodeDeploy_20141006.ListApplicationRevisions"]
             }
           }
         ],
@@ -3937,9 +3871,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.ListApplications"
-              ]
+              "enum": ["CodeDeploy_20141006.ListApplications"]
             }
           }
         ],
@@ -4021,9 +3953,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.ListDeploymentConfigs"
-              ]
+              "enum": ["CodeDeploy_20141006.ListDeploymentConfigs"]
             }
           }
         ],
@@ -4135,9 +4065,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.ListDeploymentGroups"
-              ]
+              "enum": ["CodeDeploy_20141006.ListDeploymentGroups"]
             }
           }
         ],
@@ -4310,9 +4238,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.ListDeploymentInstances"
-              ]
+              "enum": ["CodeDeploy_20141006.ListDeploymentInstances"]
             }
           }
         ],
@@ -4455,9 +4381,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.ListDeploymentTargets"
-              ]
+              "enum": ["CodeDeploy_20141006.ListDeploymentTargets"]
             }
           }
         ],
@@ -4639,9 +4563,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.ListDeployments"
-              ]
+              "enum": ["CodeDeploy_20141006.ListDeployments"]
             }
           }
         ],
@@ -4734,9 +4656,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.ListGitHubAccountTokenNames"
-              ]
+              "enum": ["CodeDeploy_20141006.ListGitHubAccountTokenNames"]
             }
           }
         ],
@@ -4829,9 +4749,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.ListOnPremisesInstances"
-              ]
+              "enum": ["CodeDeploy_20141006.ListOnPremisesInstances"]
             }
           }
         ],
@@ -4924,9 +4842,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.ListTagsForResource"
-              ]
+              "enum": ["CodeDeploy_20141006.ListTagsForResource"]
             }
           }
         ],
@@ -5059,9 +4975,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.PutLifecycleEventHookExecutionStatus"
-              ]
+              "enum": ["CodeDeploy_20141006.PutLifecycleEventHookExecutionStatus"]
             }
           }
         ],
@@ -5177,9 +5091,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.RegisterApplicationRevision"
-              ]
+              "enum": ["CodeDeploy_20141006.RegisterApplicationRevision"]
             }
           }
         ],
@@ -5335,9 +5247,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.RegisterOnPremisesInstance"
-              ]
+              "enum": ["CodeDeploy_20141006.RegisterOnPremisesInstance"]
             }
           }
         ],
@@ -5463,9 +5373,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.RemoveTagsFromOnPremisesInstances"
-              ]
+              "enum": ["CodeDeploy_20141006.RemoveTagsFromOnPremisesInstances"]
             }
           }
         ],
@@ -5582,9 +5490,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.SkipWaitTimeForInstanceTermination"
-              ]
+              "enum": ["CodeDeploy_20141006.SkipWaitTimeForInstanceTermination"]
             }
           }
         ],
@@ -5707,9 +5613,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.StopDeployment"
-              ]
+              "enum": ["CodeDeploy_20141006.StopDeployment"]
             }
           }
         ],
@@ -5852,9 +5756,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.TagResource"
-              ]
+              "enum": ["CodeDeploy_20141006.TagResource"]
             }
           }
         ],
@@ -5997,9 +5899,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.UntagResource"
-              ]
+              "enum": ["CodeDeploy_20141006.UntagResource"]
             }
           }
         ],
@@ -6095,9 +5995,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.UpdateApplication"
-              ]
+              "enum": ["CodeDeploy_20141006.UpdateApplication"]
             }
           }
         ],
@@ -6470,9 +6368,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeDeploy_20141006.UpdateDeploymentGroup"
-              ]
+              "enum": ["CodeDeploy_20141006.UpdateDeploymentGroup"]
             }
           }
         ],
@@ -6581,10 +6477,7 @@
     "schemas": {
       "AddTagsToOnPremisesInstancesInput": {
         "type": "object",
-        "required": [
-          "tags",
-          "instanceNames"
-        ],
+        "required": ["tags", "instanceNames"],
         "title": "AddTagsToOnPremisesInstancesInput",
         "properties": {
           "tags": {
@@ -6655,10 +6548,7 @@
       },
       "BatchGetApplicationRevisionsInput": {
         "type": "object",
-        "required": [
-          "applicationName",
-          "revisions"
-        ],
+        "required": ["applicationName", "revisions"],
         "title": "BatchGetApplicationRevisionsInput",
         "properties": {
           "applicationName": {
@@ -6708,9 +6598,7 @@
       },
       "BatchGetApplicationsInput": {
         "type": "object",
-        "required": [
-          "applicationNames"
-        ],
+        "required": ["applicationNames"],
         "title": "BatchGetApplicationsInput",
         "properties": {
           "applicationNames": {
@@ -6754,10 +6642,7 @@
       },
       "BatchGetDeploymentGroupsInput": {
         "type": "object",
-        "required": [
-          "applicationName",
-          "deploymentGroupNames"
-        ],
+        "required": ["applicationName", "deploymentGroupNames"],
         "title": "BatchGetDeploymentGroupsInput",
         "properties": {
           "applicationName": {
@@ -6814,10 +6699,7 @@
       },
       "BatchGetDeploymentInstancesInput": {
         "type": "object",
-        "required": [
-          "deploymentId",
-          "instanceIds"
-        ],
+        "required": ["deploymentId", "instanceIds"],
         "title": "BatchGetDeploymentInstancesInput",
         "properties": {
           "deploymentId": {
@@ -6913,9 +6795,7 @@
       },
       "BatchGetDeploymentsInput": {
         "type": "object",
-        "required": [
-          "deploymentIds"
-        ],
+        "required": ["deploymentIds"],
         "title": "BatchGetDeploymentsInput",
         "properties": {
           "deploymentIds": {
@@ -6949,9 +6829,7 @@
       },
       "BatchGetOnPremisesInstancesInput": {
         "type": "object",
-        "required": [
-          "instanceNames"
-        ],
+        "required": ["instanceNames"],
         "title": "BatchGetOnPremisesInstancesInput",
         "properties": {
           "instanceNames": {
@@ -7016,9 +6894,7 @@
       },
       "CreateApplicationInput": {
         "type": "object",
-        "required": [
-          "applicationName"
-        ],
+        "required": ["applicationName"],
         "title": "CreateApplicationInput",
         "properties": {
           "applicationName": {
@@ -7075,9 +6951,7 @@
       },
       "CreateDeploymentInput": {
         "type": "object",
-        "required": [
-          "applicationName"
-        ],
+        "required": ["applicationName"],
         "title": "CreateDeploymentInput",
         "properties": {
           "applicationName": {
@@ -7217,9 +7091,7 @@
       },
       "CreateDeploymentConfigInput": {
         "type": "object",
-        "required": [
-          "deploymentConfigName"
-        ],
+        "required": ["deploymentConfigName"],
         "title": "CreateDeploymentConfigInput",
         "properties": {
           "deploymentConfigName": {
@@ -7287,11 +7159,7 @@
       },
       "CreateDeploymentGroupInput": {
         "type": "object",
-        "required": [
-          "applicationName",
-          "deploymentGroupName",
-          "serviceRoleArn"
-        ],
+        "required": ["applicationName", "deploymentGroupName", "serviceRoleArn"],
         "title": "CreateDeploymentGroupInput",
         "properties": {
           "applicationName": {
@@ -7497,9 +7365,7 @@
       "ECSServiceMappingLimitExceededException": {},
       "DeleteApplicationInput": {
         "type": "object",
-        "required": [
-          "applicationName"
-        ],
+        "required": ["applicationName"],
         "title": "DeleteApplicationInput",
         "properties": {
           "applicationName": {
@@ -7517,9 +7383,7 @@
       },
       "DeleteDeploymentConfigInput": {
         "type": "object",
-        "required": [
-          "deploymentConfigName"
-        ],
+        "required": ["deploymentConfigName"],
         "title": "DeleteDeploymentConfigInput",
         "properties": {
           "deploymentConfigName": {
@@ -7555,10 +7419,7 @@
       },
       "DeleteDeploymentGroupInput": {
         "type": "object",
-        "required": [
-          "applicationName",
-          "deploymentGroupName"
-        ],
+        "required": ["applicationName", "deploymentGroupName"],
         "title": "DeleteDeploymentGroupInput",
         "properties": {
           "applicationName": {
@@ -7644,9 +7505,7 @@
       },
       "DeregisterOnPremisesInstanceInput": {
         "type": "object",
-        "required": [
-          "instanceName"
-        ],
+        "required": ["instanceName"],
         "title": "DeregisterOnPremisesInstanceInput",
         "properties": {
           "instanceName": {
@@ -7680,9 +7539,7 @@
       },
       "GetApplicationInput": {
         "type": "object",
-        "required": [
-          "applicationName"
-        ],
+        "required": ["applicationName"],
         "title": "GetApplicationInput",
         "properties": {
           "applicationName": {
@@ -7736,10 +7593,7 @@
       },
       "GetApplicationRevisionInput": {
         "type": "object",
-        "required": [
-          "applicationName",
-          "revision"
-        ],
+        "required": ["applicationName", "revision"],
         "title": "GetApplicationRevisionInput",
         "properties": {
           "applicationName": {
@@ -7783,9 +7637,7 @@
       },
       "GetDeploymentInput": {
         "type": "object",
-        "required": [
-          "deploymentId"
-        ],
+        "required": ["deploymentId"],
         "title": "GetDeploymentInput",
         "properties": {
           "deploymentId": {
@@ -7819,9 +7671,7 @@
       },
       "GetDeploymentConfigInput": {
         "type": "object",
-        "required": [
-          "deploymentConfigName"
-        ],
+        "required": ["deploymentConfigName"],
         "title": "GetDeploymentConfigInput",
         "properties": {
           "deploymentConfigName": {
@@ -7855,10 +7705,7 @@
       },
       "GetDeploymentGroupInput": {
         "type": "object",
-        "required": [
-          "applicationName",
-          "deploymentGroupName"
-        ],
+        "required": ["applicationName", "deploymentGroupName"],
         "title": "GetDeploymentGroupInput",
         "properties": {
           "applicationName": {
@@ -7902,10 +7749,7 @@
       },
       "GetDeploymentInstanceInput": {
         "type": "object",
-        "required": [
-          "deploymentId",
-          "instanceId"
-        ],
+        "required": ["deploymentId", "instanceId"],
         "title": "GetDeploymentInstanceInput",
         "properties": {
           "deploymentId": {
@@ -7990,9 +7834,7 @@
       },
       "GetOnPremisesInstanceInput": {
         "type": "object",
-        "required": [
-          "instanceName"
-        ],
+        "required": ["instanceName"],
         "title": "GetOnPremisesInstanceInput",
         "properties": {
           "instanceName": {
@@ -8036,9 +7878,7 @@
       },
       "ListApplicationRevisionsInput": {
         "type": "object",
-        "required": [
-          "applicationName"
-        ],
+        "required": ["applicationName"],
         "title": "ListApplicationRevisionsInput",
         "properties": {
           "applicationName": {
@@ -8245,9 +8085,7 @@
       },
       "ListDeploymentGroupsInput": {
         "type": "object",
-        "required": [
-          "applicationName"
-        ],
+        "required": ["applicationName"],
         "title": "ListDeploymentGroupsInput",
         "properties": {
           "applicationName": {
@@ -8301,9 +8139,7 @@
       },
       "ListDeploymentInstancesInput": {
         "type": "object",
-        "required": [
-          "deploymentId"
-        ],
+        "required": ["deploymentId"],
         "title": "ListDeploymentInstancesInput",
         "properties": {
           "deploymentId": {
@@ -8644,9 +8480,7 @@
       },
       "ListTagsForResourceInput": {
         "type": "object",
-        "required": [
-          "ResourceArn"
-        ],
+        "required": ["ResourceArn"],
         "title": "ListTagsForResourceInput",
         "properties": {
           "ResourceArn": {
@@ -8730,10 +8564,7 @@
       "LifecycleEventAlreadyCompletedException": {},
       "RegisterApplicationRevisionInput": {
         "type": "object",
-        "required": [
-          "applicationName",
-          "revision"
-        ],
+        "required": ["applicationName", "revision"],
         "title": "RegisterApplicationRevisionInput",
         "properties": {
           "applicationName": {
@@ -8771,9 +8602,7 @@
       },
       "RegisterOnPremisesInstanceInput": {
         "type": "object",
-        "required": [
-          "instanceName"
-        ],
+        "required": ["instanceName"],
         "title": "RegisterOnPremisesInstanceInput",
         "properties": {
           "instanceName": {
@@ -8819,10 +8648,7 @@
       "MultipleIamArnsProvidedException": {},
       "RemoveTagsFromOnPremisesInstancesInput": {
         "type": "object",
-        "required": [
-          "tags",
-          "instanceNames"
-        ],
+        "required": ["tags", "instanceNames"],
         "title": "RemoveTagsFromOnPremisesInstancesInput",
         "properties": {
           "tags": {
@@ -8892,9 +8718,7 @@
       },
       "StopDeploymentInput": {
         "type": "object",
-        "required": [
-          "deploymentId"
-        ],
+        "required": ["deploymentId"],
         "title": "StopDeploymentInput",
         "properties": {
           "deploymentId": {
@@ -8926,10 +8750,7 @@
       },
       "TagResourceInput": {
         "type": "object",
-        "required": [
-          "ResourceArn",
-          "Tags"
-        ],
+        "required": ["ResourceArn", "Tags"],
         "title": "TagResourceInput",
         "properties": {
           "ResourceArn": {
@@ -8960,10 +8781,7 @@
       },
       "UntagResourceInput": {
         "type": "object",
-        "required": [
-          "ResourceArn",
-          "TagKeys"
-        ],
+        "required": ["ResourceArn", "TagKeys"],
         "title": "UntagResourceInput",
         "properties": {
           "ResourceArn": {
@@ -9033,10 +8851,7 @@
       },
       "UpdateDeploymentGroupInput": {
         "type": "object",
-        "required": [
-          "applicationName",
-          "currentDeploymentGroupName"
-        ],
+        "required": ["applicationName", "currentDeploymentGroupName"],
         "title": "UpdateDeploymentGroupInput",
         "properties": {
           "applicationName": {
@@ -9352,11 +9167,7 @@
       },
       "ComputePlatform": {
         "type": "string",
-        "enum": [
-          "Server",
-          "Lambda",
-          "ECS"
-        ]
+        "enum": ["Server", "Lambda", "ECS"]
       },
       "ApplicationInfo": {
         "type": "object",
@@ -9426,11 +9237,7 @@
       },
       "ApplicationRevisionSortBy": {
         "type": "string",
-        "enum": [
-          "registerTime",
-          "firstUsedTime",
-          "lastUsedTime"
-        ]
+        "enum": ["registerTime", "firstUsedTime", "lastUsedTime"]
       },
       "ApplicationsInfoList": {
         "type": "array",
@@ -9483,11 +9290,7 @@
       },
       "AutoRollbackEvent": {
         "type": "string",
-        "enum": [
-          "DEPLOYMENT_FAILURE",
-          "DEPLOYMENT_STOP_ON_ALARM",
-          "DEPLOYMENT_STOP_ON_REQUEST"
-        ]
+        "enum": ["DEPLOYMENT_FAILURE", "DEPLOYMENT_STOP_ON_ALARM", "DEPLOYMENT_STOP_ON_REQUEST"]
       },
       "AutoScalingGroupName": {
         "type": "string"
@@ -9711,23 +9514,14 @@
       },
       "InstanceAction": {
         "type": "string",
-        "enum": [
-          "TERMINATE",
-          "KEEP_ALIVE"
-        ]
+        "enum": ["TERMINATE", "KEEP_ALIVE"]
       },
       "Duration": {
         "type": "integer"
       },
       "BundleType": {
         "type": "string",
-        "enum": [
-          "tar",
-          "tgz",
-          "zip",
-          "YAML",
-          "JSON"
-        ]
+        "enum": ["tar", "tgz", "zip", "YAML", "JSON"]
       },
       "CloudFormationResourceType": {
         "type": "string"
@@ -9747,15 +9541,7 @@
       },
       "TargetStatus": {
         "type": "string",
-        "enum": [
-          "Pending",
-          "InProgress",
-          "Succeeded",
-          "Failed",
-          "Skipped",
-          "Unknown",
-          "Ready"
-        ]
+        "enum": ["Pending", "InProgress", "Succeeded", "Failed", "Skipped", "Unknown", "Ready"]
       },
       "TrafficWeight": {
         "type": "number",
@@ -9842,10 +9628,7 @@
       },
       "DeploymentWaitType": {
         "type": "string",
-        "enum": [
-          "READY_WAIT",
-          "TERMINATION_WAIT"
-        ]
+        "enum": ["READY_WAIT", "TERMINATION_WAIT"]
       },
       "DeploymentConfigName": {
         "type": "string",
@@ -10143,11 +9926,7 @@
       },
       "FileExistsBehavior": {
         "type": "string",
-        "enum": [
-          "DISALLOW",
-          "OVERWRITE",
-          "RETAIN"
-        ]
+        "enum": ["DISALLOW", "OVERWRITE", "RETAIN"]
       },
       "ExternalId": {
         "type": "string"
@@ -10510,16 +10289,7 @@
       },
       "DeploymentStatus": {
         "type": "string",
-        "enum": [
-          "Created",
-          "Queued",
-          "InProgress",
-          "Baking",
-          "Succeeded",
-          "Failed",
-          "Stopped",
-          "Ready"
-        ]
+        "enum": ["Created", "Queued", "InProgress", "Baking", "Succeeded", "Failed", "Stopped", "Ready"]
       },
       "ErrorInformation": {
         "type": "object",
@@ -10946,20 +10716,14 @@
       },
       "DeploymentOption": {
         "type": "string",
-        "enum": [
-          "WITH_TRAFFIC_CONTROL",
-          "WITHOUT_TRAFFIC_CONTROL"
-        ]
+        "enum": ["WITH_TRAFFIC_CONTROL", "WITHOUT_TRAFFIC_CONTROL"]
       },
       "InstanceCount": {
         "type": "integer"
       },
       "DeploymentReadyAction": {
         "type": "string",
-        "enum": [
-          "CONTINUE_DEPLOYMENT",
-          "STOP_DEPLOYMENT"
-        ]
+        "enum": ["CONTINUE_DEPLOYMENT", "STOP_DEPLOYMENT"]
       },
       "DeploymentStatusList": {
         "type": "array",
@@ -10969,19 +10733,11 @@
       },
       "DeploymentType": {
         "type": "string",
-        "enum": [
-          "IN_PLACE",
-          "BLUE_GREEN"
-        ]
+        "enum": ["IN_PLACE", "BLUE_GREEN"]
       },
       "DeploymentTargetType": {
         "type": "string",
-        "enum": [
-          "InstanceTarget",
-          "LambdaTarget",
-          "ECSTarget",
-          "CloudFormationTarget"
-        ]
+        "enum": ["InstanceTarget", "LambdaTarget", "ECSTarget", "CloudFormationTarget"]
       },
       "InstanceTarget": {
         "type": "object",
@@ -11265,14 +11021,7 @@
       },
       "LifecycleErrorCode": {
         "type": "string",
-        "enum": [
-          "Success",
-          "ScriptMissing",
-          "ScriptNotExecutable",
-          "ScriptTimedOut",
-          "ScriptFailed",
-          "UnknownError"
-        ]
+        "enum": ["Success", "ScriptMissing", "ScriptNotExecutable", "ScriptTimedOut", "ScriptFailed", "UnknownError"]
       },
       "ScriptName": {
         "type": "string"
@@ -11337,11 +11086,7 @@
       },
       "EC2TagFilterType": {
         "type": "string",
-        "enum": [
-          "KEY_ONLY",
-          "VALUE_ONLY",
-          "KEY_AND_VALUE"
-        ]
+        "enum": ["KEY_ONLY", "VALUE_ONLY", "KEY_AND_VALUE"]
       },
       "EC2TagFilter": {
         "type": "object",
@@ -11453,10 +11198,7 @@
       },
       "TargetLabel": {
         "type": "string",
-        "enum": [
-          "Blue",
-          "Green"
-        ]
+        "enum": ["Blue", "Green"]
       },
       "ECSTaskSet": {
         "type": "object",
@@ -11859,10 +11601,7 @@
       },
       "GreenFleetProvisioningAction": {
         "type": "string",
-        "enum": [
-          "DISCOVER_EXISTING",
-          "COPY_AUTO_SCALING_GROUP"
-        ]
+        "enum": ["DISCOVER_EXISTING", "COPY_AUTO_SCALING_GROUP"]
       },
       "IamSessionArn": {
         "type": "string"
@@ -11876,15 +11615,7 @@
       "InstanceStatus": {
         "type": "string",
         "deprecated": true,
-        "enum": [
-          "Pending",
-          "InProgress",
-          "Succeeded",
-          "Failed",
-          "Skipped",
-          "Unknown",
-          "Ready"
-        ],
+        "enum": ["Pending", "InProgress", "Succeeded", "Failed", "Skipped", "Unknown", "Ready"],
         "description": "InstanceStatus is deprecated, use TargetStatus instead."
       },
       "InstanceStatusList": {
@@ -11895,10 +11626,7 @@
       },
       "InstanceType": {
         "type": "string",
-        "enum": [
-          "Blue",
-          "Green"
-        ]
+        "enum": ["Blue", "Green"]
       },
       "InstanceTypeList": {
         "type": "array",
@@ -11976,14 +11704,7 @@
       },
       "LifecycleEventStatus": {
         "type": "string",
-        "enum": [
-          "Pending",
-          "InProgress",
-          "Succeeded",
-          "Failed",
-          "Skipped",
-          "Unknown"
-        ]
+        "enum": ["Pending", "InProgress", "Succeeded", "Failed", "Skipped", "Unknown"]
       },
       "LifecycleEvent": {
         "type": "object",
@@ -12046,10 +11767,7 @@
       },
       "SortOrder": {
         "type": "string",
-        "enum": [
-          "ascending",
-          "descending"
-        ]
+        "enum": ["ascending", "descending"]
       },
       "S3Bucket": {
         "type": "string"
@@ -12059,11 +11777,7 @@
       },
       "ListStateFilterAction": {
         "type": "string",
-        "enum": [
-          "include",
-          "exclude",
-          "ignore"
-        ]
+        "enum": ["include", "exclude", "ignore"]
       },
       "NextToken": {
         "type": "string"
@@ -12102,10 +11816,7 @@
       },
       "RegistrationStatus": {
         "type": "string",
-        "enum": [
-          "Registered",
-          "Deregistered"
-        ]
+        "enum": ["Registered", "Deregistered"]
       },
       "ListenerArn": {
         "type": "string"
@@ -12136,10 +11847,7 @@
       },
       "MinimumHealthyHostsType": {
         "type": "string",
-        "enum": [
-          "HOST_COUNT",
-          "FLEET_PERCENT"
-        ]
+        "enum": ["HOST_COUNT", "FLEET_PERCENT"]
       },
       "NullableBoolean": {
         "type": "boolean"
@@ -12208,12 +11916,7 @@
       },
       "RevisionLocationType": {
         "type": "string",
-        "enum": [
-          "S3",
-          "GitHub",
-          "String",
-          "AppSpecContent"
-        ]
+        "enum": ["S3", "GitHub", "String", "AppSpecContent"]
       },
       "S3Location": {
         "type": "object",
@@ -12276,10 +11979,7 @@
       },
       "StopStatus": {
         "type": "string",
-        "enum": [
-          "Pending",
-          "Succeeded"
-        ]
+        "enum": ["Pending", "Succeeded"]
       },
       "Tag": {
         "type": "object",
@@ -12309,11 +12009,7 @@
       },
       "TagFilterType": {
         "type": "string",
-        "enum": [
-          "KEY_ONLY",
-          "VALUE_ONLY",
-          "KEY_AND_VALUE"
-        ]
+        "enum": ["KEY_ONLY", "VALUE_ONLY", "KEY_AND_VALUE"]
       },
       "TagFilter": {
         "type": "object",
@@ -12469,11 +12165,7 @@
       },
       "TrafficRoutingType": {
         "type": "string",
-        "enum": [
-          "TimeBasedCanary",
-          "TimeBasedLinear",
-          "AllAtOnce"
-        ]
+        "enum": ["TimeBasedCanary", "TimeBasedLinear", "AllAtOnce"]
       },
       "TriggerName": {
         "type": "string"
@@ -12540,10 +12232,7 @@
       },
       "OutdatedInstancesStrategy": {
         "type": "string",
-        "enum": [
-          "UPDATE",
-          "IGNORE"
-        ]
+        "enum": ["UPDATE", "IGNORE"]
       },
       "RelatedDeployments": {
         "type": "object",

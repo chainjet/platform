@@ -95,10 +95,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -109,10 +106,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -185,9 +179,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "RecipeVersions"
-                ],
+                "required": ["RecipeVersions"],
                 "properties": {
                   "RecipeVersions": {
                     "description": "An array of version identifiers to be deleted.",
@@ -292,10 +284,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name",
-                  "Input"
-                ],
+                "required": ["Name", "Input"],
                 "properties": {
                   "Name": {
                     "description": "The name of the dataset to be created.",
@@ -387,12 +376,7 @@
                   "Format": {
                     "description": "The file format of a dataset that is created from an Amazon S3 file or folder.",
                     "type": "string",
-                    "enum": [
-                      "CSV",
-                      "JSON",
-                      "PARQUET",
-                      "EXCEL"
-                    ]
+                    "enum": ["CSV", "JSON", "PARQUET", "EXCEL"]
                   },
                   "PathOptions": {
                     "description": "Represents a set of options that define how DataBrew selects files for a given Amazon S3 path in a dataset.",
@@ -603,12 +587,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "DatasetName",
-                  "Name",
-                  "OutputLocation",
-                  "RoleArn"
-                ],
+                "required": ["DatasetName", "Name", "OutputLocation", "RoleArn"],
                 "properties": {
                   "DatasetName": {
                     "description": "The name of the dataset that this job is to act upon.",
@@ -625,10 +604,7 @@
                   "EncryptionMode": {
                     "description": "<p>The encryption mode for the job, which can be one of the following:</p> <ul> <li> <p> <code>SSE-KMS</code> - para&gt;<code>SSE-KMS</code> - server-side encryption with AWS KMS-managed keys.</p> </li> <li> <p> <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.</p> </li> </ul>",
                     "type": "string",
-                    "enum": [
-                      "SSE-KMS",
-                      "SSE-S3"
-                    ]
+                    "enum": ["SSE-KMS", "SSE-S3"]
                   },
                   "Name": {
                     "description": "The name of the job to be created.",
@@ -639,10 +615,7 @@
                   "LogSubscription": {
                     "description": "A value that enables or disables Amazon CloudWatch logging for the current AWS account. If logging is enabled, CloudWatch writes one log stream for each job run.",
                     "type": "string",
-                    "enum": [
-                      "ENABLE",
-                      "DISABLE"
-                    ]
+                    "enum": ["ENABLE", "DISABLE"]
                   },
                   "MaxCapacity": {
                     "description": "The maximum number of nodes that DataBrew can use when the job processes data.",
@@ -855,12 +828,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "DatasetName",
-                  "Name",
-                  "RecipeName",
-                  "RoleArn"
-                ],
+                "required": ["DatasetName", "Name", "RecipeName", "RoleArn"],
                 "properties": {
                   "DatasetName": {
                     "description": "The name of the dataset to associate this project with.",
@@ -1074,10 +1042,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name",
-                  "Steps"
-                ],
+                "required": ["Name", "Steps"],
                 "properties": {
                   "Description": {
                     "description": "A description for the recipe.",
@@ -1290,11 +1255,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name",
-                  "Outputs",
-                  "RoleArn"
-                ],
+                "required": ["Name", "Outputs", "RoleArn"],
                 "properties": {
                   "DatasetName": {
                     "description": "The name of the dataset that this job processes.",
@@ -1311,10 +1272,7 @@
                   "EncryptionMode": {
                     "description": "<p>The encryption mode for the job, which can be one of the following:</p> <ul> <li> <p> <code>SSE-KMS</code> - Server-side encryption with AWS KMS-managed keys.</p> </li> <li> <p> <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.</p> </li> </ul>",
                     "type": "string",
-                    "enum": [
-                      "SSE-KMS",
-                      "SSE-S3"
-                    ]
+                    "enum": ["SSE-KMS", "SSE-S3"]
                   },
                   "Name": {
                     "description": "A unique name for the job.",
@@ -1325,10 +1283,7 @@
                   "LogSubscription": {
                     "description": "A value that enables or disables Amazon CloudWatch logging for the current AWS account. If logging is enabled, CloudWatch writes one log stream for each job run.",
                     "type": "string",
-                    "enum": [
-                      "ENABLE",
-                      "DISABLE"
-                    ]
+                    "enum": ["ENABLE", "DISABLE"]
                   },
                   "MaxCapacity": {
                     "description": "The maximum number of nodes that DataBrew can consume when the job processes data.",
@@ -1499,10 +1454,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "CronExpression",
-                  "Name"
-                ],
+                "required": ["CronExpression", "Name"],
                 "properties": {
                   "JobNames": {
                     "description": "The name or names of one or more jobs to be run.",
@@ -1842,9 +1794,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Input"
-                ],
+                "required": ["Input"],
                 "properties": {
                   "FormatOptions": {
                     "description": "Options that define how Microsoft Excel input is to be interpreted by DataBrew.",
@@ -1921,12 +1871,7 @@
                   "Format": {
                     "description": "The file format of a dataset that is created from an Amazon S3 file or folder.",
                     "type": "string",
-                    "enum": [
-                      "CSV",
-                      "JSON",
-                      "PARQUET",
-                      "EXCEL"
-                    ]
+                    "enum": ["CSV", "JSON", "PARQUET", "EXCEL"]
                   },
                   "PathOptions": {
                     "description": "Represents a set of options that define how DataBrew selects files for a given Amazon S3 path in a dataset.",
@@ -2295,9 +2240,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "RoleArn"
-                ],
+                "required": ["RoleArn"],
                 "properties": {
                   "Sample": {
                     "description": "Represents the sample size and sampling type for AWS Glue DataBrew to use for interactive data analysis.",
@@ -2623,9 +2566,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "CronExpression"
-                ],
+                "required": ["CronExpression"],
                 "properties": {
                   "JobNames": {
                     "description": "The name or names of one or more jobs to be run for this schedule.",
@@ -3293,9 +3234,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Tags"
-                ],
+                "required": ["Tags"],
                 "properties": {
                   "Tags": {
                     "description": "One or more tags to be assigned to the resource.",
@@ -4047,10 +3986,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "OutputLocation",
-                  "RoleArn"
-                ],
+                "required": ["OutputLocation", "RoleArn"],
                 "properties": {
                   "EncryptionKeyArn": {
                     "description": "The Amazon Resource Name (ARN) of an encryption key that is used to protect the job.",
@@ -4061,18 +3997,12 @@
                   "EncryptionMode": {
                     "description": "<p>The encryption mode for the job, which can be one of the following:</p> <ul> <li> <p> <code>SSE-KMS</code> - Server-side encryption with AWS KMS-managed keys.</p> </li> <li> <p> <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.</p> </li> </ul>",
                     "type": "string",
-                    "enum": [
-                      "SSE-KMS",
-                      "SSE-S3"
-                    ]
+                    "enum": ["SSE-KMS", "SSE-S3"]
                   },
                   "LogSubscription": {
                     "description": "A value that enables or disables Amazon CloudWatch logging for the current AWS account. If logging is enabled, CloudWatch writes one log stream for each job run.",
                     "type": "string",
-                    "enum": [
-                      "ENABLE",
-                      "DISABLE"
-                    ]
+                    "enum": ["ENABLE", "DISABLE"]
                   },
                   "MaxCapacity": {
                     "description": "The maximum number of nodes that DataBrew can use when the job processes data.",
@@ -4278,10 +4208,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Outputs",
-                  "RoleArn"
-                ],
+                "required": ["Outputs", "RoleArn"],
                 "properties": {
                   "EncryptionKeyArn": {
                     "description": "The Amazon Resource Name (ARN) of an encryption key that is used to protect the job.",
@@ -4292,18 +4219,12 @@
                   "EncryptionMode": {
                     "description": "<p>The encryption mode for the job, which can be one of the following:</p> <ul> <li> <p> <code>SSE-KMS</code> - Server-side encryption with AWS KMS-managed keys.</p> </li> <li> <p> <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.</p> </li> </ul>",
                     "type": "string",
-                    "enum": [
-                      "SSE-KMS",
-                      "SSE-S3"
-                    ]
+                    "enum": ["SSE-KMS", "SSE-S3"]
                   },
                   "LogSubscription": {
                     "description": "A value that enables or disables Amazon CloudWatch logging for the current AWS account. If logging is enabled, CloudWatch writes one log stream for each job run.",
                     "type": "string",
-                    "enum": [
-                      "ENABLE",
-                      "DISABLE"
-                    ]
+                    "enum": ["ENABLE", "DISABLE"]
                   },
                   "MaxCapacity": {
                     "description": "The maximum number of nodes that DataBrew can consume when the job processes data.",
@@ -4544,9 +4465,7 @@
     "schemas": {
       "BatchDeleteRecipeVersionResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -4580,9 +4499,7 @@
       "ValidationException": {},
       "CreateDatasetResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -4650,9 +4567,7 @@
       },
       "S3Location": {
         "type": "object",
-        "required": [
-          "Bucket"
-        ],
+        "required": ["Bucket"],
         "properties": {
           "Bucket": {
             "allOf": [
@@ -4679,10 +4594,7 @@
       },
       "DataCatalogInputDefinition": {
         "type": "object",
-        "required": [
-          "DatabaseName",
-          "TableName"
-        ],
+        "required": ["DatabaseName", "TableName"],
         "properties": {
           "CatalogId": {
             "allOf": [
@@ -4735,9 +4647,7 @@
       "ServiceQuotaExceededException": {},
       "CreateProfileJobResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -4763,9 +4673,7 @@
       },
       "CreateProjectResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -4786,18 +4694,12 @@
       },
       "SampleType": {
         "type": "string",
-        "enum": [
-          "FIRST_N",
-          "LAST_N",
-          "RANDOM"
-        ]
+        "enum": ["FIRST_N", "LAST_N", "RANDOM"]
       },
       "InternalServerException": {},
       "CreateRecipeResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -4813,9 +4715,7 @@
       },
       "RecipeStep": {
         "type": "object",
-        "required": [
-          "Action"
-        ],
+        "required": ["Action"],
         "properties": {
           "Action": {
             "allOf": [
@@ -4842,9 +4742,7 @@
       },
       "CreateRecipeJobResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -4860,9 +4758,7 @@
       },
       "Output": {
         "type": "object",
-        "required": [
-          "Location"
-        ],
+        "required": ["Location"],
         "properties": {
           "CompressionFormat": {
             "allOf": [
@@ -4934,9 +4830,7 @@
       },
       "CreateScheduleResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -4957,9 +4851,7 @@
       },
       "DeleteDatasetResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -4975,9 +4867,7 @@
       },
       "DeleteJobResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -4993,9 +4883,7 @@
       },
       "DeleteProjectResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -5011,10 +4899,7 @@
       },
       "DeleteRecipeVersionResponse": {
         "type": "object",
-        "required": [
-          "Name",
-          "RecipeVersion"
-        ],
+        "required": ["Name", "RecipeVersion"],
         "properties": {
           "Name": {
             "allOf": [
@@ -5040,9 +4925,7 @@
       },
       "DeleteScheduleResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -5058,10 +4941,7 @@
       },
       "DescribeDatasetResponse": {
         "type": "object",
-        "required": [
-          "Name",
-          "Input"
-        ],
+        "required": ["Name", "Input"],
         "properties": {
           "CreatedBy": {
             "allOf": [
@@ -5173,9 +5053,7 @@
       },
       "DescribeJobResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "CreateDate": {
             "allOf": [
@@ -5404,9 +5282,7 @@
       },
       "DescribeProjectResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "CreateDate": {
             "allOf": [
@@ -5545,9 +5421,7 @@
       },
       "DescribeRecipeResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "CreatedBy": {
             "allOf": [
@@ -5683,9 +5557,7 @@
       },
       "DescribeScheduleResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "CreateDate": {
             "allOf": [
@@ -5781,9 +5653,7 @@
       },
       "ListDatasetsResponse": {
         "type": "object",
-        "required": [
-          "Datasets"
-        ],
+        "required": ["Datasets"],
         "properties": {
           "Datasets": {
             "allOf": [
@@ -5809,9 +5679,7 @@
       },
       "ListJobRunsResponse": {
         "type": "object",
-        "required": [
-          "JobRuns"
-        ],
+        "required": ["JobRuns"],
         "properties": {
           "JobRuns": {
             "allOf": [
@@ -5837,9 +5705,7 @@
       },
       "ListJobsResponse": {
         "type": "object",
-        "required": [
-          "Jobs"
-        ],
+        "required": ["Jobs"],
         "properties": {
           "Jobs": {
             "allOf": [
@@ -5865,9 +5731,7 @@
       },
       "ListProjectsResponse": {
         "type": "object",
-        "required": [
-          "Projects"
-        ],
+        "required": ["Projects"],
         "properties": {
           "Projects": {
             "allOf": [
@@ -5893,9 +5757,7 @@
       },
       "ListRecipeVersionsResponse": {
         "type": "object",
-        "required": [
-          "Recipes"
-        ],
+        "required": ["Recipes"],
         "properties": {
           "NextToken": {
             "allOf": [
@@ -5921,9 +5783,7 @@
       },
       "ListRecipesResponse": {
         "type": "object",
-        "required": [
-          "Recipes"
-        ],
+        "required": ["Recipes"],
         "properties": {
           "Recipes": {
             "allOf": [
@@ -5949,9 +5809,7 @@
       },
       "ListSchedulesResponse": {
         "type": "object",
-        "required": [
-          "Schedules"
-        ],
+        "required": ["Schedules"],
         "properties": {
           "Schedules": {
             "allOf": [
@@ -5992,9 +5850,7 @@
       },
       "PublishRecipeResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -6010,9 +5866,7 @@
       },
       "SendProjectSessionActionResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Result": {
             "allOf": [
@@ -6048,9 +5902,7 @@
       },
       "RecipeAction": {
         "type": "object",
-        "required": [
-          "Operation"
-        ],
+        "required": ["Operation"],
         "properties": {
           "Operation": {
             "allOf": [
@@ -6098,9 +5950,7 @@
       },
       "StartJobRunResponse": {
         "type": "object",
-        "required": [
-          "RunId"
-        ],
+        "required": ["RunId"],
         "properties": {
           "RunId": {
             "allOf": [
@@ -6116,9 +5966,7 @@
       },
       "StartProjectSessionResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -6144,9 +5992,7 @@
       },
       "StopJobRunResponse": {
         "type": "object",
-        "required": [
-          "RunId"
-        ],
+        "required": ["RunId"],
         "properties": {
           "RunId": {
             "allOf": [
@@ -6175,9 +6021,7 @@
       },
       "UpdateDatasetResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -6193,9 +6037,7 @@
       },
       "UpdateProfileJobResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -6211,9 +6053,7 @@
       },
       "UpdateProjectResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "LastModifiedDate": {
             "allOf": [
@@ -6239,9 +6079,7 @@
       },
       "UpdateRecipeResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -6257,9 +6095,7 @@
       },
       "UpdateRecipeJobResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -6275,9 +6111,7 @@
       },
       "UpdateScheduleResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -6337,17 +6171,7 @@
       },
       "CompressionFormat": {
         "type": "string",
-        "enum": [
-          "GZIP",
-          "LZ4",
-          "SNAPPY",
-          "BZIP2",
-          "DEFLATE",
-          "LZO",
-          "BROTLI",
-          "ZSTD",
-          "ZLIB"
-        ]
+        "enum": ["GZIP", "LZ4", "SNAPPY", "BZIP2", "DEFLATE", "LZO", "BROTLI", "ZSTD", "ZLIB"]
       },
       "Condition": {
         "type": "string",
@@ -6366,10 +6190,7 @@
       },
       "ConditionExpression": {
         "type": "object",
-        "required": [
-          "Condition",
-          "TargetColumn"
-        ],
+        "required": ["Condition", "TargetColumn"],
         "properties": {
           "Condition": {
             "allOf": [
@@ -6496,17 +6317,11 @@
       },
       "EncryptionMode": {
         "type": "string",
-        "enum": [
-          "SSE-KMS",
-          "SSE-S3"
-        ]
+        "enum": ["SSE-KMS", "SSE-S3"]
       },
       "LogSubscription": {
         "type": "string",
-        "enum": [
-          "ENABLE",
-          "DISABLE"
-        ]
+        "enum": ["ENABLE", "DISABLE"]
       },
       "MaxCapacity": {
         "type": "integer"
@@ -6526,9 +6341,7 @@
       },
       "Sample": {
         "type": "object",
-        "required": [
-          "Type"
-        ],
+        "required": ["Type"],
         "properties": {
           "Size": {
             "allOf": [
@@ -6562,9 +6375,7 @@
       },
       "RecipeReference": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -6638,18 +6449,11 @@
       },
       "Source": {
         "type": "string",
-        "enum": [
-          "S3",
-          "DATA-CATALOG",
-          "DATABASE"
-        ]
+        "enum": ["S3", "DATA-CATALOG", "DATABASE"]
       },
       "Dataset": {
         "type": "object",
-        "required": [
-          "Name",
-          "Input"
-        ],
+        "required": ["Name", "Input"],
         "properties": {
           "AccountId": {
             "allOf": [
@@ -6792,10 +6596,7 @@
       },
       "JobType": {
         "type": "string",
-        "enum": [
-          "PROFILE",
-          "RECIPE"
-        ]
+        "enum": ["PROFILE", "RECIPE"]
       },
       "SessionStatus": {
         "type": "string",
@@ -6843,9 +6644,7 @@
       },
       "Job": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "AccountId": {
             "allOf": [
@@ -7096,15 +6895,7 @@
       },
       "JobRunState": {
         "type": "string",
-        "enum": [
-          "STARTING",
-          "RUNNING",
-          "STOPPING",
-          "STOPPED",
-          "SUCCEEDED",
-          "FAILED",
-          "TIMEOUT"
-        ]
+        "enum": ["STARTING", "RUNNING", "STOPPING", "STOPPED", "SUCCEEDED", "FAILED", "TIMEOUT"]
       },
       "LogGroupName": {
         "type": "string",
@@ -7330,16 +7121,7 @@
       },
       "OutputFormat": {
         "type": "string",
-        "enum": [
-          "CSV",
-          "JSON",
-          "PARQUET",
-          "GLUEPARQUET",
-          "AVRO",
-          "ORC",
-          "XML",
-          "TABLEAUHYPER"
-        ]
+        "enum": ["CSV", "JSON", "PARQUET", "GLUEPARQUET", "AVRO", "ORC", "XML", "TABLEAUHYPER"]
       },
       "OverwriteOutput": {
         "type": "boolean"
@@ -7357,10 +7139,7 @@
       },
       "Project": {
         "type": "object",
-        "required": [
-          "Name",
-          "RecipeName"
-        ],
+        "required": ["Name", "RecipeName"],
         "properties": {
           "AccountId": {
             "allOf": [
@@ -7507,9 +7286,7 @@
       },
       "Recipe": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "CreatedBy": {
             "allOf": [
@@ -7688,9 +7465,7 @@
       },
       "Schedule": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "AccountId": {
             "allOf": [
@@ -7833,10 +7608,7 @@
       },
       "DatabaseInputDefinition": {
         "type": "object",
-        "required": [
-          "GlueConnectionName",
-          "DatabaseTableName"
-        ],
+        "required": ["GlueConnectionName", "DatabaseTableName"],
         "properties": {
           "GlueConnectionName": {
             "allOf": [
@@ -7866,10 +7638,7 @@
       },
       "FilterExpression": {
         "type": "object",
-        "required": [
-          "Expression",
-          "ValuesMap"
-        ],
+        "required": ["Expression", "ValuesMap"],
         "properties": {
           "Expression": {
             "allOf": [
@@ -7896,9 +7665,7 @@
       },
       "FilesLimit": {
         "type": "object",
-        "required": [
-          "MaxFiles"
-        ],
+        "required": ["MaxFiles"],
         "properties": {
           "MaxFiles": {
             "allOf": [
@@ -7984,20 +7751,14 @@
       },
       "SampleMode": {
         "type": "string",
-        "enum": [
-          "FULL_DATASET",
-          "CUSTOM_ROWS"
-        ]
+        "enum": ["FULL_DATASET", "CUSTOM_ROWS"]
       },
       "JobSize": {
         "type": "integer"
       },
       "DataCatalogOutput": {
         "type": "object",
-        "required": [
-          "DatabaseName",
-          "TableName"
-        ],
+        "required": ["DatabaseName", "TableName"],
         "properties": {
           "CatalogId": {
             "allOf": [
@@ -8064,10 +7825,7 @@
       },
       "DatabaseOutput": {
         "type": "object",
-        "required": [
-          "GlueConnectionName",
-          "DatabaseOptions"
-        ],
+        "required": ["GlueConnectionName", "DatabaseOptions"],
         "properties": {
           "GlueConnectionName": {
             "allOf": [
@@ -8104,9 +7862,7 @@
       },
       "DescribeJobRunResponse": {
         "type": "object",
-        "required": [
-          "JobName"
-        ],
+        "required": ["JobName"],
         "properties": {
           "Attempt": {
             "allOf": [
@@ -8311,9 +8067,7 @@
       },
       "ColumnStatisticsConfiguration": {
         "type": "object",
-        "required": [
-          "Statistics"
-        ],
+        "required": ["Statistics"],
         "properties": {
           "Selectors": {
             "allOf": [
@@ -8343,12 +8097,7 @@
       },
       "InputFormat": {
         "type": "string",
-        "enum": [
-          "CSV",
-          "JSON",
-          "PARQUET",
-          "EXCEL"
-        ]
+        "enum": ["CSV", "JSON", "PARQUET", "EXCEL"]
       },
       "PathOptions": {
         "type": "object",
@@ -8488,9 +8237,7 @@
       },
       "S3TableOutputOptions": {
         "type": "object",
-        "required": [
-          "Location"
-        ],
+        "required": ["Location"],
         "properties": {
           "Location": {
             "allOf": [
@@ -8507,9 +8254,7 @@
       },
       "DatabaseTableOutputOptions": {
         "type": "object",
-        "required": [
-          "TableName"
-        ],
+        "required": ["TableName"],
         "properties": {
           "TempDirectory": {
             "allOf": [
@@ -8546,9 +8291,7 @@
       },
       "DatabaseOutputMode": {
         "type": "string",
-        "enum": [
-          "NEW_TABLE"
-        ]
+        "enum": ["NEW_TABLE"]
       },
       "PathParameterName": {
         "type": "string",
@@ -8557,17 +8300,11 @@
       },
       "ParameterType": {
         "type": "string",
-        "enum": [
-          "Datetime",
-          "Number",
-          "String"
-        ]
+        "enum": ["Datetime", "Number", "String"]
       },
       "DatetimeOptions": {
         "type": "object",
-        "required": [
-          "Format"
-        ],
+        "required": ["Format"],
         "properties": {
           "Format": {
             "allOf": [
@@ -8604,10 +8341,7 @@
       },
       "DatasetParameter": {
         "type": "object",
-        "required": [
-          "Name",
-          "Type"
-        ],
+        "required": ["Name", "Type"],
         "properties": {
           "Name": {
             "allOf": [
@@ -8691,16 +8425,11 @@
       },
       "OrderedBy": {
         "type": "string",
-        "enum": [
-          "LAST_MODIFIED_DATE"
-        ]
+        "enum": ["LAST_MODIFIED_DATE"]
       },
       "Order": {
         "type": "string",
-        "enum": [
-          "DESCENDING",
-          "ASCENDING"
-        ]
+        "enum": ["DESCENDING", "ASCENDING"]
       },
       "ValuesMap": {
         "type": "object",
@@ -8739,10 +8468,7 @@
       },
       "StatisticOverride": {
         "type": "object",
-        "required": [
-          "Statistic",
-          "Parameters"
-        ],
+        "required": ["Statistic", "Parameters"],
         "properties": {
           "Statistic": {
             "allOf": [

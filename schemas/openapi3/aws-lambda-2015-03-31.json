@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -270,11 +262,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "StatementId",
-                  "Action",
-                  "Principal"
-                ],
+                "required": ["StatementId", "Action", "Principal"],
                 "properties": {
                   "StatementId": {
                     "description": "An identifier that distinguishes the policy from others on the same layer version.",
@@ -529,11 +517,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "StatementId",
-                  "Action",
-                  "Principal"
-                ],
+                "required": ["StatementId", "Action", "Principal"],
                 "properties": {
                   "StatementId": {
                     "description": "A statement identifier that differentiates the statement from others in the same policy.",
@@ -774,10 +758,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name",
-                  "FunctionVersion"
-                ],
+                "required": ["Name", "FunctionVersion"],
                 "properties": {
                   "Name": {
                     "description": "The name of the alias.",
@@ -1022,10 +1003,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "EventSourceArn",
-                  "FunctionName"
-                ],
+                "required": ["EventSourceArn", "FunctionName"],
                 "properties": {
                   "EventSourceArn": {
                     "description": "<p>The Amazon Resource Name (ARN) of the event source.</p> <ul> <li> <p> <b>Amazon Kinesis</b> - The ARN of the data stream or a stream consumer.</p> </li> <li> <p> <b>Amazon DynamoDB Streams</b> - The ARN of the stream.</p> </li> <li> <p> <b>Amazon Simple Queue Service</b> - The ARN of the queue.</p> </li> <li> <p> <b>Amazon Managed Streaming for Apache Kafka</b> - The ARN of the cluster.</p> </li> </ul>",
@@ -1064,11 +1042,7 @@
                   "StartingPosition": {
                     "description": "The position in a stream from which to start reading. Required for Amazon Kinesis, Amazon DynamoDB, and Amazon MSK Streams sources. <code>AT_TIMESTAMP</code> is only supported for Amazon Kinesis streams.",
                     "type": "string",
-                    "enum": [
-                      "TRIM_HORIZON",
-                      "LATEST",
-                      "AT_TIMESTAMP"
-                    ]
+                    "enum": ["TRIM_HORIZON", "LATEST", "AT_TIMESTAMP"]
                   },
                   "StartingPositionTimestamp": {
                     "description": "With <code>StartingPosition</code> set to <code>AT_TIMESTAMP</code>, the time from which to start reading.",
@@ -1420,13 +1394,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "FunctionName",
-                  "Runtime",
-                  "Role",
-                  "Handler",
-                  "Code"
-                ],
+                "required": ["FunctionName", "Runtime", "Role", "Handler", "Code"],
                 "properties": {
                   "FunctionName": {
                     "description": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>my-function</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
@@ -1664,10 +1632,7 @@
                   "PackageType": {
                     "description": "The type of deployment package. Set to <code>Image</code> for container image and set <code>Zip</code> for ZIP archive.",
                     "type": "string",
-                    "enum": [
-                      "Zip",
-                      "Image"
-                    ]
+                    "enum": ["Zip", "Image"]
                   },
                   "ImageConfig": {
                     "description": "Configuration values that override the container image Dockerfile settings. See <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-parms\">Container settings</a>. ",
@@ -2811,9 +2776,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ReservedConcurrentExecutions"
-                ],
+                "required": ["ReservedConcurrentExecutions"],
                 "properties": {
                   "ReservedConcurrentExecutions": {
                     "description": "The number of simultaneous executions to reserve for the function.",
@@ -3766,9 +3729,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ProvisionedConcurrentExecutions"
-                ],
+                "required": ["ProvisionedConcurrentExecutions"],
                 "properties": {
                   "ProvisionedConcurrentExecutions": {
                     "description": "The amount of provisioned concurrency to allocate for the version or alias.",
@@ -4451,9 +4412,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "LayerVersion"
-              ]
+              "enum": ["LayerVersion"]
             }
           }
         ],
@@ -4779,11 +4738,7 @@
             "description": "<p>Choose from the following options.</p> <ul> <li> <p> <code>RequestResponse</code> (default) - Invoke the function synchronously. Keep the connection open until the function returns a response or times out. The API response includes the function response and additional data.</p> </li> <li> <p> <code>Event</code> - Invoke the function asynchronously. Send events that fail multiple times to the function's dead-letter queue (if it's configured). The API response only includes a status code.</p> </li> <li> <p> <code>DryRun</code> - Validate parameter values and verify that the user or role has permission to invoke the function.</p> </li> </ul>",
             "schema": {
               "type": "string",
-              "enum": [
-                "Event",
-                "RequestResponse",
-                "DryRun"
-              ]
+              "enum": ["Event", "RequestResponse", "DryRun"]
             }
           },
           {
@@ -4793,10 +4748,7 @@
             "description": "Set to <code>Tail</code> to include the execution log in the response.",
             "schema": {
               "type": "string",
-              "enum": [
-                "None",
-                "Tail"
-              ]
+              "enum": ["None", "Tail"]
             }
           },
           {
@@ -4951,9 +4903,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "InvokeArgs"
-                ],
+                "required": ["InvokeArgs"],
                 "properties": {
                   "InvokeArgs": {
                     "description": "The JSON that you want to provide to your Lambda function as input.",
@@ -5170,9 +5120,7 @@
             "description": "Set to <code>ALL</code> to include entries for all published versions of each function.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ALL"
-              ]
+              "enum": ["ALL"]
             }
           },
           {
@@ -5458,9 +5406,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Content"
-                ],
+                "required": ["Content"],
                 "properties": {
                   "Description": {
                     "description": "The description of the version.",
@@ -5760,9 +5706,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "ALL"
-              ]
+              "enum": ["ALL"]
             }
           }
         ],
@@ -5961,9 +5905,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Tags"
-                ],
+                "required": ["Tags"],
                 "properties": {
                   "Tags": {
                     "description": "A list of tags to apply to the function.",
@@ -6844,9 +6786,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "AllowedPublishers"
-                ],
+                "required": ["AllowedPublishers"],
                 "properties": {
                   "Description": {
                     "description": "Descriptive name for this code signing configuration.",
@@ -7515,9 +7455,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "CodeSigningConfigArn"
-                ],
+                "required": ["CodeSigningConfigArn"],
                 "properties": {
                   "CodeSigningConfigArn": {
                     "description": "The The Amazon Resource Name (ARN) of the code signing configuration.",
@@ -8507,10 +8445,7 @@
       },
       "TracingMode": {
         "type": "string",
-        "enum": [
-          "Active",
-          "PassThrough"
-        ]
+        "enum": ["Active", "PassThrough"]
       },
       "TagValue": {
         "type": "string"
@@ -8523,10 +8458,7 @@
       },
       "FileSystemConfig": {
         "type": "object",
-        "required": [
-          "Arn",
-          "LocalMountPath"
-        ],
+        "required": ["Arn", "LocalMountPath"],
         "properties": {
           "Arn": {
             "allOf": [
@@ -8760,9 +8692,7 @@
       "GetLayerVersionResponse": {
         "type": "object",
         "example": {
-          "CompatibleRuntimes": [
-            "python3.8"
-          ],
+          "CompatibleRuntimes": ["python3.8"],
           "Content": {
             "CodeSha256": "6x+xmpl/M3BnQUk7gS9sGmfeFsR/npojXoA3fZUv4eU=",
             "CodeSize": 9529009,
@@ -9258,18 +9188,14 @@
         "example": {
           "LayerVersions": [
             {
-              "CompatibleRuntimes": [
-                "java8"
-              ],
+              "CompatibleRuntimes": ["java8"],
               "CreatedDate": "2020-03-18T23:38:42.284+0000",
               "Description": "Dependencies for the blank-java sample app.",
               "LayerVersionArn": "arn:aws:lambda:us-east-2:123456789012:layer:blank-java-lib:7",
               "Version": 7
             },
             {
-              "CompatibleRuntimes": [
-                "java8"
-              ],
+              "CompatibleRuntimes": ["java8"],
               "CreatedDate": "2020-03-17T07:24:21.960+0000",
               "Description": "Dependencies for the blank-java sample app.",
               "LayerVersionArn": "arn:aws:lambda:us-east-2:123456789012:layer:blank-java-lib:6",
@@ -9306,10 +9232,7 @@
           "Layers": [
             {
               "LatestMatchingVersion": {
-                "CompatibleRuntimes": [
-                  "python3.6",
-                  "python3.7"
-                ],
+                "CompatibleRuntimes": ["python3.6", "python3.7"],
                 "CreatedDate": "2018-11-15T00:37:46.592+0000",
                 "Description": "My layer",
                 "LayerVersionArn": "arn:aws:lambda:us-east-2:123456789012:layer:my-layer:2",
@@ -9491,10 +9414,7 @@
       "PublishLayerVersionResponse": {
         "type": "object",
         "example": {
-          "CompatibleRuntimes": [
-            "python3.6",
-            "python3.7"
-          ],
+          "CompatibleRuntimes": ["python3.6", "python3.7"],
           "Content": {
             "CodeSha256": "tv9jJO+rPbXUUXuRKi7CwHzKtLDkDRJLB3cC3Z/ouXo=",
             "CodeSize": 169,
@@ -9906,11 +9826,7 @@
       },
       "EventSourcePosition": {
         "type": "string",
-        "enum": [
-          "TRIM_HORIZON",
-          "LATEST",
-          "AT_TIMESTAMP"
-        ]
+        "enum": ["TRIM_HORIZON", "LATEST", "AT_TIMESTAMP"]
       },
       "Date": {
         "type": "string",
@@ -10212,12 +10128,7 @@
       },
       "State": {
         "type": "string",
-        "enum": [
-          "Pending",
-          "Active",
-          "Inactive",
-          "Failed"
-        ]
+        "enum": ["Pending", "Active", "Inactive", "Failed"]
       },
       "StateReason": {
         "type": "string"
@@ -10242,11 +10153,7 @@
       },
       "LastUpdateStatus": {
         "type": "string",
-        "enum": [
-          "Successful",
-          "Failed",
-          "InProgress"
-        ]
+        "enum": ["Successful", "Failed", "InProgress"]
       },
       "LastUpdateStatusReason": {
         "type": "string"
@@ -10364,11 +10271,7 @@
       },
       "ProvisionedConcurrencyStatusEnum": {
         "type": "string",
-        "enum": [
-          "IN_PROGRESS",
-          "READY",
-          "FAILED"
-        ]
+        "enum": ["IN_PROGRESS", "READY", "FAILED"]
       },
       "HttpStatus": {
         "type": "integer"
@@ -10685,9 +10588,7 @@
       },
       "CreateCodeSigningConfigResponse": {
         "type": "object",
-        "required": [
-          "CodeSigningConfig"
-        ],
+        "required": ["CodeSigningConfig"],
         "properties": {
           "CodeSigningConfig": {
             "allOf": [
@@ -10711,10 +10612,7 @@
       },
       "CodeSigningPolicy": {
         "type": "string",
-        "enum": [
-          "Warn",
-          "Enforce"
-        ]
+        "enum": ["Warn", "Enforce"]
       },
       "CodeVerificationFailedException": {},
       "InvalidCodeSignatureException": {},
@@ -10725,9 +10623,7 @@
       },
       "GetCodeSigningConfigResponse": {
         "type": "object",
-        "required": [
-          "CodeSigningConfig"
-        ],
+        "required": ["CodeSigningConfig"],
         "properties": {
           "CodeSigningConfig": {
             "allOf": [
@@ -10743,10 +10639,7 @@
       },
       "GetFunctionCodeSigningConfigResponse": {
         "type": "object",
-        "required": [
-          "CodeSigningConfigArn",
-          "FunctionName"
-        ],
+        "required": ["CodeSigningConfigArn", "FunctionName"],
         "properties": {
           "CodeSigningConfigArn": {
             "allOf": [
@@ -10822,10 +10715,7 @@
       },
       "PutFunctionCodeSigningConfigResponse": {
         "type": "object",
-        "required": [
-          "CodeSigningConfigArn",
-          "FunctionName"
-        ],
+        "required": ["CodeSigningConfigArn", "FunctionName"],
         "properties": {
           "CodeSigningConfigArn": {
             "allOf": [
@@ -10851,9 +10741,7 @@
       },
       "UpdateCodeSigningConfigResponse": {
         "type": "object",
-        "required": [
-          "CodeSigningConfig"
-        ],
+        "required": ["CodeSigningConfig"],
         "properties": {
           "CodeSigningConfig": {
             "allOf": [
@@ -10869,9 +10757,7 @@
       },
       "AllowedPublishers": {
         "type": "object",
-        "required": [
-          "SigningProfileVersionArns"
-        ],
+        "required": ["SigningProfileVersionArns"],
         "properties": {
           "SigningProfileVersionArns": {
             "allOf": [
@@ -11006,9 +10892,7 @@
       },
       "FunctionResponseType": {
         "type": "string",
-        "enum": [
-          "ReportBatchItemFailures"
-        ]
+        "enum": ["ReportBatchItemFailures"]
       },
       "StringList": {
         "type": "array",
@@ -11052,10 +10936,7 @@
       },
       "PackageType": {
         "type": "string",
-        "enum": [
-          "Zip",
-          "Image"
-        ]
+        "enum": ["Zip", "Image"]
       },
       "ImageConfig": {
         "type": "object",

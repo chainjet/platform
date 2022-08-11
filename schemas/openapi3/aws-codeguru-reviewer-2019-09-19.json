@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -219,9 +211,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Repository"
-                ],
+                "required": ["Repository"],
                 "properties": {
                   "Repository": {
                     "description": " Information about an associated AWS CodeCommit repository or an associated repository that is managed by AWS CodeStar Connections (for example, Bitbucket). This <code>Repository</code> object is not used if your source code is in an associated GitHub repository. ",
@@ -545,11 +535,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name",
-                  "RepositoryAssociationArn",
-                  "Type"
-                ],
+                "required": ["Name", "RepositoryAssociationArn", "Type"],
                 "properties": {
                   "Name": {
                     "description": " The name of the code review. Each code review of the same code review type must have a unique name in your AWS account. ",
@@ -1166,10 +1152,7 @@
             "description": " The type of code reviews to list in the response. ",
             "schema": {
               "type": "string",
-              "enum": [
-                "PullRequest",
-                "RepositoryAnalysis"
-              ]
+              "enum": ["PullRequest", "RepositoryAnalysis"]
             }
           },
           {
@@ -1578,11 +1561,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "CodeReviewArn",
-                  "RecommendationId",
-                  "Reactions"
-                ],
+                "required": ["CodeReviewArn", "RecommendationId", "Reactions"],
                 "properties": {
                   "CodeReviewArn": {
                     "description": "The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReview.html\"> <code>CodeReview</code> </a> object. ",
@@ -1787,9 +1766,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Tags"
-                ],
+                "required": ["Tags"],
                 "properties": {
                   "Tags": {
                     "description": "<p> An array of key-value pairs used to tag an associated repository. A tag is a custom attribute label with two parts: </p> <ul> <li> <p>A <i>tag key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag keys are case sensitive.</p> </li> <li> <p>An optional field known as a <i>tag value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag value is the same as using an empty string. Like tag keys, tag values are case sensitive.</p> </li> </ul>",
@@ -2012,9 +1989,7 @@
       },
       "CodeCommitRepository": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -2031,11 +2006,7 @@
       },
       "ThirdPartySourceRepository": {
         "type": "object",
-        "required": [
-          "Name",
-          "ConnectionArn",
-          "Owner"
-        ],
+        "required": ["Name", "ConnectionArn", "Owner"],
         "properties": {
           "Name": {
             "allOf": [
@@ -2085,9 +2056,7 @@
       },
       "RepositoryAnalysis": {
         "type": "object",
-        "required": [
-          "RepositoryHead"
-        ],
+        "required": ["RepositoryHead"],
         "properties": {
           "RepositoryHead": {
             "allOf": [
@@ -2214,22 +2183,11 @@
       },
       "ProviderType": {
         "type": "string",
-        "enum": [
-          "CodeCommit",
-          "GitHub",
-          "Bitbucket",
-          "GitHubEnterpriseServer",
-          "S3Bucket"
-        ]
+        "enum": ["CodeCommit", "GitHub", "Bitbucket", "GitHubEnterpriseServer", "S3Bucket"]
       },
       "JobState": {
         "type": "string",
-        "enum": [
-          "Completed",
-          "Pending",
-          "Failed",
-          "Deleting"
-        ]
+        "enum": ["Completed", "Pending", "Failed", "Deleting"]
       },
       "Name": {
         "type": "string",
@@ -2324,13 +2282,7 @@
       },
       "RepositoryAssociationState": {
         "type": "string",
-        "enum": [
-          "Associated",
-          "Associating",
-          "Failed",
-          "Disassociating",
-          "Disassociated"
-        ]
+        "enum": ["Associated", "Associating", "Failed", "Disassociating", "Disassociated"]
       },
       "Owner": {
         "type": "string",
@@ -2344,10 +2296,7 @@
       },
       "Reaction": {
         "type": "string",
-        "enum": [
-          "ThumbsUp",
-          "ThumbsDown"
-        ]
+        "enum": ["ThumbsUp", "ThumbsDown"]
       },
       "Arn": {
         "type": "string",
@@ -2495,10 +2444,7 @@
       },
       "Type": {
         "type": "string",
-        "enum": [
-          "PullRequest",
-          "RepositoryAnalysis"
-        ]
+        "enum": ["PullRequest", "RepositoryAnalysis"]
       },
       "PullRequestId": {
         "type": "string",
@@ -3174,9 +3120,7 @@
       },
       "RepositoryHeadSourceCodeType": {
         "type": "object",
-        "required": [
-          "BranchName"
-        ],
+        "required": ["BranchName"],
         "properties": {
           "BranchName": {
             "allOf": [
@@ -3325,10 +3269,7 @@
       },
       "S3Repository": {
         "type": "object",
-        "required": [
-          "Name",
-          "BucketName"
-        ],
+        "required": ["Name", "BucketName"],
         "properties": {
           "Name": {
             "allOf": [
@@ -3361,10 +3302,7 @@
       },
       "EncryptionOption": {
         "type": "string",
-        "enum": [
-          "AWS_OWNED_CMK",
-          "CUSTOMER_MANAGED_CMK"
-        ]
+        "enum": ["AWS_OWNED_CMK", "CUSTOMER_MANAGED_CMK"]
       },
       "AnalysisTypes": {
         "type": "array",
@@ -3374,10 +3312,7 @@
       },
       "AnalysisType": {
         "type": "string",
-        "enum": [
-          "Security",
-          "CodeQuality"
-        ]
+        "enum": ["Security", "CodeQuality"]
       },
       "KMSKeyDetails": {
         "type": "object",
@@ -3407,10 +3342,7 @@
       },
       "BranchDiffSourceCodeType": {
         "type": "object",
-        "required": [
-          "SourceBranchName",
-          "DestinationBranchName"
-        ],
+        "required": ["SourceBranchName", "DestinationBranchName"],
         "properties": {
           "SourceBranchName": {
             "allOf": [
@@ -3449,9 +3381,7 @@
       },
       "CodeArtifacts": {
         "type": "object",
-        "required": [
-          "SourceCodeArtifactsObjectKey"
-        ],
+        "required": ["SourceCodeArtifactsObjectKey"],
         "properties": {
           "SourceCodeArtifactsObjectKey": {
             "allOf": [
@@ -3594,13 +3524,7 @@
       },
       "Severity": {
         "type": "string",
-        "enum": [
-          "Info",
-          "Low",
-          "Medium",
-          "High",
-          "Critical"
-        ]
+        "enum": ["Info", "Low", "Medium", "High", "Critical"]
       },
       "S3RepositoryDetails": {
         "type": "object",
@@ -3641,11 +3565,7 @@
       },
       "VendorName": {
         "type": "string",
-        "enum": [
-          "GitHub",
-          "GitLab",
-          "NativeS3"
-        ]
+        "enum": ["GitHub", "GitLab", "NativeS3"]
       },
       "RequestMetadata": {
         "type": "object",
@@ -3733,9 +3653,7 @@
       },
       "S3BucketRepository": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [

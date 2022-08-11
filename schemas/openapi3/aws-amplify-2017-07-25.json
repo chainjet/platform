@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -219,9 +211,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name"
-                ],
+                "required": ["name"],
                 "properties": {
                   "name": {
                     "description": " The name for the Amplify app. ",
@@ -242,9 +232,7 @@
                   "platform": {
                     "description": " The platform or framework for an Amplify app. ",
                     "type": "string",
-                    "enum": [
-                      "WEB"
-                    ]
+                    "enum": ["WEB"]
                   },
                   "iamServiceRoleArn": {
                     "description": " The AWS Identity and Access Management (IAM) service role for an Amplify app. ",
@@ -622,9 +610,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "environmentName"
-                ],
+                "required": ["environmentName"],
                 "properties": {
                   "environmentName": {
                     "description": " The name for the backend environment. ",
@@ -864,9 +850,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "branchName"
-                ],
+                "required": ["branchName"],
                 "properties": {
                   "branchName": {
                     "description": " The name for the branch. ",
@@ -882,13 +866,7 @@
                   "stage": {
                     "description": " Describes the current stage for the branch. ",
                     "type": "string",
-                    "enum": [
-                      "PRODUCTION",
-                      "BETA",
-                      "DEVELOPMENT",
-                      "EXPERIMENTAL",
-                      "PULL_REQUEST"
-                    ]
+                    "enum": ["PRODUCTION", "BETA", "DEVELOPMENT", "EXPERIMENTAL", "PULL_REQUEST"]
                   },
                   "framework": {
                     "description": " The framework for the branch. ",
@@ -1298,10 +1276,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "domainName",
-                  "subDomainSettings"
-                ],
+                "required": ["domainName", "subDomainSettings"],
                 "properties": {
                   "domainName": {
                     "description": " The domain name for the domain association. ",
@@ -1542,9 +1517,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "branchName"
-                ],
+                "required": ["branchName"],
                 "properties": {
                   "branchName": {
                     "description": " The name for a branch that is part of an Amplify app. ",
@@ -1946,9 +1919,7 @@
                   "platform": {
                     "description": " The platform for an Amplify app. ",
                     "type": "string",
-                    "enum": [
-                      "WEB"
-                    ]
+                    "enum": ["WEB"]
                   },
                   "iamServiceRoleArn": {
                     "description": " The AWS Identity and Access Management (IAM) service role for an Amplify app. ",
@@ -2650,13 +2621,7 @@
                   "stage": {
                     "description": " Describes the current stage for the branch. ",
                     "type": "string",
-                    "enum": [
-                      "PRODUCTION",
-                      "BETA",
-                      "DEVELOPMENT",
-                      "EXPERIMENTAL",
-                      "PULL_REQUEST"
-                    ]
+                    "enum": ["PRODUCTION", "BETA", "DEVELOPMENT", "EXPERIMENTAL", "PULL_REQUEST"]
                   },
                   "enableNotification": {
                     "description": " Enables notifications for the branch. ",
@@ -3016,9 +2981,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "subDomainSettings"
-                ],
+                "required": ["subDomainSettings"],
                 "properties": {
                   "enableAutoSubDomain": {
                     "description": " Enables the automated creation of subdomains for branches. ",
@@ -3643,9 +3606,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "domainName"
-                ],
+                "required": ["domainName"],
                 "properties": {
                   "startTime": {
                     "description": " The time at which the logs should start. The time range specified is inclusive of the start time. ",
@@ -4158,9 +4119,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "jobType"
-                ],
+                "required": ["jobType"],
                 "properties": {
                   "jobId": {
                     "description": " The unique ID for an existing job. This is required if the value of <code>jobType</code> is <code>RETRY</code>. ",
@@ -4170,12 +4129,7 @@
                   "jobType": {
                     "description": " Describes the type for the job. The job type <code>RELEASE</code> starts a new job with the latest change from the specified branch. This value is available only for apps that are connected to a repository. The job type <code>RETRY</code> retries an existing job. If the job type value is <code>RETRY</code>, the <code>jobId</code> is also required. ",
                     "type": "string",
-                    "enum": [
-                      "RELEASE",
-                      "RETRY",
-                      "MANUAL",
-                      "WEB_HOOK"
-                    ],
+                    "enum": ["RELEASE", "RETRY", "MANUAL", "WEB_HOOK"],
                     "maxLength": 10
                   },
                   "jobReason": {
@@ -4352,9 +4306,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "tags"
-                ],
+                "required": ["tags"],
                 "properties": {
                   "tags": {
                     "description": " The tags used to tag the resource. ",
@@ -4816,9 +4768,7 @@
     "schemas": {
       "CreateAppResult": {
         "type": "object",
-        "required": [
-          "app"
-        ],
+        "required": ["app"],
         "properties": {
           "app": {
             "$ref": "#/components/schemas/App"
@@ -4831,10 +4781,7 @@
       },
       "CustomRule": {
         "type": "object",
-        "required": [
-          "source",
-          "target"
-        ],
+        "required": ["source", "target"],
         "properties": {
           "source": {
             "allOf": [
@@ -4890,13 +4837,7 @@
       },
       "Stage": {
         "type": "string",
-        "enum": [
-          "PRODUCTION",
-          "BETA",
-          "DEVELOPMENT",
-          "EXPERIMENTAL",
-          "PULL_REQUEST"
-        ]
+        "enum": ["PRODUCTION", "BETA", "DEVELOPMENT", "EXPERIMENTAL", "PULL_REQUEST"]
       },
       "Framework": {
         "type": "string",
@@ -4939,9 +4880,7 @@
       "DependentServiceFailureException": {},
       "CreateBackendEnvironmentResult": {
         "type": "object",
-        "required": [
-          "backendEnvironment"
-        ],
+        "required": ["backendEnvironment"],
         "properties": {
           "backendEnvironment": {
             "allOf": [
@@ -4959,9 +4898,7 @@
       "NotFoundException": {},
       "CreateBranchResult": {
         "type": "object",
-        "required": [
-          "branch"
-        ],
+        "required": ["branch"],
         "properties": {
           "branch": {
             "allOf": [
@@ -4978,10 +4915,7 @@
       },
       "CreateDeploymentResult": {
         "type": "object",
-        "required": [
-          "fileUploadUrls",
-          "zipUploadUrl"
-        ],
+        "required": ["fileUploadUrls", "zipUploadUrl"],
         "properties": {
           "jobId": {
             "allOf": [
@@ -5022,9 +4956,7 @@
       },
       "CreateDomainAssociationResult": {
         "type": "object",
-        "required": [
-          "domainAssociation"
-        ],
+        "required": ["domainAssociation"],
         "properties": {
           "domainAssociation": {
             "allOf": [
@@ -5041,10 +4973,7 @@
       },
       "SubDomainSetting": {
         "type": "object",
-        "required": [
-          "prefix",
-          "branchName"
-        ],
+        "required": ["prefix", "branchName"],
         "properties": {
           "prefix": {
             "allOf": [
@@ -5076,9 +5005,7 @@
       },
       "CreateWebhookResult": {
         "type": "object",
-        "required": [
-          "webhook"
-        ],
+        "required": ["webhook"],
         "properties": {
           "webhook": {
             "allOf": [
@@ -5095,9 +5022,7 @@
       },
       "DeleteAppResult": {
         "type": "object",
-        "required": [
-          "app"
-        ],
+        "required": ["app"],
         "properties": {
           "app": {
             "$ref": "#/components/schemas/App"
@@ -5107,9 +5032,7 @@
       },
       "DeleteBackendEnvironmentResult": {
         "type": "object",
-        "required": [
-          "backendEnvironment"
-        ],
+        "required": ["backendEnvironment"],
         "properties": {
           "backendEnvironment": {
             "allOf": [
@@ -5126,9 +5049,7 @@
       },
       "DeleteBranchResult": {
         "type": "object",
-        "required": [
-          "branch"
-        ],
+        "required": ["branch"],
         "properties": {
           "branch": {
             "allOf": [
@@ -5145,9 +5066,7 @@
       },
       "DeleteDomainAssociationResult": {
         "type": "object",
-        "required": [
-          "domainAssociation"
-        ],
+        "required": ["domainAssociation"],
         "properties": {
           "domainAssociation": {
             "$ref": "#/components/schemas/DomainAssociation"
@@ -5156,9 +5075,7 @@
       },
       "DeleteJobResult": {
         "type": "object",
-        "required": [
-          "jobSummary"
-        ],
+        "required": ["jobSummary"],
         "properties": {
           "jobSummary": {
             "$ref": "#/components/schemas/JobSummary"
@@ -5168,9 +5085,7 @@
       },
       "DeleteWebhookResult": {
         "type": "object",
-        "required": [
-          "webhook"
-        ],
+        "required": ["webhook"],
         "properties": {
           "webhook": {
             "allOf": [
@@ -5203,9 +5118,7 @@
       },
       "GetAppResult": {
         "type": "object",
-        "required": [
-          "app"
-        ],
+        "required": ["app"],
         "properties": {
           "app": {
             "$ref": "#/components/schemas/App"
@@ -5214,10 +5127,7 @@
       },
       "GetArtifactUrlResult": {
         "type": "object",
-        "required": [
-          "artifactId",
-          "artifactUrl"
-        ],
+        "required": ["artifactId", "artifactUrl"],
         "properties": {
           "artifactId": {
             "allOf": [
@@ -5244,9 +5154,7 @@
       },
       "GetBackendEnvironmentResult": {
         "type": "object",
-        "required": [
-          "backendEnvironment"
-        ],
+        "required": ["backendEnvironment"],
         "properties": {
           "backendEnvironment": {
             "allOf": [
@@ -5263,9 +5171,7 @@
       },
       "GetBranchResult": {
         "type": "object",
-        "required": [
-          "branch"
-        ],
+        "required": ["branch"],
         "properties": {
           "branch": {
             "$ref": "#/components/schemas/Branch"
@@ -5274,9 +5180,7 @@
       },
       "GetDomainAssociationResult": {
         "type": "object",
-        "required": [
-          "domainAssociation"
-        ],
+        "required": ["domainAssociation"],
         "properties": {
           "domainAssociation": {
             "allOf": [
@@ -5293,9 +5197,7 @@
       },
       "GetJobResult": {
         "type": "object",
-        "required": [
-          "job"
-        ],
+        "required": ["job"],
         "properties": {
           "job": {
             "$ref": "#/components/schemas/Job"
@@ -5304,9 +5206,7 @@
       },
       "GetWebhookResult": {
         "type": "object",
-        "required": [
-          "webhook"
-        ],
+        "required": ["webhook"],
         "properties": {
           "webhook": {
             "allOf": [
@@ -5323,9 +5223,7 @@
       },
       "ListAppsResult": {
         "type": "object",
-        "required": [
-          "apps"
-        ],
+        "required": ["apps"],
         "properties": {
           "apps": {
             "allOf": [
@@ -5352,9 +5250,7 @@
       },
       "ListArtifactsResult": {
         "type": "object",
-        "required": [
-          "artifacts"
-        ],
+        "required": ["artifacts"],
         "properties": {
           "artifacts": {
             "allOf": [
@@ -5381,9 +5277,7 @@
       },
       "ListBackendEnvironmentsResult": {
         "type": "object",
-        "required": [
-          "backendEnvironments"
-        ],
+        "required": ["backendEnvironments"],
         "properties": {
           "backendEnvironments": {
             "allOf": [
@@ -5410,9 +5304,7 @@
       },
       "ListBranchesResult": {
         "type": "object",
-        "required": [
-          "branches"
-        ],
+        "required": ["branches"],
         "properties": {
           "branches": {
             "allOf": [
@@ -5439,9 +5331,7 @@
       },
       "ListDomainAssociationsResult": {
         "type": "object",
-        "required": [
-          "domainAssociations"
-        ],
+        "required": ["domainAssociations"],
         "properties": {
           "domainAssociations": {
             "allOf": [
@@ -5468,9 +5358,7 @@
       },
       "ListJobsResult": {
         "type": "object",
-        "required": [
-          "jobSummaries"
-        ],
+        "required": ["jobSummaries"],
         "properties": {
           "jobSummaries": {
             "allOf": [
@@ -5514,9 +5402,7 @@
       "ResourceNotFoundException": {},
       "ListWebhooksResult": {
         "type": "object",
-        "required": [
-          "webhooks"
-        ],
+        "required": ["webhooks"],
         "properties": {
           "webhooks": {
             "allOf": [
@@ -5543,9 +5429,7 @@
       },
       "StartDeploymentResult": {
         "type": "object",
-        "required": [
-          "jobSummary"
-        ],
+        "required": ["jobSummary"],
         "properties": {
           "jobSummary": {
             "allOf": [
@@ -5562,9 +5446,7 @@
       },
       "StartJobResult": {
         "type": "object",
-        "required": [
-          "jobSummary"
-        ],
+        "required": ["jobSummary"],
         "properties": {
           "jobSummary": {
             "allOf": [
@@ -5581,9 +5463,7 @@
       },
       "StopJobResult": {
         "type": "object",
-        "required": [
-          "jobSummary"
-        ],
+        "required": ["jobSummary"],
         "properties": {
           "jobSummary": {
             "allOf": [
@@ -5616,9 +5496,7 @@
       },
       "UpdateAppResult": {
         "type": "object",
-        "required": [
-          "app"
-        ],
+        "required": ["app"],
         "properties": {
           "app": {
             "allOf": [
@@ -5635,9 +5513,7 @@
       },
       "UpdateBranchResult": {
         "type": "object",
-        "required": [
-          "branch"
-        ],
+        "required": ["branch"],
         "properties": {
           "branch": {
             "allOf": [
@@ -5654,9 +5530,7 @@
       },
       "UpdateDomainAssociationResult": {
         "type": "object",
-        "required": [
-          "domainAssociation"
-        ],
+        "required": ["domainAssociation"],
         "properties": {
           "domainAssociation": {
             "allOf": [
@@ -5673,9 +5547,7 @@
       },
       "UpdateWebhookResult": {
         "type": "object",
-        "required": [
-          "webhook"
-        ],
+        "required": ["webhook"],
         "properties": {
           "webhook": {
             "allOf": [
@@ -5727,9 +5599,7 @@
       },
       "Platform": {
         "type": "string",
-        "enum": [
-          "WEB"
-        ]
+        "enum": ["WEB"]
       },
       "CreateTime": {
         "type": "string",
@@ -6188,10 +6058,7 @@
       },
       "Artifact": {
         "type": "object",
-        "required": [
-          "artifactFileName",
-          "artifactId"
-        ],
+        "required": ["artifactFileName", "artifactId"],
         "properties": {
           "artifactFileName": {
             "allOf": [
@@ -6274,12 +6141,7 @@
       },
       "BackendEnvironment": {
         "type": "object",
-        "required": [
-          "backendEnvironmentArn",
-          "environmentName",
-          "createTime",
-          "updateTime"
-        ],
+        "required": ["backendEnvironmentArn", "environmentName", "createTime", "updateTime"],
         "properties": {
           "backendEnvironmentArn": {
             "allOf": [
@@ -6839,15 +6701,7 @@
       },
       "Webhook": {
         "type": "object",
-        "required": [
-          "webhookArn",
-          "webhookId",
-          "webhookUrl",
-          "branchName",
-          "description",
-          "createTime",
-          "updateTime"
-        ],
+        "required": ["webhookArn", "webhookId", "webhookUrl", "branchName", "description", "createTime", "updateTime"],
         "properties": {
           "webhookArn": {
             "allOf": [
@@ -6947,16 +6801,7 @@
       },
       "JobSummary": {
         "type": "object",
-        "required": [
-          "jobArn",
-          "jobId",
-          "commitId",
-          "commitMessage",
-          "commitTime",
-          "startTime",
-          "status",
-          "jobType"
-        ],
+        "required": ["jobArn", "jobId", "commitId", "commitMessage", "commitTime", "startTime", "status", "jobType"],
         "properties": {
           "jobArn": {
             "allOf": [
@@ -7108,10 +6953,7 @@
       },
       "Job": {
         "type": "object",
-        "required": [
-          "summary",
-          "steps"
-        ],
+        "required": ["summary", "steps"],
         "properties": {
           "summary": {
             "allOf": [
@@ -7148,15 +6990,7 @@
       },
       "JobStatus": {
         "type": "string",
-        "enum": [
-          "PENDING",
-          "PROVISIONING",
-          "RUNNING",
-          "FAILED",
-          "SUCCEED",
-          "CANCELLING",
-          "CANCELLED"
-        ]
+        "enum": ["PENDING", "PROVISIONING", "RUNNING", "FAILED", "SUCCEED", "CANCELLING", "CANCELLED"]
       },
       "JobSummaries": {
         "type": "array",
@@ -7166,12 +7000,7 @@
       },
       "JobType": {
         "type": "string",
-        "enum": [
-          "RELEASE",
-          "RETRY",
-          "MANUAL",
-          "WEB_HOOK"
-        ],
+        "enum": ["RELEASE", "RETRY", "MANUAL", "WEB_HOOK"],
         "maxLength": 10
       },
       "LastDeployTime": {
@@ -7208,12 +7037,7 @@
       },
       "Step": {
         "type": "object",
-        "required": [
-          "stepName",
-          "startTime",
-          "status",
-          "endTime"
-        ],
+        "required": ["stepName", "startTime", "status", "endTime"],
         "properties": {
           "stepName": {
             "allOf": [
@@ -7333,11 +7157,7 @@
       },
       "SubDomain": {
         "type": "object",
-        "required": [
-          "subDomainSetting",
-          "verified",
-          "dnsRecord"
-        ],
+        "required": ["subDomainSetting", "verified", "dnsRecord"],
         "properties": {
           "subDomainSetting": {
             "allOf": [

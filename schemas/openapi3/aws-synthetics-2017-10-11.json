@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -189,14 +181,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name",
-                  "Code",
-                  "ArtifactS3Location",
-                  "ExecutionRoleArn",
-                  "Schedule",
-                  "RuntimeVersion"
-                ],
+                "required": ["Name", "Code", "ArtifactS3Location", "ExecutionRoleArn", "Schedule", "RuntimeVersion"],
                 "properties": {
                   "Name": {
                     "description": "<p>The name for this canary. Be sure to give it a descriptive name that distinguishes it from other canaries in your account.</p> <p>Do not include secrets or proprietary information in your canary names. The canary name makes up part of the canary ARN, and the ARN is included in outbound calls over the internet. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/servicelens_canaries_security.html\">Security Considerations for Synthetics Canaries</a>.</p>",
@@ -1465,9 +1450,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Tags"
-                ],
+                "required": ["Tags"],
                 "properties": {
                   "Tags": {
                     "description": "The list of key-value pairs to associate with the canary.",
@@ -2615,18 +2598,11 @@
       },
       "CanaryRunState": {
         "type": "string",
-        "enum": [
-          "RUNNING",
-          "PASSED",
-          "FAILED"
-        ]
+        "enum": ["RUNNING", "PASSED", "FAILED"]
       },
       "CanaryRunStateReasonCode": {
         "type": "string",
-        "enum": [
-          "CANARY_FAILURE",
-          "EXECUTION_FAILURE"
-        ]
+        "enum": ["CANARY_FAILURE", "EXECUTION_FAILURE"]
       },
       "Timestamp": {
         "type": "string",
@@ -2640,23 +2616,11 @@
       },
       "CanaryState": {
         "type": "string",
-        "enum": [
-          "CREATING",
-          "READY",
-          "STARTING",
-          "RUNNING",
-          "UPDATING",
-          "STOPPING",
-          "STOPPED",
-          "ERROR",
-          "DELETING"
-        ]
+        "enum": ["CREATING", "READY", "STARTING", "RUNNING", "UPDATING", "STOPPING", "STOPPED", "ERROR", "DELETING"]
       },
       "CanaryStateReasonCode": {
         "type": "string",
-        "enum": [
-          "INVALID_PERMISSIONS"
-        ]
+        "enum": ["INVALID_PERMISSIONS"]
       },
       "Token": {
         "type": "string",
@@ -2750,9 +2714,7 @@
       },
       "BaseScreenshot": {
         "type": "object",
-        "required": [
-          "ScreenshotName"
-        ],
+        "required": ["ScreenshotName"],
         "properties": {
           "ScreenshotName": {
             "allOf": [

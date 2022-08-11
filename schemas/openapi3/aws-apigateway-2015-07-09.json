@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true,
     "x-deprecated": true
   },
@@ -121,10 +119,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -135,10 +130,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -497,10 +489,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "type"
-                ],
+                "required": ["name", "type"],
                 "properties": {
                   "name": {
                     "description": "[Required] The name of the authorizer.",
@@ -509,11 +498,7 @@
                   "type": {
                     "description": "The authorizer type. Valid values are <code>TOKEN</code> for a Lambda function using a single authorization token submitted in a custom header, <code>REQUEST</code> for a Lambda function using incoming request parameters, and <code>COGNITO_USER_POOLS</code> for using an Amazon Cognito user pool.",
                     "type": "string",
-                    "enum": [
-                      "TOKEN",
-                      "REQUEST",
-                      "COGNITO_USER_POOLS"
-                    ]
+                    "enum": ["TOKEN", "REQUEST", "COGNITO_USER_POOLS"]
                   },
                   "providerARNs": {
                     "description": "A list of the Amazon Cognito user pool ARNs for the <code>COGNITO_USER_POOLS</code> authorizer. Each element is of this format: <code>arn:aws:cognito-idp:{region}:{account_id}:userpool/{user_pool_id}</code>. For a <code>TOKEN</code> or <code>REQUEST</code> authorizer, this is not defined. ",
@@ -756,9 +741,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "restApiId"
-                ],
+                "required": ["restApiId"],
                 "properties": {
                   "basePath": {
                     "description": "The base path name that callers of the API must provide as part of the URL after the domain name. This value must be unique for all of the mappings across a single API. Specify '(none)' if you do not want callers to specify a base path name after the domain name.",
@@ -1012,16 +995,7 @@
                   "cacheClusterSize": {
                     "description": "Returns the size of the <b>CacheCluster</b>.",
                     "type": "string",
-                    "enum": [
-                      "0.5",
-                      "1.6",
-                      "6.1",
-                      "13.5",
-                      "28.4",
-                      "58.2",
-                      "118",
-                      "237"
-                    ]
+                    "enum": ["0.5", "1.6", "6.1", "13.5", "28.4", "58.2", "118", "237"]
                   },
                   "variables": {
                     "description": "A map that defines the stage variables for the <a>Stage</a> resource that is associated with the new deployment. Variable names can have alphanumeric and underscore characters, and the values must match <code>[A-Za-z0-9-._~:/?#&amp;=,]+</code>.",
@@ -1290,10 +1264,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "location",
-                  "properties"
-                ],
+                "required": ["location", "properties"],
                 "properties": {
                   "location": {
                     "description": "Specifies the target API entity to which the documentation applies.",
@@ -1516,10 +1487,7 @@
             "description": "The status of the API documentation parts to retrieve. Valid values are <code>DOCUMENTED</code> for retrieving <a>DocumentationPart</a> resources with content and <code>UNDOCUMENTED</code> for <a>DocumentationPart</a> resources without content.",
             "schema": {
               "type": "string",
-              "enum": [
-                "DOCUMENTED",
-                "UNDOCUMENTED"
-              ]
+              "enum": ["DOCUMENTED", "UNDOCUMENTED"]
             }
           }
         ],
@@ -1617,10 +1585,7 @@
             "description": "A query parameter to indicate whether to overwrite (<code>OVERWRITE</code>) any existing <a>DocumentationParts</a> definition or to merge (<code>MERGE</code>) the new definition into the existing one. The default value is <code>MERGE</code>.",
             "schema": {
               "type": "string",
-              "enum": [
-                "merge",
-                "overwrite"
-              ]
+              "enum": ["merge", "overwrite"]
             }
           },
           {
@@ -1639,9 +1604,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "body"
-                ],
+                "required": ["body"],
                 "properties": {
                   "body": {
                     "description": "[Required] Raw byte array representing the to-be-imported documentation parts. To import from an OpenAPI file, this is a JSON object.",
@@ -1748,9 +1711,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "documentationVersion"
-                ],
+                "required": ["documentationVersion"],
                 "properties": {
                   "documentationVersion": {
                     "description": "[Required] The version identifier of the new snapshot.",
@@ -1954,9 +1915,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "domainName"
-                ],
+                "required": ["domainName"],
                 "properties": {
                   "domainName": {
                     "description": "[Required] The name of the <a>DomainName</a> resource.",
@@ -2026,10 +1985,7 @@
                   "securityPolicy": {
                     "description": "The Transport Layer Security (TLS) version + cipher suite for this <a>DomainName</a>. The valid values are <code>TLS_1_0</code> and <code>TLS_1_2</code>.",
                     "type": "string",
-                    "enum": [
-                      "TLS_1_0",
-                      "TLS_1_2"
-                    ]
+                    "enum": ["TLS_1_0", "TLS_1_2"]
                   },
                   "mutualTlsAuthentication": {
                     "description": "If specified, API Gateway performs two-way authentication between the client and the server. Clients must present a trusted certificate to access your custom domain name.",
@@ -2262,10 +2218,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "contentType"
-                ],
+                "required": ["name", "contentType"],
                 "properties": {
                   "name": {
                     "description": "[Required] The name of the model. Must be alphanumeric.",
@@ -2725,9 +2678,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "pathPart"
-                ],
+                "required": ["pathPart"],
                 "properties": {
                   "pathPart": {
                     "description": "The last path segment for this resource.",
@@ -2837,9 +2788,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name"
-                ],
+                "required": ["name"],
                 "properties": {
                   "name": {
                     "description": "[Required] The name of the <a>RestApi</a>.",
@@ -2871,10 +2820,7 @@
                   "apiKeySource": {
                     "description": "The source of the API key for metering requests according to a usage plan. Valid values are: <ul><li><code>HEADER</code> to read the API key from the <code>X-API-Key</code> header of a request. </li><li><code>AUTHORIZER</code> to read the API key from the <code>UsageIdentifierKey</code> from a custom authorizer.</li></ul> ",
                     "type": "string",
-                    "enum": [
-                      "HEADER",
-                      "AUTHORIZER"
-                    ]
+                    "enum": ["HEADER", "AUTHORIZER"]
                   },
                   "endpointConfiguration": {
                     "description": "The endpoint configuration to indicate the types of endpoints an API (<a>RestApi</a>) or its custom domain name (<a>DomainName</a>) has. ",
@@ -3118,10 +3064,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "stageName",
-                  "deploymentId"
-                ],
+                "required": ["stageName", "deploymentId"],
                 "properties": {
                   "stageName": {
                     "description": "[Required] The name for the <a>Stage</a> resource. Stage names can only contain alphanumeric characters, hyphens, and underscores. Maximum length is 128 characters.",
@@ -3142,16 +3085,7 @@
                   "cacheClusterSize": {
                     "description": "Returns the size of the <b>CacheCluster</b>.",
                     "type": "string",
-                    "enum": [
-                      "0.5",
-                      "1.6",
-                      "6.1",
-                      "13.5",
-                      "28.4",
-                      "58.2",
-                      "118",
-                      "237"
-                    ]
+                    "enum": ["0.5", "1.6", "6.1", "13.5", "28.4", "58.2", "118", "237"]
                   },
                   "variables": {
                     "description": "A map that defines the stage variables for the new <a>Stage</a> resource. Variable names can have alphanumeric and underscore characters, and the values must match <code>[A-Za-z0-9-._~:/?#&amp;=,]+</code>.",
@@ -3432,9 +3366,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name"
-                ],
+                "required": ["name"],
                 "properties": {
                   "name": {
                     "description": "[Required] The name of the usage plan.",
@@ -3740,10 +3672,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "keyId",
-                  "keyType"
-                ],
+                "required": ["keyId", "keyType"],
                 "properties": {
                   "keyId": {
                     "description": "[Required] The identifier of a <a>UsagePlanKey</a> resource for a plan customer.",
@@ -3952,10 +3881,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "targetArns"
-                ],
+                "required": ["name", "targetArns"],
                 "properties": {
                   "name": {
                     "description": "[Required] The name used to label and identify the VPC link.",
@@ -7383,20 +7309,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "type"
-                ],
+                "required": ["type"],
                 "properties": {
                   "type": {
                     "description": "The integration type. The valid value is <code>HTTP</code> for integrating an API method with an HTTP backend; <code>AWS</code> with any AWS service endpoints; <code>MOCK</code> for testing without actually invoking the backend; <code>HTTP_PROXY</code> for integrating with the HTTP proxy integration; <code>AWS_PROXY</code> for integrating with the Lambda proxy integration. ",
                     "type": "string",
-                    "enum": [
-                      "HTTP",
-                      "AWS",
-                      "MOCK",
-                      "HTTP_PROXY",
-                      "AWS_PROXY"
-                    ]
+                    "enum": ["HTTP", "AWS", "MOCK", "HTTP_PROXY", "AWS_PROXY"]
                   },
                   "httpMethod": {
                     "description": "Specifies a put integration HTTP method. When the integration type is HTTP or AWS, this field is required.",
@@ -7409,10 +7327,7 @@
                   "connectionType": {
                     "description": "The type of the network connection to the integration endpoint. The valid value is <code>INTERNET</code> for connections through the public routable internet or <code>VPC_LINK</code> for private connections between API Gateway and a network load balancer in a VPC. The default value is <code>INTERNET</code>.",
                     "type": "string",
-                    "enum": [
-                      "INTERNET",
-                      "VPC_LINK"
-                    ]
+                    "enum": ["INTERNET", "VPC_LINK"]
                   },
                   "connectionId": {
                     "description": "The (<a href=\"https://docs.aws.amazon.com/apigateway/api-reference/resource/vpc-link/#id\"><code>id</code></a>) of the <a>VpcLink</a> used for the integration when <code>connectionType=VPC_LINK</code> and undefined, otherwise.",
@@ -7454,10 +7369,7 @@
                   "contentHandling": {
                     "description": "<p>Specifies how to handle request payload content type conversions. Supported values are <code>CONVERT_TO_BINARY</code> and <code>CONVERT_TO_TEXT</code>, with the following behaviors:</p> <ul> <li><p><code>CONVERT_TO_BINARY</code>: Converts a request payload from a Base64-encoded string to the corresponding binary blob.</p></li> <li><p><code>CONVERT_TO_TEXT</code>: Converts a request payload from a binary blob to a Base64-encoded string.</p></li> </ul> <p>If this property is not defined, the request payload will be passed through from the method request to integration request without modification, provided that the <code>passthroughBehavior</code> is configured to support payload pass-through.</p>",
                     "type": "string",
-                    "enum": [
-                      "CONVERT_TO_BINARY",
-                      "CONVERT_TO_TEXT"
-                    ]
+                    "enum": ["CONVERT_TO_BINARY", "CONVERT_TO_TEXT"]
                   },
                   "timeoutInMillis": {
                     "description": "Custom timeout between 50 and 29,000 milliseconds. The default value is 29,000 milliseconds or 29 seconds.",
@@ -7976,10 +7888,7 @@
                   "contentHandling": {
                     "description": "<p>Specifies how to handle response payload content type conversions. Supported values are <code>CONVERT_TO_BINARY</code> and <code>CONVERT_TO_TEXT</code>, with the following behaviors:</p> <ul> <li><p><code>CONVERT_TO_BINARY</code>: Converts a response payload from a Base64-encoded string to the corresponding binary blob.</p></li> <li><p><code>CONVERT_TO_TEXT</code>: Converts a response payload from a binary blob to a Base64-encoded string.</p></li> </ul> <p>If this property is not defined, the response payload will be passed through from the integration response to the method response without modification.</p>",
                     "type": "string",
-                    "enum": [
-                      "CONVERT_TO_BINARY",
-                      "CONVERT_TO_TEXT"
-                    ]
+                    "enum": ["CONVERT_TO_BINARY", "CONVERT_TO_TEXT"]
                   }
                 }
               }
@@ -8414,9 +8323,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "authorizationType"
-                ],
+                "required": ["authorizationType"],
                 "properties": {
                   "authorizationType": {
                     "description": "[Required] The method's authorization type. Valid values are <code>NONE</code> for open access, <code>AWS_IAM</code> for using AWS IAM permissions, <code>CUSTOM</code> for using a custom authorizer, or <code>COGNITO_USER_POOLS</code> for using a Cognito user pool.",
@@ -10354,10 +10261,7 @@
             "description": "The <code>mode</code> query parameter to specify the update mode. Valid values are \"merge\" and \"overwrite\". By default, the update mode is \"merge\".",
             "schema": {
               "type": "string",
-              "enum": [
-                "merge",
-                "overwrite"
-              ]
+              "enum": ["merge", "overwrite"]
             }
           },
           {
@@ -10388,9 +10292,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "body"
-                ],
+                "required": ["body"],
                 "properties": {
                   "body": {
                     "description": "[Required] The PUT request body containing external API definitions. Currently, only OpenAPI definition JSON/YAML files are supported. The maximum size of the API definition file is 6MB.",
@@ -13197,9 +13099,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "tags"
-                ],
+                "required": ["tags"],
                 "properties": {
                   "tags": {
                     "description": "[Required] The key-value map of strings. The valid character set is [a-zA-Z+-=._:/]. The tag key can be up to 128 characters and must not start with <code>aws:</code>. The tag value can be up to 256 characters.",
@@ -13438,9 +13338,7 @@
             "description": "A query parameter to specify the input format to imported API keys. Currently, only the <code>csv</code> format is supported.",
             "schema": {
               "type": "string",
-              "enum": [
-                "csv"
-              ]
+              "enum": ["csv"]
             }
           },
           {
@@ -13458,9 +13356,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "import"
-              ]
+              "enum": ["import"]
             }
           }
         ],
@@ -13470,9 +13366,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "body"
-                ],
+                "required": ["body"],
                 "properties": {
                   "body": {
                     "description": "The payload of the POST request to import API keys. For the payload format, see <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/api-key-file-format.html\">API Key File Format</a>.",
@@ -13613,9 +13507,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "import"
-              ]
+              "enum": ["import"]
             }
           }
         ],
@@ -13625,9 +13517,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "body"
-                ],
+                "required": ["body"],
                 "properties": {
                   "body": {
                     "description": "[Required] The POST request body containing external API definitions. Currently, only OpenAPI definition JSON/YAML files are supported. The maximum size of the API definition file is 6MB.",
@@ -15225,11 +15115,7 @@
       },
       "QuotaPeriodType": {
         "type": "string",
-        "enum": [
-          "DAY",
-          "WEEK",
-          "MONTH"
-        ]
+        "enum": ["DAY", "WEEK", "MONTH"]
       },
       "UsagePlanKey": {
         "type": "object",
@@ -16741,10 +16627,7 @@
       },
       "ApiKeySourceType": {
         "type": "string",
-        "enum": [
-          "HEADER",
-          "AUTHORIZER"
-        ]
+        "enum": ["HEADER", "AUTHORIZER"]
       },
       "ListOfApiKey": {
         "type": "array",
@@ -16760,11 +16643,7 @@
       },
       "AuthorizerType": {
         "type": "string",
-        "enum": [
-          "TOKEN",
-          "REQUEST",
-          "COGNITO_USER_POOLS"
-        ],
+        "enum": ["TOKEN", "REQUEST", "COGNITO_USER_POOLS"],
         "description": "The authorizer type. Valid values are <code>TOKEN</code> for a Lambda function using a single authorization token submitted in a custom header, <code>REQUEST</code> for a Lambda function using incoming request parameters, and <code>COGNITO_USER_POOLS</code> for using an Amazon Cognito user pool."
       },
       "ListOfARNs": {
@@ -16793,27 +16672,12 @@
       },
       "CacheClusterSize": {
         "type": "string",
-        "enum": [
-          "0.5",
-          "1.6",
-          "6.1",
-          "13.5",
-          "28.4",
-          "58.2",
-          "118",
-          "237"
-        ],
+        "enum": ["0.5", "1.6", "6.1", "13.5", "28.4", "58.2", "118", "237"],
         "description": "Returns the size of the <b>CacheCluster</b>."
       },
       "CacheClusterStatus": {
         "type": "string",
-        "enum": [
-          "CREATE_IN_PROGRESS",
-          "AVAILABLE",
-          "DELETE_IN_PROGRESS",
-          "NOT_AVAILABLE",
-          "FLUSH_IN_PROGRESS"
-        ],
+        "enum": ["CREATE_IN_PROGRESS", "AVAILABLE", "DELETE_IN_PROGRESS", "NOT_AVAILABLE", "FLUSH_IN_PROGRESS"],
         "description": "Returns the status of the <b>CacheCluster</b>."
       },
       "CanarySettings": {
@@ -16870,23 +16734,15 @@
       },
       "ConnectionType": {
         "type": "string",
-        "enum": [
-          "INTERNET",
-          "VPC_LINK"
-        ]
+        "enum": ["INTERNET", "VPC_LINK"]
       },
       "ContentHandlingStrategy": {
         "type": "string",
-        "enum": [
-          "CONVERT_TO_BINARY",
-          "CONVERT_TO_TEXT"
-        ]
+        "enum": ["CONVERT_TO_BINARY", "CONVERT_TO_TEXT"]
       },
       "DocumentationPartLocation": {
         "type": "object",
-        "required": [
-          "type"
-        ],
+        "required": ["type"],
         "properties": {
           "type": {
             "allOf": [
@@ -16969,10 +16825,7 @@
       },
       "SecurityPolicy": {
         "type": "string",
-        "enum": [
-          "TLS_1_0",
-          "TLS_1_2"
-        ]
+        "enum": ["TLS_1_0", "TLS_1_2"]
       },
       "ListOfApiStage": {
         "type": "array",
@@ -17073,13 +16926,7 @@
       },
       "DomainNameStatus": {
         "type": "string",
-        "enum": [
-          "AVAILABLE",
-          "UPDATING",
-          "PENDING",
-          "PENDING_CERTIFICATE_REIMPORT",
-          "PENDING_OWNERSHIP_VERIFICATION"
-        ]
+        "enum": ["AVAILABLE", "UPDATING", "PENDING", "PENDING_CERTIFICATE_REIMPORT", "PENDING_OWNERSHIP_VERIFICATION"]
       },
       "ListOfDomainName": {
         "type": "array",
@@ -17089,11 +16936,7 @@
       },
       "EndpointType": {
         "type": "string",
-        "enum": [
-          "REGIONAL",
-          "EDGE",
-          "PRIVATE"
-        ],
+        "enum": ["REGIONAL", "EDGE", "PRIVATE"],
         "description": "The endpoint type. The valid values are <code>EDGE</code> for edge-optimized API setup, most suitable for mobile applications; <code>REGIONAL</code> for regional API endpoint setup, most suitable for calling from AWS Region; and <code>PRIVATE</code> for private APIs."
       },
       "ListOfGatewayResponse": {
@@ -17104,13 +16947,7 @@
       },
       "IntegrationType": {
         "type": "string",
-        "enum": [
-          "HTTP",
-          "AWS",
-          "MOCK",
-          "HTTP_PROXY",
-          "AWS_PROXY"
-        ],
+        "enum": ["HTTP", "AWS", "MOCK", "HTTP_PROXY", "AWS_PROXY"],
         "description": "The integration type. The valid value is <code>HTTP</code> for integrating an API method with an HTTP backend; <code>AWS</code> with any AWS service endpoints; <code>MOCK</code> for testing without actually invoking the backend; <code>HTTP_PROXY</code> for integrating with the HTTP proxy integration; <code>AWS_PROXY</code> for integrating with the Lambda proxy integration. "
       },
       "MapOfIntegrationResponse": {
@@ -17441,31 +17278,15 @@
       },
       "UnauthorizedCacheControlHeaderStrategy": {
         "type": "string",
-        "enum": [
-          "FAIL_WITH_403",
-          "SUCCEED_WITH_RESPONSE_HEADER",
-          "SUCCEED_WITHOUT_RESPONSE_HEADER"
-        ]
+        "enum": ["FAIL_WITH_403", "SUCCEED_WITH_RESPONSE_HEADER", "SUCCEED_WITHOUT_RESPONSE_HEADER"]
       },
       "Op": {
         "type": "string",
-        "enum": [
-          "add",
-          "remove",
-          "replace",
-          "move",
-          "copy",
-          "test"
-        ]
+        "enum": ["add", "remove", "replace", "move", "copy", "test"]
       },
       "VpcLinkStatus": {
         "type": "string",
-        "enum": [
-          "AVAILABLE",
-          "PENDING",
-          "DELETING",
-          "FAILED"
-        ]
+        "enum": ["AVAILABLE", "PENDING", "DELETING", "FAILED"]
       },
       "MutualTlsAuthentication": {
         "type": "object",

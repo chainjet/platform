@@ -4,9 +4,7 @@
     "title": "Adafruit IO",
     "description": "Adafruit IO is the easiest way to get your projects onto the Internet of Things.",
     "version": "2.0.0",
-    "x-categories": [
-      "iot"
-    ],
+    "x-categories": ["iot"],
     "x-logo": {
       "url": "https://flowoid.s3.amazonaws.com/logos/adafruit-io.png"
     }
@@ -27,9 +25,7 @@
       "get": {
         "operationId": "currentUser",
         "summary": "Get information about the current user",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "responses": {
           "200": {
             "description": "A User record",
@@ -65,9 +61,7 @@
       "get": {
         "operationId": "getCurrentUserThrottle",
         "summary": "Get the user's data rate limit and current activity level.",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -129,9 +123,7 @@
         "operationId": "allActivities",
         "summary": "List activities for current user",
         "description": "The Activities endpoint returns information about the user's activities.",
-        "tags": [
-          "Activities"
-        ],
+        "tags": ["Activities"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -212,9 +204,7 @@
         "operationId": "destroyActivities",
         "summary": "List activities for current user",
         "description": "Delete all your activities.",
-        "tags": [
-          "Activities"
-        ],
+        "tags": ["Activities"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -244,9 +234,7 @@
         "operationId": "getActivity",
         "summary": "Get activities by type for current user",
         "description": "The Activities endpoint returns information about the user's activities.",
-        "tags": [
-          "Activities"
-        ],
+        "tags": ["Activities"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -306,9 +294,7 @@
         "operationId": "allFeeds",
         "summary": "List feeds for current user",
         "description": "The Feeds endpoint returns information about the user's feeds. The response includes the latest value of each feed, and other metadata about each feed.",
-        "tags": [
-          "Feeds"
-        ],
+        "tags": ["Feeds"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -365,9 +351,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createFeedFeed"
         },
-        "tags": [
-          "Feeds"
-        ],
+        "tags": ["Feeds"],
         "responses": {
           "200": {
             "description": "New feed",
@@ -404,9 +388,7 @@
         "description": "Returns feed based on the feed key",
         "summary": "Get feed by feed key",
         "operationId": "getFeed",
-        "tags": [
-          "Feeds"
-        ],
+        "tags": ["Feeds"],
         "responses": {
           "200": {
             "description": "Feed response",
@@ -460,9 +442,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createFeedFeed"
         },
-        "tags": [
-          "Feeds"
-        ],
+        "tags": ["Feeds"],
         "responses": {
           "200": {
             "description": "Updated feed",
@@ -508,9 +488,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createFeedFeed"
         },
-        "tags": [
-          "Feeds"
-        ],
+        "tags": ["Feeds"],
         "responses": {
           "200": {
             "description": "Updated feed",
@@ -553,9 +531,7 @@
             "$ref": "#/components/parameters/FeedPath"
           }
         ],
-        "tags": [
-          "Feeds"
-        ],
+        "tags": ["Feeds"],
         "responses": {
           "200": {
             "description": "Deleted feed successfully"
@@ -580,9 +556,7 @@
         "description": "Returns more detailed feed record based on the feed key",
         "summary": "Get detailed feed by feed key",
         "operationId": "getFeedDetails",
-        "tags": [
-          "Feeds"
-        ],
+        "tags": ["Feeds"],
         "responses": {
           "200": {
             "description": "Feed response",
@@ -627,9 +601,7 @@
         "operationId": "allData",
         "summary": "Get all data for the given feed",
         "description": "",
-        "tags": [
-          "Data"
-        ],
+        "tags": ["Data"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -727,9 +699,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createDataDatum"
         },
-        "tags": [
-          "Data"
-        ],
+        "tags": ["Data"],
         "responses": {
           "200": {
             "description": "New data",
@@ -766,9 +736,7 @@
         "operationId": "chartData",
         "summary": "Chart data for current feed",
         "description": "The Chart API is what we use on io.adafruit.com to populate charts over varying timespans with a consistent number of data points. The maximum number of points returned is 480. This API works by aggregating slices of time into a single value by averaging.\n\nAll time-based parameters are optional, if none are given it will default to 1 hour at the finest-grained resolution possible.",
-        "tags": [
-          "Data"
-        ],
+        "tags": ["Data"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -921,9 +889,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/batchCreateDataData"
         },
-        "tags": [
-          "Data"
-        ],
+        "tags": ["Data"],
         "responses": {
           "200": {
             "description": "New data",
@@ -977,9 +943,7 @@
             "$ref": "#/components/parameters/DataInclude"
           }
         ],
-        "tags": [
-          "Data"
-        ],
+        "tags": ["Data"],
         "responses": {
           "200": {
             "description": "Data response",
@@ -1027,9 +991,7 @@
             "$ref": "#/components/parameters/DataInclude"
           }
         ],
-        "tags": [
-          "Data"
-        ],
+        "tags": ["Data"],
         "responses": {
           "200": {
             "description": "Data response",
@@ -1077,9 +1039,7 @@
             "$ref": "#/components/parameters/DataInclude"
           }
         ],
-        "tags": [
-          "Data"
-        ],
+        "tags": ["Data"],
         "responses": {
           "200": {
             "description": "Data response",
@@ -1127,9 +1087,7 @@
             "$ref": "#/components/parameters/DataInclude"
           }
         ],
-        "tags": [
-          "Data"
-        ],
+        "tags": ["Data"],
         "responses": {
           "200": {
             "description": "Data response",
@@ -1174,9 +1132,7 @@
             "$ref": "#/components/parameters/FeedPath"
           }
         ],
-        "tags": [
-          "Data"
-        ],
+        "tags": ["Data"],
         "responses": {
           "200": {
             "description": "CSV string in `value,lat,lon,ele` format. The lat, lon, and ele values are left blank if they are not set.",
@@ -1208,9 +1164,7 @@
         "summary": "Returns data based on feed key",
         "description": "",
         "operationId": "getData",
-        "tags": [
-          "Data"
-        ],
+        "tags": ["Data"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -1273,9 +1227,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createDataDatum"
         },
-        "tags": [
-          "Data"
-        ],
+        "tags": ["Data"],
         "responses": {
           "200": {
             "description": "Updated Data",
@@ -1324,9 +1276,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createDataDatum"
         },
-        "tags": [
-          "Data"
-        ],
+        "tags": ["Data"],
         "responses": {
           "200": {
             "description": "Updated Data",
@@ -1372,9 +1322,7 @@
             "$ref": "#/components/parameters/IDPath"
           }
         ],
-        "tags": [
-          "Data"
-        ],
+        "tags": ["Data"],
         "responses": {
           "200": {
             "description": "Deleted Group successfully",
@@ -1411,9 +1359,7 @@
         "summary": "List groups for current user",
         "description": "The Groups endpoint returns information about the user's groups. The response includes the latest value of each feed in the group, and other metadata about the group.\n",
         "operationId": "allGroups",
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -1467,9 +1413,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createGroupGroup"
         },
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "responses": {
           "200": {
             "description": "New Group",
@@ -1505,9 +1449,7 @@
       "get": {
         "summary": "Returns Group based on ID",
         "operationId": "getGroup",
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -1561,9 +1503,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createGroupGroup"
         },
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "responses": {
           "200": {
             "description": "Updated group",
@@ -1609,9 +1549,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createGroupGroup"
         },
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "responses": {
           "200": {
             "description": "Updated Group",
@@ -1654,9 +1592,7 @@
             "$ref": "#/components/parameters/GroupPath"
           }
         ],
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "responses": {
           "200": {
             "description": "Deleted Group successfully",
@@ -1693,10 +1629,7 @@
         "summary": "Add an existing Feed to a Group",
         "description": "",
         "operationId": "addFeedToGroup",
-        "tags": [
-          "Groups",
-          "Feeds"
-        ],
+        "tags": ["Groups", "Feeds"],
         "parameters": [
           {
             "$ref": "#/components/parameters/GroupPath"
@@ -1744,10 +1677,7 @@
         "summary": "Remove a Feed from a Group",
         "description": "",
         "operationId": "removeFeedFromGroup",
-        "tags": [
-          "Groups",
-          "Feeds"
-        ],
+        "tags": ["Groups", "Feeds"],
         "parameters": [
           {
             "$ref": "#/components/parameters/GroupPath"
@@ -1795,10 +1725,7 @@
         "operationId": "allGroupFeeds",
         "summary": "List feeds for current user in a given group",
         "description": "The Group Feeds endpoint returns information about the user's feeds. The response includes the latest value of each feed, and other metadata about each feed, but only for feeds within the given group.",
-        "tags": [
-          "Groups",
-          "Feeds"
-        ],
+        "tags": ["Groups", "Feeds"],
         "parameters": [
           {
             "$ref": "#/components/parameters/GroupPath"
@@ -1858,9 +1785,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createFeedFeed"
         },
-        "tags": [
-          "Feeds"
-        ],
+        "tags": ["Feeds"],
         "responses": {
           "200": {
             "description": "New feed",
@@ -1909,17 +1834,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "feeds"
-                ],
+                "required": ["feeds"],
                 "properties": {
                   "location": {
                     "type": "object",
                     "description": "A location record with `lat`, `lon`, and [optional] `ele` properties.",
-                    "required": [
-                      "lat",
-                      "lon"
-                    ],
+                    "required": ["lat", "lon"],
                     "properties": {
                       "lat": {
                         "type": "number"
@@ -1937,10 +1857,7 @@
                     "type": "array",
                     "items": {
                       "type": "object",
-                      "required": [
-                        "key",
-                        "value"
-                      ],
+                      "required": ["key", "value"],
                       "properties": {
                         "key": {
                           "type": "string"
@@ -1961,17 +1878,12 @@
             "application/x-www-form-urlencoded": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "feeds"
-                ],
+                "required": ["feeds"],
                 "properties": {
                   "location": {
                     "type": "object",
                     "description": "A location record with `lat`, `lon`, and [optional] `ele` properties.",
-                    "required": [
-                      "lat",
-                      "lon"
-                    ],
+                    "required": ["lat", "lon"],
                     "properties": {
                       "lat": {
                         "type": "number"
@@ -1989,10 +1901,7 @@
                     "type": "array",
                     "items": {
                       "type": "object",
-                      "required": [
-                        "key",
-                        "value"
-                      ],
+                      "required": ["key", "value"],
                       "properties": {
                         "key": {
                           "type": "string"
@@ -2013,9 +1922,7 @@
           },
           "required": true
         },
-        "tags": [
-          "Data"
-        ],
+        "tags": ["Data"],
         "responses": {
           "200": {
             "description": "New data",
@@ -2058,9 +1965,7 @@
         "operationId": "allGroupFeedData",
         "summary": "List data for current feed in a specific group",
         "description": "",
-        "tags": [
-          "Data"
-        ],
+        "tags": ["Data"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -2151,9 +2056,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createDataDatum"
         },
-        "tags": [
-          "Data"
-        ],
+        "tags": ["Data"],
         "responses": {
           "200": {
             "description": "New data",
@@ -2203,9 +2106,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/batchCreateDataData"
         },
-        "tags": [
-          "Data"
-        ],
+        "tags": ["Data"],
         "responses": {
           "200": {
             "description": "New data",
@@ -2248,9 +2149,7 @@
         "summary": "List dashboards for current user",
         "description": "The Dashboards endpoint returns information about the user's dashboards.\n",
         "operationId": "allDashboards",
-        "tags": [
-          "Dashboards"
-        ],
+        "tags": ["Dashboards"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -2304,9 +2203,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createDashboardDashboard"
         },
-        "tags": [
-          "Dashboards"
-        ],
+        "tags": ["Dashboards"],
         "responses": {
           "200": {
             "description": "New Dashboard",
@@ -2343,9 +2240,7 @@
         "summary": "Returns Dashboard based on ID",
         "description": "",
         "operationId": "getDashboard",
-        "tags": [
-          "Dashboards"
-        ],
+        "tags": ["Dashboards"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -2399,9 +2294,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createDashboardDashboard"
         },
-        "tags": [
-          "Dashboards"
-        ],
+        "tags": ["Dashboards"],
         "responses": {
           "200": {
             "description": "Updated dashboard",
@@ -2447,9 +2340,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createDashboardDashboard"
         },
-        "tags": [
-          "Dashboards"
-        ],
+        "tags": ["Dashboards"],
         "responses": {
           "200": {
             "description": "Updated Dashboard",
@@ -2492,9 +2383,7 @@
             "$ref": "#/components/parameters/IDPath"
           }
         ],
-        "tags": [
-          "Dashboards"
-        ],
+        "tags": ["Dashboards"],
         "responses": {
           "200": {
             "description": "Deleted Dashboard successfully",
@@ -2531,9 +2420,7 @@
         "summary": "List blocks for current user",
         "description": "The Blocks endpoint returns information about the user's blocks.\n",
         "operationId": "allBlocks",
-        "tags": [
-          "Blocks"
-        ],
+        "tags": ["Blocks"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -2593,9 +2480,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createBlockBlock"
         },
-        "tags": [
-          "Blocks"
-        ],
+        "tags": ["Blocks"],
         "responses": {
           "200": {
             "description": "New Block",
@@ -2632,9 +2517,7 @@
         "summary": "Returns Block based on ID",
         "description": "",
         "operationId": "getBlock",
-        "tags": [
-          "Blocks"
-        ],
+        "tags": ["Blocks"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -2694,9 +2577,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createBlockBlock"
         },
-        "tags": [
-          "Blocks"
-        ],
+        "tags": ["Blocks"],
         "responses": {
           "200": {
             "description": "Updated block",
@@ -2745,9 +2626,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createBlockBlock"
         },
-        "tags": [
-          "Blocks"
-        ],
+        "tags": ["Blocks"],
         "responses": {
           "200": {
             "description": "Updated Block",
@@ -2793,9 +2672,7 @@
             "$ref": "#/components/parameters/IDPath"
           }
         ],
-        "tags": [
-          "Blocks"
-        ],
+        "tags": ["Blocks"],
         "responses": {
           "200": {
             "description": "Deleted Block successfully",
@@ -2832,9 +2709,7 @@
         "summary": "List tokens for current user",
         "description": "The Tokens endpoint returns information about the user's tokens.\n",
         "operationId": "allTokens",
-        "tags": [
-          "Tokens"
-        ],
+        "tags": ["Tokens"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -2888,9 +2763,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createTokenToken"
         },
-        "tags": [
-          "Tokens"
-        ],
+        "tags": ["Tokens"],
         "responses": {
           "200": {
             "description": "New Token",
@@ -2927,9 +2800,7 @@
         "summary": "Returns Token based on ID",
         "description": "",
         "operationId": "getToken",
-        "tags": [
-          "Tokens"
-        ],
+        "tags": ["Tokens"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -2983,9 +2854,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createTokenToken"
         },
-        "tags": [
-          "Tokens"
-        ],
+        "tags": ["Tokens"],
         "responses": {
           "200": {
             "description": "Updated token",
@@ -3031,9 +2900,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createTokenToken"
         },
-        "tags": [
-          "Tokens"
-        ],
+        "tags": ["Tokens"],
         "responses": {
           "200": {
             "description": "Updated Token",
@@ -3076,9 +2943,7 @@
             "$ref": "#/components/parameters/IDPath"
           }
         ],
-        "tags": [
-          "Tokens"
-        ],
+        "tags": ["Tokens"],
         "responses": {
           "200": {
             "description": "Deleted Token successfully",
@@ -3115,9 +2980,7 @@
         "summary": "List triggers for current user",
         "description": "The Triggers endpoint returns information about the user's triggers.\n",
         "operationId": "allTriggers",
-        "tags": [
-          "Triggers"
-        ],
+        "tags": ["Triggers"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -3171,9 +3034,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createTriggerTrigger"
         },
-        "tags": [
-          "Triggers"
-        ],
+        "tags": ["Triggers"],
         "responses": {
           "200": {
             "description": "New Trigger",
@@ -3210,9 +3071,7 @@
         "summary": "Returns Trigger based on ID",
         "description": "",
         "operationId": "getTrigger",
-        "tags": [
-          "Triggers"
-        ],
+        "tags": ["Triggers"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -3266,9 +3125,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createTriggerTrigger"
         },
-        "tags": [
-          "Triggers"
-        ],
+        "tags": ["Triggers"],
         "responses": {
           "200": {
             "description": "Updated trigger",
@@ -3314,9 +3171,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createTriggerTrigger"
         },
-        "tags": [
-          "Triggers"
-        ],
+        "tags": ["Triggers"],
         "responses": {
           "200": {
             "description": "Updated Trigger",
@@ -3359,9 +3214,7 @@
             "$ref": "#/components/parameters/IDPath"
           }
         ],
-        "tags": [
-          "Triggers"
-        ],
+        "tags": ["Triggers"],
         "responses": {
           "200": {
             "description": "Deleted Trigger successfully",
@@ -3398,9 +3251,7 @@
         "summary": "List permissions for current user and type",
         "description": "The Permissions endpoint returns information about the user's permissions.\n",
         "operationId": "allPermissions",
-        "tags": [
-          "Permissions"
-        ],
+        "tags": ["Permissions"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -3466,9 +3317,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createPermissionPermission"
         },
-        "tags": [
-          "Permissions"
-        ],
+        "tags": ["Permissions"],
         "responses": {
           "200": {
             "description": "New Permission",
@@ -3505,9 +3354,7 @@
         "summary": "Returns Permission based on ID",
         "description": "",
         "operationId": "getPermission",
-        "tags": [
-          "Permissions"
-        ],
+        "tags": ["Permissions"],
         "parameters": [
           {
             "$ref": "#/components/parameters/UsernamePath"
@@ -3573,9 +3420,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createPermissionPermission"
         },
-        "tags": [
-          "Permissions"
-        ],
+        "tags": ["Permissions"],
         "responses": {
           "200": {
             "description": "Updated permission",
@@ -3627,9 +3472,7 @@
         "requestBody": {
           "$ref": "#/components/requestBodies/createPermissionPermission"
         },
-        "tags": [
-          "Permissions"
-        ],
+        "tags": ["Permissions"],
         "responses": {
           "200": {
             "description": "Updated Permission",
@@ -3678,9 +3521,7 @@
             "$ref": "#/components/parameters/IDPath"
           }
         ],
-        "tags": [
-          "Permissions"
-        ],
+        "tags": ["Permissions"],
         "responses": {
           "200": {
             "description": "Deleted Permission successfully",
@@ -3743,10 +3584,7 @@
           "description": "Webhook payload containing data `value` parameter.",
           "required": true
         },
-        "tags": [
-          "Webhooks",
-          "Data"
-        ],
+        "tags": ["Webhooks", "Data"],
         "responses": {
           "200": {
             "description": "New feed data record",
@@ -3783,10 +3621,7 @@
         "summary": "Send arbitrary data to a feed via webhook URL.",
         "description": "The raw data webhook receiver accepts POST requests and stores the raw request body on your feed. This is useful when you don't have control of the webhook sender. If feed history is turned on, payloads will be truncated at 1024 bytes. If feed history is turned off, payloads will be truncated at 100KB.",
         "operationId": "createRawWebhookFeedData",
-        "tags": [
-          "Webhooks",
-          "Data"
-        ],
+        "tags": ["Webhooks", "Data"],
         "responses": {
           "200": {
             "description": "New feed data record",
@@ -4061,21 +3896,12 @@
                 "mode": {
                   "type": "string",
                   "default": "r",
-                  "enum": [
-                    "r",
-                    "w",
-                    "rw"
-                  ]
+                  "enum": ["r", "w", "rw"]
                 },
                 "scope": {
                   "type": "string",
                   "default": "public",
-                  "enum": [
-                    "secret",
-                    "public",
-                    "user",
-                    "organization"
-                  ]
+                  "enum": ["secret", "public", "user", "organization"]
                 },
                 "scope_value": {
                   "type": "string"
@@ -4090,21 +3916,12 @@
                 "mode": {
                   "type": "string",
                   "default": "r",
-                  "enum": [
-                    "r",
-                    "w",
-                    "rw"
-                  ]
+                  "enum": ["r", "w", "rw"]
                 },
                 "scope": {
                   "type": "string",
                   "default": "public",
-                  "enum": [
-                    "secret",
-                    "public",
-                    "user",
-                    "organization"
-                  ]
+                  "enum": ["secret", "public", "user", "organization"]
                 },
                 "scope_value": {
                   "type": "string"
@@ -4626,10 +4443,7 @@
           "visibility": {
             "type": "string",
             "default": "private",
-            "enum": [
-              "private",
-              "public"
-            ]
+            "enum": ["private", "public"]
           },
           "license": {
             "type": "string"
@@ -4678,12 +4492,7 @@
           "scope": {
             "type": "string",
             "default": "public",
-            "enum": [
-              "secret",
-              "public",
-              "user",
-              "organization"
-            ]
+            "enum": ["secret", "public", "user", "organization"]
           },
           "scope_value": {
             "type": "string"
@@ -4691,11 +4500,7 @@
           "model": {
             "type": "string",
             "default": "feed",
-            "enum": [
-              "feed",
-              "group",
-              "dashboard"
-            ]
+            "enum": ["feed", "group", "dashboard"]
           },
           "object_id": {
             "type": "number"

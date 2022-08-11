@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -380,10 +372,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name",
-                  "PermissionsMode"
-                ],
+                "required": ["Name", "PermissionsMode"],
                 "properties": {
                   "Name": {
                     "description": "<p>The name of the ledger that you want to create. The name must be unique among all of your ledgers in the current AWS Region.</p> <p>Naming constraints for ledger names are defined in <a href=\"https://docs.aws.amazon.com/qldb/latest/developerguide/limits.html#limits.naming\">Quotas in Amazon QLDB</a> in the <i>Amazon QLDB Developer Guide</i>.</p>",
@@ -404,10 +393,7 @@
                   "PermissionsMode": {
                     "description": "The permissions mode to assign to the ledger that you want to create.",
                     "type": "string",
-                    "enum": [
-                      "ALLOW_ALL",
-                      "STANDARD"
-                    ]
+                    "enum": ["ALLOW_ALL", "STANDARD"]
                   },
                   "DeletionProtection": {
                     "description": "<p>The flag that prevents a ledger from being deleted by any user. If not provided on ledger creation, this feature is enabled (<code>true</code>) by default.</p> <p>If deletion protection is enabled, you must first disable it before you can delete the ledger using the QLDB API or the AWS Command Line Interface (AWS CLI). You can disable it by calling the <code>UpdateLedger</code> operation to set the flag to <code>false</code>. The QLDB console disables deletion protection for you when you use it to delete a ledger.</p>",
@@ -855,12 +841,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "InclusiveStartTime",
-                  "ExclusiveEndTime",
-                  "S3ExportConfiguration",
-                  "RoleArn"
-                ],
+                "required": ["InclusiveStartTime", "ExclusiveEndTime", "S3ExportConfiguration", "RoleArn"],
                 "properties": {
                   "InclusiveStartTime": {
                     "description": "<p>The inclusive start date and time for the range of journal contents that you want to export.</p> <p>The <code>InclusiveStartTime</code> must be in <code>ISO 8601</code> date and time format and in Universal Coordinated Time (UTC). For example: <code>2019-06-13T21:36:34Z</code> </p> <p>The <code>InclusiveStartTime</code> must be before <code>ExclusiveEndTime</code>.</p> <p>If you provide an <code>InclusiveStartTime</code> that is before the ledger's <code>CreationDateTime</code>, Amazon QLDB defaults it to the ledger's <code>CreationDateTime</code>.</p>",
@@ -1083,9 +1064,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "BlockAddress"
-                ],
+                "required": ["BlockAddress"],
                 "properties": {
                   "BlockAddress": {
                     "description": "A structure that can contain a value in multiple encoding formats.",
@@ -1302,10 +1281,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "BlockAddress",
-                  "DocumentId"
-                ],
+                "required": ["BlockAddress", "DocumentId"],
                 "properties": {
                   "BlockAddress": {
                     "description": "A structure that can contain a value in multiple encoding formats.",
@@ -1568,12 +1544,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "RoleArn",
-                  "InclusiveStartTime",
-                  "KinesisConfiguration",
-                  "StreamName"
-                ],
+                "required": ["RoleArn", "InclusiveStartTime", "KinesisConfiguration", "StreamName"],
                 "properties": {
                   "RoleArn": {
                     "description": "The Amazon Resource Name (ARN) of the IAM role that grants QLDB permissions for a journal stream to write data records to a Kinesis Data Streams resource.",
@@ -1854,9 +1825,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Tags"
-                ],
+                "required": ["Tags"],
                 "properties": {
                   "Tags": {
                     "description": "The key-value pairs to add as tags to the specified QLDB resource. Tag keys are case sensitive. If you specify a key that already exists for the resource, your request fails and returns an error. Tag values are case sensitive and can be null.",
@@ -2020,17 +1989,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "PermissionsMode"
-                ],
+                "required": ["PermissionsMode"],
                 "properties": {
                   "PermissionsMode": {
                     "description": "<p>The permissions mode to assign to the ledger. This parameter can have one of the following values:</p> <ul> <li> <p> <code>ALLOW_ALL</code>: A legacy permissions mode that enables access control with API-level granularity for ledgers.</p> <p>This mode allows users who have the <code>SendCommand</code> API permission for this ledger to run all PartiQL commands (hence, <code>ALLOW_ALL</code>) on any tables in the specified ledger. This mode disregards any table-level or command-level IAM permissions policies that you create for the ledger.</p> </li> <li> <p> <code>STANDARD</code>: (<i>Recommended</i>) A permissions mode that enables access control with finer granularity for ledgers, tables, and PartiQL commands.</p> <p>By default, this mode denies all user requests to run any PartiQL commands on any tables in this ledger. To allow PartiQL commands to run, you must create IAM permissions policies for specific table resources and PartiQL actions, in addition to the <code>SendCommand</code> API permission for the ledger. For information, see <a href=\"https://docs.aws.amazon.com/qldb/latest/developerguide/getting-started-standard-mode.html\">Getting started with the standard permissions mode</a> in the <i>Amazon QLDB Developer Guide</i>.</p> </li> </ul> <note> <p>We strongly recommend using the <code>STANDARD</code> permissions mode to maximize the security of your ledger data.</p> </note>",
                     "type": "string",
-                    "enum": [
-                      "ALLOW_ALL",
-                      "STANDARD"
-                    ]
+                    "enum": ["ALLOW_ALL", "STANDARD"]
                   }
                 }
               }
@@ -2258,9 +2222,7 @@
       },
       "DescribeJournalS3ExportResponse": {
         "type": "object",
-        "required": [
-          "ExportDescription"
-        ],
+        "required": ["ExportDescription"],
         "properties": {
           "ExportDescription": {
             "allOf": [
@@ -2351,9 +2313,7 @@
       },
       "ExportJournalToS3Response": {
         "type": "object",
-        "required": [
-          "ExportId"
-        ],
+        "required": ["ExportId"],
         "properties": {
           "ExportId": {
             "allOf": [
@@ -2380,9 +2340,7 @@
       },
       "S3EncryptionConfiguration": {
         "type": "object",
-        "required": [
-          "ObjectEncryptionType"
-        ],
+        "required": ["ObjectEncryptionType"],
         "properties": {
           "ObjectEncryptionType": {
             "allOf": [
@@ -2409,9 +2367,7 @@
       },
       "GetBlockResponse": {
         "type": "object",
-        "required": [
-          "Block"
-        ],
+        "required": ["Block"],
         "properties": {
           "Block": {
             "allOf": [
@@ -2443,10 +2399,7 @@
       },
       "GetDigestResponse": {
         "type": "object",
-        "required": [
-          "Digest",
-          "DigestTipAddress"
-        ],
+        "required": ["Digest", "DigestTipAddress"],
         "properties": {
           "Digest": {
             "allOf": [
@@ -2472,9 +2425,7 @@
       },
       "GetRevisionResponse": {
         "type": "object",
-        "required": [
-          "Revision"
-        ],
+        "required": ["Revision"],
         "properties": {
           "Proof": {
             "allOf": [
@@ -2736,22 +2687,14 @@
       },
       "PermissionsMode": {
         "type": "string",
-        "enum": [
-          "ALLOW_ALL",
-          "STANDARD"
-        ]
+        "enum": ["ALLOW_ALL", "STANDARD"]
       },
       "DeletionProtection": {
         "type": "boolean"
       },
       "LedgerState": {
         "type": "string",
-        "enum": [
-          "CREATING",
-          "ACTIVE",
-          "DELETING",
-          "DELETED"
-        ]
+        "enum": ["CREATING", "ACTIVE", "DELETING", "DELETED"]
       },
       "Timestamp": {
         "type": "string",
@@ -2759,14 +2702,7 @@
       },
       "JournalKinesisStreamDescription": {
         "type": "object",
-        "required": [
-          "LedgerName",
-          "RoleArn",
-          "StreamId",
-          "Status",
-          "KinesisConfiguration",
-          "StreamName"
-        ],
+        "required": ["LedgerName", "RoleArn", "StreamId", "Status", "KinesisConfiguration", "StreamName"],
         "properties": {
           "LedgerName": {
             "allOf": [
@@ -2977,18 +2913,11 @@
       },
       "ErrorCause": {
         "type": "string",
-        "enum": [
-          "KINESIS_STREAM_NOT_FOUND",
-          "IAM_PERMISSION_REVOKED"
-        ]
+        "enum": ["KINESIS_STREAM_NOT_FOUND", "IAM_PERMISSION_REVOKED"]
       },
       "S3ExportConfiguration": {
         "type": "object",
-        "required": [
-          "Bucket",
-          "Prefix",
-          "EncryptionConfiguration"
-        ],
+        "required": ["Bucket", "Prefix", "EncryptionConfiguration"],
         "properties": {
           "Bucket": {
             "allOf": [
@@ -3025,11 +2954,7 @@
       },
       "ExportStatus": {
         "type": "string",
-        "enum": [
-          "IN_PROGRESS",
-          "COMPLETED",
-          "CANCELLED"
-        ]
+        "enum": ["IN_PROGRESS", "COMPLETED", "CANCELLED"]
       },
       "ValueHolder": {
         "type": "object",
@@ -3049,19 +2974,11 @@
       },
       "StreamStatus": {
         "type": "string",
-        "enum": [
-          "ACTIVE",
-          "COMPLETED",
-          "CANCELED",
-          "FAILED",
-          "IMPAIRED"
-        ]
+        "enum": ["ACTIVE", "COMPLETED", "CANCELED", "FAILED", "IMPAIRED"]
       },
       "KinesisConfiguration": {
         "type": "object",
-        "required": [
-          "StreamArn"
-        ],
+        "required": ["StreamArn"],
         "properties": {
           "StreamArn": {
             "allOf": [
@@ -3154,11 +3071,7 @@
       },
       "S3ObjectEncryptionType": {
         "type": "string",
-        "enum": [
-          "SSE_KMS",
-          "SSE_S3",
-          "NO_ENCRYPTION"
-        ]
+        "enum": ["SSE_KMS", "SSE_S3", "NO_ENCRYPTION"]
       },
       "UpdateLedgerPermissionsModeResponse": {
         "type": "object",
@@ -3197,10 +3110,7 @@
       },
       "LedgerEncryptionDescription": {
         "type": "object",
-        "required": [
-          "KmsKeyArn",
-          "EncryptionStatus"
-        ],
+        "required": ["KmsKeyArn", "EncryptionStatus"],
         "properties": {
           "KmsKeyArn": {
             "allOf": [
@@ -3237,11 +3147,7 @@
       },
       "EncryptionStatus": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "UPDATING",
-          "KMS_KEY_INACCESSIBLE"
-        ]
+        "enum": ["ENABLED", "UPDATING", "KMS_KEY_INACCESSIBLE"]
       }
     }
   },

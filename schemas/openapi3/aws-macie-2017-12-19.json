@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true,
     "x-deprecated": true
   },
@@ -121,10 +119,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -135,10 +130,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -203,9 +195,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "MacieService.AssociateMemberAccount"
-              ]
+              "enum": ["MacieService.AssociateMemberAccount"]
             }
           }
         ],
@@ -308,9 +298,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "MacieService.AssociateS3Resources"
-              ]
+              "enum": ["MacieService.AssociateS3Resources"]
             }
           }
         ],
@@ -386,9 +374,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "MacieService.DisassociateMemberAccount"
-              ]
+              "enum": ["MacieService.DisassociateMemberAccount"]
             }
           }
         ],
@@ -481,9 +467,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "MacieService.DisassociateS3Resources"
-              ]
+              "enum": ["MacieService.DisassociateS3Resources"]
             }
           }
         ],
@@ -584,9 +568,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "MacieService.ListMemberAccounts"
-              ]
+              "enum": ["MacieService.ListMemberAccounts"]
             }
           }
         ],
@@ -697,9 +679,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "MacieService.ListS3Resources"
-              ]
+              "enum": ["MacieService.ListS3Resources"]
             }
           }
         ],
@@ -792,9 +772,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "MacieService.UpdateS3Resources"
-              ]
+              "enum": ["MacieService.UpdateS3Resources"]
             }
           }
         ],
@@ -903,9 +881,7 @@
     "schemas": {
       "AssociateMemberAccountRequest": {
         "type": "object",
-        "required": [
-          "memberAccountId"
-        ],
+        "required": ["memberAccountId"],
         "title": "AssociateMemberAccountRequest",
         "properties": {
           "memberAccountId": {
@@ -940,9 +916,7 @@
       },
       "AssociateS3ResourcesRequest": {
         "type": "object",
-        "required": [
-          "s3Resources"
-        ],
+        "required": ["s3Resources"],
         "title": "AssociateS3ResourcesRequest",
         "properties": {
           "memberAccountId": {
@@ -970,9 +944,7 @@
       "AccessDeniedException": {},
       "DisassociateMemberAccountRequest": {
         "type": "object",
-        "required": [
-          "memberAccountId"
-        ],
+        "required": ["memberAccountId"],
         "title": "DisassociateMemberAccountRequest",
         "properties": {
           "memberAccountId": {
@@ -1004,9 +976,7 @@
       },
       "DisassociateS3ResourcesRequest": {
         "type": "object",
-        "required": [
-          "associatedS3Resources"
-        ],
+        "required": ["associatedS3Resources"],
         "title": "DisassociateS3ResourcesRequest",
         "properties": {
           "memberAccountId": {
@@ -1160,9 +1130,7 @@
       },
       "UpdateS3ResourcesRequest": {
         "type": "object",
-        "required": [
-          "s3ResourcesUpdate"
-        ],
+        "required": ["s3ResourcesUpdate"],
         "title": "UpdateS3ResourcesRequest",
         "properties": {
           "memberAccountId": {
@@ -1209,23 +1177,15 @@
       },
       "S3OneTimeClassificationType": {
         "type": "string",
-        "enum": [
-          "FULL",
-          "NONE"
-        ]
+        "enum": ["FULL", "NONE"]
       },
       "S3ContinuousClassificationType": {
         "type": "string",
-        "enum": [
-          "FULL"
-        ]
+        "enum": ["FULL"]
       },
       "ClassificationType": {
         "type": "object",
-        "required": [
-          "oneTime",
-          "continuous"
-        ],
+        "required": ["oneTime", "continuous"],
         "properties": {
           "oneTime": {
             "allOf": [
@@ -1293,9 +1253,7 @@
       },
       "S3Resource": {
         "type": "object",
-        "required": [
-          "bucketName"
-        ],
+        "required": ["bucketName"],
         "properties": {
           "bucketName": {
             "allOf": [
@@ -1392,10 +1350,7 @@
       },
       "S3ResourceClassification": {
         "type": "object",
-        "required": [
-          "bucketName",
-          "classificationType"
-        ],
+        "required": ["bucketName", "classificationType"],
         "properties": {
           "bucketName": {
             "allOf": [
@@ -1432,10 +1387,7 @@
       },
       "S3ResourceClassificationUpdate": {
         "type": "object",
-        "required": [
-          "bucketName",
-          "classificationTypeUpdate"
-        ],
+        "required": ["bucketName", "classificationTypeUpdate"],
         "properties": {
           "bucketName": {
             "allOf": [

@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -240,9 +232,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "clientToken"
-                ],
+                "required": ["clientToken"],
                 "properties": {
                   "clientToken": {
                     "description": "The client token associated with the request.",
@@ -364,14 +354,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "action",
-                  "clientToken",
-                  "deviceArn",
-                  "outputS3Bucket",
-                  "outputS3KeyPrefix",
-                  "shots"
-                ],
+                "required": ["action", "clientToken", "deviceArn", "outputS3Bucket", "outputS3KeyPrefix", "shots"],
                 "properties": {
                   "action": {
                     "description": "The action associated with the task.",
@@ -762,9 +745,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "filters"
-                ],
+                "required": ["filters"],
                 "properties": {
                   "filters": {
                     "description": "The filter values to use to search for a device.",
@@ -898,9 +879,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "filters"
-                ],
+                "required": ["filters"],
                 "properties": {
                   "filters": {
                     "description": "Array of <code>SearchQuantumTasksFilter</code> objects.",
@@ -1096,9 +1075,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "tags"
-                ],
+                "required": ["tags"],
                 "properties": {
                   "tags": {
                     "description": "Specify the tags to add to the resource.",
@@ -1289,10 +1266,7 @@
     "schemas": {
       "CancelQuantumTaskResponse": {
         "type": "object",
-        "required": [
-          "cancellationStatus",
-          "quantumTaskArn"
-        ],
+        "required": ["cancellationStatus", "quantumTaskArn"],
         "properties": {
           "cancellationStatus": {
             "allOf": [
@@ -1324,9 +1298,7 @@
       "ValidationException": {},
       "CreateQuantumTaskResponse": {
         "type": "object",
-        "required": [
-          "quantumTaskArn"
-        ],
+        "required": ["quantumTaskArn"],
         "properties": {
           "quantumTaskArn": {
             "allOf": [
@@ -1344,14 +1316,7 @@
       "ServiceQuotaExceededException": {},
       "GetDeviceResponse": {
         "type": "object",
-        "required": [
-          "deviceArn",
-          "deviceCapabilities",
-          "deviceName",
-          "deviceStatus",
-          "deviceType",
-          "providerName"
-        ],
+        "required": ["deviceArn", "deviceCapabilities", "deviceName", "deviceStatus", "deviceType", "providerName"],
         "properties": {
           "deviceArn": {
             "allOf": [
@@ -1542,9 +1507,7 @@
       },
       "SearchDevicesResponse": {
         "type": "object",
-        "required": [
-          "devices"
-        ],
+        "required": ["devices"],
         "properties": {
           "devices": {
             "allOf": [
@@ -1570,10 +1533,7 @@
       },
       "SearchDevicesFilter": {
         "type": "object",
-        "required": [
-          "name",
-          "values"
-        ],
+        "required": ["name", "values"],
         "properties": {
           "name": {
             "allOf": [
@@ -1600,9 +1560,7 @@
       },
       "SearchQuantumTasksResponse": {
         "type": "object",
-        "required": [
-          "quantumTasks"
-        ],
+        "required": ["quantumTasks"],
         "properties": {
           "nextToken": {
             "allOf": [
@@ -1628,11 +1586,7 @@
       },
       "SearchQuantumTasksFilter": {
         "type": "object",
-        "required": [
-          "name",
-          "operator",
-          "values"
-        ],
+        "required": ["name", "operator", "values"],
         "properties": {
           "name": {
             "allOf": [
@@ -1679,10 +1633,7 @@
       },
       "CancellationStatus": {
         "type": "string",
-        "enum": [
-          "CANCELLED",
-          "CANCELLING"
-        ]
+        "enum": ["CANCELLED", "CANCELLING"]
       },
       "JsonValue": {
         "type": "string"
@@ -1694,31 +1645,18 @@
       },
       "DeviceStatus": {
         "type": "string",
-        "enum": [
-          "OFFLINE",
-          "ONLINE",
-          "RETIRED"
-        ]
+        "enum": ["OFFLINE", "ONLINE", "RETIRED"]
       },
       "String": {
         "type": "string"
       },
       "DeviceType": {
         "type": "string",
-        "enum": [
-          "QPU",
-          "SIMULATOR"
-        ]
+        "enum": ["QPU", "SIMULATOR"]
       },
       "DeviceSummary": {
         "type": "object",
-        "required": [
-          "deviceArn",
-          "deviceName",
-          "deviceStatus",
-          "deviceType",
-          "providerName"
-        ],
+        "required": ["deviceArn", "deviceName", "deviceStatus", "deviceType", "providerName"],
         "properties": {
           "deviceArn": {
             "allOf": [
@@ -1788,15 +1726,7 @@
       },
       "QuantumTaskStatus": {
         "type": "string",
-        "enum": [
-          "CANCELLED",
-          "CANCELLING",
-          "COMPLETED",
-          "CREATED",
-          "FAILED",
-          "QUEUED",
-          "RUNNING"
-        ]
+        "enum": ["CANCELLED", "CANCELLING", "COMPLETED", "CREATED", "FAILED", "QUEUED", "RUNNING"]
       },
       "QuantumTaskSummary": {
         "type": "object",
@@ -1929,14 +1859,7 @@
       },
       "SearchQuantumTasksFilterOperator": {
         "type": "string",
-        "enum": [
-          "BETWEEN",
-          "EQUAL",
-          "GT",
-          "GTE",
-          "LT",
-          "LTE"
-        ]
+        "enum": ["BETWEEN", "EQUAL", "GT", "GTE", "LT", "LTE"]
       },
       "SearchQuantumTasksFiltervaluesString256List": {
         "type": "array",

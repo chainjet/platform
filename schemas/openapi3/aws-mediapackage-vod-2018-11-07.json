@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -229,12 +221,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "id",
-                  "packagingGroupId",
-                  "sourceArn",
-                  "sourceRoleArn"
-                ],
+                "required": ["id", "packagingGroupId", "sourceArn", "sourceRoleArn"],
                 "properties": {
                   "id": {
                     "description": "The unique identifier for the Asset.",
@@ -503,10 +490,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "id",
-                  "packagingGroupId"
-                ],
+                "required": ["id", "packagingGroupId"],
                 "properties": {
                   "cmafPackage": {
                     "description": "A CMAF packaging configuration.",
@@ -1004,9 +988,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "id"
-                ],
+                "required": ["id"],
                 "properties": {
                   "authorization": {
                     "description": "CDN Authorization credentials",
@@ -2030,9 +2012,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "tags"
-                ],
+                "required": ["tags"],
                 "properties": {
                   "tags": {
                     "description": "A collection of tags associated with a resource",
@@ -2563,9 +2543,7 @@
         }
       },
       "CmafEncryption": {
-        "required": [
-          "SpekeKeyProvider"
-        ],
+        "required": ["SpekeKeyProvider"],
         "type": "object",
         "properties": {
           "SpekeKeyProvider": {
@@ -2612,9 +2590,7 @@
         }
       },
       "DashEncryption": {
-        "required": [
-          "SpekeKeyProvider"
-        ],
+        "required": ["SpekeKeyProvider"],
         "type": "object",
         "properties": {
           "SpekeKeyProvider": {
@@ -2639,17 +2615,11 @@
         }
       },
       "SegmentTemplateFormat": {
-        "enum": [
-          "NUMBER_WITH_TIMELINE",
-          "TIME_WITH_TIMELINE",
-          "NUMBER_WITH_DURATION"
-        ],
+        "enum": ["NUMBER_WITH_TIMELINE", "TIME_WITH_TIMELINE", "NUMBER_WITH_DURATION"],
         "type": "string"
       },
       "HlsEncryption": {
-        "required": [
-          "SpekeKeyProvider"
-        ],
+        "required": ["SpekeKeyProvider"],
         "type": "object",
         "properties": {
           "ConstantInitializationVector": {
@@ -2697,9 +2667,7 @@
         "type": "boolean"
       },
       "MssEncryption": {
-        "required": [
-          "SpekeKeyProvider"
-        ],
+        "required": ["SpekeKeyProvider"],
         "type": "object",
         "properties": {
           "SpekeKeyProvider": {
@@ -3312,11 +3280,7 @@
         }
       },
       "AdMarkers": {
-        "enum": [
-          "NONE",
-          "SCTE35_ENHANCED",
-          "PASSTHROUGH"
-        ],
+        "enum": ["NONE", "SCTE35_ENHANCED", "PASSTHROUGH"],
         "type": "string"
       },
       "Tags": {
@@ -3436,10 +3400,7 @@
         "description": "A MediaPackage VOD Asset resource."
       },
       "Authorization": {
-        "required": [
-          "SecretsRoleArn",
-          "CdnIdentifierSecret"
-        ],
+        "required": ["SecretsRoleArn", "CdnIdentifierSecret"],
         "type": "object",
         "properties": {
           "CdnIdentifierSecret": {
@@ -3472,11 +3433,7 @@
         "description": "CDN Authorization credentials"
       },
       "SpekeKeyProvider": {
-        "required": [
-          "SystemIds",
-          "Url",
-          "RoleArn"
-        ],
+        "required": ["SystemIds", "Url", "RoleArn"],
         "type": "object",
         "properties": {
           "RoleArn": {
@@ -3522,9 +3479,7 @@
         "description": "A configuration for accessing an external Secure Packager and Encoder Key Exchange (SPEKE) service that will provide encryption keys."
       },
       "CmafPackage": {
-        "required": [
-          "HlsManifests"
-        ],
+        "required": ["HlsManifests"],
         "type": "object",
         "properties": {
           "Encryption": {
@@ -3588,9 +3543,7 @@
         }
       },
       "DashPackage": {
-        "required": [
-          "DashManifests"
-        ],
+        "required": ["DashManifests"],
         "type": "object",
         "properties": {
           "DashManifests": {
@@ -3674,9 +3627,7 @@
         "description": "A Dynamic Adaptive Streaming over HTTP (DASH) packaging configuration."
       },
       "HlsPackage": {
-        "required": [
-          "HlsManifests"
-        ],
+        "required": ["HlsManifests"],
         "type": "object",
         "properties": {
           "Encryption": {
@@ -3734,9 +3685,7 @@
         "description": "An HTTP Live Streaming (HLS) packaging configuration."
       },
       "MssPackage": {
-        "required": [
-          "MssManifests"
-        ],
+        "required": ["MssManifests"],
         "type": "object",
         "properties": {
           "Encryption": {
@@ -3781,17 +3730,11 @@
         "description": "A Microsoft Smooth Streaming (MSS) PackagingConfiguration."
       },
       "ManifestLayout": {
-        "enum": [
-          "FULL",
-          "COMPACT"
-        ],
+        "enum": ["FULL", "COMPACT"],
         "type": "string"
       },
       "Profile": {
-        "enum": [
-          "NONE",
-          "HBBTV_1_5"
-        ],
+        "enum": ["NONE", "HBBTV_1_5"],
         "type": "string"
       },
       "StreamSelection": {
@@ -3942,10 +3885,7 @@
         "description": "The endpoint URL used to access an Asset using one PackagingConfiguration."
       },
       "EncryptionMethod": {
-        "enum": [
-          "AES_128",
-          "SAMPLE_AES"
-        ],
+        "enum": ["AES_128", "SAMPLE_AES"],
         "type": "string"
       },
       "HlsManifest": {
@@ -4279,17 +4219,11 @@
         }
       },
       "StreamOrder": {
-        "enum": [
-          "ORIGINAL",
-          "VIDEO_BITRATE_ASCENDING",
-          "VIDEO_BITRATE_DESCENDING"
-        ],
+        "enum": ["ORIGINAL", "VIDEO_BITRATE_ASCENDING", "VIDEO_BITRATE_DESCENDING"],
         "type": "string"
       },
       "__PeriodTriggersElement": {
-        "enum": [
-          "ADS"
-        ],
+        "enum": ["ADS"],
         "type": "string"
       },
       "ConfigureLogsResponse": {

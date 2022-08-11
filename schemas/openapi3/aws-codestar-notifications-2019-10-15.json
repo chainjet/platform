@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -228,13 +220,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name",
-                  "EventTypeIds",
-                  "Resource",
-                  "Targets",
-                  "DetailType"
-                ],
+                "required": ["Name", "EventTypeIds", "Resource", "Targets", "DetailType"],
                 "properties": {
                   "Name": {
                     "description": "The name for the notification rule. Notifictaion rule names must be unique in your AWS account.",
@@ -267,10 +253,7 @@
                   "DetailType": {
                     "description": "The level of detail to include in the notifications for this resource. BASIC will include only the contents of the event as it would appear in AWS CloudWatch. FULL will include any supplemental information provided by AWS CodeStar Notifications and/or the service for the resource for which the notification is created.",
                     "type": "string",
-                    "enum": [
-                      "BASIC",
-                      "FULL"
-                    ]
+                    "enum": ["BASIC", "FULL"]
                   },
                   "ClientRequestToken": {
                     "description": "<p>A unique, client-generated idempotency token that, when provided in a request, ensures the request cannot be repeated with a changed parameter. If a request with the same parameters is received and a token is included, the request returns information about the initial request that used that token.</p> <note> <p>The AWS SDKs prepopulate client request tokens. If you are using an AWS SDK, an idempotency token is created for you.</p> </note>",
@@ -289,10 +272,7 @@
                   "Status": {
                     "description": "The status of the notification rule. The default value is ENABLED. If the status is set to DISABLED, notifications aren't sent for the notification rule.",
                     "type": "string",
-                    "enum": [
-                      "ENABLED",
-                      "DISABLED"
-                    ]
+                    "enum": ["ENABLED", "DISABLED"]
                   }
                 }
               }
@@ -378,9 +358,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Arn"
-                ],
+                "required": ["Arn"],
                 "properties": {
                   "Arn": {
                     "description": "The Amazon Resource Name (ARN) of the notification rule you want to delete.",
@@ -451,9 +429,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "TargetAddress"
-                ],
+                "required": ["TargetAddress"],
                 "properties": {
                   "TargetAddress": {
                     "description": "The Amazon Resource Name (ARN) of the SNS topic to delete.",
@@ -540,9 +516,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Arn"
-                ],
+                "required": ["Arn"],
                 "properties": {
                   "Arn": {
                     "description": "The Amazon Resource Name (ARN) of the notification rule.",
@@ -847,9 +821,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Arn"
-                ],
+                "required": ["Arn"],
                 "properties": {
                   "Arn": {
                     "description": "The Amazon Resource Name (ARN) for the notification rule.",
@@ -1042,10 +1014,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Arn",
-                  "Target"
-                ],
+                "required": ["Arn", "Target"],
                 "properties": {
                   "Arn": {
                     "description": "The Amazon Resource Name (ARN) of the notification rule for which you want to create the association.",
@@ -1169,10 +1138,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Arn",
-                  "Tags"
-                ],
+                "required": ["Arn", "Tags"],
                 "properties": {
                   "Arn": {
                     "description": "The Amazon Resource Name (ARN) of the notification rule to tag.",
@@ -1250,10 +1216,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Arn",
-                  "TargetAddress"
-                ],
+                "required": ["Arn", "TargetAddress"],
                 "properties": {
                   "Arn": {
                     "description": "The Amazon Resource Name (ARN) of the notification rule.",
@@ -1351,10 +1314,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Arn",
-                  "TagKeys"
-                ],
+                "required": ["Arn", "TagKeys"],
                 "properties": {
                   "Arn": {
                     "description": "The Amazon Resource Name (ARN) of the notification rule from which to remove the tags.",
@@ -1442,9 +1402,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Arn"
-                ],
+                "required": ["Arn"],
                 "properties": {
                   "Arn": {
                     "description": "The Amazon Resource Name (ARN) of the notification rule.",
@@ -1462,10 +1420,7 @@
                   "Status": {
                     "description": "The status of the notification rule. Valid statuses include enabled (sending notifications) or disabled (not sending notifications).",
                     "type": "string",
-                    "enum": [
-                      "ENABLED",
-                      "DISABLED"
-                    ]
+                    "enum": ["ENABLED", "DISABLED"]
                   },
                   "EventTypeIds": {
                     "description": "A list of event types associated with this notification rule.",
@@ -1485,10 +1440,7 @@
                   "DetailType": {
                     "description": "The level of detail to include in the notifications for this resource. BASIC will include only the contents of the event as it would appear in AWS CloudWatch. FULL will include any supplemental information provided by AWS CodeStar Notifications and/or the service for the resource for which the notification is created.",
                     "type": "string",
-                    "enum": [
-                      "BASIC",
-                      "FULL"
-                    ]
+                    "enum": ["BASIC", "FULL"]
                   }
                 }
               }
@@ -1676,9 +1628,7 @@
       },
       "DescribeNotificationRuleResult": {
         "type": "object",
-        "required": [
-          "Arn"
-        ],
+        "required": ["Arn"],
         "properties": {
           "Arn": {
             "allOf": [
@@ -1820,10 +1770,7 @@
       },
       "ListEventTypesFilter": {
         "type": "object",
-        "required": [
-          "Name",
-          "Value"
-        ],
+        "required": ["Name", "Value"],
         "properties": {
           "Name": {
             "allOf": [
@@ -1876,10 +1823,7 @@
       },
       "ListNotificationRulesFilter": {
         "type": "object",
-        "required": [
-          "Name",
-          "Value"
-        ],
+        "required": ["Name", "Value"],
         "properties": {
           "Name": {
             "allOf": [
@@ -1946,10 +1890,7 @@
       },
       "ListTargetsFilter": {
         "type": "object",
-        "required": [
-          "Name",
-          "Value"
-        ],
+        "required": ["Name", "Value"],
         "properties": {
           "Name": {
             "allOf": [
@@ -2016,9 +1957,7 @@
       },
       "UnsubscribeResult": {
         "type": "object",
-        "required": [
-          "Arn"
-        ],
+        "required": ["Arn"],
         "properties": {
           "Arn": {
             "allOf": [
@@ -2059,10 +1998,7 @@
       },
       "DetailType": {
         "type": "string",
-        "enum": [
-          "BASIC",
-          "FULL"
-        ]
+        "enum": ["BASIC", "FULL"]
       },
       "Tags": {
         "type": "object",
@@ -2072,10 +2008,7 @@
       },
       "NotificationRuleStatus": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "DISABLED"
-        ]
+        "enum": ["ENABLED", "DISABLED"]
       },
       "NotificationRuleArn": {
         "type": "string",
@@ -2164,10 +2097,7 @@
       },
       "ListEventTypesFilterName": {
         "type": "string",
-        "enum": [
-          "RESOURCE_TYPE",
-          "SERVICE_NAME"
-        ]
+        "enum": ["RESOURCE_TYPE", "SERVICE_NAME"]
       },
       "ListEventTypesFilterValue": {
         "type": "string"
@@ -2178,12 +2108,7 @@
       },
       "ListNotificationRulesFilterName": {
         "type": "string",
-        "enum": [
-          "EVENT_TYPE_ID",
-          "CREATED_BY",
-          "RESOURCE",
-          "TARGET_ADDRESS"
-        ]
+        "enum": ["EVENT_TYPE_ID", "CREATED_BY", "RESOURCE", "TARGET_ADDRESS"]
       },
       "ListNotificationRulesFilterValue": {
         "type": "string"
@@ -2196,11 +2121,7 @@
       },
       "ListTargetsFilterName": {
         "type": "string",
-        "enum": [
-          "TARGET_TYPE",
-          "TARGET_ADDRESS",
-          "TARGET_STATUS"
-        ]
+        "enum": ["TARGET_TYPE", "TARGET_ADDRESS", "TARGET_STATUS"]
       },
       "ListTargetsFilterValue": {
         "type": "string"
@@ -2238,13 +2159,7 @@
       },
       "TargetStatus": {
         "type": "string",
-        "enum": [
-          "PENDING",
-          "ACTIVE",
-          "UNREACHABLE",
-          "INACTIVE",
-          "DEACTIVATED"
-        ]
+        "enum": ["PENDING", "ACTIVE", "UNREACHABLE", "INACTIVE", "DEACTIVATED"]
       },
       "TargetSummary": {
         "type": "object",

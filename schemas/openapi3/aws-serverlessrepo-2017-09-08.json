@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -218,11 +210,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "author",
-                  "description",
-                  "name"
-                ],
+                "required": ["author", "description", "name"],
                 "properties": {
                   "author": {
                     "description": "<p>The name of the author publishing the app.</p><p>Minimum length=1. Maximum length=127.</p><p>Pattern \"^[a-z0-9](([a-z0-9]|-(?!-))*[a-z0-9])?$\";</p>",
@@ -628,9 +616,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "stackName"
-                ],
+                "required": ["stackName"],
                 "properties": {
                   "capabilities": {
                     "description": "<p>A list of values that you must specify before you can deploy certain applications.\n Some applications might include resources that can affect permissions in your AWS\n account, for example, by creating new AWS Identity and Access Management (IAM) users.\n For those applications, you must explicitly acknowledge their capabilities by\n specifying this parameter.</p><p>The only valid values are CAPABILITY_IAM, CAPABILITY_NAMED_IAM,\n CAPABILITY_RESOURCE_POLICY, and CAPABILITY_AUTO_EXPAND.</p><p>The following resources require you to specify CAPABILITY_IAM or\n CAPABILITY_NAMED_IAM:\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html\">AWS::IAM::Group</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html\">AWS::IAM::InstanceProfile</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html\">AWS::IAM::Policy</a>, and\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html\">AWS::IAM::Role</a>.\n If the application contains IAM resources, you can specify either CAPABILITY_IAM\n or CAPABILITY_NAMED_IAM. If the application contains IAM resources\n with custom names, you must specify CAPABILITY_NAMED_IAM.</p><p>The following resources require you to specify CAPABILITY_RESOURCE_POLICY:\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html\">AWS::Lambda::Permission</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html\">AWS::IAM:Policy</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalingpolicy.html\">AWS::ApplicationAutoScaling::ScalingPolicy</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-policy.html\">AWS::S3::BucketPolicy</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-policy.html\">AWS::SQS::QueuePolicy</a>, and\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html\">AWS::SNS:TopicPolicy</a>.</p><p>Applications that contain one or more nested applications require you to specify\n CAPABILITY_AUTO_EXPAND.</p><p>If your application template contains any of the above resources, we recommend that you review\n all permissions associated with the application before deploying. If you don't specify\n this parameter for an application that requires capabilities, the call will fail.</p>",
@@ -1377,9 +1363,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "statements"
-                ],
+                "required": ["statements"],
                 "properties": {
                   "statements": {
                     "description": "An array of policy statements applied to the application.",
@@ -1875,9 +1859,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "organizationId"
-                ],
+                "required": ["organizationId"],
                 "properties": {
                   "organizationId": {
                     "description": "The AWS Organization ID to unshare the application from.",
@@ -2354,10 +2336,7 @@
       },
       "ParameterValue": {
         "type": "object",
-        "required": [
-          "Value",
-          "Name"
-        ],
+        "required": ["Value", "Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -2399,10 +2378,7 @@
       },
       "Tag": {
         "type": "object",
-        "required": [
-          "Value",
-          "Key"
-        ],
+        "required": ["Value", "Key"],
         "properties": {
           "Key": {
             "allOf": [
@@ -2931,10 +2907,7 @@
       },
       "ApplicationPolicyStatement": {
         "type": "object",
-        "required": [
-          "Principals",
-          "Actions"
-        ],
+        "required": ["Principals", "Actions"],
         "properties": {
           "Actions": {
             "allOf": [
@@ -3167,10 +3140,7 @@
       },
       "ApplicationDependencySummary": {
         "type": "object",
-        "required": [
-          "ApplicationId",
-          "SemanticVersion"
-        ],
+        "required": ["ApplicationId", "SemanticVersion"],
         "properties": {
           "ApplicationId": {
             "allOf": [
@@ -3209,12 +3179,7 @@
       },
       "ApplicationSummary": {
         "type": "object",
-        "required": [
-          "Description",
-          "Author",
-          "ApplicationId",
-          "Name"
-        ],
+        "required": ["Description", "Author", "ApplicationId", "Name"],
         "properties": {
           "ApplicationId": {
             "allOf": [
@@ -3325,12 +3290,7 @@
       },
       "Capability": {
         "type": "string",
-        "enum": [
-          "CAPABILITY_IAM",
-          "CAPABILITY_NAMED_IAM",
-          "CAPABILITY_AUTO_EXPAND",
-          "CAPABILITY_RESOURCE_POLICY"
-        ],
+        "enum": ["CAPABILITY_IAM", "CAPABILITY_NAMED_IAM", "CAPABILITY_AUTO_EXPAND", "CAPABILITY_RESOURCE_POLICY"],
         "description": "Values that must be specified in order to deploy some applications."
       },
       "__boolean": {
@@ -3482,11 +3442,7 @@
       },
       "Status": {
         "type": "string",
-        "enum": [
-          "PREPARING",
-          "ACTIVE",
-          "EXPIRED"
-        ]
+        "enum": ["PREPARING", "ACTIVE", "EXPIRED"]
       },
       "__listOfApplicationPolicyStatement": {
         "type": "array",
@@ -3514,10 +3470,7 @@
       },
       "ParameterDefinition": {
         "type": "object",
-        "required": [
-          "ReferencedByResources",
-          "Name"
-        ],
+        "required": ["ReferencedByResources", "Name"],
         "properties": {
           "AllowedPattern": {
             "allOf": [
@@ -3693,10 +3646,7 @@
       },
       "RollbackTrigger": {
         "type": "object",
-        "required": [
-          "Type",
-          "Arn"
-        ],
+        "required": ["Type", "Arn"],
         "properties": {
           "Arn": {
             "allOf": [
@@ -3729,11 +3679,7 @@
       },
       "VersionSummary": {
         "type": "object",
-        "required": [
-          "CreationTime",
-          "ApplicationId",
-          "SemanticVersion"
-        ],
+        "required": ["CreationTime", "ApplicationId", "SemanticVersion"],
         "properties": {
           "ApplicationId": {
             "allOf": [

@@ -5,9 +5,7 @@
     "x-release": "v4",
     "title": "AWS CodeCommit",
     "description": "This is the AWS CodeCommit API Reference. This reference provides descriptions of the operations and data types for AWS CodeCommit API along with usage examples. You can use the AWS CodeCommit API to work with the following objects: Repositories, by calling the following:    BatchGetRepositories, which returns information about one or more repositories associated with your AWS account.    CreateRepository, which creates an AWS CodeCommit repository.    DeleteRepository, which deletes an AWS CodeCommit repository.    GetRepository, which returns information about a specified repository.    ListRepositories, which lists all AWS CodeCommit repositories associated with your AWS account.    UpdateRepositoryDescription, which sets or updates the description of the repository.    UpdateRepositoryName, which changes the name of the repository. If you change the name of a repository, no other users of that repository can access it until you send them the new HTTPS or SSH URL to use.   Branches, by calling the following:    CreateBranch, which creates a branch in a specified repository.    DeleteBranch, which deletes the specified branch in a repository unless it is the default branch.    GetBranch, which returns information about a specified branch.    ListBranches, which lists all branches for a specified repository.    UpdateDefaultBranch, which changes the default branch for a repository.   Files, by calling the following:    DeleteFile, which deletes the content of a specified file from a specified branch.    GetBlob, which returns the base-64 encoded content of an individual Git blob object in a repository.    GetFile, which returns the base-64 encoded content of a specified file.    GetFolder, which returns the contents of a specified folder or directory.    PutFile, which adds or modifies a single file in a specified repository and branch.   Commits, by calling the following:    BatchGetCommits, which returns information about one or more commits in a repository.    CreateCommit, which creates a commit for changes to a repository.    GetCommit, which returns information about a commit, including commit messages and author and committer information.    GetDifferences, which returns information about the differences in a valid commit specifier (such as a branch, tag, HEAD, commit ID, or other fully qualified reference).   Merges, by calling the following:    BatchDescribeMergeConflicts, which returns information about conflicts in a merge between commits in a repository.    CreateUnreferencedMergeCommit, which creates an unreferenced commit between two branches or commits for the purpose of comparing them and identifying any potential conflicts.    DescribeMergeConflicts, which returns information about merge conflicts between the base, source, and destination versions of a file in a potential merge.    GetMergeCommit, which returns information about the merge between a source and destination commit.     GetMergeConflicts, which returns information about merge conflicts between the source and destination branch in a pull request.    GetMergeOptions, which returns information about the available merge options between two branches or commit specifiers.    MergeBranchesByFastForward, which merges two branches using the fast-forward merge option.    MergeBranchesBySquash, which merges two branches using the squash merge option.    MergeBranchesByThreeWay, which merges two branches using the three-way merge option.   Pull requests, by calling the following:    CreatePullRequest, which creates a pull request in a specified repository.    CreatePullRequestApprovalRule, which creates an approval rule for a specified pull request.    DeletePullRequestApprovalRule, which deletes an approval rule for a specified pull request.    DescribePullRequestEvents, which returns information about one or more pull request events.    EvaluatePullRequestApprovalRules, which evaluates whether a pull request has met all the conditions specified in its associated approval rules.    GetCommentsForPullRequest, which returns information about comments on a specified pull request.    GetPullRequest, which returns information about a specified pull request.    GetPullRequestApprovalStates, which returns information about the approval states for a specified pull request.    GetPullRequestOverrideState, which returns information about whether approval rules have been set aside (overriden) for a pull request, and if so, the Amazon Resource Name (ARN) of the user or identity that overrode the rules and their requirements for the pull request.    ListPullRequests, which lists all pull requests for a repository.    MergePullRequestByFastForward, which merges the source destination branch of a pull request into the specified destination branch for that pull request using the fast-forward merge option.    MergePullRequestBySquash, which merges the source destination branch of a pull request into the specified destination branch for that pull request using the squash merge option.    MergePullRequestByThreeWay. which merges the source destination branch of a pull request into the specified destination branch for that pull request using the three-way merge option.    OverridePullRequestApprovalRules, which sets aside all approval rule requirements for a pull request.    PostCommentForPullRequest, which posts a comment to a pull request at the specified line, file, or request.    UpdatePullRequestApprovalRuleContent, which updates the structure of an approval rule for a pull request.    UpdatePullRequestApprovalState, which updates the state of an approval on a pull request.    UpdatePullRequestDescription, which updates the description of a pull request.    UpdatePullRequestStatus, which updates the status of a pull request.    UpdatePullRequestTitle, which updates the title of a pull request.   Approval rule templates, by calling the following:    AssociateApprovalRuleTemplateWithRepository, which associates a template with a specified repository. After the template is associated with a repository, AWS CodeCommit creates approval rules that match the template conditions on every pull request created in the specified repository.    BatchAssociateApprovalRuleTemplateWithRepositories, which associates a template with one or more specified repositories. After the template is associated with a repository, AWS CodeCommit creates approval rules that match the template conditions on every pull request created in the specified repositories.    BatchDisassociateApprovalRuleTemplateFromRepositories, which removes the association between a template and specified repositories so that approval rules based on the template are not automatically created when pull requests are created in those repositories.    CreateApprovalRuleTemplate, which creates a template for approval rules that can then be associated with one or more repositories in your AWS account.    DeleteApprovalRuleTemplate, which deletes the specified template. It does not remove approval rules on pull requests already created with the template.    DisassociateApprovalRuleTemplateFromRepository, which removes the association between a template and a repository so that approval rules based on the template are not automatically created when pull requests are created in the specified repository.    GetApprovalRuleTemplate, which returns information about an approval rule template.    ListApprovalRuleTemplates, which lists all approval rule templates in the AWS Region in your AWS account.    ListAssociatedApprovalRuleTemplatesForRepository, which lists all approval rule templates that are associated with a specified repository.    ListRepositoriesForApprovalRuleTemplate, which lists all repositories associated with the specified approval rule template.    UpdateApprovalRuleTemplateDescription, which updates the description of an approval rule template.    UpdateApprovalRuleTemplateName, which updates the name of an approval rule template.    UpdateApprovalRuleTemplateContent, which updates the content of an approval rule template.   Comments in a repository, by calling the following:    DeleteCommentContent, which deletes the content of a comment on a commit in a repository.    GetComment, which returns information about a comment on a commit.    GetCommentReactions, which returns information about emoji reactions to comments.    GetCommentsForComparedCommit, which returns information about comments on the comparison between two commit specifiers in a repository.    PostCommentForComparedCommit, which creates a comment on the comparison between two commit specifiers in a repository.    PostCommentReply, which creates a reply to a comment.    PutCommentReaction, which creates or updates an emoji reaction to a comment.    UpdateComment, which updates the content of a comment on a commit in a repository.   Tags used to tag resources in AWS CodeCommit (not Git tags), by calling the following:    ListTagsForResource, which gets information about AWS tags for a specified Amazon Resource Name (ARN) in AWS CodeCommit.    TagResource, which adds or updates tags for a resource in AWS CodeCommit.    UntagResource, which removes tags for a resource in AWS CodeCommit.   Triggers, by calling the following:    GetRepositoryTriggers, which returns information about triggers configured for a repository.    PutRepositoryTriggers, which replaces all triggers for a repository and can be used to create or delete triggers.    TestRepositoryTriggers, which tests the functionality of a repository trigger by sending data to the trigger target.   For information about how to use AWS CodeCommit, see the AWS CodeCommit User Guide.",
-    "x-categories": [
-      "software-development"
-    ],
+    "x-categories": ["software-development"],
     "x-logo": {
       "url": "/logos/aws/Arch_AWS-CodeCommit_64.svg"
     },
@@ -38,9 +36,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -123,10 +119,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -137,10 +130,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -295,9 +285,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.AssociateApprovalRuleTemplateWithRepository"
-              ]
+              "enum": ["CodeCommit_20150413.AssociateApprovalRuleTemplateWithRepository"]
             }
           }
         ],
@@ -460,9 +448,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.BatchAssociateApprovalRuleTemplateWithRepositories"
-              ]
+              "enum": ["CodeCommit_20150413.BatchAssociateApprovalRuleTemplateWithRepositories"]
             }
           }
         ],
@@ -735,9 +721,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.BatchDescribeMergeConflicts"
-              ]
+              "enum": ["CodeCommit_20150413.BatchDescribeMergeConflicts"]
             }
           }
         ],
@@ -900,9 +884,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.BatchDisassociateApprovalRuleTemplateFromRepositories"
-              ]
+              "enum": ["CodeCommit_20150413.BatchDisassociateApprovalRuleTemplateFromRepositories"]
             }
           }
         ],
@@ -1065,9 +1047,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.BatchGetCommits"
-              ]
+              "enum": ["CodeCommit_20150413.BatchGetCommits"]
             }
           }
         ],
@@ -1210,9 +1190,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.BatchGetRepositories"
-              ]
+              "enum": ["CodeCommit_20150413.BatchGetRepositories"]
             }
           }
         ],
@@ -1345,9 +1323,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.CreateApprovalRuleTemplate"
-              ]
+              "enum": ["CodeCommit_20150413.CreateApprovalRuleTemplate"]
             }
           }
         ],
@@ -1543,9 +1519,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.CreateBranch"
-              ]
+              "enum": ["CodeCommit_20150413.CreateBranch"]
             }
           }
         ],
@@ -1988,9 +1962,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.CreateCommit"
-              ]
+              "enum": ["CodeCommit_20150413.CreateCommit"]
             }
           }
         ],
@@ -2303,9 +2275,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.CreatePullRequest"
-              ]
+              "enum": ["CodeCommit_20150413.CreatePullRequest"]
             }
           }
         ],
@@ -2518,9 +2488,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.CreatePullRequestApprovalRule"
-              ]
+              "enum": ["CodeCommit_20150413.CreatePullRequestApprovalRule"]
             }
           }
         ],
@@ -2723,9 +2691,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.CreateRepository"
-              ]
+              "enum": ["CodeCommit_20150413.CreateRepository"]
             }
           }
         ],
@@ -3148,9 +3114,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.CreateUnreferencedMergeCommit"
-              ]
+              "enum": ["CodeCommit_20150413.CreateUnreferencedMergeCommit"]
             }
           }
         ],
@@ -3243,9 +3207,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.DeleteApprovalRuleTemplate"
-              ]
+              "enum": ["CodeCommit_20150413.DeleteApprovalRuleTemplate"]
             }
           }
         ],
@@ -3418,9 +3380,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.DeleteBranch"
-              ]
+              "enum": ["CodeCommit_20150413.DeleteBranch"]
             }
           }
         ],
@@ -3523,9 +3483,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.DeleteCommentContent"
-              ]
+              "enum": ["CodeCommit_20150413.DeleteCommentContent"]
             }
           }
         ],
@@ -3808,9 +3766,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.DeleteFile"
-              ]
+              "enum": ["CodeCommit_20150413.DeleteFile"]
             }
           }
         ],
@@ -3993,9 +3949,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.DeletePullRequestApprovalRule"
-              ]
+              "enum": ["CodeCommit_20150413.DeletePullRequestApprovalRule"]
             }
           }
         ],
@@ -4128,9 +4082,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.DeleteRepository"
-              ]
+              "enum": ["CodeCommit_20150413.DeleteRepository"]
             }
           }
         ],
@@ -4441,9 +4393,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.DescribeMergeConflicts"
-              ]
+              "enum": ["CodeCommit_20150413.DescribeMergeConflicts"]
             }
           }
         ],
@@ -4654,9 +4604,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.DescribePullRequestEvents"
-              ]
+              "enum": ["CodeCommit_20150413.DescribePullRequestEvents"]
             }
           }
         ],
@@ -4822,9 +4770,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.DisassociateApprovalRuleTemplateFromRepository"
-              ]
+              "enum": ["CodeCommit_20150413.DisassociateApprovalRuleTemplateFromRepository"]
             }
           }
         ],
@@ -4997,9 +4943,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.EvaluatePullRequestApprovalRules"
-              ]
+              "enum": ["CodeCommit_20150413.EvaluatePullRequestApprovalRules"]
             }
           }
         ],
@@ -5092,9 +5036,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.GetApprovalRuleTemplate"
-              ]
+              "enum": ["CodeCommit_20150413.GetApprovalRuleTemplate"]
             }
           }
         ],
@@ -5277,9 +5219,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.GetBlob"
-              ]
+              "enum": ["CodeCommit_20150413.GetBlob"]
             }
           }
         ],
@@ -5452,9 +5392,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.GetBranch"
-              ]
+              "enum": ["CodeCommit_20150413.GetBranch"]
             }
           }
         ],
@@ -5607,9 +5545,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.GetComment"
-              ]
+              "enum": ["CodeCommit_20150413.GetComment"]
             }
           }
         ],
@@ -5760,9 +5696,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.GetCommentReactions"
-              ]
+              "enum": ["CodeCommit_20150413.GetCommentReactions"]
             }
           }
         ],
@@ -5973,9 +5907,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.GetCommentsForComparedCommit"
-              ]
+              "enum": ["CodeCommit_20150413.GetCommentsForComparedCommit"]
             }
           }
         ],
@@ -6226,9 +6158,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.GetCommentsForPullRequest"
-              ]
+              "enum": ["CodeCommit_20150413.GetCommentsForPullRequest"]
             }
           }
         ],
@@ -6401,9 +6331,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.GetCommit"
-              ]
+              "enum": ["CodeCommit_20150413.GetCommit"]
             }
           }
         ],
@@ -6644,9 +6572,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.GetDifferences"
-              ]
+              "enum": ["CodeCommit_20150413.GetDifferences"]
             }
           }
         ],
@@ -6849,9 +6775,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.GetFile"
-              ]
+              "enum": ["CodeCommit_20150413.GetFile"]
             }
           }
         ],
@@ -7044,9 +6968,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.GetFolder"
-              ]
+              "enum": ["CodeCommit_20150413.GetFolder"]
             }
           }
         ],
@@ -7239,9 +7161,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.GetMergeCommit"
-              ]
+              "enum": ["CodeCommit_20150413.GetMergeCommit"]
             }
           }
         ],
@@ -7542,9 +7462,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.GetMergeConflicts"
-              ]
+              "enum": ["CodeCommit_20150413.GetMergeConflicts"]
             }
           }
         ],
@@ -7767,9 +7685,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.GetMergeOptions"
-              ]
+              "enum": ["CodeCommit_20150413.GetMergeOptions"]
             }
           }
         ],
@@ -7912,9 +7828,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.GetPullRequest"
-              ]
+              "enum": ["CodeCommit_20150413.GetPullRequest"]
             }
           }
         ],
@@ -8077,9 +7991,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.GetPullRequestApprovalStates"
-              ]
+              "enum": ["CodeCommit_20150413.GetPullRequestApprovalStates"]
             }
           }
         ],
@@ -8242,9 +8154,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.GetPullRequestOverrideState"
-              ]
+              "enum": ["CodeCommit_20150413.GetPullRequestOverrideState"]
             }
           }
         ],
@@ -8387,9 +8297,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.GetRepository"
-              ]
+              "enum": ["CodeCommit_20150413.GetRepository"]
             }
           }
         ],
@@ -8532,9 +8440,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.GetRepositoryTriggers"
-              ]
+              "enum": ["CodeCommit_20150413.GetRepositoryTriggers"]
             }
           }
         ],
@@ -8635,9 +8541,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.ListApprovalRuleTemplates"
-              ]
+              "enum": ["CodeCommit_20150413.ListApprovalRuleTemplates"]
             }
           }
         ],
@@ -8818,9 +8722,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.ListAssociatedApprovalRuleTemplatesForRepository"
-              ]
+              "enum": ["CodeCommit_20150413.ListAssociatedApprovalRuleTemplatesForRepository"]
             }
           }
         ],
@@ -8982,9 +8884,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.ListBranches"
-              ]
+              "enum": ["CodeCommit_20150413.ListBranches"]
             }
           }
         ],
@@ -9195,9 +9095,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.ListPullRequests"
-              ]
+              "enum": ["CodeCommit_20150413.ListPullRequests"]
             }
           }
         ],
@@ -9299,9 +9197,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.ListRepositories"
-              ]
+              "enum": ["CodeCommit_20150413.ListRepositories"]
             }
           }
         ],
@@ -9482,9 +9378,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.ListRepositoriesForApprovalRuleTemplate"
-              ]
+              "enum": ["CodeCommit_20150413.ListRepositoriesForApprovalRuleTemplate"]
             }
           }
         ],
@@ -9587,9 +9481,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.ListTagsForResource"
-              ]
+              "enum": ["CodeCommit_20150413.ListTagsForResource"]
             }
           }
         ],
@@ -9842,9 +9734,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.MergeBranchesByFastForward"
-              ]
+              "enum": ["CodeCommit_20150413.MergeBranchesByFastForward"]
             }
           }
         ],
@@ -10297,9 +10187,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.MergeBranchesBySquash"
-              ]
+              "enum": ["CodeCommit_20150413.MergeBranchesBySquash"]
             }
           }
         ],
@@ -10752,9 +10640,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.MergeBranchesByThreeWay"
-              ]
+              "enum": ["CodeCommit_20150413.MergeBranchesByThreeWay"]
             }
           }
         ],
@@ -11007,9 +10893,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.MergePullRequestByFastForward"
-              ]
+              "enum": ["CodeCommit_20150413.MergePullRequestByFastForward"]
             }
           }
         ],
@@ -11452,9 +11336,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.MergePullRequestBySquash"
-              ]
+              "enum": ["CodeCommit_20150413.MergePullRequestBySquash"]
             }
           }
         ],
@@ -11897,9 +11779,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.MergePullRequestByThreeWay"
-              ]
+              "enum": ["CodeCommit_20150413.MergePullRequestByThreeWay"]
             }
           }
         ],
@@ -12105,9 +11985,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.OverridePullRequestApprovalRules"
-              ]
+              "enum": ["CodeCommit_20150413.OverridePullRequestApprovalRules"]
             }
           }
         ],
@@ -12410,9 +12288,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.PostCommentForComparedCommit"
-              ]
+              "enum": ["CodeCommit_20150413.PostCommentForComparedCommit"]
             }
           }
         ],
@@ -12755,9 +12631,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.PostCommentForPullRequest"
-              ]
+              "enum": ["CodeCommit_20150413.PostCommentForPullRequest"]
             }
           }
         ],
@@ -12900,9 +12774,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.PostCommentReply"
-              ]
+              "enum": ["CodeCommit_20150413.PostCommentReply"]
             }
           }
         ],
@@ -13028,9 +12900,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.PutCommentReaction"
-              ]
+              "enum": ["CodeCommit_20150413.PutCommentReaction"]
             }
           }
         ],
@@ -13393,9 +13263,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.PutFile"
-              ]
+              "enum": ["CodeCommit_20150413.PutFile"]
             }
           }
         ],
@@ -13668,9 +13536,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.PutRepositoryTriggers"
-              ]
+              "enum": ["CodeCommit_20150413.PutRepositoryTriggers"]
             }
           }
         ],
@@ -13816,9 +13682,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.TagResource"
-              ]
+              "enum": ["CodeCommit_20150413.TagResource"]
             }
           }
         ],
@@ -14091,9 +13955,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.TestRepositoryTriggers"
-              ]
+              "enum": ["CodeCommit_20150413.TestRepositoryTriggers"]
             }
           }
         ],
@@ -14239,9 +14101,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.UntagResource"
-              ]
+              "enum": ["CodeCommit_20150413.UntagResource"]
             }
           }
         ],
@@ -14364,9 +14224,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.UpdateApprovalRuleTemplateContent"
-              ]
+              "enum": ["CodeCommit_20150413.UpdateApprovalRuleTemplateContent"]
             }
           }
         ],
@@ -14469,9 +14327,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.UpdateApprovalRuleTemplateDescription"
-              ]
+              "enum": ["CodeCommit_20150413.UpdateApprovalRuleTemplateDescription"]
             }
           }
         ],
@@ -14574,9 +14430,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.UpdateApprovalRuleTemplateName"
-              ]
+              "enum": ["CodeCommit_20150413.UpdateApprovalRuleTemplateName"]
             }
           }
         ],
@@ -14709,9 +14563,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.UpdateComment"
-              ]
+              "enum": ["CodeCommit_20150413.UpdateComment"]
             }
           }
         ],
@@ -14877,9 +14729,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.UpdateDefaultBranch"
-              ]
+              "enum": ["CodeCommit_20150413.UpdateDefaultBranch"]
             }
           }
         ],
@@ -15102,9 +14952,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.UpdatePullRequestApprovalRuleContent"
-              ]
+              "enum": ["CodeCommit_20150413.UpdatePullRequestApprovalRuleContent"]
             }
           }
         ],
@@ -15320,9 +15168,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.UpdatePullRequestApprovalState"
-              ]
+              "enum": ["CodeCommit_20150413.UpdatePullRequestApprovalState"]
             }
           }
         ],
@@ -15435,9 +15281,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.UpdatePullRequestDescription"
-              ]
+              "enum": ["CodeCommit_20150413.UpdatePullRequestDescription"]
             }
           }
         ],
@@ -15610,9 +15454,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.UpdatePullRequestStatus"
-              ]
+              "enum": ["CodeCommit_20150413.UpdatePullRequestStatus"]
             }
           }
         ],
@@ -15735,9 +15577,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.UpdatePullRequestTitle"
-              ]
+              "enum": ["CodeCommit_20150413.UpdatePullRequestTitle"]
             }
           }
         ],
@@ -15883,9 +15723,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.UpdateRepositoryDescription"
-              ]
+              "enum": ["CodeCommit_20150413.UpdateRepositoryDescription"]
             }
           }
         ],
@@ -15981,9 +15819,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodeCommit_20150413.UpdateRepositoryName"
-              ]
+              "enum": ["CodeCommit_20150413.UpdateRepositoryName"]
             }
           }
         ],
@@ -16092,10 +15928,7 @@
     "schemas": {
       "AssociateApprovalRuleTemplateWithRepositoryInput": {
         "type": "object",
-        "required": [
-          "approvalRuleTemplateName",
-          "repositoryName"
-        ],
+        "required": ["approvalRuleTemplateName", "repositoryName"],
         "title": "AssociateApprovalRuleTemplateWithRepositoryInput",
         "properties": {
           "approvalRuleTemplateName": {
@@ -16134,10 +15967,7 @@
       "EncryptionKeyUnavailableException": {},
       "BatchAssociateApprovalRuleTemplateWithRepositoriesOutput": {
         "type": "object",
-        "required": [
-          "associatedRepositoryNames",
-          "errors"
-        ],
+        "required": ["associatedRepositoryNames", "errors"],
         "properties": {
           "associatedRepositoryNames": {
             "allOf": [
@@ -16163,10 +15993,7 @@
       },
       "BatchAssociateApprovalRuleTemplateWithRepositoriesInput": {
         "type": "object",
-        "required": [
-          "approvalRuleTemplateName",
-          "repositoryNames"
-        ],
+        "required": ["approvalRuleTemplateName", "repositoryNames"],
         "title": "BatchAssociateApprovalRuleTemplateWithRepositoriesInput",
         "properties": {
           "approvalRuleTemplateName": {
@@ -16195,11 +16022,7 @@
       "MaximumRepositoryNamesExceededException": {},
       "BatchDescribeMergeConflictsOutput": {
         "type": "object",
-        "required": [
-          "conflicts",
-          "destinationCommitId",
-          "sourceCommitId"
-        ],
+        "required": ["conflicts", "destinationCommitId", "sourceCommitId"],
         "properties": {
           "conflicts": {
             "allOf": [
@@ -16265,12 +16088,7 @@
       },
       "BatchDescribeMergeConflictsInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "destinationCommitSpecifier",
-          "sourceCommitSpecifier",
-          "mergeOption"
-        ],
+        "required": ["repositoryName", "destinationCommitSpecifier", "sourceCommitSpecifier", "mergeOption"],
         "title": "BatchDescribeMergeConflictsInput",
         "properties": {
           "repositoryName": {
@@ -16390,10 +16208,7 @@
       "MaximumItemsToCompareExceededException": {},
       "BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput": {
         "type": "object",
-        "required": [
-          "disassociatedRepositoryNames",
-          "errors"
-        ],
+        "required": ["disassociatedRepositoryNames", "errors"],
         "properties": {
           "disassociatedRepositoryNames": {
             "allOf": [
@@ -16419,10 +16234,7 @@
       },
       "BatchDisassociateApprovalRuleTemplateFromRepositoriesInput": {
         "type": "object",
-        "required": [
-          "approvalRuleTemplateName",
-          "repositoryNames"
-        ],
+        "required": ["approvalRuleTemplateName", "repositoryNames"],
         "title": "BatchDisassociateApprovalRuleTemplateFromRepositoriesInput",
         "properties": {
           "approvalRuleTemplateName": {
@@ -16474,10 +16286,7 @@
       },
       "BatchGetCommitsInput": {
         "type": "object",
-        "required": [
-          "commitIds",
-          "repositoryName"
-        ],
+        "required": ["commitIds", "repositoryName"],
         "title": "BatchGetCommitsInput",
         "properties": {
           "commitIds": {
@@ -16532,9 +16341,7 @@
       },
       "BatchGetRepositoriesInput": {
         "type": "object",
-        "required": [
-          "repositoryNames"
-        ],
+        "required": ["repositoryNames"],
         "title": "BatchGetRepositoriesInput",
         "properties": {
           "repositoryNames": {
@@ -16552,9 +16359,7 @@
       },
       "CreateApprovalRuleTemplateOutput": {
         "type": "object",
-        "required": [
-          "approvalRuleTemplate"
-        ],
+        "required": ["approvalRuleTemplate"],
         "properties": {
           "approvalRuleTemplate": {
             "allOf": [
@@ -16570,10 +16375,7 @@
       },
       "CreateApprovalRuleTemplateInput": {
         "type": "object",
-        "required": [
-          "approvalRuleTemplateName",
-          "approvalRuleTemplateContent"
-        ],
+        "required": ["approvalRuleTemplateName", "approvalRuleTemplateContent"],
         "title": "CreateApprovalRuleTemplateInput",
         "properties": {
           "approvalRuleTemplateName": {
@@ -16615,11 +16417,7 @@
       "NumberOfRuleTemplatesExceededException": {},
       "CreateBranchInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "branchName",
-          "commitId"
-        ],
+        "required": ["repositoryName", "branchName", "commitId"],
         "title": "CreateBranchInput",
         "properties": {
           "repositoryName": {
@@ -16717,10 +16515,7 @@
       },
       "CreateCommitInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "branchName"
-        ],
+        "required": ["repositoryName", "branchName"],
         "title": "CreateCommitInput",
         "properties": {
           "repositoryName": {
@@ -16855,9 +16650,7 @@
       "FilePathConflictsWithSubmodulePathException": {},
       "CreatePullRequestOutput": {
         "type": "object",
-        "required": [
-          "pullRequest"
-        ],
+        "required": ["pullRequest"],
         "properties": {
           "pullRequest": {
             "allOf": [
@@ -16873,10 +16666,7 @@
       },
       "CreatePullRequestInput": {
         "type": "object",
-        "required": [
-          "title",
-          "targets"
-        ],
+        "required": ["title", "targets"],
         "title": "CreatePullRequestInput",
         "properties": {
           "title": {
@@ -16940,9 +16730,7 @@
       "SourceAndDestinationAreSameException": {},
       "CreatePullRequestApprovalRuleOutput": {
         "type": "object",
-        "required": [
-          "approvalRule"
-        ],
+        "required": ["approvalRule"],
         "properties": {
           "approvalRule": {
             "allOf": [
@@ -16958,11 +16746,7 @@
       },
       "CreatePullRequestApprovalRuleInput": {
         "type": "object",
-        "required": [
-          "pullRequestId",
-          "approvalRuleName",
-          "approvalRuleContent"
-        ],
+        "required": ["pullRequestId", "approvalRuleName", "approvalRuleContent"],
         "title": "CreatePullRequestApprovalRuleInput",
         "properties": {
           "pullRequestId": {
@@ -17025,9 +16809,7 @@
       },
       "CreateRepositoryInput": {
         "type": "object",
-        "required": [
-          "repositoryName"
-        ],
+        "required": ["repositoryName"],
         "title": "CreateRepositoryInput",
         "properties": {
           "repositoryName": {
@@ -17097,12 +16879,7 @@
       },
       "CreateUnreferencedMergeCommitInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "sourceCommitSpecifier",
-          "destinationCommitSpecifier",
-          "mergeOption"
-        ],
+        "required": ["repositoryName", "sourceCommitSpecifier", "destinationCommitSpecifier", "mergeOption"],
         "title": "CreateUnreferencedMergeCommitInput",
         "properties": {
           "repositoryName": {
@@ -17228,9 +17005,7 @@
       "ConcurrentReferenceUpdateException": {},
       "DeleteApprovalRuleTemplateOutput": {
         "type": "object",
-        "required": [
-          "approvalRuleTemplateId"
-        ],
+        "required": ["approvalRuleTemplateId"],
         "properties": {
           "approvalRuleTemplateId": {
             "allOf": [
@@ -17246,9 +17021,7 @@
       },
       "DeleteApprovalRuleTemplateInput": {
         "type": "object",
-        "required": [
-          "approvalRuleTemplateName"
-        ],
+        "required": ["approvalRuleTemplateName"],
         "title": "DeleteApprovalRuleTemplateInput",
         "properties": {
           "approvalRuleTemplateName": {
@@ -17282,10 +17055,7 @@
       },
       "DeleteBranchInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "branchName"
-        ],
+        "required": ["repositoryName", "branchName"],
         "title": "DeleteBranchInput",
         "properties": {
           "repositoryName": {
@@ -17329,9 +17099,7 @@
       },
       "DeleteCommentContentInput": {
         "type": "object",
-        "required": [
-          "commentId"
-        ],
+        "required": ["commentId"],
         "title": "DeleteCommentContentInput",
         "properties": {
           "commentId": {
@@ -17352,12 +17120,7 @@
       "CommentDeletedException": {},
       "DeleteFileOutput": {
         "type": "object",
-        "required": [
-          "commitId",
-          "blobId",
-          "treeId",
-          "filePath"
-        ],
+        "required": ["commitId", "blobId", "treeId", "filePath"],
         "properties": {
           "commitId": {
             "allOf": [
@@ -17403,12 +17166,7 @@
       },
       "DeleteFileInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "branchName",
-          "filePath",
-          "parentCommitId"
-        ],
+        "required": ["repositoryName", "branchName", "filePath", "parentCommitId"],
         "title": "DeleteFileInput",
         "properties": {
           "repositoryName": {
@@ -17495,9 +17253,7 @@
       },
       "DeletePullRequestApprovalRuleOutput": {
         "type": "object",
-        "required": [
-          "approvalRuleId"
-        ],
+        "required": ["approvalRuleId"],
         "properties": {
           "approvalRuleId": {
             "allOf": [
@@ -17513,10 +17269,7 @@
       },
       "DeletePullRequestApprovalRuleInput": {
         "type": "object",
-        "required": [
-          "pullRequestId",
-          "approvalRuleName"
-        ],
+        "required": ["pullRequestId", "approvalRuleName"],
         "title": "DeletePullRequestApprovalRuleInput",
         "properties": {
           "pullRequestId": {
@@ -17560,9 +17313,7 @@
       },
       "DeleteRepositoryInput": {
         "type": "object",
-        "required": [
-          "repositoryName"
-        ],
+        "required": ["repositoryName"],
         "title": "DeleteRepositoryInput",
         "properties": {
           "repositoryName": {
@@ -17580,12 +17331,7 @@
       },
       "DescribeMergeConflictsOutput": {
         "type": "object",
-        "required": [
-          "conflictMetadata",
-          "mergeHunks",
-          "destinationCommitId",
-          "sourceCommitId"
-        ],
+        "required": ["conflictMetadata", "mergeHunks", "destinationCommitId", "sourceCommitId"],
         "properties": {
           "conflictMetadata": {
             "allOf": [
@@ -17754,9 +17500,7 @@
       },
       "DescribePullRequestEventsOutput": {
         "type": "object",
-        "required": [
-          "pullRequestEvents"
-        ],
+        "required": ["pullRequestEvents"],
         "properties": {
           "pullRequestEvents": {
             "allOf": [
@@ -17782,9 +17526,7 @@
       },
       "DescribePullRequestEventsInput": {
         "type": "object",
-        "required": [
-          "pullRequestId"
-        ],
+        "required": ["pullRequestId"],
         "title": "DescribePullRequestEventsInput",
         "properties": {
           "pullRequestId": {
@@ -17845,10 +17587,7 @@
       "InvalidMaxResultsException": {},
       "DisassociateApprovalRuleTemplateFromRepositoryInput": {
         "type": "object",
-        "required": [
-          "approvalRuleTemplateName",
-          "repositoryName"
-        ],
+        "required": ["approvalRuleTemplateName", "repositoryName"],
         "title": "DisassociateApprovalRuleTemplateFromRepositoryInput",
         "properties": {
           "approvalRuleTemplateName": {
@@ -17875,9 +17614,7 @@
       },
       "EvaluatePullRequestApprovalRulesOutput": {
         "type": "object",
-        "required": [
-          "evaluation"
-        ],
+        "required": ["evaluation"],
         "properties": {
           "evaluation": {
             "allOf": [
@@ -17893,10 +17630,7 @@
       },
       "EvaluatePullRequestApprovalRulesInput": {
         "type": "object",
-        "required": [
-          "pullRequestId",
-          "revisionId"
-        ],
+        "required": ["pullRequestId", "revisionId"],
         "title": "EvaluatePullRequestApprovalRulesInput",
         "properties": {
           "pullRequestId": {
@@ -17926,9 +17660,7 @@
       "RevisionNotCurrentException": {},
       "GetApprovalRuleTemplateOutput": {
         "type": "object",
-        "required": [
-          "approvalRuleTemplate"
-        ],
+        "required": ["approvalRuleTemplate"],
         "properties": {
           "approvalRuleTemplate": {
             "allOf": [
@@ -17944,9 +17676,7 @@
       },
       "GetApprovalRuleTemplateInput": {
         "type": "object",
-        "required": [
-          "approvalRuleTemplateName"
-        ],
+        "required": ["approvalRuleTemplateName"],
         "title": "GetApprovalRuleTemplateInput",
         "properties": {
           "approvalRuleTemplateName": {
@@ -17963,9 +17693,7 @@
       },
       "GetBlobOutput": {
         "type": "object",
-        "required": [
-          "content"
-        ],
+        "required": ["content"],
         "properties": {
           "content": {
             "allOf": [
@@ -17982,10 +17710,7 @@
       },
       "GetBlobInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "blobId"
-        ],
+        "required": ["repositoryName", "blobId"],
         "title": "GetBlobInput",
         "properties": {
           "repositoryName": {
@@ -18075,9 +17800,7 @@
       },
       "GetCommentInput": {
         "type": "object",
-        "required": [
-          "commentId"
-        ],
+        "required": ["commentId"],
         "title": "GetCommentInput",
         "properties": {
           "commentId": {
@@ -18094,9 +17817,7 @@
       },
       "GetCommentReactionsOutput": {
         "type": "object",
-        "required": [
-          "reactionsForComment"
-        ],
+        "required": ["reactionsForComment"],
         "properties": {
           "reactionsForComment": {
             "allOf": [
@@ -18122,9 +17843,7 @@
       },
       "GetCommentReactionsInput": {
         "type": "object",
-        "required": [
-          "commentId"
-        ],
+        "required": ["commentId"],
         "title": "GetCommentReactionsInput",
         "properties": {
           "commentId": {
@@ -18197,10 +17916,7 @@
       },
       "GetCommentsForComparedCommitInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "afterCommitId"
-        ],
+        "required": ["repositoryName", "afterCommitId"],
         "title": "GetCommentsForComparedCommitInput",
         "properties": {
           "repositoryName": {
@@ -18282,9 +17998,7 @@
       },
       "GetCommentsForPullRequestInput": {
         "type": "object",
-        "required": [
-          "pullRequestId"
-        ],
+        "required": ["pullRequestId"],
         "title": "GetCommentsForPullRequestInput",
         "properties": {
           "pullRequestId": {
@@ -18352,9 +18066,7 @@
       "RepositoryNotAssociatedWithPullRequestException": {},
       "GetCommitOutput": {
         "type": "object",
-        "required": [
-          "commit"
-        ],
+        "required": ["commit"],
         "properties": {
           "commit": {
             "allOf": [
@@ -18371,10 +18083,7 @@
       },
       "GetCommitInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "commitId"
-        ],
+        "required": ["repositoryName", "commitId"],
         "title": "GetCommitInput",
         "properties": {
           "repositoryName": {
@@ -18428,10 +18137,7 @@
       },
       "GetDifferencesInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "afterCommitSpecifier"
-        ],
+        "required": ["repositoryName", "afterCommitSpecifier"],
         "title": "GetDifferencesInput",
         "properties": {
           "repositoryName": {
@@ -18509,14 +18215,7 @@
       "PathDoesNotExistException": {},
       "GetFileOutput": {
         "type": "object",
-        "required": [
-          "commitId",
-          "blobId",
-          "filePath",
-          "fileMode",
-          "fileSize",
-          "fileContent"
-        ],
+        "required": ["commitId", "blobId", "filePath", "fileMode", "fileSize", "fileContent"],
         "properties": {
           "commitId": {
             "allOf": [
@@ -18582,10 +18281,7 @@
       },
       "GetFileInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "filePath"
-        ],
+        "required": ["repositoryName", "filePath"],
         "title": "GetFileInput",
         "properties": {
           "repositoryName": {
@@ -18622,10 +18318,7 @@
       },
       "GetFolderOutput": {
         "type": "object",
-        "required": [
-          "commitId",
-          "folderPath"
-        ],
+        "required": ["commitId", "folderPath"],
         "properties": {
           "commitId": {
             "allOf": [
@@ -18701,10 +18394,7 @@
       },
       "GetFolderInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "folderPath"
-        ],
+        "required": ["repositoryName", "folderPath"],
         "title": "GetFolderInput",
         "properties": {
           "repositoryName": {
@@ -18787,11 +18477,7 @@
       },
       "GetMergeCommitInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "sourceCommitSpecifier",
-          "destinationCommitSpecifier"
-        ],
+        "required": ["repositoryName", "sourceCommitSpecifier", "destinationCommitSpecifier"],
         "title": "GetMergeCommitInput",
         "properties": {
           "repositoryName": {
@@ -18848,12 +18534,7 @@
       },
       "GetMergeConflictsOutput": {
         "type": "object",
-        "required": [
-          "mergeable",
-          "destinationCommitId",
-          "sourceCommitId",
-          "conflictMetadataList"
-        ],
+        "required": ["mergeable", "destinationCommitId", "sourceCommitId", "conflictMetadataList"],
         "properties": {
           "mergeable": {
             "allOf": [
@@ -18919,12 +18600,7 @@
       },
       "GetMergeConflictsInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "destinationCommitSpecifier",
-          "sourceCommitSpecifier",
-          "mergeOption"
-        ],
+        "required": ["repositoryName", "destinationCommitSpecifier", "sourceCommitSpecifier", "mergeOption"],
         "title": "GetMergeConflictsInput",
         "properties": {
           "repositoryName": {
@@ -19013,12 +18689,7 @@
       "InvalidSourceCommitSpecifierException": {},
       "GetMergeOptionsOutput": {
         "type": "object",
-        "required": [
-          "mergeOptions",
-          "sourceCommitId",
-          "destinationCommitId",
-          "baseCommitId"
-        ],
+        "required": ["mergeOptions", "sourceCommitId", "destinationCommitId", "baseCommitId"],
         "properties": {
           "mergeOptions": {
             "allOf": [
@@ -19064,11 +18735,7 @@
       },
       "GetMergeOptionsInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "sourceCommitSpecifier",
-          "destinationCommitSpecifier"
-        ],
+        "required": ["repositoryName", "sourceCommitSpecifier", "destinationCommitSpecifier"],
         "title": "GetMergeOptionsInput",
         "properties": {
           "repositoryName": {
@@ -19125,9 +18792,7 @@
       },
       "GetPullRequestOutput": {
         "type": "object",
-        "required": [
-          "pullRequest"
-        ],
+        "required": ["pullRequest"],
         "properties": {
           "pullRequest": {
             "allOf": [
@@ -19143,9 +18808,7 @@
       },
       "GetPullRequestInput": {
         "type": "object",
-        "required": [
-          "pullRequestId"
-        ],
+        "required": ["pullRequestId"],
         "title": "GetPullRequestInput",
         "properties": {
           "pullRequestId": {
@@ -19177,10 +18840,7 @@
       },
       "GetPullRequestApprovalStatesInput": {
         "type": "object",
-        "required": [
-          "pullRequestId",
-          "revisionId"
-        ],
+        "required": ["pullRequestId", "revisionId"],
         "title": "GetPullRequestApprovalStatesInput",
         "properties": {
           "pullRequestId": {
@@ -19232,10 +18892,7 @@
       },
       "GetPullRequestOverrideStateInput": {
         "type": "object",
-        "required": [
-          "pullRequestId",
-          "revisionId"
-        ],
+        "required": ["pullRequestId", "revisionId"],
         "title": "GetPullRequestOverrideStateInput",
         "properties": {
           "pullRequestId": {
@@ -19278,9 +18935,7 @@
       },
       "GetRepositoryInput": {
         "type": "object",
-        "required": [
-          "repositoryName"
-        ],
+        "required": ["repositoryName"],
         "title": "GetRepositoryInput",
         "properties": {
           "repositoryName": {
@@ -19324,9 +18979,7 @@
       },
       "GetRepositoryTriggersInput": {
         "type": "object",
-        "required": [
-          "repositoryName"
-        ],
+        "required": ["repositoryName"],
         "title": "GetRepositoryTriggersInput",
         "properties": {
           "repositoryName": {
@@ -19420,9 +19073,7 @@
       },
       "ListAssociatedApprovalRuleTemplatesForRepositoryInput": {
         "type": "object",
-        "required": [
-          "repositoryName"
-        ],
+        "required": ["repositoryName"],
         "title": "ListAssociatedApprovalRuleTemplatesForRepositoryInput",
         "properties": {
           "repositoryName": {
@@ -19485,9 +19136,7 @@
       },
       "ListBranchesInput": {
         "type": "object",
-        "required": [
-          "repositoryName"
-        ],
+        "required": ["repositoryName"],
         "title": "ListBranchesInput",
         "properties": {
           "repositoryName": {
@@ -19515,9 +19164,7 @@
       },
       "ListPullRequestsOutput": {
         "type": "object",
-        "required": [
-          "pullRequestIds"
-        ],
+        "required": ["pullRequestIds"],
         "properties": {
           "pullRequestIds": {
             "allOf": [
@@ -19543,9 +19190,7 @@
       },
       "ListPullRequestsInput": {
         "type": "object",
-        "required": [
-          "repositoryName"
-        ],
+        "required": ["repositoryName"],
         "title": "ListPullRequestsInput",
         "properties": {
           "repositoryName": {
@@ -19695,9 +19340,7 @@
       },
       "ListRepositoriesForApprovalRuleTemplateInput": {
         "type": "object",
-        "required": [
-          "approvalRuleTemplateName"
-        ],
+        "required": ["approvalRuleTemplateName"],
         "title": "ListRepositoriesForApprovalRuleTemplateInput",
         "properties": {
           "approvalRuleTemplateName": {
@@ -19759,9 +19402,7 @@
       },
       "ListTagsForResourceInput": {
         "type": "object",
-        "required": [
-          "resourceArn"
-        ],
+        "required": ["resourceArn"],
         "title": "ListTagsForResourceInput",
         "properties": {
           "resourceArn": {
@@ -19815,11 +19456,7 @@
       },
       "MergeBranchesByFastForwardInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "sourceCommitSpecifier",
-          "destinationCommitSpecifier"
-        ],
+        "required": ["repositoryName", "sourceCommitSpecifier", "destinationCommitSpecifier"],
         "title": "MergeBranchesByFastForwardInput",
         "properties": {
           "repositoryName": {
@@ -19892,11 +19529,7 @@
       },
       "MergeBranchesBySquashInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "sourceCommitSpecifier",
-          "destinationCommitSpecifier"
-        ],
+        "required": ["repositoryName", "sourceCommitSpecifier", "destinationCommitSpecifier"],
         "title": "MergeBranchesBySquashInput",
         "properties": {
           "repositoryName": {
@@ -20038,11 +19671,7 @@
       },
       "MergeBranchesByThreeWayInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "sourceCommitSpecifier",
-          "destinationCommitSpecifier"
-        ],
+        "required": ["repositoryName", "sourceCommitSpecifier", "destinationCommitSpecifier"],
         "title": "MergeBranchesByThreeWayInput",
         "properties": {
           "repositoryName": {
@@ -20174,10 +19803,7 @@
       },
       "MergePullRequestByFastForwardInput": {
         "type": "object",
-        "required": [
-          "pullRequestId",
-          "repositoryName"
-        ],
+        "required": ["pullRequestId", "repositoryName"],
         "title": "MergePullRequestByFastForwardInput",
         "properties": {
           "pullRequestId": {
@@ -20224,10 +19850,7 @@
       },
       "MergePullRequestBySquashInput": {
         "type": "object",
-        "required": [
-          "pullRequestId",
-          "repositoryName"
-        ],
+        "required": ["pullRequestId", "repositoryName"],
         "title": "MergePullRequestBySquashInput",
         "properties": {
           "pullRequestId": {
@@ -20342,10 +19965,7 @@
       },
       "MergePullRequestByThreeWayInput": {
         "type": "object",
-        "required": [
-          "pullRequestId",
-          "repositoryName"
-        ],
+        "required": ["pullRequestId", "repositoryName"],
         "title": "MergePullRequestByThreeWayInput",
         "properties": {
           "pullRequestId": {
@@ -20452,11 +20072,7 @@
       },
       "OverridePullRequestApprovalRulesInput": {
         "type": "object",
-        "required": [
-          "pullRequestId",
-          "revisionId",
-          "overrideStatus"
-        ],
+        "required": ["pullRequestId", "revisionId", "overrideStatus"],
         "title": "OverridePullRequestApprovalRulesInput",
         "properties": {
           "pullRequestId": {
@@ -20571,11 +20187,7 @@
       },
       "PostCommentForComparedCommitInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "afterCommitId",
-          "content"
-        ],
+        "required": ["repositoryName", "afterCommitId", "content"],
         "title": "PostCommentForComparedCommitInput",
         "properties": {
           "repositoryName": {
@@ -20733,13 +20345,7 @@
       },
       "PostCommentForPullRequestInput": {
         "type": "object",
-        "required": [
-          "pullRequestId",
-          "repositoryName",
-          "beforeCommitId",
-          "afterCommitId",
-          "content"
-        ],
+        "required": ["pullRequestId", "repositoryName", "beforeCommitId", "afterCommitId", "content"],
         "title": "PostCommentForPullRequestInput",
         "properties": {
           "pullRequestId": {
@@ -20831,10 +20437,7 @@
       },
       "PostCommentReplyInput": {
         "type": "object",
-        "required": [
-          "inReplyTo",
-          "content"
-        ],
+        "required": ["inReplyTo", "content"],
         "title": "PostCommentReplyInput",
         "properties": {
           "inReplyTo": {
@@ -20871,10 +20474,7 @@
       },
       "PutCommentReactionInput": {
         "type": "object",
-        "required": [
-          "commentId",
-          "reactionValue"
-        ],
+        "required": ["commentId", "reactionValue"],
         "title": "PutCommentReactionInput",
         "properties": {
           "commentId": {
@@ -20904,11 +20504,7 @@
       "ReactionLimitExceededException": {},
       "PutFileOutput": {
         "type": "object",
-        "required": [
-          "commitId",
-          "blobId",
-          "treeId"
-        ],
+        "required": ["commitId", "blobId", "treeId"],
         "properties": {
           "commitId": {
             "allOf": [
@@ -20944,12 +20540,7 @@
       },
       "PutFileInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "branchName",
-          "fileContent",
-          "filePath"
-        ],
+        "required": ["repositoryName", "branchName", "fileContent", "filePath"],
         "title": "PutFileInput",
         "properties": {
           "repositoryName": {
@@ -21064,10 +20655,7 @@
       },
       "PutRepositoryTriggersInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "triggers"
-        ],
+        "required": ["repositoryName", "triggers"],
         "title": "PutRepositoryTriggersInput",
         "properties": {
           "repositoryName": {
@@ -21108,10 +20696,7 @@
       "RepositoryTriggerEventsListRequiredException": {},
       "TagResourceInput": {
         "type": "object",
-        "required": [
-          "resourceArn",
-          "tags"
-        ],
+        "required": ["resourceArn", "tags"],
         "title": "TagResourceInput",
         "properties": {
           "resourceArn": {
@@ -21165,10 +20750,7 @@
       },
       "TestRepositoryTriggersInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "triggers"
-        ],
+        "required": ["repositoryName", "triggers"],
         "title": "TestRepositoryTriggersInput",
         "properties": {
           "repositoryName": {
@@ -21196,10 +20778,7 @@
       },
       "UntagResourceInput": {
         "type": "object",
-        "required": [
-          "resourceArn",
-          "tagKeys"
-        ],
+        "required": ["resourceArn", "tagKeys"],
         "title": "UntagResourceInput",
         "properties": {
           "resourceArn": {
@@ -21228,9 +20807,7 @@
       "InvalidTagKeysListException": {},
       "UpdateApprovalRuleTemplateContentOutput": {
         "type": "object",
-        "required": [
-          "approvalRuleTemplate"
-        ],
+        "required": ["approvalRuleTemplate"],
         "properties": {
           "approvalRuleTemplate": {
             "$ref": "#/components/schemas/ApprovalRuleTemplate"
@@ -21239,10 +20816,7 @@
       },
       "UpdateApprovalRuleTemplateContentInput": {
         "type": "object",
-        "required": [
-          "approvalRuleTemplateName",
-          "newRuleContent"
-        ],
+        "required": ["approvalRuleTemplateName", "newRuleContent"],
         "title": "UpdateApprovalRuleTemplateContentInput",
         "properties": {
           "approvalRuleTemplateName": {
@@ -21280,9 +20854,7 @@
       "InvalidRuleContentSha256Exception": {},
       "UpdateApprovalRuleTemplateDescriptionOutput": {
         "type": "object",
-        "required": [
-          "approvalRuleTemplate"
-        ],
+        "required": ["approvalRuleTemplate"],
         "properties": {
           "approvalRuleTemplate": {
             "allOf": [
@@ -21298,10 +20870,7 @@
       },
       "UpdateApprovalRuleTemplateDescriptionInput": {
         "type": "object",
-        "required": [
-          "approvalRuleTemplateName",
-          "approvalRuleTemplateDescription"
-        ],
+        "required": ["approvalRuleTemplateName", "approvalRuleTemplateDescription"],
         "title": "UpdateApprovalRuleTemplateDescriptionInput",
         "properties": {
           "approvalRuleTemplateName": {
@@ -21328,9 +20897,7 @@
       },
       "UpdateApprovalRuleTemplateNameOutput": {
         "type": "object",
-        "required": [
-          "approvalRuleTemplate"
-        ],
+        "required": ["approvalRuleTemplate"],
         "properties": {
           "approvalRuleTemplate": {
             "allOf": [
@@ -21346,10 +20913,7 @@
       },
       "UpdateApprovalRuleTemplateNameInput": {
         "type": "object",
-        "required": [
-          "oldApprovalRuleTemplateName",
-          "newApprovalRuleTemplateName"
-        ],
+        "required": ["oldApprovalRuleTemplateName", "newApprovalRuleTemplateName"],
         "title": "UpdateApprovalRuleTemplateNameInput",
         "properties": {
           "oldApprovalRuleTemplateName": {
@@ -21391,10 +20955,7 @@
       },
       "UpdateCommentInput": {
         "type": "object",
-        "required": [
-          "commentId",
-          "content"
-        ],
+        "required": ["commentId", "content"],
         "title": "UpdateCommentInput",
         "properties": {
           "commentId": {
@@ -21422,10 +20983,7 @@
       "CommentNotCreatedByCallerException": {},
       "UpdateDefaultBranchInput": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "defaultBranchName"
-        ],
+        "required": ["repositoryName", "defaultBranchName"],
         "title": "UpdateDefaultBranchInput",
         "properties": {
           "repositoryName": {
@@ -21453,9 +21011,7 @@
       },
       "UpdatePullRequestApprovalRuleContentOutput": {
         "type": "object",
-        "required": [
-          "approvalRule"
-        ],
+        "required": ["approvalRule"],
         "properties": {
           "approvalRule": {
             "allOf": [
@@ -21471,11 +21027,7 @@
       },
       "UpdatePullRequestApprovalRuleContentInput": {
         "type": "object",
-        "required": [
-          "pullRequestId",
-          "approvalRuleName",
-          "newRuleContent"
-        ],
+        "required": ["pullRequestId", "approvalRuleName", "newRuleContent"],
         "title": "UpdatePullRequestApprovalRuleContentInput",
         "properties": {
           "pullRequestId": {
@@ -21524,11 +21076,7 @@
       "CannotModifyApprovalRuleFromTemplateException": {},
       "UpdatePullRequestApprovalStateInput": {
         "type": "object",
-        "required": [
-          "pullRequestId",
-          "revisionId",
-          "approvalState"
-        ],
+        "required": ["pullRequestId", "revisionId", "approvalState"],
         "title": "UpdatePullRequestApprovalStateInput",
         "properties": {
           "pullRequestId": {
@@ -21569,9 +21117,7 @@
       "MaximumNumberOfApprovalsExceededException": {},
       "UpdatePullRequestDescriptionOutput": {
         "type": "object",
-        "required": [
-          "pullRequest"
-        ],
+        "required": ["pullRequest"],
         "properties": {
           "pullRequest": {
             "allOf": [
@@ -21587,10 +21133,7 @@
       },
       "UpdatePullRequestDescriptionInput": {
         "type": "object",
-        "required": [
-          "pullRequestId",
-          "description"
-        ],
+        "required": ["pullRequestId", "description"],
         "title": "UpdatePullRequestDescriptionInput",
         "properties": {
           "pullRequestId": {
@@ -21617,9 +21160,7 @@
       },
       "UpdatePullRequestStatusOutput": {
         "type": "object",
-        "required": [
-          "pullRequest"
-        ],
+        "required": ["pullRequest"],
         "properties": {
           "pullRequest": {
             "allOf": [
@@ -21635,10 +21176,7 @@
       },
       "UpdatePullRequestStatusInput": {
         "type": "object",
-        "required": [
-          "pullRequestId",
-          "pullRequestStatus"
-        ],
+        "required": ["pullRequestId", "pullRequestStatus"],
         "title": "UpdatePullRequestStatusInput",
         "properties": {
           "pullRequestId": {
@@ -21667,9 +21205,7 @@
       "PullRequestStatusRequiredException": {},
       "UpdatePullRequestTitleOutput": {
         "type": "object",
-        "required": [
-          "pullRequest"
-        ],
+        "required": ["pullRequest"],
         "properties": {
           "pullRequest": {
             "allOf": [
@@ -21685,10 +21221,7 @@
       },
       "UpdatePullRequestTitleInput": {
         "type": "object",
-        "required": [
-          "pullRequestId",
-          "title"
-        ],
+        "required": ["pullRequestId", "title"],
         "title": "UpdatePullRequestTitleInput",
         "properties": {
           "pullRequestId": {
@@ -21715,9 +21248,7 @@
       },
       "UpdateRepositoryDescriptionInput": {
         "type": "object",
-        "required": [
-          "repositoryName"
-        ],
+        "required": ["repositoryName"],
         "title": "UpdateRepositoryDescriptionInput",
         "properties": {
           "repositoryName": {
@@ -21745,10 +21276,7 @@
       },
       "UpdateRepositoryNameInput": {
         "type": "object",
-        "required": [
-          "oldName",
-          "newName"
-        ],
+        "required": ["oldName", "newName"],
         "title": "UpdateRepositoryNameInput",
         "properties": {
           "oldName": {
@@ -21785,10 +21313,7 @@
       },
       "ApprovalState": {
         "type": "string",
-        "enum": [
-          "APPROVE",
-          "REVOKE"
-        ]
+        "enum": ["APPROVE", "REVOKE"]
       },
       "Approval": {
         "type": "object",
@@ -21999,10 +21524,7 @@
       },
       "OverrideStatus": {
         "type": "string",
-        "enum": [
-          "OVERRIDE",
-          "REVOKE"
-        ]
+        "enum": ["OVERRIDE", "REVOKE"]
       },
       "ApprovalRuleOverriddenEventMetadata": {
         "type": "object",
@@ -22258,11 +21780,7 @@
       },
       "BatchDescribeMergeConflictsError": {
         "type": "object",
-        "required": [
-          "filePath",
-          "exceptionName",
-          "message"
-        ],
+        "required": ["filePath", "exceptionName", "message"],
         "properties": {
           "filePath": {
             "allOf": [
@@ -22308,11 +21826,7 @@
       },
       "MergeOptionTypeEnum": {
         "type": "string",
-        "enum": [
-          "FAST_FORWARD_MERGE",
-          "SQUASH_MERGE",
-          "THREE_WAY_MERGE"
-        ]
+        "enum": ["FAST_FORWARD_MERGE", "SQUASH_MERGE", "THREE_WAY_MERGE"]
       },
       "MaxResults": {
         "type": "integer"
@@ -22325,19 +21839,11 @@
       },
       "ConflictDetailLevelTypeEnum": {
         "type": "string",
-        "enum": [
-          "FILE_LEVEL",
-          "LINE_LEVEL"
-        ]
+        "enum": ["FILE_LEVEL", "LINE_LEVEL"]
       },
       "ConflictResolutionStrategyTypeEnum": {
         "type": "string",
-        "enum": [
-          "NONE",
-          "ACCEPT_SOURCE",
-          "ACCEPT_DESTINATION",
-          "AUTOMERGE"
-        ]
+        "enum": ["NONE", "ACCEPT_SOURCE", "ACCEPT_DESTINATION", "AUTOMERGE"]
       },
       "NextToken": {
         "type": "string"
@@ -22552,11 +22058,7 @@
       },
       "ChangeTypeEnum": {
         "type": "string",
-        "enum": [
-          "A",
-          "M",
-          "D"
-        ]
+        "enum": ["A", "M", "D"]
       },
       "ClientRequestToken": {
         "type": "string"
@@ -23680,9 +23182,7 @@
       },
       "DeleteFileEntry": {
         "type": "object",
-        "required": [
-          "filePath"
-        ],
+        "required": ["filePath"],
         "properties": {
           "filePath": {
             "allOf": [
@@ -23817,11 +23317,7 @@
       },
       "FileModeTypeEnum": {
         "type": "string",
-        "enum": [
-          "EXECUTABLE",
-          "NORMAL",
-          "SYMLINK"
-        ]
+        "enum": ["EXECUTABLE", "NORMAL", "SYMLINK"]
       },
       "File": {
         "type": "object",
@@ -24022,10 +23518,7 @@
       },
       "PullRequestStatusEnum": {
         "type": "string",
-        "enum": [
-          "OPEN",
-          "CLOSED"
-        ]
+        "enum": ["OPEN", "CLOSED"]
       },
       "PullRequestIdList": {
         "type": "array",
@@ -24035,17 +23528,11 @@
       },
       "SortByEnum": {
         "type": "string",
-        "enum": [
-          "repositoryName",
-          "lastModifiedDate"
-        ]
+        "enum": ["repositoryName", "lastModifiedDate"]
       },
       "OrderEnum": {
         "type": "string",
-        "enum": [
-          "ascending",
-          "descending"
-        ]
+        "enum": ["ascending", "descending"]
       },
       "RepositoryNameIdPairList": {
         "type": "array",
@@ -24061,10 +23548,7 @@
       },
       "RelativeFileVersionEnum": {
         "type": "string",
-        "enum": [
-          "BEFORE",
-          "AFTER"
-        ]
+        "enum": ["BEFORE", "AFTER"]
       },
       "MergeHunkDetail": {
         "type": "object",
@@ -24196,12 +23680,7 @@
       },
       "ObjectTypeEnum": {
         "type": "string",
-        "enum": [
-          "FILE",
-          "DIRECTORY",
-          "GIT_LINK",
-          "SYMBOLIC_LINK"
-        ]
+        "enum": ["FILE", "DIRECTORY", "GIT_LINK", "SYMBOLIC_LINK"]
       },
       "PullRequestTargetList": {
         "type": "array",
@@ -24550,9 +24029,7 @@
       },
       "PutFileEntry": {
         "type": "object",
-        "required": [
-          "filePath"
-        ],
+        "required": ["filePath"],
         "properties": {
           "filePath": {
             "allOf": [
@@ -24599,9 +24076,7 @@
       },
       "SourceFileSpecifier": {
         "type": "object",
-        "required": [
-          "filePath"
-        ],
+        "required": ["filePath"],
         "properties": {
           "filePath": {
             "allOf": [
@@ -24715,10 +24190,7 @@
       },
       "ReplaceContentEntry": {
         "type": "object",
-        "required": [
-          "filePath",
-          "replacementType"
-        ],
+        "required": ["filePath", "replacementType"],
         "properties": {
           "filePath": {
             "allOf": [
@@ -24765,12 +24237,7 @@
       },
       "ReplacementTypeEnum": {
         "type": "string",
-        "enum": [
-          "KEEP_BASE",
-          "KEEP_SOURCE",
-          "KEEP_DESTINATION",
-          "USE_NEW_CONTENT"
-        ]
+        "enum": ["KEEP_BASE", "KEEP_SOURCE", "KEEP_DESTINATION", "USE_NEW_CONTENT"]
       },
       "RepositoryNameIdPair": {
         "type": "object",
@@ -24812,11 +24279,7 @@
       },
       "RepositoryTrigger": {
         "type": "object",
-        "required": [
-          "name",
-          "destinationArn",
-          "events"
-        ],
+        "required": ["name", "destinationArn", "events"],
         "properties": {
           "name": {
             "allOf": [
@@ -24873,12 +24336,7 @@
       },
       "RepositoryTriggerEventEnum": {
         "type": "string",
-        "enum": [
-          "all",
-          "updateReference",
-          "createReference",
-          "deleteReference"
-        ]
+        "enum": ["all", "updateReference", "createReference", "deleteReference"]
       },
       "RepositoryTriggerExecutionFailureMessage": {
         "type": "string"
@@ -24923,10 +24381,7 @@
       },
       "SetFileModeEntry": {
         "type": "object",
-        "required": [
-          "filePath",
-          "fileMode"
-        ],
+        "required": ["filePath", "fileMode"],
         "properties": {
           "filePath": {
             "allOf": [
@@ -25051,10 +24506,7 @@
       },
       "Target": {
         "type": "object",
-        "required": [
-          "repositoryName",
-          "sourceReference"
-        ],
+        "required": ["repositoryName", "sourceReference"],
         "properties": {
           "repositoryName": {
             "allOf": [

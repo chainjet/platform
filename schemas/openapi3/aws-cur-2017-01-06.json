@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -199,9 +191,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "AWSOrigamiServiceGatewayService.DeleteReportDefinition"
-              ]
+              "enum": ["AWSOrigamiServiceGatewayService.DeleteReportDefinition"]
             }
           }
         ],
@@ -292,9 +282,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "AWSOrigamiServiceGatewayService.DescribeReportDefinitions"
-              ]
+              "enum": ["AWSOrigamiServiceGatewayService.DescribeReportDefinitions"]
             }
           }
         ],
@@ -377,9 +365,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "AWSOrigamiServiceGatewayService.ModifyReportDefinition"
-              ]
+              "enum": ["AWSOrigamiServiceGatewayService.ModifyReportDefinition"]
             }
           }
         ],
@@ -482,9 +468,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "AWSOrigamiServiceGatewayService.PutReportDefinition"
-              ]
+              "enum": ["AWSOrigamiServiceGatewayService.PutReportDefinition"]
             }
           }
         ],
@@ -624,12 +608,8 @@
         "example": {
           "ReportDefinitions": [
             {
-              "AdditionalArtifacts": [
-                "QUICKSIGHT"
-              ],
-              "AdditionalSchemaElements": [
-                "RESOURCES"
-              ],
+              "AdditionalArtifacts": ["QUICKSIGHT"],
+              "AdditionalSchemaElements": ["RESOURCES"],
               "Compression": "GZIP",
               "Format": "textORcsv",
               "ReportName": "ExampleReport",
@@ -639,12 +619,8 @@
               "TimeUnit": "HOURLY"
             },
             {
-              "AdditionalArtifacts": [
-                "QUICKSIGHT"
-              ],
-              "AdditionalSchemaElements": [
-                "RESOURCES"
-              ],
+              "AdditionalArtifacts": ["QUICKSIGHT"],
+              "AdditionalSchemaElements": ["RESOURCES"],
               "Compression": "GZIP",
               "Format": "textORcsv",
               "ReportName": "ExampleReport2",
@@ -691,10 +667,7 @@
       },
       "ModifyReportDefinitionRequest": {
         "type": "object",
-        "required": [
-          "ReportName",
-          "ReportDefinition"
-        ],
+        "required": ["ReportName", "ReportDefinition"],
         "title": "ModifyReportDefinitionRequest",
         "properties": {
           "ReportName": {
@@ -712,9 +685,7 @@
       },
       "PutReportDefinitionRequest": {
         "type": "object",
-        "required": [
-          "ReportDefinition"
-        ],
+        "required": ["ReportDefinition"],
         "title": "PutReportDefinitionRequest",
         "properties": {
           "ReportDefinition": {
@@ -763,11 +734,7 @@
       },
       "AdditionalArtifact": {
         "type": "string",
-        "enum": [
-          "REDSHIFT",
-          "QUICKSIGHT",
-          "ATHENA"
-        ],
+        "enum": ["REDSHIFT", "QUICKSIGHT", "ATHENA"],
         "description": "The types of manifest that you want AWS to create for this report."
       },
       "AdditionalArtifactList": {
@@ -779,11 +746,7 @@
       },
       "CompressionFormat": {
         "type": "string",
-        "enum": [
-          "ZIP",
-          "GZIP",
-          "Parquet"
-        ],
+        "enum": ["ZIP", "GZIP", "Parquet"],
         "description": "The compression format that AWS uses for the report."
       },
       "ReportName": {
@@ -907,19 +870,12 @@
       },
       "TimeUnit": {
         "type": "string",
-        "enum": [
-          "HOURLY",
-          "DAILY",
-          "MONTHLY"
-        ],
+        "enum": ["HOURLY", "DAILY", "MONTHLY"],
         "description": "The length of time covered by the report. "
       },
       "ReportFormat": {
         "type": "string",
-        "enum": [
-          "textORcsv",
-          "Parquet"
-        ],
+        "enum": ["textORcsv", "Parquet"],
         "description": "The format that AWS saves the report in."
       },
       "SchemaElementList": {
@@ -943,16 +899,11 @@
       },
       "ReportVersioning": {
         "type": "string",
-        "enum": [
-          "CREATE_NEW_REPORT",
-          "OVERWRITE_REPORT"
-        ]
+        "enum": ["CREATE_NEW_REPORT", "OVERWRITE_REPORT"]
       },
       "SchemaElement": {
         "type": "string",
-        "enum": [
-          "RESOURCES"
-        ],
+        "enum": ["RESOURCES"],
         "description": "Whether or not AWS includes resource IDs in the report. "
       },
       "BillingViewArn": {

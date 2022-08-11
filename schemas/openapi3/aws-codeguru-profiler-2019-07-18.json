@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -242,9 +234,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "channels"
-                ],
+                "required": ["channels"],
                 "properties": {
                   "channels": {
                     "description": "One or 2 channels to report to when anomalies are detected.",
@@ -464,11 +454,7 @@
             "description": "<p>The requested resolution of time steps for the returned time series of values. If the requested target resolution is not available due to data not being retained we provide a best effort result by falling back to the most granular available resolution after the target resolution. There are 3 valid values. </p> <ul> <li> <p> <code>P1D</code> — 1 day </p> </li> <li> <p> <code>PT1H</code> — 1 hour </p> </li> <li> <p> <code>PT5M</code> — 5 minutes </p> </li> </ul>",
             "schema": {
               "type": "string",
-              "enum": [
-                "P1D",
-                "PT1H",
-                "PT5M"
-              ]
+              "enum": ["P1D", "PT1H", "PT5M"]
             }
           }
         ],
@@ -724,9 +710,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "profilingGroupName"
-                ],
+                "required": ["profilingGroupName"],
                 "properties": {
                   "agentOrchestrationConfig": {
                     "description": " Specifies whether profiling is enabled or disabled for a profiling group. It is used by <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ConfigureAgent.html\"> <code>ConfigureAgent</code> </a> to enable or disable profiling for a profiling group. ",
@@ -747,10 +731,7 @@
                   "computePlatform": {
                     "description": " The compute platform of the profiling group. Use <code>AWSLambda</code> if your application runs on AWS Lambda. Use <code>Default</code> if your application runs on a compute platform that is not AWS Lambda, such an Amazon EC2 instance, an on-premises server, or a different platform. If not specified, <code>Default</code> is used. ",
                     "type": "string",
-                    "enum": [
-                      "AWSLambda",
-                      "Default"
-                    ]
+                    "enum": ["AWSLambda", "Default"]
                   },
                   "profilingGroupName": {
                     "description": "The name of the profiling group to create.",
@@ -1058,9 +1039,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "agentOrchestrationConfig"
-                ],
+                "required": ["agentOrchestrationConfig"],
                 "properties": {
                   "agentOrchestrationConfig": {
                     "description": " Specifies whether profiling is enabled or disabled for a profiling group. It is used by <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ConfigureAgent.html\"> <code>ConfigureAgent</code> </a> to enable or disable profiling for a profiling group. ",
@@ -1796,10 +1775,7 @@
             "description": "The order (ascending or descending by start time of the profile) to use when listing profiles. Defaults to <code>TIMESTAMP_DESCENDING</code>. ",
             "schema": {
               "type": "string",
-              "enum": [
-                "TimestampAscending",
-                "TimestampDescending"
-              ]
+              "enum": ["TimestampAscending", "TimestampDescending"]
             }
           },
           {
@@ -1809,11 +1785,7 @@
             "description": "<p> The aggregation period. This specifies the period during which an aggregation profile collects posted agent profiles for a profiling group. There are 3 valid values. </p> <ul> <li> <p> <code>P1D</code> — 1 day </p> </li> <li> <p> <code>PT1H</code> — 1 hour </p> </li> <li> <p> <code>PT5M</code> — 5 minutes </p> </li> </ul>",
             "schema": {
               "type": "string",
-              "enum": [
-                "P1D",
-                "PT1H",
-                "PT5M"
-              ]
+              "enum": ["P1D", "PT1H", "PT5M"]
             }
           },
           {
@@ -2105,9 +2077,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "tags"
-                ],
+                "required": ["tags"],
                 "properties": {
                   "tags": {
                     "description": " The list of tags that are added to the specified resource. ",
@@ -2221,9 +2191,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "agentProfile"
-                ],
+                "required": ["agentProfile"],
                 "properties": {
                   "agentProfile": {
                     "description": " The submitted profiling data. ",
@@ -2334,9 +2302,7 @@
             "description": " Specifies an action group that contains permissions to add to a profiling group resource. One action group is supported, <code>agentPermissions</code>, which grants permission to perform actions required by the profiling agent, <code>ConfigureAgent</code> and <code>PostAgentProfile</code> permissions. ",
             "schema": {
               "type": "string",
-              "enum": [
-                "agentPermissions"
-              ]
+              "enum": ["agentPermissions"]
             }
           },
           {
@@ -2358,9 +2324,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "principals"
-                ],
+                "required": ["principals"],
                 "properties": {
                   "principals": {
                     "description": " A list ARNs for the roles and users you want to grant access to the profiling group. Wildcards are not are supported in the ARNs. ",
@@ -2587,9 +2551,7 @@
             "description": " Specifies an action group that contains the permissions to remove from a profiling group's resource-based policy. One action group is supported, <code>agentPermissions</code>, which grants <code>ConfigureAgent</code> and <code>PostAgentProfile</code> permissions. ",
             "schema": {
               "type": "string",
-              "enum": [
-                "agentPermissions"
-              ]
+              "enum": ["agentPermissions"]
             }
           },
           {
@@ -2727,9 +2689,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "type"
-                ],
+                "required": ["type"],
                 "properties": {
                   "comment": {
                     "description": "Optional feedback about this anomaly.",
@@ -2738,10 +2698,7 @@
                   "type": {
                     "description": " The feedback tpye. Thee are two valid values, <code>Positive</code> and <code>Negative</code>. ",
                     "type": "string",
-                    "enum": [
-                      "Negative",
-                      "Positive"
-                    ]
+                    "enum": ["Negative", "Positive"]
                   }
                 }
               }
@@ -2964,10 +2921,7 @@
       },
       "Channel": {
         "type": "object",
-        "required": [
-          "eventPublishers",
-          "uri"
-        ],
+        "required": ["eventPublishers", "uri"],
         "properties": {
           "eventPublishers": {
             "allOf": [
@@ -3010,14 +2964,7 @@
       "ResourceNotFoundException": {},
       "BatchGetFrameMetricDataResponse": {
         "type": "object",
-        "required": [
-          "endTime",
-          "endTimes",
-          "frameMetricData",
-          "resolution",
-          "startTime",
-          "unprocessedEndTimes"
-        ],
+        "required": ["endTime", "endTimes", "frameMetricData", "resolution", "startTime", "unprocessedEndTimes"],
         "properties": {
           "endTime": {
             "allOf": [
@@ -3084,11 +3031,7 @@
       },
       "FrameMetric": {
         "type": "object",
-        "required": [
-          "frameName",
-          "threadStates",
-          "type"
-        ],
+        "required": ["frameName", "threadStates", "type"],
         "properties": {
           "frameName": {
             "allOf": [
@@ -3125,9 +3068,7 @@
       },
       "ConfigureAgentResponse": {
         "type": "object",
-        "required": [
-          "configuration"
-        ],
+        "required": ["configuration"],
         "properties": {
           "configuration": {
             "allOf": [
@@ -3147,9 +3088,7 @@
       },
       "CreateProfilingGroupResponse": {
         "type": "object",
-        "required": [
-          "profilingGroup"
-        ],
+        "required": ["profilingGroup"],
         "properties": {
           "profilingGroup": {
             "allOf": [
@@ -3174,9 +3113,7 @@
       },
       "DescribeProfilingGroupResponse": {
         "type": "object",
-        "required": [
-          "profilingGroup"
-        ],
+        "required": ["profilingGroup"],
         "properties": {
           "profilingGroup": {
             "allOf": [
@@ -3193,9 +3130,7 @@
       },
       "GetFindingsReportAccountSummaryResponse": {
         "type": "object",
-        "required": [
-          "reportSummaries"
-        ],
+        "required": ["reportSummaries"],
         "properties": {
           "nextToken": {
             "allOf": [
@@ -3222,9 +3157,7 @@
       },
       "GetNotificationConfigurationResponse": {
         "type": "object",
-        "required": [
-          "notificationConfiguration"
-        ],
+        "required": ["notificationConfiguration"],
         "properties": {
           "notificationConfiguration": {
             "allOf": [
@@ -3241,10 +3174,7 @@
       },
       "GetPolicyResponse": {
         "type": "object",
-        "required": [
-          "policy",
-          "revisionId"
-        ],
+        "required": ["policy", "revisionId"],
         "properties": {
           "policy": {
             "allOf": [
@@ -3271,9 +3201,7 @@
       },
       "GetProfileResponse": {
         "type": "object",
-        "required": [
-          "profile"
-        ],
+        "required": ["profile"],
         "properties": {
           "profile": {
             "allOf": [
@@ -3290,13 +3218,7 @@
       },
       "GetRecommendationsResponse": {
         "type": "object",
-        "required": [
-          "anomalies",
-          "profileEndTime",
-          "profileStartTime",
-          "profilingGroupName",
-          "recommendations"
-        ],
+        "required": ["anomalies", "profileEndTime", "profileStartTime", "profilingGroupName", "recommendations"],
         "properties": {
           "anomalies": {
             "allOf": [
@@ -3353,9 +3275,7 @@
       },
       "ListFindingsReportsResponse": {
         "type": "object",
-        "required": [
-          "findingsReportSummaries"
-        ],
+        "required": ["findingsReportSummaries"],
         "properties": {
           "findingsReportSummaries": {
             "allOf": [
@@ -3382,9 +3302,7 @@
       },
       "ListProfileTimesResponse": {
         "type": "object",
-        "required": [
-          "profileTimes"
-        ],
+        "required": ["profileTimes"],
         "properties": {
           "nextToken": {
             "allOf": [
@@ -3411,9 +3329,7 @@
       },
       "ListProfilingGroupsResponse": {
         "type": "object",
-        "required": [
-          "profilingGroupNames"
-        ],
+        "required": ["profilingGroupNames"],
         "properties": {
           "nextToken": {
             "allOf": [
@@ -3470,10 +3386,7 @@
       },
       "PutPermissionResponse": {
         "type": "object",
-        "required": [
-          "policy",
-          "revisionId"
-        ],
+        "required": ["policy", "revisionId"],
         "properties": {
           "policy": {
             "allOf": [
@@ -3519,10 +3432,7 @@
       },
       "RemovePermissionResponse": {
         "type": "object",
-        "required": [
-          "policy",
-          "revisionId"
-        ],
+        "required": ["policy", "revisionId"],
         "properties": {
           "policy": {
             "allOf": [
@@ -3562,9 +3472,7 @@
       },
       "UpdateProfilingGroupResponse": {
         "type": "object",
-        "required": [
-          "profilingGroup"
-        ],
+        "required": ["profilingGroup"],
         "properties": {
           "profilingGroup": {
             "allOf": [
@@ -3620,10 +3528,7 @@
       },
       "AgentConfiguration": {
         "type": "object",
-        "required": [
-          "periodInSeconds",
-          "shouldProfile"
-        ],
+        "required": ["periodInSeconds", "shouldProfile"],
         "properties": {
           "agentParameters": {
             "allOf": [
@@ -3660,9 +3565,7 @@
       },
       "AgentOrchestrationConfig": {
         "type": "object",
-        "required": [
-          "profilingEnabled"
-        ],
+        "required": ["profilingEnabled"],
         "properties": {
           "profilingEnabled": {
             "allOf": [
@@ -3682,11 +3585,7 @@
       },
       "AggregationPeriod": {
         "type": "string",
-        "enum": [
-          "P1D",
-          "PT1H",
-          "PT5M"
-        ]
+        "enum": ["P1D", "PT1H", "PT5M"]
       },
       "Timestamp": {
         "type": "string",
@@ -3720,11 +3619,7 @@
       },
       "Anomaly": {
         "type": "object",
-        "required": [
-          "instances",
-          "metric",
-          "reason"
-        ],
+        "required": ["instances", "metric", "reason"],
         "properties": {
           "instances": {
             "allOf": [
@@ -3773,11 +3668,7 @@
       },
       "Metric": {
         "type": "object",
-        "required": [
-          "frameName",
-          "threadStates",
-          "type"
-        ],
+        "required": ["frameName", "threadStates", "type"],
         "properties": {
           "frameName": {
             "allOf": [
@@ -3814,9 +3705,7 @@
       },
       "UserFeedback": {
         "type": "object",
-        "required": [
-          "type"
-        ],
+        "required": ["type"],
         "properties": {
           "type": {
             "allOf": [
@@ -3833,10 +3722,7 @@
       },
       "AnomalyInstance": {
         "type": "object",
-        "required": [
-          "id",
-          "startTime"
-        ],
+        "required": ["id", "startTime"],
         "properties": {
           "endTime": {
             "allOf": [
@@ -3917,10 +3803,7 @@
       },
       "ComputePlatform": {
         "type": "string",
-        "enum": [
-          "AWSLambda",
-          "Default"
-        ]
+        "enum": ["AWSLambda", "Default"]
       },
       "TagsMap": {
         "type": "object",
@@ -4020,16 +3903,11 @@
       },
       "EventPublisher": {
         "type": "string",
-        "enum": [
-          "AnomalyDetection"
-        ]
+        "enum": ["AnomalyDetection"]
       },
       "FeedbackType": {
         "type": "string",
-        "enum": [
-          "Negative",
-          "Positive"
-        ]
+        "enum": ["Negative", "Positive"]
       },
       "FindingsReportId": {
         "type": "string",
@@ -4105,16 +3983,11 @@
       },
       "MetricType": {
         "type": "string",
-        "enum": [
-          "AggregatedRelativeTotalTime"
-        ]
+        "enum": ["AggregatedRelativeTotalTime"]
       },
       "FrameMetricDatum": {
         "type": "object",
-        "required": [
-          "frameMetric",
-          "values"
-        ],
+        "required": ["frameMetric", "values"],
         "properties": {
           "frameMetric": {
             "$ref": "#/components/schemas/FrameMetric"
@@ -4156,9 +4029,7 @@
       },
       "TimestampStructure": {
         "type": "object",
-        "required": [
-          "value"
-        ],
+        "required": ["value"],
         "properties": {
           "value": {
             "allOf": [
@@ -4384,14 +4255,7 @@
       },
       "Recommendation": {
         "type": "object",
-        "required": [
-          "allMatchesCount",
-          "allMatchesSum",
-          "endTime",
-          "pattern",
-          "startTime",
-          "topMatches"
-        ],
+        "required": ["allMatchesCount", "allMatchesSum", "endTime", "pattern", "startTime", "topMatches"],
         "properties": {
           "allMatchesCount": {
             "allOf": [

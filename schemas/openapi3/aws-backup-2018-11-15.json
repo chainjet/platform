@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -218,9 +210,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "BackupPlan"
-                ],
+                "required": ["BackupPlan"],
                 "properties": {
                   "BackupPlan": {
                     "description": "Contains an optional backup plan display name and an array of <code>BackupRule</code> objects, each of which specifies a backup rule. Each rule in a backup plan is a separate scheduled task and can back up a different selection of AWS resources. ",
@@ -489,9 +479,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "BackupSelection"
-                ],
+                "required": ["BackupSelection"],
                 "properties": {
                   "BackupSelection": {
                     "description": "Used to specify a set of resources to a backup plan.",
@@ -1124,9 +1112,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "BackupPlan"
-                ],
+                "required": ["BackupPlan"],
                 "properties": {
                   "BackupPlan": {
                     "description": "Contains an optional backup plan display name and an array of <code>BackupRule</code> objects, each of which specifies a backup rule. Each rule in a backup plan is a separate scheduled task and can back up a different selection of AWS resources. ",
@@ -1799,10 +1785,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "SNSTopicArn",
-                  "BackupVaultEvents"
-                ],
+                "required": ["SNSTopicArn", "BackupVaultEvents"],
                 "properties": {
                   "SNSTopicArn": {
                     "description": "The Amazon Resource Name (ARN) that specifies the topic for a backup vault’s events; for example, <code>arn:aws:sns:us-west-2:111122223333:MyVaultTopic</code>.",
@@ -2977,9 +2960,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "BackupPlanTemplateJson"
-                ],
+                "required": ["BackupPlanTemplateJson"],
                 "properties": {
                   "BackupPlanTemplateJson": {
                     "description": "A customer-supplied backup plan document in JSON format.",
@@ -3337,16 +3318,7 @@
             "description": "Returns only backup jobs that are in the specified state.",
             "schema": {
               "type": "string",
-              "enum": [
-                "CREATED",
-                "PENDING",
-                "RUNNING",
-                "ABORTING",
-                "ABORTED",
-                "COMPLETED",
-                "FAILED",
-                "EXPIRED"
-              ]
+              "enum": ["CREATED", "PENDING", "RUNNING", "ABORTING", "ABORTED", "COMPLETED", "FAILED", "EXPIRED"]
             }
           },
           {
@@ -3892,12 +3864,7 @@
             "description": "Returns only copy jobs that are in the specified state.",
             "schema": {
               "type": "string",
-              "enum": [
-                "CREATED",
-                "RUNNING",
-                "COMPLETED",
-                "FAILED"
-              ]
+              "enum": ["CREATED", "RUNNING", "COMPLETED", "FAILED"]
             }
           },
           {
@@ -4521,13 +4488,7 @@
             "description": "Returns only restore jobs associated with the specified job status.",
             "schema": {
               "type": "string",
-              "enum": [
-                "PENDING",
-                "RUNNING",
-                "COMPLETED",
-                "ABORTED",
-                "FAILED"
-              ]
+              "enum": ["PENDING", "RUNNING", "COMPLETED", "ABORTED", "FAILED"]
             }
           },
           {
@@ -4789,11 +4750,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "BackupVaultName",
-                  "ResourceArn",
-                  "IamRoleArn"
-                ],
+                "required": ["BackupVaultName", "ResourceArn", "IamRoleArn"],
                 "properties": {
                   "BackupVaultName": {
                     "description": "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the AWS Region where they are created. They consist of lowercase letters, numbers, and hyphens.",
@@ -4974,12 +4931,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "RecoveryPointArn",
-                  "SourceBackupVaultName",
-                  "DestinationBackupVaultArn",
-                  "IamRoleArn"
-                ],
+                "required": ["RecoveryPointArn", "SourceBackupVaultName", "DestinationBackupVaultArn", "IamRoleArn"],
                 "properties": {
                   "RecoveryPointArn": {
                     "description": "An ARN that uniquely identifies a recovery point to use for the copy job; for example, arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45. ",
@@ -5122,11 +5074,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "RecoveryPointArn",
-                  "Metadata",
-                  "IamRoleArn"
-                ],
+                "required": ["RecoveryPointArn", "Metadata", "IamRoleArn"],
                 "properties": {
                   "RecoveryPointArn": {
                     "description": "An ARN that uniquely identifies a recovery point; for example, <code>arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45</code>.",
@@ -5259,9 +5207,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Tags"
-                ],
+                "required": ["Tags"],
                 "properties": {
                   "Tags": {
                     "description": "Key-value pairs that are used to help organize your resources. You can assign your own metadata to the resources you create. ",
@@ -5367,9 +5313,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "TagKeyList"
-                ],
+                "required": ["TagKeyList"],
                 "properties": {
                   "TagKeyList": {
                     "description": "A list of keys to identify which key-value tags to remove from a resource.",
@@ -5615,10 +5559,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "FrameworkName",
-                  "FrameworkControls"
-                ],
+                "required": ["FrameworkName", "FrameworkControls"],
                 "properties": {
                   "FrameworkName": {
                     "description": "The unique name of the framework. The name must be between 1 and 256 characters, starting with a letter, and consisting of letters (a-z, A-Z), numbers (0-9), and underscores (_).",
@@ -5815,11 +5756,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ReportPlanName",
-                  "ReportDeliveryChannel",
-                  "ReportSetting"
-                ],
+                "required": ["ReportPlanName", "ReportDeliveryChannel", "ReportSetting"],
                 "properties": {
                   "ReportPlanName": {
                     "description": "The unique name of the report plan. The name must be between 1 and 256 characters, starting with a letter, and consisting of letters (a-z, A-Z), numbers (0-9), and underscores (_).",
@@ -8841,16 +8778,7 @@
       },
       "BackupJobState": {
         "type": "string",
-        "enum": [
-          "CREATED",
-          "PENDING",
-          "RUNNING",
-          "ABORTING",
-          "ABORTED",
-          "COMPLETED",
-          "FAILED",
-          "EXPIRED"
-        ]
+        "enum": ["CREATED", "PENDING", "RUNNING", "ABORTING", "ABORTED", "COMPLETED", "FAILED", "EXPIRED"]
       },
       "RecoveryPointCreator": {
         "type": "object",
@@ -9122,10 +9050,7 @@
       },
       "BackupPlan": {
         "type": "object",
-        "required": [
-          "BackupPlanName",
-          "Rules"
-        ],
+        "required": ["BackupPlanName", "Rules"],
         "properties": {
           "BackupPlanName": {
             "allOf": [
@@ -9350,10 +9275,7 @@
       },
       "BackupRule": {
         "type": "object",
-        "required": [
-          "RuleName",
-          "TargetBackupVaultName"
-        ],
+        "required": ["RuleName", "TargetBackupVaultName"],
         "properties": {
           "RuleName": {
             "allOf": [
@@ -9460,10 +9382,7 @@
       },
       "BackupRuleInput": {
         "type": "object",
-        "required": [
-          "RuleName",
-          "TargetBackupVaultName"
-        ],
+        "required": ["RuleName", "TargetBackupVaultName"],
         "properties": {
           "RuleName": {
             "allOf": [
@@ -9560,10 +9479,7 @@
       },
       "BackupSelection": {
         "type": "object",
-        "required": [
-          "SelectionName",
-          "IamRoleArn"
-        ],
+        "required": ["SelectionName", "IamRoleArn"],
         "properties": {
           "SelectionName": {
             "allOf": [
@@ -9792,9 +9708,7 @@
       },
       "ConditionType": {
         "type": "string",
-        "enum": [
-          "STRINGEQUALS"
-        ]
+        "enum": ["STRINGEQUALS"]
       },
       "ConditionKey": {
         "type": "string"
@@ -9804,11 +9718,7 @@
       },
       "Condition": {
         "type": "object",
-        "required": [
-          "ConditionType",
-          "ConditionKey",
-          "ConditionValue"
-        ],
+        "required": ["ConditionType", "ConditionKey", "ConditionValue"],
         "properties": {
           "ConditionType": {
             "allOf": [
@@ -9845,9 +9755,7 @@
       },
       "CopyAction": {
         "type": "object",
-        "required": [
-          "DestinationBackupVaultArn"
-        ],
+        "required": ["DestinationBackupVaultArn"],
         "properties": {
           "Lifecycle": {
             "$ref": "#/components/schemas/Lifecycle"
@@ -9867,12 +9775,7 @@
       },
       "CopyJobState": {
         "type": "string",
-        "enum": [
-          "CREATED",
-          "RUNNING",
-          "COMPLETED",
-          "FAILED"
-        ]
+        "enum": ["CREATED", "RUNNING", "COMPLETED", "FAILED"]
       },
       "CopyJob": {
         "type": "object",
@@ -10031,23 +9934,14 @@
       },
       "RecoveryPointStatus": {
         "type": "string",
-        "enum": [
-          "COMPLETED",
-          "PARTIAL",
-          "DELETING",
-          "EXPIRED"
-        ]
+        "enum": ["COMPLETED", "PARTIAL", "DELETING", "EXPIRED"]
       },
       "boolean": {
         "type": "boolean"
       },
       "StorageClass": {
         "type": "string",
-        "enum": [
-          "WARM",
-          "COLD",
-          "DELETED"
-        ]
+        "enum": ["WARM", "COLD", "DELETED"]
       },
       "ResourceTypeOptInPreference": {
         "type": "object",
@@ -10060,13 +9954,7 @@
       },
       "RestoreJobStatus": {
         "type": "string",
-        "enum": [
-          "PENDING",
-          "RUNNING",
-          "COMPLETED",
-          "ABORTED",
-          "FAILED"
-        ]
+        "enum": ["PENDING", "RUNNING", "COMPLETED", "ABORTED", "FAILED"]
       },
       "IAMPolicy": {
         "type": "string"
@@ -10644,9 +10532,7 @@
       },
       "FrameworkControl": {
         "type": "object",
-        "required": [
-          "ControlName"
-        ],
+        "required": ["ControlName"],
         "properties": {
           "ControlName": {
             "allOf": [
@@ -11118,9 +11004,7 @@
       },
       "ReportDeliveryChannel": {
         "type": "object",
-        "required": [
-          "S3BucketName"
-        ],
+        "required": ["S3BucketName"],
         "properties": {
           "S3BucketName": {
             "allOf": [
@@ -11157,9 +11041,7 @@
       },
       "ReportSetting": {
         "type": "object",
-        "required": [
-          "ReportTemplate"
-        ],
+        "required": ["ReportTemplate"],
         "properties": {
           "ReportTemplate": {
             "allOf": [

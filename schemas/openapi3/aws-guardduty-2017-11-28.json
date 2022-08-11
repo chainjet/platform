@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -201,10 +193,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "masterId",
-                  "invitationId"
-                ],
+                "required": ["masterId", "invitationId"],
                 "properties": {
                   "masterId": {
                     "description": "The account ID of the master GuardDuty account whose invitation you're accepting.",
@@ -350,9 +339,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "findingIds"
-                ],
+                "required": ["findingIds"],
                 "properties": {
                   "findingIds": {
                     "description": "The IDs of the findings that you want to archive.",
@@ -437,9 +424,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "enable"
-                ],
+                "required": ["enable"],
                 "properties": {
                   "enable": {
                     "description": "A Boolean value that specifies whether the detector is to be enabled.",
@@ -454,11 +439,7 @@
                   "findingPublishingFrequency": {
                     "description": "An enum value that specifies how frequently updated findings are exported.",
                     "type": "string",
-                    "enum": [
-                      "FIFTEEN_MINUTES",
-                      "ONE_HOUR",
-                      "SIX_HOURS"
-                    ]
+                    "enum": ["FIFTEEN_MINUTES", "ONE_HOUR", "SIX_HOURS"]
                   },
                   "dataSources": {
                     "description": "Contains information about which data sources are enabled.",
@@ -651,10 +632,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "findingCriteria"
-                ],
+                "required": ["name", "findingCriteria"],
                 "properties": {
                   "name": {
                     "description": "The name of the filter.",
@@ -671,10 +649,7 @@
                   "action": {
                     "description": "Specifies the action that is to be applied to the findings that match the filter.",
                     "type": "string",
-                    "enum": [
-                      "NOOP",
-                      "ARCHIVE"
-                    ],
+                    "enum": ["NOOP", "ARCHIVE"],
                     "minLength": 1,
                     "maxLength": 300
                   },
@@ -892,12 +867,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "format",
-                  "location",
-                  "activate"
-                ],
+                "required": ["name", "format", "location", "activate"],
                 "properties": {
                   "name": {
                     "description": "<p>The user-friendly name to identify the IPSet.</p> <p> Allowed characters are alphanumerics, spaces, hyphens (-), and underscores (_).</p>",
@@ -908,14 +878,7 @@
                   "format": {
                     "description": "The format of the file that contains the IPSet.",
                     "type": "string",
-                    "enum": [
-                      "TXT",
-                      "STIX",
-                      "OTX_CSV",
-                      "ALIEN_VAULT",
-                      "PROOF_POINT",
-                      "FIRE_EYE"
-                    ],
+                    "enum": ["TXT", "STIX", "OTX_CSV", "ALIEN_VAULT", "PROOF_POINT", "FIRE_EYE"],
                     "minLength": 1,
                     "maxLength": 300
                   },
@@ -1118,9 +1081,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "accountDetails"
-                ],
+                "required": ["accountDetails"],
                 "properties": {
                   "accountDetails": {
                     "description": "A list of account ID and email address pairs of the accounts that you want to associate with the master GuardDuty account.",
@@ -1314,17 +1275,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "destinationType",
-                  "destinationProperties"
-                ],
+                "required": ["destinationType", "destinationProperties"],
                 "properties": {
                   "destinationType": {
                     "description": "The type of resource for the publishing destination. Currently only Amazon S3 buckets are supported.",
                     "type": "string",
-                    "enum": [
-                      "S3"
-                    ],
+                    "enum": ["S3"],
                     "minLength": 1,
                     "maxLength": 300
                   },
@@ -1636,12 +1592,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "format",
-                  "location",
-                  "activate"
-                ],
+                "required": ["name", "format", "location", "activate"],
                 "properties": {
                   "name": {
                     "description": "A user-friendly ThreatIntelSet name displayed in all findings that are generated by activity that involves IP addresses included in this ThreatIntelSet.",
@@ -1652,14 +1603,7 @@
                   "format": {
                     "description": "The format of the file that contains the ThreatIntelSet.",
                     "type": "string",
-                    "enum": [
-                      "TXT",
-                      "STIX",
-                      "OTX_CSV",
-                      "ALIEN_VAULT",
-                      "PROOF_POINT",
-                      "FIRE_EYE"
-                    ],
+                    "enum": ["TXT", "STIX", "OTX_CSV", "ALIEN_VAULT", "PROOF_POINT", "FIRE_EYE"],
                     "minLength": 1,
                     "maxLength": 300
                   },
@@ -1850,9 +1794,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "accountIds"
-                ],
+                "required": ["accountIds"],
                 "properties": {
                   "accountIds": {
                     "description": "A list of account IDs of the AWS accounts that sent invitations to the current member account that you want to decline invitations from.",
@@ -2080,11 +2022,7 @@
                   "findingPublishingFrequency": {
                     "description": "An enum value that specifies how frequently findings are exported, such as to CloudWatch Events.",
                     "type": "string",
-                    "enum": [
-                      "FIFTEEN_MINUTES",
-                      "ONE_HOUR",
-                      "SIX_HOURS"
-                    ]
+                    "enum": ["FIFTEEN_MINUTES", "ONE_HOUR", "SIX_HOURS"]
                   },
                   "dataSources": {
                     "description": "Contains information about which data sources are enabled.",
@@ -2328,10 +2266,7 @@
                   "action": {
                     "description": "Specifies the action that is to be applied to the findings that match the filter.",
                     "type": "string",
-                    "enum": [
-                      "NOOP",
-                      "ARCHIVE"
-                    ],
+                    "enum": ["NOOP", "ARCHIVE"],
                     "minLength": 1,
                     "maxLength": 300
                   },
@@ -2641,9 +2576,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "accountIds"
-                ],
+                "required": ["accountIds"],
                 "properties": {
                   "accountIds": {
                     "description": "A list of account IDs of the AWS accounts that sent invitations to the current member account that you want to delete invitations from.",
@@ -2740,9 +2673,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "accountIds"
-                ],
+                "required": ["accountIds"],
                 "properties": {
                   "accountIds": {
                     "description": "A list of account IDs of the GuardDuty member accounts that you want to delete.",
@@ -3388,9 +3319,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "autoEnable"
-                ],
+                "required": ["autoEnable"],
                 "properties": {
                   "autoEnable": {
                     "description": "Indicates whether to automatically enable member accounts in the organization.",
@@ -3466,9 +3395,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "adminAccountId"
-                ],
+                "required": ["adminAccountId"],
                 "properties": {
                   "adminAccountId": {
                     "description": "The AWS Account ID for the organizations account to be disabled as a GuardDuty delegated administrator.",
@@ -3635,9 +3562,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "accountIds"
-                ],
+                "required": ["accountIds"],
                 "properties": {
                   "accountIds": {
                     "description": "A list of account IDs of the GuardDuty member accounts that you want to disassociate from the master account.",
@@ -3722,9 +3647,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "adminAccountId"
-                ],
+                "required": ["adminAccountId"],
                 "properties": {
                   "adminAccountId": {
                     "description": "The AWS Account ID for the organization account to be enabled as a GuardDuty delegated administrator.",
@@ -3816,9 +3739,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "findingIds"
-                ],
+                "required": ["findingIds"],
                 "properties": {
                   "findingIds": {
                     "description": "The IDs of the findings that you want to retrieve.",
@@ -3947,9 +3868,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "findingStatisticTypes"
-                ],
+                "required": ["findingStatisticTypes"],
                 "properties": {
                   "findingStatisticTypes": {
                     "description": "The types of finding statistics to retrieve.",
@@ -4128,9 +4047,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "accountIds"
-                ],
+                "required": ["accountIds"],
                 "properties": {
                   "accountIds": {
                     "description": "The account ID of the member account.",
@@ -4227,9 +4144,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "accountIds"
-                ],
+                "required": ["accountIds"],
                 "properties": {
                   "accountIds": {
                     "description": "A list of account IDs of the GuardDuty member accounts that you want to describe.",
@@ -4344,20 +4259,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "usageStatisticsType",
-                  "usageCriteria"
-                ],
+                "required": ["usageStatisticsType", "usageCriteria"],
                 "properties": {
                   "usageStatisticsType": {
                     "description": "The type of usage statistics to retrieve.",
                     "type": "string",
-                    "enum": [
-                      "SUM_BY_ACCOUNT",
-                      "SUM_BY_DATA_SOURCE",
-                      "SUM_BY_RESOURCE",
-                      "TOP_RESOURCES"
-                    ]
+                    "enum": ["SUM_BY_ACCOUNT", "SUM_BY_DATA_SOURCE", "SUM_BY_RESOURCE", "TOP_RESOURCES"]
                   },
                   "usageCriteria": {
                     "description": "Contains information about the criteria used to query usage statistics.",
@@ -4504,9 +4411,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "accountIds"
-                ],
+                "required": ["accountIds"],
                 "properties": {
                   "accountIds": {
                     "description": "A list of account IDs of the accounts that you want to invite to GuardDuty as members.",
@@ -5052,9 +4957,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "tags"
-                ],
+                "required": ["tags"],
                 "properties": {
                   "tags": {
                     "description": "The tags to be added to a resource.",
@@ -5128,9 +5031,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "accountIds"
-                ],
+                "required": ["accountIds"],
                 "properties": {
                   "accountIds": {
                     "description": "A list of account IDs of the GuardDuty member accounts to start monitoring.",
@@ -5227,9 +5128,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "accountIds"
-                ],
+                "required": ["accountIds"],
                 "properties": {
                   "accountIds": {
                     "description": "A list of account IDs for the member accounts to stop monitoring.",
@@ -5326,9 +5225,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "findingIds"
-                ],
+                "required": ["findingIds"],
                 "properties": {
                   "findingIds": {
                     "description": "The IDs of the findings to unarchive.",
@@ -5513,10 +5410,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "findingIds",
-                  "feedback"
-                ],
+                "required": ["findingIds", "feedback"],
                 "properties": {
                   "findingIds": {
                     "description": "The IDs of the findings that you want to mark as useful or not useful.",
@@ -5530,10 +5424,7 @@
                   "feedback": {
                     "description": "The feedback for the finding.",
                     "type": "string",
-                    "enum": [
-                      "USEFUL",
-                      "NOT_USEFUL"
-                    ]
+                    "enum": ["USEFUL", "NOT_USEFUL"]
                   },
                   "comments": {
                     "description": "Additional feedback about the GuardDuty findings.",
@@ -5625,9 +5516,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "accountIds"
-                ],
+                "required": ["accountIds"],
                 "properties": {
                   "accountIds": {
                     "description": "A list of member account IDs to be updated.",
@@ -5800,9 +5689,7 @@
       },
       "S3LogsConfiguration": {
         "type": "object",
-        "required": [
-          "Enable"
-        ],
+        "required": ["Enable"],
         "properties": {
           "Enable": {
             "allOf": [
@@ -5826,9 +5713,7 @@
       },
       "CreateFilterResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -5853,9 +5738,7 @@
       },
       "CreateIPSetResponse": {
         "type": "object",
-        "required": [
-          "IpSetId"
-        ],
+        "required": ["IpSetId"],
         "properties": {
           "IpSetId": {
             "allOf": [
@@ -5874,9 +5757,7 @@
       },
       "CreateMembersResponse": {
         "type": "object",
-        "required": [
-          "UnprocessedAccounts"
-        ],
+        "required": ["UnprocessedAccounts"],
         "properties": {
           "UnprocessedAccounts": {
             "allOf": [
@@ -5895,10 +5776,7 @@
       },
       "AccountDetail": {
         "type": "object",
-        "required": [
-          "AccountId",
-          "Email"
-        ],
+        "required": ["AccountId", "Email"],
         "properties": {
           "AccountId": {
             "allOf": [
@@ -5931,9 +5809,7 @@
       },
       "CreatePublishingDestinationResponse": {
         "type": "object",
-        "required": [
-          "DestinationId"
-        ],
+        "required": ["DestinationId"],
         "properties": {
           "DestinationId": {
             "allOf": [
@@ -5964,9 +5840,7 @@
       },
       "CreateThreatIntelSetResponse": {
         "type": "object",
-        "required": [
-          "ThreatIntelSetId"
-        ],
+        "required": ["ThreatIntelSetId"],
         "properties": {
           "ThreatIntelSetId": {
             "allOf": [
@@ -5985,9 +5859,7 @@
       },
       "DeclineInvitationsResponse": {
         "type": "object",
-        "required": [
-          "UnprocessedAccounts"
-        ],
+        "required": ["UnprocessedAccounts"],
         "properties": {
           "UnprocessedAccounts": {
             "allOf": [
@@ -6023,9 +5895,7 @@
       },
       "DeleteInvitationsResponse": {
         "type": "object",
-        "required": [
-          "UnprocessedAccounts"
-        ],
+        "required": ["UnprocessedAccounts"],
         "properties": {
           "UnprocessedAccounts": {
             "allOf": [
@@ -6044,9 +5914,7 @@
       },
       "DeleteMembersResponse": {
         "type": "object",
-        "required": [
-          "UnprocessedAccounts"
-        ],
+        "required": ["UnprocessedAccounts"],
         "properties": {
           "UnprocessedAccounts": {
             "allOf": [
@@ -6073,10 +5941,7 @@
       },
       "DescribeOrganizationConfigurationResponse": {
         "type": "object",
-        "required": [
-          "AutoEnable",
-          "MemberAccountLimitReached"
-        ],
+        "required": ["AutoEnable", "MemberAccountLimitReached"],
         "properties": {
           "AutoEnable": {
             "allOf": [
@@ -6206,9 +6071,7 @@
       },
       "DisassociateMembersResponse": {
         "type": "object",
-        "required": [
-          "UnprocessedAccounts"
-        ],
+        "required": ["UnprocessedAccounts"],
         "properties": {
           "UnprocessedAccounts": {
             "allOf": [
@@ -6231,10 +6094,7 @@
       },
       "GetDetectorResponse": {
         "type": "object",
-        "required": [
-          "ServiceRole",
-          "Status"
-        ],
+        "required": ["ServiceRole", "Status"],
         "properties": {
           "CreatedAt": {
             "allOf": [
@@ -6331,11 +6191,7 @@
       },
       "GetFilterResponse": {
         "type": "object",
-        "required": [
-          "Name",
-          "Action",
-          "FindingCriteria"
-        ],
+        "required": ["Name", "Action", "FindingCriteria"],
         "properties": {
           "Name": {
             "allOf": [
@@ -6419,9 +6275,7 @@
       },
       "GetFindingsResponse": {
         "type": "object",
-        "required": [
-          "Findings"
-        ],
+        "required": ["Findings"],
         "properties": {
           "Findings": {
             "allOf": [
@@ -6440,16 +6294,11 @@
       },
       "OrderBy": {
         "type": "string",
-        "enum": [
-          "ASC",
-          "DESC"
-        ]
+        "enum": ["ASC", "DESC"]
       },
       "GetFindingsStatisticsResponse": {
         "type": "object",
-        "required": [
-          "FindingStatistics"
-        ],
+        "required": ["FindingStatistics"],
         "properties": {
           "FindingStatistics": {
             "allOf": [
@@ -6468,18 +6317,11 @@
       },
       "FindingStatisticType": {
         "type": "string",
-        "enum": [
-          "COUNT_BY_SEVERITY"
-        ]
+        "enum": ["COUNT_BY_SEVERITY"]
       },
       "GetIPSetResponse": {
         "type": "object",
-        "required": [
-          "Name",
-          "Format",
-          "Location",
-          "Status"
-        ],
+        "required": ["Name", "Format", "Location", "Status"],
         "properties": {
           "Name": {
             "allOf": [
@@ -6568,9 +6410,7 @@
       },
       "GetMasterAccountResponse": {
         "type": "object",
-        "required": [
-          "Master"
-        ],
+        "required": ["Master"],
         "properties": {
           "Master": {
             "allOf": [
@@ -6589,10 +6429,7 @@
       },
       "GetMemberDetectorsResponse": {
         "type": "object",
-        "required": [
-          "MemberDataSourceConfigurations",
-          "UnprocessedAccounts"
-        ],
+        "required": ["MemberDataSourceConfigurations", "UnprocessedAccounts"],
         "properties": {
           "MemberDataSourceConfigurations": {
             "allOf": [
@@ -6624,10 +6461,7 @@
       },
       "GetMembersResponse": {
         "type": "object",
-        "required": [
-          "Members",
-          "UnprocessedAccounts"
-        ],
+        "required": ["Members", "UnprocessedAccounts"],
         "properties": {
           "Members": {
             "allOf": [
@@ -6659,12 +6493,7 @@
       },
       "GetThreatIntelSetResponse": {
         "type": "object",
-        "required": [
-          "Name",
-          "Format",
-          "Location",
-          "Status"
-        ],
+        "required": ["Name", "Format", "Location", "Status"],
         "properties": {
           "Name": {
             "allOf": [
@@ -6786,9 +6615,7 @@
       },
       "InviteMembersResponse": {
         "type": "object",
-        "required": [
-          "UnprocessedAccounts"
-        ],
+        "required": ["UnprocessedAccounts"],
         "properties": {
           "UnprocessedAccounts": {
             "allOf": [
@@ -6807,9 +6634,7 @@
       },
       "ListDetectorsResponse": {
         "type": "object",
-        "required": [
-          "DetectorIds"
-        ],
+        "required": ["DetectorIds"],
         "properties": {
           "DetectorIds": {
             "allOf": [
@@ -6841,9 +6666,7 @@
       },
       "ListFiltersResponse": {
         "type": "object",
-        "required": [
-          "FilterNames"
-        ],
+        "required": ["FilterNames"],
         "properties": {
           "FilterNames": {
             "allOf": [
@@ -6875,9 +6698,7 @@
       },
       "ListFindingsResponse": {
         "type": "object",
-        "required": [
-          "FindingIds"
-        ],
+        "required": ["FindingIds"],
         "properties": {
           "FindingIds": {
             "allOf": [
@@ -6909,9 +6730,7 @@
       },
       "ListIPSetsResponse": {
         "type": "object",
-        "required": [
-          "IpSetIds"
-        ],
+        "required": ["IpSetIds"],
         "properties": {
           "IpSetIds": {
             "allOf": [
@@ -7036,9 +6855,7 @@
       },
       "ListPublishingDestinationsResponse": {
         "type": "object",
-        "required": [
-          "Destinations"
-        ],
+        "required": ["Destinations"],
         "properties": {
           "Destinations": {
             "allOf": [
@@ -7088,9 +6905,7 @@
       },
       "ListThreatIntelSetsResponse": {
         "type": "object",
-        "required": [
-          "ThreatIntelSetIds"
-        ],
+        "required": ["ThreatIntelSetIds"],
         "properties": {
           "ThreatIntelSetIds": {
             "allOf": [
@@ -7122,9 +6937,7 @@
       },
       "StartMonitoringMembersResponse": {
         "type": "object",
-        "required": [
-          "UnprocessedAccounts"
-        ],
+        "required": ["UnprocessedAccounts"],
         "properties": {
           "UnprocessedAccounts": {
             "allOf": [
@@ -7143,9 +6956,7 @@
       },
       "StopMonitoringMembersResponse": {
         "type": "object",
-        "required": [
-          "UnprocessedAccounts"
-        ],
+        "required": ["UnprocessedAccounts"],
         "properties": {
           "UnprocessedAccounts": {
             "allOf": [
@@ -7186,9 +6997,7 @@
       },
       "UpdateFilterResponse": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -7215,9 +7024,7 @@
       },
       "UpdateMemberDetectorsResponse": {
         "type": "object",
-        "required": [
-          "UnprocessedAccounts"
-        ],
+        "required": ["UnprocessedAccounts"],
         "properties": {
           "UnprocessedAccounts": {
             "allOf": [
@@ -7240,9 +7047,7 @@
       },
       "OrganizationS3LogsConfiguration": {
         "type": "object",
-        "required": [
-          "AutoEnable"
-        ],
+        "required": ["AutoEnable"],
         "properties": {
           "AutoEnable": {
             "allOf": [
@@ -7753,10 +7558,7 @@
       },
       "AdminStatus": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "DISABLE_IN_PROGRESS"
-        ],
+        "enum": ["ENABLED", "DISABLE_IN_PROGRESS"],
         "minLength": 1,
         "maxLength": 300
       },
@@ -7996,18 +7798,13 @@
       },
       "DataSourceStatus": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "DISABLED"
-        ],
+        "enum": ["ENABLED", "DISABLED"],
         "minLength": 1,
         "maxLength": 300
       },
       "CloudTrailConfigurationResult": {
         "type": "object",
-        "required": [
-          "Status"
-        ],
+        "required": ["Status"],
         "properties": {
           "Status": {
             "allOf": [
@@ -8263,11 +8060,7 @@
       },
       "FindingPublishingFrequency": {
         "type": "string",
-        "enum": [
-          "FIFTEEN_MINUTES",
-          "ONE_HOUR",
-          "SIX_HOURS"
-        ]
+        "enum": ["FIFTEEN_MINUTES", "ONE_HOUR", "SIX_HOURS"]
       },
       "TagMap": {
         "type": "object",
@@ -8289,10 +8082,7 @@
       },
       "FilterAction": {
         "type": "string",
-        "enum": [
-          "NOOP",
-          "ARCHIVE"
-        ],
+        "enum": ["NOOP", "ARCHIVE"],
         "minLength": 1,
         "maxLength": 300
       },
@@ -8327,14 +8117,7 @@
       },
       "IpSetFormat": {
         "type": "string",
-        "enum": [
-          "TXT",
-          "STIX",
-          "OTX_CSV",
-          "ALIEN_VAULT",
-          "PROOF_POINT",
-          "FIRE_EYE"
-        ],
+        "enum": ["TXT", "STIX", "OTX_CSV", "ALIEN_VAULT", "PROOF_POINT", "FIRE_EYE"],
         "minLength": 1,
         "maxLength": 300
       },
@@ -8353,9 +8136,7 @@
       },
       "DestinationType": {
         "type": "string",
-        "enum": [
-          "S3"
-        ],
+        "enum": ["S3"],
         "minLength": 1,
         "maxLength": 300
       },
@@ -8393,22 +8174,13 @@
       },
       "ThreatIntelSetFormat": {
         "type": "string",
-        "enum": [
-          "TXT",
-          "STIX",
-          "OTX_CSV",
-          "ALIEN_VAULT",
-          "PROOF_POINT",
-          "FIRE_EYE"
-        ],
+        "enum": ["TXT", "STIX", "OTX_CSV", "ALIEN_VAULT", "PROOF_POINT", "FIRE_EYE"],
         "minLength": 1,
         "maxLength": 300
       },
       "DNSLogsConfigurationResult": {
         "type": "object",
-        "required": [
-          "Status"
-        ],
+        "required": ["Status"],
         "properties": {
           "Status": {
             "allOf": [
@@ -8428,18 +8200,11 @@
       },
       "DataSource": {
         "type": "string",
-        "enum": [
-          "FLOW_LOGS",
-          "CLOUD_TRAIL",
-          "DNS_LOGS",
-          "S3_LOGS"
-        ]
+        "enum": ["FLOW_LOGS", "CLOUD_TRAIL", "DNS_LOGS", "S3_LOGS"]
       },
       "FlowLogsConfigurationResult": {
         "type": "object",
-        "required": [
-          "Status"
-        ],
+        "required": ["Status"],
         "properties": {
           "Status": {
             "allOf": [
@@ -8459,9 +8224,7 @@
       },
       "S3LogsConfigurationResult": {
         "type": "object",
-        "required": [
-          "Status"
-        ],
+        "required": ["Status"],
         "properties": {
           "Status": {
             "allOf": [
@@ -8481,12 +8244,7 @@
       },
       "DataSourceConfigurationsResult": {
         "type": "object",
-        "required": [
-          "CloudTrail",
-          "DNSLogs",
-          "FlowLogs",
-          "S3Logs"
-        ],
+        "required": ["CloudTrail", "DNSLogs", "FlowLogs", "S3Logs"],
         "properties": {
           "CloudTrail": {
             "allOf": [
@@ -8577,9 +8335,7 @@
       },
       "OrganizationDataSourceConfigurationsResult": {
         "type": "object",
-        "required": [
-          "S3Logs"
-        ],
+        "required": ["S3Logs"],
         "properties": {
           "S3Logs": {
             "allOf": [
@@ -8599,22 +8355,13 @@
       },
       "PublishingStatus": {
         "type": "string",
-        "enum": [
-          "PENDING_VERIFICATION",
-          "PUBLISHING",
-          "UNABLE_TO_PUBLISH_FIX_DESTINATION_PROPERTY",
-          "STOPPED"
-        ],
+        "enum": ["PENDING_VERIFICATION", "PUBLISHING", "UNABLE_TO_PUBLISH_FIX_DESTINATION_PROPERTY", "STOPPED"],
         "minLength": 1,
         "maxLength": 300
       },
       "Destination": {
         "type": "object",
-        "required": [
-          "DestinationId",
-          "DestinationType",
-          "Status"
-        ],
+        "required": ["DestinationId", "DestinationType", "Status"],
         "properties": {
           "DestinationId": {
             "allOf": [
@@ -8674,10 +8421,7 @@
       },
       "DetectorStatus": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "DISABLED"
-        ],
+        "enum": ["ENABLED", "DISABLED"],
         "minLength": 1,
         "maxLength": 300
       },
@@ -9184,15 +8928,7 @@
       },
       "IpSetStatus": {
         "type": "string",
-        "enum": [
-          "INACTIVE",
-          "ACTIVATING",
-          "ACTIVE",
-          "DEACTIVATING",
-          "ERROR",
-          "DELETE_PENDING",
-          "DELETED"
-        ],
+        "enum": ["INACTIVE", "ACTIVATING", "ACTIVE", "DEACTIVATING", "ERROR", "DELETE_PENDING", "DELETED"],
         "minLength": 1,
         "maxLength": 300
       },
@@ -9272,15 +9008,7 @@
       },
       "ThreatIntelSetStatus": {
         "type": "string",
-        "enum": [
-          "INACTIVE",
-          "ACTIVATING",
-          "ACTIVE",
-          "DEACTIVATING",
-          "ERROR",
-          "DELETE_PENDING",
-          "DELETED"
-        ],
+        "enum": ["INACTIVE", "ACTIVATING", "ACTIVE", "DEACTIVATING", "ERROR", "DELETE_PENDING", "DELETED"],
         "minLength": 1,
         "maxLength": 300
       },
@@ -9708,13 +9436,7 @@
       },
       "Member": {
         "type": "object",
-        "required": [
-          "AccountId",
-          "MasterId",
-          "Email",
-          "RelationshipStatus",
-          "UpdatedAt"
-        ],
+        "required": ["AccountId", "MasterId", "Email", "RelationshipStatus", "UpdatedAt"],
         "properties": {
           "AccountId": {
             "allOf": [
@@ -9812,10 +9534,7 @@
       },
       "MemberDataSourceConfiguration": {
         "type": "object",
-        "required": [
-          "AccountId",
-          "DataSources"
-        ],
+        "required": ["AccountId", "DataSources"],
         "properties": {
           "AccountId": {
             "allOf": [
@@ -10086,9 +9805,7 @@
       },
       "OrganizationS3LogsConfigurationResult": {
         "type": "object",
-        "required": [
-          "AutoEnable"
-        ],
+        "required": ["AutoEnable"],
         "properties": {
           "AutoEnable": {
             "allOf": [
@@ -10560,10 +10277,7 @@
       },
       "UnprocessedAccount": {
         "type": "object",
-        "required": [
-          "AccountId",
-          "Result"
-        ],
+        "required": ["AccountId", "Result"],
         "properties": {
           "AccountId": {
             "allOf": [

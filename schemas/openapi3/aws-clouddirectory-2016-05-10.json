@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": false,
     "x-deprecated": true
   },
@@ -121,10 +119,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -135,10 +130,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -269,10 +261,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "SchemaFacet",
-                  "ObjectReference"
-                ],
+                "required": ["SchemaFacet", "ObjectReference"],
                 "properties": {
                   "SchemaFacet": {
                     "description": "A facet.",
@@ -467,9 +456,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "PublishedSchemaArn"
-                ],
+                "required": ["PublishedSchemaArn"],
                 "properties": {
                   "PublishedSchemaArn": {
                     "description": "Published schema Amazon Resource Name (ARN) that needs to be copied. For more information, see <a>arns</a>.",
@@ -659,11 +646,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ParentReference",
-                  "ChildReference",
-                  "LinkName"
-                ],
+                "required": ["ParentReference", "ChildReference", "LinkName"],
                 "properties": {
                   "ParentReference": {
                     "description": "The reference that identifies an object.",
@@ -858,10 +841,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "PolicyReference",
-                  "ObjectReference"
-                ],
+                "required": ["PolicyReference", "ObjectReference"],
                 "properties": {
                   "PolicyReference": {
                     "description": "The reference that identifies an object.",
@@ -1079,10 +1059,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "IndexReference",
-                  "TargetReference"
-                ],
+                "required": ["IndexReference", "TargetReference"],
                 "properties": {
                   "IndexReference": {
                     "description": "The reference that identifies an object.",
@@ -1290,12 +1267,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "SourceObjectReference",
-                  "TargetObjectReference",
-                  "TypedLinkFacet",
-                  "Attributes"
-                ],
+                "required": ["SourceObjectReference", "TargetObjectReference", "TypedLinkFacet", "Attributes"],
                 "properties": {
                   "SourceObjectReference": {
                     "description": "The reference that identifies an object.",
@@ -1496,10 +1468,7 @@
             "description": "Represents the manner and timing in which the successful write or update of an object is reflected in a subsequent read operation of that same object.",
             "schema": {
               "type": "string",
-              "enum": [
-                "SERIALIZABLE",
-                "EVENTUAL"
-              ]
+              "enum": ["SERIALIZABLE", "EVENTUAL"]
             }
           }
         ],
@@ -1509,9 +1478,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Operations"
-                ],
+                "required": ["Operations"],
                 "properties": {
                   "Operations": {
                     "description": "A list of operations that are part of the batch.",
@@ -1664,9 +1631,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Operations"
-                ],
+                "required": ["Operations"],
                 "properties": {
                   "Operations": {
                     "description": "A list of operations that are part of the batch.",
@@ -1819,9 +1784,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name"
-                ],
+                "required": ["Name"],
                 "properties": {
                   "Name": {
                     "description": "The name of the <a>Directory</a>. Should be unique per account, per region.",
@@ -1994,10 +1957,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name",
-                  "ObjectType"
-                ],
+                "required": ["Name", "ObjectType"],
                 "properties": {
                   "Name": {
                     "description": "The name of the <a>Facet</a>, which is unique for a given schema.",
@@ -2016,12 +1976,7 @@
                   "ObjectType": {
                     "description": "<p>Specifies whether a given object created from this facet is of type node, leaf node, policy or index.</p> <ul> <li> <p>Node: Can have multiple children but one parent.</p> </li> </ul> <ul> <li> <p>Leaf node: Cannot have children but can have multiple parents.</p> </li> </ul> <ul> <li> <p>Policy: Allows you to store a policy document and policy type. For more information, see <a href=\"http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_key_concepts.html#policies\">Policies</a>.</p> </li> </ul> <ul> <li> <p>Index: Can be created with the Index API.</p> </li> </ul>",
                     "type": "string",
-                    "enum": [
-                      "NODE",
-                      "LEAF_NODE",
-                      "POLICY",
-                      "INDEX"
-                    ]
+                    "enum": ["NODE", "LEAF_NODE", "POLICY", "INDEX"]
                   }
                 }
               }
@@ -2197,10 +2152,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "OrderedIndexedAttributeList",
-                  "IsUnique"
-                ],
+                "required": ["OrderedIndexedAttributeList", "IsUnique"],
                 "properties": {
                   "OrderedIndexedAttributeList": {
                     "description": "Specifies the attributes that should be indexed on. Currently only a single attribute is supported.",
@@ -2410,9 +2362,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "SchemaFacets"
-                ],
+                "required": ["SchemaFacets"],
                 "properties": {
                   "SchemaFacets": {
                     "description": "A list of schema facets to be associated with the object. Do not provide minor version components. See <a>SchemaFacet</a> for details.",
@@ -2585,9 +2535,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name"
-                ],
+                "required": ["Name"],
                 "properties": {
                   "Name": {
                     "description": "The name that is associated with the schema. This is unique to each account and in each region.",
@@ -2760,9 +2708,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Facet"
-                ],
+                "required": ["Facet"],
                 "properties": {
                   "Facet": {
                     "description": "Defines the typed links structure and its attributes. To create a typed link facet, use the <a>CreateTypedLinkFacet</a> API.",
@@ -3097,9 +3043,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name"
-                ],
+                "required": ["Name"],
                 "properties": {
                   "Name": {
                     "description": "The name of the facet to delete.",
@@ -3262,9 +3206,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ObjectReference"
-                ],
+                "required": ["ObjectReference"],
                 "properties": {
                   "ObjectReference": {
                     "description": "The reference that identifies an object.",
@@ -3559,9 +3501,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name"
-                ],
+                "required": ["Name"],
                 "properties": {
                   "Name": {
                     "description": "The unique name of the typed link facet.",
@@ -3732,10 +3672,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "IndexReference",
-                  "TargetReference"
-                ],
+                "required": ["IndexReference", "TargetReference"],
                 "properties": {
                   "IndexReference": {
                     "description": "The reference that identifies an object.",
@@ -3923,10 +3860,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ParentReference",
-                  "LinkName"
-                ],
+                "required": ["ParentReference", "LinkName"],
                 "properties": {
                   "ParentReference": {
                     "description": "The reference that identifies an object.",
@@ -4105,10 +4039,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "PolicyReference",
-                  "ObjectReference"
-                ],
+                "required": ["PolicyReference", "ObjectReference"],
                 "properties": {
                   "PolicyReference": {
                     "description": "The reference that identifies an object.",
@@ -4289,9 +4220,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "TypedLinkSpecifier"
-                ],
+                "required": ["TypedLinkSpecifier"],
                 "properties": {
                   "TypedLinkSpecifier": {
                     "description": "Contains all the information that is used to uniquely identify a typed link. The parameters discussed in this topic are used to uniquely specify the typed link being operated on. The <a>AttachTypedLink</a> API returns a typed link specifier while the <a>DetachTypedLink</a> API accepts one as input. Similarly, the <a>ListIncomingTypedLinks</a> and <a>ListOutgoingTypedLinks</a> API operations provide typed link specifiers as output. You can also construct a typed link specifier from scratch.",
@@ -4729,9 +4658,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "SchemaArn"
-                ],
+                "required": ["SchemaArn"],
                 "properties": {
                   "SchemaArn": {
                     "description": "The ARN of the applied schema.",
@@ -4994,9 +4921,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name"
-                ],
+                "required": ["Name"],
                 "properties": {
                   "Name": {
                     "description": "The name of the facet to retrieve.",
@@ -5167,9 +5092,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name"
-                ],
+                "required": ["Name"],
                 "properties": {
                   "Name": {
                     "description": "The name of the facet.",
@@ -5188,12 +5111,7 @@
                   "ObjectType": {
                     "description": "The object type that is associated with the facet. See <a>CreateFacetRequest$ObjectType</a> for more details.",
                     "type": "string",
-                    "enum": [
-                      "NODE",
-                      "LEAF_NODE",
-                      "POLICY",
-                      "INDEX"
-                    ]
+                    "enum": ["NODE", "LEAF_NODE", "POLICY", "INDEX"]
                   }
                 }
               }
@@ -5326,10 +5244,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "TypedLinkSpecifier",
-                  "AttributeNames"
-                ],
+                "required": ["TypedLinkSpecifier", "AttributeNames"],
                 "properties": {
                   "TypedLinkSpecifier": {
                     "description": "Contains all the information that is used to uniquely identify a typed link. The parameters discussed in this topic are used to uniquely specify the typed link being operated on. The <a>AttachTypedLink</a> API returns a typed link specifier while the <a>DetachTypedLink</a> API accepts one as input. Similarly, the <a>ListIncomingTypedLinks</a> and <a>ListOutgoingTypedLinks</a> API operations provide typed link specifiers as output. You can also construct a typed link specifier from scratch.",
@@ -5387,10 +5302,7 @@
                   "ConsistencyLevel": {
                     "description": "The consistency level at which to retrieve the attributes on a typed link.",
                     "type": "string",
-                    "enum": [
-                      "SERIALIZABLE",
-                      "EVENTUAL"
-                    ]
+                    "enum": ["SERIALIZABLE", "EVENTUAL"]
                   }
                 }
               }
@@ -5546,10 +5458,7 @@
             "description": "The consistency level at which to retrieve the attributes on an object.",
             "schema": {
               "type": "string",
-              "enum": [
-                "SERIALIZABLE",
-                "EVENTUAL"
-              ]
+              "enum": ["SERIALIZABLE", "EVENTUAL"]
             }
           }
         ],
@@ -5559,11 +5468,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ObjectReference",
-                  "SchemaFacet",
-                  "AttributeNames"
-                ],
+                "required": ["ObjectReference", "SchemaFacet", "AttributeNames"],
                 "properties": {
                   "ObjectReference": {
                     "description": "The reference that identifies an object.",
@@ -5758,10 +5663,7 @@
             "description": "The consistency level at which to retrieve the object information.",
             "schema": {
               "type": "string",
-              "enum": [
-                "SERIALIZABLE",
-                "EVENTUAL"
-              ]
+              "enum": ["SERIALIZABLE", "EVENTUAL"]
             }
           }
         ],
@@ -5771,9 +5673,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ObjectReference"
-                ],
+                "required": ["ObjectReference"],
                 "properties": {
                   "ObjectReference": {
                     "description": "The reference that identifies an object.",
@@ -6066,9 +5966,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Document"
-                ],
+                "required": ["Document"],
                 "properties": {
                   "Document": {
                     "description": "The replacement JSON schema.",
@@ -6205,9 +6103,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name"
-                ],
+                "required": ["Name"],
                 "properties": {
                   "Name": {
                     "description": "The unique name of the typed link facet.",
@@ -6367,9 +6263,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "DirectoryArn"
-                ],
+                "required": ["DirectoryArn"],
                 "properties": {
                   "DirectoryArn": {
                     "description": "The ARN of the directory you are listing.",
@@ -6532,10 +6426,7 @@
             "description": "The consistency level to use for this operation.",
             "schema": {
               "type": "string",
-              "enum": [
-                "SERIALIZABLE",
-                "EVENTUAL"
-              ]
+              "enum": ["SERIALIZABLE", "EVENTUAL"]
             }
           },
           {
@@ -6563,9 +6454,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "TargetReference"
-                ],
+                "required": ["TargetReference"],
                 "properties": {
                   "TargetReference": {
                     "description": "The reference that identifies an object.",
@@ -6911,11 +6800,7 @@
                   "state": {
                     "description": "The state of the directories in the list. Can be either Enabled, Disabled, or Deleted.",
                     "type": "string",
-                    "enum": [
-                      "ENABLED",
-                      "DISABLED",
-                      "DELETED"
-                    ]
+                    "enum": ["ENABLED", "DISABLED", "DELETED"]
                   }
                 }
               }
@@ -7089,9 +6974,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name"
-                ],
+                "required": ["Name"],
                 "properties": {
                   "Name": {
                     "description": "The name of the facet whose attributes will be retrieved.",
@@ -7445,9 +7328,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ObjectReference"
-                ],
+                "required": ["ObjectReference"],
                 "properties": {
                   "ObjectReference": {
                     "description": "The reference that identifies an object.",
@@ -7510,10 +7391,7 @@
                   "ConsistencyLevel": {
                     "description": "The consistency level to execute the request at.",
                     "type": "string",
-                    "enum": [
-                      "SERIALIZABLE",
-                      "EVENTUAL"
-                    ]
+                    "enum": ["SERIALIZABLE", "EVENTUAL"]
                   }
                 }
               }
@@ -7689,10 +7567,7 @@
             "description": "The consistency level to execute the request at.",
             "schema": {
               "type": "string",
-              "enum": [
-                "SERIALIZABLE",
-                "EVENTUAL"
-              ]
+              "enum": ["SERIALIZABLE", "EVENTUAL"]
             }
           },
           {
@@ -7720,9 +7595,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "IndexReference"
-                ],
+                "required": ["IndexReference"],
                 "properties": {
                   "RangesOnIndexedValues": {
                     "description": "Specifies the ranges of indexed values that you want to query.",
@@ -7920,10 +7793,7 @@
             "description": "Represents the manner and timing in which the successful write or update of an object is reflected in a subsequent read operation of that same object.",
             "schema": {
               "type": "string",
-              "enum": [
-                "SERIALIZABLE",
-                "EVENTUAL"
-              ]
+              "enum": ["SERIALIZABLE", "EVENTUAL"]
             }
           },
           {
@@ -7951,9 +7821,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ObjectReference"
-                ],
+                "required": ["ObjectReference"],
                 "properties": {
                   "ObjectReference": {
                     "description": "The reference that identifies an object.",
@@ -8170,10 +8038,7 @@
             "description": "Represents the manner and timing in which the successful write or update of an object is reflected in a subsequent read operation of that same object.",
             "schema": {
               "type": "string",
-              "enum": [
-                "SERIALIZABLE",
-                "EVENTUAL"
-              ]
+              "enum": ["SERIALIZABLE", "EVENTUAL"]
             }
           },
           {
@@ -8201,9 +8066,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ObjectReference"
-                ],
+                "required": ["ObjectReference"],
                 "properties": {
                   "ObjectReference": {
                     "description": "The reference that identifies an object.",
@@ -8402,9 +8265,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ObjectReference"
-                ],
+                "required": ["ObjectReference"],
                 "properties": {
                   "ObjectReference": {
                     "description": "The reference that identifies an object.",
@@ -8595,10 +8456,7 @@
             "description": "Represents the manner and timing in which the successful write or update of an object is reflected in a subsequent read operation of that same object.",
             "schema": {
               "type": "string",
-              "enum": [
-                "SERIALIZABLE",
-                "EVENTUAL"
-              ]
+              "enum": ["SERIALIZABLE", "EVENTUAL"]
             }
           },
           {
@@ -8626,9 +8484,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ObjectReference"
-                ],
+                "required": ["ObjectReference"],
                 "properties": {
                   "ObjectReference": {
                     "description": "The reference that identifies an object.",
@@ -8809,10 +8665,7 @@
             "description": "Represents the manner and timing in which the successful write or update of an object is reflected in a subsequent read operation of that same object.",
             "schema": {
               "type": "string",
-              "enum": [
-                "SERIALIZABLE",
-                "EVENTUAL"
-              ]
+              "enum": ["SERIALIZABLE", "EVENTUAL"]
             }
           },
           {
@@ -8840,9 +8693,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ObjectReference"
-                ],
+                "required": ["ObjectReference"],
                 "properties": {
                   "ObjectReference": {
                     "description": "The reference that identifies an object.",
@@ -9033,9 +8884,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ObjectReference"
-                ],
+                "required": ["ObjectReference"],
                 "properties": {
                   "ObjectReference": {
                     "description": "The reference that identifies an object.",
@@ -9098,10 +8947,7 @@
                   "ConsistencyLevel": {
                     "description": "The consistency level to execute the request at.",
                     "type": "string",
-                    "enum": [
-                      "SERIALIZABLE",
-                      "EVENTUAL"
-                    ]
+                    "enum": ["SERIALIZABLE", "EVENTUAL"]
                   }
                 }
               }
@@ -9267,10 +9113,7 @@
             "description": "Represents the manner and timing in which the successful write or update of an object is reflected in a subsequent read operation of that same object.",
             "schema": {
               "type": "string",
-              "enum": [
-                "SERIALIZABLE",
-                "EVENTUAL"
-              ]
+              "enum": ["SERIALIZABLE", "EVENTUAL"]
             }
           },
           {
@@ -9298,9 +9141,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "PolicyReference"
-                ],
+                "required": ["PolicyReference"],
                 "properties": {
                   "PolicyReference": {
                     "description": "The reference that identifies an object.",
@@ -9647,9 +9488,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ResourceArn"
-                ],
+                "required": ["ResourceArn"],
                 "properties": {
                   "ResourceArn": {
                     "description": "The Amazon Resource Name (ARN) of the resource. Tagging is only supported for directories.",
@@ -9836,9 +9675,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name"
-                ],
+                "required": ["Name"],
                 "properties": {
                   "Name": {
                     "description": "The unique name of the typed link facet.",
@@ -10198,9 +10035,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ObjectReference"
-                ],
+                "required": ["ObjectReference"],
                 "properties": {
                   "ObjectReference": {
                     "description": "The reference that identifies an object.",
@@ -10371,9 +10206,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Version"
-                ],
+                "required": ["Version"],
                 "properties": {
                   "Version": {
                     "description": "The major version under which the schema will be published. Schemas have both a major and minor version associated with them.",
@@ -10550,10 +10383,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "SchemaFacet",
-                  "ObjectReference"
-                ],
+                "required": ["SchemaFacet", "ObjectReference"],
                 "properties": {
                   "SchemaFacet": {
                     "description": "A facet.",
@@ -10731,10 +10561,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ResourceArn",
-                  "Tags"
-                ],
+                "required": ["ResourceArn", "Tags"],
                 "properties": {
                   "ResourceArn": {
                     "description": "The Amazon Resource Name (ARN) of the resource. Tagging is only supported for directories.",
@@ -10881,10 +10708,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ResourceArn",
-                  "TagKeys"
-                ],
+                "required": ["ResourceArn", "TagKeys"],
                 "properties": {
                   "ResourceArn": {
                     "description": "The Amazon Resource Name (ARN) of the resource. Tagging is only supported for directories.",
@@ -11051,10 +10875,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "TypedLinkSpecifier",
-                  "AttributeUpdates"
-                ],
+                "required": ["TypedLinkSpecifier", "AttributeUpdates"],
                 "properties": {
                   "TypedLinkSpecifier": {
                     "description": "Contains all the information that is used to uniquely identify a typed link. The parameters discussed in this topic are used to uniquely specify the typed link being operated on. The <a>AttachTypedLink</a> API returns a typed link specifier while the <a>DetachTypedLink</a> API accepts one as input. Similarly, the <a>ListIncomingTypedLinks</a> and <a>ListOutgoingTypedLinks</a> API operations provide typed link specifiers as output. You can also construct a typed link specifier from scratch.",
@@ -11273,10 +11094,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ObjectReference",
-                  "AttributeUpdates"
-                ],
+                "required": ["ObjectReference", "AttributeUpdates"],
                 "properties": {
                   "ObjectReference": {
                     "description": "The reference that identifies an object.",
@@ -11435,9 +11253,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name"
-                ],
+                "required": ["Name"],
                 "properties": {
                   "Name": {
                     "description": "The name of the schema.",
@@ -11620,11 +11436,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name",
-                  "AttributeUpdates",
-                  "IdentityAttributeOrder"
-                ],
+                "required": ["Name", "AttributeUpdates", "IdentityAttributeOrder"],
                 "properties": {
                   "Name": {
                     "description": "The unique name of the typed link facet.",
@@ -11779,10 +11591,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "PublishedSchemaArn",
-                  "DirectoryArn"
-                ],
+                "required": ["PublishedSchemaArn", "DirectoryArn"],
                 "properties": {
                   "PublishedSchemaArn": {
                     "description": "The revision of the published schema to upgrade the directory to.",
@@ -11940,11 +11749,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "DevelopmentSchemaArn",
-                  "PublishedSchemaArn",
-                  "MinorVersion"
-                ],
+                "required": ["DevelopmentSchemaArn", "PublishedSchemaArn", "MinorVersion"],
                 "properties": {
                   "DevelopmentSchemaArn": {
                     "description": "The ARN of the development schema with the changes used for the upgrade.",
@@ -12088,10 +11893,7 @@
       },
       "AttributeKeyAndValue": {
         "type": "object",
-        "required": [
-          "Key",
-          "Value"
-        ],
+        "required": ["Key", "Value"],
         "properties": {
           "Key": {
             "allOf": [
@@ -12325,10 +12127,7 @@
       },
       "AttributeNameAndValue": {
         "type": "object",
-        "required": [
-          "AttributeName",
-          "Value"
-        ],
+        "required": ["AttributeName", "Value"],
         "properties": {
           "AttributeName": {
             "allOf": [
@@ -12692,12 +12491,7 @@
       },
       "CreateDirectoryResponse": {
         "type": "object",
-        "required": [
-          "DirectoryArn",
-          "Name",
-          "ObjectIdentifier",
-          "AppliedSchemaArn"
-        ],
+        "required": ["DirectoryArn", "Name", "ObjectIdentifier", "AppliedSchemaArn"],
         "properties": {
           "DirectoryArn": {
             "allOf": [
@@ -12756,9 +12550,7 @@
       },
       "FacetAttribute": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -12838,11 +12630,7 @@
       },
       "AttributeKey": {
         "type": "object",
-        "required": [
-          "SchemaArn",
-          "FacetName",
-          "Name"
-        ],
+        "required": ["SchemaArn", "FacetName", "Name"],
         "properties": {
           "SchemaArn": {
             "allOf": [
@@ -12969,9 +12757,7 @@
       },
       "DeleteDirectoryResponse": {
         "type": "object",
-        "required": [
-          "DirectoryArn"
-        ],
+        "required": ["DirectoryArn"],
         "properties": {
           "DirectoryArn": {
             "allOf": [
@@ -13120,10 +12906,7 @@
       },
       "TypedLinkSchemaAndFacetName": {
         "type": "object",
-        "required": [
-          "SchemaArn",
-          "TypedLinkName"
-        ],
+        "required": ["SchemaArn", "TypedLinkName"],
         "properties": {
           "SchemaArn": {
             "allOf": [
@@ -13172,9 +12955,7 @@
       },
       "DisableDirectoryResponse": {
         "type": "object",
-        "required": [
-          "DirectoryArn"
-        ],
+        "required": ["DirectoryArn"],
         "properties": {
           "DirectoryArn": {
             "allOf": [
@@ -13190,9 +12971,7 @@
       },
       "EnableDirectoryResponse": {
         "type": "object",
-        "required": [
-          "DirectoryArn"
-        ],
+        "required": ["DirectoryArn"],
         "properties": {
           "DirectoryArn": {
             "allOf": [
@@ -13223,9 +13002,7 @@
       },
       "GetDirectoryResponse": {
         "type": "object",
-        "required": [
-          "Directory"
-        ],
+        "required": ["Directory"],
         "properties": {
           "Directory": {
             "allOf": [
@@ -13441,9 +13218,7 @@
       },
       "ListDirectoriesResponse": {
         "type": "object",
-        "required": [
-          "Directories"
-        ],
+        "required": ["Directories"],
         "properties": {
           "Directories": {
             "allOf": [
@@ -13544,9 +13319,7 @@
       },
       "TypedLinkAttributeRange": {
         "type": "object",
-        "required": [
-          "Range"
-        ],
+        "required": ["Range"],
         "properties": {
           "AttributeName": {
             "allOf": [
@@ -14160,10 +13933,7 @@
       },
       "TypedLinkFacetAttributeUpdate": {
         "type": "object",
-        "required": [
-          "Attribute",
-          "Action"
-        ],
+        "required": ["Attribute", "Action"],
         "properties": {
           "Attribute": {
             "allOf": [
@@ -14263,12 +14033,7 @@
       },
       "TypedLinkSpecifier": {
         "type": "object",
-        "required": [
-          "TypedLinkFacet",
-          "SourceObjectReference",
-          "TargetObjectReference",
-          "IdentityAttributeValues"
-        ],
+        "required": ["TypedLinkFacet", "SourceObjectReference", "TargetObjectReference", "IdentityAttributeValues"],
         "properties": {
           "TypedLinkFacet": {
             "allOf": [
@@ -14377,11 +14142,7 @@
       },
       "BatchAddFacetToObject": {
         "type": "object",
-        "required": [
-          "SchemaFacet",
-          "ObjectAttributeList",
-          "ObjectReference"
-        ],
+        "required": ["SchemaFacet", "ObjectAttributeList", "ObjectReference"],
         "properties": {
           "SchemaFacet": {
             "allOf": [
@@ -14423,11 +14184,7 @@
       },
       "BatchAttachObject": {
         "type": "object",
-        "required": [
-          "ParentReference",
-          "ChildReference",
-          "LinkName"
-        ],
+        "required": ["ParentReference", "ChildReference", "LinkName"],
         "properties": {
           "ParentReference": {
             "allOf": [
@@ -14480,10 +14237,7 @@
       },
       "BatchAttachPolicy": {
         "type": "object",
-        "required": [
-          "PolicyReference",
-          "ObjectReference"
-        ],
+        "required": ["PolicyReference", "ObjectReference"],
         "properties": {
           "PolicyReference": {
             "allOf": [
@@ -14515,10 +14269,7 @@
       },
       "BatchAttachToIndex": {
         "type": "object",
-        "required": [
-          "IndexReference",
-          "TargetReference"
-        ],
+        "required": ["IndexReference", "TargetReference"],
         "properties": {
           "IndexReference": {
             "allOf": [
@@ -14561,12 +14312,7 @@
       },
       "BatchAttachTypedLink": {
         "type": "object",
-        "required": [
-          "SourceObjectReference",
-          "TargetObjectReference",
-          "TypedLinkFacet",
-          "Attributes"
-        ],
+        "required": ["SourceObjectReference", "TargetObjectReference", "TypedLinkFacet", "Attributes"],
         "properties": {
           "SourceObjectReference": {
             "allOf": [
@@ -14635,10 +14381,7 @@
       },
       "BatchCreateIndex": {
         "type": "object",
-        "required": [
-          "OrderedIndexedAttributeList",
-          "IsUnique"
-        ],
+        "required": ["OrderedIndexedAttributeList", "IsUnique"],
         "properties": {
           "OrderedIndexedAttributeList": {
             "allOf": [
@@ -14717,10 +14460,7 @@
       },
       "BatchCreateObject": {
         "type": "object",
-        "required": [
-          "SchemaFacet",
-          "ObjectAttributeList"
-        ],
+        "required": ["SchemaFacet", "ObjectAttributeList"],
         "properties": {
           "SchemaFacet": {
             "allOf": [
@@ -14793,9 +14533,7 @@
       },
       "BatchDeleteObject": {
         "type": "object",
-        "required": [
-          "ObjectReference"
-        ],
+        "required": ["ObjectReference"],
         "properties": {
           "ObjectReference": {
             "allOf": [
@@ -14817,10 +14555,7 @@
       },
       "BatchDetachFromIndex": {
         "type": "object",
-        "required": [
-          "IndexReference",
-          "TargetReference"
-        ],
+        "required": ["IndexReference", "TargetReference"],
         "properties": {
           "IndexReference": {
             "allOf": [
@@ -14863,10 +14598,7 @@
       },
       "BatchDetachObject": {
         "type": "object",
-        "required": [
-          "ParentReference",
-          "LinkName"
-        ],
+        "required": ["ParentReference", "LinkName"],
         "properties": {
           "ParentReference": {
             "allOf": [
@@ -14919,10 +14651,7 @@
       },
       "BatchDetachPolicy": {
         "type": "object",
-        "required": [
-          "PolicyReference",
-          "ObjectReference"
-        ],
+        "required": ["PolicyReference", "ObjectReference"],
         "properties": {
           "PolicyReference": {
             "allOf": [
@@ -14954,9 +14683,7 @@
       },
       "BatchDetachTypedLink": {
         "type": "object",
-        "required": [
-          "TypedLinkSpecifier"
-        ],
+        "required": ["TypedLinkSpecifier"],
         "properties": {
           "TypedLinkSpecifier": {
             "allOf": [
@@ -14978,10 +14705,7 @@
       },
       "BatchGetLinkAttributes": {
         "type": "object",
-        "required": [
-          "TypedLinkSpecifier",
-          "AttributeNames"
-        ],
+        "required": ["TypedLinkSpecifier", "AttributeNames"],
         "properties": {
           "TypedLinkSpecifier": {
             "allOf": [
@@ -15024,11 +14748,7 @@
       },
       "BatchGetObjectAttributes": {
         "type": "object",
-        "required": [
-          "ObjectReference",
-          "SchemaFacet",
-          "AttributeNames"
-        ],
+        "required": ["ObjectReference", "SchemaFacet", "AttributeNames"],
         "properties": {
           "ObjectReference": {
             "allOf": [
@@ -15081,9 +14801,7 @@
       },
       "BatchGetObjectInformation": {
         "type": "object",
-        "required": [
-          "ObjectReference"
-        ],
+        "required": ["ObjectReference"],
         "properties": {
           "ObjectReference": {
             "allOf": [
@@ -15133,9 +14851,7 @@
       },
       "BatchListAttachedIndices": {
         "type": "object",
-        "required": [
-          "TargetReference"
-        ],
+        "required": ["TargetReference"],
         "properties": {
           "TargetReference": {
             "allOf": [
@@ -15210,9 +14926,7 @@
       },
       "BatchListIncomingTypedLinks": {
         "type": "object",
-        "required": [
-          "ObjectReference"
-        ],
+        "required": ["ObjectReference"],
         "properties": {
           "ObjectReference": {
             "allOf": [
@@ -15307,9 +15021,7 @@
       },
       "BatchListIndex": {
         "type": "object",
-        "required": [
-          "IndexReference"
-        ],
+        "required": ["IndexReference"],
         "properties": {
           "RangesOnIndexedValues": {
             "allOf": [
@@ -15382,9 +15094,7 @@
       },
       "BatchListObjectAttributes": {
         "type": "object",
-        "required": [
-          "ObjectReference"
-        ],
+        "required": ["ObjectReference"],
         "properties": {
           "ObjectReference": {
             "allOf": [
@@ -15457,9 +15167,7 @@
       },
       "BatchListObjectChildren": {
         "type": "object",
-        "required": [
-          "ObjectReference"
-        ],
+        "required": ["ObjectReference"],
         "properties": {
           "ObjectReference": {
             "allOf": [
@@ -15528,9 +15236,7 @@
       },
       "BatchListObjectParentPaths": {
         "type": "object",
-        "required": [
-          "ObjectReference"
-        ],
+        "required": ["ObjectReference"],
         "properties": {
           "ObjectReference": {
             "allOf": [
@@ -15599,9 +15305,7 @@
       },
       "BatchListObjectPolicies": {
         "type": "object",
-        "required": [
-          "ObjectReference"
-        ],
+        "required": ["ObjectReference"],
         "properties": {
           "ObjectReference": {
             "allOf": [
@@ -15670,9 +15374,7 @@
       },
       "BatchListOutgoingTypedLinks": {
         "type": "object",
-        "required": [
-          "ObjectReference"
-        ],
+        "required": ["ObjectReference"],
         "properties": {
           "ObjectReference": {
             "allOf": [
@@ -15755,9 +15457,7 @@
       },
       "BatchListPolicyAttachments": {
         "type": "object",
-        "required": [
-          "PolicyReference"
-        ],
+        "required": ["PolicyReference"],
         "properties": {
           "PolicyReference": {
             "allOf": [
@@ -15820,9 +15520,7 @@
       },
       "BatchLookupPolicy": {
         "type": "object",
-        "required": [
-          "ObjectReference"
-        ],
+        "required": ["ObjectReference"],
         "properties": {
           "ObjectReference": {
             "allOf": [
@@ -16106,10 +15804,7 @@
       },
       "BatchRemoveFacetFromObject": {
         "type": "object",
-        "required": [
-          "SchemaFacet",
-          "ObjectReference"
-        ],
+        "required": ["SchemaFacet", "ObjectReference"],
         "properties": {
           "SchemaFacet": {
             "allOf": [
@@ -16147,10 +15842,7 @@
       },
       "BatchUpdateLinkAttributes": {
         "type": "object",
-        "required": [
-          "TypedLinkSpecifier",
-          "AttributeUpdates"
-        ],
+        "required": ["TypedLinkSpecifier", "AttributeUpdates"],
         "properties": {
           "TypedLinkSpecifier": {
             "allOf": [
@@ -16188,10 +15880,7 @@
       },
       "BatchUpdateObjectAttributes": {
         "type": "object",
-        "required": [
-          "ObjectReference",
-          "AttributeUpdates"
-        ],
+        "required": ["ObjectReference", "AttributeUpdates"],
         "properties": {
           "ObjectReference": {
             "allOf": [
@@ -16440,12 +16129,7 @@
       },
       "ObjectType": {
         "type": "string",
-        "enum": [
-          "NODE",
-          "LEAF_NODE",
-          "POLICY",
-          "INDEX"
-        ]
+        "enum": ["NODE", "LEAF_NODE", "POLICY", "INDEX"]
       },
       "SchemaName": {
         "type": "string",
@@ -16463,11 +16147,7 @@
       },
       "DirectoryState": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "DISABLED",
-          "DELETED"
-        ]
+        "enum": ["ENABLED", "DISABLED", "DELETED"]
       },
       "Directory": {
         "type": "object",
@@ -16549,9 +16229,7 @@
       },
       "FacetAttributeDefinition": {
         "type": "object",
-        "required": [
-          "Type"
-        ],
+        "required": ["Type"],
         "properties": {
           "Type": {
             "allOf": [
@@ -16598,10 +16276,7 @@
       },
       "FacetAttributeReference": {
         "type": "object",
-        "required": [
-          "TargetFacetName",
-          "TargetAttributeName"
-        ],
+        "required": ["TargetFacetName", "TargetAttributeName"],
         "properties": {
           "TargetFacetName": {
             "allOf": [
@@ -16628,20 +16303,11 @@
       },
       "RequiredAttributeBehavior": {
         "type": "string",
-        "enum": [
-          "REQUIRED_ALWAYS",
-          "NOT_REQUIRED"
-        ]
+        "enum": ["REQUIRED_ALWAYS", "NOT_REQUIRED"]
       },
       "FacetAttributeType": {
         "type": "string",
-        "enum": [
-          "STRING",
-          "BINARY",
-          "BOOLEAN",
-          "NUMBER",
-          "DATETIME"
-        ]
+        "enum": ["STRING", "BINARY", "BOOLEAN", "NUMBER", "DATETIME"]
       },
       "RuleMap": {
         "type": "object",
@@ -16651,10 +16317,7 @@
       },
       "UpdateActionType": {
         "type": "string",
-        "enum": [
-          "CREATE_OR_UPDATE",
-          "DELETE"
-        ]
+        "enum": ["CREATE_OR_UPDATE", "DELETE"]
       },
       "FacetNameList": {
         "type": "array",
@@ -16766,10 +16429,7 @@
       },
       "TypedAttributeValueRange": {
         "type": "object",
-        "required": [
-          "StartMode",
-          "EndMode"
-        ],
+        "required": ["StartMode", "EndMode"],
         "properties": {
           "StartMode": {
             "allOf": [
@@ -16916,22 +16576,11 @@
       },
       "RangeMode": {
         "type": "string",
-        "enum": [
-          "FIRST",
-          "LAST",
-          "LAST_BEFORE_MISSING_VALUES",
-          "INCLUSIVE",
-          "EXCLUSIVE"
-        ]
+        "enum": ["FIRST", "LAST", "LAST_BEFORE_MISSING_VALUES", "INCLUSIVE", "EXCLUSIVE"]
       },
       "RuleType": {
         "type": "string",
-        "enum": [
-          "BINARY_LENGTH",
-          "NUMBER_COMPARISON",
-          "STRING_FROM_SET",
-          "STRING_LENGTH"
-        ]
+        "enum": ["BINARY_LENGTH", "NUMBER_COMPARISON", "STRING_FROM_SET", "STRING_LENGTH"]
       },
       "RuleParameterMap": {
         "type": "object",
@@ -16976,11 +16625,7 @@
       },
       "TypedLinkAttributeDefinition": {
         "type": "object",
-        "required": [
-          "Name",
-          "Type",
-          "RequiredBehavior"
-        ],
+        "required": ["Name", "Type", "RequiredBehavior"],
         "properties": {
           "Name": {
             "allOf": [

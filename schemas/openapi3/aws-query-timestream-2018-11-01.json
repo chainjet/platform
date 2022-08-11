@@ -4,9 +4,7 @@
     "version": "2018-11-01",
     "title": "Amazon Timestream Query",
     "description": "",
-    "x-categories": [
-      "database"
-    ],
+    "x-categories": ["database"],
     "x-logo": {
       "url": "/logos/aws/Arch_Amazon-Timestream_64.svg"
     },
@@ -101,10 +99,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -115,10 +110,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -209,9 +201,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "Timestream_20181101.CancelQuery"
-              ]
+              "enum": ["Timestream_20181101.CancelQuery"]
             }
           }
         ],
@@ -304,9 +294,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "Timestream_20181101.DescribeEndpoints"
-              ]
+              "enum": ["Timestream_20181101.DescribeEndpoints"]
             }
           }
         ],
@@ -457,9 +445,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "Timestream_20181101.Query"
-              ]
+              "enum": ["Timestream_20181101.Query"]
             }
           }
         ],
@@ -582,9 +568,7 @@
       },
       "CancelQueryRequest": {
         "type": "object",
-        "required": [
-          "QueryId"
-        ],
+        "required": ["QueryId"],
         "title": "CancelQueryRequest",
         "properties": {
           "QueryId": {
@@ -606,9 +590,7 @@
       "InvalidEndpointException": {},
       "DescribeEndpointsResponse": {
         "type": "object",
-        "required": [
-          "Endpoints"
-        ],
+        "required": ["Endpoints"],
         "properties": {
           "Endpoints": {
             "allOf": [
@@ -629,11 +611,7 @@
       },
       "QueryResponse": {
         "type": "object",
-        "required": [
-          "QueryId",
-          "Rows",
-          "ColumnInfo"
-        ],
+        "required": ["QueryId", "Rows", "ColumnInfo"],
         "properties": {
           "QueryId": {
             "allOf": [
@@ -689,9 +667,7 @@
       },
       "QueryRequest": {
         "type": "object",
-        "required": [
-          "QueryString"
-        ],
+        "required": ["QueryString"],
         "title": "QueryRequest",
         "properties": {
           "QueryString": {
@@ -801,9 +777,7 @@
       },
       "ColumnInfo": {
         "type": "object",
-        "required": [
-          "Type"
-        ],
+        "required": ["Type"],
         "properties": {
           "Name": {
             "allOf": [
@@ -851,9 +825,7 @@
       },
       "Row": {
         "type": "object",
-        "required": [
-          "Data"
-        ],
+        "required": ["Data"],
         "properties": {
           "Data": {
             "allOf": [
@@ -938,10 +910,7 @@
       },
       "Endpoint": {
         "type": "object",
-        "required": [
-          "Address",
-          "CachePeriodInMinutes"
-        ],
+        "required": ["Address", "CachePeriodInMinutes"],
         "properties": {
           "Address": {
             "allOf": [
@@ -1002,10 +971,7 @@
       },
       "TimeSeriesDataPoint": {
         "type": "object",
-        "required": [
-          "Time",
-          "Value"
-        ],
+        "required": ["Time", "Value"],
         "properties": {
           "Time": {
             "allOf": [

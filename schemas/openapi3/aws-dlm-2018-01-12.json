@@ -32,9 +32,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -117,10 +115,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -131,10 +126,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -196,12 +188,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ExecutionRoleArn",
-                  "Description",
-                  "State",
-                  "PolicyDetails"
-                ],
+                "required": ["ExecutionRoleArn", "Description", "State", "PolicyDetails"],
                 "properties": {
                   "ExecutionRoleArn": {
                     "description": "The Amazon Resource Name (ARN) of the IAM role used to run the operations specified by the lifecycle policy.",
@@ -220,10 +207,7 @@
                   "State": {
                     "description": "The desired activation state of the lifecycle policy after creation.",
                     "type": "string",
-                    "enum": [
-                      "ENABLED",
-                      "DISABLED"
-                    ]
+                    "enum": ["ENABLED", "DISABLED"]
                   },
                   "PolicyDetails": {
                     "description": "Specifies the configuration of a lifecycle policy.",
@@ -425,11 +409,7 @@
             "description": "The activation state.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ENABLED",
-                "DISABLED",
-                "ERROR"
-              ]
+              "enum": ["ENABLED", "DISABLED", "ERROR"]
             }
           },
           {
@@ -775,9 +755,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Tags"
-                ],
+                "required": ["Tags"],
                 "properties": {
                   "Tags": {
                     "description": "One or more tags.",
@@ -983,10 +961,7 @@
                   "State": {
                     "description": "The desired activation state of the lifecycle policy after creation.",
                     "type": "string",
-                    "enum": [
-                      "ENABLED",
-                      "DISABLED"
-                    ]
+                    "enum": ["ENABLED", "DISABLED"]
                   },
                   "Description": {
                     "description": "A description of the lifecycle policy.",
@@ -1206,11 +1181,7 @@
       },
       "PolicyTypeValues": {
         "type": "string",
-        "enum": [
-          "EBS_SNAPSHOT_MANAGEMENT",
-          "IMAGE_MANAGEMENT",
-          "EVENT_BASED_POLICY"
-        ]
+        "enum": ["EBS_SNAPSHOT_MANAGEMENT", "IMAGE_MANAGEMENT", "EVENT_BASED_POLICY"]
       },
       "ResourceTypeValuesList": {
         "type": "array",
@@ -1298,10 +1269,7 @@
       },
       "ResourceTypeValues": {
         "type": "string",
-        "enum": [
-          "VOLUME",
-          "INSTANCE"
-        ]
+        "enum": ["VOLUME", "INSTANCE"]
       },
       "TagFilter": {
         "type": "string",
@@ -1500,9 +1468,7 @@
       },
       "IntervalUnitValues": {
         "type": "string",
-        "enum": [
-          "HOURS"
-        ]
+        "enum": ["HOURS"]
       },
       "TimesList": {
         "type": "array",
@@ -1575,12 +1541,7 @@
       },
       "RetentionIntervalUnitValues": {
         "type": "string",
-        "enum": [
-          "DAYS",
-          "WEEKS",
-          "MONTHS",
-          "YEARS"
-        ]
+        "enum": ["DAYS", "WEEKS", "MONTHS", "YEARS"]
       },
       "CrossRegionCopyRetainRule": {
         "type": "object",
@@ -1619,10 +1580,7 @@
       },
       "CrossRegionCopyRule": {
         "type": "object",
-        "required": [
-          "TargetRegion",
-          "Encrypted"
-        ],
+        "required": ["TargetRegion", "Encrypted"],
         "properties": {
           "TargetRegion": {
             "allOf": [
@@ -1710,9 +1668,7 @@
       },
       "FastRestoreRule": {
         "type": "object",
-        "required": [
-          "AvailabilityZones"
-        ],
+        "required": ["AvailabilityZones"],
         "properties": {
           "Count": {
             "allOf": [
@@ -1759,11 +1715,7 @@
       },
       "GettablePolicyStateValues": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "DISABLED",
-          "ERROR"
-        ]
+        "enum": ["ENABLED", "DISABLED", "ERROR"]
       },
       "LifecyclePolicySummaryList": {
         "type": "array",
@@ -2121,10 +2073,7 @@
       },
       "Tag": {
         "type": "object",
-        "required": [
-          "Key",
-          "Value"
-        ],
+        "required": ["Key", "Value"],
         "properties": {
           "Key": {
             "allOf": [
@@ -2168,9 +2117,7 @@
       },
       "EventSource": {
         "type": "object",
-        "required": [
-          "Type"
-        ],
+        "required": ["Type"],
         "properties": {
           "Type": {
             "allOf": [
@@ -2219,10 +2166,7 @@
       },
       "Action": {
         "type": "object",
-        "required": [
-          "Name",
-          "CrossRegionCopy"
-        ],
+        "required": ["Name", "CrossRegionCopy"],
         "properties": {
           "Name": {
             "allOf": [
@@ -2255,10 +2199,7 @@
       },
       "LocationValues": {
         "type": "string",
-        "enum": [
-          "CLOUD",
-          "OUTPOST_LOCAL"
-        ]
+        "enum": ["CLOUD", "OUTPOST_LOCAL"]
       },
       "Target": {
         "type": "string",
@@ -2268,9 +2209,7 @@
       },
       "EncryptionConfiguration": {
         "type": "object",
-        "required": [
-          "Encrypted"
-        ],
+        "required": ["Encrypted"],
         "properties": {
           "Encrypted": {
             "allOf": [
@@ -2297,10 +2236,7 @@
       },
       "CrossRegionCopyAction": {
         "type": "object",
-        "required": [
-          "Target",
-          "EncryptionConfiguration"
-        ],
+        "required": ["Target", "EncryptionConfiguration"],
         "properties": {
           "Target": {
             "allOf": [
@@ -2398,9 +2334,7 @@
       },
       "EventTypeValues": {
         "type": "string",
-        "enum": [
-          "shareSnapshot"
-        ]
+        "enum": ["shareSnapshot"]
       },
       "SnapshotOwnerList": {
         "type": "array",
@@ -2412,11 +2346,7 @@
       },
       "EventParameters": {
         "type": "object",
-        "required": [
-          "EventType",
-          "SnapshotOwner",
-          "DescriptionRegex"
-        ],
+        "required": ["EventType", "SnapshotOwner", "DescriptionRegex"],
         "properties": {
           "EventType": {
             "allOf": [
@@ -2453,16 +2383,11 @@
       },
       "EventSourceValues": {
         "type": "string",
-        "enum": [
-          "MANAGED_CWE"
-        ]
+        "enum": ["MANAGED_CWE"]
       },
       "ResourceLocationValues": {
         "type": "string",
-        "enum": [
-          "CLOUD",
-          "OUTPOST"
-        ]
+        "enum": ["CLOUD", "OUTPOST"]
       },
       "ShareRules": {
         "type": "array",
@@ -2481,9 +2406,7 @@
       },
       "ShareRule": {
         "type": "object",
-        "required": [
-          "TargetAccounts"
-        ],
+        "required": ["TargetAccounts"],
         "properties": {
           "TargetAccounts": {
             "allOf": [

@@ -5,9 +5,7 @@
     "x-release": "v4",
     "title": "AWS RDS Data Service",
     "description": "Amazon RDS provides an HTTP endpoint to run SQL statements on an Amazon Aurora Serverless DB cluster. To run these statements, you work with the Data Service API. For more information about the Data Service API, see Using the Data API for Aurora Serverless in the Amazon Aurora User Guide.  If you have questions or comments related to the Data API, send email to Rds-data-api-feedback@amazon.com.",
-    "x-categories": [
-      "database"
-    ],
+    "x-categories": ["database"],
     "x-logo": {
       "url": "/logos/aws/Arch_Amazon-RDS_64.svg"
     },
@@ -38,9 +36,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -123,10 +119,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -137,10 +130,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -221,11 +211,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "resourceArn",
-                  "secretArn",
-                  "sql"
-                ],
+                "required": ["resourceArn", "secretArn", "sql"],
                 "properties": {
                   "database": {
                     "description": "The name of the database.",
@@ -374,10 +360,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "resourceArn",
-                  "secretArn"
-                ],
+                "required": ["resourceArn", "secretArn"],
                 "properties": {
                   "database": {
                     "description": "The name of the database.",
@@ -517,11 +500,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "resourceArn",
-                  "secretArn",
-                  "transactionId"
-                ],
+                "required": ["resourceArn", "secretArn", "transactionId"],
                 "properties": {
                   "resourceArn": {
                     "description": "The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.",
@@ -636,11 +615,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "awsSecretStoreArn",
-                  "dbClusterOrInstanceArn",
-                  "sqlStatements"
-                ],
+                "required": ["awsSecretStoreArn", "dbClusterOrInstanceArn", "sqlStatements"],
                 "properties": {
                   "awsSecretStoreArn": {
                     "description": "The Amazon Resource Name (ARN) of the secret that enables access to the DB cluster.",
@@ -776,11 +751,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "resourceArn",
-                  "secretArn",
-                  "sql"
-                ],
+                "required": ["resourceArn", "secretArn", "sql"],
                 "properties": {
                   "continueAfterTimeout": {
                     "description": "<p>A value that indicates whether to continue running the statement after the call times out. By default, the statement stops running when the call times out.</p> <important> <p>For DDL statements, we recommend continuing to run the statement after the call times out. When a DDL statement terminates before it is finished running, it can result in errors and possibly corrupted data structures.</p> </important>",
@@ -963,11 +934,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "resourceArn",
-                  "secretArn",
-                  "transactionId"
-                ],
+                "required": ["resourceArn", "secretArn", "transactionId"],
                 "properties": {
                   "resourceArn": {
                     "description": "The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.",
@@ -1255,10 +1222,7 @@
       },
       "DecimalReturnType": {
         "type": "string",
-        "enum": [
-          "DOUBLE_OR_LONG",
-          "STRING"
-        ]
+        "enum": ["DOUBLE_OR_LONG", "STRING"]
       },
       "RollbackTransactionResponse": {
         "type": "object",
@@ -1861,14 +1825,7 @@
       },
       "TypeHint": {
         "type": "string",
-        "enum": [
-          "DATE",
-          "DECIMAL",
-          "TIME",
-          "TIMESTAMP",
-          "TIME",
-          "DECIMAL"
-        ]
+        "enum": ["DATE", "DECIMAL", "TIME", "TIMESTAMP", "TIME", "DECIMAL"]
       },
       "SqlStatementResult": {
         "type": "object",

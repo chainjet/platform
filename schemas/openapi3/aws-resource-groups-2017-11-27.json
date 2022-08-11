@@ -32,9 +32,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -117,10 +115,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -131,10 +126,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -215,9 +207,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name"
-                ],
+                "required": ["Name"],
                 "properties": {
                   "Name": {
                     "description": "The name of the group, which is the identifier of the group in other operations. You can't change the name of a resource group after you create it. A resource group name can consist of letters, numbers, hyphens, periods, and underscores. The name cannot start with <code>AWS</code> or <code>aws</code>; these are reserved. A resource group name must be unique within each AWS Region in your AWS account.",
@@ -1023,9 +1013,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Tags"
-                ],
+                "required": ["Tags"],
                 "properties": {
                   "Tags": {
                     "description": "The tags to add to the specified resource group. A tag is a string-to-string map of key-value pairs.",
@@ -1136,9 +1124,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Keys"
-                ],
+                "required": ["Keys"],
                 "properties": {
                   "Keys": {
                     "description": "The keys of the tags to be removed.",
@@ -1238,10 +1224,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Group",
-                  "ResourceArns"
-                ],
+                "required": ["Group", "ResourceArns"],
                 "properties": {
                   "Group": {
                     "description": "The name or the ARN of the resource group to add resources to.",
@@ -1724,9 +1707,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ResourceQuery"
-                ],
+                "required": ["ResourceQuery"],
                 "properties": {
                   "ResourceQuery": {
                     "description": "The query that is used to define a resource group or a search for resources.",
@@ -1881,10 +1862,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Group",
-                  "ResourceArns"
-                ],
+                "required": ["Group", "ResourceArns"],
                 "properties": {
                   "Group": {
                     "description": "The name or the ARN of the resource group from which to remove the resources.",
@@ -2151,9 +2129,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ResourceQuery"
-                ],
+                "required": ["ResourceQuery"],
                 "properties": {
                   "GroupName": {
                     "description": "Don't use this parameter. Use <code>Group</code> instead.",
@@ -2480,10 +2456,7 @@
       },
       "QueryType": {
         "type": "string",
-        "enum": [
-          "TAG_FILTERS_1_0",
-          "CLOUDFORMATION_STACK_1_0"
-        ],
+        "enum": ["TAG_FILTERS_1_0", "CLOUDFORMATION_STACK_1_0"],
         "pattern": "^\\w+$",
         "minLength": 1,
         "maxLength": 128
@@ -2501,9 +2474,7 @@
       },
       "GroupConfigurationItem": {
         "type": "object",
-        "required": [
-          "Type"
-        ],
+        "required": ["Type"],
         "properties": {
           "Type": {
             "allOf": [
@@ -2706,10 +2677,7 @@
       },
       "ResourceFilter": {
         "type": "object",
-        "required": [
-          "Name",
-          "Values"
-        ],
+        "required": ["Name", "Values"],
         "properties": {
           "Name": {
             "allOf": [
@@ -2773,10 +2741,7 @@
       },
       "GroupFilter": {
         "type": "object",
-        "required": [
-          "Name",
-          "Values"
-        ],
+        "required": ["Name", "Values"],
         "properties": {
           "Name": {
             "allOf": [
@@ -2970,10 +2935,7 @@
       },
       "ResourceQuery": {
         "type": "object",
-        "required": [
-          "Type",
-          "Query"
-        ],
+        "required": ["Type", "Query"],
         "properties": {
           "Type": {
             "allOf": [
@@ -3013,10 +2975,7 @@
       },
       "Group": {
         "type": "object",
-        "required": [
-          "GroupArn",
-          "Name"
-        ],
+        "required": ["GroupArn", "Name"],
         "properties": {
           "GroupArn": {
             "allOf": [
@@ -3151,10 +3110,7 @@
       },
       "GroupQuery": {
         "type": "object",
-        "required": [
-          "GroupName",
-          "ResourceQuery"
-        ],
+        "required": ["GroupName", "ResourceQuery"],
         "properties": {
           "GroupName": {
             "allOf": [
@@ -3187,11 +3143,7 @@
       },
       "GroupConfigurationStatus": {
         "type": "string",
-        "enum": [
-          "UPDATING",
-          "UPDATE_COMPLETE",
-          "UPDATE_FAILED"
-        ]
+        "enum": ["UPDATING", "UPDATE_COMPLETE", "UPDATE_FAILED"]
       },
       "GroupConfigurationFailureReason": {
         "type": "string"
@@ -3221,9 +3173,7 @@
       },
       "GroupConfigurationParameter": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -3256,10 +3206,7 @@
       },
       "GroupFilterName": {
         "type": "string",
-        "enum": [
-          "resource-type",
-          "configuration-type"
-        ]
+        "enum": ["resource-type", "configuration-type"]
       },
       "GroupFilterValues": {
         "type": "array",
@@ -3341,10 +3288,7 @@
       },
       "QueryErrorCode": {
         "type": "string",
-        "enum": [
-          "CLOUDFORMATION_STACK_INACTIVE",
-          "CLOUDFORMATION_STACK_NOT_EXISTING"
-        ]
+        "enum": ["CLOUDFORMATION_STACK_INACTIVE", "CLOUDFORMATION_STACK_NOT_EXISTING"]
       },
       "QueryErrorMessage": {
         "type": "string"
@@ -3377,9 +3321,7 @@
       },
       "ResourceFilterName": {
         "type": "string",
-        "enum": [
-          "resource-type"
-        ]
+        "enum": ["resource-type"]
       },
       "ResourceFilterValues": {
         "type": "array",
@@ -3500,9 +3442,7 @@
       },
       "ResourceStatusValue": {
         "type": "string",
-        "enum": [
-          "PENDING"
-        ]
+        "enum": ["PENDING"]
       }
     }
   },

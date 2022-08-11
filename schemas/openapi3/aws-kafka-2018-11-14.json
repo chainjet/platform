@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -239,12 +231,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "brokerNodeGroupInfo",
-                  "clusterName",
-                  "kafkaVersion",
-                  "numberOfBrokerNodes"
-                ],
+                "required": ["brokerNodeGroupInfo", "clusterName", "kafkaVersion", "numberOfBrokerNodes"],
                 "properties": {
                   "brokerNodeGroupInfo": {
                     "description": "\n            <p>Describes the setup to be used for Kafka broker nodes in the cluster.</p>\n         ",
@@ -435,12 +422,7 @@
                   "enhancedMonitoring": {
                     "description": "\n            <p>Specifies which metrics are gathered for the MSK cluster. This property has three possible values: DEFAULT, PER_BROKER, and PER_TOPIC_PER_BROKER. For a list of the metrics associated with each of these three levels of monitoring, see <a href=\"https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html\">Monitoring</a>.</p>\n         ",
                     "type": "string",
-                    "enum": [
-                      "DEFAULT",
-                      "PER_BROKER",
-                      "PER_TOPIC_PER_BROKER",
-                      "PER_TOPIC_PER_PARTITION"
-                    ]
+                    "enum": ["DEFAULT", "PER_BROKER", "PER_TOPIC_PER_BROKER", "PER_TOPIC_PER_PARTITION"]
                   },
                   "openMonitoring": {
                     "description": "\n            <p>JMX and Node monitoring for the MSK cluster.</p>\n         ",
@@ -728,10 +710,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "serverProperties"
-                ],
+                "required": ["name", "serverProperties"],
                 "properties": {
                   "description": {
                     "description": "\n            <p>The description of the configuration.</p>\n         ",
@@ -1342,9 +1321,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "serverProperties"
-                ],
+                "required": ["serverProperties"],
                 "properties": {
                   "description": {
                     "description": "\n            <p>The description of the configuration revision.</p>\n         ",
@@ -2485,9 +2462,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "tags"
-                ],
+                "required": ["tags"],
                 "properties": {
                   "tags": {
                     "description": "\n            <p>The key-value pair for the resource tag.</p>\n         ",
@@ -2607,9 +2582,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "brokerIds"
-                ],
+                "required": ["brokerIds"],
                 "properties": {
                   "brokerIds": {
                     "description": "\n            <p>The list of broker IDs to be rebooted.</p>\n         ",
@@ -2820,10 +2793,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "currentVersion",
-                  "targetNumberOfBrokerNodes"
-                ],
+                "required": ["currentVersion", "targetNumberOfBrokerNodes"],
                 "properties": {
                   "currentVersion": {
                     "description": "\n            <p>The version of cluster to update from. A successful operation will then generate a new version.</p>\n         ",
@@ -2949,10 +2919,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "currentVersion",
-                  "targetBrokerEBSVolumeInfo"
-                ],
+                "required": ["currentVersion", "targetBrokerEBSVolumeInfo"],
                 "properties": {
                   "currentVersion": {
                     "description": "\n            <p>The version of cluster to update from. A successful operation will then generate a new version.</p>\n         ",
@@ -3089,10 +3056,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "configurationInfo",
-                  "currentVersion"
-                ],
+                "required": ["configurationInfo", "currentVersion"],
                 "properties": {
                   "configurationInfo": {
                     "description": "\n            <p>Specifies the configuration to use for the brokers.</p>\n         ",
@@ -3264,10 +3228,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "currentVersion",
-                  "targetKafkaVersion"
-                ],
+                "required": ["currentVersion", "targetKafkaVersion"],
                 "properties": {
                   "configurationInfo": {
                     "description": "\n            <p>Specifies the configuration to use for the brokers.</p>\n         ",
@@ -3423,9 +3384,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "currentVersion"
-                ],
+                "required": ["currentVersion"],
                 "properties": {
                   "currentVersion": {
                     "description": "\n            <p>The version of the MSK cluster to update. Cluster versions aren't simple numbers. You can describe an MSK cluster to find its version. When this update operation is successful, it generates a new cluster version.</p>\n         ",
@@ -3434,12 +3393,7 @@
                   "enhancedMonitoring": {
                     "description": "\n            <p>Specifies which metrics are gathered for the MSK cluster. This property has three possible values: DEFAULT, PER_BROKER, and PER_TOPIC_PER_BROKER. For a list of the metrics associated with each of these three levels of monitoring, see <a href=\"https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html\">Monitoring</a>.</p>\n         ",
                     "type": "string",
-                    "enum": [
-                      "DEFAULT",
-                      "PER_BROKER",
-                      "PER_TOPIC_PER_BROKER",
-                      "PER_TOPIC_PER_PARTITION"
-                    ]
+                    "enum": ["DEFAULT", "PER_BROKER", "PER_TOPIC_PER_BROKER", "PER_TOPIC_PER_PARTITION"]
                   },
                   "openMonitoring": {
                     "description": "\n            <p>JMX and Node monitoring for the MSK cluster.</p>\n         ",
@@ -3612,9 +3566,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "secretArnList"
-                ],
+                "required": ["secretArnList"],
                 "properties": {
                   "secretArnList": {
                     "description": "\n            <p>List of AWS Secrets Manager secret ARNs.</p>\n         ",
@@ -3755,9 +3707,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "secretArnList"
-                ],
+                "required": ["secretArnList"],
                 "properties": {
                   "secretArnList": {
                     "description": "\n            <p>List of AWS Secrets Manager secret ARNs.</p>\n         ",
@@ -4013,10 +3963,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "currentVersion",
-                  "targetInstanceType"
-                ],
+                "required": ["currentVersion", "targetInstanceType"],
                 "properties": {
                   "currentVersion": {
                     "description": "\n            <p>The cluster version that you want to change. After this operation completes successfully, the cluster will have a new version.</p>\n         ",
@@ -4160,9 +4107,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "currentVersion"
-                ],
+                "required": ["currentVersion"],
                 "properties": {
                   "clientAuthentication": {
                     "description": "\n            <p>Includes all client authentication information.</p>\n         ",
@@ -4399,9 +4344,7 @@
       },
       "BrokerAZDistribution": {
         "type": "string",
-        "enum": [
-          "DEFAULT"
-        ],
+        "enum": ["DEFAULT"],
         "description": "\n            <p>The distribution of broker nodes across Availability Zones. This is an optional parameter. If you don't specify it, Amazon MSK gives it the value DEFAULT. You can also explicitly set this parameter to the value DEFAULT. No other values are currently allowed.</p>\n         <p>Amazon MSK distributes the broker nodes evenly across the Availability Zones that correspond to the subnets you provide when you create the cluster.</p>\n         "
       },
       "__listOf__string": {
@@ -4474,9 +4417,7 @@
       },
       "EncryptionAtRest": {
         "type": "object",
-        "required": [
-          "DataVolumeKMSKeyId"
-        ],
+        "required": ["DataVolumeKMSKeyId"],
         "properties": {
           "DataVolumeKMSKeyId": {
             "allOf": [
@@ -5313,10 +5254,7 @@
       },
       "BrokerEBSVolumeInfo": {
         "type": "object",
-        "required": [
-          "VolumeSizeGB",
-          "KafkaBrokerNodeId"
-        ],
+        "required": ["VolumeSizeGB", "KafkaBrokerNodeId"],
         "properties": {
           "KafkaBrokerNodeId": {
             "allOf": [
@@ -5476,9 +5414,7 @@
       },
       "CloudWatchLogs": {
         "type": "object",
-        "required": [
-          "Enabled"
-        ],
+        "required": ["Enabled"],
         "properties": {
           "Enabled": {
             "allOf": [
@@ -5508,9 +5444,7 @@
       },
       "Firehose": {
         "type": "object",
-        "required": [
-          "Enabled"
-        ],
+        "required": ["Enabled"],
         "properties": {
           "DeliveryStream": {
             "allOf": [
@@ -5540,9 +5474,7 @@
       },
       "S3": {
         "type": "object",
-        "required": [
-          "Enabled"
-        ],
+        "required": ["Enabled"],
         "properties": {
           "Bucket": {
             "allOf": [
@@ -5584,10 +5516,7 @@
       },
       "BrokerNodeGroupInfo": {
         "type": "object",
-        "required": [
-          "ClientSubnets",
-          "InstanceType"
-        ],
+        "required": ["ClientSubnets", "InstanceType"],
         "properties": {
           "BrokerAZDistribution": {
             "allOf": [
@@ -5837,11 +5766,7 @@
       },
       "ClientBroker": {
         "type": "string",
-        "enum": [
-          "TLS",
-          "TLS_PLAINTEXT",
-          "PLAINTEXT"
-        ],
+        "enum": ["TLS", "TLS_PLAINTEXT", "PLAINTEXT"],
         "description": "\n            <p>Client-broker encryption in transit setting.</p>\n         "
       },
       "__boolean": {
@@ -5885,19 +5810,12 @@
       },
       "EnhancedMonitoring": {
         "type": "string",
-        "enum": [
-          "DEFAULT",
-          "PER_BROKER",
-          "PER_TOPIC_PER_BROKER",
-          "PER_TOPIC_PER_PARTITION"
-        ],
+        "enum": ["DEFAULT", "PER_BROKER", "PER_TOPIC_PER_BROKER", "PER_TOPIC_PER_PARTITION"],
         "description": "\n            <p>Specifies which metrics are gathered for the MSK cluster. This property has three possible values: DEFAULT, PER_BROKER, and PER_TOPIC_PER_BROKER. For a list of the metrics associated with each of these three levels of monitoring, see <a href=\"https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html\">Monitoring</a>.</p>\n         "
       },
       "OpenMonitoring": {
         "type": "object",
-        "required": [
-          "Prometheus"
-        ],
+        "required": ["Prometheus"],
         "properties": {
           "Prometheus": {
             "allOf": [
@@ -5917,9 +5835,7 @@
       },
       "LoggingInfo": {
         "type": "object",
-        "required": [
-          "BrokerLogs"
-        ],
+        "required": ["BrokerLogs"],
         "properties": {
           "BrokerLogs": {
             "allOf": [
@@ -5937,16 +5853,7 @@
       },
       "ClusterState": {
         "type": "string",
-        "enum": [
-          "ACTIVE",
-          "CREATING",
-          "UPDATING",
-          "DELETING",
-          "FAILED",
-          "REBOOTING_BROKER",
-          "UPDATING",
-          "UPDATING"
-        ],
+        "enum": ["ACTIVE", "CREATING", "UPDATING", "DELETING", "FAILED", "REBOOTING_BROKER", "UPDATING", "UPDATING"],
         "description": "\n            <p>The state of a Kafka cluster.</p>\n         "
       },
       "StateInfo": {
@@ -6630,10 +6537,7 @@
       },
       "ConfigurationRevision": {
         "type": "object",
-        "required": [
-          "Revision",
-          "CreationTime"
-        ],
+        "required": ["Revision", "CreationTime"],
         "properties": {
           "CreationTime": {
             "allOf": [
@@ -6679,24 +6583,12 @@
       },
       "ConfigurationState": {
         "type": "string",
-        "enum": [
-          "ACTIVE",
-          "DELETING",
-          "DELETE_FAILED"
-        ],
+        "enum": ["ACTIVE", "DELETING", "DELETE_FAILED"],
         "description": "\n            <p>The state of a configuration.</p>\n         "
       },
       "Configuration": {
         "type": "object",
-        "required": [
-          "Description",
-          "LatestRevision",
-          "CreationTime",
-          "KafkaVersions",
-          "Arn",
-          "Name",
-          "State"
-        ],
+        "required": ["Description", "LatestRevision", "CreationTime", "KafkaVersions", "Arn", "Name", "State"],
         "properties": {
           "Arn": {
             "allOf": [
@@ -6794,10 +6686,7 @@
       },
       "ConfigurationInfo": {
         "type": "object",
-        "required": [
-          "Revision",
-          "Arn"
-        ],
+        "required": ["Revision", "Arn"],
         "properties": {
           "Arn": {
             "allOf": [
@@ -6863,10 +6752,7 @@
       },
       "KafkaVersionStatus": {
         "type": "string",
-        "enum": [
-          "ACTIVE",
-          "DEPRECATED"
-        ]
+        "enum": ["ACTIVE", "DEPRECATED"]
       },
       "KafkaVersion": {
         "type": "object",
@@ -6941,9 +6827,7 @@
       },
       "NodeExporter": {
         "type": "object",
-        "required": [
-          "EnabledInBroker"
-        ],
+        "required": ["EnabledInBroker"],
         "properties": {
           "EnabledInBroker": {
             "allOf": [
@@ -6963,9 +6847,7 @@
       },
       "NodeExporterInfo": {
         "type": "object",
-        "required": [
-          "EnabledInBroker"
-        ],
+        "required": ["EnabledInBroker"],
         "properties": {
           "EnabledInBroker": {
             "allOf": [
@@ -6985,9 +6867,7 @@
       },
       "JmxExporter": {
         "type": "object",
-        "required": [
-          "EnabledInBroker"
-        ],
+        "required": ["EnabledInBroker"],
         "properties": {
           "EnabledInBroker": {
             "allOf": [
@@ -7007,9 +6887,7 @@
       },
       "JmxExporterInfo": {
         "type": "object",
-        "required": [
-          "EnabledInBroker"
-        ],
+        "required": ["EnabledInBroker"],
         "properties": {
           "EnabledInBroker": {
             "allOf": [
@@ -7061,9 +6939,7 @@
       },
       "NodeType": {
         "type": "string",
-        "enum": [
-          "BROKER"
-        ],
+        "enum": ["BROKER"],
         "description": "\n            <p>The broker or Zookeeper node.</p>\n         "
       },
       "ZookeeperNodeInfo": {

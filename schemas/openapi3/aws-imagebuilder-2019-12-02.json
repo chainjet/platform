@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -249,10 +241,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "imageBuildVersionArn",
-                  "clientToken"
-                ],
+                "required": ["imageBuildVersionArn", "clientToken"],
                 "properties": {
                   "imageBuildVersionArn": {
                     "description": "The Amazon Resource Name (ARN) of the image whose creation you want to cancel.",
@@ -429,12 +418,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "semanticVersion",
-                  "platform",
-                  "clientToken"
-                ],
+                "required": ["name", "semanticVersion", "platform", "clientToken"],
                 "properties": {
                   "name": {
                     "description": "The name of the component.",
@@ -461,10 +445,7 @@
                   "platform": {
                     "description": "The platform of the component.",
                     "type": "string",
-                    "enum": [
-                      "Windows",
-                      "Linux"
-                    ]
+                    "enum": ["Windows", "Linux"]
                   },
                   "supportedOsVersions": {
                     "description": " The operating system (OS) version supported by the component. If the OS information is available, a prefix match is performed against the parent image OS version during image recipe creation. ",
@@ -671,11 +652,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "distributions",
-                  "clientToken"
-                ],
+                "required": ["name", "distributions", "clientToken"],
                 "properties": {
                   "name": {
                     "description": " The name of the distribution configuration. ",
@@ -854,11 +831,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "imageRecipeArn",
-                  "infrastructureConfigurationArn",
-                  "clientToken"
-                ],
+                "required": ["imageRecipeArn", "infrastructureConfigurationArn", "clientToken"],
                 "properties": {
                   "imageRecipeArn": {
                     "description": " The Amazon Resource Name (ARN) of the image recipe that defines how images are configured, tested, and assessed. ",
@@ -1079,12 +1052,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "imageRecipeArn",
-                  "infrastructureConfigurationArn",
-                  "clientToken"
-                ],
+                "required": ["name", "imageRecipeArn", "infrastructureConfigurationArn", "clientToken"],
                 "properties": {
                   "name": {
                     "description": " The name of the image pipeline. ",
@@ -1181,10 +1149,7 @@
                   "status": {
                     "description": " The status of the image pipeline. ",
                     "type": "string",
-                    "enum": [
-                      "DISABLED",
-                      "ENABLED"
-                    ]
+                    "enum": ["DISABLED", "ENABLED"]
                   },
                   "tags": {
                     "description": " The tags of the image pipeline. ",
@@ -1370,13 +1335,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "semanticVersion",
-                  "components",
-                  "parentImage",
-                  "clientToken"
-                ],
+                "required": ["name", "semanticVersion", "components", "parentImage", "clientToken"],
                 "properties": {
                   "name": {
                     "description": " The name of the image recipe. ",
@@ -1616,11 +1575,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "instanceProfileName",
-                  "clientToken"
-                ],
+                "required": ["name", "instanceProfileName", "clientToken"],
                 "properties": {
                   "name": {
                     "description": "The name of the infrastructure configuration. ",
@@ -3639,14 +3594,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "semanticVersion",
-                  "type",
-                  "format",
-                  "platform",
-                  "clientToken"
-                ],
+                "required": ["name", "semanticVersion", "type", "format", "platform", "clientToken"],
                 "properties": {
                   "name": {
                     "description": " The name of the component. ",
@@ -3673,25 +3621,17 @@
                   "type": {
                     "description": "The type of the component denotes whether the component is used to build the image or only to test it. ",
                     "type": "string",
-                    "enum": [
-                      "BUILD",
-                      "TEST"
-                    ]
+                    "enum": ["BUILD", "TEST"]
                   },
                   "format": {
                     "description": "The format of the resource that you want to import as a component. ",
                     "type": "string",
-                    "enum": [
-                      "SHELL"
-                    ]
+                    "enum": ["SHELL"]
                   },
                   "platform": {
                     "description": "The platform of the component. ",
                     "type": "string",
-                    "enum": [
-                      "Windows",
-                      "Linux"
-                    ]
+                    "enum": ["Windows", "Linux"]
                   },
                   "data": {
                     "description": "The data of the component. Used to specify the data inline. Either <code>data</code> or <code>uri</code> can be used to specify the data within the component.",
@@ -3867,9 +3807,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "componentVersionArn"
-                ],
+                "required": ["componentVersionArn"],
                 "properties": {
                   "componentVersionArn": {
                     "description": "The component version Amazon Resource Name (ARN) whose versions you want to list. ",
@@ -4035,11 +3973,7 @@
                   "owner": {
                     "description": "The owner defines which components you want to list. By default, this request will only show components owned by your account. You can use this field to specify if you want to view components owned by yourself, by Amazon, or those components that have been shared with you by other customers. ",
                     "type": "string",
-                    "enum": [
-                      "Self",
-                      "Shared",
-                      "Amazon"
-                    ]
+                    "enum": ["Self", "Shared", "Amazon"]
                   },
                   "filters": {
                     "description": "The filters. ",
@@ -4374,9 +4308,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "imageVersionArn"
-                ],
+                "required": ["imageVersionArn"],
                 "properties": {
                   "imageVersionArn": {
                     "description": "The Amazon Resource Name (ARN) of the image whose build versions you want to retrieve. ",
@@ -4557,9 +4489,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "imagePipelineArn"
-                ],
+                "required": ["imagePipelineArn"],
                 "properties": {
                   "imagePipelineArn": {
                     "description": "The Amazon Resource Name (ARN) of the image pipeline whose images you want to view. ",
@@ -4899,11 +4829,7 @@
                   "owner": {
                     "description": "The owner defines which image recipes you want to list. By default, this request will only show image recipes owned by your account. You can use this field to specify if you want to view image recipes owned by yourself, by Amazon, or those image recipes that have been shared with you by other customers. ",
                     "type": "string",
-                    "enum": [
-                      "Self",
-                      "Shared",
-                      "Amazon"
-                    ]
+                    "enum": ["Self", "Shared", "Amazon"]
                   },
                   "filters": {
                     "description": "The filters. ",
@@ -5073,11 +4999,7 @@
                   "owner": {
                     "description": "The owner defines which images you want to list. By default, this request will only show images owned by your account. You can use this field to specify if you want to view images owned by yourself, by Amazon, or those images that have been shared with you by other customers. ",
                     "type": "string",
-                    "enum": [
-                      "Self",
-                      "Shared",
-                      "Amazon"
-                    ]
+                    "enum": ["Self", "Shared", "Amazon"]
                   },
                   "filters": {
                     "description": "The filters. ",
@@ -5450,9 +5372,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "tags"
-                ],
+                "required": ["tags"],
                 "properties": {
                   "tags": {
                     "description": "The tags to apply to the resource. ",
@@ -5574,10 +5494,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "componentArn",
-                  "policy"
-                ],
+                "required": ["componentArn", "policy"],
                 "properties": {
                   "componentArn": {
                     "description": "The Amazon Resource Name (ARN) of the component that this policy should be applied to. ",
@@ -5724,10 +5641,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "imageArn",
-                  "policy"
-                ],
+                "required": ["imageArn", "policy"],
                 "properties": {
                   "imageArn": {
                     "description": "The Amazon Resource Name (ARN) of the image that this policy should be applied to. ",
@@ -5874,10 +5788,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "imageRecipeArn",
-                  "policy"
-                ],
+                "required": ["imageRecipeArn", "policy"],
                 "properties": {
                   "imageRecipeArn": {
                     "description": "The Amazon Resource Name (ARN) of the image recipe that this policy should be applied to. ",
@@ -6034,10 +5945,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "imagePipelineArn",
-                  "clientToken"
-                ],
+                "required": ["imagePipelineArn", "clientToken"],
                 "properties": {
                   "imagePipelineArn": {
                     "description": "The Amazon Resource Name (ARN) of the image pipeline that you want to manually invoke. ",
@@ -6292,11 +6200,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "distributionConfigurationArn",
-                  "distributions",
-                  "clientToken"
-                ],
+                "required": ["distributionConfigurationArn", "distributions", "clientToken"],
                 "properties": {
                   "distributionConfigurationArn": {
                     "description": "The Amazon Resource Name (ARN) of the distribution configuration that you want to update. ",
@@ -6456,12 +6360,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "imagePipelineArn",
-                  "imageRecipeArn",
-                  "infrastructureConfigurationArn",
-                  "clientToken"
-                ],
+                "required": ["imagePipelineArn", "imageRecipeArn", "infrastructureConfigurationArn", "clientToken"],
                 "properties": {
                   "imagePipelineArn": {
                     "description": "The Amazon Resource Name (ARN) of the image pipeline that you want to update. ",
@@ -6558,10 +6457,7 @@
                   "status": {
                     "description": "The status of the image pipeline. ",
                     "type": "string",
-                    "enum": [
-                      "DISABLED",
-                      "ENABLED"
-                    ]
+                    "enum": ["DISABLED", "ENABLED"]
                   },
                   "clientToken": {
                     "description": "The idempotency token used to make this request idempotent. ",
@@ -6708,11 +6604,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "infrastructureConfigurationArn",
-                  "instanceProfileName",
-                  "clientToken"
-                ],
+                "required": ["infrastructureConfigurationArn", "instanceProfileName", "clientToken"],
                 "properties": {
                   "infrastructureConfigurationArn": {
                     "description": "The Amazon Resource Name (ARN) of the infrastructure configuration that you want to update. ",
@@ -6975,9 +6867,7 @@
                   "containerType": {
                     "description": "The type of container to create.",
                     "type": "string",
-                    "enum": [
-                      "DOCKER"
-                    ]
+                    "enum": ["DOCKER"]
                   },
                   "name": {
                     "description": "The name of the container recipe.",
@@ -7043,10 +6933,7 @@
                   "platformOverride": {
                     "description": "Specifies the operating system platform when you use a custom source image.",
                     "type": "string",
-                    "enum": [
-                      "Windows",
-                      "Linux"
-                    ]
+                    "enum": ["Windows", "Linux"]
                   },
                   "imageOsVersionOverride": {
                     "description": "Specifies the operating system version for the source image.",
@@ -7612,11 +7499,7 @@
                   "owner": {
                     "description": "Returns container recipes belonging to the specified owner, that have been shared with you. You can omit this field to return container recipes belonging to your account.",
                     "type": "string",
-                    "enum": [
-                      "Self",
-                      "Shared",
-                      "Amazon"
-                    ]
+                    "enum": ["Self", "Shared", "Amazon"]
                   },
                   "filters": {
                     "description": "<p>Use the following filters to streamline results:</p> <ul> <li> <p> <code>containerType</code> </p> </li> <li> <p> <code>name</code> </p> </li> <li> <p> <code>parentImage</code> </p> </li> <li> <p> <code>platform</code> </p> </li> </ul>",
@@ -7792,9 +7675,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "imageBuildVersionArn"
-                ],
+                "required": ["imageBuildVersionArn"],
                 "properties": {
                   "imageBuildVersionArn": {
                     "description": "Filter results for the ListImagePackages request by the Image Build Version ARN",
@@ -7947,10 +7828,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "containerRecipeArn",
-                  "policy"
-                ],
+                "required": ["containerRecipeArn", "policy"],
                 "properties": {
                   "containerRecipeArn": {
                     "description": "The Amazon Resource Name (ARN) of the container recipe that this policy should be applied to.",
@@ -8197,9 +8075,7 @@
       },
       "Distribution": {
         "type": "object",
-        "required": [
-          "region"
-        ],
+        "required": ["region"],
         "properties": {
           "region": {
             "allOf": [
@@ -8340,10 +8216,7 @@
       },
       "PipelineExecutionStartCondition": {
         "type": "string",
-        "enum": [
-          "EXPRESSION_MATCH_ONLY",
-          "EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE"
-        ]
+        "enum": ["EXPRESSION_MATCH_ONLY", "EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE"]
       },
       "CreateImageRecipeResponse": {
         "type": "object",
@@ -8382,9 +8255,7 @@
       },
       "ComponentConfiguration": {
         "type": "object",
-        "required": [
-          "componentArn"
-        ],
+        "required": ["componentArn"],
         "properties": {
           "componentArn": {
             "allOf": [
@@ -9757,17 +9628,11 @@
       },
       "ComponentType": {
         "type": "string",
-        "enum": [
-          "BUILD",
-          "TEST"
-        ]
+        "enum": ["BUILD", "TEST"]
       },
       "Platform": {
         "type": "string",
-        "enum": [
-          "Windows",
-          "Linux"
-        ]
+        "enum": ["Windows", "Linux"]
       },
       "OsVersionList": {
         "type": "array",
@@ -10260,10 +10125,7 @@
       },
       "PipelineStatus": {
         "type": "string",
-        "enum": [
-          "DISABLED",
-          "ENABLED"
-        ]
+        "enum": ["DISABLED", "ENABLED"]
       },
       "ImagePipelineArn": {
         "type": "string",
@@ -10318,9 +10180,7 @@
       },
       "DistributionConfiguration": {
         "type": "object",
-        "required": [
-          "timeoutMinutes"
-        ],
+        "required": ["timeoutMinutes"],
         "properties": {
           "arn": {
             "allOf": [
@@ -10499,15 +10359,7 @@
       },
       "EbsVolumeType": {
         "type": "string",
-        "enum": [
-          "standard",
-          "io1",
-          "gp2",
-          "sc1",
-          "st1",
-          "st1",
-          "st1"
-        ]
+        "enum": ["standard", "io1", "gp2", "sc1", "st1", "st1", "st1"]
       },
       "EbsInstanceBlockDeviceSpecification": {
         "type": "object",
@@ -11773,9 +11625,7 @@
       },
       "ContainerRepositoryService": {
         "type": "string",
-        "enum": [
-          "ECR"
-        ]
+        "enum": ["ECR"]
       },
       "Timezone": {
         "type": "string",
@@ -12031,10 +11881,7 @@
       },
       "ComponentParameter": {
         "type": "object",
-        "required": [
-          "name",
-          "value"
-        ],
+        "required": ["name", "value"],
         "properties": {
           "name": {
             "allOf": [
@@ -12073,10 +11920,7 @@
       },
       "ComponentParameterDetail": {
         "type": "object",
-        "required": [
-          "name",
-          "type"
-        ],
+        "required": ["name", "type"],
         "properties": {
           "name": {
             "allOf": [
@@ -12154,10 +11998,7 @@
       },
       "TargetContainerRepository": {
         "type": "object",
-        "required": [
-          "service",
-          "repositoryName"
-        ],
+        "required": ["service", "repositoryName"],
         "properties": {
           "service": {
             "allOf": [
@@ -12184,9 +12025,7 @@
       },
       "ContainerDistributionConfiguration": {
         "type": "object",
-        "required": [
-          "targetRepository"
-        ],
+        "required": ["targetRepository"],
         "properties": {
           "description": {
             "allOf": [
@@ -12229,9 +12068,7 @@
       },
       "ContainerType": {
         "type": "string",
-        "enum": [
-          "DOCKER"
-        ]
+        "enum": ["DOCKER"]
       },
       "InstanceConfiguration": {
         "type": "object",
@@ -12556,10 +12393,7 @@
       },
       "ImageType": {
         "type": "string",
-        "enum": [
-          "AMI",
-          "DOCKER"
-        ]
+        "enum": ["AMI", "DOCKER"]
       },
       "ImagePackage": {
         "type": "object",
@@ -12599,9 +12433,7 @@
       },
       "LaunchTemplateConfiguration": {
         "type": "object",
-        "required": [
-          "launchTemplateId"
-        ],
+        "required": ["launchTemplateId"],
         "properties": {
           "launchTemplateId": {
             "allOf": [

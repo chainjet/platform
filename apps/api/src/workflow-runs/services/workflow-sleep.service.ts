@@ -9,9 +9,8 @@ export class WorkflowSleepService extends BaseService<WorkflowSleep> {
   protected readonly logger = new Logger(WorkflowSleepService.name)
 
   constructor(
-    @InjectModel(WorkflowSleep) protected readonly model: ReturnModelType<typeof WorkflowSleep>,
-  ) // private readonly userService: UserService,
-  // private readonly workflowTriggerService: WorkflowTriggerService
+    @InjectModel(WorkflowSleep) protected readonly model: ReturnModelType<typeof WorkflowSleep>, // private readonly userService: UserService,
+  ) // private readonly workflowTriggerService: WorkflowTriggerService
   {
     super(model)
   }

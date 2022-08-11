@@ -5,9 +5,7 @@
     "x-release": "v4",
     "title": "AWS IoT",
     "description": "AWS IoT provides secure, bi-directional communication between Internet-connected devices (such as sensors, actuators, embedded devices, or smart appliances) and the AWS cloud. You can discover your custom IoT-Data endpoint to communicate with, configure rules for data processing and integration with other services, organize resources associated with each device (Registry), configure logging, and create and manage policies and credentials to authenticate devices. The service endpoints that expose this API are listed in AWS IoT Core Endpoints and Quotas. You must use the endpoint for the region that has the resources you want to access. The service name used by AWS Signature Version 4 to sign the request is: execute-api. For more information about how AWS IoT works, see the Developer Guide. For information about how to use the credentials provider for AWS IoT, see Authorizing Direct Calls to AWS Services.",
-    "x-categories": [
-      "iot"
-    ],
+    "x-categories": ["iot"],
     "x-logo": {
       "url": "/logos/aws/Arch_AWS-IoT-Core_64.svg"
     },
@@ -38,9 +36,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -123,10 +119,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -137,10 +130,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -613,9 +603,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "targets"
-                ],
+                "required": ["targets"],
                 "properties": {
                   "targets": {
                     "description": "A list of thing group ARNs that define the targets of the job.",
@@ -761,9 +749,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "target"
-                ],
+                "required": ["target"],
                 "properties": {
                   "target": {
                     "description": "The <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/security-iam.html\">identity</a> to which the policy is attached.",
@@ -887,9 +873,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "target"
-                ],
+                "required": ["target"],
                 "properties": {
                   "target": {
                     "description": "The target from which the policy will be detached.",
@@ -2421,9 +2405,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "authorizerName"
-                ],
+                "required": ["authorizerName"],
                 "properties": {
                   "authorizerName": {
                     "description": "The authorizer name.",
@@ -2618,11 +2600,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "checkName",
-                  "resourceIdentifier",
-                  "clientRequestToken"
-                ],
+                "required": ["checkName", "resourceIdentifier", "clientRequestToken"],
                 "properties": {
                   "checkName": {
                     "description": "An audit check name. Checks must be enabled for your account. (Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks, including those that are enabled or use <code>UpdateAccountAuditConfiguration</code> to select which checks are enabled.)",
@@ -2873,9 +2851,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "authorizerFunctionArn"
-                ],
+                "required": ["authorizerFunctionArn"],
                 "properties": {
                   "authorizerFunctionArn": {
                     "description": "The ARN of the authorizer's Lambda function.",
@@ -2899,10 +2875,7 @@
                   "status": {
                     "description": "The status of the create authorizer request.",
                     "type": "string",
-                    "enum": [
-                      "ACTIVE",
-                      "INACTIVE"
-                    ]
+                    "enum": ["ACTIVE", "INACTIVE"]
                   },
                   "tags": {
                     "description": "<p>Metadata which can be used to manage the custom authorizer.</p> <note> <p>For URI Request parameters use format: ...key1=value1&amp;key2=value2...</p> <p>For the CLI command-line parameter use format: &amp;&amp;tags \"key1=value1&amp;key2=value2...\"</p> <p>For the cli-input-json file use format: \"tags\": \"key1=value1&amp;key2=value2...\"</p> </note>",
@@ -3265,10 +3238,7 @@
                   "status": {
                     "description": "The status of the update authorizer request.",
                     "type": "string",
-                    "enum": [
-                      "ACTIVE",
-                      "INACTIVE"
-                    ]
+                    "enum": ["ACTIVE", "INACTIVE"]
                   }
                 }
               }
@@ -3644,9 +3614,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "billingGroupProperties"
-                ],
+                "required": ["billingGroupProperties"],
                 "properties": {
                   "billingGroupProperties": {
                     "description": "The properties of a billing group.",
@@ -3759,9 +3727,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "certificateSigningRequest"
-                ],
+                "required": ["certificateSigningRequest"],
                 "properties": {
                   "certificateSigningRequest": {
                     "description": "The certificate signing request (CSR).",
@@ -3985,18 +3951,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "type",
-                  "stringValues",
-                  "clientRequestToken"
-                ],
+                "required": ["type", "stringValues", "clientRequestToken"],
                 "properties": {
                   "type": {
                     "description": "Specifies the type of dimension. Supported types: <code>TOPIC_FILTER.</code> ",
                     "type": "string",
-                    "enum": [
-                      "TOPIC_FILTER"
-                    ]
+                    "enum": ["TOPIC_FILTER"]
                   },
                   "stringValues": {
                     "description": "Specifies the value or list of values for the dimension. For <code>TOPIC_FILTER</code> dimensions, this is a pattern used to match the MQTT topic (for example, \"admin/#\").",
@@ -4258,9 +4218,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "stringValues"
-                ],
+                "required": ["stringValues"],
                 "properties": {
                   "stringValues": {
                     "description": "Specifies the value or list of values for the dimension. For <code>TOPIC_FILTER</code> dimensions, this is a pattern used to match the MQTT topic (for example, \"admin/#\").",
@@ -4447,11 +4405,7 @@
                   "serviceType": {
                     "description": "<p>The type of service delivered by the endpoint.</p> <note> <p>AWS IoT Core currently supports only the <code>DATA</code> service type.</p> </note>",
                     "type": "string",
-                    "enum": [
-                      "DATA",
-                      "CREDENTIAL_PROVIDER",
-                      "JOBS"
-                    ]
+                    "enum": ["DATA", "CREDENTIAL_PROVIDER", "JOBS"]
                   },
                   "tags": {
                     "description": "<p>Metadata which can be used to manage the domain configuration.</p> <note> <p>For URI Request parameters use format: ...key1=value1&amp;key2=value2...</p> <p>For the CLI command-line parameter use format: &amp;&amp;tags \"key1=value1&amp;key2=value2...\"</p> <p>For the cli-input-json file use format: \"tags\": \"key1=value1&amp;key2=value2...\"</p> </note>",
@@ -4807,10 +4761,7 @@
                   "domainConfigurationStatus": {
                     "description": "The status to which the domain configuration should be updated.",
                     "type": "string",
-                    "enum": [
-                      "ENABLED",
-                      "DISABLED"
-                    ]
+                    "enum": ["ENABLED", "DISABLED"]
                   },
                   "removeAuthorizerConfig": {
                     "description": "Removes the authorization configuration from a domain.",
@@ -4930,9 +4881,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "queryString"
-                ],
+                "required": ["queryString"],
                 "properties": {
                   "thingGroupProperties": {
                     "description": "Thing group properties.",
@@ -5188,9 +5137,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "thingGroupProperties"
-                ],
+                "required": ["thingGroupProperties"],
                 "properties": {
                   "thingGroupProperties": {
                     "description": "Thing group properties.",
@@ -5342,9 +5289,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "targets"
-                ],
+                "required": ["targets"],
                 "properties": {
                   "targets": {
                     "description": "A list of things and thing groups to which the job should be sent.",
@@ -5400,10 +5345,7 @@
                   "targetSelection": {
                     "description": "Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT). If continuous, the job may also be run on a thing when a change is detected in a target. For example, a job will run on a thing when the thing is added to a target group, even after the job was completed by all things originally in the group.",
                     "type": "string",
-                    "enum": [
-                      "CONTINUOUS",
-                      "SNAPSHOT"
-                    ]
+                    "enum": ["CONTINUOUS", "SNAPSHOT"]
                   },
                   "jobExecutionsRolloutConfig": {
                     "description": "Allows you to create a staged rollout of a job.",
@@ -6057,10 +5999,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "roleArn",
-                  "actionParams"
-                ],
+                "required": ["roleArn", "actionParams"],
                 "properties": {
                   "roleArn": {
                     "description": "The ARN of the IAM role that is used to apply the mitigation action.",
@@ -6572,11 +6511,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "targets",
-                  "files",
-                  "roleArn"
-                ],
+                "required": ["targets", "files", "roleArn"],
                 "properties": {
                   "description": {
                     "description": "The description of the OTA update.",
@@ -6604,10 +6539,7 @@
                   "targetSelection": {
                     "description": "Specifies whether the update will continue to run (CONTINUOUS), or will be complete after all the things specified as targets have completed the update (SNAPSHOT). If continuous, the update may also be run on a thing when a change is detected in a target. For example, an update will run on a thing when the thing is added to a target group, even after the update was completed by all things originally in the group. Valid values: CONTINUOUS | SNAPSHOT.",
                     "type": "string",
-                    "enum": [
-                      "CONTINUOUS",
-                      "SNAPSHOT"
-                    ]
+                    "enum": ["CONTINUOUS", "SNAPSHOT"]
                   },
                   "awsJobExecutionsRolloutConfig": {
                     "description": "Configuration for the rollout of OTA updates.",
@@ -7059,9 +6991,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "policyDocument"
-                ],
+                "required": ["policyDocument"],
                 "properties": {
                   "policyDocument": {
                     "description": "The JSON document that describes the policy. <b>policyDocument</b> must have a minimum length of 1, with a maximum length of 2048, excluding whitespace.",
@@ -7415,9 +7345,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "policyDocument"
-                ],
+                "required": ["policyDocument"],
                 "properties": {
                   "policyDocument": {
                     "description": "The JSON document that describes the policy. Minimum length of 1. Maximum length of 2048, excluding whitespace.",
@@ -7744,11 +7672,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "templateName",
-                  "templateBody",
-                  "provisioningRoleArn"
-                ],
+                "required": ["templateName", "templateBody", "provisioningRoleArn"],
                 "properties": {
                   "templateName": {
                     "description": "The name of the fleet provisioning template.",
@@ -8036,9 +7960,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "templateBody"
-                ],
+                "required": ["templateBody"],
                 "properties": {
                   "templateBody": {
                     "description": "The JSON formatted contents of the fleet provisioning template.",
@@ -8282,9 +8204,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "roleArn"
-                ],
+                "required": ["roleArn"],
                 "properties": {
                   "roleArn": {
                     "description": "The role ARN.",
@@ -8729,20 +8649,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "frequency",
-                  "targetCheckNames"
-                ],
+                "required": ["frequency", "targetCheckNames"],
                 "properties": {
                   "frequency": {
                     "description": "How often the scheduled audit takes place. Can be one of \"DAILY\", \"WEEKLY\", \"BIWEEKLY\" or \"MONTHLY\". The start time of each audit is determined by the system.",
                     "type": "string",
-                    "enum": [
-                      "DAILY",
-                      "WEEKLY",
-                      "BIWEEKLY",
-                      "MONTHLY"
-                    ]
+                    "enum": ["DAILY", "WEEKLY", "BIWEEKLY", "MONTHLY"]
                   },
                   "dayOfMonth": {
                     "description": "The day of the month on which the scheduled audit takes place. Can be \"1\" through \"31\" or \"LAST\". This field is required if the \"frequency\" parameter is set to \"MONTHLY\". If days 29-31 are specified, and the month does not have that many days, the audit takes place on the \"LAST\" day of the month.",
@@ -8752,15 +8664,7 @@
                   "dayOfWeek": {
                     "description": "The day of the week on which the scheduled audit takes place. Can be one of \"SUN\", \"MON\", \"TUE\", \"WED\", \"THU\", \"FRI\", or \"SAT\". This field is required if the \"frequency\" parameter is set to \"WEEKLY\" or \"BIWEEKLY\".",
                     "type": "string",
-                    "enum": [
-                      "SUN",
-                      "MON",
-                      "TUE",
-                      "WED",
-                      "THU",
-                      "FRI",
-                      "SAT"
-                    ]
+                    "enum": ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
                   },
                   "targetCheckNames": {
                     "description": "Which checks are performed during the scheduled audit. Checks must be enabled for your account. (Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks, including those that are enabled or use <code>UpdateAccountAuditConfiguration</code> to select which checks are enabled.)",
@@ -9027,12 +8931,7 @@
                   "frequency": {
                     "description": "How often the scheduled audit takes place. Can be one of \"DAILY\", \"WEEKLY\", \"BIWEEKLY\", or \"MONTHLY\". The start time of each audit is determined by the system.",
                     "type": "string",
-                    "enum": [
-                      "DAILY",
-                      "WEEKLY",
-                      "BIWEEKLY",
-                      "MONTHLY"
-                    ]
+                    "enum": ["DAILY", "WEEKLY", "BIWEEKLY", "MONTHLY"]
                   },
                   "dayOfMonth": {
                     "description": "The day of the month on which the scheduled audit takes place. Can be \"1\" through \"31\" or \"LAST\". This field is required if the \"frequency\" parameter is set to \"MONTHLY\". If days 29-31 are specified, and the month does not have that many days, the audit takes place on the \"LAST\" day of the month.",
@@ -9042,15 +8941,7 @@
                   "dayOfWeek": {
                     "description": "The day of the week on which the scheduled audit takes place. Can be one of \"SUN\", \"MON\", \"TUE\", \"WED\", \"THU\", \"FRI\", or \"SAT\". This field is required if the \"frequency\" parameter is set to \"WEEKLY\" or \"BIWEEKLY\".",
                     "type": "string",
-                    "enum": [
-                      "SUN",
-                      "MON",
-                      "TUE",
-                      "WED",
-                      "THU",
-                      "FRI",
-                      "SAT"
-                    ]
+                    "enum": ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
                   },
                   "targetCheckNames": {
                     "description": "Which checks are performed during the scheduled audit. Checks must be enabled for your account. (Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks, including those that are enabled or use <code>UpdateAccountAuditConfiguration</code> to select which checks are enabled.)",
@@ -9633,10 +9524,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "files",
-                  "roleArn"
-                ],
+                "required": ["files", "roleArn"],
                 "properties": {
                   "description": {
                     "description": "A description of the stream.",
@@ -10929,9 +10817,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "thingGroupProperties"
-                ],
+                "required": ["thingGroupProperties"],
                 "properties": {
                   "thingGroupProperties": {
                     "description": "Thing group properties.",
@@ -11412,9 +11298,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "topicRulePayload"
-                ],
+                "required": ["topicRulePayload"],
                 "properties": {
                   "topicRulePayload": {
                     "description": "Describes a rule.",
@@ -11745,9 +11629,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "topicRulePayload"
-                ],
+                "required": ["topicRulePayload"],
                 "properties": {
                   "topicRulePayload": {
                     "description": "Describes a rule.",
@@ -11896,9 +11778,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "destinationConfiguration"
-                ],
+                "required": ["destinationConfiguration"],
                 "properties": {
                   "destinationConfiguration": {
                     "description": "Configuration of the topic rule destination.",
@@ -12107,10 +11987,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "arn",
-                  "status"
-                ],
+                "required": ["arn", "status"],
                 "properties": {
                   "arn": {
                     "description": "The ARN of the topic rule destination.",
@@ -12119,13 +11996,7 @@
                   "status": {
                     "description": "<p>The status of the topic rule destination. Valid values are:</p> <dl> <dt>IN_PROGRESS</dt> <dd> <p>A topic rule destination was created but has not been confirmed. You can set <code>status</code> to <code>IN_PROGRESS</code> by calling <code>UpdateTopicRuleDestination</code>. Calling <code>UpdateTopicRuleDestination</code> causes a new confirmation challenge to be sent to your confirmation endpoint.</p> </dd> <dt>ENABLED</dt> <dd> <p>Confirmation was completed, and traffic to this destination is allowed. You can set <code>status</code> to <code>DISABLED</code> by calling <code>UpdateTopicRuleDestination</code>.</p> </dd> <dt>DISABLED</dt> <dd> <p>Confirmation was completed, and traffic to this destination is not allowed. You can set <code>status</code> to <code>ENABLED</code> by calling <code>UpdateTopicRuleDestination</code>.</p> </dd> <dt>ERROR</dt> <dd> <p>Confirmation could not be completed, for example if the confirmation timed out. You can call <code>GetTopicRuleDestination</code> for details about the error. You can set <code>status</code> to <code>IN_PROGRESS</code> by calling <code>UpdateTopicRuleDestination</code>. Calling <code>UpdateTopicRuleDestination</code> causes a new confirmation challenge to be sent to your confirmation endpoint.</p> </dd> </dl>",
                     "type": "string",
-                    "enum": [
-                      "ENABLED",
-                      "IN_PROGRESS",
-                      "DISABLED",
-                      "ERROR",
-                      "DELETING"
-                    ]
+                    "enum": ["ENABLED", "IN_PROGRESS", "DISABLED", "ERROR", "DELETING"]
                   }
                 }
               }
@@ -12399,10 +12270,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "checkName",
-                  "resourceIdentifier"
-                ],
+                "required": ["checkName", "resourceIdentifier"],
                 "properties": {
                   "checkName": {
                     "description": "An audit check name. Checks must be enabled for your account. (Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks, including those that are enabled or use <code>UpdateAccountAuditConfiguration</code> to select which checks are enabled.)",
@@ -12829,10 +12697,7 @@
             "description": "<p>The updated status of the CA certificate.</p> <p> <b>Note:</b> The status value REGISTER_INACTIVE is deprecated and should not be used.</p>",
             "schema": {
               "type": "string",
-              "enum": [
-                "ACTIVE",
-                "INACTIVE"
-              ]
+              "enum": ["ACTIVE", "INACTIVE"]
             }
           },
           {
@@ -12842,10 +12707,7 @@
             "description": "The new value for the auto registration status. Valid values are: \"ENABLE\" or \"DISABLE\".",
             "schema": {
               "type": "string",
-              "enum": [
-                "ENABLE",
-                "DISABLE"
-              ]
+              "enum": ["ENABLE", "DISABLE"]
             }
           }
         ],
@@ -14543,10 +14405,7 @@
             "description": "The type of resource for which you are configuring logging. Must be <code>THING_Group</code>.",
             "schema": {
               "type": "string",
-              "enum": [
-                "DEFAULT",
-                "THING_GROUP"
-              ]
+              "enum": ["DEFAULT", "THING_GROUP"]
             }
           },
           {
@@ -14993,11 +14852,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "target",
-                  "auditCheckToActionsMapping",
-                  "clientRequestToken"
-                ],
+                "required": ["target", "auditCheckToActionsMapping", "clientRequestToken"],
                 "properties": {
                   "target": {
                     "description": "Used in MitigationActionParams, this information identifies the target findings to which the mitigation actions are applied. Only one entry appears.",
@@ -15120,10 +14975,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "checkName",
-                  "resourceIdentifier"
-                ],
+                "required": ["checkName", "resourceIdentifier"],
                 "properties": {
                   "checkName": {
                     "description": "An audit check name. Checks must be enabled for your account. (Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks, including those that are enabled or use <code>UpdateAccountAuditConfiguration</code> to select which checks are enabled.)",
@@ -16214,9 +16066,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "queryString"
-                ],
+                "required": ["queryString"],
                 "properties": {
                   "indexName": {
                     "description": "The name of the index to search.",
@@ -16884,9 +16734,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "loggingOptionsPayload"
-                ],
+                "required": ["loggingOptionsPayload"],
                 "properties": {
                   "loggingOptionsPayload": {
                     "description": "Describes the logging options payload.",
@@ -17035,9 +16883,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "queryString"
-                ],
+                "required": ["queryString"],
                 "properties": {
                   "indexName": {
                     "description": "The name of the index to search.",
@@ -17211,9 +17057,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "queryString"
-                ],
+                "required": ["queryString"],
                 "properties": {
                   "indexName": {
                     "description": "The name of the index to search. The default value is <code>AWS_Things</code>.",
@@ -17392,13 +17236,7 @@
                   "defaultLogLevel": {
                     "description": "The default logging level.",
                     "type": "string",
-                    "enum": [
-                      "DEBUG",
-                      "INFO",
-                      "ERROR",
-                      "WARN",
-                      "DISABLED"
-                    ]
+                    "enum": ["DEBUG", "INFO", "ERROR", "WARN", "DISABLED"]
                   },
                   "disableAllLogs": {
                     "description": "If true all logs are disabled. The default is false.",
@@ -17499,11 +17337,7 @@
             "description": "The token for the next set of results.",
             "schema": {
               "type": "string",
-              "enum": [
-                "STATIC",
-                "STATISTICAL",
-                "MACHINE_LEARNING"
-              ]
+              "enum": ["STATIC", "STATISTICAL", "MACHINE_LEARNING"]
             }
           },
           {
@@ -18009,14 +17843,7 @@
             "description": "Specify this filter to limit results to those with a specific status.",
             "schema": {
               "type": "string",
-              "enum": [
-                "IN_PROGRESS",
-                "COMPLETED",
-                "FAILED",
-                "CANCELED",
-                "SKIPPED",
-                "PENDING"
-              ]
+              "enum": ["IN_PROGRESS", "COMPLETED", "FAILED", "CANCELED", "SKIPPED", "PENDING"]
             }
           },
           {
@@ -18156,12 +17983,7 @@
             "description": "Specify this filter to limit results to tasks that are in a specific state.",
             "schema": {
               "type": "string",
-              "enum": [
-                "IN_PROGRESS",
-                "COMPLETED",
-                "FAILED",
-                "CANCELED"
-              ]
+              "enum": ["IN_PROGRESS", "COMPLETED", "FAILED", "CANCELED"]
             }
           },
           {
@@ -18513,10 +18335,7 @@
             "description": "A filter to limit the output to the specified type of audit: can be one of \"ON_DEMAND_AUDIT_TASK\" or \"SCHEDULED__AUDIT_TASK\".",
             "schema": {
               "type": "string",
-              "enum": [
-                "ON_DEMAND_AUDIT_TASK",
-                "SCHEDULED_AUDIT_TASK"
-              ]
+              "enum": ["ON_DEMAND_AUDIT_TASK", "SCHEDULED_AUDIT_TASK"]
             }
           },
           {
@@ -18526,12 +18345,7 @@
             "description": "A filter to limit the output to audits with the specified completion status: can be one of \"IN_PROGRESS\", \"COMPLETED\", \"FAILED\", or \"CANCELED\".",
             "schema": {
               "type": "string",
-              "enum": [
-                "IN_PROGRESS",
-                "COMPLETED",
-                "FAILED",
-                "CANCELED"
-              ]
+              "enum": ["IN_PROGRESS", "COMPLETED", "FAILED", "CANCELED"]
             }
           },
           {
@@ -18686,10 +18500,7 @@
             "description": "The status of the list authorizers request.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ACTIVE",
-                "INACTIVE"
-              ]
+              "enum": ["ACTIVE", "INACTIVE"]
             }
           }
         ],
@@ -19287,11 +19098,7 @@
             "description": "The type of service delivered by the endpoint.",
             "schema": {
               "type": "string",
-              "enum": [
-                "DATA",
-                "CREDENTIAL_PROVIDER",
-                "JOBS"
-              ]
+              "enum": ["DATA", "CREDENTIAL_PROVIDER", "JOBS"]
             }
           }
         ],
@@ -19511,16 +19318,7 @@
             "description": "The status of the job.",
             "schema": {
               "type": "string",
-              "enum": [
-                "QUEUED",
-                "IN_PROGRESS",
-                "SUCCEEDED",
-                "FAILED",
-                "TIMED_OUT",
-                "REJECTED",
-                "REMOVED",
-                "CANCELED"
-              ]
+              "enum": ["QUEUED", "IN_PROGRESS", "SUCCEEDED", "FAILED", "TIMED_OUT", "REJECTED", "REMOVED", "CANCELED"]
             }
           },
           {
@@ -19646,16 +19444,7 @@
             "description": "An optional filter that lets you search for jobs that have the specified status.",
             "schema": {
               "type": "string",
-              "enum": [
-                "QUEUED",
-                "IN_PROGRESS",
-                "SUCCEEDED",
-                "FAILED",
-                "TIMED_OUT",
-                "REJECTED",
-                "REMOVED",
-                "CANCELED"
-              ]
+              "enum": ["QUEUED", "IN_PROGRESS", "SUCCEEDED", "FAILED", "TIMED_OUT", "REJECTED", "REMOVED", "CANCELED"]
             }
           },
           {
@@ -19783,12 +19572,7 @@
             "description": "An optional filter that lets you search for jobs that have the specified status.",
             "schema": {
               "type": "string",
-              "enum": [
-                "IN_PROGRESS",
-                "CANCELED",
-                "COMPLETED",
-                "DELETION_IN_PROGRESS"
-              ]
+              "enum": ["IN_PROGRESS", "CANCELED", "COMPLETED", "DELETION_IN_PROGRESS"]
             }
           },
           {
@@ -19798,10 +19582,7 @@
             "description": "Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT). If continuous, the job may also be run on a thing when a change is detected in a target. For example, a job will run on a thing when the thing is added to a target group, even after the job was completed by all things originally in the group. ",
             "schema": {
               "type": "string",
-              "enum": [
-                "CONTINUOUS",
-                "SNAPSHOT"
-              ]
+              "enum": ["CONTINUOUS", "SNAPSHOT"]
             }
           },
           {
@@ -20092,12 +19873,7 @@
             "description": "The OTA update job status.",
             "schema": {
               "type": "string",
-              "enum": [
-                "CREATE_PENDING",
-                "CREATE_IN_PROGRESS",
-                "CREATE_COMPLETE",
-                "CREATE_FAILED"
-              ]
+              "enum": ["CREATE_PENDING", "CREATE_IN_PROGRESS", "CREATE_COMPLETE", "CREATE_FAILED"]
             }
           }
         ],
@@ -22227,10 +22003,7 @@
             "description": "The type of task report.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ERRORS",
-                "RESULTS"
-              ]
+              "enum": ["ERRORS", "RESULTS"]
             }
           },
           {
@@ -22364,13 +22137,7 @@
             "description": "The status of the bulk thing provisioning task.",
             "schema": {
               "type": "string",
-              "enum": [
-                "InProgress",
-                "Completed",
-                "Failed",
-                "Cancelled",
-                "Cancelling"
-              ]
+              "enum": ["InProgress", "Completed", "Failed", "Cancelled", "Cancelling"]
             }
           }
         ],
@@ -22461,12 +22228,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "templateBody",
-                  "inputFileBucket",
-                  "inputFileKey",
-                  "roleArn"
-                ],
+                "required": ["templateBody", "inputFileBucket", "inputFileKey", "roleArn"],
                 "properties": {
                   "templateBody": {
                     "description": "The provisioning template.",
@@ -22874,9 +22636,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "templateBody"
-                ],
+                "required": ["templateBody"],
                 "properties": {
                   "templateBody": {
                     "description": "The provisioning template. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/provision-w-cert.html\">Provisioning Devices That Have Device Certificates</a> for more information.",
@@ -23314,10 +23074,7 @@
             "description": "The type of resource for which you are configuring logging. Must be <code>THING_Group</code>.",
             "schema": {
               "type": "string",
-              "enum": [
-                "DEFAULT",
-                "THING_GROUP"
-              ]
+              "enum": ["DEFAULT", "THING_GROUP"]
             }
           },
           {
@@ -23431,10 +23188,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "logTarget",
-                  "logLevel"
-                ],
+                "required": ["logTarget", "logLevel"],
                 "properties": {
                   "logTarget": {
                     "description": "A log target.",
@@ -23465,13 +23219,7 @@
                   "logLevel": {
                     "description": "The log level.",
                     "type": "string",
-                    "enum": [
-                      "DEBUG",
-                      "INFO",
-                      "ERROR",
-                      "WARN",
-                      "DISABLED"
-                    ]
+                    "enum": ["DEBUG", "INFO", "ERROR", "WARN", "DISABLED"]
                   }
                 }
               }
@@ -23578,11 +23326,7 @@
             "description": "The token for the next set of results.",
             "schema": {
               "type": "string",
-              "enum": [
-                "STATIC",
-                "STATISTICAL",
-                "MACHINE_LEARNING"
-              ]
+              "enum": ["STATIC", "STATISTICAL", "MACHINE_LEARNING"]
             }
           },
           {
@@ -23775,10 +23519,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "caCertificate",
-                  "verificationCertificate"
-                ],
+                "required": ["caCertificate", "verificationCertificate"],
                 "properties": {
                   "caCertificate": {
                     "description": "The PEM of a certificate.",
@@ -23979,9 +23720,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "certificatePem"
-                ],
+                "required": ["certificatePem"],
                 "properties": {
                   "certificatePem": {
                     "description": "The PEM of a certificate.",
@@ -24141,9 +23880,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "certificatePem"
-                ],
+                "required": ["certificatePem"],
                 "properties": {
                   "certificatePem": {
                     "description": "The PEM of a certificate.",
@@ -24667,9 +24404,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "queryString"
-                ],
+                "required": ["queryString"],
                 "properties": {
                   "indexName": {
                     "description": "The search index name.",
@@ -24791,9 +24526,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "targetCheckNames"
-                ],
+                "required": ["targetCheckNames"],
                 "properties": {
                   "targetCheckNames": {
                     "description": "Which checks are performed during the audit. The checks you specify must be enabled for your account or an exception occurs. Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks, including those that are enabled or <code>UpdateAccountAuditConfiguration</code> to select which checks are enabled.",
@@ -25010,10 +24743,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "resourceArn",
-                  "tags"
-                ],
+                "required": ["resourceArn", "tags"],
                 "properties": {
                   "resourceArn": {
                     "description": "The ARN of the resource.",
@@ -25160,9 +24890,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "authInfos"
-                ],
+                "required": ["authInfos"],
                 "properties": {
                   "principal": {
                     "description": "The principal. Valid principals are CertificateArn (arn:aws:iot:<i>region</i>:<i>accountId</i>:cert/<i>certificateId</i>), thingGroupArn (arn:aws:iot:<i>region</i>:<i>accountId</i>:thinggroup/<i>groupName</i>) and CognitoId (<i>region</i>:<i>id</i>).",
@@ -25683,10 +25411,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "resourceArn",
-                  "tagKeys"
-                ],
+                "required": ["resourceArn", "tagKeys"],
                 "properties": {
                   "resourceArn": {
                     "description": "The ARN of the resource.",
@@ -25793,10 +25518,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "checkName",
-                  "resourceIdentifier"
-                ],
+                "required": ["checkName", "resourceIdentifier"],
                 "properties": {
                   "checkName": {
                     "description": "An audit check name. Checks must be enabled for your account. (Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks, including those that are enabled or use <code>UpdateAccountAuditConfiguration</code> to select which checks are enabled.)",
@@ -26033,14 +25755,7 @@
             "description": "<p>The new status.</p> <p> <b>Note:</b> Setting the status to PENDING_TRANSFER or PENDING_ACTIVATION will result in an exception being thrown. PENDING_TRANSFER and PENDING_ACTIVATION are statuses used internally by AWS IoT. They are not intended for developer use.</p> <p> <b>Note:</b> The status value REGISTER_INACTIVE is deprecated and should not be used.</p>",
             "schema": {
               "type": "string",
-              "enum": [
-                "ACTIVE",
-                "INACTIVE",
-                "REVOKED",
-                "PENDING_TRANSFER",
-                "REGISTER_INACTIVE",
-                "PENDING_ACTIVATION"
-              ]
+              "enum": ["ACTIVE", "INACTIVE", "REVOKED", "PENDING_TRANSFER", "REGISTER_INACTIVE", "PENDING_ACTIVATION"]
             }
           }
         ],
@@ -26243,9 +25958,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "behaviors"
-                ],
+                "required": ["behaviors"],
                 "properties": {
                   "behaviors": {
                     "description": "Specifies the behaviors that, when violated by a device (thing), cause an alert.",
@@ -26468,10 +26181,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "metricType",
-                  "clientRequestToken"
-                ],
+                "required": ["metricType", "clientRequestToken"],
                 "properties": {
                   "displayName": {
                     "description": " Field represents a friendly name in the console for the custom metric; it doesn't have to be unique. Don't use this name as the metric identifier in the device metric report. Can be updated once defined.",
@@ -26482,12 +26192,7 @@
                   "metricType": {
                     "description": " The type of the custom metric. Types include <code>string-list</code>, <code>ip-address-list</code>, <code>number-list</code>, and <code>number</code>. ",
                     "type": "string",
-                    "enum": [
-                      "string-list",
-                      "ip-address-list",
-                      "number-list",
-                      "number"
-                    ]
+                    "enum": ["string-list", "ip-address-list", "number-list", "number"]
                   },
                   "tags": {
                     "description": " Metadata that can be used to manage the custom metric. ",
@@ -26740,9 +26445,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "displayName"
-                ],
+                "required": ["displayName"],
                 "properties": {
                   "displayName": {
                     "description": " Field represents a friendly name in the console for the custom metric, it doesn't have to be unique. Don't use this name as the metric identifier in the device metric report. Can be updated. ",
@@ -26904,12 +26607,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "queryString",
-                  "aggregationType",
-                  "period",
-                  "aggregationField"
-                ],
+                "required": ["queryString", "aggregationType", "period", "aggregationField"],
                 "properties": {
                   "queryString": {
                     "description": "The search query string.",
@@ -27352,9 +27050,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "indexName"
-                ],
+                "required": ["indexName"],
                 "properties": {
                   "queryString": {
                     "description": "The search query string.",
@@ -27556,9 +27252,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "description"
-                ],
+                "required": ["description"],
                 "properties": {
                   "jobArn": {
                     "description": "The ARN of the job to use as the basis for the job template.",
@@ -28018,11 +27712,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "target",
-                  "actions",
-                  "clientRequestToken"
-                ],
+                "required": ["target", "actions", "clientRequestToken"],
                 "properties": {
                   "target": {
                     "description": " The target of a mitigation action task. ",
@@ -28347,11 +28037,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "queryString",
-                  "aggregationField",
-                  "bucketsAggregationType"
-                ],
+                "required": ["queryString", "aggregationField", "bucketsAggregationType"],
                 "properties": {
                   "indexName": {
                     "description": "The name of the index to search.",
@@ -29278,9 +28964,7 @@
       },
       "Tag": {
         "type": "object",
-        "required": [
-          "Key"
-        ],
+        "required": ["Key"],
         "properties": {
           "Key": {
             "allOf": [
@@ -29596,11 +29280,7 @@
       },
       "ExponentialRolloutRate": {
         "type": "object",
-        "required": [
-          "baseRatePerMinute",
-          "incrementFactor",
-          "rateIncreaseCriteria"
-        ],
+        "required": ["baseRatePerMinute", "incrementFactor", "rateIncreaseCriteria"],
         "properties": {
           "baseRatePerMinute": {
             "allOf": [
@@ -29718,9 +29398,7 @@
       },
       "UpdateDeviceCertificateParams": {
         "type": "object",
-        "required": [
-          "action"
-        ],
+        "required": ["action"],
         "properties": {
           "action": {
             "allOf": [
@@ -29737,9 +29415,7 @@
       },
       "UpdateCACertificateParams": {
         "type": "object",
-        "required": [
-          "action"
-        ],
+        "required": ["action"],
         "properties": {
           "action": {
             "allOf": [
@@ -29756,9 +29432,7 @@
       },
       "AddThingsToThingGroupParams": {
         "type": "object",
-        "required": [
-          "thingGroupNames"
-        ],
+        "required": ["thingGroupNames"],
         "properties": {
           "thingGroupNames": {
             "allOf": [
@@ -29785,9 +29459,7 @@
       },
       "ReplaceDefaultPolicyVersionParams": {
         "type": "object",
-        "required": [
-          "templateName"
-        ],
+        "required": ["templateName"],
         "properties": {
           "templateName": {
             "allOf": [
@@ -29804,10 +29476,7 @@
       },
       "EnableIoTLoggingParams": {
         "type": "object",
-        "required": [
-          "roleArnForLogging",
-          "logLevel"
-        ],
+        "required": ["roleArnForLogging", "logLevel"],
         "properties": {
           "roleArnForLogging": {
             "allOf": [
@@ -29834,9 +29503,7 @@
       },
       "PublishFindingToSnsParams": {
         "type": "object",
-        "required": [
-          "topicArn"
-        ],
+        "required": ["topicArn"],
         "properties": {
           "topicArn": {
             "allOf": [
@@ -29911,10 +29578,7 @@
       },
       "Protocol": {
         "type": "string",
-        "enum": [
-          "MQTT",
-          "HTTP"
-        ]
+        "enum": ["MQTT", "HTTP"]
       },
       "MaximumPerMinute": {
         "type": "integer",
@@ -29923,11 +29587,7 @@
       },
       "AwsJobExponentialRolloutRate": {
         "type": "object",
-        "required": [
-          "baseRatePerMinute",
-          "incrementFactor",
-          "rateIncreaseCriteria"
-        ],
+        "required": ["baseRatePerMinute", "incrementFactor", "rateIncreaseCriteria"],
         "properties": {
           "baseRatePerMinute": {
             "allOf": [
@@ -30340,9 +30000,7 @@
       },
       "Behavior": {
         "type": "object",
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "properties": {
           "name": {
             "allOf": [
@@ -30399,10 +30057,7 @@
       },
       "AlertTarget": {
         "type": "object",
-        "required": [
-          "alertTargetArn",
-          "roleArn"
-        ],
+        "required": ["alertTargetArn", "roleArn"],
         "properties": {
           "alertTargetArn": {
             "allOf": [
@@ -30432,9 +30087,7 @@
       },
       "MetricToRetain": {
         "type": "object",
-        "required": [
-          "metric"
-        ],
+        "required": ["metric"],
         "properties": {
           "metric": {
             "allOf": [
@@ -30921,9 +30574,7 @@
       },
       "HttpUrlDestinationConfiguration": {
         "type": "object",
-        "required": [
-          "confirmationUrl"
-        ],
+        "required": ["confirmationUrl"],
         "properties": {
           "confirmationUrl": {
             "allOf": [
@@ -34320,20 +33971,11 @@
       },
       "LogLevel": {
         "type": "string",
-        "enum": [
-          "DEBUG",
-          "INFO",
-          "ERROR",
-          "WARN",
-          "DISABLED"
-        ]
+        "enum": ["DEBUG", "INFO", "ERROR", "WARN", "DISABLED"]
       },
       "LogTargetType": {
         "type": "string",
-        "enum": [
-          "DEFAULT",
-          "THING_GROUP"
-        ]
+        "enum": ["DEFAULT", "THING_GROUP"]
       },
       "LogTargetName": {
         "type": "string"
@@ -34437,9 +34079,7 @@
       },
       "AuthInfo": {
         "type": "object",
-        "required": [
-          "resources"
-        ],
+        "required": ["resources"],
         "properties": {
           "actionType": {
             "allOf": [
@@ -34815,18 +34455,11 @@
       },
       "ThingIndexingMode": {
         "type": "string",
-        "enum": [
-          "OFF",
-          "REGISTRY",
-          "REGISTRY_AND_SHADOW"
-        ]
+        "enum": ["OFF", "REGISTRY", "REGISTRY_AND_SHADOW"]
       },
       "ThingConnectivityIndexingMode": {
         "type": "string",
-        "enum": [
-          "OFF",
-          "STATUS"
-        ]
+        "enum": ["OFF", "STATUS"]
       },
       "Fields": {
         "type": "array",
@@ -34836,10 +34469,7 @@
       },
       "ThingGroupIndexingMode": {
         "type": "string",
-        "enum": [
-          "OFF",
-          "ON"
-        ]
+        "enum": ["OFF", "ON"]
       },
       "UpdateMitigationActionResponse": {
         "type": "object",
@@ -35122,15 +34752,11 @@
       },
       "AbortAction": {
         "type": "string",
-        "enum": [
-          "CANCEL"
-        ]
+        "enum": ["CANCEL"]
       },
       "AbortConfig": {
         "type": "object",
-        "required": [
-          "criteriaList"
-        ],
+        "required": ["criteriaList"],
         "properties": {
           "criteriaList": {
             "allOf": [
@@ -35147,12 +34773,7 @@
       },
       "JobExecutionFailureType": {
         "type": "string",
-        "enum": [
-          "FAILED",
-          "REJECTED",
-          "TIMED_OUT",
-          "ALL"
-        ]
+        "enum": ["FAILED", "REJECTED", "TIMED_OUT", "ALL"]
       },
       "AbortThresholdPercentage": {
         "type": "number",
@@ -35165,12 +34786,7 @@
       },
       "AbortCriteria": {
         "type": "object",
-        "required": [
-          "failureType",
-          "action",
-          "thresholdPercentage",
-          "minNumberOfExecutedThings"
-        ],
+        "required": ["failureType", "action", "thresholdPercentage", "minNumberOfExecutedThings"],
         "properties": {
           "failureType": {
             "allOf": [
@@ -35217,12 +34833,7 @@
       },
       "DynamoDBAction": {
         "type": "object",
-        "required": [
-          "tableName",
-          "roleArn",
-          "hashKeyField",
-          "hashKeyValue"
-        ],
+        "required": ["tableName", "roleArn", "hashKeyField", "hashKeyValue"],
         "properties": {
           "tableName": {
             "allOf": [
@@ -35329,10 +34940,7 @@
       },
       "DynamoDBv2Action": {
         "type": "object",
-        "required": [
-          "roleArn",
-          "putItem"
-        ],
+        "required": ["roleArn", "putItem"],
         "properties": {
           "roleArn": {
             "allOf": [
@@ -35359,9 +34967,7 @@
       },
       "LambdaAction": {
         "type": "object",
-        "required": [
-          "functionArn"
-        ],
+        "required": ["functionArn"],
         "properties": {
           "functionArn": {
             "allOf": [
@@ -35378,10 +34984,7 @@
       },
       "SnsAction": {
         "type": "object",
-        "required": [
-          "targetArn",
-          "roleArn"
-        ],
+        "required": ["targetArn", "roleArn"],
         "properties": {
           "targetArn": {
             "allOf": [
@@ -35418,10 +35021,7 @@
       },
       "SqsAction": {
         "type": "object",
-        "required": [
-          "roleArn",
-          "queueUrl"
-        ],
+        "required": ["roleArn", "queueUrl"],
         "properties": {
           "roleArn": {
             "allOf": [
@@ -35458,10 +35058,7 @@
       },
       "KinesisAction": {
         "type": "object",
-        "required": [
-          "roleArn",
-          "streamName"
-        ],
+        "required": ["roleArn", "streamName"],
         "properties": {
           "roleArn": {
             "allOf": [
@@ -35498,10 +35095,7 @@
       },
       "RepublishAction": {
         "type": "object",
-        "required": [
-          "roleArn",
-          "topic"
-        ],
+        "required": ["roleArn", "topic"],
         "properties": {
           "roleArn": {
             "allOf": [
@@ -35538,11 +35132,7 @@
       },
       "S3Action": {
         "type": "object",
-        "required": [
-          "roleArn",
-          "bucketName",
-          "key"
-        ],
+        "required": ["roleArn", "bucketName", "key"],
         "properties": {
           "roleArn": {
             "allOf": [
@@ -35589,10 +35179,7 @@
       },
       "FirehoseAction": {
         "type": "object",
-        "required": [
-          "roleArn",
-          "deliveryStreamName"
-        ],
+        "required": ["roleArn", "deliveryStreamName"],
         "properties": {
           "roleArn": {
             "allOf": [
@@ -35639,13 +35226,7 @@
       },
       "CloudwatchMetricAction": {
         "type": "object",
-        "required": [
-          "roleArn",
-          "metricNamespace",
-          "metricName",
-          "metricValue",
-          "metricUnit"
-        ],
+        "required": ["roleArn", "metricNamespace", "metricName", "metricValue", "metricUnit"],
         "properties": {
           "roleArn": {
             "allOf": [
@@ -35712,12 +35293,7 @@
       },
       "CloudwatchAlarmAction": {
         "type": "object",
-        "required": [
-          "roleArn",
-          "alarmName",
-          "stateReason",
-          "stateValue"
-        ],
+        "required": ["roleArn", "alarmName", "stateReason", "stateValue"],
         "properties": {
           "roleArn": {
             "allOf": [
@@ -35764,10 +35340,7 @@
       },
       "CloudwatchLogsAction": {
         "type": "object",
-        "required": [
-          "roleArn",
-          "logGroupName"
-        ],
+        "required": ["roleArn", "logGroupName"],
         "properties": {
           "roleArn": {
             "allOf": [
@@ -35794,13 +35367,7 @@
       },
       "ElasticsearchAction": {
         "type": "object",
-        "required": [
-          "roleArn",
-          "endpoint",
-          "index",
-          "type",
-          "id"
-        ],
+        "required": ["roleArn", "endpoint", "index", "type", "id"],
         "properties": {
           "roleArn": {
             "allOf": [
@@ -35857,10 +35424,7 @@
       },
       "SalesforceAction": {
         "type": "object",
-        "required": [
-          "token",
-          "url"
-        ],
+        "required": ["token", "url"],
         "properties": {
           "token": {
             "allOf": [
@@ -35933,10 +35497,7 @@
       },
       "IotEventsAction": {
         "type": "object",
-        "required": [
-          "inputName",
-          "roleArn"
-        ],
+        "required": ["inputName", "roleArn"],
         "properties": {
           "inputName": {
             "allOf": [
@@ -35983,10 +35544,7 @@
       },
       "IotSiteWiseAction": {
         "type": "object",
-        "required": [
-          "putAssetPropertyValueEntries",
-          "roleArn"
-        ],
+        "required": ["putAssetPropertyValueEntries", "roleArn"],
         "properties": {
           "putAssetPropertyValueEntries": {
             "allOf": [
@@ -36013,10 +35571,7 @@
       },
       "StepFunctionsAction": {
         "type": "object",
-        "required": [
-          "stateMachineName",
-          "roleArn"
-        ],
+        "required": ["stateMachineName", "roleArn"],
         "properties": {
           "executionNamePrefix": {
             "allOf": [
@@ -36053,9 +35608,7 @@
       },
       "HttpAction": {
         "type": "object",
-        "required": [
-          "url"
-        ],
+        "required": ["url"],
         "properties": {
           "url": {
             "allOf": [
@@ -36102,12 +35655,7 @@
       },
       "ActionType": {
         "type": "string",
-        "enum": [
-          "PUBLISH",
-          "SUBSCRIBE",
-          "RECEIVE",
-          "CONNECT"
-        ]
+        "enum": ["PUBLISH", "SUBSCRIBE", "RECEIVE", "CONNECT"]
       },
       "ViolationId": {
         "type": "string",
@@ -36418,9 +35966,7 @@
       },
       "AssetPropertyTimestamp": {
         "type": "object",
-        "required": [
-          "timeInSeconds"
-        ],
+        "required": ["timeInSeconds"],
         "properties": {
           "timeInSeconds": {
             "allOf": [
@@ -36493,10 +36039,7 @@
       },
       "AssetPropertyValue": {
         "type": "object",
-        "required": [
-          "value",
-          "timestamp"
-        ],
+        "required": ["value", "timestamp"],
         "properties": {
           "value": {
             "allOf": [
@@ -36734,12 +36277,7 @@
       },
       "AuditFindingSeverity": {
         "type": "string",
-        "enum": [
-          "CRITICAL",
-          "HIGH",
-          "MEDIUM",
-          "LOW"
-        ]
+        "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW"]
       },
       "NonCompliantResource": {
         "type": "object",
@@ -36916,12 +36454,7 @@
       },
       "AuditFrequency": {
         "type": "string",
-        "enum": [
-          "DAILY",
-          "WEEKLY",
-          "BIWEEKLY",
-          "MONTHLY"
-        ]
+        "enum": ["DAILY", "WEEKLY", "BIWEEKLY", "MONTHLY"]
       },
       "AuditMitigationActionsTaskId": {
         "type": "string",
@@ -36939,14 +36472,7 @@
       },
       "AuditMitigationActionsExecutionStatus": {
         "type": "string",
-        "enum": [
-          "IN_PROGRESS",
-          "COMPLETED",
-          "FAILED",
-          "CANCELED",
-          "SKIPPED",
-          "PENDING"
-        ]
+        "enum": ["IN_PROGRESS", "COMPLETED", "FAILED", "CANCELED", "SKIPPED", "PENDING"]
       },
       "AuditMitigationActionExecutionMetadata": {
         "type": "object",
@@ -37052,12 +36578,7 @@
       },
       "AuditMitigationActionsTaskStatus": {
         "type": "string",
-        "enum": [
-          "IN_PROGRESS",
-          "COMPLETED",
-          "FAILED",
-          "CANCELED"
-        ]
+        "enum": ["IN_PROGRESS", "COMPLETED", "FAILED", "CANCELED"]
       },
       "AuditMitigationActionsTaskMetadata": {
         "type": "object",
@@ -37296,10 +36817,7 @@
       },
       "AuditSuppression": {
         "type": "object",
-        "required": [
-          "checkName",
-          "resourceIdentifier"
-        ],
+        "required": ["checkName", "resourceIdentifier"],
         "properties": {
           "checkName": {
             "$ref": "#/components/schemas/AuditCheckName"
@@ -37348,19 +36866,11 @@
       },
       "AuditTaskStatus": {
         "type": "string",
-        "enum": [
-          "IN_PROGRESS",
-          "COMPLETED",
-          "FAILED",
-          "CANCELED"
-        ]
+        "enum": ["IN_PROGRESS", "COMPLETED", "FAILED", "CANCELED"]
       },
       "AuditTaskType": {
         "type": "string",
-        "enum": [
-          "ON_DEMAND_AUDIT_TASK",
-          "SCHEDULED_AUDIT_TASK"
-        ]
+        "enum": ["ON_DEMAND_AUDIT_TASK", "SCHEDULED_AUDIT_TASK"]
       },
       "AuditTaskMetadata": {
         "type": "object",
@@ -37406,11 +36916,7 @@
       },
       "AuthDecision": {
         "type": "string",
-        "enum": [
-          "ALLOWED",
-          "EXPLICIT_DENY",
-          "IMPLICIT_DENY"
-        ]
+        "enum": ["ALLOWED", "EXPLICIT_DENY", "IMPLICIT_DENY"]
       },
       "Resources": {
         "type": "array",
@@ -37560,10 +37066,7 @@
       },
       "AuthorizerStatus": {
         "type": "string",
-        "enum": [
-          "ACTIVE",
-          "INACTIVE"
-        ]
+        "enum": ["ACTIVE", "INACTIVE"]
       },
       "DateType": {
         "type": "string",
@@ -37702,10 +37205,7 @@
       },
       "AutoRegistrationStatus": {
         "type": "string",
-        "enum": [
-          "ENABLE",
-          "DISABLE"
-        ]
+        "enum": ["ENABLE", "DISABLE"]
       },
       "Average": {
         "type": "number",
@@ -37719,18 +37219,11 @@
       },
       "AwsJobAbortCriteriaFailureType": {
         "type": "string",
-        "enum": [
-          "FAILED",
-          "REJECTED",
-          "TIMED_OUT",
-          "ALL"
-        ]
+        "enum": ["FAILED", "REJECTED", "TIMED_OUT", "ALL"]
       },
       "AwsJobAbortCriteriaAbortAction": {
         "type": "string",
-        "enum": [
-          "CANCEL"
-        ]
+        "enum": ["CANCEL"]
       },
       "AwsJobAbortCriteriaAbortThresholdPercentage": {
         "type": "number",
@@ -37743,12 +37236,7 @@
       },
       "AwsJobAbortCriteria": {
         "type": "object",
-        "required": [
-          "failureType",
-          "action",
-          "thresholdPercentage",
-          "minNumberOfExecutedThings"
-        ],
+        "required": ["failureType", "action", "thresholdPercentage", "minNumberOfExecutedThings"],
         "properties": {
           "failureType": {
             "allOf": [
@@ -37882,9 +37370,7 @@
       },
       "MetricDimension": {
         "type": "object",
-        "required": [
-          "dimensionName"
-        ],
+        "required": ["dimensionName"],
         "properties": {
           "dimensionName": {
             "allOf": [
@@ -38121,10 +37607,7 @@
       },
       "CACertificateStatus": {
         "type": "string",
-        "enum": [
-          "ACTIVE",
-          "INACTIVE"
-        ]
+        "enum": ["ACTIVE", "INACTIVE"]
       },
       "CACertificate": {
         "type": "object",
@@ -38329,9 +37812,7 @@
       },
       "CACertificateUpdateAction": {
         "type": "string",
-        "enum": [
-          "DEACTIVATE"
-        ]
+        "enum": ["DEACTIVATE"]
       },
       "CACertificates": {
         "type": "array",
@@ -38374,21 +37855,11 @@
       },
       "CertificateStatus": {
         "type": "string",
-        "enum": [
-          "ACTIVE",
-          "INACTIVE",
-          "REVOKED",
-          "PENDING_TRANSFER",
-          "REGISTER_INACTIVE",
-          "PENDING_ACTIVATION"
-        ]
+        "enum": ["ACTIVE", "INACTIVE", "REVOKED", "PENDING_TRANSFER", "REGISTER_INACTIVE", "PENDING_ACTIVATION"]
       },
       "CertificateMode": {
         "type": "string",
-        "enum": [
-          "DEFAULT",
-          "SNI_ONLY"
-        ]
+        "enum": ["DEFAULT", "SNI_ONLY"]
       },
       "Certificate": {
         "type": "object",
@@ -38882,9 +38353,7 @@
       },
       "DimensionType": {
         "type": "string",
-        "enum": [
-          "TOPIC_FILTER"
-        ]
+        "enum": ["TOPIC_FILTER"]
       },
       "DimensionStringValues": {
         "type": "array",
@@ -38910,11 +38379,7 @@
       },
       "ServiceType": {
         "type": "string",
-        "enum": [
-          "DATA",
-          "CREDENTIAL_PROVIDER",
-          "JOBS"
-        ]
+        "enum": ["DATA", "CREDENTIAL_PROVIDER", "JOBS"]
       },
       "DomainConfigurationArn": {
         "type": "string"
@@ -39001,10 +38466,7 @@
       },
       "TargetSelection": {
         "type": "string",
-        "enum": [
-          "CONTINUOUS",
-          "SNAPSHOT"
-        ]
+        "enum": ["CONTINUOUS", "SNAPSHOT"]
       },
       "JobExecutionsRolloutConfig": {
         "type": "object",
@@ -39182,12 +38644,7 @@
       },
       "OTAUpdateStatus": {
         "type": "string",
-        "enum": [
-          "CREATE_PENDING",
-          "CREATE_IN_PROGRESS",
-          "CREATE_COMPLETE",
-          "CREATE_FAILED"
-        ]
+        "enum": ["CREATE_PENDING", "CREATE_IN_PROGRESS", "CREATE_COMPLETE", "CREATE_FAILED"]
       },
       "PolicyDocument": {
         "type": "string"
@@ -39216,9 +38673,7 @@
       },
       "ProvisioningHook": {
         "type": "object",
-        "required": [
-          "targetArn"
-        ],
+        "required": ["targetArn"],
         "properties": {
           "payloadVersion": {
             "allOf": [
@@ -39266,15 +38721,7 @@
       },
       "DayOfWeek": {
         "type": "string",
-        "enum": [
-          "SUN",
-          "MON",
-          "TUE",
-          "WED",
-          "THU",
-          "FRI",
-          "SAT"
-        ]
+        "enum": ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
       },
       "TargetAuditCheckNames": {
         "type": "array",
@@ -39626,18 +39073,11 @@
       },
       "DomainConfigurationStatus": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "DISABLED"
-        ]
+        "enum": ["ENABLED", "DISABLED"]
       },
       "DomainType": {
         "type": "string",
-        "enum": [
-          "ENDPOINT",
-          "AWS_MANAGED",
-          "CUSTOMER_MANAGED"
-        ]
+        "enum": ["ENDPOINT", "AWS_MANAGED", "CUSTOMER_MANAGED"]
       },
       "EndpointAddress": {
         "type": "string"
@@ -39654,11 +39094,7 @@
       },
       "IndexStatus": {
         "type": "string",
-        "enum": [
-          "ACTIVE",
-          "BUILDING",
-          "REBUILDING"
-        ]
+        "enum": ["ACTIVE", "BUILDING", "REBUILDING"]
       },
       "IndexSchema": {
         "type": "string"
@@ -40186,11 +39622,7 @@
       },
       "DynamicGroupStatus": {
         "type": "string",
-        "enum": [
-          "ACTIVE",
-          "BUILDING",
-          "REBUILDING"
-        ]
+        "enum": ["ACTIVE", "BUILDING", "REBUILDING"]
       },
       "TaskId": {
         "type": "string",
@@ -40210,13 +39642,7 @@
       },
       "Status": {
         "type": "string",
-        "enum": [
-          "InProgress",
-          "Completed",
-          "Failed",
-          "Cancelled",
-          "Cancelling"
-        ]
+        "enum": ["InProgress", "Completed", "Failed", "Cancelled", "Cancelling"]
       },
       "Percentage": {
         "type": "integer",
@@ -40303,9 +39729,7 @@
       },
       "DeviceCertificateUpdateAction": {
         "type": "string",
-        "enum": [
-          "DEACTIVATE"
-        ]
+        "enum": ["DEACTIVATE"]
       },
       "DimensionNames": {
         "type": "array",
@@ -40315,10 +39739,7 @@
       },
       "DimensionValueOperator": {
         "type": "string",
-        "enum": [
-          "IN",
-          "NOT_IN"
-        ]
+        "enum": ["IN", "NOT_IN"]
       },
       "DisableAllLogs": {
         "type": "boolean"
@@ -40379,10 +39800,7 @@
       },
       "DynamoKeyType": {
         "type": "string",
-        "enum": [
-          "STRING",
-          "NUMBER"
-        ]
+        "enum": ["STRING", "NUMBER"]
       },
       "RangeKeyField": {
         "type": "string"
@@ -40395,9 +39813,7 @@
       },
       "PutItemInput": {
         "type": "object",
-        "required": [
-          "tableName"
-        ],
+        "required": ["tableName"],
         "properties": {
           "tableName": {
             "allOf": [
@@ -40554,11 +39970,7 @@
       },
       "FieldType": {
         "type": "string",
-        "enum": [
-          "Number",
-          "String",
-          "Boolean"
-        ]
+        "enum": ["Number", "String", "Boolean"]
       },
       "Field": {
         "type": "object",
@@ -40694,9 +40106,7 @@
       },
       "ThingIndexingConfiguration": {
         "type": "object",
-        "required": [
-          "thingIndexingMode"
-        ],
+        "required": ["thingIndexingMode"],
         "properties": {
           "thingIndexingMode": {
             "allOf": [
@@ -40743,9 +40153,7 @@
       },
       "ThingGroupIndexingConfiguration": {
         "type": "object",
-        "required": [
-          "thingGroupIndexingMode"
-        ],
+        "required": ["thingGroupIndexingMode"],
         "properties": {
           "thingGroupIndexingMode": {
             "allOf": [
@@ -41140,10 +40548,7 @@
       },
       "HttpActionHeader": {
         "type": "object",
-        "required": [
-          "key",
-          "value"
-        ],
+        "required": ["key", "value"],
         "properties": {
           "key": {
             "allOf": [
@@ -41201,11 +40606,7 @@
       },
       "SigV4Authorization": {
         "type": "object",
-        "required": [
-          "signingRegion",
-          "serviceName",
-          "roleArn"
-        ],
+        "required": ["signingRegion", "serviceName", "roleArn"],
         "properties": {
           "signingRegion": {
             "allOf": [
@@ -41310,12 +40711,7 @@
       },
       "JobStatus": {
         "type": "string",
-        "enum": [
-          "IN_PROGRESS",
-          "CANCELED",
-          "COMPLETED",
-          "DELETION_IN_PROGRESS"
-        ]
+        "enum": ["IN_PROGRESS", "CANCELED", "COMPLETED", "DELETION_IN_PROGRESS"]
       },
       "JobProcessDetails": {
         "type": "object",
@@ -41415,16 +40811,7 @@
       },
       "JobExecutionStatus": {
         "type": "string",
-        "enum": [
-          "QUEUED",
-          "IN_PROGRESS",
-          "SUCCEEDED",
-          "FAILED",
-          "TIMED_OUT",
-          "REJECTED",
-          "REMOVED",
-          "CANCELED"
-        ]
+        "enum": ["QUEUED", "IN_PROGRESS", "SUCCEEDED", "FAILED", "TIMED_OUT", "REJECTED", "REMOVED", "CANCELED"]
       },
       "JobExecutionStatusDetails": {
         "type": "object",
@@ -41808,10 +41195,7 @@
       },
       "ReportType": {
         "type": "string",
-        "enum": [
-          "ERRORS",
-          "RESULTS"
-        ]
+        "enum": ["ERRORS", "RESULTS"]
       },
       "S3FileUrlList": {
         "type": "array",
@@ -41863,9 +41247,7 @@
       },
       "LogTarget": {
         "type": "object",
-        "required": [
-          "targetType"
-        ],
+        "required": ["targetType"],
         "properties": {
           "targetType": {
             "allOf": [
@@ -41926,10 +41308,7 @@
       },
       "MessageFormat": {
         "type": "string",
-        "enum": [
-          "RAW",
-          "JSON"
-        ]
+        "enum": ["RAW", "JSON"]
       },
       "UnsignedLong": {
         "type": "integer",
@@ -42228,9 +41607,7 @@
       },
       "PolicyTemplateName": {
         "type": "string",
-        "enum": [
-          "BLANK_POLICY"
-        ]
+        "enum": ["BLANK_POLICY"]
       },
       "PolicyVersion": {
         "type": "object",
@@ -42396,9 +41773,7 @@
       },
       "PutAssetPropertyValueEntry": {
         "type": "object",
-        "required": [
-          "propertyValues"
-        ],
+        "required": ["propertyValues"],
         "properties": {
           "entryId": {
             "allOf": [
@@ -42607,10 +41982,7 @@
       },
       "SecurityProfileIdentifier": {
         "type": "object",
-        "required": [
-          "name",
-          "arn"
-        ],
+        "required": ["name", "arn"],
         "properties": {
           "name": {
             "allOf": [
@@ -42637,9 +42009,7 @@
       },
       "SecurityProfileTarget": {
         "type": "object",
-        "required": [
-          "arn"
-        ],
+        "required": ["arn"],
         "properties": {
           "arn": {
             "allOf": [
@@ -42682,10 +42052,7 @@
       },
       "ServerCertificateStatus": {
         "type": "string",
-        "enum": [
-          "INVALID",
-          "VALID"
-        ]
+        "enum": ["INVALID", "VALID"]
       },
       "ServerCertificateStatusDetail": {
         "type": "string"
@@ -43137,13 +42504,7 @@
       },
       "TopicRuleDestinationStatus": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "IN_PROGRESS",
-          "DISABLED",
-          "ERROR",
-          "DELETING"
-        ]
+        "enum": ["ENABLED", "IN_PROGRESS", "DISABLED", "ERROR", "DELETING"]
       },
       "TopicRuleDestinationSummary": {
         "type": "object",
@@ -43304,11 +42665,7 @@
       },
       "ViolationEventType": {
         "type": "string",
-        "enum": [
-          "in-alarm",
-          "alarm-cleared",
-          "alarm-invalidated"
-        ]
+        "enum": ["in-alarm", "alarm-cleared", "alarm-invalidated"]
       },
       "ViolationEvent": {
         "type": "object",
@@ -43398,12 +42755,7 @@
       },
       "TimestreamAction": {
         "type": "object",
-        "required": [
-          "roleArn",
-          "databaseName",
-          "tableName",
-          "dimensions"
-        ],
+        "required": ["roleArn", "databaseName", "tableName", "dimensions"],
         "properties": {
           "roleArn": {
             "allOf": [
@@ -43474,10 +42826,7 @@
       },
       "TimestreamTimestamp": {
         "type": "object",
-        "required": [
-          "value",
-          "unit"
-        ],
+        "required": ["value", "unit"],
         "properties": {
           "value": {
             "allOf": [
@@ -43510,10 +42859,7 @@
       },
       "TimestreamDimension": {
         "type": "object",
-        "required": [
-          "name",
-          "value"
-        ],
+        "required": ["name", "value"],
         "properties": {
           "name": {
             "allOf": [
@@ -43614,11 +42960,7 @@
       },
       "AggregationTypeName": {
         "type": "string",
-        "enum": [
-          "Statistics",
-          "Percentiles",
-          "Cardinality"
-        ]
+        "enum": ["Statistics", "Percentiles", "Cardinality"]
       },
       "AggregationTypeValues": {
         "type": "array",
@@ -43654,11 +42996,7 @@
       "ConflictException": {},
       "VpcDestinationConfiguration": {
         "type": "object",
-        "required": [
-          "subnetIds",
-          "vpcId",
-          "roleArn"
-        ],
+        "required": ["subnetIds", "vpcId", "roleArn"],
         "properties": {
           "subnetIds": {
             "allOf": [
@@ -44280,11 +43618,7 @@
       },
       "KafkaAction": {
         "type": "object",
-        "required": [
-          "destinationArn",
-          "topic",
-          "clientProperties"
-        ],
+        "required": ["destinationArn", "topic", "clientProperties"],
         "properties": {
           "destinationArn": {
             "allOf": [
@@ -44341,13 +43675,7 @@
       },
       "OpenSearchAction": {
         "type": "object",
-        "required": [
-          "roleArn",
-          "endpoint",
-          "index",
-          "type",
-          "id"
-        ],
+        "required": ["roleArn", "endpoint", "index", "type", "id"],
         "properties": {
           "roleArn": {
             "allOf": [
@@ -44420,9 +43748,7 @@
       },
       "AggregationType": {
         "type": "object",
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "properties": {
           "name": {
             "allOf": [
@@ -44464,9 +43790,7 @@
       },
       "MachineLearningDetectionConfig": {
         "type": "object",
-        "required": [
-          "confidenceLevel"
-        ],
+        "required": ["confidenceLevel"],
         "properties": {
           "confidenceLevel": {
             "allOf": [
@@ -44555,11 +43879,7 @@
       },
       "ModelStatus": {
         "type": "string",
-        "enum": [
-          "PENDING_BUILD",
-          "ACTIVE",
-          "EXPIRED"
-        ]
+        "enum": ["PENDING_BUILD", "ACTIVE", "EXPIRED"]
       },
       "DataCollectionPercentage": {
         "type": "number",
@@ -44610,11 +43930,7 @@
       },
       "ConfidenceLevel": {
         "type": "string",
-        "enum": [
-          "LOW",
-          "MEDIUM",
-          "HIGH"
-        ]
+        "enum": ["LOW", "MEDIUM", "HIGH"]
       },
       "MetricName": {
         "type": "string",
@@ -44629,12 +43945,7 @@
       },
       "CustomMetricType": {
         "type": "string",
-        "enum": [
-          "string-list",
-          "ip-address-list",
-          "number-list",
-          "number"
-        ]
+        "enum": ["string-list", "ip-address-list", "number-list", "number"]
       },
       "CustomMetricArn": {
         "type": "string"
@@ -44810,12 +44121,7 @@
       },
       "DetectMitigationActionExecutionStatus": {
         "type": "string",
-        "enum": [
-          "IN_PROGRESS",
-          "SUCCESSFUL",
-          "FAILED",
-          "SKIPPED"
-        ]
+        "enum": ["IN_PROGRESS", "SUCCESSFUL", "FAILED", "SKIPPED"]
       },
       "DetectMitigationActionExecutionErrorCode": {
         "type": "string"
@@ -44963,12 +44269,7 @@
       },
       "DetectMitigationActionsTaskStatus": {
         "type": "string",
-        "enum": [
-          "IN_PROGRESS",
-          "SUCCESSFUL",
-          "FAILED",
-          "CANCELED"
-        ]
+        "enum": ["IN_PROGRESS", "SUCCESSFUL", "FAILED", "CANCELED"]
       },
       "DetectMitigationActionsTaskTarget": {
         "type": "object",
@@ -45008,10 +44309,7 @@
       },
       "ViolationEventOccurrenceRange": {
         "type": "object",
-        "required": [
-          "startTime",
-          "endTime"
-        ],
+        "required": ["startTime", "endTime"],
         "properties": {
           "startTime": {
             "allOf": [

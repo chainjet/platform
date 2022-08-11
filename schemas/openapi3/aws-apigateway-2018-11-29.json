@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -209,10 +201,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "protocolType"
-                ],
+                "required": ["name", "protocolType"],
                 "properties": {
                   "apiKeySelectionExpression": {
                     "description": "An expression used to extract information at runtime. See <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-apikey-selection-expressions\">Selection Expressions</a> for more information.",
@@ -321,10 +310,7 @@
                   "protocolType": {
                     "description": "Represents a protocol type.",
                     "type": "string",
-                    "enum": [
-                      "WEBSOCKET",
-                      "HTTP"
-                    ]
+                    "enum": ["WEBSOCKET", "HTTP"]
                   },
                   "routeKey": {
                     "description": "After evaluating a selection expression, the result is compared against one or more selection keys to find a matching key. See <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-apikey-selection-expressions\">Selection Expressions</a> for a list of expressions and each expression's associated selection key type.",
@@ -531,9 +517,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "body"
-                ],
+                "required": ["body"],
                 "properties": {
                   "body": {
                     "description": "The OpenAPI definition. Supported only for HTTP APIs.",
@@ -620,10 +604,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "apiId",
-                  "stage"
-                ],
+                "required": ["apiId", "stage"],
                 "properties": {
                   "apiId": {
                     "description": "The identifier.",
@@ -817,11 +798,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "authorizerType",
-                  "identitySource",
-                  "name"
-                ],
+                "required": ["authorizerType", "identitySource", "name"],
                 "properties": {
                   "authorizerCredentialsArn": {
                     "description": "Represents an Amazon Resource Name (ARN).",
@@ -840,10 +817,7 @@
                   "authorizerType": {
                     "description": "The authorizer type. Specify REQUEST for a Lambda function using incoming request parameters. Specify JWT to use JSON Web Tokens (supported only for HTTP APIs).",
                     "type": "string",
-                    "enum": [
-                      "REQUEST",
-                      "JWT"
-                    ]
+                    "enum": ["REQUEST", "JWT"]
                   },
                   "authorizerUri": {
                     "description": "A string representation of a URI with a length between [1-2048].",
@@ -1269,9 +1243,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "domainName"
-                ],
+                "required": ["domainName"],
                 "properties": {
                   "domainName": {
                     "description": "A string with a length between [1-512].",
@@ -1494,9 +1466,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "integrationType"
-                ],
+                "required": ["integrationType"],
                 "properties": {
                   "connectionId": {
                     "description": "A string with a length between [1-1024].",
@@ -1505,18 +1475,12 @@
                   "connectionType": {
                     "description": "Represents a connection type.",
                     "type": "string",
-                    "enum": [
-                      "INTERNET",
-                      "VPC_LINK"
-                    ]
+                    "enum": ["INTERNET", "VPC_LINK"]
                   },
                   "contentHandlingStrategy": {
                     "description": "Specifies how to handle response payload content type conversions. Supported only for WebSocket APIs.",
                     "type": "string",
-                    "enum": [
-                      "CONVERT_TO_BINARY",
-                      "CONVERT_TO_TEXT"
-                    ]
+                    "enum": ["CONVERT_TO_BINARY", "CONVERT_TO_TEXT"]
                   },
                   "credentialsArn": {
                     "description": "Represents an Amazon Resource Name (ARN).",
@@ -1537,13 +1501,7 @@
                   "integrationType": {
                     "description": "Represents an API method integration type.",
                     "type": "string",
-                    "enum": [
-                      "AWS",
-                      "HTTP",
-                      "MOCK",
-                      "HTTP_PROXY",
-                      "AWS_PROXY"
-                    ]
+                    "enum": ["AWS", "HTTP", "MOCK", "HTTP_PROXY", "AWS_PROXY"]
                   },
                   "integrationUri": {
                     "description": "A string representation of a URI with a length between [1-2048].",
@@ -1552,11 +1510,7 @@
                   "passthroughBehavior": {
                     "description": "Represents passthrough behavior for an integration response. Supported only for WebSocket APIs.",
                     "type": "string",
-                    "enum": [
-                      "WHEN_NO_MATCH",
-                      "NEVER",
-                      "WHEN_NO_TEMPLATES"
-                    ]
+                    "enum": ["WHEN_NO_MATCH", "NEVER", "WHEN_NO_TEMPLATES"]
                   },
                   "payloadFormatVersion": {
                     "description": "A string with a length between [1-64].",
@@ -1801,17 +1755,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "integrationResponseKey"
-                ],
+                "required": ["integrationResponseKey"],
                 "properties": {
                   "contentHandlingStrategy": {
                     "description": "Specifies how to handle response payload content type conversions. Supported only for WebSocket APIs.",
                     "type": "string",
-                    "enum": [
-                      "CONVERT_TO_BINARY",
-                      "CONVERT_TO_TEXT"
-                    ]
+                    "enum": ["CONVERT_TO_BINARY", "CONVERT_TO_TEXT"]
                   },
                   "integrationResponseKey": {
                     "description": "After evaluating a selection expression, the result is compared against one or more selection keys to find a matching key. See <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-apikey-selection-expressions\">Selection Expressions</a> for a list of expressions and each expression's associated selection key type.",
@@ -2024,10 +1973,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "schema"
-                ],
+                "required": ["name", "schema"],
                 "properties": {
                   "contentType": {
                     "description": "A string with a length between [1-256].",
@@ -2225,9 +2171,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "routeKey"
-                ],
+                "required": ["routeKey"],
                 "properties": {
                   "apiKeyRequired": {
                     "description": "Specifies whether an API key is required for the route. Supported only for WebSocket APIs.",
@@ -2243,12 +2187,7 @@
                   "authorizationType": {
                     "description": "The authorization type. For WebSocket APIs, valid values are NONE for open access, AWS_IAM for using AWS IAM permissions, and CUSTOM for using a Lambda authorizer. For HTTP APIs, valid values are NONE for open access, JWT for using JSON Web Tokens, AWS_IAM for using AWS IAM permissions, and CUSTOM for using a Lambda authorizer.",
                     "type": "string",
-                    "enum": [
-                      "NONE",
-                      "AWS_IAM",
-                      "CUSTOM",
-                      "JWT"
-                    ]
+                    "enum": ["NONE", "AWS_IAM", "CUSTOM", "JWT"]
                   },
                   "authorizerId": {
                     "description": "The identifier.",
@@ -2477,9 +2416,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "routeResponseKey"
-                ],
+                "required": ["routeResponseKey"],
                 "properties": {
                   "modelSelectionExpression": {
                     "description": "An expression used to extract information at runtime. See <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-apikey-selection-expressions\">Selection Expressions</a> for more information.",
@@ -2692,9 +2629,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "stageName"
-                ],
+                "required": ["stageName"],
                 "properties": {
                   "accessLogSettings": {
                     "description": "Settings for logging access in a stage.",
@@ -2990,10 +2925,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "subnetIds"
-                ],
+                "required": ["name", "subnetIds"],
                 "properties": {
                   "name": {
                     "description": "A string with a length between [1-128].",
@@ -3386,9 +3318,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "body"
-                ],
+                "required": ["body"],
                 "properties": {
                   "body": {
                     "description": "The OpenAPI definition. Supported only for HTTP APIs.",
@@ -3838,9 +3768,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "apiId"
-                ],
+                "required": ["apiId"],
                 "properties": {
                   "apiId": {
                     "description": "The identifier.",
@@ -4092,10 +4020,7 @@
                   "authorizerType": {
                     "description": "The authorizer type. Specify REQUEST for a Lambda function using incoming request parameters. Specify JWT to use JSON Web Tokens (supported only for HTTP APIs).",
                     "type": "string",
-                    "enum": [
-                      "REQUEST",
-                      "JWT"
-                    ]
+                    "enum": ["REQUEST", "JWT"]
                   },
                   "authorizerUri": {
                     "description": "A string representation of a URI with a length between [1-2048].",
@@ -4904,18 +4829,12 @@
                   "connectionType": {
                     "description": "Represents a connection type.",
                     "type": "string",
-                    "enum": [
-                      "INTERNET",
-                      "VPC_LINK"
-                    ]
+                    "enum": ["INTERNET", "VPC_LINK"]
                   },
                   "contentHandlingStrategy": {
                     "description": "Specifies how to handle response payload content type conversions. Supported only for WebSocket APIs.",
                     "type": "string",
-                    "enum": [
-                      "CONVERT_TO_BINARY",
-                      "CONVERT_TO_TEXT"
-                    ]
+                    "enum": ["CONVERT_TO_BINARY", "CONVERT_TO_TEXT"]
                   },
                   "credentialsArn": {
                     "description": "Represents an Amazon Resource Name (ARN).",
@@ -4936,13 +4855,7 @@
                   "integrationType": {
                     "description": "Represents an API method integration type.",
                     "type": "string",
-                    "enum": [
-                      "AWS",
-                      "HTTP",
-                      "MOCK",
-                      "HTTP_PROXY",
-                      "AWS_PROXY"
-                    ]
+                    "enum": ["AWS", "HTTP", "MOCK", "HTTP_PROXY", "AWS_PROXY"]
                   },
                   "integrationUri": {
                     "description": "A string representation of a URI with a length between [1-2048].",
@@ -4951,11 +4864,7 @@
                   "passthroughBehavior": {
                     "description": "Represents passthrough behavior for an integration response. Supported only for WebSocket APIs.",
                     "type": "string",
-                    "enum": [
-                      "WHEN_NO_MATCH",
-                      "NEVER",
-                      "WHEN_NO_TEMPLATES"
-                    ]
+                    "enum": ["WHEN_NO_MATCH", "NEVER", "WHEN_NO_TEMPLATES"]
                   },
                   "payloadFormatVersion": {
                     "description": "A string with a length between [1-64].",
@@ -5262,10 +5171,7 @@
                   "contentHandlingStrategy": {
                     "description": "Specifies how to handle response payload content type conversions. Supported only for WebSocket APIs.",
                     "type": "string",
-                    "enum": [
-                      "CONVERT_TO_BINARY",
-                      "CONVERT_TO_TEXT"
-                    ]
+                    "enum": ["CONVERT_TO_BINARY", "CONVERT_TO_TEXT"]
                   },
                   "integrationResponseKey": {
                     "description": "After evaluating a selection expression, the result is compared against one or more selection keys to find a matching key. See <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-apikey-selection-expressions\">Selection Expressions</a> for a list of expressions and each expression's associated selection key type.",
@@ -5761,12 +5667,7 @@
                   "authorizationType": {
                     "description": "The authorization type. For WebSocket APIs, valid values are NONE for open access, AWS_IAM for using AWS IAM permissions, and CUSTOM for using a Lambda authorizer. For HTTP APIs, valid values are NONE for open access, JWT for using JSON Web Tokens, AWS_IAM for using AWS IAM permissions, and CUSTOM for using a Lambda authorizer.",
                     "type": "string",
-                    "enum": [
-                      "NONE",
-                      "AWS_IAM",
-                      "CUSTOM",
-                      "JWT"
-                    ]
+                    "enum": ["NONE", "AWS_IAM", "CUSTOM", "JWT"]
                   },
                   "authorizerId": {
                     "description": "The identifier.",
@@ -9094,11 +8995,7 @@
       },
       "LoggingLevel": {
         "type": "string",
-        "enum": [
-          "ERROR",
-          "INFO",
-          "OFF"
-        ],
+        "enum": ["ERROR", "INFO", "OFF"],
         "description": "The logging level."
       },
       "__integer": {
@@ -13372,10 +13269,7 @@
       },
       "ProtocolType": {
         "type": "string",
-        "enum": [
-          "WEBSOCKET",
-          "HTTP"
-        ],
+        "enum": ["WEBSOCKET", "HTTP"],
         "description": "Represents a protocol type."
       },
       "Tags": {
@@ -13387,11 +13281,7 @@
       },
       "Api": {
         "type": "object",
-        "required": [
-          "RouteSelectionExpression",
-          "Name",
-          "ProtocolType"
-        ],
+        "required": ["RouteSelectionExpression", "Name", "ProtocolType"],
         "properties": {
           "ApiEndpoint": {
             "allOf": [
@@ -13610,10 +13500,7 @@
       },
       "ApiMapping": {
         "type": "object",
-        "required": [
-          "Stage",
-          "ApiId"
-        ],
+        "required": ["Stage", "ApiId"],
         "properties": {
           "ApiId": {
             "allOf": [
@@ -13679,12 +13566,7 @@
       },
       "AuthorizationType": {
         "type": "string",
-        "enum": [
-          "NONE",
-          "AWS_IAM",
-          "CUSTOM",
-          "JWT"
-        ],
+        "enum": ["NONE", "AWS_IAM", "CUSTOM", "JWT"],
         "description": "The authorization type. For WebSocket APIs, valid values are NONE for open access, AWS_IAM for using AWS IAM permissions, and CUSTOM for using a Lambda authorizer. For HTTP APIs, valid values are NONE for open access, JWT for using JSON Web Tokens, AWS_IAM for using AWS IAM permissions, and CUSTOM for using a Lambda authorizer."
       },
       "IntegerWithLengthBetween0And3600": {
@@ -13695,10 +13577,7 @@
       },
       "AuthorizerType": {
         "type": "string",
-        "enum": [
-          "REQUEST",
-          "JWT"
-        ],
+        "enum": ["REQUEST", "JWT"],
         "description": "The authorizer type. Specify REQUEST for a Lambda function using incoming request parameters. Specify JWT to use JSON Web Tokens (supported only for HTTP APIs)."
       },
       "IdentitySourceList": {
@@ -13742,9 +13621,7 @@
       },
       "Authorizer": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "AuthorizerCredentialsArn": {
             "allOf": [
@@ -13894,27 +13771,17 @@
       },
       "ConnectionType": {
         "type": "string",
-        "enum": [
-          "INTERNET",
-          "VPC_LINK"
-        ],
+        "enum": ["INTERNET", "VPC_LINK"],
         "description": "Represents a connection type."
       },
       "ContentHandlingStrategy": {
         "type": "string",
-        "enum": [
-          "CONVERT_TO_BINARY",
-          "CONVERT_TO_TEXT"
-        ],
+        "enum": ["CONVERT_TO_BINARY", "CONVERT_TO_TEXT"],
         "description": "Specifies how to handle response payload content type conversions. Supported only for WebSocket APIs."
       },
       "DeploymentStatus": {
         "type": "string",
-        "enum": [
-          "PENDING",
-          "FAILED",
-          "DEPLOYED"
-        ],
+        "enum": ["PENDING", "FAILED", "DEPLOYED"],
         "description": "Represents a deployment status."
       },
       "DomainNameConfigurations": {
@@ -13926,22 +13793,12 @@
       },
       "IntegrationType": {
         "type": "string",
-        "enum": [
-          "AWS",
-          "HTTP",
-          "MOCK",
-          "HTTP_PROXY",
-          "AWS_PROXY"
-        ],
+        "enum": ["AWS", "HTTP", "MOCK", "HTTP_PROXY", "AWS_PROXY"],
         "description": "Represents an API method integration type."
       },
       "PassthroughBehavior": {
         "type": "string",
-        "enum": [
-          "WHEN_NO_MATCH",
-          "NEVER",
-          "WHEN_NO_TEMPLATES"
-        ],
+        "enum": ["WHEN_NO_MATCH", "NEVER", "WHEN_NO_TEMPLATES"],
         "description": "Represents passthrough behavior for an integration response. Supported only for WebSocket APIs."
       },
       "IntegrationParameters": {
@@ -14031,20 +13888,12 @@
       },
       "VpcLinkStatus": {
         "type": "string",
-        "enum": [
-          "PENDING",
-          "AVAILABLE",
-          "DELETING",
-          "FAILED",
-          "INACTIVE"
-        ],
+        "enum": ["PENDING", "AVAILABLE", "DELETING", "FAILED", "INACTIVE"],
         "description": "The status of the VPC link."
       },
       "VpcLinkVersion": {
         "type": "string",
-        "enum": [
-          "V2"
-        ],
+        "enum": ["V2"],
         "description": "The version of the VPC link."
       },
       "Deployment": {
@@ -14133,9 +13982,7 @@
       },
       "DomainName": {
         "type": "object",
-        "required": [
-          "DomainName"
-        ],
+        "required": ["DomainName"],
         "properties": {
           "ApiMappingSelectionExpression": {
             "allOf": [
@@ -14207,28 +14054,17 @@
       },
       "DomainNameStatus": {
         "type": "string",
-        "enum": [
-          "AVAILABLE",
-          "UPDATING",
-          "PENDING_CERTIFICATE_REIMPORT",
-          "PENDING_OWNERSHIP_VERIFICATION"
-        ],
+        "enum": ["AVAILABLE", "UPDATING", "PENDING_CERTIFICATE_REIMPORT", "PENDING_OWNERSHIP_VERIFICATION"],
         "description": "The status of the domain name migration. The valid values are AVAILABLE and UPDATING. If the status is UPDATING, the domain cannot be modified further until the existing operation is complete. If it is AVAILABLE, the domain can be updated."
       },
       "EndpointType": {
         "type": "string",
-        "enum": [
-          "REGIONAL",
-          "EDGE"
-        ],
+        "enum": ["REGIONAL", "EDGE"],
         "description": "Represents an endpoint type."
       },
       "SecurityPolicy": {
         "type": "string",
-        "enum": [
-          "TLS_1_0",
-          "TLS_1_2"
-        ],
+        "enum": ["TLS_1_0", "TLS_1_2"],
         "description": "The Transport Layer Security (TLS) version of the security policy for this domain name. The valid values are TLS_1_0 and TLS_1_2."
       },
       "ExportedApi": {
@@ -14579,9 +14415,7 @@
       },
       "IntegrationResponse": {
         "type": "object",
-        "required": [
-          "IntegrationResponseKey"
-        ],
+        "required": ["IntegrationResponseKey"],
         "properties": {
           "ContentHandlingStrategy": {
             "allOf": [
@@ -14666,9 +14500,7 @@
       },
       "Model": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "ContentType": {
             "allOf": [
@@ -14740,9 +14572,7 @@
       },
       "Route": {
         "type": "object",
-        "required": [
-          "RouteKey"
-        ],
+        "required": ["RouteKey"],
         "properties": {
           "ApiGatewayManaged": {
             "allOf": [
@@ -14918,9 +14748,7 @@
       },
       "RouteResponse": {
         "type": "object",
-        "required": [
-          "RouteResponseKey"
-        ],
+        "required": ["RouteResponseKey"],
         "properties": {
           "ModelSelectionExpression": {
             "allOf": [
@@ -14992,9 +14820,7 @@
       },
       "Stage": {
         "type": "object",
-        "required": [
-          "StageName"
-        ],
+        "required": ["StageName"],
         "properties": {
           "AccessLogSettings": {
             "allOf": [
@@ -15183,12 +15009,7 @@
       },
       "VpcLink": {
         "type": "object",
-        "required": [
-          "VpcLinkId",
-          "SecurityGroupIds",
-          "SubnetIds",
-          "Name"
-        ],
+        "required": ["VpcLinkId", "SecurityGroupIds", "SubnetIds", "Name"],
         "properties": {
           "CreatedDate": {
             "allOf": [

@@ -5,9 +5,7 @@
     "x-release": "v4",
     "title": "Amazon Polly",
     "description": "Amazon Polly is a web service that makes it easy to synthesize speech from text. The Amazon Polly service provides API operations for synthesizing high-quality speech from plain text and Speech Synthesis Markup Language (SSML), along with managing pronunciations lexicons that enable you to get the best results for your application domain.",
-    "x-categories": [
-      "machine-learning"
-    ],
+    "x-categories": ["machine-learning"],
     "x-logo": {
       "url": "/logos/aws/Arch_Amazon-Polly_64.svg"
     },
@@ -38,9 +36,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -123,10 +119,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -137,10 +130,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -376,9 +366,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Content"
-                ],
+                "required": ["Content"],
                 "properties": {
                   "Content": {
                     "description": "Content of the PLS lexicon as string data.",
@@ -437,10 +425,7 @@
             "description": "Specifies the engine (<code>standard</code> or <code>neural</code>) used by Amazon Polly when processing input text for speech synthesis. ",
             "schema": {
               "type": "string",
-              "enum": [
-                "standard",
-                "neural"
-              ]
+              "enum": ["standard", "neural"]
             }
           },
           {
@@ -757,12 +742,7 @@
             "description": "Status of the speech synthesis tasks returned in a List operation",
             "schema": {
               "type": "string",
-              "enum": [
-                "scheduled",
-                "inProgress",
-                "completed",
-                "failed"
-              ]
+              "enum": ["scheduled", "inProgress", "completed", "failed"]
             }
           }
         ],
@@ -933,20 +913,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "OutputFormat",
-                  "OutputS3BucketName",
-                  "Text",
-                  "VoiceId"
-                ],
+                "required": ["OutputFormat", "OutputS3BucketName", "Text", "VoiceId"],
                 "properties": {
                   "Engine": {
                     "description": "Specifies the engine (<code>standard</code> or <code>neural</code>) for Amazon Polly to use when processing input text for speech synthesis. Using a voice that is not supported for the engine selected will result in an error.",
                     "type": "string",
-                    "enum": [
-                      "standard",
-                      "neural"
-                    ]
+                    "enum": ["standard", "neural"]
                   },
                   "LanguageCode": {
                     "description": "<p>Optional language code for the Speech Synthesis request. This is only necessary if using a bilingual voice, such as Aditi, which can be used for either Indian English (en-IN) or Hindi (hi-IN). </p> <p>If a bilingual voice is used and no language code is specified, Amazon Polly will use the default language of the bilingual voice. The default language for any voice is the one returned by the <a href=\"https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html\">DescribeVoices</a> operation for the <code>LanguageCode</code> parameter. For example, if no language code is specified, Aditi will use Indian English rather than Hindi.</p>",
@@ -996,12 +968,7 @@
                   "OutputFormat": {
                     "description": "The format in which the returned output will be encoded. For audio stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will be json. ",
                     "type": "string",
-                    "enum": [
-                      "json",
-                      "mp3",
-                      "ogg_vorbis",
-                      "pcm"
-                    ]
+                    "enum": ["json", "mp3", "ogg_vorbis", "pcm"]
                   },
                   "OutputS3BucketName": {
                     "description": "Amazon S3 bucket name to which the output file will be saved.",
@@ -1037,10 +1004,7 @@
                   "TextType": {
                     "description": "Specifies whether the input text is plain text or SSML. The default value is plain text. ",
                     "type": "string",
-                    "enum": [
-                      "ssml",
-                      "text"
-                    ]
+                    "enum": ["ssml", "text"]
                   },
                   "VoiceId": {
                     "description": "Voice ID to use for the synthesis. ",
@@ -1234,19 +1198,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "OutputFormat",
-                  "Text",
-                  "VoiceId"
-                ],
+                "required": ["OutputFormat", "Text", "VoiceId"],
                 "properties": {
                   "Engine": {
                     "description": "Specifies the engine (<code>standard</code> or <code>neural</code>) for Amazon Polly to use when processing input text for speech synthesis. Using a voice that is not supported for the engine selected will result in an error.",
                     "type": "string",
-                    "enum": [
-                      "standard",
-                      "neural"
-                    ]
+                    "enum": ["standard", "neural"]
                   },
                   "LanguageCode": {
                     "description": "<p>Optional language code for the Synthesize Speech request. This is only necessary if using a bilingual voice, such as Aditi, which can be used for either Indian English (en-IN) or Hindi (hi-IN). </p> <p>If a bilingual voice is used and no language code is specified, Amazon Polly will use the default language of the bilingual voice. The default language for any voice is the one returned by the <a href=\"https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html\">DescribeVoices</a> operation for the <code>LanguageCode</code> parameter. For example, if no language code is specified, Aditi will use Indian English rather than Hindi.</p>",
@@ -1296,12 +1253,7 @@
                   "OutputFormat": {
                     "description": "<p> The format in which the returned output will be encoded. For audio stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will be json. </p> <p>When pcm is used, the content returned is audio/pcm in a signed 16-bit, 1 channel (mono), little-endian format. </p>",
                     "type": "string",
-                    "enum": [
-                      "json",
-                      "mp3",
-                      "ogg_vorbis",
-                      "pcm"
-                    ]
+                    "enum": ["json", "mp3", "ogg_vorbis", "pcm"]
                   },
                   "SampleRate": {
                     "description": "<p>The audio frequency specified in Hz.</p> <p>The valid values for mp3 and ogg_vorbis are \"8000\", \"16000\", \"22050\", and \"24000\". The default value for standard voices is \"22050\". The default value for neural voices is \"24000\".</p> <p>Valid values for pcm are \"8000\" and \"16000\" The default value is \"16000\". </p>",
@@ -1322,10 +1274,7 @@
                   "TextType": {
                     "description": " Specifies whether the input text is plain text or SSML. The default value is plain text. For more information, see <a href=\"https://docs.aws.amazon.com/polly/latest/dg/ssml.html\">Using SSML</a>.",
                     "type": "string",
-                    "enum": [
-                      "ssml",
-                      "text"
-                    ]
+                    "enum": ["ssml", "text"]
                   },
                   "VoiceId": {
                     "description": " Voice ID to use for the synthesis. You can get a list of available voice IDs by calling the <a href=\"https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html\">DescribeVoices</a> operation. ",
@@ -1718,12 +1667,7 @@
       },
       "SpeechMarkType": {
         "type": "string",
-        "enum": [
-          "sentence",
-          "ssml",
-          "viseme",
-          "word"
-        ]
+        "enum": ["sentence", "ssml", "viseme", "word"]
       },
       "TextLengthExceededException": {},
       "InvalidS3BucketException": {},
@@ -1767,10 +1711,7 @@
       },
       "Engine": {
         "type": "string",
-        "enum": [
-          "standard",
-          "neural"
-        ]
+        "enum": ["standard", "neural"]
       },
       "LanguageCode": {
         "type": "string",
@@ -1827,10 +1768,7 @@
       },
       "Gender": {
         "type": "string",
-        "enum": [
-          "Female",
-          "Male"
-        ]
+        "enum": ["Female", "Male"]
       },
       "Lexicon": {
         "type": "object",
@@ -2151,12 +2089,7 @@
       },
       "TaskStatus": {
         "type": "string",
-        "enum": [
-          "scheduled",
-          "inProgress",
-          "completed",
-          "failed"
-        ]
+        "enum": ["scheduled", "inProgress", "completed", "failed"]
       },
       "SynthesisTasks": {
         "type": "array",
@@ -2166,12 +2099,7 @@
       },
       "OutputFormat": {
         "type": "string",
-        "enum": [
-          "json",
-          "mp3",
-          "ogg_vorbis",
-          "pcm"
-        ]
+        "enum": ["json", "mp3", "ogg_vorbis", "pcm"]
       },
       "OutputUri": {
         "type": "string"
@@ -2195,10 +2123,7 @@
       },
       "TextType": {
         "type": "string",
-        "enum": [
-          "ssml",
-          "text"
-        ]
+        "enum": ["ssml", "text"]
       },
       "VoiceId": {
         "type": "string",

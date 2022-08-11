@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -55,10 +53,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -69,10 +64,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -184,9 +176,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "CachePolicyConfig"
-                ],
+                "required": ["CachePolicyConfig"],
                 "properties": {
                   "CachePolicyConfig": {
                     "description": "<p>A cache policy configuration.</p> <p>This configuration determines the following:</p> <ul> <li> <p>The values that CloudFront includes in the cache key. These values can include HTTP headers, cookies, and URL query strings. CloudFront uses the cache key to find an object in its cache that it can return to the viewer.</p> </li> <li> <p>The default, minimum, and maximum time to live (TTL) values that you want objects to stay in the CloudFront cache.</p> </li> </ul> <p>The headers, cookies, and query strings that are included in the cache key are automatically included in requests that CloudFront sends to the origin. CloudFront sends a request when it can’t find a valid object in its cache that matches the request’s cache key. If you want to send values to the origin but <i>not</i> include them in the cache key, use <code>OriginRequestPolicy</code>.</p>",
@@ -337,10 +327,7 @@
             "description": "<p>A filter to return only the specified kinds of cache policies. Valid values are:</p> <ul> <li> <p> <code>managed</code> – Returns only the managed policies created by AWS.</p> </li> <li> <p> <code>custom</code> – Returns only the custom policies created in your AWS account.</p> </li> </ul>",
             "schema": {
               "type": "string",
-              "enum": [
-                "managed",
-                "custom"
-              ]
+              "enum": ["managed", "custom"]
             }
           },
           {
@@ -438,9 +425,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "CloudFrontOriginAccessIdentityConfig"
-                ],
+                "required": ["CloudFrontOriginAccessIdentityConfig"],
                 "properties": {
                   "CloudFrontOriginAccessIdentityConfig": {
                     "description": "Origin access identity configuration. Send a <code>GET</code> request to the <code>/<i>CloudFront API version</i>/CloudFront/identity ID/config</code> resource. ",
@@ -1139,9 +1124,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "DistributionConfig"
-                ],
+                "required": ["DistributionConfig"],
                 "properties": {
                   "DistributionConfig": {
                     "description": "A distribution configuration.",
@@ -2000,9 +1983,7 @@
             "required": true,
             "schema": {
               "type": "boolean",
-              "enum": [
-                true
-              ]
+              "enum": [true]
             },
             "allowEmptyValue": true
           }
@@ -2013,9 +1994,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "DistributionConfigWithTags"
-                ],
+                "required": ["DistributionConfigWithTags"],
                 "properties": {
                   "DistributionConfigWithTags": {
                     "description": "A distribution Configuration and a list of tags to be associated with the distribution.",
@@ -2177,9 +2156,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "FieldLevelEncryptionConfig"
-                ],
+                "required": ["FieldLevelEncryptionConfig"],
                 "properties": {
                   "FieldLevelEncryptionConfig": {
                     "description": "A complex data type that includes the profile configurations specified for field-level encryption. ",
@@ -2408,9 +2385,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "FieldLevelEncryptionProfileConfig"
-                ],
+                "required": ["FieldLevelEncryptionProfileConfig"],
                 "properties": {
                   "FieldLevelEncryptionProfileConfig": {
                     "description": "A complex data type of profiles for the field-level encryption.",
@@ -2639,9 +2614,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "InvalidationBatch"
-                ],
+                "required": ["InvalidationBatch"],
                 "properties": {
                   "InvalidationBatch": {
                     "description": "An invalidation batch.",
@@ -2839,9 +2812,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "MonitoringSubscription"
-                ],
+                "required": ["MonitoringSubscription"],
                 "properties": {
                   "MonitoringSubscription": {
                     "description": "A monitoring subscription. This structure contains information about whether additional CloudWatch metrics are enabled for a given CloudFront distribution.",
@@ -3109,9 +3080,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "OriginRequestPolicyConfig"
-                ],
+                "required": ["OriginRequestPolicyConfig"],
                 "properties": {
                   "OriginRequestPolicyConfig": {
                     "description": "<p>An origin request policy configuration.</p> <p>This configuration determines the values that CloudFront includes in requests that it sends to the origin. Each request that CloudFront sends to the origin includes the following:</p> <ul> <li> <p>The request body and the URL path (without the domain name) from the viewer request.</p> </li> <li> <p>The headers that CloudFront automatically includes in every origin request, including <code>Host</code>, <code>User-Agent</code>, and <code>X-Amz-Cf-Id</code>.</p> </li> <li> <p>All HTTP headers, cookies, and URL query strings that are specified in the cache policy or the origin request policy. These can include items from the viewer request and, in the case of headers, additional ones that are added by CloudFront.</p> </li> </ul> <p>CloudFront sends a request when it can’t find an object in its cache that matches the request. If you want to send values to the origin and also include them in the cache key, use <code>CachePolicy</code>.</p>",
@@ -3252,10 +3221,7 @@
             "description": "<p>A filter to return only the specified kinds of origin request policies. Valid values are:</p> <ul> <li> <p> <code>managed</code> – Returns only the managed policies created by AWS.</p> </li> <li> <p> <code>custom</code> – Returns only the custom policies created in your AWS account.</p> </li> </ul>",
             "schema": {
               "type": "string",
-              "enum": [
-                "managed",
-                "custom"
-              ]
+              "enum": ["managed", "custom"]
             }
           },
           {
@@ -3333,9 +3299,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "PublicKeyConfig"
-                ],
+                "required": ["PublicKeyConfig"],
                 "properties": {
                   "PublicKeyConfig": {
                     "description": "Information about a public key you add to CloudFront to use with features like field-level encryption.",
@@ -3524,12 +3488,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "EndPoints",
-                  "Fields",
-                  "Name",
-                  "SamplingRate"
-                ],
+                "required": ["EndPoints", "Fields", "Name", "SamplingRate"],
                 "properties": {
                   "EndPoints": {
                     "description": "Contains information about the Amazon Kinesis data stream where you are sending real-time log data.",
@@ -3803,9 +3762,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "StreamingDistributionConfig"
-                ],
+                "required": ["StreamingDistributionConfig"],
                 "properties": {
                   "StreamingDistributionConfig": {
                     "description": "The RTMP distribution's configuration information.",
@@ -4124,9 +4081,7 @@
             "required": true,
             "schema": {
               "type": "boolean",
-              "enum": [
-                true
-              ]
+              "enum": [true]
             },
             "allowEmptyValue": true
           }
@@ -4137,9 +4092,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "StreamingDistributionConfigWithTags"
-                ],
+                "required": ["StreamingDistributionConfigWithTags"],
                 "properties": {
                   "StreamingDistributionConfigWithTags": {
                     "description": "A streaming distribution Configuration and a list of tags to be associated with the streaming distribution.",
@@ -4511,9 +4464,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "CachePolicyConfig"
-                ],
+                "required": ["CachePolicyConfig"],
                 "properties": {
                   "CachePolicyConfig": {
                     "description": "<p>A cache policy configuration.</p> <p>This configuration determines the following:</p> <ul> <li> <p>The values that CloudFront includes in the cache key. These values can include HTTP headers, cookies, and URL query strings. CloudFront uses the cache key to find an object in its cache that it can return to the viewer.</p> </li> <li> <p>The default, minimum, and maximum time to live (TTL) values that you want objects to stay in the CloudFront cache.</p> </li> </ul> <p>The headers, cookies, and query strings that are included in the cache key are automatically included in requests that CloudFront sends to the origin. CloudFront sends a request when it can’t find a valid object in its cache that matches the request’s cache key. If you want to send values to the origin but <i>not</i> include them in the cache key, use <code>OriginRequestPolicy</code>.</p>",
@@ -5514,9 +5465,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "OriginRequestPolicyConfig"
-                ],
+                "required": ["OriginRequestPolicyConfig"],
                 "properties": {
                   "OriginRequestPolicyConfig": {
                     "description": "<p>An origin request policy configuration.</p> <p>This configuration determines the values that CloudFront includes in requests that it sends to the origin. Each request that CloudFront sends to the origin includes the following:</p> <ul> <li> <p>The request body and the URL path (without the domain name) from the viewer request.</p> </li> <li> <p>The headers that CloudFront automatically includes in every origin request, including <code>Host</code>, <code>User-Agent</code>, and <code>X-Amz-Cf-Id</code>.</p> </li> <li> <p>All HTTP headers, cookies, and URL query strings that are specified in the cache policy or the origin request policy. These can include items from the viewer request and, in the case of headers, additional ones that are added by CloudFront.</p> </li> </ul> <p>CloudFront sends a request when it can’t find an object in its cache that matches the request. If you want to send values to the origin and also include them in the cache key, use <code>CachePolicy</code>.</p>",
@@ -6250,9 +6199,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "CloudFrontOriginAccessIdentityConfig"
-                ],
+                "required": ["CloudFrontOriginAccessIdentityConfig"],
                 "properties": {
                   "CloudFrontOriginAccessIdentityConfig": {
                     "description": "Origin access identity configuration. Send a <code>GET</code> request to the <code>/<i>CloudFront API version</i>/CloudFront/identity ID/config</code> resource. ",
@@ -6971,9 +6918,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "DistributionConfig"
-                ],
+                "required": ["DistributionConfig"],
                 "properties": {
                   "DistributionConfig": {
                     "description": "A distribution configuration.",
@@ -7382,9 +7327,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "FieldLevelEncryptionConfig"
-                ],
+                "required": ["FieldLevelEncryptionConfig"],
                 "properties": {
                   "FieldLevelEncryptionConfig": {
                     "description": "A complex data type that includes the profile configurations specified for field-level encryption. ",
@@ -7673,9 +7616,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "FieldLevelEncryptionProfileConfig"
-                ],
+                "required": ["FieldLevelEncryptionProfileConfig"],
                 "properties": {
                   "FieldLevelEncryptionProfileConfig": {
                     "description": "A complex data type of profiles for the field-level encryption.",
@@ -8079,9 +8020,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "PublicKeyConfig"
-                ],
+                "required": ["PublicKeyConfig"],
                 "properties": {
                   "PublicKeyConfig": {
                     "description": "Information about a public key you add to CloudFront to use with features like field-level encryption.",
@@ -8473,9 +8412,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "StreamingDistributionConfig"
-                ],
+                "required": ["StreamingDistributionConfig"],
                 "properties": {
                   "StreamingDistributionConfig": {
                     "description": "The RTMP distribution's configuration information.",
@@ -9105,9 +9042,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "Tag"
-              ]
+              "enum": ["Tag"]
             }
           }
         ],
@@ -9117,9 +9052,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Tags"
-                ],
+                "required": ["Tags"],
                 "properties": {
                   "Tags": {
                     "description": " A complex type that contains zero or more <code>Tag</code> elements.",
@@ -9234,9 +9167,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "Untag"
-              ]
+              "enum": ["Untag"]
             }
           }
         ],
@@ -9246,9 +9177,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "TagKeys"
-                ],
+                "required": ["TagKeys"],
                 "properties": {
                   "TagKeys": {
                     "description": " A complex type that contains zero or more <code>Tag</code> elements.",
@@ -9480,9 +9409,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "KeyGroupConfig"
-                ],
+                "required": ["KeyGroupConfig"],
                 "properties": {
                   "KeyGroupConfig": {
                     "description": "<p>A key group configuration.</p> <p>A key group contains a list of public keys that you can use with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">CloudFront signed URLs and signed cookies</a>.</p>",
@@ -9831,9 +9758,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "KeyGroupConfig"
-                ],
+                "required": ["KeyGroupConfig"],
                 "properties": {
                   "KeyGroupConfig": {
                     "description": "<p>A key group configuration.</p> <p>A key group contains a list of public keys that you can use with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">CloudFront signed URLs and signed cookies</a>.</p>",
@@ -10211,11 +10136,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name",
-                  "FunctionConfig",
-                  "FunctionCode"
-                ],
+                "required": ["Name", "FunctionConfig", "FunctionCode"],
                 "properties": {
                   "Name": {
                     "description": "A name to identify the function.",
@@ -10348,10 +10269,7 @@
             "description": "An optional filter to return only the functions that are in the specified stage, either <code>DEVELOPMENT</code> or <code>LIVE</code>.",
             "schema": {
               "type": "string",
-              "enum": [
-                "DEVELOPMENT",
-                "LIVE"
-              ]
+              "enum": ["DEVELOPMENT", "LIVE"]
             }
           }
         ],
@@ -10563,10 +10481,7 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "FunctionConfig",
-                  "FunctionCode"
-                ],
+                "required": ["FunctionConfig", "FunctionCode"],
                 "properties": {
                   "FunctionConfig": {
                     "description": "Contains configuration information about a CloudFront function.",
@@ -10662,10 +10577,7 @@
             "description": "The function’s stage, either <code>DEVELOPMENT</code> or <code>LIVE</code>.",
             "schema": {
               "type": "string",
-              "enum": [
-                "DEVELOPMENT",
-                "LIVE"
-              ]
+              "enum": ["DEVELOPMENT", "LIVE"]
             }
           }
         ],
@@ -10748,10 +10660,7 @@
             "description": "The function’s stage, either <code>DEVELOPMENT</code> or <code>LIVE</code>.",
             "schema": {
               "type": "string",
-              "enum": [
-                "DEVELOPMENT",
-                "LIVE"
-              ]
+              "enum": ["DEVELOPMENT", "LIVE"]
             }
           }
         ],
@@ -11088,17 +10997,12 @@
             "text/xml": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "EventObject"
-                ],
+                "required": ["EventObject"],
                 "properties": {
                   "Stage": {
                     "description": "The stage of the function that you are testing, either <code>DEVELOPMENT</code> or <code>LIVE</code>.",
                     "type": "string",
-                    "enum": [
-                      "DEVELOPMENT",
-                      "LIVE"
-                    ]
+                    "enum": ["DEVELOPMENT", "LIVE"]
                   },
                   "EventObject": {
                     "description": "The event object to test the function with. For more information about the structure of the event object, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/managing-functions.html#test-function\">Testing functions</a> in the <i>Amazon CloudFront Developer Guide</i>.",
@@ -11237,12 +11141,7 @@
       },
       "ParametersInCacheKeyAndForwardedToOrigin": {
         "type": "object",
-        "required": [
-          "EnableAcceptEncodingGzip",
-          "HeadersConfig",
-          "CookiesConfig",
-          "QueryStringsConfig"
-        ],
+        "required": ["EnableAcceptEncodingGzip", "HeadersConfig", "CookiesConfig", "QueryStringsConfig"],
         "properties": {
           "EnableAcceptEncodingGzip": {
             "allOf": [
@@ -11342,9 +11241,7 @@
       },
       "Aliases": {
         "type": "object",
-        "required": [
-          "Quantity"
-        ],
+        "required": ["Quantity"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -11371,10 +11268,7 @@
       },
       "Origins": {
         "type": "object",
-        "required": [
-          "Quantity",
-          "Items"
-        ],
+        "required": ["Quantity", "Items"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -11401,9 +11295,7 @@
       },
       "OriginGroups": {
         "type": "object",
-        "required": [
-          "Quantity"
-        ],
+        "required": ["Quantity"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -11430,11 +11322,7 @@
       },
       "DefaultCacheBehavior": {
         "type": "object",
-        "required": [
-          "TargetOriginId",
-          "TrustedSigners",
-          "ViewerProtocolPolicy"
-        ],
+        "required": ["TargetOriginId", "TrustedSigners", "ViewerProtocolPolicy"],
         "properties": {
           "TargetOriginId": {
             "allOf": [
@@ -11608,9 +11496,7 @@
       },
       "CacheBehaviors": {
         "type": "object",
-        "required": [
-          "Quantity"
-        ],
+        "required": ["Quantity"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -11637,9 +11523,7 @@
       },
       "CustomErrorResponses": {
         "type": "object",
-        "required": [
-          "Quantity"
-        ],
+        "required": ["Quantity"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -11670,12 +11554,7 @@
       },
       "LoggingConfig": {
         "type": "object",
-        "required": [
-          "Enabled",
-          "IncludeCookies",
-          "Bucket",
-          "Prefix"
-        ],
+        "required": ["Enabled", "IncludeCookies", "Bucket", "Prefix"],
         "properties": {
           "Enabled": {
             "allOf": [
@@ -11722,11 +11601,7 @@
       },
       "PriceClass": {
         "type": "string",
-        "enum": [
-          "PriceClass_100",
-          "PriceClass_200",
-          "PriceClass_All"
-        ]
+        "enum": ["PriceClass_100", "PriceClass_200", "PriceClass_All"]
       },
       "boolean": {
         "type": "boolean"
@@ -11811,9 +11686,7 @@
       },
       "Restrictions": {
         "type": "object",
-        "required": [
-          "GeoRestriction"
-        ],
+        "required": ["GeoRestriction"],
         "properties": {
           "GeoRestriction": {
             "allOf": [
@@ -11830,10 +11703,7 @@
       },
       "HttpVersion": {
         "type": "string",
-        "enum": [
-          "http1.1",
-          "http2"
-        ]
+        "enum": ["http1.1", "http2"]
       },
       "CNAMEAlreadyExists": {},
       "DistributionAlreadyExists": {},
@@ -11898,13 +11768,7 @@
       },
       "DistributionConfig": {
         "type": "object",
-        "required": [
-          "CallerReference",
-          "Origins",
-          "DefaultCacheBehavior",
-          "Comment",
-          "Enabled"
-        ],
+        "required": ["CallerReference", "Origins", "DefaultCacheBehavior", "Comment", "Enabled"],
         "properties": {
           "CallerReference": {
             "allOf": [
@@ -12113,9 +11977,7 @@
       },
       "QueryArgProfileConfig": {
         "type": "object",
-        "required": [
-          "ForwardWhenQueryArgProfileIsUnknown"
-        ],
+        "required": ["ForwardWhenQueryArgProfileIsUnknown"],
         "properties": {
           "ForwardWhenQueryArgProfileIsUnknown": {
             "allOf": [
@@ -12142,9 +12004,7 @@
       },
       "ContentTypeProfileConfig": {
         "type": "object",
-        "required": [
-          "ForwardWhenContentTypeIsUnknown"
-        ],
+        "required": ["ForwardWhenContentTypeIsUnknown"],
         "properties": {
           "ForwardWhenContentTypeIsUnknown": {
             "allOf": [
@@ -12192,9 +12052,7 @@
       },
       "EncryptionEntities": {
         "type": "object",
-        "required": [
-          "Quantity"
-        ],
+        "required": ["Quantity"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -12243,9 +12101,7 @@
       },
       "Paths": {
         "type": "object",
-        "required": [
-          "Quantity"
-        ],
+        "required": ["Quantity"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -12290,9 +12146,7 @@
       },
       "RealtimeMetricsSubscriptionConfig": {
         "type": "object",
-        "required": [
-          "RealtimeMetricsSubscriptionStatus"
-        ],
+        "required": ["RealtimeMetricsSubscriptionStatus"],
         "properties": {
           "RealtimeMetricsSubscriptionStatus": {
             "allOf": [
@@ -12324,9 +12178,7 @@
       },
       "OriginRequestPolicyHeadersConfig": {
         "type": "object",
-        "required": [
-          "HeaderBehavior"
-        ],
+        "required": ["HeaderBehavior"],
         "properties": {
           "HeaderBehavior": {
             "allOf": [
@@ -12346,9 +12198,7 @@
       },
       "OriginRequestPolicyCookiesConfig": {
         "type": "object",
-        "required": [
-          "CookieBehavior"
-        ],
+        "required": ["CookieBehavior"],
         "properties": {
           "CookieBehavior": {
             "allOf": [
@@ -12368,9 +12218,7 @@
       },
       "OriginRequestPolicyQueryStringsConfig": {
         "type": "object",
-        "required": [
-          "QueryStringBehavior"
-        ],
+        "required": ["QueryStringBehavior"],
         "properties": {
           "QueryStringBehavior": {
             "allOf": [
@@ -12434,9 +12282,7 @@
       },
       "EndPoint": {
         "type": "object",
-        "required": [
-          "StreamType"
-        ],
+        "required": ["StreamType"],
         "properties": {
           "StreamType": {
             "allOf": [
@@ -12481,10 +12327,7 @@
       },
       "S3Origin": {
         "type": "object",
-        "required": [
-          "DomainName",
-          "OriginAccessIdentity"
-        ],
+        "required": ["DomainName", "OriginAccessIdentity"],
         "properties": {
           "DomainName": {
             "allOf": [
@@ -12511,11 +12354,7 @@
       },
       "StreamingLoggingConfig": {
         "type": "object",
-        "required": [
-          "Enabled",
-          "Bucket",
-          "Prefix"
-        ],
+        "required": ["Enabled", "Bucket", "Prefix"],
         "properties": {
           "Enabled": {
             "allOf": [
@@ -12552,10 +12391,7 @@
       },
       "TrustedSigners": {
         "type": "object",
-        "required": [
-          "Enabled",
-          "Quantity"
-        ],
+        "required": ["Enabled", "Quantity"],
         "properties": {
           "Enabled": {
             "allOf": [
@@ -12611,13 +12447,7 @@
       },
       "StreamingDistributionConfig": {
         "type": "object",
-        "required": [
-          "CallerReference",
-          "S3Origin",
-          "Comment",
-          "TrustedSigners",
-          "Enabled"
-        ],
+        "required": ["CallerReference", "S3Origin", "Comment", "TrustedSigners", "Enabled"],
         "properties": {
           "CallerReference": {
             "allOf": [
@@ -13224,9 +13054,7 @@
       },
       "ListTagsForResourceResult": {
         "type": "object",
-        "required": [
-          "Tags"
-        ],
+        "required": ["Tags"],
         "properties": {
           "Tags": {
             "allOf": [
@@ -13432,10 +13260,7 @@
       },
       "ActiveTrustedSigners": {
         "type": "object",
-        "required": [
-          "Enabled",
-          "Quantity"
-        ],
+        "required": ["Enabled", "Quantity"],
         "properties": {
           "Enabled": {
             "allOf": [
@@ -13472,11 +13297,7 @@
       },
       "ICPRecordalStatus": {
         "type": "string",
-        "enum": [
-          "APPROVED",
-          "SUSPENDED",
-          "PENDING"
-        ]
+        "enum": ["APPROVED", "SUSPENDED", "PENDING"]
       },
       "AliasICPRecordal": {
         "type": "object",
@@ -13551,10 +13372,7 @@
       },
       "CachedMethods": {
         "type": "object",
-        "required": [
-          "Quantity",
-          "Items"
-        ],
+        "required": ["Quantity", "Items"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -13581,10 +13399,7 @@
       },
       "AllowedMethods": {
         "type": "object",
-        "required": [
-          "Quantity",
-          "Items"
-        ],
+        "required": ["Quantity", "Items"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -13629,17 +13444,11 @@
       },
       "ViewerProtocolPolicy": {
         "type": "string",
-        "enum": [
-          "allow-all",
-          "https-only",
-          "redirect-to-https"
-        ]
+        "enum": ["allow-all", "https-only", "redirect-to-https"]
       },
       "LambdaFunctionAssociations": {
         "type": "object",
-        "required": [
-          "Quantity"
-        ],
+        "required": ["Quantity"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -13666,10 +13475,7 @@
       },
       "ForwardedValues": {
         "type": "object",
-        "required": [
-          "QueryString",
-          "Cookies"
-        ],
+        "required": ["QueryString", "Cookies"],
         "properties": {
           "QueryString": {
             "allOf": [
@@ -13716,12 +13522,7 @@
       },
       "CacheBehavior": {
         "type": "object",
-        "required": [
-          "PathPattern",
-          "TargetOriginId",
-          "TrustedSigners",
-          "ViewerProtocolPolicy"
-        ],
+        "required": ["PathPattern", "TargetOriginId", "TrustedSigners", "ViewerProtocolPolicy"],
         "properties": {
           "PathPattern": {
             "allOf": [
@@ -13924,10 +13725,7 @@
       },
       "CachePolicyConfig": {
         "type": "object",
-        "required": [
-          "Name",
-          "MinTTL"
-        ],
+        "required": ["Name", "MinTTL"],
         "properties": {
           "Comment": {
             "allOf": [
@@ -13994,11 +13792,7 @@
       },
       "CachePolicy": {
         "type": "object",
-        "required": [
-          "Id",
-          "LastModifiedTime",
-          "CachePolicyConfig"
-        ],
+        "required": ["Id", "LastModifiedTime", "CachePolicyConfig"],
         "properties": {
           "Id": {
             "allOf": [
@@ -14035,18 +13829,11 @@
       },
       "CachePolicyCookieBehavior": {
         "type": "string",
-        "enum": [
-          "none",
-          "whitelist",
-          "allExcept",
-          "all"
-        ]
+        "enum": ["none", "whitelist", "allExcept", "all"]
       },
       "CookieNames": {
         "type": "object",
-        "required": [
-          "Quantity"
-        ],
+        "required": ["Quantity"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -14073,9 +13860,7 @@
       },
       "CachePolicyCookiesConfig": {
         "type": "object",
-        "required": [
-          "CookieBehavior"
-        ],
+        "required": ["CookieBehavior"],
         "properties": {
           "CookieBehavior": {
             "allOf": [
@@ -14095,16 +13880,11 @@
       },
       "CachePolicyHeaderBehavior": {
         "type": "string",
-        "enum": [
-          "none",
-          "whitelist"
-        ]
+        "enum": ["none", "whitelist"]
       },
       "Headers": {
         "type": "object",
-        "required": [
-          "Quantity"
-        ],
+        "required": ["Quantity"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -14131,9 +13911,7 @@
       },
       "CachePolicyHeadersConfig": {
         "type": "object",
-        "required": [
-          "HeaderBehavior"
-        ],
+        "required": ["HeaderBehavior"],
         "properties": {
           "HeaderBehavior": {
             "allOf": [
@@ -14168,10 +13946,7 @@
       },
       "CachePolicyList": {
         "type": "object",
-        "required": [
-          "MaxItems",
-          "Quantity"
-        ],
+        "required": ["MaxItems", "Quantity"],
         "properties": {
           "NextMarker": {
             "allOf": [
@@ -14218,18 +13993,11 @@
       },
       "CachePolicyQueryStringBehavior": {
         "type": "string",
-        "enum": [
-          "none",
-          "whitelist",
-          "allExcept",
-          "all"
-        ]
+        "enum": ["none", "whitelist", "allExcept", "all"]
       },
       "QueryStringNames": {
         "type": "object",
-        "required": [
-          "Quantity"
-        ],
+        "required": ["Quantity"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -14256,9 +14024,7 @@
       },
       "CachePolicyQueryStringsConfig": {
         "type": "object",
-        "required": [
-          "QueryStringBehavior"
-        ],
+        "required": ["QueryStringBehavior"],
         "properties": {
           "QueryStringBehavior": {
             "allOf": [
@@ -14285,17 +14051,11 @@
       },
       "CachePolicyType": {
         "type": "string",
-        "enum": [
-          "managed",
-          "custom"
-        ]
+        "enum": ["managed", "custom"]
       },
       "CachePolicySummary": {
         "type": "object",
-        "required": [
-          "Type",
-          "CachePolicy"
-        ],
+        "required": ["Type", "CachePolicy"],
         "properties": {
           "Type": {
             "allOf": [
@@ -14322,18 +14082,11 @@
       },
       "CertificateSource": {
         "type": "string",
-        "enum": [
-          "cloudfront",
-          "iam",
-          "acm"
-        ]
+        "enum": ["cloudfront", "iam", "acm"]
       },
       "CloudFrontOriginAccessIdentityConfig": {
         "type": "object",
-        "required": [
-          "CallerReference",
-          "Comment"
-        ],
+        "required": ["CallerReference", "Comment"],
         "properties": {
           "CallerReference": {
             "allOf": [
@@ -14360,10 +14113,7 @@
       },
       "CloudFrontOriginAccessIdentity": {
         "type": "object",
-        "required": [
-          "Id",
-          "S3CanonicalUserId"
-        ],
+        "required": ["Id", "S3CanonicalUserId"],
         "properties": {
           "Id": {
             "allOf": [
@@ -14415,12 +14165,7 @@
       },
       "CloudFrontOriginAccessIdentityList": {
         "type": "object",
-        "required": [
-          "Marker",
-          "MaxItems",
-          "IsTruncated",
-          "Quantity"
-        ],
+        "required": ["Marker", "MaxItems", "IsTruncated", "Quantity"],
         "properties": {
           "Marker": {
             "allOf": [
@@ -14487,11 +14232,7 @@
       },
       "CloudFrontOriginAccessIdentitySummary": {
         "type": "object",
-        "required": [
-          "Id",
-          "S3CanonicalUserId",
-          "Comment"
-        ],
+        "required": ["Id", "S3CanonicalUserId", "Comment"],
         "properties": {
           "Id": {
             "allOf": [
@@ -14528,16 +14269,11 @@
       },
       "Format": {
         "type": "string",
-        "enum": [
-          "URLEncoded"
-        ]
+        "enum": ["URLEncoded"]
       },
       "ContentTypeProfile": {
         "type": "object",
-        "required": [
-          "Format",
-          "ContentType"
-        ],
+        "required": ["Format", "ContentType"],
         "properties": {
           "Format": {
             "allOf": [
@@ -14574,9 +14310,7 @@
       },
       "ContentTypeProfiles": {
         "type": "object",
-        "required": [
-          "Quantity"
-        ],
+        "required": ["Quantity"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -14633,17 +14367,11 @@
       },
       "ItemSelection": {
         "type": "string",
-        "enum": [
-          "none",
-          "whitelist",
-          "all"
-        ]
+        "enum": ["none", "whitelist", "all"]
       },
       "CookiePreference": {
         "type": "object",
-        "required": [
-          "Forward"
-        ],
+        "required": ["Forward"],
         "properties": {
           "Forward": {
             "allOf": [
@@ -14786,9 +14514,7 @@
       },
       "FieldLevelEncryptionConfig": {
         "type": "object",
-        "required": [
-          "CallerReference"
-        ],
+        "required": ["CallerReference"],
         "properties": {
           "CallerReference": {
             "allOf": [
@@ -14835,11 +14561,7 @@
       },
       "FieldLevelEncryption": {
         "type": "object",
-        "required": [
-          "Id",
-          "LastModifiedTime",
-          "FieldLevelEncryptionConfig"
-        ],
+        "required": ["Id", "LastModifiedTime", "FieldLevelEncryptionConfig"],
         "properties": {
           "Id": {
             "allOf": [
@@ -14876,11 +14598,7 @@
       },
       "FieldLevelEncryptionProfileConfig": {
         "type": "object",
-        "required": [
-          "Name",
-          "CallerReference",
-          "EncryptionEntities"
-        ],
+        "required": ["Name", "CallerReference", "EncryptionEntities"],
         "properties": {
           "Name": {
             "allOf": [
@@ -14927,11 +14645,7 @@
       },
       "FieldLevelEncryptionProfile": {
         "type": "object",
-        "required": [
-          "Id",
-          "LastModifiedTime",
-          "FieldLevelEncryptionProfileConfig"
-        ],
+        "required": ["Id", "LastModifiedTime", "FieldLevelEncryptionProfileConfig"],
         "properties": {
           "Id": {
             "allOf": [
@@ -14968,10 +14682,7 @@
       },
       "InvalidationBatch": {
         "type": "object",
-        "required": [
-          "Paths",
-          "CallerReference"
-        ],
+        "required": ["Paths", "CallerReference"],
         "properties": {
           "Paths": {
             "allOf": [
@@ -14998,12 +14709,7 @@
       },
       "Invalidation": {
         "type": "object",
-        "required": [
-          "Id",
-          "Status",
-          "CreateTime",
-          "InvalidationBatch"
-        ],
+        "required": ["Id", "Status", "CreateTime", "InvalidationBatch"],
         "properties": {
           "Id": {
             "allOf": [
@@ -15066,12 +14772,7 @@
       },
       "OriginRequestPolicyConfig": {
         "type": "object",
-        "required": [
-          "Name",
-          "HeadersConfig",
-          "CookiesConfig",
-          "QueryStringsConfig"
-        ],
+        "required": ["Name", "HeadersConfig", "CookiesConfig", "QueryStringsConfig"],
         "properties": {
           "Comment": {
             "allOf": [
@@ -15128,11 +14829,7 @@
       },
       "OriginRequestPolicy": {
         "type": "object",
-        "required": [
-          "Id",
-          "LastModifiedTime",
-          "OriginRequestPolicyConfig"
-        ],
+        "required": ["Id", "LastModifiedTime", "OriginRequestPolicyConfig"],
         "properties": {
           "Id": {
             "allOf": [
@@ -15169,11 +14866,7 @@
       },
       "PublicKeyConfig": {
         "type": "object",
-        "required": [
-          "CallerReference",
-          "Name",
-          "EncodedKey"
-        ],
+        "required": ["CallerReference", "Name", "EncodedKey"],
         "properties": {
           "CallerReference": {
             "allOf": [
@@ -15220,11 +14913,7 @@
       },
       "PublicKey": {
         "type": "object",
-        "required": [
-          "Id",
-          "CreatedTime",
-          "PublicKeyConfig"
-        ],
+        "required": ["Id", "CreatedTime", "PublicKeyConfig"],
         "properties": {
           "Id": {
             "allOf": [
@@ -15282,13 +14971,7 @@
       },
       "RealtimeLogConfig": {
         "type": "object",
-        "required": [
-          "ARN",
-          "Name",
-          "SamplingRate",
-          "EndPoints",
-          "Fields"
-        ],
+        "required": ["ARN", "Name", "SamplingRate", "EndPoints", "Fields"],
         "properties": {
           "ARN": {
             "allOf": [
@@ -15345,14 +15028,7 @@
       },
       "StreamingDistribution": {
         "type": "object",
-        "required": [
-          "Id",
-          "ARN",
-          "Status",
-          "DomainName",
-          "ActiveTrustedSigners",
-          "StreamingDistributionConfig"
-        ],
+        "required": ["Id", "ARN", "Status", "DomainName", "ActiveTrustedSigners", "StreamingDistributionConfig"],
         "properties": {
           "Id": {
             "allOf": [
@@ -15429,9 +15105,7 @@
       },
       "CustomErrorResponse": {
         "type": "object",
-        "required": [
-          "ErrorCode"
-        ],
+        "required": ["ErrorCode"],
         "properties": {
           "ErrorCode": {
             "allOf": [
@@ -15508,9 +15182,7 @@
       },
       "CustomHeaders": {
         "type": "object",
-        "required": [
-          "Quantity"
-        ],
+        "required": ["Quantity"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -15537,18 +15209,11 @@
       },
       "OriginProtocolPolicy": {
         "type": "string",
-        "enum": [
-          "http-only",
-          "match-viewer",
-          "https-only"
-        ]
+        "enum": ["http-only", "match-viewer", "https-only"]
       },
       "OriginSslProtocols": {
         "type": "object",
-        "required": [
-          "Quantity",
-          "Items"
-        ],
+        "required": ["Quantity", "Items"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -15575,11 +15240,7 @@
       },
       "CustomOriginConfig": {
         "type": "object",
-        "required": [
-          "HTTPPort",
-          "HTTPSPort",
-          "OriginProtocolPolicy"
-        ],
+        "required": ["HTTPPort", "HTTPSPort", "OriginProtocolPolicy"],
         "properties": {
           "HTTPPort": {
             "allOf": [
@@ -15661,12 +15322,7 @@
       },
       "DistributionIdList": {
         "type": "object",
-        "required": [
-          "Marker",
-          "MaxItems",
-          "IsTruncated",
-          "Quantity"
-        ],
+        "required": ["Marker", "MaxItems", "IsTruncated", "Quantity"],
         "properties": {
           "Marker": {
             "allOf": [
@@ -15748,12 +15404,7 @@
       },
       "DistributionList": {
         "type": "object",
-        "required": [
-          "Marker",
-          "MaxItems",
-          "IsTruncated",
-          "Quantity"
-        ],
+        "required": ["Marker", "MaxItems", "IsTruncated", "Quantity"],
         "properties": {
           "Marker": {
             "allOf": [
@@ -16061,9 +15712,7 @@
       },
       "FieldPatterns": {
         "type": "object",
-        "required": [
-          "Quantity"
-        ],
+        "required": ["Quantity"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -16090,11 +15739,7 @@
       },
       "EncryptionEntity": {
         "type": "object",
-        "required": [
-          "PublicKeyId",
-          "ProviderId",
-          "FieldPatterns"
-        ],
+        "required": ["PublicKeyId", "ProviderId", "FieldPatterns"],
         "properties": {
           "PublicKeyId": {
             "allOf": [
@@ -16131,10 +15776,7 @@
       },
       "KinesisStreamConfig": {
         "type": "object",
-        "required": [
-          "RoleARN",
-          "StreamARN"
-        ],
+        "required": ["RoleARN", "StreamARN"],
         "properties": {
           "RoleARN": {
             "allOf": [
@@ -16161,12 +15803,7 @@
       },
       "EventType": {
         "type": "string",
-        "enum": [
-          "viewer-request",
-          "viewer-response",
-          "origin-request",
-          "origin-response"
-        ]
+        "enum": ["viewer-request", "viewer-response", "origin-request", "origin-response"]
       },
       "FieldLevelEncryptionSummaryList": {
         "type": "array",
@@ -16185,10 +15822,7 @@
       },
       "FieldLevelEncryptionList": {
         "type": "object",
-        "required": [
-          "MaxItems",
-          "Quantity"
-        ],
+        "required": ["MaxItems", "Quantity"],
         "properties": {
           "NextMarker": {
             "allOf": [
@@ -16250,10 +15884,7 @@
       },
       "FieldLevelEncryptionProfileList": {
         "type": "object",
-        "required": [
-          "MaxItems",
-          "Quantity"
-        ],
+        "required": ["MaxItems", "Quantity"],
         "properties": {
           "NextMarker": {
             "allOf": [
@@ -16300,12 +15931,7 @@
       },
       "FieldLevelEncryptionProfileSummary": {
         "type": "object",
-        "required": [
-          "Id",
-          "LastModifiedTime",
-          "Name",
-          "EncryptionEntities"
-        ],
+        "required": ["Id", "LastModifiedTime", "Name", "EncryptionEntities"],
         "properties": {
           "Id": {
             "allOf": [
@@ -16362,10 +15988,7 @@
       },
       "FieldLevelEncryptionSummary": {
         "type": "object",
-        "required": [
-          "Id",
-          "LastModifiedTime"
-        ],
+        "required": ["Id", "LastModifiedTime"],
         "properties": {
           "Id": {
             "allOf": [
@@ -16437,9 +16060,7 @@
       },
       "QueryStringCacheKeys": {
         "type": "object",
-        "required": [
-          "Quantity"
-        ],
+        "required": ["Quantity"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -16466,11 +16087,7 @@
       },
       "GeoRestrictionType": {
         "type": "string",
-        "enum": [
-          "blacklist",
-          "whitelist",
-          "none"
-        ]
+        "enum": ["blacklist", "whitelist", "none"]
       },
       "LocationList": {
         "type": "array",
@@ -16489,10 +16106,7 @@
       },
       "GeoRestriction": {
         "type": "object",
-        "required": [
-          "RestrictionType",
-          "Quantity"
-        ],
+        "required": ["RestrictionType", "Quantity"],
         "properties": {
           "RestrictionType": {
             "allOf": [
@@ -16559,12 +16173,7 @@
       },
       "InvalidationList": {
         "type": "object",
-        "required": [
-          "Marker",
-          "MaxItems",
-          "IsTruncated",
-          "Quantity"
-        ],
+        "required": ["Marker", "MaxItems", "IsTruncated", "Quantity"],
         "properties": {
           "Marker": {
             "allOf": [
@@ -16631,11 +16240,7 @@
       },
       "InvalidationSummary": {
         "type": "object",
-        "required": [
-          "Id",
-          "CreateTime",
-          "Status"
-        ],
+        "required": ["Id", "CreateTime", "Status"],
         "properties": {
           "Id": {
             "allOf": [
@@ -16687,9 +16292,7 @@
       },
       "KeyPairIds": {
         "type": "object",
-        "required": [
-          "Quantity"
-        ],
+        "required": ["Quantity"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -16719,10 +16322,7 @@
       },
       "LambdaFunctionAssociation": {
         "type": "object",
-        "required": [
-          "LambdaFunctionARN",
-          "EventType"
-        ],
+        "required": ["LambdaFunctionARN", "EventType"],
         "properties": {
           "LambdaFunctionARN": {
             "allOf": [
@@ -16774,17 +16374,11 @@
       },
       "OriginRequestPolicyType": {
         "type": "string",
-        "enum": [
-          "managed",
-          "custom"
-        ]
+        "enum": ["managed", "custom"]
       },
       "OriginRequestPolicyList": {
         "type": "object",
-        "required": [
-          "MaxItems",
-          "Quantity"
-        ],
+        "required": ["MaxItems", "Quantity"],
         "properties": {
           "NextMarker": {
             "allOf": [
@@ -16831,10 +16425,7 @@
       },
       "PublicKeyList": {
         "type": "object",
-        "required": [
-          "MaxItems",
-          "Quantity"
-        ],
+        "required": ["MaxItems", "Quantity"],
         "properties": {
           "NextMarker": {
             "allOf": [
@@ -16881,11 +16472,7 @@
       },
       "RealtimeLogConfigs": {
         "type": "object",
-        "required": [
-          "MaxItems",
-          "IsTruncated",
-          "Marker"
-        ],
+        "required": ["MaxItems", "IsTruncated", "Marker"],
         "properties": {
           "MaxItems": {
             "allOf": [
@@ -16942,12 +16529,7 @@
       },
       "StreamingDistributionList": {
         "type": "object",
-        "required": [
-          "Marker",
-          "MaxItems",
-          "IsTruncated",
-          "Quantity"
-        ],
+        "required": ["Marker", "MaxItems", "IsTruncated", "Quantity"],
         "properties": {
           "Marker": {
             "allOf": [
@@ -17014,33 +16596,15 @@
       },
       "Method": {
         "type": "string",
-        "enum": [
-          "GET",
-          "HEAD",
-          "POST",
-          "PUT",
-          "PATCH",
-          "OPTIONS",
-          "DELETE"
-        ]
+        "enum": ["GET", "HEAD", "POST", "PUT", "PATCH", "OPTIONS", "DELETE"]
       },
       "MinimumProtocolVersion": {
         "type": "string",
-        "enum": [
-          "SSLv3",
-          "TLSv1",
-          "TLSv1_2016",
-          "TLSv1.1_2016",
-          "TLSv1.2_2018",
-          "TLSv1.2_2019",
-          "TLSv1.2_2021"
-        ]
+        "enum": ["SSLv3", "TLSv1", "TLSv1_2016", "TLSv1.1_2016", "TLSv1.2_2018", "TLSv1.2_2019", "TLSv1.2_2021"]
       },
       "S3OriginConfig": {
         "type": "object",
-        "required": [
-          "OriginAccessIdentity"
-        ],
+        "required": ["OriginAccessIdentity"],
         "properties": {
           "OriginAccessIdentity": {
             "allOf": [
@@ -17057,10 +16621,7 @@
       },
       "Origin": {
         "type": "object",
-        "required": [
-          "Id",
-          "DomainName"
-        ],
+        "required": ["Id", "DomainName"],
         "properties": {
           "Id": {
             "allOf": [
@@ -17157,10 +16718,7 @@
       },
       "OriginCustomHeader": {
         "type": "object",
-        "required": [
-          "HeaderName",
-          "HeaderValue"
-        ],
+        "required": ["HeaderName", "HeaderValue"],
         "properties": {
           "HeaderName": {
             "allOf": [
@@ -17187,9 +16745,7 @@
       },
       "OriginGroupFailoverCriteria": {
         "type": "object",
-        "required": [
-          "StatusCodes"
-        ],
+        "required": ["StatusCodes"],
         "properties": {
           "StatusCodes": {
             "allOf": [
@@ -17206,10 +16762,7 @@
       },
       "OriginGroupMembers": {
         "type": "object",
-        "required": [
-          "Quantity",
-          "Items"
-        ],
+        "required": ["Quantity", "Items"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -17236,11 +16789,7 @@
       },
       "OriginGroup": {
         "type": "object",
-        "required": [
-          "Id",
-          "FailoverCriteria",
-          "Members"
-        ],
+        "required": ["Id", "FailoverCriteria", "Members"],
         "properties": {
           "Id": {
             "allOf": [
@@ -17277,10 +16826,7 @@
       },
       "StatusCodes": {
         "type": "object",
-        "required": [
-          "Quantity",
-          "Items"
-        ],
+        "required": ["Quantity", "Items"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -17323,9 +16869,7 @@
       },
       "OriginGroupMember": {
         "type": "object",
-        "required": [
-          "OriginId"
-        ],
+        "required": ["OriginId"],
         "properties": {
           "OriginId": {
             "allOf": [
@@ -17376,20 +16920,11 @@
       },
       "OriginRequestPolicyCookieBehavior": {
         "type": "string",
-        "enum": [
-          "none",
-          "whitelist",
-          "all"
-        ]
+        "enum": ["none", "whitelist", "all"]
       },
       "OriginRequestPolicyHeaderBehavior": {
         "type": "string",
-        "enum": [
-          "none",
-          "whitelist",
-          "allViewer",
-          "allViewerAndWhitelistCloudFront"
-        ]
+        "enum": ["none", "whitelist", "allViewer", "allViewerAndWhitelistCloudFront"]
       },
       "OriginRequestPolicySummaryList": {
         "type": "array",
@@ -17408,18 +16943,11 @@
       },
       "OriginRequestPolicyQueryStringBehavior": {
         "type": "string",
-        "enum": [
-          "none",
-          "whitelist",
-          "all"
-        ]
+        "enum": ["none", "whitelist", "all"]
       },
       "OriginRequestPolicySummary": {
         "type": "object",
-        "required": [
-          "Type",
-          "OriginRequestPolicy"
-        ],
+        "required": ["Type", "OriginRequestPolicy"],
         "properties": {
           "Type": {
             "allOf": [
@@ -17491,12 +17019,7 @@
       },
       "PublicKeySummary": {
         "type": "object",
-        "required": [
-          "Id",
-          "Name",
-          "CreatedTime",
-          "EncodedKey"
-        ],
+        "required": ["Id", "Name", "CreatedTime", "EncodedKey"],
         "properties": {
           "Id": {
             "allOf": [
@@ -17553,10 +17076,7 @@
       },
       "QueryArgProfile": {
         "type": "object",
-        "required": [
-          "QueryArg",
-          "ProfileId"
-        ],
+        "required": ["QueryArg", "ProfileId"],
         "properties": {
           "QueryArg": {
             "allOf": [
@@ -17583,9 +17103,7 @@
       },
       "QueryArgProfiles": {
         "type": "object",
-        "required": [
-          "Quantity"
-        ],
+        "required": ["Quantity"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -17663,18 +17181,11 @@
       },
       "RealtimeMetricsSubscriptionStatus": {
         "type": "string",
-        "enum": [
-          "Enabled",
-          "Disabled"
-        ]
+        "enum": ["Enabled", "Disabled"]
       },
       "SSLSupportMethod": {
         "type": "string",
-        "enum": [
-          "sni-only",
-          "vip",
-          "static-ip"
-        ]
+        "enum": ["sni-only", "vip", "static-ip"]
       },
       "Signer": {
         "type": "object",
@@ -17704,12 +17215,7 @@
       },
       "SslProtocol": {
         "type": "string",
-        "enum": [
-          "SSLv3",
-          "TLSv1",
-          "TLSv1.1",
-          "TLSv1.2"
-        ]
+        "enum": ["SSLv3", "TLSv1", "TLSv1.1", "TLSv1.2"]
       },
       "StatusCodeList": {
         "type": "array",
@@ -17887,9 +17393,7 @@
       },
       "Tag": {
         "type": "object",
-        "required": [
-          "Key"
-        ],
+        "required": ["Key"],
         "properties": {
           "Key": {
             "allOf": [
@@ -18036,10 +17540,7 @@
       },
       "ActiveTrustedKeyGroups": {
         "type": "object",
-        "required": [
-          "Enabled",
-          "Quantity"
-        ],
+        "required": ["Enabled", "Quantity"],
         "properties": {
           "Enabled": {
             "allOf": [
@@ -18076,10 +17577,7 @@
       },
       "TrustedKeyGroups": {
         "type": "object",
-        "required": [
-          "Enabled",
-          "Quantity"
-        ],
+        "required": ["Enabled", "Quantity"],
         "properties": {
           "Enabled": {
             "allOf": [
@@ -18116,10 +17614,7 @@
       },
       "KeyGroupConfig": {
         "type": "object",
-        "required": [
-          "Name",
-          "Items"
-        ],
+        "required": ["Name", "Items"],
         "properties": {
           "Name": {
             "allOf": [
@@ -18156,11 +17651,7 @@
       },
       "KeyGroup": {
         "type": "object",
-        "required": [
-          "Id",
-          "LastModifiedTime",
-          "KeyGroupConfig"
-        ],
+        "required": ["Id", "LastModifiedTime", "KeyGroupConfig"],
         "properties": {
           "Id": {
             "allOf": [
@@ -18231,10 +17722,7 @@
       },
       "KeyGroupList": {
         "type": "object",
-        "required": [
-          "MaxItems",
-          "Quantity"
-        ],
+        "required": ["MaxItems", "Quantity"],
         "properties": {
           "NextMarker": {
             "allOf": [
@@ -18281,9 +17769,7 @@
       },
       "KeyGroupSummary": {
         "type": "object",
-        "required": [
-          "KeyGroup"
-        ],
+        "required": ["KeyGroup"],
         "properties": {
           "KeyGroup": {
             "allOf": [
@@ -18300,9 +17786,7 @@
       },
       "OriginShield": {
         "type": "object",
-        "required": [
-          "Enabled"
-        ],
+        "required": ["Enabled"],
         "properties": {
           "Enabled": {
             "allOf": [
@@ -18366,9 +17850,7 @@
       },
       "FunctionRuntime": {
         "type": "string",
-        "enum": [
-          "cloudfront-js-1.0"
-        ]
+        "enum": ["cloudfront-js-1.0"]
       },
       "TooManyFunctions": {},
       "FunctionAlreadyExists": {},
@@ -18484,9 +17966,7 @@
       },
       "FunctionAssociations": {
         "type": "object",
-        "required": [
-          "Quantity"
-        ],
+        "required": ["Quantity"],
         "properties": {
           "Quantity": {
             "allOf": [
@@ -18616,10 +18096,7 @@
       },
       "FunctionConfig": {
         "type": "object",
-        "required": [
-          "Comment",
-          "Runtime"
-        ],
+        "required": ["Comment", "Runtime"],
         "properties": {
           "Comment": {
             "allOf": [
@@ -18652,11 +18129,7 @@
       },
       "FunctionSummary": {
         "type": "object",
-        "required": [
-          "Name",
-          "FunctionConfig",
-          "FunctionMetadata"
-        ],
+        "required": ["Name", "FunctionConfig", "FunctionMetadata"],
         "properties": {
           "Name": {
             "allOf": [
@@ -18703,10 +18176,7 @@
       },
       "FunctionStage": {
         "type": "string",
-        "enum": [
-          "DEVELOPMENT",
-          "LIVE"
-        ]
+        "enum": ["DEVELOPMENT", "LIVE"]
       },
       "FunctionARN": {
         "type": "string",
@@ -18715,10 +18185,7 @@
       },
       "FunctionAssociation": {
         "type": "object",
-        "required": [
-          "FunctionARN",
-          "EventType"
-        ],
+        "required": ["FunctionARN", "EventType"],
         "properties": {
           "FunctionARN": {
             "allOf": [
@@ -18781,10 +18248,7 @@
       },
       "FunctionList": {
         "type": "object",
-        "required": [
-          "MaxItems",
-          "Quantity"
-        ],
+        "required": ["MaxItems", "Quantity"],
         "properties": {
           "NextMarker": {
             "allOf": [
@@ -18831,10 +18295,7 @@
       },
       "FunctionMetadata": {
         "type": "object",
-        "required": [
-          "FunctionARN",
-          "LastModifiedTime"
-        ],
+        "required": ["FunctionARN", "LastModifiedTime"],
         "properties": {
           "FunctionARN": {
             "allOf": [

@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -219,9 +211,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "AnyScaleScalingPlannerFrontendService.CreateScalingPlan"
-              ]
+              "enum": ["AnyScaleScalingPlannerFrontendService.CreateScalingPlan"]
             }
           }
         ],
@@ -324,9 +314,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "AnyScaleScalingPlannerFrontendService.DeleteScalingPlan"
-              ]
+              "enum": ["AnyScaleScalingPlannerFrontendService.DeleteScalingPlan"]
             }
           }
         ],
@@ -429,9 +417,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "AnyScaleScalingPlannerFrontendService.DescribeScalingPlanResources"
-              ]
+              "enum": ["AnyScaleScalingPlannerFrontendService.DescribeScalingPlanResources"]
             }
           }
         ],
@@ -534,9 +520,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "AnyScaleScalingPlannerFrontendService.DescribeScalingPlans"
-              ]
+              "enum": ["AnyScaleScalingPlannerFrontendService.DescribeScalingPlans"]
             }
           }
         ],
@@ -619,9 +603,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "AnyScaleScalingPlannerFrontendService.GetScalingPlanResourceForecastData"
-              ]
+              "enum": ["AnyScaleScalingPlannerFrontendService.GetScalingPlanResourceForecastData"]
             }
           }
         ],
@@ -724,9 +706,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "AnyScaleScalingPlannerFrontendService.UpdateScalingPlan"
-              ]
+              "enum": ["AnyScaleScalingPlannerFrontendService.UpdateScalingPlan"]
             }
           }
         ],
@@ -835,9 +815,7 @@
     "schemas": {
       "CreateScalingPlanResponse": {
         "type": "object",
-        "required": [
-          "ScalingPlanVersion"
-        ],
+        "required": ["ScalingPlanVersion"],
         "properties": {
           "ScalingPlanVersion": {
             "allOf": [
@@ -853,11 +831,7 @@
       },
       "CreateScalingPlanRequest": {
         "type": "object",
-        "required": [
-          "ScalingPlanName",
-          "ApplicationSource",
-          "ScalingInstructions"
-        ],
+        "required": ["ScalingPlanName", "ApplicationSource", "ScalingInstructions"],
         "title": "CreateScalingPlanRequest",
         "properties": {
           "ScalingPlanName": {
@@ -902,10 +876,7 @@
       },
       "DeleteScalingPlanRequest": {
         "type": "object",
-        "required": [
-          "ScalingPlanName",
-          "ScalingPlanVersion"
-        ],
+        "required": ["ScalingPlanName", "ScalingPlanVersion"],
         "title": "DeleteScalingPlanRequest",
         "properties": {
           "ScalingPlanName": {
@@ -958,10 +929,7 @@
       },
       "DescribeScalingPlanResourcesRequest": {
         "type": "object",
-        "required": [
-          "ScalingPlanName",
-          "ScalingPlanVersion"
-        ],
+        "required": ["ScalingPlanName", "ScalingPlanVersion"],
         "title": "DescribeScalingPlanResourcesRequest",
         "properties": {
           "ScalingPlanName": {
@@ -1090,9 +1058,7 @@
       },
       "GetScalingPlanResourceForecastDataResponse": {
         "type": "object",
-        "required": [
-          "Datapoints"
-        ],
+        "required": ["Datapoints"],
         "properties": {
           "Datapoints": {
             "allOf": [
@@ -1208,10 +1174,7 @@
       },
       "UpdateScalingPlanRequest": {
         "type": "object",
-        "required": [
-          "ScalingPlanName",
-          "ScalingPlanVersion"
-        ],
+        "required": ["ScalingPlanName", "ScalingPlanVersion"],
         "title": "UpdateScalingPlanRequest",
         "properties": {
           "ScalingPlanName": {
@@ -1330,24 +1293,14 @@
       },
       "MetricStatistic": {
         "type": "string",
-        "enum": [
-          "Average",
-          "Minimum",
-          "Maximum",
-          "SampleCount",
-          "Sum"
-        ]
+        "enum": ["Average", "Minimum", "Maximum", "SampleCount", "Sum"]
       },
       "MetricUnit": {
         "type": "string"
       },
       "CustomizedLoadMetricSpecification": {
         "type": "object",
-        "required": [
-          "MetricName",
-          "Namespace",
-          "Statistic"
-        ],
+        "required": ["MetricName", "Namespace", "Statistic"],
         "properties": {
           "MetricName": {
             "allOf": [
@@ -1404,11 +1357,7 @@
       },
       "CustomizedScalingMetricSpecification": {
         "type": "object",
-        "required": [
-          "MetricName",
-          "Namespace",
-          "Statistic"
-        ],
+        "required": ["MetricName", "Namespace", "Statistic"],
         "properties": {
           "MetricName": {
             "allOf": [
@@ -1535,22 +1484,11 @@
       },
       "ForecastDataType": {
         "type": "string",
-        "enum": [
-          "CapacityForecast",
-          "LoadForecast",
-          "ScheduledActionMinCapacity",
-          "ScheduledActionMaxCapacity"
-        ]
+        "enum": ["CapacityForecast", "LoadForecast", "ScheduledActionMinCapacity", "ScheduledActionMaxCapacity"]
       },
       "ServiceNamespace": {
         "type": "string",
-        "enum": [
-          "autoscaling",
-          "ecs",
-          "ec2",
-          "rds",
-          "dynamodb"
-        ]
+        "enum": ["autoscaling", "ecs", "ec2", "rds", "dynamodb"]
       },
       "ScalableDimension": {
         "type": "string",
@@ -1567,12 +1505,7 @@
       },
       "LoadMetricType": {
         "type": "string",
-        "enum": [
-          "ASGTotalCPUUtilization",
-          "ASGTotalNetworkIn",
-          "ASGTotalNetworkOut",
-          "ALBTargetGroupRequestCount"
-        ]
+        "enum": ["ASGTotalCPUUtilization", "ASGTotalNetworkIn", "ASGTotalNetworkOut", "ALBTargetGroupRequestCount"]
       },
       "MetricDimensionName": {
         "type": "string"
@@ -1582,10 +1515,7 @@
       },
       "MetricDimension": {
         "type": "object",
-        "required": [
-          "Name",
-          "Value"
-        ],
+        "required": ["Name", "Value"],
         "properties": {
           "Name": {
             "allOf": [
@@ -1618,9 +1548,7 @@
       },
       "PolicyType": {
         "type": "string",
-        "enum": [
-          "TargetTrackingScaling"
-        ]
+        "enum": ["TargetTrackingScaling"]
       },
       "ResourceLabel": {
         "type": "string",
@@ -1629,9 +1557,7 @@
       },
       "PredefinedLoadMetricSpecification": {
         "type": "object",
-        "required": [
-          "PredefinedLoadMetricType"
-        ],
+        "required": ["PredefinedLoadMetricType"],
         "properties": {
           "PredefinedLoadMetricType": {
             "allOf": [
@@ -1676,9 +1602,7 @@
       },
       "PredefinedScalingMetricSpecification": {
         "type": "object",
-        "required": [
-          "PredefinedScalingMetricType"
-        ],
+        "required": ["PredefinedScalingMetricType"],
         "properties": {
           "PredefinedScalingMetricType": {
             "allOf": [
@@ -1713,10 +1637,7 @@
       },
       "PredictiveScalingMode": {
         "type": "string",
-        "enum": [
-          "ForecastAndScale",
-          "ForecastOnly"
-        ]
+        "enum": ["ForecastAndScale", "ForecastOnly"]
       },
       "ResourceCapacity": {
         "type": "integer"
@@ -1739,10 +1660,7 @@
       },
       "ScalingPolicyUpdateBehavior": {
         "type": "string",
-        "enum": [
-          "KeepExternalPolicies",
-          "ReplaceExternalPolicies"
-        ]
+        "enum": ["KeepExternalPolicies", "ReplaceExternalPolicies"]
       },
       "ScalingInstruction": {
         "type": "object",
@@ -1913,13 +1831,7 @@
       },
       "ScalingPlan": {
         "type": "object",
-        "required": [
-          "ScalingPlanName",
-          "ScalingPlanVersion",
-          "ApplicationSource",
-          "ScalingInstructions",
-          "StatusCode"
-        ],
+        "required": ["ScalingPlanName", "ScalingPlanVersion", "ApplicationSource", "ScalingInstructions", "StatusCode"],
         "properties": {
           "ScalingPlanName": {
             "allOf": [
@@ -2012,11 +1924,7 @@
       },
       "ScalingStatusCode": {
         "type": "string",
-        "enum": [
-          "Inactive",
-          "PartiallyActive",
-          "Active"
-        ]
+        "enum": ["Inactive", "PartiallyActive", "Active"]
       },
       "ScalingPlanResource": {
         "type": "object",
@@ -2114,10 +2022,7 @@
       },
       "ScalingPolicy": {
         "type": "object",
-        "required": [
-          "PolicyName",
-          "PolicyType"
-        ],
+        "required": ["PolicyName", "PolicyType"],
         "properties": {
           "PolicyName": {
             "allOf": [
@@ -2154,9 +2059,7 @@
       },
       "TargetTrackingConfiguration": {
         "type": "object",
-        "required": [
-          "TargetValue"
-        ],
+        "required": ["TargetValue"],
         "properties": {
           "PredefinedScalingMetricSpecification": {
             "allOf": [

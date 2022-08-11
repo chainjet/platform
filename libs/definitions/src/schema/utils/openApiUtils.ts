@@ -10,6 +10,7 @@ import path from 'path'
 import { firstValueFrom } from 'rxjs'
 import { promisify } from 'util'
 import { stripMarkdown } from '../../../../common/src/utils/string.utils'
+import prettier from 'prettier'
 
 const convertObj = promisify(require('swagger2openapi').convertObj)
 
@@ -77,7 +78,8 @@ export const OpenApiUtils = {
   async saveSchema(schema: OpenAPIObject, integrationKey: string, integrationVersion: string): Promise<any> {
     logger.debug('Saving schema on disk')
     const schemaPath = OpenApiUtils.getSchemaFilePath(integrationKey, integrationVersion)
-    await fs.promises.writeFile(schemaPath, JSON.stringify(schema, null, 2))
+    const formattedSchema = prettier.format(JSON.stringify(schema), { parser: 'json' })
+    await fs.promises.writeFile(schemaPath, formattedSchema)
     logger.debug(`Schema saved on: ${schemaPath}`)
   },
 

@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true,
     "x-deprecated": true
   },
@@ -121,10 +119,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -135,10 +130,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -200,9 +192,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "RoleArn"
-                ],
+                "required": ["RoleArn"],
                 "properties": {
                   "RoleArn": {
                     "description": "The ARN of the role you wish to associate with this group. The existence of the role is not validated.",
@@ -378,9 +368,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "RoleArn"
-                ],
+                "required": ["RoleArn"],
                 "properties": {
                   "RoleArn": {
                     "description": "The ARN of the service role you wish to associate with your account.",
@@ -1097,9 +1085,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "DeploymentType"
-                ],
+                "required": ["DeploymentType"],
                 "properties": {
                   "DeploymentId": {
                     "description": "The ID of the deployment if you wish to redeploy a previous deployment.",
@@ -1108,12 +1094,7 @@
                   "DeploymentType": {
                     "description": "The type of deployment. When used for ''CreateDeployment'', only ''NewDeployment'' and ''Redeployment'' are valid.",
                     "type": "string",
-                    "enum": [
-                      "NewDeployment",
-                      "Redeployment",
-                      "ResetDeployment",
-                      "ForceResetDeployment"
-                    ]
+                    "enum": ["NewDeployment", "Redeployment", "ResetDeployment", "ForceResetDeployment"]
                   },
                   "GroupVersionId": {
                     "description": "The ID of the group version to be deployed.",
@@ -1929,9 +1910,7 @@
                     }
                   }
                 },
-                "required": [
-                  "Name"
-                ]
+                "required": ["Name"]
               }
             }
           }
@@ -2937,24 +2916,12 @@
                   "SoftwareToUpdate": {
                     "description": "The piece of software on the Greengrass core that will be updated.",
                     "type": "string",
-                    "enum": [
-                      "core",
-                      "ota_agent"
-                    ]
+                    "enum": ["core", "ota_agent"]
                   },
                   "UpdateAgentLogLevel": {
                     "description": "The minimum level of log statements that should be logged by the OTA Agent during an update.",
                     "type": "string",
-                    "enum": [
-                      "NONE",
-                      "TRACE",
-                      "DEBUG",
-                      "VERBOSE",
-                      "INFO",
-                      "WARN",
-                      "ERROR",
-                      "FATAL"
-                    ]
+                    "enum": ["NONE", "TRACE", "DEBUG", "VERBOSE", "INFO", "WARN", "ERROR", "FATAL"]
                   },
                   "UpdateTargets": {
                     "description": "The ARNs of the targets (IoT things or IoT thing groups) that this update will be applied to.",
@@ -2966,22 +2933,12 @@
                   "UpdateTargetsArchitecture": {
                     "description": "The architecture of the cores which are the targets of an update.",
                     "type": "string",
-                    "enum": [
-                      "armv6l",
-                      "armv7l",
-                      "x86_64",
-                      "aarch64"
-                    ]
+                    "enum": ["armv6l", "armv7l", "x86_64", "aarch64"]
                   },
                   "UpdateTargetsOperatingSystem": {
                     "description": "The operating system of the cores which are the targets of an update.",
                     "type": "string",
-                    "enum": [
-                      "ubuntu",
-                      "raspbian",
-                      "amazon_linux",
-                      "openwrt"
-                    ]
+                    "enum": ["ubuntu", "raspbian", "amazon_linux", "openwrt"]
                   }
                 }
               }
@@ -5849,10 +5806,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ExecutionRoleArn",
-                  "InputFileUri"
-                ],
+                "required": ["ExecutionRoleArn", "InputFileUri"],
                 "properties": {
                   "ExecutionRoleArn": {
                     "description": "The ARN of the execution role to associate with the bulk deployment operation. This IAM role must allow the ''greengrass:CreateDeployment'' action for all group versions that are listed in the input file. This IAM role must have access to the S3 bucket containing the input file.",
@@ -6598,10 +6552,7 @@
       },
       "Connector": {
         "type": "object",
-        "required": [
-          "ConnectorArn",
-          "Id"
-        ],
+        "required": ["ConnectorArn", "Id"],
         "properties": {
           "ConnectorArn": {
             "allOf": [
@@ -6764,11 +6715,7 @@
       },
       "Core": {
         "type": "object",
-        "required": [
-          "ThingArn",
-          "Id",
-          "CertificateArn"
-        ],
+        "required": ["ThingArn", "Id", "CertificateArn"],
         "properties": {
           "CertificateArn": {
             "allOf": [
@@ -6966,11 +6913,7 @@
       },
       "Device": {
         "type": "object",
-        "required": [
-          "ThingArn",
-          "Id",
-          "CertificateArn"
-        ],
+        "required": ["ThingArn", "Id", "CertificateArn"],
         "properties": {
           "CertificateArn": {
             "allOf": [
@@ -7164,9 +7107,7 @@
       },
       "Function": {
         "type": "object",
-        "required": [
-          "Id"
-        ],
+        "required": ["Id"],
         "properties": {
           "FunctionArn": {
             "allOf": [
@@ -7464,12 +7405,7 @@
       },
       "Logger": {
         "type": "object",
-        "required": [
-          "Type",
-          "Level",
-          "Id",
-          "Component"
-        ],
+        "required": ["Type", "Level", "Id", "Component"],
         "properties": {
           "Component": {
             "allOf": [
@@ -7652,11 +7588,7 @@
       },
       "Resource": {
         "type": "object",
-        "required": [
-          "ResourceDataContainer",
-          "Id",
-          "Name"
-        ],
+        "required": ["ResourceDataContainer", "Id", "Name"],
         "properties": {
           "Id": {
             "allOf": [
@@ -7854,12 +7786,7 @@
       },
       "Subscription": {
         "type": "object",
-        "required": [
-          "Target",
-          "Id",
-          "Subject",
-          "Source"
-        ],
+        "required": ["Target", "Id", "Subject", "Source"],
         "properties": {
           "Id": {
             "allOf": [
@@ -10174,12 +10101,7 @@
       },
       "DeploymentType": {
         "type": "string",
-        "enum": [
-          "NewDeployment",
-          "Redeployment",
-          "ResetDeployment",
-          "ForceResetDeployment"
-        ],
+        "enum": ["NewDeployment", "Redeployment", "ResetDeployment", "ForceResetDeployment"],
         "description": "The type of deployment. When used for ''CreateDeployment'', only ''NewDeployment'' and ''Redeployment'' are valid."
       },
       "ErrorDetails": {
@@ -10283,14 +10205,7 @@
       },
       "BulkDeploymentStatus": {
         "type": "string",
-        "enum": [
-          "Initializing",
-          "Running",
-          "Completed",
-          "Stopping",
-          "Stopped",
-          "Failed"
-        ],
+        "enum": ["Initializing", "Running", "Completed", "Stopping", "Stopped", "Failed"],
         "description": "The current status of the bulk deployment."
       },
       "BulkDeployments": {
@@ -10666,10 +10581,7 @@
       },
       "EncodingType": {
         "type": "string",
-        "enum": [
-          "binary",
-          "json"
-        ]
+        "enum": ["binary", "json"]
       },
       "ErrorDetail": {
         "type": "object",
@@ -10839,10 +10751,7 @@
       },
       "FunctionIsolationMode": {
         "type": "string",
-        "enum": [
-          "GreengrassContainer",
-          "NoContainer"
-        ],
+        "enum": ["GreengrassContainer", "NoContainer"],
         "description": "Specifies whether the Lambda function runs in a Greengrass container (default) or without containerization. Unless your scenario requires that you run without containerization, we recommend that you run in a Greengrass container. Omit this value to run the Lambda function with the default containerization for the group."
       },
       "FunctionRunAsConfig": {
@@ -11093,34 +11002,19 @@
       },
       "LoggerComponent": {
         "type": "string",
-        "enum": [
-          "GreengrassSystem",
-          "Lambda"
-        ]
+        "enum": ["GreengrassSystem", "Lambda"]
       },
       "LoggerLevel": {
         "type": "string",
-        "enum": [
-          "DEBUG",
-          "INFO",
-          "WARN",
-          "ERROR",
-          "FATAL"
-        ]
+        "enum": ["DEBUG", "INFO", "WARN", "ERROR", "FATAL"]
       },
       "LoggerType": {
         "type": "string",
-        "enum": [
-          "FileSystem",
-          "AWSCloudWatch"
-        ]
+        "enum": ["FileSystem", "AWSCloudWatch"]
       },
       "Permission": {
         "type": "string",
-        "enum": [
-          "ro",
-          "rw"
-        ],
+        "enum": ["ro", "rw"],
         "description": "The type of permission a function has to access a resource."
       },
       "ResourceDataContainer": {
@@ -11181,9 +11075,7 @@
       },
       "ResourceAccessPolicy": {
         "type": "object",
-        "required": [
-          "ResourceId"
-        ],
+        "required": ["ResourceId"],
         "properties": {
           "Permission": {
             "allOf": [
@@ -11294,10 +11186,7 @@
       },
       "ResourceDownloadOwnerSetting": {
         "type": "object",
-        "required": [
-          "GroupOwner",
-          "GroupPermission"
-        ],
+        "required": ["GroupOwner", "GroupPermission"],
         "properties": {
           "GroupOwner": {
             "allOf": [
@@ -11395,17 +11284,11 @@
       },
       "Telemetry": {
         "type": "string",
-        "enum": [
-          "On",
-          "Off"
-        ]
+        "enum": ["On", "Off"]
       },
       "ConfigurationSyncStatus": {
         "type": "string",
-        "enum": [
-          "InSync",
-          "OutOfSync"
-        ]
+        "enum": ["InSync", "OutOfSync"]
       },
       "RuntimeConfiguration": {
         "type": "object",
@@ -11425,9 +11308,7 @@
       },
       "TelemetryConfiguration": {
         "type": "object",
-        "required": [
-          "Telemetry"
-        ],
+        "required": ["Telemetry"],
         "properties": {
           "ConfigurationSyncStatus": {
             "allOf": [

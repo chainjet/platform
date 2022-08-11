@@ -5,9 +5,7 @@
     "x-release": "v4",
     "title": "Amazon Lex Model Building Service",
     "description": "Amazon Lex is an AWS service for building conversational voice and text interfaces. Use these actions to create, update, and delete conversational bots for new and existing client applications.",
-    "x-categories": [
-      "machine-learning"
-    ],
+    "x-categories": ["machine-learning"],
     "x-logo": {
       "url": "/logos/aws/Arch_Amazon-Lex_64.svg"
     },
@@ -38,9 +36,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -123,10 +119,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -137,10 +130,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -954,9 +944,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "botVersion"
-                ],
+                "required": ["botVersion"],
                 "properties": {
                   "description": {
                     "description": "A description of the alias.",
@@ -3020,11 +3008,7 @@
             "description": "The type of resource to export. ",
             "schema": {
               "type": "string",
-              "enum": [
-                "BOT",
-                "INTENT",
-                "SLOT_TYPE"
-              ]
+              "enum": ["BOT", "INTENT", "SLOT_TYPE"]
             }
           },
           {
@@ -3034,10 +3018,7 @@
             "description": "The format of the exported data.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ALEXA_SKILLS_KIT",
-                "LEX"
-              ]
+              "enum": ["ALEXA_SKILLS_KIT", "LEX"]
             }
           }
         ],
@@ -3812,10 +3793,7 @@
             "description": "To return utterances that were recognized and handled, use <code>Detected</code>. To return utterances that were not recognized, use <code>Missed</code>.",
             "schema": {
               "type": "string",
-              "enum": [
-                "Detected",
-                "Missed"
-              ]
+              "enum": ["Detected", "Missed"]
             }
           },
           {
@@ -3824,9 +3802,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "aggregation"
-              ]
+              "enum": ["aggregation"]
             }
           }
         ],
@@ -4034,9 +4010,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "tags"
-                ],
+                "required": ["tags"],
                 "properties": {
                   "tags": {
                     "description": "A list of tag keys to add to the resource. If a tag key already exists, the existing value is replaced with the new value.",
@@ -4141,10 +4115,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "locale",
-                  "childDirected"
-                ],
+                "required": ["locale", "childDirected"],
                 "properties": {
                   "description": {
                     "description": "A description of the bot.",
@@ -4249,10 +4220,7 @@
                   "processBehavior": {
                     "description": "<p>If you set the <code>processBehavior</code> element to <code>BUILD</code>, Amazon Lex builds the bot so that it can be run. If you set the element to <code>SAVE</code> Amazon Lex saves the bot, but doesn't build it. </p> <p>If you don't specify this value, the default value is <code>BUILD</code>.</p>",
                     "type": "string",
-                    "enum": [
-                      "SAVE",
-                      "BUILD"
-                    ]
+                    "enum": ["SAVE", "BUILD"]
                   },
                   "locale": {
                     "description": "<p> Specifies the target locale for the bot. Any intent used in the bot must be compatible with the locale of the bot. </p> <p>The default is <code>en-US</code>.</p>",
@@ -4808,10 +4776,7 @@
                   "valueSelectionStrategy": {
                     "description": "<p>Determines the slot resolution strategy that Amazon Lex uses to return slot type values. The field can be set to one of the following values:</p> <ul> <li> <p> <code>ORIGINAL_VALUE</code> - Returns the value entered by the user, if the user value is similar to the slot value.</p> </li> <li> <p> <code>TOP_RESOLUTION</code> - If there is a resolution list for the slot, return the first value in the resolution list as the slot type value. If there is no resolution list, null is returned.</p> </li> </ul> <p>If you don't specify the <code>valueSelectionStrategy</code>, the default is <code>ORIGINAL_VALUE</code>.</p>",
                     "type": "string",
-                    "enum": [
-                      "ORIGINAL_VALUE",
-                      "TOP_RESOLUTION"
-                    ]
+                    "enum": ["ORIGINAL_VALUE", "TOP_RESOLUTION"]
                   },
                   "createVersion": {
                     "description": "When set to <code>true</code> a new numbered version of the slot type is created. This is the same as calling the <code>CreateSlotTypeVersion</code> operation. If you do not specify <code>createVersion</code>, the default is <code>false</code>.",
@@ -4917,11 +4882,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "payload",
-                  "resourceType",
-                  "mergeStrategy"
-                ],
+                "required": ["payload", "resourceType", "mergeStrategy"],
                 "properties": {
                   "payload": {
                     "description": "A zip archive in binary format. The archive should contain one file, a JSON file containing the resource to import. The resource should match the type specified in the <code>resourceType</code> field.",
@@ -4930,19 +4891,12 @@
                   "resourceType": {
                     "description": "<p>Specifies the type of resource to export. Each resource also exports any resources that it depends on. </p> <ul> <li> <p>A bot exports dependent intents.</p> </li> <li> <p>An intent exports dependent slot types.</p> </li> </ul>",
                     "type": "string",
-                    "enum": [
-                      "BOT",
-                      "INTENT",
-                      "SLOT_TYPE"
-                    ]
+                    "enum": ["BOT", "INTENT", "SLOT_TYPE"]
                   },
                   "mergeStrategy": {
                     "description": "<p>Specifies the action that the <code>StartImport</code> operation should take when there is an existing resource with the same name.</p> <ul> <li> <p>FAIL_ON_CONFLICT - The import operation is stopped on the first conflict between a resource in the import file and an existing resource. The name of the resource causing the conflict is in the <code>failureReason</code> field of the response to the <code>GetImport</code> operation.</p> <p>OVERWRITE_LATEST - The import operation proceeds even if there is a conflict with an existing resource. The $LASTEST version of the existing resource is overwritten with the data from the import file.</p> </li> </ul>",
                     "type": "string",
-                    "enum": [
-                      "OVERWRITE_LATEST",
-                      "FAIL_ON_CONFLICT"
-                    ]
+                    "enum": ["OVERWRITE_LATEST", "FAIL_ON_CONFLICT"]
                   },
                   "tags": {
                     "description": "A list of tags to add to the imported bot. You can only add tags when you import a bot, you can't add tags to an intent or slot type.",
@@ -5253,10 +5207,7 @@
             "description": "The field to sort the list of migrations by. You can sort by the Amazon Lex V1 bot name or the date and time that the migration was started.",
             "schema": {
               "type": "string",
-              "enum": [
-                "V1_BOT_NAME",
-                "MIGRATION_DATE_TIME"
-              ]
+              "enum": ["V1_BOT_NAME", "MIGRATION_DATE_TIME"]
             }
           },
           {
@@ -5266,10 +5217,7 @@
             "description": "The order so sort the list.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASCENDING",
-                "DESCENDING"
-              ]
+              "enum": ["ASCENDING", "DESCENDING"]
             }
           },
           {
@@ -5291,11 +5239,7 @@
             "description": "Filters the list to contain only migrations in the specified state.",
             "schema": {
               "type": "string",
-              "enum": [
-                "IN_PROGRESS",
-                "COMPLETED",
-                "FAILED"
-              ]
+              "enum": ["IN_PROGRESS", "COMPLETED", "FAILED"]
             }
           },
           {
@@ -5416,13 +5360,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "v1BotName",
-                  "v1BotVersion",
-                  "v2BotName",
-                  "v2BotRole",
-                  "migrationStrategy"
-                ],
+                "required": ["v1BotName", "v1BotVersion", "v2BotName", "v2BotRole", "migrationStrategy"],
                 "properties": {
                   "v1BotName": {
                     "description": "The name of the Amazon Lex V1 bot that you are migrating to Amazon Lex V2.",
@@ -5455,10 +5393,7 @@
                   "migrationStrategy": {
                     "description": "<p>The strategy used to conduct the migration.</p> <ul> <li> <p> <code>CREATE_NEW</code> - Creates a new Amazon Lex V2 bot and migrates the Amazon Lex V1 bot to the new bot.</p> </li> <li> <p> <code>UPDATE_EXISTING</code> - Overwrites the existing Amazon Lex V2 bot metadata and the locale being migrated. It doesn't change any other locales in the Amazon Lex V2 bot. If the locale doesn't exist, a new locale is created in the Amazon Lex V2 bot.</p> </li> </ul>",
                     "type": "string",
-                    "enum": [
-                      "CREATE_NEW",
-                      "UPDATE_EXISTING"
-                    ]
+                    "enum": ["CREATE_NEW", "UPDATE_EXISTING"]
                   }
                 }
               }
@@ -6829,11 +6764,7 @@
               "name": "Type",
               "description": "The type of pizza to order.",
               "priority": 1,
-              "sampleUtterances": [
-                "Get me a {Type} pizza.",
-                "A {Type} pizza please.",
-                "I'd like a {Type} pizza."
-              ],
+              "sampleUtterances": ["Get me a {Type} pizza.", "A {Type} pizza please.", "I'd like a {Type} pizza."],
               "slotConstraint": "Required",
               "slotType": "DocPizzaType",
               "slotTypeVersion": "$LATEST",
@@ -6859,10 +6790,7 @@
               "name": "Crust",
               "description": "The type of pizza crust to order.",
               "priority": 2,
-              "sampleUtterances": [
-                "Make it a {Crust} crust.",
-                "I'd like a {Crust} crust."
-              ],
+              "sampleUtterances": ["Make it a {Crust} crust.", "I'd like a {Crust} crust."],
               "slotConstraint": "Required",
               "slotType": "DocPizzaCrustType",
               "slotTypeVersion": "$LATEST",
@@ -6884,10 +6812,7 @@
               "name": "Sauce",
               "description": "The type of sauce to use on the pizza.",
               "priority": 3,
-              "sampleUtterances": [
-                "Make it {Sauce} sauce.",
-                "I'd like {Sauce} sauce."
-              ],
+              "sampleUtterances": ["Make it {Sauce} sauce.", "I'd like {Sauce} sauce."],
               "slotConstraint": "Required",
               "slotType": "DocPizzaSauceType",
               "slotTypeVersion": "$LATEST",
@@ -7643,10 +7568,7 @@
       },
       "Intent": {
         "type": "object",
-        "required": [
-          "intentName",
-          "intentVersion"
-        ],
+        "required": ["intentName", "intentVersion"],
         "properties": {
           "intentName": {
             "allOf": [
@@ -7691,10 +7613,7 @@
       },
       "Tag": {
         "type": "object",
-        "required": [
-          "key",
-          "value"
-        ],
+        "required": ["key", "value"],
         "properties": {
           "key": {
             "allOf": [
@@ -7883,10 +7802,7 @@
               "name": "Sauce",
               "description": "The type of sauce to use on the pizza.",
               "priority": 3,
-              "sampleUtterances": [
-                "Make it {Sauce} sauce.",
-                "I'd like {Sauce} sauce."
-              ],
+              "sampleUtterances": ["Make it {Sauce} sauce.", "I'd like {Sauce} sauce."],
               "slotConstraint": "Required",
               "slotType": "DocPizzaSauceType",
               "slotTypeVersion": "$LATEST",
@@ -7908,11 +7824,7 @@
               "name": "Type",
               "description": "The type of pizza to order.",
               "priority": 1,
-              "sampleUtterances": [
-                "Get me a {Type} pizza.",
-                "A {Type} pizza please.",
-                "I'd like a {Type} pizza."
-              ],
+              "sampleUtterances": ["Get me a {Type} pizza.", "A {Type} pizza please.", "I'd like a {Type} pizza."],
               "slotConstraint": "Required",
               "slotType": "DocPizzaType",
               "slotTypeVersion": "$LATEST",
@@ -7938,10 +7850,7 @@
               "name": "Crust",
               "description": "The type of pizza crust to order.",
               "priority": 2,
-              "sampleUtterances": [
-                "Make it a {Crust} crust.",
-                "I'd like a {Crust} crust."
-              ],
+              "sampleUtterances": ["Make it a {Crust} crust.", "I'd like a {Crust} crust."],
               "slotConstraint": "Required",
               "slotType": "DocPizzaCrustType",
               "slotTypeVersion": "$LATEST",
@@ -8156,10 +8065,7 @@
       },
       "Slot": {
         "type": "object",
-        "required": [
-          "name",
-          "slotConstraint"
-        ],
+        "required": ["name", "slotConstraint"],
         "properties": {
           "name": {
             "allOf": [
@@ -8281,10 +8187,7 @@
       },
       "Prompt": {
         "type": "object",
-        "required": [
-          "messages",
-          "maxAttempts"
-        ],
+        "required": ["messages", "maxAttempts"],
         "properties": {
           "messages": {
             "allOf": [
@@ -8321,9 +8224,7 @@
       },
       "Statement": {
         "type": "object",
-        "required": [
-          "messages"
-        ],
+        "required": ["messages"],
         "properties": {
           "messages": {
             "allOf": [
@@ -8361,17 +8262,11 @@
       },
       "FulfillmentActivityType": {
         "type": "string",
-        "enum": [
-          "ReturnIntent",
-          "CodeHook"
-        ]
+        "enum": ["ReturnIntent", "CodeHook"]
       },
       "CodeHook": {
         "type": "object",
-        "required": [
-          "uri",
-          "messageVersion"
-        ],
+        "required": ["uri", "messageVersion"],
         "properties": {
           "uri": {
             "allOf": [
@@ -8545,9 +8440,7 @@
       },
       "EnumerationValue": {
         "type": "object",
-        "required": [
-          "value"
-        ],
+        "required": ["value"],
         "properties": {
           "value": {
             "allOf": [
@@ -8829,12 +8722,7 @@
       },
       "ChannelType": {
         "type": "string",
-        "enum": [
-          "Facebook",
-          "Slack",
-          "Twilio-Sms",
-          "Kik"
-        ]
+        "enum": ["Facebook", "Slack", "Twilio-Sms", "Kik"]
       },
       "ChannelConfigurationMap": {
         "type": "object",
@@ -8846,11 +8734,7 @@
       },
       "ChannelStatus": {
         "type": "string",
-        "enum": [
-          "IN_PROGRESS",
-          "CREATED",
-          "FAILED"
-        ]
+        "enum": ["IN_PROGRESS", "CREATED", "FAILED"]
       },
       "BotChannelAssociation": {
         "type": "object",
@@ -8956,13 +8840,7 @@
       },
       "Status": {
         "type": "string",
-        "enum": [
-          "BUILDING",
-          "READY",
-          "READY_BASIC_TESTING",
-          "FAILED",
-          "NOT_BUILT"
-        ]
+        "enum": ["BUILDING", "READY", "READY_BASIC_TESTING", "FAILED", "NOT_BUILT"]
       },
       "BotMetadata": {
         "type": "object",
@@ -9147,11 +9025,7 @@
       },
       "ContentType": {
         "type": "string",
-        "enum": [
-          "PlainText",
-          "SSML",
-          "CustomPayload"
-        ]
+        "enum": ["PlainText", "SSML", "CustomPayload"]
       },
       "LogSettingsResponseList": {
         "type": "array",
@@ -9215,10 +9089,7 @@
       },
       "FollowUpPrompt": {
         "type": "object",
-        "required": [
-          "prompt",
-          "rejectionStatement"
-        ],
+        "required": ["prompt", "rejectionStatement"],
         "properties": {
           "prompt": {
             "allOf": [
@@ -9245,9 +9116,7 @@
       },
       "FulfillmentActivity": {
         "type": "object",
-        "required": [
-          "type"
-        ],
+        "required": ["type"],
         "properties": {
           "type": {
             "allOf": [
@@ -9274,10 +9143,7 @@
       },
       "KendraConfiguration": {
         "type": "object",
-        "required": [
-          "kendraIndex",
-          "role"
-        ],
+        "required": ["kendraIndex", "role"],
         "properties": {
           "kendraIndex": {
             "allOf": [
@@ -9328,10 +9194,7 @@
       },
       "SlotValueSelectionStrategy": {
         "type": "string",
-        "enum": [
-          "ORIGINAL_VALUE",
-          "TOP_RESOLUTION"
-        ]
+        "enum": ["ORIGINAL_VALUE", "TOP_RESOLUTION"]
       },
       "CustomOrBuiltinSlotTypeName": {
         "type": "string",
@@ -9355,10 +9218,7 @@
       },
       "Destination": {
         "type": "string",
-        "enum": [
-          "CLOUDWATCH_LOGS",
-          "S3"
-        ]
+        "enum": ["CLOUDWATCH_LOGS", "S3"]
       },
       "Value": {
         "type": "string",
@@ -9373,18 +9233,11 @@
       },
       "ExportStatus": {
         "type": "string",
-        "enum": [
-          "IN_PROGRESS",
-          "READY",
-          "FAILED"
-        ]
+        "enum": ["IN_PROGRESS", "READY", "FAILED"]
       },
       "ExportType": {
         "type": "string",
-        "enum": [
-          "ALEXA_SKILLS_KIT",
-          "LEX"
-        ]
+        "enum": ["ALEXA_SKILLS_KIT", "LEX"]
       },
       "NextToken": {
         "type": "string"
@@ -9397,26 +9250,15 @@
       },
       "ResourceType": {
         "type": "string",
-        "enum": [
-          "BOT",
-          "INTENT",
-          "SLOT_TYPE"
-        ]
+        "enum": ["BOT", "INTENT", "SLOT_TYPE"]
       },
       "MergeStrategy": {
         "type": "string",
-        "enum": [
-          "OVERWRITE_LATEST",
-          "FAIL_ON_CONFLICT"
-        ]
+        "enum": ["OVERWRITE_LATEST", "FAIL_ON_CONFLICT"]
       },
       "ImportStatus": {
         "type": "string",
-        "enum": [
-          "IN_PROGRESS",
-          "COMPLETE",
-          "FAILED"
-        ]
+        "enum": ["IN_PROGRESS", "COMPLETE", "FAILED"]
       },
       "StringList": {
         "type": "array",
@@ -9607,10 +9449,7 @@
       },
       "LogType": {
         "type": "string",
-        "enum": [
-          "AUDIO",
-          "TEXT"
-        ]
+        "enum": ["AUDIO", "TEXT"]
       },
       "ResourceArn": {
         "type": "string",
@@ -9620,11 +9459,7 @@
       },
       "LogSettingsRequest": {
         "type": "object",
-        "required": [
-          "logType",
-          "destination",
-          "resourceArn"
-        ],
+        "required": ["logType", "destination", "resourceArn"],
         "properties": {
           "logType": {
             "allOf": [
@@ -9731,10 +9566,7 @@
       },
       "Message": {
         "type": "object",
-        "required": [
-          "contentType",
-          "content"
-        ],
+        "required": ["contentType", "content"],
         "properties": {
           "contentType": {
             "allOf": [
@@ -9771,10 +9603,7 @@
       },
       "ObfuscationSetting": {
         "type": "string",
-        "enum": [
-          "NONE",
-          "DEFAULT_OBFUSCATION"
-        ]
+        "enum": ["NONE", "DEFAULT_OBFUSCATION"]
       },
       "Priority": {
         "type": "integer",
@@ -9794,10 +9623,7 @@
       },
       "SlotConstraint": {
         "type": "string",
-        "enum": [
-          "Required",
-          "Optional"
-        ]
+        "enum": ["Required", "Optional"]
       },
       "SlotUtteranceList": {
         "type": "array",
@@ -9809,9 +9635,7 @@
       },
       "SlotTypeRegexConfiguration": {
         "type": "object",
-        "required": [
-          "pattern"
-        ],
+        "required": ["pattern"],
         "properties": {
           "pattern": {
             "allOf": [
@@ -9894,9 +9718,7 @@
       },
       "InputContext": {
         "type": "object",
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "properties": {
           "name": {
             "allOf": [
@@ -9913,11 +9735,7 @@
       },
       "OutputContext": {
         "type": "object",
-        "required": [
-          "name",
-          "timeToLiveInSeconds",
-          "turnsToLive"
-        ],
+        "required": ["name", "timeToLiveInSeconds", "turnsToLive"],
         "properties": {
           "name": {
             "allOf": [
@@ -9992,9 +9810,7 @@
       },
       "SlotDefaultValueSpec": {
         "type": "object",
-        "required": [
-          "defaultValueList"
-        ],
+        "required": ["defaultValueList"],
         "properties": {
           "defaultValueList": {
             "allOf": [
@@ -10016,9 +9832,7 @@
       },
       "SlotDefaultValue": {
         "type": "object",
-        "required": [
-          "defaultValue"
-        ],
+        "required": ["defaultValue"],
         "properties": {
           "defaultValue": {
             "allOf": [
@@ -10271,18 +10085,11 @@
       },
       "MigrationStatus": {
         "type": "string",
-        "enum": [
-          "IN_PROGRESS",
-          "COMPLETED",
-          "FAILED"
-        ]
+        "enum": ["IN_PROGRESS", "COMPLETED", "FAILED"]
       },
       "MigrationStrategy": {
         "type": "string",
-        "enum": [
-          "CREATE_NEW",
-          "UPDATE_EXISTING"
-        ]
+        "enum": ["CREATE_NEW", "UPDATE_EXISTING"]
       },
       "MigrationAlerts": {
         "type": "array",
@@ -10298,10 +10105,7 @@
       },
       "MigrationAlertType": {
         "type": "string",
-        "enum": [
-          "ERROR",
-          "WARN"
-        ]
+        "enum": ["ERROR", "WARN"]
       },
       "MigrationAlertMessage": {
         "type": "string"

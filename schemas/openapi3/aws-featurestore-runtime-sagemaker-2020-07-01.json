@@ -79,9 +79,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Identifiers"
-                ],
+                "required": ["Identifiers"],
                 "properties": {
                   "Identifiers": {
                     "description": "A list of <code>FeatureGroup</code> names, with their corresponding <code>RecordIdentifier</code> value, and Feature name that have been requested to be retrieved in batch.",
@@ -433,9 +431,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Record"
-                ],
+                "required": ["Record"],
                 "properties": {
                   "Record": {
                     "description": "<p>List of FeatureValues to be inserted. This will be a full over-write. If you only want to update few of the feature values, do the following:</p> <ul> <li> <p>Use <code>GetRecord</code> to retrieve the latest record.</p> </li> <li> <p>Update the record returned from <code>GetRecord</code>. </p> </li> <li> <p>Use <code>PutRecord</code> to update feature values.</p> </li> </ul>",
@@ -557,10 +553,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -571,10 +564,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -658,11 +648,7 @@
     "schemas": {
       "BatchGetRecordResponse": {
         "type": "object",
-        "required": [
-          "Records",
-          "Errors",
-          "UnprocessedIdentifiers"
-        ],
+        "required": ["Records", "Errors", "UnprocessedIdentifiers"],
         "properties": {
           "Records": {
             "allOf": [
@@ -698,10 +684,7 @@
       },
       "BatchGetRecordIdentifier": {
         "type": "object",
-        "required": [
-          "FeatureGroupName",
-          "RecordIdentifiersValueAsString"
-        ],
+        "required": ["FeatureGroupName", "RecordIdentifiersValueAsString"],
         "properties": {
           "FeatureGroupName": {
             "allOf": [
@@ -764,10 +747,7 @@
       "ResourceNotFound": {},
       "FeatureValue": {
         "type": "object",
-        "required": [
-          "FeatureName",
-          "ValueAsString"
-        ],
+        "required": ["FeatureName", "ValueAsString"],
         "properties": {
           "FeatureName": {
             "allOf": [
@@ -803,12 +783,7 @@
       },
       "BatchGetRecordError": {
         "type": "object",
-        "required": [
-          "FeatureGroupName",
-          "RecordIdentifierValueAsString",
-          "ErrorCode",
-          "ErrorMessage"
-        ],
+        "required": ["FeatureGroupName", "RecordIdentifierValueAsString", "ErrorCode", "ErrorMessage"],
         "properties": {
           "FeatureGroupName": {
             "allOf": [
@@ -904,11 +879,7 @@
       },
       "BatchGetRecordResultDetail": {
         "type": "object",
-        "required": [
-          "FeatureGroupName",
-          "RecordIdentifierValueAsString",
-          "Record"
-        ],
+        "required": ["FeatureGroupName", "RecordIdentifierValueAsString", "Record"],
         "properties": {
           "FeatureGroupName": {
             "allOf": [

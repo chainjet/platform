@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -471,18 +463,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "AssetType",
-                  "Description",
-                  "Name"
-                ],
+                "required": ["AssetType", "Description", "Name"],
                 "properties": {
                   "AssetType": {
                     "description": "The type of file your data is stored in. Currently, the supported asset type is S3_SNAPSHOT.",
                     "type": "string",
-                    "enum": [
-                      "S3_SNAPSHOT"
-                    ]
+                    "enum": ["S3_SNAPSHOT"]
                   },
                   "Description": {
                     "description": "A description of a resource.",
@@ -709,10 +695,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Details",
-                  "Type"
-                ],
+                "required": ["Details", "Type"],
                 "properties": {
                   "Details": {
                     "description": "The details for the request.",
@@ -1480,9 +1463,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name"
-                ],
+                "required": ["Name"],
                 "properties": {
                   "Name": {
                     "description": "The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target S3 object key.",
@@ -2296,9 +2277,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "tags"
-                ],
+                "required": ["tags"],
                 "properties": {
                   "tags": {
                     "description": "A label that consists of a customer-defined key and an optional value.",
@@ -2662,11 +2641,7 @@
       },
       "ExportAssetToSignedUrlRequestDetails": {
         "type": "object",
-        "required": [
-          "DataSetId",
-          "AssetId",
-          "RevisionId"
-        ],
+        "required": ["DataSetId", "AssetId", "RevisionId"],
         "properties": {
           "AssetId": {
             "allOf": [
@@ -2703,11 +2678,7 @@
       },
       "ExportAssetsToS3RequestDetails": {
         "type": "object",
-        "required": [
-          "AssetDestinations",
-          "DataSetId",
-          "RevisionId"
-        ],
+        "required": ["AssetDestinations", "DataSetId", "RevisionId"],
         "properties": {
           "AssetDestinations": {
             "allOf": [
@@ -2754,12 +2725,7 @@
       },
       "ImportAssetFromSignedUrlRequestDetails": {
         "type": "object",
-        "required": [
-          "DataSetId",
-          "Md5Hash",
-          "RevisionId",
-          "AssetName"
-        ],
+        "required": ["DataSetId", "Md5Hash", "RevisionId", "AssetName"],
         "properties": {
           "AssetName": {
             "allOf": [
@@ -2806,11 +2772,7 @@
       },
       "ImportAssetsFromS3RequestDetails": {
         "type": "object",
-        "required": [
-          "DataSetId",
-          "AssetSources",
-          "RevisionId"
-        ],
+        "required": ["DataSetId", "AssetSources", "RevisionId"],
         "properties": {
           "AssetSources": {
             "allOf": [
@@ -3767,10 +3729,7 @@
       },
       "AssetDestinationEntry": {
         "type": "object",
-        "required": [
-          "Bucket",
-          "AssetId"
-        ],
+        "required": ["Bucket", "AssetId"],
         "properties": {
           "AssetId": {
             "allOf": [
@@ -3807,9 +3766,7 @@
       },
       "S3SnapshotAsset": {
         "type": "object",
-        "required": [
-          "Size"
-        ],
+        "required": ["Size"],
         "properties": {
           "Size": {
             "allOf": [
@@ -3834,9 +3791,7 @@
       },
       "AssetType": {
         "type": "string",
-        "enum": [
-          "S3_SNAPSHOT"
-        ],
+        "enum": ["S3_SNAPSHOT"],
         "description": "The type of file your data is stored in. Currently, the supported asset type is S3_SNAPSHOT."
       },
       "Timestamp": {
@@ -3967,10 +3922,7 @@
       },
       "AssetSourceEntry": {
         "type": "object",
-        "required": [
-          "Bucket",
-          "Key"
-        ],
+        "required": ["Bucket", "Key"],
         "properties": {
           "Bucket": {
             "allOf": [
@@ -4023,17 +3975,12 @@
       },
       "Origin": {
         "type": "string",
-        "enum": [
-          "OWNED",
-          "ENTITLED"
-        ],
+        "enum": ["OWNED", "ENTITLED"],
         "description": "A property that defines the data set as OWNED by the account (for providers) or ENTITLED to the account (for subscribers). When an owned data set is published in a product, AWS Data Exchange creates a copy of the data set. Subscribers can access that copy of the data set as an entitled data set."
       },
       "OriginDetails": {
         "type": "object",
-        "required": [
-          "ProductId"
-        ],
+        "required": ["ProductId"],
         "properties": {
           "ProductId": {
             "$ref": "#/components/schemas/__string"
@@ -4114,14 +4061,7 @@
       },
       "State": {
         "type": "string",
-        "enum": [
-          "WAITING",
-          "IN_PROGRESS",
-          "ERROR",
-          "COMPLETED",
-          "CANCELLED",
-          "TIMED_OUT"
-        ]
+        "enum": ["WAITING", "IN_PROGRESS", "ERROR", "COMPLETED", "CANCELLED", "TIMED_OUT"]
       },
       "__stringMin0Max16384": {
         "type": "string",
@@ -4133,16 +4073,7 @@
       },
       "DataSetEntry": {
         "type": "object",
-        "required": [
-          "Origin",
-          "AssetType",
-          "Description",
-          "CreatedAt",
-          "Id",
-          "Arn",
-          "UpdatedAt",
-          "Name"
-        ],
+        "required": ["Origin", "AssetType", "Description", "CreatedAt", "Id", "Arn", "UpdatedAt", "Name"],
         "properties": {
           "Arn": {
             "allOf": [
@@ -4249,9 +4180,7 @@
       },
       "ImportAssetFromSignedUrlJobErrorDetails": {
         "type": "object",
-        "required": [
-          "AssetName"
-        ],
+        "required": ["AssetName"],
         "properties": {
           "AssetName": {
             "$ref": "#/components/schemas/AssetName"
@@ -4278,11 +4207,7 @@
       },
       "ExportAssetToSignedUrlResponseDetails": {
         "type": "object",
-        "required": [
-          "DataSetId",
-          "AssetId",
-          "RevisionId"
-        ],
+        "required": ["DataSetId", "AssetId", "RevisionId"],
         "properties": {
           "AssetId": {
             "allOf": [
@@ -4346,9 +4271,7 @@
       },
       "ExportServerSideEncryption": {
         "type": "object",
-        "required": [
-          "Type"
-        ],
+        "required": ["Type"],
         "properties": {
           "KmsKeyArn": {
             "allOf": [
@@ -4375,11 +4298,7 @@
       },
       "ExportAssetsToS3ResponseDetails": {
         "type": "object",
-        "required": [
-          "AssetDestinations",
-          "DataSetId",
-          "RevisionId"
-        ],
+        "required": ["AssetDestinations", "DataSetId", "RevisionId"],
         "properties": {
           "AssetDestinations": {
             "allOf": [
@@ -4426,10 +4345,7 @@
       },
       "ServerSideEncryptionTypes": {
         "type": "string",
-        "enum": [
-          "aws:kms",
-          "AES256"
-        ],
+        "enum": ["aws:kms", "AES256"],
         "description": "The types of encryption supported in export jobs to Amazon S3."
       },
       "__stringMin24Max24PatternAZaZ094AZaZ092AZaZ093": {
@@ -4440,11 +4356,7 @@
       },
       "ImportAssetFromSignedUrlResponseDetails": {
         "type": "object",
-        "required": [
-          "DataSetId",
-          "AssetName",
-          "RevisionId"
-        ],
+        "required": ["DataSetId", "AssetName", "RevisionId"],
         "properties": {
           "AssetName": {
             "allOf": [
@@ -4511,11 +4423,7 @@
       },
       "ImportAssetsFromS3ResponseDetails": {
         "type": "object",
-        "required": [
-          "DataSetId",
-          "AssetSources",
-          "RevisionId"
-        ],
+        "required": ["DataSetId", "AssetSources", "RevisionId"],
         "properties": {
           "AssetSources": {
             "allOf": [
@@ -4552,15 +4460,7 @@
       },
       "JobEntry": {
         "type": "object",
-        "required": [
-          "Type",
-          "Details",
-          "State",
-          "CreatedAt",
-          "Id",
-          "Arn",
-          "UpdatedAt"
-        ],
+        "required": ["Type", "Details", "State", "CreatedAt", "Id", "Arn", "UpdatedAt"],
         "properties": {
           "Arn": {
             "allOf": [
@@ -4647,10 +4547,7 @@
       },
       "JobErrorLimitName": {
         "type": "string",
-        "enum": [
-          "Assets per revision",
-          "Asset size in GB"
-        ],
+        "enum": ["Assets per revision", "Asset size in GB"],
         "description": "The name of the limit that was reached."
       },
       "__double": {
@@ -4659,18 +4556,12 @@
       },
       "JobErrorResourceTypes": {
         "type": "string",
-        "enum": [
-          "REVISION",
-          "ASSET"
-        ],
+        "enum": ["REVISION", "ASSET"],
         "description": "The types of resource which the job error can apply to."
       },
       "JobError": {
         "type": "object",
-        "required": [
-          "Message",
-          "Code"
-        ],
+        "required": ["Message", "Code"],
         "properties": {
           "Code": {
             "allOf": [
@@ -4768,13 +4659,7 @@
       },
       "RevisionEntry": {
         "type": "object",
-        "required": [
-          "CreatedAt",
-          "DataSetId",
-          "Id",
-          "Arn",
-          "UpdatedAt"
-        ],
+        "required": ["CreatedAt", "DataSetId", "Id", "Arn", "UpdatedAt"],
         "properties": {
           "Arn": {
             "allOf": [
@@ -4865,10 +4750,7 @@
       },
       "ExportRevisionsToS3RequestDetails": {
         "type": "object",
-        "required": [
-          "RevisionDestinations",
-          "DataSetId"
-        ],
+        "required": ["RevisionDestinations", "DataSetId"],
         "properties": {
           "DataSetId": {
             "allOf": [
@@ -4912,10 +4794,7 @@
       },
       "ExportRevisionsToS3ResponseDetails": {
         "type": "object",
-        "required": [
-          "RevisionDestinations",
-          "DataSetId"
-        ],
+        "required": ["RevisionDestinations", "DataSetId"],
         "properties": {
           "DataSetId": {
             "allOf": [
@@ -4952,10 +4831,7 @@
       },
       "RevisionDestinationEntry": {
         "type": "object",
-        "required": [
-          "Bucket",
-          "RevisionId"
-        ],
+        "required": ["Bucket", "RevisionId"],
         "properties": {
           "Bucket": {
             "allOf": [

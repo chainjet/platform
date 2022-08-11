@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -270,11 +262,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ClientRequestToken",
-                  "InvitationId",
-                  "MemberConfiguration"
-                ],
+                "required": ["ClientRequestToken", "InvitationId", "MemberConfiguration"],
                 "properties": {
                   "ClientRequestToken": {
                     "description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time. This identifier is required only if you make a service request directly using an HTTP client. It is generated automatically if you use an AWS SDK or the AWS CLI.",
@@ -653,10 +641,7 @@
                   "Framework": {
                     "description": "The blockchain framework that the network uses.",
                     "type": "string",
-                    "enum": [
-                      "HYPERLEDGER_FABRIC",
-                      "ETHEREUM"
-                    ]
+                    "enum": ["HYPERLEDGER_FABRIC", "ETHEREUM"]
                   },
                   "FrameworkVersion": {
                     "description": "The version of the blockchain framework that the network uses.",
@@ -873,10 +858,7 @@
             "description": "An optional framework specifier. If provided, only networks of this framework type are listed.",
             "schema": {
               "type": "string",
-              "enum": [
-                "HYPERLEDGER_FABRIC",
-                "ETHEREUM"
-              ]
+              "enum": ["HYPERLEDGER_FABRIC", "ETHEREUM"]
             }
           },
           {
@@ -886,13 +868,7 @@
             "description": "An optional status specifier. If provided, only networks currently in this status are listed.",
             "schema": {
               "type": "string",
-              "enum": [
-                "CREATING",
-                "AVAILABLE",
-                "CREATE_FAILED",
-                "DELETING",
-                "DELETED"
-              ]
+              "enum": ["CREATING", "AVAILABLE", "CREATE_FAILED", "DELETING", "DELETED"]
             }
           },
           {
@@ -1064,10 +1040,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ClientRequestToken",
-                  "NodeConfiguration"
-                ],
+                "required": ["ClientRequestToken", "NodeConfiguration"],
                 "properties": {
                   "ClientRequestToken": {
                     "description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time. This identifier is required only if you make a service request directly using an HTTP client. It is generated automatically if you use an AWS SDK or the AWS CLI.",
@@ -1236,15 +1209,7 @@
             "description": "An optional status specifier. If provided, only nodes currently in this status are listed.",
             "schema": {
               "type": "string",
-              "enum": [
-                "CREATING",
-                "AVAILABLE",
-                "CREATE_FAILED",
-                "UPDATING",
-                "DELETING",
-                "DELETED",
-                "FAILED"
-              ]
+              "enum": ["CREATING", "AVAILABLE", "CREATE_FAILED", "UPDATING", "DELETING", "DELETED", "FAILED"]
             }
           },
           {
@@ -1395,11 +1360,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ClientRequestToken",
-                  "MemberId",
-                  "Actions"
-                ],
+                "required": ["ClientRequestToken", "MemberId", "Actions"],
                 "properties": {
                   "ClientRequestToken": {
                     "description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time. This identifier is required only if you make a service request directly using an HTTP client. It is generated automatically if you use an AWS SDK or the AWS CLI.",
@@ -2921,10 +2882,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "VoterMemberId",
-                  "Vote"
-                ],
+                "required": ["VoterMemberId", "Vote"],
                 "properties": {
                   "VoterMemberId": {
                     "description": "The unique identifier of the member casting the vote. ",
@@ -2935,10 +2893,7 @@
                   "Vote": {
                     "description": " The value of the vote. ",
                     "type": "string",
-                    "enum": [
-                      "YES",
-                      "NO"
-                    ]
+                    "enum": ["YES", "NO"]
                   }
                 }
               }
@@ -3188,10 +3143,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ClientRequestToken",
-                  "NodeConfiguration"
-                ],
+                "required": ["ClientRequestToken", "NodeConfiguration"],
                 "properties": {
                   "ClientRequestToken": {
                     "description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time. This identifier is required only if you make a service request directly using an HTTP client. It is generated automatically if you use an AWS SDK or the AWS CLI.",
@@ -3975,9 +3927,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Tags"
-                ],
+                "required": ["Tags"],
                 "properties": {
                   "Tags": {
                     "description": "The tags to assign to the specified resource. Tag values can be empty, for example, <code>\"MyTagKey\" : \"\"</code>. You can specify multiple key-value pairs in a single request, with an overall maximum of 50 tags added to each resource.",
@@ -4275,9 +4225,7 @@
       },
       "NetworkFabricConfiguration": {
         "type": "object",
-        "required": [
-          "Edition"
-        ],
+        "required": ["Edition"],
         "properties": {
           "Edition": {
             "allOf": [
@@ -4681,10 +4629,7 @@
       },
       "ThresholdComparator": {
         "type": "string",
-        "enum": [
-          "GREATER_THAN",
-          "GREATER_THAN_OR_EQUAL_TO"
-        ]
+        "enum": ["GREATER_THAN", "GREATER_THAN_OR_EQUAL_TO"]
       },
       "ResourceIdString": {
         "type": "string",
@@ -4699,10 +4644,7 @@
       },
       "Framework": {
         "type": "string",
-        "enum": [
-          "HYPERLEDGER_FABRIC",
-          "ETHEREUM"
-        ]
+        "enum": ["HYPERLEDGER_FABRIC", "ETHEREUM"]
       },
       "FrameworkVersionString": {
         "type": "string",
@@ -4753,10 +4695,7 @@
       },
       "Edition": {
         "type": "string",
-        "enum": [
-          "STARTER",
-          "STANDARD"
-        ]
+        "enum": ["STARTER", "STANDARD"]
       },
       "Enabled": {
         "type": "boolean"
@@ -5291,13 +5230,7 @@
       },
       "InvitationStatus": {
         "type": "string",
-        "enum": [
-          "PENDING",
-          "ACCEPTED",
-          "ACCEPTING",
-          "REJECTED",
-          "EXPIRED"
-        ]
+        "enum": ["PENDING", "ACCEPTED", "ACCEPTING", "REJECTED", "EXPIRED"]
       },
       "NetworkSummary": {
         "type": "object",
@@ -5455,9 +5388,7 @@
       },
       "InviteAction": {
         "type": "object",
-        "required": [
-          "Principal"
-        ],
+        "required": ["Principal"],
         "properties": {
           "Principal": {
             "allOf": [
@@ -5502,13 +5433,7 @@
       },
       "NetworkStatus": {
         "type": "string",
-        "enum": [
-          "CREATING",
-          "AVAILABLE",
-          "CREATE_FAILED",
-          "DELETING",
-          "DELETED"
-        ]
+        "enum": ["CREATING", "AVAILABLE", "CREATE_FAILED", "DELETING", "DELETED"]
       },
       "NetworkSummaryList": {
         "type": "array",
@@ -5637,10 +5562,7 @@
       },
       "MemberFabricConfiguration": {
         "type": "object",
-        "required": [
-          "AdminUsername",
-          "AdminPassword"
-        ],
+        "required": ["AdminUsername", "AdminPassword"],
         "properties": {
           "AdminUsername": {
             "allOf": [
@@ -5913,13 +5835,7 @@
       },
       "ProposalStatus": {
         "type": "string",
-        "enum": [
-          "IN_PROGRESS",
-          "APPROVED",
-          "REJECTED",
-          "EXPIRED",
-          "ACTION_FAILED"
-        ]
+        "enum": ["IN_PROGRESS", "APPROVED", "REJECTED", "EXPIRED", "ACTION_FAILED"]
       },
       "VoteCount": {
         "type": "integer"
@@ -6048,9 +5964,7 @@
       },
       "RemoveAction": {
         "type": "object",
-        "required": [
-          "MemberId"
-        ],
+        "required": ["MemberId"],
         "properties": {
           "MemberId": {
             "allOf": [
@@ -6067,17 +5981,11 @@
       },
       "VoteValue": {
         "type": "string",
-        "enum": [
-          "YES",
-          "NO"
-        ]
+        "enum": ["YES", "NO"]
       },
       "StateDBType": {
         "type": "string",
-        "enum": [
-          "LevelDB",
-          "CouchDB"
-        ]
+        "enum": ["LevelDB", "CouchDB"]
       },
       "InputTagMap": {
         "type": "object",

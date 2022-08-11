@@ -5,9 +5,7 @@
     "x-release": "v4",
     "title": "AWS CodePipeline",
     "description": "Overview  This is the AWS CodePipeline API Reference. This guide provides descriptions of the actions and data types for AWS CodePipeline. Some functionality for your pipeline can only be configured through the API. For more information, see the AWS CodePipeline User Guide. You can use the AWS CodePipeline API to work with pipelines, stages, actions, and transitions.  Pipelines are models of automated release processes. Each pipeline is uniquely named, and consists of stages, actions, and transitions.  You can work with pipelines by calling:    CreatePipeline, which creates a uniquely named pipeline.    DeletePipeline, which deletes the specified pipeline.    GetPipeline, which returns information about the pipeline structure and pipeline metadata, including the pipeline Amazon Resource Name (ARN).    GetPipelineExecution, which returns information about a specific execution of a pipeline.    GetPipelineState, which returns information about the current state of the stages and actions of a pipeline.    ListActionExecutions, which returns action-level details for past executions. The details include full stage and action-level details, including individual action duration, status, any errors that occurred during the execution, and input and output artifact location details.    ListPipelines, which gets a summary of all of the pipelines associated with your account.    ListPipelineExecutions, which gets a summary of the most recent executions for a pipeline.    StartPipelineExecution, which runs the most recent revision of an artifact through the pipeline.    StopPipelineExecution, which stops the specified pipeline execution from continuing through the pipeline.    UpdatePipeline, which updates a pipeline with edits or changes to the structure of the pipeline.   Pipelines include stages. Each stage contains one or more actions that must complete before the next stage begins. A stage results in success or failure. If a stage fails, the pipeline stops at that stage and remains stopped until either a new version of an artifact appears in the source location, or a user takes action to rerun the most recent artifact through the pipeline. You can call GetPipelineState, which displays the status of a pipeline, including the status of stages in the pipeline, or GetPipeline, which returns the entire structure of the pipeline, including the stages of that pipeline. For more information about the structure of stages and actions, see AWS CodePipeline Pipeline Structure Reference. Pipeline stages include actions that are categorized into categories such as source or build actions performed in a stage of a pipeline. For example, you can use a source action to import artifacts into a pipeline from a source such as Amazon S3. Like stages, you do not work with actions directly in most cases, but you do define and interact with actions when working with pipeline operations such as CreatePipeline and GetPipelineState. Valid action categories are:   Source   Build   Test   Deploy   Approval   Invoke   Pipelines also include transitions, which allow the transition of artifacts from one stage to the next in a pipeline after the actions in one stage complete. You can work with transitions by calling:    DisableStageTransition, which prevents artifacts from transitioning to the next stage in a pipeline.    EnableStageTransition, which enables transition of artifacts between stages in a pipeline.     Using the API to integrate with AWS CodePipeline  For third-party integrators or developers who want to create their own integrations with AWS CodePipeline, the expected sequence varies from the standard API user. To integrate with AWS CodePipeline, developers need to work with the following items:  Jobs, which are instances of an action. For example, a job for a source action might import a revision of an artifact from a source.  You can work with jobs by calling:    AcknowledgeJob, which confirms whether a job worker has received the specified job.    GetJobDetails, which returns the details of a job.    PollForJobs, which determines whether there are any jobs to act on.    PutJobFailureResult, which provides details of a job failure.     PutJobSuccessResult, which provides details of a job success.    Third party jobs, which are instances of an action created by a partner action and integrated into AWS CodePipeline. Partner actions are created by members of the AWS Partner Network. You can work with third party jobs by calling:    AcknowledgeThirdPartyJob, which confirms whether a job worker has received the specified job.    GetThirdPartyJobDetails, which requests the details of a job for a partner action.    PollForThirdPartyJobs, which determines whether there are any jobs to act on.     PutThirdPartyJobFailureResult, which provides details of a job failure.    PutThirdPartyJobSuccessResult, which provides details of a job success.",
-    "x-categories": [
-      "software-development"
-    ],
+    "x-categories": ["software-development"],
     "x-logo": {
       "url": "/logos/aws/Arch_AWS-CodePipeline_64.svg"
     },
@@ -38,9 +36,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -123,10 +119,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -137,10 +130,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -212,9 +202,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.AcknowledgeJob"
-              ]
+              "enum": ["CodePipeline_20150709.AcknowledgeJob"]
             }
           }
         ],
@@ -317,9 +305,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.AcknowledgeThirdPartyJob"
-              ]
+              "enum": ["CodePipeline_20150709.AcknowledgeThirdPartyJob"]
             }
           }
         ],
@@ -432,9 +418,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.CreateCustomActionType"
-              ]
+              "enum": ["CodePipeline_20150709.CreateCustomActionType"]
             }
           }
         ],
@@ -597,9 +581,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.CreatePipeline"
-              ]
+              "enum": ["CodePipeline_20150709.CreatePipeline"]
             }
           }
         ],
@@ -675,9 +657,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.DeleteCustomActionType"
-              ]
+              "enum": ["CodePipeline_20150709.DeleteCustomActionType"]
             }
           }
         ],
@@ -753,9 +733,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.DeletePipeline"
-              ]
+              "enum": ["CodePipeline_20150709.DeletePipeline"]
             }
           }
         ],
@@ -838,9 +816,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.DeleteWebhook"
-              ]
+              "enum": ["CodePipeline_20150709.DeleteWebhook"]
             }
           }
         ],
@@ -923,9 +899,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.DeregisterWebhookWithThirdParty"
-              ]
+              "enum": ["CodePipeline_20150709.DeregisterWebhookWithThirdParty"]
             }
           }
         ],
@@ -1011,9 +985,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.DisableStageTransition"
-              ]
+              "enum": ["CodePipeline_20150709.DisableStageTransition"]
             }
           }
         ],
@@ -1099,9 +1071,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.EnableStageTransition"
-              ]
+              "enum": ["CodePipeline_20150709.EnableStageTransition"]
             }
           }
         ],
@@ -1184,9 +1154,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.GetJobDetails"
-              ]
+              "enum": ["CodePipeline_20150709.GetJobDetails"]
             }
           }
         ],
@@ -1279,9 +1247,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.GetPipeline"
-              ]
+              "enum": ["CodePipeline_20150709.GetPipeline"]
             }
           }
         ],
@@ -1374,9 +1340,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.GetPipelineExecution"
-              ]
+              "enum": ["CodePipeline_20150709.GetPipelineExecution"]
             }
           }
         ],
@@ -1459,9 +1423,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.GetPipelineState"
-              ]
+              "enum": ["CodePipeline_20150709.GetPipelineState"]
             }
           }
         ],
@@ -1564,9 +1526,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.GetThirdPartyJobDetails"
-              ]
+              "enum": ["CodePipeline_20150709.GetThirdPartyJobDetails"]
             }
           }
         ],
@@ -1687,9 +1647,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.ListActionExecutions"
-              ]
+              "enum": ["CodePipeline_20150709.ListActionExecutions"]
             }
           }
         ],
@@ -1781,9 +1739,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.ListActionTypes"
-              ]
+              "enum": ["CodePipeline_20150709.ListActionTypes"]
             }
           }
         ],
@@ -1894,9 +1850,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.ListPipelineExecutions"
-              ]
+              "enum": ["CodePipeline_20150709.ListPipelineExecutions"]
             }
           }
         ],
@@ -1988,9 +1942,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.ListPipelines"
-              ]
+              "enum": ["CodePipeline_20150709.ListPipelines"]
             },
             "description": "Pagination token"
           },
@@ -2000,9 +1952,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.ListPipelines"
-              ]
+              "enum": ["CodePipeline_20150709.ListPipelines"]
             }
           }
         ],
@@ -2123,9 +2073,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.ListTagsForResource"
-              ]
+              "enum": ["CodePipeline_20150709.ListTagsForResource"]
             }
           }
         ],
@@ -2226,9 +2174,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.ListWebhooks"
-              ]
+              "enum": ["CodePipeline_20150709.ListWebhooks"]
             }
           }
         ],
@@ -2311,9 +2257,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.PollForJobs"
-              ]
+              "enum": ["CodePipeline_20150709.PollForJobs"]
             }
           }
         ],
@@ -2396,9 +2340,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.PollForThirdPartyJobs"
-              ]
+              "enum": ["CodePipeline_20150709.PollForThirdPartyJobs"]
             }
           }
         ],
@@ -2501,9 +2443,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.PutActionRevision"
-              ]
+              "enum": ["CodePipeline_20150709.PutActionRevision"]
             }
           }
         ],
@@ -2626,9 +2566,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.PutApprovalResult"
-              ]
+              "enum": ["CodePipeline_20150709.PutApprovalResult"]
             }
           }
         ],
@@ -2714,9 +2652,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.PutJobFailureResult"
-              ]
+              "enum": ["CodePipeline_20150709.PutJobFailureResult"]
             }
           }
         ],
@@ -2812,9 +2748,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.PutJobSuccessResult"
-              ]
+              "enum": ["CodePipeline_20150709.PutJobSuccessResult"]
             }
           }
         ],
@@ -2910,9 +2844,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.PutThirdPartyJobFailureResult"
-              ]
+              "enum": ["CodePipeline_20150709.PutThirdPartyJobFailureResult"]
             }
           }
         ],
@@ -3008,9 +2940,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.PutThirdPartyJobSuccessResult"
-              ]
+              "enum": ["CodePipeline_20150709.PutThirdPartyJobSuccessResult"]
             }
           }
         ],
@@ -3153,9 +3083,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.PutWebhook"
-              ]
+              "enum": ["CodePipeline_20150709.PutWebhook"]
             }
           }
         ],
@@ -3238,9 +3166,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.RegisterWebhookWithThirdParty"
-              ]
+              "enum": ["CodePipeline_20150709.RegisterWebhookWithThirdParty"]
             }
           }
         ],
@@ -3363,9 +3289,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.RetryStageExecution"
-              ]
+              "enum": ["CodePipeline_20150709.RetryStageExecution"]
             }
           }
         ],
@@ -3458,9 +3382,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.StartPipelineExecution"
-              ]
+              "enum": ["CodePipeline_20150709.StartPipelineExecution"]
             }
           }
         ],
@@ -3573,9 +3495,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.StopPipelineExecution"
-              ]
+              "enum": ["CodePipeline_20150709.StopPipelineExecution"]
             }
           }
         ],
@@ -3698,9 +3618,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.TagResource"
-              ]
+              "enum": ["CodePipeline_20150709.TagResource"]
             }
           }
         ],
@@ -3813,9 +3731,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.UntagResource"
-              ]
+              "enum": ["CodePipeline_20150709.UntagResource"]
             }
           }
         ],
@@ -3938,9 +3854,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.UpdatePipeline"
-              ]
+              "enum": ["CodePipeline_20150709.UpdatePipeline"]
             }
           }
         ],
@@ -4023,9 +3937,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.GetActionType"
-              ]
+              "enum": ["CodePipeline_20150709.GetActionType"]
             }
           }
         ],
@@ -4111,9 +4023,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "CodePipeline_20150709.UpdateActionType"
-              ]
+              "enum": ["CodePipeline_20150709.UpdateActionType"]
             }
           }
         ],
@@ -4238,10 +4148,7 @@
       },
       "AcknowledgeJobInput": {
         "type": "object",
-        "required": [
-          "jobId",
-          "nonce"
-        ],
+        "required": ["jobId", "nonce"],
         "title": "AcknowledgeJobInput",
         "properties": {
           "jobId": {
@@ -4288,11 +4195,7 @@
       },
       "AcknowledgeThirdPartyJobInput": {
         "type": "object",
-        "required": [
-          "jobId",
-          "nonce",
-          "clientToken"
-        ],
+        "required": ["jobId", "nonce", "clientToken"],
         "title": "AcknowledgeThirdPartyJobInput",
         "properties": {
           "jobId": {
@@ -4331,9 +4234,7 @@
       "InvalidClientTokenException": {},
       "CreateCustomActionTypeOutput": {
         "type": "object",
-        "required": [
-          "actionType"
-        ],
+        "required": ["actionType"],
         "properties": {
           "actionType": {
             "allOf": [
@@ -4360,13 +4261,7 @@
       },
       "CreateCustomActionTypeInput": {
         "type": "object",
-        "required": [
-          "category",
-          "provider",
-          "version",
-          "inputArtifactDetails",
-          "outputArtifactDetails"
-        ],
+        "required": ["category", "provider", "version", "inputArtifactDetails", "outputArtifactDetails"],
         "title": "CreateCustomActionTypeInput",
         "properties": {
           "category": {
@@ -4484,9 +4379,7 @@
       },
       "CreatePipelineInput": {
         "type": "object",
-        "required": [
-          "pipeline"
-        ],
+        "required": ["pipeline"],
         "title": "CreatePipelineInput",
         "properties": {
           "pipeline": {
@@ -4519,11 +4412,7 @@
       "InvalidStructureException": {},
       "DeleteCustomActionTypeInput": {
         "type": "object",
-        "required": [
-          "category",
-          "provider",
-          "version"
-        ],
+        "required": ["category", "provider", "version"],
         "title": "DeleteCustomActionTypeInput",
         "properties": {
           "category": {
@@ -4561,9 +4450,7 @@
       },
       "DeletePipelineInput": {
         "type": "object",
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "title": "DeletePipelineInput",
         "properties": {
           "name": {
@@ -4585,9 +4472,7 @@
       },
       "DeleteWebhookInput": {
         "type": "object",
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "title": "DeleteWebhookInput",
         "properties": {
           "name": {
@@ -4625,12 +4510,7 @@
       "WebhookNotFoundException": {},
       "DisableStageTransitionInput": {
         "type": "object",
-        "required": [
-          "pipelineName",
-          "stageName",
-          "transitionType",
-          "reason"
-        ],
+        "required": ["pipelineName", "stageName", "transitionType", "reason"],
         "title": "DisableStageTransitionInput",
         "properties": {
           "pipelineName": {
@@ -4680,11 +4560,7 @@
       "StageNotFoundException": {},
       "EnableStageTransitionInput": {
         "type": "object",
-        "required": [
-          "pipelineName",
-          "stageName",
-          "transitionType"
-        ],
+        "required": ["pipelineName", "stageName", "transitionType"],
         "title": "EnableStageTransitionInput",
         "properties": {
           "pipelineName": {
@@ -4738,9 +4614,7 @@
       },
       "GetJobDetailsInput": {
         "type": "object",
-        "required": [
-          "jobId"
-        ],
+        "required": ["jobId"],
         "title": "GetJobDetailsInput",
         "properties": {
           "jobId": {
@@ -4784,9 +4658,7 @@
       },
       "GetPipelineInput": {
         "type": "object",
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "title": "GetPipelineInput",
         "properties": {
           "name": {
@@ -4831,10 +4703,7 @@
       },
       "GetPipelineExecutionInput": {
         "type": "object",
-        "required": [
-          "pipelineName",
-          "pipelineExecutionId"
-        ],
+        "required": ["pipelineName", "pipelineExecutionId"],
         "title": "GetPipelineExecutionInput",
         "properties": {
           "pipelineName": {
@@ -4919,9 +4788,7 @@
       },
       "GetPipelineStateInput": {
         "type": "object",
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "title": "GetPipelineStateInput",
         "properties": {
           "name": {
@@ -4955,10 +4822,7 @@
       },
       "GetThirdPartyJobDetailsInput": {
         "type": "object",
-        "required": [
-          "jobId",
-          "clientToken"
-        ],
+        "required": ["jobId", "clientToken"],
         "title": "GetThirdPartyJobDetailsInput",
         "properties": {
           "jobId": {
@@ -5012,9 +4876,7 @@
       },
       "ListActionExecutionsInput": {
         "type": "object",
-        "required": [
-          "pipelineName"
-        ],
+        "required": ["pipelineName"],
         "title": "ListActionExecutionsInput",
         "properties": {
           "pipelineName": {
@@ -5062,9 +4924,7 @@
       "InvalidNextTokenException": {},
       "ListActionTypesOutput": {
         "type": "object",
-        "required": [
-          "actionTypes"
-        ],
+        "required": ["actionTypes"],
         "properties": {
           "actionTypes": {
             "allOf": [
@@ -5154,9 +5014,7 @@
       },
       "ListPipelineExecutionsInput": {
         "type": "object",
-        "required": [
-          "pipelineName"
-        ],
+        "required": ["pipelineName"],
         "title": "ListPipelineExecutionsInput",
         "properties": {
           "pipelineName": {
@@ -5272,9 +5130,7 @@
       },
       "ListTagsForResourceInput": {
         "type": "object",
-        "required": [
-          "resourceArn"
-        ],
+        "required": ["resourceArn"],
         "title": "ListTagsForResourceInput",
         "properties": {
           "resourceArn": {
@@ -5380,9 +5236,7 @@
       },
       "PollForJobsInput": {
         "type": "object",
-        "required": [
-          "actionTypeId"
-        ],
+        "required": ["actionTypeId"],
         "title": "PollForJobsInput",
         "properties": {
           "actionTypeId": {
@@ -5437,9 +5291,7 @@
       },
       "PollForThirdPartyJobsInput": {
         "type": "object",
-        "required": [
-          "actionTypeId"
-        ],
+        "required": ["actionTypeId"],
         "title": "PollForThirdPartyJobsInput",
         "properties": {
           "actionTypeId": {
@@ -5493,12 +5345,7 @@
       },
       "PutActionRevisionInput": {
         "type": "object",
-        "required": [
-          "pipelineName",
-          "stageName",
-          "actionName",
-          "actionRevision"
-        ],
+        "required": ["pipelineName", "stageName", "actionName", "actionRevision"],
         "title": "PutActionRevisionInput",
         "properties": {
           "pipelineName": {
@@ -5563,13 +5410,7 @@
       },
       "PutApprovalResultInput": {
         "type": "object",
-        "required": [
-          "pipelineName",
-          "stageName",
-          "actionName",
-          "result",
-          "token"
-        ],
+        "required": ["pipelineName", "stageName", "actionName", "result", "token"],
         "title": "PutApprovalResultInput",
         "properties": {
           "pipelineName": {
@@ -5629,10 +5470,7 @@
       "ApprovalAlreadyCompletedException": {},
       "PutJobFailureResultInput": {
         "type": "object",
-        "required": [
-          "jobId",
-          "failureDetails"
-        ],
+        "required": ["jobId", "failureDetails"],
         "title": "PutJobFailureResultInput",
         "properties": {
           "jobId": {
@@ -5661,9 +5499,7 @@
       "InvalidJobStateException": {},
       "PutJobSuccessResultInput": {
         "type": "object",
-        "required": [
-          "jobId"
-        ],
+        "required": ["jobId"],
         "title": "PutJobSuccessResultInput",
         "properties": {
           "jobId": {
@@ -5722,11 +5558,7 @@
       "OutputVariablesSizeExceededException": {},
       "PutThirdPartyJobFailureResultInput": {
         "type": "object",
-        "required": [
-          "jobId",
-          "clientToken",
-          "failureDetails"
-        ],
+        "required": ["jobId", "clientToken", "failureDetails"],
         "title": "PutThirdPartyJobFailureResultInput",
         "properties": {
           "jobId": {
@@ -5764,10 +5596,7 @@
       },
       "PutThirdPartyJobSuccessResultInput": {
         "type": "object",
-        "required": [
-          "jobId",
-          "clientToken"
-        ],
+        "required": ["jobId", "clientToken"],
         "title": "PutThirdPartyJobSuccessResultInput",
         "properties": {
           "jobId": {
@@ -5840,9 +5669,7 @@
       },
       "PutWebhookInput": {
         "type": "object",
-        "required": [
-          "webhook"
-        ],
+        "required": ["webhook"],
         "title": "PutWebhookInput",
         "properties": {
           "webhook": {
@@ -5907,12 +5734,7 @@
       },
       "RetryStageExecutionInput": {
         "type": "object",
-        "required": [
-          "pipelineName",
-          "stageName",
-          "pipelineExecutionId",
-          "retryMode"
-        ],
+        "required": ["pipelineName", "stageName", "pipelineExecutionId", "retryMode"],
         "title": "RetryStageExecutionInput",
         "properties": {
           "pipelineName": {
@@ -5978,9 +5800,7 @@
       },
       "StartPipelineExecutionInput": {
         "type": "object",
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "title": "StartPipelineExecutionInput",
         "properties": {
           "name": {
@@ -6023,10 +5843,7 @@
       },
       "StopPipelineExecutionInput": {
         "type": "object",
-        "required": [
-          "pipelineName",
-          "pipelineExecutionId"
-        ],
+        "required": ["pipelineName", "pipelineExecutionId"],
         "title": "StopPipelineExecutionInput",
         "properties": {
           "pipelineName": {
@@ -6079,10 +5896,7 @@
       },
       "TagResourceInput": {
         "type": "object",
-        "required": [
-          "resourceArn",
-          "tags"
-        ],
+        "required": ["resourceArn", "tags"],
         "title": "TagResourceInput",
         "properties": {
           "resourceArn": {
@@ -6113,10 +5927,7 @@
       },
       "UntagResourceInput": {
         "type": "object",
-        "required": [
-          "resourceArn",
-          "tagKeys"
-        ],
+        "required": ["resourceArn", "tagKeys"],
         "title": "UntagResourceInput",
         "properties": {
           "resourceArn": {
@@ -6159,9 +5970,7 @@
       },
       "UpdatePipelineInput": {
         "type": "object",
-        "required": [
-          "pipeline"
-        ],
+        "required": ["pipeline"],
         "title": "UpdatePipelineInput",
         "properties": {
           "pipeline": {
@@ -6196,11 +6005,7 @@
       },
       "AWSSessionCredentials": {
         "type": "object",
-        "required": [
-          "accessKeyId",
-          "secretAccessKey",
-          "sessionToken"
-        ],
+        "required": ["accessKeyId", "secretAccessKey", "sessionToken"],
         "properties": {
           "accessKeyId": {
             "allOf": [
@@ -6250,15 +6055,7 @@
       },
       "JobStatus": {
         "type": "string",
-        "enum": [
-          "Created",
-          "Queued",
-          "Dispatched",
-          "InProgress",
-          "TimedOut",
-          "Succeeded",
-          "Failed"
-        ]
+        "enum": ["Created", "Queued", "Dispatched", "InProgress", "TimedOut", "Succeeded", "Failed"]
       },
       "ThirdPartyJobId": {
         "type": "string",
@@ -6272,14 +6069,7 @@
       },
       "ActionCategory": {
         "type": "string",
-        "enum": [
-          "Source",
-          "Build",
-          "Deploy",
-          "Test",
-          "Invoke",
-          "Approval"
-        ]
+        "enum": ["Source", "Build", "Deploy", "Test", "Invoke", "Approval"]
       },
       "ActionConfigurationMap": {
         "type": "object",
@@ -6323,20 +6113,11 @@
       },
       "ActionConfigurationPropertyType": {
         "type": "string",
-        "enum": [
-          "String",
-          "Number",
-          "Boolean"
-        ]
+        "enum": ["String", "Number", "Boolean"]
       },
       "ActionConfigurationProperty": {
         "type": "object",
-        "required": [
-          "name",
-          "required",
-          "key",
-          "secret"
-        ],
+        "required": ["name", "required", "key", "secret"],
         "properties": {
           "name": {
             "allOf": [
@@ -6461,12 +6242,7 @@
       },
       "ActionTypeId": {
         "type": "object",
-        "required": [
-          "category",
-          "owner",
-          "provider",
-          "version"
-        ],
+        "required": ["category", "owner", "provider", "version"],
         "properties": {
           "category": {
             "allOf": [
@@ -6541,10 +6317,7 @@
       },
       "ActionDeclaration": {
         "type": "object",
-        "required": [
-          "name",
-          "actionTypeId"
-        ],
+        "required": ["name", "actionTypeId"],
         "properties": {
           "name": {
             "allOf": [
@@ -6641,12 +6414,7 @@
       },
       "ActionExecutionStatus": {
         "type": "string",
-        "enum": [
-          "InProgress",
-          "Abandoned",
-          "Succeeded",
-          "Failed"
-        ]
+        "enum": ["InProgress", "Abandoned", "Succeeded", "Failed"]
       },
       "ExecutionSummary": {
         "type": "string",
@@ -7119,11 +6887,7 @@
       },
       "ActionOwner": {
         "type": "string",
-        "enum": [
-          "AWS",
-          "ThirdParty",
-          "Custom"
-        ]
+        "enum": ["AWS", "ThirdParty", "Custom"]
       },
       "ActionProvider": {
         "type": "string",
@@ -7143,11 +6907,7 @@
       },
       "ActionRevision": {
         "type": "object",
-        "required": [
-          "revisionId",
-          "revisionChangeId",
-          "created"
-        ],
+        "required": ["revisionId", "revisionChangeId", "created"],
         "properties": {
           "revisionId": {
             "allOf": [
@@ -7292,10 +7052,7 @@
       },
       "ArtifactDetails": {
         "type": "object",
-        "required": [
-          "minimumCount",
-          "maximumCount"
-        ],
+        "required": ["minimumCount", "maximumCount"],
         "properties": {
           "minimumCount": {
             "allOf": [
@@ -7322,11 +7079,7 @@
       },
       "ActionType": {
         "type": "object",
-        "required": [
-          "id",
-          "inputArtifactDetails",
-          "outputArtifactDetails"
-        ],
+        "required": ["id", "inputArtifactDetails", "outputArtifactDetails"],
         "properties": {
           "id": {
             "allOf": [
@@ -7405,17 +7158,11 @@
       },
       "ApprovalStatus": {
         "type": "string",
-        "enum": [
-          "Approved",
-          "Rejected"
-        ]
+        "enum": ["Approved", "Rejected"]
       },
       "ApprovalResult": {
         "type": "object",
-        "required": [
-          "summary",
-          "status"
-        ],
+        "required": ["summary", "status"],
         "properties": {
           "summary": {
             "allOf": [
@@ -7582,16 +7329,11 @@
       },
       "ArtifactLocationType": {
         "type": "string",
-        "enum": [
-          "S3"
-        ]
+        "enum": ["S3"]
       },
       "S3ArtifactLocation": {
         "type": "object",
-        "required": [
-          "bucketName",
-          "objectKey"
-        ],
+        "required": ["bucketName", "objectKey"],
         "properties": {
           "bucketName": {
             "allOf": [
@@ -7695,9 +7437,7 @@
       },
       "ArtifactStoreType": {
         "type": "string",
-        "enum": [
-          "S3"
-        ]
+        "enum": ["S3"]
       },
       "ArtifactStoreLocation": {
         "type": "string",
@@ -7707,10 +7447,7 @@
       },
       "EncryptionKey": {
         "type": "object",
-        "required": [
-          "id",
-          "type"
-        ],
+        "required": ["id", "type"],
         "properties": {
           "id": {
             "allOf": [
@@ -7737,10 +7474,7 @@
       },
       "ArtifactStore": {
         "type": "object",
-        "required": [
-          "type",
-          "location"
-        ],
+        "required": ["type", "location"],
         "properties": {
           "type": {
             "allOf": [
@@ -7788,16 +7522,11 @@
       },
       "BlockerType": {
         "type": "string",
-        "enum": [
-          "Schedule"
-        ]
+        "enum": ["Schedule"]
       },
       "BlockerDeclaration": {
         "type": "object",
-        "required": [
-          "name",
-          "type"
-        ],
+        "required": ["name", "type"],
         "properties": {
           "name": {
             "allOf": [
@@ -7848,11 +7577,7 @@
       },
       "PipelineDeclaration": {
         "type": "object",
-        "required": [
-          "name",
-          "roleArn",
-          "stages"
-        ],
+        "required": ["name", "roleArn", "stages"],
         "properties": {
           "name": {
             "allOf": [
@@ -7923,10 +7648,7 @@
       },
       "CurrentRevision": {
         "type": "object",
-        "required": [
-          "revision",
-          "changeIdentifier"
-        ],
+        "required": ["revision", "changeIdentifier"],
         "properties": {
           "revision": {
             "allOf": [
@@ -7985,10 +7707,7 @@
       },
       "StageTransitionType": {
         "type": "string",
-        "enum": [
-          "Inbound",
-          "Outbound"
-        ]
+        "enum": ["Inbound", "Outbound"]
       },
       "DisabledReason": {
         "type": "string",
@@ -8006,9 +7725,7 @@
       },
       "EncryptionKeyType": {
         "type": "string",
-        "enum": [
-          "KMS"
-        ]
+        "enum": ["KMS"]
       },
       "Message": {
         "type": "string",
@@ -8106,10 +7823,7 @@
       },
       "FailureDetails": {
         "type": "object",
-        "required": [
-          "type",
-          "message"
-        ],
+        "required": ["type", "message"],
         "properties": {
           "type": {
             "allOf": [
@@ -8326,9 +8040,7 @@
       },
       "InputArtifact": {
         "type": "object",
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "properties": {
           "name": {
             "allOf": [
@@ -8669,10 +8381,7 @@
       },
       "ListWebhookItem": {
         "type": "object",
-        "required": [
-          "definition",
-          "url"
-        ],
+        "required": ["definition", "url"],
         "properties": {
           "definition": {
             "allOf": [
@@ -8764,9 +8473,7 @@
       },
       "OutputArtifact": {
         "type": "object",
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "properties": {
           "name": {
             "allOf": [
@@ -8812,15 +8519,7 @@
       },
       "PipelineExecutionStatus": {
         "type": "string",
-        "enum": [
-          "InProgress",
-          "Stopped",
-          "Stopping",
-          "Succeeded",
-          "Superseded",
-          "Failed",
-          "Failed"
-        ]
+        "enum": ["InProgress", "Stopped", "Stopping", "Succeeded", "Superseded", "Failed", "Failed"]
       },
       "SourceRevisionList": {
         "type": "array",
@@ -8968,10 +8667,7 @@
       },
       "StageDeclaration": {
         "type": "object",
-        "required": [
-          "name",
-          "actions"
-        ],
+        "required": ["name", "actions"],
         "properties": {
           "name": {
             "allOf": [
@@ -9025,9 +8721,7 @@
       },
       "StageRetryMode": {
         "type": "string",
-        "enum": [
-          "FAILED_ACTIONS"
-        ]
+        "enum": ["FAILED_ACTIONS"]
       },
       "S3BucketName": {
         "type": "string"
@@ -9047,9 +8741,7 @@
       },
       "SourceRevision": {
         "type": "object",
-        "required": [
-          "actionName"
-        ],
+        "required": ["actionName"],
         "properties": {
           "actionName": {
             "allOf": [
@@ -9108,21 +8800,11 @@
       },
       "StageExecutionStatus": {
         "type": "string",
-        "enum": [
-          "InProgress",
-          "Failed",
-          "Stopped",
-          "Stopping",
-          "Succeeded",
-          "Succeeded"
-        ]
+        "enum": ["InProgress", "Failed", "Stopped", "Stopping", "Succeeded", "Succeeded"]
       },
       "StageExecution": {
         "type": "object",
-        "required": [
-          "pipelineExecutionId",
-          "status"
-        ],
+        "required": ["pipelineExecutionId", "status"],
         "properties": {
           "pipelineExecutionId": {
             "allOf": [
@@ -9258,10 +8940,7 @@
       },
       "Tag": {
         "type": "object",
-        "required": [
-          "key",
-          "value"
-        ],
+        "required": ["key", "value"],
         "properties": {
           "key": {
             "allOf": [
@@ -9442,11 +9121,7 @@
       },
       "WebhookAuthenticationType": {
         "type": "string",
-        "enum": [
-          "GITHUB_HMAC",
-          "IP",
-          "UNAUTHENTICATED"
-        ]
+        "enum": ["GITHUB_HMAC", "IP", "UNAUTHENTICATED"]
       },
       "WebhookFilters": {
         "type": "array",
@@ -9457,9 +9132,7 @@
       },
       "WebhookFilterRule": {
         "type": "object",
-        "required": [
-          "jsonPath"
-        ],
+        "required": ["jsonPath"],
         "properties": {
           "jsonPath": {
             "allOf": [
@@ -9501,12 +9174,7 @@
       },
       "GetActionTypeInput": {
         "type": "object",
-        "required": [
-          "category",
-          "owner",
-          "provider",
-          "version"
-        ],
+        "required": ["category", "owner", "provider", "version"],
         "title": "GetActionTypeInput",
         "properties": {
           "category": {
@@ -9553,9 +9221,7 @@
       },
       "UpdateActionTypeInput": {
         "type": "object",
-        "required": [
-          "actionType"
-        ],
+        "required": ["actionType"],
         "title": "UpdateActionTypeInput",
         "properties": {
           "actionType": {
@@ -9583,10 +9249,7 @@
       },
       "ActionTypeArtifactDetails": {
         "type": "object",
-        "required": [
-          "minimumCount",
-          "maximumCount"
-        ],
+        "required": ["minimumCount", "maximumCount"],
         "properties": {
           "minimumCount": {
             "allOf": [
@@ -9618,10 +9281,7 @@
       },
       "ActionTypeExecutor": {
         "type": "object",
-        "required": [
-          "configuration",
-          "type"
-        ],
+        "required": ["configuration", "type"],
         "properties": {
           "configuration": {
             "allOf": [
@@ -9668,12 +9328,7 @@
       },
       "ActionTypeIdentifier": {
         "type": "object",
-        "required": [
-          "category",
-          "owner",
-          "provider",
-          "version"
-        ],
+        "required": ["category", "owner", "provider", "version"],
         "properties": {
           "category": {
             "allOf": [
@@ -9720,9 +9375,7 @@
       },
       "ActionTypePermissions": {
         "type": "object",
-        "required": [
-          "allowedAccounts"
-        ],
+        "required": ["allowedAccounts"],
         "properties": {
           "allowedAccounts": {
             "allOf": [
@@ -9785,12 +9438,7 @@
       },
       "ActionTypeDeclaration": {
         "type": "object",
-        "required": [
-          "executor",
-          "id",
-          "inputArtifactDetails",
-          "outputArtifactDetails"
-        ],
+        "required": ["executor", "id", "inputArtifactDetails", "outputArtifactDetails"],
         "properties": {
           "description": {
             "allOf": [
@@ -9896,10 +9544,7 @@
       },
       "ExecutorType": {
         "type": "string",
-        "enum": [
-          "JobWorker",
-          "Lambda"
-        ]
+        "enum": ["JobWorker", "Lambda"]
       },
       "PolicyStatementsTemplate": {
         "type": "string",
@@ -9929,9 +9574,7 @@
       },
       "LambdaExecutorConfiguration": {
         "type": "object",
-        "required": [
-          "lambdaFunctionArn"
-        ],
+        "required": ["lambdaFunctionArn"],
         "properties": {
           "lambdaFunctionArn": {
             "allOf": [

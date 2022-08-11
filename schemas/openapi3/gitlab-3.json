@@ -3,9 +3,7 @@
   "info": {
     "version": "v3",
     "title": "Gitlab",
-    "x-categories": [
-      "software-development"
-    ],
+    "x-categories": ["software-development"],
     "description": "The platform for modern developers\nGitLab unifies issues, code review, CI and CD into a single UI",
     "x-logo": {
       "url": "/logos/gitlab.svg"
@@ -135,9 +133,7 @@
           }
         },
         "summary": "Get Application Settings",
-        "tags": [
-          "application"
-        ]
+        "tags": ["application"]
       },
       "put": {
         "description": "Modify application settings",
@@ -152,41 +148,25 @@
                     "description": "Determine if developers can push to master",
                     "type": "integer",
                     "format": "int32",
-                    "enum": [
-                      0,
-                      1,
-                      2
-                    ]
+                    "enum": [0, 1, 2]
                   },
                   "default_project_visibility": {
                     "description": "The default project visibility",
                     "type": "integer",
                     "format": "int32",
-                    "enum": [
-                      0,
-                      10,
-                      20
-                    ]
+                    "enum": [0, 10, 20]
                   },
                   "default_snippet_visibility": {
                     "description": "The default snippet visibility",
                     "type": "integer",
                     "format": "int32",
-                    "enum": [
-                      0,
-                      10,
-                      20
-                    ]
+                    "enum": [0, 10, 20]
                   },
                   "default_group_visibility": {
                     "description": "The default group visibility",
                     "type": "integer",
                     "format": "int32",
-                    "enum": [
-                      0,
-                      10,
-                      20
-                    ]
+                    "enum": [0, 10, 20]
                   },
                   "restricted_visibility_levels": {
                     "description": "Selected levels cannot be used by non-admin users for projects or snippets. If the public level is restricted, user profiles are only visible to logged in users.",
@@ -198,15 +178,7 @@
                   "import_sources": {
                     "description": "Enabled sources for code import during project creation. OmniAuth must be configured for GitHub, Bitbucket, and GitLab.com",
                     "type": "array",
-                    "enum": [
-                      "github",
-                      "bitbucket",
-                      "gitlab",
-                      "google_code",
-                      "fogbugz",
-                      "git",
-                      "gitlab_project"
-                    ],
+                    "enum": ["github", "bitbucket", "gitlab", "google_code", "fogbugz", "git", "gitlab_project"],
                     "items": {
                       "type": "string"
                     }
@@ -221,11 +193,7 @@
                   "enabled_git_access_protocol": {
                     "description": "Allow only the selected protocols to be used for Git access.",
                     "type": "string",
-                    "enum": [
-                      "ssh",
-                      "http",
-                      "nil"
-                    ]
+                    "enum": ["ssh", "http", "nil"]
                   },
                   "gravatar_enabled": {
                     "description": "Flag indicating if the Gravatar service is enabled",
@@ -512,9 +480,7 @@
           }
         },
         "summary": "Update Application Settings",
-        "tags": [
-          "application"
-        ]
+        "tags": ["application"]
       }
     },
     "/v3/ci/lint": {
@@ -532,9 +498,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "content"
-                ]
+                "required": ["content"]
               }
             }
           },
@@ -546,9 +510,7 @@
           }
         },
         "summary": "Create Ci Lint",
-        "tags": [
-          "ci"
-        ]
+        "tags": ["ci"]
       }
     },
     "/v3/deploy_keys": {
@@ -559,9 +521,7 @@
             "description": "get DeployKey(s)"
           }
         },
-        "tags": [
-          "deploy_keys"
-        ],
+        "tags": ["deploy_keys"],
         "summary": "Get Deploy Keys",
         "description": "Get Deploy Keys"
       }
@@ -583,9 +543,7 @@
           }
         },
         "summary": "Get Dockerfiles",
-        "tags": [
-          "dockerfiles"
-        ]
+        "tags": ["dockerfiles"]
       }
     },
     "/v3/dockerfiles/{name}": {
@@ -616,9 +574,7 @@
           }
         },
         "summary": "Get Dockerfiles Name",
-        "tags": [
-          "dockerfiles"
-        ]
+        "tags": ["dockerfiles"]
       }
     },
     "/v3/gitignores": {
@@ -638,9 +594,7 @@
           }
         },
         "summary": "Get Gitignores",
-        "tags": [
-          "gitignores"
-        ]
+        "tags": ["gitignores"]
       }
     },
     "/v3/gitignores/{name}": {
@@ -671,9 +625,7 @@
           }
         },
         "summary": "Get Gitignores Name",
-        "tags": [
-          "gitignores"
-        ]
+        "tags": ["gitignores"]
       }
     },
     "/v3/gitlab_ci_ymls": {
@@ -693,9 +645,7 @@
           }
         },
         "summary": "Get Gitlab Ci Ymls",
-        "tags": [
-          "gitlab_ci_ymls"
-        ]
+        "tags": ["gitlab_ci_ymls"]
       }
     },
     "/v3/gitlab_ci_ymls/{name}": {
@@ -726,9 +676,7 @@
           }
         },
         "summary": "Get Gitlab Ci Ymls Name",
-        "tags": [
-          "gitlab_ci_ymls"
-        ]
+        "tags": ["gitlab_ci_ymls"]
       }
     },
     "/v3/groups": {
@@ -770,10 +718,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "name",
-                "path"
-              ],
+              "enum": ["name", "path"],
               "default": "name"
             }
           },
@@ -784,10 +729,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ],
+              "enum": ["asc", "desc"],
               "default": "asc"
             }
           },
@@ -844,9 +786,7 @@
           }
         },
         "summary": "Get Groups",
-        "tags": [
-          "groups"
-        ]
+        "tags": ["groups"]
       },
       "post": {
         "description": "Create a group. Available only for users who can create groups.",
@@ -883,10 +823,7 @@
                     "type": "boolean"
                   }
                 },
-                "required": [
-                  "name",
-                  "path"
-                ]
+                "required": ["name", "path"]
               }
             }
           },
@@ -905,9 +842,7 @@
           }
         },
         "summary": "Create Groups",
-        "tags": [
-          "groups"
-        ]
+        "tags": ["groups"]
       }
     },
     "/v3/groups/owned": {
@@ -958,9 +893,7 @@
           }
         },
         "summary": "Get Groups Owned",
-        "tags": [
-          "groups"
-        ]
+        "tags": ["groups"]
       }
     },
     "/v3/groups/{id}": {
@@ -984,9 +917,7 @@
           }
         },
         "summary": "Delete Groups Id",
-        "tags": [
-          "groups"
-        ]
+        "tags": ["groups"]
       },
       "get": {
         "description": "Get a single group, with containing projects.",
@@ -1015,9 +946,7 @@
           }
         },
         "summary": "Get Groups Id",
-        "tags": [
-          "groups"
-        ]
+        "tags": ["groups"]
       },
       "put": {
         "description": "Update a group. Available only for users who can administrate groups.",
@@ -1082,9 +1011,7 @@
           }
         },
         "summary": "Update Groups Id",
-        "tags": [
-          "groups"
-        ]
+        "tags": ["groups"]
       }
     },
     "/v3/groups/{id}/access_requests": {
@@ -1135,9 +1062,7 @@
           }
         },
         "summary": "Get Groups Id Access Requests",
-        "tags": [
-          "groups"
-        ]
+        "tags": ["groups"]
       },
       "post": {
         "description": "This feature was introduced in GitLab 8.11.",
@@ -1166,9 +1091,7 @@
           }
         },
         "summary": "Create Groups Id Access Requests",
-        "tags": [
-          "groups"
-        ]
+        "tags": ["groups"]
       }
     },
     "/v3/groups/{id}/access_requests/{user_id}": {
@@ -1202,9 +1125,7 @@
           }
         },
         "summary": "Delete Groups Id Access Requests User Id",
-        "tags": [
-          "groups"
-        ]
+        "tags": ["groups"]
       }
     },
     "/v3/groups/{id}/access_requests/{user_id}/approve": {
@@ -1248,9 +1169,7 @@
           }
         },
         "summary": "Update Groups Id Access Requests User Id Approve",
-        "tags": [
-          "groups"
-        ]
+        "tags": ["groups"]
       }
     },
     "/v3/groups/{id}/issues": {
@@ -1274,11 +1193,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "opened",
-                "closed",
-                "all"
-              ],
+              "enum": ["opened", "closed", "all"],
               "default": "opened"
             }
           },
@@ -1307,10 +1222,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "created_at",
-                "updated_at"
-              ],
+              "enum": ["created_at", "updated_at"],
               "default": "created_at"
             }
           },
@@ -1321,10 +1233,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ],
+              "enum": ["asc", "desc"],
               "default": "desc"
             }
           },
@@ -1362,9 +1271,7 @@
           }
         },
         "summary": "Get Groups Id Issues",
-        "tags": [
-          "groups"
-        ]
+        "tags": ["groups"]
       }
     },
     "/v3/groups/{id}/members": {
@@ -1424,9 +1331,7 @@
           }
         },
         "summary": "Get Groups Id Members",
-        "tags": [
-          "groups"
-        ]
+        "tags": ["groups"]
       },
       "post": {
         "description": "Adds a member to a group or project.",
@@ -1458,9 +1363,7 @@
           }
         },
         "summary": "Create Groups Id Members",
-        "tags": [
-          "groups"
-        ]
+        "tags": ["groups"]
       }
     },
     "/v3/groups/{id}/members/{user_id}": {
@@ -1494,9 +1397,7 @@
           }
         },
         "summary": "Delete Groups Id Members User Id",
-        "tags": [
-          "groups"
-        ]
+        "tags": ["groups"]
       },
       "get": {
         "description": "Gets a member of a group or project.",
@@ -1535,9 +1436,7 @@
           }
         },
         "summary": "Get Groups Id Members User Id",
-        "tags": [
-          "groups"
-        ]
+        "tags": ["groups"]
       },
       "put": {
         "description": "Updates a member of a group or project.",
@@ -1579,9 +1478,7 @@
           }
         },
         "summary": "Update Groups Id Members User Id",
-        "tags": [
-          "groups"
-        ]
+        "tags": ["groups"]
       }
     },
     "/v3/groups/{id}/notification_settings": {
@@ -1612,9 +1509,7 @@
           }
         },
         "summary": "Get Groups Id Notification Settings",
-        "tags": [
-          "groups"
-        ]
+        "tags": ["groups"]
       },
       "put": {
         "description": "This feature was introduced in GitLab 8.12",
@@ -1706,9 +1601,7 @@
           }
         },
         "summary": "Update Groups Id Notification Settings",
-        "tags": [
-          "groups"
-        ]
+        "tags": ["groups"]
       }
     },
     "/v3/groups/{id}/projects": {
@@ -1741,11 +1634,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "public",
-                "internal",
-                "private"
-              ]
+              "enum": ["public", "internal", "private"]
             }
           },
           {
@@ -1764,14 +1653,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "id",
-                "name",
-                "path",
-                "created_at",
-                "updated_at",
-                "last_activity_at"
-              ],
+              "enum": ["id", "name", "path", "created_at", "updated_at", "last_activity_at"],
               "default": "created_at"
             }
           },
@@ -1782,10 +1664,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ],
+              "enum": ["asc", "desc"],
               "default": "desc"
             }
           },
@@ -1832,9 +1711,7 @@
           }
         },
         "summary": "Get Groups Id Projects",
-        "tags": [
-          "groups"
-        ]
+        "tags": ["groups"]
       }
     },
     "/v3/groups/{id}/projects/{project_id}": {
@@ -1874,9 +1751,7 @@
           }
         },
         "summary": "Create Groups Id Projects Project Id",
-        "tags": [
-          "groups"
-        ]
+        "tags": ["groups"]
       }
     },
     "/v3/hooks": {
@@ -1896,9 +1771,7 @@
           }
         },
         "summary": "Get Hooks",
-        "tags": [
-          "hooks"
-        ]
+        "tags": ["hooks"]
       },
       "post": {
         "description": "Create a new system hook",
@@ -1930,9 +1803,7 @@
                     "type": "boolean"
                   }
                 },
-                "required": [
-                  "url"
-                ]
+                "required": ["url"]
               }
             }
           },
@@ -1951,9 +1822,7 @@
           }
         },
         "summary": "Create Hooks",
-        "tags": [
-          "hooks"
-        ]
+        "tags": ["hooks"]
       }
     },
     "/v3/hooks/{id}": {
@@ -1985,9 +1854,7 @@
           }
         },
         "summary": "Delete Hooks Id",
-        "tags": [
-          "hooks"
-        ]
+        "tags": ["hooks"]
       },
       "get": {
         "description": "Test a hook",
@@ -2017,9 +1884,7 @@
           }
         },
         "summary": "Get Hooks Id",
-        "tags": [
-          "hooks"
-        ]
+        "tags": ["hooks"]
       }
     },
     "/v3/internal/allowed": {
@@ -2030,9 +1895,7 @@
             "description": "created Allowed"
           }
         },
-        "tags": [
-          "internal"
-        ],
+        "tags": ["internal"],
         "summary": "Create Internal Allowed",
         "description": "Create Internal Allowed"
       }
@@ -2045,9 +1908,7 @@
             "description": "get BroadcastMessage(s)"
           }
         },
-        "tags": [
-          "internal"
-        ],
+        "tags": ["internal"],
         "summary": "Get Internal Broadcast Message",
         "description": "Get Internal Broadcast Message"
       }
@@ -2060,9 +1921,7 @@
             "description": "get Check(s)"
           }
         },
-        "tags": [
-          "internal"
-        ],
+        "tags": ["internal"],
         "summary": "Get Internal Check",
         "description": "Get Internal Check"
       }
@@ -2075,9 +1934,7 @@
             "description": "get Discover(s)"
           }
         },
-        "tags": [
-          "internal"
-        ],
+        "tags": ["internal"],
         "summary": "Get Internal Discover",
         "description": "Get Internal Discover"
       }
@@ -2090,9 +1947,7 @@
             "description": "created LfsAuthenticate"
           }
         },
-        "tags": [
-          "internal"
-        ],
+        "tags": ["internal"],
         "summary": "Create Internal Lfs Authenticate",
         "description": "Create Internal Lfs Authenticate"
       }
@@ -2105,9 +1960,7 @@
             "description": "get MergeRequestUrl(s)"
           }
         },
-        "tags": [
-          "internal"
-        ],
+        "tags": ["internal"],
         "summary": "Get Internal Merge Request Urls",
         "description": "Get Internal Merge Request Urls"
       }
@@ -2120,9 +1973,7 @@
             "description": "created TwoFactorRecoveryCode"
           }
         },
-        "tags": [
-          "internal"
-        ],
+        "tags": ["internal"],
         "summary": "Create Internal Two Factor Recovery Codes",
         "description": "Create Internal Two Factor Recovery Codes"
       }
@@ -2139,11 +1990,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "opened",
-                "closed",
-                "all"
-              ],
+              "enum": ["opened", "closed", "all"],
               "default": "all"
             }
           },
@@ -2172,10 +2019,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "created_at",
-                "updated_at"
-              ],
+              "enum": ["created_at", "updated_at"],
               "default": "created_at"
             }
           },
@@ -2186,10 +2030,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ],
+              "enum": ["asc", "desc"],
               "default": "desc"
             }
           },
@@ -2227,9 +2068,7 @@
           }
         },
         "summary": "Get Issues",
-        "tags": [
-          "issues"
-        ]
+        "tags": ["issues"]
       }
     },
     "/v3/keys/{id}": {
@@ -2260,9 +2099,7 @@
           }
         },
         "summary": "Get Keys Id",
-        "tags": [
-          "keys"
-        ]
+        "tags": ["keys"]
       }
     },
     "/v3/licenses": {
@@ -2293,9 +2130,7 @@
           }
         },
         "summary": "Get Licenses",
-        "tags": [
-          "licenses"
-        ]
+        "tags": ["licenses"]
       }
     },
     "/v3/licenses/{name}": {
@@ -2326,9 +2161,7 @@
           }
         },
         "summary": "Get Licenses Name",
-        "tags": [
-          "licenses"
-        ]
+        "tags": ["licenses"]
       }
     },
     "/v3/namespaces": {
@@ -2379,9 +2212,7 @@
           }
         },
         "summary": "Get Namespaces",
-        "tags": [
-          "namespaces"
-        ]
+        "tags": ["namespaces"]
       }
     },
     "/v3/notification_settings": {
@@ -2401,9 +2232,7 @@
           }
         },
         "summary": "Get Notification Settings",
-        "tags": [
-          "notification_settings"
-        ]
+        "tags": ["notification_settings"]
       },
       "put": {
         "description": "This feature was introduced in GitLab 8.12",
@@ -2488,9 +2317,7 @@
           }
         },
         "summary": "Update Notification Settings",
-        "tags": [
-          "notification_settings"
-        ]
+        "tags": ["notification_settings"]
       }
     },
     "/v3/projects": {
@@ -2505,14 +2332,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "id",
-                "name",
-                "path",
-                "created_at",
-                "updated_at",
-                "last_activity_at"
-              ],
+              "enum": ["id", "name", "path", "created_at", "updated_at", "last_activity_at"],
               "default": "created_at"
             }
           },
@@ -2523,10 +2343,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ],
+              "enum": ["asc", "desc"],
               "default": "desc"
             }
           },
@@ -2546,11 +2363,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "public",
-                "internal",
-                "private"
-              ]
+              "enum": ["public", "internal", "private"]
             }
           },
           {
@@ -2605,9 +2418,7 @@
           }
         },
         "summary": "Get Projects",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Create new project",
@@ -2670,11 +2481,7 @@
                     "description": "Create a public project. The same as visibility_level = 20.",
                     "type": "integer",
                     "format": "int32",
-                    "enum": [
-                      0,
-                      10,
-                      20
-                    ]
+                    "enum": [0, 10, 20]
                   },
                   "public_builds": {
                     "description": "Perform public builds",
@@ -2702,9 +2509,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "name"
-                ]
+                "required": ["name"]
               }
             }
           },
@@ -2723,9 +2528,7 @@
           }
         },
         "summary": "Create Projects",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/all": {
@@ -2740,14 +2543,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "id",
-                "name",
-                "path",
-                "created_at",
-                "updated_at",
-                "last_activity_at"
-              ],
+              "enum": ["id", "name", "path", "created_at", "updated_at", "last_activity_at"],
               "default": "created_at"
             }
           },
@@ -2758,10 +2554,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ],
+              "enum": ["asc", "desc"],
               "default": "desc"
             }
           },
@@ -2781,11 +2574,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "public",
-                "internal",
-                "private"
-              ]
+              "enum": ["public", "internal", "private"]
             }
           },
           {
@@ -2849,9 +2638,7 @@
           }
         },
         "summary": "Get Projects All",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/fork/{id}": {
@@ -2897,9 +2684,7 @@
           }
         },
         "summary": "Create Projects Fork Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/owned": {
@@ -2914,14 +2699,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "id",
-                "name",
-                "path",
-                "created_at",
-                "updated_at",
-                "last_activity_at"
-              ],
+              "enum": ["id", "name", "path", "created_at", "updated_at", "last_activity_at"],
               "default": "created_at"
             }
           },
@@ -2932,10 +2710,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ],
+              "enum": ["asc", "desc"],
               "default": "desc"
             }
           },
@@ -2955,11 +2730,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "public",
-                "internal",
-                "private"
-              ]
+              "enum": ["public", "internal", "private"]
             }
           },
           {
@@ -3023,9 +2794,7 @@
           }
         },
         "summary": "Get Projects Owned",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/search/{query}": {
@@ -3049,14 +2818,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "id",
-                "name",
-                "path",
-                "created_at",
-                "updated_at",
-                "last_activity_at"
-              ],
+              "enum": ["id", "name", "path", "created_at", "updated_at", "last_activity_at"],
               "default": "created_at"
             }
           },
@@ -3067,10 +2829,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ],
+              "enum": ["asc", "desc"],
               "default": "desc"
             }
           },
@@ -3108,9 +2867,7 @@
           }
         },
         "summary": "Get Projects Search Query",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/starred": {
@@ -3125,14 +2882,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "id",
-                "name",
-                "path",
-                "created_at",
-                "updated_at",
-                "last_activity_at"
-              ],
+              "enum": ["id", "name", "path", "created_at", "updated_at", "last_activity_at"],
               "default": "created_at"
             }
           },
@@ -3143,10 +2893,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ],
+              "enum": ["asc", "desc"],
               "default": "desc"
             }
           },
@@ -3166,11 +2913,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "public",
-                "internal",
-                "private"
-              ]
+              "enum": ["public", "internal", "private"]
             }
           },
           {
@@ -3225,9 +2968,7 @@
           }
         },
         "summary": "Get Projects Starred",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/user/{user_id}": {
@@ -3304,11 +3045,7 @@
                     "description": "Create a public project. The same as visibility_level = 20.",
                     "type": "integer",
                     "format": "int32",
-                    "enum": [
-                      0,
-                      10,
-                      20
-                    ]
+                    "enum": [0, 10, 20]
                   },
                   "public_builds": {
                     "description": "Perform public builds",
@@ -3336,9 +3073,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "name"
-                ]
+                "required": ["name"]
               }
             }
           },
@@ -3357,9 +3092,7 @@
           }
         },
         "summary": "Create Projects User User Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/visible": {
@@ -3374,14 +3107,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "id",
-                "name",
-                "path",
-                "created_at",
-                "updated_at",
-                "last_activity_at"
-              ],
+              "enum": ["id", "name", "path", "created_at", "updated_at", "last_activity_at"],
               "default": "created_at"
             }
           },
@@ -3392,10 +3118,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ],
+              "enum": ["asc", "desc"],
               "default": "desc"
             }
           },
@@ -3415,11 +3138,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "public",
-                "internal",
-                "private"
-              ]
+              "enum": ["public", "internal", "private"]
             }
           },
           {
@@ -3474,9 +3193,7 @@
           }
         },
         "summary": "Get Projects Visible",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}": {
@@ -3500,9 +3217,7 @@
           }
         },
         "summary": "Delete Projects Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "Get a single project",
@@ -3531,9 +3246,7 @@
           }
         },
         "summary": "Get Projects Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "put": {
         "description": "Update an existing project",
@@ -3611,11 +3324,7 @@
                     "description": "Create a public project. The same as visibility_level = 20.",
                     "type": "integer",
                     "format": "int32",
-                    "enum": [
-                      0,
-                      10,
-                      20
-                    ]
+                    "enum": [0, 10, 20]
                   },
                   "public_builds": {
                     "description": "Perform public builds",
@@ -3651,9 +3360,7 @@
           }
         },
         "summary": "Update Projects Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/(ref/{ref}/)trigger/builds": {
@@ -3691,9 +3398,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "token"
-                ]
+                "required": ["token"]
               }
             }
           },
@@ -3712,9 +3417,7 @@
           }
         },
         "summary": "Create Projects Id(ref Ref)trigger Builds",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/access_requests": {
@@ -3765,9 +3468,7 @@
           }
         },
         "summary": "Get Projects Id Access Requests",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "This feature was introduced in GitLab 8.11.",
@@ -3796,9 +3497,7 @@
           }
         },
         "summary": "Create Projects Id Access Requests",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/access_requests/{user_id}": {
@@ -3832,9 +3531,7 @@
           }
         },
         "summary": "Delete Projects Id Access Requests User Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/access_requests/{user_id}/approve": {
@@ -3878,9 +3575,7 @@
           }
         },
         "summary": "Update Projects Id Access Requests User Id Approve",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/archive": {
@@ -3911,9 +3606,7 @@
           }
         },
         "summary": "Create Projects Id Archive",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/boards": {
@@ -3944,9 +3637,7 @@
           }
         },
         "summary": "Get Projects Id Boards",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/boards/{board_id}/lists": {
@@ -3987,9 +3678,7 @@
           }
         },
         "summary": "Get Projects Id Boards Board Id Lists",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "This feature was introduced in 8.13",
@@ -4027,9 +3716,7 @@
                     "format": "int32"
                   }
                 },
-                "required": [
-                  "label_id"
-                ]
+                "required": ["label_id"]
               }
             }
           },
@@ -4048,9 +3735,7 @@
           }
         },
         "summary": "Create Projects Id Boards Board Id Lists",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/boards/{board_id}/lists/{list_id}": {
@@ -4101,9 +3786,7 @@
           }
         },
         "summary": "Delete Projects Id Boards Board Id Lists List Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "This feature was introduced in 8.13",
@@ -4152,9 +3835,7 @@
           }
         },
         "summary": "Get Projects Id Boards Board Id Lists List Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "put": {
         "description": "This feature was introduced in 8.13",
@@ -4202,9 +3883,7 @@
                     "format": "int32"
                   }
                 },
-                "required": [
-                  "position"
-                ]
+                "required": ["position"]
               }
             }
           },
@@ -4223,9 +3902,7 @@
           }
         },
         "summary": "Update Projects Id Boards Board Id Lists List Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/builds": {
@@ -4249,13 +3926,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "pending",
-                "running",
-                "failed",
-                "success",
-                "canceled"
-              ]
+              "enum": ["pending", "running", "failed", "success", "canceled"]
             }
           },
           {
@@ -4292,9 +3963,7 @@
           }
         },
         "summary": "Get Projects Id Builds",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/builds/artifacts/{ref_name}/download": {
@@ -4336,9 +4005,7 @@
           }
         },
         "summary": "Get Projects Id Builds Artifacts Ref Name Download",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/builds/{build_id}": {
@@ -4379,9 +4046,7 @@
           }
         },
         "summary": "Get Projects Id Builds Build Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/builds/{build_id}/artifacts": {
@@ -4415,9 +4080,7 @@
           }
         },
         "summary": "Get Projects Id Builds Build Id Artifacts",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/builds/{build_id}/artifacts/keep": {
@@ -4458,9 +4121,7 @@
           }
         },
         "summary": "Create Projects Id Builds Build Id Artifacts Keep",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/builds/{build_id}/cancel": {
@@ -4501,9 +4162,7 @@
           }
         },
         "summary": "Create Projects Id Builds Build Id Cancel",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/builds/{build_id}/erase": {
@@ -4544,9 +4203,7 @@
           }
         },
         "summary": "Create Projects Id Builds Build Id Erase",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/builds/{build_id}/play": {
@@ -4587,9 +4244,7 @@
           }
         },
         "summary": "Create Projects Id Builds Build Id Play",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/builds/{build_id}/retry": {
@@ -4630,9 +4285,7 @@
           }
         },
         "summary": "Create Projects Id Builds Build Id Retry",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/builds/{build_id}/trace": {
@@ -4666,9 +4319,7 @@
           }
         },
         "summary": "Get Projects Id Builds Build Id Trace",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/deploy_keys": {
@@ -4699,9 +4350,7 @@
           }
         },
         "summary": "Get Projects Id Deploy Keys",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Add new deploy key to currently authenticated user",
@@ -4733,9 +4382,7 @@
           }
         },
         "summary": "Create Projects Id Deploy Keys",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/deploy_keys/{key_id}": {
@@ -4776,9 +4423,7 @@
           }
         },
         "summary": "Delete Projects Id Deploy Keys Key Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "Get single deploy key",
@@ -4817,9 +4462,7 @@
           }
         },
         "summary": "Get Projects Id Deploy Keys Key Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/deploy_keys/{key_id}/disable": {
@@ -4860,9 +4503,7 @@
           }
         },
         "summary": "Delete Projects Id Deploy Keys Key Id Disable",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/deploy_keys/{key_id}/enable": {
@@ -4903,9 +4544,7 @@
           }
         },
         "summary": "Create Projects Id Deploy Keys Key Id Enable",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/deployments": {
@@ -4956,9 +4595,7 @@
           }
         },
         "summary": "Get Projects Id Deployments",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/deployments/{deployment_id}": {
@@ -4999,9 +4636,7 @@
           }
         },
         "summary": "Get Projects Id Deployments Deployment Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/environments": {
@@ -5052,9 +4687,7 @@
           }
         },
         "summary": "Get Projects Id Environments",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "This feature was introduced in GitLab 8.11.",
@@ -5088,9 +4721,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "name"
-                ]
+                "required": ["name"]
               }
             }
           },
@@ -5109,9 +4740,7 @@
           }
         },
         "summary": "Create Projects Id Environments",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/environments/{environment_id}": {
@@ -5152,9 +4781,7 @@
           }
         },
         "summary": "Delete Projects Id Environments Environment Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "put": {
         "description": "This feature was introduced in GitLab 8.11.",
@@ -5215,9 +4842,7 @@
           }
         },
         "summary": "Update Projects Id Environments Environment Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/events": {
@@ -5268,9 +4893,7 @@
           }
         },
         "summary": "Get Projects Id Events",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/fork": {
@@ -5294,9 +4917,7 @@
           }
         },
         "summary": "Delete Projects Id Fork",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/fork/{forked_from_id}": {
@@ -5329,9 +4950,7 @@
           }
         },
         "summary": "Create Projects Id Fork Forked From Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/hooks": {
@@ -5382,9 +5001,7 @@
           }
         },
         "summary": "Get Projects Id Hooks",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Add hook to project",
@@ -5416,9 +5033,7 @@
           }
         },
         "summary": "Create Projects Id Hooks",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/hooks/{hook_id}": {
@@ -5459,9 +5074,7 @@
           }
         },
         "summary": "Delete Projects Id Hooks Hook Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "Get a project hook",
@@ -5500,9 +5113,7 @@
           }
         },
         "summary": "Get Projects Id Hooks Hook Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "put": {
         "description": "Update an existing project hook",
@@ -5544,9 +5155,7 @@
           }
         },
         "summary": "Update Projects Id Hooks Hook Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/issues": {
@@ -5570,11 +5179,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "opened",
-                "closed",
-                "all"
-              ],
+              "enum": ["opened", "closed", "all"],
               "default": "all"
             }
           },
@@ -5613,10 +5218,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "created_at",
-                "updated_at"
-              ],
+              "enum": ["created_at", "updated_at"],
               "default": "created_at"
             }
           },
@@ -5627,10 +5229,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ],
+              "enum": ["asc", "desc"],
               "default": "desc"
             }
           },
@@ -5668,9 +5267,7 @@
           }
         },
         "summary": "Get Projects Id Issues",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Create a new project issue",
@@ -5733,9 +5330,7 @@
                     "type": "boolean"
                   }
                 },
-                "required": [
-                  "title"
-                ]
+                "required": ["title"]
               }
             }
           },
@@ -5754,9 +5349,7 @@
           }
         },
         "summary": "Create Projects Id Issues",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/issues/{issue_id}": {
@@ -5790,9 +5383,7 @@
           }
         },
         "summary": "Delete Projects Id Issues Issue Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "Get a single project issue",
@@ -5831,9 +5422,7 @@
           }
         },
         "summary": "Get Projects Id Issues Issue Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "put": {
         "description": "Update an existing issue",
@@ -5877,10 +5466,7 @@
                   "state_event": {
                     "description": "State of the issue",
                     "type": "string",
-                    "enum": [
-                      "reopen",
-                      "close"
-                    ]
+                    "enum": ["reopen", "close"]
                   },
                   "description": {
                     "description": "The description of an issue",
@@ -5929,9 +5515,7 @@
           }
         },
         "summary": "Update Projects Id Issues Issue Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/issues/{issue_id}/add_spent_time": {
@@ -5968,9 +5552,7 @@
           }
         },
         "summary": "Create Projects Id Issues Issue Id Add Spent Time",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/issues/{issue_id}/award_emoji": {
@@ -6031,9 +5613,7 @@
           }
         },
         "summary": "Get Projects Id Issues Issue Id Award Emoji",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "This feature was introduced in 8.9",
@@ -6074,9 +5654,7 @@
           }
         },
         "summary": "Create Projects Id Issues Issue Id Award Emoji",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/issues/{issue_id}/award_emoji/{award_id}": {
@@ -6126,9 +5704,7 @@
           }
         },
         "summary": "Delete Projects Id Issues Issue Id Award Emoji Award Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "This feature was introduced in 8.9",
@@ -6176,9 +5752,7 @@
           }
         },
         "summary": "Get Projects Id Issues Issue Id Award Emoji Award Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/issues/{issue_id}/move": {
@@ -6218,9 +5792,7 @@
                     "format": "int32"
                   }
                 },
-                "required": [
-                  "to_project_id"
-                ]
+                "required": ["to_project_id"]
               }
             }
           },
@@ -6239,9 +5811,7 @@
           }
         },
         "summary": "Create Projects Id Issues Issue Id Move",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/issues/{issue_id}/notes/{note_id}/award_emoji": {
@@ -6310,9 +5880,7 @@
           }
         },
         "summary": "Get Projects Id Issues Issue Id Notes Note Id Award Emoji",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "This feature was introduced in 8.9",
@@ -6362,9 +5930,7 @@
           }
         },
         "summary": "Create Projects Id Issues Issue Id Notes Note Id Award Emoji",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/issues/{issue_id}/notes/{note_id}/award_emoji/{award_id}": {
@@ -6423,9 +5989,7 @@
           }
         },
         "summary": "Delete Projects Id Issues Issue Id Notes Note Id Award Emoji Award Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "This feature was introduced in 8.9",
@@ -6482,9 +6046,7 @@
           }
         },
         "summary": "Get Projects Id Issues Issue Id Notes Note Id Award Emoji Award Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/issues/{issue_id}/reset_spent_time": {
@@ -6518,9 +6080,7 @@
           }
         },
         "summary": "Create Projects Id Issues Issue Id Reset Spent Time",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/issues/{issue_id}/reset_time_estimate": {
@@ -6554,9 +6114,7 @@
           }
         },
         "summary": "Create Projects Id Issues Issue Id Reset Time Estimate",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/issues/{issue_id}/time_estimate": {
@@ -6593,9 +6151,7 @@
           }
         },
         "summary": "Create Projects Id Issues Issue Id Time Estimate",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/issues/{issue_id}/time_stats": {
@@ -6629,9 +6185,7 @@
           }
         },
         "summary": "Get Projects Id Issues Issue Id Time Stats",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/issues/{issue_id}/todo": {
@@ -6672,9 +6226,7 @@
           }
         },
         "summary": "Create Projects Id Issues Issue Id Todo",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/issues/{noteable_id}/notes": {
@@ -6735,9 +6287,7 @@
           }
         },
         "summary": "Get Projects Id Issues Noteable Id Notes",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Create a new +noteable+ note",
@@ -6779,9 +6329,7 @@
           }
         },
         "summary": "Create Projects Id Issues Noteable Id Notes",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/issues/{noteable_id}/notes/{note_id}": {
@@ -6832,9 +6380,7 @@
           }
         },
         "summary": "Delete Projects Id Issues Noteable Id Notes Note Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "Get a single +noteable+ note",
@@ -6883,9 +6429,7 @@
           }
         },
         "summary": "Get Projects Id Issues Noteable Id Notes Note Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "put": {
         "description": "Update an existing +noteable+ note",
@@ -6937,9 +6481,7 @@
           }
         },
         "summary": "Update Projects Id Issues Noteable Id Notes Note Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/issues/{subscribable_id}/subscription": {
@@ -6979,9 +6521,7 @@
           }
         },
         "summary": "Delete Projects Id Issues Subscribable Id Subscription",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Subscribe to a resource",
@@ -7019,9 +6559,7 @@
           }
         },
         "summary": "Create Projects Id Issues Subscribable Id Subscription",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/keys": {
@@ -7052,9 +6590,7 @@
           }
         },
         "summary": "Get Projects Id Keys",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Add new deploy key to currently authenticated user",
@@ -7086,9 +6622,7 @@
           }
         },
         "summary": "Create Projects Id Keys",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/keys/{key_id}": {
@@ -7129,9 +6663,7 @@
           }
         },
         "summary": "Delete Projects Id Keys Key Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "Get single deploy key",
@@ -7170,9 +6702,7 @@
           }
         },
         "summary": "Get Projects Id Keys Key Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/keys/{key_id}/disable": {
@@ -7213,9 +6743,7 @@
           }
         },
         "summary": "Delete Projects Id Keys Key Id Disable",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/keys/{key_id}/enable": {
@@ -7256,9 +6784,7 @@
           }
         },
         "summary": "Create Projects Id Keys Key Id Enable",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/labels": {
@@ -7298,9 +6824,7 @@
           }
         },
         "summary": "Delete Projects Id Labels",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "Get all labels of the project",
@@ -7329,9 +6853,7 @@
           }
         },
         "summary": "Get Projects Id Labels",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Create a new label",
@@ -7371,10 +6893,7 @@
                     "format": "int32"
                   }
                 },
-                "required": [
-                  "name",
-                  "color"
-                ]
+                "required": ["name", "color"]
               }
             }
           },
@@ -7393,9 +6912,7 @@
           }
         },
         "summary": "Create Projects Id Labels",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "put": {
         "description": "Update an existing label. At least one optional parameter is required.",
@@ -7439,9 +6956,7 @@
                     "format": "int32"
                   }
                 },
-                "required": [
-                  "name"
-                ]
+                "required": ["name"]
               }
             }
           },
@@ -7460,9 +6975,7 @@
           }
         },
         "summary": "Update Projects Id Labels",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/labels/{subscribable_id}/subscription": {
@@ -7502,9 +7015,7 @@
           }
         },
         "summary": "Delete Projects Id Labels Subscribable Id Subscription",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Subscribe to a resource",
@@ -7542,9 +7053,7 @@
           }
         },
         "summary": "Create Projects Id Labels Subscribable Id Subscription",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/members": {
@@ -7604,9 +7113,7 @@
           }
         },
         "summary": "Get Projects Id Members",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Adds a member to a group or project.",
@@ -7638,9 +7145,7 @@
           }
         },
         "summary": "Create Projects Id Members",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/members/{user_id}": {
@@ -7674,9 +7179,7 @@
           }
         },
         "summary": "Delete Projects Id Members User Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "Gets a member of a group or project.",
@@ -7715,9 +7218,7 @@
           }
         },
         "summary": "Get Projects Id Members User Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "put": {
         "description": "Updates a member of a group or project.",
@@ -7759,9 +7260,7 @@
           }
         },
         "summary": "Update Projects Id Members User Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_request/{merge_request_id}": {
@@ -7802,9 +7301,7 @@
           }
         },
         "summary": "Get Projects Id Merge Request Merge Request Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "put": {
         "description": "Update a merge request",
@@ -7845,9 +7342,7 @@
           }
         },
         "summary": "Update Projects Id Merge Request Merge Request Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_request/{merge_request_id}/cancel_merge_when_build_succeeds": {
@@ -7887,9 +7382,7 @@
           }
         },
         "summary": "Create Projects Id Merge Request Merge Request Id Cancel Merge When Build Succeeds",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_request/{merge_request_id}/changes": {
@@ -7929,9 +7422,7 @@
           }
         },
         "summary": "Get Projects Id Merge Request Merge Request Id Changes",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_request/{merge_request_id}/closes_issues": {
@@ -7991,9 +7482,7 @@
           }
         },
         "summary": "Get Projects Id Merge Request Merge Request Id Closes Issues",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_request/{merge_request_id}/comments": {
@@ -8053,9 +7542,7 @@
           }
         },
         "summary": "Get Projects Id Merge Request Merge Request Id Comments",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Duplicate. DEPRECATED and WILL BE REMOVED in 9.0",
@@ -8096,9 +7583,7 @@
           }
         },
         "summary": "Create Projects Id Merge Request Merge Request Id Comments",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_request/{merge_request_id}/commits": {
@@ -8138,9 +7623,7 @@
           }
         },
         "summary": "Get Projects Id Merge Request Merge Request Id Commits",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_request/{merge_request_id}/merge": {
@@ -8183,9 +7666,7 @@
           }
         },
         "summary": "Update Projects Id Merge Request Merge Request Id Merge",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_request/{subscribable_id}/subscription": {
@@ -8225,9 +7706,7 @@
           }
         },
         "summary": "Delete Projects Id Merge Request Subscribable Id Subscription",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Subscribe to a resource",
@@ -8265,9 +7744,7 @@
           }
         },
         "summary": "Create Projects Id Merge Request Subscribable Id Subscription",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests": {
@@ -8291,12 +7768,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "opened",
-                "closed",
-                "merged",
-                "all"
-              ],
+              "enum": ["opened", "closed", "merged", "all"],
               "default": "all"
             }
           },
@@ -8307,10 +7779,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "created_at",
-                "updated_at"
-              ],
+              "enum": ["created_at", "updated_at"],
               "default": "created_at"
             }
           },
@@ -8321,10 +7790,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ],
+              "enum": ["asc", "desc"],
               "default": "desc"
             }
           },
@@ -8381,9 +7847,7 @@
           }
         },
         "summary": "Get Projects Id Merge Requests",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Create a merge request",
@@ -8445,11 +7909,7 @@
                     "type": "boolean"
                   }
                 },
-                "required": [
-                  "title",
-                  "source_branch",
-                  "target_branch"
-                ]
+                "required": ["title", "source_branch", "target_branch"]
               }
             }
           },
@@ -8468,9 +7928,7 @@
           }
         },
         "summary": "Create Projects Id Merge Requests",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{merge_request_id}": {
@@ -8504,9 +7962,7 @@
           }
         },
         "summary": "Delete Projects Id Merge Requests Merge Request Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "Get a single merge request",
@@ -8544,9 +8000,7 @@
           }
         },
         "summary": "Get Projects Id Merge Requests Merge Request Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "put": {
         "description": "Update a merge request",
@@ -8587,9 +8041,7 @@
           }
         },
         "summary": "Update Projects Id Merge Requests Merge Request Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{merge_request_id}/add_spent_time": {
@@ -8626,9 +8078,7 @@
           }
         },
         "summary": "Create Projects Id Merge Requests Merge Request Id Add Spent Time",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{merge_request_id}/award_emoji": {
@@ -8689,9 +8139,7 @@
           }
         },
         "summary": "Get Projects Id Merge Requests Merge Request Id Award Emoji",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "This feature was introduced in 8.9",
@@ -8732,9 +8180,7 @@
           }
         },
         "summary": "Create Projects Id Merge Requests Merge Request Id Award Emoji",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{merge_request_id}/award_emoji/{award_id}": {
@@ -8784,9 +8230,7 @@
           }
         },
         "summary": "Delete Projects Id Merge Requests Merge Request Id Award Emoji Award Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "This feature was introduced in 8.9",
@@ -8834,9 +8278,7 @@
           }
         },
         "summary": "Get Projects Id Merge Requests Merge Request Id Award Emoji Award Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{merge_request_id}/cancel_merge_when_build_succeeds": {
@@ -8876,9 +8318,7 @@
           }
         },
         "summary": "Create Projects Id Merge Requests Merge Request Id Cancel Merge When Build Succeeds",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{merge_request_id}/changes": {
@@ -8918,9 +8358,7 @@
           }
         },
         "summary": "Get Projects Id Merge Requests Merge Request Id Changes",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{merge_request_id}/closes_issues": {
@@ -8980,9 +8418,7 @@
           }
         },
         "summary": "Get Projects Id Merge Requests Merge Request Id Closes Issues",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{merge_request_id}/comments": {
@@ -9042,9 +8478,7 @@
           }
         },
         "summary": "Get Projects Id Merge Requests Merge Request Id Comments",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Duplicate. DEPRECATED and WILL BE REMOVED in 9.0",
@@ -9085,9 +8519,7 @@
           }
         },
         "summary": "Create Projects Id Merge Requests Merge Request Id Comments",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{merge_request_id}/commits": {
@@ -9127,9 +8559,7 @@
           }
         },
         "summary": "Get Projects Id Merge Requests Merge Request Id Commits",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{merge_request_id}/merge": {
@@ -9172,9 +8602,7 @@
           }
         },
         "summary": "Update Projects Id Merge Requests Merge Request Id Merge",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{merge_request_id}/notes/{note_id}/award_emoji": {
@@ -9243,9 +8671,7 @@
           }
         },
         "summary": "Get Projects Id Merge Requests Merge Request Id Notes Note Id Award Emoji",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "This feature was introduced in 8.9",
@@ -9295,9 +8721,7 @@
           }
         },
         "summary": "Create Projects Id Merge Requests Merge Request Id Notes Note Id Award Emoji",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{merge_request_id}/notes/{note_id}/award_emoji/{award_id}": {
@@ -9356,9 +8780,7 @@
           }
         },
         "summary": "Delete Projects Id Merge Requests Merge Request Id Notes Note Id Award Emoji Award Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "This feature was introduced in 8.9",
@@ -9415,9 +8837,7 @@
           }
         },
         "summary": "Get Projects Id Merge Requests Merge Request Id Notes Note Id Award Emoji Award Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{merge_request_id}/reset_spent_time": {
@@ -9451,9 +8871,7 @@
           }
         },
         "summary": "Create Projects Id Merge Requests Merge Request Id Reset Spent Time",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{merge_request_id}/reset_time_estimate": {
@@ -9487,9 +8905,7 @@
           }
         },
         "summary": "Create Projects Id Merge Requests Merge Request Id Reset Time Estimate",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{merge_request_id}/time_estimate": {
@@ -9526,9 +8942,7 @@
           }
         },
         "summary": "Create Projects Id Merge Requests Merge Request Id Time Estimate",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{merge_request_id}/time_stats": {
@@ -9562,9 +8976,7 @@
           }
         },
         "summary": "Get Projects Id Merge Requests Merge Request Id Time Stats",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{merge_request_id}/todo": {
@@ -9605,9 +9017,7 @@
           }
         },
         "summary": "Create Projects Id Merge Requests Merge Request Id Todo",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{merge_request_id}/versions": {
@@ -9648,9 +9058,7 @@
           }
         },
         "summary": "Get Projects Id Merge Requests Merge Request Id Versions",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{merge_request_id}/versions/{version_id}": {
@@ -9701,9 +9109,7 @@
           }
         },
         "summary": "Get Projects Id Merge Requests Merge Request Id Versions Version Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{noteable_id}/notes": {
@@ -9764,9 +9170,7 @@
           }
         },
         "summary": "Get Projects Id Merge Requests Noteable Id Notes",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Create a new +noteable+ note",
@@ -9808,9 +9212,7 @@
           }
         },
         "summary": "Create Projects Id Merge Requests Noteable Id Notes",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{noteable_id}/notes/{note_id}": {
@@ -9861,9 +9263,7 @@
           }
         },
         "summary": "Delete Projects Id Merge Requests Noteable Id Notes Note Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "Get a single +noteable+ note",
@@ -9912,9 +9312,7 @@
           }
         },
         "summary": "Get Projects Id Merge Requests Noteable Id Notes Note Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "put": {
         "description": "Update an existing +noteable+ note",
@@ -9966,9 +9364,7 @@
           }
         },
         "summary": "Update Projects Id Merge Requests Noteable Id Notes Note Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/merge_requests/{subscribable_id}/subscription": {
@@ -10008,9 +9404,7 @@
           }
         },
         "summary": "Delete Projects Id Merge Requests Subscribable Id Subscription",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Subscribe to a resource",
@@ -10048,9 +9442,7 @@
           }
         },
         "summary": "Create Projects Id Merge Requests Subscribable Id Subscription",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/milestones": {
@@ -10074,11 +9466,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "active",
-                "closed",
-                "all"
-              ],
+              "enum": ["active", "closed", "all"],
               "default": "all"
             }
           },
@@ -10135,9 +9523,7 @@
           }
         },
         "summary": "Get Projects Id Milestones",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Create a new project milestone",
@@ -10176,9 +9562,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "title"
-                ]
+                "required": ["title"]
               }
             }
           },
@@ -10197,9 +9581,7 @@
           }
         },
         "summary": "Create Projects Id Milestones",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/milestones/{milestone_id}": {
@@ -10240,9 +9622,7 @@
           }
         },
         "summary": "Get Projects Id Milestones Milestone Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "put": {
         "description": "Update an existing project milestone",
@@ -10281,10 +9661,7 @@
                   "state_event": {
                     "description": "The state event of the milestone ",
                     "type": "string",
-                    "enum": [
-                      "close",
-                      "activate"
-                    ]
+                    "enum": ["close", "activate"]
                   },
                   "description": {
                     "description": "The description of the milestone",
@@ -10316,9 +9693,7 @@
           }
         },
         "summary": "Update Projects Id Milestones Milestone Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/milestones/{milestone_id}/issues": {
@@ -10379,9 +9754,7 @@
           }
         },
         "summary": "Get Projects Id Milestones Milestone Id Issues",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/notification_settings": {
@@ -10412,9 +9785,7 @@
           }
         },
         "summary": "Get Projects Id Notification Settings",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "put": {
         "description": "This feature was introduced in GitLab 8.12",
@@ -10506,9 +9877,7 @@
           }
         },
         "summary": "Update Projects Id Notification Settings",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/pipeline": {
@@ -10537,9 +9906,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "ref"
-                ]
+                "required": ["ref"]
               }
             }
           },
@@ -10558,9 +9925,7 @@
           }
         },
         "summary": "Create Projects Id Pipeline",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/pipelines": {
@@ -10604,11 +9969,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "running",
-                "branches",
-                "tags"
-              ]
+              "enum": ["running", "branches", "tags"]
             }
           }
         ],
@@ -10625,9 +9986,7 @@
           }
         },
         "summary": "Get Projects Id Pipelines",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/pipelines/{pipeline_id}": {
@@ -10668,9 +10027,7 @@
           }
         },
         "summary": "Get Projects Id Pipelines Pipeline Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/pipelines/{pipeline_id}/cancel": {
@@ -10711,9 +10068,7 @@
           }
         },
         "summary": "Create Projects Id Pipelines Pipeline Id Cancel",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/pipelines/{pipeline_id}/retry": {
@@ -10754,9 +10109,7 @@
           }
         },
         "summary": "Create Projects Id Pipelines Pipeline Id Retry",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/archive": {
@@ -10798,9 +10151,7 @@
           }
         },
         "summary": "Get Projects Id Repository Archive",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/blobs/{sha}": {
@@ -10842,9 +10193,7 @@
           }
         },
         "summary": "Get Projects Id Repository Blobs Sha",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/branches": {
@@ -10875,9 +10224,7 @@
           }
         },
         "summary": "Get Projects Id Repository Branches",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Create branch",
@@ -10908,10 +10255,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "branch_name",
-                  "ref"
-                ]
+                "required": ["branch_name", "ref"]
               }
             }
           },
@@ -10930,9 +10274,7 @@
           }
         },
         "summary": "Create Projects Id Repository Branches",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/branches/{branch}": {
@@ -10965,9 +10307,7 @@
           }
         },
         "summary": "Delete Projects Id Repository Branches Branch",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "Get a single branch",
@@ -11005,9 +10345,7 @@
           }
         },
         "summary": "Get Projects Id Repository Branches Branch",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/branches/{branch}/protect": {
@@ -11066,9 +10404,7 @@
           }
         },
         "summary": "Update Projects Id Repository Branches Branch Protect",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/branches/{branch}/unprotect": {
@@ -11108,9 +10444,7 @@
           }
         },
         "summary": "Update Projects Id Repository Branches Branch Unprotect",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/commits": {
@@ -11199,9 +10533,7 @@
           }
         },
         "summary": "Get Projects Id Repository Commits",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "This feature was introduced in GitLab 8.13",
@@ -11247,11 +10579,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "branch_name",
-                  "commit_message",
-                  "actions"
-                ]
+                "required": ["branch_name", "commit_message", "actions"]
               }
             }
           },
@@ -11270,9 +10598,7 @@
           }
         },
         "summary": "Create Projects Id Repository Commits",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/commits/{sha}": {
@@ -11315,9 +10641,7 @@
           }
         },
         "summary": "Get Projects Id Repository Commits Sha",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/commits/{sha}/blob": {
@@ -11359,9 +10683,7 @@
           }
         },
         "summary": "Get Projects Id Repository Commits Sha Blob",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/commits/{sha}/builds": {
@@ -11394,13 +10716,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "pending",
-                "running",
-                "failed",
-                "success",
-                "canceled"
-              ]
+              "enum": ["pending", "running", "failed", "success", "canceled"]
             }
           },
           {
@@ -11437,9 +10753,7 @@
           }
         },
         "summary": "Get Projects Id Repository Commits Sha Builds",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/commits/{sha}/cherry_pick": {
@@ -11477,9 +10791,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "branch"
-                ]
+                "required": ["branch"]
               }
             }
           },
@@ -11498,9 +10810,7 @@
           }
         },
         "summary": "Create Projects Id Repository Commits Sha Cherry Pick",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/commits/{sha}/comments": {
@@ -11563,9 +10873,7 @@
           }
         },
         "summary": "Get Projects Id Repository Commits Sha Comments",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Post comment to commit",
@@ -11612,18 +10920,11 @@
                   "line_type": {
                     "description": "The type of the line",
                     "type": "string",
-                    "enum": [
-                      "new",
-                      "old"
-                    ],
+                    "enum": ["new", "old"],
                     "default": "new"
                   }
                 },
-                "required": [
-                  "note",
-                  "line",
-                  "line_type"
-                ]
+                "required": ["note", "line", "line_type"]
               }
             }
           },
@@ -11642,9 +10943,7 @@
           }
         },
         "summary": "Create Projects Id Repository Commits Sha Comments",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/commits/{sha}/diff": {
@@ -11680,9 +10979,7 @@
           }
         },
         "summary": "Get Projects Id Repository Commits Sha Diff",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/commits/{sha}/statuses": {
@@ -11778,9 +11075,7 @@
           }
         },
         "summary": "Get Projects Id Repository Commits Sha Statuses",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/compare": {
@@ -11829,9 +11124,7 @@
           }
         },
         "summary": "Get Projects Id Repository Compare",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/contributors": {
@@ -11862,9 +11155,7 @@
           }
         },
         "summary": "Get Projects Id Repository Contributors",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/files": {
@@ -11933,9 +11224,7 @@
           }
         },
         "summary": "Delete Projects Id Repository Files",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "Get a file from repository",
@@ -11975,9 +11264,7 @@
           }
         },
         "summary": "Get Projects Id Repository Files",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Create new file in repository",
@@ -12002,9 +11289,7 @@
           }
         },
         "summary": "Create Projects Id Repository Files",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "put": {
         "description": "Update existing file in repository",
@@ -12029,9 +11314,7 @@
           }
         },
         "summary": "Update Projects Id Repository Files",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/merged_branches": {
@@ -12053,9 +11336,7 @@
             "description": "deleted MergedBranch"
           }
         },
-        "tags": [
-          "projects"
-        ],
+        "tags": ["projects"],
         "summary": "Delete Projects Id Repository Merged Branches",
         "description": "Delete Projects Id Repository Merged Branches"
       }
@@ -12090,9 +11371,7 @@
           }
         },
         "summary": "Get Projects Id Repository Raw Blobs Sha",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/tags": {
@@ -12123,9 +11402,7 @@
           }
         },
         "summary": "Get Projects Id Repository Tags",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Create a new repository tag",
@@ -12164,10 +11441,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "tag_name",
-                  "ref"
-                ]
+                "required": ["tag_name", "ref"]
               }
             }
           },
@@ -12186,9 +11460,7 @@
           }
         },
         "summary": "Create Projects Id Repository Tags",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/tags/{tag_name}": {
@@ -12221,9 +11493,7 @@
           }
         },
         "summary": "Delete Projects Id Repository Tags Tag Name",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "Get a single repository tag",
@@ -12261,9 +11531,7 @@
           }
         },
         "summary": "Get Projects Id Repository Tags Tag Name",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/tags/{tag_name}/release": {
@@ -12306,9 +11574,7 @@
           }
         },
         "summary": "Create Projects Id Repository Tags Tag Name Release",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "put": {
         "description": "Update a tag's release note",
@@ -12349,9 +11615,7 @@
           }
         },
         "summary": "Update Projects Id Repository Tags Tag Name Release",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/repository/tree": {
@@ -12409,9 +11673,7 @@
           }
         },
         "summary": "Get Projects Id Repository Tree",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/runners": {
@@ -12435,13 +11697,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "active",
-                "paused",
-                "online",
-                "specific",
-                "shared"
-              ]
+              "enum": ["active", "paused", "online", "specific", "shared"]
             }
           },
           {
@@ -12478,9 +11734,7 @@
           }
         },
         "summary": "Get Projects Id Runners",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Enable a runner for a project",
@@ -12508,9 +11762,7 @@
                     "format": "int32"
                   }
                 },
-                "required": [
-                  "runner_id"
-                ]
+                "required": ["runner_id"]
               }
             }
           },
@@ -12529,9 +11781,7 @@
           }
         },
         "summary": "Create Projects Id Runners",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/runners/{runner_id}": {
@@ -12572,9 +11822,7 @@
           }
         },
         "summary": "Delete Projects Id Runners Runner Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/asana": {
@@ -12611,9 +11859,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "api_key"
-                ]
+                "required": ["api_key"]
               }
             }
           },
@@ -12625,9 +11871,7 @@
           }
         },
         "summary": "Update Projects Id Services Asana",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/assembla": {
@@ -12664,9 +11908,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "token"
-                ]
+                "required": ["token"]
               }
             }
           },
@@ -12678,9 +11920,7 @@
           }
         },
         "summary": "Update Projects Id Services Assembla",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/bamboo": {
@@ -12725,12 +11965,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "bamboo_url",
-                  "build_key",
-                  "username",
-                  "password"
-                ]
+                "required": ["bamboo_url", "build_key", "username", "password"]
               }
             }
           },
@@ -12742,9 +11977,7 @@
           }
         },
         "summary": "Update Projects Id Services Bamboo",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/bugzilla": {
@@ -12771,9 +12004,7 @@
           }
         },
         "summary": "Update Projects Id Services Bugzilla",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/buildkite": {
@@ -12814,10 +12045,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "token",
-                  "project_url"
-                ]
+                "required": ["token", "project_url"]
               }
             }
           },
@@ -12829,9 +12057,7 @@
           }
         },
         "summary": "Update Projects Id Services Buildkite",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/builds-email": {
@@ -12872,9 +12098,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "recipients"
-                ]
+                "required": ["recipients"]
               }
             }
           },
@@ -12886,9 +12110,7 @@
           }
         },
         "summary": "Update Projects Id Services Builds Email",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/campfire": {
@@ -12929,9 +12151,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "token"
-                ]
+                "required": ["token"]
               }
             }
           },
@@ -12943,9 +12163,7 @@
           }
         },
         "summary": "Update Projects Id Services Campfire",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/custom-issue-tracker": {
@@ -12972,9 +12190,7 @@
           }
         },
         "summary": "Update Projects Id Services Custom Issue Tracker",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/drone-ci": {
@@ -13023,10 +12239,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "token",
-                  "drone_url"
-                ]
+                "required": ["token", "drone_url"]
               }
             }
           },
@@ -13038,9 +12251,7 @@
           }
         },
         "summary": "Update Projects Id Services Drone Ci",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/emails-on-push": {
@@ -13085,9 +12296,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "recipients"
-                ]
+                "required": ["recipients"]
               }
             }
           },
@@ -13099,9 +12308,7 @@
           }
         },
         "summary": "Update Projects Id Services Emails On Push",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/external-wiki": {
@@ -13130,9 +12337,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "external_wiki_url"
-                ]
+                "required": ["external_wiki_url"]
               }
             }
           },
@@ -13144,9 +12349,7 @@
           }
         },
         "summary": "Update Projects Id Services External Wiki",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/flowdock": {
@@ -13179,9 +12382,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "token"
-                ]
+                "required": ["token"]
               }
             }
           },
@@ -13193,9 +12394,7 @@
           }
         },
         "summary": "Update Projects Id Services Flowdock",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/gemnasium": {
@@ -13232,10 +12431,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "api_key",
-                  "token"
-                ]
+                "required": ["api_key", "token"]
               }
             }
           },
@@ -13247,9 +12443,7 @@
           }
         },
         "summary": "Update Projects Id Services Gemnasium",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/hipchat": {
@@ -13326,9 +12520,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "token"
-                ]
+                "required": ["token"]
               }
             }
           },
@@ -13340,9 +12532,7 @@
           }
         },
         "summary": "Update Projects Id Services Hipchat",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/irker": {
@@ -13392,9 +12582,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "recipients"
-                ]
+                "required": ["recipients"]
               }
             }
           },
@@ -13406,9 +12594,7 @@
           }
         },
         "summary": "Update Projects Id Services Irker",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/jira": {
@@ -13462,10 +12648,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "url",
-                  "project_key"
-                ]
+                "required": ["url", "project_key"]
               }
             }
           },
@@ -13477,9 +12660,7 @@
           }
         },
         "summary": "Update Projects Id Services Jira",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/kubernetes": {
@@ -13520,11 +12701,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "namespace",
-                  "api_url",
-                  "token"
-                ]
+                "required": ["namespace", "api_url", "token"]
               }
             }
           },
@@ -13536,9 +12713,7 @@
           }
         },
         "summary": "Update Projects Id Services Kubernetes",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/mattermost": {
@@ -13602,9 +12777,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "webhook"
-                ]
+                "required": ["webhook"]
               }
             }
           },
@@ -13616,9 +12789,7 @@
           }
         },
         "summary": "Update Projects Id Services Mattermost",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/mattermost-slash-commands": {
@@ -13645,9 +12816,7 @@
           }
         },
         "summary": "Update Projects Id Services Mattermost Slash Commands",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/mattermost_slash_commands/trigger": {
@@ -13674,9 +12843,7 @@
           }
         },
         "summary": "Create Projects Id Services Mattermost Slash Commands Trigger",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/pipelines-email": {
@@ -13712,9 +12879,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "recipients"
-                ]
+                "required": ["recipients"]
               }
             }
           },
@@ -13726,9 +12891,7 @@
           }
         },
         "summary": "Update Projects Id Services Pipelines Email",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/pivotaltracker": {
@@ -13765,9 +12928,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "token"
-                ]
+                "required": ["token"]
               }
             }
           },
@@ -13779,9 +12940,7 @@
           }
         },
         "summary": "Update Projects Id Services Pivotaltracker",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/pushover": {
@@ -13830,13 +12989,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "api_key",
-                  "user_key",
-                  "priority",
-                  "device",
-                  "sound"
-                ]
+                "required": ["api_key", "user_key", "priority", "device", "sound"]
               }
             }
           },
@@ -13848,9 +13001,7 @@
           }
         },
         "summary": "Update Projects Id Services Pushover",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/redmine": {
@@ -13895,11 +13046,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "new_issue_url",
-                  "project_url",
-                  "issues_url"
-                ]
+                "required": ["new_issue_url", "project_url", "issues_url"]
               }
             }
           },
@@ -13911,9 +13058,7 @@
           }
         },
         "summary": "Update Projects Id Services Redmine",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/slack": {
@@ -13985,9 +13130,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "webhook"
-                ]
+                "required": ["webhook"]
               }
             }
           },
@@ -13999,9 +13142,7 @@
           }
         },
         "summary": "Update Projects Id Services Slack",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/slack-slash-commands": {
@@ -14028,9 +13169,7 @@
           }
         },
         "summary": "Update Projects Id Services Slack Slash Commands",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/slack_slash_commands/trigger": {
@@ -14057,9 +13196,7 @@
           }
         },
         "summary": "Create Projects Id Services Slack Slash Commands Trigger",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/teamcity": {
@@ -14104,12 +13241,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "teamcity_url",
-                  "build_type",
-                  "username",
-                  "password"
-                ]
+                "required": ["teamcity_url", "build_type", "username", "password"]
               }
             }
           },
@@ -14121,9 +13253,7 @@
           }
         },
         "summary": "Update Projects Id Services Teamcity",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/services/{service_slug}": {
@@ -14184,9 +13314,7 @@
           }
         },
         "summary": "Delete Projects Id Services Service Slug",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "Get the service settings for project",
@@ -14252,9 +13380,7 @@
           }
         },
         "summary": "Get Projects Id Services Service Slug",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/share": {
@@ -14287,12 +13413,7 @@
                     "description": "The group access level",
                     "type": "integer",
                     "format": "int32",
-                    "enum": [
-                      10,
-                      20,
-                      30,
-                      40
-                    ]
+                    "enum": [10, 20, 30, 40]
                   },
                   "expires_at": {
                     "description": "Share expiration date",
@@ -14300,10 +13421,7 @@
                     "format": "date"
                   }
                 },
-                "required": [
-                  "group_id",
-                  "group_access"
-                ]
+                "required": ["group_id", "group_access"]
               }
             }
           },
@@ -14322,9 +13440,7 @@
           }
         },
         "summary": "Create Projects Id Share",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/share/{group_id}": {
@@ -14356,9 +13472,7 @@
             "description": "deleted Share"
           }
         },
-        "tags": [
-          "projects"
-        ],
+        "tags": ["projects"],
         "summary": "Delete Projects Id Share Group Id",
         "description": "Delete Projects Id Share Group Id"
       }
@@ -14411,9 +13525,7 @@
           }
         },
         "summary": "Get Projects Id Snippets",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Create a new project snippet",
@@ -14451,19 +13563,10 @@
                     "description": "The visibility level of the snippet",
                     "type": "integer",
                     "format": "int32",
-                    "enum": [
-                      0,
-                      10,
-                      20
-                    ]
+                    "enum": [0, 10, 20]
                   }
                 },
-                "required": [
-                  "title",
-                  "file_name",
-                  "code",
-                  "visibility_level"
-                ]
+                "required": ["title", "file_name", "code", "visibility_level"]
               }
             }
           },
@@ -14482,9 +13585,7 @@
           }
         },
         "summary": "Create Projects Id Snippets",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/snippets/{noteable_id}/notes": {
@@ -14545,9 +13646,7 @@
           }
         },
         "summary": "Get Projects Id Snippets Noteable Id Notes",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Create a new +noteable+ note",
@@ -14589,9 +13688,7 @@
           }
         },
         "summary": "Create Projects Id Snippets Noteable Id Notes",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/snippets/{noteable_id}/notes/{note_id}": {
@@ -14642,9 +13739,7 @@
           }
         },
         "summary": "Delete Projects Id Snippets Noteable Id Notes Note Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "Get a single +noteable+ note",
@@ -14693,9 +13788,7 @@
           }
         },
         "summary": "Get Projects Id Snippets Noteable Id Notes Note Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "put": {
         "description": "Update an existing +noteable+ note",
@@ -14747,9 +13840,7 @@
           }
         },
         "summary": "Update Projects Id Snippets Noteable Id Notes Note Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/snippets/{snippet_id}": {
@@ -14783,9 +13874,7 @@
           }
         },
         "summary": "Delete Projects Id Snippets Snippet Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "Get a single project snippet",
@@ -14824,9 +13913,7 @@
           }
         },
         "summary": "Get Projects Id Snippets Snippet Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "put": {
         "description": "Update an existing project snippet",
@@ -14874,11 +13961,7 @@
                     "description": "The visibility level of the snippet",
                     "type": "integer",
                     "format": "int32",
-                    "enum": [
-                      0,
-                      10,
-                      20
-                    ]
+                    "enum": [0, 10, 20]
                   }
                 }
               }
@@ -14898,9 +13981,7 @@
           }
         },
         "summary": "Update Projects Id Snippets Snippet Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/snippets/{snippet_id}/award_emoji": {
@@ -14961,9 +14042,7 @@
           }
         },
         "summary": "Get Projects Id Snippets Snippet Id Award Emoji",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "This feature was introduced in 8.9",
@@ -15004,9 +14083,7 @@
           }
         },
         "summary": "Create Projects Id Snippets Snippet Id Award Emoji",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/snippets/{snippet_id}/award_emoji/{award_id}": {
@@ -15056,9 +14133,7 @@
           }
         },
         "summary": "Delete Projects Id Snippets Snippet Id Award Emoji Award Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "This feature was introduced in 8.9",
@@ -15106,9 +14181,7 @@
           }
         },
         "summary": "Get Projects Id Snippets Snippet Id Award Emoji Award Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/snippets/{snippet_id}/notes/{note_id}/award_emoji": {
@@ -15177,9 +14250,7 @@
           }
         },
         "summary": "Get Projects Id Snippets Snippet Id Notes Note Id Award Emoji",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "This feature was introduced in 8.9",
@@ -15229,9 +14300,7 @@
           }
         },
         "summary": "Create Projects Id Snippets Snippet Id Notes Note Id Award Emoji",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/snippets/{snippet_id}/notes/{note_id}/award_emoji/{award_id}": {
@@ -15290,9 +14359,7 @@
           }
         },
         "summary": "Delete Projects Id Snippets Snippet Id Notes Note Id Award Emoji Award Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "This feature was introduced in 8.9",
@@ -15349,9 +14416,7 @@
           }
         },
         "summary": "Get Projects Id Snippets Snippet Id Notes Note Id Award Emoji Award Id",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/snippets/{snippet_id}/raw": {
@@ -15385,9 +14450,7 @@
           }
         },
         "summary": "Get Projects Id Snippets Snippet Id Raw",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/star": {
@@ -15418,9 +14481,7 @@
           }
         },
         "summary": "Delete Projects Id Star",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Star a project",
@@ -15449,9 +14510,7 @@
           }
         },
         "summary": "Create Projects Id Star",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/statuses/{sha}": {
@@ -15487,13 +14546,7 @@
                   "state": {
                     "description": "The state of the status",
                     "type": "string",
-                    "enum": [
-                      "pending",
-                      "running",
-                      "success",
-                      "failed",
-                      "canceled"
-                    ]
+                    "enum": ["pending", "running", "success", "failed", "canceled"]
                   },
                   "ref": {
                     "description": "The ref",
@@ -15516,9 +14569,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "state"
-                ]
+                "required": ["state"]
               }
             }
           },
@@ -15537,9 +14588,7 @@
           }
         },
         "summary": "Create Projects Id Statuses Sha",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/triggers": {
@@ -15590,9 +14639,7 @@
           }
         },
         "summary": "Get Projects Id Triggers",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Create a trigger",
@@ -15621,9 +14668,7 @@
           }
         },
         "summary": "Create Projects Id Triggers",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/triggers/{token}": {
@@ -15663,9 +14708,7 @@
           }
         },
         "summary": "Delete Projects Id Triggers Token",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "Get specific trigger of a project",
@@ -15703,9 +14746,7 @@
           }
         },
         "summary": "Get Projects Id Triggers Token",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/unarchive": {
@@ -15736,9 +14777,7 @@
           }
         },
         "summary": "Create Projects Id Unarchive",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/uploads": {
@@ -15768,9 +14807,7 @@
                     "format": "binary"
                   }
                 },
-                "required": [
-                  "file"
-                ]
+                "required": ["file"]
               }
             }
           },
@@ -15782,9 +14819,7 @@
           }
         },
         "summary": "Create Projects Id Uploads",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/users": {
@@ -15844,9 +14879,7 @@
           }
         },
         "summary": "Get Projects Id Users",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/variables": {
@@ -15897,9 +14930,7 @@
           }
         },
         "summary": "Get Projects Id Variables",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "post": {
         "description": "Create a new variable in a project",
@@ -15930,10 +14961,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "key",
-                  "value"
-                ]
+                "required": ["key", "value"]
               }
             }
           },
@@ -15952,9 +14980,7 @@
           }
         },
         "summary": "Create Projects Id Variables",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/projects/{id}/variables/{key}": {
@@ -15994,9 +15020,7 @@
           }
         },
         "summary": "Delete Projects Id Variables Key",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "get": {
         "description": "Get a specific variable from a project",
@@ -16034,9 +15058,7 @@
           }
         },
         "summary": "Get Projects Id Variables Key",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       },
       "put": {
         "description": "Update an existing variable from a project",
@@ -16089,9 +15111,7 @@
           }
         },
         "summary": "Update Projects Id Variables Key",
-        "tags": [
-          "projects"
-        ]
+        "tags": ["projects"]
       }
     },
     "/v3/runners": {
@@ -16106,11 +15126,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "active",
-                "paused",
-                "online"
-              ]
+              "enum": ["active", "paused", "online"]
             }
           },
           {
@@ -16147,9 +15163,7 @@
           }
         },
         "summary": "Get Runners",
-        "tags": [
-          "runners"
-        ]
+        "tags": ["runners"]
       }
     },
     "/v3/runners/all": {
@@ -16164,13 +15178,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "active",
-                "paused",
-                "online",
-                "specific",
-                "shared"
-              ]
+              "enum": ["active", "paused", "online", "specific", "shared"]
             }
           },
           {
@@ -16207,9 +15215,7 @@
           }
         },
         "summary": "Get Runners All",
-        "tags": [
-          "runners"
-        ]
+        "tags": ["runners"]
       }
     },
     "/v3/runners/{id}": {
@@ -16241,9 +15247,7 @@
           }
         },
         "summary": "Delete Runners Id",
-        "tags": [
-          "runners"
-        ]
+        "tags": ["runners"]
       },
       "get": {
         "description": "Get runner's details",
@@ -16273,9 +15277,7 @@
           }
         },
         "summary": "Get Runners Id",
-        "tags": [
-          "runners"
-        ]
+        "tags": ["runners"]
       },
       "put": {
         "description": "Update runner's details",
@@ -16339,9 +15341,7 @@
           }
         },
         "summary": "Update Runners Id",
-        "tags": [
-          "runners"
-        ]
+        "tags": ["runners"]
       }
     },
     "/v3/session": {
@@ -16367,9 +15367,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "password"
-                ]
+                "required": ["password"]
               }
             }
           }
@@ -16387,9 +15385,7 @@
           }
         },
         "summary": "Create Session",
-        "tags": [
-          "session"
-        ]
+        "tags": ["session"]
       }
     },
     "/v3/sidekiq/compound_metrics": {
@@ -16402,9 +15398,7 @@
           }
         },
         "summary": "Get Sidekiq Compound Metrics",
-        "tags": [
-          "sidekiq"
-        ]
+        "tags": ["sidekiq"]
       }
     },
     "/v3/sidekiq/job_stats": {
@@ -16417,9 +15411,7 @@
           }
         },
         "summary": "Get Sidekiq Job Stats",
-        "tags": [
-          "sidekiq"
-        ]
+        "tags": ["sidekiq"]
       }
     },
     "/v3/sidekiq/process_metrics": {
@@ -16432,9 +15424,7 @@
           }
         },
         "summary": "Get Sidekiq Process Metrics",
-        "tags": [
-          "sidekiq"
-        ]
+        "tags": ["sidekiq"]
       }
     },
     "/v3/sidekiq/queue_metrics": {
@@ -16447,9 +15437,7 @@
           }
         },
         "summary": "Get Sidekiq Queue Metrics",
-        "tags": [
-          "sidekiq"
-        ]
+        "tags": ["sidekiq"]
       }
     },
     "/v3/snippets": {
@@ -16491,9 +15479,7 @@
           }
         },
         "summary": "Get Snippets",
-        "tags": [
-          "snippets"
-        ]
+        "tags": ["snippets"]
       },
       "post": {
         "description": "This feature was introduced in GitLab 8.15.",
@@ -16520,19 +15506,11 @@
                     "description": "The visibility level of the snippet",
                     "type": "integer",
                     "format": "int32",
-                    "enum": [
-                      0,
-                      10,
-                      20
-                    ],
+                    "enum": [0, 10, 20],
                     "default": 10
                   }
                 },
-                "required": [
-                  "title",
-                  "file_name",
-                  "content"
-                ]
+                "required": ["title", "file_name", "content"]
               }
             }
           },
@@ -16551,9 +15529,7 @@
           }
         },
         "summary": "Create Snippets",
-        "tags": [
-          "snippets"
-        ]
+        "tags": ["snippets"]
       }
     },
     "/v3/snippets/public": {
@@ -16595,9 +15571,7 @@
           }
         },
         "summary": "Get Snippets Public",
-        "tags": [
-          "snippets"
-        ]
+        "tags": ["snippets"]
       }
     },
     "/v3/snippets/{id}": {
@@ -16629,9 +15603,7 @@
           }
         },
         "summary": "Delete Snippets Id",
-        "tags": [
-          "snippets"
-        ]
+        "tags": ["snippets"]
       },
       "get": {
         "description": "This feature was introduced in GitLab 8.15.",
@@ -16661,9 +15633,7 @@
           }
         },
         "summary": "Get Snippets Id",
-        "tags": [
-          "snippets"
-        ]
+        "tags": ["snippets"]
       },
       "put": {
         "description": "This feature was introduced in GitLab 8.15.",
@@ -16702,11 +15672,7 @@
                     "description": "The visibility level of the snippet",
                     "type": "integer",
                     "format": "int32",
-                    "enum": [
-                      0,
-                      10,
-                      20
-                    ]
+                    "enum": [0, 10, 20]
                   }
                 }
               }
@@ -16726,9 +15692,7 @@
           }
         },
         "summary": "Update Snippets Id",
-        "tags": [
-          "snippets"
-        ]
+        "tags": ["snippets"]
       }
     },
     "/v3/snippets/{id}/raw": {
@@ -16753,9 +15717,7 @@
           }
         },
         "summary": "Get Snippets Id Raw",
-        "tags": [
-          "snippets"
-        ]
+        "tags": ["snippets"]
       }
     },
     "/v3/templates/dockerfiles": {
@@ -16775,9 +15737,7 @@
           }
         },
         "summary": "Get Templates Dockerfiles",
-        "tags": [
-          "templates"
-        ]
+        "tags": ["templates"]
       }
     },
     "/v3/templates/dockerfiles/{name}": {
@@ -16808,9 +15768,7 @@
           }
         },
         "summary": "Get Templates Dockerfiles Name",
-        "tags": [
-          "templates"
-        ]
+        "tags": ["templates"]
       }
     },
     "/v3/templates/gitignores": {
@@ -16830,9 +15788,7 @@
           }
         },
         "summary": "Get Templates Gitignores",
-        "tags": [
-          "templates"
-        ]
+        "tags": ["templates"]
       }
     },
     "/v3/templates/gitignores/{name}": {
@@ -16863,9 +15819,7 @@
           }
         },
         "summary": "Get Templates Gitignores Name",
-        "tags": [
-          "templates"
-        ]
+        "tags": ["templates"]
       }
     },
     "/v3/templates/gitlab_ci_ymls": {
@@ -16885,9 +15839,7 @@
           }
         },
         "summary": "Get Templates Gitlab Ci Ymls",
-        "tags": [
-          "templates"
-        ]
+        "tags": ["templates"]
       }
     },
     "/v3/templates/gitlab_ci_ymls/{name}": {
@@ -16918,9 +15870,7 @@
           }
         },
         "summary": "Get Templates Gitlab Ci Ymls Name",
-        "tags": [
-          "templates"
-        ]
+        "tags": ["templates"]
       }
     },
     "/v3/templates/licenses": {
@@ -16951,9 +15901,7 @@
           }
         },
         "summary": "Get Templates Licenses",
-        "tags": [
-          "templates"
-        ]
+        "tags": ["templates"]
       }
     },
     "/v3/templates/licenses/{name}": {
@@ -16984,9 +15932,7 @@
           }
         },
         "summary": "Get Templates Licenses Name",
-        "tags": [
-          "templates"
-        ]
+        "tags": ["templates"]
       }
     },
     "/v3/todos": {
@@ -16999,9 +15945,7 @@
           }
         },
         "summary": "Delete Todos",
-        "tags": [
-          "todos"
-        ]
+        "tags": ["todos"]
       },
       "get": {
         "description": "Get a todo list",
@@ -17041,9 +15985,7 @@
           }
         },
         "summary": "Get Todos",
-        "tags": [
-          "todos"
-        ]
+        "tags": ["todos"]
       }
     },
     "/v3/todos/{id}": {
@@ -17075,9 +16017,7 @@
           }
         },
         "summary": "Delete Todos Id",
-        "tags": [
-          "todos"
-        ]
+        "tags": ["todos"]
       }
     },
     "/v3/user": {
@@ -17097,9 +16037,7 @@
           }
         },
         "summary": "Get User",
-        "tags": [
-          "user"
-        ]
+        "tags": ["user"]
       }
     },
     "/v3/user/emails": {
@@ -17119,9 +16057,7 @@
           }
         },
         "summary": "Get User Emails",
-        "tags": [
-          "user"
-        ]
+        "tags": ["user"]
       },
       "post": {
         "description": "Add new email address to the currently authenticated user",
@@ -17137,9 +16073,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "email"
-                ]
+                "required": ["email"]
               }
             }
           },
@@ -17158,9 +16092,7 @@
           }
         },
         "summary": "Create User Emails",
-        "tags": [
-          "user"
-        ]
+        "tags": ["user"]
       }
     },
     "/v3/user/emails/{email_id}": {
@@ -17185,9 +16117,7 @@
           }
         },
         "summary": "Delete User Emails Email Id",
-        "tags": [
-          "user"
-        ]
+        "tags": ["user"]
       },
       "get": {
         "description": "Get a single email address owned by the currently authenticated user",
@@ -17217,9 +16147,7 @@
           }
         },
         "summary": "Get User Emails Email Id",
-        "tags": [
-          "user"
-        ]
+        "tags": ["user"]
       }
     },
     "/v3/user/keys": {
@@ -17239,9 +16167,7 @@
           }
         },
         "summary": "Get User Keys",
-        "tags": [
-          "user"
-        ]
+        "tags": ["user"]
       },
       "post": {
         "description": "Add a new SSH key to the currently authenticated user",
@@ -17262,9 +16188,7 @@
           }
         },
         "summary": "Create User Keys",
-        "tags": [
-          "user"
-        ]
+        "tags": ["user"]
       }
     },
     "/v3/user/keys/{key_id}": {
@@ -17296,9 +16220,7 @@
           }
         },
         "summary": "Delete User Keys Key Id",
-        "tags": [
-          "user"
-        ]
+        "tags": ["user"]
       },
       "get": {
         "description": "Get a single key owned by currently authenticated user",
@@ -17328,9 +16250,7 @@
           }
         },
         "summary": "Get User Keys Key Id",
-        "tags": [
-          "user"
-        ]
+        "tags": ["user"]
       }
     },
     "/v3/users": {
@@ -17417,9 +16337,7 @@
           }
         },
         "summary": "Get Users",
-        "tags": [
-          "users"
-        ]
+        "tags": ["users"]
       },
       "post": {
         "description": "Create a user. Available only for admins.",
@@ -17504,12 +16422,7 @@
                     "type": "boolean"
                   }
                 },
-                "required": [
-                  "email",
-                  "password",
-                  "name",
-                  "username"
-                ]
+                "required": ["email", "password", "name", "username"]
               }
             }
           },
@@ -17528,9 +16441,7 @@
           }
         },
         "summary": "Create Users",
-        "tags": [
-          "users"
-        ]
+        "tags": ["users"]
       }
     },
     "/v3/users/{id}": {
@@ -17562,9 +16473,7 @@
           }
         },
         "summary": "Delete Users Id",
-        "tags": [
-          "users"
-        ]
+        "tags": ["users"]
       },
       "get": {
         "description": "Get a single user",
@@ -17594,9 +16503,7 @@
           }
         },
         "summary": "Get Users Id",
-        "tags": [
-          "users"
-        ]
+        "tags": ["users"]
       },
       "put": {
         "description": "Update a user. Available only for admins.",
@@ -17710,9 +16617,7 @@
           }
         },
         "summary": "Update Users Id",
-        "tags": [
-          "users"
-        ]
+        "tags": ["users"]
       }
     },
     "/v3/users/{id}/block": {
@@ -17737,9 +16642,7 @@
           }
         },
         "summary": "Update Users Id Block",
-        "tags": [
-          "users"
-        ]
+        "tags": ["users"]
       }
     },
     "/v3/users/{id}/emails": {
@@ -17771,9 +16674,7 @@
           }
         },
         "summary": "Get Users Id Emails",
-        "tags": [
-          "users"
-        ]
+        "tags": ["users"]
       },
       "post": {
         "description": "Add an email address to a specified user. Available only for admins.",
@@ -17801,9 +16702,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "email"
-                ]
+                "required": ["email"]
               }
             }
           },
@@ -17822,9 +16721,7 @@
           }
         },
         "summary": "Create Users Id Emails",
-        "tags": [
-          "users"
-        ]
+        "tags": ["users"]
       }
     },
     "/v3/users/{id}/emails/{email_id}": {
@@ -17866,9 +16763,7 @@
           }
         },
         "summary": "Delete Users Id Emails Email Id",
-        "tags": [
-          "users"
-        ]
+        "tags": ["users"]
       }
     },
     "/v3/users/{id}/events": {
@@ -17920,9 +16815,7 @@
           }
         },
         "summary": "Get Users Id Events",
-        "tags": [
-          "users"
-        ]
+        "tags": ["users"]
       }
     },
     "/v3/users/{id}/keys": {
@@ -17954,9 +16847,7 @@
           }
         },
         "summary": "Get Users Id Keys",
-        "tags": [
-          "users"
-        ]
+        "tags": ["users"]
       },
       "post": {
         "description": "Add an SSH key to a specified user. Available only for admins.",
@@ -17989,9 +16880,7 @@
           }
         },
         "summary": "Create Users Id Keys",
-        "tags": [
-          "users"
-        ]
+        "tags": ["users"]
       }
     },
     "/v3/users/{id}/keys/{key_id}": {
@@ -18033,9 +16922,7 @@
           }
         },
         "summary": "Delete Users Id Keys Key Id",
-        "tags": [
-          "users"
-        ]
+        "tags": ["users"]
       }
     },
     "/v3/users/{id}/unblock": {
@@ -18060,9 +16947,7 @@
           }
         },
         "summary": "Update Users Id Unblock",
-        "tags": [
-          "users"
-        ]
+        "tags": ["users"]
       }
     },
     "/v3/version": {
@@ -18075,9 +16960,7 @@
           }
         },
         "summary": "Get Version",
-        "tags": [
-          "version"
-        ]
+        "tags": ["version"]
       }
     }
   },
@@ -18105,11 +16988,7 @@
                 "state_event": {
                   "description": "Status of the merge request",
                   "type": "string",
-                  "enum": [
-                    "close",
-                    "reopen",
-                    "merge"
-                  ]
+                  "enum": ["close", "reopen", "merge"]
                 },
                 "description": {
                   "description": "The description of the merge request",
@@ -18171,17 +17050,10 @@
                 "encoding": {
                   "description": "File encoding",
                   "type": "string",
-                  "enum": [
-                    "base64"
-                  ]
+                  "enum": ["base64"]
                 }
               },
-              "required": [
-                "file_path",
-                "branch_name",
-                "commit_message",
-                "content"
-              ]
+              "required": ["file_path", "branch_name", "commit_message", "content"]
             }
           }
         },
@@ -18218,11 +17090,7 @@
                   "type": "string"
                 }
               },
-              "required": [
-                "new_issue_url",
-                "issues_url",
-                "project_url"
-              ]
+              "required": ["new_issue_url", "issues_url", "project_url"]
             }
           }
         },
@@ -18279,9 +17147,7 @@
                   "type": "string"
                 }
               },
-              "required": [
-                "url"
-              ]
+              "required": ["url"]
             }
           }
         },
@@ -18298,9 +17164,7 @@
                   "type": "string"
                 }
               },
-              "required": [
-                "body"
-              ]
+              "required": ["body"]
             }
           }
         },
@@ -18323,9 +17187,7 @@
                   "format": "date-time"
                 }
               },
-              "required": [
-                "access_level"
-              ]
+              "required": ["access_level"]
             }
           }
         },
@@ -18342,9 +17204,7 @@
                   "type": "string"
                 }
               },
-              "required": [
-                "token"
-              ]
+              "required": ["token"]
             }
           }
         },
@@ -18388,9 +17248,7 @@
                   "type": "string"
                 }
               },
-              "required": [
-                "token"
-              ]
+              "required": ["token"]
             }
           }
         },
@@ -18418,10 +17276,7 @@
                   "format": "date-time"
                 }
               },
-              "required": [
-                "user_id",
-                "access_level"
-              ]
+              "required": ["user_id", "access_level"]
             }
           }
         },
@@ -18442,10 +17297,7 @@
                   "type": "string"
                 }
               },
-              "required": [
-                "key",
-                "title"
-              ]
+              "required": ["key", "title"]
             }
           }
         },
@@ -18482,10 +17334,7 @@
                   "type": "string"
                 }
               },
-              "required": [
-                "key",
-                "title"
-              ]
+              "required": ["key", "title"]
             }
           }
         },
@@ -18502,9 +17351,7 @@
                   "type": "string"
                 }
               },
-              "required": [
-                "duration"
-              ]
+              "required": ["duration"]
             }
           }
         },
@@ -18521,9 +17368,7 @@
                   "type": "string"
                 }
               },
-              "required": [
-                "name"
-              ]
+              "required": ["name"]
             }
           }
         },
@@ -18544,9 +17389,7 @@
                   "type": "string"
                 }
               },
-              "required": [
-                "body"
-              ]
+              "required": ["body"]
             }
           }
         },
@@ -18563,9 +17406,7 @@
                   "type": "string"
                 }
               },
-              "required": [
-                "note"
-              ]
+              "required": ["note"]
             }
           }
         },
@@ -18582,9 +17423,7 @@
                   "type": "string"
                 }
               },
-              "required": [
-                "description"
-              ]
+              "required": ["description"]
             }
           }
         },

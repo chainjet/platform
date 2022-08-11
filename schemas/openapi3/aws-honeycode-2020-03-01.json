@@ -5,9 +5,7 @@
     "x-release": "v4",
     "title": "Amazon Honeycode",
     "description": "Amazon Honeycode is a fully managed service that allows you to quickly build mobile and web apps for teams—without programming. Build Honeycode apps for managing almost anything, like projects, customers, operations, approvals, resources, and even your team.",
-    "x-categories": [
-      "nocode"
-    ],
+    "x-categories": ["nocode"],
     "termsOfService": "https://aws.amazon.com/service-terms/",
     "contact": {
       "name": "Mike Ralphson",
@@ -35,9 +33,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +116,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +127,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -238,11 +228,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "workbookId",
-                  "appId",
-                  "screenId"
-                ],
+                "required": ["workbookId", "appId", "screenId"],
                 "properties": {
                   "workbookId": {
                     "description": "The ID of the workbook that contains the screen.",
@@ -659,9 +645,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "rowsToCreate"
-                ],
+                "required": ["rowsToCreate"],
                 "properties": {
                   "rowsToCreate": {
                     "description": "<p> The list of rows to create at the end of the table. Each item in this list needs to have a batch item id to uniquely identify the element in the request and the cells to create for that row. You need to specify at least one item in this list. </p> <p> Note that if one of the column ids in any of the rows in the request does not exist in the table, then the request fails and no updates are made to the table. </p>",
@@ -828,9 +812,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "rowIds"
-                ],
+                "required": ["rowIds"],
                 "properties": {
                   "rowIds": {
                     "description": "<p> The list of row ids to delete from the table. You need to specify at least one row id in this list. </p> <p> Note that if one of the row ids provided in the request does not exist in the table, then the request fails and no rows are deleted from the table. </p>",
@@ -997,9 +979,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "rowsToUpdate"
-                ],
+                "required": ["rowsToUpdate"],
                 "properties": {
                   "rowsToUpdate": {
                     "description": "<p> The list of rows to update in the table. Each item in this list needs to contain the row id to update along with the map of column id to cell values for each column in that row that needs to be updated. You need to specify at least one row in this list, and for each row, you need to specify at least one column to update. </p> <p> Note that if one of the row or column ids in the request does not exist in the table, then the request fails and no updates are made to the table. </p>",
@@ -1176,9 +1156,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "rowsToUpsert"
-                ],
+                "required": ["rowsToUpsert"],
                 "properties": {
                   "rowsToUpsert": {
                     "description": "<p> The list of rows to upsert in the table. Each item in this list needs to have a batch item id to uniquely identify the element in the request, a filter expression to find the rows to update for that element and the cell values to set for each column in the upserted rows. You need to specify at least one item in this list. </p> <p> Note that if one of the filter formulas in the request fails to evaluate because of an error or one of the column ids in any of the rows does not exist in the table, then the request fails and no updates are made to the table. </p>",
@@ -1990,9 +1968,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "filterFormula"
-                ],
+                "required": ["filterFormula"],
                 "properties": {
                   "filterFormula": {
                     "description": " An object that represents a filter formula along with the id of the context row under which the filter function needs to evaluate. ",
@@ -2172,12 +2148,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "dataSource",
-                  "dataFormat",
-                  "importOptions",
-                  "clientRequestToken"
-                ],
+                "required": ["dataSource", "dataFormat", "importOptions", "clientRequestToken"],
                 "properties": {
                   "dataSource": {
                     "description": "An object that has details about the source of the data that was submitted for import.",
@@ -2198,9 +2169,7 @@
                   "dataFormat": {
                     "description": " The format of the data that is being imported. Currently the only option supported is \"DELIMITED_TEXT\". ",
                     "type": "string",
-                    "enum": [
-                      "DELIMITED_TEXT"
-                    ]
+                    "enum": ["DELIMITED_TEXT"]
                   },
                   "importOptions": {
                     "description": "An object that contains the options specified by the sumitter of the import request.",
@@ -2345,10 +2314,7 @@
     "schemas": {
       "GetScreenDataResult": {
         "type": "object",
-        "required": [
-          "results",
-          "workbookCursor"
-        ],
+        "required": ["results", "workbookCursor"],
         "properties": {
           "results": {
             "allOf": [
@@ -2384,9 +2350,7 @@
       },
       "VariableValue": {
         "type": "object",
-        "required": [
-          "rawValue"
-        ],
+        "required": ["rawValue"],
         "properties": {
           "rawValue": {
             "allOf": [
@@ -2410,9 +2374,7 @@
       "ValidationException": {},
       "InvokeScreenAutomationResult": {
         "type": "object",
-        "required": [
-          "workbookCursor"
-        ],
+        "required": ["workbookCursor"],
         "properties": {
           "workbookCursor": {
             "allOf": [
@@ -2450,10 +2412,7 @@
       },
       "ColumnMetadata": {
         "type": "object",
-        "required": [
-          "name",
-          "format"
-        ],
+        "required": ["name", "format"],
         "properties": {
           "name": {
             "allOf": [
@@ -2567,9 +2526,7 @@
       },
       "ResultRow": {
         "type": "object",
-        "required": [
-          "dataItems"
-        ],
+        "required": ["dataItems"],
         "properties": {
           "rowId": {
             "allOf": [
@@ -2602,10 +2559,7 @@
       },
       "ResultSet": {
         "type": "object",
-        "required": [
-          "headers",
-          "rows"
-        ],
+        "required": ["headers", "rows"],
         "properties": {
           "headers": {
             "allOf": [
@@ -2632,10 +2586,7 @@
       },
       "BatchCreateTableRowsResult": {
         "type": "object",
-        "required": [
-          "workbookCursor",
-          "createdRows"
-        ],
+        "required": ["workbookCursor", "createdRows"],
         "properties": {
           "workbookCursor": {
             "allOf": [
@@ -2671,10 +2622,7 @@
       },
       "CreateRowData": {
         "type": "object",
-        "required": [
-          "batchItemId",
-          "cellsToCreate"
-        ],
+        "required": ["batchItemId", "cellsToCreate"],
         "properties": {
           "batchItemId": {
             "allOf": [
@@ -2702,9 +2650,7 @@
       "ServiceQuotaExceededException": {},
       "BatchDeleteTableRowsResult": {
         "type": "object",
-        "required": [
-          "workbookCursor"
-        ],
+        "required": ["workbookCursor"],
         "properties": {
           "workbookCursor": {
             "allOf": [
@@ -2730,9 +2676,7 @@
       },
       "BatchUpdateTableRowsResult": {
         "type": "object",
-        "required": [
-          "workbookCursor"
-        ],
+        "required": ["workbookCursor"],
         "properties": {
           "workbookCursor": {
             "allOf": [
@@ -2758,10 +2702,7 @@
       },
       "UpdateRowData": {
         "type": "object",
-        "required": [
-          "rowId",
-          "cellsToUpdate"
-        ],
+        "required": ["rowId", "cellsToUpdate"],
         "properties": {
           "rowId": {
             "allOf": [
@@ -2788,10 +2729,7 @@
       },
       "BatchUpsertTableRowsResult": {
         "type": "object",
-        "required": [
-          "rows",
-          "workbookCursor"
-        ],
+        "required": ["rows", "workbookCursor"],
         "properties": {
           "rows": {
             "allOf": [
@@ -2827,11 +2765,7 @@
       },
       "UpsertRowData": {
         "type": "object",
-        "required": [
-          "batchItemId",
-          "filter",
-          "cellsToUpdate"
-        ],
+        "required": ["batchItemId", "filter", "cellsToUpdate"],
         "properties": {
           "batchItemId": {
             "allOf": [
@@ -2868,11 +2802,7 @@
       },
       "DescribeTableDataImportJobResult": {
         "type": "object",
-        "required": [
-          "jobStatus",
-          "message",
-          "jobMetadata"
-        ],
+        "required": ["jobStatus", "message", "jobMetadata"],
         "properties": {
           "jobStatus": {
             "allOf": [
@@ -2908,9 +2838,7 @@
       },
       "ListTableColumnsResult": {
         "type": "object",
-        "required": [
-          "tableColumns"
-        ],
+        "required": ["tableColumns"],
         "properties": {
           "tableColumns": {
             "allOf": [
@@ -2946,11 +2874,7 @@
       },
       "ListTableRowsResult": {
         "type": "object",
-        "required": [
-          "columnIds",
-          "rows",
-          "workbookCursor"
-        ],
+        "required": ["columnIds", "rows", "workbookCursor"],
         "properties": {
           "columnIds": {
             "allOf": [
@@ -3006,9 +2930,7 @@
       },
       "ListTablesResult": {
         "type": "object",
-        "required": [
-          "tables"
-        ],
+        "required": ["tables"],
         "properties": {
           "tables": {
             "allOf": [
@@ -3044,11 +2966,7 @@
       },
       "QueryTableRowsResult": {
         "type": "object",
-        "required": [
-          "columnIds",
-          "rows",
-          "workbookCursor"
-        ],
+        "required": ["columnIds", "rows", "workbookCursor"],
         "properties": {
           "columnIds": {
             "allOf": [
@@ -3101,10 +3019,7 @@
       },
       "StartTableDataImportJobResult": {
         "type": "object",
-        "required": [
-          "jobId",
-          "jobStatus"
-        ],
+        "required": ["jobId", "jobStatus"],
         "properties": {
           "jobId": {
             "allOf": [
@@ -3162,9 +3077,7 @@
       },
       "DelimitedTextImportOptions": {
         "type": "object",
-        "required": [
-          "delimiter"
-        ],
+        "required": ["delimiter"],
         "properties": {
           "delimiter": {
             "allOf": [
@@ -3349,14 +3262,7 @@
       },
       "ImportDataCharacterEncoding": {
         "type": "string",
-        "enum": [
-          "UTF-8",
-          "US-ASCII",
-          "ISO-8859-1",
-          "UTF-16BE",
-          "UTF-16LE",
-          "UTF-16"
-        ]
+        "enum": ["UTF-8", "US-ASCII", "ISO-8859-1", "UTF-16BE", "UTF-16LE", "UTF-16"]
       },
       "JobId": {
         "type": "string",
@@ -3366,24 +3272,14 @@
       },
       "TableDataImportJobStatus": {
         "type": "string",
-        "enum": [
-          "SUBMITTED",
-          "IN_PROGRESS",
-          "COMPLETED",
-          "FAILED"
-        ]
+        "enum": ["SUBMITTED", "IN_PROGRESS", "COMPLETED", "FAILED"]
       },
       "TableDataImportJobMessage": {
         "type": "string"
       },
       "TableDataImportJobMetadata": {
         "type": "object",
-        "required": [
-          "submitter",
-          "submitTime",
-          "importOptions",
-          "dataSource"
-        ],
+        "required": ["submitter", "submitTime", "importOptions", "dataSource"],
         "properties": {
           "submitter": {
             "allOf": [
@@ -3444,10 +3340,7 @@
       },
       "FailedBatchItem": {
         "type": "object",
-        "required": [
-          "id",
-          "errorMessage"
-        ],
+        "required": ["id", "errorMessage"],
         "properties": {
           "id": {
             "allOf": [
@@ -3474,9 +3367,7 @@
       },
       "Filter": {
         "type": "object",
-        "required": [
-          "formula"
-        ],
+        "required": ["formula"],
         "properties": {
           "formula": {
             "allOf": [
@@ -3519,9 +3410,7 @@
       },
       "ImportDataSource": {
         "type": "object",
-        "required": [
-          "dataSourceConfig"
-        ],
+        "required": ["dataSourceConfig"],
         "properties": {
           "dataSourceConfig": {
             "allOf": [
@@ -3698,10 +3587,7 @@
       },
       "TableRow": {
         "type": "object",
-        "required": [
-          "rowId",
-          "cells"
-        ],
+        "required": ["rowId", "cells"],
         "properties": {
           "rowId": {
             "allOf": [
@@ -3728,17 +3614,11 @@
       },
       "UpsertAction": {
         "type": "string",
-        "enum": [
-          "UPDATED",
-          "APPENDED"
-        ]
+        "enum": ["UPDATED", "APPENDED"]
       },
       "UpsertRowsResult": {
         "type": "object",
-        "required": [
-          "rowIds",
-          "upsertAction"
-        ],
+        "required": ["rowIds", "upsertAction"],
         "properties": {
           "rowIds": {
             "allOf": [

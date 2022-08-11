@@ -98,9 +98,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "targetEnvironmentName"
-                ],
+                "required": ["targetEnvironmentName"],
                 "properties": {
                   "targetEnvironmentName": {
                     "description": "The name of the destination backend environment to be created.",
@@ -200,11 +198,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "appId",
-                  "appName",
-                  "backendEnvironmentName"
-                ],
+                "required": ["appId", "appName", "backendEnvironmentName"],
                 "properties": {
                   "appId": {
                     "description": "The app ID.",
@@ -331,11 +325,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "backendEnvironmentName",
-                  "resourceConfig",
-                  "resourceName"
-                ],
+                "required": ["backendEnvironmentName", "resourceConfig", "resourceName"],
                 "properties": {
                   "backendEnvironmentName": {
                     "description": "The name of the backend environment.",
@@ -533,11 +523,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "backendEnvironmentName",
-                  "resourceConfig",
-                  "resourceName"
-                ],
+                "required": ["backendEnvironmentName", "resourceConfig", "resourceName"],
                 "properties": {
                   "backendEnvironmentName": {
                     "description": "The name of the backend environment.",
@@ -1022,9 +1008,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "resourceName"
-                ],
+                "required": ["resourceName"],
                 "properties": {
                   "resourceConfig": {
                     "description": "The resource config for the data model, configured as a part of the Amplify project.",
@@ -1227,9 +1211,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "resourceName"
-                ],
+                "required": ["resourceName"],
                 "properties": {
                   "resourceName": {
                     "description": "The name of this resource.",
@@ -1450,9 +1432,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "resourceName"
-                ],
+                "required": ["resourceName"],
                 "properties": {
                   "resourceName": {
                     "description": "The name of this resource.",
@@ -1680,9 +1660,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "resourceName"
-                ],
+                "required": ["resourceName"],
                 "properties": {
                   "resourceConfig": {
                     "description": "The resource config for the data model, configured as a part of the Amplify project.",
@@ -1885,9 +1863,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "resourceName"
-                ],
+                "required": ["resourceName"],
                 "properties": {
                   "resourceName": {
                     "description": "The name of this resource.",
@@ -2006,9 +1982,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "resourceName"
-                ],
+                "required": ["resourceName"],
                 "properties": {
                   "resourceName": {
                     "description": "The name of this resource.",
@@ -2446,11 +2420,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "nativeClientId",
-                  "userPoolId",
-                  "webClientId"
-                ],
+                "required": ["nativeClientId", "userPoolId", "webClientId"],
                 "properties": {
                   "identityPoolId": {
                     "description": "The ID of the Amazon Cognito identity pool.",
@@ -2937,9 +2907,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "resourceName"
-                ],
+                "required": ["resourceName"],
                 "properties": {
                   "resourceConfig": {
                     "description": "The resource config for the data model, configured as a part of the Amplify project.",
@@ -3142,10 +3110,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "resourceConfig",
-                  "resourceName"
-                ],
+                "required": ["resourceConfig", "resourceName"],
                 "properties": {
                   "resourceConfig": {
                     "description": "Defines the resource configuration when updating an authentication resource in your Amplify project.",
@@ -3484,10 +3449,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -3498,10 +3460,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -3981,17 +3940,11 @@
       },
       "AuthResources": {
         "type": "string",
-        "enum": [
-          "USER_POOL_ONLY",
-          "IDENTITY_POOL_AND_USER_POOL"
-        ]
+        "enum": ["USER_POOL_ONLY", "IDENTITY_POOL_AND_USER_POOL"]
       },
       "CreateBackendAuthIdentityPoolConfig": {
         "type": "object",
-        "required": [
-          "UnauthenticatedLogin",
-          "IdentityPoolName"
-        ],
+        "required": ["UnauthenticatedLogin", "IdentityPoolName"],
         "properties": {
           "IdentityPoolName": {
             "allOf": [
@@ -4024,17 +3977,11 @@
       },
       "Service": {
         "type": "string",
-        "enum": [
-          "COGNITO"
-        ]
+        "enum": ["COGNITO"]
       },
       "CreateBackendAuthUserPoolConfig": {
         "type": "object",
-        "required": [
-          "RequiredSignUpAttributes",
-          "SignInMethod",
-          "UserPoolName"
-        ],
+        "required": ["RequiredSignUpAttributes", "SignInMethod", "UserPoolName"],
         "properties": {
           "ForgotPassword": {
             "allOf": [
@@ -5741,21 +5688,11 @@
       },
       "Mode": {
         "type": "string",
-        "enum": [
-          "API_KEY",
-          "AWS_IAM",
-          "AMAZON_COGNITO_USER_POOLS",
-          "OPENID_CONNECT"
-        ]
+        "enum": ["API_KEY", "AWS_IAM", "AMAZON_COGNITO_USER_POOLS", "OPENID_CONNECT"]
       },
       "ResolutionStrategy": {
         "type": "string",
-        "enum": [
-          "OPTIMISTIC_CONCURRENCY",
-          "LAMBDA",
-          "AUTOMERGE",
-          "NONE"
-        ]
+        "enum": ["OPTIMISTIC_CONCURRENCY", "LAMBDA", "AUTOMERGE", "NONE"]
       },
       "BackendAPIResourceConfig": {
         "type": "object",
@@ -5933,10 +5870,7 @@
       },
       "BackendJobRespObj": {
         "type": "object",
-        "required": [
-          "AppId",
-          "BackendEnvironmentName"
-        ],
+        "required": ["AppId", "BackendEnvironmentName"],
         "properties": {
           "AppId": {
             "allOf": [
@@ -6047,10 +5981,7 @@
       },
       "DeliveryMethod": {
         "type": "string",
-        "enum": [
-          "EMAIL",
-          "SMS"
-        ]
+        "enum": ["EMAIL", "SMS"]
       },
       "EmailSettings": {
         "type": "object",
@@ -6105,9 +6036,7 @@
       },
       "CreateBackendAuthForgotPasswordConfig": {
         "type": "object",
-        "required": [
-          "DeliveryMethod"
-        ],
+        "required": ["DeliveryMethod"],
         "properties": {
           "DeliveryMethod": {
             "allOf": [
@@ -6156,11 +6085,7 @@
       },
       "MFAMode": {
         "type": "string",
-        "enum": [
-          "ON",
-          "OFF",
-          "OPTIONAL"
-        ]
+        "enum": ["ON", "OFF", "OPTIONAL"]
       },
       "Settings": {
         "type": "object",
@@ -6196,9 +6121,7 @@
       },
       "CreateBackendAuthMFAConfig": {
         "type": "object",
-        "required": [
-          "MFAMode"
-        ],
+        "required": ["MFAMode"],
         "properties": {
           "MFAMode": {
             "allOf": [
@@ -6228,10 +6151,7 @@
       },
       "OAuthGrantType": {
         "type": "string",
-        "enum": [
-          "CODE",
-          "IMPLICIT"
-        ]
+        "enum": ["CODE", "IMPLICIT"]
       },
       "ListOfOAuthScopesElement": {
         "type": "array",
@@ -6265,12 +6185,7 @@
       },
       "CreateBackendAuthOAuthConfig": {
         "type": "object",
-        "required": [
-          "RedirectSignOutURIs",
-          "RedirectSignInURIs",
-          "OAuthGrantType",
-          "OAuthScopes"
-        ],
+        "required": ["RedirectSignOutURIs", "RedirectSignInURIs", "OAuthGrantType", "OAuthScopes"],
         "properties": {
           "DomainPrefix": {
             "allOf": [
@@ -6361,9 +6276,7 @@
       },
       "CreateBackendAuthPasswordPolicyConfig": {
         "type": "object",
-        "required": [
-          "MinimumLength"
-        ],
+        "required": ["MinimumLength"],
         "properties": {
           "AdditionalConstraints": {
             "allOf": [
@@ -6396,11 +6309,7 @@
       },
       "CreateBackendAuthResourceConfig": {
         "type": "object",
-        "required": [
-          "AuthResources",
-          "UserPoolConfigs",
-          "Service"
-        ],
+        "required": ["AuthResources", "UserPoolConfigs", "Service"],
         "properties": {
           "AuthResources": {
             "allOf": [
@@ -6465,19 +6374,11 @@
       },
       "SignInMethod": {
         "type": "string",
-        "enum": [
-          "EMAIL",
-          "EMAIL_AND_PHONE_NUMBER",
-          "PHONE_NUMBER",
-          "USERNAME"
-        ]
+        "enum": ["EMAIL", "EMAIL_AND_PHONE_NUMBER", "PHONE_NUMBER", "USERNAME"]
       },
       "Status": {
         "type": "string",
-        "enum": [
-          "LATEST",
-          "STALE"
-        ]
+        "enum": ["LATEST", "STALE"]
       },
       "ListOfBackendJobRespObj": {
         "type": "array",
@@ -6741,29 +6642,15 @@
       },
       "AdditionalConstraintsElement": {
         "type": "string",
-        "enum": [
-          "REQUIRE_DIGIT",
-          "REQUIRE_LOWERCASE",
-          "REQUIRE_SYMBOL",
-          "REQUIRE_UPPERCASE"
-        ]
+        "enum": ["REQUIRE_DIGIT", "REQUIRE_LOWERCASE", "REQUIRE_SYMBOL", "REQUIRE_UPPERCASE"]
       },
       "MfaTypesElement": {
         "type": "string",
-        "enum": [
-          "SMS",
-          "TOTP"
-        ]
+        "enum": ["SMS", "TOTP"]
       },
       "OAuthScopesElement": {
         "type": "string",
-        "enum": [
-          "PHONE",
-          "EMAIL",
-          "OPENID",
-          "PROFILE",
-          "AWS_COGNITO_SIGNIN_USER_ADMIN"
-        ]
+        "enum": ["PHONE", "EMAIL", "OPENID", "PROFILE", "AWS_COGNITO_SIGNIN_USER_ADMIN"]
       },
       "RequiredSignUpAttributesElement": {
         "type": "string",

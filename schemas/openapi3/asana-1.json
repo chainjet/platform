@@ -3,10 +3,7 @@
   "info": {
     "title": "Asana",
     "description": "Work anytime, anywhere with Asana. Keep remote and distributed teams, and your entire organization, focused on their goals, projects, and tasks with Asana.",
-    "x-categories": [
-      "project-management",
-      "productivity"
-    ],
+    "x-categories": ["project-management", "productivity"],
     "x-logo": {
       "url": "/logos/asana.svg"
     },
@@ -167,10 +164,7 @@
         "name": "opt_fields",
         "in": "query",
         "description": "Defines fields to return.\nSome requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.\nThe id of included objects will always be returned, regardless of the field options.",
-        "example": [
-          "followers",
-          "assignee"
-        ],
+        "example": ["followers", "assignee"],
         "required": false,
         "schema": {
           "type": "array",
@@ -538,13 +532,7 @@
         "required": false,
         "schema": {
           "type": "string",
-          "enum": [
-            "user",
-            "asana",
-            "asana_support",
-            "anonymous",
-            "external_administrator"
-          ]
+          "enum": ["user", "asana", "asana_support", "anonymous", "external_administrator"]
         }
       },
       "audit_log_actor_gid": {
@@ -736,10 +724,7 @@
             "description": "The type of the attachment. Must be one of the [given values](/docs/attachment). If not specified, a file attachment of type `asana` will be assumed. Note that if the value of `resource_subtype` is `external`, a `parent`, `name`, and `url` must also be provided.\n",
             "type": "string",
             "example": "external",
-            "enum": [
-              "asana_file_attachments",
-              "external"
-            ]
+            "enum": ["asana_file_attachments", "external"]
           },
           "parent": {
             "description": "Required identifier of the parent task or project_brief, as a string.\n",
@@ -881,14 +866,7 @@
           "method": {
             "description": "The HTTP method you wish to emulate for the action.",
             "type": "string",
-            "enum": [
-              "get",
-              "post",
-              "put",
-              "delete",
-              "patch",
-              "head"
-            ],
+            "enum": ["get", "post", "put", "delete", "patch", "head"],
             "example": "get"
           },
           "data": {
@@ -919,28 +897,16 @@
                 "items": {
                   "type": "string"
                 },
-                "example": [
-                  "name",
-                  "gid",
-                  "notes",
-                  "completed"
-                ]
+                "example": ["name", "gid", "notes", "completed"]
               }
             },
             "example": {
               "limit": 3,
-              "fields": [
-                "name",
-                "notes",
-                "completed"
-              ]
+              "fields": ["name", "notes", "completed"]
             }
           }
         },
-        "required": [
-          "relative_path",
-          "method"
-        ]
+        "required": ["relative_path", "method"]
       },
       "BatchResponse": {
         "description": "A response object returned from a batch request.",
@@ -1006,9 +972,7 @@
           },
           {
             "type": "object",
-            "required": [
-              "workspace"
-            ],
+            "required": ["workspace"],
             "properties": {
               "workspace": {
                 "type": "string",
@@ -1047,13 +1011,7 @@
               "format": {
                 "description": "The format of this custom field.",
                 "type": "string",
-                "enum": [
-                  "currency",
-                  "identifier",
-                  "percentage",
-                  "custom",
-                  "none"
-                ],
+                "enum": ["currency", "identifier", "percentage", "custom", "none"],
                 "example": "custom"
               },
               "currency_code": {
@@ -1071,10 +1029,7 @@
               "custom_label_position": {
                 "description": "Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.",
                 "type": "string",
-                "enum": [
-                  "prefix",
-                  "suffix"
-                ],
+                "enum": ["prefix", "suffix"],
                 "example": "suffix"
               },
               "is_global_to_workspace": {
@@ -1110,23 +1065,13 @@
                 "description": "The type of the custom field. Must be one of the given values.\n",
                 "type": "string",
                 "example": "text",
-                "enum": [
-                  "text",
-                  "enum",
-                  "number",
-                  "number"
-                ]
+                "enum": ["text", "enum", "number", "number"]
               },
               "type": {
                 "description": "*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.\n",
                 "type": "string",
                 "readOnly": true,
-                "enum": [
-                  "text",
-                  "enum",
-                  "number",
-                  "number"
-                ]
+                "enum": ["text", "enum", "number", "number"]
               },
               "enum_options": {
                 "description": "*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).",
@@ -1258,10 +1203,7 @@
           }
         },
         "example": {
-          "dependencies": [
-            "133713",
-            "184253"
-          ]
+          "dependencies": ["133713", "184253"]
         }
       },
       "ModifyDependentsRequest": {
@@ -1277,10 +1219,7 @@
           }
         },
         "example": {
-          "dependents": [
-            "133713",
-            "184253"
-          ]
+          "dependents": ["133713", "184253"]
         }
       },
       "EmptyResponse": {
@@ -1342,9 +1281,7 @@
       },
       "EnumOptionInsertRequest": {
         "type": "object",
-        "required": [
-          "enum_option"
-        ],
+        "required": ["enum_option"],
         "properties": {
           "enum_option": {
             "type": "string",
@@ -1516,12 +1453,7 @@
               },
               "status": {
                 "type": "string",
-                "enum": [
-                  "not_started",
-                  "in_progress",
-                  "completed",
-                  "failed"
-                ],
+                "enum": ["not_started", "in_progress", "completed", "failed"],
                 "readOnly": true,
                 "example": "in_progress",
                 "description": "The current status of this job. The value is one of: `not_started`, `in_progress`, `succeeded`, or `failed`."
@@ -1598,12 +1530,7 @@
               "state": {
                 "description": "The current state of the export.",
                 "type": "string",
-                "enum": [
-                  "pending",
-                  "started",
-                  "finished",
-                  "error"
-                ],
+                "enum": ["pending", "started", "finished", "error"],
                 "readOnly": true,
                 "example": "started"
               },
@@ -1713,10 +1640,7 @@
                   "type": "string",
                   "description": "Gid of an object."
                 },
-                "example": [
-                  "52164",
-                  "15363"
-                ]
+                "example": ["52164", "15363"]
               },
               "workspace": {
                 "type": "string",
@@ -1789,9 +1713,7 @@
       },
       "PortfolioAddItemRequest": {
         "type": "object",
-        "required": [
-          "item"
-        ],
+        "required": ["item"],
         "properties": {
           "item": {
             "description": "The item to add to the portfolio.",
@@ -1812,9 +1734,7 @@
       },
       "PortfolioRemoveItemRequest": {
         "type": "object",
-        "required": [
-          "item"
-        ],
+        "required": ["item"],
         "properties": {
           "item": {
             "description": "The item to remove from the portfolio.",
@@ -1825,9 +1745,7 @@
       },
       "AddMembersRequest": {
         "type": "object",
-        "required": [
-          "members"
-        ],
+        "required": ["members"],
         "properties": {
           "members": {
             "description": "An array of strings identifying users. These can either be the string \"me\", an email, or the gid of a user.",
@@ -1838,9 +1756,7 @@
       },
       "RemoveMembersRequest": {
         "type": "object",
-        "required": [
-          "members"
-        ],
+        "required": ["members"],
         "properties": {
           "members": {
             "description": "An array of strings identifying users. These can either be the string \"me\", an email, or the gid of a user.",
@@ -1851,9 +1767,7 @@
       },
       "AddFollowersRequest": {
         "type": "object",
-        "required": [
-          "followers"
-        ],
+        "required": ["followers"],
         "properties": {
           "followers": {
             "description": "An array of strings identifying users. These can either be the string \"me\", an email, or the gid of a user.",
@@ -1864,9 +1778,7 @@
       },
       "RemoveFollowersRequest": {
         "type": "object",
-        "required": [
-          "followers"
-        ],
+        "required": ["followers"],
         "properties": {
           "followers": {
             "description": "An array of strings identifying users. These can either be the string \"me\", an email, or the gid of a user.",
@@ -2192,12 +2104,7 @@
               "default_view": {
                 "description": "The default view (list, board, calendar, or timeline) of a project.",
                 "type": "string",
-                "enum": [
-                  "list",
-                  "board",
-                  "calendar",
-                  "timeline"
-                ],
+                "enum": ["list", "board", "calendar", "timeline"],
                 "example": "calendar"
               },
               "due_date": {
@@ -2301,9 +2208,7 @@
       },
       "ProjectDuplicateRequest": {
         "type": "object",
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "properties": {
           "name": {
             "description": "The name of the new project.",
@@ -2332,17 +2237,12 @@
               "task_projects",
               "task_projects"
             ],
-            "example": [
-              "members",
-              "task_notes"
-            ]
+            "example": ["members", "task_notes"]
           },
           "schedule_dates": {
             "description": "A dictionary of options to auto-shift dates. `task_dates` must be included to use this option. Requires either `start_on` or `due_on`, but not both.",
             "type": "object",
-            "required": [
-              "should_skip_weekends"
-            ],
+            "required": ["should_skip_weekends"],
             "properties": {
               "should_skip_weekends": {
                 "description": "Determines if the auto-shifted dates should skip weekends.",
@@ -2365,9 +2265,7 @@
       },
       "AddCustomFieldSettingRequest": {
         "type": "object",
-        "required": [
-          "custom_field"
-        ],
+        "required": ["custom_field"],
         "properties": {
           "custom_field": {
             "description": "The custom field to associate with this container.",
@@ -2393,9 +2291,7 @@
       },
       "RemoveCustomFieldSettingRequest": {
         "type": "object",
-        "required": [
-          "custom_field"
-        ],
+        "required": ["custom_field"],
         "properties": {
           "custom_field": {
             "description": "The custom field to remove from this portfolio.",
@@ -2419,10 +2315,7 @@
               "write_access": {
                 "description": "Whether the user has full access to the project or has comment-only access.",
                 "type": "string",
-                "enum": [
-                  "full_write",
-                  "comment_only"
-                ],
+                "enum": ["full_write", "comment_only"],
                 "readOnly": true,
                 "example": "full_write"
               }
@@ -2491,10 +2384,7 @@
           },
           {
             "type": "object",
-            "required": [
-              "text",
-              "color"
-            ],
+            "required": ["text", "color"],
             "properties": {
               "author": {
                 "$ref": "#/components/schemas/UserCompact"
@@ -2515,12 +2405,7 @@
               "color": {
                 "description": "The color associated with the status update.",
                 "type": "string",
-                "enum": [
-                  "green",
-                  "yellow",
-                  "red",
-                  "blue"
-                ]
+                "enum": ["green", "yellow", "red", "blue"]
               }
             }
           }
@@ -2598,10 +2483,7 @@
             "example": "987654"
           }
         },
-        "required": [
-          "project",
-          "name"
-        ]
+        "required": ["project", "name"]
       },
       "SectionBase": {
         "$ref": "#/components/schemas/SectionCompact"
@@ -2648,10 +2530,7 @@
             "example": "987654"
           }
         },
-        "required": [
-          "project",
-          "section"
-        ]
+        "required": ["project", "section"]
       },
       "SectionTaskInsertRequest": {
         "type": "object",
@@ -2672,9 +2551,7 @@
             "example": "987654"
           }
         },
-        "required": [
-          "task"
-        ]
+        "required": ["task"]
       },
       "StoryResponse": {
         "allOf": [
@@ -2876,13 +2753,7 @@
               "source": {
                 "description": "The component of the Asana product the user used to trigger the story.",
                 "type": "string",
-                "enum": [
-                  "web",
-                  "email",
-                  "mobile",
-                  "api",
-                  "unknown"
-                ],
+                "enum": ["web", "email", "mobile", "api", "unknown"],
                 "readOnly": true,
                 "example": "web"
               },
@@ -2931,10 +2802,7 @@
               },
               "type": {
                 "type": "string",
-                "enum": [
-                  "comment",
-                  "system"
-                ],
+                "enum": ["comment", "system"],
                 "readOnly": true,
                 "example": "comment"
               },
@@ -3117,10 +2985,7 @@
                 "items": {
                   "type": "string"
                 },
-                "example": [
-                  "12345",
-                  "42563"
-                ]
+                "example": ["12345", "42563"]
               },
               "workspace": {
                 "type": "string",
@@ -3326,9 +3191,7 @@
                   "type": "string",
                   "description": "Gid of a user."
                 },
-                "example": [
-                  "12345"
-                ]
+                "example": ["12345"]
               },
               "parent": {
                 "type": "string",
@@ -3344,9 +3207,7 @@
                   "type": "string",
                   "description": "Gid of a project."
                 },
-                "example": [
-                  "12345"
-                ]
+                "example": ["12345"]
               },
               "tags": {
                 "type": "array",
@@ -3355,9 +3216,7 @@
                   "type": "string",
                   "description": "Gid of a tag."
                 },
-                "example": [
-                  "12345"
-                ]
+                "example": ["12345"]
               },
               "workspace": {
                 "type": "string",
@@ -3386,24 +3245,13 @@
               "approval_status": {
                 "type": "string",
                 "description": "*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.",
-                "enum": [
-                  "pending",
-                  "approved",
-                  "rejected",
-                  "changes_requested"
-                ],
+                "enum": ["pending", "approved", "rejected", "changes_requested"],
                 "example": "pending"
               },
               "assignee_status": {
                 "description": "Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.\nSetting this field to \"inbox\" or \"upcoming\" inserts it at the top of the section, while the other options will insert at the bottom.",
                 "type": "string",
-                "enum": [
-                  "today",
-                  "upcoming",
-                  "later",
-                  "new",
-                  "inbox"
-                ],
+                "enum": ["today", "upcoming", "later", "new", "inbox"],
                 "example": "upcoming"
               },
               "completed": {
@@ -3570,12 +3418,7 @@
               "resource_subtype": {
                 "type": "string",
                 "description": "The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.\nThe resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.",
-                "enum": [
-                  "default_task",
-                  "milestone",
-                  "section",
-                  "approval"
-                ],
+                "enum": ["default_task", "milestone", "section", "approval"],
                 "example": "default_task"
               },
               "start_on": {
@@ -3613,12 +3456,7 @@
               "resource_subtype": {
                 "type": "string",
                 "description": "The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.\nThe resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.",
-                "enum": [
-                  "default_task",
-                  "milestone",
-                  "section",
-                  "approval"
-                ],
+                "enum": ["default_task", "milestone", "section", "approval"],
                 "example": "default_task"
               }
             }
@@ -3648,10 +3486,7 @@
               "dependencies",
               "parent"
             ],
-            "example": [
-              "notes",
-              "assignee"
-            ]
+            "example": ["notes", "assignee"]
           }
         }
       },
@@ -3674,9 +3509,7 @@
             "example": "124816"
           }
         },
-        "required": [
-          "parent"
-        ]
+        "required": ["parent"]
       },
       "TaskAddProjectRequest": {
         "type": "object",
@@ -3705,9 +3538,7 @@
             "example": "987654"
           }
         },
-        "required": [
-          "project"
-        ]
+        "required": ["project"]
       },
       "TaskRemoveProjectRequest": {
         "type": "object",
@@ -3718,9 +3549,7 @@
             "example": "13579"
           }
         },
-        "required": [
-          "project"
-        ]
+        "required": ["project"]
       },
       "TaskAddTagRequest": {
         "type": "object",
@@ -3731,9 +3560,7 @@
             "example": "13579"
           }
         },
-        "required": [
-          "tag"
-        ]
+        "required": ["tag"]
       },
       "TaskRemoveTagRequest": {
         "type": "object",
@@ -3744,9 +3571,7 @@
             "example": "13579"
           }
         },
-        "required": [
-          "tag"
-        ]
+        "required": ["tag"]
       },
       "TaskAddFollowersRequest": {
         "type": "object",
@@ -3757,15 +3582,10 @@
             "items": {
               "type": "string"
             },
-            "example": [
-              "13579",
-              "321654"
-            ]
+            "example": ["13579", "321654"]
           }
         },
-        "required": [
-          "followers"
-        ]
+        "required": ["followers"]
       },
       "TaskRemoveFollowersRequest": {
         "type": "object",
@@ -3776,15 +3596,10 @@
             "items": {
               "type": "string"
             },
-            "example": [
-              "13579",
-              "321654"
-            ]
+            "example": ["13579", "321654"]
           }
         },
-        "required": [
-          "followers"
-        ]
+        "required": ["followers"]
       },
       "TaskCountResponse": {
         "description": "A response object returned from the task count endpoint.",
@@ -3860,11 +3675,7 @@
               "visibility": {
                 "description": "The visibility of the team to users in the same organization\n",
                 "type": "string",
-                "enum": [
-                  "secret",
-                  "request_to_join",
-                  "public"
-                ]
+                "enum": ["secret", "request_to_join", "public"]
               }
             }
           }
@@ -3897,11 +3708,7 @@
               "visibility": {
                 "description": "The visibility of the team to users in the same organization\n",
                 "type": "string",
-                "enum": [
-                  "secret",
-                  "request_to_join",
-                  "public"
-                ]
+                "enum": ["secret", "request_to_join", "public"]
               }
             }
           }
@@ -4193,10 +4000,7 @@
             }
           }
         },
-        "required": [
-          "resource",
-          "target"
-        ]
+        "required": ["resource", "target"]
       },
       "WebhookCompact": {
         "allOf": [
@@ -4252,11 +4056,7 @@
             "items": {
               "type": "string"
             },
-            "example": [
-              "due_at",
-              "due_on",
-              "dependencies"
-            ]
+            "example": ["due_at", "due_on", "dependencies"]
           }
         }
       },
@@ -4275,9 +4075,7 @@
                   "type": "string",
                   "format": "uri"
                 },
-                "example": [
-                  "asana.com"
-                ]
+                "example": ["asana.com"]
               },
               "is_organization": {
                 "description": "Whether the workspace is an *organization*.",
@@ -4450,13 +4248,7 @@
           "actor_type": {
             "description": "The type of actor.\nCan be one of `user`, `asana`, `asana_support`, `anonymous`, or `external_administrator`.",
             "type": "string",
-            "enum": [
-              "user",
-              "asana",
-              "asana_support",
-              "anonymous",
-              "external_administrator"
-            ],
+            "enum": ["user", "asana", "asana_support", "anonymous", "external_administrator"],
             "example": "user"
           },
           "gid": {
@@ -4483,26 +4275,13 @@
           "context_type": {
             "description": "The type of context.\nCan be one of `web`, `desktop`, `mobile`, `asana_support`, `asana`, `email`, or `api`.",
             "type": "string",
-            "enum": [
-              "web",
-              "desktop",
-              "mobile",
-              "asana_support",
-              "asana",
-              "email",
-              "api"
-            ],
+            "enum": ["web", "desktop", "mobile", "asana_support", "asana", "email", "api"],
             "example": "web"
           },
           "api_authentication_method": {
             "description": "The authentication method used in the context of an API request.\nOnly present if the `context_type` is `api`. Can be one of `cookie`, `oauth`, `personal_access_token`, or `service_account`.",
             "type": "string",
-            "enum": [
-              "cookie",
-              "oauth",
-              "personal_access_token",
-              "service_account"
-            ]
+            "enum": ["cookie", "oauth", "personal_access_token", "service_account"]
           },
           "client_ip_address": {
             "description": "The IP address of the client that initiated the event, if applicable.",
@@ -4556,9 +4335,7 @@
       },
       "GoalAddSubgoalRequest": {
         "type": "object",
-        "required": [
-          "subgoal"
-        ],
+        "required": ["subgoal"],
         "properties": {
           "subgoal": {
             "description": "The goal gid to add as subgoal to a parent goal",
@@ -4579,9 +4356,7 @@
       },
       "GoalAddSupportingWorkRequest": {
         "type": "object",
-        "required": [
-          "supporting_work"
-        ],
+        "required": ["supporting_work"],
         "properties": {
           "supporting_work": {
             "description": "The project/portfolio gid to add as supporting work for a goal",
@@ -4686,9 +4461,7 @@
                 "type": "string",
                 "readOnly": true,
                 "example": "number",
-                "enum": [
-                  "number"
-                ]
+                "enum": ["number"]
               },
               "precision": {
                 "description": "*Conditional*. Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.\nFor percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.",
@@ -4698,11 +4471,7 @@
               "unit": {
                 "description": "A supported unit of measure for the goal metric, or none.",
                 "type": "string",
-                "enum": [
-                  "none",
-                  "currency",
-                  "percentage"
-                ]
+                "enum": ["none", "currency", "percentage"]
               },
               "currency_code": {
                 "description": "ISO 4217 currency code to format this custom field. This will be null if the `unit` is not `currency`.",
@@ -4734,12 +4503,7 @@
               "progress_source": {
                 "description": "This field defines how the progress value of a goal metric is being calculated. A goal's progress can be provided manually by the user, or calculated automatically from contributing subgoals or projects.",
                 "type": "string",
-                "enum": [
-                  "manual",
-                  "subgoal_progress",
-                  "project_task_completion",
-                  "project_milestone_completion"
-                ],
+                "enum": ["manual", "subgoal_progress", "project_task_completion", "project_milestone_completion"],
                 "example": "manual"
               }
             }
@@ -4768,9 +4532,7 @@
       },
       "GoalRemoveSubgoalRequest": {
         "type": "object",
-        "required": [
-          "subgoal"
-        ],
+        "required": ["subgoal"],
         "properties": {
           "subgoal": {
             "description": "The goal gid to remove as subgoal from the parent goal",
@@ -4804,9 +4566,7 @@
                   "type": "string",
                   "description": "The `gid` of a user."
                 },
-                "example": [
-                  "12345"
-                ]
+                "example": ["12345"]
               },
               "time_period": {
                 "type": "string",
@@ -5109,10 +4869,7 @@
       },
       "ProjectTemplateInstantiateProjectRequest": {
         "type": "object",
-        "required": [
-          "name",
-          "public"
-        ],
+        "required": ["name", "public"],
         "properties": {
           "name": {
             "description": "The name of the new project.",
@@ -5190,10 +4947,7 @@
       },
       "ProjectSaveAsTemplateRequest": {
         "type": "object",
-        "required": [
-          "name",
-          "public"
-        ],
+        "required": ["name", "public"],
         "properties": {
           "name": {
             "description": "The name of the new project template.",
@@ -5224,10 +4978,7 @@
           },
           {
             "type": "object",
-            "required": [
-              "text",
-              "status_type"
-            ],
+            "required": ["text", "status_type"],
             "properties": {
               "text": {
                 "description": "The text content of the status update.",
@@ -5275,11 +5026,7 @@
               "resource_subtype": {
                 "type": "string",
                 "description": "The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.\nThe `resource_subtype`s for `status` objects represent the type of their parent.",
-                "enum": [
-                  "project_status_update",
-                  "portfolio_status_update",
-                  "goal_status_update"
-                ],
+                "enum": ["project_status_update", "portfolio_status_update", "goal_status_update"],
                 "example": "project_status_update",
                 "readOnly": true
               }
@@ -5294,9 +5041,7 @@
           },
           {
             "type": "object",
-            "required": [
-              "parent"
-            ],
+            "required": ["parent"],
             "properties": {
               "parent": {
                 "allOf": [
@@ -5428,15 +5173,7 @@
               "period": {
                 "type": "string",
                 "description": "The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.",
-                "enum": [
-                  "FY",
-                  "H1",
-                  "H2",
-                  "Q1",
-                  "Q2",
-                  "Q3",
-                  "Q4"
-                ],
+                "enum": ["FY", "H1", "H2", "Q1", "Q2", "Q3", "Q4"],
                 "example": "Q1"
               },
               "display_name": {
@@ -5482,9 +5219,7 @@
       },
       "GoalRemoveSupportingRelationshipRequest": {
         "type": "object",
-        "required": [
-          "supporting_resource"
-        ],
+        "required": ["supporting_resource"],
         "properties": {
           "supporting_resource": {
             "description": "The gid of the supporting resource to remove from the parent goal. Must be the gid of a goal, project, or portfolio.",
@@ -5495,9 +5230,7 @@
       },
       "GoalAddSupportingRelationshipRequest": {
         "type": "object",
-        "required": [
-          "supporting_resource"
-        ],
+        "required": ["supporting_resource"],
         "properties": {
           "supporting_resource": {
             "description": "The gid of the supporting resource to add to the parent goal. Must be the gid of a goal, project, or portfolio.",
@@ -5559,10 +5292,7 @@
                 "type": "string",
                 "readOnly": true,
                 "example": "subgoal",
-                "enum": [
-                  "subgoal",
-                  "supporting_work"
-                ]
+                "enum": ["subgoal", "supporting_work"]
               },
               "supporting_resource": {
                 "allOf": [
@@ -5647,9 +5377,7 @@
       "get": {
         "summary": "Get an attachment",
         "description": "Get the full record for a single attachment.",
-        "tags": [
-          "Attachments"
-        ],
+        "tags": ["Attachments"],
         "operationId": "getAttachment",
         "responses": {
           "200": {
@@ -5702,9 +5430,7 @@
       "delete": {
         "summary": "Delete an attachment",
         "description": "Deletes a specific, existing attachment.\n\nReturns an empty data record.",
-        "tags": [
-          "Attachments"
-        ],
+        "tags": ["Attachments"],
         "operationId": "deleteAttachment",
         "responses": {
           "200": {
@@ -5761,9 +5487,7 @@
       "get": {
         "summary": "Get attachments for a task",
         "description": "Returns the compact records for all attachments on the task.",
-        "tags": [
-          "Attachments"
-        ],
+        "tags": ["Attachments"],
         "operationId": "getAttachmentsForTask",
         "responses": {
           "200": {
@@ -5804,9 +5528,7 @@
       "post": {
         "summary": "Upload an attachment",
         "description": "Upload an attachment.\n\nThis method uploads an attachment to a task and returns the compact\nrecord for the created attachment object. It is not possible to attach\nfiles from third party services such as Dropbox, Box & Google Drive via\nthe API. You must download the file content first and then upload it as\nany other attachment.\n\nThe 100MB size limit on attachments in Asana is enforced on this endpoint.\n\nThis endpoint expects a multipart/form-data encoded request containing\nthe full contents of the file to be uploaded.\n\nRequests made should follow the HTTP/1.1 specification that line\nterminators are of the form `CRLF` or `\\r\\n` outlined\n[here](http://www.w3.org/Protocols/HTTP/1.1/draft-ietf-http-v11-spec-01#Basic-Rules)\nin order for the server to reliably and properly handle the request.",
-        "tags": [
-          "Attachments"
-        ],
+        "tags": ["Attachments"],
         "operationId": "createAttachmentForTask",
         "requestBody": {
           "description": "The file you want to upload.\n\n*Note when using curl:*\n\nBe sure to add an `‘@’` before the file path, and use the `—form`\noption instead of the `-d` option.\n\nWhen uploading PDFs with curl, force the content-type to be pdf by\nappending the content type to the file path: `—form\n“file=@file.pdf;type=application/pdf”`.",
@@ -5865,9 +5587,7 @@
       "post": {
         "summary": "Submit parallel requests",
         "description": "Make multiple requests in parallel to Asana's API.",
-        "tags": [
-          "Batch API"
-        ],
+        "tags": ["Batch API"],
         "operationId": "createBatchRequest",
         "requestBody": {
           "description": "The requests to batch together via the Batch API.",
@@ -5943,9 +5663,7 @@
       "get": {
         "summary": "Get a project's custom fields",
         "description": "Returns a list of all of the custom fields settings on a project, in compact form. Note that, as in all queries to collections which return compact representation, `opt_fields` can be used to include more data than is returned in the compact representation. See the [getting started guide on input/output options](https://developers.asana.com/docs/#input-output-options) for more information.",
-        "tags": [
-          "Custom Field Settings"
-        ],
+        "tags": ["Custom Field Settings"],
         "operationId": "getCustomFieldSettingsForProject",
         "responses": {
           "200": {
@@ -6005,9 +5723,7 @@
       "get": {
         "summary": "Get a portfolio's custom fields",
         "description": "Returns a list of all of the custom fields settings on a portfolio, in compact form.",
-        "tags": [
-          "Custom Field Settings"
-        ],
+        "tags": ["Custom Field Settings"],
         "operationId": "getCustomFieldSettingsForPortfolio",
         "responses": {
           "200": {
@@ -6064,9 +5780,7 @@
       "post": {
         "summary": "Create a custom field",
         "description": "Creates a new custom field in a workspace. Every custom field is required\nto be created in a specific workspace, and this workspace cannot be\nchanged once set.\n\nA custom field’s name must be unique within a workspace and not conflict\nwith names of existing task properties such as ‘Due Date’ or ‘Assignee’.\nA custom field’s type must be one of ‘text’, ‘enum’, or ‘number’.\n\nReturns the full record of the newly created custom field.",
-        "tags": [
-          "Custom Fields"
-        ],
+        "tags": ["Custom Fields"],
         "operationId": "createCustomField",
         "requestBody": {
           "description": "The custom field object to create.",
@@ -6132,9 +5846,7 @@
       "get": {
         "summary": "Get a custom field",
         "description": "Get the complete definition of a custom field’s metadata.\n\nSince custom fields can be defined for one of a number of types, and\nthese types have different data and behaviors, there are fields that are\nrelevant to a particular type. For instance, as noted above, enum_options\nis only relevant for the enum type and defines the set of choices that\nthe enum could represent. The examples below show some of these\ntype-specific custom field definitions.",
-        "tags": [
-          "Custom Fields"
-        ],
+        "tags": ["Custom Fields"],
         "operationId": "getCustomField",
         "responses": {
           "200": {
@@ -6172,9 +5884,7 @@
       "put": {
         "summary": "Update a custom field",
         "description": "A specific, existing custom field can be updated by making a PUT request on the URL for that custom field. Only the fields provided in the `data` block will be updated; any unspecified fields will remain unchanged\nWhen using this method, it is best to specify only those fields you wish to change, or else you may overwrite changes made by another user since you last retrieved the custom field.\nA custom field’s `type` cannot be updated.\nAn enum custom field’s `enum_options` cannot be updated with this endpoint. Instead see “Work With Enum Options” for information on how to update `enum_options`.\nLocked custom fields can only be updated by the user who locked the field.\nReturns the complete updated custom field record.",
-        "tags": [
-          "Custom Fields"
-        ],
+        "tags": ["Custom Fields"],
         "operationId": "updateCustomField",
         "requestBody": {
           "description": "The custom field object with all updated properties.",
@@ -6227,9 +5937,7 @@
       "delete": {
         "summary": "Delete a custom field",
         "description": "A specific, existing custom field can be deleted by making a DELETE request on the URL for that custom field.\nLocked custom fields can only be deleted by the user who locked the field.\nReturns an empty data record.",
-        "tags": [
-          "Custom Fields"
-        ],
+        "tags": ["Custom Fields"],
         "operationId": "deleteCustomField",
         "responses": {
           "200": {
@@ -6286,9 +5994,7 @@
       "get": {
         "summary": "Get a workspace's custom fields",
         "description": "Returns a list of the compact representation of all of the custom fields in a workspace.",
-        "tags": [
-          "Custom Fields"
-        ],
+        "tags": ["Custom Fields"],
         "operationId": "getCustomFieldsForWorkspace",
         "responses": {
           "200": {
@@ -6348,9 +6054,7 @@
       "post": {
         "summary": "Create an enum option",
         "description": "Creates an enum option and adds it to this custom field’s list of enum options. A custom field can have at most 50 enum options (including disabled options). By default new enum options are inserted at the end of a custom field’s list.\nLocked custom fields can only have enum options added by the user who locked the field.\nReturns the full record of the newly created enum option.",
-        "tags": [
-          "Custom Fields"
-        ],
+        "tags": ["Custom Fields"],
         "operationId": "createEnumOptionForCustomField",
         "requestBody": {
           "description": "The enum option object to create.",
@@ -6416,9 +6120,7 @@
       "post": {
         "summary": "Reorder a custom field's enum",
         "description": "Moves a particular enum option to be either before or after another specified enum option in the custom field.\nLocked custom fields can only be reordered by the user who locked the field.",
-        "tags": [
-          "Custom Fields"
-        ],
+        "tags": ["Custom Fields"],
         "operationId": "insertEnumOptionForCustomField",
         "requestBody": {
           "description": "The enum option object to create.",
@@ -6491,9 +6193,7 @@
       "put": {
         "summary": "Update an enum option",
         "description": "Updates an existing enum option. Enum custom fields require at least one enabled enum option.\nLocked custom fields can only be updated by the user who locked the field.\nReturns the full record of the updated enum option.",
-        "tags": [
-          "Custom Fields"
-        ],
+        "tags": ["Custom Fields"],
         "operationId": "updateEnumOption",
         "requestBody": {
           "description": "The enum option object to update",
@@ -6576,9 +6276,7 @@
       "get": {
         "summary": "Get events on a resource",
         "description": "Returns the full record for all events that have occurred since the sync\ntoken was created.\n\nA GET request to the endpoint /[path_to_resource]/events can be made in\nlieu of including the resource ID in the data for the request.\n\n*Note: The resource returned will be the resource that triggered the\nevent. This may be different from the one that the events were requested\nfor. For example, a subscription to a project will contain events for\ntasks contained within the project.*",
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "operationId": "getEvents",
         "responses": {
           "200": {
@@ -6643,9 +6341,7 @@
       "get": {
         "summary": "Get a job by id",
         "description": "Returns the full record for a job.",
-        "tags": [
-          "Jobs"
-        ],
+        "tags": ["Jobs"],
         "operationId": "getJob",
         "responses": {
           "200": {
@@ -6699,9 +6395,7 @@
       "post": {
         "summary": "Create an organization export request",
         "description": "This method creates a request to export an Organization. Asana will complete the export at some point after you create the request.",
-        "tags": [
-          "Organization Exports"
-        ],
+        "tags": ["Organization Exports"],
         "operationId": "createOrganizationExport",
         "requestBody": {
           "description": "The organization to export.",
@@ -6768,9 +6462,7 @@
       "get": {
         "summary": "Get details on an org export request",
         "description": "Returns details of a previously-requested Organization export.",
-        "tags": [
-          "Organization Exports"
-        ],
+        "tags": ["Organization Exports"],
         "operationId": "getOrganizationExport",
         "responses": {
           "200": {
@@ -6833,9 +6525,7 @@
       "get": {
         "summary": "Get multiple portfolio memberships",
         "description": "Returns a list of portfolio memberships in compact representation. You must specify `portfolio`, `portfolio` and `user`, or `workspace` and `user`.",
-        "tags": [
-          "Portfolio Memberships"
-        ],
+        "tags": ["Portfolio Memberships"],
         "operationId": "getPortfolioMemberships",
         "responses": {
           "200": {
@@ -6889,9 +6579,7 @@
       "get": {
         "summary": "Get a portfolio membership",
         "description": "Returns the complete portfolio record for a single portfolio membership.",
-        "tags": [
-          "Portfolio Memberships"
-        ],
+        "tags": ["Portfolio Memberships"],
         "operationId": "getPortfolioMembership",
         "responses": {
           "200": {
@@ -6951,9 +6639,7 @@
       "get": {
         "summary": "Get memberships from a portfolio",
         "description": "Returns the compact portfolio membership records for the portfolio.",
-        "tags": [
-          "Portfolio Memberships"
-        ],
+        "tags": ["Portfolio Memberships"],
         "operationId": "getPortfolioMembershipsForPortfolio",
         "responses": {
           "200": {
@@ -7004,9 +6690,7 @@
       "get": {
         "summary": "Get multiple portfolios",
         "description": "Returns a list of the portfolios in compact representation that are owned by the current API user.",
-        "tags": [
-          "Portfolios"
-        ],
+        "tags": ["Portfolios"],
         "operationId": "getPortfolios",
         "parameters": [
           {
@@ -7075,9 +6759,7 @@
       "post": {
         "summary": "Create a portfolio",
         "description": "Creates a new portfolio in the given workspace with the supplied name.\n\nNote that portfolios created in the Asana UI may have some state\n(like the “Priority” custom field) which is automatically added\nto the portfolio when it is created. Portfolios created via our\nAPI will *not* be created with the same initial state to allow\nintegrations to create their own starting state on a portfolio.",
-        "tags": [
-          "Portfolios"
-        ],
+        "tags": ["Portfolios"],
         "operationId": "createPortfolio",
         "requestBody": {
           "description": "The portfolio to create.",
@@ -7144,9 +6826,7 @@
       "get": {
         "summary": "Get a portfolio",
         "description": "Returns the complete portfolio record for a single portfolio.",
-        "tags": [
-          "Portfolios"
-        ],
+        "tags": ["Portfolios"],
         "operationId": "getPortfolio",
         "responses": {
           "200": {
@@ -7184,9 +6864,7 @@
       "put": {
         "summary": "Update a portfolio",
         "description": "An existing portfolio can be updated by making a PUT request on the URL for\nthat portfolio. Only the fields provided in the `data` block will be updated;\nany unspecified fields will remain unchanged.\n\nReturns the complete updated portfolio record.",
-        "tags": [
-          "Portfolios"
-        ],
+        "tags": ["Portfolios"],
         "operationId": "updatePortfolio",
         "requestBody": {
           "description": "The updated fields for the portfolio.",
@@ -7240,9 +6918,7 @@
       "delete": {
         "summary": "Delete a portfolio",
         "description": "An existing portfolio can be deleted by making a DELETE request on\nthe URL for that portfolio.\n\nReturns an empty data record.",
-        "tags": [
-          "Portfolios"
-        ],
+        "tags": ["Portfolios"],
         "operationId": "deletePortfolio",
         "responses": {
           "200": {
@@ -7299,9 +6975,7 @@
       "get": {
         "summary": "Get portfolio items",
         "description": "Get a list of the items in compact form in a portfolio.",
-        "tags": [
-          "Portfolios"
-        ],
+        "tags": ["Portfolios"],
         "operationId": "getItemsForPortfolio",
         "responses": {
           "200": {
@@ -7355,9 +7029,7 @@
       "post": {
         "summary": "Add a portfolio item",
         "description": "Add an item to a portfolio.\nReturns an empty data block.",
-        "tags": [
-          "Portfolios"
-        ],
+        "tags": ["Portfolios"],
         "operationId": "addItemForPortfolio",
         "requestBody": {
           "description": "Information about the item being inserted.",
@@ -7424,9 +7096,7 @@
       "post": {
         "summary": "Remove a portfolio item",
         "description": "Remove an item from a portfolio.\nReturns an empty data block.",
-        "tags": [
-          "Portfolios"
-        ],
+        "tags": ["Portfolios"],
         "operationId": "removeItemForPortfolio",
         "requestBody": {
           "description": "Information about the item being removed.",
@@ -7490,9 +7160,7 @@
       "post": {
         "summary": "Add a custom field to a portfolio",
         "description": "Custom fields are associated with portfolios by way of custom field settings.  This method creates a setting for the portfolio.",
-        "tags": [
-          "Portfolios"
-        ],
+        "tags": ["Portfolios"],
         "operationId": "addCustomFieldSettingForPortfolio",
         "requestBody": {
           "description": "Information about the custom field setting.",
@@ -7556,9 +7224,7 @@
       "post": {
         "summary": "Remove a custom field from a portfolio",
         "description": "Removes a custom field setting from a portfolio.",
-        "tags": [
-          "Portfolios"
-        ],
+        "tags": ["Portfolios"],
         "operationId": "removeCustomFieldSettingForPortfolio",
         "requestBody": {
           "description": "Information about the custom field setting being removed.",
@@ -7625,9 +7291,7 @@
       "post": {
         "summary": "Add users to a portfolio",
         "description": "Adds the specified list of users as members of the portfolio.\nReturns the updated portfolio record.",
-        "tags": [
-          "Portfolios"
-        ],
+        "tags": ["Portfolios"],
         "operationId": "addMembersForPortfolio",
         "requestBody": {
           "description": "Information about the members being added.",
@@ -7694,9 +7358,7 @@
       "post": {
         "summary": "Remove users from a portfolio",
         "description": "Removes the specified list of users from members of the portfolio.\nReturns the updated portfolio record.",
-        "tags": [
-          "Portfolios"
-        ],
+        "tags": ["Portfolios"],
         "operationId": "removeMembersForPortfolio",
         "requestBody": {
           "description": "Information about the members being removed.",
@@ -7763,9 +7425,7 @@
       "get": {
         "summary": "Get a project membership",
         "description": "Returns the complete project record for a single project membership.",
-        "tags": [
-          "Project Memberships"
-        ],
+        "tags": ["Project Memberships"],
         "operationId": "getProjectMembership",
         "responses": {
           "200": {
@@ -7825,9 +7485,7 @@
       "get": {
         "summary": "Get memberships from a project",
         "description": "Returns the compact project membership records for the project.",
-        "tags": [
-          "Project Memberships"
-        ],
+        "tags": ["Project Memberships"],
         "operationId": "getProjectMembershipsForProject",
         "responses": {
           "200": {
@@ -7881,9 +7539,7 @@
       "get": {
         "summary": "Get a project status",
         "description": "Returns the complete record for a single status update.",
-        "tags": [
-          "Project Statuses"
-        ],
+        "tags": ["Project Statuses"],
         "operationId": "getProjectStatus",
         "responses": {
           "200": {
@@ -7921,9 +7577,7 @@
       "delete": {
         "summary": "Delete a project status",
         "description": "Deletes a specific, existing project status update.\n\nReturns an empty data record.",
-        "tags": [
-          "Project Statuses"
-        ],
+        "tags": ["Project Statuses"],
         "operationId": "deleteProjectStatus",
         "responses": {
           "200": {
@@ -7974,9 +7628,7 @@
       "get": {
         "summary": "Get statuses from a project",
         "description": "Returns the compact project status update records for all updates on the project.",
-        "tags": [
-          "Project Statuses"
-        ],
+        "tags": ["Project Statuses"],
         "operationId": "getProjectStatusesForProject",
         "parameters": [
           {
@@ -8034,9 +7686,7 @@
       "post": {
         "summary": "Create a project status",
         "description": "Creates a new status update on the project.\nReturns the full record of the newly created project status update.",
-        "tags": [
-          "Project Statuses"
-        ],
+        "tags": ["Project Statuses"],
         "operationId": "createProjectStatusForProject",
         "requestBody": {
           "description": "The project status to create.",
@@ -8100,9 +7750,7 @@
       "get": {
         "summary": "Get multiple projects",
         "description": "Returns the compact project records for some filtered set of projects. Use one or more of the parameters provided to filter the projects returned.",
-        "tags": [
-          "Projects"
-        ],
+        "tags": ["Projects"],
         "operationId": "getProjects",
         "parameters": [
           {
@@ -8172,9 +7820,7 @@
       "post": {
         "summary": "Create a project",
         "description": "Create a new project in a workspace or team.\n\nEvery project is required to be created in a specific workspace or\norganization, and this cannot be changed once set. Note that you can use\nthe `workspace` parameter regardless of whether or not it is an\norganization.\n\nIf the workspace for your project is an organization, you must also\nsupply a `team` to share the project with.\n\nReturns the full record of the newly created project.",
-        "tags": [
-          "Projects"
-        ],
+        "tags": ["Projects"],
         "operationId": "createProject",
         "requestBody": {
           "description": "The project to create.",
@@ -8241,9 +7887,7 @@
       "get": {
         "summary": "Get a project",
         "description": "Returns the complete project record for a single project.",
-        "tags": [
-          "Projects"
-        ],
+        "tags": ["Projects"],
         "operationId": "getProject",
         "responses": {
           "200": {
@@ -8281,9 +7925,7 @@
       "put": {
         "summary": "Update a project",
         "description": "A specific, existing project can be updated by making a PUT request on\nthe URL for that project. Only the fields provided in the `data` block\nwill be updated; any unspecified fields will remain unchanged.\n\nWhen using this method, it is best to specify only those fields you wish\nto change, or else you may overwrite changes made by another user since\nyou last retrieved the task.\n\nReturns the complete updated project record.",
-        "tags": [
-          "Projects"
-        ],
+        "tags": ["Projects"],
         "operationId": "updateProject",
         "requestBody": {
           "description": "The updated fields for the project.",
@@ -8337,9 +7979,7 @@
       "delete": {
         "summary": "Delete a project",
         "description": "A specific, existing project can be deleted by making a DELETE request on\nthe URL for that project.\n\nReturns an empty data record.",
-        "tags": [
-          "Projects"
-        ],
+        "tags": ["Projects"],
         "operationId": "deleteProject",
         "responses": {
           "200": {
@@ -8390,9 +8030,7 @@
       "post": {
         "summary": "Duplicate a project",
         "description": "Creates and returns a job that will asynchronously handle the duplication.",
-        "tags": [
-          "Projects"
-        ],
+        "tags": ["Projects"],
         "operationId": "duplicateProject",
         "requestBody": {
           "description": "Describes the duplicate's name and the elements that will be duplicated.",
@@ -8464,9 +8102,7 @@
       "get": {
         "summary": "Get projects a task is in",
         "description": "Returns a compact representation of all of the projects the task is in.",
-        "tags": [
-          "Projects"
-        ],
+        "tags": ["Projects"],
         "operationId": "getProjectsForTask",
         "responses": {
           "200": {
@@ -8520,9 +8156,7 @@
       "get": {
         "summary": "Get a team's projects",
         "description": "Returns the compact project records for all projects in the team.",
-        "tags": [
-          "Projects"
-        ],
+        "tags": ["Projects"],
         "operationId": "getProjectsForTeam",
         "parameters": [
           {
@@ -8574,9 +8208,7 @@
       "post": {
         "summary": "Create a project in a team",
         "description": "Creates a project shared with the given team.\n\nReturns the full record of the newly created project.",
-        "tags": [
-          "Projects"
-        ],
+        "tags": ["Projects"],
         "operationId": "createProjectForTeam",
         "requestBody": {
           "description": "The new project to create.",
@@ -8643,9 +8275,7 @@
       "get": {
         "summary": "Get all projects in a workspace",
         "description": "Returns the compact project records for all projects in the workspace.",
-        "tags": [
-          "Projects"
-        ],
+        "tags": ["Projects"],
         "operationId": "getProjectsForWorkspace",
         "parameters": [
           {
@@ -8697,9 +8327,7 @@
       "post": {
         "summary": "Create a project in a workspace",
         "description": "Returns the compact project records for all projects in the workspace.\n\nIf the workspace for your project is an organization, you must also\nsupply a team to share the project with.\n\nReturns the full record of the newly created project.",
-        "tags": [
-          "Projects"
-        ],
+        "tags": ["Projects"],
         "operationId": "createProjectForWorkspace",
         "requestBody": {
           "description": "The new project to create.",
@@ -8763,9 +8391,7 @@
       "post": {
         "summary": "Add a custom field to a project",
         "description": "Custom fields are associated with projects by way of custom field settings.  This method creates a setting for the project.",
-        "tags": [
-          "Projects"
-        ],
+        "tags": ["Projects"],
         "operationId": "addCustomFieldSettingForProject",
         "requestBody": {
           "description": "Information about the custom field setting.",
@@ -8829,9 +8455,7 @@
       "post": {
         "summary": "Remove a custom field from a project",
         "description": "Removes a custom field setting from a project.",
-        "tags": [
-          "Projects"
-        ],
+        "tags": ["Projects"],
         "operationId": "removeCustomFieldSettingForProject",
         "requestBody": {
           "description": "Information about the custom field setting being removed.",
@@ -8904,9 +8528,7 @@
       "get": {
         "summary": "Get task count of a project",
         "description": "Get an object that holds task count fields. **All fields are excluded by default**. You must [opt in](/docs/input-output-options) using `opt_fields` to get any information from this endpoint.\n\nThis endpoint has an additional [rate limit](/docs/standard-rate-limits) and each field counts especially high against our [cost limits](/docs/cost-limits).\n\nMilestones are just tasks, so they are included in the `num_tasks`, `num_incomplete_tasks`, and `num_completed_tasks` counts.",
-        "tags": [
-          "Projects"
-        ],
+        "tags": ["Projects"],
         "operationId": "getTaskCountsForProject",
         "responses": {
           "200": {
@@ -8957,9 +8579,7 @@
       "post": {
         "summary": "Add users to a project",
         "description": "Adds the specified list of users as members of the project.\nReturns the updated project record.",
-        "tags": [
-          "Projects"
-        ],
+        "tags": ["Projects"],
         "operationId": "addMembersForProject",
         "requestBody": {
           "description": "Information about the members being added.",
@@ -9026,9 +8646,7 @@
       "post": {
         "summary": "Remove users from a project",
         "description": "Removes the specified list of users from members of the project.\nReturns the updated project record.",
-        "tags": [
-          "Projects"
-        ],
+        "tags": ["Projects"],
         "operationId": "removeMembersForProject",
         "requestBody": {
           "description": "Information about the members being removed.",
@@ -9095,9 +8713,7 @@
       "post": {
         "summary": "Add followers to a project",
         "description": "Adds the specified list of users as followers to the project. Followers are a subset of members, therefore if the users are not already members of the project they will also become members as a result of this operation.\nReturns the updated project record.",
-        "tags": [
-          "Projects"
-        ],
+        "tags": ["Projects"],
         "operationId": "addFollowersForProject",
         "requestBody": {
           "description": "Information about the followers being added.",
@@ -9164,9 +8780,7 @@
       "post": {
         "summary": "Remove followers from a project",
         "description": "Removes the specified list of users from following the project, this will not affect project membership status.\nReturns the updated project record.",
-        "tags": [
-          "Projects"
-        ],
+        "tags": ["Projects"],
         "operationId": "removeFollowersForProject",
         "requestBody": {
           "description": "Information about the followers being removed.",
@@ -9233,9 +8847,7 @@
       "get": {
         "summary": "Get a section",
         "description": "Returns the complete record for a single section.",
-        "tags": [
-          "Sections"
-        ],
+        "tags": ["Sections"],
         "operationId": "getSection",
         "responses": {
           "200": {
@@ -9273,9 +8885,7 @@
       "put": {
         "summary": "Update a section",
         "description": "A specific, existing section can be updated by making a PUT request on\nthe URL for that project. Only the fields provided in the `data` block\nwill be updated; any unspecified fields will remain unchanged. (note that\nat this time, the only field that can be updated is the `name` field.)\n\nWhen using this method, it is best to specify only those fields you wish\nto change, or else you may overwrite changes made by another user since\nyou last retrieved the task.\n\nReturns the complete updated section record.",
-        "tags": [
-          "Sections"
-        ],
+        "tags": ["Sections"],
         "operationId": "updateSection",
         "requestBody": {
           "description": "The section to create.",
@@ -9329,9 +8939,7 @@
       "delete": {
         "summary": "Delete a section",
         "description": "A specific, existing section can be deleted by making a DELETE request on\nthe URL for that section.\n\nNote that sections must be empty to be deleted.\n\nThe last remaining section cannot be deleted.\n\nReturns an empty data block.",
-        "tags": [
-          "Sections"
-        ],
+        "tags": ["Sections"],
         "operationId": "deleteSection",
         "responses": {
           "200": {
@@ -9382,9 +8990,7 @@
       "get": {
         "summary": "Get sections in a project",
         "description": "Returns the compact records for all sections in the specified project.",
-        "tags": [
-          "Sections"
-        ],
+        "tags": ["Sections"],
         "operationId": "getSectionsForProject",
         "parameters": [
           {
@@ -9433,9 +9039,7 @@
       "post": {
         "summary": "Create a section in a project",
         "description": "Creates a new section in a project.\nReturns the full record of the newly created section.",
-        "tags": [
-          "Sections"
-        ],
+        "tags": ["Sections"],
         "operationId": "createSectionForProject",
         "requestBody": {
           "description": "The section to create.",
@@ -9502,9 +9106,7 @@
       "post": {
         "summary": "Add task to section",
         "description": "Add a task to a specific, existing section. This will remove the task from other sections of the project.\n\nThe task will be inserted at the top of a section unless an insert_before or insert_after parameter is declared.\n\nThis does not work for separators (tasks with the resource_subtype of section).",
-        "tags": [
-          "Sections"
-        ],
+        "tags": ["Sections"],
         "operationId": "addTaskForSection",
         "requestBody": {
           "description": "The task and optionally the insert location.",
@@ -9571,9 +9173,7 @@
       "post": {
         "summary": "Move or Insert sections",
         "description": "Move sections relative to each other. One of\n`before_section` or `after_section` is required.\n\nSections cannot be moved between projects.\n\nReturns an empty data block.",
-        "tags": [
-          "Sections"
-        ],
+        "tags": ["Sections"],
         "operationId": "insertSectionForProject",
         "requestBody": {
           "description": "The section's move action.",
@@ -9640,9 +9240,7 @@
       "get": {
         "summary": "Get a story",
         "description": "Returns the full record for a single story.",
-        "tags": [
-          "Stories"
-        ],
+        "tags": ["Stories"],
         "operationId": "getStory",
         "parameters": [
           {
@@ -9688,9 +9286,7 @@
       "put": {
         "summary": "Update a story",
         "description": "Updates the story and returns the full record for the updated story. Only comment stories can have their text updated, and only comment stories and attachment stories can be pinned. Only one of `text` and `html_text` can be specified.",
-        "tags": [
-          "Stories"
-        ],
+        "tags": ["Stories"],
         "operationId": "updateStory",
         "requestBody": {
           "description": "The comment story to update.",
@@ -9744,9 +9340,7 @@
       "delete": {
         "summary": "Delete a story",
         "description": "Deletes a story. A user can only delete stories they have created.\n\nReturns an empty data record.",
-        "tags": [
-          "Stories"
-        ],
+        "tags": ["Stories"],
         "operationId": "deleteStory",
         "responses": {
           "200": {
@@ -9797,9 +9391,7 @@
       "get": {
         "summary": "Get stories from a task",
         "description": "Returns the compact records for all stories on the task.",
-        "tags": [
-          "Stories"
-        ],
+        "tags": ["Stories"],
         "operationId": "getStoriesForTask",
         "parameters": [
           {
@@ -9847,9 +9439,7 @@
       "post": {
         "summary": "Create a story on a task",
         "description": "Adds a story to a task. This endpoint currently only allows for comment\nstories to be created. The comment will be authored by the currently\nauthenticated user, and timestamped when the server receives the request.\n\nReturns the full record for the new story added to the task.",
-        "tags": [
-          "Stories"
-        ],
+        "tags": ["Stories"],
         "operationId": "createStoryForTask",
         "requestBody": {
           "description": "The story to create.",
@@ -9913,9 +9503,7 @@
       "get": {
         "summary": "Get multiple tags",
         "description": "Returns the compact tag records for some filtered set of tags. Use one or more of the parameters provided to filter the tags returned.",
-        "tags": [
-          "Tags"
-        ],
+        "tags": ["Tags"],
         "operationId": "getTags",
         "parameters": [
           {
@@ -9973,9 +9561,7 @@
       "post": {
         "summary": "Create a tag",
         "description": "Creates a new tag in a workspace or organization.\n\nEvery tag is required to be created in a specific workspace or\norganization, and this cannot be changed once set. Note that you can use\nthe workspace parameter regardless of whether or not it is an\norganization.\n\nReturns the full record of the newly created tag.",
-        "tags": [
-          "Tags"
-        ],
+        "tags": ["Tags"],
         "operationId": "createTag",
         "requestBody": {
           "description": "The tag to create.",
@@ -10048,9 +9634,7 @@
       "get": {
         "summary": "Get a tag",
         "description": "Returns the complete tag record for a single tag.",
-        "tags": [
-          "Tags"
-        ],
+        "tags": ["Tags"],
         "operationId": "getTag",
         "responses": {
           "200": {
@@ -10088,9 +9672,7 @@
       "put": {
         "summary": "Update a tag",
         "description": "Updates the properties of a tag. Only the fields provided in the `data`\nblock will be updated; any unspecified fields will remain unchanged.\n\nWhen using this method, it is best to specify only those fields you wish\nto change, or else you may overwrite changes made by another user since\nyou last retrieved the tag.\n\nReturns the complete updated tag record.",
-        "tags": [
-          "Tags"
-        ],
+        "tags": ["Tags"],
         "operationId": "updateTag",
         "responses": {
           "200": {
@@ -10128,9 +9710,7 @@
       "delete": {
         "summary": "Delete a tag",
         "description": "A specific, existing tag can be deleted by making a DELETE request on\nthe URL for that tag.\n\nReturns an empty data record.",
-        "tags": [
-          "Tags"
-        ],
+        "tags": ["Tags"],
         "operationId": "deleteTag",
         "responses": {
           "200": {
@@ -10187,9 +9767,7 @@
       "get": {
         "summary": "Get a task's tags",
         "description": "Get a compact representation of all of the tags the task has.",
-        "tags": [
-          "Tags"
-        ],
+        "tags": ["Tags"],
         "operationId": "getTagsForTask",
         "responses": {
           "200": {
@@ -10243,9 +9821,7 @@
       "get": {
         "summary": "Get tags in a workspace",
         "description": "Returns the compact tag records for some filtered set of tags. Use one or more of the parameters provided to filter the tags returned.",
-        "tags": [
-          "Tags"
-        ],
+        "tags": ["Tags"],
         "operationId": "getTagsForWorkspace",
         "parameters": [
           {
@@ -10294,9 +9870,7 @@
       "post": {
         "summary": "Create a tag in a workspace",
         "description": "Creates a new tag in a workspace or organization.\n\nEvery tag is required to be created in a specific workspace or\norganization, and this cannot be changed once set. Note that you can use\nthe workspace parameter regardless of whether or not it is an\norganization.\n\nReturns the full record of the newly created tag.",
-        "tags": [
-          "Tags"
-        ],
+        "tags": ["Tags"],
         "operationId": "createTagForWorkspace",
         "requestBody": {
           "description": "The tag to create.",
@@ -10360,9 +9934,7 @@
       "get": {
         "summary": "Get multiple tasks",
         "description": "Returns the compact task records for some filtered set of tasks. Use one or more of the parameters provided to filter the tasks returned. You must specify a `project` or `tag` if you do not specify `assignee` and `workspace`.\n\nFor more complex task retrieval, use [workspaces/{workspace_gid}/tasks/search](/docs/search-tasks-in-a-workspace).",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "getTasks",
         "parameters": [
           {
@@ -10467,9 +10039,7 @@
       "post": {
         "summary": "Create a task",
         "description": "Creating a new task is as easy as POSTing to the `/tasks` endpoint with a\ndata block containing the fields you’d like to set on the task. Any\nunspecified fields will take on default values.\n\nEvery task is required to be created in a specific workspace, and this\nworkspace cannot be changed once set. The workspace need not be set\nexplicitly if you specify `projects` or a `parent` task instead.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "createTask",
         "requestBody": {
           "description": "The task to create.",
@@ -10536,9 +10106,7 @@
       "get": {
         "summary": "Get a task",
         "description": "Returns the complete task record for a single task.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "getTask",
         "responses": {
           "200": {
@@ -10576,9 +10144,7 @@
       "put": {
         "summary": "Update a task",
         "description": "A specific, existing task can be updated by making a PUT request on the\nURL for that task. Only the fields provided in the `data` block will be\nupdated; any unspecified fields will remain unchanged.\n\nWhen using this method, it is best to specify only those fields you wish\nto change, or else you may overwrite changes made by another user since\nyou last retrieved the task.\n\nReturns the complete updated task record.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "updateTask",
         "requestBody": {
           "description": "The task to update.",
@@ -10632,9 +10198,7 @@
       "delete": {
         "summary": "Delete a task",
         "description": "A specific, existing task can be deleted by making a DELETE request on\nthe URL for that task. Deleted tasks go into the “trash” of the user\nmaking the delete request. Tasks can be recovered from the trash within a\nperiod of 30 days; afterward they are completely removed from the system.\n\nReturns an empty data record.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "deleteTask",
         "responses": {
           "200": {
@@ -10685,9 +10249,7 @@
       "post": {
         "summary": "Duplicate a task",
         "description": "Creates and returns a job that will asynchronously handle the duplication.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "duplicateTask",
         "requestBody": {
           "description": "Describes the duplicate's name and the fields that will be duplicated.",
@@ -10763,9 +10325,7 @@
       "get": {
         "summary": "Get tasks from a project",
         "description": "Returns the compact task records for all tasks within the given project, ordered by their priority within the project. Tasks can exist in more than one project at a time.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "getTasksForProject",
         "responses": {
           "200": {
@@ -10825,9 +10385,7 @@
       "get": {
         "summary": "Get tasks from a section",
         "description": "*Board view only*: Returns the compact section records for all tasks within the given section.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "getTasksForSection",
         "responses": {
           "200": {
@@ -10887,9 +10445,7 @@
       "get": {
         "summary": "Get tasks from a tag",
         "description": "Returns the compact task records for all tasks with the given tag. Tasks can have more than one tag at a time.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "getTasksForTag",
         "responses": {
           "200": {
@@ -10960,9 +10516,7 @@
       "get": {
         "summary": "Get tasks from a user task list",
         "description": "Returns the compact list of tasks in a user’s My Tasks list. The returned tasks will be in order within each assignee status group of `Inbox`, `Today`, and `Upcoming`.\n*Note: tasks in `Later` have a different ordering in the Asana web app than the other assignee status groups; this endpoint will still return them in list order in `Later` (differently than they show up in Asana, but the same order as in Asana’s mobile apps).*\n*Note: Access control is enforced for this endpoint as with all Asana API endpoints, meaning a user’s private tasks will be filtered out if the API-authenticated user does not have access to them.*\n*Note: Both complete and incomplete tasks are returned by default unless they are filtered out (for example, setting `completed_since=now` will return only incomplete tasks, which is the default view for “My Tasks” in Asana.)*",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "getTasksForUserTaskList",
         "responses": {
           "200": {
@@ -11016,9 +10570,7 @@
       "get": {
         "summary": "Get subtasks from a task",
         "description": "Returns a compact representation of all of the subtasks of a task.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "getSubtasksForTask",
         "parameters": [
           {
@@ -11067,9 +10619,7 @@
       "post": {
         "summary": "Create a subtask",
         "description": "Creates a new subtask and adds it to the parent task. Returns the full record for the newly created subtask.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "createSubtaskForTask",
         "requestBody": {
           "description": "The new subtask to create.",
@@ -11136,9 +10686,7 @@
       "post": {
         "summary": "Set the parent of a task",
         "description": "parent, or no parent task at all. Returns an empty data block. When using `insert_before` and `insert_after`, at most one of those two options can be specified, and they must already be subtasks of the parent.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "setParentForTask",
         "requestBody": {
           "description": "The new parent of the subtask.",
@@ -11211,9 +10759,7 @@
       "get": {
         "summary": "Get dependencies from a task",
         "description": "Returns the compact representations of all of the dependencies of a task.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "getDependenciesForTask",
         "responses": {
           "200": {
@@ -11270,9 +10816,7 @@
       "post": {
         "summary": "Set dependencies for a task",
         "description": "Marks a set of tasks as dependencies of this task, if they are not already dependencies. *A task can have at most 15 dependencies*.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "addDependenciesForTask",
         "requestBody": {
           "description": "The list of tasks to set as dependencies.",
@@ -11342,9 +10886,7 @@
       "post": {
         "summary": "Unlink dependencies from a task",
         "description": "Unlinks a set of dependencies from this task.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "removeDependenciesForTask",
         "requestBody": {
           "description": "The list of tasks to unlink as dependencies.",
@@ -11424,9 +10966,7 @@
       "get": {
         "summary": "Get dependents from a task",
         "description": "Returns the compact representations of all of the dependents of a task.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "getDependentsForTask",
         "responses": {
           "200": {
@@ -11483,9 +11023,7 @@
       "post": {
         "summary": "Set dependents for a task",
         "description": "Marks a set of tasks as dependents of this task, if they are not already dependents. *A task can have at most 30 dependents*.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "addDependentsForTask",
         "requestBody": {
           "description": "The list of tasks to add as dependents.",
@@ -11559,9 +11097,7 @@
       "post": {
         "summary": "Unlink dependents from a task",
         "description": "Unlinks a set of dependents from this task.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "removeDependentsForTask",
         "requestBody": {
           "description": "The list of tasks to remove as dependents.",
@@ -11635,9 +11171,7 @@
       "post": {
         "summary": "Add a project to a task",
         "description": "Adds the task to the specified project, in the optional location\nspecified. If no location arguments are given, the task will be added to\nthe end of the project.\n\n`addProject` can also be used to reorder a task within a project or\nsection that already contains it.\n\nAt most one of `insert_before`, `insert_after`, or `section` should be\nspecified. Inserting into a section in an non-order-dependent way can be\ndone by specifying section, otherwise, to insert within a section in a\nparticular place, specify `insert_before` or `insert_after` and a task\nwithin the section to anchor the position of this task.\n\nReturns an empty data block.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "addProjectForTask",
         "requestBody": {
           "description": "The project to add the task to.",
@@ -11704,9 +11238,7 @@
       "post": {
         "summary": "Remove a project from a task",
         "description": "Removes the task from the specified project. The task will still exist in\nthe system, but it will not be in the project anymore.\n\nReturns an empty data block.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "removeProjectForTask",
         "requestBody": {
           "description": "The project to remove the task from.",
@@ -11773,9 +11305,7 @@
       "post": {
         "summary": "Add a tag to a task",
         "description": "Adds a tag to a task. Returns an empty data block.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "addTagForTask",
         "requestBody": {
           "description": "The tag to add to the task.",
@@ -11842,9 +11372,7 @@
       "post": {
         "summary": "Remove a tag from a task",
         "description": "Removes a tag from a task. Returns an empty data block.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "removeTagForTask",
         "requestBody": {
           "description": "The tag to remove from the task.",
@@ -11911,9 +11439,7 @@
       "post": {
         "summary": "Add followers to a task",
         "description": "Adds followers to a task. Returns an empty data block.\nEach task can be associated with zero or more followers in the system.\nRequests to add/remove followers, if successful, will return the complete updated task record, described above.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "addFollowersForTask",
         "requestBody": {
           "description": "The followers to add to the task.",
@@ -11980,9 +11506,7 @@
       "post": {
         "summary": "Remove followers from a task",
         "description": "Removes each of the specified followers from the task if they are following. Returns the complete, updated record for the affected task.",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "removeFollowerForTask",
         "requestBody": {
           "description": "The followers to remove from the task.",
@@ -12060,10 +11584,7 @@
           "description": "Filters results by the task's resource_subtype",
           "schema": {
             "type": "string",
-            "enum": [
-              "default_task",
-              "milestone"
-            ],
+            "enum": ["default_task", "milestone"],
             "default": "milestone"
           }
         },
@@ -12091,12 +11612,7 @@
           "description": "One of `inbox`, `today`, `upcoming`, or `later`",
           "schema": {
             "type": "string",
-            "enum": [
-              "inbox",
-              "today",
-              "upcoming",
-              "later"
-            ]
+            "enum": ["inbox", "today", "upcoming", "later"]
           },
           "example": "later"
         },
@@ -12548,13 +12064,7 @@
           "description": "Filter to tasks with incomplete dependencies",
           "schema": {
             "type": "boolean",
-            "enum": [
-              "due_date",
-              "created_at",
-              "completed_at",
-              "likes",
-              "modified_at"
-            ],
+            "enum": ["due_date", "created_at", "completed_at", "likes", "modified_at"],
             "default": "modified_at"
           },
           "example": false
@@ -12593,13 +12103,7 @@
           "description": "One of `due_date`, `created_at`, `completed_at`, `likes`, or `modified_at`, defaults to `modified_at`",
           "schema": {
             "type": "string",
-            "enum": [
-              "due_date",
-              "created_at",
-              "completed_at",
-              "likes",
-              "modified_at"
-            ],
+            "enum": ["due_date", "created_at", "completed_at", "likes", "modified_at"],
             "default": "modified_at"
           },
           "example": "likes"
@@ -12618,9 +12122,7 @@
       "get": {
         "summary": "Search tasks in a workspace",
         "description": "To mirror the functionality of the Asana web app's advanced search feature, the Asana API has a task search endpoint that allows you to build complex filters to find and retrieve the exact data you need.\n#### Premium access\nLike the Asana web product's advance search feature, this search endpoint will only be available to premium Asana users. A user is premium if any of the following is true:\n\n- The workspace in which the search is being performed is a premium workspace - The user is a member of a premium team inside the workspace\n\nEven if a user is only a member of a premium team inside a non-premium workspace, search will allow them to find data anywhere in the workspace, not just inside the premium team. Making a search request using credentials of a non-premium user will result in a `402 Payment Required` error.\n#### Pagination\nSearch results are not stable; repeating the same query multiple times may return the data in a different order, even if the data do not change. Because of this, the traditional [pagination](https://developers.asana.com/docs/#pagination) available elsewhere in the Asana API is not available here. However, you can paginate manually by sorting the search results by their creation time and then modifying each subsequent query to exclude data you have already seen. Page sizes are limited to a maximum of 100 items, and can be specified by the `limit` query parameter.\n#### Eventual consistency\nChanges in Asana (regardless of whether they’re made though the web product or the API) are forwarded to our search infrastructure to be indexed. This process can take between 10 and 60 seconds to complete under normal operation, and longer during some production incidents. Making a change to a task that would alter its presence in a particular search query will not be reflected immediately. This is also true of the advanced search feature in the web product.\n#### Rate limits\nYou may receive a `429 Too Many Requests` response if you hit any of our [rate limits](https://developers.asana.com/docs/#rate-limits).\n#### Custom field parameters\n| Parameter name | Custom field type | Accepted type |\n|---|---|---|\n| custom_fields.{gid}.is_set | All | Boolean |\n| custom_fields.{gid}.value | Text | String |\n| custom_fields.{gid}.value | Number | Number |\n| custom_fields.{gid}.value | Enum | Enum option ID |\n| custom_fields.{gid}.starts_with | Text only | String |\n| custom_fields.{gid}.ends_with | Text only | String |\n| custom_fields.{gid}.contains | Text only | String |\n| custom_fields.{gid}.less_than | Number only | Number |\n| custom_fields.{gid}.greater_than | Number only | Number |\n\n\nFor example, if the gid of the custom field is 12345, these query parameter to find tasks where it is set would be `custom_fields.12345.is_set=true`. To match an exact value for an enum custom field, use the gid of the desired enum option and not the name of the enum option: `custom_fields.12345.value=67890`.\n\nSearching for multiple exact matches of a custom field is not supported.\n\n*Note: If you specify `projects.any` and `sections.any`, you will receive tasks for the project **and** tasks for the section. If you're looking for only tasks in a section, omit the `projects.any` from the request.*",
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "operationId": "searchTasksForWorkspace",
         "responses": {
           "200": {
@@ -12674,9 +12176,7 @@
       "get": {
         "summary": "Get a team membership",
         "description": "Returns the complete team membership record for a single team membership.",
-        "tags": [
-          "Team Memberships"
-        ],
+        "tags": ["Team Memberships"],
         "operationId": "getTeamMembership",
         "responses": {
           "200": {
@@ -12730,9 +12230,7 @@
       "get": {
         "summary": "Get team memberships",
         "description": "Returns compact team membership records.",
-        "tags": [
-          "Team Memberships"
-        ],
+        "tags": ["Team Memberships"],
         "operationId": "getTeamMemberships",
         "parameters": [
           {
@@ -12821,9 +12319,7 @@
       "get": {
         "summary": "Get memberships from a team",
         "description": "Returns the compact team memberships for the team.",
-        "tags": [
-          "Team Memberships"
-        ],
+        "tags": ["Team Memberships"],
         "operationId": "getTeamMembershipsForTeam",
         "responses": {
           "200": {
@@ -12883,9 +12379,7 @@
       "get": {
         "summary": "Get memberships from a user",
         "description": "Returns the compact team membership records for the user.",
-        "tags": [
-          "Team Memberships"
-        ],
+        "tags": ["Team Memberships"],
         "operationId": "getTeamMembershipsForUser",
         "parameters": [
           {
@@ -12957,9 +12451,7 @@
       "get": {
         "summary": "Get a team",
         "description": "Returns the full record for a single team.",
-        "tags": [
-          "Teams"
-        ],
+        "tags": ["Teams"],
         "operationId": "getTeam",
         "responses": {
           "200": {
@@ -13016,9 +12508,7 @@
       "get": {
         "summary": "Get teams in an organization",
         "description": "Returns the compact records for all teams in the organization visible to the authorized user.",
-        "tags": [
-          "Teams"
-        ],
+        "tags": ["Teams"],
         "operationId": "getTeamsForOrganization",
         "responses": {
           "200": {
@@ -13088,9 +12578,7 @@
       "get": {
         "summary": "Get teams for a user",
         "description": "Returns the compact records for all teams to which the given user is assigned.",
-        "tags": [
-          "Teams"
-        ],
+        "tags": ["Teams"],
         "operationId": "getTeamsForUser",
         "responses": {
           "200": {
@@ -13144,9 +12632,7 @@
       "post": {
         "summary": "Add a user to a team",
         "description": "The user making this call must be a member of the team in order to add others. The user being added must exist in the same organization as the team.",
-        "tags": [
-          "Teams"
-        ],
+        "tags": ["Teams"],
         "operationId": "addUserForTeam",
         "requestBody": {
           "description": "The user to add to the team.",
@@ -13213,9 +12699,7 @@
       "post": {
         "summary": "Remove a user from a team",
         "description": "The user making this call must be a member of the team in order to remove themselves or others.",
-        "tags": [
-          "Teams"
-        ],
+        "tags": ["Teams"],
         "operationId": "removeUserForTeam",
         "requestBody": {
           "description": "The user to remove from the team.",
@@ -13279,15 +12763,7 @@
           "required": true,
           "schema": {
             "type": "string",
-            "enum": [
-              "custom_field",
-              "portfolio",
-              "project",
-              "tag",
-              "task",
-              "user",
-              "user"
-            ],
+            "enum": ["custom_field", "portfolio", "project", "tag", "task", "user", "user"],
             "default": "user"
           }
         },
@@ -13298,14 +12774,7 @@
           "required": false,
           "schema": {
             "type": "string",
-            "enum": [
-              "custom_field",
-              "portfolio",
-              "project",
-              "tag",
-              "task",
-              "user"
-            ],
+            "enum": ["custom_field", "portfolio", "project", "tag", "task", "user"],
             "default": "user"
           }
         },
@@ -13337,9 +12806,7 @@
       "get": {
         "summary": "Get objects via typeahead",
         "description": "Retrieves objects in the workspace based via an auto-completion/typeahead\nsearch algorithm. This feature is meant to provide results quickly, so do\nnot rely on this API to provide extremely accurate search results. The\nresult set is limited to a single page of results with a maximum size, so\nyou won’t be able to fetch large numbers of results.\n\nThe typeahead search API provides search for objects from a single\nworkspace. This endpoint should be used to query for objects when\ncreating an auto-completion/typeahead search feature. This API is meant\nto provide results quickly and should not be relied upon for accurate or\nexhaustive search results. The results sets are limited in size and\ncannot be paginated.\n\nQueries return a compact representation of each object which is typically\nthe gid and name fields. Interested in a specific set of fields or all of\nthe fields?! Of course you are. Use field selectors to manipulate what\ndata is included in a response.\n\nResources with type `user` are returned in order of most contacted to\nleast contacted. This is determined by task assignments, adding the user\nto projects, and adding the user as a follower to tasks, conversations,\netc.\n\nResources with type `project` are returned in order of recency. This is\ndetermined when the user visits the project, is added to the project, and\ncompletes tasks in the project.\n\nResources with type `task` are returned with priority placed on tasks\nthe user is following, but no guarantee on the order of those tasks.\n\nLeaving the `query` string empty or omitted will give you results, still\nfollowing the resource ordering above. This could be used to list users or\nprojects that are relevant for the requesting user's api token.",
-        "tags": [
-          "Typeahead"
-        ],
+        "tags": ["Typeahead"],
         "operationId": "typeaheadForWorkspace",
         "responses": {
           "200": {
@@ -13394,9 +12861,7 @@
       "get": {
         "summary": "Get a user task list",
         "description": "Returns the full record for a user task list.",
-        "tags": [
-          "User Task Lists"
-        ],
+        "tags": ["User Task Lists"],
         "operationId": "getUserTaskList",
         "responses": {
           "200": {
@@ -13457,9 +12922,7 @@
       "get": {
         "summary": "Get a user's task list",
         "description": "Returns the full record for a user's task list.",
-        "tags": [
-          "User Task Lists"
-        ],
+        "tags": ["User Task Lists"],
         "operationId": "getUserTaskListForUser",
         "responses": {
           "200": {
@@ -13532,9 +12995,7 @@
       "get": {
         "summary": "Get multiple users",
         "description": "Returns the user records for all users in all workspaces and organizations accessible to the authenticated user. Accepts an optional workspace ID parameter.\nResults are sorted by user ID.",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "operationId": "getUsers",
         "responses": {
           "200": {
@@ -13588,9 +13049,7 @@
       "get": {
         "summary": "Get a user",
         "description": "Returns the full user record for the single user with the provided ID.\nResults are sorted by user ID.",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "operationId": "getUser",
         "responses": {
           "200": {
@@ -13644,14 +13103,7 @@
           "description": "The resource type of favorites to be returned.",
           "schema": {
             "type": "string",
-            "enum": [
-              "portfolio",
-              "project",
-              "tag",
-              "task",
-              "user",
-              "project_template"
-            ],
+            "enum": ["portfolio", "project", "tag", "task", "user", "project_template"],
             "default": "project"
           }
         },
@@ -13669,9 +13121,7 @@
       "get": {
         "summary": "Get a user's favorites",
         "description": "Returns all of a user's favorites in the given workspace, of the given type.\nResults are given in order (The same order as Asana's sidebar).",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "operationId": "getFavoritesForUser",
         "responses": {
           "200": {
@@ -13731,9 +13181,7 @@
       "get": {
         "summary": "Get users in a team",
         "description": "Returns the compact records for all users that are members of the team.",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "operationId": "getUsersForTeam",
         "responses": {
           "200": {
@@ -13793,9 +13241,7 @@
       "get": {
         "summary": "Get users in a workspace or organization",
         "description": "Returns the user records for all users in the specified workspace or organization.\nResults are sorted alphabetically by user names.",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "operationId": "getUsersForWorkspace",
         "responses": {
           "200": {
@@ -13846,9 +13292,7 @@
       "get": {
         "summary": "Get multiple webhooks",
         "description": "Get the compact representation of all webhooks your app has registered for the authenticated user in the given workspace.",
-        "tags": [
-          "Webhooks"
-        ],
+        "tags": ["Webhooks"],
         "operationId": "getWebhooks",
         "parameters": [
           {
@@ -13916,9 +13360,7 @@
       "post": {
         "summary": "Establish a webhook",
         "description": "Establishing a webhook is a two-part process. First, a simple HTTP POST\nrequest initiates the creation similar to creating any other resource.\n\nNext, in the middle of this request comes the confirmation handshake.\nWhen a webhook is created, we will send a test POST to the target with an\n`X-Hook-Secret` header. The target must respond with a `200 OK` or `204\nNo Content` and a matching `X-Hook-Secret` header to confirm that this\nwebhook subscription is indeed expected. We strongly recommend storing\nthis secret to be used to verify future webhook event signatures.\n\nThe POST request to create the webhook will then return with the status\nof the request. If you do not acknowledge the webhook’s confirmation\nhandshake it will fail to setup, and you will receive an error in\nresponse to your attempt to create it. This means you need to be able to\nreceive and complete the webhook *while* the POST request is in-flight\n(in other words, have a server that can handle requests asynchronously).\n\n```\n# Request\ncurl -H \"Authorization: Bearer <personal_access_token>\" \\\n-X POST https://app.asana.com/api/1.0/webhooks \\\n-d \"resource=8675309\" \\\n-d \"target=https://example.com/receive-webhook/7654\"\n```\n\n```\n# Handshake sent to https://example.com/\nPOST /receive-webhook/7654\nX-Hook-Secret: b537207f20cbfa02357cf448134da559e8bd39d61597dcd5631b8012eae53e81\n```\n\n```\n# Handshake response sent by example.com\nHTTP/1.1 200\nX-Hook-Secret: b537207f20cbfa02357cf448134da559e8bd39d61597dcd5631b8012eae53e81\n```\n\n```\n# Response\nHTTP/1.1 201\n{\n  \"data\": {\n    \"gid\": \"43214\",\n    \"resource\": {\n      \"gid\": \"8675309\",\n      \"name\": \"Bugs\"\n    },\n    \"target\": \"https://example.com/receive-webhook/7654\",\n    \"active\": false,\n    \"last_success_at\": null,\n    \"last_failure_at\": null,\n    \"last_failure_content\": null\n  }\n}\n```",
-        "tags": [
-          "Webhooks"
-        ],
+        "tags": ["Webhooks"],
         "operationId": "createWebhook",
         "requestBody": {
           "description": "The webhook workspace and target.",
@@ -13985,9 +13427,7 @@
       "get": {
         "summary": "Get a webhook",
         "description": "Returns the full record for the given webhook.",
-        "tags": [
-          "Webhooks"
-        ],
+        "tags": ["Webhooks"],
         "operationId": "getWebhook",
         "responses": {
           "200": {
@@ -14025,9 +13465,7 @@
       "delete": {
         "summary": "Delete a webhook",
         "description": "This method *permanently* removes a webhook. Note that it may be possible to receive a request that was already in flight after deleting the webhook, but no further requests will be issued.",
-        "tags": [
-          "Webhooks"
-        ],
+        "tags": ["Webhooks"],
         "operationId": "deleteWebhook",
         "responses": {
           "200": {
@@ -14065,9 +13503,7 @@
       "put": {
         "summary": "Update a webhook",
         "description": "An existing webhook's filters can be updated by making a PUT request on the URL for that webhook. Note that the webhook's previous `filters` array will be completely overwritten by the `filters` sent in the PUT request. ",
-        "tags": [
-          "Webhooks"
-        ],
+        "tags": ["Webhooks"],
         "operationId": "updateWebhook",
         "requestBody": {
           "description": "The updated filters for the webhook.",
@@ -14134,9 +13570,7 @@
       "get": {
         "summary": "Get a workspace membership",
         "description": "Returns the complete workspace record for a single workspace membership.",
-        "tags": [
-          "Workspace Memberships"
-        ],
+        "tags": ["Workspace Memberships"],
         "operationId": "getWorkspaceMembership",
         "responses": {
           "200": {
@@ -14193,9 +13627,7 @@
       "get": {
         "summary": "Get workspace memberships for a user",
         "description": "Returns the compact workspace membership records for the user.",
-        "tags": [
-          "Workspace Memberships"
-        ],
+        "tags": ["Workspace Memberships"],
         "operationId": "getWorkspaceMembershipsForUser",
         "responses": {
           "200": {
@@ -14258,9 +13690,7 @@
       "get": {
         "summary": "Get the workspace memberships for a workspace",
         "description": "Returns the compact workspace membership records for the workspace.",
-        "tags": [
-          "Workspace Memberships"
-        ],
+        "tags": ["Workspace Memberships"],
         "operationId": "getWorkspaceMembershipsForWorkspace",
         "responses": {
           "200": {
@@ -14302,9 +13732,7 @@
       "get": {
         "summary": "Get multiple workspaces",
         "description": "Returns the compact records for all workspaces visible to the authorized user.",
-        "tags": [
-          "Workspaces"
-        ],
+        "tags": ["Workspaces"],
         "operationId": "getWorkspaces",
         "responses": {
           "200": {
@@ -14358,9 +13786,7 @@
       "get": {
         "summary": "Get a workspace",
         "description": "Returns the full workspace record for a single workspace.",
-        "tags": [
-          "Workspaces"
-        ],
+        "tags": ["Workspaces"],
         "operationId": "getWorkspace",
         "responses": {
           "200": {
@@ -14398,9 +13824,7 @@
       "put": {
         "summary": "Update a workspace",
         "description": "A specific, existing workspace can be updated by making a PUT request on the URL for that workspace. Only the fields provided in the data block will be updated; any unspecified fields will remain unchanged.\nCurrently the only field that can be modified for a workspace is its name.\nReturns the complete, updated workspace record.",
-        "tags": [
-          "Workspaces"
-        ],
+        "tags": ["Workspaces"],
         "operationId": "updateWorkspace",
         "requestBody": {
           "description": "The workspace object with all updated properties.",
@@ -14467,9 +13891,7 @@
       "post": {
         "summary": "Add a user to a workspace or organization",
         "description": "Add a user to a workspace or organization.\nThe user can be referenced by their globally unique user ID or their email address. Returns the full user record for the invited user.",
-        "tags": [
-          "Workspaces"
-        ],
+        "tags": ["Workspaces"],
         "operationId": "addUserForWorkspace",
         "requestBody": {
           "description": "The user to add to the workspace.",
@@ -14536,9 +13958,7 @@
       "post": {
         "summary": "Remove a user from a workspace or organization",
         "description": "Remove a user from a workspace or organization.\nThe user making this call must be an admin in the workspace. The user can be referenced by their globally unique user ID or their email address.\nReturns an empty data record.",
-        "tags": [
-          "Workspaces"
-        ],
+        "tags": ["Workspaces"],
         "operationId": "removeUserForWorkspace",
         "requestBody": {
           "description": "The user to remove from the workspace.",
@@ -14602,9 +14022,7 @@
       "get": {
         "summary": "Get attachments from an object",
         "description": "Returns the compact records for all attachments on the object.",
-        "tags": [
-          "Attachments"
-        ],
+        "tags": ["Attachments"],
         "operationId": "getAttachmentsForObject",
         "parameters": [
           {
@@ -14663,9 +14081,7 @@
       "post": {
         "summary": "Upload an attachment",
         "description": "Upload an attachment.\n\nThis method uploads an attachment on an object and returns the compact\nrecord for the created attachment object. This is possible by either:\n\n- Providing the URL of the external resource being attached, or\n- Downloading the file content first and then uploading it as any other attachment. Note that it is not possible to attach\nfiles from third party services such as Dropbox, Box, Vimeo & Google Drive via the API\n\nThe 100MB size limit on attachments in Asana is enforced on this endpoint.\n\nThis endpoint expects a multipart/form-data encoded request containing\nthe full contents of the file to be uploaded.\n\nRequests made should follow the HTTP/1.1 specification that line\nterminators are of the form `CRLF` or `\\r\\n` outlined\n[here](http://www.w3.org/Protocols/HTTP/1.1/draft-ietf-http-v11-spec-01#Basic-Rules)\nin order for the server to reliably and properly handle the request.",
-        "tags": [
-          "Attachments"
-        ],
+        "tags": ["Attachments"],
         "operationId": "createAttachmentForTask",
         "requestBody": {
           "description": "The file you want to upload.\n\n*Note when using curl:*\n\nBe sure to add an `‘@’` before the file path, and use the `--form`\noption instead of the `-d` option.\n\nWhen uploading PDFs with curl, force the content-type to be pdf by\nappending the content type to the file path: `--form\n\"file=@file.pdf;type=application/pdf\"`.",
@@ -14745,9 +14161,7 @@
       "get": {
         "summary": "Get audit log events",
         "description": "Retrieve the audit log events that have been captured in your domain.\n\nThis endpoint will return a list of [AuditLogEvent](/docs/audit-log-event) objects, sorted by creation time in ascending order. Note that the Audit Log API captures events from October 8th, 2021 and later. Queries for events before this date will not return results.\n\nThere are a number of query parameters (below) that can be used to filter the set of [AuditLogEvent](/docs/audit-log-event) objects that are returned in the response. Any combination of query parameters is valid. When no filters are provided, all of the events that have been captured in your domain will match.\n\nThe list of events will always be [paginated](/docs/pagination). The default limit is 1000 events. The next set of events can be retrieved using the `offset` from the previous response. If there are no events that match the provided filters in your domain, the endpoint will return `null` for the `next_page` field. Querying again with the same filters may return new events if they were captured after the last request. Once a response includes a `next_page` with an `offset`, subsequent requests can be made with the latest `offset` to poll for new events that match the provided filters.\n\nWhen no `offset` is provided, the response will begin with the oldest events that match the provided filters. It is important to note that [AuditLogEvent](/docs/audit-log-event) objects will be permanently deleted from our systems after 90 days. If you wish to keep a permanent record of these events, we recommend using a SIEM tool to ingest and store these logs.",
-        "tags": [
-          "Audit Log API"
-        ],
+        "tags": ["Audit Log API"],
         "operationId": "getAuditLogEvents",
         "responses": {
           "200": {
@@ -14802,9 +14216,7 @@
         "summary": "Get a goal",
         "description": "Returns the complete goal record for a single goal.",
         "operationId": "getGoal",
-        "tags": [
-          "Goals"
-        ],
+        "tags": ["Goals"],
         "responses": {
           "200": {
             "description": "Successfully retrieved the record for a single goal.",
@@ -14844,9 +14256,7 @@
       "put": {
         "summary": "Update a goal",
         "description": "An existing goal can be updated by making a PUT request on the URL for\nthat goal. Only the fields provided in the `data` block will be updated;\nany unspecified fields will remain unchanged.\n\nReturns the complete updated goal record.",
-        "tags": [
-          "Goals"
-        ],
+        "tags": ["Goals"],
         "operationId": "updateGoal",
         "requestBody": {
           "description": "The updated fields for the goal.",
@@ -14900,9 +14310,7 @@
       "delete": {
         "summary": "Delete a goal",
         "description": "A specific, existing goal can be deleted by making a DELETE request on the URL for that goal.\n\nReturns an empty data record.",
-        "tags": [
-          "Goals"
-        ],
+        "tags": ["Goals"],
         "operationId": "deleteGoal",
         "responses": {
           "200": {
@@ -14959,9 +14367,7 @@
       "get": {
         "summary": "Get goals",
         "description": "Returns compact goal records.",
-        "tags": [
-          "Goals"
-        ],
+        "tags": ["Goals"],
         "operationId": "getGoals",
         "parameters": [
           {
@@ -15064,9 +14470,7 @@
       "post": {
         "summary": "Create a goal",
         "description": "Creates a new goal in a workspace or team.\n\nReturns the full record of the newly created goal.",
-        "tags": [
-          "Goals"
-        ],
+        "tags": ["Goals"],
         "operationId": "createGoal",
         "requestBody": {
           "description": "The goal to create.",
@@ -15136,9 +14540,7 @@
       "post": {
         "summary": "Create a goal metric",
         "description": "Creates and adds a goal metric to a specified goal. Note that this replaces an existing goal metric if one already exists.",
-        "tags": [
-          "Goals"
-        ],
+        "tags": ["Goals"],
         "operationId": "createGoalMetric",
         "requestBody": {
           "description": "The goal metric to create.",
@@ -15208,9 +14610,7 @@
       "post": {
         "summary": "Update a goal metric",
         "description": "Updates a goal's existing metric's `current_number_value` if one exists,\notherwise responds with a 400 status code.\n\nReturns the complete updated goal metric record.",
-        "tags": [
-          "Goals"
-        ],
+        "tags": ["Goals"],
         "operationId": "updateGoalMetric",
         "requestBody": {
           "description": "The updated fields for the goal metric.",
@@ -15280,9 +14680,7 @@
       "post": {
         "summary": "Add a subgoal to a parent goal",
         "description": "Adds a subgoal to a parent goal. *A goal can have at most 100 subgoals, and a subgoal can have at most 4 parent goals.\n\nReturns an empty data block.",
-        "tags": [
-          "Goals"
-        ],
+        "tags": ["Goals"],
         "operationId": "addSubgoal",
         "requestBody": {
           "description": "The goal to add as a subgoal",
@@ -15352,9 +14750,7 @@
       "post": {
         "summary": "Remove a subgoal from a goal",
         "description": "Removes a goal as a subgoal of a specified parent goal.",
-        "tags": [
-          "Goals"
-        ],
+        "tags": ["Goals"],
         "operationId": "removeSubgoal",
         "requestBody": {
           "description": "The goal to be removed as a subgoal",
@@ -15424,9 +14820,7 @@
       "post": {
         "summary": "Add a collaborator to a goal",
         "description": "Adds followers to a goal. Returns the goal the followers were added to.\nEach goal can be associated with zero or more followers in the system.\nRequests to add/remove followers, if successful, will return the complete updated goal record, described above.",
-        "tags": [
-          "Goals"
-        ],
+        "tags": ["Goals"],
         "operationId": "addFollowers",
         "requestBody": {
           "description": "The followers to be added as collaborators",
@@ -15496,9 +14890,7 @@
       "post": {
         "summary": "Remove a collaborator from a goal",
         "description": "Removes followers from a goal. Returns the goal the followers were removed from.\nEach goal can be associated with zero or more followers in the system.\nRequests to add/remove followers, if successful, will return the complete updated goal record, described above.",
-        "tags": [
-          "Goals"
-        ],
+        "tags": ["Goals"],
         "operationId": "removeFollowers",
         "requestBody": {
           "description": "The followers to be removed as collaborators",
@@ -15568,9 +14960,7 @@
       "post": {
         "summary": "Add a project/portfolio as supporting work for a goal.",
         "description": "Adds a project or portfolio as supporting work for a goal. *A goal can have at most 10 supporting projects/portfolios, and a project/portfolio can support at most 10 goals*.",
-        "tags": [
-          "Goals"
-        ],
+        "tags": ["Goals"],
         "operationId": "addSupportingWorkForGoal",
         "requestBody": {
           "description": "The project/portfolio to set as supporting work",
@@ -15640,9 +15030,7 @@
       "post": {
         "summary": "Remove a project/portfolio as supporting work for a goal.",
         "description": "Removes a project or portfolio as supporting work for a goal.",
-        "tags": [
-          "Goals"
-        ],
+        "tags": ["Goals"],
         "operationId": "removeSupportingWorkForGoal",
         "requestBody": {
           "description": "The project/portfolio to remove as supporting work",
@@ -15712,9 +15100,7 @@
       "get": {
         "summary": "Get subgoals from a goal",
         "description": "Returns a compact representation of all of the subgoals of a goal.",
-        "tags": [
-          "Goals"
-        ],
+        "tags": ["Goals"],
         "operationId": "getSubgoalsForGoal",
         "responses": {
           "200": {
@@ -15771,9 +15157,7 @@
       "get": {
         "summary": "Get supporting work from a goal",
         "description": "Returns any portfolios or projects associated with specified goal.",
-        "tags": [
-          "Goals"
-        ],
+        "tags": ["Goals"],
         "operationId": "supportingWork",
         "responses": {
           "200": {
@@ -15830,9 +15214,7 @@
       "get": {
         "summary": "Get parent goals from a goal",
         "description": "Returns a compact representation of all of the parent goals of a goal.",
-        "tags": [
-          "Goals"
-        ],
+        "tags": ["Goals"],
         "operationId": "getParentGoalsForGoal",
         "responses": {
           "200": {
@@ -15889,9 +15271,7 @@
       "get": {
         "summary": "Get a project brief",
         "description": "Get the full record for a project brief.",
-        "tags": [
-          "Project Briefs"
-        ],
+        "tags": ["Project Briefs"],
         "operationId": "getProjectBrief",
         "responses": {
           "200": {
@@ -15944,9 +15324,7 @@
       "put": {
         "summary": "Update a project brief",
         "description": "An existing project brief can be updated by making a PUT request on the URL for\nthat project brief. Only the fields provided in the `data` block will be updated;\nany unspecified fields will remain unchanged.\n\nReturns the complete updated project brief record.",
-        "tags": [
-          "Project Briefs"
-        ],
+        "tags": ["Project Briefs"],
         "operationId": "updateProjectBrief",
         "requestBody": {
           "description": "The updated fields for the project brief.",
@@ -16000,9 +15378,7 @@
       "delete": {
         "summary": "Delete a project brief",
         "description": "Deletes a specific, existing project brief.\n\nReturns an empty data record.",
-        "tags": [
-          "Project Briefs"
-        ],
+        "tags": ["Project Briefs"],
         "operationId": "deleteProjectBrief",
         "responses": {
           "200": {
@@ -16053,9 +15429,7 @@
       "post": {
         "summary": "Create a project brief",
         "description": "Creates a new project brief.\n\nReturns the full record of the newly created project brief.",
-        "tags": [
-          "Project Briefs"
-        ],
+        "tags": ["Project Briefs"],
         "operationId": "createProjectBrief",
         "requestBody": {
           "description": "The project brief to create.",
@@ -16125,9 +15499,7 @@
       "get": {
         "summary": "Get a project template",
         "description": "Returns the complete project template record for a single project template.",
-        "tags": [
-          "Project Templates"
-        ],
+        "tags": ["Project Templates"],
         "operationId": "getProjectTemplate",
         "responses": {
           "200": {
@@ -16175,9 +15547,7 @@
       "get": {
         "summary": "Get multiple project templates",
         "description": "Returns the compact project template records for all project templates in the given team or workspace.",
-        "tags": [
-          "Project Templates"
-        ],
+        "tags": ["Project Templates"],
         "operationId": "getProjectTemplates",
         "parameters": [
           {
@@ -16245,9 +15615,7 @@
       "get": {
         "summary": "Get a team's project templates",
         "description": "Returns the compact project template records for all project templates in the team.",
-        "tags": [
-          "Project Templates"
-        ],
+        "tags": ["Project Templates"],
         "operationId": "getProjectTemplatesForTeam",
         "parameters": [
           {
@@ -16309,9 +15677,7 @@
       "post": {
         "summary": "Instantiate a project from a project template",
         "description": "Creates and returns a job that will asynchronously handle the project instantiation.\n\n_Note: The body of this request will differ if your workspace is an organization. To determine if your workspace is an organization, use the [is_organization](/docs/workspace) parameter._",
-        "tags": [
-          "Project Templates"
-        ],
+        "tags": ["Project Templates"],
         "operationId": "instantiateProject",
         "requestBody": {
           "description": "Describes the inputs used for instantiating a project, such as the resulting project's name, which team it should be created in, and values for date variables.",
@@ -16377,9 +15743,7 @@
       "post": {
         "summary": "Create a project template from a project",
         "description": "Creates and returns a job that will asynchronously handle the project template creation. Note that\nwhile the resulting project template can be accessed with the API, it won't be visible in the Asana\nUI until Project Templates 2.0 is launched in the app. See more in [this forum post](https://forum.asana.com/t/a-new-api-for-project-templates/156432).",
-        "tags": [
-          "Projects"
-        ],
+        "tags": ["Projects"],
         "operationId": "projectSaveAsTemplate",
         "requestBody": {
           "description": "Describes the inputs used for creating a project template, such as the resulting project template's name, which team it should be created in.",
@@ -16446,9 +15810,7 @@
       "get": {
         "summary": "Get a status update",
         "description": "Returns the complete record for a single status update.",
-        "tags": [
-          "Status Updates"
-        ],
+        "tags": ["Status Updates"],
         "operationId": "getStatus",
         "responses": {
           "200": {
@@ -16486,9 +15848,7 @@
       "delete": {
         "summary": "Delete a status update",
         "description": "Deletes a specific, existing status update.\n\nReturns an empty data record.",
-        "tags": [
-          "Status Updates"
-        ],
+        "tags": ["Status Updates"],
         "operationId": "deleteStatus",
         "responses": {
           "200": {
@@ -16542,9 +15902,7 @@
       "get": {
         "summary": "Get status updates from an object",
         "description": "Returns the compact status update records for all updates on the object.",
-        "tags": [
-          "Status Updates"
-        ],
+        "tags": ["Status Updates"],
         "operationId": "getStatusesForObject",
         "parameters": [
           {
@@ -16607,9 +15965,7 @@
       "post": {
         "summary": "Create a status update",
         "description": "Creates a new status update on an object.\nReturns the full record of the newly created status update.",
-        "tags": [
-          "Status Updates"
-        ],
+        "tags": ["Status Updates"],
         "operationId": "createStatusForObject",
         "requestBody": {
           "description": "The status update to create.",
@@ -16679,9 +16035,7 @@
       "post": {
         "summary": "Create a team",
         "description": "Creates a team within the current workspace.",
-        "tags": [
-          "Teams"
-        ],
+        "tags": ["Teams"],
         "operationId": "createTeam",
         "requestBody": {
           "description": "The team to create.",
@@ -16735,9 +16089,7 @@
       "put": {
         "summary": "Update a team",
         "description": "Updates a team within the current workspace.",
-        "tags": [
-          "Teams"
-        ],
+        "tags": ["Teams"],
         "operationId": "updateTeam",
         "requestBody": {
           "description": "The team to update.",
@@ -16810,9 +16162,7 @@
       "get": {
         "summary": "Get teams in a workspace",
         "description": "Returns the compact records for all teams in the workspace visible to the authorized user.",
-        "tags": [
-          "Teams"
-        ],
+        "tags": ["Teams"],
         "operationId": "getTeamsForWorkspace",
         "responses": {
           "200": {
@@ -16867,9 +16217,7 @@
         "summary": "Get a time period",
         "description": "Returns the full record for a single time period.",
         "operationId": "getTimePeriod",
-        "tags": [
-          "Time Periods"
-        ],
+        "tags": ["Time Periods"],
         "responses": {
           "200": {
             "description": "Successfully retrieved the record for a single time period.",
@@ -16922,9 +16270,7 @@
       "get": {
         "summary": "Get time periods",
         "description": "Returns compact time period records.",
-        "tags": [
-          "Time Periods"
-        ],
+        "tags": ["Time Periods"],
         "operationId": "getTimePeriods",
         "parameters": [
           {
@@ -17010,9 +16356,7 @@
       "get": {
         "summary": "Get a goal relationship",
         "description": "Returns the complete updated goal relationship record for a single goal relationship.",
-        "tags": [
-          "Goal Relationships"
-        ],
+        "tags": ["Goal Relationships"],
         "operationId": "getGoalRelationship",
         "responses": {
           "200": {
@@ -17050,9 +16394,7 @@
       "put": {
         "summary": "Update a goal relationship",
         "description": "An existing goal relationship can be updated by making a PUT request on the URL for\nthat goal relationship. Only the fields provided in the `data` block will be updated;\nany unspecified fields will remain unchanged.\n\nReturns the complete updated goal relationship record.",
-        "tags": [
-          "Goal Relationships"
-        ],
+        "tags": ["Goal Relationships"],
         "operationId": "updateGoalRelationship",
         "requestBody": {
           "description": "The updated fields for the goal relationship.",
@@ -17108,9 +16450,7 @@
       "get": {
         "summary": "Get goal relationships",
         "description": "Returns compact goal relationship records.",
-        "tags": [
-          "Goal Relationships"
-        ],
+        "tags": ["Goal Relationships"],
         "operationId": "getGoalRelationships",
         "parameters": [
           {
@@ -17191,9 +16531,7 @@
       "post": {
         "summary": "Add a supporting goal relationship",
         "description": "Creates a goal relationship by adding a supporting resource to a given goal.\n\nReturns the newly created goal relationship record.",
-        "tags": [
-          "Goal Relationships"
-        ],
+        "tags": ["Goal Relationships"],
         "operationId": "addSupportingRelationship",
         "requestBody": {
           "description": "The supporting resource to be added to the goal",
@@ -17260,9 +16598,7 @@
       "post": {
         "summary": "Removes a supporting goal relationship",
         "description": "Removes a goal relationship for a given parent goal.",
-        "tags": [
-          "Goal Relationships"
-        ],
+        "tags": ["Goal Relationships"],
         "operationId": "removeSupportingRelationship",
         "requestBody": {
           "description": "The supporting resource to be removed from the goal",

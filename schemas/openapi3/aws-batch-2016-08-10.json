@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -188,10 +180,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "jobId",
-                  "reason"
-                ],
+                "required": ["jobId", "reason"],
                 "properties": {
                   "jobId": {
                     "description": "The AWS Batch job ID of the job to cancel.",
@@ -275,11 +264,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "computeEnvironmentName",
-                  "type",
-                  "serviceRole"
-                ],
+                "required": ["computeEnvironmentName", "type", "serviceRole"],
                 "properties": {
                   "computeEnvironmentName": {
                     "description": "The name for your compute environment. Up to 128 letters (uppercase and lowercase), numbers, hyphens, and underscores are allowed.",
@@ -288,18 +273,12 @@
                   "type": {
                     "description": "The type of the compute environment. For more information, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html\">Compute Environments</a> in the <i>AWS Batch User Guide</i>.",
                     "type": "string",
-                    "enum": [
-                      "MANAGED",
-                      "UNMANAGED"
-                    ]
+                    "enum": ["MANAGED", "UNMANAGED"]
                   },
                   "state": {
                     "description": "The state of the compute environment. If the state is <code>ENABLED</code>, then the compute environment accepts jobs from a queue and can scale out automatically based on queues.",
                     "type": "string",
-                    "enum": [
-                      "ENABLED",
-                      "DISABLED"
-                    ]
+                    "enum": ["ENABLED", "DISABLED"]
                   },
                   "computeResources": {
                     "description": "An object representing an AWS Batch compute resource.",
@@ -565,11 +544,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "jobQueueName",
-                  "priority",
-                  "computeEnvironmentOrder"
-                ],
+                "required": ["jobQueueName", "priority", "computeEnvironmentOrder"],
                 "properties": {
                   "jobQueueName": {
                     "description": "The name of the job queue.",
@@ -578,10 +553,7 @@
                   "state": {
                     "description": "The state of the job queue. If the job queue state is <code>ENABLED</code>, it is able to accept jobs.",
                     "type": "string",
-                    "enum": [
-                      "ENABLED",
-                      "DISABLED"
-                    ]
+                    "enum": ["ENABLED", "DISABLED"]
                   },
                   "priority": {
                     "description": "The priority of the job queue. Job queues with a higher priority (or a higher integer value for the <code>priority</code> parameter) are evaluated first when associated with the same compute environment. Priority is determined in descending order, for example, a job queue with a priority value of <code>10</code> is given scheduling preference over a job queue with a priority value of <code>1</code>.",
@@ -677,9 +649,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "computeEnvironment"
-                ],
+                "required": ["computeEnvironment"],
                 "properties": {
                   "computeEnvironment": {
                     "description": "The name or Amazon Resource Name (ARN) of the compute environment to delete.",
@@ -759,9 +729,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "jobQueue"
-                ],
+                "required": ["jobQueue"],
                 "properties": {
                   "jobQueue": {
                     "description": "The short name or full Amazon Resource Name (ARN) of the queue to delete.",
@@ -841,9 +809,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "jobDefinition"
-                ],
+                "required": ["jobDefinition"],
                 "properties": {
                   "jobDefinition": {
                     "description": "The name and revision (<code>name:revision</code>) or full Amazon Resource Name (ARN) of the job definition to deregister.",
@@ -1258,9 +1224,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "jobs"
-                ],
+                "required": ["jobs"],
                 "properties": {
                   "jobs": {
                     "description": "A list of up to 100 job IDs.",
@@ -1378,15 +1342,7 @@
                   "jobStatus": {
                     "description": "The job status with which to filter jobs in the specified queue. If you do not specify a status, only <code>RUNNING</code> jobs are returned.",
                     "type": "string",
-                    "enum": [
-                      "SUBMITTED",
-                      "PENDING",
-                      "RUNNABLE",
-                      "STARTING",
-                      "RUNNING",
-                      "SUCCEEDED",
-                      "FAILED"
-                    ]
+                    "enum": ["SUBMITTED", "PENDING", "RUNNABLE", "STARTING", "RUNNING", "SUCCEEDED", "FAILED"]
                   },
                   "maxResults": {
                     "description": "The maximum number of results returned by <code>ListJobs</code> in paginated output. When this parameter is used, <code>ListJobs</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListJobs</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListJobs</code> returns up to 100 results and a <code>nextToken</code> value if applicable.",
@@ -1477,10 +1433,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "jobDefinitionName",
-                  "type"
-                ],
+                "required": ["jobDefinitionName", "type"],
                 "properties": {
                   "jobDefinitionName": {
                     "description": "The name of the job definition to register. Up to 128 letters (uppercase and lowercase), numbers, hyphens, and underscores are allowed.",
@@ -1489,10 +1442,7 @@
                   "type": {
                     "description": "The type of job definition.",
                     "type": "string",
-                    "enum": [
-                      "container",
-                      "multinode"
-                    ]
+                    "enum": ["container", "multinode"]
                   },
                   "parameters": {
                     "description": "Default parameter substitution placeholders to set in the job definition. Parameters are specified as a key-value pair mapping. Parameters in a <code>SubmitJob</code> request override any corresponding parameter defaults from the job definition.",
@@ -1881,11 +1831,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "jobName",
-                  "jobQueue",
-                  "jobDefinition"
-                ],
+                "required": ["jobName", "jobQueue", "jobDefinition"],
                 "properties": {
                   "jobName": {
                     "description": "The name of the job. The first character must be alphanumeric, and up to 128 letters (uppercase and lowercase), numbers, hyphens, and underscores are allowed.",
@@ -2152,10 +2098,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "jobId",
-                  "reason"
-                ],
+                "required": ["jobId", "reason"],
                 "properties": {
                   "jobId": {
                     "description": "The AWS Batch job ID of the job to terminate.",
@@ -2239,9 +2182,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "computeEnvironment"
-                ],
+                "required": ["computeEnvironment"],
                 "properties": {
                   "computeEnvironment": {
                     "description": "The name or full Amazon Resource Name (ARN) of the compute environment to update.",
@@ -2250,10 +2191,7 @@
                   "state": {
                     "description": "The state of the compute environment. Compute environments in the <code>ENABLED</code> state can accept jobs from a queue and scale in or out automatically based on the workload demand of its associated queues.",
                     "type": "string",
-                    "enum": [
-                      "ENABLED",
-                      "DISABLED"
-                    ]
+                    "enum": ["ENABLED", "DISABLED"]
                   },
                   "computeResources": {
                     "description": "An object representing the attributes of a compute environment that can be updated.",
@@ -2389,9 +2327,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "jobQueue"
-                ],
+                "required": ["jobQueue"],
                 "properties": {
                   "jobQueue": {
                     "description": "The name or the Amazon Resource Name (ARN) of the job queue.",
@@ -2400,10 +2336,7 @@
                   "state": {
                     "description": "Describes the queue's ability to accept new jobs.",
                     "type": "string",
-                    "enum": [
-                      "ENABLED",
-                      "DISABLED"
-                    ]
+                    "enum": ["ENABLED", "DISABLED"]
                   },
                   "priority": {
                     "description": "The priority of the job queue. Job queues with a higher priority (or a higher integer value for the <code>priority</code> parameter) are evaluated first when associated with the same compute environment. Priority is determined in descending order, for example, a job queue with a priority value of <code>10</code> is given scheduling preference over a job queue with a priority value of <code>1</code>.",
@@ -2571,9 +2504,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "tags"
-                ],
+                "required": ["tags"],
                 "properties": {
                   "tags": {
                     "description": "The tags that you apply to the resource to help you categorize and organize your resources. Each tag consists of a key and an optional value. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a> in <i>AWS General Reference</i>.",
@@ -2794,20 +2725,11 @@
       },
       "CRType": {
         "type": "string",
-        "enum": [
-          "EC2",
-          "SPOT",
-          "FARGATE",
-          "FARGATE_SPOT"
-        ]
+        "enum": ["EC2", "SPOT", "FARGATE", "FARGATE_SPOT"]
       },
       "CRAllocationStrategy": {
         "type": "string",
-        "enum": [
-          "BEST_FIT",
-          "BEST_FIT_PROGRESSIVE",
-          "SPOT_CAPACITY_OPTIMIZED"
-        ]
+        "enum": ["BEST_FIT", "BEST_FIT_PROGRESSIVE", "SPOT_CAPACITY_OPTIMIZED"]
       },
       "Integer": {
         "type": "integer"
@@ -2865,10 +2787,7 @@
       },
       "CreateJobQueueResponse": {
         "type": "object",
-        "required": [
-          "jobQueueName",
-          "jobQueueArn"
-        ],
+        "required": ["jobQueueName", "jobQueueArn"],
         "example": {
           "jobQueueArn": "arn:aws:batch:us-east-1:012345678910:job-queue/HighPriority",
           "jobQueueName": "HighPriority"
@@ -2898,10 +2817,7 @@
       },
       "ComputeEnvironmentOrder": {
         "type": "object",
-        "required": [
-          "order",
-          "computeEnvironment"
-        ],
+        "required": ["order", "computeEnvironment"],
         "properties": {
           "order": {
             "allOf": [
@@ -2954,19 +2870,11 @@
                 "desiredvCpus": 48,
                 "ec2KeyPair": "id_rsa",
                 "instanceRole": "ecsInstanceRole",
-                "instanceTypes": [
-                  "p2"
-                ],
+                "instanceTypes": ["p2"],
                 "maxvCpus": 128,
                 "minvCpus": 0,
-                "securityGroupIds": [
-                  "sg-cf5093b2"
-                ],
-                "subnets": [
-                  "subnet-220c0e0a",
-                  "subnet-1a95556d",
-                  "subnet-978f6dce"
-                ],
+                "securityGroupIds": ["sg-cf5093b2"],
+                "subnets": ["subnet-220c0e0a", "subnet-1a95556d", "subnet-978f6dce"],
                 "tags": {
                   "Name": "Batch Instance - P2OnDemand"
                 }
@@ -3009,10 +2917,7 @@
             {
               "type": "container",
               "containerProperties": {
-                "command": [
-                  "sleep",
-                  "60"
-                ],
+                "command": ["sleep", "60"],
                 "environment": [],
                 "image": "busybox",
                 "memory": 128,
@@ -3100,10 +3005,7 @@
           "jobs": [
             {
               "container": {
-                "command": [
-                  "sleep",
-                  "60"
-                ],
+                "command": ["sleep", "60"],
                 "containerInstanceArn": "arn:aws:ecs:us-east-1:012345678910:container-instance/5406d7cd-58bd-4b8f-9936-48d7c6b1526c",
                 "environment": [],
                 "exitCode": 0,
@@ -3142,9 +3044,7 @@
       },
       "ListJobsResponse": {
         "type": "object",
-        "required": [
-          "jobSummaryList"
-        ],
+        "required": ["jobSummaryList"],
         "example": {
           "jobSummaryList": [
             {
@@ -3178,11 +3078,7 @@
       },
       "RegisterJobDefinitionResponse": {
         "type": "object",
-        "required": [
-          "jobDefinitionName",
-          "jobDefinitionArn",
-          "revision"
-        ],
+        "required": ["jobDefinitionName", "jobDefinitionArn", "revision"],
         "example": {
           "jobDefinitionArn": "arn:aws:batch:us-east-1:012345678910:job-definition/sleep10:1",
           "jobDefinitionName": "sleep10",
@@ -3328,10 +3224,7 @@
       },
       "SubmitJobResponse": {
         "type": "object",
-        "required": [
-          "jobName",
-          "jobId"
-        ],
+        "required": ["jobName", "jobId"],
         "example": {
           "jobId": "876da822-4198-45f2-a252-6cea32512ea8",
           "jobName": "example"
@@ -3466,10 +3359,7 @@
       },
       "ArrayJobDependency": {
         "type": "string",
-        "enum": [
-          "N_TO_N",
-          "SEQUENTIAL"
-        ]
+        "enum": ["N_TO_N", "SEQUENTIAL"]
       },
       "ArrayJobStatusSummary": {
         "type": "object",
@@ -3668,39 +3558,19 @@
       },
       "CEState": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "DISABLED"
-        ]
+        "enum": ["ENABLED", "DISABLED"]
       },
       "CEStatus": {
         "type": "string",
-        "enum": [
-          "CREATING",
-          "UPDATING",
-          "DELETING",
-          "DELETED",
-          "VALID",
-          "INVALID"
-        ]
+        "enum": ["CREATING", "UPDATING", "DELETING", "DELETED", "VALID", "INVALID"]
       },
       "CEType": {
         "type": "string",
-        "enum": [
-          "MANAGED",
-          "UNMANAGED"
-        ]
+        "enum": ["MANAGED", "UNMANAGED"]
       },
       "ComputeResource": {
         "type": "object",
-        "required": [
-          "type",
-          "minvCpus",
-          "maxvCpus",
-          "instanceTypes",
-          "subnets",
-          "instanceRole"
-        ],
+        "required": ["type", "minvCpus", "maxvCpus", "instanceTypes", "subnets", "instanceRole"],
         "properties": {
           "type": {
             "allOf": [
@@ -3878,11 +3748,7 @@
       },
       "ComputeEnvironmentDetail": {
         "type": "object",
-        "required": [
-          "computeEnvironmentName",
-          "computeEnvironmentArn",
-          "ecsClusterArn"
-        ],
+        "required": ["computeEnvironmentName", "computeEnvironmentArn", "ecsClusterArn"],
         "properties": {
           "computeEnvironmentName": {
             "allOf": [
@@ -4569,10 +4435,7 @@
       },
       "JQState": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "DISABLED"
-        ]
+        "enum": ["ENABLED", "DISABLED"]
       },
       "JobDefinitionList": {
         "type": "array",
@@ -4600,9 +4463,7 @@
       },
       "Device": {
         "type": "object",
-        "required": [
-          "hostPath"
-        ],
+        "required": ["hostPath"],
         "properties": {
           "hostPath": {
             "allOf": [
@@ -4639,11 +4500,7 @@
       },
       "DeviceCgroupPermission": {
         "type": "string",
-        "enum": [
-          "READ",
-          "WRITE",
-          "MKNOD"
-        ]
+        "enum": ["READ", "WRITE", "MKNOD"]
       },
       "DevicesList": {
         "type": "array",
@@ -4695,14 +4552,7 @@
       },
       "JQStatus": {
         "type": "string",
-        "enum": [
-          "CREATING",
-          "UPDATING",
-          "DELETING",
-          "DELETED",
-          "VALID",
-          "INVALID"
-        ]
+        "enum": ["CREATING", "UPDATING", "DELETING", "DELETED", "VALID", "INVALID"]
       },
       "ParametersMap": {
         "type": "object",
@@ -4754,11 +4604,7 @@
       },
       "NodeProperties": {
         "type": "object",
-        "required": [
-          "numNodes",
-          "mainNode",
-          "nodeRangeProperties"
-        ],
+        "required": ["numNodes", "mainNode", "nodeRangeProperties"],
         "properties": {
           "numNodes": {
             "allOf": [
@@ -4795,12 +4641,7 @@
       },
       "JobDefinition": {
         "type": "object",
-        "required": [
-          "jobDefinitionName",
-          "jobDefinitionArn",
-          "revision",
-          "type"
-        ],
+        "required": ["jobDefinitionName", "jobDefinitionArn", "revision", "type"],
         "properties": {
           "jobDefinitionName": {
             "allOf": [
@@ -4943,15 +4784,7 @@
       },
       "JobStatus": {
         "type": "string",
-        "enum": [
-          "SUBMITTED",
-          "PENDING",
-          "RUNNABLE",
-          "STARTING",
-          "RUNNING",
-          "SUCCEEDED",
-          "FAILED"
-        ]
+        "enum": ["SUBMITTED", "PENDING", "RUNNABLE", "STARTING", "RUNNING", "SUCCEEDED", "FAILED"]
       },
       "NodeDetails": {
         "type": "object",
@@ -4981,14 +4814,7 @@
       },
       "JobDetail": {
         "type": "object",
-        "required": [
-          "jobName",
-          "jobId",
-          "jobQueue",
-          "status",
-          "startedAt",
-          "jobDefinition"
-        ],
+        "required": ["jobName", "jobId", "jobQueue", "status", "startedAt", "jobDefinition"],
         "properties": {
           "jobName": {
             "allOf": [
@@ -5215,13 +5041,7 @@
       },
       "JobQueueDetail": {
         "type": "object",
-        "required": [
-          "jobQueueName",
-          "jobQueueArn",
-          "state",
-          "priority",
-          "computeEnvironmentOrder"
-        ],
+        "required": ["jobQueueName", "jobQueueArn", "state", "priority", "computeEnvironmentOrder"],
         "properties": {
           "jobQueueName": {
             "allOf": [
@@ -5344,10 +5164,7 @@
       },
       "JobSummary": {
         "type": "object",
-        "required": [
-          "jobId",
-          "jobName"
-        ],
+        "required": ["jobId", "jobName"],
         "properties": {
           "jobId": {
             "allOf": [
@@ -5552,9 +5369,7 @@
       },
       "NodePropertyOverride": {
         "type": "object",
-        "required": [
-          "targetNodes"
-        ],
+        "required": ["targetNodes"],
         "properties": {
           "targetNodes": {
             "allOf": [
@@ -5581,9 +5396,7 @@
       },
       "NodeRangeProperty": {
         "type": "object",
-        "required": [
-          "targetNodes"
-        ],
+        "required": ["targetNodes"],
         "properties": {
           "targetNodes": {
             "allOf": [
@@ -5610,18 +5423,11 @@
       },
       "ResourceType": {
         "type": "string",
-        "enum": [
-          "GPU",
-          "VCPU",
-          "MEMORY"
-        ]
+        "enum": ["GPU", "VCPU", "MEMORY"]
       },
       "ResourceRequirement": {
         "type": "object",
-        "required": [
-          "value",
-          "type"
-        ],
+        "required": ["value", "type"],
         "properties": {
           "value": {
             "allOf": [
@@ -5648,11 +5454,7 @@
       },
       "Ulimit": {
         "type": "object",
-        "required": [
-          "hardLimit",
-          "name",
-          "softLimit"
-        ],
+        "required": ["hardLimit", "name", "softLimit"],
         "properties": {
           "hardLimit": {
             "allOf": [
@@ -5725,9 +5527,7 @@
       },
       "LogConfiguration": {
         "type": "object",
-        "required": [
-          "logDriver"
-        ],
+        "required": ["logDriver"],
         "properties": {
           "logDriver": {
             "allOf": [
@@ -5776,15 +5576,7 @@
       },
       "LogDriver": {
         "type": "string",
-        "enum": [
-          "json-file",
-          "syslog",
-          "journald",
-          "gelf",
-          "fluentd",
-          "awslogs",
-          "splunk"
-        ]
+        "enum": ["json-file", "syslog", "journald", "gelf", "fluentd", "awslogs", "splunk"]
       },
       "LogConfigurationOptionsMap": {
         "type": "object",
@@ -5794,10 +5586,7 @@
       },
       "Secret": {
         "type": "object",
-        "required": [
-          "name",
-          "valueFrom"
-        ],
+        "required": ["name", "valueFrom"],
         "properties": {
           "name": {
             "allOf": [
@@ -5824,10 +5613,7 @@
       },
       "Tmpfs": {
         "type": "object",
-        "required": [
-          "containerPath",
-          "size"
-        ],
+        "required": ["containerPath", "size"],
         "properties": {
           "containerPath": {
             "allOf": [
@@ -5919,16 +5705,11 @@
       },
       "RetryAction": {
         "type": "string",
-        "enum": [
-          "RETRY",
-          "EXIT"
-        ]
+        "enum": ["RETRY", "EXIT"]
       },
       "EvaluateOnExit": {
         "type": "object",
-        "required": [
-          "action"
-        ],
+        "required": ["action"],
         "properties": {
           "onStatusReason": {
             "allOf": [
@@ -5991,9 +5772,7 @@
       },
       "Ec2Configuration": {
         "type": "object",
-        "required": [
-          "imageType"
-        ],
+        "required": ["imageType"],
         "properties": {
           "imageType": {
             "allOf": [
@@ -6078,24 +5857,15 @@
       },
       "PlatformCapability": {
         "type": "string",
-        "enum": [
-          "EC2",
-          "FARGATE"
-        ]
+        "enum": ["EC2", "FARGATE"]
       },
       "AssignPublicIp": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "DISABLED"
-        ]
+        "enum": ["ENABLED", "DISABLED"]
       },
       "EFSAuthorizationConfigIAM": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "DISABLED"
-        ]
+        "enum": ["ENABLED", "DISABLED"]
       },
       "EFSAuthorizationConfig": {
         "type": "object",
@@ -6125,16 +5895,11 @@
       },
       "EFSTransitEncryption": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "DISABLED"
-        ]
+        "enum": ["ENABLED", "DISABLED"]
       },
       "EFSVolumeConfiguration": {
         "type": "object",
-        "required": [
-          "fileSystemId"
-        ],
+        "required": ["fileSystemId"],
         "properties": {
           "fileSystemId": {
             "allOf": [

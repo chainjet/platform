@@ -35,9 +35,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -120,10 +118,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -134,10 +129,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -219,10 +211,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "MasterId",
-                  "InvitationId"
-                ],
+                "required": ["MasterId", "InvitationId"],
                 "properties": {
                   "MasterId": {
                     "description": "The account ID of the Security Hub master account that sent the invitation.",
@@ -398,9 +387,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "StandardsSubscriptionArns"
-                ],
+                "required": ["StandardsSubscriptionArns"],
                 "properties": {
                   "StandardsSubscriptionArns": {
                     "description": "The ARNs of the standards subscriptions to disable.",
@@ -505,9 +492,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "StandardsSubscriptionRequests"
-                ],
+                "required": ["StandardsSubscriptionRequests"],
                 "properties": {
                   "StandardsSubscriptionRequests": {
                     "description": "The list of standards checks to enable.",
@@ -612,9 +597,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Findings"
-                ],
+                "required": ["Findings"],
                 "properties": {
                   "Findings": {
                     "description": "A list of findings to import. To successfully import a finding, it must follow the <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format.html\">AWS Security Finding Format</a>. Maximum of 100 findings per request.",
@@ -719,9 +702,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "FindingIdentifiers"
-                ],
+                "required": ["FindingIdentifiers"],
                 "properties": {
                   "FindingIdentifiers": {
                     "description": "<p>The list of findings to update. <code>BatchUpdateFindings</code> can be used to update up to 100 findings at a time.</p> <p>For each finding, the list provides the finding identifier and the ARN of the finding provider.</p>",
@@ -795,12 +776,7 @@
                   "VerificationState": {
                     "description": "<p>Indicates the veracity of a finding.</p> <p>The available values for <code>VerificationState</code> are as follows.</p> <ul> <li> <p> <code>UNKNOWN</code> – The default disposition of a security finding</p> </li> <li> <p> <code>TRUE_POSITIVE</code> – The security finding is confirmed</p> </li> <li> <p> <code>FALSE_POSITIVE</code> – The security finding was determined to be a false alarm</p> </li> <li> <p> <code>BENIGN_POSITIVE</code> – A special case of <code>TRUE_POSITIVE</code> where the finding doesn't pose any threat, is expected, or both</p> </li> </ul>",
                     "type": "string",
-                    "enum": [
-                      "UNKNOWN",
-                      "TRUE_POSITIVE",
-                      "FALSE_POSITIVE",
-                      "BENIGN_POSITIVE"
-                    ]
+                    "enum": ["UNKNOWN", "TRUE_POSITIVE", "FALSE_POSITIVE", "BENIGN_POSITIVE"]
                   },
                   "Confidence": {
                     "description": "<p>The updated value for the finding confidence. Confidence is defined as the likelihood that a finding accurately identifies the behavior or issue that it was intended to identify.</p> <p>Confidence is scored on a 0-100 basis using a ratio scale, where 0 means zero percent confidence and 100 means 100 percent confidence.</p>",
@@ -955,11 +931,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name",
-                  "Description",
-                  "Id"
-                ],
+                "required": ["Name", "Description", "Id"],
                 "properties": {
                   "Name": {
                     "description": "The name of the custom action target.",
@@ -1080,11 +1052,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Name",
-                  "Filters",
-                  "GroupByAttribute"
-                ],
+                "required": ["Name", "Filters", "GroupByAttribute"],
                 "properties": {
                   "Name": {
                     "description": "The name of the custom insight to create.",
@@ -2159,9 +2127,7 @@
                     }
                   }
                 },
-                "required": [
-                  "AccountDetails"
-                ]
+                "required": ["AccountDetails"]
               }
             }
           }
@@ -2343,9 +2309,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "AccountIds"
-                ],
+                "required": ["AccountIds"],
                 "properties": {
                   "AccountIds": {
                     "description": "The list of account IDs for the accounts from which to decline the invitations to Security Hub.",
@@ -3808,9 +3772,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "AccountIds"
-                ],
+                "required": ["AccountIds"],
                 "properties": {
                   "AccountIds": {
                     "description": "The list of the account IDs that sent the invitations to delete.",
@@ -3932,9 +3894,7 @@
                     }
                   }
                 },
-                "required": [
-                  "AccountIds"
-                ]
+                "required": ["AccountIds"]
               }
             }
           }
@@ -5037,9 +4997,7 @@
                     }
                   }
                 },
-                "required": [
-                  "AccountIds"
-                ]
+                "required": ["AccountIds"]
               }
             }
           }
@@ -5143,9 +5101,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "ProductArn"
-                ],
+                "required": ["ProductArn"],
                 "properties": {
                   "ProductArn": {
                     "description": "The ARN of the product to enable the integration for.",
@@ -6537,9 +6493,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Filters"
-                ],
+                "required": ["Filters"],
                 "properties": {
                   "Filters": {
                     "description": "A collection of attributes that are applied to all active Security Hub-aggregated findings and that result in a subset of findings that are included in this insight.",
@@ -7520,10 +7474,7 @@
                   "RecordState": {
                     "description": "The updated record state for the finding.",
                     "type": "string",
-                    "enum": [
-                      "ACTIVE",
-                      "ARCHIVED"
-                    ]
+                    "enum": ["ACTIVE", "ARCHIVED"]
                   }
                 }
               }
@@ -7934,9 +7885,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "AccountIds"
-                ],
+                "required": ["AccountIds"],
                 "properties": {
                   "AccountIds": {
                     "description": "The list of account IDs for the Security Hub member accounts to return the details for. ",
@@ -8058,9 +8007,7 @@
                     }
                   }
                 },
-                "required": [
-                  "AccountIds"
-                ]
+                "required": ["AccountIds"]
               }
             }
           }
@@ -8341,9 +8288,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "Tags"
-                ],
+                "required": ["Tags"],
                 "properties": {
                   "Tags": {
                     "description": "The tags to add to the resource.",
@@ -8538,10 +8483,7 @@
                   "ControlStatus": {
                     "description": "The updated status of the security standard control.",
                     "type": "string",
-                    "enum": [
-                      "ENABLED",
-                      "DISABLED"
-                    ]
+                    "enum": ["ENABLED", "DISABLED"]
                   },
                   "DisabledReason": {
                     "description": "A description of the reason why you are disabling a security standard control. If you are disabling a control, then this is required.",
@@ -8652,10 +8594,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "AdministratorId",
-                  "InvitationId"
-                ],
+                "required": ["AdministratorId", "InvitationId"],
                 "properties": {
                   "AdministratorId": {
                     "description": "The account ID of the Security Hub administrator account that sent the invitation.",
@@ -8910,9 +8849,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "AutoEnable"
-                ],
+                "required": ["AutoEnable"],
                 "properties": {
                   "AutoEnable": {
                     "description": "<p>Whether to automatically enable Security Hub for new accounts in the organization.</p> <p>By default, this is <code>false</code>, and new accounts are not added automatically.</p> <p>To automatically enable Security Hub for new accounts, set this to <code>true</code>.</p>",
@@ -8989,9 +8926,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "AdminAccountId"
-                ],
+                "required": ["AdminAccountId"],
                 "properties": {
                   "AdminAccountId": {
                     "description": "The Amazon Web Services account identifier of the Security Hub administrator account.",
@@ -9185,9 +9120,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "AdminAccountId"
-                ],
+                "required": ["AdminAccountId"],
                 "properties": {
                   "AdminAccountId": {
                     "description": "The Amazon Web Services account identifier of the account to designate as the Security Hub administrator account.",
@@ -9451,9 +9384,7 @@
       },
       "StandardsSubscriptionRequest": {
         "type": "object",
-        "required": [
-          "StandardsArn"
-        ],
+        "required": ["StandardsArn"],
         "properties": {
           "StandardsArn": {
             "allOf": [
@@ -9480,10 +9411,7 @@
       },
       "BatchImportFindingsResponse": {
         "type": "object",
-        "required": [
-          "FailedCount",
-          "SuccessCount"
-        ],
+        "required": ["FailedCount", "SuccessCount"],
         "properties": {
           "FailedCount": {
             "allOf": [
@@ -9929,10 +9857,7 @@
       },
       "BatchUpdateFindingsResponse": {
         "type": "object",
-        "required": [
-          "ProcessedFindings",
-          "UnprocessedFindings"
-        ],
+        "required": ["ProcessedFindings", "UnprocessedFindings"],
         "properties": {
           "ProcessedFindings": {
             "allOf": [
@@ -9958,10 +9883,7 @@
       },
       "AwsSecurityFindingIdentifier": {
         "type": "object",
-        "required": [
-          "Id",
-          "ProductArn"
-        ],
+        "required": ["Id", "ProductArn"],
         "properties": {
           "Id": {
             "allOf": [
@@ -9997,29 +9919,15 @@
       },
       "SeverityLabel": {
         "type": "string",
-        "enum": [
-          "INFORMATIONAL",
-          "LOW",
-          "MEDIUM",
-          "HIGH",
-          "CRITICAL"
-        ]
+        "enum": ["INFORMATIONAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"]
       },
       "WorkflowStatus": {
         "type": "string",
-        "enum": [
-          "NEW",
-          "NOTIFIED",
-          "RESOLVED",
-          "SUPPRESSED"
-        ]
+        "enum": ["NEW", "NOTIFIED", "RESOLVED", "SUPPRESSED"]
       },
       "RelatedFinding": {
         "type": "object",
-        "required": [
-          "ProductArn",
-          "Id"
-        ],
+        "required": ["ProductArn", "Id"],
         "properties": {
           "ProductArn": {
             "allOf": [
@@ -10046,9 +9954,7 @@
       },
       "CreateActionTargetResponse": {
         "type": "object",
-        "required": [
-          "ActionTargetArn"
-        ],
+        "required": ["ActionTargetArn"],
         "properties": {
           "ActionTargetArn": {
             "allOf": [
@@ -10065,9 +9971,7 @@
       "ResourceConflictException": {},
       "CreateInsightResponse": {
         "type": "object",
-        "required": [
-          "InsightArn"
-        ],
+        "required": ["InsightArn"],
         "properties": {
           "InsightArn": {
             "allOf": [
@@ -10157,9 +10061,7 @@
           }
         },
         "description": "The details of an AWS account.",
-        "required": [
-          "AccountId"
-        ]
+        "required": ["AccountId"]
       },
       "DeclineInvitationsResponse": {
         "type": "object",
@@ -10178,9 +10080,7 @@
       },
       "DeleteActionTargetResponse": {
         "type": "object",
-        "required": [
-          "ActionTargetArn"
-        ],
+        "required": ["ActionTargetArn"],
         "properties": {
           "ActionTargetArn": {
             "allOf": [
@@ -10196,9 +10096,7 @@
       },
       "DeleteInsightResponse": {
         "type": "object",
-        "required": [
-          "InsightArn"
-        ],
+        "required": ["InsightArn"],
         "properties": {
           "InsightArn": {
             "allOf": [
@@ -10244,9 +10142,7 @@
       },
       "DescribeActionTargetsResponse": {
         "type": "object",
-        "required": [
-          "ActionTargets"
-        ],
+        "required": ["ActionTargets"],
         "properties": {
           "ActionTargets": {
             "allOf": [
@@ -10307,9 +10203,7 @@
       },
       "DescribeProductsResponse": {
         "type": "object",
-        "required": [
-          "Products"
-        ],
+        "required": ["Products"],
         "properties": {
           "Products": {
             "allOf": [
@@ -10450,9 +10344,7 @@
       },
       "GetFindingsResponse": {
         "type": "object",
-        "required": [
-          "Findings"
-        ],
+        "required": ["Findings"],
         "properties": {
           "Findings": {
             "allOf": [
@@ -10504,9 +10396,7 @@
       },
       "GetInsightResultsResponse": {
         "type": "object",
-        "required": [
-          "InsightResults"
-        ],
+        "required": ["InsightResults"],
         "properties": {
           "InsightResults": {
             "allOf": [
@@ -10522,9 +10412,7 @@
       },
       "GetInsightsResponse": {
         "type": "object",
-        "required": [
-          "Insights"
-        ],
+        "required": ["Insights"],
         "properties": {
           "Insights": {
             "allOf": [
@@ -10747,11 +10635,7 @@
       },
       "ActionTarget": {
         "type": "object",
-        "required": [
-          "ActionTargetArn",
-          "Name",
-          "Description"
-        ],
+        "required": ["ActionTargetArn", "Name", "Description"],
         "properties": {
           "ActionTargetArn": {
             "allOf": [
@@ -13385,10 +13269,7 @@
       },
       "AwsIamAccessKeyStatus": {
         "type": "string",
-        "enum": [
-          "Active",
-          "Inactive"
-        ]
+        "enum": ["Active", "Inactive"]
       },
       "AwsIamAccessKeyDetails": {
         "type": "object",
@@ -17224,23 +17105,12 @@
       },
       "VerificationState": {
         "type": "string",
-        "enum": [
-          "UNKNOWN",
-          "TRUE_POSITIVE",
-          "FALSE_POSITIVE",
-          "BENIGN_POSITIVE"
-        ]
+        "enum": ["UNKNOWN", "TRUE_POSITIVE", "FALSE_POSITIVE", "BENIGN_POSITIVE"]
       },
       "WorkflowState": {
         "type": "string",
         "deprecated": true,
-        "enum": [
-          "NEW",
-          "ASSIGNED",
-          "IN_PROGRESS",
-          "DEFERRED",
-          "RESOLVED"
-        ],
+        "enum": ["NEW", "ASSIGNED", "IN_PROGRESS", "DEFERRED", "RESOLVED"],
         "description": "This field is deprecated, use Workflow.Status instead."
       },
       "Workflow": {
@@ -17261,10 +17131,7 @@
       },
       "RecordState": {
         "type": "string",
-        "enum": [
-          "ACTIVE",
-          "ARCHIVED"
-        ]
+        "enum": ["ACTIVE", "ARCHIVED"]
       },
       "RelatedFindingList": {
         "type": "array",
@@ -17274,11 +17141,7 @@
       },
       "Note": {
         "type": "object",
-        "required": [
-          "Text",
-          "UpdatedBy",
-          "UpdatedAt"
-        ],
+        "required": ["Text", "UpdatedBy", "UpdatedAt"],
         "properties": {
           "Text": {
             "allOf": [
@@ -17321,9 +17184,7 @@
       },
       "PatchSummary": {
         "type": "object",
-        "required": [
-          "Id"
-        ],
+        "required": ["Id"],
         "properties": {
           "Id": {
             "allOf": [
@@ -18700,11 +18561,7 @@
       },
       "BatchUpdateFindingsUnprocessedFinding": {
         "type": "object",
-        "required": [
-          "FindingIdentifier",
-          "ErrorCode",
-          "ErrorMessage"
-        ],
+        "required": ["FindingIdentifier", "ErrorCode", "ErrorMessage"],
         "properties": {
           "FindingIdentifier": {
             "allOf": [
@@ -18783,12 +18640,7 @@
       },
       "ComplianceStatus": {
         "type": "string",
-        "enum": [
-          "PASSED",
-          "WARNING",
-          "FAILED",
-          "NOT_AVAILABLE"
-        ]
+        "enum": ["PASSED", "WARNING", "FAILED", "NOT_AVAILABLE"]
       },
       "RelatedRequirementsList": {
         "type": "array",
@@ -18850,10 +18702,7 @@
       },
       "ControlStatus": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "DISABLED"
-        ]
+        "enum": ["ENABLED", "DISABLED"]
       },
       "ResultList": {
         "type": "array",
@@ -18987,9 +18836,7 @@
       },
       "DateRangeUnit": {
         "type": "string",
-        "enum": [
-          "DAYS"
-        ]
+        "enum": ["DAYS"]
       },
       "NextToken": {
         "type": "string"
@@ -19022,11 +18869,7 @@
       },
       "InsightResults": {
         "type": "object",
-        "required": [
-          "InsightArn",
-          "GroupByAttribute",
-          "ResultValues"
-        ],
+        "required": ["InsightArn", "GroupByAttribute", "ResultValues"],
         "properties": {
           "InsightArn": {
             "allOf": [
@@ -19121,11 +18964,7 @@
       },
       "ImportFindingsError": {
         "type": "object",
-        "required": [
-          "Id",
-          "ErrorCode",
-          "ErrorMessage"
-        ],
+        "required": ["Id", "ErrorCode", "ErrorMessage"],
         "properties": {
           "Id": {
             "allOf": [
@@ -19162,12 +19001,7 @@
       },
       "Insight": {
         "type": "object",
-        "required": [
-          "InsightArn",
-          "Name",
-          "Filters",
-          "GroupByAttribute"
-        ],
+        "required": ["InsightArn", "Name", "Filters", "GroupByAttribute"],
         "properties": {
           "InsightArn": {
             "allOf": [
@@ -19214,10 +19048,7 @@
       },
       "InsightResultValue": {
         "type": "object",
-        "required": [
-          "GroupByAttributeValue",
-          "Count"
-        ],
+        "required": ["GroupByAttributeValue", "Count"],
         "properties": {
           "GroupByAttributeValue": {
             "allOf": [
@@ -19368,17 +19199,11 @@
       },
       "MalwareState": {
         "type": "string",
-        "enum": [
-          "OBSERVED",
-          "REMOVAL_FAILED",
-          "REMOVED"
-        ]
+        "enum": ["OBSERVED", "REMOVAL_FAILED", "REMOVED"]
       },
       "Malware": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -19425,10 +19250,7 @@
       },
       "MapFilterComparison": {
         "type": "string",
-        "enum": [
-          "EQUALS",
-          "NOT_EQUALS"
-        ]
+        "enum": ["EQUALS", "NOT_EQUALS"]
       },
       "MapFilter": {
         "type": "object",
@@ -19545,10 +19367,7 @@
       },
       "NetworkDirection": {
         "type": "string",
-        "enum": [
-          "IN",
-          "OUT"
-        ]
+        "enum": ["IN", "OUT"]
       },
       "PortRange": {
         "type": "object",
@@ -19728,17 +19547,11 @@
       },
       "Partition": {
         "type": "string",
-        "enum": [
-          "aws",
-          "aws-cn",
-          "aws-us-gov"
-        ]
+        "enum": ["aws", "aws-cn", "aws-us-gov"]
       },
       "Product": {
         "type": "object",
-        "required": [
-          "ProductArn"
-        ],
+        "required": ["ProductArn"],
         "properties": {
           "ProductArn": {
             "allOf": [
@@ -20387,10 +20200,7 @@
       },
       "Resource": {
         "type": "object",
-        "required": [
-          "Type",
-          "Id"
-        ],
+        "required": ["Type", "Id"],
         "properties": {
           "Type": {
             "allOf": [
@@ -20503,12 +20313,7 @@
       },
       "SeverityRating": {
         "type": "string",
-        "enum": [
-          "LOW",
-          "MEDIUM",
-          "HIGH",
-          "CRITICAL"
-        ]
+        "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
       },
       "SoftwarePackage": {
         "type": "object",
@@ -20594,10 +20399,7 @@
       },
       "SortOrder": {
         "type": "string",
-        "enum": [
-          "asc",
-          "desc"
-        ]
+        "enum": ["asc", "desc"]
       },
       "Standard": {
         "type": "object",
@@ -20759,22 +20561,11 @@
       },
       "StandardsStatus": {
         "type": "string",
-        "enum": [
-          "PENDING",
-          "READY",
-          "FAILED",
-          "DELETING",
-          "INCOMPLETE"
-        ]
+        "enum": ["PENDING", "READY", "FAILED", "DELETING", "INCOMPLETE"]
       },
       "StandardsSubscription": {
         "type": "object",
-        "required": [
-          "StandardsSubscriptionArn",
-          "StandardsArn",
-          "StandardsInput",
-          "StandardsStatus"
-        ],
+        "required": ["StandardsSubscriptionArn", "StandardsArn", "StandardsInput", "StandardsStatus"],
         "properties": {
           "StandardsSubscriptionArn": {
             "allOf": [
@@ -20821,9 +20612,7 @@
       },
       "StatusReason": {
         "type": "object",
-        "required": [
-          "ReasonCode"
-        ],
+        "required": ["ReasonCode"],
         "properties": {
           "ReasonCode": {
             "allOf": [
@@ -20850,12 +20639,7 @@
       },
       "StringFilterComparison": {
         "type": "string",
-        "enum": [
-          "EQUALS",
-          "PREFIX",
-          "NOT_EQUALS",
-          "PREFIX_NOT_EQUALS"
-        ]
+        "enum": ["EQUALS", "PREFIX", "NOT_EQUALS", "PREFIX_NOT_EQUALS"]
       },
       "StringFilter": {
         "type": "object",
@@ -20901,14 +20685,7 @@
       },
       "ThreatIntelIndicatorCategory": {
         "type": "string",
-        "enum": [
-          "BACKDOOR",
-          "CARD_STEALER",
-          "COMMAND_AND_CONTROL",
-          "DROP_SITE",
-          "EXPLOIT_SITE",
-          "KEYLOGGER"
-        ]
+        "enum": ["BACKDOOR", "CARD_STEALER", "COMMAND_AND_CONTROL", "DROP_SITE", "EXPLOIT_SITE", "KEYLOGGER"]
       },
       "ThreatIntelIndicator": {
         "type": "object",
@@ -20978,9 +20755,7 @@
       },
       "VulnerabilityVendor": {
         "type": "object",
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "properties": {
           "Name": {
             "allOf": [
@@ -21037,9 +20812,7 @@
       },
       "Vulnerability": {
         "type": "object",
-        "required": [
-          "Id"
-        ],
+        "required": ["Id"],
         "properties": {
           "Id": {
             "allOf": [
@@ -25415,10 +25188,7 @@
       },
       "AdminStatus": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "DISABLE_IN_PROGRESS"
-        ]
+        "enum": ["ENABLED", "DISABLE_IN_PROGRESS"]
       },
       "AdminAccount": {
         "type": "object",
@@ -30387,10 +30157,7 @@
       },
       "AwsS3BucketNotificationConfigurationS3KeyFilterRuleName": {
         "type": "string",
-        "enum": [
-          "Prefix",
-          "Suffix"
-        ]
+        "enum": ["Prefix", "Suffix"]
       },
       "AwsS3BucketNotificationConfigurationS3KeyFilterRule": {
         "type": "object",

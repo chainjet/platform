@@ -5,9 +5,7 @@
     "x-release": "v4",
     "title": "AWS IoT SiteWise",
     "description": "Welcome to the AWS IoT SiteWise API Reference. AWS IoT SiteWise is an AWS service that connects Industrial Internet of Things (IIoT) devices to the power of the AWS Cloud. For more information, see the AWS IoT SiteWise User Guide. For information about AWS IoT SiteWise quotas, see Quotas in the AWS IoT SiteWise User Guide.",
-    "x-categories": [
-      "iot"
-    ],
+    "x-categories": ["iot"],
     "x-logo": {
       "url": "/logos/aws/Arch_AWS-IoT-SiteWise_64.svg"
     },
@@ -38,9 +36,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -123,10 +119,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -137,10 +130,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -238,10 +228,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "hierarchyId",
-                  "childAssetId"
-                ],
+                "required": ["hierarchyId", "childAssetId"],
                 "properties": {
                   "hierarchyId": {
                     "description": "The ID of a hierarchy in the parent asset's model. Hierarchies allow different groupings of assets to be formed that all come from the same asset model. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html\">Asset hierarchies</a> in the <i>AWS IoT SiteWise User Guide</i>.",
@@ -381,9 +368,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "assetIds"
-                ],
+                "required": ["assetIds"],
                 "properties": {
                   "assetIds": {
                     "description": "The IDs of the assets to be associated to the project.",
@@ -508,9 +493,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "assetIds"
-                ],
+                "required": ["assetIds"],
                 "properties": {
                   "assetIds": {
                     "description": "The IDs of the assets to be disassociated from the project.",
@@ -652,9 +635,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "entries"
-                ],
+                "required": ["entries"],
                 "properties": {
                   "entries": {
                     "description": "The list of asset property value entries for the batch put request. You can specify up to 10 entries per request.",
@@ -767,11 +748,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "accessPolicyIdentity",
-                  "accessPolicyResource",
-                  "accessPolicyPermission"
-                ],
+                "required": ["accessPolicyIdentity", "accessPolicyResource", "accessPolicyPermission"],
                 "properties": {
                   "accessPolicyIdentity": {
                     "description": "<p>Contains an AWS SSO identity ID for a user or group.</p> <note> <p>Currently, you can't use AWS APIs to retrieve AWS SSO identity IDs. You can find the AWS SSO identity IDs in the URL of user and group pages in the <a href=\"https://console.aws.amazon.com/singlesignon\">AWS SSO console</a>.</p> </note>",
@@ -848,10 +825,7 @@
                   "accessPolicyPermission": {
                     "description": "The permission level for this access policy. Note that a project <code>ADMINISTRATOR</code> is also known as a project owner.",
                     "type": "string",
-                    "enum": [
-                      "ADMINISTRATOR",
-                      "VIEWER"
-                    ]
+                    "enum": ["ADMINISTRATOR", "VIEWER"]
                   },
                   "clientToken": {
                     "description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.",
@@ -952,11 +926,7 @@
             "description": "The type of identity (user or group). This parameter is required if you specify <code>identityId</code>.",
             "schema": {
               "type": "string",
-              "enum": [
-                "USER",
-                "GROUP",
-                "IAM"
-              ]
+              "enum": ["USER", "GROUP", "IAM"]
             }
           },
           {
@@ -978,10 +948,7 @@
             "description": "The type of resource (portal or project). This parameter is required if you specify <code>resourceId</code>.",
             "schema": {
               "type": "string",
-              "enum": [
-                "PORTAL",
-                "PROJECT"
-              ]
+              "enum": ["PORTAL", "PROJECT"]
             }
           },
           {
@@ -1130,10 +1097,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "assetName",
-                  "assetModelId"
-                ],
+                "required": ["assetName", "assetModelId"],
                 "properties": {
                   "assetName": {
                     "description": "A unique, friendly name for the asset.",
@@ -1293,10 +1257,7 @@
             "description": "<p>The filter for the requested list of assets. Choose one of the following options:</p> <ul> <li> <p> <code>ALL</code> – The list includes all assets for a given asset model ID. The <code>assetModelId</code> parameter is required if you filter by <code>ALL</code>.</p> </li> <li> <p> <code>TOP_LEVEL</code> – The list includes only top-level assets in the asset hierarchy tree.</p> </li> </ul> <p>Default: <code>ALL</code> </p>",
             "schema": {
               "type": "string",
-              "enum": [
-                "ALL",
-                "TOP_LEVEL"
-              ]
+              "enum": ["ALL", "TOP_LEVEL"]
             }
           }
         ],
@@ -1396,9 +1357,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "assetModelName"
-                ],
+                "required": ["assetModelName"],
                 "properties": {
                   "assetModelName": {
                     "description": "A unique, friendly name for the asset model.",
@@ -1627,11 +1586,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "projectId",
-                  "dashboardName",
-                  "dashboardDefinition"
-                ],
+                "required": ["projectId", "dashboardName", "dashboardDefinition"],
                 "properties": {
                   "projectId": {
                     "description": "The ID of the project in which to create the dashboard.",
@@ -1781,10 +1736,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "gatewayName",
-                  "gatewayPlatform"
-                ],
+                "required": ["gatewayName", "gatewayPlatform"],
                 "properties": {
                   "gatewayName": {
                     "description": "A unique, friendly name for the gateway.",
@@ -2004,11 +1956,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "portalName",
-                  "portalContactEmail",
-                  "roleArn"
-                ],
+                "required": ["portalName", "portalContactEmail", "roleArn"],
                 "properties": {
                   "portalName": {
                     "description": "A friendly name for the portal.",
@@ -2083,10 +2031,7 @@
                   "portalAuthMode": {
                     "description": "<p>The service to use to authenticate users to the portal. Choose from the following options:</p> <ul> <li> <p> <code>SSO</code> – The portal uses AWS Single Sign-On to authenticate users and manage user permissions. Before you can create a portal that uses AWS SSO, you must enable AWS SSO. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-get-started.html#mon-gs-sso\">Enabling AWS SSO</a> in the <i>AWS IoT SiteWise User Guide</i>. This option is only available in AWS Regions other than the China Regions.</p> </li> <li> <p> <code>IAM</code> – The portal uses AWS Identity and Access Management (IAM) to authenticate users and manage user permissions. IAM users must have the <code>iotsitewise:CreatePresignedPortalUrl</code> permission to sign in to the portal. This option is only available in the China Regions.</p> </li> </ul> <p>You can't change this value after you create a portal.</p> <p>Default: <code>SSO</code> </p>",
                     "type": "string",
-                    "enum": [
-                      "IAM",
-                      "SSO"
-                    ]
+                    "enum": ["IAM", "SSO"]
                   },
                   "notificationSenderEmail": {
                     "description": "<p>The email address that sends alarm notifications.</p> <important> <p>If you use the <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/lambda-support.html\">IoT Events managed Lambda function</a> to manage your emails, you must <a href=\"https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses.html\">verify the sender email address in Amazon SES</a>.</p> </important>",
@@ -2297,10 +2242,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "portalId",
-                  "projectName"
-                ],
+                "required": ["portalId", "projectName"],
                 "properties": {
                   "portalId": {
                     "description": "The ID of the portal in which to create the project.",
@@ -2623,11 +2565,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "accessPolicyIdentity",
-                  "accessPolicyResource",
-                  "accessPolicyPermission"
-                ],
+                "required": ["accessPolicyIdentity", "accessPolicyResource", "accessPolicyPermission"],
                 "properties": {
                   "accessPolicyIdentity": {
                     "description": "<p>Contains an AWS SSO identity ID for a user or group.</p> <note> <p>Currently, you can't use AWS APIs to retrieve AWS SSO identity IDs. You can find the AWS SSO identity IDs in the URL of user and group pages in the <a href=\"https://console.aws.amazon.com/singlesignon\">AWS SSO console</a>.</p> </note>",
@@ -2704,10 +2642,7 @@
                   "accessPolicyPermission": {
                     "description": "The permission level for this access policy. Note that a project <code>ADMINISTRATOR</code> is also known as a project owner.",
                     "type": "string",
-                    "enum": [
-                      "ADMINISTRATOR",
-                      "VIEWER"
-                    ]
+                    "enum": ["ADMINISTRATOR", "VIEWER"]
                   },
                   "clientToken": {
                     "description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.",
@@ -3007,9 +2942,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "assetName"
-                ],
+                "required": ["assetName"],
                 "properties": {
                   "assetName": {
                     "description": "A unique, friendly name for the asset.",
@@ -3326,9 +3259,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "assetModelName"
-                ],
+                "required": ["assetModelName"],
                 "properties": {
                   "assetModelName": {
                     "description": "A unique, friendly name for the asset model.",
@@ -3633,10 +3564,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "dashboardName",
-                  "dashboardDefinition"
-                ],
+                "required": ["dashboardName", "dashboardDefinition"],
                 "properties": {
                   "dashboardName": {
                     "description": "A new friendly name for the dashboard.",
@@ -3911,9 +3839,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "gatewayName"
-                ],
+                "required": ["gatewayName"],
                 "properties": {
                   "gatewayName": {
                     "description": "A unique, friendly name for the gateway.",
@@ -4203,11 +4129,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "portalName",
-                  "portalContactEmail",
-                  "roleArn"
-                ],
+                "required": ["portalName", "portalContactEmail", "roleArn"],
                 "properties": {
                   "portalName": {
                     "description": "A new friendly name for the portal.",
@@ -4557,9 +4479,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "projectName"
-                ],
+                "required": ["projectName"],
                 "properties": {
                   "projectName": {
                     "description": "A new friendly name for the project.",
@@ -4797,10 +4717,7 @@
                   "propertyNotificationState": {
                     "description": "<p>The MQTT notification state (enabled or disabled) for this asset property. When the notification state is enabled, AWS IoT SiteWise publishes property value updates to a unique MQTT topic. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/interact-with-other-services.html\">Interacting with other services</a> in the <i>AWS IoT SiteWise User Guide</i>.</p> <p>If you omit this parameter, the notification state is set to <code>DISABLED</code>.</p>",
                     "type": "string",
-                    "enum": [
-                      "ENABLED",
-                      "DISABLED"
-                    ]
+                    "enum": ["ENABLED", "DISABLED"]
                   },
                   "clientToken": {
                     "description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.",
@@ -5079,9 +4996,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "loggingOptions"
-                ],
+                "required": ["loggingOptions"],
                 "properties": {
                   "loggingOptions": {
                     "description": "Contains logging options.",
@@ -5186,10 +5101,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "hierarchyId",
-                  "childAssetId"
-                ],
+                "required": ["hierarchyId", "childAssetId"],
                 "properties": {
                   "hierarchyId": {
                     "description": "The ID of a hierarchy in the parent asset's model. Hierarchies allow different groupings of assets to be formed that all come from the same asset model. You can use the hierarchy ID to identify the correct asset to disassociate. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html\">Asset hierarchies</a> in the <i>AWS IoT SiteWise User Guide</i>.",
@@ -5412,10 +5324,7 @@
             "description": "<p>The chronological sorting order of the requested information.</p> <p>Default: <code>ASCENDING</code> </p>",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASCENDING",
-                "DESCENDING"
-              ]
+              "enum": ["ASCENDING", "DESCENDING"]
             }
           },
           {
@@ -5742,10 +5651,7 @@
             "description": "<p>The chronological sorting order of the requested information.</p> <p>Default: <code>ASCENDING</code> </p>",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASCENDING",
-                "DESCENDING"
-              ]
+              "enum": ["ASCENDING", "DESCENDING"]
             }
           },
           {
@@ -5886,10 +5792,7 @@
             "description": "<p>The direction to list associated assets. Choose one of the following options:</p> <ul> <li> <p> <code>CHILD</code> – The list includes all child assets associated to the asset. The <code>hierarchyId</code> parameter is required if you choose <code>CHILD</code>.</p> </li> <li> <p> <code>PARENT</code> – The list includes the asset's parent asset.</p> </li> </ul> <p>Default: <code>CHILD</code> </p>",
             "schema": {
               "type": "string",
-              "enum": [
-                "PARENT",
-                "CHILD"
-              ]
+              "enum": ["PARENT", "CHILD"]
             }
           },
           {
@@ -6507,9 +6410,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "tags"
-                ],
+                "required": ["tags"],
                 "properties": {
                   "tags": {
                     "description": "A list of key-value pairs that contain metadata for the resource. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html\">Tagging your AWS IoT SiteWise resources</a> in the <i>AWS IoT SiteWise User Guide</i>.",
@@ -6763,10 +6664,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "capabilityNamespace",
-                  "capabilityConfiguration"
-                ],
+                "required": ["capabilityNamespace", "capabilityConfiguration"],
                 "properties": {
                   "capabilityNamespace": {
                     "description": "The namespace of the gateway capability configuration to be updated. For example, if you configure OPC-UA sources from the AWS IoT SiteWise console, your OPC-UA capability configuration has the namespace <code>iotsitewise:opcuacollector:version</code>, where <code>version</code> is a number such as <code>1</code>.",
@@ -7053,17 +6951,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "encryptionType"
-                ],
+                "required": ["encryptionType"],
                 "properties": {
                   "encryptionType": {
                     "description": "The type of encryption used for the encryption configuration.",
                     "type": "string",
-                    "enum": [
-                      "SITEWISE_DEFAULT_ENCRYPTION",
-                      "KMS_BASED_ENCRYPTION"
-                    ]
+                    "enum": ["SITEWISE_DEFAULT_ENCRYPTION", "KMS_BASED_ENCRYPTION"]
                   },
                   "kmsKeyId": {
                     "description": "The Key ID of the customer managed customer master key (CMK) used for AWS KMS encryption. This is required if you use <code>KMS_BASED_ENCRYPTION</code>.",
@@ -7273,17 +7166,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "storageType"
-                ],
+                "required": ["storageType"],
                 "properties": {
                   "storageType": {
                     "description": "<p>The type of storage that you specified for your data. The storage type can be one of the following values:</p> <ul> <li> <p> <code>SITEWISE_DEFAULT_STORAGE</code> – IoT SiteWise replicates your data into a service managed database.</p> </li> <li> <p> <code>MULTI_LAYER_STORAGE</code> – IoT SiteWise replicates your data into a service managed database and saves a copy of your raw data and metadata in an Amazon S3 object that you specified.</p> </li> </ul>",
                     "type": "string",
-                    "enum": [
-                      "SITEWISE_DEFAULT_STORAGE",
-                      "MULTI_LAYER_STORAGE"
-                    ]
+                    "enum": ["SITEWISE_DEFAULT_STORAGE", "MULTI_LAYER_STORAGE"]
                   },
                   "multiLayerStorage": {
                     "description": "Contains information about the storage destination.",
@@ -7463,11 +7351,7 @@
             "description": "The quality of the asset property value. You can use this parameter as a filter to choose only the asset property values that have a specific quality.",
             "schema": {
               "type": "string",
-              "enum": [
-                "GOOD",
-                "BAD",
-                "UNCERTAIN"
-              ]
+              "enum": ["GOOD", "BAD", "UNCERTAIN"]
             }
           },
           {
@@ -7628,9 +7512,7 @@
             "description": "<p>The type of traversal to use to identify asset relationships. Choose the following option:</p> <ul> <li> <p> <code>PATH_TO_ROOT</code> – Identify the asset's parent assets up to the root asset. The asset that you specify in <code>assetId</code> is the first result in the list of <code>assetRelationshipSummaries</code>, and the root asset is the last result.</p> </li> </ul>",
             "schema": {
               "type": "string",
-              "enum": [
-                "PATH_TO_ROOT"
-              ]
+              "enum": ["PATH_TO_ROOT"]
             }
           },
           {
@@ -7804,9 +7686,7 @@
       },
       "BatchPutAssetPropertyValueResponse": {
         "type": "object",
-        "required": [
-          "errorEntries"
-        ],
+        "required": ["errorEntries"],
         "properties": {
           "errorEntries": {
             "allOf": [
@@ -7822,10 +7702,7 @@
       },
       "PutAssetPropertyValueEntry": {
         "type": "object",
-        "required": [
-          "entryId",
-          "propertyValues"
-        ],
+        "required": ["entryId", "propertyValues"],
         "properties": {
           "entryId": {
             "allOf": [
@@ -7883,10 +7760,7 @@
       "ServiceUnavailableException": {},
       "CreateAccessPolicyResponse": {
         "type": "object",
-        "required": [
-          "accessPolicyId",
-          "accessPolicyArn"
-        ],
+        "required": ["accessPolicyId", "accessPolicyArn"],
         "properties": {
           "accessPolicyId": {
             "allOf": [
@@ -7912,9 +7786,7 @@
       },
       "UserIdentity": {
         "type": "object",
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "properties": {
           "id": {
             "allOf": [
@@ -7931,9 +7803,7 @@
       },
       "GroupIdentity": {
         "type": "object",
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "properties": {
           "id": {
             "allOf": [
@@ -7950,9 +7820,7 @@
       },
       "PortalResource": {
         "type": "object",
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "properties": {
           "id": {
             "allOf": [
@@ -7969,9 +7837,7 @@
       },
       "ProjectResource": {
         "type": "object",
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "properties": {
           "id": {
             "allOf": [
@@ -7993,11 +7859,7 @@
       },
       "CreateAssetResponse": {
         "type": "object",
-        "required": [
-          "assetId",
-          "assetArn",
-          "assetStatus"
-        ],
+        "required": ["assetId", "assetArn", "assetStatus"],
         "properties": {
           "assetId": {
             "allOf": [
@@ -8034,11 +7896,7 @@
       "ResourceAlreadyExistsException": {},
       "CreateAssetModelResponse": {
         "type": "object",
-        "required": [
-          "assetModelId",
-          "assetModelArn",
-          "assetModelStatus"
-        ],
+        "required": ["assetModelId", "assetModelArn", "assetModelStatus"],
         "properties": {
           "assetModelId": {
             "allOf": [
@@ -8074,11 +7932,7 @@
       },
       "AssetModelPropertyDefinition": {
         "type": "object",
-        "required": [
-          "name",
-          "dataType",
-          "type"
-        ],
+        "required": ["name", "dataType", "type"],
         "properties": {
           "name": {
             "allOf": [
@@ -8135,10 +7989,7 @@
       },
       "AssetModelHierarchyDefinition": {
         "type": "object",
-        "required": [
-          "name",
-          "childAssetModelId"
-        ],
+        "required": ["name", "childAssetModelId"],
         "properties": {
           "name": {
             "allOf": [
@@ -8165,10 +8016,7 @@
       },
       "CreateDashboardResponse": {
         "type": "object",
-        "required": [
-          "dashboardId",
-          "dashboardArn"
-        ],
+        "required": ["dashboardId", "dashboardArn"],
         "properties": {
           "dashboardId": {
             "allOf": [
@@ -8194,10 +8042,7 @@
       },
       "CreateGatewayResponse": {
         "type": "object",
-        "required": [
-          "gatewayId",
-          "gatewayArn"
-        ],
+        "required": ["gatewayId", "gatewayArn"],
         "properties": {
           "gatewayId": {
             "allOf": [
@@ -8223,9 +8068,7 @@
       },
       "Greengrass": {
         "type": "object",
-        "required": [
-          "groupArn"
-        ],
+        "required": ["groupArn"],
         "properties": {
           "groupArn": {
             "allOf": [
@@ -8242,13 +8085,7 @@
       },
       "CreatePortalResponse": {
         "type": "object",
-        "required": [
-          "portalId",
-          "portalArn",
-          "portalStartUrl",
-          "portalStatus",
-          "ssoApplicationId"
-        ],
+        "required": ["portalId", "portalArn", "portalStartUrl", "portalStatus", "ssoApplicationId"],
         "properties": {
           "portalId": {
             "allOf": [
@@ -8309,16 +8146,11 @@
       },
       "ImageFileType": {
         "type": "string",
-        "enum": [
-          "PNG"
-        ]
+        "enum": ["PNG"]
       },
       "CreateProjectResponse": {
         "type": "object",
-        "required": [
-          "projectId",
-          "projectArn"
-        ],
+        "required": ["projectId", "projectArn"],
         "properties": {
           "projectId": {
             "allOf": [
@@ -8348,9 +8180,7 @@
       },
       "DeleteAssetResponse": {
         "type": "object",
-        "required": [
-          "assetStatus"
-        ],
+        "required": ["assetStatus"],
         "properties": {
           "assetStatus": {
             "allOf": [
@@ -8366,9 +8196,7 @@
       },
       "DeleteAssetModelResponse": {
         "type": "object",
-        "required": [
-          "assetModelStatus"
-        ],
+        "required": ["assetModelStatus"],
         "properties": {
           "assetModelStatus": {
             "allOf": [
@@ -8388,9 +8216,7 @@
       },
       "DeletePortalResponse": {
         "type": "object",
-        "required": [
-          "portalStatus"
-        ],
+        "required": ["portalStatus"],
         "properties": {
           "portalStatus": {
             "allOf": [
@@ -8726,12 +8552,7 @@
       },
       "DescribeAssetPropertyResponse": {
         "type": "object",
-        "required": [
-          "assetId",
-          "assetName",
-          "assetModelId",
-          "assetProperty"
-        ],
+        "required": ["assetId", "assetName", "assetModelId", "assetProperty"],
         "properties": {
           "assetId": {
             "allOf": [
@@ -8964,12 +8785,7 @@
       },
       "DescribeGatewayCapabilityConfigurationResponse": {
         "type": "object",
-        "required": [
-          "gatewayId",
-          "capabilityNamespace",
-          "capabilityConfiguration",
-          "capabilitySyncStatus"
-        ],
+        "required": ["gatewayId", "capabilityNamespace", "capabilityConfiguration", "capabilitySyncStatus"],
         "properties": {
           "gatewayId": {
             "allOf": [
@@ -9015,9 +8831,7 @@
       },
       "DescribeLoggingOptionsResponse": {
         "type": "object",
-        "required": [
-          "loggingOptions"
-        ],
+        "required": ["loggingOptions"],
         "properties": {
           "loggingOptions": {
             "allOf": [
@@ -9282,9 +9096,7 @@
       },
       "GetAssetPropertyAggregatesResponse": {
         "type": "object",
-        "required": [
-          "aggregatedValues"
-        ],
+        "required": ["aggregatedValues"],
         "properties": {
           "aggregatedValues": {
             "allOf": [
@@ -9310,22 +9122,11 @@
       },
       "AggregateType": {
         "type": "string",
-        "enum": [
-          "AVERAGE",
-          "COUNT",
-          "MAXIMUM",
-          "MINIMUM",
-          "SUM",
-          "STANDARD_DEVIATION"
-        ]
+        "enum": ["AVERAGE", "COUNT", "MAXIMUM", "MINIMUM", "SUM", "STANDARD_DEVIATION"]
       },
       "Quality": {
         "type": "string",
-        "enum": [
-          "GOOD",
-          "BAD",
-          "UNCERTAIN"
-        ]
+        "enum": ["GOOD", "BAD", "UNCERTAIN"]
       },
       "GetAssetPropertyValueResponse": {
         "type": "object",
@@ -9344,9 +9145,7 @@
       },
       "GetAssetPropertyValueHistoryResponse": {
         "type": "object",
-        "required": [
-          "assetPropertyValueHistory"
-        ],
+        "required": ["assetPropertyValueHistory"],
         "properties": {
           "assetPropertyValueHistory": {
             "allOf": [
@@ -9372,9 +9171,7 @@
       },
       "ListAccessPoliciesResponse": {
         "type": "object",
-        "required": [
-          "accessPolicySummaries"
-        ],
+        "required": ["accessPolicySummaries"],
         "properties": {
           "accessPolicySummaries": {
             "allOf": [
@@ -9400,9 +9197,7 @@
       },
       "ListAssetModelsResponse": {
         "type": "object",
-        "required": [
-          "assetModelSummaries"
-        ],
+        "required": ["assetModelSummaries"],
         "properties": {
           "assetModelSummaries": {
             "allOf": [
@@ -9428,9 +9223,7 @@
       },
       "ListAssetsResponse": {
         "type": "object",
-        "required": [
-          "assetSummaries"
-        ],
+        "required": ["assetSummaries"],
         "properties": {
           "assetSummaries": {
             "allOf": [
@@ -9456,9 +9249,7 @@
       },
       "ListAssociatedAssetsResponse": {
         "type": "object",
-        "required": [
-          "assetSummaries"
-        ],
+        "required": ["assetSummaries"],
         "properties": {
           "assetSummaries": {
             "allOf": [
@@ -9484,9 +9275,7 @@
       },
       "ListDashboardsResponse": {
         "type": "object",
-        "required": [
-          "dashboardSummaries"
-        ],
+        "required": ["dashboardSummaries"],
         "properties": {
           "dashboardSummaries": {
             "allOf": [
@@ -9512,9 +9301,7 @@
       },
       "ListGatewaysResponse": {
         "type": "object",
-        "required": [
-          "gatewaySummaries"
-        ],
+        "required": ["gatewaySummaries"],
         "properties": {
           "gatewaySummaries": {
             "allOf": [
@@ -9565,9 +9352,7 @@
       },
       "ListProjectAssetsResponse": {
         "type": "object",
-        "required": [
-          "assetIds"
-        ],
+        "required": ["assetIds"],
         "properties": {
           "assetIds": {
             "allOf": [
@@ -9593,9 +9378,7 @@
       },
       "ListProjectsResponse": {
         "type": "object",
-        "required": [
-          "projectSummaries"
-        ],
+        "required": ["projectSummaries"],
         "properties": {
           "projectSummaries": {
             "allOf": [
@@ -9640,11 +9423,7 @@
       },
       "LoggingLevel": {
         "type": "string",
-        "enum": [
-          "ERROR",
-          "INFO",
-          "OFF"
-        ]
+        "enum": ["ERROR", "INFO", "OFF"]
       },
       "TagResourceResponse": {
         "type": "object",
@@ -9666,9 +9445,7 @@
       },
       "UpdateAssetResponse": {
         "type": "object",
-        "required": [
-          "assetStatus"
-        ],
+        "required": ["assetStatus"],
         "properties": {
           "assetStatus": {
             "allOf": [
@@ -9684,9 +9461,7 @@
       },
       "UpdateAssetModelResponse": {
         "type": "object",
-        "required": [
-          "assetModelStatus"
-        ],
+        "required": ["assetModelStatus"],
         "properties": {
           "assetModelStatus": {
             "allOf": [
@@ -9702,11 +9477,7 @@
       },
       "AssetModelProperty": {
         "type": "object",
-        "required": [
-          "name",
-          "dataType",
-          "type"
-        ],
+        "required": ["name", "dataType", "type"],
         "properties": {
           "id": {
             "allOf": [
@@ -9773,10 +9544,7 @@
       },
       "AssetModelHierarchy": {
         "type": "object",
-        "required": [
-          "name",
-          "childAssetModelId"
-        ],
+        "required": ["name", "childAssetModelId"],
         "properties": {
           "id": {
             "allOf": [
@@ -9817,10 +9585,7 @@
       },
       "UpdateGatewayCapabilityConfigurationResponse": {
         "type": "object",
-        "required": [
-          "capabilityNamespace",
-          "capabilitySyncStatus"
-        ],
+        "required": ["capabilityNamespace", "capabilitySyncStatus"],
         "properties": {
           "capabilityNamespace": {
             "allOf": [
@@ -9846,9 +9611,7 @@
       },
       "UpdatePortalResponse": {
         "type": "object",
-        "required": [
-          "portalStatus"
-        ],
+        "required": ["portalStatus"],
         "properties": {
           "portalStatus": {
             "allOf": [
@@ -9864,10 +9627,7 @@
       },
       "ImageFile": {
         "type": "object",
-        "required": [
-          "data",
-          "type"
-        ],
+        "required": ["data", "type"],
         "properties": {
           "data": {
             "allOf": [
@@ -9904,12 +9664,7 @@
       },
       "AccessPolicySummary": {
         "type": "object",
-        "required": [
-          "id",
-          "identity",
-          "resource",
-          "permission"
-        ],
+        "required": ["id", "identity", "resource", "permission"],
         "properties": {
           "id": {
             "allOf": [
@@ -10054,10 +9809,7 @@
       },
       "Permission": {
         "type": "string",
-        "enum": [
-          "ADMINISTRATOR",
-          "VIEWER"
-        ]
+        "enum": ["ADMINISTRATOR", "VIEWER"]
       },
       "Timestamp": {
         "type": "string",
@@ -10135,10 +9887,7 @@
       },
       "AggregatedValue": {
         "type": "object",
-        "required": [
-          "timestamp",
-          "value"
-        ],
+        "required": ["timestamp", "value"],
         "properties": {
           "timestamp": {
             "allOf": [
@@ -10181,20 +9930,14 @@
       },
       "AssetErrorCode": {
         "type": "string",
-        "enum": [
-          "INTERNAL_FAILURE"
-        ]
+        "enum": ["INTERNAL_FAILURE"]
       },
       "AssetErrorMessage": {
         "type": "string"
       },
       "AssetErrorDetails": {
         "type": "object",
-        "required": [
-          "assetId",
-          "code",
-          "message"
-        ],
+        "required": ["assetId", "code", "message"],
         "properties": {
           "assetId": {
             "allOf": [
@@ -10231,9 +9974,7 @@
       },
       "AssetHierarchy": {
         "type": "object",
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "properties": {
           "id": {
             "allOf": [
@@ -10290,13 +10031,7 @@
       },
       "PropertyDataType": {
         "type": "string",
-        "enum": [
-          "STRING",
-          "INTEGER",
-          "DOUBLE",
-          "BOOLEAN",
-          "STRUCT"
-        ]
+        "enum": ["STRING", "INTEGER", "DOUBLE", "BOOLEAN", "STRUCT"]
       },
       "PropertyUnit": {
         "type": "string",
@@ -10352,21 +10087,11 @@
       },
       "AssetModelState": {
         "type": "string",
-        "enum": [
-          "CREATING",
-          "ACTIVE",
-          "UPDATING",
-          "PROPAGATING",
-          "DELETING",
-          "FAILED"
-        ]
+        "enum": ["CREATING", "ACTIVE", "UPDATING", "PROPAGATING", "DELETING", "FAILED"]
       },
       "ErrorDetails": {
         "type": "object",
-        "required": [
-          "code",
-          "message"
-        ],
+        "required": ["code", "message"],
         "properties": {
           "code": {
             "allOf": [
@@ -10403,9 +10128,7 @@
       },
       "AssetModelStatus": {
         "type": "object",
-        "required": [
-          "state"
-        ],
+        "required": ["state"],
         "properties": {
           "state": {
             "allOf": [
@@ -10432,15 +10155,7 @@
       },
       "AssetModelSummary": {
         "type": "object",
-        "required": [
-          "id",
-          "arn",
-          "name",
-          "description",
-          "creationDate",
-          "lastUpdateDate",
-          "status"
-        ],
+        "required": ["id", "arn", "name", "description", "creationDate", "lastUpdateDate", "status"],
         "properties": {
           "id": {
             "allOf": [
@@ -10529,11 +10244,7 @@
       },
       "AssetProperty": {
         "type": "object",
-        "required": [
-          "id",
-          "name",
-          "dataType"
-        ],
+        "required": ["id", "name", "dataType"],
         "properties": {
           "id": {
             "allOf": [
@@ -10621,10 +10332,7 @@
       },
       "PropertyNotification": {
         "type": "object",
-        "required": [
-          "topic",
-          "state"
-        ],
+        "required": ["topic", "state"],
         "properties": {
           "topic": {
             "allOf": [
@@ -10703,9 +10411,7 @@
       },
       "TimeInNanos": {
         "type": "object",
-        "required": [
-          "timeInSeconds"
-        ],
+        "required": ["timeInSeconds"],
         "properties": {
           "timeInSeconds": {
             "allOf": [
@@ -10732,10 +10438,7 @@
       },
       "AssetPropertyValue": {
         "type": "object",
-        "required": [
-          "value",
-          "timestamp"
-        ],
+        "required": ["value", "timestamp"],
         "properties": {
           "value": {
             "allOf": [
@@ -10784,19 +10487,11 @@
       },
       "AssetState": {
         "type": "string",
-        "enum": [
-          "CREATING",
-          "ACTIVE",
-          "UPDATING",
-          "DELETING",
-          "FAILED"
-        ]
+        "enum": ["CREATING", "ACTIVE", "UPDATING", "DELETING", "FAILED"]
       },
       "AssetStatus": {
         "type": "object",
-        "required": [
-          "state"
-        ],
+        "required": ["state"],
         "properties": {
           "state": {
             "allOf": [
@@ -10823,16 +10518,7 @@
       },
       "AssetSummary": {
         "type": "object",
-        "required": [
-          "id",
-          "arn",
-          "name",
-          "assetModelId",
-          "creationDate",
-          "lastUpdateDate",
-          "status",
-          "hierarchies"
-        ],
+        "required": ["id", "arn", "name", "assetModelId", "creationDate", "lastUpdateDate", "status", "hierarchies"],
         "properties": {
           "id": {
             "allOf": [
@@ -10925,16 +10611,7 @@
       },
       "AssociatedAssetsSummary": {
         "type": "object",
-        "required": [
-          "id",
-          "arn",
-          "name",
-          "assetModelId",
-          "creationDate",
-          "lastUpdateDate",
-          "status",
-          "hierarchies"
-        ],
+        "required": ["id", "arn", "name", "assetModelId", "creationDate", "lastUpdateDate", "status", "hierarchies"],
         "properties": {
           "id": {
             "allOf": [
@@ -11084,11 +10761,7 @@
       },
       "BatchPutAssetPropertyError": {
         "type": "object",
-        "required": [
-          "errorCode",
-          "errorMessage",
-          "timestamps"
-        ],
+        "required": ["errorCode", "errorMessage", "timestamps"],
         "properties": {
           "errorCode": {
             "allOf": [
@@ -11125,10 +10798,7 @@
       },
       "BatchPutAssetPropertyErrorEntry": {
         "type": "object",
-        "required": [
-          "entryId",
-          "errors"
-        ],
+        "required": ["entryId", "errors"],
         "properties": {
           "entryId": {
             "allOf": [
@@ -11184,12 +10854,7 @@
       },
       "CapabilitySyncStatus": {
         "type": "string",
-        "enum": [
-          "IN_SYNC",
-          "OUT_OF_SYNC",
-          "SYNC_FAILED",
-          "UNKNOWN"
-        ]
+        "enum": ["IN_SYNC", "OUT_OF_SYNC", "SYNC_FAILED", "UNKNOWN"]
       },
       "TagMap": {
         "type": "object",
@@ -11207,9 +10872,7 @@
       },
       "GatewayPlatform": {
         "type": "object",
-        "required": [
-          "greengrass"
-        ],
+        "required": ["greengrass"],
         "properties": {
           "greengrass": {
             "allOf": [
@@ -11248,9 +10911,7 @@
       },
       "PortalStatus": {
         "type": "object",
-        "required": [
-          "state"
-        ],
+        "required": ["state"],
         "properties": {
           "state": {
             "allOf": [
@@ -11283,10 +10944,7 @@
       },
       "DashboardSummary": {
         "type": "object",
-        "required": [
-          "id",
-          "name"
-        ],
+        "required": ["id", "name"],
         "properties": {
           "id": {
             "allOf": [
@@ -11349,11 +11007,7 @@
       },
       "Property": {
         "type": "object",
-        "required": [
-          "id",
-          "name",
-          "dataType"
-        ],
+        "required": ["id", "name", "dataType"],
         "properties": {
           "id": {
             "allOf": [
@@ -11436,9 +11090,7 @@
       },
       "LoggingOptions": {
         "type": "object",
-        "required": [
-          "level"
-        ],
+        "required": ["level"],
         "properties": {
           "level": {
             "allOf": [
@@ -11461,10 +11113,7 @@
       },
       "ImageLocation": {
         "type": "object",
-        "required": [
-          "id",
-          "url"
-        ],
+        "required": ["id", "url"],
         "properties": {
           "id": {
             "allOf": [
@@ -11491,10 +11140,7 @@
       },
       "ErrorCode": {
         "type": "string",
-        "enum": [
-          "VALIDATION_ERROR",
-          "INTERNAL_FAILURE"
-        ]
+        "enum": ["VALIDATION_ERROR", "INTERNAL_FAILURE"]
       },
       "Expression": {
         "type": "string",
@@ -11510,9 +11156,7 @@
       },
       "VariableValue": {
         "type": "object",
-        "required": [
-          "propertyId"
-        ],
+        "required": ["propertyId"],
         "properties": {
           "propertyId": {
             "allOf": [
@@ -11539,10 +11183,7 @@
       },
       "ExpressionVariable": {
         "type": "object",
-        "required": [
-          "name",
-          "value"
-        ],
+        "required": ["name", "value"],
         "properties": {
           "name": {
             "allOf": [
@@ -11575,10 +11216,7 @@
       },
       "GatewayCapabilitySummary": {
         "type": "object",
-        "required": [
-          "capabilityNamespace",
-          "capabilitySyncStatus"
-        ],
+        "required": ["capabilityNamespace", "capabilitySyncStatus"],
         "properties": {
           "capabilityNamespace": {
             "allOf": [
@@ -11605,12 +11243,7 @@
       },
       "GatewaySummary": {
         "type": "object",
-        "required": [
-          "gatewayId",
-          "gatewayName",
-          "creationDate",
-          "lastUpdateDate"
-        ],
+        "required": ["gatewayId", "gatewayName", "creationDate", "lastUpdateDate"],
         "properties": {
           "gatewayId": {
             "allOf": [
@@ -11744,11 +11377,7 @@
       },
       "Metric": {
         "type": "object",
-        "required": [
-          "expression",
-          "variables",
-          "window"
-        ],
+        "required": ["expression", "variables", "window"],
         "properties": {
           "expression": {
             "allOf": [
@@ -11795,9 +11424,7 @@
       },
       "TumblingWindow": {
         "type": "object",
-        "required": [
-          "interval"
-        ],
+        "required": ["interval"],
         "properties": {
           "interval": {
             "allOf": [
@@ -11824,11 +11451,7 @@
       },
       "MonitorErrorCode": {
         "type": "string",
-        "enum": [
-          "INTERNAL_FAILURE",
-          "VALIDATION_ERROR",
-          "LIMIT_EXCEEDED"
-        ]
+        "enum": ["INTERNAL_FAILURE", "VALIDATION_ERROR", "LIMIT_EXCEEDED"]
       },
       "MonitorErrorMessage": {
         "type": "string"
@@ -11866,22 +11489,11 @@
       },
       "PortalState": {
         "type": "string",
-        "enum": [
-          "CREATING",
-          "UPDATING",
-          "DELETING",
-          "ACTIVE",
-          "FAILED"
-        ]
+        "enum": ["CREATING", "UPDATING", "DELETING", "ACTIVE", "FAILED"]
       },
       "PortalSummary": {
         "type": "object",
-        "required": [
-          "id",
-          "name",
-          "startUrl",
-          "status"
-        ],
+        "required": ["id", "name", "startUrl", "status"],
         "properties": {
           "id": {
             "allOf": [
@@ -11961,10 +11573,7 @@
       },
       "ProjectSummary": {
         "type": "object",
-        "required": [
-          "id",
-          "name"
-        ],
+        "required": ["id", "name"],
         "properties": {
           "id": {
             "allOf": [
@@ -12024,17 +11633,11 @@
       },
       "PropertyNotificationState": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "DISABLED"
-        ]
+        "enum": ["ENABLED", "DISABLED"]
       },
       "Transform": {
         "type": "object",
-        "required": [
-          "expression",
-          "variables"
-        ],
+        "required": ["expression", "variables"],
         "properties": {
           "expression": {
             "allOf": [
@@ -12092,9 +11695,7 @@
       },
       "IAMUserIdentity": {
         "type": "object",
-        "required": [
-          "arn"
-        ],
+        "required": ["arn"],
         "properties": {
           "arn": {
             "allOf": [
@@ -12111,9 +11712,7 @@
       },
       "CreatePresignedPortalUrlResponse": {
         "type": "object",
-        "required": [
-          "presignedPortalUrl"
-        ],
+        "required": ["presignedPortalUrl"],
         "properties": {
           "presignedPortalUrl": {
             "allOf": [
@@ -12129,17 +11728,11 @@
       },
       "AuthMode": {
         "type": "string",
-        "enum": [
-          "IAM",
-          "SSO"
-        ]
+        "enum": ["IAM", "SSO"]
       },
       "DescribeDefaultEncryptionConfigurationResponse": {
         "type": "object",
-        "required": [
-          "encryptionType",
-          "configurationStatus"
-        ],
+        "required": ["encryptionType", "configurationStatus"],
         "properties": {
           "encryptionType": {
             "allOf": [
@@ -12175,10 +11768,7 @@
       },
       "PutDefaultEncryptionConfigurationResponse": {
         "type": "object",
-        "required": [
-          "encryptionType",
-          "configurationStatus"
-        ],
+        "required": ["encryptionType", "configurationStatus"],
         "properties": {
           "encryptionType": {
             "allOf": [
@@ -12214,10 +11804,7 @@
       },
       "ConfigurationErrorDetails": {
         "type": "object",
-        "required": [
-          "code",
-          "message"
-        ],
+        "required": ["code", "message"],
         "properties": {
           "code": {
             "allOf": [
@@ -12244,17 +11831,11 @@
       },
       "ConfigurationState": {
         "type": "string",
-        "enum": [
-          "ACTIVE",
-          "UPDATE_IN_PROGRESS",
-          "UPDATE_FAILED"
-        ]
+        "enum": ["ACTIVE", "UPDATE_IN_PROGRESS", "UPDATE_FAILED"]
       },
       "ConfigurationStatus": {
         "type": "object",
-        "required": [
-          "state"
-        ],
+        "required": ["state"],
         "properties": {
           "state": {
             "allOf": [
@@ -12281,16 +11862,11 @@
       },
       "EncryptionType": {
         "type": "string",
-        "enum": [
-          "SITEWISE_DEFAULT_ENCRYPTION",
-          "KMS_BASED_ENCRYPTION"
-        ]
+        "enum": ["SITEWISE_DEFAULT_ENCRYPTION", "KMS_BASED_ENCRYPTION"]
       },
       "IAMRoleIdentity": {
         "type": "object",
-        "required": [
-          "arn"
-        ],
+        "required": ["arn"],
         "properties": {
           "arn": {
             "allOf": [
@@ -12307,10 +11883,7 @@
       },
       "AssetModelCompositeModelDefinition": {
         "type": "object",
-        "required": [
-          "name",
-          "type"
-        ],
+        "required": ["name", "type"],
         "properties": {
           "name": {
             "allOf": [
@@ -12350,9 +11923,7 @@
       },
       "GreengrassV2": {
         "type": "object",
-        "required": [
-          "coreDeviceThingName"
-        ],
+        "required": ["coreDeviceThingName"],
         "properties": {
           "coreDeviceThingName": {
             "allOf": [
@@ -12369,10 +11940,7 @@
       },
       "DescribeStorageConfigurationResponse": {
         "type": "object",
-        "required": [
-          "storageType",
-          "configurationStatus"
-        ],
+        "required": ["storageType", "configurationStatus"],
         "properties": {
           "storageType": {
             "allOf": [
@@ -12411,9 +11979,7 @@
       },
       "GetInterpolatedAssetPropertyValuesResponse": {
         "type": "object",
-        "required": [
-          "interpolatedAssetPropertyValues"
-        ],
+        "required": ["interpolatedAssetPropertyValues"],
         "properties": {
           "interpolatedAssetPropertyValues": {
             "allOf": [
@@ -12439,9 +12005,7 @@
       },
       "ListAssetRelationshipsResponse": {
         "type": "object",
-        "required": [
-          "assetRelationshipSummaries"
-        ],
+        "required": ["assetRelationshipSummaries"],
         "properties": {
           "assetRelationshipSummaries": {
             "allOf": [
@@ -12468,10 +12032,7 @@
       "UnauthorizedException": {},
       "PutStorageConfigurationResponse": {
         "type": "object",
-        "required": [
-          "storageType",
-          "configurationStatus"
-        ],
+        "required": ["storageType", "configurationStatus"],
         "properties": {
           "storageType": {
             "allOf": [
@@ -12500,10 +12061,7 @@
       },
       "CustomerManagedS3Storage": {
         "type": "object",
-        "required": [
-          "s3ResourceArn",
-          "roleArn"
-        ],
+        "required": ["s3ResourceArn", "roleArn"],
         "properties": {
           "s3ResourceArn": {
             "allOf": [
@@ -12530,10 +12088,7 @@
       },
       "AssetModelCompositeModel": {
         "type": "object",
-        "required": [
-          "name",
-          "type"
-        ],
+        "required": ["name", "type"],
         "properties": {
           "name": {
             "allOf": [
@@ -12573,9 +12128,7 @@
       },
       "Alarms": {
         "type": "object",
-        "required": [
-          "alarmRoleArn"
-        ],
+        "required": ["alarmRoleArn"],
         "properties": {
           "alarmRoleArn": {
             "allOf": [
@@ -12602,11 +12155,7 @@
       },
       "AssetCompositeModel": {
         "type": "object",
-        "required": [
-          "name",
-          "type",
-          "properties"
-        ],
+        "required": ["name", "type", "properties"],
         "properties": {
           "name": {
             "allOf": [
@@ -12684,9 +12233,7 @@
       },
       "AssetRelationshipSummary": {
         "type": "object",
-        "required": [
-          "relationshipType"
-        ],
+        "required": ["relationshipType"],
         "properties": {
           "hierarchyInfo": {
             "allOf": [
@@ -12719,17 +12266,11 @@
       },
       "AssetRelationshipType": {
         "type": "string",
-        "enum": [
-          "HIERARCHY"
-        ]
+        "enum": ["HIERARCHY"]
       },
       "CompositeModelProperty": {
         "type": "object",
-        "required": [
-          "name",
-          "type",
-          "assetProperty"
-        ],
+        "required": ["name", "type", "assetProperty"],
         "properties": {
           "name": {
             "allOf": [
@@ -12759,10 +12300,7 @@
       },
       "ComputeLocation": {
         "type": "string",
-        "enum": [
-          "EDGE",
-          "CLOUD"
-        ]
+        "enum": ["EDGE", "CLOUD"]
       },
       "CoreDeviceThingName": {
         "type": "string",
@@ -12771,16 +12309,11 @@
       },
       "StorageType": {
         "type": "string",
-        "enum": [
-          "SITEWISE_DEFAULT_STORAGE",
-          "MULTI_LAYER_STORAGE"
-        ]
+        "enum": ["SITEWISE_DEFAULT_STORAGE", "MULTI_LAYER_STORAGE"]
       },
       "MultiLayerStorage": {
         "type": "object",
-        "required": [
-          "customerManagedS3Storage"
-        ],
+        "required": ["customerManagedS3Storage"],
         "properties": {
           "customerManagedS3Storage": {
             "allOf": [
@@ -12797,20 +12330,14 @@
       },
       "DetailedErrorCode": {
         "type": "string",
-        "enum": [
-          "INCOMPATIBLE_COMPUTE_LOCATION",
-          "INCOMPATIBLE_FORWARDING_CONFIGURATION"
-        ]
+        "enum": ["INCOMPATIBLE_COMPUTE_LOCATION", "INCOMPATIBLE_FORWARDING_CONFIGURATION"]
       },
       "DetailedErrorMessage": {
         "type": "string"
       },
       "DetailedError": {
         "type": "object",
-        "required": [
-          "code",
-          "message"
-        ],
+        "required": ["code", "message"],
         "properties": {
           "code": {
             "allOf": [
@@ -12843,16 +12370,11 @@
       },
       "ForwardingConfigState": {
         "type": "string",
-        "enum": [
-          "DISABLED",
-          "ENABLED"
-        ]
+        "enum": ["DISABLED", "ENABLED"]
       },
       "ForwardingConfig": {
         "type": "object",
-        "required": [
-          "state"
-        ],
+        "required": ["state"],
         "properties": {
           "state": {
             "allOf": [
@@ -12875,10 +12397,7 @@
       },
       "InterpolatedAssetPropertyValue": {
         "type": "object",
-        "required": [
-          "timestamp",
-          "value"
-        ],
+        "required": ["timestamp", "value"],
         "properties": {
           "timestamp": {
             "$ref": "#/components/schemas/TimeInNanos"
@@ -12891,9 +12410,7 @@
       },
       "MeasurementProcessingConfig": {
         "type": "object",
-        "required": [
-          "forwardingConfig"
-        ],
+        "required": ["forwardingConfig"],
         "properties": {
           "forwardingConfig": {
             "allOf": [
@@ -12910,9 +12427,7 @@
       },
       "MetricProcessingConfig": {
         "type": "object",
-        "required": [
-          "computeLocation"
-        ],
+        "required": ["computeLocation"],
         "properties": {
           "computeLocation": {
             "allOf": [
@@ -12934,9 +12449,7 @@
       },
       "TransformProcessingConfig": {
         "type": "object",
-        "required": [
-          "computeLocation"
-        ],
+        "required": ["computeLocation"],
         "properties": {
           "computeLocation": {
             "allOf": [

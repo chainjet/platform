@@ -4,9 +4,7 @@
     "version": "v2",
     "title": "CircleCI",
     "description": "This describes the resources that make up the CircleCI API v2.",
-    "x-categories": [
-      "software-development"
-    ],
+    "x-categories": ["software-development"],
     "x-logo": {
       "url": "/logos/circleci.svg"
     },
@@ -35,9 +33,7 @@
       "get": {
         "summary": "listContexts",
         "description": "List all contexts for an owner.",
-        "tags": [
-          "Context"
-        ],
+        "tags": ["Context"],
         "operationId": "listContexts",
         "responses": {
           "200": {
@@ -68,11 +64,7 @@
                             "example": "2015-09-21T17:29:21.042Z"
                           }
                         },
-                        "required": [
-                          "id",
-                          "name",
-                          "created_at"
-                        ],
+                        "required": ["id", "name", "created_at"],
                         "title": "Context"
                       }
                     },
@@ -82,10 +74,7 @@
                       "description": "A token to pass as a `page-token` query parameter to return the next page of results."
                     }
                   },
-                  "required": [
-                    "items",
-                    "next_page_token"
-                  ]
+                  "required": ["items", "next_page_token"]
                 }
               }
             }
@@ -132,10 +121,7 @@
             "description": "The type of the owner. Defaults to \"organization\". Accounts are only used as context owners in server.",
             "schema": {
               "type": "string",
-              "enum": [
-                "account",
-                "organization"
-              ]
+              "enum": ["account", "organization"]
             },
             "required": false
           },
@@ -153,9 +139,7 @@
       },
       "post": {
         "summary": "createContext",
-        "tags": [
-          "Context"
-        ],
+        "tags": ["Context"],
         "operationId": "createContext",
         "responses": {
           "200": {
@@ -181,11 +165,7 @@
                       "example": "2015-09-21T17:29:21.042Z"
                     }
                   },
-                  "required": [
-                    "id",
-                    "name",
-                    "created_at"
-                  ],
+                  "required": ["id", "name", "created_at"],
                   "title": "Context"
                 }
               }
@@ -230,10 +210,7 @@
                         "description": "A string that represents an organization. Specify either this or id. Cannot be used for accounts."
                       },
                       "type": {
-                        "enum": [
-                          "account",
-                          "organization"
-                        ],
+                        "enum": ["account", "organization"],
                         "type": "string",
                         "description": "The type of the owner. Defaults to \"organization\". Accounts are only used as context owners in server."
                       }
@@ -248,18 +225,13 @@
                             "description": "The unique ID of the owner of the context. Specify either this or slug."
                           },
                           "type": {
-                            "enum": [
-                              "account",
-                              "organization"
-                            ],
+                            "enum": ["account", "organization"],
                             "type": "string",
                             "description": "The type of the owner. Defaults to \"organization\". Accounts are only used as context owners in server.",
                             "example": "organization"
                           }
                         },
-                        "required": [
-                          "id"
-                        ]
+                        "required": ["id"]
                       },
                       {
                         "type": "object",
@@ -269,24 +241,17 @@
                             "description": "A string that represents an organization. Specify either this or id. Cannot be used for accounts."
                           },
                           "type": {
-                            "enum": [
-                              "organization"
-                            ],
+                            "enum": ["organization"],
                             "type": "string",
                             "description": "The type of owner. Defaults to \"organization\". Accounts are only used as context owners in server and must be specified by an id instead of a slug."
                           }
                         },
-                        "required": [
-                          "slug"
-                        ]
+                        "required": ["slug"]
                       }
                     ]
                   }
                 },
-                "required": [
-                  "name",
-                  "owner"
-                ]
+                "required": ["name", "owner"]
               }
             }
           }
@@ -297,9 +262,7 @@
     "/context/{context-id}": {
       "delete": {
         "summary": "deleteContext",
-        "tags": [
-          "Context"
-        ],
+        "tags": ["Context"],
         "operationId": "deleteContext",
         "responses": {
           "200": {
@@ -314,9 +277,7 @@
                       "description": "A human-readable message"
                     }
                   },
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "description": "message response",
                   "title": "MessageResponse"
                 }
@@ -356,9 +317,7 @@
       "get": {
         "summary": "getContext",
         "description": "Returns basic information about a context.",
-        "tags": [
-          "Context"
-        ],
+        "tags": ["Context"],
         "operationId": "getContext",
         "responses": {
           "200": {
@@ -384,11 +343,7 @@
                       "example": "2015-09-21T17:29:21.042Z"
                     }
                   },
-                  "required": [
-                    "id",
-                    "name",
-                    "created_at"
-                  ],
+                  "required": ["id", "name", "created_at"],
                   "title": "Context"
                 }
               }
@@ -428,9 +383,7 @@
       "get": {
         "summary": "listEnvironmentVariablesFromContext",
         "description": "List information about environment variables in a context, not including their values.",
-        "tags": [
-          "Context"
-        ],
+        "tags": ["Context"],
         "operationId": "listEnvironmentVariablesFromContext",
         "responses": {
           "200": {
@@ -462,11 +415,7 @@
                             "description": "ID of the context (UUID)"
                           }
                         },
-                        "required": [
-                          "variable",
-                          "created_at",
-                          "context_id"
-                        ]
+                        "required": ["variable", "created_at", "context_id"]
                       }
                     },
                     "next_page_token": {
@@ -475,10 +424,7 @@
                       "description": "A token to pass as a `page-token` query parameter to return the next page of results."
                     }
                   },
-                  "required": [
-                    "items",
-                    "next_page_token"
-                  ]
+                  "required": ["items", "next_page_token"]
                 }
               }
             }
@@ -517,9 +463,7 @@
       "put": {
         "summary": "addEnvironmentVariableToContext",
         "description": "Create or update an environment variable within a context. Returns information about the environment variable, not including its value.",
-        "tags": [
-          "Context"
-        ],
+        "tags": ["Context"],
         "operationId": "addEnvironmentVariableToContext",
         "responses": {
           "200": {
@@ -546,11 +490,7 @@
                       "description": "ID of the context (UUID)"
                     }
                   },
-                  "required": [
-                    "variable",
-                    "created_at",
-                    "context_id"
-                  ],
+                  "required": ["variable", "created_at", "context_id"],
                   "anyOf": [
                     {
                       "type": "object",
@@ -572,11 +512,7 @@
                           "description": "ID of the context (UUID)"
                         }
                       },
-                      "required": [
-                        "variable",
-                        "created_at",
-                        "context_id"
-                      ]
+                      "required": ["variable", "created_at", "context_id"]
                     },
                     {
                       "type": "object",
@@ -586,9 +522,7 @@
                           "description": "A human-readable message"
                         }
                       },
-                      "required": [
-                        "message"
-                      ],
+                      "required": ["message"],
                       "description": "message response",
                       "title": "MessageResponse"
                     }
@@ -647,9 +581,7 @@
                     "example": "some-secret-value"
                   }
                 },
-                "required": [
-                  "value"
-                ]
+                "required": ["value"]
               }
             }
           }
@@ -658,9 +590,7 @@
       "delete": {
         "summary": "deleteEnvironmentVariableFromContext",
         "description": "Delete an environment variable from a context.",
-        "tags": [
-          "Context"
-        ],
+        "tags": ["Context"],
         "operationId": "deleteEnvironmentVariableFromContext",
         "responses": {
           "200": {
@@ -675,9 +605,7 @@
                       "description": "A human-readable message"
                     }
                   },
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "description": "message response",
                   "title": "MessageResponse"
                 }
@@ -728,9 +656,7 @@
       "get": {
         "summary": "getProjectWorkflowMetrics",
         "description": "Get summary metrics for a project's workflows. Workflow runs going back at most 90 days are included in the aggregation window. Metrics are refreshed daily, and thus may not include executions from the last 24 hours.",
-        "tags": [
-          "Insights"
-        ],
+        "tags": ["Insights"],
         "operationId": "getProjectWorkflowMetrics",
         "responses": {
           "200": {
@@ -842,14 +768,7 @@
                                     "description": "The standard deviation, in seconds, among a group of runs."
                                   }
                                 },
-                                "required": [
-                                  "min",
-                                  "mean",
-                                  "median",
-                                  "p95",
-                                  "max",
-                                  "standard_deviation"
-                                ],
+                                "required": ["min", "mean", "median", "p95", "max", "standard_deviation"],
                                 "description": "Metrics relating to the duration of runs for a workflow."
                               },
                               "total_recoveries": {
@@ -873,12 +792,7 @@
                             "description": "Metrics relating to a workflow's runs."
                           }
                         },
-                        "required": [
-                          "name",
-                          "window_start",
-                          "window_end",
-                          "metrics"
-                        ]
+                        "required": ["name", "window_start", "window_end", "metrics"]
                       },
                       "description": "Workflow summary metrics."
                     },
@@ -888,10 +802,7 @@
                       "description": "A token to pass as a `page-token` query parameter to return the next page of results."
                     }
                   },
-                  "required": [
-                    "items",
-                    "next_page_token"
-                  ],
+                  "required": ["items", "next_page_token"],
                   "description": "Paginated workflow summary metrics."
                 }
               }
@@ -951,13 +862,7 @@
             "description": "The time window used to calculate summary metrics.",
             "schema": {
               "type": "string",
-              "enum": [
-                "last-90-days",
-                "last-24-hours",
-                "last-24-hours",
-                "last-30-days",
-                "last-60-days"
-              ]
+              "enum": ["last-90-days", "last-24-hours", "last-24-hours", "last-30-days", "last-60-days"]
             },
             "required": false,
             "example": "last-90-days"
@@ -968,13 +873,7 @@
             "description": "The time window used to calculate summary metrics.",
             "schema": {
               "type": "string",
-              "enum": [
-                "last-7-days",
-                "last-90-days",
-                "last-24-hours",
-                "last-30-days",
-                "last-60-days"
-              ]
+              "enum": ["last-7-days", "last-90-days", "last-24-hours", "last-30-days", "last-60-days"]
             },
             "required": false,
             "example": "last-90-days"
@@ -986,9 +885,7 @@
       "get": {
         "summary": "getProjectWorkflowRuns",
         "description": "Get recent runs of a workflow. Runs going back at most 90 days are returned.",
-        "tags": [
-          "Insights"
-        ],
+        "tags": ["Insights"],
         "operationId": "getProjectWorkflowRuns",
         "responses": {
           "200": {
@@ -1032,13 +929,7 @@
                             "description": "The number of credits used during execution"
                           },
                           "status": {
-                            "enum": [
-                              "success",
-                              "failed",
-                              "error",
-                              "canceled",
-                              "unauthorized"
-                            ],
+                            "enum": ["success", "failed", "error", "canceled", "unauthorized"],
                             "type": "string",
                             "x-nullable": true,
                             "description": "Workflow status."
@@ -1049,15 +940,7 @@
                             "example": "main"
                           }
                         },
-                        "required": [
-                          "id",
-                          "duration",
-                          "created_at",
-                          "stopped_at",
-                          "credits_used",
-                          "status",
-                          "status"
-                        ]
+                        "required": ["id", "duration", "created_at", "stopped_at", "credits_used", "status", "status"]
                       },
                       "description": "Recent workflow runs."
                     },
@@ -1067,10 +950,7 @@
                       "description": "A token to pass as a `page-token` query parameter to return the next page of results."
                     }
                   },
-                  "required": [
-                    "items",
-                    "next_page_token"
-                  ],
+                  "required": ["items", "next_page_token"],
                   "description": "Paginated recent workflow runs."
                 }
               }
@@ -1175,9 +1055,7 @@
       "get": {
         "summary": "getProjectWorkflowJobMetrics",
         "description": "Get summary metrics for a project workflow's jobs. Job runs going back at most 90 days are included in the aggregation window. Metrics are refreshed daily, and thus may not include executions from the last 24 hours.",
-        "tags": [
-          "Insights"
-        ],
+        "tags": ["Insights"],
         "operationId": "getProjectWorkflowJobMetrics",
         "responses": {
           "200": {
@@ -1282,14 +1160,7 @@
                                     "description": "The standard deviation, in seconds, among a group of runs."
                                   }
                                 },
-                                "required": [
-                                  "min",
-                                  "mean",
-                                  "median",
-                                  "p95",
-                                  "max",
-                                  "standard_deviation"
-                                ],
+                                "required": ["min", "mean", "median", "p95", "max", "standard_deviation"],
                                 "description": "Metrics relating to the duration of runs for a workflow job."
                               }
                             },
@@ -1305,12 +1176,7 @@
                             "description": "Metrics relating to a workflow job's runs."
                           }
                         },
-                        "required": [
-                          "name",
-                          "window_start",
-                          "window_end",
-                          "metrics"
-                        ]
+                        "required": ["name", "window_start", "window_end", "metrics"]
                       },
                       "description": "Job summary metrics."
                     },
@@ -1320,10 +1186,7 @@
                       "description": "A token to pass as a `page-token` query parameter to return the next page of results."
                     }
                   },
-                  "required": [
-                    "items",
-                    "next_page_token"
-                  ],
+                  "required": ["items", "next_page_token"],
                   "description": "Paginated workflow job summary metrics."
                 }
               }
@@ -1393,13 +1256,7 @@
             "description": "The time window used to calculate summary metrics.",
             "schema": {
               "type": "string",
-              "enum": [
-                "last-90-days",
-                "last-24-hours",
-                "last-24-hours",
-                "last-30-days",
-                "last-60-days"
-              ]
+              "enum": ["last-90-days", "last-24-hours", "last-24-hours", "last-30-days", "last-60-days"]
             },
             "required": false,
             "example": "last-90-days"
@@ -1410,13 +1267,7 @@
             "description": "The time window used to calculate summary metrics.",
             "schema": {
               "type": "string",
-              "enum": [
-                "last-7-days",
-                "last-90-days",
-                "last-24-hours",
-                "last-30-days",
-                "last-60-days"
-              ]
+              "enum": ["last-7-days", "last-90-days", "last-24-hours", "last-30-days", "last-60-days"]
             },
             "required": false,
             "example": "last-90-days"
@@ -1428,9 +1279,7 @@
       "get": {
         "summary": "getProjectJobRuns",
         "description": "Get recent runs of a job within a workflow. Runs going back at most 90 days are returned.",
-        "tags": [
-          "Insights"
-        ],
+        "tags": ["Insights"],
         "operationId": "getProjectJobRuns",
         "responses": {
           "200": {
@@ -1462,13 +1311,7 @@
                             "description": "The time when the job stopped."
                           },
                           "status": {
-                            "enum": [
-                              "success",
-                              "not_run",
-                              "failed",
-                              "canceled",
-                              "unauthorized"
-                            ],
+                            "enum": ["success", "not_run", "failed", "canceled", "unauthorized"],
                             "type": "string",
                             "x-nullable": true,
                             "description": "Job status."
@@ -1480,13 +1323,7 @@
                             "description": "The number of credits used during execution"
                           }
                         },
-                        "required": [
-                          "id",
-                          "started_at",
-                          "stopped_at",
-                          "status",
-                          "credits_used"
-                        ]
+                        "required": ["id", "started_at", "stopped_at", "status", "credits_used"]
                       },
                       "description": "Recent job runs."
                     },
@@ -1496,10 +1333,7 @@
                       "description": "A token to pass as a `page-token` query parameter to return the next page of results."
                     }
                   },
-                  "required": [
-                    "items",
-                    "next_page_token"
-                  ],
+                  "required": ["items", "next_page_token"],
                   "description": "Paginated recent job runs."
                 }
               }
@@ -1602,9 +1436,7 @@
       "get": {
         "summary": "getCurrentUser",
         "description": "Provides information about the user that is currently signed in.",
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "operationId": "getCurrentUser",
         "responses": {
           "200": {
@@ -1629,11 +1461,7 @@
                       "description": "The name of the user."
                     }
                   },
-                  "required": [
-                    "id",
-                    "login",
-                    "name"
-                  ],
+                  "required": ["id", "login", "name"],
                   "title": "User"
                 }
               }
@@ -1661,9 +1489,7 @@
       "get": {
         "summary": "getCollaborations",
         "description": "Provides the set of organizations of which a user is a member or a collaborator.\n\nThe set of organizations that a user can collaborate on is composed of:\n\n* Organizations that the current user belongs to across VCS types (e.g. BitBucket, GitHub)\n* The parent organization of repository that the user can collaborate on, but is not necessarily a member of\n* The organization of the current user's account",
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "operationId": "getCollaborations",
         "responses": {
           "200": {
@@ -1697,13 +1523,7 @@
                         "description": "The slug of the organization"
                       }
                     },
-                    "required": [
-                      "vcs-type",
-                      "name",
-                      "avatar_url",
-                      "avatar_url",
-                      "slug"
-                    ],
+                    "required": ["vcs-type", "name", "avatar_url", "avatar_url", "slug"],
                     "title": "Collaboration"
                   }
                 }
@@ -1732,9 +1552,7 @@
       "get": {
         "summary": "listPipelines",
         "description": "Returns all pipelines for the most recently built projects (max 250) you follow in an organization.",
-        "tags": [
-          "Pipeline"
-        ],
+        "tags": ["Pipeline"],
         "operationId": "listPipelines",
         "responses": {
           "200": {
@@ -1769,14 +1587,7 @@
                               "type": "object",
                               "properties": {
                                 "type": {
-                                  "enum": [
-                                    "config",
-                                    "plan",
-                                    "timeout",
-                                    "permission",
-                                    "other",
-                                    "plan"
-                                  ],
+                                  "enum": ["config", "plan", "timeout", "permission", "other", "plan"],
                                   "type": "string",
                                   "description": "The type of error."
                                 },
@@ -1785,10 +1596,7 @@
                                   "description": "A human-readable error message."
                                 }
                               },
-                              "required": [
-                                "type",
-                                "message"
-                              ],
+                              "required": ["type", "message"],
                               "description": "An error with a type and message."
                             },
                             "description": "A sequence of errors that have occurred within the pipeline."
@@ -1810,13 +1618,7 @@
                             "example": "25"
                           },
                           "state": {
-                            "enum": [
-                              "created",
-                              "errored",
-                              "pending",
-                              "setup",
-                              "pending"
-                            ],
+                            "enum": ["created", "errored", "pending", "setup", "pending"],
                             "type": "string",
                             "description": "The current state of the pipeline."
                           },
@@ -1829,12 +1631,7 @@
                             "type": "object",
                             "properties": {
                               "type": {
-                                "enum": [
-                                  "explicit",
-                                  "api",
-                                  "webhook",
-                                  "webhook"
-                                ],
+                                "enum": ["explicit", "api", "webhook", "webhook"],
                                 "type": "string",
                                 "description": "The type of trigger."
                               },
@@ -1857,18 +1654,11 @@
                                     "description": "URL to the user's avatar on the VCS"
                                   }
                                 },
-                                "required": [
-                                  "login",
-                                  "avatar_url"
-                                ],
+                                "required": ["login", "avatar_url"],
                                 "description": "The user who triggered the Pipeline."
                               }
                             },
-                            "required": [
-                              "type",
-                              "received_at",
-                              "actor"
-                            ],
+                            "required": ["type", "received_at", "actor"],
                             "description": "A summary of the trigger."
                           },
                           "vcs": {
@@ -1918,10 +1708,7 @@
                                     "description": "The body of the commit message."
                                   }
                                 },
-                                "required": [
-                                  "subject",
-                                  "body"
-                                ],
+                                "required": ["subject", "body"],
                                 "description": "The latest commit in the pipeline."
                               },
                               "review_id": {
@@ -1935,12 +1722,7 @@
                                 "example": "https://github.com/CircleCI-Public/api-preview-docs/pull/123"
                               }
                             },
-                            "required": [
-                              "provider_name",
-                              "origin_repository_url",
-                              "target_repository_url",
-                              "revision"
-                            ],
+                            "required": ["provider_name", "origin_repository_url", "target_repository_url", "revision"],
                             "description": "VCS information for the pipeline."
                           },
                           "trigger_parameters": {
@@ -1964,15 +1746,7 @@
                             }
                           }
                         },
-                        "required": [
-                          "id",
-                          "number",
-                          "project_slug",
-                          "created_at",
-                          "errors",
-                          "state",
-                          "trigger"
-                        ],
+                        "required": ["id", "number", "project_slug", "created_at", "errors", "state", "trigger"],
                         "description": "A pipeline response.",
                         "title": "Pipeline"
                       }
@@ -1983,10 +1757,7 @@
                       "description": "A token to pass as a `page-token` query parameter to return the next page of results."
                     }
                   },
-                  "required": [
-                    "items",
-                    "next_page_token"
-                  ],
+                  "required": ["items", "next_page_token"],
                   "description": "List of pipelines",
                   "title": "PipelineListResponse"
                 }
@@ -2046,9 +1817,7 @@
       "get": {
         "summary": "getPipelineById",
         "description": "Returns a pipeline by ID.",
-        "tags": [
-          "Pipeline"
-        ],
+        "tags": ["Pipeline"],
         "operationId": "getPipelineById",
         "responses": {
           "200": {
@@ -2078,14 +1847,7 @@
                         "type": "object",
                         "properties": {
                           "type": {
-                            "enum": [
-                              "config",
-                              "plan",
-                              "timeout",
-                              "permission",
-                              "other",
-                              "plan"
-                            ],
+                            "enum": ["config", "plan", "timeout", "permission", "other", "plan"],
                             "type": "string",
                             "description": "The type of error."
                           },
@@ -2094,10 +1856,7 @@
                             "description": "A human-readable error message."
                           }
                         },
-                        "required": [
-                          "type",
-                          "message"
-                        ],
+                        "required": ["type", "message"],
                         "description": "An error with a type and message."
                       },
                       "description": "A sequence of errors that have occurred within the pipeline."
@@ -2119,13 +1878,7 @@
                       "example": "25"
                     },
                     "state": {
-                      "enum": [
-                        "created",
-                        "errored",
-                        "pending",
-                        "setup",
-                        "pending"
-                      ],
+                      "enum": ["created", "errored", "pending", "setup", "pending"],
                       "type": "string",
                       "description": "The current state of the pipeline."
                     },
@@ -2138,12 +1891,7 @@
                       "type": "object",
                       "properties": {
                         "type": {
-                          "enum": [
-                            "explicit",
-                            "api",
-                            "webhook",
-                            "webhook"
-                          ],
+                          "enum": ["explicit", "api", "webhook", "webhook"],
                           "type": "string",
                           "description": "The type of trigger."
                         },
@@ -2166,18 +1914,11 @@
                               "description": "URL to the user's avatar on the VCS"
                             }
                           },
-                          "required": [
-                            "login",
-                            "avatar_url"
-                          ],
+                          "required": ["login", "avatar_url"],
                           "description": "The user who triggered the Pipeline."
                         }
                       },
-                      "required": [
-                        "type",
-                        "received_at",
-                        "actor"
-                      ],
+                      "required": ["type", "received_at", "actor"],
                       "description": "A summary of the trigger."
                     },
                     "vcs": {
@@ -2227,10 +1968,7 @@
                               "description": "The body of the commit message."
                             }
                           },
-                          "required": [
-                            "subject",
-                            "body"
-                          ],
+                          "required": ["subject", "body"],
                           "description": "The latest commit in the pipeline."
                         },
                         "review_id": {
@@ -2244,12 +1982,7 @@
                           "example": "https://github.com/CircleCI-Public/api-preview-docs/pull/123"
                         }
                       },
-                      "required": [
-                        "provider_name",
-                        "origin_repository_url",
-                        "target_repository_url",
-                        "revision"
-                      ],
+                      "required": ["provider_name", "origin_repository_url", "target_repository_url", "revision"],
                       "description": "VCS information for the pipeline."
                     },
                     "trigger_parameters": {
@@ -2273,15 +2006,7 @@
                       }
                     }
                   },
-                  "required": [
-                    "id",
-                    "number",
-                    "project_slug",
-                    "created_at",
-                    "errors",
-                    "state",
-                    "trigger"
-                  ],
+                  "required": ["id", "number", "project_slug", "created_at", "errors", "state", "trigger"],
                   "description": "A pipeline response.",
                   "title": "Pipeline"
                 }
@@ -2323,9 +2048,7 @@
       "get": {
         "summary": "getPipelineConfigById",
         "description": "Returns a pipeline's configuration by ID.",
-        "tags": [
-          "Pipeline"
-        ],
+        "tags": ["Pipeline"],
         "operationId": "getPipelineConfigById",
         "responses": {
           "200": {
@@ -2352,10 +2075,7 @@
                       "description": "The compiled setup configuration for the pipeline, after all orb expansion has been performed. If there were errors processing the pipeline's setup workflows, then this field may be empty."
                     }
                   },
-                  "required": [
-                    "source",
-                    "compiled"
-                  ],
+                  "required": ["source", "compiled"],
                   "description": "The configuration strings for the pipeline.",
                   "title": "PipelineConfig"
                 }
@@ -2397,9 +2117,7 @@
       "get": {
         "summary": "listWorkflowsByPipelineId",
         "description": "Returns a paginated list of workflows by pipeline ID.",
-        "tags": [
-          "Pipeline"
-        ],
+        "tags": ["Pipeline"],
         "operationId": "listWorkflowsByPipelineId",
         "responses": {
           "200": {
@@ -2489,9 +2207,7 @@
                             "description": "The date and time the workflow stopped."
                           },
                           "tag": {
-                            "enum": [
-                              "setup"
-                            ],
+                            "enum": ["setup"],
                             "type": "string",
                             "description": "Tag used for the workflow",
                             "example": "setup"
@@ -2520,10 +2236,7 @@
                       "description": "A token to pass as a `page-token` query parameter to return the next page of results."
                     }
                   },
-                  "required": [
-                    "items",
-                    "next_page_token"
-                  ],
+                  "required": ["items", "next_page_token"],
                   "description": "A list of workflows and associated pagination token.",
                   "title": "WorkflowListResponse"
                 }
@@ -2575,9 +2288,7 @@
       "get": {
         "summary": "getProjectBySlug",
         "description": "Retrieves a project by project slug.",
-        "tags": [
-          "Project"
-        ],
+        "tags": ["Project"],
         "operationId": "getProjectBySlug",
         "responses": {
           "200": {
@@ -2611,11 +2322,7 @@
                           "example": "https://github.com/CircleCI-Public/api-preview-docs"
                         },
                         "provider": {
-                          "enum": [
-                            "Bitbucket",
-                            "GitHub",
-                            "GitHub"
-                          ],
+                          "enum": ["Bitbucket", "GitHub", "GitHub"],
                           "type": "string",
                           "description": "The VCS provider"
                         },
@@ -2624,11 +2331,7 @@
                           "example": "master"
                         }
                       },
-                      "required": [
-                        "vcs_url",
-                        "provider",
-                        "default_branch"
-                      ],
+                      "required": ["vcs_url", "provider", "default_branch"],
                       "description": "Information about the VCS that hosts the project source code."
                     },
                     "id": {
@@ -2697,9 +2400,7 @@
       "get": {
         "summary": "listCheckoutKeys",
         "description": "Returns a sequence of checkout keys for `:project`.",
-        "tags": [
-          "Project"
-        ],
+        "tags": ["Project"],
         "operationId": "listCheckoutKeys",
         "responses": {
           "200": {
@@ -2720,10 +2421,7 @@
                             "example": "ssh-rsa ..."
                           },
                           "type": {
-                            "enum": [
-                              "deploy-key",
-                              "github-user-key"
-                            ],
+                            "enum": ["deploy-key", "github-user-key"],
                             "type": "string",
                             "description": "The type of checkout key. This may be either `deploy-key` or `github-user-key`.",
                             "title": "CheckoutKeyType",
@@ -2746,13 +2444,7 @@
                             "example": "2015-09-21T17:29:21.042Z"
                           }
                         },
-                        "required": [
-                          "public-key",
-                          "type",
-                          "fingerprint",
-                          "preferred",
-                          "created-at"
-                        ],
+                        "required": ["public-key", "type", "fingerprint", "preferred", "created-at"],
                         "title": "CheckoutKey"
                       }
                     },
@@ -2762,10 +2454,7 @@
                       "description": "A token to pass as a `page-token` query parameter to return the next page of results."
                     }
                   },
-                  "required": [
-                    "items",
-                    "next_page_token"
-                  ],
+                  "required": ["items", "next_page_token"],
                   "title": "CheckoutKeyListResponse"
                 }
               }
@@ -2804,9 +2493,7 @@
       "post": {
         "summary": "createCheckoutKey",
         "description": "Creates a new checkout key. This API request is only usable with a user API token.",
-        "tags": [
-          "Project"
-        ],
+        "tags": ["Project"],
         "operationId": "createCheckoutKey",
         "responses": {
           "201": {
@@ -2822,10 +2509,7 @@
                       "example": "ssh-rsa ..."
                     },
                     "type": {
-                      "enum": [
-                        "deploy-key",
-                        "github-user-key"
-                      ],
+                      "enum": ["deploy-key", "github-user-key"],
                       "type": "string",
                       "description": "The type of checkout key. This may be either `deploy-key` or `github-user-key`.",
                       "title": "CheckoutKeyType",
@@ -2848,13 +2532,7 @@
                       "example": "2015-09-21T17:29:21.042Z"
                     }
                   },
-                  "required": [
-                    "public-key",
-                    "type",
-                    "fingerprint",
-                    "preferred",
-                    "created-at"
-                  ],
+                  "required": ["public-key", "type", "fingerprint", "preferred", "created-at"],
                   "title": "CheckoutKey"
                 }
               }
@@ -2896,19 +2574,14 @@
                 "type": "object",
                 "properties": {
                   "type": {
-                    "enum": [
-                      "user-key",
-                      "deploy-key"
-                    ],
+                    "enum": ["user-key", "deploy-key"],
                     "type": "string",
                     "description": "The type of checkout key to create. This may be either `deploy-key` or `user-key`.",
                     "title": "CheckoutKeyInputType",
                     "example": "deploy-key"
                   }
                 },
-                "required": [
-                  "type"
-                ],
+                "required": ["type"],
                 "title": "CheckoutKeyInput"
               }
             }
@@ -2920,9 +2593,7 @@
       "delete": {
         "summary": "deleteCheckoutKey",
         "description": "Deletes the checkout key.",
-        "tags": [
-          "Project"
-        ],
+        "tags": ["Project"],
         "operationId": "deleteCheckoutKey",
         "responses": {
           "200": {
@@ -2937,9 +2608,7 @@
                       "description": "A human-readable message"
                     }
                   },
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "description": "message response",
                   "title": "MessageResponse"
                 }
@@ -2989,9 +2658,7 @@
       "get": {
         "summary": "getCheckoutKey",
         "description": "Returns an individual checkout key.",
-        "tags": [
-          "Project"
-        ],
+        "tags": ["Project"],
         "operationId": "getCheckoutKey",
         "responses": {
           "200": {
@@ -3007,10 +2674,7 @@
                       "example": "ssh-rsa ..."
                     },
                     "type": {
-                      "enum": [
-                        "deploy-key",
-                        "github-user-key"
-                      ],
+                      "enum": ["deploy-key", "github-user-key"],
                       "type": "string",
                       "description": "The type of checkout key. This may be either `deploy-key` or `github-user-key`.",
                       "title": "CheckoutKeyType",
@@ -3033,13 +2697,7 @@
                       "example": "2015-09-21T17:29:21.042Z"
                     }
                   },
-                  "required": [
-                    "public-key",
-                    "type",
-                    "fingerprint",
-                    "preferred",
-                    "created-at"
-                  ],
+                  "required": ["public-key", "type", "fingerprint", "preferred", "created-at"],
                   "title": "CheckoutKey"
                 }
               }
@@ -3090,9 +2748,7 @@
       "get": {
         "summary": "listEnvVars",
         "description": "Returns four 'x' characters, in addition to the last four ASCII characters of the value, consistent with the display of environment variable values on the CircleCI website.",
-        "tags": [
-          "Project"
-        ],
+        "tags": ["Project"],
         "operationId": "listEnvVars",
         "responses": {
           "200": {
@@ -3118,10 +2774,7 @@
                             "example": "xxxx1234"
                           }
                         },
-                        "required": [
-                          "name",
-                          "value"
-                        ],
+                        "required": ["name", "value"],
                         "title": "EnvironmentVariablePair"
                       }
                     },
@@ -3131,10 +2784,7 @@
                       "description": "A token to pass as a `page-token` query parameter to return the next page of results."
                     }
                   },
-                  "required": [
-                    "items",
-                    "next_page_token"
-                  ],
+                  "required": ["items", "next_page_token"],
                   "title": "EnvironmentVariableListResponse"
                 }
               }
@@ -3173,9 +2823,7 @@
       "post": {
         "summary": "createEnvVar",
         "description": "Creates a new environment variable.",
-        "tags": [
-          "Project"
-        ],
+        "tags": ["Project"],
         "operationId": "createEnvVar",
         "responses": {
           "201": {
@@ -3196,10 +2844,7 @@
                       "example": "xxxx1234"
                     }
                   },
-                  "required": [
-                    "name",
-                    "value"
-                  ],
+                  "required": ["name", "value"],
                   "title": "EnvironmentVariablePair"
                 }
               }
@@ -3251,10 +2896,7 @@
                     "example": "xxxx1234"
                   }
                 },
-                "required": [
-                  "name",
-                  "value"
-                ],
+                "required": ["name", "value"],
                 "title": "EnvironmentVariablePair"
               }
             }
@@ -3266,9 +2908,7 @@
       "delete": {
         "summary": "deleteEnvVar",
         "description": "Deletes the environment variable named :name.",
-        "tags": [
-          "Project"
-        ],
+        "tags": ["Project"],
         "operationId": "deleteEnvVar",
         "responses": {
           "200": {
@@ -3283,9 +2923,7 @@
                       "description": "A human-readable message"
                     }
                   },
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "description": "message response",
                   "title": "MessageResponse"
                 }
@@ -3335,9 +2973,7 @@
       "get": {
         "summary": "getEnvVar",
         "description": "Returns the masked value of environment variable :name.",
-        "tags": [
-          "Project"
-        ],
+        "tags": ["Project"],
         "operationId": "getEnvVar",
         "responses": {
           "200": {
@@ -3358,10 +2994,7 @@
                       "example": "xxxx1234"
                     }
                   },
-                  "required": [
-                    "name",
-                    "value"
-                  ],
+                  "required": ["name", "value"],
                   "title": "EnvironmentVariablePair"
                 }
               }
@@ -3412,9 +3045,7 @@
       "get": {
         "summary": "getJobDetails",
         "description": "Returns job details.",
-        "tags": [
-          "Job"
-        ],
+        "tags": ["Job"],
         "operationId": "getJobDetails",
         "responses": {
           "200": {
@@ -3451,12 +3082,7 @@
                           "format": "uuid"
                         }
                       },
-                      "required": [
-                        "slug",
-                        "name",
-                        "external_url",
-                        "external_url"
-                      ],
+                      "required": ["slug", "name", "external_url", "external_url"],
                       "description": "Information about a project."
                     },
                     "parallel_runs": {
@@ -3474,10 +3100,7 @@
                             "description": "Status of the parallel run."
                           }
                         },
-                        "required": [
-                          "index",
-                          "status"
-                        ],
+                        "required": ["index", "status"],
                         "description": "Info about a status of the parallel run."
                       },
                       "description": "Info about parallels runs and their status."
@@ -3501,10 +3124,7 @@
                           "example": "build-and-test"
                         }
                       },
-                      "required": [
-                        "id",
-                        "name"
-                      ],
+                      "required": ["id", "name"],
                       "description": "Info about the latest workflow the job was a part of."
                     },
                     "name": {
@@ -3523,10 +3143,7 @@
                           "description": "Resource class name."
                         }
                       },
-                      "required": [
-                        "type",
-                        "resource_class"
-                      ],
+                      "required": ["type", "resource_class"],
                       "description": "Information about executor used for a job."
                     },
                     "parallelism": {
@@ -3569,9 +3186,7 @@
                           "example": "5034460f-c7c4-4c43-9457-de07e2029e7b"
                         }
                       },
-                      "required": [
-                        "id"
-                      ],
+                      "required": ["id"],
                       "description": "Info about a pipeline the job is a part of."
                     },
                     "duration": {
@@ -3603,10 +3218,7 @@
                             "description": "Value describing the reason for message to be added to the job."
                           }
                         },
-                        "required": [
-                          "type",
-                          "message"
-                        ],
+                        "required": ["type", "message"],
                         "description": "Message from CircleCI execution platform."
                       },
                       "description": "Messages from CircleCI execution platform."
@@ -3621,9 +3233,7 @@
                             "description": "The name of the context."
                           }
                         },
-                        "required": [
-                          "name"
-                        ],
+                        "required": ["name"],
                         "description": "Information about the context."
                       },
                       "description": "List of contexts used by the job."
@@ -3636,9 +3246,7 @@
                           "description": "The name of the organization."
                         }
                       },
-                      "required": [
-                        "name"
-                      ],
+                      "required": ["name"],
                       "description": "Information about an organization."
                     },
                     "queued_at": {
@@ -3721,9 +3329,7 @@
       "post": {
         "summary": "cancelJob",
         "description": "Cancel job with a given job number.",
-        "tags": [
-          "Job"
-        ],
+        "tags": ["Job"],
         "operationId": "cancelJob",
         "responses": {
           "202": {
@@ -3737,9 +3343,7 @@
                       "description": "A human-readable message"
                     }
                   },
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "description": "message response",
                   "title": "MessageResponse"
                 }
@@ -3790,9 +3394,7 @@
       "post": {
         "summary": "triggerPipeline",
         "description": "Triggers a new pipeline on the project.",
-        "tags": [
-          "Pipeline"
-        ],
+        "tags": ["Pipeline"],
         "operationId": "triggerPipeline",
         "responses": {
           "201": {
@@ -3809,13 +3411,7 @@
                       "example": "5034460f-c7c4-4c43-9457-de07e2029e7b"
                     },
                     "state": {
-                      "enum": [
-                        "created",
-                        "errored",
-                        "pending",
-                        "setup",
-                        "pending"
-                      ],
+                      "enum": ["created", "errored", "pending", "setup", "pending"],
                       "type": "string",
                       "description": "The current state of the pipeline."
                     },
@@ -3831,12 +3427,7 @@
                       "description": "The date and time the pipeline was created."
                     }
                   },
-                  "required": [
-                    "id",
-                    "state",
-                    "number",
-                    "created_at"
-                  ],
+                  "required": ["id", "state", "number", "created_at"],
                   "description": "A pipeline creation response.",
                   "title": "PipelineCreation"
                 }
@@ -3938,9 +3529,7 @@
       "get": {
         "summary": "listPipelinesForProject",
         "description": "Returns all pipelines for this project.",
-        "tags": [
-          "Pipeline"
-        ],
+        "tags": ["Pipeline"],
         "operationId": "listPipelinesForProject",
         "responses": {
           "200": {
@@ -3976,14 +3565,7 @@
                               "type": "object",
                               "properties": {
                                 "type": {
-                                  "enum": [
-                                    "config",
-                                    "plan",
-                                    "timeout",
-                                    "permission",
-                                    "other",
-                                    "plan"
-                                  ],
+                                  "enum": ["config", "plan", "timeout", "permission", "other", "plan"],
                                   "type": "string",
                                   "description": "The type of error."
                                 },
@@ -3992,10 +3574,7 @@
                                   "description": "A human-readable error message."
                                 }
                               },
-                              "required": [
-                                "type",
-                                "message"
-                              ],
+                              "required": ["type", "message"],
                               "description": "An error with a type and message."
                             },
                             "description": "A sequence of errors that have occurred within the pipeline."
@@ -4017,13 +3596,7 @@
                             "example": "25"
                           },
                           "state": {
-                            "enum": [
-                              "created",
-                              "errored",
-                              "pending",
-                              "setup",
-                              "pending"
-                            ],
+                            "enum": ["created", "errored", "pending", "setup", "pending"],
                             "type": "string",
                             "description": "The current state of the pipeline."
                           },
@@ -4036,12 +3609,7 @@
                             "type": "object",
                             "properties": {
                               "type": {
-                                "enum": [
-                                  "explicit",
-                                  "api",
-                                  "webhook",
-                                  "webhook"
-                                ],
+                                "enum": ["explicit", "api", "webhook", "webhook"],
                                 "type": "string",
                                 "description": "The type of trigger."
                               },
@@ -4064,18 +3632,11 @@
                                     "description": "URL to the user's avatar on the VCS"
                                   }
                                 },
-                                "required": [
-                                  "login",
-                                  "avatar_url"
-                                ],
+                                "required": ["login", "avatar_url"],
                                 "description": "The user who triggered the Pipeline."
                               }
                             },
-                            "required": [
-                              "type",
-                              "received_at",
-                              "actor"
-                            ],
+                            "required": ["type", "received_at", "actor"],
                             "description": "A summary of the trigger."
                           },
                           "vcs": {
@@ -4125,10 +3686,7 @@
                                     "description": "The body of the commit message."
                                   }
                                 },
-                                "required": [
-                                  "subject",
-                                  "body"
-                                ],
+                                "required": ["subject", "body"],
                                 "description": "The latest commit in the pipeline."
                               },
                               "review_id": {
@@ -4142,12 +3700,7 @@
                                 "example": "https://github.com/CircleCI-Public/api-preview-docs/pull/123"
                               }
                             },
-                            "required": [
-                              "provider_name",
-                              "origin_repository_url",
-                              "target_repository_url",
-                              "revision"
-                            ],
+                            "required": ["provider_name", "origin_repository_url", "target_repository_url", "revision"],
                             "description": "VCS information for the pipeline."
                           },
                           "trigger_parameters": {
@@ -4171,15 +3724,7 @@
                             }
                           }
                         },
-                        "required": [
-                          "id",
-                          "number",
-                          "project_slug",
-                          "created_at",
-                          "errors",
-                          "state",
-                          "trigger"
-                        ],
+                        "required": ["id", "number", "project_slug", "created_at", "errors", "state", "trigger"],
                         "description": "A pipeline response.",
                         "title": "Pipeline"
                       }
@@ -4190,10 +3735,7 @@
                       "description": "A token to pass as a `page-token` query parameter to return the next page of results."
                     }
                   },
-                  "required": [
-                    "items",
-                    "next_page_token"
-                  ],
+                  "required": ["items", "next_page_token"],
                   "description": "List of pipelines",
                   "title": "PipelineListResponse"
                 }
@@ -4255,9 +3797,7 @@
       "get": {
         "summary": "listMyPipelines",
         "description": "Returns a sequence of all pipelines for this project triggered by the user.",
-        "tags": [
-          "Pipeline"
-        ],
+        "tags": ["Pipeline"],
         "operationId": "listMyPipelines",
         "responses": {
           "200": {
@@ -4293,14 +3833,7 @@
                               "type": "object",
                               "properties": {
                                 "type": {
-                                  "enum": [
-                                    "config",
-                                    "plan",
-                                    "timeout",
-                                    "permission",
-                                    "other",
-                                    "plan"
-                                  ],
+                                  "enum": ["config", "plan", "timeout", "permission", "other", "plan"],
                                   "type": "string",
                                   "description": "The type of error."
                                 },
@@ -4309,10 +3842,7 @@
                                   "description": "A human-readable error message."
                                 }
                               },
-                              "required": [
-                                "type",
-                                "message"
-                              ],
+                              "required": ["type", "message"],
                               "description": "An error with a type and message."
                             },
                             "description": "A sequence of errors that have occurred within the pipeline."
@@ -4334,13 +3864,7 @@
                             "example": "25"
                           },
                           "state": {
-                            "enum": [
-                              "created",
-                              "errored",
-                              "pending",
-                              "setup",
-                              "pending"
-                            ],
+                            "enum": ["created", "errored", "pending", "setup", "pending"],
                             "type": "string",
                             "description": "The current state of the pipeline."
                           },
@@ -4353,12 +3877,7 @@
                             "type": "object",
                             "properties": {
                               "type": {
-                                "enum": [
-                                  "explicit",
-                                  "api",
-                                  "webhook",
-                                  "webhook"
-                                ],
+                                "enum": ["explicit", "api", "webhook", "webhook"],
                                 "type": "string",
                                 "description": "The type of trigger."
                               },
@@ -4381,18 +3900,11 @@
                                     "description": "URL to the user's avatar on the VCS"
                                   }
                                 },
-                                "required": [
-                                  "login",
-                                  "avatar_url"
-                                ],
+                                "required": ["login", "avatar_url"],
                                 "description": "The user who triggered the Pipeline."
                               }
                             },
-                            "required": [
-                              "type",
-                              "received_at",
-                              "actor"
-                            ],
+                            "required": ["type", "received_at", "actor"],
                             "description": "A summary of the trigger."
                           },
                           "vcs": {
@@ -4442,10 +3954,7 @@
                                     "description": "The body of the commit message."
                                   }
                                 },
-                                "required": [
-                                  "subject",
-                                  "body"
-                                ],
+                                "required": ["subject", "body"],
                                 "description": "The latest commit in the pipeline."
                               },
                               "review_id": {
@@ -4459,12 +3968,7 @@
                                 "example": "https://github.com/CircleCI-Public/api-preview-docs/pull/123"
                               }
                             },
-                            "required": [
-                              "provider_name",
-                              "origin_repository_url",
-                              "target_repository_url",
-                              "revision"
-                            ],
+                            "required": ["provider_name", "origin_repository_url", "target_repository_url", "revision"],
                             "description": "VCS information for the pipeline."
                           },
                           "trigger_parameters": {
@@ -4488,15 +3992,7 @@
                             }
                           }
                         },
-                        "required": [
-                          "id",
-                          "number",
-                          "project_slug",
-                          "created_at",
-                          "errors",
-                          "state",
-                          "trigger"
-                        ],
+                        "required": ["id", "number", "project_slug", "created_at", "errors", "state", "trigger"],
                         "description": "A pipeline response.",
                         "title": "Pipeline"
                       }
@@ -4507,10 +4003,7 @@
                       "description": "A token to pass as a `page-token` query parameter to return the next page of results."
                     }
                   },
-                  "required": [
-                    "items",
-                    "next_page_token"
-                  ],
+                  "required": ["items", "next_page_token"],
                   "description": "List of pipelines",
                   "title": "PipelineListResponse"
                 }
@@ -4562,9 +4055,7 @@
       "get": {
         "summary": "getPipelineByNumber",
         "description": "Returns a pipeline by number.",
-        "tags": [
-          "Pipeline"
-        ],
+        "tags": ["Pipeline"],
         "operationId": "getPipelineByNumber",
         "responses": {
           "200": {
@@ -4594,14 +4085,7 @@
                         "type": "object",
                         "properties": {
                           "type": {
-                            "enum": [
-                              "config",
-                              "plan",
-                              "timeout",
-                              "permission",
-                              "other",
-                              "plan"
-                            ],
+                            "enum": ["config", "plan", "timeout", "permission", "other", "plan"],
                             "type": "string",
                             "description": "The type of error."
                           },
@@ -4610,10 +4094,7 @@
                             "description": "A human-readable error message."
                           }
                         },
-                        "required": [
-                          "type",
-                          "message"
-                        ],
+                        "required": ["type", "message"],
                         "description": "An error with a type and message."
                       },
                       "description": "A sequence of errors that have occurred within the pipeline."
@@ -4635,13 +4116,7 @@
                       "example": "25"
                     },
                     "state": {
-                      "enum": [
-                        "created",
-                        "errored",
-                        "pending",
-                        "setup",
-                        "pending"
-                      ],
+                      "enum": ["created", "errored", "pending", "setup", "pending"],
                       "type": "string",
                       "description": "The current state of the pipeline."
                     },
@@ -4654,12 +4129,7 @@
                       "type": "object",
                       "properties": {
                         "type": {
-                          "enum": [
-                            "explicit",
-                            "api",
-                            "webhook",
-                            "webhook"
-                          ],
+                          "enum": ["explicit", "api", "webhook", "webhook"],
                           "type": "string",
                           "description": "The type of trigger."
                         },
@@ -4682,18 +4152,11 @@
                               "description": "URL to the user's avatar on the VCS"
                             }
                           },
-                          "required": [
-                            "login",
-                            "avatar_url"
-                          ],
+                          "required": ["login", "avatar_url"],
                           "description": "The user who triggered the Pipeline."
                         }
                       },
-                      "required": [
-                        "type",
-                        "received_at",
-                        "actor"
-                      ],
+                      "required": ["type", "received_at", "actor"],
                       "description": "A summary of the trigger."
                     },
                     "vcs": {
@@ -4743,10 +4206,7 @@
                               "description": "The body of the commit message."
                             }
                           },
-                          "required": [
-                            "subject",
-                            "body"
-                          ],
+                          "required": ["subject", "body"],
                           "description": "The latest commit in the pipeline."
                         },
                         "review_id": {
@@ -4760,12 +4220,7 @@
                           "example": "https://github.com/CircleCI-Public/api-preview-docs/pull/123"
                         }
                       },
-                      "required": [
-                        "provider_name",
-                        "origin_repository_url",
-                        "target_repository_url",
-                        "revision"
-                      ],
+                      "required": ["provider_name", "origin_repository_url", "target_repository_url", "revision"],
                       "description": "VCS information for the pipeline."
                     },
                     "trigger_parameters": {
@@ -4789,15 +4244,7 @@
                       }
                     }
                   },
-                  "required": [
-                    "id",
-                    "number",
-                    "project_slug",
-                    "created_at",
-                    "errors",
-                    "state",
-                    "trigger"
-                  ],
+                  "required": ["id", "number", "project_slug", "created_at", "errors", "state", "trigger"],
                   "description": "A pipeline response.",
                   "title": "Pipeline"
                 }
@@ -4847,9 +4294,7 @@
       "get": {
         "summary": "getJobArtifacts",
         "description": "Returns a job's artifacts.",
-        "tags": [
-          "Job"
-        ],
+        "tags": ["Job"],
         "operationId": "getJobArtifacts",
         "responses": {
           "200": {
@@ -4879,11 +4324,7 @@
                             "description": "The URL to download the artifact contents."
                           }
                         },
-                        "required": [
-                          "path",
-                          "node_index",
-                          "url"
-                        ],
+                        "required": ["path", "node_index", "url"],
                         "description": "An artifact",
                         "title": "Artifact"
                       }
@@ -4894,10 +4335,7 @@
                       "description": "A token to pass as a `page-token` query parameter to return the next page of results."
                     }
                   },
-                  "required": [
-                    "items",
-                    "next_page_token"
-                  ],
+                  "required": ["items", "next_page_token"],
                   "title": "ArtifactListResponse"
                 }
               }
@@ -4946,9 +4384,7 @@
       "get": {
         "summary": "getTests",
         "description": "Get test metadata for a build.",
-        "tags": [
-          "Job"
-        ],
+        "tags": ["Job"],
         "operationId": "getTests",
         "responses": {
           "200": {
@@ -5001,15 +4437,7 @@
                             "example": ""
                           }
                         },
-                        "required": [
-                          "message",
-                          "source",
-                          "run_time",
-                          "file",
-                          "result",
-                          "name",
-                          "classname"
-                        ]
+                        "required": ["message", "source", "run_time", "file", "result", "name", "classname"]
                       },
                       "title": "TestsResponse"
                     },
@@ -5019,10 +4447,7 @@
                       "description": "A token to pass as a `page-token` query parameter to return the next page of results."
                     }
                   },
-                  "required": [
-                    "items",
-                    "next_page_token"
-                  ],
+                  "required": ["items", "next_page_token"],
                   "title": "TestsResponse"
                 }
               }
@@ -5071,9 +4496,7 @@
       "get": {
         "summary": "getUser",
         "description": "Provides information about the user with the given ID.",
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "operationId": "getUser",
         "responses": {
           "200": {
@@ -5098,11 +4521,7 @@
                       "description": "The name of the user."
                     }
                   },
-                  "required": [
-                    "id",
-                    "login",
-                    "name"
-                  ],
+                  "required": ["id", "login", "name"],
                   "title": "User"
                 }
               }
@@ -5142,9 +4561,7 @@
       "get": {
         "summary": "getWorkflowById",
         "description": "Returns summary fields of a workflow by ID.",
-        "tags": [
-          "Workflow"
-        ],
+        "tags": ["Workflow"],
         "operationId": "getWorkflowById",
         "responses": {
           "200": {
@@ -5240,9 +4657,7 @@
                       "description": "The date and time the workflow stopped."
                     },
                     "tag": {
-                      "enum": [
-                        "setup"
-                      ],
+                      "enum": ["setup"],
                       "type": "string",
                       "description": "Tag used for the workflow",
                       "example": "setup"
@@ -5300,9 +4715,7 @@
       "post": {
         "summary": "approvePendingApprovalJobById",
         "description": "Approves a pending approval job in a workflow.",
-        "tags": [
-          "Workflow"
-        ],
+        "tags": ["Workflow"],
         "operationId": "approvePendingApprovalJobById",
         "responses": {
           "202": {
@@ -5317,9 +4730,7 @@
                       "description": "A human-readable message"
                     }
                   },
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "description": "message response",
                   "title": "MessageResponse"
                 }
@@ -5371,9 +4782,7 @@
       "post": {
         "summary": "cancelWorkflow",
         "description": "Cancels a running workflow.",
-        "tags": [
-          "Workflow"
-        ],
+        "tags": ["Workflow"],
         "operationId": "cancelWorkflow",
         "responses": {
           "202": {
@@ -5388,9 +4797,7 @@
                       "description": "A human-readable message"
                     }
                   },
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "description": "message response",
                   "title": "MessageResponse"
                 }
@@ -5432,9 +4839,7 @@
       "get": {
         "summary": "listWorkflowJobs",
         "description": "Returns a sequence of jobs for a workflow.",
-        "tags": [
-          "Workflow"
-        ],
+        "tags": ["Workflow"],
         "operationId": "listWorkflowJobs",
         "responses": {
           "200": {
@@ -5522,10 +4927,7 @@
                             "type": "string"
                           },
                           "type": {
-                            "enum": [
-                              "build",
-                              "approval"
-                            ],
+                            "enum": ["build", "approval"],
                             "type": "string",
                             "description": "The type of job."
                           },
@@ -5541,15 +4943,7 @@
                             "description": "The unique ID of the job."
                           }
                         },
-                        "required": [
-                          "id",
-                          "name",
-                          "started_at",
-                          "dependencies",
-                          "project_slug",
-                          "status",
-                          "type"
-                        ],
+                        "required": ["id", "name", "started_at", "dependencies", "project_slug", "status", "type"],
                         "description": "Job",
                         "title": "Job"
                       }
@@ -5560,10 +4954,7 @@
                       "description": "A token to pass as a `page-token` query parameter to return the next page of results."
                     }
                   },
-                  "required": [
-                    "items",
-                    "next_page_token"
-                  ],
+                  "required": ["items", "next_page_token"],
                   "title": "WorkflowJobListResponse"
                 }
               }
@@ -5604,9 +4995,7 @@
       "post": {
         "summary": "rerunWorkflow",
         "description": "Reruns a workflow.",
-        "tags": [
-          "Workflow"
-        ],
+        "tags": ["Workflow"],
         "operationId": "rerunWorkflow",
         "responses": {
           "202": {
@@ -5627,9 +5016,7 @@
                       "example": "0e53027b-521a-4c40-9042-47e72b3c63a3"
                     }
                   },
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "description": "message response",
                   "title": "MessageResponse"
                 }
@@ -5678,10 +5065,7 @@
                       "format": "uuid"
                     },
                     "description": "A list of job IDs to rerun.",
-                    "example": [
-                      "c65b68ef-e73b-4bf2-be9a-7a322a9df150",
-                      "5e957edd-5e8c-4985-9178-5d0d69561822"
-                    ]
+                    "example": ["c65b68ef-e73b-4bf2-be9a-7a322a9df150", "5e957edd-5e8c-4985-9178-5d0d69561822"]
                   },
                   "from_failed": {
                     "type": "boolean",
@@ -5712,9 +5096,7 @@
       "get": {
         "summary": "getProjectWorkflowsPageData",
         "description": "Get summary metrics and trends for a project at workflow and branch level. \n             Workflow runs going back at most 90 days are included in the aggregation window. \n             Trends are only supported upto last 30 days. \n             Metrics are refreshed daily, and thus may not include executions from the last 24 hours. \n             Please note that Insights is not a real time financial reporting tool and should not be used for credit reporting. \n             The most up to date credit information can be found in Plan Overview in the CircleCI UI.",
-        "tags": [
-          "Insights"
-        ],
+        "tags": ["Insights"],
         "operationId": "getProjectWorkflowsPageData",
         "responses": {
           "200": {
@@ -5812,10 +5194,7 @@
                           "description": "Metric trends aggregated across all workflows and branches for a project."
                         }
                       },
-                      "required": [
-                        "metrics",
-                        "trends"
-                      ],
+                      "required": ["metrics", "trends"],
                       "description": "Metrics and trends data aggregated for a given project."
                     },
                     "project_workflow_data": {
@@ -5853,12 +5232,7 @@
                                 "format": "float"
                               }
                             },
-                            "required": [
-                              "total_credits_used",
-                              "p95_duration_secs",
-                              "total_runs",
-                              "success_rate"
-                            ],
+                            "required": ["total_credits_used", "p95_duration_secs", "total_runs", "success_rate"],
                             "description": "Metrics aggregated across a workflow or branchfor a project."
                           },
                           "trends": {
@@ -5885,20 +5259,11 @@
                                 "description": "The trend value for the success rate."
                               }
                             },
-                            "required": [
-                              "total_credits_used",
-                              "p95_duration_secs",
-                              "total_runs",
-                              "success_rate"
-                            ],
+                            "required": ["total_credits_used", "p95_duration_secs", "total_runs", "success_rate"],
                             "description": "Trends aggregated across a workflow or branch for a project."
                           }
                         },
-                        "required": [
-                          "workflow_name",
-                          "metrics",
-                          "trends"
-                        ]
+                        "required": ["workflow_name", "metrics", "trends"]
                       },
                       "description": "A list of metrics and trends data for workflows for a given project."
                     },
@@ -5942,12 +5307,7 @@
                                 "format": "float"
                               }
                             },
-                            "required": [
-                              "total_credits_used",
-                              "p95_duration_secs",
-                              "total_runs",
-                              "success_rate"
-                            ],
+                            "required": ["total_credits_used", "p95_duration_secs", "total_runs", "success_rate"],
                             "description": "Metrics aggregated across a workflow or branchfor a project."
                           },
                           "trends": {
@@ -5974,21 +5334,11 @@
                                 "description": "The trend value for the success rate."
                               }
                             },
-                            "required": [
-                              "total_credits_used",
-                              "p95_duration_secs",
-                              "total_runs",
-                              "success_rate"
-                            ],
+                            "required": ["total_credits_used", "p95_duration_secs", "total_runs", "success_rate"],
                             "description": "Trends aggregated across a workflow or branch for a project."
                           }
                         },
-                        "required": [
-                          "workflow_name",
-                          "branch",
-                          "metrics",
-                          "trends"
-                        ]
+                        "required": ["workflow_name", "branch", "metrics", "trends"]
                       },
                       "description": "A list of metrics and trends data for branches for a given project."
                     },
@@ -6049,13 +5399,7 @@
             "description": "The time window used to calculate summary metrics.",
             "schema": {
               "type": "string",
-              "enum": [
-                "last-7-days",
-                "last-90-days",
-                "last-24-hours",
-                "last-30-days",
-                "last-60-days"
-              ]
+              "enum": ["last-7-days", "last-90-days", "last-24-hours", "last-30-days", "last-60-days"]
             },
             "required": false,
             "example": "last-90-days"
@@ -6087,9 +5431,7 @@
       "get": {
         "summary": "getJobTimeseries",
         "description": "Get timeseries data for all jobs within a workflow.",
-        "tags": [
-          "Insights"
-        ],
+        "tags": ["Insights"],
         "operationId": "getJobTimeseries",
         "responses": {
           "200": {
@@ -6200,13 +5542,7 @@
                                     "description": "The total duration, in seconds, added across a group of runs."
                                   }
                                 },
-                                "required": [
-                                  "min",
-                                  "median",
-                                  "max",
-                                  "p95",
-                                  "total"
-                                ],
+                                "required": ["min", "median", "max", "p95", "total"],
                                 "description": "Metrics relating to the duration of runs for a workflow."
                               }
                             },
@@ -6222,21 +5558,12 @@
                             "description": "Metrics relating to a workflow's runs."
                           }
                         },
-                        "required": [
-                          "name",
-                          "min_started_at",
-                          "max_ended_at",
-                          "timestamp",
-                          "metrics"
-                        ]
+                        "required": ["name", "min_started_at", "max_ended_at", "timestamp", "metrics"]
                       },
                       "description": "Aggregate metrics for a workflow at a time granularity"
                     }
                   },
-                  "required": [
-                    "next_page_token",
-                    "items"
-                  ],
+                  "required": ["next_page_token", "items"],
                   "description": "Project level timeseries metrics response"
                 }
               }
@@ -6295,10 +5622,7 @@
             "description": "The granularity for which to query timeseries data.",
             "schema": {
               "type": "string",
-              "enum": [
-                "daily",
-                "hourly"
-              ]
+              "enum": ["daily", "hourly"]
             },
             "required": false,
             "example": "hourly"
@@ -6332,9 +5656,7 @@
       "get": {
         "summary": "getOrgSummaryData",
         "description": "Gets aggregated summary metrics with trends for the entire org. \n              Also gets aggregated metrics and trends for each project belonging to the org.",
-        "tags": [
-          "Insights"
-        ],
+        "tags": ["Insights"],
         "operationId": "getOrgSummaryData",
         "responses": {
           "200": {
@@ -6426,10 +5748,7 @@
                           "description": "Trends for a single org."
                         }
                       },
-                      "required": [
-                        "metrics",
-                        "trends"
-                      ],
+                      "required": ["metrics", "trends"],
                       "description": "Aggregated metrics for an org, with trends."
                     },
                     "org_project_data": {
@@ -6468,12 +5787,7 @@
                                 "format": "float"
                               }
                             },
-                            "required": [
-                              "total_credits_used",
-                              "total_duration_secs",
-                              "total_runs",
-                              "success_rate"
-                            ],
+                            "required": ["total_credits_used", "total_duration_secs", "total_runs", "success_rate"],
                             "description": "Metrics for a single project, across all branches."
                           },
                           "trends": {
@@ -6500,20 +5814,11 @@
                                 "description": "The trend value for the success rate."
                               }
                             },
-                            "required": [
-                              "total_credits_used",
-                              "total_duration_secs",
-                              "total_runs",
-                              "success_rate"
-                            ],
+                            "required": ["total_credits_used", "total_duration_secs", "total_runs", "success_rate"],
                             "description": "Trends for a single project, across all branches."
                           }
                         },
-                        "required": [
-                          "project_name",
-                          "metrics",
-                          "trends"
-                        ]
+                        "required": ["project_name", "metrics", "trends"]
                       },
                       "description": "Metrics for a single project, across all branches"
                     },
@@ -6525,11 +5830,7 @@
                       "description": "A list of all the project names in the organization."
                     }
                   },
-                  "required": [
-                    "org_data",
-                    "org_project_data",
-                    "all_projects"
-                  ],
+                  "required": ["org_data", "org_project_data", "all_projects"],
                   "description": "Summary metrics with trends for the entire org, and for each project."
                 }
               }
@@ -6568,13 +5869,7 @@
             "description": "The time window used to calculate summary metrics.",
             "schema": {
               "type": "string",
-              "enum": [
-                "last-7-days",
-                "last-90-days",
-                "last-24-hours",
-                "last-30-days",
-                "last-60-days"
-              ]
+              "enum": ["last-7-days", "last-90-days", "last-24-hours", "last-30-days", "last-60-days"]
             },
             "required": false,
             "example": "last-90-days"
@@ -6596,9 +5891,7 @@
       "get": {
         "summary": "getAllInsightsBranches",
         "description": "Get a list of all branches for a specified project. The list will only contain branches currently available within Insights.",
-        "tags": [
-          "Insights"
-        ],
+        "tags": ["Insights"],
         "operationId": "getAllInsightsBranches",
         "responses": {
           "200": {
@@ -6654,9 +5947,7 @@
       "get": {
         "summary": "getFlakyTests",
         "description": "Get a list of flaky tests for a given project. Flaky tests are branch agnostic. \n             A flaky test is a test that passed and faliled in the same commit.",
-        "tags": [
-          "Insights"
-        ],
+        "tags": ["Insights"],
         "operationId": "getFlakyTests",
         "responses": {
           "200": {
@@ -6766,9 +6057,7 @@
                       "description": "A list of flaky tests"
                     }
                   },
-                  "required": [
-                    "flaky-tests"
-                  ],
+                  "required": ["flaky-tests"],
                   "description": "Flaky tests response"
                 }
               }
@@ -6809,9 +6098,7 @@
       "get": {
         "summary": "getWorkflowSummary",
         "description": "Get the metrics and trends for a particular workflow on a single branch or all branches",
-        "tags": [
-          "Insights"
-        ],
+        "tags": ["Insights"],
         "operationId": "getWorkflowSummary",
         "responses": {
           "200": {
@@ -6902,14 +6189,7 @@
                               "description": "The standard deviation, in seconds, among a group of runs."
                             }
                           },
-                          "required": [
-                            "min",
-                            "mean",
-                            "median",
-                            "p95",
-                            "max",
-                            "standard_deviation"
-                          ],
+                          "required": ["min", "mean", "median", "p95", "max", "standard_deviation"],
                           "description": "Metrics relating to the duration of runs for a workflow."
                         },
                         "window_end": {
@@ -7001,11 +6281,7 @@
                       "description": "A list of all the workflow names for a given project."
                     }
                   },
-                  "required": [
-                    "metrics",
-                    "trends",
-                    "workflow_names"
-                  ],
+                  "required": ["metrics", "trends", "workflow_names"],
                   "description": "Workflow level aggregated metrics and trends response"
                 }
               }
@@ -7075,9 +6351,7 @@
       "get": {
         "summary": "getProjectWorkflowTestMetrics",
         "description": "Get test metrics for a project's workflows. Currently tests metrics are calculated based on 10 most recent workflow runs.",
-        "tags": [
-          "Insights"
-        ],
+        "tags": ["Insights"],
         "operationId": "getProjectWorkflowTestMetrics",
         "responses": {
           "200": {
@@ -7286,22 +6560,11 @@
                                 "description": "The total number of tests"
                               }
                             },
-                            "required": [
-                              "error",
-                              "failure",
-                              "skipped",
-                              "success",
-                              "total"
-                            ],
+                            "required": ["error", "failure", "skipped", "success", "total"],
                             "description": "Test counts for a given pipeline number"
                           }
                         },
-                        "required": [
-                          "pipeline_number",
-                          "workflow_id",
-                          "success_rate",
-                          "test_counts"
-                        ]
+                        "required": ["pipeline_number", "workflow_id", "success_rate", "test_counts"]
                       },
                       "description": "Test counts grouped by pipeline number and workflow id"
                     }
@@ -7383,9 +6646,7 @@
       "post": {
         "summary": "continuePipeline",
         "description": "Continue a pipeline from the setup phase.",
-        "tags": [
-          "Pipeline"
-        ],
+        "tags": ["Pipeline"],
         "operationId": "continuePipeline",
         "responses": {
           "200": {
@@ -7400,9 +6661,7 @@
                       "description": "A human-readable message"
                     }
                   },
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "description": "message response",
                   "title": "MessageResponse"
                 }
@@ -7461,10 +6720,7 @@
                     }
                   }
                 },
-                "required": [
-                  "continuation-key",
-                  "configuration"
-                ]
+                "required": ["continuation-key", "configuration"]
               }
             }
           }
@@ -7475,9 +6731,7 @@
       "post": {
         "summary": "createSchedule",
         "description": "Creates a schedule and returns the created schedule.",
-        "tags": [
-          "Schedule"
-        ],
+        "tags": ["Schedule"],
         "operationId": "createSchedule",
         "responses": {
           "201": {
@@ -7514,15 +6768,7 @@
                             "days-of-week": {
                               "type": "array",
                               "items": {
-                                "enum": [
-                                  "TUE",
-                                  "SAT",
-                                  "SUN",
-                                  "MON",
-                                  "THU",
-                                  "WED",
-                                  "FRI"
-                                ],
+                                "enum": ["TUE", "SAT", "SUN", "MON", "THU", "WED", "FRI"],
                                 "type": "string",
                                 "description": "Day in a week, in three letters format"
                               },
@@ -7560,11 +6806,7 @@
                               "description": "Months in which the schedule triggers."
                             }
                           },
-                          "required": [
-                            "per-hour",
-                            "hours-of-day",
-                            "days-of-week"
-                          ]
+                          "required": ["per-hour", "hours-of-day", "days-of-week"]
                         },
                         {
                           "type": "object",
@@ -7595,15 +6837,7 @@
                             "days-of-week": {
                               "type": "array",
                               "items": {
-                                "enum": [
-                                  "TUE",
-                                  "SAT",
-                                  "SUN",
-                                  "MON",
-                                  "THU",
-                                  "WED",
-                                  "FRI"
-                                ],
+                                "enum": ["TUE", "SAT", "SUN", "MON", "THU", "WED", "FRI"],
                                 "type": "string",
                                 "description": "Day in a week, in three letters format"
                               },
@@ -7632,11 +6866,7 @@
                               "description": "Months in which the schedule triggers."
                             }
                           },
-                          "required": [
-                            "per-hour",
-                            "hours-of-day",
-                            "days-of-month"
-                          ]
+                          "required": ["per-hour", "hours-of-day", "days-of-month"]
                         }
                       ],
                       "description": "Timetable that specifies when a schedule triggers."
@@ -7699,11 +6929,7 @@
                           "description": "The name of the user."
                         }
                       },
-                      "required": [
-                        "id",
-                        "login",
-                        "name"
-                      ],
+                      "required": ["id", "login", "name"],
                       "title": "User",
                       "description": "The attribution actor who will run the scheduled pipeline."
                     },
@@ -7790,15 +7016,7 @@
                           "days-of-week": {
                             "type": "array",
                             "items": {
-                              "enum": [
-                                "TUE",
-                                "SAT",
-                                "SUN",
-                                "MON",
-                                "THU",
-                                "WED",
-                                "FRI"
-                              ],
+                              "enum": ["TUE", "SAT", "SUN", "MON", "THU", "WED", "FRI"],
                               "type": "string",
                               "description": "Day in a week, in three letters format"
                             },
@@ -7836,11 +7054,7 @@
                             "description": "Months in which the schedule triggers."
                           }
                         },
-                        "required": [
-                          "per-hour",
-                          "hours-of-day",
-                          "days-of-week"
-                        ]
+                        "required": ["per-hour", "hours-of-day", "days-of-week"]
                       },
                       {
                         "type": "object",
@@ -7871,15 +7085,7 @@
                           "days-of-week": {
                             "type": "array",
                             "items": {
-                              "enum": [
-                                "TUE",
-                                "SAT",
-                                "SUN",
-                                "MON",
-                                "THU",
-                                "WED",
-                                "FRI"
-                              ],
+                              "enum": ["TUE", "SAT", "SUN", "MON", "THU", "WED", "FRI"],
                               "type": "string",
                               "description": "Day in a week, in three letters format"
                             },
@@ -7908,20 +7114,13 @@
                             "description": "Months in which the schedule triggers."
                           }
                         },
-                        "required": [
-                          "per-hour",
-                          "hours-of-day",
-                          "days-of-month"
-                        ]
+                        "required": ["per-hour", "hours-of-day", "days-of-month"]
                       }
                     ],
                     "description": "Timetable that specifies when a schedule triggers."
                   },
                   "attribution-actor": {
-                    "enum": [
-                      "current",
-                      "system"
-                    ],
+                    "enum": ["current", "system"],
                     "type": "string",
                     "description": "The attribution-actor of the scheduled pipeline.",
                     "example": "current"
@@ -7952,12 +7151,7 @@
                     "description": "Description of the schedule."
                   }
                 },
-                "required": [
-                  "name",
-                  "timetable",
-                  "attribution-actor",
-                  "parameters"
-                ],
+                "required": ["name", "timetable", "attribution-actor", "parameters"],
                 "description": "The parameters for a create schedule request",
                 "title": "CreateScheduleParameters"
               }
@@ -7968,9 +7162,7 @@
       "get": {
         "summary": "listSchedulesForProject",
         "description": "Returns all schedules for this project.",
-        "tags": [
-          "Schedule"
-        ],
+        "tags": ["Schedule"],
         "operationId": "listSchedulesForProject",
         "responses": {
           "200": {
@@ -8012,15 +7204,7 @@
                                   "days-of-week": {
                                     "type": "array",
                                     "items": {
-                                      "enum": [
-                                        "TUE",
-                                        "SAT",
-                                        "SUN",
-                                        "MON",
-                                        "THU",
-                                        "WED",
-                                        "FRI"
-                                      ],
+                                      "enum": ["TUE", "SAT", "SUN", "MON", "THU", "WED", "FRI"],
                                       "type": "string",
                                       "description": "Day in a week, in three letters format"
                                     },
@@ -8058,11 +7242,7 @@
                                     "description": "Months in which the schedule triggers."
                                   }
                                 },
-                                "required": [
-                                  "per-hour",
-                                  "hours-of-day",
-                                  "days-of-week"
-                                ]
+                                "required": ["per-hour", "hours-of-day", "days-of-week"]
                               },
                               {
                                 "type": "object",
@@ -8093,15 +7273,7 @@
                                   "days-of-week": {
                                     "type": "array",
                                     "items": {
-                                      "enum": [
-                                        "TUE",
-                                        "SAT",
-                                        "SUN",
-                                        "MON",
-                                        "THU",
-                                        "WED",
-                                        "FRI"
-                                      ],
+                                      "enum": ["TUE", "SAT", "SUN", "MON", "THU", "WED", "FRI"],
                                       "type": "string",
                                       "description": "Day in a week, in three letters format"
                                     },
@@ -8130,11 +7302,7 @@
                                     "description": "Months in which the schedule triggers."
                                   }
                                 },
-                                "required": [
-                                  "per-hour",
-                                  "hours-of-day",
-                                  "days-of-month"
-                                ]
+                                "required": ["per-hour", "hours-of-day", "days-of-month"]
                               }
                             ],
                             "description": "Timetable that specifies when a schedule triggers."
@@ -8197,11 +7365,7 @@
                                 "description": "The name of the user."
                               }
                             },
-                            "required": [
-                              "id",
-                              "login",
-                              "name"
-                            ],
+                            "required": ["id", "login", "name"],
                             "title": "User",
                             "description": "The attribution actor who will run the scheduled pipeline."
                           },
@@ -8230,10 +7394,7 @@
                       "description": "A token to pass as a `page-token` query parameter to return the next page of results."
                     }
                   },
-                  "required": [
-                    "items",
-                    "next_page_token"
-                  ],
+                  "required": ["items", "next_page_token"],
                   "description": "A sequence of schedules"
                 }
               }
@@ -8284,9 +7445,7 @@
       "get": {
         "summary": "getScheduleById",
         "description": "Get a schedule by id.",
-        "tags": [
-          "Schedule"
-        ],
+        "tags": ["Schedule"],
         "operationId": "getScheduleById",
         "responses": {
           "200": {
@@ -8323,15 +7482,7 @@
                             "days-of-week": {
                               "type": "array",
                               "items": {
-                                "enum": [
-                                  "TUE",
-                                  "SAT",
-                                  "SUN",
-                                  "MON",
-                                  "THU",
-                                  "WED",
-                                  "FRI"
-                                ],
+                                "enum": ["TUE", "SAT", "SUN", "MON", "THU", "WED", "FRI"],
                                 "type": "string",
                                 "description": "Day in a week, in three letters format"
                               },
@@ -8369,11 +7520,7 @@
                               "description": "Months in which the schedule triggers."
                             }
                           },
-                          "required": [
-                            "per-hour",
-                            "hours-of-day",
-                            "days-of-week"
-                          ]
+                          "required": ["per-hour", "hours-of-day", "days-of-week"]
                         },
                         {
                           "type": "object",
@@ -8404,15 +7551,7 @@
                             "days-of-week": {
                               "type": "array",
                               "items": {
-                                "enum": [
-                                  "TUE",
-                                  "SAT",
-                                  "SUN",
-                                  "MON",
-                                  "THU",
-                                  "WED",
-                                  "FRI"
-                                ],
+                                "enum": ["TUE", "SAT", "SUN", "MON", "THU", "WED", "FRI"],
                                 "type": "string",
                                 "description": "Day in a week, in three letters format"
                               },
@@ -8441,11 +7580,7 @@
                               "description": "Months in which the schedule triggers."
                             }
                           },
-                          "required": [
-                            "per-hour",
-                            "hours-of-day",
-                            "days-of-month"
-                          ]
+                          "required": ["per-hour", "hours-of-day", "days-of-month"]
                         }
                       ],
                       "description": "Timetable that specifies when a schedule triggers."
@@ -8508,11 +7643,7 @@
                           "description": "The name of the user."
                         }
                       },
-                      "required": [
-                        "id",
-                        "login",
-                        "name"
-                      ],
+                      "required": ["id", "login", "name"],
                       "title": "User",
                       "description": "The attribution actor who will run the scheduled pipeline."
                     },
@@ -8570,9 +7701,7 @@
       "delete": {
         "summary": "deleteScheduleById",
         "description": "Deletes the schedule by id.",
-        "tags": [
-          "Schedule"
-        ],
+        "tags": ["Schedule"],
         "operationId": "deleteScheduleById",
         "responses": {
           "200": {
@@ -8587,9 +7716,7 @@
                       "description": "A human-readable message"
                     }
                   },
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "description": "message response",
                   "title": "MessageResponse"
                 }
@@ -8628,9 +7755,7 @@
       "patch": {
         "summary": "updateSchedule",
         "description": "Updates a schedule and returns the updated schedule.",
-        "tags": [
-          "Schedule"
-        ],
+        "tags": ["Schedule"],
         "operationId": "updateSchedule",
         "responses": {
           "200": {
@@ -8667,15 +7792,7 @@
                             "days-of-week": {
                               "type": "array",
                               "items": {
-                                "enum": [
-                                  "TUE",
-                                  "SAT",
-                                  "SUN",
-                                  "MON",
-                                  "THU",
-                                  "WED",
-                                  "FRI"
-                                ],
+                                "enum": ["TUE", "SAT", "SUN", "MON", "THU", "WED", "FRI"],
                                 "type": "string",
                                 "description": "Day in a week, in three letters format"
                               },
@@ -8713,11 +7830,7 @@
                               "description": "Months in which the schedule triggers."
                             }
                           },
-                          "required": [
-                            "per-hour",
-                            "hours-of-day",
-                            "days-of-week"
-                          ]
+                          "required": ["per-hour", "hours-of-day", "days-of-week"]
                         },
                         {
                           "type": "object",
@@ -8748,15 +7861,7 @@
                             "days-of-week": {
                               "type": "array",
                               "items": {
-                                "enum": [
-                                  "TUE",
-                                  "SAT",
-                                  "SUN",
-                                  "MON",
-                                  "THU",
-                                  "WED",
-                                  "FRI"
-                                ],
+                                "enum": ["TUE", "SAT", "SUN", "MON", "THU", "WED", "FRI"],
                                 "type": "string",
                                 "description": "Day in a week, in three letters format"
                               },
@@ -8785,11 +7890,7 @@
                               "description": "Months in which the schedule triggers."
                             }
                           },
-                          "required": [
-                            "per-hour",
-                            "hours-of-day",
-                            "days-of-month"
-                          ]
+                          "required": ["per-hour", "hours-of-day", "days-of-month"]
                         }
                       ],
                       "description": "Timetable that specifies when a schedule triggers."
@@ -8852,11 +7953,7 @@
                           "description": "The name of the user."
                         }
                       },
-                      "required": [
-                        "id",
-                        "login",
-                        "name"
-                      ],
+                      "required": ["id", "login", "name"],
                       "title": "User",
                       "description": "The attribution actor who will run the scheduled pipeline."
                     },
@@ -8944,15 +8041,7 @@
                       "days-of-week": {
                         "type": "array",
                         "items": {
-                          "enum": [
-                            "TUE",
-                            "SAT",
-                            "SUN",
-                            "MON",
-                            "THU",
-                            "WED",
-                            "FRI"
-                          ],
+                          "enum": ["TUE", "SAT", "SUN", "MON", "THU", "WED", "FRI"],
                           "type": "string",
                           "description": "Day in a week, in three letters format"
                         },
@@ -8970,20 +8059,7 @@
                       "months": {
                         "type": "array",
                         "items": {
-                          "enum": [
-                            "MAR",
-                            "NOV",
-                            "DEC",
-                            "JUN",
-                            "MAY",
-                            "OCT",
-                            "FEB",
-                            "APR",
-                            "SEP",
-                            "AUG",
-                            "JAN",
-                            "JUL"
-                          ],
+                          "enum": ["MAR", "NOV", "DEC", "JUN", "MAY", "OCT", "FEB", "APR", "SEP", "AUG", "JAN", "JUL"],
                           "type": "string",
                           "description": "Month, in three letters format."
                         },
@@ -8993,10 +8069,7 @@
                     "description": "Timetable that specifies when a schedule triggers."
                   },
                   "attribution-actor": {
-                    "enum": [
-                      "current",
-                      "system"
-                    ],
+                    "enum": ["current", "system"],
                     "type": "string",
                     "description": "The attribution-actor of the scheduled pipeline.",
                     "example": "current"
@@ -9035,9 +8108,7 @@
       "get": {
         "summary": "getWebhooks",
         "description": "Get a list of webhook that match the given scope-type and scope-id",
-        "tags": [
-          "Webhook"
-        ],
+        "tags": ["Webhook"],
         "operationId": "getWebhooks",
         "responses": {
           "200": {
@@ -9098,19 +8169,13 @@
                                 "description": "Type of the scope being used"
                               }
                             },
-                            "required": [
-                              "id",
-                              "type"
-                            ],
+                            "required": ["id", "type"],
                             "description": "The scope in which the relevant events that will trigger webhooks"
                           },
                           "events": {
                             "type": "array",
                             "items": {
-                              "enum": [
-                                "workflow-completed",
-                                "job-completed"
-                              ],
+                              "enum": ["workflow-completed", "job-completed"],
                               "type": "string"
                             },
                             "description": "Events that will trigger the webhook"
@@ -9135,10 +8200,7 @@
                       "description": "A token to pass as a `page-token` query parameter to return the next page of results."
                     }
                   },
-                  "required": [
-                    "items",
-                    "next_page_token"
-                  ],
+                  "required": ["items", "next_page_token"],
                   "description": "A list of webhooks"
                 }
               }
@@ -9177,9 +8239,7 @@
             "description": "Type of the scope being used",
             "schema": {
               "type": "string",
-              "enum": [
-                "project"
-              ]
+              "enum": ["project"]
             },
             "required": true
           }
@@ -9187,9 +8247,7 @@
       },
       "post": {
         "summary": "createWebhook",
-        "tags": [
-          "Webhook"
-        ],
+        "tags": ["Webhook"],
         "operationId": "createWebhook",
         "responses": {
           "201": {
@@ -9245,19 +8303,13 @@
                           "description": "Type of the scope being used"
                         }
                       },
-                      "required": [
-                        "id",
-                        "type"
-                      ],
+                      "required": ["id", "type"],
                       "description": "The scope in which the relevant events that will trigger webhooks"
                     },
                     "events": {
                       "type": "array",
                       "items": {
-                        "enum": [
-                          "workflow-completed",
-                          "job-completed"
-                        ],
+                        "enum": ["workflow-completed", "job-completed"],
                         "type": "string"
                       },
                       "description": "Events that will trigger the webhook"
@@ -9308,10 +8360,7 @@
                   "events": {
                     "type": "array",
                     "items": {
-                      "enum": [
-                        "workflow-completed",
-                        "job-completed"
-                      ],
+                      "enum": ["workflow-completed", "job-completed"],
                       "type": "string"
                     },
                     "description": "Events that will trigger the webhook"
@@ -9337,28 +8386,16 @@
                         "description": "ID of the scope being used (at the moment, only project ID is supported)"
                       },
                       "type": {
-                        "enum": [
-                          "project"
-                        ],
+                        "enum": ["project"],
                         "type": "string",
                         "description": "Type of the scope being used"
                       }
                     },
-                    "required": [
-                      "id",
-                      "type"
-                    ],
+                    "required": ["id", "type"],
                     "description": "The scope in which the relevant events that will trigger webhooks"
                   }
                 },
-                "required": [
-                  "name",
-                  "events",
-                  "url",
-                  "verify-tls",
-                  "signing-secret",
-                  "scope"
-                ],
+                "required": ["name", "events", "url", "verify-tls", "signing-secret", "scope"],
                 "description": "The parameters for a create webhook request"
               }
             }
@@ -9370,9 +8407,7 @@
     "/webhook/{webhook-id}": {
       "delete": {
         "summary": "deleteWebhook",
-        "tags": [
-          "Webhook"
-        ],
+        "tags": ["Webhook"],
         "operationId": "deleteWebhook",
         "responses": {
           "200": {
@@ -9387,9 +8422,7 @@
                       "description": "A human-readable message"
                     }
                   },
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "description": "message response",
                   "title": "MessageResponse"
                 }
@@ -9428,9 +8461,7 @@
       },
       "put": {
         "summary": "updateWebhook",
-        "tags": [
-          "Webhook"
-        ],
+        "tags": ["Webhook"],
         "operationId": "updateWebhook",
         "responses": {
           "200": {
@@ -9486,19 +8517,13 @@
                           "description": "Type of the scope being used"
                         }
                       },
-                      "required": [
-                        "id",
-                        "type"
-                      ],
+                      "required": ["id", "type"],
                       "description": "The scope in which the relevant events that will trigger webhooks"
                     },
                     "events": {
                       "type": "array",
                       "items": {
-                        "enum": [
-                          "workflow-completed",
-                          "job-completed"
-                        ],
+                        "enum": ["workflow-completed", "job-completed"],
                         "type": "string"
                       },
                       "description": "Events that will trigger the webhook"
@@ -9561,10 +8586,7 @@
                   "events": {
                     "type": "array",
                     "items": {
-                      "enum": [
-                        "workflow-completed",
-                        "job-completed"
-                      ],
+                      "enum": ["workflow-completed", "job-completed"],
                       "type": "string"
                     },
                     "description": "Events that will trigger the webhook"
@@ -9592,9 +8614,7 @@
       "get": {
         "summary": "getWebhookById",
         "description": "Get a webhook by id.",
-        "tags": [
-          "Webhook"
-        ],
+        "tags": ["Webhook"],
         "operationId": "getWebhookById",
         "responses": {
           "200": {
@@ -9650,19 +8670,13 @@
                           "description": "Type of the scope being used"
                         }
                       },
-                      "required": [
-                        "id",
-                        "type"
-                      ],
+                      "required": ["id", "type"],
                       "description": "The scope in which the relevant events that will trigger webhooks"
                     },
                     "events": {
                       "type": "array",
                       "items": {
-                        "enum": [
-                          "workflow-completed",
-                          "job-completed"
-                        ],
+                        "enum": ["workflow-completed", "job-completed"],
                         "type": "string"
                       },
                       "description": "Events that will trigger the webhook"

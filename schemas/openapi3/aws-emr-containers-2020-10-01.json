@@ -243,14 +243,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "type",
-                  "releaseLabel",
-                  "executionRoleArn",
-                  "certificateArn",
-                  "clientToken"
-                ],
+                "required": ["name", "type", "releaseLabel", "executionRoleArn", "certificateArn", "clientToken"],
                 "properties": {
                   "name": {
                     "description": "The name of the managed endpoint.",
@@ -531,11 +524,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "containerProvider",
-                  "clientToken"
-                ],
+                "required": ["name", "containerProvider", "clientToken"],
                 "properties": {
                   "name": {
                     "description": "The specified name of the virtual cluster.",
@@ -681,9 +670,7 @@
             "description": "The container provider type of the virtual cluster. EKS is the only supported type as of now.",
             "schema": {
               "type": "string",
-              "enum": [
-                "EKS"
-              ]
+              "enum": ["EKS"]
             }
           },
           {
@@ -1248,12 +1235,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "clientToken",
-                  "executionRoleArn",
-                  "releaseLabel",
-                  "jobDriver"
-                ],
+                "required": ["clientToken", "executionRoleArn", "releaseLabel", "jobDriver"],
                 "properties": {
                   "name": {
                     "description": "The name of the job run.",
@@ -1492,9 +1474,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "tags"
-                ],
+                "required": ["tags"],
                 "properties": {
                   "tags": {
                     "description": "The tags assigned to resources.",
@@ -1694,10 +1674,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -1708,10 +1685,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -1952,9 +1926,7 @@
       },
       "ContainerProviderType": {
         "type": "string",
-        "enum": [
-          "EKS"
-        ]
+        "enum": ["EKS"]
       },
       "ClusterId": {
         "type": "string",
@@ -2090,15 +2062,7 @@
       },
       "JobRunState": {
         "type": "string",
-        "enum": [
-          "PENDING",
-          "SUBMITTED",
-          "RUNNING",
-          "FAILED",
-          "CANCELLED",
-          "CANCEL_PENDING",
-          "COMPLETED"
-        ]
+        "enum": ["PENDING", "SUBMITTED", "RUNNING", "FAILED", "CANCELLED", "CANCEL_PENDING", "COMPLETED"]
       },
       "ListManagedEndpointsResponse": {
         "type": "object",
@@ -2133,13 +2097,7 @@
       },
       "EndpointState": {
         "type": "string",
-        "enum": [
-          "CREATING",
-          "ACTIVE",
-          "TERMINATING",
-          "TERMINATED",
-          "TERMINATED_WITH_ERRORS"
-        ]
+        "enum": ["CREATING", "ACTIVE", "TERMINATING", "TERMINATED", "TERMINATED_WITH_ERRORS"]
       },
       "ListTagsForResourceResponse": {
         "type": "object",
@@ -2183,12 +2141,7 @@
       },
       "VirtualClusterState": {
         "type": "string",
-        "enum": [
-          "RUNNING",
-          "TERMINATING",
-          "TERMINATED",
-          "ARRESTED"
-        ]
+        "enum": ["RUNNING", "TERMINATING", "TERMINATED", "ARRESTED"]
       },
       "StartJobRunResponse": {
         "type": "object",
@@ -2237,9 +2190,7 @@
       },
       "SparkSubmitJobDriver": {
         "type": "object",
-        "required": [
-          "entryPoint"
-        ],
+        "required": ["entryPoint"],
         "properties": {
           "entryPoint": {
             "allOf": [
@@ -2320,9 +2271,7 @@
       },
       "CloudWatchMonitoringConfiguration": {
         "type": "object",
-        "required": [
-          "logGroupName"
-        ],
+        "required": ["logGroupName"],
         "properties": {
           "logGroupName": {
             "allOf": [
@@ -2355,9 +2304,7 @@
       },
       "Configuration": {
         "type": "object",
-        "required": [
-          "classification"
-        ],
+        "required": ["classification"],
         "properties": {
           "classification": {
             "allOf": [
@@ -2429,10 +2376,7 @@
       },
       "ContainerProvider": {
         "type": "object",
-        "required": [
-          "type",
-          "id"
-        ],
+        "required": ["type", "id"],
         "properties": {
           "type": {
             "allOf": [
@@ -2947,12 +2891,7 @@
       },
       "FailureReason": {
         "type": "string",
-        "enum": [
-          "INTERNAL_ERROR",
-          "USER_ERROR",
-          "VALIDATION_ERROR",
-          "CLUSTER_UNAVAILABLE"
-        ]
+        "enum": ["INTERNAL_ERROR", "USER_ERROR", "VALIDATION_ERROR", "CLUSTER_UNAVAILABLE"]
       },
       "Endpoints": {
         "type": "array",
@@ -3028,16 +2967,11 @@
       },
       "PersistentAppUI": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "DISABLED"
-        ]
+        "enum": ["ENABLED", "DISABLED"]
       },
       "S3MonitoringConfiguration": {
         "type": "object",
-        "required": [
-          "logUri"
-        ],
+        "required": ["logUri"],
         "properties": {
           "logUri": {
             "allOf": [

@@ -5,9 +5,7 @@
     "x-release": "v4",
     "title": "AWS IoT Analytics",
     "description": "AWS IoT Analytics allows you to collect large amounts of device data, process messages, and store them. You can then query the data and run sophisticated analytics on it. AWS IoT Analytics enables advanced data exploration through integration with Jupyter Notebooks and data visualization through integration with Amazon QuickSight. Traditional analytics and business intelligence tools are designed to process structured data. IoT data often comes from devices that record noisy processes (such as temperature, motion, or sound). As a result the data from these devices can have significant gaps, corrupted messages, and false readings that must be cleaned up before analysis can occur. Also, IoT data is often only meaningful in the context of other data from external sources.  AWS IoT Analytics automates the steps required to analyze data from IoT devices. AWS IoT Analytics filters, transforms, and enriches IoT data before storing it in a time-series data store for analysis. You can set up the service to collect only the data you need from your devices, apply mathematical transforms to process the data, and enrich the data with device-specific metadata such as device type and location before storing it. Then, you can analyze your data by running queries using the built-in SQL query engine, or perform more complex analytics and machine learning inference. AWS IoT Analytics includes pre-built models for common IoT use cases so you can answer questions like which devices are about to fail or which customers are at risk of abandoning their wearable devices.",
-    "x-categories": [
-      "iot"
-    ],
+    "x-categories": ["iot"],
     "x-logo": {
       "url": "/logos/aws/Arch_AWS-IoT-Analytics_64.svg"
     },
@@ -38,9 +36,7 @@
     "x-apiClientRegistration": {
       "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
     },
-    "x-apisguru-categories": [
-      "cloud"
-    ],
+    "x-apisguru-categories": ["cloud"],
     "x-preferred": true
   },
   "externalDocs": {
@@ -123,10 +119,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -137,10 +130,7 @@
       "variables": {
         "region": {
           "description": "The AWS region",
-          "enum": [
-            "cn-north-1",
-            "cn-northwest-1"
-          ],
+          "enum": ["cn-north-1", "cn-northwest-1"],
           "default": "cn-north-1"
         }
       },
@@ -222,10 +212,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "channelName",
-                  "messages"
-                ],
+                "required": ["channelName", "messages"],
                 "properties": {
                   "channelName": {
                     "description": "The name of the channel where the messages are sent.",
@@ -470,9 +457,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "channelName"
-                ],
+                "required": ["channelName"],
                 "properties": {
                   "channelName": {
                     "description": "The name of the channel.",
@@ -735,10 +720,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "datasetName",
-                  "actions"
-                ],
+                "required": ["datasetName", "actions"],
                 "properties": {
                   "datasetName": {
                     "description": "The name of the data set.",
@@ -1338,9 +1320,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "datastoreName"
-                ],
+                "required": ["datastoreName"],
                 "properties": {
                   "datastoreName": {
                     "description": "The name of the data store.",
@@ -1655,10 +1635,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "pipelineName",
-                  "pipelineActivities"
-                ],
+                "required": ["pipelineName", "pipelineActivities"],
                 "properties": {
                   "pipelineName": {
                     "description": "The name of the pipeline.",
@@ -2379,9 +2356,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "actions"
-                ],
+                "required": ["actions"],
                 "properties": {
                   "actions": {
                     "description": "A list of \"DatasetAction\" objects.",
@@ -3109,9 +3084,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "pipelineActivities"
-                ],
+                "required": ["pipelineActivities"],
                 "properties": {
                   "pipelineActivities": {
                     "description": "<p>A list of \"PipelineActivity\" objects. Activities perform transformations on your messages, such as removing, renaming or adding message attributes; filtering messages based on attribute values; invoking your Lambda functions on messages for advanced processing; or performing mathematical transformations to normalize device data.</p> <p>The list can be 2-25 <b>PipelineActivity</b> objects and must contain both a <code>channel</code> and a <code>datastore</code> activity. Each entry in the list must contain only one activity, for example:</p> <p> <code>pipelineActivities = [ { \"channel\": { ... } }, { \"lambda\": { ... } }, ... ]</code> </p>",
@@ -3277,9 +3250,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "loggingOptions"
-                ],
+                "required": ["loggingOptions"],
                 "properties": {
                   "loggingOptions": {
                     "description": "Information about logging options.",
@@ -3679,9 +3650,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "tags"
-                ],
+                "required": ["tags"],
                 "properties": {
                   "tags": {
                     "description": "The new or modified tags for the resource.",
@@ -3763,10 +3732,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "pipelineActivity",
-                  "payloads"
-                ],
+                "required": ["pipelineActivity", "payloads"],
                 "properties": {
                   "pipelineActivity": {
                     "description": "An activity that performs a transformation on a message.",
@@ -4428,10 +4394,7 @@
       },
       "Message": {
         "type": "object",
-        "required": [
-          "messageId",
-          "payload"
-        ],
+        "required": ["messageId", "payload"],
         "properties": {
           "messageId": {
             "allOf": [
@@ -4507,10 +4470,7 @@
       },
       "CustomerManagedChannelS3Storage": {
         "type": "object",
-        "required": [
-          "bucket",
-          "roleArn"
-        ],
+        "required": ["bucket", "roleArn"],
         "properties": {
           "bucket": {
             "allOf": [
@@ -4554,10 +4514,7 @@
       },
       "Tag": {
         "type": "object",
-        "required": [
-          "key",
-          "value"
-        ],
+        "required": ["key", "value"],
         "properties": {
           "key": {
             "allOf": [
@@ -4683,9 +4640,7 @@
       },
       "DatasetContentDeliveryRule": {
         "type": "object",
-        "required": [
-          "destination"
-        ],
+        "required": ["destination"],
         "properties": {
           "entryName": {
             "allOf": [
@@ -4775,10 +4730,7 @@
       },
       "CustomerManagedDatastoreS3Storage": {
         "type": "object",
-        "required": [
-          "bucket",
-          "roleArn"
-        ],
+        "required": ["bucket", "roleArn"],
         "properties": {
           "bucket": {
             "allOf": [
@@ -5221,9 +5173,7 @@
       },
       "LoggingLevel": {
         "type": "string",
-        "enum": [
-          "ERROR"
-        ]
+        "enum": ["ERROR"]
       },
       "LoggingEnabled": {
         "type": "boolean"
@@ -5255,10 +5205,7 @@
       },
       "ChannelActivity": {
         "type": "object",
-        "required": [
-          "name",
-          "channelName"
-        ],
+        "required": ["name", "channelName"],
         "properties": {
           "name": {
             "allOf": [
@@ -5295,11 +5242,7 @@
       },
       "LambdaActivity": {
         "type": "object",
-        "required": [
-          "name",
-          "lambdaName",
-          "batchSize"
-        ],
+        "required": ["name", "lambdaName", "batchSize"],
         "properties": {
           "name": {
             "allOf": [
@@ -5346,10 +5289,7 @@
       },
       "DatastoreActivity": {
         "type": "object",
-        "required": [
-          "name",
-          "datastoreName"
-        ],
+        "required": ["name", "datastoreName"],
         "properties": {
           "name": {
             "allOf": [
@@ -5376,10 +5316,7 @@
       },
       "AddAttributesActivity": {
         "type": "object",
-        "required": [
-          "name",
-          "attributes"
-        ],
+        "required": ["name", "attributes"],
         "properties": {
           "name": {
             "allOf": [
@@ -5416,10 +5353,7 @@
       },
       "RemoveAttributesActivity": {
         "type": "object",
-        "required": [
-          "name",
-          "attributes"
-        ],
+        "required": ["name", "attributes"],
         "properties": {
           "name": {
             "allOf": [
@@ -5456,10 +5390,7 @@
       },
       "SelectAttributesActivity": {
         "type": "object",
-        "required": [
-          "name",
-          "attributes"
-        ],
+        "required": ["name", "attributes"],
         "properties": {
           "name": {
             "allOf": [
@@ -5496,10 +5427,7 @@
       },
       "FilterActivity": {
         "type": "object",
-        "required": [
-          "name",
-          "filter"
-        ],
+        "required": ["name", "filter"],
         "properties": {
           "name": {
             "allOf": [
@@ -5536,11 +5464,7 @@
       },
       "MathActivity": {
         "type": "object",
-        "required": [
-          "name",
-          "attribute",
-          "math"
-        ],
+        "required": ["name", "attribute", "math"],
         "properties": {
           "name": {
             "allOf": [
@@ -5587,12 +5511,7 @@
       },
       "DeviceRegistryEnrichActivity": {
         "type": "object",
-        "required": [
-          "name",
-          "attribute",
-          "thingName",
-          "roleArn"
-        ],
+        "required": ["name", "attribute", "thingName", "roleArn"],
         "properties": {
           "name": {
             "allOf": [
@@ -5649,12 +5568,7 @@
       },
       "DeviceShadowEnrichActivity": {
         "type": "object",
-        "required": [
-          "name",
-          "attribute",
-          "thingName",
-          "roleArn"
-        ],
+        "required": ["name", "attribute", "thingName", "roleArn"],
         "properties": {
           "name": {
             "allOf": [
@@ -5898,11 +5812,7 @@
       },
       "ChannelStatus": {
         "type": "string",
-        "enum": [
-          "CREATING",
-          "ACTIVE",
-          "DELETING"
-        ]
+        "enum": ["CREATING", "ACTIVE", "DELETING"]
       },
       "RetentionPeriod": {
         "type": "object",
@@ -6203,10 +6113,7 @@
       },
       "ComputeType": {
         "type": "string",
-        "enum": [
-          "ACU_1",
-          "ACU_2"
-        ]
+        "enum": ["ACU_1", "ACU_2"]
       },
       "Image": {
         "type": "string",
@@ -6214,10 +6121,7 @@
       },
       "ResourceConfiguration": {
         "type": "object",
-        "required": [
-          "computeType",
-          "volumeSizeInGB"
-        ],
+        "required": ["computeType", "volumeSizeInGB"],
         "properties": {
           "computeType": {
             "allOf": [
@@ -6252,11 +6156,7 @@
       },
       "ContainerDatasetAction": {
         "type": "object",
-        "required": [
-          "image",
-          "executionRoleArn",
-          "resourceConfiguration"
-        ],
+        "required": ["image", "executionRoleArn", "resourceConfiguration"],
         "properties": {
           "image": {
             "allOf": [
@@ -6473,11 +6373,7 @@
       },
       "DatasetStatus": {
         "type": "string",
-        "enum": [
-          "CREATING",
-          "ACTIVE",
-          "DELETING"
-        ]
+        "enum": ["CREATING", "ACTIVE", "DELETING"]
       },
       "Dataset": {
         "type": "object",
@@ -6603,9 +6499,7 @@
       },
       "SqlQueryDatasetAction": {
         "type": "object",
-        "required": [
-          "sqlQuery"
-        ],
+        "required": ["sqlQuery"],
         "properties": {
           "sqlQuery": {
             "allOf": [
@@ -6666,17 +6560,11 @@
       },
       "DatasetActionType": {
         "type": "string",
-        "enum": [
-          "QUERY",
-          "CONTAINER"
-        ]
+        "enum": ["QUERY", "CONTAINER"]
       },
       "IotEventsDestinationConfiguration": {
         "type": "object",
-        "required": [
-          "inputName",
-          "roleArn"
-        ],
+        "required": ["inputName", "roleArn"],
         "properties": {
           "inputName": {
             "allOf": [
@@ -6703,11 +6591,7 @@
       },
       "S3DestinationConfiguration": {
         "type": "object",
-        "required": [
-          "bucket",
-          "key",
-          "roleArn"
-        ],
+        "required": ["bucket", "key", "roleArn"],
         "properties": {
           "bucket": {
             "allOf": [
@@ -6783,11 +6667,7 @@
       },
       "DatasetContentState": {
         "type": "string",
-        "enum": [
-          "CREATING",
-          "SUCCEEDED",
-          "FAILED"
-        ]
+        "enum": ["CREATING", "SUCCEEDED", "FAILED"]
       },
       "Reason": {
         "type": "string"
@@ -6882,9 +6762,7 @@
       },
       "DatasetContentVersionValue": {
         "type": "object",
-        "required": [
-          "datasetName"
-        ],
+        "required": ["datasetName"],
         "properties": {
           "datasetName": {
             "allOf": [
@@ -7024,9 +6902,7 @@
       },
       "TriggeringDataset": {
         "type": "object",
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "properties": {
           "name": {
             "allOf": [
@@ -7043,11 +6919,7 @@
       },
       "DatastoreStatus": {
         "type": "string",
-        "enum": [
-          "CREATING",
-          "ACTIVE",
-          "DELETING"
-        ]
+        "enum": ["CREATING", "ACTIVE", "DELETING"]
       },
       "Datastore": {
         "type": "object",
@@ -7312,10 +7184,7 @@
       },
       "DeltaTime": {
         "type": "object",
-        "required": [
-          "offsetSeconds",
-          "timeExpression"
-        ],
+        "required": ["offsetSeconds", "timeExpression"],
         "properties": {
           "offsetSeconds": {
             "allOf": [
@@ -7342,11 +7211,7 @@
       },
       "LoggingOptions": {
         "type": "object",
-        "required": [
-          "roleArn",
-          "level",
-          "enabled"
-        ],
+        "required": ["roleArn", "level", "enabled"],
         "properties": {
           "roleArn": {
             "allOf": [
@@ -7474,10 +7339,7 @@
       },
       "GlueConfiguration": {
         "type": "object",
-        "required": [
-          "tableName",
-          "databaseName"
-        ],
+        "required": ["tableName", "databaseName"],
         "properties": {
           "tableName": {
             "allOf": [
@@ -7545,9 +7407,7 @@
       },
       "OutputFileUriValue": {
         "type": "object",
-        "required": [
-          "fileName"
-        ],
+        "required": ["fileName"],
         "properties": {
           "fileName": {
             "allOf": [
@@ -7640,12 +7500,7 @@
       },
       "ReprocessingStatus": {
         "type": "string",
-        "enum": [
-          "RUNNING",
-          "SUCCEEDED",
-          "CANCELLED",
-          "FAILED"
-        ]
+        "enum": ["RUNNING", "SUCCEEDED", "CANCELLED", "FAILED"]
       },
       "ReprocessingSummary": {
         "type": "object",
@@ -7711,9 +7566,7 @@
       },
       "Variable": {
         "type": "object",
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "properties": {
           "name": {
             "allOf": [
@@ -7770,9 +7623,7 @@
       },
       "LateDataRule": {
         "type": "object",
-        "required": [
-          "ruleConfiguration"
-        ],
+        "required": ["ruleConfiguration"],
         "properties": {
           "ruleName": {
             "allOf": [
@@ -7812,9 +7663,7 @@
       },
       "DeltaTimeSessionWindowConfiguration": {
         "type": "object",
-        "required": [
-          "timeoutInMinutes"
-        ],
+        "required": ["timeoutInMinutes"],
         "properties": {
           "timeoutInMinutes": {
             "allOf": [
@@ -7853,9 +7702,7 @@
       },
       "DatastoreIotSiteWiseMultiLayerStorage": {
         "type": "object",
-        "required": [
-          "customerManagedS3Storage"
-        ],
+        "required": ["customerManagedS3Storage"],
         "properties": {
           "customerManagedS3Storage": {
             "allOf": [
@@ -7920,10 +7767,7 @@
       },
       "Column": {
         "type": "object",
-        "required": [
-          "name",
-          "type"
-        ],
+        "required": ["name", "type"],
         "properties": {
           "name": {
             "allOf": [
@@ -7998,9 +7842,7 @@
       },
       "IotSiteWiseCustomerManagedDatastoreS3Storage": {
         "type": "object",
-        "required": [
-          "bucket"
-        ],
+        "required": ["bucket"],
         "properties": {
           "bucket": {
             "allOf": [
@@ -8069,9 +7911,7 @@
       },
       "Partition": {
         "type": "object",
-        "required": [
-          "attributeName"
-        ],
+        "required": ["attributeName"],
         "properties": {
           "attributeName": {
             "allOf": [
@@ -8088,9 +7928,7 @@
       },
       "TimestampPartition": {
         "type": "object",
-        "required": [
-          "attributeName"
-        ],
+        "required": ["attributeName"],
         "properties": {
           "attributeName": {
             "allOf": [
@@ -8143,10 +7981,7 @@
       },
       "FileFormatType": {
         "type": "string",
-        "enum": [
-          "JSON",
-          "PARQUET"
-        ]
+        "enum": ["JSON", "PARQUET"]
       },
       "SchemaDefinition": {
         "type": "object",
