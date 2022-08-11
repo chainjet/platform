@@ -31,6 +31,7 @@ import { CoinMarketCapDefinition } from './integration-definitions/coinmarketcap
 import { DiscordDefinition } from './integration-definitions/discord.definition'
 import { DocusignDefinition } from './integration-definitions/docusign.definition'
 import { GoogleApisDefinition } from './integration-definitions/google-apis.definition'
+import { GraphqlDefinition } from './integration-definitions/graphql.definition'
 import { GumroadDefinition } from './integration-definitions/gumroad.definition'
 import { HetznerCloudDefinition } from './integration-definitions/hetzner-cloud.definition'
 import { HttpDefinition } from './integration-definitions/http.definition'
@@ -75,6 +76,7 @@ export class IntegrationDefinitionFactory {
     github: GithubDefinition,
     gitlab: GitlabDefinition,
     'google-apis': GoogleApisDefinition,
+    graphql: GraphqlDefinition,
     gumroad: GumroadDefinition,
     'hetzner-cloud': HetznerCloudDefinition,
     http: HttpDefinition,
