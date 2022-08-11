@@ -7,8 +7,8 @@ const categories = [
     name: 'ChainJet Utils',
   },
   {
-    key: 'analytics',
-    name: 'Analytics',
+    key: 'blockchain',
+    name: 'Blockchain',
   },
   {
     key: 'blog',
@@ -16,7 +16,7 @@ const categories = [
   },
   {
     key: 'chat',
-    name: 'Chat & Communication',
+    name: 'Chat & Communities',
   },
   {
     key: 'cloud-computing',
@@ -41,6 +41,10 @@ const categories = [
   {
     key: 'events',
     name: 'Events & Calendar',
+  },
+  {
+    key: 'exchanges',
+    name: 'Exchanges',
   },
   {
     key: 'file',
@@ -82,10 +86,10 @@ const categories = [
     key: 'productivity',
     name: 'Productivity',
   },
-  {
-    key: 'project-management',
-    name: 'Project Management',
-  },
+  // {
+  //   key: 'project-management',
+  //   name: 'Project Management',
+  // },
   {
     key: 'social-networks',
     name: 'Social Networks',

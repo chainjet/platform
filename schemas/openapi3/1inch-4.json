@@ -4,7 +4,8 @@
     "title": "1inch",
     "version": "4",
     "description": "",
-    "contact": {}
+    "contact": {},
+    "x-categories": ["exchanges"]
   },
   "paths": {
     "/v4.0/{network}/healthcheck": {
@@ -12,15 +13,9 @@
         "x-ignore": true,
         "operationId": "FactoryHealthCheckController_healthcheck",
         "summary": "API health check",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/network"
-          }
-        ],
+        "parameters": [{ "$ref": "#/components/parameters/network" }],
         "responses": {
-          "200": {
-            "description": "Always returns code 200 if API is stable"
-          }
+          "200": { "description": "Always returns code 200 if API is stable" }
         },
         "tags": ["Healthcheck"]
       }
@@ -30,11 +25,7 @@
         "operationId": "ChainApproveController_getSpender",
         "summary": "Get 1inch router address",
         "description": "Address of the 1inch router that must be trusted to spend funds for the exchange",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/network"
-          }
-        ],
+        "parameters": [{ "$ref": "#/components/parameters/network" }],
         "responses": {
           "200": {
             "description": "Address of the 1inch router that must be trusted to spend funds for the exchange",
@@ -56,17 +47,13 @@
         "summary": "Get approve transaction data",
         "description": "Generate data for calling the contract in order to allow the 1inch router to spend funds",
         "parameters": [
-          {
-            "$ref": "#/components/parameters/network"
-          },
+          { "$ref": "#/components/parameters/network" },
           {
             "name": "tokenAddress",
             "required": true,
             "in": "query",
             "description": "Token address you want to exchange",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "amount",
@@ -74,9 +61,7 @@
             "in": "query",
             "example": "100000000000",
             "description": "The number of tokens that the 1inch router is allowed to spend.If not specified, it will be allowed to spend an infinite amount of tokens.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -100,33 +85,23 @@
         "summary": "Get current allowance",
         "description": "Get the number of tokens that the 1inch router is allowed to spend",
         "parameters": [
-          {
-            "$ref": "#/components/parameters/network"
-          },
+          { "$ref": "#/components/parameters/network" },
           {
             "name": "tokenAddress",
             "required": true,
             "in": "query",
             "description": "Token address you want to exchange",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "walletAddress",
             "required": true,
             "in": "query",
             "description": "Wallet address for which you want to check",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
+        "responses": { "200": { "description": "" } },
         "tags": ["Approve"]
       }
     },
@@ -136,19 +111,13 @@
         "operationId": "ChainTokensController_getTokens",
         "summary": "List supported tokens",
         "description": "List of tokens that are available for swap in the 1inch Aggregation protocol",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/network"
-          }
-        ],
+        "parameters": [{ "$ref": "#/components/parameters/network" }],
         "responses": {
           "200": {
             "description": "All supported tokens (can also use your own)",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TokensResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/TokensResponseDto" }
               }
             }
           }
@@ -162,16 +131,8 @@
         "operationId": "ChainPresetsController_getPresets",
         "summary": "List preset configurations",
         "description": "List of preset configurations for the 1inch router",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/network"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
+        "parameters": [{ "$ref": "#/components/parameters/network" }],
+        "responses": { "200": { "description": "" } },
         "tags": ["Info"]
       }
     },
@@ -181,11 +142,7 @@
         "operationId": "ChainProtocolsController_getProtocolsImages",
         "summary": "List liquidity sources",
         "description": "List of liquidity sources that are available for routing in the 1inch Aggregation protocol",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/network"
-          }
-        ],
+        "parameters": [{ "$ref": "#/components/parameters/network" }],
         "responses": {
           "200": {
             "description": "All supported protocols public",
@@ -207,18 +164,14 @@
         "summary": "Get quote",
         "description": "Find the best quote to exchange via 1inch router",
         "parameters": [
-          {
-            "$ref": "#/components/parameters/network"
-          },
+          { "$ref": "#/components/parameters/network" },
           {
             "name": "fromTokenAddress",
             "required": true,
             "in": "query",
             "description": "contract address of a token to sell",
             "example": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "toTokenAddress",
@@ -226,9 +179,7 @@
             "in": "query",
             "description": "contract address of a token to buy",
             "example": "0x111111111117dc0aa78b770fa6a738034120c302",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "amount",
@@ -236,36 +187,28 @@
             "in": "query",
             "description": "amount of a token to sell, set in minimal divisible units e.g.: 1.00 DAI set as 1000000000000000000; 51.03 USDC set as 51030000",
             "example": "10000000000000000",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "protocols",
             "required": false,
             "in": "query",
             "description": "specify liquidity protocols. If not set, all liquidity protocols will be used; you can disable any protocol by listing all protocols except those you don't need; default: all",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "fee",
             "required": false,
             "in": "query",
             "description": "this percentage of fromTokenAddress token amount will be sent to referrerAddress, the rest will be used as input for a swap; Min: 0; max: 3; Max: 0; max: 3; default: 0;  !should be the same for quote and swap!",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "gasLimit",
             "required": false,
             "in": "query",
             "description": "maximum amount of gas for a swap; should be the same for a quote and swap",
-            "schema": {
-              "type": "integer"
-            }
+            "schema": { "type": "integer" }
           },
           {
             "name": "connectorTokens",
@@ -273,45 +216,35 @@
             "in": "query",
             "description": "token-connectors can be specified via this parameter. The more is set — the longer route estimation will take. If not set, default token-connectors will be used. If a token you want to exchange doesn't have a pool with one of the default token-connectors this parameter will help find the route; max: 5; !should be the same for quote and swap!",
             "allowEmptyValue": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "complexityLevel",
             "required": false,
             "in": "query",
             "description": "maximum number of token-connectors to be used in a transaction. The more is used — the longer route estimation will take, the more complex route might be as a result. If not set, two token-connectors may be used; min: 0; max: 3; default: 2; !should be the same for quote and swap!",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "mainRouteParts",
             "required": false,
             "in": "query",
             "description": "maximum amount of gas for a swap; default: 10; max: 50; should be the same for quote and swap",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "parts",
             "required": false,
             "in": "query",
             "description": "limit maximum number of parts each main route parts can be split into; default: 50; max: 100; should be the same for quote and swap",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "gasPrice",
             "required": false,
             "in": "query",
             "description": "1inch takes in account gas expenses to determine exchange route. It is important to use the same gas price on the quote and swap methods. default: \"fast\" from network",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -319,9 +252,7 @@
             "description": "Quote",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/QuoteResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/QuoteResponseDto" }
               }
             }
           },
@@ -329,9 +260,7 @@
             "description": "One of the following errors: <br><br>Insufficient liquidity<br>Cannot estimate<br>You may not have enough ETH balance for gas fee<br>FromTokenAddress cannot be equals to toTokenAddress<br>Cannot estimate. Don't forget about miner fee. Try to leave the buffer of ETH for gas<br>Not enough balance<br>Not enough allowance",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SwapErrorDto"
-                }
+                "schema": { "$ref": "#/components/schemas/SwapErrorDto" }
               }
             }
           }
@@ -345,18 +274,14 @@
         "summary": "Get swap data",
         "description": "Generate data for calling the 1inch router for exchange",
         "parameters": [
-          {
-            "$ref": "#/components/parameters/network"
-          },
+          { "$ref": "#/components/parameters/network" },
           {
             "name": "fromTokenAddress",
             "required": true,
             "in": "query",
             "description": "contract address of a token to sell",
             "example": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "toTokenAddress",
@@ -364,9 +289,7 @@
             "in": "query",
             "description": "contract address of a token to buy",
             "example": "0x111111111117dc0aa78b770fa6a738034120c302",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "amount",
@@ -374,18 +297,14 @@
             "in": "query",
             "description": "amount of a token to sell, set in minimal divisible units e.g.: 1.00 DAI set as 1000000000000000000; 51.03 USDC set as 51030000",
             "example": "10000000000000000",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "fromAddress",
             "required": true,
             "in": "query",
             "description": "address of a seller, make sure that this address has approved to spend fromTokenAddress in needed amount",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "slippage",
@@ -393,99 +312,77 @@
             "in": "query",
             "description": "limit of price slippage you are willing to accept in percentage, may be set with decimals. 0.5 means 0.5% slippage is acceptable. Low values increase chances that transaction will fail, high values increase chances of front running. min: 0; max: 50;",
             "example": 1,
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "protocols",
             "required": false,
             "in": "query",
             "description": "specify liquidity protocols. If not set, all liquidity protocols will be used; you can disable any protocol by listing all protocols except those you don't need; default: all",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "destReceiver",
             "required": false,
             "in": "query",
             "description": "Receiver of destination currency. default: fromAddress",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "referrerAddress",
             "required": false,
             "in": "query",
             "description": "",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "fee",
             "required": false,
             "in": "query",
             "description": "this percentage of fromTokenAddress token amount will be sent to referrerAddress, the rest will be used as input for a swap; Min: 0; max: 3; Max: 0; max: 3; default: 0;  !should be the same for quote and swap!",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "disableEstimate",
             "required": false,
             "in": "query",
             "description": "",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "name": "permit",
             "required": false,
             "in": "query",
             "description": "https://eips.ethereum.org/EIPS/eip-2612",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "burnChi",
             "required": false,
             "in": "query",
             "description": "default: false; Suggest to check user's balance and allowance before set this flag; CHI should be approved to spender address",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "name": "allowPartialFill",
             "required": false,
             "in": "query",
             "description": "",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "name": "parts",
             "required": false,
             "in": "query",
             "description": "limit maximum number of parts each main route parts can be split into; default: 50; max: 100; should be the same for quote and swap",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "mainRouteParts",
             "required": false,
             "in": "query",
             "description": "maximum amount of gas for a swap; default: 10; max: 50; should be the same for quote and swap",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "connectorTokens",
@@ -493,36 +390,28 @@
             "in": "query",
             "description": "token-connectors can be specified via this parameter. The more is set — the longer route estimation will take. If not set, default token-connectors will be used. If a token you want to exchange doesn't have a pool with one of the default token-connectors this parameter will help find the route; max: 5; !should be the same for quote and swap!",
             "allowEmptyValue": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "complexityLevel",
             "required": false,
             "in": "query",
             "description": "maximum number of token-connectors to be used in a transaction. The more is used — the longer route estimation will take, the more complex route might be as a result. If not set, two token-connectors may be used; min: 0; max: 3; default: 2; !should be the same for quote and swap!",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "gasLimit",
             "required": false,
             "in": "query",
             "description": "maximum amount of gas for a swap; should be the same for a quote and swap",
-            "schema": {
-              "type": "integer"
-            }
+            "schema": { "type": "integer" }
           },
           {
             "name": "gasPrice",
             "required": false,
             "in": "query",
             "description": "1inch takes in account gas expenses to determine exchange route. It is important to use the same gas price on the quote and swap methods. default: \"fast\" from network",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -530,9 +419,7 @@
             "description": "Swap",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SwapResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/SwapResponseDto" }
               }
             }
           },
@@ -540,9 +427,7 @@
             "description": "One of the following errors: <br><br>Insufficient liquidity<br>Cannot estimate<br>You may not have enough ETH balance for gas fee<br>FromTokenAddress cannot be equals to toTokenAddress<br>Cannot estimate. Don't forget about miner fee. Try to leave the buffer of ETH for gas<br>Not enough balance<br>Not enough allowance",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SwapErrorDto"
-                }
+                "schema": { "$ref": "#/components/schemas/SwapErrorDto" }
               }
             }
           }
@@ -552,11 +437,7 @@
     }
   },
   "tags": [],
-  "servers": [
-    {
-      "url": "https://api.1inch.io"
-    }
-  ],
+  "servers": [{ "url": "https://api.1inch.io" }],
   "components": {
     "schemas": {
       "ApproveSpenderResponseDto": {
@@ -595,21 +476,11 @@
       "TokenDto": {
         "type": "object",
         "properties": {
-          "symbol": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "address": {
-            "type": "string"
-          },
-          "decimals": {
-            "type": "number"
-          },
-          "logoURI": {
-            "type": "string"
-          }
+          "symbol": { "type": "string" },
+          "name": { "type": "string" },
+          "address": { "type": "string" },
+          "decimals": { "type": "number" },
+          "logoURI": { "type": "string" }
         },
         "required": ["symbol", "name", "address", "decimals", "logoURI"]
       },
@@ -619,9 +490,7 @@
           "tokens": {
             "description": "List of supported tokens",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TokenDto"
-            }
+            "items": { "$ref": "#/components/schemas/TokenDto" }
           }
         },
         "required": ["tokens"]
@@ -629,18 +498,9 @@
       "ProtocolImageDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "description": "Protocol id"
-          },
-          "title": {
-            "type": "string",
-            "description": "Protocol title"
-          },
-          "img": {
-            "type": "string",
-            "description": "Protocol logo image"
-          },
+          "id": { "type": "string", "description": "Protocol id" },
+          "title": { "type": "string", "description": "Protocol title" },
+          "img": { "type": "string", "description": "Protocol logo image" },
           "img_color": {
             "type": "string",
             "description": "Protocol logo image in color"
@@ -654,9 +514,7 @@
           "protocols": {
             "description": "List of protocols that are available for routing in the 1inch Aggregation protocol",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ProtocolImageDto"
-            }
+            "items": { "$ref": "#/components/schemas/ProtocolImageDto" }
           }
         },
         "required": ["protocols"]
@@ -664,18 +522,10 @@
       "PathViewDto": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string"
-          },
-          "part": {
-            "type": "number"
-          },
-          "fromTokenAddress": {
-            "type": "string"
-          },
-          "toTokenAddress": {
-            "type": "string"
-          }
+          "name": { "type": "string" },
+          "part": { "type": "number" },
+          "fromTokenAddress": { "type": "string" },
+          "toTokenAddress": { "type": "string" }
         },
         "required": ["name", "part", "fromTokenAddress", "toTokenAddress"]
       },
@@ -684,19 +534,11 @@
         "properties": {
           "fromToken": {
             "description": "Source token info",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TokenDto"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/TokenDto" }]
           },
           "toToken": {
             "description": "Destination token info",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TokenDto"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/TokenDto" }]
           },
           "toTokenAmount": {
             "type": "string",
@@ -709,15 +551,18 @@
           "protocols": {
             "description": "Selected protocols in a path",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PathViewDto"
-            }
+            "items": { "$ref": "#/components/schemas/PathViewDto" }
           },
-          "estimatedGas": {
-            "type": "number"
-          }
+          "estimatedGas": { "type": "number" }
         },
-        "required": ["fromToken", "toToken", "toTokenAmount", "fromTokenAmount", "protocols", "estimatedGas"]
+        "required": [
+          "fromToken",
+          "toToken",
+          "toTokenAmount",
+          "fromTokenAmount",
+          "protocols",
+          "estimatedGas"
+        ]
       },
       "NestErrorMeta": {
         "type": "object",
@@ -752,16 +597,11 @@
             "type": "string",
             "description": "Error description (one of the following)"
           },
-          "requestId": {
-            "type": "string",
-            "description": "Request id"
-          },
+          "requestId": { "type": "string", "description": "Request id" },
           "meta": {
             "description": "Meta information",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/NestErrorMeta"
-            }
+            "items": { "$ref": "#/components/schemas/NestErrorMeta" }
           }
         },
         "required": ["statusCode", "error", "description", "requestId", "meta"]
@@ -769,24 +609,12 @@
       "Tx": {
         "type": "object",
         "properties": {
-          "from": {
-            "type": "string"
-          },
-          "to": {
-            "type": "string"
-          },
-          "data": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          },
-          "gasPrice": {
-            "type": "string"
-          },
-          "gas": {
-            "type": "string"
-          }
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "data": { "type": "string" },
+          "value": { "type": "string" },
+          "gasPrice": { "type": "string" },
+          "gas": { "type": "string" }
         },
         "required": ["from", "to", "data", "value", "gasPrice", "gas"]
       },
@@ -795,19 +623,11 @@
         "properties": {
           "fromToken": {
             "description": "Source token info",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TokenDto"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/TokenDto" }]
           },
           "toToken": {
             "description": "Destination token info",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TokenDto"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/TokenDto" }]
           },
           "toTokenAmount": {
             "type": "string",
@@ -820,20 +640,21 @@
           "protocols": {
             "description": "Selected protocols in a path",
             "type": "array",
-            "items": {
-              "type": "string"
-            }
+            "items": { "type": "string" }
           },
           "tx": {
             "description": "Transaction object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Tx"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/Tx" }]
           }
         },
-        "required": ["fromToken", "toToken", "toTokenAmount", "fromTokenAmount", "protocols", "tx"]
+        "required": [
+          "fromToken",
+          "toToken",
+          "toTokenAmount",
+          "fromTokenAmount",
+          "protocols",
+          "tx"
+        ]
       }
     },
     "parameters": {
@@ -845,38 +666,14 @@
         "schema": {
           "type": "integer",
           "oneOf": [
-            {
-              "title": "Ethereum",
-              "x-const": 1
-            },
-            {
-              "title": "BNB Chain (BSC)",
-              "x-const": 56
-            },
-            {
-              "title": "Polygon",
-              "x-const": 137
-            },
-            {
-              "title": "Optimism",
-              "x-const": 10
-            },
-            {
-              "title": "Arbitrum",
-              "x-const": 42161
-            },
-            {
-              "title": "Gnosis Chain",
-              "x-const": 10
-            },
-            {
-              "title": "Avalanche",
-              "x-const": 43114
-            },
-            {
-              "title": "Fantom",
-              "x-const": 250
-            }
+            { "title": "Ethereum", "x-const": 1 },
+            { "title": "BNB Chain (BSC)", "x-const": 56 },
+            { "title": "Polygon", "x-const": 137 },
+            { "title": "Optimism", "x-const": 10 },
+            { "title": "Arbitrum", "x-const": 42161 },
+            { "title": "Gnosis Chain", "x-const": 10 },
+            { "title": "Avalanche", "x-const": 43114 },
+            { "title": "Fantom", "x-const": 250 }
           ]
         }
       }

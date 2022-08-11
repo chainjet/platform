@@ -4,10 +4,8 @@
     "title": "Coinbase",
     "version": "2",
     "description": "The Coinbase v2 API",
-    "contact": {
-      "name": "CoinFabrik",
-      "url": "http://www.coinfabrik.com/"
-    }
+    "contact": { "name": "CoinFabrik", "url": "http://www.coinfabrik.com/" },
+    "x-categories": ["exchanges"]
   },
   "paths": {
     "/users/{user_id}": {
@@ -20,16 +18,10 @@
             "in": "path",
             "description": "The user id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
-        "security": [
-          {
-            "coinbaseAccessCode": []
-          }
-        ],
+        "security": [{ "coinbaseAccessCode": [] }],
         "tags": ["Users"],
         "responses": {
           "200": {
@@ -39,9 +31,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/User"
-                    }
+                    "data": { "$ref": "#/components/schemas/User" }
                   }
                 }
               }
@@ -55,11 +45,7 @@
       "get": {
         "summary": "Show current user",
         "description": "Get current user's public information. To get user's email or private information, use permissions wallet:user:email and wallet:user:read.",
-        "security": [
-          {
-            "coinbaseAccessCode": []
-          }
-        ],
+        "security": [{ "coinbaseAccessCode": [] }],
         "tags": ["Users"],
         "responses": {
           "200": {
@@ -69,9 +55,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/User"
-                    }
+                    "data": { "$ref": "#/components/schemas/User" }
                   }
                 }
               }
@@ -83,11 +67,7 @@
       "put": {
         "summary": "Update current user",
         "description": "Modify current user and their preferences.",
-        "security": [
-          {
-            "coinbaseAccessCode": ["wallet:user:update"]
-          }
-        ],
+        "security": [{ "coinbaseAccessCode": ["wallet:user:update"] }],
         "tags": ["Users"],
         "requestBody": {
           "content": {
@@ -95,15 +75,9 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "time_zone": {
-                    "type": "string"
-                  },
-                  "native_currency": {
-                    "type": "string"
-                  }
+                  "name": { "type": "string" },
+                  "time_zone": { "type": "string" },
+                  "native_currency": { "type": "string" }
                 }
               }
             }
@@ -118,9 +92,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/User"
-                    }
+                    "data": { "$ref": "#/components/schemas/User" }
                   }
                 }
               }
@@ -134,11 +106,7 @@
       "get": {
         "summary": "Show authorization information",
         "description": "Get current user's authorization information including granted scopes and send limits when using OAuth2 authentication.",
-        "security": [
-          {
-            "coinbaseAccessCode": []
-          }
-        ],
+        "security": [{ "coinbaseAccessCode": [] }],
         "tags": ["Users"],
         "responses": {
           "200": {
@@ -151,18 +119,12 @@
                     "data": {
                       "type": "object",
                       "properties": {
-                        "method": {
-                          "type": "string"
-                        },
+                        "method": { "type": "string" },
                         "scopes": {
                           "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
+                          "items": { "type": "string" }
                         },
-                        "oauth_meta": {
-                          "type": "object"
-                        }
+                        "oauth_meta": { "type": "object" }
                       }
                     }
                   }
@@ -179,11 +141,7 @@
         "summary": "List accounts",
         "description": "Lists current user's accounts to which the authentication method has access to.",
         "x-triggerDescription": "Triggers when a new account is created",
-        "security": [
-          {
-            "coinbaseAccessCode": ["wallet:accounts:read"]
-          }
-        ],
+        "security": [{ "coinbaseAccessCode": ["wallet:accounts:read"] }],
         "tags": ["Accounts"],
         "responses": {
           "200": {
@@ -193,14 +151,10 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "pagination": {
-                      "$ref": "#/components/schemas/Pagination"
-                    },
+                    "pagination": { "$ref": "#/components/schemas/Pagination" },
                     "data": {
                       "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Account"
-                      }
+                      "items": { "$ref": "#/components/schemas/Account" }
                     }
                   }
                 }
@@ -213,11 +167,7 @@
       "post": {
         "summary": "Create account",
         "description": "Creates a new account for user.",
-        "security": [
-          {
-            "coinbaseAccessCode": ["wallet:accounts:create"]
-          }
-        ],
+        "security": [{ "coinbaseAccessCode": ["wallet:accounts:create"] }],
         "tags": ["Accounts"],
         "requestBody": {
           "content": {
@@ -243,9 +193,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/Account"
-                    }
+                    "data": { "$ref": "#/components/schemas/Account" }
                   }
                 }
               }
@@ -259,21 +207,14 @@
       "get": {
         "summary": "Show an account",
         "description": "Show current user's account. To access user's primary account, primary keyword can be used instead of the account id in the URL.",
-        "security": [
-          {
-            "coinbaseAccessCode": ["wallet:accounts:read"]
-          }
-        ],
+        "security": [{ "coinbaseAccessCode": ["wallet:accounts:read"] }],
         "parameters": [
           {
             "name": "account_id",
             "in": "path",
             "description": "The account id",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "primary"
-            }
+            "schema": { "type": "string", "default": "primary" }
           }
         ],
         "tags": ["Accounts"],
@@ -285,9 +226,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/Account"
-                    }
+                    "data": { "$ref": "#/components/schemas/Account" }
                   }
                 }
               }
@@ -299,11 +238,7 @@
       "put": {
         "summary": "Update account",
         "description": "Modifies user's account name.",
-        "security": [
-          {
-            "coinbaseAccessCode": ["wallet:accounts:update"]
-          }
-        ],
+        "security": [{ "coinbaseAccessCode": ["wallet:accounts:update"] }],
         "tags": ["Accounts"],
         "parameters": [
           {
@@ -311,10 +246,7 @@
             "in": "path",
             "description": "The account id",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "primary"
-            }
+            "schema": { "type": "string", "default": "primary" }
           }
         ],
         "requestBody": {
@@ -341,9 +273,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/Account"
-                    }
+                    "data": { "$ref": "#/components/schemas/Account" }
                   }
                 }
               }
@@ -355,11 +285,7 @@
       "delete": {
         "summary": "Delete account",
         "description": "Removes user's account. In order to remove an account it can't be\n\n- Primary account\n- Account with non-zero balance\n- Fiat account\n- Vault with a pending withdrawal\n",
-        "security": [
-          {
-            "coinbaseAccessCode": ["wallet:accounts:delete"]
-          }
-        ],
+        "security": [{ "coinbaseAccessCode": ["wallet:accounts:delete"] }],
         "tags": ["Accounts"],
         "parameters": [
           {
@@ -367,17 +293,10 @@
             "in": "path",
             "description": "The account id",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "primary"
-            }
+            "schema": { "type": "string", "default": "primary" }
           }
         ],
-        "responses": {
-          "204": {
-            "description": "No content"
-          }
-        },
+        "responses": { "204": { "description": "No content" } },
         "operationId": "/accounts/{account_id}.delete"
       }
     },
@@ -385,11 +304,7 @@
       "get": {
         "summary": "Set account as primary",
         "description": "Promote an account as primary account.",
-        "security": [
-          {
-            "coinbaseAccessCode": ["wallet:accounts:update"]
-          }
-        ],
+        "security": [{ "coinbaseAccessCode": ["wallet:accounts:update"] }],
         "tags": ["Accounts"],
         "parameters": [
           {
@@ -397,10 +312,7 @@
             "in": "path",
             "description": "The account id",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "primary"
-            }
+            "schema": { "type": "string", "default": "primary" }
           }
         ],
         "responses": {
@@ -411,9 +323,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/Account"
-                    }
+                    "data": { "$ref": "#/components/schemas/Account" }
                   }
                 }
               }
@@ -428,11 +338,7 @@
         "summary": "List addresses",
         "description": "Lists addresses for an account.\n\n*Important*: Addresses should be considered one time use only.\n",
         "x-triggerDescription": "Triggers when a new address is created",
-        "security": [
-          {
-            "coinbaseAccessCode": ["wallet:addresses:read"]
-          }
-        ],
+        "security": [{ "coinbaseAccessCode": ["wallet:addresses:read"] }],
         "tags": ["Addresses"],
         "parameters": [
           {
@@ -440,10 +346,7 @@
             "in": "path",
             "description": "The account id",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "primary"
-            }
+            "schema": { "type": "string", "default": "primary" }
           }
         ],
         "responses": {
@@ -454,14 +357,10 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "pagination": {
-                      "$ref": "#/components/schemas/Pagination"
-                    },
+                    "pagination": { "$ref": "#/components/schemas/Pagination" },
                     "data": {
                       "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Address"
-                      }
+                      "items": { "$ref": "#/components/schemas/Address" }
                     }
                   }
                 }
@@ -474,21 +373,14 @@
       "post": {
         "summary": "Create address",
         "description": "Creates a new address for an account. As all the arguments are optinal, it's possible just to do a empty POST which will create a new address. This is handy if you need to create new receive addresses for an account on-demand.\nAddresses can be created for all account types. With fiat accounts, funds will be received with Instant Exchange.\n",
-        "security": [
-          {
-            "coinbaseAccessCode": ["wallet:addresses:create"]
-          }
-        ],
+        "security": [{ "coinbaseAccessCode": ["wallet:addresses:create"] }],
         "parameters": [
           {
             "name": "account_id",
             "in": "path",
             "description": "The account id",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "primary"
-            }
+            "schema": { "type": "string", "default": "primary" }
           }
         ],
         "requestBody": {
@@ -497,10 +389,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "Address label"
-                  }
+                  "name": { "type": "string", "description": "Address label" }
                 }
               }
             }
@@ -516,9 +405,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/Address"
-                    }
+                    "data": { "$ref": "#/components/schemas/Address" }
                   }
                 }
               }
@@ -532,11 +419,7 @@
       "get": {
         "summary": "Show an address",
         "description": "Show an individual address for an account.\nRegular bitcoin address can be used in place of address_id but the address has to be associated to the correct account.\n  \n*Important* Addresses should be considered one time use only. \n",
-        "security": [
-          {
-            "coinbaseAccessCode": ["wallet:addresses:read"]
-          }
-        ],
+        "security": [{ "coinbaseAccessCode": ["wallet:addresses:read"] }],
         "tags": ["Addresses"],
         "parameters": [
           {
@@ -544,19 +427,14 @@
             "in": "path",
             "description": "The account id",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "primary"
-            }
+            "schema": { "type": "string", "default": "primary" }
           },
           {
             "name": "address_id",
             "in": "path",
             "description": "The account id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -567,9 +445,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/Address"
-                    }
+                    "data": { "$ref": "#/components/schemas/Address" }
                   }
                 }
               }
@@ -584,11 +460,7 @@
         "summary": "List address transactions",
         "description": "List transactions that have been sent to a specific address. Regular bitcoin address can be used in place of address_id but the address has to be associated to the correct account.",
         "x-triggerDescription": "Triggers when a new transaction has been sent to a specific address",
-        "security": [
-          {
-            "coinbaseAccessCode": ["wallet:transactions:read"]
-          }
-        ],
+        "security": [{ "coinbaseAccessCode": ["wallet:transactions:read"] }],
         "tags": ["Addresses"],
         "parameters": [
           {
@@ -596,19 +468,14 @@
             "in": "path",
             "description": "The account id",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "primary"
-            }
+            "schema": { "type": "string", "default": "primary" }
           },
           {
             "name": "address_id",
             "in": "path",
             "description": "The account id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -619,14 +486,10 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "pagination": {
-                      "$ref": "#/components/schemas/Pagination"
-                    },
+                    "pagination": { "$ref": "#/components/schemas/Pagination" },
                     "data": {
                       "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Transaction"
-                      }
+                      "items": { "$ref": "#/components/schemas/Transaction" }
                     }
                   }
                 }
@@ -642,11 +505,7 @@
         "summary": "List transactions",
         "description": "Lists account's transactions. See Transaction resource for more information.",
         "x-triggerDescription": "Triggers when a new transaction has been sent to the account.",
-        "security": [
-          {
-            "coinbaseAccessCode": ["wallet:transactions:read"]
-          }
-        ],
+        "security": [{ "coinbaseAccessCode": ["wallet:transactions:read"] }],
         "tags": ["Transactions"],
         "parameters": [
           {
@@ -654,10 +513,7 @@
             "in": "path",
             "description": "The account id",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "primary"
-            }
+            "schema": { "type": "string", "default": "primary" }
           }
         ],
         "responses": {
@@ -668,14 +524,10 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "pagination": {
-                      "$ref": "#/components/schemas/Pagination"
-                    },
+                    "pagination": { "$ref": "#/components/schemas/Pagination" },
                     "data": {
                       "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Transaction"
-                      }
+                      "items": { "$ref": "#/components/schemas/Transaction" }
                     }
                   }
                 }
@@ -691,7 +543,10 @@
         "description": "Type=send\n=========\n\nSend funds to a bitcoin address or email address. No transaction fees are required for off blockchain transactions, and Coinbase waives fees for on-blockchain transactions greater than 0.0001 BTC, up to a threshold of 25 per day. Read more about free transactions.\n\nWhen used with OAuth2 authentication, this endpoint requires two factor authentication unless used with wallet:transactions:send:bypass-2fa scope.\n\nIf the user is able to buy bitcoin, they can send funds from their fiat account using instant exchange feature. Buy fees will be included in the created transaction and the recipient will receive the user defined amount.\n\nTo create a multisig transaction, visit Multisig documentation.\n\nType=request\n============\n\nRequests money from an email address.\n",
         "security": [
           {
-            "coinbaseAccessCode": ["wallet:transactions:send", "wallet:transactions:request"]
+            "coinbaseAccessCode": [
+              "wallet:transactions:send",
+              "wallet:transactions:request"
+            ]
           }
         ],
         "tags": ["Transactions"],
@@ -701,10 +556,7 @@
             "in": "path",
             "description": "The account id",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "primary"
-            }
+            "schema": { "type": "string", "default": "primary" }
           }
         ],
         "requestBody": {
@@ -759,9 +611,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/Transaction"
-                    }
+                    "data": { "$ref": "#/components/schemas/Transaction" }
                   }
                 }
               }
@@ -775,11 +625,7 @@
       "get": {
         "summary": "Show a transaction",
         "description": "Show an individual transaction for an account. See Transaction resource for more information.",
-        "security": [
-          {
-            "coinbaseAccessCode": ["wallet:transactions:read"]
-          }
-        ],
+        "security": [{ "coinbaseAccessCode": ["wallet:transactions:read"] }],
         "tags": ["Transactions"],
         "parameters": [
           {
@@ -787,19 +633,14 @@
             "in": "path",
             "description": "The account id",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "primary"
-            }
+            "schema": { "type": "string", "default": "primary" }
           },
           {
             "name": "transaction_id",
             "in": "path",
             "description": "The transaction id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -810,9 +651,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/Transaction"
-                    }
+                    "data": { "$ref": "#/components/schemas/Transaction" }
                   }
                 }
               }
@@ -824,11 +663,7 @@
       "delete": {
         "summary": "Cancel request money",
         "description": "Lets a user cancel a money request. Money requests can be canceled by the sender or the recipient.",
-        "security": [
-          {
-            "coinbaseAccessCode": ["wallet:transactions:request"]
-          }
-        ],
+        "security": [{ "coinbaseAccessCode": ["wallet:transactions:request"] }],
         "tags": ["Transactions"],
         "parameters": [
           {
@@ -836,25 +671,18 @@
             "in": "path",
             "description": "The account id",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "primary"
-            }
+            "schema": { "type": "string", "default": "primary" }
           },
           {
             "name": "transaction_id",
             "in": "path",
             "description": "The transaction id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
-          "204": {
-            "description": "Success response (no content)"
-          }
+          "204": { "description": "Success response (no content)" }
         },
         "operationId": "/accounts/{account_id}/transactions/{transaction_id}.delete"
       }
@@ -863,11 +691,7 @@
       "post": {
         "summary": "Complete request money",
         "description": "Lets the recipient of a money request complete the request by sending money to the user who requested the money. This can only be completed by the user to whom the request was made, not the user who sent the request.",
-        "security": [
-          {
-            "coinbaseAccessCode": ["wallet:transactions:request"]
-          }
-        ],
+        "security": [{ "coinbaseAccessCode": ["wallet:transactions:request"] }],
         "tags": ["Transactions"],
         "parameters": [
           {
@@ -875,25 +699,18 @@
             "in": "path",
             "description": "The account id",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "primary"
-            }
+            "schema": { "type": "string", "default": "primary" }
           },
           {
             "name": "transaction_id",
             "in": "path",
             "description": "The transaction id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
-          "200": {
-            "description": "Success response (no content)"
-          }
+          "200": { "description": "Success response (no content)" }
         },
         "operationId": "/accounts/{account_id}/transactions/{transaction_id}/complete.post"
       }
@@ -902,11 +719,7 @@
       "post": {
         "summary": "Re-send request money",
         "description": "Lets the user resend a money request. This will notify recipient with a new email.",
-        "security": [
-          {
-            "coinbaseAccessCode": ["wallet:transactions:request"]
-          }
-        ],
+        "security": [{ "coinbaseAccessCode": ["wallet:transactions:request"] }],
         "tags": ["Transactions"],
         "parameters": [
           {
@@ -914,40 +727,25 @@
             "in": "path",
             "description": "The account id",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "primary"
-            }
+            "schema": { "type": "string", "default": "primary" }
           },
           {
             "name": "transaction_id",
             "in": "path",
             "description": "The transaction id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
-          "200": {
-            "description": "Success response (no content)"
-          }
+          "200": { "description": "Success response (no content)" }
         },
         "operationId": "/accounts/{account_id}/transactions/{transaction_id}/resend.post"
       }
     }
   },
-  "security": [
-    {
-      "coinbaseAccessCode": []
-    }
-  ],
-  "servers": [
-    {
-      "url": "https://api.coinbase.com/v2"
-    }
-  ],
+  "security": [{ "coinbaseAccessCode": [] }],
+  "servers": [{ "url": "https://api.coinbase.com/v2" }],
   "components": {
     "securitySchemes": {
       "coinbaseAccessCode": {
@@ -996,19 +794,13 @@
         "type": "object",
         "required": ["id", "avatar_url", "resource", "resource_path"],
         "properties": {
-          "id": {
-            "type": "string",
-            "description": "Resource ID"
-          },
+          "id": { "type": "string", "description": "Resource ID" },
           "name": {
             "description": "User's public name",
             "nullable": true,
             "type": "string"
           },
-          "username": {
-            "nullable": true,
-            "type": "string"
-          },
+          "username": { "nullable": true, "type": "string" },
           "profile_location": {
             "description": "Location for user's public profile",
             "nullable": true,
@@ -1028,61 +820,32 @@
             "type": "string",
             "description": "User's avatar url"
           },
-          "resource": {
-            "type": "string"
-          },
-          "resource_path": {
-            "type": "string"
-          }
+          "resource": { "type": "string" },
+          "resource_path": { "type": "string" }
         }
       },
       "Pagination": {
         "type": "object",
         "properties": {
-          "ending_before": {
-            "nullable": true,
-            "type": "integer"
-          },
-          "starting_after": {
-            "nullable": true,
-            "type": "integer"
-          },
-          "limit": {
-            "nullable": true,
-            "type": "integer"
-          },
-          "order": {
-            "nullable": true,
-            "type": "string"
-          },
-          "previous_uri": {
-            "nullable": true,
-            "type": "string"
-          },
-          "next_uri": {
-            "nullable": true,
-            "type": "string"
-          }
+          "ending_before": { "nullable": true, "type": "integer" },
+          "starting_after": { "nullable": true, "type": "integer" },
+          "limit": { "nullable": true, "type": "integer" },
+          "order": { "nullable": true, "type": "string" },
+          "previous_uri": { "nullable": true, "type": "string" },
+          "next_uri": { "nullable": true, "type": "string" }
         }
       },
       "MoneyHash": {
         "type": "object",
         "properties": {
-          "amount": {
-            "type": "string"
-          },
-          "currency": {
-            "type": "string"
-          }
+          "amount": { "type": "string" },
+          "currency": { "type": "string" }
         }
       },
       "Account": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "description": "Resource ID"
-          },
+          "id": { "type": "string", "description": "Resource ID" },
           "name": {
             "type": "string",
             "description": "User or system defined name"
@@ -1095,16 +858,9 @@
             "type": "string",
             "description": "Account's type. Available values: wallet, fiat, multisig, vault, multisig_vault"
           },
-          "currency": {
-            "type": "string",
-            "description": "Account's currency"
-          },
-          "balance": {
-            "$ref": "#/components/schemas/MoneyHash"
-          },
-          "native_balance": {
-            "$ref": "#/components/schemas/MoneyHash"
-          },
+          "currency": { "type": "string", "description": "Account's currency" },
+          "balance": { "$ref": "#/components/schemas/MoneyHash" },
+          "native_balance": { "$ref": "#/components/schemas/MoneyHash" },
           "created_at": {
             "type": "string",
             "description": "Timestamp indicating when was the account created."
@@ -1117,22 +873,14 @@
             "type": "string",
             "description": "This value is always 'account'."
           },
-          "resource_path": {
-            "type": "string"
-          }
+          "resource_path": { "type": "string" }
         }
       },
       "Address": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "description": "Resource ID"
-          },
-          "address": {
-            "type": "string",
-            "description": "Bitcoin address"
-          },
+          "id": { "type": "string", "description": "Resource ID" },
+          "address": { "type": "string", "description": "Bitcoin address" },
           "name": {
             "description": "User defined label for the address",
             "nullable": true,
@@ -1150,32 +898,17 @@
             "type": "string",
             "description": "This value is always 'address'."
           },
-          "resource_path": {
-            "type": "string"
-          }
+          "resource_path": { "type": "string" }
         }
       },
       "Transaction": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "description": "Resource ID"
-          },
-          "type": {
-            "type": "string",
-            "description": "Transaction type"
-          },
-          "status": {
-            "type": "string",
-            "description": "Status"
-          },
-          "amount": {
-            "$ref": "#/components/schemas/MoneyHash"
-          },
-          "native_amount": {
-            "$ref": "#/components/schemas/MoneyHash"
-          },
+          "id": { "type": "string", "description": "Resource ID" },
+          "type": { "type": "string", "description": "Transaction type" },
+          "status": { "type": "string", "description": "Status" },
+          "amount": { "$ref": "#/components/schemas/MoneyHash" },
+          "native_amount": { "$ref": "#/components/schemas/MoneyHash" },
           "description": {
             "description": "User defined description",
             "nullable": true,
@@ -1197,9 +930,7 @@
             "type": "string",
             "description": "This value is always 'address'."
           },
-          "resource_path": {
-            "type": "string"
-          },
+          "resource_path": { "type": "string" },
           "details": {
             "type": "object",
             "description": "Detailed information about the transaction"

@@ -2,16 +2,13 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Moralis",
-    "version": "2"
+    "version": "2",
+    "x-categories": ["blockchain"]
   },
   "paths": {
     "/block/{block_number_or_hash}": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets block contents by block hash",
         "operationId": "getBlock",
         "parameters": [
@@ -20,27 +17,21 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "subdomain",
             "description": "The subdomain of the moralis server to use (Only use when selecting local devchain as chain)",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "path",
             "name": "block_number_or_hash",
             "description": "The block hash or block number",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "description": "Gets the contents of a block by block hash",
@@ -50,9 +41,7 @@
             "description": "Returns the contents of a block",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/block"
-                }
+                "schema": { "$ref": "#/components/schemas/block" }
               }
             }
           }
@@ -61,11 +50,7 @@
     },
     "/dateToBlock": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets the closest block of the provided date",
         "operationId": "getDateToBlock",
         "parameters": [
@@ -74,27 +59,21 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "providerUrl",
             "description": "web3 provider url to user when using local dev chain",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "date",
             "description": "Unix date in miliseconds or a datestring (any format that is accepted by momentjs)",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "description": "Gets the closest block of the provided date",
@@ -104,9 +83,7 @@
             "description": "Returns the blocknumber and corresponding date and timestamp",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/blockDate"
-                }
+                "schema": { "$ref": "#/components/schemas/blockDate" }
               }
             }
           }
@@ -115,11 +92,7 @@
     },
     "/{address}/logs": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets address logs",
         "operationId": "getLogsByAddress",
         "parameters": [
@@ -128,126 +101,97 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "subdomain",
             "description": "The subdomain of the moralis server to use (Only use when selecting local devchain as chain)",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "block_number",
             "description": "The block number\n* Provide the param 'block_numer' or ('from_block' and / or 'to_block')\n* If 'block_numer' is provided in conbinaison with 'from_block' and / or 'to_block', 'block_number' will will be used\n",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "from_block",
             "description": "The minimum block number from where to get the logs\n* Provide the param 'block_numer' or ('from_block' and / or 'to_block')\n* If 'block_numer' is provided in conbinaison with 'from_block' and / or 'to_block', 'block_number' will will be used\n",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "to_block",
             "description": "The maximum block number from where to get the logs\n* Provide the param 'block_numer' or ('from_block' and / or 'to_block')\n* If 'block_numer' is provided in conbinaison with 'from_block' and / or 'to_block', 'block_number' will will be used\n",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "from_date",
             "description": "The date from where to get the logs (any format that is accepted by momentjs)\n* Provide the param 'from_block' or 'from_date'\n* If 'from_date' and 'from_block' are provided, 'from_block' will be used.\n* If 'from_date' and the block params are provided, the block params will be used. Please refer to the blocks params sections (block_number,from_block and to_block) on how to use them\n",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "to_date",
             "description": "Get the logs to this date (any format that is accepted by momentjs)\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n* If 'to_date' and the block params are provided, the block params will be used. Please refer to the blocks params sections (block_number,from_block and to_block) on how to use them\n",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "path",
             "name": "address",
             "description": "address",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "topic0",
             "description": "topic0",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "topic1",
             "description": "topic1",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "topic2",
             "description": "topic2",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "topic3",
             "description": "topic3",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "limit",
             "description": "limit",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "cursor",
             "description": "The cursor returned in the last response (for getting the next page)\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "description": "Gets the logs from an address",
@@ -257,9 +201,7 @@
             "description": "Returns the logs of an address",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/logCollection"
-                }
+                "schema": { "$ref": "#/components/schemas/logCollection" }
               }
             }
           }
@@ -268,11 +210,7 @@
     },
     "/block/{block_number_or_hash}/nft/transfers": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets NFT transfers by block number or block hash",
         "operationId": "getNFTTransfersByBlock",
         "parameters": [
@@ -281,46 +219,34 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "subdomain",
             "description": "The subdomain of the moralis server to use (Only use when selecting local devchain as chain)",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "path",
             "name": "block_number_or_hash",
             "description": "The block hash or block number",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "limit",
             "description": "limit",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "default": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "default": 100 }
           },
           {
             "in": "query",
             "name": "cursor",
             "description": "The cursor returned in the last response (for getting the next page)\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "description": "Gets NFT transfers by block number or block hash",
@@ -341,11 +267,7 @@
     },
     "/transaction/{transaction_hash}": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Get transaction details by transaction hash",
         "operationId": "getTransaction",
         "parameters": [
@@ -354,18 +276,14 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "subdomain",
             "description": "The subdomain of the moralis server to use (Only use when selecting local devchain as chain)",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "path",
@@ -385,9 +303,7 @@
             "description": "Transaction details by transaction hash",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/blockTransaction"
-                }
+                "schema": { "$ref": "#/components/schemas/blockTransaction" }
               }
             }
           }
@@ -396,23 +312,13 @@
     },
     "/{address}/events": {
       "post": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets events by topic",
         "operationId": "getContractEvents",
         "requestBody": {
           "description": "ABI of the specific event",
           "required": false,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object"
-              }
-            }
-          }
+          "content": { "application/json": { "schema": { "type": "object" } } }
         },
         "parameters": [
           {
@@ -420,102 +326,76 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "subdomain",
             "description": "The subdomain of the moralis server to use (Only use when selecting local devchain as chain)",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "providerUrl",
             "description": "web3 provider url to user when using local dev chain",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "from_block",
             "description": "The minimum block number from where to get the logs\n* Provide the param 'from_block' or 'from_date'\n* If 'from_date' and 'from_block' are provided, 'from_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "to_block",
             "description": "The maximum block number from where to get the logs.\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "from_date",
             "description": "The date from where to get the logs (any format that is accepted by momentjs)\n* Provide the param 'from_block' or 'from_date'\n* If 'from_date' and 'from_block' are provided, 'from_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "to_date",
             "description": "Get the logs to this date (any format that is accepted by momentjs)\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "path",
             "name": "address",
             "description": "address",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "topic",
             "description": "The topic of the event",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "offset",
             "description": "offset",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "limit",
             "description": "limit",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           }
         ],
         "description": "Gets events in descending order based on block number",
@@ -545,9 +425,7 @@
                     },
                     "result": {
                       "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/logEvent"
-                      }
+                      "items": { "$ref": "#/components/schemas/logEvent" }
                     }
                   }
                 }
@@ -559,11 +437,7 @@
     },
     "/{address}/function": {
       "post": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Runs a function of a contract abi",
         "operationId": "runContractFunction",
         "requestBody": {
@@ -571,9 +445,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RunContractDto"
-              }
+              "schema": { "$ref": "#/components/schemas/RunContractDto" }
             }
           }
         },
@@ -583,45 +455,35 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "subdomain",
             "description": "The subdomain of the moralis server to use (Only use when selecting local devchain as chain)",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "providerUrl",
             "description": "web3 provider url to user when using local dev chain",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "path",
             "name": "address",
             "description": "address",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "function_name",
             "description": "function_name",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "description": "Runs a given function of a contract abi and returns readonly data",
@@ -630,11 +492,7 @@
           "200": {
             "description": "Returns response of the function executed",
             "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
+              "application/json": { "schema": { "type": "string" } }
             }
           }
         }
@@ -642,11 +500,7 @@
     },
     "/{address}": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets native transactions",
         "operationId": "getTransactions",
         "parameters": [
@@ -655,82 +509,61 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "subdomain",
             "description": "The subdomain of the moralis server to use (Only use when selecting local devchain as chain)",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "from_block",
             "description": "The minimum block number from where to get the transactions\n* Provide the param 'from_block' or 'from_date'\n* If 'from_date' and 'from_block' are provided, 'from_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "to_block",
             "description": "The maximum block number from where to get the transactions.\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "from_date",
             "description": "The date from where to get the transactions (any format that is accepted by momentjs)\n* Provide the param 'from_block' or 'from_date'\n* If 'from_date' and 'from_block' are provided, 'from_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "to_date",
             "description": "Get the transactions to this date (any format that is accepted by momentjs)\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "path",
             "name": "address",
             "description": "address",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "cursor",
             "description": "The cursor returned in the last response (for getting the next page)\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "limit",
             "description": "limit",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           }
         ],
         "description": "Gets native transactions in descending order based on block number",
@@ -751,11 +584,7 @@
     },
     "/{address}/balance": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets native balance for a specific address.",
         "operationId": "getNativeBalance",
         "parameters": [
@@ -764,18 +593,14 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "providerUrl",
             "description": "web3 provider url to user when using local dev chain",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "path",
@@ -792,9 +617,7 @@
             "name": "to_block",
             "description": "The block number on which the balances should be checked",
             "required": false,
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           }
         ],
         "description": "Gets native balance for a specific address",
@@ -804,9 +627,7 @@
             "description": "Returns native balance for a specific address",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/nativeBalance"
-                }
+                "schema": { "$ref": "#/components/schemas/nativeBalance" }
               }
             }
           }
@@ -815,11 +636,7 @@
     },
     "/{address}/erc20": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets token balances for a specific address.",
         "operationId": "getTokenBalances",
         "parameters": [
@@ -828,18 +645,14 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "subdomain",
             "description": "The subdomain of the moralis server to use (Only use when selecting local devchain as chain)",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "path",
@@ -856,9 +669,7 @@
             "name": "to_block",
             "description": "The block number on which the balances should be checked",
             "required": false,
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "in": "query",
@@ -868,9 +679,7 @@
             "schema": {
               "type": "array",
               "maxItems": 10,
-              "items": {
-                "type": "string"
-              }
+              "items": { "type": "string" }
             }
           }
         ],
@@ -883,9 +692,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/erc20TokenBalance"
-                  }
+                  "items": { "$ref": "#/components/schemas/erc20TokenBalance" }
                 }
               }
             }
@@ -895,11 +702,7 @@
     },
     "/{address}/erc20/transfers": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets erc 20 token transactions",
         "operationId": "getTokenTransfers",
         "parameters": [
@@ -908,82 +711,61 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "subdomain",
             "description": "The subdomain of the moralis server to use (Only use when selecting local devchain as chain)",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "from_block",
             "description": "The minimum block number from where to get the transactions\n* Provide the param 'from_block' or 'from_date'\n* If 'from_date' and 'from_block' are provided, 'from_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "to_block",
             "description": "The maximum block number from where to get the transactions.\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "from_date",
             "description": "The date from where to get the transactions (any format that is accepted by momentjs)\n* Provide the param 'from_block' or 'from_date'\n* If 'from_date' and 'from_block' are provided, 'from_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "to_date",
             "description": "Get the transactions to this date (any format that is accepted by momentjs)\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "path",
             "name": "address",
             "description": "address",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "limit",
             "description": "limit",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "cursor",
             "description": "The cursor returned in the last response (for getting the next page)\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "description": "Gets ERC20 token transactions in descending order based on block number",
@@ -1004,11 +786,7 @@
     },
     "/{address}/nft": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets the NFTs owned by a given address",
         "operationId": "getNFTs",
         "parameters": [
@@ -1017,18 +795,14 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "path",
             "name": "address",
             "description": "The owner of a given token",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
@@ -1047,10 +821,7 @@
             "name": "limit",
             "description": "limit",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
@@ -1060,18 +831,14 @@
             "schema": {
               "type": "array",
               "maxItems": 10,
-              "items": {
-                "type": "string"
-              }
+              "items": { "type": "string" }
             }
           },
           {
             "in": "query",
             "name": "cursor",
             "description": "The cursor returned in the last response (for getting the next page)\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "description": "Gets NFTs owned by the given address\n* The response will include status [SYNCED/SYNCING] based on the contracts being indexed.\n* Use the token_address param to get results for a specific contract only\n* Note results will include all indexed NFTs\n* Any request which includes the token_address param will start the indexing process for that NFT collection the very first time it is requested\n",
@@ -1081,9 +848,7 @@
             "description": "Returns a collection of nft owners",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/nftOwnerCollection"
-                }
+                "schema": { "$ref": "#/components/schemas/nftOwnerCollection" }
               }
             }
           }
@@ -1092,11 +857,7 @@
     },
     "/{address}/nft/transfers": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets NFT transfers to and from a given address",
         "operationId": "getNFTTransfers",
         "parameters": [
@@ -1105,18 +866,14 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "path",
             "name": "address",
             "description": "The sender or recepient of the transfer",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
@@ -1147,37 +904,27 @@
             "name": "from_block",
             "description": "The minimum block number from where to get the transfers\n* Provide the param 'from_block' or 'from_date'\n* If 'from_date' and 'from_block' are provided, 'from_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "to_block",
             "description": "To get the reserves at this block number",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "limit",
             "description": "limit",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "cursor",
             "description": "The cursor returned in the last response (for getting the next page)\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "description": "Gets the transfers of the tokens matching the given parameters",
@@ -1198,11 +945,7 @@
     },
     "/{address}/nft/{token_address}": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets the NFTs owned by a given address",
         "operationId": "getNFTsForContract",
         "parameters": [
@@ -1211,27 +954,21 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "path",
             "name": "address",
             "description": "The owner of a given token",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "path",
             "name": "token_address",
             "description": "Address of the contract",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
@@ -1249,19 +986,14 @@
             "in": "query",
             "name": "cursor",
             "description": "The cursor returned in the last response (for getting the next page)\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "limit",
             "description": "limit",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           }
         ],
         "description": "Gets NFTs owned by the given address\n* Use the token_address param to get results for a specific contract only\n* Note results will include all indexed NFTs\n* Any request which includes the token_address param will start the indexing process for that NFT collection the very first time it is requested\n",
@@ -1271,9 +1003,7 @@
             "description": "Returns a collection of nft owners",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/nftOwnerCollection"
-                }
+                "schema": { "$ref": "#/components/schemas/nftOwnerCollection" }
               }
             }
           }
@@ -1282,11 +1012,7 @@
     },
     "/erc20/metadata": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets token metadata",
         "operationId": "getTokenMetadata",
         "parameters": [
@@ -1295,27 +1021,21 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "subdomain",
             "description": "The subdomain of the moralis server to use (Only use when selecting local devchain as chain)",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "providerUrl",
             "description": "web3 provider url to user when using local dev chain",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
@@ -1325,9 +1045,7 @@
             "schema": {
               "type": "array",
               "maxItems": 10,
-              "items": {
-                "type": "string"
-              }
+              "items": { "type": "string" }
             }
           }
         ],
@@ -1340,9 +1058,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/erc20Metadata"
-                  }
+                  "items": { "$ref": "#/components/schemas/erc20Metadata" }
                 }
               }
             }
@@ -1352,11 +1068,7 @@
     },
     "/nft/{address}/trades": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Get nft trades by marketplaces",
         "operationId": "getNFTTrades",
         "parameters": [
@@ -1365,55 +1077,42 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "from_block",
             "description": "The minimum block number from where to get the transfers\n* Provide the param 'from_block' or 'from_date'\n* If 'from_date' and 'from_block' are provided, 'from_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "to_block",
             "description": "To get the reserves at this block number",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "from_date",
             "description": "The date from where to get the transfers (any format that is accepted by momentjs)\n* Provide the param 'from_block' or 'from_date'\n* If 'from_date' and 'from_block' are provided, 'from_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "to_date",
             "description": "Get the reserves to this date (any format that is accepted by momentjs)\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "provider_url",
             "description": "web3 provider url to user when using local dev chain",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
@@ -1433,19 +1132,14 @@
             "name": "cursor",
             "description": "cursor",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "limit",
             "description": "limit",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "path",
@@ -1465,9 +1159,7 @@
             "description": "Returns the trades",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/tradeCollection"
-                }
+                "schema": { "$ref": "#/components/schemas/tradeCollection" }
               }
             }
           }
@@ -1476,11 +1168,7 @@
     },
     "/nft/{address}/lowestprice": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Get the lowest price found for a nft token contract",
         "operationId": "getNFTLowestPrice",
         "parameters": [
@@ -1489,28 +1177,21 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "days",
             "description": "The number of days to look back to find the lowest price\nIf not provided 7 days will be the default\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "provider_url",
             "description": "web3 provider url to user when using local dev chain",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
@@ -1543,9 +1224,7 @@
             "description": "Returns the trade with the lowest price",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/trade"
-                }
+                "schema": { "$ref": "#/components/schemas/trade" }
               }
             }
           }
@@ -1554,11 +1233,7 @@
     },
     "/erc20/metadata/symbols": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets token metadata",
         "operationId": "getTokenMetadataBySymbol",
         "parameters": [
@@ -1567,18 +1242,14 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "subdomain",
             "description": "The subdomain of the moralis server to use (Only use when selecting local devchain as chain)",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
@@ -1587,10 +1258,7 @@
             "required": true,
             "schema": {
               "type": "array",
-              "items": {
-                "type": "string",
-                "example": "LINK"
-              }
+              "items": { "type": "string", "example": "LINK" }
             }
           }
         ],
@@ -1603,9 +1271,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/erc20Metadata"
-                  }
+                  "items": { "$ref": "#/components/schemas/erc20Metadata" }
                 }
               }
             }
@@ -1615,11 +1281,7 @@
     },
     "/erc20/{address}/price": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets token price",
         "operationId": "getTokenPrice",
         "parameters": [
@@ -1628,46 +1290,35 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "providerUrl",
             "description": "web3 provider url to user when using local dev chain",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "path",
             "name": "address",
             "description": "The address of the token contract",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "exchange",
             "description": "The factory name or address of the token exchange",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "to_block",
             "description": "to_block",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           }
         ],
         "description": "Returns the price nominated in the native token and usd for a given token contract address.",
@@ -1677,9 +1328,7 @@
             "description": "Returns the price nominated in the native token and usd for a given token contract address",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/erc20Price"
-                }
+                "schema": { "$ref": "#/components/schemas/erc20Price" }
               }
             }
           }
@@ -1688,11 +1337,7 @@
     },
     "/erc20/{address}/transfers": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets erc20 transactions of a token contract",
         "operationId": "getTokenAddressTransfers",
         "parameters": [
@@ -1701,84 +1346,62 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "subdomain",
             "description": "The subdomain of the moralis server to use (Only use when selecting local devchain as chain)",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "from_block",
             "description": "The minimum block number from where to get the transfers\n* Provide the param 'from_block' or 'from_date'\n* If 'from_date' and 'from_block' are provided, 'from_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "to_block",
             "description": "The maximum block number from where to get the transfers.\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "from_date",
             "description": "The date from where to get the transfers (any format that is accepted by momentjs)\n* Provide the param 'from_block' or 'from_date'\n* If 'from_date' and 'from_block' are provided, 'from_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "to_date",
             "description": "Get the transfers to this date (any format that is accepted by momentjs)\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "path",
             "name": "address",
             "description": "The address of the token contract",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "offset",
             "description": "offset",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "limit",
             "description": "limit",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           }
         ],
         "description": "Gets ERC20 token contract transactions in descending order based on block number",
@@ -1799,11 +1422,7 @@
     },
     "/erc20/{address}/allowance": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets the amount which the spender is allowed to withdraw from the owner.",
         "operationId": "getTokenAllowance",
         "parameters": [
@@ -1812,45 +1431,35 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "providerUrl",
             "description": "web3 provider url to user when using local dev chain",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "path",
             "name": "address",
             "description": "The address of the token contract",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "owner_address",
             "description": "The address of the token owner",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "spender_address",
             "description": "The address of the token spender",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "description": "Gets the amount which the spender is allowed to withdraw from the spender",
@@ -1860,9 +1469,7 @@
             "description": "Returns the amount which the spender is allowed to withdraw from the owner..",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/erc20Allowance"
-                }
+                "schema": { "$ref": "#/components/schemas/erc20Allowance" }
               }
             }
           }
@@ -1871,11 +1478,7 @@
     },
     "/nft/search": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Retrieves the NFT data based on a metadata search",
         "operationId": "searchNFTs",
         "parameters": [
@@ -1884,9 +1487,7 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
@@ -1905,11 +1506,7 @@
             "name": "q",
             "description": "The search string",
             "required": true,
-            "schema": {
-              "type": "string",
-              "minLength": 3,
-              "maxLength": 256
-            }
+            "schema": { "type": "string", "minLength": 3, "maxLength": 256 }
           },
           {
             "in": "query",
@@ -1937,37 +1534,27 @@
             "name": "from_block",
             "description": "The minimum block number from where to start the search\n* Provide the param 'from_block' or 'from_date'\n* If 'from_date' and 'from_block' are provided, 'from_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "to_block",
             "description": "The maximum block number from where to end the search\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "from_date",
             "description": "The date from where to start the search (any format that is accepted by momentjs)\n* Provide the param 'from_block' or 'from_date'\n* If 'from_date' and 'from_block' are provided, 'from_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "to_date",
             "description": "Get search results up until this date (any format that is accepted by momentjs)\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
@@ -1977,9 +1564,7 @@
             "schema": {
               "type": "array",
               "maxItems": 10,
-              "items": {
-                "type": "string"
-              }
+              "items": { "type": "string" }
             }
           },
           {
@@ -1987,28 +1572,21 @@
             "name": "token_address",
             "description": "token_address",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "cursor",
             "description": "cursor",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "limit",
             "description": "limit",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           }
         ],
         "description": "Gets NFTs that match a given metadata search.",
@@ -2029,11 +1607,7 @@
     },
     "/nft/transfers": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets NFT transfers from a block number to a block number",
         "operationId": "getNftTransfersFromToBlock",
         "parameters": [
@@ -2042,47 +1616,35 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "from_block",
             "description": "The minimum block number from where to get the transfers\n* Provide the param 'from_block' or 'from_date'\n* If 'from_date' and 'from_block' are provided, 'from_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "to_block",
             "description": "The maximum block number from where to get the transfers.\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "from_date",
             "description": "The date from where to get the transfers (any format that is accepted by momentjs)\n* Provide the param 'from_block' or 'from_date'\n* If 'from_date' and 'from_block' are provided, 'from_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "to_date",
             "description": "Get transfers up until this date (any format that is accepted by momentjs)\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
@@ -2101,18 +1663,13 @@
             "name": "limit",
             "description": "limit",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "cursor",
             "description": "The cursor returned in the last response (for getting the next page)\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "description": "Gets the transfers of the tokens from a block number to a block number",
@@ -2133,11 +1690,7 @@
     },
     "/nft/{address}": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Retrieves the unique NFTs inside a given contract",
         "operationId": "getAllTokenIds",
         "parameters": [
@@ -2146,18 +1699,14 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "path",
             "name": "address",
             "description": "Address of the contract",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
@@ -2176,18 +1725,13 @@
             "name": "limit",
             "description": "limit",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "cursor",
             "description": "The cursor returned in the last response (for getting the next page)\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "description": "Gets data, including metadata (where available), for all token ids for the given contract address.\n* Results are limited to 100 per page by default\n* Requests for contract addresses not yet indexed will automatically start the indexing process for that NFT collection\n",
@@ -2197,9 +1741,7 @@
             "description": "Returns a collection of nfts",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/nftCollection"
-                }
+                "schema": { "$ref": "#/components/schemas/nftCollection" }
               }
             }
           }
@@ -2208,11 +1750,7 @@
     },
     "/nft/{address}/transfers": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets NFT transfers of a given contract",
         "operationId": "getContractNFTTransfers",
         "parameters": [
@@ -2221,18 +1759,14 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "path",
             "name": "address",
             "description": "Address of the contract",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
@@ -2251,18 +1785,13 @@
             "name": "limit",
             "description": "limit",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "cursor",
             "description": "The cursor returned in the last response (for getting the next page)\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "description": "Gets the transfers of the tokens matching the given parameters",
@@ -2283,11 +1812,7 @@
     },
     "/nft/{address}/owners": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets the owners of the NFTs of a given contract",
         "operationId": "getNFTOwners",
         "parameters": [
@@ -2296,18 +1821,14 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "path",
             "name": "address",
             "description": "Address of the contract",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
@@ -2326,18 +1847,13 @@
             "name": "limit",
             "description": "limit",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "cursor",
             "description": "The cursor returned in the last response (for getting the next page)\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "description": "Gets all owners of NFT items within a given contract collection\n* Use after /nft/contract/{token_address} to find out who owns each token id in a collection\n* Requests for contract addresses not yet indexed will automatically start the indexing process for that NFT collection\n",
@@ -2347,9 +1863,7 @@
             "description": "Returns a collection of nft owners",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/nftOwnerCollection"
-                }
+                "schema": { "$ref": "#/components/schemas/nftOwnerCollection" }
               }
             }
           }
@@ -2358,11 +1872,7 @@
     },
     "/nft/{address}/metadata": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets the global metadata for a given contract",
         "operationId": "getNFTMetadata",
         "parameters": [
@@ -2371,18 +1881,14 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "path",
             "name": "address",
             "description": "Address of the contract",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "description": "Gets the contract level metadata (name, symbol, base token uri) for the given contract\n* Requests for contract addresses not yet indexed will automatically start the indexing process for that NFT collection\n",
@@ -2392,9 +1898,7 @@
             "description": "Returns a collection NFT collections.",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/nftContractMetadata"
-                }
+                "schema": { "$ref": "#/components/schemas/nftContractMetadata" }
               }
             }
           }
@@ -2403,11 +1907,7 @@
     },
     "/nft/{address}/{token_id}/metadata/resync": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "resync the metadata for a given token_id",
         "operationId": "reSyncMetadata",
         "parameters": [
@@ -2416,27 +1916,21 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "path",
             "name": "address",
             "description": "Address of the contract",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "path",
             "name": "token_id",
             "description": "The id of the token",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
@@ -2470,9 +1964,7 @@
             "description": "(In sync mode) Resync request executed.",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/metadataResync"
-                }
+                "schema": { "$ref": "#/components/schemas/metadataResync" }
               }
             }
           },
@@ -2480,9 +1972,7 @@
             "description": "The resync request was received and will be executed.",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/metadataResync"
-                }
+                "schema": { "$ref": "#/components/schemas/metadataResync" }
               }
             }
           },
@@ -2490,9 +1980,7 @@
             "description": "(In sync mode) Resync request executed and metadata could not be updated.",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/metadataResync"
-                }
+                "schema": { "$ref": "#/components/schemas/metadataResync" }
               }
             }
           }
@@ -2501,11 +1989,7 @@
     },
     "/nft/{address}/sync": {
       "put": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Sync a Contract for NFT Index",
         "operationId": "syncNFTContract",
         "parameters": [
@@ -2514,36 +1998,26 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "path",
             "name": "address",
             "description": "Address of the contract",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "description": "Sync a Contract for NFT Index\n",
         "tags": ["contract"],
         "responses": {
-          "201": {
-            "description": "Contract Address was triggered for index."
-          }
+          "201": { "description": "Contract Address was triggered for index." }
         }
       }
     },
     "/nft/{address}/{token_id}": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets the NFT with the given id of a given contract",
         "operationId": "getTokenIdMetadata",
         "parameters": [
@@ -2552,27 +2026,21 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "path",
             "name": "address",
             "description": "Address of the contract",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "path",
             "name": "token_id",
             "description": "The id of the token",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
@@ -2594,9 +2062,7 @@
             "description": "Returns the specified NFT",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/nft"
-                }
+                "schema": { "$ref": "#/components/schemas/nft" }
               }
             }
           }
@@ -2605,11 +2071,7 @@
     },
     "/nft/{address}/{token_id}/owners": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets the owners of NFTs for a given contract",
         "operationId": "getTokenIdOwners",
         "parameters": [
@@ -2618,27 +2080,21 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "path",
             "name": "address",
             "description": "Address of the contract",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "path",
             "name": "token_id",
             "description": "The id of the token",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
@@ -2657,18 +2113,13 @@
             "name": "limit",
             "description": "limit",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "cursor",
             "description": "The cursor returned in the last response (for getting the next page)\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "description": "Gets all owners of NFT items within a given contract collection\n* Use after /nft/contract/{token_address} to find out who owns each token id in a collection\n* Requests for contract addresses not yet indexed will automatically start the indexing process for that NFT collection\n",
@@ -2678,9 +2129,7 @@
             "description": "Returns a collection of NFTs with their respective owners",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/nftOwnerCollection"
-                }
+                "schema": { "$ref": "#/components/schemas/nftOwnerCollection" }
               }
             }
           }
@@ -2689,11 +2138,7 @@
     },
     "/nft/{address}/{token_id}/transfers": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Gets NFT transfers of a given contract",
         "operationId": "getWalletTokenIdTransfers",
         "parameters": [
@@ -2702,27 +2147,21 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "path",
             "name": "address",
             "description": "Address of the contract",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "path",
             "name": "token_id",
             "description": "The id of the token",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
@@ -2741,27 +2180,20 @@
             "name": "limit",
             "description": "limit",
             "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "in": "query",
             "name": "order",
             "description": "The field(s) to order on and if it should be ordered in ascending or descending order. Specified by: fieldName1.order,fieldName2.order. Example 1: \"block_number\", \"block_number.ASC\", \"block_number.DESC\", Example 2: \"block_number and contract_type\", \"block_number.ASC,contract_type.DESC\"",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "cursor",
             "description": "The cursor returned in the last response (for getting the next page)\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "description": "Gets the transfers of the tokens matching the given parameters",
@@ -2782,11 +2214,7 @@
     },
     "/resolve/{domain}": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Resolves an Unstoppable domain and returns the address",
         "operationId": "resolveDomain",
         "parameters": [
@@ -2807,10 +2235,7 @@
             "name": "domain",
             "description": "Domain to be resolved",
             "required": true,
-            "schema": {
-              "type": "string",
-              "example": "brad.crypto"
-            }
+            "schema": { "type": "string", "example": "brad.crypto" }
           }
         ],
         "description": "Resolves an Unstoppable domain and returns the address\n",
@@ -2820,20 +2245,14 @@
             "description": "Returns an address",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/resolve"
-                }
+                "schema": { "$ref": "#/components/schemas/resolve" }
               }
             }
           },
           "404": {
             "description": "Returns an address",
             "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
+              "application/json": { "schema": { "type": "object" } }
             }
           }
         }
@@ -2841,11 +2260,7 @@
     },
     "/resolve/{address}/reverse": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Return the ENS domain when available (Only for ETH)",
         "operationId": "resolveAddress",
         "parameters": [
@@ -2867,9 +2282,7 @@
             "description": "Returns an ENS",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ens"
-                }
+                "schema": { "$ref": "#/components/schemas/ens" }
               }
             }
           }
@@ -2878,11 +2291,7 @@
     },
     "/{pair_address}/reserves": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Get liquidity pair reserves for an Uniswap V2 based Exchange.",
         "operationId": "getPairReserves",
         "parameters": [
@@ -2891,35 +2300,27 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "to_block",
             "description": "To get the reserves at this block number",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "to_date",
             "description": "Get the reserves to this date (any format that is accepted by momentjs)\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "provider_url",
             "description": "web3 provider url to user when using local dev chain",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "path",
@@ -2960,11 +2361,7 @@
     },
     "/{token0_address}/{token1_address}/pairAddress": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Get pair address based on token0 and token1 address",
         "operationId": "getPairAddress",
         "parameters": [
@@ -2973,26 +2370,20 @@
             "name": "chain",
             "description": "The chain to query",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/chainList"
-            }
+            "schema": { "$ref": "#/components/schemas/chainList" }
           },
           {
             "in": "query",
             "name": "to_block",
             "description": "To get the reserves at this block number",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "to_date",
             "description": "Get the reserves to this date (any format that is accepted by momentjs)\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "in": "query",
@@ -3002,7 +2393,14 @@
             "schema": {
               "type": "string",
               "example": "uniswapv2",
-              "enum": ["uniswapv2", "uniswapv3", "sushiswapv2", "pancakeswapv2", "pancakeswapv1", "quickswap"]
+              "enum": [
+                "uniswapv2",
+                "uniswapv3",
+                "sushiswapv2",
+                "pancakeswapv2",
+                "pancakeswapv1",
+                "quickswap"
+              ]
             }
           },
           {
@@ -3033,9 +2431,7 @@
             "description": "Returns the pair address of the two tokens",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/reservesCollection"
-                }
+                "schema": { "$ref": "#/components/schemas/reservesCollection" }
               }
             }
           }
@@ -3044,11 +2440,7 @@
     },
     "/ipfs/uploadFolder": {
       "post": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Uploads multiple files and place them in a folder directory",
         "operationId": "uploadFolder",
         "requestBody": {
@@ -3058,9 +2450,7 @@
             "application/json": {
               "schema": {
                 "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/ipfsFileRequest"
-                }
+                "items": { "$ref": "#/components/schemas/ipfsFileRequest" }
               }
             }
           }
@@ -3074,9 +2464,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ipfsFile"
-                  }
+                  "items": { "$ref": "#/components/schemas/ipfsFile" }
                 }
               }
             }
@@ -3087,11 +2475,7 @@
     },
     "/web3/version": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Returns the web3 api version",
         "operationId": "web3ApiVersion",
         "tags": ["info"],
@@ -3100,9 +2484,7 @@
             "description": "Returns the web3 api version",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/web3version"
-                }
+                "schema": { "$ref": "#/components/schemas/web3version" }
               }
             }
           }
@@ -3112,11 +2494,7 @@
     },
     "/info/endpointWeights": {
       "get": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "security": [{ "ApiKeyAuth": [] }],
         "summary": "Returns the endpoint price list for rate limits and costs",
         "operationId": "endpointWeights",
         "tags": ["info"],
@@ -3127,9 +2505,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/endpointWeights"
-                  }
+                  "items": { "$ref": "#/components/schemas/endpointWeights" }
                 }
               }
             }
@@ -3141,11 +2517,7 @@
   },
   "components": {
     "securitySchemes": {
-      "ApiKeyAuth": {
-        "type": "apiKey",
-        "in": "header",
-        "name": "X-API-Key"
-      }
+      "ApiKeyAuth": { "type": "apiKey", "in": "header", "name": "X-API-Key" }
     },
     "schemas": {
       "logCollection": {
@@ -3171,9 +2543,7 @@
           },
           "result": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/logEventByAddress"
-            }
+            "items": { "$ref": "#/components/schemas/logEventByAddress" }
           }
         }
       },
@@ -3233,14 +2603,18 @@
             "type": "string",
             "example": "0x000000000000000000000000d25943be09f968ba740e0782a34e710100defae9"
           },
-          "topic3": {
-            "type": "string",
-            "example": null
-          }
+          "topic3": { "type": "string", "example": null }
         }
       },
       "logEvent": {
-        "required": ["transaction_hash", "address", "block_timestamp", "block_number", "block_hash", "data"],
+        "required": [
+          "transaction_hash",
+          "address",
+          "block_timestamp",
+          "block_number",
+          "block_hash",
+          "data"
+        ],
         "properties": {
           "transaction_hash": {
             "type": "string",
@@ -3303,19 +2677,13 @@
           "block_hash"
         ],
         "properties": {
-          "log_index": {
-            "type": "string",
-            "example": "273"
-          },
+          "log_index": { "type": "string", "example": "273" },
           "transaction_hash": {
             "type": "string",
             "description": "The hash of the transaction",
             "example": "0xdd9006489e46670e0e85d1fb88823099e7f596b08aeaac023e9da0851f26fdd5"
           },
-          "transaction_index": {
-            "type": "string",
-            "example": "204"
-          },
+          "transaction_index": { "type": "string", "example": "204" },
           "address": {
             "type": "string",
             "description": "The address of the contract",
@@ -3338,10 +2706,7 @@
             "type": "string",
             "example": "0x000000000000000000000000d25943be09f968ba740e0782a34e710100defae9"
           },
-          "topic3": {
-            "type": "string",
-            "example": null
-          },
+          "topic3": { "type": "string", "example": null },
           "block_timestamp": {
             "type": "string",
             "description": "The timestamp of the block",
@@ -3388,10 +2753,7 @@
             "description": "The nonce",
             "example": "1848059"
           },
-          "transaction_index": {
-            "type": "string",
-            "example": "108"
-          },
+          "transaction_index": { "type": "string", "example": "108" },
           "from_address": {
             "type": "string",
             "description": "The from address",
@@ -3407,39 +2769,21 @@
             "description": "The value sent",
             "example": "115580000000000000"
           },
-          "gas": {
-            "type": "string",
-            "example": "30000"
-          },
+          "gas": { "type": "string", "example": "30000" },
           "gas_price": {
             "type": "string",
             "description": "The gas price",
             "example": "52500000000"
           },
-          "input": {
-            "type": "string",
-            "example": "0x"
-          },
+          "input": { "type": "string", "example": "0x" },
           "receipt_cumulative_gas_used": {
             "type": "string",
             "example": "4923073"
           },
-          "receipt_gas_used": {
-            "type": "string",
-            "example": "21000"
-          },
-          "receipt_contract_address": {
-            "type": "string",
-            "example": null
-          },
-          "receipt_root": {
-            "type": "string",
-            "example": null
-          },
-          "receipt_status": {
-            "type": "string",
-            "example": "1"
-          },
+          "receipt_gas_used": { "type": "string", "example": "21000" },
+          "receipt_contract_address": { "type": "string", "example": null },
+          "receipt_root": { "type": "string", "example": null },
+          "receipt_status": { "type": "string", "example": "1" },
           "block_timestamp": {
             "type": "string",
             "description": "The block timestamp",
@@ -3458,9 +2802,7 @@
           "logs": {
             "type": "array",
             "description": "The logs of the transaction",
-            "items": {
-              "$ref": "#/components/schemas/log"
-            }
+            "items": { "$ref": "#/components/schemas/log" }
           }
         }
       },
@@ -3574,9 +2916,7 @@
           "transactions": {
             "type": "array",
             "description": "The transactions in the block",
-            "items": {
-              "$ref": "#/components/schemas/blockTransaction"
-            }
+            "items": { "$ref": "#/components/schemas/blockTransaction" }
           }
         }
       },
@@ -3634,9 +2974,7 @@
           },
           "result": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/transaction"
-            }
+            "items": { "$ref": "#/components/schemas/transaction" }
           }
         }
       },
@@ -3701,10 +3039,7 @@
             "description": "The gas price",
             "example": 20000000000
           },
-          "input": {
-            "type": "string",
-            "description": "The input"
-          },
+          "input": { "type": "string", "description": "The input" },
           "receipt_cumulative_gas_used": {
             "type": "string",
             "description": "The receipt cumulative gas used",
@@ -3749,10 +3084,7 @@
       "erc20Allowance": {
         "required": ["allowance"],
         "properties": {
-          "allowance": {
-            "type": "string",
-            "description": "The allowance"
-          }
+          "allowance": { "type": "string", "description": "The allowance" }
         }
       },
       "erc20TokenBalance": {
@@ -3890,9 +3222,7 @@
           },
           "result": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/trade"
-            }
+            "items": { "$ref": "#/components/schemas/trade" }
           }
         }
       },
@@ -3918,7 +3248,13 @@
         ]
       },
       "nft": {
-        "required": ["token_address", "token_id", "contract_type", "name", "symbol"],
+        "required": [
+          "token_address",
+          "token_id",
+          "contract_type",
+          "name",
+          "symbol"
+        ],
         "properties": {
           "token_address": {
             "type": "string",
@@ -4038,26 +3374,10 @@
             "description": "The metadata of the token",
             "example": "{\"name\":\"Bape #889\",\"description\":\"The #1 metavestor clan (NFT/DAO) by a team with multi billion dollar company experience.\",\"image\":\"https://bapesclan.mypinata.cloud/ipfs/QmTSUD5JA6qHaC5t25mcXySfz19AV9u4Mb6Na7ntQ6tEwf/889.jpg\",\"attributes\":[{\"trait_type\":\"Background\",\"value\":\"Black\"},{\"trait_type\":\"Body\",\"value\":\"Man\"},{\"trait_type\":\"Dress\",\"value\":\"Suit Tie Blue\"},{\"trait_type\":\"Face\",\"value\":\"Pipe\"},{\"trait_type\":\"Eye\",\"value\":\"Eye\"}]}"
           },
-          "is_valid": {
-            "type": "number",
-            "readOnly": true,
-            "example": "1"
-          },
-          "syncing": {
-            "type": "number",
-            "readOnly": true,
-            "example": "2"
-          },
-          "frozen": {
-            "type": "number",
-            "readOnly": true,
-            "example": "0"
-          },
-          "resyncing": {
-            "type": "number",
-            "readOnly": true,
-            "example": "0"
-          },
+          "is_valid": { "type": "number", "readOnly": true, "example": "1" },
+          "syncing": { "type": "number", "readOnly": true, "example": "2" },
+          "frozen": { "type": "number", "readOnly": true, "example": "0" },
+          "resyncing": { "type": "number", "readOnly": true, "example": "0" },
           "contract_type": {
             "type": "string",
             "readOnly": true,
@@ -4114,11 +3434,7 @@
             "readOnly": true,
             "example": null
           },
-          "imported": {
-            "type": "object",
-            "readOnly": true,
-            "example": null
-          },
+          "imported": { "type": "object", "readOnly": true, "example": null },
           "last_token_uri_sync": {
             "type": "string",
             "description": "When the token_uri was last updated",
@@ -4166,9 +3482,7 @@
           },
           "result": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/nft"
-            }
+            "items": { "$ref": "#/components/schemas/nft" }
           }
         }
       },
@@ -4191,9 +3505,7 @@
           },
           "result": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/nftMetadata"
-            }
+            "items": { "$ref": "#/components/schemas/nftMetadata" }
           }
         }
       },
@@ -4310,9 +3622,7 @@
           },
           "result": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/nftOwner"
-            }
+            "items": { "$ref": "#/components/schemas/nftOwner" }
           }
         }
       },
@@ -4391,10 +3701,7 @@
             "type": "string",
             "description": "The transaction index"
           },
-          "log_index": {
-            "type": "integer",
-            "description": "The log index"
-          },
+          "log_index": { "type": "integer", "description": "The log index" },
           "operator": {
             "type": "string",
             "description": "The operator present only for ERC1155 Transfers",
@@ -4426,9 +3733,7 @@
           },
           "result": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/nftTransfer"
-            }
+            "items": { "$ref": "#/components/schemas/nftTransfer" }
           },
           "block_exists": {
             "type": "boolean",
@@ -4563,12 +3868,8 @@
             "description": "The thumbnail of the logo",
             "example": "https://cdn.moralis.io/eth/0x67b6d479c7bb412c54e03dca8e1bc6740ce6b99c_thumb.png"
           },
-          "block_number": {
-            "type": "string"
-          },
-          "validated": {
-            "type": "string"
-          }
+          "block_number": { "type": "string" },
+          "validated": { "type": "string" }
         }
       },
       "metadataResync": {
@@ -4583,9 +3884,7 @@
       "erc20Price": {
         "required": ["usdPrice", "symbol"],
         "properties": {
-          "nativePrice": {
-            "$ref": "#/components/schemas/nativeErc20Price"
-          },
+          "nativePrice": { "$ref": "#/components/schemas/nativeErc20Price" },
           "usdPrice": {
             "type": "number",
             "format": "double",
@@ -4648,9 +3947,7 @@
           },
           "result": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/erc20Transaction"
-            }
+            "items": { "$ref": "#/components/schemas/erc20Transaction" }
           }
         }
       },
@@ -4684,18 +3981,9 @@
                 "type": "string",
                 "example": "0x2b591e99afe9f32eaa6214f7b7629768c40eeb39"
               },
-              "name": {
-                "type": "string",
-                "example": "HEX"
-              },
-              "symbol": {
-                "type": "string",
-                "example": "HEX"
-              },
-              "decimals": {
-                "type": "string",
-                "example": 9
-              },
+              "name": { "type": "string", "example": "HEX" },
+              "symbol": { "type": "string", "example": "HEX" },
+              "decimals": { "type": "string", "example": 9 },
               "logo": {
                 "type": "string",
                 "example": "https://cdn.moralis.io/eth/0x2b591e99afe9f32eaa6214f7b7629768c40eeb39.png"
@@ -4708,14 +3996,8 @@
                 "type": "string",
                 "example": "https://cdn.moralis.io/eth/0x2b591e99afe9f32eaa6214f7b7629768c40eeb39_thumb.png"
               },
-              "block_number": {
-                "type": "string",
-                "example": 14836562
-              },
-              "validated": {
-                "type": "number",
-                "example": 0
-              },
+              "block_number": { "type": "string", "example": 14836562 },
+              "validated": { "type": "number", "example": 0 },
               "created_at": {
                 "type": "string",
                 "example": "2022-01-20T09:39:55.818Z"
@@ -4729,18 +4011,9 @@
                 "type": "string",
                 "example": "0xdac17f958d2ee523a2206206994597c13d831ec7"
               },
-              "name": {
-                "type": "string",
-                "example": "Tether USD"
-              },
-              "symbol": {
-                "type": "string",
-                "example": "USDT"
-              },
-              "decimals": {
-                "type": "string",
-                "example": 6
-              },
+              "name": { "type": "string", "example": "Tether USD" },
+              "symbol": { "type": "string", "example": "USDT" },
+              "decimals": { "type": "string", "example": 6 },
               "logo": {
                 "type": "string",
                 "example": "https://cdn.moralis.io/eth/0xdac17f958d2ee523a2206206994597c13d831ec7.png"
@@ -4753,14 +4026,8 @@
                 "type": "string",
                 "example": "https://cdn.moralis.io/eth/0xdac17f958d2ee523a2206206994597c13d831ec7_thumb.png"
               },
-              "block_number": {
-                "type": "string",
-                "example": "4638568"
-              },
-              "validated": {
-                "type": "number",
-                "example": 1
-              },
+              "block_number": { "type": "string", "example": "4638568" },
+              "validated": { "type": "number", "example": 1 },
               "created_at": {
                 "type": "string",
                 "example": "2022-01-20T09:39:55.818Z"
@@ -4835,15 +4102,7 @@
       }
     }
   },
-  "security": [
-    {
-      "ApiKeyAuth": []
-    }
-  ],
-  "servers": [
-    {
-      "url": "https://deep-index.moralis.io/api/v2"
-    }
-  ],
+  "security": [{ "ApiKeyAuth": [] }],
+  "servers": [{ "url": "https://deep-index.moralis.io/api/v2" }],
   "tags": []
 }

@@ -3,10 +3,8 @@
   "info": {
     "title": "Blockchain",
     "version": "1",
-    "x-categories": ["chainjet"],
-    "x-logo": {
-      "url": "/logos/http.svg"
-    }
+    "x-categories": ["chainjet", "blockchain"],
+    "x-logo": { "url": "/logos/http.svg" }
   },
   "paths": {
     "/readContract": {
@@ -15,24 +13,15 @@
         "summary": "Read Contract",
         "description": "Make a call to read from a smart contract",
         "parameters": [
-          {
-            "$ref": "#/components/parameters/network",
-            "required": true
-          },
-          {
-            "$ref": "#/components/parameters/address",
-            "required": true
-          }
+          { "$ref": "#/components/parameters/network", "required": true },
+          { "$ref": "#/components/parameters/address", "required": true }
         ],
         "responses": {
           "200": {
             "description": "Smart Contract Response",
             "content": {
               "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
+                "schema": { "type": "object", "properties": {} }
               }
             }
           }
@@ -70,36 +59,18 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "blockNumber": {
-                      "type": "integer"
-                    },
-                    "blockHash": {
-                      "type": "string"
-                    },
-                    "transactionIndex": {
-                      "type": "integer"
-                    },
-                    "removed": {
-                      "type": "boolean"
-                    },
-                    "address": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "string"
-                    },
+                    "blockNumber": { "type": "integer" },
+                    "blockHash": { "type": "string" },
+                    "transactionIndex": { "type": "integer" },
+                    "removed": { "type": "boolean" },
+                    "address": { "type": "string" },
+                    "data": { "type": "string" },
                     "topics": {
                       "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
+                      "items": { "type": "string" }
                     },
-                    "transactionHash": {
-                      "type": "string"
-                    },
-                    "logIndex": {
-                      "type": "integer"
-                    }
+                    "transactionHash": { "type": "string" },
+                    "logIndex": { "type": "integer" }
                   }
                 }
               }
@@ -141,15 +112,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "balance": {
-                      "type": "string"
-                    },
-                    "tokenDecimals": {
-                      "type": "integer"
-                    },
-                    "convertedBalance": {
-                      "type": "integer"
-                    }
+                    "balance": { "type": "string" },
+                    "tokenDecimals": { "type": "integer" },
+                    "convertedBalance": { "type": "integer" }
                   }
                 }
               }
@@ -165,82 +130,27 @@
         "schema": {
           "type": "integer",
           "oneOf": [
-            {
-              "title": "Ethereum",
-              "const": 1
-            },
-            {
-              "title": "Arbitrum",
-              "const": 42161
-            },
-            {
-              "title": "Avalanche",
-              "const": 43114
-            },
-            {
-              "title": "BNB Chain (BSC)",
-              "const": 56
-            },
-            {
-              "title": "Celo",
-              "const": 42220
-            },
-            {
-              "title": "Cronos",
-              "const": 25
-            },
-            {
-              "title": "Fantom",
-              "const": 250
-            },
-            {
-              "title": "Gnosis",
-              "const": 100
-            },
-            {
-              "title": "Görli",
-              "const": 5
-            },
-            {
-              "title": "Harmony",
-              "const": 1666600000
-            },
-            {
-              "title": "Kovan",
-              "const": 42
-            },
-            {
-              "title": "Metis",
-              "const": 1088
-            },
-            {
-              "title": "Optimism",
-              "const": 10
-            },
-            {
-              "title": "Polygon",
-              "const": 137
-            },
-            {
-              "title": "Rinkeby",
-              "const": 4
-            },
-            {
-              "title": "Ropsten",
-              "const": 3
-            },
-            {
-              "title": "Sepolia",
-              "const": 11155111
-            }
+            { "title": "Ethereum", "const": 1 },
+            { "title": "Arbitrum", "const": 42161 },
+            { "title": "Avalanche", "const": 43114 },
+            { "title": "BNB Chain (BSC)", "const": 56 },
+            { "title": "Celo", "const": 42220 },
+            { "title": "Cronos", "const": 25 },
+            { "title": "Fantom", "const": 250 },
+            { "title": "Gnosis", "const": 100 },
+            { "title": "Görli", "const": 5 },
+            { "title": "Harmony", "const": 1666600000 },
+            { "title": "Kovan", "const": 42 },
+            { "title": "Metis", "const": 1088 },
+            { "title": "Optimism", "const": 10 },
+            { "title": "Polygon", "const": 137 },
+            { "title": "Rinkeby", "const": 4 },
+            { "title": "Ropsten", "const": 3 },
+            { "title": "Sepolia", "const": 11155111 }
           ]
         }
       },
-      "address": {
-        "schema": {
-          "type": "string"
-        }
-      }
+      "address": { "schema": { "type": "string" } }
     }
   }
 }
