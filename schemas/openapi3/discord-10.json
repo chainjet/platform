@@ -183,28 +183,373 @@
           "content": {
             "application/json": {
               "schema": {
+                "$ref": "#/components/schemas/SendMessage"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/applications/{applicationId}/commands": {
+      "post": {
+        "externalDocs": {
+          "url": "https://discord.com/developers/docs/interactions/application-commands#create-global-application-command"
+        },
+        "x-ignore": true,
+        "summary": "Create a global command",
+        "description": "Create a global command for an application.",
+        "operationId": "createGlobalCommand",
+        "parameters": [
+          {
+            "name": "applicationId",
+            "in": "path",
+            "description": "The ID of the application.",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
                 "type": "object",
+                "required": [
+                  "name",
+                  "description"
+                ],
                 "properties": {
-                  "content": {
+                  "name": {
                     "type": "string",
-                    "title": "Message content",
-                    "description": "Up to 2000 characters",
-                    "x-ui:widget": "textarea"
+                    "title": "Name",
+                    "description": "The name of the command"
                   },
-                  "tts": {
-                    "type": "boolean",
-                    "title": "Text-to-speech (TTS)",
-                    "description": "Whether the message should be read aloud by Discord"
+                  "description": {
+                    "type": "string",
+                    "title": "Description",
+                    "description": "The description of the command"
                   },
-                  "embeds": {
-                    "type": "array",
-                    "title": "Embeds",
-                    "description": "Embedded rich content (up to 6000 characters)",
-                    "items": {
-                      "$ref": "#/components/schemas/Embed"
+                  "type": {
+                    "type": "string",
+                    "title": "Type",
+                    "description": "The type of the command",
+                    "default": 1,
+                    "oneOf": [
+                      {
+                        "title": "CHAT_INPUT",
+                        "x-const": 1
+                      },
+                      {
+                        "title": "USER",
+                        "x-const": 2
+                      },
+                      {
+                        "title": "MESSAGE",
+                        "x-const": 3
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Command",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/applications/{applicationId}/guilds/{guildId}/commands": {
+      "post": {
+        "externalDocs": {
+          "url": "https://discord.com/developers/docs/interactions/application-commands#create-guild-application-command"
+        },
+        "summary": "Create a server command",
+        "description": "Create a command for a specific server.",
+        "operationId": "createGuildCommand",
+        "parameters": [
+          {
+            "name": "applicationId",
+            "in": "path",
+            "description": "The ID of the application.",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "name": "guildId",
+            "in": "path",
+            "description": "The server in which the command will be created.",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "description"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "title": "Name",
+                    "description": "The name of the command"
+                  },
+                  "description": {
+                    "type": "string",
+                    "title": "Description",
+                    "description": "The description of the command"
+                  },
+                  "type": {
+                    "type": "string",
+                    "title": "Type",
+                    "description": "The type of the command",
+                    "default": 1,
+                    "oneOf": [
+                      {
+                        "title": "CHAT_INPUT",
+                        "x-const": 1
+                      },
+                      {
+                        "title": "USER",
+                        "x-const": 2
+                      },
+                      {
+                        "title": "MESSAGE",
+                        "x-const": 3
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Command",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/#new-slash-command-guild": {
+      "get": {
+        "x-triggerOnly": true,
+        "x-triggerInstant": true,
+        "summary": "New slash command on a server",
+        "description": "Triggers when a slash command is sent on a server.",
+        "operationId": "newSlashCommandGuild",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Name of the command",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 32
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "Description of the command",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Application command response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "app_permissions": {
+                      "type": "string"
+                    },
+                    "application_id": {
+                      "type": "string"
+                    },
+                    "channel_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "guild_id": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "guild_id": {
+                      "type": "string"
+                    },
+                    "guild_locale": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "locale": {
+                      "type": "string"
+                    },
+                    "member": {
+                      "type": "object",
+                      "properties": {
+                        "avatar": {
+                          "type": "string"
+                        },
+                        "communication_disabled_until": {
+                          "type": "string"
+                        },
+                        "deaf": {
+                          "type": "boolean"
+                        },
+                        "flags": {
+                          "type": "integer"
+                        },
+                        "is_pending": {
+                          "type": "boolean"
+                        },
+                        "joined_at": {
+                          "type": "string"
+                        },
+                        "mute": {
+                          "type": "boolean"
+                        },
+                        "nick": {
+                          "type": "string"
+                        },
+                        "pending": {
+                          "type": "boolean"
+                        },
+                        "permissions": {
+                          "type": "string"
+                        },
+                        "premium_since": {
+                          "type": "string"
+                        },
+                        "roles": {
+                          "type": "array",
+                          "items": {}
+                        },
+                        "user": {
+                          "type": "object",
+                          "properties": {
+                            "avatar": {
+                              "type": "string"
+                            },
+                            "discriminator": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "public_flags": {
+                              "type": "integer"
+                            },
+                            "username": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "token": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "integer"
+                    },
+                    "version": {
+                      "type": "integer"
                     }
                   }
                 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/webhooks/{applicationId}/{token}": {
+      "post": {
+        "summary": "Send follow-up message",
+        "description": "Send a follow-up message after receiving a slash command.",
+        "operationId": "sendFollowupMessage",
+        "parameters": [
+          {
+            "name": "applicationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "x-hidden": true,
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendMessage"
               }
             }
           }
@@ -949,6 +1294,30 @@
             "title": "id of the application that sent the message"
           }
         }
+      },
+      "SendMessage": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "title": "Message content",
+            "description": "Message to send. Up to 2000 characters",
+            "x-ui:widget": "textarea"
+          },
+          "tts": {
+            "type": "boolean",
+            "title": "Text-to-speech (TTS)",
+            "description": "Whether the message should be read aloud by Discord"
+          },
+          "embeds": {
+            "type": "array",
+            "title": "Embeds",
+            "description": "Embedded rich content (up to 6000 characters)",
+            "items": {
+              "$ref": "#/components/schemas/Embed"
+            }
+          }
+        }
       }
     }
   },
@@ -956,6 +1325,7 @@
     {
       "oauth2": [
         "identify",
+        "guilds",
         "bot"
       ]
     }

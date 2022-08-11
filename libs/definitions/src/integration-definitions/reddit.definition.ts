@@ -3,7 +3,7 @@ import { IntegrationAccount } from 'apps/api/src/integration-accounts/entities/i
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { OpenAPIObject } from 'openapi3-ts'
 import { Observable } from 'rxjs'
-import { RunOutputs, RunResponse } from '../definition'
+import { RunResponse } from '../definition'
 import {
   getPipedreamOperations,
   PipedreamOperation,

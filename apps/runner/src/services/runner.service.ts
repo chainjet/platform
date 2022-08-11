@@ -1,10 +1,9 @@
 import { isEmptyObj } from '@app/common/utils/object.utils'
 import { Definition, IntegrationDefinitionFactory, RunResponse } from '@app/definitions'
 import { generateSchemaFromObject } from '@app/definitions/schema/utils/jsonSchemaUtils'
-import { Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common'
+import { Injectable, Logger, NotFoundException } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { ObjectId } from 'bson'
-import CryptoJS from 'crypto-js'
 import mongoose from 'mongoose'
 import { Observable } from 'rxjs'
 import { Reference } from '../../../../libs/common/src/typings/mongodb'
@@ -390,16 +389,7 @@ export class RunnerService {
         throw new NotFoundException('Account credentials not found')
       }
 
-      const key = this.configService.get('CREDENTIALS_AES_KEY')
-      if (!key) {
-        throw new InternalServerErrorException('Credentials key not set')
-      }
-      const decryption = CryptoJS.AES.decrypt(accountCredential.encryptedCredentials, key)
-      const unencryptedCredentials = JSON.parse(decryption.toString(CryptoJS.enc.Utf8))
-      credentials = {
-        ...accountCredential.fields,
-        ...unencryptedCredentials,
-      }
+      credentials = accountCredential.credentials
 
       if (accountCredential.integrationAccount) {
         integrationAccount =

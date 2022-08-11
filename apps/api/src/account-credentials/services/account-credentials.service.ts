@@ -38,7 +38,6 @@ export class AccountCredentialService extends BaseService<AccountCredential> {
         throw new Error('Credentials encryption key not set')
       }
       record.encryptedCredentials = CryptoJS.AES.encrypt(JSON.stringify(record.credentials), key).toString()
-      delete record.credentials
     }
 
     const integrationAccount = await this.integrationAccountService.findById(
@@ -74,7 +73,6 @@ export class AccountCredentialService extends BaseService<AccountCredential> {
         throw new Error('Credentials encryption key not set')
       }
       update.encryptedCredentials = CryptoJS.AES.encrypt(JSON.stringify(update.credentials), key).toString()
-      delete update.credentials
     }
     return await super.updateOne(id, update, opts)
   }

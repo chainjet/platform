@@ -1,8 +1,9 @@
-import { Controller, Get, Next, Param, Req, Res, Session, UseGuards } from '@nestjs/common'
+import { Controller, Get, Logger, Next, Param, Req, Res, Session, UseGuards } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { mongoose } from '@typegoose/typegoose'
 import CryptoJS from 'crypto-js'
 import { NextFunction, Request, Response } from 'express'
+import _ from 'lodash'
 import passport, { Profile } from 'passport'
 import path from 'path'
 import { AccountCredentialService } from '../../../account-credentials/services/account-credentials.service'
@@ -14,6 +15,8 @@ import { OAuthResponse, OAuthStrategyFactory } from '../oauth-strategy.factory'
 
 @Controller('account-credentials')
 export class ExternalOAuthController {
+  private readonly logger: Logger = new Logger(ExternalOAuthController.name)
+
   constructor(
     private readonly oauthStrategyFactory: OAuthStrategyFactory,
     private readonly accountCredentialService: AccountCredentialService,
@@ -134,6 +137,7 @@ export class ExternalOAuthController {
         }
       } else {
         if (!oauthResponse.accessToken) {
+          this.logger.debug(`No access token found in oauth response (req.user: ${JSON.stringify(req.user)})`)
           return res.status(400).send(req.query.error_description ?? 'Access token expired, please try again.')
         }
         credentials = {
@@ -146,6 +150,18 @@ export class ExternalOAuthController {
       if (!credentialKey) {
         throw new Error('Credentials encryption key not set')
       }
+
+      const credentialsFromQueryString = _.pick(
+        req.query as Record<string, any>,
+        oauthResponse.integrationAccount.queryStringCredentials,
+      )
+      if (!_.isEmpty(credentialsFromQueryString)) {
+        credentials = {
+          ...credentials,
+          ...credentialsFromQueryString,
+        }
+      }
+
       await this.accountCredentialService.createOne({
         owner: new mongoose.Types.ObjectId(user.id),
         name: `${oauthResponse.integrationAccount.name} account`, // TODO get username, email or ID and include it here

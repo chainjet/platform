@@ -199,6 +199,10 @@ export async function updatePipedreamSchemaBeforeInstall(
       delete schemaOperation.summary
     }
 
+    if (operation.name?.toLowerCase().includes('instant')) {
+      throw new Error(`Instant operations not supported yet`)
+    }
+
     const operationData = mapPipedreamOperationToOpenApi(operation)
     const schemaParams = schemaOperation.parameters ?? []
 

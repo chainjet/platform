@@ -29,8 +29,8 @@ export type BaseRunOptions = {
   integration: Integration
   integrationAccount: IntegrationAccount | null
   inputs: StepInputs
-  credentials: StepInputs
-  accountCredential: AccountCredential | null
+  credentials: StepInputs // TODO we could remove this and read it from accountCredentials
+  accountCredential: AccountCredential | null // needed to store refreshed access token
 }
 
 export type OperationRunOptions = BaseRunOptions & {
@@ -49,8 +49,9 @@ export class OperationRunnerService {
   constructor(
     private readonly schemaService: SchemaService,
     private readonly oauthStrategyFactory: OAuthStrategyFactory,
-    private readonly integrationDefinitionFactory: IntegrationDefinitionFactory,
     private readonly integrationActionService: IntegrationActionService,
+    @Inject(forwardRef(() => IntegrationDefinitionFactory))
+    protected integrationDefinitionFactory: IntegrationDefinitionFactory,
     @Inject(forwardRef(() => AccountCredentialService)) protected accountCredentialService: AccountCredentialService,
   ) {}
 
@@ -93,6 +94,7 @@ export class OperationRunnerService {
       throw new InternalServerErrorException(`Action ${operation.key} does not have schema data`)
     }
 
+    // TODO can we avoid fetching the entire schema from disk? can we generate it dynamically from our db?
     // Get the schema without specifying URL because we should never fetch external schemas on runtime
     const schema = await this.schemaService.getSchema({
       integrationKey: integration.key,
@@ -256,6 +258,9 @@ export class OperationRunnerService {
 
     if (!req.headers.Accept) {
       req.headers.Accept = 'application/json'
+    }
+    if (!req.headers['Content-Type']) {
+      req.headers['Content-Type'] = 'application/json'
     }
 
     return definition.requestInterceptor({

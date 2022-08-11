@@ -14,6 +14,7 @@ import { WorkflowTriggersModule } from '../../api/src/workflow-triggers/workflow
 import { WorkflowsModule } from '../../api/src/workflows/workflows.module'
 import { OperationRunnerService } from './services/operation-runner.service'
 import { RunnerService } from './services/runner.service'
+import { StaticRunner } from './services/static-runner.service'
 
 @Module({
   imports: [
@@ -34,7 +35,7 @@ import { RunnerService } from './services/runner.service'
     AuthModule,
     DefinitionsModule,
   ],
-  providers: [RunnerService, OperationRunnerService],
-  exports: [RunnerService, OperationRunnerService],
+  providers: [RunnerService, OperationRunnerService, StaticRunner],
+  exports: [RunnerService, OperationRunnerService, StaticRunner],
 })
 export class RunnerModule {}

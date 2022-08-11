@@ -377,6 +377,16 @@ type User {
   apiKey: String
 }
 
+type AccountCredential {
+  id: ID!
+  createdAt: DateTime!
+  owner: User!
+  integrationAccount: IntegrationAccount!
+  name: String!
+  fields: JSONObject
+  schemaRefs: JSONObject
+}
+
 type GenerateApiTokenPayload {
   apiKey: String!
 }
@@ -396,16 +406,6 @@ type Project {
   name: String!
   public: Boolean!
   slug: String!
-}
-
-type AccountCredential {
-  id: ID!
-  createdAt: DateTime!
-  owner: User!
-  integrationAccount: IntegrationAccount!
-  name: String!
-  fields: JSONObject
-  schemaRefs: JSONObject
 }
 
 type WorkflowNextAction {

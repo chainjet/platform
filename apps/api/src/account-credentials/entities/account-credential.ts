@@ -4,10 +4,11 @@ import { EntityRef } from '@app/common/decorators/entity-ref.decorator'
 import { OwnedEntity } from '@app/common/decorators/owned-entity.decorator'
 import { jsonProp } from '@app/common/decorators/props/json-prop.decorator'
 import { Reference } from '@app/common/typings/mongodb'
-import { Injectable } from '@nestjs/common'
+import { Injectable, InternalServerErrorException } from '@nestjs/common'
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql'
 import { Authorize, FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
+import CryptoJS from 'crypto-js'
 import { GraphQLJSONObject } from 'graphql-type-json'
 import { JSONSchema7 } from 'json-schema'
 import { IntegrationAccount } from '../../integration-accounts/entities/integration-account'
@@ -34,11 +35,27 @@ export class AccountCredential extends BaseEntity {
   @prop({ required: true })
   name: string
 
-  // Placeholder for credential pairs input
-  credentials: Record<string, string>
+  /**
+   * Get decrypted credentials
+   */
+  public get credentials(): Record<string, string> {
+    const key = process.env.CREDENTIALS_AES_KEY
+    if (!key) {
+      throw new InternalServerErrorException('Credentials key not set')
+    }
+    if (!this.encryptedCredentials) {
+      return {}
+    }
+    const decryption = CryptoJS.AES.decrypt(this.encryptedCredentials, key)
+    const unencryptedCredentials = JSON.parse(decryption.toString(CryptoJS.enc.Utf8))
+    return {
+      ...(this.fields ?? {}),
+      ...unencryptedCredentials,
+    }
+  }
 
   @prop()
-  encryptedCredentials: string
+  encryptedCredentials?: string
 
   @Field(() => GraphQLJSONObject, { nullable: true })
   @jsonProp()

@@ -32,6 +32,12 @@ export class IntegrationAccount extends BaseEntity {
   customStrategyKey?: string
 
   /**
+   * Some integrations send required data in the callback querystring. Setting the keys here will store them as credentials.
+   */
+  @prop()
+  queryStringCredentials: string[]
+
+  /**
    * JSON Schema with the authentication fields users can enter.
    * Only exposed fields can be sent back after creation (e.g. account region).
    */

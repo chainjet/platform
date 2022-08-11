@@ -299,7 +299,7 @@ export class AwsDefinition extends MultiIntegrationDefinition {
     return schema
   }
 
-  async onHookReceived(req: Request): Promise<boolean> {
+  async onHookReceivedForTrigger(req: Request): Promise<boolean> {
     if (req.body.Type === 'SubscriptionConfirmation' && req.body.SubscribeURL) {
       this.logger.log(`Confirmed subscription for hook ${req.params.hookId}`)
       await new HttpService().request(req.body.SubscribeURL).toPromise()

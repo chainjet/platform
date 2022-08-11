@@ -27,6 +27,47 @@ export class HooksController {
     private readonly runnerService: RunnerService,
   ) {}
 
+  @All('/integration/:integrationKey')
+  async receiveIntegrationHook(@Param('integrationKey') integrationKey: string, @Req() req: Request) {
+    const integration = await this.integrationService.findOne({ key: integrationKey })
+    if (!integration) {
+      throw new NotFoundException(`Integration ${integrationKey} not found`)
+    }
+
+    const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
+    const { response, runs } = await definition.onHookReceived(req, {
+      integrationTriggerService: this.integrationTriggerService,
+      workflowTriggerService: this.workflowTriggerService,
+    })
+
+    for (const run of runs) {
+      const workflow = await this.workflowService.findById(run.workflowTrigger.workflow.toString())
+      if (!workflow) {
+        this.logger.error(
+          `Workflow ${run.workflowTrigger.workflow} not found when resolving hook for ${integrationKey}`,
+        )
+        continue
+      }
+      this.logger.log(`Running workflow ${workflow.id} triggered by hook on ${integrationKey}`)
+
+      const hookOutputs = {
+        [run.workflowTrigger.id]: run.outputs,
+      }
+
+      const rootActions = await this.workflowActionService.find({ workflow: workflow.id, isRootAction: true })
+      const workflowRun = await this.workflowRunService.createOneByInstantTrigger(
+        integration,
+        run.integrationTrigger,
+        workflow,
+        run.workflowTrigger,
+        rootActions.length > 0,
+      )
+      void this.runnerService.runWorkflowActions(rootActions, [hookOutputs], workflowRun)
+    }
+
+    return response
+  }
+
   @All(':hookId')
   async receiveHook(@Param('hookId') hookId: string, @Req() req: Request): Promise<any> {
     this.logger.log(`${hookId} - Received hook`)
@@ -58,7 +99,7 @@ export class HooksController {
     }
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-    const canContinue = await definition.onHookReceived(req, workflowTrigger)
+    const canContinue = await definition.onHookReceivedForTrigger(req, workflowTrigger)
 
     if (!canContinue) {
       return {}

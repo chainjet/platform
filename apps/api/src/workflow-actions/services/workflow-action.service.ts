@@ -1,11 +1,12 @@
 import { BaseService } from '@app/common/base/base.service'
 import { ObjectID } from '@app/common/utils/mongodb'
 import { Injectable, Logger, NotFoundException } from '@nestjs/common'
-import { DeepPartial, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
+import { DeepPartial, DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
 import { capitalize } from '../../../../../libs/common/src/utils/string.utils'
 import { IntegrationDefinitionFactory } from '../../../../../libs/definitions/src/integration-definition.factory'
+import { AccountCredential } from '../../account-credentials/entities/account-credential'
 import { AccountCredentialService } from '../../account-credentials/services/account-credentials.service'
 import { IntegrationActionService } from '../../integration-actions/services/integration-action.service'
 import { IntegrationService } from '../../integrations/services/integration.service'
@@ -47,9 +48,10 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     }
 
     // Verify credentials exists and the user has access to it
+    let accountCredential: AccountCredential | null = null
     if (data.credentials) {
-      const credentials = await this.accountCredentialService.findById(data.credentials.toString())
-      if (!credentials?.owner || credentials.owner.toString() !== data.owner.toString()) {
+      accountCredential = (await this.accountCredentialService.findById(data.credentials.toString())) ?? null
+      if (!accountCredential?.owner || accountCredential.owner.toString() !== data.owner.toString()) {
         throw new NotFoundException('Account credentials not found')
       }
     }
@@ -91,7 +93,7 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     data.name = capitalize(integrationAction.name)
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-    const workflowAction = await definition.beforeCreateWorkflowAction(data, integrationAction)
+    const workflowAction = await definition.beforeCreateWorkflowAction(data, integrationAction, accountCredential)
 
     this.logger.debug(`Creating record: ${JSON.stringify(workflowAction)}`)
     const createdWorkflowAction = await super.createOne(workflowAction)
@@ -154,20 +156,35 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
       throw new NotFoundException(`Integration ${integrationAction.integration} not found`)
     }
 
+    // Verify credentials exists and the user has access to it
+    let accountCredential: AccountCredential | null = null
+    const credentialsId = update.credentials?.toString() ?? workflowAction.credentials?.toString()
+    if (credentialsId) {
+      accountCredential = (await this.accountCredentialService.findById(credentialsId)) ?? null
+      if (!accountCredential?.owner || accountCredential.owner.toString() !== workflowAction.owner.toString()) {
+        throw new NotFoundException('Account credentials not found')
+      }
+    }
+
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-    const updatedWorkflowAction = await definition.beforeUpdateWorkflowAction(update, integrationAction)
+    const updatedWorkflowAction = await definition.beforeUpdateWorkflowAction(
+      update,
+      integrationAction,
+      accountCredential,
+    )
     return await super.updateOne(id, updatedWorkflowAction, opts)
   }
 
-  async deleteOne(id: string): Promise<WorkflowAction> {
+  async deleteOne(id: string, opts?: DeleteOneOptions<WorkflowAction> | undefined): Promise<WorkflowAction> {
     // Verify action exist and the user has access to it
     const workflowAction = await this.findById(id)
     if (!workflowAction) {
-      throw new NotFoundException()
+      return super.deleteOne(id, opts)
     }
-    // TODO
+
+    // TODO isn't this already handled by the permission decorator? test me!!!
     // if (!workflowAction || workflowAction.owner.toString() !== data.owner.toString()) {
-    //   throw new NotFoundException('Workflow Action not found')
+    //   return super.deleteOne(id, opts)
     // }
 
     // Update isRootAction on next actions
@@ -187,6 +204,23 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
       }
     }
 
+    const integrationAction = await this.integrationActionService.findById(workflowAction.integrationAction.toString())
+    if (!integrationAction) {
+      return super.deleteOne(id, opts)
+    }
+
+    const integration = await this.integrationService.findById(integrationAction.integration.toString())
+    if (!integration) {
+      return super.deleteOne(id, opts)
+    }
+
+    let accountCredential: AccountCredential | null = null
+    if (workflowAction.credentials) {
+      accountCredential = (await this.accountCredentialService.findById(workflowAction.credentials.toString())) ?? null
+    }
+
+    const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
+    await definition.beforeDeleteWorkflowAction(workflowAction, integrationAction, accountCredential)
     return super.deleteOne(id)
   }
 }

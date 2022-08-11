@@ -929,6 +929,16 @@ export interface User {
     apiKey?: Nullable<string>;
 }
 
+export interface AccountCredential {
+    id: string;
+    createdAt: DateTime;
+    owner: User;
+    integrationAccount: IntegrationAccount;
+    name: string;
+    fields?: Nullable<JSONObject>;
+    schemaRefs?: Nullable<JSONObject>;
+}
+
 export interface GenerateApiTokenPayload {
     apiKey: string;
 }
@@ -945,16 +955,6 @@ export interface Project {
     name: string;
     public: boolean;
     slug: string;
-}
-
-export interface AccountCredential {
-    id: string;
-    createdAt: DateTime;
-    owner: User;
-    integrationAccount: IntegrationAccount;
-    name: string;
-    fields?: Nullable<JSONObject>;
-    schemaRefs?: Nullable<JSONObject>;
 }
 
 export interface WorkflowNextAction {

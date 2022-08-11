@@ -1,7 +1,7 @@
 import { BaseService } from '@app/common/base/base.service'
 import { IntegrationDefinitionFactory } from '@app/definitions'
 import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
-import { DeepPartial, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
+import { DeepPartial, DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { mongoose, ReturnModelType } from '@typegoose/typegoose'
 import cronParser from 'cron-parser'
 import _ from 'lodash'
@@ -11,6 +11,7 @@ import { isValidDate, parseTime } from '../../../../../libs/common/src/utils/dat
 import { SecurityUtils } from '../../../../../libs/common/src/utils/security.utils'
 import { capitalize } from '../../../../../libs/common/src/utils/string.utils'
 import { assertNever } from '../../../../../libs/common/src/utils/typescript.utils'
+import { AccountCredential } from '../../account-credentials/entities/account-credential'
 import { AccountCredentialService } from '../../account-credentials/services/account-credentials.service'
 import { IntegrationTriggerService } from '../../integration-triggers/services/integration-trigger.service'
 import { IntegrationService } from '../../integrations/services/integration.service'
@@ -46,9 +47,10 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     }
 
     // Verify credentials exists and the user has access to it
+    let accountCredential: AccountCredential | null = null
     if (record.credentials) {
-      const credentials = await this.accountCredentialService.findById(record.credentials.toString())
-      if (!credentials?.owner || credentials.owner.toString() !== record.owner.toString()) {
+      accountCredential = (await this.accountCredentialService.findById(record.credentials.toString())) ?? null
+      if (!accountCredential?.owner || accountCredential.owner.toString() !== record.owner.toString()) {
         throw new NotFoundException(`Account credentials ${record.credentials} not found`)
       }
     }
@@ -71,7 +73,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     record.name = capitalize(integrationTrigger.name)
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-    const workflowTrigger = await definition.beforeCreateWorkflowTrigger(record, integrationTrigger)
+    const workflowTrigger = await definition.beforeCreateWorkflowTrigger(record, integrationTrigger, accountCredential)
 
     return await super.createOne(workflowTrigger)
   }
@@ -81,40 +83,40 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     update: DeepPartial<WorkflowTrigger>,
     opts?: UpdateOneOptions<WorkflowTrigger>,
   ): Promise<WorkflowTrigger> {
-    const currentTrigger = await this.findById(id)
-    if (!currentTrigger) {
+    const workflowTrigger = await this.findById(id)
+    if (!workflowTrigger) {
       throw new NotFoundException('Worflow trigger not found')
     }
 
     // If frequency was updated or workflow was enabled update nextCheck
-    const scheduleUpdated = update.schedule && !_.isEqual(update.schedule, currentTrigger.schedule ?? {})
-    const workflowEnabled = update.enabled && !currentTrigger.enabled
+    const scheduleUpdated = update.schedule && !_.isEqual(update.schedule, workflowTrigger.schedule ?? {})
+    const workflowEnabled = update.enabled && !workflowTrigger.enabled
     if (scheduleUpdated || workflowEnabled) {
       if (scheduleUpdated) {
-        currentTrigger.schedule = update.schedule as TriggerSchedule
+        workflowTrigger.schedule = update.schedule as TriggerSchedule
       }
       if (workflowEnabled) {
-        currentTrigger.enabled = true
+        workflowTrigger.enabled = true
       }
-      update.nextCheck = this.getTriggerNextCheck(currentTrigger, true)
+      update.nextCheck = this.getTriggerNextCheck(workflowTrigger, true)
     }
 
     // Restart workflow failures if workflow is reenabled
     if (workflowEnabled) {
       update.consecutiveWorkflowFails = 0
-      this.logger.log(`Workflow ${currentTrigger.workflow} was enabled`)
+      this.logger.log(`Workflow ${workflowTrigger.workflow} was enabled`)
     }
 
     // If trigger is disabled, remove nextCheck
     if (update.enabled === false) {
       update.nextCheck = undefined
-      if (currentTrigger.enabled) {
-        this.logger.log(`Workflow ${currentTrigger.workflow} was disabled`)
+      if (workflowTrigger.enabled) {
+        this.logger.log(`Workflow ${workflowTrigger.workflow} was disabled`)
       }
     }
 
     const integrationTrigger = await this.integrationTriggerService.findById(
-      currentTrigger.integrationTrigger.toString(),
+      workflowTrigger.integrationTrigger.toString(),
     )
     if (!integrationTrigger) {
       throw new NotFoundException('Integration trigger not found')
@@ -125,10 +127,52 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       throw new NotFoundException(`Integration ${integrationTrigger.integration} not found`)
     }
 
+    // Verify credentials exists and the user has access to it
+    let accountCredential: AccountCredential | null = null
+    const credentialsId = update.credentials?.toString() ?? workflowTrigger.credentials?.toString()
+    if (credentialsId) {
+      accountCredential = (await this.accountCredentialService.findById(credentialsId)) ?? null
+      if (!accountCredential?.owner || accountCredential.owner.toString() !== workflowTrigger.owner.toString()) {
+        throw new NotFoundException('Account credentials not found')
+      }
+    }
+
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-    const updatedWorkflowTrigger = await definition.beforeUpdateWorkflowTrigger(update, integrationTrigger)
+    const updatedWorkflowTrigger = await definition.beforeUpdateWorkflowTrigger(
+      update,
+      integrationTrigger,
+      accountCredential,
+    )
 
     return await super.updateOne(id, updatedWorkflowTrigger, opts)
+  }
+
+  async deleteOne(id: string, opts?: DeleteOneOptions<WorkflowTrigger> | undefined): Promise<WorkflowTrigger> {
+    const workflowTrigger = await this.findById(id)
+    if (!workflowTrigger) {
+      return super.deleteOne(id, opts)
+    }
+
+    const integrationTrigger = await this.integrationTriggerService.findById(
+      workflowTrigger.integrationTrigger.toString(),
+    )
+    if (!integrationTrigger) {
+      return super.deleteOne(id, opts)
+    }
+
+    const integration = await this.integrationService.findById(integrationTrigger.integration.toString())
+    if (!integration) {
+      return super.deleteOne(id, opts)
+    }
+
+    let accountCredential: AccountCredential | null = null
+    if (workflowTrigger.credentials) {
+      accountCredential = (await this.accountCredentialService.findById(workflowTrigger.credentials.toString())) ?? null
+    }
+
+    const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
+    await definition.beforeDeleteWorkflowTrigger(workflowTrigger, integrationTrigger, accountCredential)
+    return super.deleteOne(id, opts)
   }
 
   async updateNextCheck(workflowTrigger: WorkflowTrigger): Promise<void> {

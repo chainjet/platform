@@ -1,7 +1,7 @@
 import { SchemaService } from '@app/definitions/schema/services/schema.service'
 import { Logger } from '@nestjs/common'
-import { DeepPartial } from '@ptc-org/nestjs-query-core'
 import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/integration-trigger'
+import { WorkflowTriggerService } from 'apps/api/src/workflow-triggers/services/workflow-trigger.service'
 import { Request } from 'express'
 import { JSONSchema7 } from 'json-schema'
 import { OpenAPIObject, OperationObject } from 'openapi3-ts'
@@ -44,7 +44,7 @@ export interface RequestInterceptorOptions {
   authorizations: any
 }
 
-export type RunOutputs = Record<string, unknown>
+export type RunOutputs = Record<string, unknown> // TODO outputs can be an array
 
 export interface RunResponse {
   outputs: RunOutputs
@@ -60,6 +60,11 @@ export interface GetAsyncSchemasProps {
   credentials: StepInputs
   accountCredential: AccountCredential | null
   operationRunnerService: OperationRunnerService
+}
+
+export interface IntegrationHookInjects {
+  integrationTriggerService: IntegrationTriggerService
+  workflowTriggerService: WorkflowTriggerService
 }
 
 export abstract class Definition {
@@ -113,32 +118,22 @@ export abstract class Definition {
   }
 
   /**
-   * Allows definitions to modify the workflow action entity before it is created
+   * Called before a workflow action is deleted
    */
-  async beforeCreateWorkflowAction(
-    workflowAction: DeepPartial<WorkflowAction>,
-    integrationAction: IntegrationAction,
-  ): Promise<DeepPartial<WorkflowAction>> {
-    return workflowAction
-  }
-
-  /**
-   * Allows definitions to modify the workflow action entity before it is updated
-   */
-  async beforeUpdateWorkflowAction(
-    workflowAction: DeepPartial<WorkflowAction>,
-    integrationAction: IntegrationAction,
-  ): Promise<DeepPartial<WorkflowAction>> {
-    return workflowAction
-  }
+  async beforeDeleteWorkflowAction(
+    workflowTrigger: Partial<WorkflowAction>,
+    integrationTrigger: IntegrationAction,
+    accountCredential: AccountCredential | null,
+  ) {}
 
   /**
    * Allows definitions to modify the workflow trigger entity before it is created
    */
   async beforeCreateWorkflowTrigger(
-    workflowTrigger: DeepPartial<WorkflowTrigger>,
+    workflowTrigger: Partial<WorkflowTrigger>,
     integrationTrigger: IntegrationTrigger,
-  ): Promise<DeepPartial<WorkflowTrigger>> {
+    accountCredential: AccountCredential | null,
+  ): Promise<Partial<WorkflowTrigger>> {
     return workflowTrigger
   }
 
@@ -146,17 +141,66 @@ export abstract class Definition {
    * Allows definitions to modify the workflow trigger entity before it is updated
    */
   async beforeUpdateWorkflowTrigger(
-    workflowTrigger: DeepPartial<WorkflowTrigger>,
+    workflowTrigger: Partial<WorkflowTrigger>,
     integrationTrigger: IntegrationTrigger,
-  ): Promise<DeepPartial<WorkflowTrigger>> {
+    accountCredential: AccountCredential | null,
+  ): Promise<Partial<WorkflowTrigger>> {
     return workflowTrigger
+  }
+
+  /**
+   * Allows definitions to modify the workflow action entity before it is created
+   */
+  async beforeCreateWorkflowAction(
+    workflowAction: Partial<WorkflowAction>,
+    integrationAction: IntegrationAction,
+    accountCredential: AccountCredential | null,
+  ): Promise<Partial<WorkflowAction>> {
+    return workflowAction
+  }
+
+  /**
+   * Allows definitions to modify the workflow action entity before it is updated
+   */
+  async beforeUpdateWorkflowAction(
+    workflowAction: Partial<WorkflowAction>,
+    integrationAction: IntegrationAction,
+    accountCredential: AccountCredential | null,
+  ): Promise<Partial<WorkflowAction>> {
+    return workflowAction
+  }
+
+  /**
+   * Called before a workflow trigger is deleted
+   */
+  async beforeDeleteWorkflowTrigger(
+    workflowTrigger: Partial<WorkflowTrigger>,
+    integrationTrigger: IntegrationTrigger,
+    accountCredential: AccountCredential | null,
+  ) {}
+
+  /**
+   * Triggered when an integration hook is received. This hook has to figure it out which triggers should run.
+   */
+  async onHookReceived(
+    req: Request,
+    injects: IntegrationHookInjects,
+  ): Promise<{
+    response: any
+    runs: Array<{
+      workflowTrigger: WorkflowTrigger
+      integrationTrigger: IntegrationTrigger
+      outputs: Record<string, any>
+    }>
+  }> {
+    throw new Error(`Hook not supported by this integration`)
   }
 
   /**
    * Triggered when a hook is received. Returns true if the hook should continue, false otherwise.
    */
-  async onHookReceived(req: Request, workflowTrigger: WorkflowTrigger): Promise<boolean> {
-    return true
+  async onHookReceivedForTrigger(req: Request, workflowTrigger: WorkflowTrigger): Promise<boolean> {
+    throw new Error(`Hook not supported by this integration`)
   }
 
   /**
