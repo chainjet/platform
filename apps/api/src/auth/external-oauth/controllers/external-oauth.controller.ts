@@ -198,7 +198,7 @@ export class ExternalOAuthController {
         profile,
         primaryEmail,
       )
-      const completeAuthPath = `/login/complete-auth?id=${userProviderId}&code=${completeAuthCode}`
+      const completeAuthPath = `${process.env.FRONTEND_ENDPOINT}/login/complete-auth?id=${userProviderId}&code=${completeAuthCode}`
       if (user) {
         res.redirect(completeAuthPath)
       } else {
