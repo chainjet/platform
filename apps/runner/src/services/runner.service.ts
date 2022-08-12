@@ -319,7 +319,9 @@ export class RunnerService {
         e.message,
         e.response?.text || undefined,
       )
-      this.logger.error(`Run WorkflowAction ${workflowAction.id} failed with error ${e.response?.text ?? e.response}`)
+      this.logger.error(
+        `Run WorkflowAction ${workflowAction.id} failed with error ${e.response?.text ?? e.response ?? e.message}`,
+      )
       return
     }
 

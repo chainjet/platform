@@ -7,10 +7,10 @@ import { JSONSchema7 } from 'json-schema'
 import { OpenAPIObject } from 'openapi3-ts'
 import { SchemaObject, SecuritySchemeObject } from 'openapi3-ts/dist/model/OpenApi'
 import path from 'path'
+import prettier from 'prettier'
 import { firstValueFrom } from 'rxjs'
 import { promisify } from 'util'
 import { stripMarkdown } from '../../../../common/src/utils/string.utils'
-import prettier from 'prettier'
 
 const convertObj = promisify(require('swagger2openapi').convertObj)
 
@@ -56,10 +56,16 @@ export const OpenApiUtils = {
 
   async getLocalIntegrationSchema(integrationKey: string, integrationVersion: string): Promise<OpenAPIObject | null> {
     try {
-      const schemaPath = this.getSchemaFilePath(integrationKey, integrationVersion)
-      const schemaJson = (await fs.promises.readFile(schemaPath)).toString()
-      return JSON.parse(schemaJson)
+      if (process.env.NODE_ENV === 'development') {
+        const schemaPath = this.getSchemaFilePath(integrationKey, integrationVersion)
+        const schemaJson = (await fs.promises.readFile(schemaPath)).toString()
+        return JSON.parse(schemaJson)
+      } else {
+        const schemaJson = await import(`@chainjet/schemas/openapi3/${integrationKey}-${integrationVersion}.json`)
+        return schemaJson
+      }
     } catch (e) {
+      this.logger.error(`Error fetching schema for ${integrationKey}-${integrationVersion} ${e?.message ?? e}`)
       return null
     }
   },
@@ -72,7 +78,7 @@ export const OpenApiUtils = {
   },
 
   getSchemaFilePath(integrationKey: string, integrationVersion: string): string {
-    return path.join(__dirname, '../../../schemas/openapi3', `${integrationKey}-${integrationVersion}.json`)
+    return path.join(__dirname, '../../../../schemas/openapi3', `${integrationKey}-${integrationVersion}.json`)
   },
 
   async saveSchema(schema: OpenAPIObject, integrationKey: string, integrationVersion: string): Promise<any> {
