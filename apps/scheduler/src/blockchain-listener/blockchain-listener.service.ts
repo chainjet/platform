@@ -1,6 +1,8 @@
 import { ExplorerService } from '@blockchain/blockchain/explorer/explorer.service'
 import { ProviderService } from '@blockchain/blockchain/provider/provider.service'
+import { Listener } from '@ethersproject/abstract-provider'
 import { Injectable, Logger } from '@nestjs/common'
+import { Interval } from '@nestjs/schedule'
 import { IntegrationTriggerService } from 'apps/api/src/integration-triggers/services/integration-trigger.service'
 import { IntegrationService } from 'apps/api/src/integrations/services/integration.service'
 import { WorkflowActionService } from 'apps/api/src/workflow-actions/services/workflow-action.service'
@@ -16,6 +18,8 @@ import { shuffle } from 'lodash'
 export class BlockchainListenerService {
   private logger = new Logger(BlockchainListenerService.name)
 
+  private listeners: { [key: string]: Listener } = {}
+
   constructor(
     private providerService: ProviderService,
     private integrationService: IntegrationService,
@@ -29,15 +33,14 @@ export class BlockchainListenerService {
   ) {}
 
   onModuleInit() {
+    this.logger.log(`Starting blockchain events listener`)
     this.startBlockchainEventsListener()
   }
 
-  // TODO it only listens workflows enabled when the server started
-  //      we need to start listening when a new workflow is enabled/created
-  //      we need to stop listening when a workflow is disabled/removed
+  // TODO we need the interval to start listening for new triggers after the server has started.
+  //      it could be more efficient if the api notifies when this happens rather than polling every 30 seconds.
+  @Interval(30 * 1000)
   async startBlockchainEventsListener() {
-    this.logger.log(`Starting blockchain events listener`)
-
     const integration = await this.integrationService.findOne({ key: 'blockchain', version: '1' })
     if (!integration) {
       this.logger.error(`Blockchain integration not found`)
@@ -57,7 +60,8 @@ export class BlockchainListenerService {
       integrationTrigger: integrationTrigger.id,
       enabled: true,
     })
-    const shuffledTriggers = shuffle(workflowTriggers)
+    const triggersWithoutListener = workflowTriggers.filter((trigger) => !this.listeners[trigger.id])
+    const shuffledTriggers = shuffle(triggersWithoutListener)
 
     for (const workflowTrigger of shuffledTriggers) {
       if (workflowTrigger.inputs?.network && workflowTrigger.inputs?.address && workflowTrigger.inputs?.event) {
@@ -77,12 +81,20 @@ export class BlockchainListenerService {
           ...eventAbi.inputs.map((input) => (input.indexed ? workflowTrigger.inputs![input.name] : null)),
         )
 
-        contract.on(filter, async (...args) => {
+        this.logger.log(`Starting listener for trigger ${workflowTrigger.id}`)
+        this.listeners[workflowTrigger.id] = async (...args) => {
           const log = args.pop()
 
           const workflow = await this.workflowService.findById(workflowTrigger.workflow.toString())
           if (!workflow) {
             this.logger.error(`Workflow not found for workflow trigger ${workflowTrigger.id}`)
+            return
+          }
+          const updatedTrigger = await this.workflowTriggerService.findById(workflowTrigger.id)
+          if (!updatedTrigger?.enabled) {
+            this.logger.log(`Received an event for a disabled trigger ${workflowTrigger.id}`)
+            contract.off(filter, this.listeners[workflowTrigger.id])
+            delete this.listeners[workflowTrigger.id]
             return
           }
           this.logger.log(`Running workflow ${workflow.id}`)
@@ -103,7 +115,9 @@ export class BlockchainListenerService {
             rootActions.length > 0,
           )
           void this.runnerService.runWorkflowActions(rootActions, [hookOutputs], workflowRun)
-        })
+        }
+
+        contract.on(filter, this.listeners[workflowTrigger.id])
       }
     }
   }
