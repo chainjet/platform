@@ -34,6 +34,7 @@ export class WorkflowSchedulerService {
 
     // Get triggers to be checked
     const triggers = await this.workflowTriggerService.find({
+      enabled: true,
       nextCheck: {
         $lt: new Date(),
       },
