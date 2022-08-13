@@ -202,12 +202,17 @@ export class OperationRunnerService {
       return { outputs }
     } catch (e) {
       const statusCode = e.status ?? e.statusCode
+      // retry once 401 errors (authorization)
       if (!retryCount && statusCode === 401 && credentials.refreshToken && integrationAccount?.key) {
         opts.credentials.accessToken = await this.oauthStrategyFactory.refreshOauth2AccessToken(
           integrationAccount.key,
           accountCredential,
           credentials,
         )
+        return this.runOperation(definition, opts, retryCount + 1)
+      }
+      // retry once 429 errors (rate limiting) and 500 errors (server errors)
+      if (!retryCount && (statusCode === 429 || statusCode >= 500)) {
         return this.runOperation(definition, opts, retryCount + 1)
       }
       throw e
