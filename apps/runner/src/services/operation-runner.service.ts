@@ -1,3 +1,4 @@
+import { MetricService } from '@app/common/metrics/metric.service'
 import { forwardRef, Inject, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common'
 import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from 'apps/api/src/workflow-triggers/entities/workflow-trigger'
@@ -53,6 +54,7 @@ export class OperationRunnerService {
     @Inject(forwardRef(() => IntegrationDefinitionFactory))
     protected integrationDefinitionFactory: IntegrationDefinitionFactory,
     @Inject(forwardRef(() => AccountCredentialService)) protected accountCredentialService: AccountCredentialService,
+    private readonly metricService: MetricService,
   ) {}
 
   async runTriggerCheck(
@@ -199,6 +201,7 @@ export class OperationRunnerService {
       const res = await client.apis[tag][apiId](parameters, options)
       this.logger.debug(`Completed ${operation.key} of ${integration.key} with status ${res?.status as number}`)
       const outputs = await definition.afterOperationRun(opts, res?.body || {})
+      this.emitOperationRunMetric(true)
       return { outputs }
     } catch (e) {
       const statusCode = e.status ?? e.statusCode
@@ -215,6 +218,7 @@ export class OperationRunnerService {
       if (!retryCount && (statusCode === 429 || statusCode >= 500)) {
         return this.runOperation(definition, opts, retryCount + 1)
       }
+      this.emitOperationRunMetric(false)
       throw e
     }
   }
@@ -338,5 +342,13 @@ export class OperationRunnerService {
         await this.accountCredentialService.updateById(result.accountCredential._id, { ...result.accountCredential })
       }
     }
+  }
+
+  private emitOperationRunMetric(success: boolean) {
+    this.metricService.emit({
+      nameSpace: 'Runner',
+      metricName: 'OperationRun',
+      value: success ? 1 : 0,
+    })
   }
 }

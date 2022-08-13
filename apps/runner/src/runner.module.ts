@@ -1,3 +1,4 @@
+import { CommonModule } from '@app/common'
 import { DefinitionsModule } from '@app/definitions'
 import { forwardRef, Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
@@ -20,6 +21,7 @@ import { StaticRunner } from './services/static-runner.service'
   imports: [
     ConfigModule.forRoot(),
     mongoForRoot(),
+    CommonModule,
     IntegrationsModule,
     IntegrationAccountsModule,
     IntegrationActionsModule,

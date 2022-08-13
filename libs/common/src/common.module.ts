@@ -1,4 +1,8 @@
 import { Module } from '@nestjs/common'
+import { MetricService } from './metrics/metric.service'
 
-@Module({})
+@Module({
+  providers: [MetricService],
+  exports: [MetricService],
+})
 export class CommonModule {}

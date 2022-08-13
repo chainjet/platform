@@ -1,5 +1,5 @@
+import { SES } from '@aws-sdk/client-ses'
 import { Injectable, Logger } from '@nestjs/common'
-import { SES } from 'aws-sdk'
 import { EmailTemplate } from '../templates/emailTemplate'
 
 @Injectable()
@@ -32,7 +32,7 @@ export class EmailService {
     }
 
     try {
-      const res = await new SES({ apiVersion: '2010-12-01' }).sendEmail(params).promise()
+      const res = await new SES({ apiVersion: '2010-12-01' }).sendEmail(params)
       this.logger.log(`Sent ${template.name} email with ID "${res.MessageId}"`)
     } catch (e) {
       this.logger.error(`Error sending ${template.name} email to ${toAddress} - error: ${e.message}`)

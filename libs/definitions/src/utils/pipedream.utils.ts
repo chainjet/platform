@@ -281,7 +281,7 @@ export async function runPipedreamOperation(
     // TODO handle exports
     const $ = {
       export: (key: string, value: string) => {
-        console.log(`Export =>`, key, value)
+        // console.log(`Export =>`, key, value)
       },
     }
 
