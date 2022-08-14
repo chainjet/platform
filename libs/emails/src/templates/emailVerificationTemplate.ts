@@ -1,9 +1,9 @@
-import { NO_REPLY_EMAIL } from '../email.consts'
+import { DEFAULT_EMAIL } from '../email.consts'
 import { EmailTemplate } from './emailTemplate'
 
 export class EmailVerificationTemplate implements EmailTemplate {
   name = 'EmailVerification'
-  sendFrom = NO_REPLY_EMAIL
+  sendFrom = DEFAULT_EMAIL
 
   constructor(private readonly username: string, private readonly verificationCode: string) {}
 

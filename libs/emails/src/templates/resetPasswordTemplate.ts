@@ -1,9 +1,9 @@
-import { NO_REPLY_EMAIL } from '../email.consts'
+import { DEFAULT_EMAIL } from '../email.consts'
 import { EmailTemplate } from './emailTemplate'
 
 export class ResetPasswordTemplate implements EmailTemplate {
   name = 'ResetPassword'
-  sendFrom = NO_REPLY_EMAIL
+  sendFrom = DEFAULT_EMAIL
 
   constructor(private readonly username: string, private readonly resetPasswordCode: string) {}
 
