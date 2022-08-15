@@ -1,1 +1,1 @@
-export const ADMIN_USERS = ['marian2js']
+export const ADMIN_USERS = ['cjadmin']
