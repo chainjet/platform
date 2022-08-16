@@ -28,6 +28,8 @@ import { CalendlyDefinition } from './integration-definitions/calendly.definitio
 import { ChecklyDefinition } from './integration-definitions/checkly.definition'
 import { CoinbaseDefinition } from './integration-definitions/coinbase.definition'
 import { CoinMarketCapDefinition } from './integration-definitions/coinmarketcap.definition'
+import { CompoundV2Definition } from './integration-definitions/compoundv2.definition'
+import { DecentralandMarketplaceDefinition } from './integration-definitions/decentraland-marketplace.definition'
 import { DexScreenerDefinition } from './integration-definitions/dexscreener.definition'
 import { DiscordDefinition } from './integration-definitions/discord.definition'
 import { DocusignDefinition } from './integration-definitions/docusign.definition'
@@ -46,6 +48,7 @@ import { MediumDefinition } from './integration-definitions/medium.definition'
 import { MongoDBDefinition } from './integration-definitions/mongodb.definition'
 import { MoralisDefinition } from './integration-definitions/moralis.definition'
 import { PagerdutyDefinition } from './integration-definitions/pagerduty.definition'
+import { PancakeSwapDefinition } from './integration-definitions/pancakeswap.definition'
 import { RedditDefinition } from './integration-definitions/reddit.definition'
 import { RssDefinition } from './integration-definitions/rss.definition'
 import { ScheduleDefinition } from './integration-definitions/schedule.definition'
@@ -53,6 +56,7 @@ import { SleepDefinition } from './integration-definitions/sleep.definition'
 import { StatuspageDefinition } from './integration-definitions/statuspage.definition'
 import { TelegramDefinition } from './integration-definitions/telegram.definition'
 import { UniswapV2Definition } from './integration-definitions/uniswapv2.definition'
+import { UniswapV3Definition } from './integration-definitions/uniswapv3.definition'
 import { WebhookDefinition } from './integration-definitions/webhook.definition'
 import { YoucanbookmeDefinition } from './integration-definitions/youcanbookme.definition'
 
@@ -74,6 +78,8 @@ export class IntegrationDefinitionFactory {
     circleci: CircleciDefinition,
     coinbase: CoinbaseDefinition,
     coinmarketcap: CoinMarketCapDefinition,
+    compoundv2: CompoundV2Definition,
+    'decentraland-marketplace': DecentralandMarketplaceDefinition,
     dexscreener: DexScreenerDefinition,
     discord: DiscordDefinition,
     docusign: DocusignDefinition,
@@ -94,6 +100,7 @@ export class IntegrationDefinitionFactory {
     mongodb: MongoDBDefinition,
     moralis: MoralisDefinition,
     pagerduty: PagerdutyDefinition,
+    pancakeswap: PancakeSwapDefinition,
     reddit: RedditDefinition,
     rss: RssDefinition,
     schedule: ScheduleDefinition,
@@ -106,6 +113,7 @@ export class IntegrationDefinitionFactory {
     trello: TrelloDefinition,
     twilio: TwilioDefinition,
     uniswapv2: UniswapV2Definition,
+    uniswapv3: UniswapV3Definition,
     webhook: WebhookDefinition,
     youcanbookme: YoucanbookmeDefinition,
     zoom: ZoomDefinition,
