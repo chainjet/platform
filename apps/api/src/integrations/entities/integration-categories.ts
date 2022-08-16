@@ -27,6 +27,10 @@ const categories = [
     name: 'Database',
   },
   {
+    key: 'defi',
+    name: 'DeFi',
+  },
+  {
     key: 'document',
     name: 'Document & Spreadsheets',
   },
@@ -90,10 +94,10 @@ const categories = [
   //   key: 'project-management',
   //   name: 'Project Management',
   // },
-  {
-    key: 'social-networks',
-    name: 'Social Networks',
-  },
+  // {
+  //   key: 'social-networks',
+  //   name: 'Social Networks',
+  // },
   {
     key: 'software-development',
     name: 'Software Development',
