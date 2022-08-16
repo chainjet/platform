@@ -54,7 +54,8 @@ function mapPipedreamTypeToOpenApi(type: PropType): SchemaObject {
     case 'object':
       return {
         type: 'object',
-        properties: {}, // TODO
+        additionalProperties: true,
+        properties: {},
       }
     default:
       return {
