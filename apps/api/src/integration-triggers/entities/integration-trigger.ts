@@ -126,4 +126,10 @@ export class IntegrationTrigger extends BaseEntity {
    */
   @prop()
   learnResponseWorkflow?: boolean
+
+  /**
+   * Generic metadata for the integration trigger
+   */
+  @jsonProp()
+  metadata?: Record<string, any>
 }

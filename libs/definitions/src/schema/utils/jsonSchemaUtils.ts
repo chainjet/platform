@@ -60,18 +60,34 @@ export function removeDeprecatedProperties(schema: JSONSchema7 & { deprecated?: 
 }
 
 export function removeIgnoredProperties(schema: JSONSchema7 & { ['x-ignore']?: boolean }): JSONSchema7 | undefined {
-  if (schema['x-ignore']) {
+  return removePropertiesWith(schema, 'x-ignore')
+}
+
+export function removeActionOnlyProperties(
+  schema: JSONSchema7 & { ['x-actionOnly']?: boolean },
+): JSONSchema7 | undefined {
+  return removePropertiesWith(schema, 'x-actionOnly')
+}
+
+export function removeTriggerOnlyProperties(
+  schema: JSONSchema7 & { ['x-triggerOnly']?: boolean },
+): JSONSchema7 | undefined {
+  return removePropertiesWith(schema, 'x-triggerOnly')
+}
+
+function removePropertiesWith(schema: JSONSchema7, property: string): JSONSchema7 | undefined {
+  if (schema[property]) {
     return undefined
   }
 
   // Remove ignored properties from required array
   if (schema.required) {
     schema.required = schema.required.filter((item) => {
-      return !(schema.properties?.[item] as { ['x-ignore']?: boolean })?.['x-ignore']
+      return !schema.properties?.[item]?.[property]
     })
   }
 
-  return applySchemaChangeRecursively(schema, removeIgnoredProperties)
+  return applySchemaChangeRecursively(schema, (_schema) => removePropertiesWith(_schema, property))
 }
 
 /**

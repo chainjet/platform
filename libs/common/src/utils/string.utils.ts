@@ -13,6 +13,13 @@ export function slugify(str: string): string {
 }
 
 /**
+ * camelCase to kebab-case
+ */
+export const toKebabCase = (str: string) => str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+
+export const humanize = (str: string): string => str.replace(/([a-z])([A-Z])/g, '$1 $2')
+
+/**
  * Removes markdown and html from a string
  */
 export function stripMarkdown(str: string): Promise<string> {

@@ -13,6 +13,7 @@ import { getItemSchemaFromRes } from '../../../../apps/runner/src/utils/trigger.
 import { decycle, retrocycle } from '../../../common/src/utils/json.utils'
 import { addEllipsis, stripMarkdown, stripMarkdownSync } from '../../../common/src/utils/string.utils'
 import { SchemaService } from '../schema/services/schema.service'
+import { removeActionOnlyProperties, removeTriggerOnlyProperties } from '../schema/utils/jsonSchemaUtils'
 import { openapi2schema } from '../schema/utils/openapi2schema'
 import { OpenApiUtils } from '../schema/utils/openApiUtils'
 
@@ -137,10 +138,11 @@ export class IntegrationInstallerService {
         schemaId: operationObject.operationId,
         schemaPath,
         schemaMethod,
-        schemaRequest,
+        schemaRequest: removeTriggerOnlyProperties(schemaRequest),
         schemaResponse,
         learnResponseWorkflow: !!operationObject['x-learnResponseWorkflow'],
         learnResponseIntegration: !!operationObject['x-learnResponseIntegration'],
+        metadata: operationObject['x-operationMetadata'],
       })
     }
   }
@@ -173,7 +175,7 @@ export class IntegrationInstallerService {
         schemaId: operationObject.operationId,
         schemaPath,
         schemaMethod,
-        schemaRequest,
+        schemaRequest: removeActionOnlyProperties(schemaRequest),
         schemaResponse: triggerResponseData.schemaRes,
         triggerPopulate: operationObject['x-triggerPopulate'],
         idKey: triggerResponseData.idKey,
@@ -182,6 +184,7 @@ export class IntegrationInstallerService {
         hookInstructions: operationObject['x-triggerHookInstructions'],
         learnResponseWorkflow: !!operationObject['x-learnResponseWorkflow'],
         learnResponseIntegration: !!operationObject['x-learnResponseIntegration'],
+        metadata: operationObject['x-operationMetadata'],
       })
     }
   }

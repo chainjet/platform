@@ -31,7 +31,6 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     super(model)
   }
 
-  // TODO if first action update nextCheck!
   // TODO verify record complies with schema
   async createOne(record: DeepPartial<WorkflowAction>): Promise<WorkflowAction> {
     this.logger.debug(`Create workflow action request with data: ${JSON.stringify(record)}`)

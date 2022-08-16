@@ -94,4 +94,10 @@ export class IntegrationAction extends BaseEntity {
    */
   @prop()
   learnResponseWorkflow?: boolean
+
+  /**
+   * Generic metadata for the integration action
+   */
+  @jsonProp()
+  metadata?: Record<string, any>
 }

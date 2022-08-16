@@ -31,6 +31,7 @@ import { CoinMarketCapDefinition } from './integration-definitions/coinmarketcap
 import { DexScreenerDefinition } from './integration-definitions/dexscreener.definition'
 import { DiscordDefinition } from './integration-definitions/discord.definition'
 import { DocusignDefinition } from './integration-definitions/docusign.definition'
+import { EnsDefinition } from './integration-definitions/ens.definition'
 import { GoogleApisDefinition } from './integration-definitions/google-apis.definition'
 import { GraphqlDefinition } from './integration-definitions/graphql.definition'
 import { GumroadDefinition } from './integration-definitions/gumroad.definition'
@@ -51,6 +52,7 @@ import { ScheduleDefinition } from './integration-definitions/schedule.definitio
 import { SleepDefinition } from './integration-definitions/sleep.definition'
 import { StatuspageDefinition } from './integration-definitions/statuspage.definition'
 import { TelegramDefinition } from './integration-definitions/telegram.definition'
+import { UniswapV2Definition } from './integration-definitions/uniswapv2.definition'
 import { WebhookDefinition } from './integration-definitions/webhook.definition'
 import { YoucanbookmeDefinition } from './integration-definitions/youcanbookme.definition'
 
@@ -75,6 +77,7 @@ export class IntegrationDefinitionFactory {
     dexscreener: DexScreenerDefinition,
     discord: DiscordDefinition,
     docusign: DocusignDefinition,
+    ens: EnsDefinition,
     github: GithubDefinition,
     gitlab: GitlabDefinition,
     'google-apis': GoogleApisDefinition,
@@ -97,10 +100,12 @@ export class IntegrationDefinitionFactory {
     sendgrid: SendgridDefinition,
     slack: SlackDefinition,
     sleep: SleepDefinition,
+    // snapshot: SnapshotDefinition,
     statuspage: StatuspageDefinition,
     telegram: TelegramDefinition,
     trello: TrelloDefinition,
     twilio: TwilioDefinition,
+    uniswapv2: UniswapV2Definition,
     webhook: WebhookDefinition,
     youcanbookme: YoucanbookmeDefinition,
     zoom: ZoomDefinition,
