@@ -27,7 +27,7 @@ export class MongoDBDefinition extends SingleIntegrationDefinition {
         authType: IntegrationAuthType.http,
         schema: {
           type: 'object',
-          required: ['username', 'password', 'hostname', 'database'],
+          required: ['username', 'password', 'hostname'],
           exposed: ['username'],
           properties: {
             username: {
