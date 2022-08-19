@@ -1,14 +1,21 @@
 import { BaseEntity } from '@app/common/base/base-entity'
 import { Field, InputType, Int, ObjectType } from '@nestjs/graphql'
 import { FilterableField } from '@ptc-org/nestjs-query-graphql'
-import { prop } from '@typegoose/typegoose'
+import { pre, prop } from '@typegoose/typegoose'
 import { IsEmail } from 'class-validator'
 
 @ObjectType()
+@pre<User>('validate', function () {
+  this.iUsername = this.username.toLowerCase()
+})
 export class User extends BaseEntity {
   @FilterableField()
   @prop({ required: true, unique: true, match: /^[a-zA-Z0-9_.]*$/, trim: true })
   username: string
+
+  // ensure the same username cannot be created with different case
+  @prop({ required: true, unique: true })
+  iUsername: string
 
   @FilterableField()
   @prop({ required: true, unique: true, trim: true })
