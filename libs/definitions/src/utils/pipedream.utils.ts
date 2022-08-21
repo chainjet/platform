@@ -254,7 +254,9 @@ export async function updatePipedreamSchemaBeforeInstall(
 }
 
 function getBindData(operation: PipedreamOperation, opts: OperationRunOptions): Record<string, any> {
-  const appData = Object.entries(operation.props ?? {}).find(([_, prop]) => 'type' in prop && prop.type === 'app')
+  const appData = Object.entries(operation.props ?? {}).find(
+    ([_, prop]) => typeof prop === 'object' && 'type' in prop && prop.type === 'app',
+  )
   if (!appData) {
     throw new Error(`Action ${opts.operation.key} is not configured correctly for integration ${opts.integration.key}`)
   }
