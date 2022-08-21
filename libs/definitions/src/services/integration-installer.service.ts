@@ -163,6 +163,10 @@ export class IntegrationInstallerService {
       actionSchemaResponse,
     )
     if (triggerResponseData) {
+      if (operationObject['x-asyncSchemas']) {
+        schemaRequest['x-asyncSchemas'] = operationObject['x-asyncSchemas']
+      }
+
       await this.integrationTriggerService.createOrUpdateOne({
         key: operationObject.operationId,
         name: triggerResponseData.name,
