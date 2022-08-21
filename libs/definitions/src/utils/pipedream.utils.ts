@@ -3,6 +3,7 @@ import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/i
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import deepmerge from 'deepmerge'
 import fs from 'fs'
+import { JSONSchema7 } from 'json-schema'
 import { OpenAPIObject, OperationObject, ParameterObject, ReferenceObject, SchemaObject } from 'openapi3-ts'
 import path from 'path'
 import {
@@ -282,6 +283,7 @@ function getBindData(operation: PipedreamOperation, opts: OperationRunOptions): 
   }
 
   return {
+    ...appMethods,
     ...opts.inputs,
     [appKey]: appMethods, // include methods defined at app level
     ...operation.methods, // include methods defined at operation level
@@ -418,6 +420,12 @@ export function getAsyncSchemasForPipedream(
   const asyncSchemas: AsyncSchema[] = integrationOperation.schemaRequest?.['x-asyncSchemas']
   return asyncSchemas.reduce((acc, curr) => {
     acc[curr.name] = async (props: GetAsyncSchemasProps) => {
+      // check all dependencies for the async schema have been provided
+      const unmetDependencies = curr.dependencies?.some((dep) => !props.inputs[dep])
+      if (curr.dependencies?.length && unmetDependencies) {
+        return {}
+      }
+
       const pipedreamOperation = operations.find((a) => a.key === props.operation.key)
       if (!pipedreamOperation) {
         throw new Error(`Operation ${props.operation.key} not found for integration ${props.integration.key}`)
@@ -432,15 +440,36 @@ export function getAsyncSchemasForPipedream(
         }
       }
       if ('options' in prop && typeof prop.options === 'function') {
-        let bindData = getBindData(pipedreamOperation, props)
-        bindData = {
-          ...bindData,
-          ...bindData.mailchimp,
+        const bindData = getBindData(pipedreamOperation, props)
+        let items = await prop.options.bind(bindData)({ page: 0, ...props.inputs })
+
+        // items can be an array or an object where the options keys hold the items array
+        if ('options' in items) {
+          items = items.options
         }
-        const items = await prop.options.bind(bindData)({ page: 0, ...props.inputs })
+
+        // make sure items is a non-empty array
+        if (!Array.isArray(items) || !items.length) {
+          return {}
+        }
+
         const propSchema = integrationOperation.schemaRequest.properties?.[curr.name] ?? {}
-        return {
+
+        // if there is only one item, set it as default
+        const asyncSchema: JSONSchema7 = {
           ...(items.length === 1 ? { default: parseJsonSchemaValue(propSchema, items[0].value) } : {}),
+        }
+
+        // items can be an array of strings or an array of { label: string, value: any }
+        if (items.every((item) => typeof item === 'string')) {
+          return {
+            ...asyncSchema,
+            enum: items,
+          }
+        }
+
+        return {
+          ...asyncSchema,
           oneOf: items.map((item) => ({
             title: item.label,
             const: parseJsonSchemaValue(propSchema, item.value),

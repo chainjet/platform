@@ -1,5 +1,7 @@
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
 import { IntegrationAccount } from 'apps/api/src/integration-accounts/entities/integration-account'
+import { IntegrationAction } from 'apps/api/src/integration-actions/entities/integration-action'
+import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/integration-trigger'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { OpenAPIObject } from 'openapi3-ts'
 import { Observable } from 'rxjs'
@@ -49,6 +51,12 @@ export class RedditDefinition extends SingleIntegrationDefinition {
       throw new Error(`Operation ${opts.operation.key} not found for integration ${opts.integration.key}`)
     }
     return runPipedreamOperation(operation, opts)
+  }
+
+  // TODO
+  async getAsyncSchemas(operation: IntegrationAction | IntegrationTrigger) {
+    // return getAsyncSchemasForPipedream(await this.getOperations(), operation)
+    return {}
   }
 
   // TODO this cannot be abstracted now, because of how webpack manages dynamic imports
