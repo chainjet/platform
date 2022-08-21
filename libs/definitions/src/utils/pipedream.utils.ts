@@ -1,3 +1,5 @@
+import { IntegrationAction } from 'apps/api/src/integration-actions/entities/integration-action'
+import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/integration-trigger'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import deepmerge from 'deepmerge'
 import fs from 'fs'
@@ -12,13 +14,15 @@ import {
   InterfaceProp,
   JSONValue,
   Methods,
+  PropDefinition,
   ServiceDBProp,
   Source,
   SourcePropDefinitions,
   UserProp,
 } from 'pipedream/types/src'
 import { Observable } from 'rxjs'
-import { RunResponse } from '../definition'
+import { GetAsyncSchemasProps, RunResponse } from '../definition'
+import { parseJsonSchemaValue } from '../schema/utils/jsonSchemaUtils'
 import { AsyncSchema } from '../types/AsyncSchema'
 
 export type PipedreamAction = Action<Methods, AppPropDefinitions>
@@ -66,16 +70,18 @@ function mapPipedreamTypeToOpenApi(type: PropType): SchemaObject {
 
 export function mapPipedreamOperationToOpenApi(operation: PipedreamOperation): {
   operation: OperationObject
-  asyncSchemas: AsyncSchema
+  asyncSchemas: AsyncSchema[]
 } {
-  const asyncSchemas: AsyncSchema = []
+  const asyncSchemas: AsyncSchema[] = []
   const parameters: (ParameterObject | ReferenceObject)[] = Object.entries(operation.props ?? {})
     .map(([key, value]) => {
       if (typeof value !== 'object') {
         return null
       }
 
+      let propDefinition: PropDefinition | null = null
       if ('propDefinition' in value) {
+        propDefinition = value.propDefinition
         if (value.propDefinition.length >= 2) {
           value = {
             ...value.propDefinition[0].propDefinitions![value.propDefinition[1]],
@@ -100,7 +106,7 @@ export function mapPipedreamOperationToOpenApi(operation: PipedreamOperation): {
       const schema: SchemaObject = mapPipedreamTypeToOpenApi(value.type)
 
       if ('label' in value && value.label) {
-        param['x-label'] = value.label
+        schema.title = value.label
       }
 
       if ('description' in value && value.description) {
@@ -133,10 +139,21 @@ export function mapPipedreamOperationToOpenApi(operation: PipedreamOperation): {
               'x-const': option.value,
             }))
           }
+        } else if (typeof value.options === 'function') {
+          // The third argument of propDefinition has the dependencies of the async schema
+          if (propDefinition?.length === 3) {
+            const dependencyObj = propDefinition[2]({})
+            asyncSchemas.push({
+              name: key,
+              dependencies: Object.keys(dependencyObj),
+            })
+          } else {
+            asyncSchemas.push({
+              name: key,
+            })
+          }
         } else {
-          asyncSchemas.push({
-            name: key,
-          })
+          throw new Error(`Unknown options value for ${key}`)
         }
       }
 
@@ -200,9 +217,10 @@ export async function updatePipedreamSchemaBeforeInstall(
       delete schemaOperation.summary
     }
 
-    if (operation.name?.toLowerCase().includes('instant')) {
-      throw new Error(`Instant operations not supported yet`)
-    }
+    // if (operation.name?.toLowerCase().includes('instant')) {
+    // continue
+    // throw new Error(`Instant operations not supported yet (${operation.name})`)
+    // }
 
     const operationData = mapPipedreamOperationToOpenApi(operation)
     const schemaParams = schemaOperation.parameters ?? []
@@ -234,10 +252,7 @@ export async function updatePipedreamSchemaBeforeInstall(
   return schema
 }
 
-export async function runPipedreamOperation(
-  operation: PipedreamOperation,
-  opts: OperationRunOptions,
-): Promise<RunResponse | Observable<RunResponse>> {
+function getBindData(operation: PipedreamOperation, opts: OperationRunOptions): Record<string, any> {
   const appData = Object.entries(operation.props ?? {}).find(([_, prop]) => 'type' in prop && prop.type === 'app')
   if (!appData) {
     throw new Error(`Action ${opts.operation.key} is not configured correctly for integration ${opts.integration.key}`)
@@ -266,12 +281,19 @@ export async function runPipedreamOperation(
     }.bind(appMethods)
   }
 
-  const bindData: Record<string, any> = {
+  return {
     ...opts.inputs,
     [appKey]: appMethods, // include methods defined at app level
     ...operation.methods, // include methods defined at operation level
     ...opts.accountCredential,
   }
+}
+
+export async function runPipedreamOperation(
+  operation: PipedreamOperation,
+  opts: OperationRunOptions,
+): Promise<RunResponse | Observable<RunResponse>> {
+  const bindData = getBindData(operation, opts)
 
   if (operation.type === 'action') {
     for (const key of Object.keys(operation.methods ?? {})) {
@@ -387,4 +409,46 @@ export async function getPipedreamOperations(
     operations.push(await opGetter(type, key))
   }
   return operations
+}
+
+export function getAsyncSchemasForPipedream(
+  operations: PipedreamOperation[],
+  integrationOperation: IntegrationAction | IntegrationTrigger,
+) {
+  const asyncSchemas: AsyncSchema[] = integrationOperation.schemaRequest?.['x-asyncSchemas']
+  return asyncSchemas.reduce((acc, curr) => {
+    acc[curr.name] = async (props: GetAsyncSchemasProps) => {
+      const pipedreamOperation = operations.find((a) => a.key === props.operation.key)
+      if (!pipedreamOperation) {
+        throw new Error(`Operation ${props.operation.key} not found for integration ${props.integration.key}`)
+      }
+      let prop = pipedreamOperation.props![curr.name] ?? {}
+      if ('propDefinition' in prop) {
+        if (prop.propDefinition.length >= 2) {
+          prop = {
+            ...prop.propDefinition[0].propDefinitions![prop.propDefinition[1]],
+            ...prop,
+          }
+        }
+      }
+      if ('options' in prop && typeof prop.options === 'function') {
+        let bindData = getBindData(pipedreamOperation, props)
+        bindData = {
+          ...bindData,
+          ...bindData.mailchimp,
+        }
+        const items = await prop.options.bind(bindData)({ page: 0, ...props.inputs })
+        const propSchema = integrationOperation.schemaRequest.properties?.[curr.name] ?? {}
+        return {
+          ...(items.length === 1 ? { default: parseJsonSchemaValue(propSchema, items[0].value) } : {}),
+          oneOf: items.map((item) => ({
+            title: item.label,
+            const: parseJsonSchemaValue(propSchema, item.value),
+          })),
+        }
+      }
+      return {}
+    }
+    return acc
+  }, {})
 }

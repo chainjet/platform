@@ -4,7 +4,7 @@ import { stringify } from 'querystring'
 // Ported from https://github.com/Slotos/passport-reddit
 // We can't install it directly due to ESM module incompatibility
 
-export default class RedditPassportStrategy extends OAuth2Strategy {
+class RedditPassportStrategy extends OAuth2Strategy {
   name = 'reddit'
 
   constructor(options, verify) {
@@ -83,3 +83,5 @@ export default class RedditPassportStrategy extends OAuth2Strategy {
     }
   }
 }
+
+export const Strategy = RedditPassportStrategy

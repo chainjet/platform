@@ -146,6 +146,13 @@ export class ExternalOAuthController {
         }
       }
 
+      const customStrategyClass = await this.oauthStrategyFactory.getCustomStrategy(
+        oauthResponse.integrationAccount.customStrategyKey,
+      )
+      if (customStrategyClass?.afterAuthHook) {
+        credentials = await customStrategyClass.afterAuthHook(credentials)
+      }
+
       const credentialKey = this.configService.get('CREDENTIALS_AES_KEY')
       if (!credentialKey) {
         throw new Error('Credentials encryption key not set')

@@ -43,6 +43,7 @@ import { KubernetesDefinition } from './integration-definitions/kubernetes.defin
 import { LinodeDefinition } from './integration-definitions/linode.definition'
 import { LogicDefinition } from './integration-definitions/logic.definition'
 import { MailchimpMarketingDefinition } from './integration-definitions/mailchimp-marketing.definition'
+import { MailchimpDefinition } from './integration-definitions/mailchimp.definition'
 import { MakerDaoDefinition } from './integration-definitions/makerdao.definition'
 import { MakerlogDefinition } from './integration-definitions/makerlog.definition'
 import { MediumDefinition } from './integration-definitions/medium.definition'
@@ -95,6 +96,7 @@ export class IntegrationDefinitionFactory {
     kubernetes: KubernetesDefinition,
     linode: LinodeDefinition,
     logic: LogicDefinition,
+    mailchimp: MailchimpDefinition,
     'mailchimp-marketing': MailchimpMarketingDefinition,
     makerdao: MakerDaoDefinition,
     makerlog: MakerlogDefinition,

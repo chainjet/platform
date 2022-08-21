@@ -1,1 +1,1 @@
-export type AsyncSchema = Array<{ name: string }>
+export type AsyncSchema = { name: string; dependencies?: string[] }

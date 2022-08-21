@@ -1,4 +1,4 @@
-import { JSONSchema7 } from 'json-schema'
+import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
 import JsonSchemaGenerator from 'json-schema-generator'
 import defaultsDeep from 'lodash.defaultsdeep'
 import { stripMarkdownSync } from '../../../../common/src/utils/string.utils'
@@ -190,4 +190,31 @@ function applySchemaChangeRecursively<T>(
   }
 
   return schema
+}
+
+/**
+ * Parse the value given the schema of a property
+ * e.g. if schema.type is string, parse the value as a string
+ *
+ * // TODO it only supports parsing string and number right now
+ */
+export function parseJsonSchemaValue(propSchema: JSONSchema7Definition, value: any) {
+  if (typeof propSchema !== 'object' || !propSchema.type) {
+    return value
+  }
+
+  // type can be an array of types (see: https://json-schema.org/understanding-json-schema/reference/type.html)
+  const types = Array.isArray(propSchema.type) ? propSchema.type : [propSchema.type]
+
+  // convert numbers to strings
+  if (typeof value === 'number' && !types.includes('number') && types.includes('string')) {
+    return value.toString()
+  }
+
+  // convert strings to numbers
+  if (typeof value === 'string' && !types.includes('string') && types.includes('number')) {
+    return Number(value)
+  }
+
+  return value
 }

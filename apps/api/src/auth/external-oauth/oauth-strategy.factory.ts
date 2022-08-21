@@ -18,6 +18,11 @@ import { LoginProvider, LoginProviderStrategy } from './login-strategies/LoginPr
 
 type ProviderCallback = (err?: any, user?: any, info?: any) => void
 
+type CustomStrategyModule = {
+  Strategy?: typeof OAuth1Strategy | typeof OAuth2Strategy
+  afterAuthHook?: (credentials: Record<string, string | undefined>) => Promise<Record<string, string | undefined>>
+}
+
 const requestNewAccessToken = promisify(refresh.requestNewAccessToken)
 
 export interface ExternalAuthData {
@@ -104,7 +109,7 @@ export class OAuthStrategyFactory {
   registerOauth1Strategy(
     integrationAccountKey: string,
     integrationAccount: IntegrationAccount,
-    customStrategyClass: typeof OAuth1Strategy,
+    customStrategyClass?: CustomStrategyModule,
   ): void {
     const consumerKey = process.env[`${integrationAccount.key.toUpperCase().replace(/-/, '_')}_CONSUMER_KEY`]
     const consumerSecret = process.env[`${integrationAccount.key.toUpperCase().replace(/-/, '_')}_CONSUMER_SECRET`]
@@ -127,7 +132,7 @@ export class OAuthStrategyFactory {
 
     passport.use(
       this.getOAuthStrategyName(integrationAccountKey),
-      new (customStrategyClass ?? OAuth1Strategy)(
+      new (customStrategyClass?.Strategy ?? OAuth1Strategy)(
         {
           requestTokenURL,
           accessTokenURL,
@@ -150,7 +155,7 @@ export class OAuthStrategyFactory {
   registerOauth2Strategy(
     integrationAccountKey: string,
     integrationAccount: IntegrationAccount,
-    customStrategyClass: typeof OAuth2Strategy,
+    customStrategyClass?: CustomStrategyModule,
   ): void {
     const authCode = integrationAccount.securitySchema?.flows?.authorizationCode
     if (authCode?.authorizationUrl && authCode.tokenUrl) {
@@ -164,7 +169,7 @@ export class OAuthStrategyFactory {
       }
 
       const strategyName = this.getOAuthStrategyName(integrationAccountKey)
-      const strategy = new (customStrategyClass ?? OAuth2Strategy)(
+      const strategy = new (customStrategyClass?.Strategy ?? OAuth2Strategy)(
         {
           authorizationURL: authCode.authorizationUrl,
           tokenURL: authCode.tokenUrl,
@@ -197,12 +202,12 @@ export class OAuthStrategyFactory {
    * Gets a strategy from a custom strategy key
    * The strategy needs to be exported as default in the module
    */
-  async getCustomStrategy(customStrategyKey: string | undefined) {
+  async getCustomStrategy(customStrategyKey: string | undefined): Promise<CustomStrategyModule | undefined> {
     if (!customStrategyKey) {
       return
     }
-    const { default: strategy } = await import(`./integration-strategies/${customStrategyKey}-passport-strategy`)
-    return strategy
+    const { Strategy, afterAuthHook } = await import(`./integration-strategies/${customStrategyKey}-auth`)
+    return { Strategy, afterAuthHook }
   }
 
   async refreshOauth2AccessToken(

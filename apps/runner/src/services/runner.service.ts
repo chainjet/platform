@@ -311,17 +311,17 @@ export class RunnerService {
       })
       await this.workflowRunService.markActionAsCompleted(userId, workflowRun._id, workflowRunAction)
     } catch (e) {
+      const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
+      const error = definition.parseError(e)
       await this.onActionFailure(
         workflowAction.workflow,
         userId,
         workflowRun,
         workflowRunAction,
-        e.message,
+        error?.toString(),
         e.response?.text || undefined,
       )
-      this.logger.error(
-        `Run WorkflowAction ${workflowAction.id} failed with error ${e.response?.text ?? e.response ?? e.message}`,
-      )
+      this.logger.error(`Run WorkflowAction ${workflowAction.id} failed with error ${error}`)
       return
     }
 

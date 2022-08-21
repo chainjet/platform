@@ -10,7 +10,6 @@ import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.s
 import { StaticRunner } from 'apps/runner/src/services/static-runner.service'
 import { InteractionResponseType, InteractionType, verifyKey } from 'discord-interactions'
 import { Request } from 'express'
-import { JSONSchema7 } from 'json-schema'
 import { OpenAPIObject } from 'openapi3-ts'
 import { OptionsWithUrl } from 'request'
 import { GetAsyncSchemasProps, IntegrationHookInjects, RequestInterceptorOptions, StepInputs } from '../definition'
@@ -209,35 +208,17 @@ export class DiscordDefinition extends SingleIntegrationDefinition {
     throw new Error(`Unsupported interaction type ${type} on discord integration`)
   }
 
-  asyncSchemas: { [key: string]: (props: GetAsyncSchemasProps) => Promise<JSONSchema7> } = {
-    channelId: async (props: GetAsyncSchemasProps) => {
-      const channelOutputs = await props.operationRunnerService.runActionByKey(this, {
-        ...props,
-        key: 'getGuildChannels',
-        inputs: {
-          guildId: props.credentials.guild_id,
-        },
-      })
-      const channels = (channelOutputs.outputs as unknown as any[]) // TODO fix type on definition.ts
-        .filter(
-          (channels) =>
-            ![
-              CHANNEL_TYPES.GUILD_VOICE,
-              CHANNEL_TYPES.GUILD_CATEGORY,
-              CHANNEL_TYPES.GUILD_NEWS_THREAD,
-              CHANNEL_TYPES.GUILD_PUBLIC_THREAD,
-              CHANNEL_TYPES.GUILD_PRIVATE_THREAD,
-              CHANNEL_TYPES.GUILD_STAGE_VOICE,
-              CHANNEL_TYPES.GUILD_DIRECTORY,
-              CHANNEL_TYPES.GUILD_FORUM,
-            ].includes(channels.type),
-        )
-      if (!channels?.length) {
-        return {}
-      }
-      return {
-        ...(channels.length === 1 ? { default: channels[0].id } : {}),
-        oneOf: channels
+  async getAsyncSchemas() {
+    return {
+      channelId: async (props: GetAsyncSchemasProps) => {
+        const channelOutputs = await props.operationRunnerService.runActionByKey(this, {
+          ...props,
+          key: 'getGuildChannels',
+          inputs: {
+            guildId: props.credentials.guild_id,
+          },
+        })
+        const channels = (channelOutputs.outputs as unknown as any[]) // TODO fix type on definition.ts
           .filter(
             (channels) =>
               ![
@@ -251,11 +232,31 @@ export class DiscordDefinition extends SingleIntegrationDefinition {
                 CHANNEL_TYPES.GUILD_FORUM,
               ].includes(channels.type),
           )
-          .map((channel) => ({
-            title: channel.name,
-            const: channel.id,
-          })),
-      }
-    },
+        if (!channels?.length) {
+          return {}
+        }
+        return {
+          ...(channels.length === 1 ? { default: channels[0].id } : {}),
+          oneOf: channels
+            .filter(
+              (channels) =>
+                ![
+                  CHANNEL_TYPES.GUILD_VOICE,
+                  CHANNEL_TYPES.GUILD_CATEGORY,
+                  CHANNEL_TYPES.GUILD_NEWS_THREAD,
+                  CHANNEL_TYPES.GUILD_PUBLIC_THREAD,
+                  CHANNEL_TYPES.GUILD_PRIVATE_THREAD,
+                  CHANNEL_TYPES.GUILD_STAGE_VOICE,
+                  CHANNEL_TYPES.GUILD_DIRECTORY,
+                  CHANNEL_TYPES.GUILD_FORUM,
+                ].includes(channels.type),
+            )
+            .map((channel) => ({
+              title: channel.name,
+              const: channel.id,
+            })),
+        }
+      },
+    }
   }
 }

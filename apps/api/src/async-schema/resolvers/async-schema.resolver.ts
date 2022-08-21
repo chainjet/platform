@@ -9,6 +9,10 @@ import { JSONSchema7 } from 'json-schema'
 import { ObjectId } from 'mongoose'
 import { UserId } from '../../auth/decorators/user-id.decorator'
 import { GraphqlGuard } from '../../auth/guards/graphql.guard'
+import { IntegrationAction } from '../../integration-actions/entities/integration-action'
+import { IntegrationActionService } from '../../integration-actions/services/integration-action.service'
+import { IntegrationTrigger } from '../../integration-triggers/entities/integration-trigger'
+import { IntegrationTriggerService } from '../../integration-triggers/services/integration-trigger.service'
 import { IntegrationService } from '../../integrations/services/integration.service'
 
 @ObjectType('AsyncSchema')
@@ -23,6 +27,8 @@ export class AsyncSchemaResolver {
 
   constructor(
     private readonly integrationService: IntegrationService,
+    private readonly integrationTriggerService: IntegrationTriggerService,
+    private readonly integrationActionService: IntegrationActionService,
     private readonly integrationDefinitionFactory: IntegrationDefinitionFactory,
     private readonly runnerService: RunnerService,
     private readonly operationRunnerService: OperationRunnerService,
@@ -35,6 +41,9 @@ export class AsyncSchemaResolver {
     @Args({ name: 'integrationId', type: () => GraphQLString }) integrationId: string,
     @Args({ name: 'accountCredentialId', type: () => GraphQLString }) accountCredentialId: string,
     @Args({ name: 'names', type: () => [GraphQLString] }) names: string[],
+    @Args({ name: 'inputs', type: () => GraphQLJSONObject, nullable: true }) inputs?: Record<string, any>,
+    @Args({ name: 'integrationTriggerId', type: () => GraphQLString, nullable: true }) integrationTriggerId?: string,
+    @Args({ name: 'integrationActionId', type: () => GraphQLString, nullable: true }) integrationActionId?: string,
   ): Promise<AsyncSchemaDto> {
     const integration = await this.integrationService.findOne({
       _id: integrationId,
@@ -42,6 +51,37 @@ export class AsyncSchemaResolver {
     })
     if (!integration) {
       throw new NotFoundException('Integration not found')
+    }
+
+    if (!integrationTriggerId && !integrationActionId) {
+      // TODO throw error after updating the frontend
+      // throw new Error('Either integrationTriggerId or integrationActionId must be provided')
+    }
+
+    if (integrationTriggerId && integrationActionId) {
+      throw new Error('integrationTriggerId and integrationActionId cannot be provided together')
+    }
+
+    // The operation can be either an integrationTrigger or an integrationAction
+    let operation: IntegrationTrigger | IntegrationAction
+    if (integrationTriggerId) {
+      const integrationTrigger = await this.integrationTriggerService.findOne({
+        _id: integrationTriggerId,
+        integration: integrationId,
+      })
+      if (!integrationTrigger) {
+        throw new NotFoundException(`IntegrationTrigger ${integrationTriggerId} not found`)
+      }
+      operation = integrationTrigger
+    } else {
+      const integrationAction = await this.integrationActionService.findOne({
+        _id: integrationActionId,
+        integration: integrationId,
+      })
+      if (!integrationAction) {
+        throw new NotFoundException(`IntegrationAction ${integrationActionId} not found`)
+      }
+      operation = integrationAction
     }
 
     const { credentials, accountCredential, integrationAccount } =
@@ -54,7 +94,8 @@ export class AsyncSchemaResolver {
     const props = {
       integration,
       integrationAccount,
-      inputs: {}, // TODO
+      operation,
+      inputs: inputs ?? {},
       credentials,
       accountCredential,
       operationRunnerService: this.operationRunnerService,
@@ -62,9 +103,10 @@ export class AsyncSchemaResolver {
 
     const schemas: { [key: string]: JSONSchema7 } = {}
     for (const name of names) {
-      if (definition.asyncSchemas[name]) {
+      const asyncSchemas = await definition.getAsyncSchemas(operation)
+      if (asyncSchemas[name]) {
         try {
-          schemas[name] = await definition.asyncSchemas[name](props)
+          schemas[name] = await asyncSchemas[name](props)
         } catch (e) {
           this.logger.error(`Error while getting async schema for ${name} on ${integration.key}:`, e)
         }

@@ -53,12 +53,7 @@ export interface RunResponse {
   store?: Record<string, any>
 }
 
-export interface GetAsyncSchemasProps {
-  integration: Integration
-  integrationAccount: IntegrationAccount | null
-  inputs: StepInputs
-  credentials: StepInputs
-  accountCredential: AccountCredential | null
+export type GetAsyncSchemasProps = OperationRunOptions & {
   operationRunnerService: OperationRunnerService
 }
 
@@ -344,5 +339,20 @@ export abstract class Definition {
     return req?.body
   }
 
-  asyncSchemas: { [key: string]: (props: GetAsyncSchemasProps) => Promise<JSONSchema7> } = {}
+  /**
+   * Resolves x-asyncSchemas plugin
+   * Used to return a set of dynamic options (e.g. discord channels depending on the connected account)
+   */
+  async getAsyncSchemas(
+    operation: IntegrationAction | IntegrationTrigger,
+  ): Promise<{ [key: string]: (props: GetAsyncSchemasProps) => Promise<JSONSchema7> }> {
+    return {}
+  }
+
+  /**
+   * Allows definitions to parse the error message before storing it in the operation run
+   */
+  parseError(e: any) {
+    return e.response?.text ?? e.response ?? e.message
+  }
 }
