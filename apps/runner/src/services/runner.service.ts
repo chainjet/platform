@@ -102,6 +102,7 @@ export class RunnerService {
 
     const { credentials, accountCredential, integrationAccount } = await this.getCredentialsAndIntegrationAccount(
       workflowTrigger.credentials?.toString(),
+      workflowTrigger.owner.id.toString(),
       () => this.onTriggerFailure(workflowTrigger.workflow, userId, workflowRun, 'Credentials not found'),
     )
 
@@ -278,6 +279,7 @@ export class RunnerService {
 
     const { credentials, accountCredential, integrationAccount } = await this.getCredentialsAndIntegrationAccount(
       workflowAction.credentials?.toString(),
+      workflowAction.owner.toString(),
       () =>
         this.onActionFailure(workflowAction.workflow, userId, workflowRun, workflowRunAction, 'Credentials not found'),
     )
@@ -375,6 +377,7 @@ export class RunnerService {
 
   async getCredentialsAndIntegrationAccount(
     credentialsId: string | undefined,
+    ownerId: string,
     onError: () => any,
   ): Promise<{
     credentials: Record<string, string>
@@ -386,7 +389,7 @@ export class RunnerService {
     let credentials = {}
     if (credentialsId) {
       accountCredential = (await this.accountCredentialService.findById(credentialsId)) ?? null
-      if (!accountCredential) {
+      if (!accountCredential || accountCredential.owner.toString() !== ownerId) {
         await onError()
         throw new NotFoundException('Account credentials not found')
       }

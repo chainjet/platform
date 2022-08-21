@@ -54,8 +54,7 @@ export class AsyncSchemaResolver {
     }
 
     if (!integrationTriggerId && !integrationActionId) {
-      // TODO throw error after updating the frontend
-      // throw new Error('Either integrationTriggerId or integrationActionId must be provided')
+      throw new Error('Either integrationTriggerId or integrationActionId must be provided')
     }
 
     if (integrationTriggerId && integrationActionId) {
@@ -85,7 +84,7 @@ export class AsyncSchemaResolver {
     }
 
     const { credentials, accountCredential, integrationAccount } =
-      await this.runnerService.getCredentialsAndIntegrationAccount(accountCredentialId, () => {
+      await this.runnerService.getCredentialsAndIntegrationAccount(accountCredentialId, userId.toString(), () => {
         throw new NotFoundException('Account credential not found')
       })
 
