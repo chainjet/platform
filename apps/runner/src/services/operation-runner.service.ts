@@ -67,7 +67,7 @@ export class OperationRunnerService {
 
     // If the definition has its own run definition, use it
     const definitionRunOutputs = await definition.run(opts)
-    if (definitionRunOutputs) {
+    if (definitionRunOutputs && 'outputs' in definitionRunOutputs) {
       return definitionRunOutputs
     }
 

@@ -96,6 +96,9 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
 
     this.logger.debug(`Creating record: ${JSON.stringify(workflowAction)}`)
     const createdWorkflowAction = await super.createOne(workflowAction)
+    await definition.afterCreateWorkflowAction(createdWorkflowAction, integrationAction, accountCredential, (data) =>
+      super.updateOne(createdWorkflowAction.id, data),
+    )
 
     // Update the nextActions references on the previous action
     if (previousAction) {
@@ -171,7 +174,11 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
       integrationAction,
       accountCredential,
     )
-    return await super.updateOne(id, updatedWorkflowAction, opts)
+    const updatedEntity = await super.updateOne(id, updatedWorkflowAction, opts)
+    await definition.afterUpdateWorkflowAction(updatedEntity, integrationAction, accountCredential, (data) =>
+      super.updateOne(updatedEntity.id, data),
+    )
+    return updatedEntity
   }
 
   async deleteOne(id: string, opts?: DeleteOneOptions<WorkflowAction> | undefined): Promise<WorkflowAction> {
@@ -220,6 +227,8 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     await definition.beforeDeleteWorkflowAction(workflowAction, integrationAction, accountCredential)
-    return super.deleteOne(id)
+    const deletedEntity = super.deleteOne(id)
+    await definition.afterDeleteWorkflowAction(workflowAction, integrationAction, accountCredential)
+    return deletedEntity
   }
 }

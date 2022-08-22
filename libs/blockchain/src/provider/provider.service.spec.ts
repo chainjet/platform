@@ -1,18 +1,18 @@
 import { ConfigModule } from '@nestjs/config'
 import { Test, TestingModule } from '@nestjs/testing'
-import blockchainConfig from './libs/blockchain/src/config/blockchain'
+import { blockchainConfigList, BlockchainConfigService } from '../blockchain.config'
 import { ProviderService } from './provider.service'
 
 describe('ProviderService', () => {
   let service: ProviderService
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      imports: [ConfigModule.forRoot({ load: [blockchainConfig] })],
-      providers: [ProviderService],
+    const testModule: TestingModule = await Test.createTestingModule({
+      imports: [ConfigModule.forRoot({ load: [blockchainConfigList] })],
+      providers: [ProviderService, BlockchainConfigService],
     }).compile()
 
-    service = module.get<ProviderService>(ProviderService)
+    service = testModule.get<ProviderService>(ProviderService)
   })
 
   it('should be defined', () => {

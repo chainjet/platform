@@ -1,7 +1,14 @@
+import { isEmptyObj } from '@app/common/utils/object.utils'
+import { SecurityUtils } from '@app/common/utils/security.utils'
+import { AccountCredential } from 'apps/api/src/account-credentials/entities/account-credential'
 import { IntegrationAction } from 'apps/api/src/integration-actions/entities/integration-action'
 import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/integration-trigger'
+import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-action'
+import { WorkflowTrigger } from 'apps/api/src/workflow-triggers/entities/workflow-trigger'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import deepmerge from 'deepmerge'
+import { Request } from 'express'
+import { ParamsDictionary } from 'express-serve-static-core'
 import fs from 'fs'
 import { JSONSchema7 } from 'json-schema'
 import { OpenAPIObject, OperationObject, ParameterObject, ReferenceObject, SchemaObject } from 'openapi3-ts'
@@ -21,14 +28,15 @@ import {
   SourcePropDefinitions,
   UserProp,
 } from 'pipedream/types/src'
+import { ParsedQs } from 'qs'
 import { Observable } from 'rxjs'
-import { GetAsyncSchemasProps, RunResponse } from '../definition'
+import { GetAsyncSchemasProps, RunResponse, SingleIntegrationData } from '../definition'
 import { parseJsonSchemaValue } from '../schema/utils/jsonSchemaUtils'
 import { AsyncSchema } from '../types/AsyncSchema'
 
-export type PipedreamAction = Action<Methods, AppPropDefinitions>
-export type PipedreamSource = Source<Methods, SourcePropDefinitions>
-export type PipedreamOperation = PipedreamAction | PipedreamSource
+type PipedreamAction = Action<Methods, AppPropDefinitions>
+type PipedreamSource = Source<Methods, SourcePropDefinitions>
+type PipedreamOperation = PipedreamAction | PipedreamSource
 
 type PropType =
   | UserProp['type']
@@ -38,6 +46,106 @@ type PropType =
   | HttpRequestProp['type']
 
 type OperationGetter = (type: string, key: string) => Promise<PipedreamOperation>
+
+type AbstractConstructor<T> = abstract new (...args: any[]) => T
+
+export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationData>>(Base: T) {
+  abstract class _PipedreamMixin extends Base {
+    abstract pipedreamKey: string
+    operations: PipedreamOperation[]
+
+    abstract getOperation(type: string, key: string): Promise<PipedreamOperation>
+
+    async afterCreateWorkflowTrigger(
+      workflowTrigger: WorkflowTrigger,
+      integrationTrigger: IntegrationTrigger,
+      accountCredential: AccountCredential | null,
+      update: (data: Partial<WorkflowTrigger>) => Promise<WorkflowTrigger>,
+    ) {
+      await runPipedreamAfterCreateWorkflowTrigger(
+        await this.getOperations(),
+        workflowTrigger,
+        integrationTrigger,
+        accountCredential,
+        update,
+      )
+    }
+
+    async afterUpdateWorkflowTrigger(
+      workflowTrigger: WorkflowTrigger,
+      integrationTrigger: IntegrationTrigger,
+      accountCredential: AccountCredential | null,
+      update: (data: Partial<WorkflowTrigger>) => Promise<WorkflowTrigger>,
+    ) {
+      await runPipedreamAfterUpdateWorkflowTrigger(
+        await this.getOperations(),
+        workflowTrigger,
+        integrationTrigger,
+        accountCredential,
+        update,
+      )
+    }
+
+    async afterDeleteWorkflowTrigger(
+      workflowTrigger: WorkflowTrigger,
+      integrationTrigger: IntegrationTrigger,
+      accountCredential: AccountCredential | null,
+    ) {
+      await runPipedreamAfterDeleteWorkflowTrigger(
+        await this.getOperations(),
+        workflowTrigger,
+        integrationTrigger,
+        accountCredential,
+      )
+    }
+
+    async updateSchemaBeforeSave(schema: OpenAPIObject): Promise<OpenAPIObject> {
+      const operations = await this.getOperations()
+      return updatePipedreamSchemaBeforeSave(schema, operations)
+    }
+
+    async updateSchemaBeforeInstall(schema: OpenAPIObject): Promise<OpenAPIObject> {
+      const operations = await this.getOperations()
+      return updatePipedreamSchemaBeforeInstall(schema, operations)
+    }
+
+    async run(opts: OperationRunOptions): Promise<RunResponse | Observable<RunResponse> | null> {
+      const operations = await this.getOperations()
+      const operation = operations.find((a) => a.key === opts.operation.key)
+      if (operation) {
+        return runPipedreamOperation(operation, opts)
+      }
+      return null
+    }
+
+    // TODO
+    async onHookReceivedForWorkflowTrigger(
+      req: Request<ParamsDictionary, any, any, ParsedQs>,
+      opts: OperationRunOptions,
+    ): Promise<boolean> {
+      const operations = await this.getOperations()
+      const operation = operations.find((a) => a.key === opts.operation.key)
+      if (operation) {
+        console.log(`Workflow received for operation:`, operation.key)
+        await runPipedreamOperation(operation, opts)
+      }
+      return false
+    }
+
+    async getAsyncSchemas(operation: IntegrationAction | IntegrationTrigger) {
+      return getAsyncSchemasForPipedream(await this.getOperations(), operation)
+    }
+
+    async getOperations(): Promise<PipedreamOperation[]> {
+      if (!this.operations) {
+        this.operations = await getPipedreamOperations(this.pipedreamKey, this.getOperation)
+      }
+      return this.operations
+    }
+  }
+
+  return _PipedreamMixin
+}
 
 function mapPipedreamTypeToOpenApi(type: PropType): SchemaObject {
   if (type.endsWith('[]')) {
@@ -69,7 +177,7 @@ function mapPipedreamTypeToOpenApi(type: PropType): SchemaObject {
   }
 }
 
-export function mapPipedreamOperationToOpenApi(operation: PipedreamOperation): {
+function mapPipedreamOperationToOpenApi(operation: PipedreamOperation): {
   operation: OperationObject
   asyncSchemas: AsyncSchema[]
 } {
@@ -176,7 +284,7 @@ export function mapPipedreamOperationToOpenApi(operation: PipedreamOperation): {
   }
 }
 
-export async function updatePipedreamSchemaBeforeSave(
+async function updatePipedreamSchemaBeforeSave(
   schema: OpenAPIObject,
   operations: PipedreamOperation[],
 ): Promise<OpenAPIObject> {
@@ -207,7 +315,7 @@ export async function updatePipedreamSchemaBeforeSave(
   return schema
 }
 
-export async function updatePipedreamSchemaBeforeInstall(
+async function updatePipedreamSchemaBeforeInstall(
   schema: OpenAPIObject,
   operations: PipedreamOperation[],
 ): Promise<OpenAPIObject> {
@@ -217,11 +325,6 @@ export async function updatePipedreamSchemaBeforeInstall(
     if (schemaOperation.summary === '') {
       delete schemaOperation.summary
     }
-
-    // if (operation.name?.toLowerCase().includes('instant')) {
-    // continue
-    // throw new Error(`Instant operations not supported yet (${operation.name})`)
-    // }
 
     const operationData = mapPipedreamOperationToOpenApi(operation)
     const schemaParams = schemaOperation.parameters ?? []
@@ -242,6 +345,23 @@ export async function updatePipedreamSchemaBeforeInstall(
 
     operationData.operation['x-triggerIdKey'] = 'items[].id'
 
+    if (operation.name?.toLowerCase().includes('(instant)')) {
+      operationData.operation['x-triggerInstant'] = true
+      operationData.operation.summary = operationData.operation.summary?.replace(/\(instant\)/i, '').trim()
+    }
+
+    // update trigger descriptions
+    const descriptionReplacements = {
+      'Emit new event each time': 'Triggers when',
+      'Emits a new event any time': 'Triggers when',
+      'Emit new event for': 'Triggers for',
+      'Emit new event when': 'Triggers when',
+      'Emit new event on each': 'Triggers on each',
+    }
+    for (const [key, value] of Object.entries(descriptionReplacements)) {
+      operationData.operation.description = operationData.operation.description?.replace(key, value)
+    }
+
     schema.paths[actionKey].get = deepmerge(operationData.operation, schemaOperation)
     schema.paths[actionKey].get.parameters = mergedParams
 
@@ -253,12 +373,23 @@ export async function updatePipedreamSchemaBeforeInstall(
   return schema
 }
 
-function getBindData(operation: PipedreamOperation, opts: OperationRunOptions): Record<string, any> {
-  const appData = Object.entries(operation.props ?? {}).find(
-    ([_, prop]) => typeof prop === 'object' && 'type' in prop && prop.type === 'app',
-  )
+function getBindData(
+  operation: PipedreamOperation,
+  opts: {
+    operation: IntegrationAction | IntegrationTrigger
+    workflowOperation?: WorkflowAction | WorkflowTrigger
+    inputs: Record<string, any>
+    credentials: Record<string, any>
+    accountCredential: AccountCredential | null
+  },
+  req?: any, // TODO
+): { bindData: Record<string, any>; hookId?: string } {
+  const propEntries = Object.entries(operation.props ?? {})
+  const appData = propEntries.find(([_, prop]) => typeof prop === 'object' && 'type' in prop && prop.type === 'app')
   if (!appData) {
-    throw new Error(`Action ${opts.operation.key} is not configured correctly for integration ${opts.integration.key}`)
+    throw new Error(
+      `Action ${opts.operation.key} is not configured correctly for integration ${opts.operation.integration.id}`,
+    )
   }
 
   const $auth = {
@@ -284,20 +415,43 @@ function getBindData(operation: PipedreamOperation, opts: OperationRunOptions): 
     }.bind(appMethods)
   }
 
+  const httpProp = propEntries.find(
+    ([_, prop]) => typeof prop === 'object' && 'type' in prop && prop.type === '$.interface.http',
+  )
+  const httpInterface = {}
+  let hookId: string | undefined
+  if (httpProp) {
+    hookId =
+      opts.workflowOperation && 'hookId' in opts.workflowOperation
+        ? opts.workflowOperation.hookId
+        : SecurityUtils.generateRandomString(48)
+    httpInterface[httpProp[0]] = {
+      // endpoint: `${process.env.API_ENDPOINT}/hooks/${hookId}`, // TODO
+      endpoint: `https://8900-141-8-27-111.eu.ngrok.io/hooks/${hookId}`,
+      respond: (...args) => {
+        console.log(`== RESPOND ==`, ...args) // TODO
+      },
+    }
+  }
+
   return {
-    ...appMethods,
-    ...opts.inputs,
-    [appKey]: appMethods, // include methods defined at app level
-    ...operation.methods, // include methods defined at operation level
-    ...opts.accountCredential,
+    bindData: {
+      ...appMethods,
+      ...opts.inputs,
+      [appKey]: appMethods, // include methods defined at app level
+      ...operation.methods, // include methods defined at operation level
+      ...httpInterface,
+      ...opts.accountCredential,
+    },
+    hookId,
   }
 }
 
-export async function runPipedreamOperation(
+async function runPipedreamOperation(
   operation: PipedreamOperation,
   opts: OperationRunOptions,
 ): Promise<RunResponse | Observable<RunResponse>> {
-  const bindData = getBindData(operation, opts)
+  const { bindData } = getBindData(operation, opts)
 
   if (operation.type === 'action') {
     for (const key of Object.keys(operation.methods ?? {})) {
@@ -403,7 +557,7 @@ async function getPipedreamOperationKeys(componentKey: string): Promise<{ key: s
   return operationKeys.filter(({ key }) => !nonExistentKeys.includes(key))
 }
 
-export async function getPipedreamOperations(
+async function getPipedreamOperations(
   integrationKey: string,
   opGetter: OperationGetter,
 ): Promise<PipedreamOperation[]> {
@@ -415,7 +569,7 @@ export async function getPipedreamOperations(
   return operations
 }
 
-export function getAsyncSchemasForPipedream(
+function getAsyncSchemasForPipedream(
   operations: PipedreamOperation[],
   integrationOperation: IntegrationAction | IntegrationTrigger,
 ) {
@@ -442,7 +596,7 @@ export function getAsyncSchemasForPipedream(
         }
       }
       if ('options' in prop && typeof prop.options === 'function') {
-        const bindData = getBindData(pipedreamOperation, props)
+        const { bindData } = getBindData(pipedreamOperation, props)
         let items = await prop.options.bind(bindData)({ page: 0, ...props.inputs })
 
         // items can be an array or an object where the options keys hold the items array
@@ -482,4 +636,106 @@ export function getAsyncSchemasForPipedream(
     }
     return acc
   }, {})
+}
+
+async function runPipedreamAfterCreateWorkflowTrigger(
+  operations: PipedreamOperation[],
+  workflowTrigger: WorkflowTrigger,
+  integrationTrigger: IntegrationTrigger,
+  accountCredential: AccountCredential | null,
+  update: (data: Partial<WorkflowTrigger>) => Promise<WorkflowTrigger>,
+) {
+  const operation = operations.find(
+    (operation) => operation.type === 'source' && operation.key === integrationTrigger.key,
+  ) as PipedreamSource
+  if (operation) {
+    const { bindData, hookId } = getBindData(operation, {
+      operation: integrationTrigger,
+      workflowOperation: workflowTrigger,
+      inputs: workflowTrigger.inputs ?? {},
+      credentials: accountCredential?.credentials ?? {},
+      accountCredential,
+    })
+    const tempStore = {}
+    bindData.db = {
+      get: (key: string) => tempStore[key],
+      set: (key: string, value: any) => {
+        tempStore[key] = value
+      },
+    }
+    if (hookId) {
+      await update({ hookId })
+    }
+    if (operation.hooks?.deploy) {
+      await operation.hooks.deploy.bind(bindData)()
+    }
+    if (operation.hooks?.activate) {
+      await operation.hooks.activate.bind(bindData)()
+    }
+    if (!isEmptyObj(tempStore)) {
+      await update({ store: tempStore })
+    }
+  }
+}
+
+async function runPipedreamAfterUpdateWorkflowTrigger(
+  operations: PipedreamOperation[],
+  workflowTrigger: WorkflowTrigger,
+  integrationTrigger: IntegrationTrigger,
+  accountCredential: AccountCredential | null,
+  update: (data: Partial<WorkflowTrigger>) => Promise<WorkflowTrigger>,
+) {
+  const operation = operations.find(
+    (operation) => operation.type === 'source' && operation.key === integrationTrigger.key,
+  ) as PipedreamSource
+  if (operation && operation.hooks?.activate) {
+    const { bindData } = getBindData(operation, {
+      operation: integrationTrigger,
+      workflowOperation: workflowTrigger,
+      inputs: workflowTrigger.inputs ?? {},
+      credentials: accountCredential?.credentials ?? {},
+      accountCredential,
+    })
+    const tempStore = {
+      ...(workflowTrigger?.store ?? {}),
+    }
+    bindData.db = {
+      get: (key: string) => tempStore[key],
+      set: (key: string, value: any) => {
+        tempStore[key] = value
+      },
+    }
+    await operation.hooks.activate.bind(bindData)()
+    await update({ store: tempStore }) // TODO only if workflowTrigger.store != tempStore
+  }
+}
+
+async function runPipedreamAfterDeleteWorkflowTrigger(
+  operations: PipedreamOperation[],
+  workflowTrigger: WorkflowTrigger,
+  integrationTrigger: IntegrationTrigger,
+  accountCredential: AccountCredential | null,
+) {
+  const operation = operations.find(
+    (operation) => operation.type === 'source' && operation.key === integrationTrigger.key,
+  ) as PipedreamSource
+  if (operation && operation.hooks?.deactivate) {
+    const { bindData } = getBindData(operation, {
+      operation: integrationTrigger,
+      workflowOperation: workflowTrigger,
+      inputs: workflowTrigger.inputs ?? {},
+      credentials: accountCredential?.credentials ?? {},
+      accountCredential,
+    })
+    const tempStore = {
+      ...(workflowTrigger?.store ?? {}),
+    }
+    bindData.db = {
+      get: (key: string) => tempStore[key],
+      set: (key: string, value: any) => {
+        tempStore[key] = value
+      },
+    }
+    await operation.hooks.deactivate.bind(bindData)()
+  }
 }

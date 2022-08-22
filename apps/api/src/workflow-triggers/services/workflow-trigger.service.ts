@@ -74,8 +74,11 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     const workflowTrigger = await definition.beforeCreateWorkflowTrigger(record, integrationTrigger, accountCredential)
-
-    return await super.createOne(workflowTrigger)
+    const createdEntity = await super.createOne(workflowTrigger)
+    await definition.afterCreateWorkflowTrigger(createdEntity, integrationTrigger, accountCredential, (data) =>
+      super.updateOne(createdEntity.id, data),
+    )
+    return createdEntity
   }
 
   async updateOne(
@@ -143,8 +146,11 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       integrationTrigger,
       accountCredential,
     )
-
-    return await super.updateOne(id, updatedWorkflowTrigger, opts)
+    const updatedEntity = await super.updateOne(id, updatedWorkflowTrigger, opts)
+    await definition.afterUpdateWorkflowTrigger(updatedEntity, integrationTrigger, accountCredential, (data) =>
+      super.updateOne(updatedEntity.id, data),
+    )
+    return updatedEntity
   }
 
   async deleteOne(id: string, opts?: DeleteOneOptions<WorkflowTrigger> | undefined): Promise<WorkflowTrigger> {
@@ -172,7 +178,9 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     await definition.beforeDeleteWorkflowTrigger(workflowTrigger, integrationTrigger, accountCredential)
-    return super.deleteOne(id, opts)
+    const deletedEntity = super.deleteOne(id, opts)
+    await definition.afterDeleteWorkflowTrigger(workflowTrigger, integrationTrigger, accountCredential)
+    return deletedEntity
   }
 
   async updateNextCheck(workflowTrigger: WorkflowTrigger): Promise<void> {

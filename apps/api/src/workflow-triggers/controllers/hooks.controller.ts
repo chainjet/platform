@@ -1,10 +1,13 @@
 import { All, Controller, Logger, Param, Req } from '@nestjs/common'
 import { NotFoundException } from '@nestjs/common/exceptions/not-found.exception'
 import { Request } from 'express'
-import rawbody from 'raw-body'
 import { isEmptyObj } from '../../../../../libs/common/src/utils/object.utils'
 import { IntegrationDefinitionFactory } from '../../../../../libs/definitions/src'
 import { RunnerService } from '../../../../runner/src/services/runner.service'
+import { AccountCredential } from '../../account-credentials/entities/account-credential'
+import { AccountCredentialService } from '../../account-credentials/services/account-credentials.service'
+import { IntegrationAccount } from '../../integration-accounts/entities/integration-account'
+import { IntegrationAccountService } from '../../integration-accounts/services/integration-account.service'
 import { IntegrationTriggerService } from '../../integration-triggers/services/integration-trigger.service'
 import { IntegrationService } from '../../integrations/services/integration.service'
 import { WorkflowActionService } from '../../workflow-actions/services/workflow-action.service'
@@ -18,11 +21,13 @@ export class HooksController {
 
   constructor(
     private readonly integrationService: IntegrationService,
+    private readonly integrationAccountService: IntegrationAccountService,
     private readonly integrationTriggerService: IntegrationTriggerService,
     private readonly workflowService: WorkflowService,
     private readonly workflowTriggerService: WorkflowTriggerService,
     private readonly workflowActionService: WorkflowActionService,
     private readonly workflowRunService: WorkflowRunService,
+    private readonly accountCredentialService: AccountCredentialService,
     private readonly integrationDefinitionFactory: IntegrationDefinitionFactory,
     private readonly runnerService: RunnerService,
   ) {}
@@ -93,13 +98,32 @@ export class HooksController {
     if (req.readable) {
       try {
         // body is ignored by NestJS -> get raw body from request
-        const raw = await rawbody(req)
+        const raw = (req as any).rawBody // await rawbody(req)
         req.body = JSON.parse(raw.toString().trim())
       } catch {}
     }
 
+    let accountCredential: AccountCredential | null = null
+    let integrationAccount: IntegrationAccount | null = null
+    if (workflowTrigger.credentials) {
+      accountCredential =
+        (await this.accountCredentialService.findById(workflowTrigger.credentials._id.toString())) ?? null
+      if (accountCredential) {
+        integrationAccount =
+          (await this.integrationAccountService.findById(accountCredential.integrationAccount._id.toString())) ?? null
+      }
+    }
+
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-    const canContinue = await definition.onHookReceivedForTrigger(req, workflowTrigger)
+    const canContinue = await definition.onHookReceivedForWorkflowTrigger(req, {
+      workflowOperation: workflowTrigger,
+      operation: integrationTrigger,
+      integration: integration,
+      inputs: {},
+      integrationAccount,
+      accountCredential,
+      credentials: accountCredential?.credentials ?? {},
+    })
 
     if (!canContinue) {
       return {}

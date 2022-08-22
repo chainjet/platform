@@ -113,15 +113,6 @@ export abstract class Definition {
   }
 
   /**
-   * Called before a workflow action is deleted
-   */
-  async beforeDeleteWorkflowAction(
-    workflowTrigger: Partial<WorkflowAction>,
-    integrationTrigger: IntegrationAction,
-    accountCredential: AccountCredential | null,
-  ) {}
-
-  /**
    * Allows definitions to modify the workflow trigger entity before it is created
    */
   async beforeCreateWorkflowTrigger(
@@ -142,6 +133,15 @@ export abstract class Definition {
   ): Promise<Partial<WorkflowTrigger>> {
     return workflowTrigger
   }
+
+  /**
+   * Called before a workflow trigger is deleted
+   */
+  async beforeDeleteWorkflowTrigger(
+    workflowTrigger: Partial<WorkflowTrigger>,
+    integrationTrigger: IntegrationTrigger,
+    accountCredential: AccountCredential | null,
+  ) {}
 
   /**
    * Allows definitions to modify the workflow action entity before it is created
@@ -166,16 +166,74 @@ export abstract class Definition {
   }
 
   /**
-   * Called before a workflow trigger is deleted
+   * Called before a workflow action is deleted
    */
-  async beforeDeleteWorkflowTrigger(
-    workflowTrigger: Partial<WorkflowTrigger>,
+  async beforeDeleteWorkflowAction(
+    workflowTrigger: Partial<WorkflowAction>,
+    integrationTrigger: IntegrationAction,
+    accountCredential: AccountCredential | null,
+  ) {}
+
+  /**
+   * Allows definitions to modify the workflow trigger entity after it is created
+   */
+  async afterCreateWorkflowTrigger(
+    workflowTrigger: WorkflowTrigger,
+    integrationTrigger: IntegrationTrigger,
+    accountCredential: AccountCredential | null,
+    update: (data: Partial<WorkflowTrigger>) => Promise<WorkflowTrigger>,
+  ) {}
+
+  /**
+   * Allows definitions to modify the workflow trigger entity after it is updated
+   */
+  async afterUpdateWorkflowTrigger(
+    workflowTrigger: WorkflowTrigger,
+    integrationTrigger: IntegrationTrigger,
+    accountCredential: AccountCredential | null,
+    update: (data: Partial<WorkflowTrigger>) => Promise<WorkflowTrigger>,
+  ) {}
+
+  /**
+   * Called after a workflow trigger is deleted
+   */
+  async afterDeleteWorkflowTrigger(
+    workflowTrigger: WorkflowTrigger,
     integrationTrigger: IntegrationTrigger,
     accountCredential: AccountCredential | null,
   ) {}
 
   /**
-   * Triggered when an integration hook is received. This hook has to figure it out which triggers should run.
+   * Allows definitions to modify the workflow action entity after it is created
+   */
+  async afterCreateWorkflowAction(
+    workflowAction: WorkflowAction,
+    integrationAction: IntegrationAction,
+    accountCredential: AccountCredential | null,
+    update: (data: Partial<WorkflowAction>) => Promise<WorkflowAction>,
+  ) {}
+
+  /**
+   * Allows definitions to modify the workflow action entity after it is updated
+   */
+  async afterUpdateWorkflowAction(
+    workflowAction: WorkflowAction,
+    integrationAction: IntegrationAction,
+    accountCredential: AccountCredential | null,
+    update: (data: Partial<WorkflowAction>) => Promise<WorkflowAction>,
+  ) {}
+
+  /**
+   * Called after a workflow action is deleted
+   */
+  async afterDeleteWorkflowAction(
+    workflowAction: WorkflowAction,
+    integrationTrigger: IntegrationAction,
+    accountCredential: AccountCredential | null,
+  ) {}
+
+  /**
+   * Triggered when a hook is received for a specific integration. This hook has to figure it out which triggers should run.
    */
   async onHookReceived(
     req: Request,
@@ -192,9 +250,9 @@ export abstract class Definition {
   }
 
   /**
-   * Triggered when a hook is received. Returns true if the hook should continue, false otherwise.
+   * Triggered when a hook is received for a specific workflow trigger. Returns true if the hook should continue, false otherwise.
    */
-  async onHookReceivedForTrigger(req: Request, workflowTrigger: WorkflowTrigger): Promise<boolean> {
+  async onHookReceivedForWorkflowTrigger(req: Request, opts: OperationRunOptions): Promise<boolean> {
     throw new Error(`Hook not supported by this integration`)
   }
 
@@ -220,7 +278,7 @@ export abstract class Definition {
    * Response is either directly the object with the response or an observable which emits one or more responses
    * Observable responses are only used by triggers
    */
-  run(opts: OperationRunOptions): Promise<RunResponse | Observable<RunResponse>> | null {
+  run(opts: OperationRunOptions): Promise<RunResponse | Observable<RunResponse> | null> | null {
     return null
   }
 

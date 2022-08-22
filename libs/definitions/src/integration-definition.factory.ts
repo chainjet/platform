@@ -56,6 +56,7 @@ import { RssDefinition } from './integration-definitions/rss.definition'
 import { ScheduleDefinition } from './integration-definitions/schedule.definition'
 import { SleepDefinition } from './integration-definitions/sleep.definition'
 import { StatuspageDefinition } from './integration-definitions/statuspage.definition'
+import { TelegramBotDefinition } from './integration-definitions/telegram-bot.definition'
 import { TelegramDefinition } from './integration-definitions/telegram.definition'
 import { UniswapV2Definition } from './integration-definitions/uniswapv2.definition'
 import { UniswapV3Definition } from './integration-definitions/uniswapv3.definition'
@@ -114,6 +115,7 @@ export class IntegrationDefinitionFactory {
     // snapshot: SnapshotDefinition,
     statuspage: StatuspageDefinition,
     telegram: TelegramDefinition,
+    'telegram-bot': TelegramBotDefinition,
     trello: TrelloDefinition,
     twilio: TwilioDefinition,
     uniswapv2: UniswapV2Definition,

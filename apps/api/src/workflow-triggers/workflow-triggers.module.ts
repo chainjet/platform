@@ -5,6 +5,7 @@ import { DefinitionsModule } from '../../../../libs/definitions/src'
 import { RunnerModule } from '../../../runner/src/runner.module'
 import { AccountCredentialsModule } from '../account-credentials/account-credentials.module'
 import { AuthModule } from '../auth/auth.module'
+import { IntegrationAccountsModule } from '../integration-accounts/integration-accounts.module'
 import { IntegrationTriggersModule } from '../integration-triggers/integration-triggers.module'
 import { IntegrationsModule } from '../integrations/integrations.module'
 import { UsersModule } from '../users/users.module'
@@ -25,6 +26,7 @@ import { WorkflowTriggerService } from './services/workflow-trigger.service'
     AuthModule,
     UsersModule, // required for GraphqlGuard
     IntegrationsModule,
+    IntegrationAccountsModule,
     IntegrationTriggersModule,
     forwardRef(() => AccountCredentialsModule),
     WorkflowsModule,

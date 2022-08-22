@@ -182,7 +182,7 @@ export class DiscordDefinition extends SingleIntegrationDefinition {
     if (type === InteractionType.APPLICATION_COMMAND) {
       const { name, guild_id } = data
 
-      const integrationTrigger = await injects.integrationTriggerService.findOne({ key: 'newSlashCommandGuild' })
+      const integrationTrigger = await injects.integrationTriggerService.findOne({ key: 'newSlashCommandGuild' }) // TODO check integration = discord
       if (!integrationTrigger) {
         throw new Error(`Integration trigger for discord slash command not configured correctly`)
       }

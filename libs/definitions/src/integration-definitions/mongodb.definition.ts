@@ -1,26 +1,13 @@
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
 import { IntegrationAccount } from 'apps/api/src/integration-accounts/entities/integration-account'
-import { IntegrationAction } from 'apps/api/src/integration-actions/entities/integration-action'
-import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/integration-trigger'
-import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
-import { OpenAPIObject } from 'openapi3-ts'
-import { Observable } from 'rxjs'
-import { RunResponse } from '../definition'
+import { PipedreamMixin } from '../mixins/pipedream.mixin'
 import { IntegrationAuthDefinition, IntegrationAuthType } from '../types/IntegrationAuthDefinition'
-import {
-  getAsyncSchemasForPipedream,
-  getPipedreamOperations,
-  PipedreamOperation,
-  runPipedreamOperation,
-  updatePipedreamSchemaBeforeInstall,
-  updatePipedreamSchemaBeforeSave,
-} from '../utils/pipedream.utils'
 
-export class MongoDBDefinition extends SingleIntegrationDefinition {
+export class MongoDBDefinition extends PipedreamMixin(SingleIntegrationDefinition) {
   integrationKey = 'mongodb'
+  pipedreamKey = 'mongodb'
   integrationVersion = '1'
   schemaUrl = null
-  operations: PipedreamOperation[]
 
   protected integrationAccount: IntegrationAccount | undefined
 
@@ -60,36 +47,6 @@ export class MongoDBDefinition extends SingleIntegrationDefinition {
     }
 
     return this.integrationAccount
-  }
-
-  async updateSchemaBeforeSave(schema: OpenAPIObject): Promise<OpenAPIObject> {
-    const operations = await this.getOperations()
-    return updatePipedreamSchemaBeforeSave(schema, operations)
-  }
-
-  async updateSchemaBeforeInstall(schema: OpenAPIObject): Promise<OpenAPIObject> {
-    const operations = await this.getOperations()
-    return updatePipedreamSchemaBeforeInstall(schema, operations)
-  }
-
-  async run(opts: OperationRunOptions): Promise<RunResponse | Observable<RunResponse>> {
-    const operations = await this.getOperations()
-    const operation = operations.find((a) => a.key === opts.operation.key)
-    if (!operation) {
-      throw new Error(`Operation ${opts.operation.key} not found for integration ${opts.integration.key}`)
-    }
-    return runPipedreamOperation(operation, opts)
-  }
-
-  async getAsyncSchemas(operation: IntegrationAction | IntegrationTrigger) {
-    return getAsyncSchemasForPipedream(await this.getOperations(), operation)
-  }
-
-  private async getOperations(): Promise<PipedreamOperation[]> {
-    if (!this.operations) {
-      this.operations = await getPipedreamOperations('mongodb', this.getOperation)
-    }
-    return this.operations
   }
 
   async getOperation(type: string, key: string) {
