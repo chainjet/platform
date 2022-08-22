@@ -27,17 +27,17 @@ export class AccountCredentialService extends BaseService<AccountCredential> {
 
   async createOne(record: DeepPartial<AccountCredential>): Promise<AccountCredential> {
     const credentials: Record<string, any> = {
-      ...(record.credentials ?? {}),
+      ...(record.credentialInputs ?? {}),
       ...(record.fields ?? {}),
     }
 
     // Encrypt credentials
-    if (record.credentials) {
+    if (record.credentialInputs) {
       const key = this.configService.get('CREDENTIALS_AES_KEY')
       if (!key) {
         throw new Error('Credentials encryption key not set')
       }
-      record.encryptedCredentials = CryptoJS.AES.encrypt(JSON.stringify(record.credentials), key).toString()
+      record.encryptedCredentials = CryptoJS.AES.encrypt(JSON.stringify(record.credentialInputs), key).toString()
     }
 
     const integrationAccount = await this.integrationAccountService.findById(
@@ -67,12 +67,12 @@ export class AccountCredentialService extends BaseService<AccountCredential> {
     update: DeepPartial<AccountCredential>,
     opts?: UpdateOneOptions<AccountCredential>,
   ): Promise<AccountCredential> {
-    if (update.credentials) {
+    if (update.credentialInputs) {
       const key = this.configService.get('CREDENTIALS_AES_KEY')
       if (!key) {
         throw new Error('Credentials encryption key not set')
       }
-      update.encryptedCredentials = CryptoJS.AES.encrypt(JSON.stringify(update.credentials), key).toString()
+      update.encryptedCredentials = CryptoJS.AES.encrypt(JSON.stringify(update.credentialInputs), key).toString()
     }
     return await super.updateOne(id, update, opts)
   }

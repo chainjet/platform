@@ -35,6 +35,9 @@ export class AccountCredential extends BaseEntity {
   @prop({ required: true })
   name: string
 
+  // Placeholder for credential pairs input
+  credentialInputs: Record<string, string>
+
   /**
    * Get decrypted credentials
    */
@@ -78,7 +81,7 @@ export class CreateAccountCredentialInput {
   name: string
 
   @Field(() => GraphQLJSONObject, { nullable: true })
-  credentials: Record<string, string>
+  credentialInputs: Record<string, string>
 
   @Field(() => GraphQLJSONObject, { nullable: true })
   fields: Record<string, string>
@@ -90,7 +93,7 @@ export class UpdateAccountCredentialInput {
   name: string
 
   @Field(() => GraphQLJSONObject, { nullable: true })
-  credentials: Record<string, string>
+  credentialInputs: Record<string, string>
 
   @Field(() => GraphQLJSONObject, { nullable: true })
   fields: Record<string, string>

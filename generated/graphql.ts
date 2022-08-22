@@ -488,7 +488,7 @@ export interface CreateOneAccountCredentialInput {
 export interface CreateAccountCredentialInput {
     integrationAccount: string;
     name: string;
-    credentials?: Nullable<JSONObject>;
+    credentialInputs?: Nullable<JSONObject>;
     fields?: Nullable<JSONObject>;
 }
 
@@ -503,7 +503,7 @@ export interface UpdateOneAccountCredentialInput {
 
 export interface UpdateAccountCredentialInput {
     name?: Nullable<string>;
-    credentials?: Nullable<JSONObject>;
+    credentialInputs?: Nullable<JSONObject>;
     fields?: Nullable<JSONObject>;
 }
 
