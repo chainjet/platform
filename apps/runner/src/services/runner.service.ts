@@ -102,7 +102,7 @@ export class RunnerService {
 
     const { credentials, accountCredential, integrationAccount } = await this.getCredentialsAndIntegrationAccount(
       workflowTrigger.credentials?.toString(),
-      workflowTrigger.owner.id.toString(),
+      workflowTrigger.owner.toString(),
       () => this.onTriggerFailure(workflowTrigger.workflow, userId, workflowRun, 'Credentials not found'),
     )
 
