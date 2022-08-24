@@ -11,7 +11,7 @@ import { WorkflowTriggerService } from 'apps/api/src/workflow-triggers/services/
 import { WorkflowService } from 'apps/api/src/workflows/services/workflow.service'
 import { RunnerService } from 'apps/runner/src/services/runner.service'
 import { EventAbi } from 'ethereum-types'
-import { ethers } from 'ethers'
+import { BigNumber, ethers } from 'ethers'
 import { shuffle } from 'lodash'
 
 @Injectable()
@@ -99,10 +99,17 @@ export class BlockchainListenerService {
           }
           this.logger.log(`Running workflow ${workflow.id}`)
 
+          const logArgs = {}
+          for (const logKey of Object.keys(log.args)) {
+            if (BigNumber.isBigNumber(log.args[logKey])) {
+              logArgs[logKey] = log.args[logKey].toString()
+            }
+          }
+
           const hookOutputs = {
             [workflowTrigger.id]: {
               ...log,
-              log: log.args,
+              log: logArgs,
             },
           }
 
