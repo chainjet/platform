@@ -14,7 +14,6 @@ export class PolygonscanDefinition extends SingleIntegrationDefinition {
       const replaceKeys = ['summary', 'description', 'x-triggerSummary', 'x-triggerDescription']
       for (const key of replaceKeys) {
         if (schema.paths[pathKey].get[key]) {
-          console.log(`replacing ${key} for ${pathKey}`)
           schema.paths[pathKey].get[key] = schema.paths[pathKey].get[key].replace('Ether ', 'MATIC ')
         }
       }
