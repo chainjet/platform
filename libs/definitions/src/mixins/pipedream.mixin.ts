@@ -15,6 +15,7 @@ import { OpenAPIObject, OperationObject, ParameterObject, ReferenceObject, Schem
 import path from 'path'
 import {
   Action,
+  App,
   AppPropDefinitions,
   DataStoreProp,
   EmitMetadata,
@@ -23,6 +24,7 @@ import {
   JSONValue,
   Methods,
   PropDefinition,
+  PropDefinitionReference,
   ServiceDBProp,
   Source,
   SourcePropDefinitions,
@@ -37,6 +39,15 @@ import { AsyncSchema } from '../types/AsyncSchema'
 type PipedreamAction = Action<Methods, AppPropDefinitions>
 type PipedreamSource = Source<Methods, SourcePropDefinitions>
 type PipedreamOperation = PipedreamAction | PipedreamSource
+
+type PipedreaProp =
+  | PropDefinitionReference
+  | App<Methods, AppPropDefinitions>
+  | UserProp
+  | DataStoreProp
+  | InterfaceProp
+  | ServiceDBProp
+  | HttpRequestProp
 
 type PropType =
   | UserProp['type']
@@ -136,6 +147,33 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
       return getAsyncSchemasForPipedream(await this.getOperations(), operation)
     }
 
+    async getAdditionalAsyncSchema(
+      operation: IntegrationAction | IntegrationTrigger,
+      props: GetAsyncSchemasProps,
+    ): Promise<{ [key: string]: JSONSchema7 }> {
+      const operations = await this.getOperations()
+      const pipedreamOperation = operations.find((a) => a.key === operation.key)
+      if (!pipedreamOperation) {
+        throw new Error(`Operation ${operation.key} not found`)
+      }
+      if (!pipedreamOperation.additionalProps) {
+        return {}
+      }
+
+      const { bindData } = getBindData(pipedreamOperation, props)
+      const additionalProps = await pipedreamOperation.additionalProps.bind(bindData)({})
+
+      const additionalSchemas = {}
+      for (const [key, value] of Object.entries(additionalProps)) {
+        const schemaProp = mapPipedreamPropertyToJsonSchemaParam(key, value as PipedreaProp)
+        if (schemaProp && 'schema' in schemaProp) {
+          additionalSchemas[key] = schemaProp.schema
+        }
+      }
+
+      return additionalSchemas
+    }
+
     async getOperations(): Promise<PipedreamOperation[]> {
       if (!this.operations) {
         this.operations = await getPipedreamOperations(this.pipedreamKey, this.getOperation)
@@ -183,94 +221,7 @@ function mapPipedreamOperationToOpenApi(operation: PipedreamOperation): {
 } {
   const asyncSchemas: AsyncSchema[] = []
   const parameters: (ParameterObject | ReferenceObject)[] = Object.entries(operation.props ?? {})
-    .map(([key, value]) => {
-      if (typeof value !== 'object') {
-        return null
-      }
-
-      let propDefinition: PropDefinition | null = null
-      if ('propDefinition' in value) {
-        propDefinition = value.propDefinition
-        if (value.propDefinition.length >= 2) {
-          value = {
-            ...value.propDefinition[0].propDefinitions![value.propDefinition[1]],
-            ...value,
-          }
-        }
-      }
-
-      if (!('type' in value)) {
-        throw new Error(`property without a type on key ${key}`)
-      }
-
-      if (value.type === 'app' || value.type.startsWith('$') || value.type === 'http_request') {
-        return null
-      }
-
-      const param: ParameterObject = {
-        name: key,
-        in: 'query',
-        required: !(value as { optional: boolean }).optional,
-      }
-      const schema: SchemaObject = mapPipedreamTypeToOpenApi(value.type)
-
-      if ('label' in value && value.label) {
-        schema.title = value.label
-      }
-
-      if ('description' in value && value.description) {
-        param.description = value.description
-      }
-
-      if ('default' in value && value.default) {
-        schema.default = value.default
-      }
-
-      if ('secret' in value && value.secret) {
-        // TODO https://trello.com/c/11fTX1dC/6-encrypted-secret-params
-      }
-
-      if ('min' in value && value.min) {
-        schema.minimum = value.min
-      }
-      if ('max' in value && value.max) {
-        schema.maximum = value.max
-      }
-
-      if ('options' in value && value.options) {
-        if (Array.isArray(value.options)) {
-          // if the options are all strings, we can use enum, otherwise we need to use oneOf
-          if (value.options.every((option) => typeof option === 'string')) {
-            schema.enum = value.options
-          } else {
-            schema.oneOf = value.options.map((option) => ({
-              title: option.label,
-              'x-const': option.value,
-            }))
-          }
-        } else if (typeof value.options === 'function') {
-          // The third argument of propDefinition has the dependencies of the async schema
-          if (propDefinition?.length === 3) {
-            const dependencyObj = propDefinition[2]({})
-            asyncSchemas.push({
-              name: key,
-              dependencies: Object.keys(dependencyObj),
-            })
-          } else {
-            asyncSchemas.push({
-              name: key,
-            })
-          }
-        } else {
-          throw new Error(`Unknown options value for ${key}`)
-        }
-      }
-
-      return {
-        ...param,
-        schema,
-      }
-    })
+    .map(([key, value]) => mapPipedreamPropertyToJsonSchemaParam(key, value, asyncSchemas))
     .filter((param) => param !== null) as (ParameterObject | ReferenceObject)[]
 
   return {
@@ -281,6 +232,101 @@ function mapPipedreamOperationToOpenApi(operation: PipedreamOperation): {
       responses: {},
     },
     asyncSchemas,
+  }
+}
+
+function mapPipedreamPropertyToJsonSchemaParam(
+  key: string,
+  prop: PipedreaProp,
+  asyncSchemas: AsyncSchema[] = [],
+): ParameterObject | ReferenceObject | null {
+  if (typeof prop !== 'object') {
+    return null
+  }
+
+  let propDefinition: PropDefinition | null = null
+  if ('propDefinition' in prop) {
+    propDefinition = prop.propDefinition
+    if (prop.propDefinition.length >= 2) {
+      prop = {
+        ...prop.propDefinition[0].propDefinitions![prop.propDefinition[1]],
+        ...prop,
+      }
+    }
+  }
+
+  if (!('type' in prop)) {
+    throw new Error(`property without a type on key ${key}`)
+  }
+
+  if (prop.type === 'app' || prop.type.startsWith('$') || prop.type === 'http_request') {
+    return null
+  }
+
+  const param: ParameterObject = {
+    name: key,
+    in: 'query',
+    required: !(prop as { optional: boolean }).optional,
+  }
+  const schema: SchemaObject = mapPipedreamTypeToOpenApi(prop.type)
+
+  if ('label' in prop && prop.label) {
+    schema.title = prop.label
+  }
+
+  if ('description' in prop && prop.description) {
+    param.description = prop.description
+  }
+
+  if ('default' in prop && prop.default) {
+    schema.default = prop.default
+  }
+
+  if ('secret' in prop && prop.secret) {
+    // TODO https://trello.com/c/11fTX1dC/6-encrypted-secret-params
+  }
+
+  if ('min' in prop && prop.min) {
+    schema.minimum = prop.min
+  }
+  if ('max' in prop && prop.max) {
+    schema.maximum = prop.max
+  }
+
+  if ('options' in prop && prop.options) {
+    if (Array.isArray(prop.options)) {
+      // if the options are all strings, we can use enum, otherwise we need to use oneOf
+      if (prop.options.every((option) => typeof option === 'string')) {
+        schema.enum = prop.options
+      } else {
+        schema.oneOf = prop.options.map((option) => ({
+          title: option.label,
+          'x-const': option.value,
+        }))
+      }
+    } else if (typeof prop.options === 'function') {
+      // The third argument of propDefinition has the dependencies of the async schema
+      if (propDefinition?.length === 3) {
+        asyncSchemas.push({
+          name: key,
+          // we can't use the keys as dependencies because the name can change (e.g. google_sheets-add-single-row drive => driveId)
+          // with any: true we refresh for every change to any dependency
+          // dependencies: Object.keys(propDefinition[2]({})),
+          any: true,
+        })
+      } else {
+        asyncSchemas.push({
+          name: key,
+        })
+      }
+    } else {
+      throw new Error(`Unknown options value for ${key}`)
+    }
+  }
+
+  return {
+    ...param,
+    schema,
   }
 }
 
@@ -577,6 +623,7 @@ function getAsyncSchemasForPipedream(
   return asyncSchemas.reduce((acc, curr) => {
     acc[curr.name] = async (props: GetAsyncSchemasProps) => {
       // check all dependencies for the async schema have been provided
+      // these are only the dependencies on x-asyncSchemas, pipedream also requires all the keys on the option object to be defined
       const unmetDependencies = curr.dependencies?.some((dep) => !props.inputs[dep])
       if (curr.dependencies?.length && unmetDependencies) {
         return {}
@@ -586,18 +633,27 @@ function getAsyncSchemasForPipedream(
       if (!pipedreamOperation) {
         throw new Error(`Operation ${props.operation.key} not found for integration ${props.integration.key}`)
       }
-      let prop = pipedreamOperation.props![curr.name] ?? {}
-      if ('propDefinition' in prop) {
-        if (prop.propDefinition.length >= 2) {
-          prop = {
-            ...prop.propDefinition[0].propDefinitions![prop.propDefinition[1]],
-            ...prop,
+      let pipedreamProp = pipedreamOperation.props![curr.name] ?? {}
+      let propInputs = {}
+      if ('propDefinition' in pipedreamProp) {
+        if (pipedreamProp.propDefinition.length >= 2) {
+          // the third parameter of the prop definition defines the dependency inputs for the options
+          propInputs = pipedreamProp.propDefinition[2]?.(props.inputs) ?? {}
+          pipedreamProp = {
+            ...pipedreamProp.propDefinition[0].propDefinitions![pipedreamProp.propDefinition[1]],
+            ...pipedreamProp,
           }
         }
       }
-      if ('options' in prop && typeof prop.options === 'function') {
-        const { bindData } = getBindData(pipedreamOperation, props)
-        let items = await prop.options.bind(bindData)({ page: 0, ...props.inputs })
+      if ('options' in pipedreamProp && typeof pipedreamProp.options === 'function') {
+        // if any of the inputs is undefined, means that pipedream dependencies are not met
+        const hasUndefinedInputs = Object.keys(propInputs).some((key) => propInputs[key] === undefined)
+        if (hasUndefinedInputs) {
+          return {}
+        }
+
+        const { bindData } = getBindData(pipedreamOperation, { ...props, inputs: propInputs })
+        let items = await pipedreamProp.options.bind(bindData)({ page: 0, prevContext: {}, ...propInputs })
 
         // items can be an array or an object where the options keys hold the items array
         if ('options' in items) {

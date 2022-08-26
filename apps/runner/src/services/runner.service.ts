@@ -150,16 +150,18 @@ export class RunnerService {
         })
       }
     } catch (e) {
+      let error = definition.parseError(e)
+      if (!error || error.toString() === '[object Object]') {
+        error = e.message
+      }
       await this.onTriggerFailure(
         workflowTrigger.workflow,
         userId,
         workflowRun,
-        e.message,
+        error?.toString(),
         e.response?.text || undefined,
       )
-      this.logger.error(
-        `Run WorkflowTrigger ${workflowTrigger.id} failed with error ${e.response?.text ?? e.response ?? e}`,
-      )
+      this.logger.error(`Run WorkflowTrigger ${workflowTrigger.id} failed with error ${error}`)
       return
     }
 
@@ -314,7 +316,10 @@ export class RunnerService {
       await this.workflowRunService.markActionAsCompleted(userId, workflowRun._id, workflowRunAction)
     } catch (e) {
       const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-      const error = definition.parseError(e)
+      let error = definition.parseError(e)
+      if (!error || error.toString() === '[object Object]') {
+        error = e.message
+      }
       await this.onActionFailure(
         workflowAction.workflow,
         userId,

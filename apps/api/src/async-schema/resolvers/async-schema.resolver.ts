@@ -8,6 +8,7 @@ import { GraphQLJSONObject } from 'graphql-type-json'
 import { JSONSchema7 } from 'json-schema'
 import { ObjectId } from 'mongoose'
 import { UserId } from '../../auth/decorators/user-id.decorator'
+import { OAuthStrategyFactory } from '../../auth/external-oauth/oauth-strategy.factory'
 import { GraphqlGuard } from '../../auth/guards/graphql.guard'
 import { IntegrationAction } from '../../integration-actions/entities/integration-action'
 import { IntegrationActionService } from '../../integration-actions/services/integration-action.service'
@@ -32,6 +33,7 @@ export class AsyncSchemaResolver {
     private readonly integrationDefinitionFactory: IntegrationDefinitionFactory,
     private readonly runnerService: RunnerService,
     private readonly operationRunnerService: OperationRunnerService,
+    private readonly oauthStrategyFactory: OAuthStrategyFactory,
   ) {}
 
   @Query(() => AsyncSchemaDto)
@@ -100,20 +102,45 @@ export class AsyncSchemaResolver {
       operationRunnerService: this.operationRunnerService,
     }
 
-    const schemas: { [key: string]: JSONSchema7 } = {}
-    for (const name of names) {
-      const asyncSchemas = await definition.getAsyncSchemas(operation)
-      if (asyncSchemas[name]) {
-        try {
-          schemas[name] = await asyncSchemas[name](props)
-        } catch (e) {
-          this.logger.error(`Error while getting async schema for ${name} on ${integration.key}:`, e)
+    const runWithRefreshCredentialsRetry = async <T>(cb: () => Promise<T>) => {
+      try {
+        return await cb()
+      } catch (e) {
+        if (integrationAccount) {
+          // refresh credentials and try again
+          props.credentials.accessToken = await this.oauthStrategyFactory.refreshOauth2AccessToken(
+            integrationAccount.key,
+            accountCredential,
+            credentials,
+          )
+          try {
+            return await cb()
+          } catch (e) {
+            this.logger.error(`Error while getting async schema for ${operation.key} on ${integration.key}`, e)
+          }
         }
       }
     }
 
+    const schemas: { [key: string]: JSONSchema7 } = {}
+    const asyncSchemas = await definition.getAsyncSchemas(operation)
+    for (const name of names) {
+      if (asyncSchemas[name]) {
+        const schema = await runWithRefreshCredentialsRetry(() => asyncSchemas[name](props))
+        if (schema) {
+          schemas[name] = schema
+        }
+      }
+    }
+
+    const additionalSchemas =
+      (await runWithRefreshCredentialsRetry(() => definition.getAdditionalAsyncSchema(operation, props))) ?? {}
+
     return {
-      schemas,
+      schemas: {
+        ...schemas,
+        ...additionalSchemas,
+      },
     }
   }
 }

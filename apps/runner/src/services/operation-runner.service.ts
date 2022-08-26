@@ -66,7 +66,7 @@ export class OperationRunnerService {
     )
 
     // If the definition has its own run definition, use it
-    const definitionRunOutputs = await definition.run(opts)
+    const definitionRunOutputs = await this.runDefinitionWithRefreshCredentials(definition, opts)
     if (definitionRunOutputs && 'outputs' in definitionRunOutputs) {
       return definitionRunOutputs
     }
@@ -80,7 +80,7 @@ export class OperationRunnerService {
     )
 
     // If the definition has its own run definition, use it
-    const definitionRunOutputs = await definition.run(opts)
+    const definitionRunOutputs = await this.runDefinitionWithRefreshCredentials(definition, opts)
     if (definitionRunOutputs && 'outputs' in definitionRunOutputs) {
       return definitionRunOutputs
     }
@@ -232,6 +232,26 @@ export class OperationRunnerService {
       throw new NotFoundException(`Integration Action ${opts.key} not found`)
     }
     return this.runAction(definition, { ...opts, operation })
+  }
+
+  private async runDefinitionWithRefreshCredentials(
+    definition: Definition,
+    opts: OperationRunOptions,
+  ): Promise<RunResponse | Observable<RunResponse> | null> {
+    try {
+      return await definition.run(opts)
+    } catch (e) {
+      if (opts.integrationAccount) {
+        // refresh credentials and try again
+        opts.credentials.accessToken = await this.oauthStrategyFactory.refreshOauth2AccessToken(
+          opts.integrationAccount.key,
+          opts.accountCredential,
+          opts.credentials,
+        )
+        return await definition.run(opts)
+      }
+    }
+    return null
   }
 
   requestInterceptor(definition: Definition, opts: RequestInterceptorOptions): request.OptionsWithUrl {

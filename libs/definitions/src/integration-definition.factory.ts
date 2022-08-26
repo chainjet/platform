@@ -46,6 +46,7 @@ import { EtherscanDefinition } from './integration-definitions/etherscan.definit
 import { FtmscanDefinition } from './integration-definitions/ftmscan.definition'
 import { GnosisscanDefinition } from './integration-definitions/gnosisscan.definition'
 import { GoogleApisDefinition } from './integration-definitions/google-apis.definition'
+import { GoogleSheetsDefinition } from './integration-definitions/google-sheets.definition'
 import { GraphqlDefinition } from './integration-definitions/graphql.definition'
 import { GumroadDefinition } from './integration-definitions/gumroad.definition'
 import { HetznerCloudDefinition } from './integration-definitions/hetzner-cloud.definition'
@@ -116,6 +117,7 @@ export class IntegrationDefinitionFactory {
     gitlab: GitlabDefinition,
     gnosisscan: GnosisscanDefinition,
     'google-apis': GoogleApisDefinition,
+    'google-sheets': GoogleSheetsDefinition,
     graphql: GraphqlDefinition,
     gumroad: GumroadDefinition,
     'hetzner-cloud': HetznerCloudDefinition,

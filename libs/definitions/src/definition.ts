@@ -408,6 +408,16 @@ export abstract class Definition {
   }
 
   /**
+   * Similar to getAsyncSchemas, but allows to add additional properties to the schemas
+   */
+  async getAdditionalAsyncSchema(
+    operation: IntegrationAction | IntegrationTrigger,
+    props: GetAsyncSchemasProps,
+  ): Promise<{ [key: string]: JSONSchema7 }> {
+    return {}
+  }
+
+  /**
    * Allows definitions to parse the error message before storing it in the operation run
    */
   parseError(e: any) {
