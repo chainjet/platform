@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
-import { Migration0001 } from './migrations/0001-add-iusername-prop'
+import { Migration0002 } from './migrations/0002-remove-integration'
 
 @Injectable()
 export class MigrationsService {
-  constructor(private migration: Migration0001) {}
+  constructor(private migration: Migration0002) {}
 
   async onModuleInit() {
     await this.migration.run()
