@@ -132,11 +132,12 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
 
     // Verify credentials exists and the user has access to it
     let accountCredential: AccountCredential | null = null
-    const credentialsId = update.credentials?.toString() ?? workflowTrigger.credentials?.toString()
+    let credentialsId = update.credentials?.toString() ?? workflowTrigger.credentials?.toString()
     if (credentialsId) {
       accountCredential = (await this.accountCredentialService.findById(credentialsId)) ?? null
       if (!accountCredential?.owner || accountCredential.owner.toString() !== workflowTrigger.owner.toString()) {
-        throw new NotFoundException('Account credentials not found')
+        accountCredential = null
+        credentialsId = undefined
       }
     }
 

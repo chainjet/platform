@@ -396,7 +396,11 @@ export class RunnerService {
       accountCredential = (await this.accountCredentialService.findById(credentialsId)) ?? null
       if (!accountCredential || accountCredential.owner.toString() !== ownerId) {
         await onError()
-        throw new NotFoundException('Account credentials not found')
+        return {
+          credentials: {},
+          accountCredential: null,
+          integrationAccount,
+        }
       }
 
       credentials = accountCredential.credentials
