@@ -57,6 +57,11 @@ export class AuthResolver {
   ): Promise<RegisterPayload> {
     this.logger.debug(`Registering user ${username}`)
 
+    const notAllowed = ['.', '@', '/']
+    if (notAllowed.some((c) => username.includes(c))) {
+      throw new Error('Username cannot contain special characters')
+    }
+
     if (this.authService.blacklistedUsername(username)) {
       throw new BadRequestException('Username is not available')
     }

@@ -167,7 +167,7 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity, DeepP
    */
   async findById(id: string, opts?: FindByIdOptions<Entity>): Promise<Entity | undefined> {
     const doc = await this.Model.findOne(this.mergeFilterWithId(id, opts?.filter))
-    return (doc as any)?.toObject(this.documentToObjectOptions) as Entity // TODO
+    return (doc as any)?.toObject(this.documentToObjectOptions) as Entity
   }
 
   /**

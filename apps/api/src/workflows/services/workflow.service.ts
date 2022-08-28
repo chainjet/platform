@@ -37,7 +37,8 @@ export class WorkflowService extends BaseService<Workflow> {
   }
 
   async updateOne(id: string, record: DeepPartial<Workflow>, opts?: UpdateOneOptions<Workflow>): Promise<Workflow> {
-    const workflow = await this.findById(id)
+    const workflow = await this.findById(id, opts)
+
     if (!workflow) {
       throw new NotFoundException()
     }

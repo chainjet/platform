@@ -1,7 +1,7 @@
 import { BaseService } from '@app/common/base/base.service'
 import { slugify } from '@app/common/utils/string.utils'
 import { BadRequestException, forwardRef, Inject, Injectable, Logger, NotFoundException } from '@nestjs/common'
-import { DeepPartial, DeleteOneOptions } from '@ptc-org/nestjs-query-core'
+import { DeepPartial, DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
 import { UserService } from '../../users/services/user.service'
@@ -40,8 +40,8 @@ export class ProjectService extends BaseService<Project> {
     return await super.createOne(record)
   }
 
-  async updateOne(id: string, record: DeepPartial<Project>): Promise<Project> {
-    const project = await this.findById(id)
+  async updateOne(id: string, record: DeepPartial<Project>, opts?: UpdateOneOptions<Project>): Promise<Project> {
+    const project = await this.findById(id, opts)
     if (!project) {
       throw new NotFoundException()
     }
@@ -58,11 +58,11 @@ export class ProjectService extends BaseService<Project> {
       }
     }
 
-    return await super.updateOne(id, record)
+    return await super.updateOne(id, record, opts)
   }
 
   async deleteOne(id: string, opts?: DeleteOneOptions<Project>): Promise<Project> {
-    const workflows = await this.workflowService.find({ project: id })
+    const workflows = await this.workflowService.find({ project: id }, opts)
 
     // TODO this could trigger large cascade effect. We should delete on background using a queue.
     // Delete all workflows belonging to the project

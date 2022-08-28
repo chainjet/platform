@@ -1,6 +1,6 @@
 import { BaseService } from '@app/common/base/base.service'
 import { ObjectID } from '@app/common/utils/mongodb'
-import { Injectable, Logger, NotFoundException } from '@nestjs/common'
+import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
 import { DeepPartial, DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
@@ -137,13 +137,12 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     return createdWorkflowAction
   }
 
-  // TODO permissions are not verified yet!!! Use @OwnedEntity
   async updateOne(
     id: string,
     update: DeepPartial<WorkflowAction>,
     opts?: UpdateOneOptions<WorkflowAction> | undefined,
   ): Promise<WorkflowAction> {
-    const workflowAction = await this.findById(id)
+    const workflowAction = await this.findById(id, opts)
     if (!workflowAction) {
       throw new Error(`Workflow action "${id}" not found`)
     }
@@ -176,22 +175,17 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     )
     const updatedEntity = await super.updateOne(id, updatedWorkflowAction, opts)
     await definition.afterUpdateWorkflowAction(updatedEntity, integrationAction, accountCredential, (data) =>
-      super.updateOne(updatedEntity.id, data),
+      super.updateOne(updatedEntity.id, data, opts),
     )
     return updatedEntity
   }
 
   async deleteOne(id: string, opts?: DeleteOneOptions<WorkflowAction> | undefined): Promise<WorkflowAction> {
     // Verify action exist and the user has access to it
-    const workflowAction = await this.findById(id)
+    const workflowAction = await this.findById(id, opts)
     if (!workflowAction) {
-      return super.deleteOne(id, opts)
+      throw new NotFoundException('Workflow action not found')
     }
-
-    // TODO isn't this already handled by the permission decorator? test me!!!
-    // if (!workflowAction || workflowAction.owner.toString() !== data.owner.toString()) {
-    //   return super.deleteOne(id, opts)
-    // }
 
     // Update isRootAction on next actions
     if (workflowAction.isRootAction && workflowAction.nextActions.length) {
@@ -200,13 +194,16 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     }
 
     // Remove action from nextActions references. The workflow is included on the query so the index is used.
-    const actions = await this.find({ workflow: workflowAction.workflow, 'nextActions.action': workflowAction._id })
+    const actions = await this.find(
+      { workflow: workflowAction.workflow, 'nextActions.action': workflowAction._id },
+      opts,
+    )
     for (const action of actions) {
       const nextActions = [...action.nextActions, ...workflowAction.nextActions] as Array<WorkflowNextAction>
       const index = nextActions.findIndex((next) => next.action && next.action.toString() === workflowAction.id)
       if (index !== -1) {
         nextActions.splice(index, 1)
-        await this.updateOne(action.id, { nextActions })
+        await this.updateOne(action.id, { nextActions }, opts)
       }
     }
 
@@ -223,11 +220,15 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     let accountCredential: AccountCredential | null = null
     if (workflowAction.credentials) {
       accountCredential = (await this.accountCredentialService.findById(workflowAction.credentials.toString())) ?? null
+      // this check isn't needed, but doesn't hurt either
+      if (accountCredential && accountCredential.owner.toString() !== workflowAction.owner.toString()) {
+        throw new BadRequestException()
+      }
     }
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     await definition.beforeDeleteWorkflowAction(workflowAction, integrationAction, accountCredential)
-    const deletedEntity = super.deleteOne(id)
+    const deletedEntity = super.deleteOne(id, opts)
     await definition.afterDeleteWorkflowAction(workflowAction, integrationAction, accountCredential)
     return deletedEntity
   }

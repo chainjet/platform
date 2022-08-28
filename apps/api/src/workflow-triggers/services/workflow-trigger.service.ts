@@ -86,7 +86,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     update: DeepPartial<WorkflowTrigger>,
     opts?: UpdateOneOptions<WorkflowTrigger>,
   ): Promise<WorkflowTrigger> {
-    const workflowTrigger = await this.findById(id)
+    const workflowTrigger = await this.findById(id, opts)
     if (!workflowTrigger) {
       throw new NotFoundException('Worflow trigger not found')
     }
@@ -149,15 +149,15 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     )
     const updatedEntity = await super.updateOne(id, updatedWorkflowTrigger, opts)
     await definition.afterUpdateWorkflowTrigger(updatedEntity, integrationTrigger, accountCredential, (data) =>
-      super.updateOne(updatedEntity.id, data),
+      super.updateOne(updatedEntity.id, data, opts),
     )
     return updatedEntity
   }
 
   async deleteOne(id: string, opts?: DeleteOneOptions<WorkflowTrigger> | undefined): Promise<WorkflowTrigger> {
-    const workflowTrigger = await this.findById(id)
+    const workflowTrigger = await this.findById(id, opts)
     if (!workflowTrigger) {
-      return super.deleteOne(id, opts)
+      throw new NotFoundException('Workflow trigger not found')
     }
 
     const integrationTrigger = await this.integrationTriggerService.findById(
@@ -175,6 +175,10 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     let accountCredential: AccountCredential | null = null
     if (workflowTrigger.credentials) {
       accountCredential = (await this.accountCredentialService.findById(workflowTrigger.credentials.toString())) ?? null
+      // this check isn't needed, but doesn't hurt either
+      if (accountCredential && accountCredential.owner.toString() !== workflowTrigger.owner.toString()) {
+        throw new BadRequestException()
+      }
     }
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)

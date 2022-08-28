@@ -54,10 +54,20 @@ export class AuthService {
       'credentials',
       'integrations',
       'pricing',
-
       'oauth',
       'apps',
       'docs',
-    ].includes(username)
+      'images',
+      'logos',
+      'static',
+      'dist',
+      'styles',
+      'js',
+      'css',
+      'fonts',
+      'reference',
+      'account',
+      'projects',
+    ].some((value) => username === value)
   }
 }

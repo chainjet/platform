@@ -472,8 +472,7 @@ function getBindData(
         ? opts.workflowOperation.hookId
         : SecurityUtils.generateRandomString(48)
     httpInterface[httpProp[0]] = {
-      // endpoint: `${process.env.API_ENDPOINT}/hooks/${hookId}`, // TODO
-      endpoint: `https://8900-141-8-27-111.eu.ngrok.io/hooks/${hookId}`,
+      endpoint: `${process.env.API_ENDPOINT}/hooks/${hookId}`,
       respond: (...args) => {
         console.log(`== RESPOND ==`, ...args) // TODO
       },
