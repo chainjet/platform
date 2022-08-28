@@ -194,11 +194,11 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     }
 
     // Remove action from nextActions references. The workflow is included on the query so the index is used.
-    const actions = await this.find(
-      { workflow: workflowAction.workflow, 'nextActions.action': workflowAction._id },
-      opts,
-    )
+    const actions = await this.find({ workflow: workflowAction.workflow, 'nextActions.action': workflowAction._id })
     for (const action of actions) {
+      if (action.owner.toString() !== workflowAction.owner.toString()) {
+        throw new NotFoundException('Workflow action not found')
+      }
       const nextActions = [...action.nextActions, ...workflowAction.nextActions] as Array<WorkflowNextAction>
       const index = nextActions.findIndex((next) => next.action && next.action.toString() === workflowAction.id)
       if (index !== -1) {
