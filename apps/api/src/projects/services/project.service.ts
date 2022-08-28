@@ -62,12 +62,12 @@ export class ProjectService extends BaseService<Project> {
   }
 
   async deleteOne(id: string, opts?: DeleteOneOptions<Project>): Promise<Project> {
-    const workflows = await this.workflowService.find({ project: id }, opts)
+    const workflows = await this.workflowService.find({ project: id })
 
     // TODO this could trigger large cascade effect. We should delete on background using a queue.
     // Delete all workflows belonging to the project
     for (const workflow of workflows) {
-      await this.workflowService.deleteOne(workflow.id)
+      await this.workflowService.deleteOne(workflow.id, opts)
     }
 
     return await super.deleteOne(id, opts)
