@@ -1,6 +1,8 @@
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
 import { OperationObject } from 'openapi3-ts'
 
+// TODO installation fails
+
 export class KubernetesDefinition extends SingleIntegrationDefinition {
   integrationKey = 'kubernetes'
   integrationVersion = '1'

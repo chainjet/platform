@@ -44,7 +44,6 @@ export class IntegrationInstallerService {
         }
       } catch (e) {
         this.logger.error(`Error installing ${integrationData.integrationKey}: ${e.message}`)
-        throw e
       }
     }
   }

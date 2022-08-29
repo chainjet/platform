@@ -1,5 +1,7 @@
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
 
+// TODO installation fails
+
 export class SendgridDefinition extends SingleIntegrationDefinition {
   integrationKey = 'sendgrid'
   integrationVersion = '3'

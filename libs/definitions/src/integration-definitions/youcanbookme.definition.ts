@@ -2,6 +2,8 @@ import { SingleIntegrationDefinition } from '@app/definitions/single-integration
 import { OperationRunOptions } from '../../../../apps/runner/src/services/operation-runner.service'
 import { getQueryParam } from '../../../common/src/utils/url.utils'
 
+// TODO installation fails
+
 export class YoucanbookmeDefinition extends SingleIntegrationDefinition {
   integrationKey = 'youcanbookme'
   integrationVersion = '1'

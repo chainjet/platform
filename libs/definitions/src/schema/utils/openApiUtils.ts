@@ -60,7 +60,7 @@ export const OpenApiUtils = {
       const schemaJson = (await fs.promises.readFile(schemaPath)).toString()
       return JSON.parse(schemaJson)
     } catch (e) {
-      this.logger.error(`Error fetching schema for ${integrationKey}-${integrationVersion} ${e?.message ?? e}`)
+      logger.error(`Error fetching schema for ${integrationKey}-${integrationVersion} ${e?.message ?? e}`)
       return null
     }
   },

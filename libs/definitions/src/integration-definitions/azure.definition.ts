@@ -7,6 +7,8 @@ import { isEmptyObj } from '../../../common/src/utils/object.utils'
 import { SingleIntegrationData } from '../definition'
 import { SingleIntegrationDefinition } from '../single-integration.definition'
 
+// TODO installation fails
+
 export class AzureDefinition extends MultiIntegrationDefinition {
   protected readonly logger = new Logger(AzureDefinition.name)
   protected integrationAccount: IntegrationAccount | undefined
