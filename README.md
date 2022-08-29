@@ -12,6 +12,10 @@
 
 [ChainJet](https://chainjet.io) is a workflow automation platform specialized on blockchain and cloud infrastructure.
 
+## Demo
+
+[:tv: A short video (~3 mins)](https://www.youtube.com/watch?v=zCaqp2JnFA0) showing how to use ChainJet.
+
 ## Stay in touch
 
 - Website - [https://chainjet.io](https://chainjet.io)
