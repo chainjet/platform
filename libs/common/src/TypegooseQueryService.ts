@@ -84,7 +84,7 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity, DeepP
             }
           }
           if (['like', 'notLike', 'iLike', 'notILike'].includes(fieldKey)) {
-            const regExpStr = (escapeRegExp as (str: string) => string)(fieldValue as string).replace('%', '.*')
+            const regExpStr = escapeRegExp(fieldValue as string).replace(/%/g, '.*')
             const regExp = new RegExp(regExpStr, fieldKey.toLowerCase().includes('ilike') ? 'i' : undefined)
             if (fieldKey.startsWith('not')) {
               return {
