@@ -176,9 +176,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -186,9 +184,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           }
@@ -199,11 +195,7 @@
             "in": "header",
             "required": true,
             "description": "Participant Token as obtained from <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_StartChatContactResponse.html\">StartChatContact</a> API response.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 1000
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 1000 }
           }
         ],
         "requestBody": {
@@ -217,9 +209,7 @@
                   "Type": {
                     "description": "Type of connection information required.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ConnectionType"
-                    },
+                    "items": { "$ref": "#/components/schemas/ConnectionType" },
                     "minItems": 1
                   }
                 }
@@ -230,27 +220,13 @@
         "summary": "Create Participant Connection"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/participant/disconnect#X-Amz-Bearer": {
@@ -292,9 +268,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -302,9 +276,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           }
@@ -315,11 +287,7 @@
             "in": "header",
             "required": true,
             "description": "The authentication token associated with the participant's connection.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 1000
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 1000 }
           }
         ],
         "requestBody": {
@@ -342,27 +310,13 @@
         "summary": "Disconnect Participant"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/participant/transcript#X-Amz-Bearer": {
@@ -404,9 +358,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -414,9 +366,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           }
@@ -427,27 +377,19 @@
             "in": "header",
             "required": true,
             "description": "The authentication token associated with the participant's connection.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 1000
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 1000 }
           },
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -493,9 +435,7 @@
                     "properties": {
                       "Id": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/ChatItemId"
-                          },
+                          { "$ref": "#/components/schemas/ChatItemId" },
                           {
                             "description": "The ID of the message or event where to start. "
                           }
@@ -503,9 +443,7 @@
                       },
                       "AbsoluteTime": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/Instant"
-                          },
+                          { "$ref": "#/components/schemas/Instant" },
                           {
                             "description": "<p>The time in ISO format where to start.</p> <p>It's specified in ISO 8601 format: yyyy-MM-ddThh:mm:ss.SSSZ. For example, 2019-11-08T02:41:28.172Z.</p>"
                           }
@@ -513,9 +451,7 @@
                       },
                       "MostRecent": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/MostRecent"
-                          },
+                          { "$ref": "#/components/schemas/MostRecent" },
                           {
                             "description": "The start position of the most recent message where you want to start. "
                           }
@@ -531,27 +467,13 @@
         "summary": "Get Transcript"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/participant/event#X-Amz-Bearer": {
@@ -563,9 +485,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SendEventResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/SendEventResponse" }
               }
             }
           },
@@ -593,9 +513,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -603,9 +521,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           }
@@ -616,11 +532,7 @@
             "in": "header",
             "required": true,
             "description": "The authentication token associated with the participant's connection.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 1000
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 1000 }
           }
         ],
         "requestBody": {
@@ -656,27 +568,13 @@
         "summary": "Send Event"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/participant/message#X-Amz-Bearer": {
@@ -688,9 +586,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SendMessageResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/SendMessageResponse" }
               }
             }
           },
@@ -718,9 +614,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -728,9 +622,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           }
@@ -741,11 +633,7 @@
             "in": "header",
             "required": true,
             "description": "The authentication token associated with the connection.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 1000
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 1000 }
           }
         ],
         "requestBody": {
@@ -781,27 +669,13 @@
         "summary": "Send Message"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/participant/complete-attachment-upload#X-Amz-Bearer": {
@@ -843,9 +717,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -853,9 +725,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -873,9 +743,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           }
@@ -886,11 +754,7 @@
             "in": "header",
             "required": true,
             "description": "The authentication token associated with the participant's connection.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 1000
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 1000 }
           }
         ],
         "requestBody": {
@@ -904,9 +768,7 @@
                   "AttachmentIds": {
                     "description": "A list of unique identifiers for the attachments.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ArtifactId"
-                    },
+                    "items": { "$ref": "#/components/schemas/ArtifactId" },
                     "minItems": 1,
                     "maxItems": 1
                   },
@@ -924,27 +786,13 @@
         "summary": "Complete Attachment Upload"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/participant/attachment#X-Amz-Bearer": {
@@ -986,9 +834,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -996,9 +842,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           }
@@ -1009,11 +853,7 @@
             "in": "header",
             "required": true,
             "description": "The authentication token associated with the participant's connection.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 1000
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 1000 }
           }
         ],
         "requestBody": {
@@ -1038,27 +878,13 @@
         "summary": "Get Attachment"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/participant/start-attachment-upload#X-Amz-Bearer": {
@@ -1100,9 +926,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -1110,9 +934,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1133,11 +955,7 @@
             "in": "header",
             "required": true,
             "description": "The authentication token associated with the participant's connection.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 1000
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 1000 }
           }
         ],
         "requestBody": {
@@ -1184,27 +1002,13 @@
         "summary": "Start Attachment Upload"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -1213,63 +1017,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -1289,9 +1079,7 @@
         "properties": {
           "Websocket": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Websocket"
-              },
+              { "$ref": "#/components/schemas/Websocket" },
               {
                 "description": "Creates the participant's websocket connection."
               }
@@ -1299,9 +1087,7 @@
           },
           "ConnectionCredentials": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectionCredentials"
-              },
+              { "$ref": "#/components/schemas/ConnectionCredentials" },
               {
                 "description": "Creates the participant's connection credentials. The authentication token associated with the participant's connection."
               }
@@ -1317,38 +1103,25 @@
       "InternalServerException": {},
       "ThrottlingException": {},
       "ValidationException": {},
-      "DisconnectParticipantResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "DisconnectParticipantResponse": { "type": "object", "properties": {} },
       "GetTranscriptResponse": {
         "type": "object",
         "properties": {
           "InitialContactId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ContactId"
-              },
-              {
-                "description": "The initial contact ID for the contact. "
-              }
+              { "$ref": "#/components/schemas/ContactId" },
+              { "description": "The initial contact ID for the contact. " }
             ]
           },
           "Transcript": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Transcript"
-              },
-              {
-                "description": "The list of messages in the session."
-              }
+              { "$ref": "#/components/schemas/Transcript" },
+              { "description": "The list of messages in the session." }
             ]
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "The pagination token. Use the value returned previously in the next subsequent request to retrieve the next set of results."
               }
@@ -1356,39 +1129,21 @@
           }
         }
       },
-      "ChatItemId": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 256
-      },
-      "Instant": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 100
-      },
-      "MostRecent": {
-        "type": "integer",
-        "minimum": 0,
-        "maximum": 100
-      },
+      "ChatItemId": { "type": "string", "minLength": 1, "maxLength": 256 },
+      "Instant": { "type": "string", "minLength": 1, "maxLength": 100 },
+      "MostRecent": { "type": "integer", "minimum": 0, "maximum": 100 },
       "SendEventResponse": {
         "type": "object",
         "properties": {
           "Id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ChatItemId"
-              },
-              {
-                "description": "The ID of the response."
-              }
+              { "$ref": "#/components/schemas/ChatItemId" },
+              { "description": "The ID of the response." }
             ]
           },
           "AbsoluteTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Instant"
-              },
+              { "$ref": "#/components/schemas/Instant" },
               {
                 "description": "<p>The time when the event was sent.</p> <p>It's specified in ISO 8601 format: yyyy-MM-ddThh:mm:ss.SSSZ. For example, 2019-11-08T02:41:28.172Z.</p>"
               }
@@ -1401,19 +1156,13 @@
         "properties": {
           "Id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ChatItemId"
-              },
-              {
-                "description": "The ID of the message."
-              }
+              { "$ref": "#/components/schemas/ChatItemId" },
+              { "description": "The ID of the message." }
             ]
           },
           "AbsoluteTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Instant"
-              },
+              { "$ref": "#/components/schemas/Instant" },
               {
                 "description": "<p>The time when the message was sent.</p> <p>It's specified in ISO 8601 format: yyyy-MM-ddThh:mm:ss.SSSZ. For example, 2019-11-08T02:41:28.172Z.</p>"
               }
@@ -1421,16 +1170,8 @@
           }
         }
       },
-      "ChatContent": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 1024
-      },
-      "ChatContentType": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 100
-      },
+      "ChatContent": { "type": "string", "minLength": 1, "maxLength": 1024 },
+      "ChatContentType": { "type": "string", "minLength": 1, "maxLength": 100 },
       "ChatItemType": {
         "type": "string",
         "enum": [
@@ -1451,27 +1192,19 @@
         "minLength": 1,
         "maxLength": 1000
       },
-      "ISO8601Datetime": {
-        "type": "string"
-      },
+      "ISO8601Datetime": { "type": "string" },
       "ConnectionCredentials": {
         "type": "object",
         "properties": {
           "ConnectionToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ParticipantToken"
-              },
-              {
-                "description": "The connection token."
-              }
+              { "$ref": "#/components/schemas/ParticipantToken" },
+              { "description": "The connection token." }
             ]
           },
           "Expiry": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ISO8601Datetime"
-              },
+              { "$ref": "#/components/schemas/ISO8601Datetime" },
               {
                 "description": "<p>The expiration of the token.</p> <p>It's specified in ISO 8601 format: yyyy-MM-ddThh:mm:ss.SSSZ. For example, 2019-11-08T02:41:28.172Z.</p>"
               }
@@ -1480,29 +1213,19 @@
         },
         "description": "Connection credentials. "
       },
-      "ContactId": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 256
-      },
+      "ContactId": { "type": "string", "minLength": 1, "maxLength": 256 },
       "Websocket": {
         "type": "object",
         "properties": {
           "Url": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PreSignedConnectionUrl"
-              },
-              {
-                "description": "The URL of the websocket."
-              }
+              { "$ref": "#/components/schemas/PreSignedConnectionUrl" },
+              { "description": "The URL of the websocket." }
             ]
           },
           "ConnectionExpiry": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ISO8601Datetime"
-              },
+              { "$ref": "#/components/schemas/ISO8601Datetime" },
               {
                 "description": "<p>The URL expiration timestamp in ISO date format.</p> <p>It's specified in ISO 8601 format: yyyy-MM-ddThh:mm:ss.SSSZ. For example, 2019-11-08T02:41:28.172Z.</p>"
               }
@@ -1511,27 +1234,13 @@
         },
         "description": "The websocket for the participant's connection."
       },
-      "DisplayName": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 256
-      },
-      "NextToken": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 1000
-      },
+      "DisplayName": { "type": "string", "minLength": 1, "maxLength": 256 },
+      "NextToken": { "type": "string", "minLength": 1, "maxLength": 1000 },
       "Transcript": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Item"
-        }
+        "items": { "$ref": "#/components/schemas/Item" }
       },
-      "ParticipantId": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 256
-      },
+      "ParticipantId": { "type": "string", "minLength": 1, "maxLength": 256 },
       "ParticipantRole": {
         "type": "string",
         "enum": ["AGENT", "CUSTOMER", "SYSTEM"]
@@ -1541,9 +1250,7 @@
         "properties": {
           "AbsoluteTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Instant"
-              },
+              { "$ref": "#/components/schemas/Instant" },
               {
                 "description": "<p>The time when the message or event was sent.</p> <p>It's specified in ISO 8601 format: yyyy-MM-ddThh:mm:ss.SSSZ. For example, 2019-11-08T02:41:28.172Z.</p>"
               }
@@ -1551,69 +1258,43 @@
           },
           "Content": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ChatContent"
-              },
-              {
-                "description": "The content of the message or event."
-              }
+              { "$ref": "#/components/schemas/ChatContent" },
+              { "description": "The content of the message or event." }
             ]
           },
           "ContentType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ChatContentType"
-              },
-              {
-                "description": "The type of content of the item."
-              }
+              { "$ref": "#/components/schemas/ChatContentType" },
+              { "description": "The type of content of the item." }
             ]
           },
           "Id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ChatItemId"
-              },
-              {
-                "description": "The ID of the item."
-              }
+              { "$ref": "#/components/schemas/ChatItemId" },
+              { "description": "The ID of the item." }
             ]
           },
           "Type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ChatItemType"
-              },
-              {
-                "description": "Type of the item: message or event. "
-              }
+              { "$ref": "#/components/schemas/ChatItemType" },
+              { "description": "Type of the item: message or event. " }
             ]
           },
           "ParticipantId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ParticipantId"
-              },
-              {
-                "description": "The ID of the sender in the session."
-              }
+              { "$ref": "#/components/schemas/ParticipantId" },
+              { "description": "The ID of the sender in the session." }
             ]
           },
           "DisplayName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DisplayName"
-              },
-              {
-                "description": "The chat display name of the sender."
-              }
+              { "$ref": "#/components/schemas/DisplayName" },
+              { "description": "The chat display name of the sender." }
             ]
           },
           "ParticipantRole": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ParticipantRole"
-              },
+              { "$ref": "#/components/schemas/ParticipantRole" },
               {
                 "description": "The role of the sender. For example, is it a customer, agent, or system."
               }
@@ -1621,12 +1302,8 @@
           },
           "Attachments": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Attachments"
-              },
-              {
-                "description": "Provides information about the attachments."
-              }
+              { "$ref": "#/components/schemas/Attachments" },
+              { "description": "Provides information about the attachments." }
             ]
           }
         },
@@ -1641,11 +1318,7 @@
         "type": "object",
         "properties": {}
       },
-      "ArtifactId": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 256
-      },
+      "ArtifactId": { "type": "string", "minLength": 1, "maxLength": 256 },
       "ServiceQuotaExceededException": {},
       "ConflictException": {},
       "GetAttachmentResponse": {
@@ -1653,9 +1326,7 @@
         "properties": {
           "Url": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PreSignedAttachmentUrl"
-              },
+              { "$ref": "#/components/schemas/PreSignedAttachmentUrl" },
               {
                 "description": "The pre-signed URL using which file would be downloaded from Amazon S3 by the API caller."
               }
@@ -1663,9 +1334,7 @@
           },
           "UrlExpiry": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ISO8601Datetime"
-              },
+              { "$ref": "#/components/schemas/ISO8601Datetime" },
               {
                 "description": "The expiration time of the URL in ISO timestamp. It's specified in ISO 8601 format: yyyy-MM-ddThh:mm:ss.SSSZ. For example, 2019-11-08T02:41:28.172Z."
               }
@@ -1678,19 +1347,13 @@
         "properties": {
           "AttachmentId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ArtifactId"
-              },
-              {
-                "description": "A unique identifier for the attachment."
-              }
+              { "$ref": "#/components/schemas/ArtifactId" },
+              { "description": "A unique identifier for the attachment." }
             ]
           },
           "UploadMetadata": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UploadMetadata"
-              },
+              { "$ref": "#/components/schemas/UploadMetadata" },
               {
                 "description": "Fields to be used while uploading the attachment."
               }
@@ -1702,24 +1365,14 @@
         "type": "string",
         "enum": ["APPROVED", "REJECTED", "IN_PROGRESS"]
       },
-      "ContentType": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 255
-      },
-      "AttachmentName": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 256
-      },
+      "ContentType": { "type": "string", "minLength": 1, "maxLength": 255 },
+      "AttachmentName": { "type": "string", "minLength": 1, "maxLength": 256 },
       "AttachmentItem": {
         "type": "object",
         "properties": {
           "ContentType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ContentType"
-              },
+              { "$ref": "#/components/schemas/ContentType" },
               {
                 "description": "Describes the MIME file type of the attachment. For a list of supported file types, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits\">Feature specifications</a> in the <i>Amazon Connect Administrator Guide</i>."
               }
@@ -1727,19 +1380,13 @@
           },
           "AttachmentId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ArtifactId"
-              },
-              {
-                "description": "A unique identifier for the attachment."
-              }
+              { "$ref": "#/components/schemas/ArtifactId" },
+              { "description": "A unique identifier for the attachment." }
             ]
           },
           "AttachmentName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AttachmentName"
-              },
+              { "$ref": "#/components/schemas/AttachmentName" },
               {
                 "description": "A case-sensitive name of the attachment being uploaded."
               }
@@ -1747,12 +1394,8 @@
           },
           "Status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ArtifactStatus"
-              },
-              {
-                "description": "Status of the attachment."
-              }
+              { "$ref": "#/components/schemas/ArtifactStatus" },
+              { "description": "Status of the attachment." }
             ]
           }
         },
@@ -1760,9 +1403,7 @@
       },
       "Attachments": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/AttachmentItem"
-        }
+        "items": { "$ref": "#/components/schemas/AttachmentItem" }
       },
       "PreSignedAttachmentUrl": {
         "type": "string",
@@ -1774,9 +1415,7 @@
         "properties": {
           "Url": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UploadMetadataUrl"
-              },
+              { "$ref": "#/components/schemas/UploadMetadataUrl" },
               {
                 "description": "The pre-signed URL using which file would be downloaded from Amazon S3 by the API caller."
               }
@@ -1784,9 +1423,7 @@
           },
           "UrlExpiry": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ISO8601Datetime"
-              },
+              { "$ref": "#/components/schemas/ISO8601Datetime" },
               {
                 "description": "The expiration time of the URL in ISO timestamp. It's specified in ISO 8601 format: yyyy-MM-ddThh:mm:ss.SSSZ. For example, 2019-11-08T02:41:28.172Z."
               }
@@ -1794,9 +1431,7 @@
           },
           "HeadersToInclude": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UploadMetadataSignedHeaders"
-              },
+              { "$ref": "#/components/schemas/UploadMetadataSignedHeaders" },
               {
                 "description": "The headers to be provided while uploading the file to the URL."
               }
@@ -1823,11 +1458,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2018-09-07",
     "endpointPrefix": "participant.connect",

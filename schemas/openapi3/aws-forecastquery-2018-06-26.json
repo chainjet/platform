@@ -208,9 +208,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/QueryForecastRequest"
-              }
+              "schema": { "$ref": "#/components/schemas/QueryForecastRequest" }
             }
           }
         },
@@ -228,27 +226,13 @@
         "summary": "Query Forecast"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -257,63 +241,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -333,12 +303,8 @@
         "properties": {
           "Forecast": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Forecast"
-              },
-              {
-                "description": "The forecast."
-              }
+              { "$ref": "#/components/schemas/Forecast" },
+              { "description": "The forecast." }
             ]
           }
         }
@@ -350,9 +316,7 @@
         "properties": {
           "ForecastArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "The Amazon Resource Name (ARN) of the forecast to query."
               }
@@ -360,9 +324,7 @@
           },
           "StartDate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DateTime"
-              },
+              { "$ref": "#/components/schemas/DateTime" },
               {
                 "description": "The start date for the forecast. Specify the date using this format: yyyy-MM-dd'T'HH:mm:ss (ISO 8601 format). For example, 2015-01-01T08:00:00."
               }
@@ -370,9 +332,7 @@
           },
           "EndDate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DateTime"
-              },
+              { "$ref": "#/components/schemas/DateTime" },
               {
                 "description": "The end date for the forecast. Specify the date using this format: yyyy-MM-dd'T'HH:mm:ss (ISO 8601 format). For example, 2015-01-01T20:00:00. "
               }
@@ -380,9 +340,7 @@
           },
           "Filters": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Filters"
-              },
+              { "$ref": "#/components/schemas/Filters" },
               {
                 "description": "<p>The filtering criteria to apply when retrieving the forecast. For example, to get the forecast for <code>client_21</code> in the electricity usage dataset, specify the following:</p> <p> <code>{\"item_id\" : \"client_21\"}</code> </p> <p>To get the full forecast, use the <a href=\"https://docs.aws.amazon.com/en_us/forecast/latest/dg/API_CreateForecastExportJob.html\">CreateForecastExportJob</a> operation.</p>"
               }
@@ -390,9 +348,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "If the result of the previous request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours."
               }
@@ -410,46 +366,28 @@
         "pattern": "arn:([a-z\\d-]+):forecast:.*:.*:.+",
         "maxLength": 256
       },
-      "AttributeValue": {
-        "type": "string",
-        "maxLength": 256
-      },
-      "Timestamp": {
-        "type": "string"
-      },
-      "Double": {
-        "type": "number",
-        "format": "double"
-      },
+      "AttributeValue": { "type": "string", "maxLength": 256 },
+      "Timestamp": { "type": "string" },
+      "Double": { "type": "number", "format": "double" },
       "DataPoint": {
         "type": "object",
         "properties": {
           "Timestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "The timestamp of the specific forecast."
-              }
+              { "$ref": "#/components/schemas/Timestamp" },
+              { "description": "The timestamp of the specific forecast." }
             ]
           },
           "Value": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Double"
-              },
-              {
-                "description": "The forecast value."
-              }
+              { "$ref": "#/components/schemas/Double" },
+              { "description": "The forecast value." }
             ]
           }
         },
         "description": "The forecast value for a specific date. Part of the <a>Forecast</a> object."
       },
-      "DateTime": {
-        "type": "string"
-      },
+      "DateTime": { "type": "string" },
       "Filters": {
         "type": "object",
         "minProperties": 1,
@@ -460,18 +398,14 @@
       },
       "Predictions": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/TimeSeries"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/TimeSeries" }
       },
       "Forecast": {
         "type": "object",
         "properties": {
           "Predictions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Predictions"
-              },
+              { "$ref": "#/components/schemas/Predictions" },
               {
                 "description": "<p>The forecast.</p> <p>The <i>string</i> of the string-to-array map is one of the following values:</p> <ul> <li> <p>p10</p> </li> <li> <p>p50</p> </li> <li> <p>p90</p> </li> </ul>"
               }
@@ -480,24 +414,14 @@
         },
         "description": "Provides information about a forecast. Returned as part of the <a>QueryForecast</a> response."
       },
-      "NextToken": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 3000
-      },
+      "NextToken": { "type": "string", "minLength": 1, "maxLength": 3000 },
       "TimeSeries": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DataPoint"
-        }
+        "items": { "$ref": "#/components/schemas/DataPoint" }
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2018-06-26",
     "endpointPrefix": "forecastquery",

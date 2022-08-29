@@ -142,9 +142,7 @@
         "operationId": "AbortDocumentVersionUpload",
         "description": "Aborts the upload of the specified document version that was previously initiated by <a>InitiateDocumentVersionUpload</a>. The client should make this call only when it no longer intends to upload the document version, or fails to do so.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "EntityNotExistsException",
             "content": {
@@ -247,27 +245,13 @@
         "summary": "Abort Document Version Upload"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetDocumentVersion",
@@ -408,9 +392,7 @@
             "in": "query",
             "required": false,
             "description": "Set this to TRUE to include custom metadata in the response.",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "summary": "Get Document Version"
@@ -419,9 +401,7 @@
         "operationId": "UpdateDocumentVersion",
         "description": "<p>Changes the status of the document version to ACTIVE. </p> <p>Amazon WorkDocs also sets its document container to ACTIVE. This is the last step in a document upload, after the client uploads the document to an S3-presigned URL returned by <a>InitiateDocumentVersionUpload</a>. </p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "EntityNotExistsException",
             "content": {
@@ -656,35 +636,19 @@
         "summary": "Activate User"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "delete": {
         "operationId": "DeactivateUser",
         "description": "Deactivates the specified user, which revokes the user's access to Amazon WorkDocs.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "EntityNotExistsException",
             "content": {
@@ -858,9 +822,7 @@
                   "Principals": {
                     "description": "The users, groups, or organization being granted permission.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/SharePrincipal"
-                    }
+                    "items": { "$ref": "#/components/schemas/SharePrincipal" }
                   },
                   "NotificationOptions": {
                     "description": "Set of options which defines notification preferences of given action.",
@@ -868,9 +830,7 @@
                     "properties": {
                       "SendEmail": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/BooleanType"
-                          },
+                          { "$ref": "#/components/schemas/BooleanType" },
                           {
                             "description": "Boolean value to indicate an email notification should be sent to the receipients."
                           }
@@ -878,9 +838,7 @@
                       },
                       "EmailMessage": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/MessageType"
-                          },
+                          { "$ref": "#/components/schemas/MessageType" },
                           {
                             "description": "Text value to be included in the email body."
                           }
@@ -896,27 +854,13 @@
         "summary": "Add Resource Permissions"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "DescribeResourcePermissions",
@@ -1015,22 +959,14 @@
             "in": "query",
             "required": false,
             "description": "The maximum number of items to return with this call.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 999
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 999 }
           },
           {
             "name": "marker",
             "in": "query",
             "required": false,
             "description": "The marker for the next set of results. (You received this marker from a previous call)",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 2048
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 2048 }
           }
         ],
         "summary": "Describe Resource Permissions"
@@ -1039,9 +975,7 @@
         "operationId": "RemoveAllResourcePermissions",
         "description": "Removes all the permissions from the specified resource.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "UnauthorizedOperationException",
             "content": {
@@ -1292,27 +1226,13 @@
         "summary": "Create Comment"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/api/v1/resources/{ResourceId}/customMetadata": {
@@ -1464,27 +1384,13 @@
         "summary": "Create Custom Metadata"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "delete": {
         "operationId": "DeleteCustomMetadata",
@@ -1605,9 +1511,7 @@
             "description": "List of properties to remove.",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/CustomMetadataKeyType"
-              },
+              "items": { "$ref": "#/components/schemas/CustomMetadataKeyType" },
               "maxItems": 8
             }
           },
@@ -1616,9 +1520,7 @@
             "in": "query",
             "required": false,
             "description": "Flag to indicate removal of all custom metadata properties from the specified resource.",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "summary": "Delete Custom Metadata"
@@ -1774,27 +1676,13 @@
         "summary": "Create Folder"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/api/v1/resources/{ResourceId}/labels": {
@@ -1910,9 +1798,7 @@
                   "Labels": {
                     "description": "List of labels to add to the resource.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/SharedLabel"
-                    },
+                    "items": { "$ref": "#/components/schemas/SharedLabel" },
                     "maxItems": 20
                   }
                 }
@@ -1923,27 +1809,13 @@
         "summary": "Create Labels"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "delete": {
         "operationId": "DeleteLabels",
@@ -2042,9 +1914,7 @@
             "description": "List of labels to delete from the resource.",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SharedLabel"
-              },
+              "items": { "$ref": "#/components/schemas/SharedLabel" },
               "maxItems": 20
             }
           },
@@ -2053,9 +1923,7 @@
             "in": "query",
             "required": false,
             "description": "Flag to request removal of all labels from the specified resource.",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "summary": "Delete Labels"
@@ -2153,27 +2021,13 @@
         "summary": "Create Notification Subscription"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "DescribeNotificationSubscriptions",
@@ -2238,22 +2092,14 @@
             "in": "query",
             "required": false,
             "description": "The marker for the next set of results. (You received this marker from a previous call.)",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 2048
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 2048 }
           },
           {
             "name": "limit",
             "in": "query",
             "required": false,
             "description": "The maximum number of items to return with this call.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 999
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 999 }
           }
         ],
         "summary": "Describe Notification Subscriptions"
@@ -2268,9 +2114,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateUserResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/CreateUserResponse" }
               }
             }
           },
@@ -2400,9 +2244,7 @@
                     "properties": {
                       "StorageAllocatedInBytes": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/PositiveSizeType"
-                          },
+                          { "$ref": "#/components/schemas/PositiveSizeType" },
                           {
                             "description": "The amount of storage allocated, in bytes."
                           }
@@ -2410,12 +2252,8 @@
                       },
                       "StorageType": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/StorageType"
-                          },
-                          {
-                            "description": "The type of storage."
-                          }
+                          { "$ref": "#/components/schemas/StorageType" },
+                          { "description": "The type of storage." }
                         ]
                       }
                     }
@@ -2428,27 +2266,13 @@
         "summary": "Create User"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "DescribeUsers",
@@ -2590,20 +2414,14 @@
             "in": "query",
             "required": false,
             "description": "The state of the users. Specify \"ALL\" to include inactive users.",
-            "schema": {
-              "type": "string",
-              "enum": ["ALL", "ACTIVE_PENDING"]
-            }
+            "schema": { "type": "string", "enum": ["ALL", "ACTIVE_PENDING"] }
           },
           {
             "name": "order",
             "in": "query",
             "required": false,
             "description": "The order for the results.",
-            "schema": {
-              "type": "string",
-              "enum": ["ASCENDING", "DESCENDING"]
-            }
+            "schema": { "type": "string", "enum": ["ASCENDING", "DESCENDING"] }
           },
           {
             "name": "sort",
@@ -2626,22 +2444,14 @@
             "in": "query",
             "required": false,
             "description": "The marker for the next set of results. (You received this marker from a previous call.)",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 2048
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 2048 }
           },
           {
             "name": "limit",
             "in": "query",
             "required": false,
             "description": "The maximum number of items to return.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 999
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 999 }
           },
           {
             "name": "fields",
@@ -2658,18 +2468,14 @@
           {
             "name": "Limit",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "Marker",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -2682,9 +2488,7 @@
         "operationId": "DeleteComment",
         "description": "Deletes the specified comment from the document version.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "EntityNotExistsException",
             "content": {
@@ -2809,27 +2613,13 @@
         "summary": "Delete Comment"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/api/v1/documents/{DocumentId}": {
@@ -2837,9 +2627,7 @@
         "operationId": "DeleteDocument",
         "description": "Permanently deletes the specified document and its associated metadata.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "EntityNotExistsException",
             "content": {
@@ -2950,27 +2738,13 @@
         "summary": "Delete Document"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetDocument",
@@ -2980,9 +2754,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetDocumentResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/GetDocumentResponse" }
               }
             }
           },
@@ -3087,9 +2859,7 @@
             "in": "query",
             "required": false,
             "description": "Set this to <code>TRUE</code> to include custom metadata in the response.",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "summary": "Get Document"
@@ -3098,9 +2868,7 @@
         "operationId": "UpdateDocument",
         "description": "Updates the specified attributes of a document. The user must have access to both the document and its parent folder, if applicable.",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "EntityNotExistsException",
             "content": {
@@ -3267,9 +3035,7 @@
         "operationId": "DeleteFolder",
         "description": "Permanently deletes the specified folder and its contents.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "EntityNotExistsException",
             "content": {
@@ -3380,27 +3146,13 @@
         "summary": "Delete Folder"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetFolder",
@@ -3410,9 +3162,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetFolderResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/GetFolderResponse" }
               }
             }
           },
@@ -3517,9 +3267,7 @@
             "in": "query",
             "required": false,
             "description": "Set to TRUE to include custom metadata in the response.",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "summary": "Get Folder"
@@ -3528,9 +3276,7 @@
         "operationId": "UpdateFolder",
         "description": "Updates the specified attributes of the specified folder. The user must have access to both the folder and its parent folder, if applicable.",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "EntityNotExistsException",
             "content": {
@@ -3697,9 +3443,7 @@
         "operationId": "DeleteFolderContents",
         "description": "Deletes the contents of the specified folder.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "EntityNotExistsException",
             "content": {
@@ -3800,27 +3544,13 @@
         "summary": "Delete Folder Contents"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "DescribeFolderContents",
@@ -3927,42 +3657,28 @@
             "in": "query",
             "required": false,
             "description": "The sorting criteria.",
-            "schema": {
-              "type": "string",
-              "enum": ["DATE", "NAME"]
-            }
+            "schema": { "type": "string", "enum": ["DATE", "NAME"] }
           },
           {
             "name": "order",
             "in": "query",
             "required": false,
             "description": "The order for the contents of the folder.",
-            "schema": {
-              "type": "string",
-              "enum": ["ASCENDING", "DESCENDING"]
-            }
+            "schema": { "type": "string", "enum": ["ASCENDING", "DESCENDING"] }
           },
           {
             "name": "limit",
             "in": "query",
             "required": false,
             "description": "The maximum number of items to return with this call.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 999
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 999 }
           },
           {
             "name": "marker",
             "in": "query",
             "required": false,
             "description": "The marker for the next set of results. This marker was received from a previous call.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 2048
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 2048 }
           },
           {
             "name": "type",
@@ -3989,18 +3705,14 @@
           {
             "name": "Limit",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "Marker",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -4013,9 +3725,7 @@
         "operationId": "DeleteNotificationSubscription",
         "description": "Deletes the specified subscription from the specified organization.",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "UnauthorizedResourceAccessException",
             "content": {
@@ -4086,27 +3796,13 @@
         "summary": "Delete Notification Subscription"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/api/v1/users/{UserId}": {
@@ -4114,9 +3810,7 @@
         "operationId": "DeleteUser",
         "description": "Deletes the specified user from a Simple AD or Microsoft AD directory.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "EntityNotExistsException",
             "content": {
@@ -4197,27 +3891,13 @@
         "summary": "Delete User"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "patch": {
         "operationId": "UpdateUser",
@@ -4227,9 +3907,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UpdateUserResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/UpdateUserResponse" }
               }
             }
           },
@@ -4376,9 +4054,7 @@
                     "properties": {
                       "StorageAllocatedInBytes": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/PositiveSizeType"
-                          },
+                          { "$ref": "#/components/schemas/PositiveSizeType" },
                           {
                             "description": "The amount of storage allocated, in bytes."
                           }
@@ -4386,12 +4062,8 @@
                       },
                       "StorageType": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/StorageType"
-                          },
-                          {
-                            "description": "The type of storage."
-                          }
+                          { "$ref": "#/components/schemas/StorageType" },
+                          { "description": "The type of storage." }
                         ]
                       }
                     }
@@ -4516,20 +4188,14 @@
             "in": "query",
             "required": false,
             "description": "The timestamp that determines the starting time of the activities. The response includes the activities performed after the specified timestamp.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "endTime",
             "in": "query",
             "required": false,
             "description": "The timestamp that determines the end time of the activities. The response includes the activities performed before the specified timestamp.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "organizationId",
@@ -4584,20 +4250,14 @@
             "in": "query",
             "required": false,
             "description": "Includes indirect activities. An indirect activity results from a direct activity performed on a parent resource. For example, sharing a parent folder (the direct activity) shares all of the subfolders and documents within the parent folder (the indirect activity).",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "name": "limit",
             "in": "query",
             "required": false,
             "description": "The maximum number of items to return.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 999
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 999 }
           },
           {
             "name": "marker",
@@ -4615,27 +4275,13 @@
         "summary": "Describe Activities"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/api/v1/documents/{DocumentId}/versions/{VersionId}/comments": {
@@ -4756,11 +4402,7 @@
             "in": "query",
             "required": false,
             "description": "The maximum number of items to return.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 999
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 999 }
           },
           {
             "name": "marker",
@@ -4778,27 +4420,13 @@
         "summary": "Describe Comments"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/api/v1/documents/{DocumentId}/versions": {
@@ -4917,22 +4545,14 @@
             "in": "query",
             "required": false,
             "description": "The marker for the next set of results. (You received this marker from a previous call.)",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 2048
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 2048 }
           },
           {
             "name": "limit",
             "in": "query",
             "required": false,
             "description": "The maximum number of versions to return with this call.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 999
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 999 }
           },
           {
             "name": "include",
@@ -4961,18 +4581,14 @@
           {
             "name": "Limit",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "Marker",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -4980,27 +4596,13 @@
         "summary": "Describe Document Versions"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/api/v1/groups#searchQuery": {
@@ -5114,36 +4716,19 @@
             "in": "query",
             "required": false,
             "description": "The maximum number of items to return with this call.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
+            "schema": { "type": "integer", "minimum": 1 }
           }
         ],
         "summary": "Describe Groups"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/api/v1/me/root#Authentication": {
@@ -5230,48 +4815,26 @@
             "in": "query",
             "required": false,
             "description": "The maximum number of items to return.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 999
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 999 }
           },
           {
             "name": "marker",
             "in": "query",
             "required": false,
             "description": "The marker for the next set of results. (You received this marker from a previous call.)",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 2048
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 2048 }
           }
         ],
         "summary": "Describe Root Folders"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/api/v1/me#Authentication": {
@@ -5357,27 +4920,13 @@
         "summary": "Get Current User"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/api/v1/documents/{DocumentId}/path": {
@@ -5476,11 +5025,7 @@
             "in": "query",
             "required": false,
             "description": "The maximum number of levels in the hierarchy to return.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 999
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 999 }
           },
           {
             "name": "fields",
@@ -5499,37 +5044,19 @@
             "in": "query",
             "required": false,
             "description": "This value is not supported.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 2048
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 2048 }
           }
         ],
         "summary": "Get Document Path"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/api/v1/folders/{FolderId}/path": {
@@ -5628,11 +5155,7 @@
             "in": "query",
             "required": false,
             "description": "The maximum number of levels in the hierarchy to return.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 999
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 999 }
           },
           {
             "name": "fields",
@@ -5651,37 +5174,19 @@
             "in": "query",
             "required": false,
             "description": "This value is not supported.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 2048
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 2048 }
           }
         ],
         "summary": "Get Folder Path"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/api/v1/resources": {
@@ -5780,58 +5285,33 @@
             "in": "query",
             "required": false,
             "description": "The collection type.",
-            "schema": {
-              "type": "string",
-              "enum": ["SHARED_WITH_ME"]
-            }
+            "schema": { "type": "string", "enum": ["SHARED_WITH_ME"] }
           },
           {
             "name": "limit",
             "in": "query",
             "required": false,
             "description": "The maximum number of resources to return.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 999
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 999 }
           },
           {
             "name": "marker",
             "in": "query",
             "required": false,
             "description": "The marker for the next set of results. This marker was received from a previous call.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 2048
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 2048 }
           }
         ],
         "summary": "Get Resources"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/api/v1/documents": {
@@ -6031,27 +5511,13 @@
         "summary": "Initiate Document Version Upload"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/api/v1/resources/{ResourceId}/permissions/{PrincipalId}": {
@@ -6059,9 +5525,7 @@
         "operationId": "RemoveResourcePermission",
         "description": "Removes the permission for the specified principal from the specified resource.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "UnauthorizedOperationException",
             "content": {
@@ -6154,27 +5618,13 @@
         "summary": "Remove Resource Permission"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -6183,63 +5633,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -6265,12 +5701,8 @@
         "properties": {
           "User": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/User"
-              },
-              {
-                "description": "The user information."
-              }
+              { "$ref": "#/components/schemas/User" },
+              { "description": "The user information." }
             ]
           }
         }
@@ -6280,12 +5712,8 @@
         "properties": {
           "ShareResults": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShareResultsList"
-              },
-              {
-                "description": "The share results."
-              }
+              { "$ref": "#/components/schemas/ShareResultsList" },
+              { "description": "The share results." }
             ]
           }
         }
@@ -6296,40 +5724,26 @@
         "properties": {
           "Id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IdType"
-              },
-              {
-                "description": "The ID of the recipient."
-              }
+              { "$ref": "#/components/schemas/IdType" },
+              { "description": "The ID of the recipient." }
             ]
           },
           "Type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PrincipalType"
-              },
-              {
-                "description": "The type of the recipient."
-              }
+              { "$ref": "#/components/schemas/PrincipalType" },
+              { "description": "The type of the recipient." }
             ]
           },
           "Role": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RoleType"
-              },
-              {
-                "description": "The role of the recipient."
-              }
+              { "$ref": "#/components/schemas/RoleType" },
+              { "description": "The role of the recipient." }
             ]
           }
         },
         "description": "Describes the recipient type and ID, if available."
       },
-      "BooleanType": {
-        "type": "boolean"
-      },
+      "BooleanType": { "type": "boolean" },
       "MessageType": {
         "type": "string",
         "minLength": 0,
@@ -6341,22 +5755,15 @@
         "properties": {
           "Comment": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Comment"
-              },
-              {
-                "description": "The comment that has been created."
-              }
+              { "$ref": "#/components/schemas/Comment" },
+              { "description": "The comment that has been created." }
             ]
           }
         }
       },
       "DocumentLockedForCommentsException": {},
       "InvalidCommentOperationException": {},
-      "CreateCustomMetadataResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "CreateCustomMetadataResponse": { "type": "object", "properties": {} },
       "CustomMetadataValueType": {
         "type": "string",
         "pattern": "[a-zA-Z0-9._+-/=][a-zA-Z0-9 ._+-/=]*",
@@ -6369,12 +5776,8 @@
         "properties": {
           "Metadata": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FolderMetadata"
-              },
-              {
-                "description": "The metadata of the folder."
-              }
+              { "$ref": "#/components/schemas/FolderMetadata" },
+              { "description": "The metadata of the folder." }
             ]
           }
         }
@@ -6382,10 +5785,7 @@
       "EntityAlreadyExistsException": {},
       "ConflictingOperationException": {},
       "LimitExceededException": {},
-      "CreateLabelsResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "CreateLabelsResponse": { "type": "object", "properties": {} },
       "SharedLabel": {
         "type": "string",
         "pattern": "[a-zA-Z0-9._+-/=][a-zA-Z0-9 ._+-/=]*",
@@ -6398,12 +5798,8 @@
         "properties": {
           "Subscription": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Subscription"
-              },
-              {
-                "description": "The subscription."
-              }
+              { "$ref": "#/components/schemas/Subscription" },
+              { "description": "The subscription." }
             ]
           }
         }
@@ -6414,28 +5810,15 @@
         "properties": {
           "User": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/User"
-              },
-              {
-                "description": "The user information."
-              }
+              { "$ref": "#/components/schemas/User" },
+              { "description": "The user information." }
             ]
           }
         }
       },
-      "PositiveSizeType": {
-        "type": "integer",
-        "minimum": 0
-      },
-      "StorageType": {
-        "type": "string",
-        "enum": ["UNLIMITED", "QUOTA"]
-      },
-      "DeleteCustomMetadataResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "PositiveSizeType": { "type": "integer", "minimum": 0 },
+      "StorageType": { "type": "string", "enum": ["UNLIMITED", "QUOTA"] },
+      "DeleteCustomMetadataResponse": { "type": "object", "properties": {} },
       "CustomMetadataKeyType": {
         "type": "string",
         "pattern": "[a-zA-Z0-9._+-/=][a-zA-Z0-9 ._+-/=]*",
@@ -6443,18 +5826,13 @@
         "maxLength": 56
       },
       "ConcurrentModificationException": {},
-      "DeleteLabelsResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "DeleteLabelsResponse": { "type": "object", "properties": {} },
       "DescribeActivitiesResponse": {
         "type": "object",
         "properties": {
           "UserActivities": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UserActivities"
-              },
+              { "$ref": "#/components/schemas/UserActivities" },
               {
                 "description": "The list of activities for the specified user and time period."
               }
@@ -6462,12 +5840,8 @@
           },
           "Marker": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MarkerType"
-              },
-              {
-                "description": "The marker for the next set of results."
-              }
+              { "$ref": "#/components/schemas/MarkerType" },
+              { "description": "The marker for the next set of results." }
             ]
           }
         }
@@ -6478,9 +5852,7 @@
         "properties": {
           "Comments": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CommentList"
-              },
+              { "$ref": "#/components/schemas/CommentList" },
               {
                 "description": "The list of comments for the specified document version."
               }
@@ -6488,9 +5860,7 @@
           },
           "Marker": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MarkerType"
-              },
+              { "$ref": "#/components/schemas/MarkerType" },
               {
                 "description": "The marker for the next set of results. This marker was received from a previous call."
               }
@@ -6503,19 +5873,13 @@
         "properties": {
           "DocumentVersions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DocumentVersionMetadataList"
-              },
-              {
-                "description": "The document versions."
-              }
+              { "$ref": "#/components/schemas/DocumentVersionMetadataList" },
+              { "description": "The document versions." }
             ]
           },
           "Marker": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PageMarkerType"
-              },
+              { "$ref": "#/components/schemas/PageMarkerType" },
               {
                 "description": "The marker to use when requesting the next set of results. If there are no additional results, the string is empty."
               }
@@ -6528,29 +5892,19 @@
         "properties": {
           "Folders": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FolderMetadataList"
-              },
-              {
-                "description": "The subfolders in the specified folder."
-              }
+              { "$ref": "#/components/schemas/FolderMetadataList" },
+              { "description": "The subfolders in the specified folder." }
             ]
           },
           "Documents": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DocumentMetadataList"
-              },
-              {
-                "description": "The documents in the specified folder."
-              }
+              { "$ref": "#/components/schemas/DocumentMetadataList" },
+              { "description": "The documents in the specified folder." }
             ]
           },
           "Marker": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PageMarkerType"
-              },
+              { "$ref": "#/components/schemas/PageMarkerType" },
               {
                 "description": "The marker to use when requesting the next set of results. If there are no additional results, the string is empty."
               }
@@ -6563,19 +5917,13 @@
         "properties": {
           "Groups": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupMetadataList"
-              },
-              {
-                "description": "The list of groups."
-              }
+              { "$ref": "#/components/schemas/GroupMetadataList" },
+              { "description": "The list of groups." }
             ]
           },
           "Marker": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MarkerType"
-              },
+              { "$ref": "#/components/schemas/MarkerType" },
               {
                 "description": "The marker to use when requesting the next set of results. If there are no additional results, the string is empty."
               }
@@ -6588,19 +5936,13 @@
         "properties": {
           "Subscriptions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SubscriptionList"
-              },
-              {
-                "description": "The subscriptions."
-              }
+              { "$ref": "#/components/schemas/SubscriptionList" },
+              { "description": "The subscriptions." }
             ]
           },
           "Marker": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PageMarkerType"
-              },
+              { "$ref": "#/components/schemas/PageMarkerType" },
               {
                 "description": "The marker to use when requesting the next set of results. If there are no additional results, the string is empty."
               }
@@ -6613,19 +5955,13 @@
         "properties": {
           "Principals": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PrincipalList"
-              },
-              {
-                "description": "The principals."
-              }
+              { "$ref": "#/components/schemas/PrincipalList" },
+              { "description": "The principals." }
             ]
           },
           "Marker": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PageMarkerType"
-              },
+              { "$ref": "#/components/schemas/PageMarkerType" },
               {
                 "description": "The marker to use when requesting the next set of results. If there are no additional results, the string is empty."
               }
@@ -6638,22 +5974,14 @@
         "properties": {
           "Folders": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FolderMetadataList"
-              },
-              {
-                "description": "The user's special folders."
-              }
+              { "$ref": "#/components/schemas/FolderMetadataList" },
+              { "description": "The user's special folders." }
             ]
           },
           "Marker": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PageMarkerType"
-              },
-              {
-                "description": "The marker for the next set of results."
-              }
+              { "$ref": "#/components/schemas/PageMarkerType" },
+              { "description": "The marker for the next set of results." }
             ]
           }
         }
@@ -6663,19 +5991,13 @@
         "properties": {
           "Users": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OrganizationUserList"
-              },
-              {
-                "description": "The users."
-              }
+              { "$ref": "#/components/schemas/OrganizationUserList" },
+              { "description": "The users." }
             ]
           },
           "TotalNumberOfUsers": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SizeType"
-              },
+              { "$ref": "#/components/schemas/SizeType" },
               {
                 "deprecated": true,
                 "description": "The total number of users included in the results."
@@ -6684,9 +6006,7 @@
           },
           "Marker": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PageMarkerType"
-              },
+              { "$ref": "#/components/schemas/PageMarkerType" },
               {
                 "description": "The marker to use when requesting the next set of results. If there are no additional results, the string is empty."
               }
@@ -6700,12 +6020,8 @@
         "properties": {
           "User": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/User"
-              },
-              {
-                "description": "Metadata of the user."
-              }
+              { "$ref": "#/components/schemas/User" },
+              { "description": "Metadata of the user." }
             ]
           }
         }
@@ -6715,22 +6031,14 @@
         "properties": {
           "Metadata": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DocumentMetadata"
-              },
-              {
-                "description": "The metadata details of the document."
-              }
+              { "$ref": "#/components/schemas/DocumentMetadata" },
+              { "description": "The metadata details of the document." }
             ]
           },
           "CustomMetadata": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CustomMetadataMap"
-              },
-              {
-                "description": "The custom metadata on the document."
-              }
+              { "$ref": "#/components/schemas/CustomMetadataMap" },
+              { "description": "The custom metadata on the document." }
             ]
           }
         }
@@ -6741,12 +6049,8 @@
         "properties": {
           "Path": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourcePath"
-              },
-              {
-                "description": "The path information."
-              }
+              { "$ref": "#/components/schemas/ResourcePath" },
+              { "description": "The path information." }
             ]
           }
         }
@@ -6756,22 +6060,14 @@
         "properties": {
           "Metadata": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DocumentVersionMetadata"
-              },
-              {
-                "description": "The version metadata."
-              }
+              { "$ref": "#/components/schemas/DocumentVersionMetadata" },
+              { "description": "The version metadata." }
             ]
           },
           "CustomMetadata": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CustomMetadataMap"
-              },
-              {
-                "description": "The custom metadata on the document version."
-              }
+              { "$ref": "#/components/schemas/CustomMetadataMap" },
+              { "description": "The custom metadata on the document version." }
             ]
           }
         }
@@ -6781,22 +6077,14 @@
         "properties": {
           "Metadata": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FolderMetadata"
-              },
-              {
-                "description": "The metadata of the folder."
-              }
+              { "$ref": "#/components/schemas/FolderMetadata" },
+              { "description": "The metadata of the folder." }
             ]
           },
           "CustomMetadata": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CustomMetadataMap"
-              },
-              {
-                "description": "The custom metadata on the folder."
-              }
+              { "$ref": "#/components/schemas/CustomMetadataMap" },
+              { "description": "The custom metadata on the folder." }
             ]
           }
         }
@@ -6806,12 +6094,8 @@
         "properties": {
           "Path": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourcePath"
-              },
-              {
-                "description": "The path information."
-              }
+              { "$ref": "#/components/schemas/ResourcePath" },
+              { "description": "The path information." }
             ]
           }
         }
@@ -6821,29 +6105,19 @@
         "properties": {
           "Folders": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FolderMetadataList"
-              },
-              {
-                "description": "The folders in the specified folder."
-              }
+              { "$ref": "#/components/schemas/FolderMetadataList" },
+              { "description": "The folders in the specified folder." }
             ]
           },
           "Documents": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DocumentMetadataList"
-              },
-              {
-                "description": "The documents in the specified collection."
-              }
+              { "$ref": "#/components/schemas/DocumentMetadataList" },
+              { "description": "The documents in the specified collection." }
             ]
           },
           "Marker": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PageMarkerType"
-              },
+              { "$ref": "#/components/schemas/PageMarkerType" },
               {
                 "description": "The marker to use when requesting the next set of results. If there are no additional results, the string is empty."
               }
@@ -6856,22 +6130,14 @@
         "properties": {
           "Metadata": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DocumentMetadata"
-              },
-              {
-                "description": "The document metadata."
-              }
+              { "$ref": "#/components/schemas/DocumentMetadata" },
+              { "description": "The document metadata." }
             ]
           },
           "UploadMetadata": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UploadMetadata"
-              },
-              {
-                "description": "The upload metadata."
-              }
+              { "$ref": "#/components/schemas/UploadMetadata" },
+              { "description": "The upload metadata." }
             ]
           }
         }
@@ -6886,12 +6152,8 @@
         "properties": {
           "User": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/User"
-              },
-              {
-                "description": "The user information."
-              }
+              { "$ref": "#/components/schemas/User" },
+              { "description": "The user information." }
             ]
           }
         }
@@ -6921,152 +6183,92 @@
         "properties": {
           "Id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IdType"
-              },
-              {
-                "description": "The ID of the user."
-              }
+              { "$ref": "#/components/schemas/IdType" },
+              { "description": "The ID of the user." }
             ]
           },
           "Username": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UsernameType"
-              },
-              {
-                "description": "The login name of the user."
-              }
+              { "$ref": "#/components/schemas/UsernameType" },
+              { "description": "The login name of the user." }
             ]
           },
           "EmailAddress": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EmailAddressType"
-              },
-              {
-                "description": "The email address of the user."
-              }
+              { "$ref": "#/components/schemas/EmailAddressType" },
+              { "description": "The email address of the user." }
             ]
           },
           "GivenName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UserAttributeValueType"
-              },
-              {
-                "description": "The given name of the user."
-              }
+              { "$ref": "#/components/schemas/UserAttributeValueType" },
+              { "description": "The given name of the user." }
             ]
           },
           "Surname": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UserAttributeValueType"
-              },
-              {
-                "description": "The surname of the user."
-              }
+              { "$ref": "#/components/schemas/UserAttributeValueType" },
+              { "description": "The surname of the user." }
             ]
           },
           "OrganizationId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IdType"
-              },
-              {
-                "description": "The ID of the organization."
-              }
+              { "$ref": "#/components/schemas/IdType" },
+              { "description": "The ID of the organization." }
             ]
           },
           "RootFolderId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdType"
-              },
-              {
-                "description": "The ID of the root folder."
-              }
+              { "$ref": "#/components/schemas/ResourceIdType" },
+              { "description": "The ID of the root folder." }
             ]
           },
           "RecycleBinFolderId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdType"
-              },
-              {
-                "description": "The ID of the recycle bin folder."
-              }
+              { "$ref": "#/components/schemas/ResourceIdType" },
+              { "description": "The ID of the recycle bin folder." }
             ]
           },
           "Status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UserStatusType"
-              },
-              {
-                "description": "The status of the user."
-              }
+              { "$ref": "#/components/schemas/UserStatusType" },
+              { "description": "The status of the user." }
             ]
           },
           "Type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UserType"
-              },
-              {
-                "description": "The type of user."
-              }
+              { "$ref": "#/components/schemas/UserType" },
+              { "description": "The type of user." }
             ]
           },
           "CreatedTimestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimestampType"
-              },
-              {
-                "description": "The time when the user was created."
-              }
+              { "$ref": "#/components/schemas/TimestampType" },
+              { "description": "The time when the user was created." }
             ]
           },
           "ModifiedTimestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimestampType"
-              },
-              {
-                "description": "The time when the user was modified."
-              }
+              { "$ref": "#/components/schemas/TimestampType" },
+              { "description": "The time when the user was modified." }
             ]
           },
           "TimeZoneId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimeZoneIdType"
-              },
-              {
-                "description": "The time zone ID of the user."
-              }
+              { "$ref": "#/components/schemas/TimeZoneIdType" },
+              { "description": "The time zone ID of the user." }
             ]
           },
           "Locale": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LocaleType"
-              },
-              {
-                "description": "The locale of the user."
-              }
+              { "$ref": "#/components/schemas/LocaleType" },
+              { "description": "The locale of the user." }
             ]
           },
           "Storage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UserStorageMetadata"
-              },
-              {
-                "description": "The storage for the user."
-              }
+              { "$ref": "#/components/schemas/UserStorageMetadata" },
+              { "description": "The storage for the user." }
             ]
           }
         },
@@ -7110,38 +6312,25 @@
           "FOLDER_MOVED"
         ]
       },
-      "TimestampType": {
-        "type": "string",
-        "format": "date-time"
-      },
+      "TimestampType": { "type": "string", "format": "date-time" },
       "UserMetadata": {
         "type": "object",
         "properties": {
           "Id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IdType"
-              },
-              {
-                "description": "The ID of the user."
-              }
+              { "$ref": "#/components/schemas/IdType" },
+              { "description": "The ID of the user." }
             ]
           },
           "Username": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UsernameType"
-              },
-              {
-                "description": "The name of the user."
-              }
+              { "$ref": "#/components/schemas/UsernameType" },
+              { "description": "The name of the user." }
             ]
           },
           "GivenName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UserAttributeValueType"
-              },
+              { "$ref": "#/components/schemas/UserAttributeValueType" },
               {
                 "description": "The given name of the user before a rename operation."
               }
@@ -7149,22 +6338,14 @@
           },
           "Surname": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UserAttributeValueType"
-              },
-              {
-                "description": "The surname of the user."
-              }
+              { "$ref": "#/components/schemas/UserAttributeValueType" },
+              { "description": "The surname of the user." }
             ]
           },
           "EmailAddress": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EmailAddressType"
-              },
-              {
-                "description": "The email address of the user."
-              }
+              { "$ref": "#/components/schemas/EmailAddressType" },
+              { "description": "The email address of the user." }
             ]
           }
         },
@@ -7175,22 +6356,14 @@
         "properties": {
           "Users": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UserMetadataList"
-              },
-              {
-                "description": "The list of users."
-              }
+              { "$ref": "#/components/schemas/UserMetadataList" },
+              { "description": "The list of users." }
             ]
           },
           "Groups": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupMetadataList"
-              },
-              {
-                "description": "The list of user groups."
-              }
+              { "$ref": "#/components/schemas/GroupMetadataList" },
+              { "description": "The list of user groups." }
             ]
           }
         },
@@ -7201,29 +6374,19 @@
         "properties": {
           "Type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceType"
-              },
-              {
-                "description": "The type of resource."
-              }
+              { "$ref": "#/components/schemas/ResourceType" },
+              { "description": "The type of resource." }
             ]
           },
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceNameType"
-              },
-              {
-                "description": "The name of the resource."
-              }
+              { "$ref": "#/components/schemas/ResourceNameType" },
+              { "description": "The name of the resource." }
             ]
           },
           "OriginalName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceNameType"
-              },
+              { "$ref": "#/components/schemas/ResourceNameType" },
               {
                 "description": "The original name of the resource before a rename operation."
               }
@@ -7231,19 +6394,13 @@
           },
           "Id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdType"
-              },
-              {
-                "description": "The ID of the resource."
-              }
+              { "$ref": "#/components/schemas/ResourceIdType" },
+              { "description": "The ID of the resource." }
             ]
           },
           "VersionId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DocumentVersionIdType"
-              },
+              { "$ref": "#/components/schemas/DocumentVersionIdType" },
               {
                 "description": "The version ID of the resource. This is an optional field and is filled for action on document version."
               }
@@ -7251,19 +6408,13 @@
           },
           "Owner": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UserMetadata"
-              },
-              {
-                "description": "The owner of the resource."
-              }
+              { "$ref": "#/components/schemas/UserMetadata" },
+              { "description": "The owner of the resource." }
             ]
           },
           "ParentId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdType"
-              },
+              { "$ref": "#/components/schemas/ResourceIdType" },
               {
                 "description": "The parent ID of the resource before a rename operation."
               }
@@ -7277,52 +6428,32 @@
         "properties": {
           "CommentId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CommentIdType"
-              },
-              {
-                "description": "The ID of the comment."
-              }
+              { "$ref": "#/components/schemas/CommentIdType" },
+              { "description": "The ID of the comment." }
             ]
           },
           "Contributor": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/User"
-              },
-              {
-                "description": "The user who made the comment."
-              }
+              { "$ref": "#/components/schemas/User" },
+              { "description": "The user who made the comment." }
             ]
           },
           "CreatedTimestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimestampType"
-              },
-              {
-                "description": "The timestamp that the comment was created."
-              }
+              { "$ref": "#/components/schemas/TimestampType" },
+              { "description": "The timestamp that the comment was created." }
             ]
           },
           "CommentStatus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CommentStatusType"
-              },
-              {
-                "description": "The status of the comment."
-              }
+              { "$ref": "#/components/schemas/CommentStatusType" },
+              { "description": "The status of the comment." }
             ]
           },
           "RecipientId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IdType"
-              },
-              {
-                "description": "The ID of the user being replied to."
-              }
+              { "$ref": "#/components/schemas/IdType" },
+              { "description": "The ID of the user being replied to." }
             ]
           }
         },
@@ -7333,29 +6464,19 @@
         "properties": {
           "Type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ActivityType"
-              },
-              {
-                "description": "The activity type."
-              }
+              { "$ref": "#/components/schemas/ActivityType" },
+              { "description": "The activity type." }
             ]
           },
           "TimeStamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimestampType"
-              },
-              {
-                "description": "The timestamp when the action was performed."
-              }
+              { "$ref": "#/components/schemas/TimestampType" },
+              { "description": "The timestamp when the action was performed." }
             ]
           },
           "IsIndirectActivity": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BooleanType"
-              },
+              { "$ref": "#/components/schemas/BooleanType" },
               {
                 "description": "Indicates whether an activity is indirect or direct. An indirect activity results from a direct activity performed on a parent resource. For example, sharing a parent folder (the direct activity) shares all of the subfolders and documents within the parent folder (the indirect activity)."
               }
@@ -7363,29 +6484,19 @@
           },
           "OrganizationId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IdType"
-              },
-              {
-                "description": "The ID of the organization."
-              }
+              { "$ref": "#/components/schemas/IdType" },
+              { "description": "The ID of the organization." }
             ]
           },
           "Initiator": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UserMetadata"
-              },
-              {
-                "description": "The user who performed the action."
-              }
+              { "$ref": "#/components/schemas/UserMetadata" },
+              { "description": "The user who performed the action." }
             ]
           },
           "Participants": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Participants"
-              },
+              { "$ref": "#/components/schemas/Participants" },
               {
                 "description": "The list of users or groups impacted by this action. This is an optional field and is filled for the following sharing activities: DOCUMENT_SHARED, DOCUMENT_SHARED, DOCUMENT_UNSHARED, FOLDER_SHARED, FOLDER_UNSHARED."
               }
@@ -7393,9 +6504,7 @@
           },
           "ResourceMetadata": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceMetadata"
-              },
+              { "$ref": "#/components/schemas/ResourceMetadata" },
               {
                 "description": "The metadata of the resource involved in the user action."
               }
@@ -7403,9 +6512,7 @@
           },
           "OriginalParent": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceMetadata"
-              },
+              { "$ref": "#/components/schemas/ResourceMetadata" },
               {
                 "description": "The original parent of the resource. This is an optional field and is filled for move activities."
               }
@@ -7413,9 +6520,7 @@
           },
           "CommentMetadata": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CommentMetadata"
-              },
+              { "$ref": "#/components/schemas/CommentMetadata" },
               {
                 "description": "Metadata of the commenting activity. This is an optional field and is filled for commenting activities."
               }
@@ -7426,9 +6531,7 @@
       },
       "ShareResultsList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ShareResult"
-        }
+        "items": { "$ref": "#/components/schemas/ShareResult" }
       },
       "CommentIdType": {
         "type": "string",
@@ -7456,79 +6559,49 @@
         "properties": {
           "CommentId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CommentIdType"
-              },
-              {
-                "description": "The ID of the comment."
-              }
+              { "$ref": "#/components/schemas/CommentIdType" },
+              { "description": "The ID of the comment." }
             ]
           },
           "ParentId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CommentIdType"
-              },
-              {
-                "description": "The ID of the parent comment."
-              }
+              { "$ref": "#/components/schemas/CommentIdType" },
+              { "description": "The ID of the parent comment." }
             ]
           },
           "ThreadId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CommentIdType"
-              },
-              {
-                "description": "The ID of the root comment in the thread."
-              }
+              { "$ref": "#/components/schemas/CommentIdType" },
+              { "description": "The ID of the root comment in the thread." }
             ]
           },
           "Text": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CommentTextType"
-              },
-              {
-                "description": "The text of the comment."
-              }
+              { "$ref": "#/components/schemas/CommentTextType" },
+              { "description": "The text of the comment." }
             ]
           },
           "Contributor": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/User"
-              },
-              {
-                "description": "The details of the user who made the comment."
-              }
+              { "$ref": "#/components/schemas/User" },
+              { "description": "The details of the user who made the comment." }
             ]
           },
           "CreatedTimestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimestampType"
-              },
-              {
-                "description": "The time that the comment was created."
-              }
+              { "$ref": "#/components/schemas/TimestampType" },
+              { "description": "The time that the comment was created." }
             ]
           },
           "Status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CommentStatusType"
-              },
-              {
-                "description": "The status of the comment."
-              }
+              { "$ref": "#/components/schemas/CommentStatusType" },
+              { "description": "The status of the comment." }
             ]
           },
           "Visibility": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CommentVisibilityType"
-              },
+              { "$ref": "#/components/schemas/CommentVisibilityType" },
               {
                 "description": "The visibility of the comment. Options are either PRIVATE, where the comment is visible only to the comment author and document owner and co-owners, or PUBLIC, where the comment is visible to document owners, co-owners, and contributors."
               }
@@ -7536,9 +6609,7 @@
           },
           "RecipientId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IdType"
-              },
+              { "$ref": "#/components/schemas/IdType" },
               {
                 "description": "If the comment is a reply to another user's comment, this field contains the user ID of the user being replied to."
               }
@@ -7549,9 +6620,7 @@
       },
       "CommentList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Comment"
-        }
+        "items": { "$ref": "#/components/schemas/Comment" }
       },
       "CustomMetadataMap": {
         "type": "object",
@@ -7572,79 +6641,49 @@
         "properties": {
           "Id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdType"
-              },
-              {
-                "description": "The ID of the folder."
-              }
+              { "$ref": "#/components/schemas/ResourceIdType" },
+              { "description": "The ID of the folder." }
             ]
           },
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceNameType"
-              },
-              {
-                "description": "The name of the folder."
-              }
+              { "$ref": "#/components/schemas/ResourceNameType" },
+              { "description": "The name of the folder." }
             ]
           },
           "CreatorId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IdType"
-              },
-              {
-                "description": "The ID of the creator."
-              }
+              { "$ref": "#/components/schemas/IdType" },
+              { "description": "The ID of the creator." }
             ]
           },
           "ParentFolderId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdType"
-              },
-              {
-                "description": "The ID of the parent folder."
-              }
+              { "$ref": "#/components/schemas/ResourceIdType" },
+              { "description": "The ID of the parent folder." }
             ]
           },
           "CreatedTimestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimestampType"
-              },
-              {
-                "description": "The time when the folder was created."
-              }
+              { "$ref": "#/components/schemas/TimestampType" },
+              { "description": "The time when the folder was created." }
             ]
           },
           "ModifiedTimestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimestampType"
-              },
-              {
-                "description": "The time when the folder was updated."
-              }
+              { "$ref": "#/components/schemas/TimestampType" },
+              { "description": "The time when the folder was updated." }
             ]
           },
           "ResourceState": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceStateType"
-              },
-              {
-                "description": "The resource state of the folder."
-              }
+              { "$ref": "#/components/schemas/ResourceStateType" },
+              { "description": "The resource state of the folder." }
             ]
           },
           "Signature": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HashType"
-              },
+              { "$ref": "#/components/schemas/HashType" },
               {
                 "description": "The unique identifier created from the subfolders and documents of the folder."
               }
@@ -7652,29 +6691,19 @@
           },
           "Labels": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SharedLabels"
-              },
-              {
-                "description": "List of labels on the folder."
-              }
+              { "$ref": "#/components/schemas/SharedLabels" },
+              { "description": "List of labels on the folder." }
             ]
           },
           "Size": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SizeType"
-              },
-              {
-                "description": "The size of the folder metadata."
-              }
+              { "$ref": "#/components/schemas/SizeType" },
+              { "description": "The size of the folder metadata." }
             ]
           },
           "LatestVersionSize": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SizeType"
-              },
+              { "$ref": "#/components/schemas/SizeType" },
               {
                 "description": "The size of the latest version of the folder metadata."
               }
@@ -7685,9 +6714,7 @@
       },
       "SharedLabels": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/SharedLabel"
-        },
+        "items": { "$ref": "#/components/schemas/SharedLabel" },
         "maxItems": 20
       },
       "SubscriptionEndPointType": {
@@ -7695,41 +6722,26 @@
         "minLength": 1,
         "maxLength": 256
       },
-      "SubscriptionProtocolType": {
-        "type": "string",
-        "enum": ["HTTPS"]
-      },
+      "SubscriptionProtocolType": { "type": "string", "enum": ["HTTPS"] },
       "Subscription": {
         "type": "object",
         "properties": {
           "SubscriptionId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IdType"
-              },
-              {
-                "description": "The ID of the subscription."
-              }
+              { "$ref": "#/components/schemas/IdType" },
+              { "description": "The ID of the subscription." }
             ]
           },
           "EndPoint": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SubscriptionEndPointType"
-              },
-              {
-                "description": "The endpoint of the subscription."
-              }
+              { "$ref": "#/components/schemas/SubscriptionEndPointType" },
+              { "description": "The endpoint of the subscription." }
             ]
           },
           "Protocol": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SubscriptionProtocolType"
-              },
-              {
-                "description": "The protocol of the subscription."
-              }
+              { "$ref": "#/components/schemas/SubscriptionProtocolType" },
+              { "description": "The protocol of the subscription." }
             ]
           }
         },
@@ -7752,32 +6764,20 @@
         "minLength": 1,
         "maxLength": 64
       },
-      "TimeZoneIdType": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 256
-      },
+      "TimeZoneIdType": { "type": "string", "minLength": 1, "maxLength": 256 },
       "StorageRuleType": {
         "type": "object",
         "properties": {
           "StorageAllocatedInBytes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PositiveSizeType"
-              },
-              {
-                "description": "The amount of storage allocated, in bytes."
-              }
+              { "$ref": "#/components/schemas/PositiveSizeType" },
+              { "description": "The amount of storage allocated, in bytes." }
             ]
           },
           "StorageType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StorageType"
-              },
-              {
-                "description": "The type of storage."
-              }
+              { "$ref": "#/components/schemas/StorageType" },
+              { "description": "The type of storage." }
             ]
           }
         },
@@ -7791,61 +6791,39 @@
       },
       "UserActivities": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Activity"
-        }
+        "items": { "$ref": "#/components/schemas/Activity" }
       },
-      "PageMarkerType": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 2048
-      },
+      "PageMarkerType": { "type": "string", "minLength": 1, "maxLength": 2048 },
       "DocumentVersionMetadataList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DocumentVersionMetadata"
-        }
+        "items": { "$ref": "#/components/schemas/DocumentVersionMetadata" }
       },
       "FolderMetadataList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/FolderMetadata"
-        }
+        "items": { "$ref": "#/components/schemas/FolderMetadata" }
       },
       "DocumentMetadataList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DocumentMetadata"
-        }
+        "items": { "$ref": "#/components/schemas/DocumentMetadata" }
       },
       "GroupMetadataList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/GroupMetadata"
-        }
+        "items": { "$ref": "#/components/schemas/GroupMetadata" }
       },
       "SubscriptionList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Subscription"
-        },
+        "items": { "$ref": "#/components/schemas/Subscription" },
         "maxItems": 256
       },
       "PrincipalList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Principal"
-        }
+        "items": { "$ref": "#/components/schemas/Principal" }
       },
       "OrganizationUserList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/User"
-        }
+        "items": { "$ref": "#/components/schemas/User" }
       },
-      "SizeType": {
-        "type": "integer"
-      },
+      "SizeType": { "type": "integer" },
       "DocumentContentType": {
         "type": "string",
         "minLength": 1,
@@ -7856,69 +6834,43 @@
         "properties": {
           "Id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DocumentVersionIdType"
-              },
-              {
-                "description": "The ID of the version."
-              }
+              { "$ref": "#/components/schemas/DocumentVersionIdType" },
+              { "description": "The ID of the version." }
             ]
           },
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceNameType"
-              },
-              {
-                "description": "The name of the version."
-              }
+              { "$ref": "#/components/schemas/ResourceNameType" },
+              { "description": "The name of the version." }
             ]
           },
           "ContentType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DocumentContentType"
-              },
-              {
-                "description": "The content type of the document."
-              }
+              { "$ref": "#/components/schemas/DocumentContentType" },
+              { "description": "The content type of the document." }
             ]
           },
           "Size": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SizeType"
-              },
-              {
-                "description": "The size of the document, in bytes."
-              }
+              { "$ref": "#/components/schemas/SizeType" },
+              { "description": "The size of the document, in bytes." }
             ]
           },
           "Signature": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HashType"
-              },
-              {
-                "description": "The signature of the document."
-              }
+              { "$ref": "#/components/schemas/HashType" },
+              { "description": "The signature of the document." }
             ]
           },
           "Status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DocumentStatusType"
-              },
-              {
-                "description": "The status of the document."
-              }
+              { "$ref": "#/components/schemas/DocumentStatusType" },
+              { "description": "The status of the document." }
             ]
           },
           "CreatedTimestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimestampType"
-              },
+              { "$ref": "#/components/schemas/TimestampType" },
               {
                 "description": "The timestamp when the document was first uploaded."
               }
@@ -7926,9 +6878,7 @@
           },
           "ModifiedTimestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimestampType"
-              },
+              { "$ref": "#/components/schemas/TimestampType" },
               {
                 "description": "The timestamp when the document was last uploaded."
               }
@@ -7936,9 +6886,7 @@
           },
           "ContentCreatedTimestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimestampType"
-              },
+              { "$ref": "#/components/schemas/TimestampType" },
               {
                 "description": "The timestamp when the content of the document was originally created."
               }
@@ -7946,9 +6894,7 @@
           },
           "ContentModifiedTimestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimestampType"
-              },
+              { "$ref": "#/components/schemas/TimestampType" },
               {
                 "description": "The timestamp when the content of the document was modified."
               }
@@ -7956,32 +6902,20 @@
           },
           "CreatorId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IdType"
-              },
-              {
-                "description": "The ID of the creator."
-              }
+              { "$ref": "#/components/schemas/IdType" },
+              { "description": "The ID of the creator." }
             ]
           },
           "Thumbnail": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DocumentThumbnailUrlMap"
-              },
-              {
-                "description": "The thumbnail of the document."
-              }
+              { "$ref": "#/components/schemas/DocumentThumbnailUrlMap" },
+              { "description": "The thumbnail of the document." }
             ]
           },
           "Source": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DocumentSourceUrlMap"
-              },
-              {
-                "description": "The source of the document."
-              }
+              { "$ref": "#/components/schemas/DocumentSourceUrlMap" },
+              { "description": "The source of the document." }
             ]
           }
         },
@@ -7996,82 +6930,50 @@
         "properties": {
           "Id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdType"
-              },
-              {
-                "description": "The ID of the document."
-              }
+              { "$ref": "#/components/schemas/ResourceIdType" },
+              { "description": "The ID of the document." }
             ]
           },
           "CreatorId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IdType"
-              },
-              {
-                "description": "The ID of the creator."
-              }
+              { "$ref": "#/components/schemas/IdType" },
+              { "description": "The ID of the creator." }
             ]
           },
           "ParentFolderId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdType"
-              },
-              {
-                "description": "The ID of the parent folder."
-              }
+              { "$ref": "#/components/schemas/ResourceIdType" },
+              { "description": "The ID of the parent folder." }
             ]
           },
           "CreatedTimestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimestampType"
-              },
-              {
-                "description": "The time when the document was created."
-              }
+              { "$ref": "#/components/schemas/TimestampType" },
+              { "description": "The time when the document was created." }
             ]
           },
           "ModifiedTimestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimestampType"
-              },
-              {
-                "description": "The time when the document was updated."
-              }
+              { "$ref": "#/components/schemas/TimestampType" },
+              { "description": "The time when the document was updated." }
             ]
           },
           "LatestVersionMetadata": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DocumentVersionMetadata"
-              },
-              {
-                "description": "The latest version of the document."
-              }
+              { "$ref": "#/components/schemas/DocumentVersionMetadata" },
+              { "description": "The latest version of the document." }
             ]
           },
           "ResourceState": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceStateType"
-              },
-              {
-                "description": "The resource state."
-              }
+              { "$ref": "#/components/schemas/ResourceStateType" },
+              { "description": "The resource state." }
             ]
           },
           "Labels": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SharedLabels"
-              },
-              {
-                "description": "List of labels on the document."
-              }
+              { "$ref": "#/components/schemas/SharedLabels" },
+              { "description": "List of labels on the document." }
             ]
           }
         },
@@ -8085,9 +6987,7 @@
       },
       "DocumentSourceUrlMap": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/UrlType"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/UrlType" }
       },
       "DocumentStatusType": {
         "type": "string",
@@ -8095,9 +6995,7 @@
       },
       "DocumentThumbnailUrlMap": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/UrlType"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/UrlType" }
       },
       "HashType": {
         "type": "string",
@@ -8110,41 +7008,27 @@
         "properties": {
           "Components": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourcePathComponentList"
-              },
-              {
-                "description": "The components of the resource path."
-              }
+              { "$ref": "#/components/schemas/ResourcePathComponentList" },
+              { "description": "The components of the resource path." }
             ]
           }
         },
         "description": "Describes the path information of a resource."
       },
-      "GroupNameType": {
-        "type": "string"
-      },
+      "GroupNameType": { "type": "string" },
       "GroupMetadata": {
         "type": "object",
         "properties": {
           "Id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IdType"
-              },
-              {
-                "description": "The ID of the user group."
-              }
+              { "$ref": "#/components/schemas/IdType" },
+              { "description": "The ID of the user group." }
             ]
           },
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupNameType"
-              },
-              {
-                "description": "The name of the group."
-              }
+              { "$ref": "#/components/schemas/GroupNameType" },
+              { "description": "The name of the group." }
             ]
           }
         },
@@ -8160,22 +7044,14 @@
         "properties": {
           "UploadUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UrlType"
-              },
-              {
-                "description": "The URL of the upload."
-              }
+              { "$ref": "#/components/schemas/UrlType" },
+              { "description": "The URL of the upload." }
             ]
           },
           "SignedHeaders": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SignedHeaderMap"
-              },
-              {
-                "description": "The signed headers."
-              }
+              { "$ref": "#/components/schemas/SignedHeaderMap" },
+              { "description": "The signed headers." }
             ]
           }
         },
@@ -8199,9 +7075,7 @@
       },
       "UserMetadataList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/UserMetadata"
-        }
+        "items": { "$ref": "#/components/schemas/UserMetadata" }
       },
       "RoleType": {
         "type": "string",
@@ -8216,22 +7090,14 @@
         "properties": {
           "Role": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RoleType"
-              },
-              {
-                "description": "The role of the user."
-              }
+              { "$ref": "#/components/schemas/RoleType" },
+              { "description": "The role of the user." }
             ]
           },
           "Type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RolePermissionType"
-              },
-              {
-                "description": "The type of permissions."
-              }
+              { "$ref": "#/components/schemas/RolePermissionType" },
+              { "description": "The type of permissions." }
             ]
           }
         },
@@ -8239,9 +7105,7 @@
       },
       "PermissionInfoList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/PermissionInfo"
-        }
+        "items": { "$ref": "#/components/schemas/PermissionInfo" }
       },
       "PrincipalType": {
         "type": "string",
@@ -8252,138 +7116,86 @@
         "properties": {
           "Id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IdType"
-              },
-              {
-                "description": "The ID of the resource."
-              }
+              { "$ref": "#/components/schemas/IdType" },
+              { "description": "The ID of the resource." }
             ]
           },
           "Type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PrincipalType"
-              },
-              {
-                "description": "The type of resource."
-              }
+              { "$ref": "#/components/schemas/PrincipalType" },
+              { "description": "The type of resource." }
             ]
           },
           "Roles": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PermissionInfoList"
-              },
-              {
-                "description": "The permission information for the resource."
-              }
+              { "$ref": "#/components/schemas/PermissionInfoList" },
+              { "description": "The permission information for the resource." }
             ]
           }
         },
         "description": "Describes a resource."
       },
-      "ResourceType": {
-        "type": "string",
-        "enum": ["FOLDER", "DOCUMENT"]
-      },
+      "ResourceType": { "type": "string", "enum": ["FOLDER", "DOCUMENT"] },
       "ResourcePathComponentList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ResourcePathComponent"
-        }
+        "items": { "$ref": "#/components/schemas/ResourcePathComponent" }
       },
       "ResourcePathComponent": {
         "type": "object",
         "properties": {
           "Id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IdType"
-              },
-              {
-                "description": "The ID of the resource path."
-              }
+              { "$ref": "#/components/schemas/IdType" },
+              { "description": "The ID of the resource path." }
             ]
           },
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceNameType"
-              },
-              {
-                "description": "The name of the resource path."
-              }
+              { "$ref": "#/components/schemas/ResourceNameType" },
+              { "description": "The name of the resource path." }
             ]
           }
         },
         "description": "Describes the resource path."
       },
-      "ShareStatusType": {
-        "type": "string",
-        "enum": ["SUCCESS", "FAILURE"]
-      },
+      "ShareStatusType": { "type": "string", "enum": ["SUCCESS", "FAILURE"] },
       "ShareResult": {
         "type": "object",
         "properties": {
           "PrincipalId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IdType"
-              },
-              {
-                "description": "The ID of the principal."
-              }
+              { "$ref": "#/components/schemas/IdType" },
+              { "description": "The ID of the principal." }
             ]
           },
           "InviteePrincipalId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IdType"
-              },
-              {
-                "description": "The ID of the invited user."
-              }
+              { "$ref": "#/components/schemas/IdType" },
+              { "description": "The ID of the invited user." }
             ]
           },
           "Role": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RoleType"
-              },
-              {
-                "description": "The role."
-              }
+              { "$ref": "#/components/schemas/RoleType" },
+              { "description": "The role." }
             ]
           },
           "Status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShareStatusType"
-              },
-              {
-                "description": "The status."
-              }
+              { "$ref": "#/components/schemas/ShareStatusType" },
+              { "description": "The status." }
             ]
           },
           "ShareId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdType"
-              },
-              {
-                "description": "The ID of the resource that was shared."
-              }
+              { "$ref": "#/components/schemas/ResourceIdType" },
+              { "description": "The ID of the resource that was shared." }
             ]
           },
           "StatusMessage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MessageType"
-              },
-              {
-                "description": "The status message."
-              }
+              { "$ref": "#/components/schemas/MessageType" },
+              { "description": "The status message." }
             ]
           }
         },
@@ -8408,22 +7220,14 @@
         "properties": {
           "StorageUtilizedInBytes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SizeType"
-              },
-              {
-                "description": "The amount of storage used, in bytes."
-              }
+              { "$ref": "#/components/schemas/SizeType" },
+              { "description": "The amount of storage used, in bytes." }
             ]
           },
           "StorageRule": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StorageRuleType"
-              },
-              {
-                "description": "The storage for a user."
-              }
+              { "$ref": "#/components/schemas/StorageRuleType" },
+              { "description": "The storage for a user." }
             ]
           }
         },
@@ -8431,11 +7235,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2016-05-01",
     "endpointPrefix": "workdocs",

@@ -1,10 +1,6 @@
 {
   "openapi": "3.0.0",
-  "servers": [
-    {
-      "url": "https://gmail.googleapis.com/"
-    }
-  ],
+  "servers": [{ "url": "https://gmail.googleapis.com/" }],
   "info": {
     "title": "Gmail",
     "version": "v1",
@@ -12,10 +8,7 @@
     "x-logo": {
       "url": "https://lh3.googleusercontent.com/3apmn5ZrO9g69LOLLshuSID-zQ99Z3q9bvJEWbj_rxaxS9p6K_rKEynb8wuYbxGuoFxWtWTUbuRFrHHfmM1g=w160-h160"
     },
-    "contact": {
-      "name": "Google",
-      "url": "https://google.com"
-    },
+    "contact": { "name": "Google", "url": "https://google.com" },
     "description": "The Gmail API lets you view and manage Gmail mailbox data like threads, messages, and labels.",
     "license": {
       "name": "Creative Commons Attribution 3.0",
@@ -23,14 +16,8 @@
     },
     "termsOfService": "https://developers.google.com/terms/"
   },
-  "externalDocs": {
-    "url": "https://developers.google.com/gmail/api/"
-  },
-  "tags": [
-    {
-      "name": "users"
-    }
-  ],
+  "externalDocs": { "url": "https://developers.google.com/gmail/api/" },
+  "tags": [{ "name": "users" }],
   "paths": {
     "/gmail/v1/users/{userId}/drafts": {
       "get": {
@@ -42,52 +29,38 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "Include drafts from `SPAM` and `TRASH` in the results.",
             "in": "query",
             "name": "includeSpamTrash",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Maximum number of drafts to return.",
             "in": "query",
             "name": "maxResults",
-            "schema": {
-              "type": "integer"
-            }
+            "schema": { "type": "integer" }
           },
           {
             "description": "Page token to retrieve a specific page of results in the list.",
             "in": "query",
             "name": "pageToken",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Only return draft messages matching the specified query. Supports the same query format as the Gmail search box. For example, `\"from:someuser@example.com rfc822msgid: is:unread\"`.",
             "in": "query",
             "name": "q",
-            "schema": {
-              "title": "Query",
-              "type": "string"
-            }
+            "schema": { "title": "Query", "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListDraftsResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/ListDraftsResponse" }
               }
             },
             "description": "Successful response"
@@ -115,39 +88,17 @@
         "summary": "List drafts"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Creates a new draft with the `DRAFT` label.",
@@ -158,113 +109,70 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "requestBody": {
           "content": {
             "message/cpim": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/delivery-status": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/disposition-notification": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/external-body": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/feedback-report": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/global": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/global-delivery-status": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/global-disposition-notification": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/global-headers": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/http": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/imdn+xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/news": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/partial": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/rfc822": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/s-http": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/sip": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/sipfrag": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/tracking-status": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/vnd.si.simp": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/vnd.wfa.wsc": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             }
           }
         },
@@ -272,9 +180,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Draft"
-                }
+                "schema": { "$ref": "#/components/schemas/Draft" }
               }
             },
             "description": "Successful response"
@@ -308,39 +214,17 @@
     },
     "/gmail/v1/users/{userId}/drafts/send": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Sends the specified, existing draft to the recipients in the `To`, `Cc`, and `Bcc` headers.",
@@ -351,113 +235,70 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "requestBody": {
           "content": {
             "message/cpim": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/delivery-status": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/disposition-notification": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/external-body": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/feedback-report": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/global": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/global-delivery-status": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/global-disposition-notification": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/global-headers": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/http": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/imdn+xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/news": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/partial": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/rfc822": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/s-http": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/sip": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/sipfrag": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/tracking-status": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/vnd.si.simp": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/vnd.wfa.wsc": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             }
           }
         },
@@ -465,9 +306,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Message"
-                }
+                "schema": { "$ref": "#/components/schemas/Message" }
               }
             },
             "description": "Successful response"
@@ -509,26 +348,17 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The ID of the draft to delete.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": ["https://mail.google.com/"],
@@ -563,19 +393,14 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The ID of the draft to retrieve.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The format to return the draft in.",
@@ -591,9 +416,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Draft"
-                }
+                "schema": { "$ref": "#/components/schemas/Draft" }
               }
             },
             "description": "Successful response"
@@ -621,39 +444,17 @@
         "summary": "Get a draft"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "put": {
         "description": "Replaces a draft's content.",
@@ -664,122 +465,77 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The ID of the draft to update.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "message/cpim": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/delivery-status": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/disposition-notification": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/external-body": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/feedback-report": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/global": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/global-delivery-status": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/global-disposition-notification": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/global-headers": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/http": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/imdn+xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/news": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/partial": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/rfc822": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/s-http": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/sip": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/sipfrag": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/tracking-status": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/vnd.si.simp": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             },
             "message/vnd.wfa.wsc": {
-              "schema": {
-                "$ref": "#/components/schemas/Draft"
-              }
+              "schema": { "$ref": "#/components/schemas/Draft" }
             }
           }
         },
@@ -787,9 +543,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Draft"
-                }
+                "schema": { "$ref": "#/components/schemas/Draft" }
               }
             },
             "description": "Successful response"
@@ -831,10 +585,7 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "History types to be returned by the function",
@@ -859,42 +610,32 @@
             "description": "Only return messages with a label matching the ID.",
             "in": "query",
             "name": "labelId",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The maximum number of history records to return.",
             "in": "query",
             "name": "maxResults",
-            "schema": {
-              "type": "integer"
-            }
+            "schema": { "type": "integer" }
           },
           {
             "description": "Page token to retrieve a specific page of results in the list.",
             "in": "query",
             "name": "pageToken",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Required. Returns history records after the specified `startHistoryId`. The supplied `startHistoryId` should be obtained from the `historyId` of a message, thread, or previous `list` response. History IDs increase chronologically but are not contiguous with random gaps in between valid IDs. Supplying an invalid or out of date `startHistoryId` typically returns an `HTTP 404` error code. A `historyId` is typically valid for at least a week, but in some rare circumstances may be valid for only a few hours. If you receive an `HTTP 404` error response, your application should perform a full sync. If you receive no `nextPageToken` in the response, there are no updates to retrieve and you can store the returned `historyId` for a future request.",
             "in": "query",
             "name": "startHistoryId",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListHistoryResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/ListHistoryResponse" }
               }
             },
             "description": "Successful response"
@@ -922,39 +663,17 @@
         "summary": "List history"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ]
     },
     "/gmail/v1/users/{userId}/labels": {
@@ -967,19 +686,14 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListLabelsResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/ListLabelsResponse" }
               }
             },
             "description": "Successful response"
@@ -1011,39 +725,17 @@
         "summary": "List labels"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Creates a new label.",
@@ -1054,18 +746,13 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Label"
-              }
+              "schema": { "$ref": "#/components/schemas/Label" }
             }
           }
         },
@@ -1073,9 +760,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Label"
-                }
+                "schema": { "$ref": "#/components/schemas/Label" }
               }
             },
             "description": "Successful response"
@@ -1109,26 +794,17 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The ID of the label to delete.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": ["https://mail.google.com/"],
@@ -1155,28 +831,21 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The ID of the label to retrieve.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Label"
-                }
+                "schema": { "$ref": "#/components/schemas/Label" }
               }
             },
             "description": "Successful response"
@@ -1208,39 +877,17 @@
         "summary": "Get a label"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "patch": {
         "description": "Patch the specified label.",
@@ -1251,27 +898,20 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The ID of the label to update.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Label"
-              }
+              "schema": { "$ref": "#/components/schemas/Label" }
             }
           }
         },
@@ -1279,9 +919,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Label"
-                }
+                "schema": { "$ref": "#/components/schemas/Label" }
               }
             },
             "description": "Successful response"
@@ -1313,27 +951,20 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The ID of the label to update.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Label"
-              }
+              "schema": { "$ref": "#/components/schemas/Label" }
             }
           }
         },
@@ -1341,9 +972,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Label"
-                }
+                "schema": { "$ref": "#/components/schemas/Label" }
               }
             },
             "description": "Successful response"
@@ -1373,10 +1002,7 @@
         "operationId": "gmail.users.messages.list",
         "x-triggerPopulate": {
           "operationId": "gmail.users.messages.get",
-          "inputs": {
-            "userId": "{{inputs.userId}}",
-            "id": "{{outputs.id}}"
-          }
+          "inputs": { "userId": "{{inputs.userId}}", "id": "{{outputs.id}}" }
         },
         "parameters": [
           {
@@ -1384,56 +1010,39 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "Include messages from `SPAM` and `TRASH` in the results.",
             "in": "query",
             "name": "includeSpamTrash",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Only return messages with labels that match all of the specified label IDs.",
             "explode": true,
             "in": "query",
             "name": "labelIds",
-            "schema": {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
+            "schema": { "items": { "type": "string" }, "type": "array" },
             "style": "form"
           },
           {
             "description": "Maximum number of messages to return.",
             "in": "query",
             "name": "maxResults",
-            "schema": {
-              "type": "integer"
-            }
+            "schema": { "type": "integer" }
           },
           {
             "description": "Page token to retrieve a specific page of results in the list.",
             "in": "query",
             "name": "pageToken",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, `\"from:someuser@example.com rfc822msgid: is:unread\"`. Parameter cannot be used when accessing the api using the gmail.metadata scope.",
             "in": "query",
             "name": "q",
-            "schema": {
-              "title": "Query",
-              "type": "string"
-            }
+            "schema": { "title": "Query", "type": "string" }
           }
         ],
         "responses": {
@@ -1470,39 +1079,17 @@
         "summary": "List messages"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Directly inserts a message into only this user's mailbox similar to `IMAP APPEND`, bypassing most scanning and classification. Does not send a message.",
@@ -1513,18 +1100,13 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.",
             "in": "query",
             "name": "deleted",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Source for Gmail's internal date of the message.",
@@ -1539,104 +1121,64 @@
         "requestBody": {
           "content": {
             "message/cpim": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/delivery-status": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/disposition-notification": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/external-body": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/feedback-report": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/global": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/global-delivery-status": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/global-disposition-notification": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/global-headers": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/http": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/imdn+xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/news": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/partial": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/rfc822": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/s-http": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/sip": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/sipfrag": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/tracking-status": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/vnd.si.simp": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/vnd.wfa.wsc": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             }
           }
         },
@@ -1644,9 +1186,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Message"
-                }
+                "schema": { "$ref": "#/components/schemas/Message" }
               }
             },
             "description": "Successful response"
@@ -1672,39 +1212,17 @@
     },
     "/gmail/v1/users/{userId}/messages/batchDelete": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Deletes many messages by message ID. Provides no guarantees that messages were not already deleted or even existed at all.",
@@ -1715,10 +1233,7 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "requestBody": {
@@ -1730,11 +1245,7 @@
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": ["https://mail.google.com/"],
@@ -1747,39 +1258,17 @@
     },
     "/gmail/v1/users/{userId}/messages/batchModify": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Modifies the labels on the specified messages.",
@@ -1790,10 +1279,7 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "requestBody": {
@@ -1805,11 +1291,7 @@
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": ["https://mail.google.com/"],
@@ -1826,39 +1308,17 @@
     },
     "/gmail/v1/users/{userId}/messages/import": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Imports a message into only this user's mailbox, with standard email delivery scanning and classification similar to receiving via SMTP. Does not send a message. Note: This function doesn't trigger forwarding rules or filters set up by the user.",
@@ -1869,18 +1329,13 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.",
             "in": "query",
             "name": "deleted",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Source for Gmail's internal date of the message.",
@@ -1895,120 +1350,76 @@
             "description": "Ignore the Gmail spam classifier decision and never mark this email as SPAM in the mailbox.",
             "in": "query",
             "name": "neverMarkSpam",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Process calendar invites in the email and add any extracted meetings to the Google Calendar for this user.",
             "in": "query",
             "name": "processForCalendar",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "requestBody": {
           "content": {
             "message/cpim": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/delivery-status": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/disposition-notification": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/external-body": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/feedback-report": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/global": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/global-delivery-status": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/global-disposition-notification": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/global-headers": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/http": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/imdn+xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/news": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/partial": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/rfc822": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/s-http": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/sip": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/sipfrag": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/tracking-status": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/vnd.si.simp": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/vnd.wfa.wsc": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             }
           }
         },
@@ -2016,9 +1427,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Message"
-                }
+                "schema": { "$ref": "#/components/schemas/Message" }
               }
             },
             "description": "Successful response"
@@ -2044,39 +1453,17 @@
     },
     "/gmail/v1/users/{userId}/messages/send": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Sends a message to the recipients in the `To`, `Cc`, and `Bcc` headers.",
@@ -2087,113 +1474,70 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "requestBody": {
           "content": {
             "message/cpim": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/delivery-status": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/disposition-notification": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/external-body": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/feedback-report": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/global": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/global-delivery-status": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/global-disposition-notification": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/global-headers": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/http": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/imdn+xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/news": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/partial": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/rfc822": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/s-http": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/sip": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/sipfrag": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/tracking-status": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/vnd.si.simp": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             },
             "message/vnd.wfa.wsc": {
-              "schema": {
-                "$ref": "#/components/schemas/Message"
-              }
+              "schema": { "$ref": "#/components/schemas/Message" }
             }
           }
         },
@@ -2201,9 +1545,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageId"
-                }
+                "schema": { "$ref": "#/components/schemas/MessageId" }
               }
             },
             "description": "Successful response"
@@ -2249,26 +1591,17 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The ID of the message to delete.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": ["https://mail.google.com/"],
@@ -2287,19 +1620,14 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The ID of the message to retrieve.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The format to return the message in.",
@@ -2315,12 +1643,7 @@
             "explode": true,
             "in": "query",
             "name": "metadataHeaders",
-            "schema": {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
+            "schema": { "items": { "type": "string" }, "type": "array" },
             "style": "form"
           }
         ],
@@ -2328,9 +1651,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/MessageResponse" }
               }
             },
             "description": "Successful response"
@@ -2382,76 +1703,32 @@
         "summary": "Get a message"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ]
     },
     "/gmail/v1/users/{userId}/messages/{id}/modify": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Modifies the labels on the specified message.",
@@ -2462,27 +1739,20 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The ID of the message to modify.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ModifyMessageRequest"
-              }
+              "schema": { "$ref": "#/components/schemas/ModifyMessageRequest" }
             }
           }
         },
@@ -2490,9 +1760,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Message"
-                }
+                "schema": { "$ref": "#/components/schemas/Message" }
               }
             },
             "description": "Successful response"
@@ -2514,39 +1782,17 @@
     },
     "/gmail/v1/users/{userId}/messages/{id}/trash": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Moves the specified message to the trash.",
@@ -2557,28 +1803,21 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The ID of the message to Trash.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Message"
-                }
+                "schema": { "$ref": "#/components/schemas/Message" }
               }
             },
             "description": "Successful response"
@@ -2600,39 +1839,17 @@
     },
     "/gmail/v1/users/{userId}/messages/{id}/untrash": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Removes the specified message from the trash.",
@@ -2643,28 +1860,21 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The ID of the message to remove from Trash.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Message"
-                }
+                "schema": { "$ref": "#/components/schemas/Message" }
               }
             },
             "description": "Successful response"
@@ -2694,37 +1904,28 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The ID of the message containing the attachment.",
             "in": "path",
             "name": "messageId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The ID of the attachment.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessagePartBody"
-                }
+                "schema": { "$ref": "#/components/schemas/MessagePartBody" }
               }
             },
             "description": "Successful response"
@@ -2764,39 +1965,17 @@
         "summary": "Get message attachments"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ]
     },
     "/gmail/v1/users/{userId}/profile": {
@@ -2809,19 +1988,14 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Profile"
-                }
+                "schema": { "$ref": "#/components/schemas/Profile" }
               }
             },
             "description": "Successful response"
@@ -2853,39 +2027,17 @@
         "summary": "Get profile"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ]
     },
     "/gmail/v1/users/{userId}/settings/autoForwarding": {
@@ -2898,19 +2050,14 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AutoForwarding"
-                }
+                "schema": { "$ref": "#/components/schemas/AutoForwarding" }
               }
             },
             "description": "Successful response"
@@ -2938,39 +2085,17 @@
         "summary": "Get auto-forwarding settings"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "put": {
         "description": "Updates the auto-forwarding setting for the specified account. A verified forwarding address must be specified when auto-forwarding is enabled. This method is only available to service account clients that have been delegated domain-wide authority.",
@@ -2981,18 +2106,13 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AutoForwarding"
-              }
+              "schema": { "$ref": "#/components/schemas/AutoForwarding" }
             }
           }
         },
@@ -3000,9 +2120,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AutoForwarding"
-                }
+                "schema": { "$ref": "#/components/schemas/AutoForwarding" }
               }
             },
             "description": "Successful response"
@@ -3032,10 +2150,7 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "responses": {
@@ -3072,39 +2187,17 @@
         "summary": "List delegates settings"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Adds a delegate with its verification status set directly to `accepted`, without sending any verification email. The delegate user must be a member of the same G Suite organization as the delegator user. Gmail imposes limitations on the number of delegates and delegators each user in a G Suite organization can have. These limits depend on your organization, but in general each user can have up to 25 delegates and up to 10 delegators. Note that a delegate user must be referred to by their primary email address, and not an email alias. Also note that when a new delegate is created, there may be up to a one minute delay before the new delegate is available for use. This method is only available to service account clients that have been delegated domain-wide authority.",
@@ -3115,18 +2208,13 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Delegate"
-              }
+              "schema": { "$ref": "#/components/schemas/Delegate" }
             }
           }
         },
@@ -3134,9 +2222,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Delegate"
-                }
+                "schema": { "$ref": "#/components/schemas/Delegate" }
               }
             },
             "description": "Successful response"
@@ -3166,26 +2252,17 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The email address of the user to be removed as a delegate.",
             "in": "path",
             "name": "delegateEmail",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": [
@@ -3208,28 +2285,21 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The email address of the user whose delegate relationship is to be retrieved.",
             "in": "path",
             "name": "delegateEmail",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Delegate"
-                }
+                "schema": { "$ref": "#/components/schemas/Delegate" }
               }
             },
             "description": "Successful response"
@@ -3257,39 +2327,17 @@
         "summary": "Get delegates settings"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ]
     },
     "/gmail/v1/users/{userId}/settings/filters": {
@@ -3302,19 +2350,14 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListFiltersResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/ListFiltersResponse" }
               }
             },
             "description": "Successful response"
@@ -3342,39 +2385,17 @@
         "summary": "List filters settings"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Creates a filter. Note: you can only create a maximum of 1,000 filters.",
@@ -3385,18 +2406,13 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Filter"
-              }
+              "schema": { "$ref": "#/components/schemas/Filter" }
             }
           }
         },
@@ -3404,9 +2420,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Filter"
-                }
+                "schema": { "$ref": "#/components/schemas/Filter" }
               }
             },
             "description": "Successful response"
@@ -3432,26 +2446,17 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The ID of the filter to be deleted.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": ["https://www.googleapis.com/auth/gmail.settings.basic"],
@@ -3470,28 +2475,21 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The ID of the filter to be fetched.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Filter"
-                }
+                "schema": { "$ref": "#/components/schemas/Filter" }
               }
             },
             "description": "Successful response"
@@ -3519,39 +2517,17 @@
         "summary": "Get filters settings"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ]
     },
     "/gmail/v1/users/{userId}/settings/forwardingAddresses": {
@@ -3564,10 +2540,7 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "responses": {
@@ -3604,39 +2577,17 @@
         "summary": "List forwarding addresses settings"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Creates a forwarding address. If ownership verification is required, a message will be sent to the recipient and the resource's verification status will be set to `pending`; otherwise, the resource will be created with verification status set to `accepted`. This method is only available to service account clients that have been delegated domain-wide authority.",
@@ -3647,18 +2598,13 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ForwardingAddress"
-              }
+              "schema": { "$ref": "#/components/schemas/ForwardingAddress" }
             }
           }
         },
@@ -3666,9 +2612,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForwardingAddress"
-                }
+                "schema": { "$ref": "#/components/schemas/ForwardingAddress" }
               }
             },
             "description": "Successful response"
@@ -3698,26 +2642,17 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The forwarding address to be deleted.",
             "in": "path",
             "name": "forwardingEmail",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": [
@@ -3740,28 +2675,21 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The forwarding address to be retrieved.",
             "in": "path",
             "name": "forwardingEmail",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForwardingAddress"
-                }
+                "schema": { "$ref": "#/components/schemas/ForwardingAddress" }
               }
             },
             "description": "Successful response"
@@ -3789,39 +2717,17 @@
         "summary": "Get forwarding Addresses settings"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ]
     },
     "/gmail/v1/users/{userId}/settings/imap": {
@@ -3834,19 +2740,14 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ImapSettings"
-                }
+                "schema": { "$ref": "#/components/schemas/ImapSettings" }
               }
             },
             "description": "Successful response"
@@ -3874,39 +2775,17 @@
         "summary": "Get IMAP settings"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "put": {
         "description": "Updates IMAP settings.",
@@ -3917,18 +2796,13 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ImapSettings"
-              }
+              "schema": { "$ref": "#/components/schemas/ImapSettings" }
             }
           }
         },
@@ -3936,9 +2810,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ImapSettings"
-                }
+                "schema": { "$ref": "#/components/schemas/ImapSettings" }
               }
             },
             "description": "Successful response"
@@ -3964,19 +2836,14 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LanguageSettings"
-                }
+                "schema": { "$ref": "#/components/schemas/LanguageSettings" }
               }
             },
             "description": "Successful response"
@@ -4004,39 +2871,17 @@
         "summary": "Get language settings"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "put": {
         "description": "Updates language settings. If successful, the return object contains the `displayLanguage` that was saved for the user, which may differ from the value passed into the request. This is because the requested `displayLanguage` may not be directly supported by Gmail but have a close variant that is, and so the variant may be chosen and saved instead.",
@@ -4047,18 +2892,13 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/LanguageSettings"
-              }
+              "schema": { "$ref": "#/components/schemas/LanguageSettings" }
             }
           }
         },
@@ -4066,9 +2906,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LanguageSettings"
-                }
+                "schema": { "$ref": "#/components/schemas/LanguageSettings" }
               }
             },
             "description": "Successful response"
@@ -4094,19 +2932,14 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PopSettings"
-                }
+                "schema": { "$ref": "#/components/schemas/PopSettings" }
               }
             },
             "description": "Successful response"
@@ -4134,39 +2967,17 @@
         "summary": "Get POP settings"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "put": {
         "description": "Updates POP settings.",
@@ -4177,18 +2988,13 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PopSettings"
-              }
+              "schema": { "$ref": "#/components/schemas/PopSettings" }
             }
           }
         },
@@ -4196,9 +3002,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PopSettings"
-                }
+                "schema": { "$ref": "#/components/schemas/PopSettings" }
               }
             },
             "description": "Successful response"
@@ -4224,19 +3028,14 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListSendAsResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/ListSendAsResponse" }
               }
             },
             "description": "Successful response"
@@ -4264,39 +3063,17 @@
         "summary": "List send-as settings"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Creates a custom \"from\" send-as alias. If an SMTP MSA is specified, Gmail will attempt to connect to the SMTP service to validate the configuration before creating the alias. If ownership verification is required for the alias, a message will be sent to the email address and the resource's verification status will be set to `pending`; otherwise, the resource will be created with verification status set to `accepted`. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias. This method is only available to service account clients that have been delegated domain-wide authority.",
@@ -4307,18 +3084,13 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SendAs"
-              }
+              "schema": { "$ref": "#/components/schemas/SendAs" }
             }
           }
         },
@@ -4326,9 +3098,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SendAs"
-                }
+                "schema": { "$ref": "#/components/schemas/SendAs" }
               }
             },
             "description": "Successful response"
@@ -4358,26 +3128,17 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The send-as alias to be deleted.",
             "in": "path",
             "name": "sendAsEmail",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": [
@@ -4400,28 +3161,21 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The send-as alias to be retrieved.",
             "in": "path",
             "name": "sendAsEmail",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SendAs"
-                }
+                "schema": { "$ref": "#/components/schemas/SendAs" }
               }
             },
             "description": "Successful response"
@@ -4449,39 +3203,17 @@
         "summary": "Get send-as settings"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "patch": {
         "description": "Patch the specified send-as alias.",
@@ -4492,27 +3224,20 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The send-as alias to be updated.",
             "in": "path",
             "name": "sendAsEmail",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SendAs"
-              }
+              "schema": { "$ref": "#/components/schemas/SendAs" }
             }
           }
         },
@@ -4520,9 +3245,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SendAs"
-                }
+                "schema": { "$ref": "#/components/schemas/SendAs" }
               }
             },
             "description": "Successful response"
@@ -4554,27 +3277,20 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The send-as alias to be updated.",
             "in": "path",
             "name": "sendAsEmail",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SendAs"
-              }
+              "schema": { "$ref": "#/components/schemas/SendAs" }
             }
           }
         },
@@ -4582,9 +3298,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SendAs"
-                }
+                "schema": { "$ref": "#/components/schemas/SendAs" }
               }
             },
             "description": "Successful response"
@@ -4618,19 +3332,14 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The email address that appears in the \"From:\" header for mail sent using this alias.",
             "in": "path",
             "name": "sendAsEmail",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -4675,39 +3384,17 @@
         "summary": "List S/MIME info send-as settings"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Insert (upload) the given S/MIME config for the specified send-as alias. Note that pkcs12 format is required for the key.",
@@ -4718,27 +3405,20 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The email address that appears in the \"From:\" header for mail sent using this alias.",
             "in": "path",
             "name": "sendAsEmail",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SmimeInfo"
-              }
+              "schema": { "$ref": "#/components/schemas/SmimeInfo" }
             }
           }
         },
@@ -4746,9 +3426,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SmimeInfo"
-                }
+                "schema": { "$ref": "#/components/schemas/SmimeInfo" }
               }
             },
             "description": "Successful response"
@@ -4782,35 +3460,24 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The email address that appears in the \"From:\" header for mail sent using this alias.",
             "in": "path",
             "name": "sendAsEmail",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The immutable ID for the SmimeInfo.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": ["https://www.googleapis.com/auth/gmail.settings.basic"],
@@ -4837,37 +3504,28 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The email address that appears in the \"From:\" header for mail sent using this alias.",
             "in": "path",
             "name": "sendAsEmail",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The immutable ID for the SmimeInfo.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SmimeInfo"
-                }
+                "schema": { "$ref": "#/components/schemas/SmimeInfo" }
               }
             },
             "description": "Successful response"
@@ -4903,76 +3561,32 @@
         "summary": "Get S/MIME info send-as settings"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ]
     },
     "/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}/setDefault": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Sets the default S/MIME config for the specified send-as alias.",
@@ -4983,35 +3597,24 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The email address that appears in the \"From:\" header for mail sent using this alias.",
             "in": "path",
             "name": "sendAsEmail",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The immutable ID for the SmimeInfo.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": ["https://www.googleapis.com/auth/gmail.settings.basic"],
@@ -5032,39 +3635,17 @@
     },
     "/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/verify": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Sends a verification email to the specified send-as alias address. The verification status must be `pending`. This method is only available to service account clients that have been delegated domain-wide authority.",
@@ -5075,26 +3656,17 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The send-as alias to be verified.",
             "in": "path",
             "name": "sendAsEmail",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": [
@@ -5119,19 +3691,14 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/VacationSettings"
-                }
+                "schema": { "$ref": "#/components/schemas/VacationSettings" }
               }
             },
             "description": "Successful response"
@@ -5159,39 +3726,17 @@
         "summary": "Get vacation settings"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "put": {
         "description": "Updates vacation responder settings.",
@@ -5202,18 +3747,13 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/VacationSettings"
-              }
+              "schema": { "$ref": "#/components/schemas/VacationSettings" }
             }
           }
         },
@@ -5221,9 +3761,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/VacationSettings"
-                }
+                "schema": { "$ref": "#/components/schemas/VacationSettings" }
               }
             },
             "description": "Successful response"
@@ -5241,39 +3779,17 @@
     },
     "/gmail/v1/users/{userId}/stop": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "x-ignore": true,
@@ -5285,17 +3801,10 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": ["https://mail.google.com/"],
@@ -5328,65 +3837,46 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "Include threads from `SPAM` and `TRASH` in the results.",
             "in": "query",
             "name": "includeSpamTrash",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Only return threads with labels that match all of the specified label IDs.",
             "explode": true,
             "in": "query",
             "name": "labelIds",
-            "schema": {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
+            "schema": { "items": { "type": "string" }, "type": "array" },
             "style": "form"
           },
           {
             "description": "Maximum number of threads to return.",
             "in": "query",
             "name": "maxResults",
-            "schema": {
-              "type": "integer"
-            }
+            "schema": { "type": "integer" }
           },
           {
             "description": "Page token to retrieve a specific page of results in the list.",
             "in": "query",
             "name": "pageToken",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Only return threads matching the specified query. Supports the same query format as the Gmail search box. For example, `\"from:someuser@example.com rfc822msgid: is:unread\"`. Parameter cannot be used when accessing the api using the gmail.metadata scope.",
             "in": "query",
             "name": "q",
-            "schema": {
-              "title": "Query",
-              "type": "string"
-            }
+            "schema": { "title": "Query", "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListThreadsResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/ListThreadsResponse" }
               }
             },
             "description": "Successful response"
@@ -5414,39 +3904,17 @@
         "summary": "List threads"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ]
     },
     "/gmail/v1/users/{userId}/threads/{id}": {
@@ -5459,26 +3927,17 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "ID of the Thread to delete.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": ["https://mail.google.com/"],
@@ -5498,19 +3957,14 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The ID of the thread to retrieve.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The format to return the messages in.",
@@ -5526,12 +3980,7 @@
             "explode": true,
             "in": "query",
             "name": "metadataHeaders",
-            "schema": {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
+            "schema": { "items": { "type": "string" }, "type": "array" },
             "style": "form"
           }
         ],
@@ -5539,9 +3988,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Thread"
-                }
+                "schema": { "$ref": "#/components/schemas/Thread" }
               }
             },
             "description": "Successful response"
@@ -5593,76 +4040,32 @@
         "summary": "Get a thread"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ]
     },
     "/gmail/v1/users/{userId}/threads/{id}/modify": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Modifies the labels applied to the thread. This applies to all messages in the thread.",
@@ -5673,27 +4076,20 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The ID of the thread to modify.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ModifyThreadRequest"
-              }
+              "schema": { "$ref": "#/components/schemas/ModifyThreadRequest" }
             }
           }
         },
@@ -5701,9 +4097,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Thread"
-                }
+                "schema": { "$ref": "#/components/schemas/Thread" }
               }
             },
             "description": "Successful response"
@@ -5725,39 +4119,17 @@
     },
     "/gmail/v1/users/{userId}/threads/{id}/trash": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Moves the specified thread to the trash.",
@@ -5768,28 +4140,21 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The ID of the thread to Trash.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Thread"
-                }
+                "schema": { "$ref": "#/components/schemas/Thread" }
               }
             },
             "description": "Successful response"
@@ -5811,39 +4176,17 @@
     },
     "/gmail/v1/users/{userId}/threads/{id}/untrash": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Removes the specified thread from the trash.",
@@ -5854,28 +4197,21 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           },
           {
             "description": "The ID of the thread to remove from Trash.",
             "in": "path",
             "name": "id",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Thread"
-                }
+                "schema": { "$ref": "#/components/schemas/Thread" }
               }
             },
             "description": "Successful response"
@@ -5897,39 +4233,17 @@
     },
     "/gmail/v1/users/{userId}/watch": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "x-ignore": true,
@@ -5941,18 +4255,13 @@
             "in": "path",
             "name": "userId",
             "required": true,
-            "schema": {
-              "type": "string",
-              "default": "me"
-            }
+            "schema": { "type": "string", "default": "me" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/WatchRequest"
-              }
+              "schema": { "$ref": "#/components/schemas/WatchRequest" }
             }
           }
         },
@@ -5960,9 +4269,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/WatchResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/WatchResponse" }
               }
             },
             "description": "Successful response"
@@ -5997,101 +4304,77 @@
         "description": "V1 error format.",
         "in": "query",
         "name": "$.xgafv",
-        "schema": {
-          "enum": ["1", "2"],
-          "type": "string"
-        },
+        "schema": { "enum": ["1", "2"], "type": "string" },
         "x-ignore": true
       },
       "access_token": {
         "description": "OAuth access token.",
         "in": "query",
         "name": "access_token",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "x-ignore": true
       },
       "alt": {
         "description": "Data format for response.",
         "in": "query",
         "name": "alt",
-        "schema": {
-          "enum": ["json", "media", "proto"],
-          "type": "string"
-        },
+        "schema": { "enum": ["json", "media", "proto"], "type": "string" },
         "x-ignore": true
       },
       "callback": {
         "description": "JSONP",
         "in": "query",
         "name": "callback",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "x-ignore": true
       },
       "fields": {
         "description": "Selector specifying which fields to include in a partial response.",
         "in": "query",
         "name": "fields",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "x-ignore": true
       },
       "key": {
         "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
         "in": "query",
         "name": "key",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "x-ignore": true
       },
       "oauth_token": {
         "description": "OAuth 2.0 token for the current user.",
         "in": "query",
         "name": "oauth_token",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "x-ignore": true
       },
       "prettyPrint": {
         "description": "Returns response with indentations and line breaks.",
         "in": "query",
         "name": "prettyPrint",
-        "schema": {
-          "type": "boolean"
-        },
+        "schema": { "type": "boolean" },
         "x-ignore": true
       },
       "quotaUser": {
         "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
         "in": "query",
         "name": "quotaUser",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "x-ignore": true
       },
       "uploadType": {
         "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
         "in": "query",
         "name": "uploadType",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "x-ignore": true
       },
       "upload_protocol": {
         "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
         "in": "query",
         "name": "upload_protocol",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "x-ignore": true
       }
     },
@@ -6125,9 +4408,7 @@
         "properties": {
           "ids": {
             "description": "The IDs of the messages to delete.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           }
         },
@@ -6137,23 +4418,17 @@
         "properties": {
           "addLabelIds": {
             "description": "A list of label IDs to add to messages.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "ids": {
             "description": "The IDs of the messages to modify. There is a limit of 1000 ids per request.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "removeLabelIds": {
             "description": "A list of label IDs to remove from messages.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           }
         },
@@ -6217,9 +4492,7 @@
         "properties": {
           "addLabelIds": {
             "description": "List of labels to add to the message.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "forward": {
@@ -6228,9 +4501,7 @@
           },
           "removeLabelIds": {
             "description": "List of labels to remove from the message.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           }
         },
@@ -6305,37 +4576,27 @@
           },
           "labelsAdded": {
             "description": "Labels added to messages in this history record.",
-            "items": {
-              "$ref": "#/components/schemas/HistoryLabelAdded"
-            },
+            "items": { "$ref": "#/components/schemas/HistoryLabelAdded" },
             "type": "array"
           },
           "labelsRemoved": {
             "description": "Labels removed from messages in this history record.",
-            "items": {
-              "$ref": "#/components/schemas/HistoryLabelRemoved"
-            },
+            "items": { "$ref": "#/components/schemas/HistoryLabelRemoved" },
             "type": "array"
           },
           "messages": {
             "description": "List of messages changed in this history record. The fields for specific change types, such as `messagesAdded` may duplicate messages in this field. We recommend using the specific change-type fields instead of this.",
-            "items": {
-              "$ref": "#/components/schemas/Message"
-            },
+            "items": { "$ref": "#/components/schemas/Message" },
             "type": "array"
           },
           "messagesAdded": {
             "description": "Messages added to the mailbox in this history record.",
-            "items": {
-              "$ref": "#/components/schemas/HistoryMessageAdded"
-            },
+            "items": { "$ref": "#/components/schemas/HistoryMessageAdded" },
             "type": "array"
           },
           "messagesDeleted": {
             "description": "Messages deleted (not Trashed) from the mailbox in this history record.",
-            "items": {
-              "$ref": "#/components/schemas/HistoryMessageDeleted"
-            },
+            "items": { "$ref": "#/components/schemas/HistoryMessageDeleted" },
             "type": "array"
           }
         },
@@ -6345,14 +4606,10 @@
         "properties": {
           "labelIds": {
             "description": "Label IDs added to the message.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
-          "message": {
-            "$ref": "#/components/schemas/Message"
-          }
+          "message": { "$ref": "#/components/schemas/Message" }
         },
         "type": "object"
       },
@@ -6360,31 +4617,19 @@
         "properties": {
           "labelIds": {
             "description": "Label IDs removed from the message.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
-          "message": {
-            "$ref": "#/components/schemas/Message"
-          }
+          "message": { "$ref": "#/components/schemas/Message" }
         },
         "type": "object"
       },
       "HistoryMessageAdded": {
-        "properties": {
-          "message": {
-            "$ref": "#/components/schemas/Message"
-          }
-        },
+        "properties": { "message": { "$ref": "#/components/schemas/Message" } },
         "type": "object"
       },
       "HistoryMessageDeleted": {
-        "properties": {
-          "message": {
-            "$ref": "#/components/schemas/Message"
-          }
-        },
+        "properties": { "message": { "$ref": "#/components/schemas/Message" } },
         "type": "object"
       },
       "ImapSettings": {
@@ -6497,9 +4742,7 @@
         "properties": {
           "delegates": {
             "description": "List of the user's delegates (with any verification status). If an account doesn't have delegates, this field doesn't appear.",
-            "items": {
-              "$ref": "#/components/schemas/Delegate"
-            },
+            "items": { "$ref": "#/components/schemas/Delegate" },
             "type": "array"
           }
         },
@@ -6509,9 +4752,7 @@
         "properties": {
           "drafts": {
             "description": "List of drafts. Note that the `Message` property in each `Draft` resource only contains an `id` and a `threadId`. The messages.get method can fetch additional message details.",
-            "items": {
-              "$ref": "#/components/schemas/Draft"
-            },
+            "items": { "$ref": "#/components/schemas/Draft" },
             "type": "array"
           },
           "nextPageToken": {
@@ -6531,9 +4772,7 @@
         "properties": {
           "filter": {
             "description": "List of a user's filters.",
-            "items": {
-              "$ref": "#/components/schemas/Filter"
-            },
+            "items": { "$ref": "#/components/schemas/Filter" },
             "type": "array"
           }
         },
@@ -6544,9 +4783,7 @@
         "properties": {
           "forwardingAddresses": {
             "description": "List of addresses that may be used for forwarding.",
-            "items": {
-              "$ref": "#/components/schemas/ForwardingAddress"
-            },
+            "items": { "$ref": "#/components/schemas/ForwardingAddress" },
             "type": "array"
           }
         },
@@ -6556,9 +4793,7 @@
         "properties": {
           "history": {
             "description": "List of history records. Any `messages` contained in the response will typically only have `id` and `threadId` fields populated.",
-            "items": {
-              "$ref": "#/components/schemas/History"
-            },
+            "items": { "$ref": "#/components/schemas/History" },
             "type": "array"
           },
           "historyId": {
@@ -6577,9 +4812,7 @@
         "properties": {
           "labels": {
             "description": "List of labels. Note that each label resource only contains an `id`, `name`, `messageListVisibility`, `labelListVisibility`, and `type`. The labels.get method can fetch additional label details.",
-            "items": {
-              "$ref": "#/components/schemas/Label"
-            },
+            "items": { "$ref": "#/components/schemas/Label" },
             "type": "array"
           }
         },
@@ -6589,9 +4822,7 @@
         "properties": {
           "messages": {
             "description": "List of messages. Note that each message resource contains only an `id` and a `threadId`.",
-            "items": {
-              "$ref": "#/components/schemas/MessageResponse"
-            },
+            "items": { "$ref": "#/components/schemas/MessageResponse" },
             "type": "array"
           },
           "nextPageToken": {
@@ -6611,9 +4842,7 @@
         "properties": {
           "sendAs": {
             "description": "List of send-as aliases.",
-            "items": {
-              "$ref": "#/components/schemas/SendAs"
-            },
+            "items": { "$ref": "#/components/schemas/SendAs" },
             "type": "array"
           }
         },
@@ -6623,9 +4852,7 @@
         "properties": {
           "smimeInfo": {
             "description": "List of SmimeInfo.",
-            "items": {
-              "$ref": "#/components/schemas/SmimeInfo"
-            },
+            "items": { "$ref": "#/components/schemas/SmimeInfo" },
             "type": "array"
           }
         },
@@ -6644,9 +4871,7 @@
           },
           "threads": {
             "description": "List of threads. Note that each thread resource does not contain a list of `messages`. The list of `messages` for a given thread can be fetched using the threads.get method.",
-            "items": {
-              "$ref": "#/components/schemas/Thread"
-            },
+            "items": { "$ref": "#/components/schemas/Thread" },
             "type": "array"
           }
         },
@@ -6655,22 +4880,10 @@
       "Message": {
         "description": "An email message.",
         "properties": {
-          "to": {
-            "title": "To",
-            "type": "string"
-          },
-          "cc": {
-            "title": "Cc",
-            "type": "string"
-          },
-          "bcc": {
-            "title": "Bcc",
-            "type": "string"
-          },
-          "subject": {
-            "title": "Subject",
-            "type": "string"
-          },
+          "to": { "title": "To", "type": "string" },
+          "cc": { "title": "Cc", "type": "string" },
+          "bcc": { "title": "Bcc", "type": "string" },
+          "subject": { "title": "Subject", "type": "string" },
           "body": {
             "title": "Message body",
             "type": "string",
@@ -6693,9 +4906,7 @@
           },
           "labelIds": {
             "description": "List of IDs of labels applied to this message.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "payload": {
@@ -6725,17 +4936,8 @@
       },
       "MessageResponse": {
         "allOf": [
-          {
-            "type": "object",
-            "properties": {
-              "from": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "$ref": "#/components/schemas/Message"
-          }
+          { "type": "object", "properties": { "from": { "type": "string" } } },
+          { "$ref": "#/components/schemas/Message" }
         ]
       },
       "MessageId": {
@@ -6765,9 +4967,7 @@
           },
           "headers": {
             "description": "List of headers on this message part. For the top-level message part, representing the entire message payload, it will contain the standard RFC 2822 email headers such as `To`, `From`, and `Subject`.",
-            "items": {
-              "$ref": "#/components/schemas/MessagePartHeader"
-            },
+            "items": { "$ref": "#/components/schemas/MessagePartHeader" },
             "type": "array"
           },
           "mimeType": {
@@ -6780,9 +4980,7 @@
           },
           "parts": {
             "description": "The child MIME message parts of this part. This only applies to container MIME message parts, for example `multipart/*`. For non- container MIME message part types, such as `text/plain`, this field is empty. For more information, see RFC 1521.",
-            "items": {
-              "$ref": "#/components/schemas/MessagePart"
-            },
+            "items": { "$ref": "#/components/schemas/MessagePart" },
             "type": "array"
           }
         },
@@ -6825,16 +5023,12 @@
         "properties": {
           "addLabelIds": {
             "description": "A list of IDs of labels to add to this message.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "removeLabelIds": {
             "description": "A list IDs of labels to remove from this message.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           }
         },
@@ -6844,16 +5038,12 @@
         "properties": {
           "addLabelIds": {
             "description": "A list of IDs of labels to add to this thread.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "removeLabelIds": {
             "description": "A list of IDs of labels to remove from this thread.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           }
         },
@@ -7032,9 +5222,7 @@
           },
           "messages": {
             "description": "The list of messages in the thread.",
-            "items": {
-              "$ref": "#/components/schemas/Message"
-            },
+            "items": { "$ref": "#/components/schemas/Message" },
             "type": "array"
           },
           "snippet": {
@@ -7094,9 +5282,7 @@
           },
           "labelIds": {
             "description": "List of label_ids to restrict notifications about. By default, if unspecified, all changes are pushed out. If specified then dictates which labels are required for a push notification to be generated.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "topicName": {

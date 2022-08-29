@@ -140,9 +140,7 @@
         "operationId": "CancelSigningProfile",
         "description": "Changes the state of an <code>ACTIVE</code> signing profile to <code>CANCELED</code>. A canceled profile is still viewable with the <code>ListSigningProfiles</code> operation, but it cannot perform new signing jobs, and is deleted two years after cancelation.",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -167,9 +165,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -201,27 +197,13 @@
         "summary": "Cancel Signing Profile"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetSigningProfile",
@@ -261,9 +243,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -344,9 +324,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -354,9 +332,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -399,9 +375,7 @@
                     "properties": {
                       "certificateArn": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/CertificateArn"
-                          },
+                          { "$ref": "#/components/schemas/CertificateArn" },
                           {
                             "description": "The Amazon Resource Name (ARN) of the certificates that is used to sign your code."
                           }
@@ -429,9 +403,7 @@
                       },
                       "signingImageFormat": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/ImageFormat"
-                          },
+                          { "$ref": "#/components/schemas/ImageFormat" },
                           {
                             "description": "A signed image is a JSON object. When overriding the default signing platform configuration, a customer can select either of two signing formats, <code>JSONEmbedded</code> or <code>JSONDetached</code>. (A third format value, <code>JSON</code>, is reserved for future use.) With <code>JSONEmbedded</code>, the signing image has the payload embedded in it. With <code>JSONDetached</code>, the payload is not be embedded in the signing image."
                           }
@@ -461,9 +433,7 @@
                     "properties": {
                       "value": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/Integer"
-                          },
+                          { "$ref": "#/components/schemas/Integer" },
                           {
                             "description": "The numerical value of the time unit for signature validity."
                           }
@@ -471,9 +441,7 @@
                       },
                       "type": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/ValidityType"
-                          },
+                          { "$ref": "#/components/schemas/ValidityType" },
                           {
                             "description": "The time unit for signature validity."
                           }
@@ -551,35 +519,19 @@
             "in": "path",
             "required": true,
             "description": "The ID of the signing job on input.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Describe Signing Job"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/signing-platforms/{platformId}": {
@@ -644,35 +596,19 @@
             "in": "path",
             "required": true,
             "description": "The ID of the target signing platform.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Get Signing Platform"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/signing-jobs": {
@@ -694,9 +630,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -714,9 +648,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -747,67 +679,49 @@
             "in": "query",
             "required": false,
             "description": "The ID of microcontroller platform that you specified for the distribution of your code image.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "requestedBy",
             "in": "query",
             "required": false,
             "description": "The IAM principal that requested the signing job.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": "Specifies the maximum number of items to return in the response. Use this parameter when paginating results. If additional items exist beyond the number you specify, the <code>nextToken</code> element is set in the response. Use the <code>nextToken</code> value in a subsequent request to retrieve additional items. ",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 25
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 25 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "String for specifying the next set of paginated results to return. After you receive a response with truncated results, use this parameter in a subsequent request. Set it to the value of <code>nextToken</code> from the response that you just received.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "isRevoked",
             "in": "query",
             "required": false,
             "description": "Filters results to return only signing jobs with revoked signatures.",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "name": "signatureExpiresBefore",
             "in": "query",
             "required": false,
             "description": "Filters results to return only signing jobs with signatures expiring before a specified timestamp.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "signatureExpiresAfter",
             "in": "query",
             "required": false,
             "description": "Filters results to return only signing jobs with signatures expiring after a specified timestamp.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "jobInvoker",
@@ -825,27 +739,13 @@
         "summary": "List Signing Jobs"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "StartSigningJob",
@@ -865,9 +765,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -895,9 +793,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -929,7 +825,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["source", "destination", "clientRequestToken", "clientRequestToken"],
+                "required": [
+                  "source",
+                  "destination",
+                  "clientRequestToken",
+                  "clientRequestToken"
+                ],
                 "properties": {
                   "source": {
                     "description": "An <code>S3Source</code> object that contains information about the S3 bucket where you saved your unsigned code.",
@@ -937,12 +838,8 @@
                     "properties": {
                       "s3": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/S3Source"
-                          },
-                          {
-                            "description": "The <code>S3Source</code> object."
-                          }
+                          { "$ref": "#/components/schemas/S3Source" },
+                          { "description": "The <code>S3Source</code> object." }
                         ]
                       }
                     }
@@ -953,9 +850,7 @@
                     "properties": {
                       "s3": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/S3Destination"
-                          },
+                          { "$ref": "#/components/schemas/S3Destination" },
                           {
                             "description": "The <code>S3Destination</code> object."
                           }
@@ -1008,9 +903,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1028,9 +921,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -1051,73 +942,47 @@
             "in": "query",
             "required": false,
             "description": "The category type of a signing platform.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "partner",
             "in": "query",
             "required": false,
             "description": "Any partner entities connected to a signing platform.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "target",
             "in": "query",
             "required": false,
             "description": "The validation template that is used by the target signing platform.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": "The maximum number of results to be returned by this operation.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 25
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 25 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "Value for specifying the next set of paginated results to return. After you receive a response with truncated results, use this parameter in a subsequent request. Set it to the value of <code>nextToken</code> from the response that you just received.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "List Signing Platforms"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/signing-profiles": {
@@ -1149,9 +1014,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -1172,38 +1035,28 @@
             "in": "query",
             "required": false,
             "description": "Designates whether to include profiles with the status of <code>CANCELED</code>.",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": "The maximum number of profiles to be returned.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 25
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 25 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "Value for specifying the next set of paginated results to return. After you receive a response with truncated results, use this parameter in a subsequent request. Set it to the value of <code>nextToken</code> from the response that you just received.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "platformId",
             "in": "query",
             "required": false,
             "description": "Filters results to return only signing jobs initiated for a specified signing platform.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "statuses",
@@ -1212,36 +1065,20 @@
             "description": "Filters results to return only signing jobs with statuses in the specified list.",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SigningProfileStatus"
-              }
+              "items": { "$ref": "#/components/schemas/SigningProfileStatus" }
             }
           }
         ],
         "summary": "List Signing Profiles"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/tags/{resourceArn}": {
@@ -1273,9 +1110,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1283,9 +1118,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1306,35 +1139,19 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) for the signing profile.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "List Tags For Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "TagResource",
@@ -1344,9 +1161,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TagResourceResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/TagResourceResponse" }
               }
             }
           },
@@ -1364,9 +1179,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1374,9 +1187,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1397,9 +1208,7 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) for the signing profile.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1456,9 +1265,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1466,9 +1273,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1489,9 +1294,7 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) for the signing profile.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "tagKeys",
@@ -1500,9 +1303,7 @@
             "description": "A list of tag keys to be removed from the signing profile.",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/TagKey"
-              },
+              "items": { "$ref": "#/components/schemas/TagKey" },
               "minItems": 1,
               "maxItems": 200
             }
@@ -1511,27 +1312,13 @@
         "summary": "Untag Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/signing-profiles/{profileName}/permissions": {
@@ -1553,9 +1340,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1593,9 +1378,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -1673,27 +1456,13 @@
         "summary": "Add Profile Permission"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListProfilePermissions",
@@ -1713,9 +1482,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1778,9 +1545,7 @@
             "in": "query",
             "required": false,
             "description": "String for specifying the next set of paginated results.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "List Profile Permissions"
@@ -1805,9 +1570,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1835,9 +1598,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -1880,44 +1641,26 @@
             "in": "query",
             "required": true,
             "description": "An identifier for the current revision of the signing profile permissions.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "statementId",
             "in": "path",
             "required": true,
             "description": "A unique identifier for the cross-account permissions statement.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Remove Profile Permission"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/signing-jobs/{jobId}/revoke": {
@@ -1925,16 +1668,12 @@
         "operationId": "RevokeSignature",
         "description": "Changes the state of a signing job to REVOKED. This indicates that the signature is no longer valid.",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1985,9 +1724,7 @@
             "in": "path",
             "required": true,
             "description": "ID of the signing job to be revoked.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -2019,27 +1756,13 @@
         "summary": "Revoke Signature"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/signing-profiles/{profileName}/revoke": {
@@ -2047,16 +1770,12 @@
         "operationId": "RevokeSigningProfile",
         "description": "Changes the state of a signing profile to REVOKED. This indicates that signatures generated using the signing profile after an effective start date are no longer valid.",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -2149,27 +1868,13 @@
         "summary": "Revoke Signing Profile"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -2178,63 +1883,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -2258,19 +1949,13 @@
         "properties": {
           "jobId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobId"
-              },
-              {
-                "description": "The ID of the signing job on output."
-              }
+              { "$ref": "#/components/schemas/JobId" },
+              { "description": "The ID of the signing job on output." }
             ]
           },
           "source": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Source"
-              },
+              { "$ref": "#/components/schemas/Source" },
               {
                 "description": "The object that contains the name of your S3 bucket or your raw code."
               }
@@ -2278,9 +1963,7 @@
           },
           "signingMaterial": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningMaterial"
-              },
+              { "$ref": "#/components/schemas/SigningMaterial" },
               {
                 "description": "The Amazon Resource Name (ARN) of your code signing certificate."
               }
@@ -2288,9 +1971,7 @@
           },
           "platformId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PlatformId"
-              },
+              { "$ref": "#/components/schemas/PlatformId" },
               {
                 "description": "The microcontroller platform to which your signed code image will be distributed."
               }
@@ -2298,9 +1979,7 @@
           },
           "profileName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProfileName"
-              },
+              { "$ref": "#/components/schemas/ProfileName" },
               {
                 "description": "The name of the profile that initiated the signing operation."
               }
@@ -2308,9 +1987,7 @@
           },
           "overrides": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningPlatformOverrides"
-              },
+              { "$ref": "#/components/schemas/SigningPlatformOverrides" },
               {
                 "description": "A list of any overrides that were applied to the signing operation."
               }
@@ -2318,9 +1995,7 @@
           },
           "signingParameters": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningParameters"
-              },
+              { "$ref": "#/components/schemas/SigningParameters" },
               {
                 "description": "Map of user-assigned key-value pairs used during signing. These values contain any information that you specified for use in your signing job. "
               }
@@ -2328,9 +2003,7 @@
           },
           "createdAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CreatedAt"
-              },
+              { "$ref": "#/components/schemas/CreatedAt" },
               {
                 "description": "Date and time that the signing job was created."
               }
@@ -2338,9 +2011,7 @@
           },
           "completedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CompletedAt"
-              },
+              { "$ref": "#/components/schemas/CompletedAt" },
               {
                 "description": "Date and time that the signing job was completed."
               }
@@ -2348,9 +2019,7 @@
           },
           "requestedBy": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RequestedBy"
-              },
+              { "$ref": "#/components/schemas/RequestedBy" },
               {
                 "description": "The IAM principal that requested the signing job."
               }
@@ -2358,29 +2027,19 @@
           },
           "status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningStatus"
-              },
-              {
-                "description": "Status of the signing job."
-              }
+              { "$ref": "#/components/schemas/SigningStatus" },
+              { "description": "Status of the signing job." }
             ]
           },
           "statusReason": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StatusReason"
-              },
-              {
-                "description": "String value that contains the status reason."
-              }
+              { "$ref": "#/components/schemas/StatusReason" },
+              { "description": "String value that contains the status reason." }
             ]
           },
           "signedObject": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SignedObject"
-              },
+              { "$ref": "#/components/schemas/SignedObject" },
               {
                 "description": "Name of the S3 bucket where the signed code image is saved by code signing."
               }
@@ -2388,9 +2047,7 @@
           },
           "platformDisplayName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DisplayName"
-              },
+              { "$ref": "#/components/schemas/DisplayName" },
               {
                 "description": "A human-readable name for the signing platform associated with the signing job."
               }
@@ -2398,9 +2055,7 @@
           },
           "profileVersion": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProfileVersion"
-              },
+              { "$ref": "#/components/schemas/ProfileVersion" },
               {
                 "description": "The version of the signing profile used to initiate the signing job."
               }
@@ -2408,9 +2063,7 @@
           },
           "signatureExpiresAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "Thr expiration timestamp for the signature generated by the signing job."
               }
@@ -2418,9 +2071,7 @@
           },
           "revocationRecord": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningJobRevocationRecord"
-              },
+              { "$ref": "#/components/schemas/SigningJobRevocationRecord" },
               {
                 "description": "A revocation record if the signature generated by the signing job has been revoked. Contains a timestamp and the ID of the IAM entity that revoked the signature."
               }
@@ -2428,19 +2079,13 @@
           },
           "jobOwner": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccountId"
-              },
-              {
-                "description": "The AWS account ID of the job owner."
-              }
+              { "$ref": "#/components/schemas/AccountId" },
+              { "description": "The AWS account ID of the job owner." }
             ]
           },
           "jobInvoker": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccountId"
-              },
+              { "$ref": "#/components/schemas/AccountId" },
               {
                 "description": "The IAM entity that initiated the signing job."
               }
@@ -2453,19 +2098,13 @@
         "properties": {
           "platformId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PlatformId"
-              },
-              {
-                "description": "The ID of the target signing platform."
-              }
+              { "$ref": "#/components/schemas/PlatformId" },
+              { "description": "The ID of the target signing platform." }
             ]
           },
           "displayName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DisplayName"
-              },
+              { "$ref": "#/components/schemas/DisplayName" },
               {
                 "description": "The display name of the target signing platform."
               }
@@ -2473,9 +2112,7 @@
           },
           "partner": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "A list of partner entities that use the target signing platform."
               }
@@ -2483,9 +2120,7 @@
           },
           "target": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The validation template that is used by the target signing platform."
               }
@@ -2493,9 +2128,7 @@
           },
           "category": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Category"
-              },
+              { "$ref": "#/components/schemas/Category" },
               {
                 "description": "The category type of the target signing platform."
               }
@@ -2503,9 +2136,7 @@
           },
           "signingConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningConfiguration"
-              },
+              { "$ref": "#/components/schemas/SigningConfiguration" },
               {
                 "description": "A list of configurations applied to the target platform at signing."
               }
@@ -2513,9 +2144,7 @@
           },
           "signingImageFormat": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningImageFormat"
-              },
+              { "$ref": "#/components/schemas/SigningImageFormat" },
               {
                 "description": "The format of the target platform's signing image."
               }
@@ -2523,9 +2152,7 @@
           },
           "maxSizeInMB": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MaxSizeInMB"
-              },
+              { "$ref": "#/components/schemas/MaxSizeInMB" },
               {
                 "description": "The maximum size (in MB) of the payload that can be signed by the target platform."
               }
@@ -2533,9 +2160,7 @@
           },
           "revocationSupported": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/bool"
-              },
+              { "$ref": "#/components/schemas/bool" },
               {
                 "description": "A flag indicating whether signatures generated for the signing platform can be revoked."
               }
@@ -2548,19 +2173,13 @@
         "properties": {
           "profileName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProfileName"
-              },
-              {
-                "description": "The name of the target signing profile."
-              }
+              { "$ref": "#/components/schemas/ProfileName" },
+              { "description": "The name of the target signing profile." }
             ]
           },
           "signingMaterial": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningMaterial"
-              },
+              { "$ref": "#/components/schemas/SigningMaterial" },
               {
                 "description": "The ARN of the certificate that the target profile uses for signing operations."
               }
@@ -2568,9 +2187,7 @@
           },
           "platformId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PlatformId"
-              },
+              { "$ref": "#/components/schemas/PlatformId" },
               {
                 "description": "The ID of the platform that is used by the target signing profile."
               }
@@ -2578,9 +2195,7 @@
           },
           "overrides": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningPlatformOverrides"
-              },
+              { "$ref": "#/components/schemas/SigningPlatformOverrides" },
               {
                 "description": "A list of overrides applied by the target signing profile for signing operations."
               }
@@ -2588,9 +2203,7 @@
           },
           "signingParameters": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningParameters"
-              },
+              { "$ref": "#/components/schemas/SigningParameters" },
               {
                 "description": "A map of key-value pairs for signing operations that is attached to the target signing profile."
               }
@@ -2598,19 +2211,13 @@
           },
           "status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningProfileStatus"
-              },
-              {
-                "description": "The status of the target signing profile."
-              }
+              { "$ref": "#/components/schemas/SigningProfileStatus" },
+              { "description": "The status of the target signing profile." }
             ]
           },
           "arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The Amazon Resource Name (ARN) for the signing profile."
               }
@@ -2618,9 +2225,7 @@
           },
           "tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagMap"
-              },
+              { "$ref": "#/components/schemas/TagMap" },
               {
                 "description": "A list of tags associated with the signing profile."
               }
@@ -2628,19 +2233,13 @@
           },
           "profileVersion": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProfileVersion"
-              },
-              {
-                "description": "The current version of the signing profile."
-              }
+              { "$ref": "#/components/schemas/ProfileVersion" },
+              { "description": "The current version of the signing profile." }
             ]
           },
           "profileVersionArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "The signing profile ARN, including the profile version."
               }
@@ -2651,9 +2250,7 @@
           },
           "platformDisplayName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DisplayName"
-              },
+              { "$ref": "#/components/schemas/DisplayName" },
               {
                 "description": "A human-readable name for the signing platform associated with the signing profile."
               }
@@ -2664,9 +2261,7 @@
           },
           "statusReason": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "Reason for the status of the target signing profile."
               }
@@ -2679,19 +2274,13 @@
         "properties": {
           "jobs": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningJobs"
-              },
-              {
-                "description": "A list of your signing jobs."
-              }
+              { "$ref": "#/components/schemas/SigningJobs" },
+              { "description": "A list of your signing jobs." }
             ]
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "String for specifying the next set of paginated results."
               }
@@ -2705,9 +2294,7 @@
         "properties": {
           "platforms": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningPlatforms"
-              },
+              { "$ref": "#/components/schemas/SigningPlatforms" },
               {
                 "description": "A list of all platforms that match the request parameters."
               }
@@ -2715,9 +2302,7 @@
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "Value for specifying the next set of paginated results to return."
               }
@@ -2730,9 +2315,7 @@
         "properties": {
           "profiles": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningProfiles"
-              },
+              { "$ref": "#/components/schemas/SigningProfiles" },
               {
                 "description": "A list of profiles that are available in the AWS account. This includes profiles with the status of <code>CANCELED</code> if the <code>includeCanceled</code> parameter is set to <code>true</code>."
               }
@@ -2740,9 +2323,7 @@
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "Value for specifying the next set of paginated results to return."
               }
@@ -2755,9 +2336,7 @@
         "properties": {
           "tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagMap"
-              },
+              { "$ref": "#/components/schemas/TagMap" },
               {
                 "description": "A list of tags associated with the signing profile."
               }
@@ -2772,9 +2351,7 @@
         "properties": {
           "arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The Amazon Resource Name (ARN) of the signing profile created."
               }
@@ -2782,9 +2359,7 @@
           },
           "profileVersion": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProfileVersion"
-              },
+              { "$ref": "#/components/schemas/ProfileVersion" },
               {
                 "description": "The version of the signing profile being created."
               }
@@ -2792,9 +2367,7 @@
           },
           "profileVersionArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "The signing profile ARN, including the profile version."
               }
@@ -2802,17 +2375,13 @@
           }
         }
       },
-      "CertificateArn": {
-        "type": "string"
-      },
+      "CertificateArn": { "type": "string" },
       "SigningConfigurationOverrides": {
         "type": "object",
         "properties": {
           "encryptionAlgorithm": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EncryptionAlgorithm"
-              },
+              { "$ref": "#/components/schemas/EncryptionAlgorithm" },
               {
                 "description": "A specified override of the default encryption algorithm that is used in a code signing job."
               }
@@ -2820,9 +2389,7 @@
           },
           "hashAlgorithm": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HashAlgorithm"
-              },
+              { "$ref": "#/components/schemas/HashAlgorithm" },
               {
                 "description": "A specified override of the default hash algorithm that is used in a code signing job."
               }
@@ -2835,34 +2402,21 @@
         "type": "string",
         "enum": ["JSON", "JSONEmbedded", "JSONDetached"]
       },
-      "SigningParameterValue": {
-        "type": "string"
-      },
-      "TagValue": {
-        "type": "string",
-        "maxLength": 256
-      },
+      "SigningParameterValue": { "type": "string" },
+      "TagValue": { "type": "string", "maxLength": 256 },
       "StartSigningJobResponse": {
         "type": "object",
         "properties": {
           "jobId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobId"
-              },
-              {
-                "description": "The ID of your signing job."
-              }
+              { "$ref": "#/components/schemas/JobId" },
+              { "description": "The ID of your signing job." }
             ]
           },
           "jobOwner": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccountId"
-              },
-              {
-                "description": "The AWS account ID of the signing job owner."
-              }
+              { "$ref": "#/components/schemas/AccountId" },
+              { "description": "The AWS account ID of the signing job owner." }
             ]
           }
         }
@@ -2873,19 +2427,13 @@
         "properties": {
           "bucketName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BucketName"
-              },
-              {
-                "description": "Name of the S3 bucket."
-              }
+              { "$ref": "#/components/schemas/BucketName" },
+              { "description": "Name of the S3 bucket." }
             ]
           },
           "key": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Key"
-              },
+              { "$ref": "#/components/schemas/Key" },
               {
                 "description": "Key name of the bucket object that contains your unsigned code."
               }
@@ -2893,9 +2441,7 @@
           },
           "version": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Version"
-              },
+              { "$ref": "#/components/schemas/Version" },
               {
                 "description": "Version of your source image in your version enabled S3 bucket."
               }
@@ -2909,19 +2455,13 @@
         "properties": {
           "bucketName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BucketName"
-              },
-              {
-                "description": "Name of the S3 bucket."
-              }
+              { "$ref": "#/components/schemas/BucketName" },
+              { "description": "Name of the S3 bucket." }
             ]
           },
           "prefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Prefix"
-              },
+              { "$ref": "#/components/schemas/Prefix" },
               {
                 "description": "An Amazon S3 prefix that you can use to limit responses to those that begin with the specified prefix."
               }
@@ -2930,58 +2470,33 @@
         },
         "description": "The name and prefix of the S3 bucket where code signing saves your signed objects."
       },
-      "TagResourceResponse": {
-        "type": "object",
-        "properties": {}
-      },
-      "UntagResourceResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "TagResourceResponse": { "type": "object", "properties": {} },
+      "UntagResourceResponse": { "type": "object", "properties": {} },
       "TagKey": {
         "type": "string",
         "pattern": "^(?!aws:)[a-zA-Z+-=._:/]+$",
         "minLength": 1,
         "maxLength": 128
       },
-      "key": {
-        "type": "string"
-      },
-      "BucketName": {
-        "type": "string"
-      },
+      "key": { "type": "string" },
+      "BucketName": { "type": "string" },
       "ProfileName": {
         "type": "string",
         "pattern": "^[a-zA-Z0-9_]{2,}",
         "minLength": 2,
         "maxLength": 64
       },
-      "Category": {
-        "type": "string",
-        "enum": ["AWSIoT"]
-      },
-      "CompletedAt": {
-        "type": "string",
-        "format": "date-time"
-      },
-      "CreatedAt": {
-        "type": "string",
-        "format": "date-time"
-      },
-      "JobId": {
-        "type": "string"
-      },
+      "Category": { "type": "string", "enum": ["AWSIoT"] },
+      "CompletedAt": { "type": "string", "format": "date-time" },
+      "CreatedAt": { "type": "string", "format": "date-time" },
+      "JobId": { "type": "string" },
       "Source": {
         "type": "object",
         "properties": {
           "s3": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/S3Source"
-              },
-              {
-                "description": "The <code>S3Source</code> object."
-              }
+              { "$ref": "#/components/schemas/S3Source" },
+              { "description": "The <code>S3Source</code> object." }
             ]
           }
         },
@@ -2993,9 +2508,7 @@
         "properties": {
           "certificateArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CertificateArn"
-              },
+              { "$ref": "#/components/schemas/CertificateArn" },
               {
                 "description": "The Amazon Resource Name (ARN) of the certificates that is used to sign your code."
               }
@@ -3004,17 +2517,13 @@
         },
         "description": "The ACM certificate that is used to sign your code."
       },
-      "PlatformId": {
-        "type": "string"
-      },
+      "PlatformId": { "type": "string" },
       "SigningPlatformOverrides": {
         "type": "object",
         "properties": {
           "signingConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningConfigurationOverrides"
-              },
+              { "$ref": "#/components/schemas/SigningConfigurationOverrides" },
               {
                 "description": "A signing configuration that overrides the default encryption or hash algorithm of a signing job."
               }
@@ -3022,9 +2531,7 @@
           },
           "signingImageFormat": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ImageFormat"
-              },
+              { "$ref": "#/components/schemas/ImageFormat" },
               {
                 "description": "A signed image is a JSON object. When overriding the default signing platform configuration, a customer can select either of two signing formats, <code>JSONEmbedded</code> or <code>JSONDetached</code>. (A third format value, <code>JSON</code>, is reserved for future use.) With <code>JSONEmbedded</code>, the signing image has the payload embedded in it. With <code>JSONDetached</code>, the payload is not be embedded in the signing image."
               }
@@ -3039,44 +2546,29 @@
           "$ref": "#/components/schemas/SigningParameterValue"
         }
       },
-      "RequestedBy": {
-        "type": "string"
-      },
+      "RequestedBy": { "type": "string" },
       "SigningStatus": {
         "type": "string",
         "enum": ["InProgress", "Failed", "Succeeded"]
       },
-      "StatusReason": {
-        "type": "string"
-      },
+      "StatusReason": { "type": "string" },
       "SignedObject": {
         "type": "object",
         "properties": {
           "s3": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/S3SignedObject"
-              },
-              {
-                "description": "The <code>S3SignedObject</code>."
-              }
+              { "$ref": "#/components/schemas/S3SignedObject" },
+              { "description": "The <code>S3SignedObject</code>." }
             ]
           }
         },
         "description": "Points to an <code>S3SignedObject</code> object that contains information about your signed code image."
       },
-      "DisplayName": {
-        "type": "string"
-      },
-      "EncryptionAlgorithm": {
-        "type": "string",
-        "enum": ["RSA", "ECDSA"]
-      },
+      "DisplayName": { "type": "string" },
+      "EncryptionAlgorithm": { "type": "string", "enum": ["RSA", "ECDSA"] },
       "EncryptionAlgorithms": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/EncryptionAlgorithm"
-        }
+        "items": { "$ref": "#/components/schemas/EncryptionAlgorithm" }
       },
       "EncryptionAlgorithmOptions": {
         "type": "object",
@@ -3084,9 +2576,7 @@
         "properties": {
           "allowedValues": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EncryptionAlgorithms"
-              },
+              { "$ref": "#/components/schemas/EncryptionAlgorithms" },
               {
                 "description": "The set of accepted encryption algorithms that are allowed in a code signing job."
               }
@@ -3094,9 +2584,7 @@
           },
           "defaultValue": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EncryptionAlgorithm"
-              },
+              { "$ref": "#/components/schemas/EncryptionAlgorithm" },
               {
                 "description": "The default encryption algorithm that is used by a code signing job."
               }
@@ -3105,18 +2593,14 @@
         },
         "description": "The encryption algorithm options that are available to a code signing job."
       },
-      "String": {
-        "type": "string"
-      },
+      "String": { "type": "string" },
       "SigningConfiguration": {
         "type": "object",
         "required": ["encryptionAlgorithmOptions", "hashAlgorithmOptions"],
         "properties": {
           "encryptionAlgorithmOptions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EncryptionAlgorithmOptions"
-              },
+              { "$ref": "#/components/schemas/EncryptionAlgorithmOptions" },
               {
                 "description": "The encryption algorithm options that are available for a code signing job."
               }
@@ -3124,9 +2608,7 @@
           },
           "hashAlgorithmOptions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HashAlgorithmOptions"
-              },
+              { "$ref": "#/components/schemas/HashAlgorithmOptions" },
               {
                 "description": "The hash algorithm options that are available for a code signing job."
               }
@@ -3141,9 +2623,7 @@
         "properties": {
           "supportedFormats": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ImageFormats"
-              },
+              { "$ref": "#/components/schemas/ImageFormats" },
               {
                 "description": "The supported formats of a code signing image."
               }
@@ -3151,44 +2631,29 @@
           },
           "defaultFormat": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ImageFormat"
-              },
-              {
-                "description": "The default format of a code signing image."
-              }
+              { "$ref": "#/components/schemas/ImageFormat" },
+              { "description": "The default format of a code signing image." }
             ]
           }
         },
         "description": "The image format of a code signing platform or profile."
       },
-      "MaxSizeInMB": {
-        "type": "integer"
-      },
+      "MaxSizeInMB": { "type": "integer" },
       "SigningProfileStatus": {
         "type": "string",
         "enum": ["Active", "Canceled", "Revoked"]
       },
-      "string": {
-        "type": "string"
-      },
+      "string": { "type": "string" },
       "TagMap": {
         "type": "object",
         "minProperties": 1,
         "maxProperties": 200,
-        "additionalProperties": {
-          "$ref": "#/components/schemas/TagValue"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/TagValue" }
       },
-      "HashAlgorithm": {
-        "type": "string",
-        "enum": ["SHA1", "SHA256"]
-      },
+      "HashAlgorithm": { "type": "string", "enum": ["SHA1", "SHA256"] },
       "HashAlgorithms": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/HashAlgorithm"
-        }
+        "items": { "$ref": "#/components/schemas/HashAlgorithm" }
       },
       "HashAlgorithmOptions": {
         "type": "object",
@@ -3196,9 +2661,7 @@
         "properties": {
           "allowedValues": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HashAlgorithms"
-              },
+              { "$ref": "#/components/schemas/HashAlgorithms" },
               {
                 "description": "The set of accepted hash algorithms allowed in a code signing job."
               }
@@ -3206,9 +2669,7 @@
           },
           "defaultValue": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HashAlgorithm"
-              },
+              { "$ref": "#/components/schemas/HashAlgorithm" },
               {
                 "description": "The default hash algorithm that is used in a code signing job."
               }
@@ -3219,58 +2680,36 @@
       },
       "ImageFormats": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ImageFormat"
-        }
+        "items": { "$ref": "#/components/schemas/ImageFormat" }
       },
-      "Key": {
-        "type": "string"
-      },
-      "NextToken": {
-        "type": "string"
-      },
+      "Key": { "type": "string" },
+      "NextToken": { "type": "string" },
       "SigningJobs": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/SigningJob"
-        }
+        "items": { "$ref": "#/components/schemas/SigningJob" }
       },
       "SigningPlatforms": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/SigningPlatform"
-        }
+        "items": { "$ref": "#/components/schemas/SigningPlatform" }
       },
-      "bool": {
-        "type": "boolean"
-      },
+      "bool": { "type": "boolean" },
       "SigningProfiles": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/SigningProfile"
-        }
+        "items": { "$ref": "#/components/schemas/SigningProfile" }
       },
-      "Prefix": {
-        "type": "string"
-      },
+      "Prefix": { "type": "string" },
       "S3SignedObject": {
         "type": "object",
         "properties": {
           "bucketName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BucketName"
-              },
-              {
-                "description": "Name of the S3 bucket."
-              }
+              { "$ref": "#/components/schemas/BucketName" },
+              { "description": "Name of the S3 bucket." }
             ]
           },
           "key": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/key"
-              },
+              { "$ref": "#/components/schemas/key" },
               {
                 "description": "Key name that uniquely identifies a signed code image in your bucket."
               }
@@ -3279,27 +2718,19 @@
         },
         "description": "The S3 bucket name and key where code signing saved your signed code image."
       },
-      "Version": {
-        "type": "string"
-      },
+      "Version": { "type": "string" },
       "SigningJob": {
         "type": "object",
         "properties": {
           "jobId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobId"
-              },
-              {
-                "description": "The ID of the signing job."
-              }
+              { "$ref": "#/components/schemas/JobId" },
+              { "description": "The ID of the signing job." }
             ]
           },
           "source": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Source"
-              },
+              { "$ref": "#/components/schemas/Source" },
               {
                 "description": "A <code>Source</code> that contains information about a signing job's code image source."
               }
@@ -3307,9 +2738,7 @@
           },
           "signedObject": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SignedObject"
-              },
+              { "$ref": "#/components/schemas/SignedObject" },
               {
                 "description": "A <code>SignedObject</code> structure that contains information about a signing job's signed code image."
               }
@@ -3317,9 +2746,7 @@
           },
           "signingMaterial": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningMaterial"
-              },
+              { "$ref": "#/components/schemas/SigningMaterial" },
               {
                 "description": "A <code>SigningMaterial</code> object that contains the Amazon Resource Name (ARN) of the certificate used for the signing job."
               }
@@ -3327,9 +2754,7 @@
           },
           "createdAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CreatedAt"
-              },
+              { "$ref": "#/components/schemas/CreatedAt" },
               {
                 "description": "The date and time that the signing job was created."
               }
@@ -3337,29 +2762,19 @@
           },
           "status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningStatus"
-              },
-              {
-                "description": "The status of the signing job."
-              }
+              { "$ref": "#/components/schemas/SigningStatus" },
+              { "description": "The status of the signing job." }
             ]
           },
           "isRevoked": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/bool"
-              },
-              {
-                "description": "Indicates whether the signing job is revoked."
-              }
+              { "$ref": "#/components/schemas/bool" },
+              { "description": "Indicates whether the signing job is revoked." }
             ]
           },
           "profileName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProfileName"
-              },
+              { "$ref": "#/components/schemas/ProfileName" },
               {
                 "description": "The name of the signing profile that created a signing job."
               }
@@ -3367,9 +2782,7 @@
           },
           "profileVersion": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProfileVersion"
-              },
+              { "$ref": "#/components/schemas/ProfileVersion" },
               {
                 "description": "The version of the signing profile that created a signing job."
               }
@@ -3377,29 +2790,19 @@
           },
           "platformId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PlatformId"
-              },
-              {
-                "description": "The unique identifier for a signing platform."
-              }
+              { "$ref": "#/components/schemas/PlatformId" },
+              { "description": "The unique identifier for a signing platform." }
             ]
           },
           "platformDisplayName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DisplayName"
-              },
-              {
-                "description": "The name of a signing platform."
-              }
+              { "$ref": "#/components/schemas/DisplayName" },
+              { "description": "The name of a signing platform." }
             ]
           },
           "signatureExpiresAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The time when the signature of a signing job expires."
               }
@@ -3407,22 +2810,14 @@
           },
           "jobOwner": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccountId"
-              },
-              {
-                "description": "The AWS account ID of the job owner."
-              }
+              { "$ref": "#/components/schemas/AccountId" },
+              { "description": "The AWS account ID of the job owner." }
             ]
           },
           "jobInvoker": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccountId"
-              },
-              {
-                "description": "The AWS account ID of the job invoker."
-              }
+              { "$ref": "#/components/schemas/AccountId" },
+              { "description": "The AWS account ID of the job invoker." }
             ]
           }
         },
@@ -3433,29 +2828,19 @@
         "properties": {
           "platformId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": "The ID of a code signing; platform."
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "The ID of a code signing; platform." }
             ]
           },
           "displayName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": "The display name of a code signing platform."
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "The display name of a code signing platform." }
             ]
           },
           "partner": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "Any partner entities linked to a code signing platform."
               }
@@ -3463,9 +2848,7 @@
           },
           "target": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The types of targets that can be signed by a code signing platform."
               }
@@ -3473,19 +2856,13 @@
           },
           "category": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Category"
-              },
-              {
-                "description": "The category of a code signing platform."
-              }
+              { "$ref": "#/components/schemas/Category" },
+              { "description": "The category of a code signing platform." }
             ]
           },
           "signingConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningConfiguration"
-              },
+              { "$ref": "#/components/schemas/SigningConfiguration" },
               {
                 "description": "The configuration of a code signing platform. This includes the designated hash algorithm and encryption algorithm of a signing platform."
               }
@@ -3496,9 +2873,7 @@
           },
           "maxSizeInMB": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MaxSizeInMB"
-              },
+              { "$ref": "#/components/schemas/MaxSizeInMB" },
               {
                 "description": "The maximum size (in MB) of code that can be signed by a code signing platform."
               }
@@ -3506,9 +2881,7 @@
           },
           "revocationSupported": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/bool"
-              },
+              { "$ref": "#/components/schemas/bool" },
               {
                 "description": "Indicates whether revocation is supported for the platform."
               }
@@ -3522,19 +2895,13 @@
         "properties": {
           "profileName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProfileName"
-              },
-              {
-                "description": "The name of the signing profile."
-              }
+              { "$ref": "#/components/schemas/ProfileName" },
+              { "description": "The name of the signing profile." }
             ]
           },
           "signingMaterial": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningMaterial"
-              },
+              { "$ref": "#/components/schemas/SigningMaterial" },
               {
                 "description": "The ACM certificate that is available for use by a signing profile."
               }
@@ -3542,9 +2909,7 @@
           },
           "platformId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PlatformId"
-              },
+              { "$ref": "#/components/schemas/PlatformId" },
               {
                 "description": "The ID of a platform that is available for use by a signing profile."
               }
@@ -3552,9 +2917,7 @@
           },
           "signingParameters": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningParameters"
-              },
+              { "$ref": "#/components/schemas/SigningParameters" },
               {
                 "description": "The parameters that are available for use by a code signing user."
               }
@@ -3562,19 +2925,13 @@
           },
           "status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SigningProfileStatus"
-              },
-              {
-                "description": "The status of a code signing profile."
-              }
+              { "$ref": "#/components/schemas/SigningProfileStatus" },
+              { "description": "The status of a code signing profile." }
             ]
           },
           "arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The Amazon Resource Name (ARN) for the signing profile."
               }
@@ -3582,9 +2939,7 @@
           },
           "tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagMap"
-              },
+              { "$ref": "#/components/schemas/TagMap" },
               {
                 "description": "A list of tags associated with the signing profile."
               }
@@ -3592,19 +2947,13 @@
           },
           "profileVersion": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProfileVersion"
-              },
-              {
-                "description": "The version of a signing profile."
-              }
+              { "$ref": "#/components/schemas/ProfileVersion" },
+              { "description": "The version of a signing profile." }
             ]
           },
           "profileVersionArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "The ARN of a signing profile, including the profile version."
               }
@@ -3612,9 +2961,7 @@
           },
           "signatureValidityPeriod": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SignatureValidityPeriod"
-              },
+              { "$ref": "#/components/schemas/SignatureValidityPeriod" },
               {
                 "description": "The validity period for a signing job created using this signing profile."
               }
@@ -3622,12 +2969,8 @@
           },
           "platformDisplayName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DisplayName"
-              },
-              {
-                "description": "The name of the signing platform."
-              }
+              { "$ref": "#/components/schemas/DisplayName" },
+              { "description": "The name of the signing platform." }
             ]
           }
         },
@@ -3638,9 +2981,7 @@
         "properties": {
           "revisionId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "A unique identifier for the current profile revision."
               }
@@ -3656,9 +2997,7 @@
         "properties": {
           "revisionId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The identifier for the current revision of profile permissions."
               }
@@ -3666,9 +3005,7 @@
           },
           "policySizeBytes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PolicySizeBytes"
-              },
+              { "$ref": "#/components/schemas/PolicySizeBytes" },
               {
                 "description": "Total size of the policy associated with the Signing Profile in bytes."
               }
@@ -3676,9 +3013,7 @@
           },
           "permissions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Permissions"
-              },
+              { "$ref": "#/components/schemas/Permissions" },
               {
                 "description": "List of permissions associated with the Signing Profile."
               }
@@ -3686,9 +3021,7 @@
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "String for specifying the next set of paginated results."
               }
@@ -3696,21 +3029,14 @@
           }
         }
       },
-      "Integer": {
-        "type": "integer"
-      },
-      "ValidityType": {
-        "type": "string",
-        "enum": ["DAYS", "MONTHS", "YEARS"]
-      },
+      "Integer": { "type": "integer" },
+      "ValidityType": { "type": "string", "enum": ["DAYS", "MONTHS", "YEARS"] },
       "RemoveProfilePermissionResponse": {
         "type": "object",
         "properties": {
           "revisionId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "An identifier for the current revision of the profile permissions."
               }
@@ -3730,46 +3056,27 @@
         "minLength": 10,
         "maxLength": 10
       },
-      "Arn": {
-        "type": "string",
-        "minLength": 20,
-        "maxLength": 2048
-      },
-      "Timestamp": {
-        "type": "string",
-        "format": "date-time"
-      },
+      "Arn": { "type": "string", "minLength": 20, "maxLength": 2048 },
+      "Timestamp": { "type": "string", "format": "date-time" },
       "SigningJobRevocationRecord": {
         "type": "object",
         "properties": {
           "reason": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": "A caller-supplied reason for revocation."
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "A caller-supplied reason for revocation." }
             ]
           },
           "revokedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "The time of revocation."
-              }
+              { "$ref": "#/components/schemas/Timestamp" },
+              { "description": "The time of revocation." }
             ]
           },
           "revokedBy": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": "The identity of the revoker."
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "The identity of the revoker." }
             ]
           }
         },
@@ -3780,19 +3087,13 @@
         "properties": {
           "revocationEffectiveFrom": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "The time when revocation becomes effective."
-              }
+              { "$ref": "#/components/schemas/Timestamp" },
+              { "description": "The time when revocation becomes effective." }
             ]
           },
           "revokedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The time when the signing profile was revoked."
               }
@@ -3800,12 +3101,8 @@
           },
           "revokedBy": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": "The identity of the revoker."
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "The identity of the revoker." }
             ]
           }
         },
@@ -3816,9 +3113,7 @@
         "properties": {
           "value": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Integer"
-              },
+              { "$ref": "#/components/schemas/Integer" },
               {
                 "description": "The numerical value of the time unit for signature validity."
               }
@@ -3826,34 +3121,24 @@
           },
           "type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ValidityType"
-              },
-              {
-                "description": "The time unit for signature validity."
-              }
+              { "$ref": "#/components/schemas/ValidityType" },
+              { "description": "The time unit for signature validity." }
             ]
           }
         },
         "description": "The validity period for a signing job."
       },
-      "PolicySizeBytes": {
-        "type": "integer"
-      },
+      "PolicySizeBytes": { "type": "integer" },
       "Permissions": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Permission"
-        }
+        "items": { "$ref": "#/components/schemas/Permission" }
       },
       "Permission": {
         "type": "object",
         "properties": {
           "action": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "An AWS Signer action permitted as part of cross-account permissions."
               }
@@ -3861,9 +3146,7 @@
           },
           "principal": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The AWS principal that has been granted a cross-account permission."
               }
@@ -3871,9 +3154,7 @@
           },
           "statementId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "A unique identifier for a cross-account permission statement."
               }
@@ -3881,9 +3162,7 @@
           },
           "profileVersion": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProfileVersion"
-              },
+              { "$ref": "#/components/schemas/ProfileVersion" },
               {
                 "description": "The signing profile version that a permission applies to."
               }
@@ -3894,11 +3173,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2017-08-25",
     "endpointPrefix": "signer",

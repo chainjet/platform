@@ -213,27 +213,13 @@
         "summary": "Cancel Journal Kinesis Stream"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "DescribeJournalKinesisStream",
@@ -412,27 +398,13 @@
         "summary": "Create Ledger"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListLedgers",
@@ -442,9 +414,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListLedgersResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/ListLedgersResponse" }
               }
             }
           }
@@ -455,11 +425,7 @@
             "in": "query",
             "required": false,
             "description": "The maximum number of results to return in a single <code>ListLedgers</code> request. (The actual number of results returned might be fewer.)",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "next_token",
@@ -476,18 +442,14 @@
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -500,9 +462,7 @@
         "operationId": "DeleteLedger",
         "description": "<p>Deletes a ledger and all of its contents. This action is irreversible.</p> <p>If deletion protection is enabled, you must first disable it before you can delete the ledger using the QLDB API or the AWS Command Line Interface (AWS CLI). You can disable it by calling the <code>UpdateLedger</code> operation to set the flag to <code>false</code>. The QLDB console disables deletion protection for you when you use it to delete a ledger.</p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "InvalidParameterException",
             "content": {
@@ -561,27 +521,13 @@
         "summary": "Delete Ledger"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "DescribeLedger",
@@ -762,27 +708,13 @@
         "summary": "Describe Journal S3Export"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/ledgers/{name}/journal-s3-exports": {
@@ -864,9 +796,7 @@
                     "properties": {
                       "Bucket": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/S3Bucket"
-                          },
+                          { "$ref": "#/components/schemas/S3Bucket" },
                           {
                             "description": "<p>The Amazon S3 bucket name in which a journal export job writes the journal contents.</p> <p>The bucket name must comply with the Amazon S3 bucket naming conventions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html\">Bucket Restrictions and Limitations</a> in the <i>Amazon S3 Developer Guide</i>.</p>"
                           }
@@ -874,9 +804,7 @@
                       },
                       "Prefix": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/S3Prefix"
-                          },
+                          { "$ref": "#/components/schemas/S3Prefix" },
                           {
                             "description": "<p>The prefix for the Amazon S3 bucket in which a journal export job writes the journal contents.</p> <p>The prefix must comply with Amazon S3 key naming rules and restrictions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html\">Object Key and Metadata</a> in the <i>Amazon S3 Developer Guide</i>.</p> <p>The following are examples of valid <code>Prefix</code> values:</p> <ul> <li> <p> <code>JournalExports-ForMyLedger/Testing/</code> </p> </li> <li> <p> <code>JournalExports</code> </p> </li> <li> <p> <code>My:Tests/</code> </p> </li> </ul>"
                           }
@@ -908,27 +836,13 @@
         "summary": "Export Journal To S3"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListJournalS3ExportsForLedger",
@@ -963,11 +877,7 @@
             "in": "query",
             "required": false,
             "description": "The maximum number of results to return in a single <code>ListJournalS3ExportsForLedger</code> request. (The actual number of results returned might be fewer.)",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "next_token",
@@ -984,18 +894,14 @@
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -1012,9 +918,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetBlockResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/GetBlockResponse" }
               }
             }
           },
@@ -1077,9 +981,7 @@
                     "properties": {
                       "IonText": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/IonText"
-                          },
+                          { "$ref": "#/components/schemas/IonText" },
                           {
                             "description": "An Amazon Ion plaintext value contained in a <code>ValueHolder</code> structure."
                           }
@@ -1093,9 +995,7 @@
                     "properties": {
                       "IonText": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/IonText"
-                          },
+                          { "$ref": "#/components/schemas/IonText" },
                           {
                             "description": "An Amazon Ion plaintext value contained in a <code>ValueHolder</code> structure."
                           }
@@ -1111,27 +1011,13 @@
         "summary": "Get Block"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/ledgers/{name}/digest": {
@@ -1143,9 +1029,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetDigestResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/GetDigestResponse" }
               }
             }
           },
@@ -1197,27 +1081,13 @@
         "summary": "Get Digest"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/ledgers/{name}/revision": {
@@ -1229,9 +1099,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetRevisionResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/GetRevisionResponse" }
               }
             }
           },
@@ -1294,9 +1162,7 @@
                     "properties": {
                       "IonText": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/IonText"
-                          },
+                          { "$ref": "#/components/schemas/IonText" },
                           {
                             "description": "An Amazon Ion plaintext value contained in a <code>ValueHolder</code> structure."
                           }
@@ -1317,9 +1183,7 @@
                     "properties": {
                       "IonText": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/IonText"
-                          },
+                          { "$ref": "#/components/schemas/IonText" },
                           {
                             "description": "An Amazon Ion plaintext value contained in a <code>ValueHolder</code> structure."
                           }
@@ -1335,27 +1199,13 @@
         "summary": "Get Revision"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/ledgers/{name}/journal-kinesis-streams": {
@@ -1422,11 +1272,7 @@
             "in": "query",
             "required": false,
             "description": "The maximum number of results to return in a single <code>ListJournalKinesisStreamsForLedger</code> request. (The actual number of results returned might be fewer.)",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "next_token",
@@ -1443,18 +1289,14 @@
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -1462,27 +1304,13 @@
         "summary": "List Journal Kinesis Streams For Ledger"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "StreamJournalToKinesis",
@@ -1587,9 +1415,7 @@
                     "properties": {
                       "StreamArn": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/Arn"
-                          },
+                          { "$ref": "#/components/schemas/Arn" },
                           {
                             "description": "The Amazon Resource Name (ARN) of the Kinesis data stream resource."
                           }
@@ -1597,9 +1423,7 @@
                       },
                       "AggregationEnabled": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/Boolean"
-                          },
+                          { "$ref": "#/components/schemas/Boolean" },
                           {
                             "description": "Enables QLDB to publish multiple data records in a single Kinesis Data Streams record. To learn more, see <a href=\"https://docs.aws.amazon.com/streams/latest/dev/kinesis-kpl-concepts.html\">KPL Key Concepts</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>."
                           }
@@ -1644,11 +1468,7 @@
             "in": "query",
             "required": false,
             "description": "The maximum number of results to return in a single <code>ListJournalS3Exports</code> request. (The actual number of results returned might be fewer.)",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "next_token",
@@ -1665,18 +1485,14 @@
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -1684,27 +1500,13 @@
         "summary": "List Journal S3Exports"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/tags/{resourceArn}": {
@@ -1749,37 +1551,19 @@
             "in": "path",
             "required": true,
             "description": "<p>The Amazon Resource Name (ARN) for which you want to list the tags. For example:</p> <p> <code>arn:aws:qldb:us-east-1:123456789012:ledger/exampleLedger</code> </p>",
-            "schema": {
-              "type": "string",
-              "minLength": 20,
-              "maxLength": 1600
-            }
+            "schema": { "type": "string", "minLength": 20, "maxLength": 1600 }
           }
         ],
         "summary": "List Tags For Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "TagResource",
@@ -1789,9 +1573,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TagResourceResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/TagResourceResponse" }
               }
             }
           },
@@ -1822,11 +1604,7 @@
             "in": "path",
             "required": true,
             "description": "<p>The Amazon Resource Name (ARN) to which you want to add the tags. For example:</p> <p> <code>arn:aws:qldb:us-east-1:123456789012:ledger/exampleLedger</code> </p>",
-            "schema": {
-              "type": "string",
-              "minLength": 20,
-              "maxLength": 1600
-            }
+            "schema": { "type": "string", "minLength": 20, "maxLength": 1600 }
           }
         ],
         "requestBody": {
@@ -1896,11 +1674,7 @@
             "in": "path",
             "required": true,
             "description": "<p>The Amazon Resource Name (ARN) from which you want to remove the tags. For example:</p> <p> <code>arn:aws:qldb:us-east-1:123456789012:ledger/exampleLedger</code> </p>",
-            "schema": {
-              "type": "string",
-              "minLength": 20,
-              "maxLength": 1600
-            }
+            "schema": { "type": "string", "minLength": 20, "maxLength": 1600 }
           },
           {
             "name": "tagKeys",
@@ -1909,9 +1683,7 @@
             "description": "The list of tag keys that you want to remove.",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/TagKey"
-              },
+              "items": { "$ref": "#/components/schemas/TagKey" },
               "minItems": 0,
               "maxItems": 200
             }
@@ -1920,27 +1692,13 @@
         "summary": "Untag Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/ledgers/{name}/permissions-mode": {
@@ -2014,27 +1772,13 @@
         "summary": "Update Ledger Permissions Mode"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -2043,63 +1787,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -2119,9 +1849,7 @@
         "properties": {
           "StreamId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UniqueId"
-              },
+              { "$ref": "#/components/schemas/UniqueId" },
               {
                 "description": "The unique ID that QLDB assigns to each QLDB journal stream."
               }
@@ -2137,19 +1865,13 @@
         "properties": {
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LedgerName"
-              },
-              {
-                "description": "The name of the ledger."
-              }
+              { "$ref": "#/components/schemas/LedgerName" },
+              { "description": "The name of the ledger." }
             ]
           },
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "The Amazon Resource Name (ARN) for the ledger."
               }
@@ -2157,19 +1879,13 @@
           },
           "State": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LedgerState"
-              },
-              {
-                "description": "The current status of the ledger."
-              }
+              { "$ref": "#/components/schemas/LedgerState" },
+              { "description": "The current status of the ledger." }
             ]
           },
           "CreationDateTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The date and time, in epoch time format, when the ledger was created. (Epoch time format is the number of seconds elapsed since 12:00:00 AM January 1, 1970 UTC.)"
               }
@@ -2177,9 +1893,7 @@
           },
           "DeletionProtection": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DeletionProtection"
-              },
+              { "$ref": "#/components/schemas/DeletionProtection" },
               {
                 "description": "<p>The flag that prevents a ledger from being deleted by any user. If not provided on ledger creation, this feature is enabled (<code>true</code>) by default.</p> <p>If deletion protection is enabled, you must first disable it before you can delete the ledger using the QLDB API or the AWS Command Line Interface (AWS CLI). You can disable it by calling the <code>UpdateLedger</code> operation to set the flag to <code>false</code>. The QLDB console disables deletion protection for you when you use it to delete a ledger.</p>"
               }
@@ -2187,9 +1901,7 @@
           },
           "PermissionsMode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PermissionsMode"
-              },
+              { "$ref": "#/components/schemas/PermissionsMode" },
               {
                 "description": "The permissions mode of the ledger that you created."
               }
@@ -2197,9 +1909,7 @@
           },
           "KmsKeyArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "The ARN of the customer managed KMS key that the ledger uses for encryption at rest. If this parameter is undefined, the ledger uses an Amazon Web Services owned KMS key for encryption."
               }
@@ -2207,11 +1917,7 @@
           }
         }
       },
-      "TagValue": {
-        "type": "string",
-        "minLength": 0,
-        "maxLength": 256
-      },
+      "TagValue": { "type": "string", "minLength": 0, "maxLength": 256 },
       "ResourceAlreadyExistsException": {},
       "LimitExceededException": {},
       "ResourceInUseException": {},
@@ -2236,9 +1942,7 @@
         "properties": {
           "ExportDescription": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JournalS3ExportDescription"
-              },
+              { "$ref": "#/components/schemas/JournalS3ExportDescription" },
               {
                 "description": "Information about the journal export job returned by a <code>DescribeJournalS3Export</code> request."
               }
@@ -2251,19 +1955,13 @@
         "properties": {
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LedgerName"
-              },
-              {
-                "description": "The name of the ledger."
-              }
+              { "$ref": "#/components/schemas/LedgerName" },
+              { "description": "The name of the ledger." }
             ]
           },
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "The Amazon Resource Name (ARN) for the ledger."
               }
@@ -2271,19 +1969,13 @@
           },
           "State": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LedgerState"
-              },
-              {
-                "description": "The current status of the ledger."
-              }
+              { "$ref": "#/components/schemas/LedgerState" },
+              { "description": "The current status of the ledger." }
             ]
           },
           "CreationDateTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The date and time, in epoch time format, when the ledger was created. (Epoch time format is the number of seconds elapsed since 12:00:00 AM January 1, 1970 UTC.)"
               }
@@ -2291,9 +1983,7 @@
           },
           "DeletionProtection": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DeletionProtection"
-              },
+              { "$ref": "#/components/schemas/DeletionProtection" },
               {
                 "description": "<p>The flag that prevents a ledger from being deleted by any user. If not provided on ledger creation, this feature is enabled (<code>true</code>) by default.</p> <p>If deletion protection is enabled, you must first disable it before you can delete the ledger using the QLDB API or the AWS Command Line Interface (AWS CLI). You can disable it by calling the <code>UpdateLedger</code> operation to set the flag to <code>false</code>. The QLDB console disables deletion protection for you when you use it to delete a ledger.</p>"
               }
@@ -2301,19 +1991,13 @@
           },
           "PermissionsMode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PermissionsMode"
-              },
-              {
-                "description": "The permissions mode of the ledger."
-              }
+              { "$ref": "#/components/schemas/PermissionsMode" },
+              { "description": "The permissions mode of the ledger." }
             ]
           },
           "EncryptionDescription": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LedgerEncryptionDescription"
-              },
+              { "$ref": "#/components/schemas/LedgerEncryptionDescription" },
               {
                 "description": "Information about the encryption of data at rest in the ledger. This includes the current status, the KMS key, and when the key became inaccessible (in the case of an error)."
               }
@@ -2327,9 +2011,7 @@
         "properties": {
           "ExportId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UniqueId"
-              },
+              { "$ref": "#/components/schemas/UniqueId" },
               {
                 "description": "<p>The unique ID that QLDB assigns to each journal export job.</p> <p>To describe your export request and check the status of the job, you can use <code>ExportId</code> to call <code>DescribeJournalS3Export</code>.</p>"
               }
@@ -2343,20 +2025,14 @@
         "minLength": 3,
         "maxLength": 255
       },
-      "S3Prefix": {
-        "type": "string",
-        "minLength": 0,
-        "maxLength": 128
-      },
+      "S3Prefix": { "type": "string", "minLength": 0, "maxLength": 128 },
       "S3EncryptionConfiguration": {
         "type": "object",
         "required": ["ObjectEncryptionType"],
         "properties": {
           "ObjectEncryptionType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/S3ObjectEncryptionType"
-              },
+              { "$ref": "#/components/schemas/S3ObjectEncryptionType" },
               {
                 "description": "<p>The Amazon S3 object encryption type.</p> <p>To learn more about server-side encryption options in Amazon S3, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html\">Protecting Data Using Server-Side Encryption</a> in the <i>Amazon S3 Developer Guide</i>.</p>"
               }
@@ -2364,9 +2040,7 @@
           },
           "KmsKeyArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "<p>The Amazon Resource Name (ARN) for a symmetric customer master key (CMK) in AWS Key Management Service (AWS KMS). Amazon QLDB does not support asymmetric CMKs.</p> <p>You must provide a <code>KmsKeyArn</code> if you specify <code>SSE_KMS</code> as the <code>ObjectEncryptionType</code>.</p> <p> <code>KmsKeyArn</code> is not required if you specify <code>SSE_S3</code> as the <code>ObjectEncryptionType</code>.</p>"
               }
@@ -2381,19 +2055,13 @@
         "properties": {
           "Block": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ValueHolder"
-              },
-              {
-                "description": "The block data object in Amazon Ion format."
-              }
+              { "$ref": "#/components/schemas/ValueHolder" },
+              { "description": "The block data object in Amazon Ion format." }
             ]
           },
           "Proof": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ValueHolder"
-              },
+              { "$ref": "#/components/schemas/ValueHolder" },
               {
                 "description": "The proof object in Amazon Ion format returned by a <code>GetBlock</code> request. A proof contains the list of hash values required to recalculate the specified digest using a Merkle tree, starting with the specified block."
               }
@@ -2413,9 +2081,7 @@
         "properties": {
           "Digest": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Digest"
-              },
+              { "$ref": "#/components/schemas/Digest" },
               {
                 "description": "The 256-bit hash value representing the digest returned by a <code>GetDigest</code> request."
               }
@@ -2423,9 +2089,7 @@
           },
           "DigestTipAddress": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ValueHolder"
-              },
+              { "$ref": "#/components/schemas/ValueHolder" },
               {
                 "description": "The latest block location covered by the digest that you requested. An address is an Amazon Ion structure that has two fields: <code>strandId</code> and <code>sequenceNo</code>."
               }
@@ -2439,9 +2103,7 @@
         "properties": {
           "Proof": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ValueHolder"
-              },
+              { "$ref": "#/components/schemas/ValueHolder" },
               {
                 "description": "The proof object in Amazon Ion format returned by a <code>GetRevision</code> request. A proof contains the list of hash values that are required to recalculate the specified digest using a Merkle tree, starting with the specified document revision."
               }
@@ -2449,9 +2111,7 @@
           },
           "Revision": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ValueHolder"
-              },
+              { "$ref": "#/components/schemas/ValueHolder" },
               {
                 "description": "The document revision data object in Amazon Ion format."
               }
@@ -2474,9 +2134,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "<ul> <li> <p>If <code>NextToken</code> is empty, the last page of results has been processed and there are no more results to be retrieved.</p> </li> <li> <p>If <code>NextToken</code> is <i>not</i> empty, more results are available. To retrieve the next page of results, use the value of <code>NextToken</code> in a subsequent <code>ListJournalKinesisStreamsForLedger</code> call.</p> </li> </ul>"
               }
@@ -2489,9 +2147,7 @@
         "properties": {
           "JournalS3Exports": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JournalS3ExportList"
-              },
+              { "$ref": "#/components/schemas/JournalS3ExportList" },
               {
                 "description": "The array of journal export job descriptions for all ledgers that are associated with the current AWS account and Region."
               }
@@ -2499,9 +2155,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "<ul> <li> <p>If <code>NextToken</code> is empty, then the last page of results has been processed and there are no more results to be retrieved.</p> </li> <li> <p>If <code>NextToken</code> is <i>not</i> empty, then there are more results available. To retrieve the next page of results, use the value of <code>NextToken</code> in a subsequent <code>ListJournalS3Exports</code> call.</p> </li> </ul>"
               }
@@ -2514,9 +2168,7 @@
         "properties": {
           "JournalS3Exports": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JournalS3ExportList"
-              },
+              { "$ref": "#/components/schemas/JournalS3ExportList" },
               {
                 "description": "The array of journal export job descriptions that are associated with the specified ledger."
               }
@@ -2524,9 +2176,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "<ul> <li> <p>If <code>NextToken</code> is empty, then the last page of results has been processed and there are no more results to be retrieved.</p> </li> <li> <p>If <code>NextToken</code> is <i>not</i> empty, then there are more results available. To retrieve the next page of results, use the value of <code>NextToken</code> in a subsequent <code>ListJournalS3ExportsForLedger</code> call.</p> </li> </ul>"
               }
@@ -2539,9 +2189,7 @@
         "properties": {
           "Ledgers": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LedgerList"
-              },
+              { "$ref": "#/components/schemas/LedgerList" },
               {
                 "description": "The array of ledger summaries that are associated with the current AWS account and Region."
               }
@@ -2549,9 +2197,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "<p>A pagination token, indicating whether there are more results available:</p> <ul> <li> <p>If <code>NextToken</code> is empty, then the last page of results has been processed and there are no more results to be retrieved.</p> </li> <li> <p>If <code>NextToken</code> is <i>not</i> empty, then there are more results available. To retrieve the next page of results, use the value of <code>NextToken</code> in a subsequent <code>ListLedgers</code> call.</p> </li> </ul>"
               }
@@ -2564,9 +2210,7 @@
         "properties": {
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Tags"
-              },
+              { "$ref": "#/components/schemas/Tags" },
               {
                 "description": "The tags that are currently associated with the specified Amazon QLDB resource."
               }
@@ -2579,9 +2223,7 @@
         "properties": {
           "StreamId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UniqueId"
-              },
+              { "$ref": "#/components/schemas/UniqueId" },
               {
                 "description": "The unique ID that QLDB assigns to each QLDB journal stream."
               }
@@ -2589,45 +2231,23 @@
           }
         }
       },
-      "Arn": {
-        "type": "string",
-        "minLength": 20,
-        "maxLength": 1600
-      },
-      "Boolean": {
-        "type": "boolean"
-      },
-      "TagResourceResponse": {
-        "type": "object",
-        "properties": {}
-      },
-      "UntagResourceResponse": {
-        "type": "object",
-        "properties": {}
-      },
-      "TagKey": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 128
-      },
+      "Arn": { "type": "string", "minLength": 20, "maxLength": 1600 },
+      "Boolean": { "type": "boolean" },
+      "TagResourceResponse": { "type": "object", "properties": {} },
+      "UntagResourceResponse": { "type": "object", "properties": {} },
+      "TagKey": { "type": "string", "minLength": 1, "maxLength": 128 },
       "UpdateLedgerResponse": {
         "type": "object",
         "properties": {
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LedgerName"
-              },
-              {
-                "description": "The name of the ledger."
-              }
+              { "$ref": "#/components/schemas/LedgerName" },
+              { "description": "The name of the ledger." }
             ]
           },
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "The Amazon Resource Name (ARN) for the ledger."
               }
@@ -2635,19 +2255,13 @@
           },
           "State": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LedgerState"
-              },
-              {
-                "description": "The current status of the ledger."
-              }
+              { "$ref": "#/components/schemas/LedgerState" },
+              { "description": "The current status of the ledger." }
             ]
           },
           "CreationDateTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The date and time, in epoch time format, when the ledger was created. (Epoch time format is the number of seconds elapsed since 12:00:00 AM January 1, 1970 UTC.)"
               }
@@ -2655,9 +2269,7 @@
           },
           "DeletionProtection": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DeletionProtection"
-              },
+              { "$ref": "#/components/schemas/DeletionProtection" },
               {
                 "description": "<p>The flag that prevents a ledger from being deleted by any user. If not provided on ledger creation, this feature is enabled (<code>true</code>) by default.</p> <p>If deletion protection is enabled, you must first disable it before you can delete the ledger using the QLDB API or the AWS Command Line Interface (AWS CLI). You can disable it by calling the <code>UpdateLedger</code> operation to set the flag to <code>false</code>. The QLDB console disables deletion protection for you when you use it to delete a ledger.</p>"
               }
@@ -2665,9 +2277,7 @@
           },
           "EncryptionDescription": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LedgerEncryptionDescription"
-              },
+              { "$ref": "#/components/schemas/LedgerEncryptionDescription" },
               {
                 "description": "Information about the encryption of data at rest in the ledger. This includes the current status, the KMS key, and when the key became inaccessible (in the case of an error)."
               }
@@ -2691,25 +2301,18 @@
         "type": "object",
         "minProperties": 0,
         "maxProperties": 200,
-        "additionalProperties": {
-          "$ref": "#/components/schemas/TagValue"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/TagValue" }
       },
       "PermissionsMode": {
         "type": "string",
         "enum": ["ALLOW_ALL", "STANDARD"]
       },
-      "DeletionProtection": {
-        "type": "boolean"
-      },
+      "DeletionProtection": { "type": "boolean" },
       "LedgerState": {
         "type": "string",
         "enum": ["CREATING", "ACTIVE", "DELETING", "DELETED"]
       },
-      "Timestamp": {
-        "type": "string",
-        "format": "date-time"
-      },
+      "Timestamp": { "type": "string", "format": "date-time" },
       "JournalKinesisStreamDescription": {
         "type": "object",
         "required": [
@@ -2723,19 +2326,13 @@
         "properties": {
           "LedgerName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LedgerName"
-              },
-              {
-                "description": "The name of the ledger."
-              }
+              { "$ref": "#/components/schemas/LedgerName" },
+              { "description": "The name of the ledger." }
             ]
           },
           "CreationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The date and time, in epoch time format, when the QLDB journal stream was created. (Epoch time format is the number of seconds elapsed since 12:00:00 AM January 1, 1970 UTC.)"
               }
@@ -2743,9 +2340,7 @@
           },
           "InclusiveStartTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The inclusive start date and time from which to start streaming journal data."
               }
@@ -2753,9 +2348,7 @@
           },
           "ExclusiveEndTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The exclusive date and time that specifies when the stream ends. If this parameter is blank, the stream runs indefinitely until you cancel it."
               }
@@ -2763,9 +2356,7 @@
           },
           "RoleArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "The Amazon Resource Name (ARN) of the IAM role that grants QLDB permissions for a journal stream to write data records to a Kinesis Data Streams resource."
               }
@@ -2773,9 +2364,7 @@
           },
           "StreamId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UniqueId"
-              },
+              { "$ref": "#/components/schemas/UniqueId" },
               {
                 "description": "The unique ID that QLDB assigns to each QLDB journal stream."
               }
@@ -2783,9 +2372,7 @@
           },
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "The Amazon Resource Name (ARN) of the QLDB journal stream."
               }
@@ -2793,19 +2380,13 @@
           },
           "Status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamStatus"
-              },
-              {
-                "description": "The current state of the QLDB journal stream."
-              }
+              { "$ref": "#/components/schemas/StreamStatus" },
+              { "description": "The current state of the QLDB journal stream." }
             ]
           },
           "KinesisConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/KinesisConfiguration"
-              },
+              { "$ref": "#/components/schemas/KinesisConfiguration" },
               {
                 "description": "The configuration settings of the Amazon Kinesis Data Streams destination for your QLDB journal stream."
               }
@@ -2813,9 +2394,7 @@
           },
           "ErrorCause": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ErrorCause"
-              },
+              { "$ref": "#/components/schemas/ErrorCause" },
               {
                 "description": "The error message that describes the reason that a stream has a status of <code>IMPAIRED</code> or <code>FAILED</code>. This is not applicable to streams that have other status values."
               }
@@ -2823,9 +2402,7 @@
           },
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
+              { "$ref": "#/components/schemas/StreamName" },
               {
                 "description": "The user-defined name of the QLDB journal stream."
               }
@@ -2849,29 +2426,19 @@
         "properties": {
           "LedgerName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LedgerName"
-              },
-              {
-                "description": "The name of the ledger."
-              }
+              { "$ref": "#/components/schemas/LedgerName" },
+              { "description": "The name of the ledger." }
             ]
           },
           "ExportId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UniqueId"
-              },
-              {
-                "description": "The unique ID of the journal export job."
-              }
+              { "$ref": "#/components/schemas/UniqueId" },
+              { "description": "The unique ID of the journal export job." }
             ]
           },
           "ExportCreationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The date and time, in epoch time format, when the export job was created. (Epoch time format is the number of seconds elapsed since 12:00:00 AM January 1, 1970 UTC.)"
               }
@@ -2879,19 +2446,13 @@
           },
           "Status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ExportStatus"
-              },
-              {
-                "description": "The current state of the journal export job."
-              }
+              { "$ref": "#/components/schemas/ExportStatus" },
+              { "description": "The current state of the journal export job." }
             ]
           },
           "InclusiveStartTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The inclusive start date and time for the range of journal contents that are specified in the original export request."
               }
@@ -2899,9 +2460,7 @@
           },
           "ExclusiveEndTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The exclusive end date and time for the range of journal contents that are specified in the original export request."
               }
@@ -2912,9 +2471,7 @@
           },
           "RoleArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "<p>The Amazon Resource Name (ARN) of the IAM role that grants QLDB permissions for a journal export job to do the following:</p> <ul> <li> <p>Write objects into your Amazon Simple Storage Service (Amazon S3) bucket.</p> </li> <li> <p>(Optional) Use your customer master key (CMK) in AWS Key Management Service (AWS KMS) for server-side encryption of your exported data.</p> </li> </ul>"
               }
@@ -2923,11 +2480,7 @@
         },
         "description": "The information about a journal export job, including the ledger name, export ID, when it was created, current status, and its start and end time export parameters."
       },
-      "Digest": {
-        "type": "string",
-        "minLength": 32,
-        "maxLength": 32
-      },
+      "Digest": { "type": "string", "minLength": 32, "maxLength": 32 },
       "ErrorCause": {
         "type": "string",
         "enum": ["KINESIS_STREAM_NOT_FOUND", "IAM_PERMISSION_REVOKED"]
@@ -2938,9 +2491,7 @@
         "properties": {
           "Bucket": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/S3Bucket"
-              },
+              { "$ref": "#/components/schemas/S3Bucket" },
               {
                 "description": "<p>The Amazon S3 bucket name in which a journal export job writes the journal contents.</p> <p>The bucket name must comply with the Amazon S3 bucket naming conventions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html\">Bucket Restrictions and Limitations</a> in the <i>Amazon S3 Developer Guide</i>.</p>"
               }
@@ -2948,9 +2499,7 @@
           },
           "Prefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/S3Prefix"
-              },
+              { "$ref": "#/components/schemas/S3Prefix" },
               {
                 "description": "<p>The prefix for the Amazon S3 bucket in which a journal export job writes the journal contents.</p> <p>The prefix must comply with Amazon S3 key naming rules and restrictions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html\">Object Key and Metadata</a> in the <i>Amazon S3 Developer Guide</i>.</p> <p>The following are examples of valid <code>Prefix</code> values:</p> <ul> <li> <p> <code>JournalExports-ForMyLedger/Testing/</code> </p> </li> <li> <p> <code>JournalExports</code> </p> </li> <li> <p> <code>My:Tests/</code> </p> </li> </ul>"
               }
@@ -2958,9 +2507,7 @@
           },
           "EncryptionConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/S3EncryptionConfiguration"
-              },
+              { "$ref": "#/components/schemas/S3EncryptionConfiguration" },
               {
                 "description": "The encryption settings that are used by a journal export job to write data in an Amazon S3 bucket."
               }
@@ -2978,9 +2525,7 @@
         "properties": {
           "IonText": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IonText"
-              },
+              { "$ref": "#/components/schemas/IonText" },
               {
                 "description": "An Amazon Ion plaintext value contained in a <code>ValueHolder</code> structure."
               }
@@ -2999,9 +2544,7 @@
         "properties": {
           "StreamArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "The Amazon Resource Name (ARN) of the Kinesis data stream resource."
               }
@@ -3009,9 +2552,7 @@
           },
           "AggregationEnabled": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": "Enables QLDB to publish multiple data records in a single Kinesis Data Streams record. To learn more, see <a href=\"https://docs.aws.amazon.com/streams/latest/dev/kinesis-kpl-concepts.html\">KPL Key Concepts</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>."
               }
@@ -3034,38 +2575,26 @@
       },
       "JournalS3ExportList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/JournalS3ExportDescription"
-        }
+        "items": { "$ref": "#/components/schemas/JournalS3ExportDescription" }
       },
       "LedgerSummary": {
         "type": "object",
         "properties": {
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LedgerName"
-              },
-              {
-                "description": "The name of the ledger."
-              }
+              { "$ref": "#/components/schemas/LedgerName" },
+              { "description": "The name of the ledger." }
             ]
           },
           "State": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LedgerState"
-              },
-              {
-                "description": "The current status of the ledger."
-              }
+              { "$ref": "#/components/schemas/LedgerState" },
+              { "description": "The current status of the ledger." }
             ]
           },
           "CreationDateTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The date and time, in epoch time format, when the ledger was created. (Epoch time format is the number of seconds elapsed since 12:00:00 AM January 1, 1970 UTC.)"
               }
@@ -3076,9 +2605,7 @@
       },
       "LedgerList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/LedgerSummary"
-        }
+        "items": { "$ref": "#/components/schemas/LedgerSummary" }
       },
       "NextToken": {
         "type": "string",
@@ -3095,19 +2622,13 @@
         "properties": {
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LedgerName"
-              },
-              {
-                "description": "The name of the ledger."
-              }
+              { "$ref": "#/components/schemas/LedgerName" },
+              { "description": "The name of the ledger." }
             ]
           },
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "The Amazon Resource Name (ARN) for the ledger."
               }
@@ -3115,12 +2636,8 @@
           },
           "PermissionsMode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PermissionsMode"
-              },
-              {
-                "description": "The current permissions mode of the ledger."
-              }
+              { "$ref": "#/components/schemas/PermissionsMode" },
+              { "description": "The current permissions mode of the ledger." }
             ]
           }
         }
@@ -3131,9 +2648,7 @@
         "properties": {
           "KmsKeyArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "The Amazon Resource Name (ARN) of the customer managed KMS key that the ledger uses for encryption at rest. If this parameter is undefined, the ledger uses an Amazon Web Services owned KMS key for encryption."
               }
@@ -3141,9 +2656,7 @@
           },
           "EncryptionStatus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EncryptionStatus"
-              },
+              { "$ref": "#/components/schemas/EncryptionStatus" },
               {
                 "description": "<p>The current state of encryption at rest for the ledger. This can be one of the following values:</p> <ul> <li> <p> <code>ENABLED</code>: Encryption is fully enabled using the specified key.</p> </li> <li> <p> <code>UPDATING</code>: The ledger is actively processing the specified key change.</p> <p>Key changes in QLDB are asynchronous. The ledger is fully accessible without any performance impact while the key change is being processed. The amount of time it takes to update a key varies depending on the ledger size.</p> </li> <li> <p> <code>KMS_KEY_INACCESSIBLE</code>: The specified customer managed KMS key is not accessible, and the ledger is impaired. Either the key was disabled or deleted, or the grants on the key were revoked. When a ledger is impaired, it is not accessible and does not accept any read or write requests.</p> <p>An impaired ledger automatically returns to an active state after you restore the grants on the key, or re-enable the key that was disabled. However, deleting a customer managed KMS key is irreversible. After a key is deleted, you can no longer access the ledgers that are protected with that key, and the data becomes unrecoverable permanently.</p> </li> </ul>"
               }
@@ -3151,9 +2664,7 @@
           },
           "InaccessibleKmsKeyDateTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "<p>The date and time, in epoch time format, when the KMS key first became inaccessible, in the case of an error. (Epoch time format is the number of seconds that have elapsed since 12:00:00 AM January 1, 1970 UTC.)</p> <p>This parameter is undefined if the KMS key is accessible.</p>"
               }
@@ -3168,11 +2679,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2019-01-02",
     "endpointPrefix": "qldb",

@@ -167,9 +167,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -232,10 +230,7 @@
             "in": "header",
             "required": true,
             "description": "The number of blocks that were written to the snapshot.",
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "name": "x-amz-Checksum",
@@ -276,27 +271,13 @@
         "summary": "Complete Snapshot"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/snapshots/{snapshotId}/blocks/{blockIndex}#blockToken": {
@@ -328,9 +309,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -393,10 +372,7 @@
             "in": "path",
             "required": true,
             "description": "<p>The block index of the block from which to get data.</p> <p>Obtain the <code>BlockIndex</code> by running the <code>ListChangedBlocks</code> or <code>ListSnapshotBlocks</code> operations.</p>",
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "name": "blockToken",
@@ -413,27 +389,13 @@
         "summary": "Get Snapshot Block"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/snapshots/{secondSnapshotId}/changedblocks": {
@@ -465,9 +427,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -553,37 +513,26 @@
             "in": "query",
             "required": false,
             "description": "The number of results to return.",
-            "schema": {
-              "type": "integer",
-              "minimum": 100,
-              "maximum": 10000
-            }
+            "schema": { "type": "integer", "minimum": 100, "maximum": 10000 }
           },
           {
             "name": "startingBlockIndex",
             "in": "query",
             "required": false,
             "description": "<p>The block index from which the comparison should start.</p> <p>The list in the response will start from this block index or the next valid block index in the snapshots.</p>",
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -591,27 +540,13 @@
         "summary": "List Changed Blocks"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/snapshots/{snapshotId}/blocks": {
@@ -643,9 +578,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -719,37 +652,26 @@
             "in": "query",
             "required": false,
             "description": "The number of results to return.",
-            "schema": {
-              "type": "integer",
-              "minimum": 100,
-              "maximum": 10000
-            }
+            "schema": { "type": "integer", "minimum": 100, "maximum": 10000 }
           },
           {
             "name": "startingBlockIndex",
             "in": "query",
             "required": false,
             "description": "The block index from which the list should start. The list in the response will start from this block index or the next valid block index in the snapshot.",
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -757,27 +679,13 @@
         "summary": "List Snapshot Blocks"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/snapshots/{snapshotId}/blocks/{blockIndex}#x-amz-Data-Length&x-amz-Checksum&x-amz-Checksum-Algorithm": {
@@ -809,9 +717,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -874,30 +780,21 @@
             "in": "path",
             "required": true,
             "description": "The block index of the block in which to write the data. A block index is a logical index in units of <code>512</code> KiB blocks. To identify the block index, divide the logical offset of the data in the logical volume by the block size (logical offset of data/<code>524288</code>). The logical offset of the data must be <code>512</code> KiB aligned.",
-            "schema": {
-              "type": "integer",
-              "minimum": 0
-            }
+            "schema": { "type": "integer", "minimum": 0 }
           },
           {
             "name": "x-amz-Data-Length",
             "in": "header",
             "required": true,
             "description": "<p>The size of the data to write to the block, in bytes. Currently, the only supported size is <code>524288</code>.</p> <p>Valid values: <code>524288</code> </p>",
-            "schema": {
-              "type": "integer"
-            }
+            "schema": { "type": "integer" }
           },
           {
             "name": "x-amz-Progress",
             "in": "header",
             "required": false,
             "description": "The progress of the write process, as a percentage.",
-            "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 0, "maximum": 100 }
           },
           {
             "name": "x-amz-Checksum",
@@ -944,27 +841,13 @@
         "summary": "Put Snapshot Block"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/snapshots": {
@@ -996,9 +879,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1056,9 +937,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           }
@@ -1087,9 +966,7 @@
                   "Tags": {
                     "description": "The tags to apply to the snapshot.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/Tag"
-                    }
+                    "items": { "$ref": "#/components/schemas/Tag" }
                   },
                   "Description": {
                     "description": "A description for the snapshot.",
@@ -1129,27 +1006,13 @@
         "summary": "Start Snapshot"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -1158,63 +1021,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -1234,12 +1083,8 @@
         "properties": {
           "Status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Status"
-              },
-              {
-                "description": "The status of the snapshot."
-              }
+              { "$ref": "#/components/schemas/Status" },
+              { "description": "The status of the snapshot." }
             ]
           }
         }
@@ -1255,12 +1100,8 @@
         "properties": {
           "BlockData": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BlockData"
-              },
-              {
-                "description": "The data content of the block."
-              }
+              { "$ref": "#/components/schemas/BlockData" },
+              { "description": "The data content of the block." }
             ]
           }
         }
@@ -1270,9 +1111,7 @@
         "properties": {
           "ChangedBlocks": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ChangedBlocks"
-              },
+              { "$ref": "#/components/schemas/ChangedBlocks" },
               {
                 "description": "An array of objects containing information about the changed blocks."
               }
@@ -1280,9 +1119,7 @@
           },
           "ExpiryTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimeStamp"
-              },
+              { "$ref": "#/components/schemas/TimeStamp" },
               {
                 "description": "The time when the <code>BlockToken</code> expires."
               }
@@ -1290,29 +1127,19 @@
           },
           "VolumeSize": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VolumeSize"
-              },
-              {
-                "description": "The size of the volume in GB."
-              }
+              { "$ref": "#/components/schemas/VolumeSize" },
+              { "description": "The size of the volume in GB." }
             ]
           },
           "BlockSize": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BlockSize"
-              },
-              {
-                "description": "The size of the block."
-              }
+              { "$ref": "#/components/schemas/BlockSize" },
+              { "description": "The size of the block." }
             ]
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PageToken"
-              },
+              { "$ref": "#/components/schemas/PageToken" },
               {
                 "description": "The token to use to retrieve the next page of results. This value is null when there are no more results to return."
               }
@@ -1325,9 +1152,7 @@
         "properties": {
           "Blocks": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Blocks"
-              },
+              { "$ref": "#/components/schemas/Blocks" },
               {
                 "description": "An array of objects containing information about the blocks."
               }
@@ -1335,9 +1160,7 @@
           },
           "ExpiryTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimeStamp"
-              },
+              { "$ref": "#/components/schemas/TimeStamp" },
               {
                 "description": "The time when the <code>BlockToken</code> expires."
               }
@@ -1345,29 +1168,19 @@
           },
           "VolumeSize": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VolumeSize"
-              },
-              {
-                "description": "The size of the volume in GB."
-              }
+              { "$ref": "#/components/schemas/VolumeSize" },
+              { "description": "The size of the volume in GB." }
             ]
           },
           "BlockSize": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BlockSize"
-              },
-              {
-                "description": "The size of the block."
-              }
+              { "$ref": "#/components/schemas/BlockSize" },
+              { "description": "The size of the block." }
             ]
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PageToken"
-              },
+              { "$ref": "#/components/schemas/PageToken" },
               {
                 "description": "The token to use to retrieve the next page of results. This value is null when there are no more results to return."
               }
@@ -1375,78 +1188,49 @@
           }
         }
       },
-      "PutSnapshotBlockResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "PutSnapshotBlockResponse": { "type": "object", "properties": {} },
       "StartSnapshotResponse": {
         "type": "object",
         "properties": {
           "Description": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Description"
-              },
-              {
-                "description": "The description of the snapshot."
-              }
+              { "$ref": "#/components/schemas/Description" },
+              { "description": "The description of the snapshot." }
             ]
           },
           "SnapshotId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SnapshotId"
-              },
-              {
-                "description": "The ID of the snapshot."
-              }
+              { "$ref": "#/components/schemas/SnapshotId" },
+              { "description": "The ID of the snapshot." }
             ]
           },
           "OwnerId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OwnerId"
-              },
-              {
-                "description": "The AWS account ID of the snapshot owner."
-              }
+              { "$ref": "#/components/schemas/OwnerId" },
+              { "description": "The AWS account ID of the snapshot owner." }
             ]
           },
           "Status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Status"
-              },
-              {
-                "description": "The status of the snapshot."
-              }
+              { "$ref": "#/components/schemas/Status" },
+              { "description": "The status of the snapshot." }
             ]
           },
           "StartTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimeStamp"
-              },
-              {
-                "description": "The timestamp when the snapshot was created."
-              }
+              { "$ref": "#/components/schemas/TimeStamp" },
+              { "description": "The timestamp when the snapshot was created." }
             ]
           },
           "VolumeSize": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VolumeSize"
-              },
-              {
-                "description": "The size of the volume, in GiB."
-              }
+              { "$ref": "#/components/schemas/VolumeSize" },
+              { "description": "The size of the volume, in GiB." }
             ]
           },
           "BlockSize": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BlockSize"
-              },
+              { "$ref": "#/components/schemas/BlockSize" },
               {
                 "description": "The size of the blocks in the snapshot, in bytes."
               }
@@ -1454,9 +1238,7 @@
           },
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Tags"
-              },
+              { "$ref": "#/components/schemas/Tags" },
               {
                 "description": "The tags applied to the snapshot. You can specify up to 50 tags per snapshot. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\"> Tagging your Amazon EC2 resources</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>."
               }
@@ -1464,19 +1246,13 @@
           },
           "ParentSnapshotId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SnapshotId"
-              },
-              {
-                "description": "The ID of the parent snapshot."
-              }
+              { "$ref": "#/components/schemas/SnapshotId" },
+              { "description": "The ID of the parent snapshot." }
             ]
           },
           "KmsKeyArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/KmsKeyArn"
-              },
+              { "$ref": "#/components/schemas/KmsKeyArn" },
               {
                 "description": "The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS) customer master key (CMK) used to encrypt the snapshot."
               }
@@ -1489,22 +1265,14 @@
         "properties": {
           "Key": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagKey"
-              },
-              {
-                "description": "The key of the tag."
-              }
+              { "$ref": "#/components/schemas/TagKey" },
+              { "description": "The key of the tag." }
             ]
           },
           "Value": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagValue"
-              },
-              {
-                "description": "The value of the tag."
-              }
+              { "$ref": "#/components/schemas/TagValue" },
+              { "description": "The value of the tag." }
             ]
           }
         },
@@ -1512,10 +1280,7 @@
       },
       "ConcurrentLimitExceededException": {},
       "ConflictException": {},
-      "BlockIndex": {
-        "type": "integer",
-        "minimum": 0
-      },
+      "BlockIndex": { "type": "integer", "minimum": 0 },
       "BlockToken": {
         "type": "string",
         "pattern": "^[A-Za-z0-9+/=]+$",
@@ -1526,58 +1291,37 @@
         "properties": {
           "BlockIndex": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BlockIndex"
-              },
-              {
-                "description": "The block index."
-              }
+              { "$ref": "#/components/schemas/BlockIndex" },
+              { "description": "The block index." }
             ]
           },
           "BlockToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BlockToken"
-              },
-              {
-                "description": "The block token for the block index."
-              }
+              { "$ref": "#/components/schemas/BlockToken" },
+              { "description": "The block token for the block index." }
             ]
           }
         },
         "description": "A block of data in an Amazon Elastic Block Store snapshot."
       },
-      "BlockData": {
-        "type": "string",
-        "format": "password"
-      },
-      "BlockSize": {
-        "type": "integer"
-      },
+      "BlockData": { "type": "string", "format": "password" },
+      "BlockSize": { "type": "integer" },
       "Blocks": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Block"
-        }
+        "items": { "$ref": "#/components/schemas/Block" }
       },
       "ChangedBlock": {
         "type": "object",
         "properties": {
           "BlockIndex": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BlockIndex"
-              },
-              {
-                "description": "The block index."
-              }
+              { "$ref": "#/components/schemas/BlockIndex" },
+              { "description": "The block index." }
             ]
           },
           "FirstBlockToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BlockToken"
-              },
+              { "$ref": "#/components/schemas/BlockToken" },
               {
                 "description": "The block token for the block index of the <code>FirstSnapshotId</code> specified in the <code>ListChangedBlocks</code> operation. This value is absent if the first snapshot does not have the changed block that is on the second snapshot."
               }
@@ -1585,9 +1329,7 @@
           },
           "SecondBlockToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BlockToken"
-              },
+              { "$ref": "#/components/schemas/BlockToken" },
               {
                 "description": "The block token for the block index of the <code>SecondSnapshotId</code> specified in the <code>ListChangedBlocks</code> operation."
               }
@@ -1598,9 +1340,7 @@
       },
       "ChangedBlocks": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ChangedBlock"
-        }
+        "items": { "$ref": "#/components/schemas/ChangedBlock" }
       },
       "SnapshotId": {
         "type": "string",
@@ -1630,14 +1370,8 @@
         "pattern": "^[A-Za-z0-9+/=]+$",
         "maxLength": 256
       },
-      "TimeStamp": {
-        "type": "string",
-        "format": "date-time"
-      },
-      "VolumeSize": {
-        "type": "integer",
-        "minimum": 1
-      },
+      "TimeStamp": { "type": "string", "format": "date-time" },
+      "VolumeSize": { "type": "integer", "minimum": 1 },
       "OwnerId": {
         "type": "string",
         "pattern": "\\S+",
@@ -1646,9 +1380,7 @@
       },
       "Tags": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Tag"
-        }
+        "items": { "$ref": "#/components/schemas/Tag" }
       },
       "TagKey": {
         "type": "string",
@@ -1662,11 +1394,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2019-11-02",
     "endpointPrefix": "ebs",

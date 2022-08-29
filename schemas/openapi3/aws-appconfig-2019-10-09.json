@@ -147,9 +147,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Application"
-                }
+                "schema": { "$ref": "#/components/schemas/Application" }
               }
             }
           },
@@ -157,9 +155,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -212,27 +208,13 @@
         "summary": "Create Application"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListApplications",
@@ -242,9 +224,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Applications"
-                }
+                "schema": { "$ref": "#/components/schemas/Applications" }
               }
             }
           },
@@ -262,9 +242,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -275,38 +253,26 @@
             "in": "query",
             "required": false,
             "description": "The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 50
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 50 }
           },
           {
             "name": "next_token",
             "in": "query",
             "required": false,
             "description": "A token to start the list. Use this token to get the next set of results.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 2048
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 2048 }
           },
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -333,9 +299,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -366,10 +330,7 @@
             "in": "path",
             "required": true,
             "description": "The application ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           }
         ],
         "requestBody": {
@@ -408,9 +369,7 @@
                   "Validators": {
                     "description": "A list of methods for validating the configuration.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/Validator"
-                    },
+                    "items": { "$ref": "#/components/schemas/Validator" },
                     "minItems": 0,
                     "maxItems": 2
                   },
@@ -431,27 +390,13 @@
         "summary": "Create Configuration Profile"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListConfigurationProfiles",
@@ -491,9 +436,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -504,48 +447,33 @@
             "in": "path",
             "required": true,
             "description": "The application ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "max_results",
             "in": "query",
             "required": false,
             "description": "The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 50
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 50 }
           },
           {
             "name": "next_token",
             "in": "query",
             "required": false,
             "description": "A token to start the list. Use this token to get the next set of results.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 2048
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 2048 }
           },
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -562,9 +490,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeploymentStrategy"
-                }
+                "schema": { "$ref": "#/components/schemas/DeploymentStrategy" }
               }
             }
           },
@@ -582,9 +508,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -661,27 +585,13 @@
         "summary": "Create Deployment Strategy"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListDeploymentStrategies",
@@ -711,9 +621,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -724,38 +632,26 @@
             "in": "query",
             "required": false,
             "description": "The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 50
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 50 }
           },
           {
             "name": "next_token",
             "in": "query",
             "required": false,
             "description": "A token to start the list. Use this token to get the next set of results.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 2048
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 2048 }
           },
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -772,9 +668,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Environment"
-                }
+                "schema": { "$ref": "#/components/schemas/Environment" }
               }
             }
           },
@@ -802,9 +696,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -815,10 +707,7 @@
             "in": "path",
             "required": true,
             "description": "The application ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           }
         ],
         "requestBody": {
@@ -844,9 +733,7 @@
                   "Monitors": {
                     "description": "Amazon CloudWatch alarms to monitor during the deployment process.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/Monitor"
-                    },
+                    "items": { "$ref": "#/components/schemas/Monitor" },
                     "minItems": 0,
                     "maxItems": 5
                   },
@@ -867,27 +754,13 @@
         "summary": "Create Environment"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListEnvironments",
@@ -897,9 +770,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Environments"
-                }
+                "schema": { "$ref": "#/components/schemas/Environments" }
               }
             }
           },
@@ -927,9 +798,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -940,48 +809,33 @@
             "in": "path",
             "required": true,
             "description": "The application ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "max_results",
             "in": "query",
             "required": false,
             "description": "The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 50
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 50 }
           },
           {
             "name": "next_token",
             "in": "query",
             "required": false,
             "description": "A token to start the list. Use this token to get the next set of results.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 2048
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 2048 }
           },
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -1008,9 +862,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1038,9 +890,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -1071,51 +921,35 @@
             "in": "path",
             "required": true,
             "description": "The application ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "ConfigurationProfileId",
             "in": "path",
             "required": true,
             "description": "The configuration profile ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "Description",
             "in": "header",
             "required": false,
             "description": "A description of the configuration.",
-            "schema": {
-              "type": "string",
-              "minLength": 0,
-              "maxLength": 1024
-            }
+            "schema": { "type": "string", "minLength": 0, "maxLength": 1024 }
           },
           {
             "name": "Content-Type",
             "in": "header",
             "required": true,
             "description": "A standard MIME type describing the format of the configuration content. For more information, see <a href=\"https://docs.aws.amazon.com/https:/www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17\">Content-Type</a>.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 255 }
           },
           {
             "name": "Latest-Version-Number",
             "in": "header",
             "required": false,
             "description": "An optional locking token used to prevent race conditions from overwriting configuration updates when creating a new version. To ensure your data is not overwritten when creating multiple hosted configuration versions in rapid succession, specify the version of the latest hosted configuration version.",
-            "schema": {
-              "type": "integer"
-            }
+            "schema": { "type": "integer" }
           }
         ],
         "requestBody": {
@@ -1139,27 +973,13 @@
         "summary": "Create Hosted Configuration Version"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/applications/{ApplicationId}": {
@@ -1167,9 +987,7 @@
         "operationId": "DeleteApplication",
         "description": "Delete an application. Deleting an application does not delete a configuration from a host.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -1194,9 +1012,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -1207,36 +1023,19 @@
             "in": "path",
             "required": true,
             "description": "The ID of the application to delete.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           }
         ],
         "summary": "Delete Application"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetApplication",
@@ -1246,9 +1045,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Application"
-                }
+                "schema": { "$ref": "#/components/schemas/Application" }
               }
             }
           },
@@ -1276,9 +1073,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -1289,10 +1084,7 @@
             "in": "path",
             "required": true,
             "description": "The ID of the application you want to get.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           }
         ],
         "summary": "Get Application"
@@ -1305,9 +1097,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Application"
-                }
+                "schema": { "$ref": "#/components/schemas/Application" }
               }
             }
           },
@@ -1315,9 +1105,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1348,10 +1136,7 @@
             "in": "path",
             "required": true,
             "description": "The application ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           }
         ],
         "requestBody": {
@@ -1386,9 +1171,7 @@
         "operationId": "DeleteConfigurationProfile",
         "description": "Delete a configuration profile. Deleting a configuration profile does not delete a configuration from a host.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -1403,9 +1186,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -1423,9 +1204,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -1436,46 +1215,26 @@
             "in": "path",
             "required": true,
             "description": "The application ID that includes the configuration profile you want to delete.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "ConfigurationProfileId",
             "in": "path",
             "required": true,
             "description": "The ID of the configuration profile you want to delete.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           }
         ],
         "summary": "Delete Configuration Profile"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetConfigurationProfile",
@@ -1515,9 +1274,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -1528,20 +1285,14 @@
             "in": "path",
             "required": true,
             "description": "The ID of the application that includes the configuration profile you want to get.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "ConfigurationProfileId",
             "in": "path",
             "required": true,
             "description": "The ID of the configuration profile you want to get.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           }
         ],
         "summary": "Get Configuration Profile"
@@ -1564,9 +1315,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1597,20 +1346,14 @@
             "in": "path",
             "required": true,
             "description": "The application ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "ConfigurationProfileId",
             "in": "path",
             "required": true,
             "description": "The ID of the configuration profile.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           }
         ],
         "requestBody": {
@@ -1642,9 +1385,7 @@
                   "Validators": {
                     "description": "A list of methods for validating the configuration.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/Validator"
-                    },
+                    "items": { "$ref": "#/components/schemas/Validator" },
                     "minItems": 0,
                     "maxItems": 2
                   }
@@ -1661,9 +1402,7 @@
         "operationId": "DeleteDeploymentStrategy",
         "description": "Delete a deployment strategy. Deleting a deployment strategy does not delete a configuration from a host.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -1688,9 +1427,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -1710,27 +1447,13 @@
         "summary": "Delete Deployment Strategy"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/applications/{ApplicationId}/environments/{EnvironmentId}": {
@@ -1738,9 +1461,7 @@
         "operationId": "DeleteEnvironment",
         "description": "Delete an environment. Deleting an environment does not delete a configuration from a host.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -1755,9 +1476,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -1775,9 +1494,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -1788,46 +1505,26 @@
             "in": "path",
             "required": true,
             "description": "The application ID that includes the environment you want to delete.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "EnvironmentId",
             "in": "path",
             "required": true,
             "description": "The ID of the environment you want to delete.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           }
         ],
         "summary": "Delete Environment"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetEnvironment",
@@ -1837,9 +1534,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Environment"
-                }
+                "schema": { "$ref": "#/components/schemas/Environment" }
               }
             }
           },
@@ -1867,9 +1562,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -1880,20 +1573,14 @@
             "in": "path",
             "required": true,
             "description": "The ID of the application that includes the environment you want to get.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "EnvironmentId",
             "in": "path",
             "required": true,
             "description": "The ID of the environment you wnat to get.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           }
         ],
         "summary": "Get Environment"
@@ -1906,9 +1593,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Environment"
-                }
+                "schema": { "$ref": "#/components/schemas/Environment" }
               }
             }
           },
@@ -1916,9 +1601,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1949,20 +1632,14 @@
             "in": "path",
             "required": true,
             "description": "The application ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "EnvironmentId",
             "in": "path",
             "required": true,
             "description": "The environment ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           }
         ],
         "requestBody": {
@@ -1987,9 +1664,7 @@
                   "Monitors": {
                     "description": "Amazon CloudWatch alarms to monitor during the deployment process.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/Monitor"
-                    },
+                    "items": { "$ref": "#/components/schemas/Monitor" },
                     "minItems": 0,
                     "maxItems": 5
                   }
@@ -2006,16 +1681,12 @@
         "operationId": "DeleteHostedConfigurationVersion",
         "description": "Delete a version of a configuration from the AppConfig configuration store.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2046,55 +1717,33 @@
             "in": "path",
             "required": true,
             "description": "The application ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "ConfigurationProfileId",
             "in": "path",
             "required": true,
             "description": "The configuration profile ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "VersionNumber",
             "in": "path",
             "required": true,
             "description": "The versions number to delete.",
-            "schema": {
-              "type": "integer"
-            }
+            "schema": { "type": "integer" }
           }
         ],
         "summary": "Delete Hosted Configuration Version"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetHostedConfigurationVersion",
@@ -2114,9 +1763,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2147,29 +1794,21 @@
             "in": "path",
             "required": true,
             "description": "The application ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "ConfigurationProfileId",
             "in": "path",
             "required": true,
             "description": "The configuration profile ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "VersionNumber",
             "in": "path",
             "required": true,
             "description": "The version.",
-            "schema": {
-              "type": "integer"
-            }
+            "schema": { "type": "integer" }
           }
         ],
         "summary": "Get Hosted Configuration Version"
@@ -2184,9 +1823,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Configuration"
-                }
+                "schema": { "$ref": "#/components/schemas/Configuration" }
               }
             }
           },
@@ -2214,9 +1851,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -2227,81 +1862,47 @@
             "in": "path",
             "required": true,
             "description": "The application to get. Specify either the application name or the application ID.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 64
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 64 }
           },
           {
             "name": "Environment",
             "in": "path",
             "required": true,
             "description": "The environment to get. Specify either the environment name or the environment ID.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 64
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 64 }
           },
           {
             "name": "Configuration",
             "in": "path",
             "required": true,
             "description": "The configuration to get. Specify either the configuration name or the configuration ID.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 64
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 64 }
           },
           {
             "name": "client_id",
             "in": "query",
             "required": true,
             "description": "A unique ID to identify the client for the configuration. This ID enables AppConfig to deploy the configuration in intervals, as defined in the deployment strategy.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 64
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 64 }
           },
           {
             "name": "client_configuration_version",
             "in": "query",
             "required": false,
             "description": "<p>The configuration version returned in the most recent <code>GetConfiguration</code> response.</p> <important> <p>AWS AppConfig uses the value of the <code>ClientConfigurationVersion</code> parameter to identify the configuration version on your clients. If you don’t send <code>ClientConfigurationVersion</code> with each call to <code>GetConfiguration</code>, your clients receive the current configuration. You are charged each time your clients receive a configuration.</p> <p>To avoid excess charges, we recommend that you include the <code>ClientConfigurationVersion</code> value with every call to <code>GetConfiguration</code>. This value must be saved on your client. Subsequent calls to <code>GetConfiguration</code> must pass this value by using the <code>ClientConfigurationVersion</code> parameter. </p> </important> <p>For more information about working with configurations, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/appconfig-retrieving-the-configuration.html\">Retrieving the Configuration</a> in the <i>AWS AppConfig User Guide</i>.</p>",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 1024
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 1024 }
           }
         ],
         "summary": "Get Configuration"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/applications/{ApplicationId}/environments/{EnvironmentId}/deployments/{DeploymentNumber}": {
@@ -2313,9 +1914,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Deployment"
-                }
+                "schema": { "$ref": "#/components/schemas/Deployment" }
               }
             }
           },
@@ -2343,9 +1942,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -2356,55 +1953,33 @@
             "in": "path",
             "required": true,
             "description": "The ID of the application that includes the deployment you want to get. ",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "EnvironmentId",
             "in": "path",
             "required": true,
             "description": "The ID of the environment that includes the deployment you want to get. ",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "DeploymentNumber",
             "in": "path",
             "required": true,
             "description": "The sequence number of the deployment.",
-            "schema": {
-              "type": "integer"
-            }
+            "schema": { "type": "integer" }
           }
         ],
         "summary": "Get Deployment"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "delete": {
         "operationId": "StopDeployment",
@@ -2414,9 +1989,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Deployment"
-                }
+                "schema": { "$ref": "#/components/schemas/Deployment" }
               }
             }
           },
@@ -2444,9 +2017,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -2457,29 +2028,21 @@
             "in": "path",
             "required": true,
             "description": "The application ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "EnvironmentId",
             "in": "path",
             "required": true,
             "description": "The environment ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "DeploymentNumber",
             "in": "path",
             "required": true,
             "description": "The sequence number of the deployment.",
-            "schema": {
-              "type": "integer"
-            }
+            "schema": { "type": "integer" }
           }
         ],
         "summary": "Stop Deployment"
@@ -2494,9 +2057,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeploymentStrategy"
-                }
+                "schema": { "$ref": "#/components/schemas/DeploymentStrategy" }
               }
             }
           },
@@ -2524,9 +2085,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -2546,27 +2105,13 @@
         "summary": "Get Deployment Strategy"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "patch": {
         "operationId": "UpdateDeploymentStrategy",
@@ -2576,9 +2121,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeploymentStrategy"
-                }
+                "schema": { "$ref": "#/components/schemas/DeploymentStrategy" }
               }
             }
           },
@@ -2586,9 +2129,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2679,9 +2220,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Deployments"
-                }
+                "schema": { "$ref": "#/components/schemas/Deployments" }
               }
             }
           },
@@ -2709,9 +2248,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -2722,58 +2259,40 @@
             "in": "path",
             "required": true,
             "description": "The application ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "EnvironmentId",
             "in": "path",
             "required": true,
             "description": "The environment ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "max_results",
             "in": "query",
             "required": false,
             "description": "The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 50
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 50 }
           },
           {
             "name": "next_token",
             "in": "query",
             "required": false,
             "description": "A token to start the list. Use this token to get the next set of results.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 2048
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 2048 }
           },
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -2781,27 +2300,13 @@
         "summary": "List Deployments"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "StartDeployment",
@@ -2811,9 +2316,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Deployment"
-                }
+                "schema": { "$ref": "#/components/schemas/Deployment" }
               }
             }
           },
@@ -2821,9 +2324,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2841,9 +2342,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -2864,20 +2363,14 @@
             "in": "path",
             "required": true,
             "description": "The application ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "EnvironmentId",
             "in": "path",
             "required": true,
             "description": "The environment ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           }
         ],
         "requestBody": {
@@ -2950,9 +2443,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2983,58 +2474,40 @@
             "in": "path",
             "required": true,
             "description": "The application ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "ConfigurationProfileId",
             "in": "path",
             "required": true,
             "description": "The configuration profile ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "max_results",
             "in": "query",
             "required": false,
             "description": "The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 50
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 50 }
           },
           {
             "name": "next_token",
             "in": "query",
             "required": false,
             "description": "A token to start the list. Use this token to get the next set of results. ",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 2048
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 2048 }
           },
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -3042,27 +2515,13 @@
         "summary": "List Hosted Configuration Versions"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/tags/{ResourceArn}": {
@@ -3074,9 +2533,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceTags"
-                }
+                "schema": { "$ref": "#/components/schemas/ResourceTags" }
               }
             }
           },
@@ -3094,9 +2551,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -3128,35 +2583,19 @@
         "summary": "List Tags For Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "TagResource",
         "description": "Metadata to assign to an AppConfig resource. Tags help organize and categorize your AppConfig resources. Each tag consists of a key and an optional value, both of which you define. You can specify a maximum of 50 tags for a resource.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -3171,9 +2610,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -3232,9 +2669,7 @@
         "operationId": "UntagResource",
         "description": "Deletes a tag key and value from an AppConfig resource.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -3249,9 +2684,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -3286,9 +2719,7 @@
             "description": "The tag keys to delete.",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/TagKey"
-              },
+              "items": { "$ref": "#/components/schemas/TagKey" },
               "minItems": 0,
               "maxItems": 50
             }
@@ -3297,27 +2728,13 @@
         "summary": "Untag Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/validators#configuration_version": {
@@ -3325,16 +2742,12 @@
         "operationId": "ValidateConfiguration",
         "description": "Uses the validators in a configuration profile to validate a configuration.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -3365,57 +2778,33 @@
             "in": "path",
             "required": true,
             "description": "The application ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "ConfigurationProfileId",
             "in": "path",
             "required": true,
             "description": "The configuration profile ID.",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-z0-9]{4,7}"
-            }
+            "schema": { "type": "string", "pattern": "[a-z0-9]{4,7}" }
           },
           {
             "name": "configuration_version",
             "in": "query",
             "required": true,
             "description": "The version of the configuration to validate.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 1024
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 1024 }
           }
         ],
         "summary": "Validate Configuration"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -3424,63 +2813,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -3500,40 +2875,25 @@
         "properties": {
           "Id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Id"
-              },
-              {
-                "description": "The application ID."
-              }
+              { "$ref": "#/components/schemas/Id" },
+              { "description": "The application ID." }
             ]
           },
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Name"
-              },
-              {
-                "description": "The application name."
-              }
+              { "$ref": "#/components/schemas/Name" },
+              { "description": "The application name." }
             ]
           },
           "Description": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Description"
-              },
-              {
-                "description": "The description of the application."
-              }
+              { "$ref": "#/components/schemas/Description" },
+              { "description": "The description of the application." }
             ]
           }
         }
       },
-      "TagValue": {
-        "type": "string",
-        "maxLength": 256
-      },
+      "TagValue": { "type": "string", "maxLength": 256 },
       "BadRequestException": {},
       "InternalServerException": {},
       "ConfigurationProfile": {
@@ -3541,59 +2901,37 @@
         "properties": {
           "ApplicationId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Id"
-              },
-              {
-                "description": "The application ID."
-              }
+              { "$ref": "#/components/schemas/Id" },
+              { "description": "The application ID." }
             ]
           },
           "Id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Id"
-              },
-              {
-                "description": "The configuration profile ID."
-              }
+              { "$ref": "#/components/schemas/Id" },
+              { "description": "The configuration profile ID." }
             ]
           },
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Name"
-              },
-              {
-                "description": "The name of the configuration profile."
-              }
+              { "$ref": "#/components/schemas/Name" },
+              { "description": "The name of the configuration profile." }
             ]
           },
           "Description": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Description"
-              },
-              {
-                "description": "The configuration profile description."
-              }
+              { "$ref": "#/components/schemas/Description" },
+              { "description": "The configuration profile description." }
             ]
           },
           "LocationUri": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Uri"
-              },
-              {
-                "description": "The URI location of the configuration."
-              }
+              { "$ref": "#/components/schemas/Uri" },
+              { "description": "The URI location of the configuration." }
             ]
           },
           "RetrievalRoleArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RoleArn"
-              },
+              { "$ref": "#/components/schemas/RoleArn" },
               {
                 "description": "The ARN of an IAM role with permission to access the configuration at the specified LocationUri."
               }
@@ -3601,9 +2939,7 @@
           },
           "Validators": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ValidatorList"
-              },
+              { "$ref": "#/components/schemas/ValidatorList" },
               {
                 "description": "A list of methods for validating the configuration."
               }
@@ -3617,9 +2953,7 @@
         "properties": {
           "Type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ValidatorType"
-              },
+              { "$ref": "#/components/schemas/ValidatorType" },
               {
                 "description": "AppConfig supports validators of type <code>JSON_SCHEMA</code> and <code>LAMBDA</code> "
               }
@@ -3644,49 +2978,31 @@
         "properties": {
           "Id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Id"
-              },
-              {
-                "description": "The deployment strategy ID."
-              }
+              { "$ref": "#/components/schemas/Id" },
+              { "description": "The deployment strategy ID." }
             ]
           },
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Name"
-              },
-              {
-                "description": "The name of the deployment strategy."
-              }
+              { "$ref": "#/components/schemas/Name" },
+              { "description": "The name of the deployment strategy." }
             ]
           },
           "Description": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Description"
-              },
-              {
-                "description": "The description of the deployment strategy."
-              }
+              { "$ref": "#/components/schemas/Description" },
+              { "description": "The description of the deployment strategy." }
             ]
           },
           "DeploymentDurationInMinutes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MinutesBetween0And24Hours"
-              },
-              {
-                "description": "Total amount of time the deployment lasted."
-              }
+              { "$ref": "#/components/schemas/MinutesBetween0And24Hours" },
+              { "description": "Total amount of time the deployment lasted." }
             ]
           },
           "GrowthType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GrowthType"
-              },
+              { "$ref": "#/components/schemas/GrowthType" },
               {
                 "description": "The algorithm used to define how percentage grew over time."
               }
@@ -3694,9 +3010,7 @@
           },
           "GrowthFactor": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Percentage"
-              },
+              { "$ref": "#/components/schemas/Percentage" },
               {
                 "description": "The percentage of targets that received a deployed configuration during each interval."
               }
@@ -3704,9 +3018,7 @@
           },
           "FinalBakeTimeInMinutes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MinutesBetween0And24Hours"
-              },
+              { "$ref": "#/components/schemas/MinutesBetween0And24Hours" },
               {
                 "description": "The amount of time AppConfig monitored for alarms before considering the deployment to be complete and no longer eligible for automatic roll back."
               }
@@ -3714,9 +3026,7 @@
           },
           "ReplicateTo": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ReplicateTo"
-              },
+              { "$ref": "#/components/schemas/ReplicateTo" },
               {
                 "description": "Save the deployment strategy to a Systems Manager (SSM) document."
               }
@@ -3729,49 +3039,31 @@
         "properties": {
           "ApplicationId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Id"
-              },
-              {
-                "description": "The application ID."
-              }
+              { "$ref": "#/components/schemas/Id" },
+              { "description": "The application ID." }
             ]
           },
           "Id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Id"
-              },
-              {
-                "description": "The environment ID."
-              }
+              { "$ref": "#/components/schemas/Id" },
+              { "description": "The environment ID." }
             ]
           },
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Name"
-              },
-              {
-                "description": "The name of the environment."
-              }
+              { "$ref": "#/components/schemas/Name" },
+              { "description": "The name of the environment." }
             ]
           },
           "Description": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Description"
-              },
-              {
-                "description": "The description of the environment."
-              }
+              { "$ref": "#/components/schemas/Description" },
+              { "description": "The description of the environment." }
             ]
           },
           "State": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnvironmentState"
-              },
+              { "$ref": "#/components/schemas/EnvironmentState" },
               {
                 "description": "The state of the environment. An environment can be in one of the following states: <code>READY_FOR_DEPLOYMENT</code>, <code>DEPLOYING</code>, <code>ROLLING_BACK</code>, or <code>ROLLED_BACK</code> "
               }
@@ -3779,9 +3071,7 @@
           },
           "Monitors": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MonitorList"
-              },
+              { "$ref": "#/components/schemas/MonitorList" },
               {
                 "description": "Amazon CloudWatch alarms monitored during the deployment."
               }
@@ -3794,19 +3084,13 @@
         "properties": {
           "AlarmArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
-              {
-                "description": "ARN of the Amazon CloudWatch alarm."
-              }
+              { "$ref": "#/components/schemas/Arn" },
+              { "description": "ARN of the Amazon CloudWatch alarm." }
             ]
           },
           "AlarmRoleArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RoleArn"
-              },
+              { "$ref": "#/components/schemas/RoleArn" },
               {
                 "description": "ARN of an IAM role for AppConfig to monitor <code>AlarmArn</code>."
               }
@@ -3820,9 +3104,7 @@
         "properties": {
           "Content": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Blob"
-              },
+              { "$ref": "#/components/schemas/Blob" },
               {
                 "description": "The content of the configuration or the configuration data."
               }
@@ -3838,9 +3120,7 @@
         "properties": {
           "Content": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Blob"
-              },
+              { "$ref": "#/components/schemas/Blob" },
               {
                 "description": "The content of the configuration or the configuration data."
               }
@@ -3853,29 +3133,19 @@
         "properties": {
           "ApplicationId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Id"
-              },
-              {
-                "description": "The ID of the application that was deployed."
-              }
+              { "$ref": "#/components/schemas/Id" },
+              { "description": "The ID of the application that was deployed." }
             ]
           },
           "EnvironmentId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Id"
-              },
-              {
-                "description": "The ID of the environment that was deployed."
-              }
+              { "$ref": "#/components/schemas/Id" },
+              { "description": "The ID of the environment that was deployed." }
             ]
           },
           "DeploymentStrategyId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Id"
-              },
+              { "$ref": "#/components/schemas/Id" },
               {
                 "description": "The ID of the deployment strategy that was deployed."
               }
@@ -3883,9 +3153,7 @@
           },
           "ConfigurationProfileId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Id"
-              },
+              { "$ref": "#/components/schemas/Id" },
               {
                 "description": "The ID of the configuration profile that was deployed."
               }
@@ -3893,29 +3161,19 @@
           },
           "DeploymentNumber": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Integer"
-              },
-              {
-                "description": "The sequence number of the deployment."
-              }
+              { "$ref": "#/components/schemas/Integer" },
+              { "description": "The sequence number of the deployment." }
             ]
           },
           "ConfigurationName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Name"
-              },
-              {
-                "description": "The name of the configuration."
-              }
+              { "$ref": "#/components/schemas/Name" },
+              { "description": "The name of the configuration." }
             ]
           },
           "ConfigurationLocationUri": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Uri"
-              },
+              { "$ref": "#/components/schemas/Uri" },
               {
                 "description": "Information about the source location of the configuration."
               }
@@ -3923,39 +3181,25 @@
           },
           "ConfigurationVersion": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Version"
-              },
-              {
-                "description": "The configuration version that was deployed."
-              }
+              { "$ref": "#/components/schemas/Version" },
+              { "description": "The configuration version that was deployed." }
             ]
           },
           "Description": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Description"
-              },
-              {
-                "description": "The description of the deployment."
-              }
+              { "$ref": "#/components/schemas/Description" },
+              { "description": "The description of the deployment." }
             ]
           },
           "DeploymentDurationInMinutes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MinutesBetween0And24Hours"
-              },
-              {
-                "description": "Total amount of time the deployment lasted."
-              }
+              { "$ref": "#/components/schemas/MinutesBetween0And24Hours" },
+              { "description": "Total amount of time the deployment lasted." }
             ]
           },
           "GrowthType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GrowthType"
-              },
+              { "$ref": "#/components/schemas/GrowthType" },
               {
                 "description": "The algorithm used to define how percentage grew over time."
               }
@@ -3963,9 +3207,7 @@
           },
           "GrowthFactor": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Percentage"
-              },
+              { "$ref": "#/components/schemas/Percentage" },
               {
                 "description": "The percentage of targets to receive a deployed configuration during each interval."
               }
@@ -3973,9 +3215,7 @@
           },
           "FinalBakeTimeInMinutes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MinutesBetween0And24Hours"
-              },
+              { "$ref": "#/components/schemas/MinutesBetween0And24Hours" },
               {
                 "description": "The amount of time AppConfig monitored for alarms before considering the deployment to be complete and no longer eligible for automatic roll back."
               }
@@ -3983,19 +3223,13 @@
           },
           "State": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DeploymentState"
-              },
-              {
-                "description": "The state of the deployment."
-              }
+              { "$ref": "#/components/schemas/DeploymentState" },
+              { "description": "The state of the deployment." }
             ]
           },
           "EventLog": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DeploymentEvents"
-              },
+              { "$ref": "#/components/schemas/DeploymentEvents" },
               {
                 "description": "A list containing all events related to a deployment. The most recent events are displayed first."
               }
@@ -4003,9 +3237,7 @@
           },
           "PercentageComplete": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Percentage"
-              },
+              { "$ref": "#/components/schemas/Percentage" },
               {
                 "description": "The percentage of targets for which the deployment is available."
               }
@@ -4013,22 +3245,14 @@
           },
           "StartedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Iso8601DateTime"
-              },
-              {
-                "description": "The time the deployment started."
-              }
+              { "$ref": "#/components/schemas/Iso8601DateTime" },
+              { "description": "The time the deployment started." }
             ]
           },
           "CompletedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Iso8601DateTime"
-              },
-              {
-                "description": "The time the deployment completed. "
-              }
+              { "$ref": "#/components/schemas/Iso8601DateTime" },
+              { "description": "The time the deployment completed. " }
             ]
           }
         }
@@ -4038,19 +3262,13 @@
         "properties": {
           "Items": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ApplicationList"
-              },
-              {
-                "description": "The elements from this collection."
-              }
+              { "$ref": "#/components/schemas/ApplicationList" },
+              { "description": "The elements from this collection." }
             ]
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "The token for the next set of items to return. Use this token to get the next set of results."
               }
@@ -4066,16 +3284,12 @@
               {
                 "$ref": "#/components/schemas/ConfigurationProfileSummaryList"
               },
-              {
-                "description": "The elements from this collection."
-              }
+              { "description": "The elements from this collection." }
             ]
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "The token for the next set of items to return. Use this token to get the next set of results."
               }
@@ -4088,19 +3302,13 @@
         "properties": {
           "Items": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DeploymentStrategyList"
-              },
-              {
-                "description": "The elements from this collection."
-              }
+              { "$ref": "#/components/schemas/DeploymentStrategyList" },
+              { "description": "The elements from this collection." }
             ]
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "The token for the next set of items to return. Use this token to get the next set of results."
               }
@@ -4113,19 +3321,13 @@
         "properties": {
           "Items": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DeploymentList"
-              },
-              {
-                "description": "The elements from this collection."
-              }
+              { "$ref": "#/components/schemas/DeploymentList" },
+              { "description": "The elements from this collection." }
             ]
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "The token for the next set of items to return. Use this token to get the next set of results."
               }
@@ -4138,19 +3340,13 @@
         "properties": {
           "Items": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnvironmentList"
-              },
-              {
-                "description": "The elements from this collection."
-              }
+              { "$ref": "#/components/schemas/EnvironmentList" },
+              { "description": "The elements from this collection." }
             ]
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "The token for the next set of items to return. Use this token to get the next set of results."
               }
@@ -4166,16 +3362,12 @@
               {
                 "$ref": "#/components/schemas/HostedConfigurationVersionSummaryList"
               },
-              {
-                "description": "The elements from this collection."
-              }
+              { "description": "The elements from this collection." }
             ]
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "The token for the next set of items to return. Use this token to get the next set of results."
               }
@@ -4188,9 +3380,7 @@
         "properties": {
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagMap"
-              },
+              { "$ref": "#/components/schemas/TagMap" },
               {
                 "description": "Metadata to assign to AppConfig resources. Tags help organize and categorize your AppConfig resources. Each tag consists of a key and an optional value, both of which you define."
               }
@@ -4198,56 +3388,24 @@
           }
         }
       },
-      "TagKey": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 128
-      },
-      "Id": {
-        "type": "string",
-        "pattern": "[a-z0-9]{4,7}"
-      },
-      "Name": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 64
-      },
-      "Description": {
-        "type": "string",
-        "minLength": 0,
-        "maxLength": 1024
-      },
+      "TagKey": { "type": "string", "minLength": 1, "maxLength": 128 },
+      "Id": { "type": "string", "pattern": "[a-z0-9]{4,7}" },
+      "Name": { "type": "string", "minLength": 1, "maxLength": 64 },
+      "Description": { "type": "string", "minLength": 0, "maxLength": 1024 },
       "ApplicationList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Application"
-        }
+        "items": { "$ref": "#/components/schemas/Application" }
       },
-      "NextToken": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 2048
-      },
+      "NextToken": { "type": "string", "minLength": 1, "maxLength": 2048 },
       "Arn": {
         "type": "string",
         "pattern": "arn:(aws[a-zA-Z-]*)?:[a-z]+:([a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1})?:(\\d{12})?:[a-zA-Z0-9-_/:.]+",
         "minLength": 20,
         "maxLength": 2048
       },
-      "Blob": {
-        "type": "string",
-        "format": "password"
-      },
-      "Version": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 1024
-      },
-      "Uri": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 2048
-      },
+      "Blob": { "type": "string", "format": "password" },
+      "Version": { "type": "string", "minLength": 1, "maxLength": 1024 },
+      "Uri": { "type": "string", "minLength": 1, "maxLength": 2048 },
       "RoleArn": {
         "type": "string",
         "pattern": "^((arn):(aws|aws-cn|aws-iso|aws-iso-[a-z]{1}|aws-us-gov):(iam)::\\d{12}:role[/].*)$",
@@ -4256,17 +3414,13 @@
       },
       "ValidatorList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Validator"
-        },
+        "items": { "$ref": "#/components/schemas/Validator" },
         "minItems": 0,
         "maxItems": 2
       },
       "ValidatorTypeList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ValidatorType"
-        },
+        "items": { "$ref": "#/components/schemas/ValidatorType" },
         "minItems": 0,
         "maxItems": 2
       },
@@ -4275,49 +3429,31 @@
         "properties": {
           "ApplicationId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Id"
-              },
-              {
-                "description": "The application ID."
-              }
+              { "$ref": "#/components/schemas/Id" },
+              { "description": "The application ID." }
             ]
           },
           "Id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Id"
-              },
-              {
-                "description": "The ID of the configuration profile."
-              }
+              { "$ref": "#/components/schemas/Id" },
+              { "description": "The ID of the configuration profile." }
             ]
           },
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Name"
-              },
-              {
-                "description": "The name of the configuration profile."
-              }
+              { "$ref": "#/components/schemas/Name" },
+              { "description": "The name of the configuration profile." }
             ]
           },
           "LocationUri": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Uri"
-              },
-              {
-                "description": "The URI location of the configuration."
-              }
+              { "$ref": "#/components/schemas/Uri" },
+              { "description": "The URI location of the configuration." }
             ]
           },
           "ValidatorTypes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ValidatorTypeList"
-              },
+              { "$ref": "#/components/schemas/ValidatorTypeList" },
               {
                 "description": "The types of validators in the configuration profile."
               }
@@ -4328,36 +3464,24 @@
       },
       "ConfigurationProfileSummaryList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ConfigurationProfileSummary"
-        }
+        "items": { "$ref": "#/components/schemas/ConfigurationProfileSummary" }
       },
       "TagMap": {
         "type": "object",
         "minProperties": 0,
         "maxProperties": 50,
-        "additionalProperties": {
-          "$ref": "#/components/schemas/TagValue"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/TagValue" }
       },
       "MinutesBetween0And24Hours": {
         "type": "integer",
         "minimum": 0,
         "maximum": 1440
       },
-      "GrowthType": {
-        "type": "string",
-        "enum": ["LINEAR", "EXPONENTIAL"]
-      },
-      "ReplicateTo": {
-        "type": "string",
-        "enum": ["NONE", "SSM_DOCUMENT"]
-      },
+      "GrowthType": { "type": "string", "enum": ["LINEAR", "EXPONENTIAL"] },
+      "ReplicateTo": { "type": "string", "enum": ["NONE", "SSM_DOCUMENT"] },
       "MonitorList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Monitor"
-        },
+        "items": { "$ref": "#/components/schemas/Monitor" },
         "minItems": 0,
         "maxItems": 5
       },
@@ -4366,9 +3490,7 @@
         "minLength": 1,
         "maxLength": 255
       },
-      "Integer": {
-        "type": "integer"
-      },
+      "Integer": { "type": "integer" },
       "Percentage": {
         "type": "number",
         "format": "float",
@@ -4388,14 +3510,9 @@
       },
       "DeploymentEvents": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DeploymentEvent"
-        }
+        "items": { "$ref": "#/components/schemas/DeploymentEvent" }
       },
-      "Iso8601DateTime": {
-        "type": "string",
-        "format": "date-time"
-      },
+      "Iso8601DateTime": { "type": "string", "format": "date-time" },
       "DeploymentEventType": {
         "type": "string",
         "enum": [
@@ -4416,9 +3533,7 @@
         "properties": {
           "EventType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DeploymentEventType"
-              },
+              { "$ref": "#/components/schemas/DeploymentEventType" },
               {
                 "description": "The type of deployment event. Deployment event types include the start, stop, or completion of a deployment; a percentage update; the start or stop of a bake period; the start or completion of a rollback."
               }
@@ -4426,9 +3541,7 @@
           },
           "TriggeredBy": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TriggeredBy"
-              },
+              { "$ref": "#/components/schemas/TriggeredBy" },
               {
                 "description": "The entity that triggered the deployment event. Events can be triggered by a user, AWS AppConfig, an Amazon CloudWatch alarm, or an internal error."
               }
@@ -4436,9 +3549,7 @@
           },
           "Description": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Description"
-              },
+              { "$ref": "#/components/schemas/Description" },
               {
                 "description": "A description of the deployment event. Descriptions include, but are not limited to, the user account or the CloudWatch alarm ARN that initiated a rollback, the percentage of hosts that received the deployment, or in the case of an internal error, a recommendation to attempt a new deployment."
               }
@@ -4446,12 +3557,8 @@
           },
           "OccurredAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Iso8601DateTime"
-              },
-              {
-                "description": "The date and time the event occurred."
-              }
+              { "$ref": "#/components/schemas/Iso8601DateTime" },
+              { "description": "The date and time the event occurred." }
             ]
           }
         },
@@ -4462,49 +3569,31 @@
         "properties": {
           "DeploymentNumber": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Integer"
-              },
-              {
-                "description": "The sequence number of the deployment."
-              }
+              { "$ref": "#/components/schemas/Integer" },
+              { "description": "The sequence number of the deployment." }
             ]
           },
           "ConfigurationName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Name"
-              },
-              {
-                "description": "The name of the configuration."
-              }
+              { "$ref": "#/components/schemas/Name" },
+              { "description": "The name of the configuration." }
             ]
           },
           "ConfigurationVersion": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Version"
-              },
-              {
-                "description": "The version of the configuration."
-              }
+              { "$ref": "#/components/schemas/Version" },
+              { "description": "The version of the configuration." }
             ]
           },
           "DeploymentDurationInMinutes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MinutesBetween0And24Hours"
-              },
-              {
-                "description": "Total amount of time the deployment lasted."
-              }
+              { "$ref": "#/components/schemas/MinutesBetween0And24Hours" },
+              { "description": "Total amount of time the deployment lasted." }
             ]
           },
           "GrowthType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GrowthType"
-              },
+              { "$ref": "#/components/schemas/GrowthType" },
               {
                 "description": "The algorithm used to define how percentage grows over time."
               }
@@ -4512,9 +3601,7 @@
           },
           "GrowthFactor": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Percentage"
-              },
+              { "$ref": "#/components/schemas/Percentage" },
               {
                 "description": "The percentage of targets to receive a deployed configuration during each interval."
               }
@@ -4522,9 +3609,7 @@
           },
           "FinalBakeTimeInMinutes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MinutesBetween0And24Hours"
-              },
+              { "$ref": "#/components/schemas/MinutesBetween0And24Hours" },
               {
                 "description": "The amount of time AppConfig monitors for alarms before considering the deployment to be complete and no longer eligible for automatic roll back."
               }
@@ -4532,19 +3617,13 @@
           },
           "State": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DeploymentState"
-              },
-              {
-                "description": "The state of the deployment."
-              }
+              { "$ref": "#/components/schemas/DeploymentState" },
+              { "description": "The state of the deployment." }
             ]
           },
           "PercentageComplete": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Percentage"
-              },
+              { "$ref": "#/components/schemas/Percentage" },
               {
                 "description": "The percentage of targets for which the deployment is available."
               }
@@ -4552,22 +3631,14 @@
           },
           "StartedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Iso8601DateTime"
-              },
-              {
-                "description": "Time the deployment started."
-              }
+              { "$ref": "#/components/schemas/Iso8601DateTime" },
+              { "description": "Time the deployment started." }
             ]
           },
           "CompletedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Iso8601DateTime"
-              },
-              {
-                "description": "Time the deployment completed."
-              }
+              { "$ref": "#/components/schemas/Iso8601DateTime" },
+              { "description": "Time the deployment completed." }
             ]
           }
         },
@@ -4575,15 +3646,11 @@
       },
       "DeploymentList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DeploymentSummary"
-        }
+        "items": { "$ref": "#/components/schemas/DeploymentSummary" }
       },
       "DeploymentStrategyList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DeploymentStrategy"
-        }
+        "items": { "$ref": "#/components/schemas/DeploymentStrategy" }
       },
       "EnvironmentState": {
         "type": "string",
@@ -4596,58 +3663,38 @@
       },
       "EnvironmentList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Environment"
-        }
+        "items": { "$ref": "#/components/schemas/Environment" }
       },
       "HostedConfigurationVersionSummary": {
         "type": "object",
         "properties": {
           "ApplicationId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Id"
-              },
-              {
-                "description": "The application ID."
-              }
+              { "$ref": "#/components/schemas/Id" },
+              { "description": "The application ID." }
             ]
           },
           "ConfigurationProfileId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Id"
-              },
-              {
-                "description": "The configuration profile ID."
-              }
+              { "$ref": "#/components/schemas/Id" },
+              { "description": "The configuration profile ID." }
             ]
           },
           "VersionNumber": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Integer"
-              },
-              {
-                "description": "The configuration version."
-              }
+              { "$ref": "#/components/schemas/Integer" },
+              { "description": "The configuration version." }
             ]
           },
           "Description": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Description"
-              },
-              {
-                "description": "A description of the configuration."
-              }
+              { "$ref": "#/components/schemas/Description" },
+              { "description": "A description of the configuration." }
             ]
           },
           "ContentType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StringWithLengthBetween1And255"
-              },
+              { "$ref": "#/components/schemas/StringWithLengthBetween1And255" },
               {
                 "description": "A standard MIME type describing the format of the configuration content. For more information, see <a href=\"https://docs.aws.amazon.com/https:/www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17\">Content-Type</a>."
               }
@@ -4668,17 +3715,10 @@
         "maxLength": 32768,
         "format": "password"
       },
-      "ValidatorType": {
-        "type": "string",
-        "enum": ["JSON_SCHEMA", "LAMBDA"]
-      }
+      "ValidatorType": { "type": "string", "enum": ["JSON_SCHEMA", "LAMBDA"] }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2019-10-09",
     "endpointPrefix": "appconfig",

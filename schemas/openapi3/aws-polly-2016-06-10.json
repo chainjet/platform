@@ -147,9 +147,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteLexiconOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/DeleteLexiconOutput" }
               }
             }
           },
@@ -190,27 +188,13 @@
         "summary": "Delete Lexicon"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetLexicon",
@@ -220,9 +204,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetLexiconOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/GetLexiconOutput" }
               }
             }
           },
@@ -270,9 +252,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PutLexiconOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/PutLexiconOutput" }
               }
             }
           },
@@ -423,10 +403,7 @@
             "in": "query",
             "required": false,
             "description": "Specifies the engine (<code>standard</code> or <code>neural</code>) used by Amazon Polly when processing input text for speech synthesis. ",
-            "schema": {
-              "type": "string",
-              "enum": ["standard", "neural"]
-            }
+            "schema": { "type": "string", "enum": ["standard", "neural"] }
           },
           {
             "name": "LanguageCode",
@@ -475,46 +452,26 @@
             "in": "query",
             "required": false,
             "description": "Boolean value indicating whether to return any bilingual voices that use the specified language as an additional language. For instance, if you request all languages that use US English (es-US), and there is an Italian voice that speaks both Italian (it-IT) and US English, that voice will be included if you specify <code>yes</code> but not if you specify <code>no</code>.",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "name": "NextToken",
             "in": "query",
             "required": false,
             "description": "An opaque pagination token returned from the previous <code>DescribeVoices</code> operation. If present, this indicates where to continue the listing.",
-            "schema": {
-              "type": "string",
-              "minLength": 0,
-              "maxLength": 4096
-            }
+            "schema": { "type": "string", "minLength": 0, "maxLength": 4096 }
           }
         ],
         "summary": "Describe Voices"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/v1/synthesisTasks/{TaskId}": {
@@ -569,36 +526,19 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Polly generated identifier for a speech synthesis task.",
-            "schema": {
-              "type": "string",
-              "pattern": "^[a-zA-Z0-9_-]{1,100}$"
-            }
+            "schema": { "type": "string", "pattern": "^[a-zA-Z0-9_-]{1,100}$" }
           }
         ],
         "summary": "Get Speech Synthesis Task"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/v1/lexicons": {
@@ -610,9 +550,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListLexiconsOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/ListLexiconsOutput" }
               }
             }
           },
@@ -643,37 +581,19 @@
             "in": "query",
             "required": false,
             "description": "An opaque pagination token returned from previous <code>ListLexicons</code> operation. If present, indicates where to continue the list of lexicons.",
-            "schema": {
-              "type": "string",
-              "minLength": 0,
-              "maxLength": 4096
-            }
+            "schema": { "type": "string", "minLength": 0, "maxLength": 4096 }
           }
         ],
         "summary": "List Lexicons"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/v1/synthesisTasks": {
@@ -718,22 +638,14 @@
             "in": "query",
             "required": false,
             "description": "Maximum number of speech synthesis tasks returned in a List operation.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "NextToken",
             "in": "query",
             "required": false,
             "description": "The pagination token to use in the next request to continue the listing of speech synthesis tasks. ",
-            "schema": {
-              "type": "string",
-              "minLength": 0,
-              "maxLength": 4096
-            }
+            "schema": { "type": "string", "minLength": 0, "maxLength": 4096 }
           },
           {
             "name": "Status",
@@ -749,27 +661,13 @@
         "summary": "List Speech Synthesis Tasks"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "StartSpeechSynthesisTask",
@@ -965,9 +863,7 @@
                   "LexiconNames": {
                     "description": "List of one or more pronunciation lexicon names you want the service to apply during synthesis. Lexicons are applied only if the language of the lexicon is the same as the language of the voice. ",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/LexiconName"
-                    },
+                    "items": { "$ref": "#/components/schemas/LexiconName" },
                     "maxItems": 5
                   },
                   "OutputFormat": {
@@ -997,9 +893,7 @@
                   "SpeechMarkTypes": {
                     "description": "The type of speech marks returned for the input text.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/SpeechMarkType"
-                    },
+                    "items": { "$ref": "#/components/schemas/SpeechMarkType" },
                     "maxItems": 4
                   },
                   "Text": {
@@ -1250,9 +1144,7 @@
                   "LexiconNames": {
                     "description": "List of one or more pronunciation lexicon names you want the service to apply during synthesis. Lexicons are applied only if the language of the lexicon is the same as the language of the voice. For information about storing lexicons, see <a href=\"https://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html\">PutLexicon</a>.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/LexiconName"
-                    },
+                    "items": { "$ref": "#/components/schemas/LexiconName" },
                     "maxItems": 5
                   },
                   "OutputFormat": {
@@ -1267,9 +1159,7 @@
                   "SpeechMarkTypes": {
                     "description": "The type of speech marks returned for the input text.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/SpeechMarkType"
-                    },
+                    "items": { "$ref": "#/components/schemas/SpeechMarkType" },
                     "maxItems": 4
                   },
                   "Text": {
@@ -1360,27 +1250,13 @@
         "summary": "Synthesize Speech"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -1389,63 +1265,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -1497,19 +1359,13 @@
         "properties": {
           "Voices": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VoiceList"
-              },
-              {
-                "description": "A list of voices with their properties."
-              }
+              { "$ref": "#/components/schemas/VoiceList" },
+              { "description": "A list of voices with their properties." }
             ]
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "The pagination token to use in the next request to continue the listing of voices. <code>NextToken</code> is returned only if the response is truncated."
               }
@@ -1537,9 +1393,7 @@
         "properties": {
           "Lexicon": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Lexicon"
-              },
+              { "$ref": "#/components/schemas/Lexicon" },
               {
                 "description": "Lexicon object that provides name and the string content of the lexicon. "
               }
@@ -1547,9 +1401,7 @@
           },
           "LexiconAttributes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LexiconAttributes"
-              },
+              { "$ref": "#/components/schemas/LexiconAttributes" },
               {
                 "description": "Metadata of the lexicon, including phonetic alphabetic used, language code, lexicon ARN, number of lexemes defined in the lexicon, and size of lexicon in bytes."
               }
@@ -1562,9 +1414,7 @@
         "properties": {
           "SynthesisTask": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SynthesisTask"
-              },
+              { "$ref": "#/components/schemas/SynthesisTask" },
               {
                 "description": "SynthesisTask object that provides information from the requested task, including output format, creation time, task status, and so on."
               }
@@ -1594,19 +1444,13 @@
         "properties": {
           "Lexicons": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LexiconDescriptionList"
-              },
-              {
-                "description": "A list of lexicon names and attributes."
-              }
+              { "$ref": "#/components/schemas/LexiconDescriptionList" },
+              { "description": "A list of lexicon names and attributes." }
             ]
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "The pagination token to use in the next request to continue the listing of lexicons. <code>NextToken</code> is returned only if the response is truncated."
               }
@@ -1619,9 +1463,7 @@
         "properties": {
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "An opaque pagination token returned from the previous List operation in this request. If present, this indicates where to continue the listing."
               }
@@ -1629,9 +1471,7 @@
           },
           "SynthesisTasks": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SynthesisTasks"
-              },
+              { "$ref": "#/components/schemas/SynthesisTasks" },
               {
                 "description": "List of SynthesisTask objects that provides information from the specified task in the list request, including output format, creation time, task status, and so on."
               }
@@ -1639,11 +1479,7 @@
           }
         }
       },
-      "PutLexiconOutput": {
-        "type": "object",
-        "example": {},
-        "properties": {}
-      },
+      "PutLexiconOutput": { "type": "object", "example": {}, "properties": {} },
       "InvalidLexiconException": {},
       "UnsupportedPlsAlphabetException": {},
       "UnsupportedPlsLanguageException": {},
@@ -1655,9 +1491,7 @@
         "properties": {
           "SynthesisTask": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SynthesisTask"
-              },
+              { "$ref": "#/components/schemas/SynthesisTask" },
               {
                 "description": "SynthesisTask object that provides information and attributes about a newly submitted speech synthesis task."
               }
@@ -1694,30 +1528,16 @@
         "properties": {
           "AudioStream": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AudioStream"
-              },
-              {
-                "description": " Stream containing the synthesized speech. "
-              }
+              { "$ref": "#/components/schemas/AudioStream" },
+              { "description": " Stream containing the synthesized speech. " }
             ]
           }
         }
       },
-      "Alphabet": {
-        "type": "string"
-      },
-      "AudioStream": {
-        "type": "string"
-      },
-      "DateTime": {
-        "type": "string",
-        "format": "date-time"
-      },
-      "Engine": {
-        "type": "string",
-        "enum": ["standard", "neural"]
-      },
+      "Alphabet": { "type": "string" },
+      "AudioStream": { "type": "string" },
+      "DateTime": { "type": "string", "format": "date-time" },
+      "Engine": { "type": "string", "enum": ["standard", "neural"] },
       "LanguageCode": {
         "type": "string",
         "enum": [
@@ -1754,35 +1574,22 @@
           "en-ZA"
         ]
       },
-      "NextToken": {
-        "type": "string",
-        "minLength": 0,
-        "maxLength": 4096
-      },
+      "NextToken": { "type": "string", "minLength": 0, "maxLength": 4096 },
       "VoiceList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Voice"
-        }
+        "items": { "$ref": "#/components/schemas/Voice" }
       },
       "EngineList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Engine"
-        }
+        "items": { "$ref": "#/components/schemas/Engine" }
       },
-      "Gender": {
-        "type": "string",
-        "enum": ["Female", "Male"]
-      },
+      "Gender": { "type": "string", "enum": ["Female", "Male"] },
       "Lexicon": {
         "type": "object",
         "properties": {
           "Content": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LexiconContent"
-              },
+              { "$ref": "#/components/schemas/LexiconContent" },
               {
                 "description": "Lexicon content in string format. The content of a lexicon must be in PLS format."
               }
@@ -1790,12 +1597,8 @@
           },
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LexiconName"
-              },
-              {
-                "description": "Name of the lexicon."
-              }
+              { "$ref": "#/components/schemas/LexiconName" },
+              { "description": "Name of the lexicon." }
             ]
           }
         },
@@ -1806,9 +1609,7 @@
         "properties": {
           "Alphabet": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Alphabet"
-              },
+              { "$ref": "#/components/schemas/Alphabet" },
               {
                 "description": "Phonetic alphabet used in the lexicon. Valid values are <code>ipa</code> and <code>x-sampa</code>."
               }
@@ -1816,9 +1617,7 @@
           },
           "LanguageCode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LanguageCode"
-              },
+              { "$ref": "#/components/schemas/LanguageCode" },
               {
                 "description": "Language code that the lexicon applies to. A lexicon with a language code such as \"en\" would be applied to all English languages (en-GB, en-US, en-AUS, en-WLS, and so on."
               }
@@ -1826,9 +1625,7 @@
           },
           "LastModified": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LastModified"
-              },
+              { "$ref": "#/components/schemas/LastModified" },
               {
                 "description": "Date lexicon was last modified (a timestamp value)."
               }
@@ -1836,49 +1633,32 @@
           },
           "LexiconArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LexiconArn"
-              },
-              {
-                "description": "Amazon Resource Name (ARN) of the lexicon."
-              }
+              { "$ref": "#/components/schemas/LexiconArn" },
+              { "description": "Amazon Resource Name (ARN) of the lexicon." }
             ]
           },
           "LexemesCount": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LexemesCount"
-              },
-              {
-                "description": "Number of lexemes in the lexicon."
-              }
+              { "$ref": "#/components/schemas/LexemesCount" },
+              { "description": "Number of lexemes in the lexicon." }
             ]
           },
           "Size": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Size"
-              },
-              {
-                "description": "Total size of the lexicon, in characters."
-              }
+              { "$ref": "#/components/schemas/Size" },
+              { "description": "Total size of the lexicon, in characters." }
             ]
           }
         },
         "description": "Contains metadata describing the lexicon such as the number of lexemes, language code, and so on. For more information, see <a href=\"https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html\">Managing Lexicons</a>."
       },
-      "TaskId": {
-        "type": "string",
-        "pattern": "^[a-zA-Z0-9_-]{1,100}$"
-      },
+      "TaskId": { "type": "string", "pattern": "^[a-zA-Z0-9_-]{1,100}$" },
       "SynthesisTask": {
         "type": "object",
         "properties": {
           "Engine": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Engine"
-              },
+              { "$ref": "#/components/schemas/Engine" },
               {
                 "description": "Specifies the engine (<code>standard</code> or <code>neural</code>) for Amazon Polly to use when processing input text for speech synthesis. Using a voice that is not supported for the engine selected will result in an error."
               }
@@ -1886,9 +1666,7 @@
           },
           "TaskId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TaskId"
-              },
+              { "$ref": "#/components/schemas/TaskId" },
               {
                 "description": "The Amazon Polly generated identifier for a speech synthesis task."
               }
@@ -1896,9 +1674,7 @@
           },
           "TaskStatus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TaskStatus"
-              },
+              { "$ref": "#/components/schemas/TaskStatus" },
               {
                 "description": "Current status of the individual speech synthesis task."
               }
@@ -1906,9 +1682,7 @@
           },
           "TaskStatusReason": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TaskStatusReason"
-              },
+              { "$ref": "#/components/schemas/TaskStatusReason" },
               {
                 "description": "Reason for the current status of a specific speech synthesis task, including errors if the task has failed."
               }
@@ -1916,19 +1690,13 @@
           },
           "OutputUri": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OutputUri"
-              },
-              {
-                "description": "Pathway for the output speech file."
-              }
+              { "$ref": "#/components/schemas/OutputUri" },
+              { "description": "Pathway for the output speech file." }
             ]
           },
           "CreationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DateTime"
-              },
+              { "$ref": "#/components/schemas/DateTime" },
               {
                 "description": "Timestamp for the time the synthesis task was started."
               }
@@ -1936,19 +1704,13 @@
           },
           "RequestCharacters": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RequestCharacters"
-              },
-              {
-                "description": "Number of billable characters synthesized."
-              }
+              { "$ref": "#/components/schemas/RequestCharacters" },
+              { "description": "Number of billable characters synthesized." }
             ]
           },
           "SnsTopicArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SnsTopicArn"
-              },
+              { "$ref": "#/components/schemas/SnsTopicArn" },
               {
                 "description": "ARN for the SNS topic optionally used for providing status notification for a speech synthesis task."
               }
@@ -1956,9 +1718,7 @@
           },
           "LexiconNames": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LexiconNameList"
-              },
+              { "$ref": "#/components/schemas/LexiconNameList" },
               {
                 "description": "List of one or more pronunciation lexicon names you want the service to apply during synthesis. Lexicons are applied only if the language of the lexicon is the same as the language of the voice. "
               }
@@ -1966,9 +1726,7 @@
           },
           "OutputFormat": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OutputFormat"
-              },
+              { "$ref": "#/components/schemas/OutputFormat" },
               {
                 "description": "The format in which the returned output will be encoded. For audio stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will be json. "
               }
@@ -1976,9 +1734,7 @@
           },
           "SampleRate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SampleRate"
-              },
+              { "$ref": "#/components/schemas/SampleRate" },
               {
                 "description": "<p>The audio frequency specified in Hz.</p> <p>The valid values for mp3 and ogg_vorbis are \"8000\", \"16000\", \"22050\", and \"24000\". The default value for standard voices is \"22050\". The default value for neural voices is \"24000\".</p> <p>Valid values for pcm are \"8000\" and \"16000\" The default value is \"16000\". </p>"
               }
@@ -1986,9 +1742,7 @@
           },
           "SpeechMarkTypes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SpeechMarkTypeList"
-              },
+              { "$ref": "#/components/schemas/SpeechMarkTypeList" },
               {
                 "description": "The type of speech marks returned for the input text."
               }
@@ -1996,9 +1750,7 @@
           },
           "TextType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TextType"
-              },
+              { "$ref": "#/components/schemas/TextType" },
               {
                 "description": "Specifies whether the input text is plain text or SSML. The default value is plain text. "
               }
@@ -2006,19 +1758,13 @@
           },
           "VoiceId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VoiceId"
-              },
-              {
-                "description": "Voice ID to use for the synthesis. "
-              }
+              { "$ref": "#/components/schemas/VoiceId" },
+              { "description": "Voice ID to use for the synthesis. " }
             ]
           },
           "LanguageCode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LanguageCode"
-              },
+              { "$ref": "#/components/schemas/LanguageCode" },
               {
                 "description": "<p>Optional language code for a synthesis task. This is only necessary if using a bilingual voice, such as Aditi, which can be used for either Indian English (en-IN) or Hindi (hi-IN). </p> <p>If a bilingual voice is used and no language code is specified, Amazon Polly will use the default language of the bilingual voice. The default language for any voice is the one returned by the <a href=\"https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html\">DescribeVoices</a> operation for the <code>LanguageCode</code> parameter. For example, if no language code is specified, Aditi will use Indian English rather than Hindi.</p>"
               }
@@ -2029,51 +1775,27 @@
       },
       "LanguageCodeList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/LanguageCode"
-        }
+        "items": { "$ref": "#/components/schemas/LanguageCode" }
       },
-      "LanguageName": {
-        "type": "string"
-      },
-      "LastModified": {
-        "type": "string",
-        "format": "date-time"
-      },
-      "LexemesCount": {
-        "type": "integer"
-      },
-      "LexiconContent": {
-        "type": "string",
-        "format": "password"
-      },
-      "LexiconArn": {
-        "type": "string"
-      },
-      "Size": {
-        "type": "integer"
-      },
+      "LanguageName": { "type": "string" },
+      "LastModified": { "type": "string", "format": "date-time" },
+      "LexemesCount": { "type": "integer" },
+      "LexiconContent": { "type": "string", "format": "password" },
+      "LexiconArn": { "type": "string" },
+      "Size": { "type": "integer" },
       "LexiconDescription": {
         "type": "object",
         "properties": {
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LexiconName"
-              },
-              {
-                "description": "Name of the lexicon."
-              }
+              { "$ref": "#/components/schemas/LexiconName" },
+              { "description": "Name of the lexicon." }
             ]
           },
           "Attributes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LexiconAttributes"
-              },
-              {
-                "description": "Provides lexicon metadata."
-              }
+              { "$ref": "#/components/schemas/LexiconAttributes" },
+              { "description": "Provides lexicon metadata." }
             ]
           }
         },
@@ -2081,15 +1803,11 @@
       },
       "LexiconDescriptionList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/LexiconDescription"
-        }
+        "items": { "$ref": "#/components/schemas/LexiconDescription" }
       },
       "LexiconNameList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/LexiconName"
-        },
+        "items": { "$ref": "#/components/schemas/LexiconName" },
         "maxItems": 5
       },
       "TaskStatus": {
@@ -2098,38 +1816,25 @@
       },
       "SynthesisTasks": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/SynthesisTask"
-        }
+        "items": { "$ref": "#/components/schemas/SynthesisTask" }
       },
       "OutputFormat": {
         "type": "string",
         "enum": ["json", "mp3", "ogg_vorbis", "pcm"]
       },
-      "OutputUri": {
-        "type": "string"
-      },
-      "RequestCharacters": {
-        "type": "integer"
-      },
-      "SampleRate": {
-        "type": "string"
-      },
+      "OutputUri": { "type": "string" },
+      "RequestCharacters": { "type": "integer" },
+      "SampleRate": { "type": "string" },
       "SnsTopicArn": {
         "type": "string",
         "pattern": "^arn:aws(-(cn|iso(-b)?|us-gov))?:sns:[a-z0-9_-]{1,50}:\\d{12}:[a-zA-Z0-9_-]{1,256}$"
       },
       "SpeechMarkTypeList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/SpeechMarkType"
-        },
+        "items": { "$ref": "#/components/schemas/SpeechMarkType" },
         "maxItems": 4
       },
-      "TextType": {
-        "type": "string",
-        "enum": ["ssml", "text"]
-      },
+      "TextType": { "type": "string", "enum": ["ssml", "text"] },
       "VoiceId": {
         "type": "string",
         "enum": [
@@ -2200,30 +1905,20 @@
           "Ayanda"
         ]
       },
-      "TaskStatusReason": {
-        "type": "string"
-      },
-      "VoiceName": {
-        "type": "string"
-      },
+      "TaskStatusReason": { "type": "string" },
+      "VoiceName": { "type": "string" },
       "Voice": {
         "type": "object",
         "properties": {
           "Gender": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Gender"
-              },
-              {
-                "description": "Gender of the voice."
-              }
+              { "$ref": "#/components/schemas/Gender" },
+              { "description": "Gender of the voice." }
             ]
           },
           "Id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VoiceId"
-              },
+              { "$ref": "#/components/schemas/VoiceId" },
               {
                 "description": "Amazon Polly assigned voice ID. This is the ID that you specify when calling the <code>SynthesizeSpeech</code> operation."
               }
@@ -2231,19 +1926,13 @@
           },
           "LanguageCode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LanguageCode"
-              },
-              {
-                "description": "Language code of the voice."
-              }
+              { "$ref": "#/components/schemas/LanguageCode" },
+              { "description": "Language code of the voice." }
             ]
           },
           "LanguageName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LanguageName"
-              },
+              { "$ref": "#/components/schemas/LanguageName" },
               {
                 "description": "Human readable name of the language in English."
               }
@@ -2251,9 +1940,7 @@
           },
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VoiceName"
-              },
+              { "$ref": "#/components/schemas/VoiceName" },
               {
                 "description": "Name of the voice (for example, Salli, Kendra, etc.). This provides a human readable voice name that you might display in your application."
               }
@@ -2261,9 +1948,7 @@
           },
           "AdditionalLanguageCodes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LanguageCodeList"
-              },
+              { "$ref": "#/components/schemas/LanguageCodeList" },
               {
                 "description": "<p>Additional codes for languages available for the specified voice in addition to its default language. </p> <p>For example, the default language for Aditi is Indian English (en-IN) because it was first used for that language. Since Aditi is bilingual and fluent in both Indian English and Hindi, this parameter would show the code <code>hi-IN</code>.</p>"
               }
@@ -2271,9 +1956,7 @@
           },
           "SupportedEngines": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EngineList"
-              },
+              { "$ref": "#/components/schemas/EngineList" },
               {
                 "description": "Specifies which engines (<code>standard</code> or <code>neural</code>) that are supported by a given voice."
               }
@@ -2284,11 +1967,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2016-06-10",
     "endpointPrefix": "polly",

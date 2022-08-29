@@ -192,9 +192,7 @@
                   "inputList": {
                     "description": "A list of items (by <code>itemId</code>) to rank. If an item was not included in the training dataset, the item is appended to the end of the reranked list. The maximum is 500.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ItemID"
-                    }
+                    "items": { "$ref": "#/components/schemas/ItemID" }
                   },
                   "userId": {
                     "description": "The user for which you want the campaign to provide a personalized ranking.",
@@ -231,27 +229,13 @@
         "summary": "Get Personalized Ranking"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/recommendations": {
@@ -350,27 +334,13 @@
         "summary": "Get Recommendations"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -379,63 +349,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -455,9 +411,7 @@
         "properties": {
           "personalizedRanking": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ItemList"
-              },
+              { "$ref": "#/components/schemas/ItemList" },
               {
                 "description": "A list of items in order of most likely interest to the user. The maximum is 500."
               }
@@ -465,20 +419,13 @@
           },
           "recommendationId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RecommendationID"
-              },
-              {
-                "description": "The ID of the recommendation."
-              }
+              { "$ref": "#/components/schemas/RecommendationID" },
+              { "description": "The ID of the recommendation." }
             ]
           }
         }
       },
-      "ItemID": {
-        "type": "string",
-        "maxLength": 256
-      },
+      "ItemID": { "type": "string", "maxLength": 256 },
       "AttributeValue": {
         "type": "string",
         "maxLength": 1000,
@@ -491,9 +438,7 @@
         "properties": {
           "itemList": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ItemList"
-              },
+              { "$ref": "#/components/schemas/ItemList" },
               {
                 "description": "A list of recommendations sorted in ascending order by prediction score. There can be a maximum of 500 items in the list."
               }
@@ -501,43 +446,29 @@
           },
           "recommendationId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RecommendationID"
-              },
-              {
-                "description": "The ID of the recommendation."
-              }
+              { "$ref": "#/components/schemas/RecommendationID" },
+              { "description": "The ID of the recommendation." }
             ]
           }
         }
       },
       "ItemList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/PredictedItem"
-        }
+        "items": { "$ref": "#/components/schemas/PredictedItem" }
       },
-      "RecommendationID": {
-        "type": "string"
-      },
+      "RecommendationID": { "type": "string" },
       "PredictedItem": {
         "type": "object",
         "properties": {
           "itemId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ItemID"
-              },
-              {
-                "description": "The recommended item ID."
-              }
+              { "$ref": "#/components/schemas/ItemID" },
+              { "description": "The recommended item ID." }
             ]
           },
           "score": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Score"
-              },
+              { "$ref": "#/components/schemas/Score" },
               {
                 "description": "A numeric representation of the model's certainty that the item will be the next user selection. For more information on scoring logic, see <a>how-scores-work</a>."
               }
@@ -546,10 +477,7 @@
         },
         "description": "<p>An object that identifies an item.</p> <p>The and APIs return a list of <code>PredictedItem</code>s.</p>"
       },
-      "Score": {
-        "type": "number",
-        "format": "double"
-      },
+      "Score": { "type": "number", "format": "double" },
       "FilterAttributeValue": {
         "type": "string",
         "maxLength": 1000,
@@ -557,11 +485,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2018-05-22",
     "endpointPrefix": "personalize-runtime",

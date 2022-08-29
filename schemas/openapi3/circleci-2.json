@@ -5918,9 +5918,15 @@
                         ]
                       },
                       "description": "A list of flaky tests"
+                    },
+                    "total-flaky-tests": {
+                      "type": "number",
+                      "format": "double",
+                      "description": "A count of unique tests that have failed. If your project has N tests that have flaked multiple times each, this will be equal to N.",
+                      "example": 5
                     }
                   },
-                  "required": ["flaky-tests"],
+                  "required": ["flaky-tests", "total-flaky-tests"],
                   "description": "Flaky tests response"
                 }
               }

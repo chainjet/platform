@@ -146,37 +146,19 @@
   "paths": {
     "/#Action=BatchDeleteAttributes": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/AWSAccessKeyId"
-        },
-        {
-          "$ref": "#/components/parameters/Action"
-        },
-        {
-          "$ref": "#/components/parameters/SignatureMethod"
-        },
-        {
-          "$ref": "#/components/parameters/SignatureVersion"
-        },
-        {
-          "$ref": "#/components/parameters/Timestamp"
-        },
-        {
-          "$ref": "#/components/parameters/Version"
-        },
-        {
-          "$ref": "#/components/parameters/Signature"
-        }
+        { "$ref": "#/components/parameters/AWSAccessKeyId" },
+        { "$ref": "#/components/parameters/Action" },
+        { "$ref": "#/components/parameters/SignatureMethod" },
+        { "$ref": "#/components/parameters/SignatureVersion" },
+        { "$ref": "#/components/parameters/Timestamp" },
+        { "$ref": "#/components/parameters/Version" },
+        { "$ref": "#/components/parameters/Signature" }
       ],
       "post": {
         "x-aws-operation-name": "BatchDeleteAttributes",
         "operationId": "POST_BatchDeleteAttributes",
         "description": "<p> Performs multiple DeleteAttributes operations in a single call, which reduces round trips and latencies. This enables Amazon SimpleDB to optimize requests, which generally yields better throughput. </p> <note> <p> If you specify BatchDeleteAttributes without attributes or values, all the attributes for the item are deleted. </p> <p> BatchDeleteAttributes is an idempotent operation; running it multiple times on the same item or attribute doesn't result in an error. </p> <p> The BatchDeleteAttributes operation succeeds or fails in its entirety. There are no partial deletes. You can execute multiple BatchDeleteAttributes operations and other operations in parallel. However, large numbers of concurrent BatchDeleteAttributes calls can result in Service Unavailable (503) responses. </p> <p> This operation is vulnerable to exceeding the maximum URL size when making a REST request using the HTTP GET method. </p> <p> This operation does not support conditions using Expected.X.Name, Expected.X.Value, or Expected.X.Exists. </p> </note> <p> The following limitations are enforced for this operation: <ul> <li>1 MB request size</li> <li>25 item limit per BatchDeleteAttributes operation</li> </ul> </p>",
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        },
+        "responses": { "200": { "description": "Success" } },
         "requestBody": {
           "content": {
             "text/xml": {
@@ -191,19 +173,13 @@
             "name": "Action",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["BatchDeleteAttributes"]
-            }
+            "schema": { "type": "string", "enum": ["BatchDeleteAttributes"] }
           },
           {
             "name": "Version",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["2009-04-15"]
-            }
+            "schema": { "type": "string", "enum": ["2009-04-15"] }
           }
         ],
         "summary": "Batch Delete Attributes"
@@ -211,44 +187,26 @@
     },
     "/#Action=BatchPutAttributes": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/AWSAccessKeyId"
-        },
-        {
-          "$ref": "#/components/parameters/Action"
-        },
-        {
-          "$ref": "#/components/parameters/SignatureMethod"
-        },
-        {
-          "$ref": "#/components/parameters/SignatureVersion"
-        },
-        {
-          "$ref": "#/components/parameters/Timestamp"
-        },
-        {
-          "$ref": "#/components/parameters/Version"
-        },
-        {
-          "$ref": "#/components/parameters/Signature"
-        }
+        { "$ref": "#/components/parameters/AWSAccessKeyId" },
+        { "$ref": "#/components/parameters/Action" },
+        { "$ref": "#/components/parameters/SignatureMethod" },
+        { "$ref": "#/components/parameters/SignatureVersion" },
+        { "$ref": "#/components/parameters/Timestamp" },
+        { "$ref": "#/components/parameters/Version" },
+        { "$ref": "#/components/parameters/Signature" }
       ],
       "post": {
         "x-aws-operation-name": "BatchPutAttributes",
         "operationId": "POST_BatchPutAttributes",
         "description": "<p> The <code>BatchPutAttributes</code> operation creates or replaces attributes within one or more items. By using this operation, the client can perform multiple <a>PutAttribute</a> operation with a single call. This helps yield savings in round trips and latencies, enabling Amazon SimpleDB to optimize requests and generally produce better throughput. </p> <p> The client may specify the item name with the <code>Item.X.ItemName</code> parameter. The client may specify new attributes using a combination of the <code>Item.X.Attribute.Y.Name</code> and <code>Item.X.Attribute.Y.Value</code> parameters. The client may specify the first attribute for the first item using the parameters <code>Item.0.Attribute.0.Name</code> and <code>Item.0.Attribute.0.Value</code>, and for the second attribute for the first item by the parameters <code>Item.0.Attribute.1.Name</code> and <code>Item.0.Attribute.1.Value</code>, and so on. </p> <p> Attributes are uniquely identified within an item by their name/value combination. For example, a single item can have the attributes <code>{ \"first_name\", \"first_value\" }</code> and <code>{ \"first_name\", \"second_value\" }</code>. However, it cannot have two attribute instances where both the <code>Item.X.Attribute.Y.Name</code> and <code>Item.X.Attribute.Y.Value</code> are the same. </p> <p> Optionally, the requester can supply the <code>Replace</code> parameter for each individual value. Setting this value to <code>true</code> will cause the new attribute values to replace the existing attribute values. For example, if an item <code>I</code> has the attributes <code>{ 'a', '1' }, { 'b', '2'}</code> and <code>{ 'b', '3' }</code> and the requester does a BatchPutAttributes of <code>{'I', 'b', '4' }</code> with the Replace parameter set to true, the final attributes of the item will be <code>{ 'a', '1' }</code> and <code>{ 'b', '4' }</code>, replacing the previous values of the 'b' attribute with the new value. </p> <note> You cannot specify an empty string as an item or as an attribute name. The <code>BatchPutAttributes</code> operation succeeds or fails in its entirety. There are no partial puts. </note> <important> This operation is vulnerable to exceeding the maximum URL size when making a REST request using the HTTP GET method. This operation does not support conditions using <code>Expected.X.Name</code>, <code>Expected.X.Value</code>, or <code>Expected.X.Exists</code>. </important> <p> You can execute multiple <code>BatchPutAttributes</code> operations and other operations in parallel. However, large numbers of concurrent <code>BatchPutAttributes</code> calls can result in Service Unavailable (503) responses. </p> <p> The following limitations are enforced for this operation: <ul> <li>256 attribute name-value pairs per item</li> <li>1 MB request size</li> <li>1 billion attributes per domain</li> <li>10 GB of total user data storage per domain</li> <li>25 item limit per <code>BatchPutAttributes</code> operation</li> </ul> </p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "400": {
             "description": "NoSuchDomain",
             "x-aws-exception": true,
             "content": {
               "text/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/NoSuchDomain"
-                }
+                "schema": { "$ref": "#/components/schemas/NoSuchDomain" }
               }
             }
           },
@@ -278,19 +236,13 @@
             "name": "Action",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["BatchPutAttributes"]
-            }
+            "schema": { "type": "string", "enum": ["BatchPutAttributes"] }
           },
           {
             "name": "Version",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["2009-04-15"]
-            }
+            "schema": { "type": "string", "enum": ["2009-04-15"] }
           }
         ],
         "summary": "Batch Put Attributes"
@@ -298,44 +250,26 @@
     },
     "/#Action=CreateDomain": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/AWSAccessKeyId"
-        },
-        {
-          "$ref": "#/components/parameters/Action"
-        },
-        {
-          "$ref": "#/components/parameters/SignatureMethod"
-        },
-        {
-          "$ref": "#/components/parameters/SignatureVersion"
-        },
-        {
-          "$ref": "#/components/parameters/Timestamp"
-        },
-        {
-          "$ref": "#/components/parameters/Version"
-        },
-        {
-          "$ref": "#/components/parameters/Signature"
-        }
+        { "$ref": "#/components/parameters/AWSAccessKeyId" },
+        { "$ref": "#/components/parameters/Action" },
+        { "$ref": "#/components/parameters/SignatureMethod" },
+        { "$ref": "#/components/parameters/SignatureVersion" },
+        { "$ref": "#/components/parameters/Timestamp" },
+        { "$ref": "#/components/parameters/Version" },
+        { "$ref": "#/components/parameters/Signature" }
       ],
       "post": {
         "x-aws-operation-name": "CreateDomain",
         "operationId": "POST_CreateDomain",
         "description": "<p> The <code>CreateDomain</code> operation creates a new domain. The domain name should be unique among the domains associated with the Access Key ID provided in the request. The <code>CreateDomain</code> operation may take 10 or more seconds to complete. </p> <note> CreateDomain is an idempotent operation; running it multiple times using the same domain name will not result in an error response. </note> <p> The client can create up to 100 domains per account. </p> <p> If the client requires additional domains, go to <a href=\"http://aws.amazon.com/contact-us/simpledb-limit-request/\"> http://aws.amazon.com/contact-us/simpledb-limit-request/</a>. </p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "400": {
             "description": "MissingParameter",
             "x-aws-exception": true,
             "content": {
               "text/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/MissingParameter"
-                }
+                "schema": { "$ref": "#/components/schemas/MissingParameter" }
               }
             }
           },
@@ -354,9 +288,7 @@
         "requestBody": {
           "content": {
             "text/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateDomainRequest"
-              }
+              "schema": { "$ref": "#/components/schemas/CreateDomainRequest" }
             }
           }
         },
@@ -365,19 +297,13 @@
             "name": "Action",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["CreateDomain"]
-            }
+            "schema": { "type": "string", "enum": ["CreateDomain"] }
           },
           {
             "name": "Version",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["2009-04-15"]
-            }
+            "schema": { "type": "string", "enum": ["2009-04-15"] }
           }
         ],
         "summary": "Create Domain"
@@ -385,44 +311,26 @@
     },
     "/#Action=DeleteAttributes": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/AWSAccessKeyId"
-        },
-        {
-          "$ref": "#/components/parameters/Action"
-        },
-        {
-          "$ref": "#/components/parameters/SignatureMethod"
-        },
-        {
-          "$ref": "#/components/parameters/SignatureVersion"
-        },
-        {
-          "$ref": "#/components/parameters/Timestamp"
-        },
-        {
-          "$ref": "#/components/parameters/Version"
-        },
-        {
-          "$ref": "#/components/parameters/Signature"
-        }
+        { "$ref": "#/components/parameters/AWSAccessKeyId" },
+        { "$ref": "#/components/parameters/Action" },
+        { "$ref": "#/components/parameters/SignatureMethod" },
+        { "$ref": "#/components/parameters/SignatureVersion" },
+        { "$ref": "#/components/parameters/Timestamp" },
+        { "$ref": "#/components/parameters/Version" },
+        { "$ref": "#/components/parameters/Signature" }
       ],
       "post": {
         "x-aws-operation-name": "DeleteAttributes",
         "operationId": "POST_DeleteAttributes",
         "description": "<p> Deletes one or more attributes associated with an item. If all attributes of the item are deleted, the item is deleted. </p> <note> If <code>DeleteAttributes</code> is called without being passed any attributes or values specified, all the attributes for the item are deleted. </note> <p> <code>DeleteAttributes</code> is an idempotent operation; running it multiple times on the same item or attribute does not result in an error response. </p> <p> Because Amazon SimpleDB makes multiple copies of item data and uses an eventual consistency update model, performing a <a>GetAttributes</a> or <a>Select</a> operation (read) immediately after a <code>DeleteAttributes</code> or <a>PutAttributes</a> operation (write) might not return updated item data. </p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "400": {
             "description": "NoSuchDomain",
             "x-aws-exception": true,
             "content": {
               "text/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/NoSuchDomain"
-                }
+                "schema": { "$ref": "#/components/schemas/NoSuchDomain" }
               }
             }
           },
@@ -452,19 +360,13 @@
             "name": "Action",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["DeleteAttributes"]
-            }
+            "schema": { "type": "string", "enum": ["DeleteAttributes"] }
           },
           {
             "name": "Version",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["2009-04-15"]
-            }
+            "schema": { "type": "string", "enum": ["2009-04-15"] }
           }
         ],
         "summary": "Delete Attributes"
@@ -472,44 +374,26 @@
     },
     "/#Action=DeleteDomain": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/AWSAccessKeyId"
-        },
-        {
-          "$ref": "#/components/parameters/Action"
-        },
-        {
-          "$ref": "#/components/parameters/SignatureMethod"
-        },
-        {
-          "$ref": "#/components/parameters/SignatureVersion"
-        },
-        {
-          "$ref": "#/components/parameters/Timestamp"
-        },
-        {
-          "$ref": "#/components/parameters/Version"
-        },
-        {
-          "$ref": "#/components/parameters/Signature"
-        }
+        { "$ref": "#/components/parameters/AWSAccessKeyId" },
+        { "$ref": "#/components/parameters/Action" },
+        { "$ref": "#/components/parameters/SignatureMethod" },
+        { "$ref": "#/components/parameters/SignatureVersion" },
+        { "$ref": "#/components/parameters/Timestamp" },
+        { "$ref": "#/components/parameters/Version" },
+        { "$ref": "#/components/parameters/Signature" }
       ],
       "post": {
         "x-aws-operation-name": "DeleteDomain",
         "operationId": "POST_DeleteDomain",
         "description": "<p> The <code>DeleteDomain</code> operation deletes a domain. Any items (and their attributes) in the domain are deleted as well. The <code>DeleteDomain</code> operation might take 10 or more seconds to complete. </p> <note> Running <code>DeleteDomain</code> on a domain that does not exist or running the function multiple times using the same domain name will not result in an error response. </note>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "400": {
             "description": "MissingParameter",
             "x-aws-exception": true,
             "content": {
               "text/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/MissingParameter"
-                }
+                "schema": { "$ref": "#/components/schemas/MissingParameter" }
               }
             }
           }
@@ -517,9 +401,7 @@
         "requestBody": {
           "content": {
             "text/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/DeleteDomainRequest"
-              }
+              "schema": { "$ref": "#/components/schemas/DeleteDomainRequest" }
             }
           }
         },
@@ -528,19 +410,13 @@
             "name": "Action",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["DeleteDomain"]
-            }
+            "schema": { "type": "string", "enum": ["DeleteDomain"] }
           },
           {
             "name": "Version",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["2009-04-15"]
-            }
+            "schema": { "type": "string", "enum": ["2009-04-15"] }
           }
         ],
         "summary": "Delete Domain"
@@ -548,27 +424,13 @@
     },
     "/#Action=DomainMetadata": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/AWSAccessKeyId"
-        },
-        {
-          "$ref": "#/components/parameters/Action"
-        },
-        {
-          "$ref": "#/components/parameters/SignatureMethod"
-        },
-        {
-          "$ref": "#/components/parameters/SignatureVersion"
-        },
-        {
-          "$ref": "#/components/parameters/Timestamp"
-        },
-        {
-          "$ref": "#/components/parameters/Version"
-        },
-        {
-          "$ref": "#/components/parameters/Signature"
-        }
+        { "$ref": "#/components/parameters/AWSAccessKeyId" },
+        { "$ref": "#/components/parameters/Action" },
+        { "$ref": "#/components/parameters/SignatureMethod" },
+        { "$ref": "#/components/parameters/SignatureVersion" },
+        { "$ref": "#/components/parameters/Timestamp" },
+        { "$ref": "#/components/parameters/Version" },
+        { "$ref": "#/components/parameters/Signature" }
       ],
       "post": {
         "x-aws-operation-name": "DomainMetadata",
@@ -590,9 +452,7 @@
             "x-aws-exception": true,
             "content": {
               "text/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/NoSuchDomain"
-                }
+                "schema": { "$ref": "#/components/schemas/NoSuchDomain" }
               }
             }
           }
@@ -600,9 +460,7 @@
         "requestBody": {
           "content": {
             "text/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/DomainMetadataRequest"
-              }
+              "schema": { "$ref": "#/components/schemas/DomainMetadataRequest" }
             }
           }
         },
@@ -611,19 +469,13 @@
             "name": "Action",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["DomainMetadata"]
-            }
+            "schema": { "type": "string", "enum": ["DomainMetadata"] }
           },
           {
             "name": "Version",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["2009-04-15"]
-            }
+            "schema": { "type": "string", "enum": ["2009-04-15"] }
           }
         ],
         "summary": "Domain Metadata"
@@ -631,27 +483,13 @@
     },
     "/#Action=GetAttributes": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/AWSAccessKeyId"
-        },
-        {
-          "$ref": "#/components/parameters/Action"
-        },
-        {
-          "$ref": "#/components/parameters/SignatureMethod"
-        },
-        {
-          "$ref": "#/components/parameters/SignatureVersion"
-        },
-        {
-          "$ref": "#/components/parameters/Timestamp"
-        },
-        {
-          "$ref": "#/components/parameters/Version"
-        },
-        {
-          "$ref": "#/components/parameters/Signature"
-        }
+        { "$ref": "#/components/parameters/AWSAccessKeyId" },
+        { "$ref": "#/components/parameters/Action" },
+        { "$ref": "#/components/parameters/SignatureMethod" },
+        { "$ref": "#/components/parameters/SignatureVersion" },
+        { "$ref": "#/components/parameters/Timestamp" },
+        { "$ref": "#/components/parameters/Version" },
+        { "$ref": "#/components/parameters/Signature" }
       ],
       "post": {
         "x-aws-operation-name": "GetAttributes",
@@ -662,9 +500,7 @@
             "description": "Success",
             "content": {
               "text/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetAttributesResult"
-                }
+                "schema": { "$ref": "#/components/schemas/GetAttributesResult" }
               }
             }
           },
@@ -673,9 +509,7 @@
             "x-aws-exception": true,
             "content": {
               "text/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/NoSuchDomain"
-                }
+                "schema": { "$ref": "#/components/schemas/NoSuchDomain" }
               }
             }
           }
@@ -683,9 +517,7 @@
         "requestBody": {
           "content": {
             "text/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/GetAttributesRequest"
-              }
+              "schema": { "$ref": "#/components/schemas/GetAttributesRequest" }
             }
           }
         },
@@ -694,19 +526,13 @@
             "name": "Action",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["GetAttributes"]
-            }
+            "schema": { "type": "string", "enum": ["GetAttributes"] }
           },
           {
             "name": "Version",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["2009-04-15"]
-            }
+            "schema": { "type": "string", "enum": ["2009-04-15"] }
           }
         ],
         "summary": "Get Attributes"
@@ -714,27 +540,13 @@
     },
     "/#Action=ListDomains": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/AWSAccessKeyId"
-        },
-        {
-          "$ref": "#/components/parameters/Action"
-        },
-        {
-          "$ref": "#/components/parameters/SignatureMethod"
-        },
-        {
-          "$ref": "#/components/parameters/SignatureVersion"
-        },
-        {
-          "$ref": "#/components/parameters/Timestamp"
-        },
-        {
-          "$ref": "#/components/parameters/Version"
-        },
-        {
-          "$ref": "#/components/parameters/Signature"
-        }
+        { "$ref": "#/components/parameters/AWSAccessKeyId" },
+        { "$ref": "#/components/parameters/Action" },
+        { "$ref": "#/components/parameters/SignatureMethod" },
+        { "$ref": "#/components/parameters/SignatureVersion" },
+        { "$ref": "#/components/parameters/Timestamp" },
+        { "$ref": "#/components/parameters/Version" },
+        { "$ref": "#/components/parameters/Signature" }
       ],
       "post": {
         "x-aws-operation-name": "ListDomains",
@@ -745,9 +557,7 @@
             "description": "Success",
             "content": {
               "text/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListDomainsResult"
-                }
+                "schema": { "$ref": "#/components/schemas/ListDomainsResult" }
               }
             }
           },
@@ -756,9 +566,7 @@
             "x-aws-exception": true,
             "content": {
               "text/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidNextToken"
-                }
+                "schema": { "$ref": "#/components/schemas/InvalidNextToken" }
               }
             }
           }
@@ -766,9 +574,7 @@
         "requestBody": {
           "content": {
             "text/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/ListDomainsRequest"
-              }
+              "schema": { "$ref": "#/components/schemas/ListDomainsRequest" }
             }
           }
         },
@@ -776,18 +582,14 @@
           {
             "name": "MaxNumberOfDomains",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           },
@@ -795,19 +597,13 @@
             "name": "Action",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["ListDomains"]
-            }
+            "schema": { "type": "string", "enum": ["ListDomains"] }
           },
           {
             "name": "Version",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["2009-04-15"]
-            }
+            "schema": { "type": "string", "enum": ["2009-04-15"] }
           }
         ],
         "summary": "List Domains"
@@ -815,44 +611,26 @@
     },
     "/#Action=PutAttributes": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/AWSAccessKeyId"
-        },
-        {
-          "$ref": "#/components/parameters/Action"
-        },
-        {
-          "$ref": "#/components/parameters/SignatureMethod"
-        },
-        {
-          "$ref": "#/components/parameters/SignatureVersion"
-        },
-        {
-          "$ref": "#/components/parameters/Timestamp"
-        },
-        {
-          "$ref": "#/components/parameters/Version"
-        },
-        {
-          "$ref": "#/components/parameters/Signature"
-        }
+        { "$ref": "#/components/parameters/AWSAccessKeyId" },
+        { "$ref": "#/components/parameters/Action" },
+        { "$ref": "#/components/parameters/SignatureMethod" },
+        { "$ref": "#/components/parameters/SignatureVersion" },
+        { "$ref": "#/components/parameters/Timestamp" },
+        { "$ref": "#/components/parameters/Version" },
+        { "$ref": "#/components/parameters/Signature" }
       ],
       "post": {
         "x-aws-operation-name": "PutAttributes",
         "operationId": "POST_PutAttributes",
         "description": "<p> The PutAttributes operation creates or replaces attributes in an item. The client may specify new attributes using a combination of the <code>Attribute.X.Name</code> and <code>Attribute.X.Value</code> parameters. The client specifies the first attribute by the parameters <code>Attribute.0.Name</code> and <code>Attribute.0.Value</code>, the second attribute by the parameters <code>Attribute.1.Name</code> and <code>Attribute.1.Value</code>, and so on. </p> <p> Attributes are uniquely identified in an item by their name/value combination. For example, a single item can have the attributes <code>{ \"first_name\", \"first_value\" }</code> and <code>{ \"first_name\", second_value\" }</code>. However, it cannot have two attribute instances where both the <code>Attribute.X.Name</code> and <code>Attribute.X.Value</code> are the same. </p> <p> Optionally, the requestor can supply the <code>Replace</code> parameter for each individual attribute. Setting this value to <code>true</code> causes the new attribute value to replace the existing attribute value(s). For example, if an item has the attributes <code>{ 'a', '1' }</code>, <code>{ 'b', '2'}</code> and <code>{ 'b', '3' }</code> and the requestor calls <code>PutAttributes</code> using the attributes <code>{ 'b', '4' }</code> with the <code>Replace</code> parameter set to true, the final attributes of the item are changed to <code>{ 'a', '1' }</code> and <code>{ 'b', '4' }</code>, which replaces the previous values of the 'b' attribute with the new value. </p> <note> Using <code>PutAttributes</code> to replace attribute values that do not exist will not result in an error response. </note> <p> You cannot specify an empty string as an attribute name. </p> <p> Because Amazon SimpleDB makes multiple copies of client data and uses an eventual consistency update model, an immediate <a>GetAttributes</a> or <a>Select</a> operation (read) immediately after a <a>PutAttributes</a> or <a>DeleteAttributes</a> operation (write) might not return the updated data. </p> <p> The following limitations are enforced for this operation: <ul> <li>256 total attribute name-value pairs per item</li> <li>One billion attributes per domain</li> <li>10 GB of total user data storage per domain</li> </ul> </p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "400": {
             "description": "NoSuchDomain",
             "x-aws-exception": true,
             "content": {
               "text/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/NoSuchDomain"
-                }
+                "schema": { "$ref": "#/components/schemas/NoSuchDomain" }
               }
             }
           },
@@ -882,9 +660,7 @@
         "requestBody": {
           "content": {
             "text/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/PutAttributesRequest"
-              }
+              "schema": { "$ref": "#/components/schemas/PutAttributesRequest" }
             }
           }
         },
@@ -893,19 +669,13 @@
             "name": "Action",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["PutAttributes"]
-            }
+            "schema": { "type": "string", "enum": ["PutAttributes"] }
           },
           {
             "name": "Version",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["2009-04-15"]
-            }
+            "schema": { "type": "string", "enum": ["2009-04-15"] }
           }
         ],
         "summary": "Put Attributes"
@@ -913,27 +683,13 @@
     },
     "/#Action=Select": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/AWSAccessKeyId"
-        },
-        {
-          "$ref": "#/components/parameters/Action"
-        },
-        {
-          "$ref": "#/components/parameters/SignatureMethod"
-        },
-        {
-          "$ref": "#/components/parameters/SignatureVersion"
-        },
-        {
-          "$ref": "#/components/parameters/Timestamp"
-        },
-        {
-          "$ref": "#/components/parameters/Version"
-        },
-        {
-          "$ref": "#/components/parameters/Signature"
-        }
+        { "$ref": "#/components/parameters/AWSAccessKeyId" },
+        { "$ref": "#/components/parameters/Action" },
+        { "$ref": "#/components/parameters/SignatureMethod" },
+        { "$ref": "#/components/parameters/SignatureVersion" },
+        { "$ref": "#/components/parameters/Timestamp" },
+        { "$ref": "#/components/parameters/Version" },
+        { "$ref": "#/components/parameters/Signature" }
       ],
       "post": {
         "x-aws-operation-name": "Select",
@@ -944,9 +700,7 @@
             "description": "Success",
             "content": {
               "text/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/SelectResult"
-                }
+                "schema": { "$ref": "#/components/schemas/SelectResult" }
               }
             }
           },
@@ -966,9 +720,7 @@
             "x-aws-exception": true,
             "content": {
               "text/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/RequestTimeout"
-                }
+                "schema": { "$ref": "#/components/schemas/RequestTimeout" }
               }
             }
           }
@@ -976,9 +728,7 @@
         "requestBody": {
           "content": {
             "text/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/SelectRequest"
-              }
+              "schema": { "$ref": "#/components/schemas/SelectRequest" }
             }
           }
         },
@@ -986,9 +736,7 @@
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           },
@@ -996,19 +744,13 @@
             "name": "Action",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["Select"]
-            }
+            "schema": { "type": "string", "enum": ["Select"] }
           },
           {
             "name": "Version",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["2009-04-15"]
-            }
+            "schema": { "type": "string", "enum": ["2009-04-15"] }
           }
         ],
         "summary": "Select"
@@ -1020,57 +762,43 @@
       "AWSAccessKeyId": {
         "name": "AWSAccessKeyId",
         "in": "query",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": true
       },
       "Action": {
         "name": "Action",
         "in": "query",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": true
       },
       "SignatureMethod": {
         "name": "SignatureMethod",
         "in": "query",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": true
       },
       "SignatureVersion": {
         "name": "SignatureVersion",
         "in": "query",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": true
       },
       "Timestamp": {
         "name": "Timestamp",
         "in": "query",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": true
       },
       "Version": {
         "name": "Version",
         "in": "query",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": true
       },
       "Signature": {
         "name": "Signature",
         "in": "query",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": true
       }
     },
@@ -1090,14 +818,8 @@
         "properties": {
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "xml": {
-                  "name": "ItemName"
-                }
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "xml": { "name": "ItemName" } }
             ]
           },
           "Attributes": {
@@ -1111,22 +833,16 @@
         "properties": {
           "Name": {
             "allOf": [
+              { "$ref": "#/components/schemas/String" },
               {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "xml": {
-                  "name": "ItemName"
-                },
+                "xml": { "name": "ItemName" },
                 "description": "The name of the replaceable item."
               }
             ]
           },
           "Attributes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ReplaceableAttributeList"
-              },
+              { "$ref": "#/components/schemas/ReplaceableAttributeList" },
               {
                 "description": "The list of attributes for a replaceable item."
               }
@@ -1137,47 +853,27 @@
       },
       "MissingParameter": {
         "type": "object",
-        "properties": {
-          "BoxUsage": {
-            "$ref": "#/components/schemas/Float"
-          }
-        },
+        "properties": { "BoxUsage": { "$ref": "#/components/schemas/Float" } },
         "description": "The request must contain the specified missing parameter."
       },
       "NoSuchDomain": {
         "type": "object",
-        "properties": {
-          "BoxUsage": {
-            "$ref": "#/components/schemas/Float"
-          }
-        },
+        "properties": { "BoxUsage": { "$ref": "#/components/schemas/Float" } },
         "description": "The specified domain does not exist."
       },
       "NumberItemAttributesExceeded": {
         "type": "object",
-        "properties": {
-          "BoxUsage": {
-            "$ref": "#/components/schemas/Float"
-          }
-        },
+        "properties": { "BoxUsage": { "$ref": "#/components/schemas/Float" } },
         "description": "Too many attributes in this item."
       },
       "NumberSubmittedAttributesExceeded": {
         "type": "object",
-        "properties": {
-          "BoxUsage": {
-            "$ref": "#/components/schemas/Float"
-          }
-        },
+        "properties": { "BoxUsage": { "$ref": "#/components/schemas/Float" } },
         "description": "Too many attributes exist in a single call."
       },
       "NumberDomainsExceeded": {
         "type": "object",
-        "properties": {
-          "BoxUsage": {
-            "$ref": "#/components/schemas/Float"
-          }
-        },
+        "properties": { "BoxUsage": { "$ref": "#/components/schemas/Float" } },
         "description": "Too many domains exist per this account."
       },
       "DeletableAttribute": {
@@ -1186,40 +882,24 @@
         "properties": {
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": "The name of the attribute."
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "The name of the attribute." }
             ]
           },
           "Value": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": "The value of the attribute."
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "The value of the attribute." }
             ]
           }
         },
         "description": ""
       },
-      "String": {
-        "type": "string"
-      },
-      "Boolean": {
-        "type": "boolean"
-      },
+      "String": { "type": "string" },
+      "Boolean": { "type": "boolean" },
       "AttributeDoesNotExist": {
         "type": "object",
-        "properties": {
-          "BoxUsage": {
-            "$ref": "#/components/schemas/Float"
-          }
-        },
+        "properties": { "BoxUsage": { "$ref": "#/components/schemas/Float" } },
         "description": "The specified attribute does not exist."
       },
       "DomainMetadataResult": {
@@ -1227,19 +907,13 @@
         "properties": {
           "ItemCount": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Integer"
-              },
-              {
-                "description": "The number of all items in the domain."
-              }
+              { "$ref": "#/components/schemas/Integer" },
+              { "description": "The number of all items in the domain." }
             ]
           },
           "ItemNamesSizeBytes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Long"
-              },
+              { "$ref": "#/components/schemas/Long" },
               {
                 "description": "The total size of all item names in the domain, in bytes."
               }
@@ -1247,9 +921,7 @@
           },
           "AttributeNameCount": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Integer"
-              },
+              { "$ref": "#/components/schemas/Integer" },
               {
                 "description": "The number of unique attribute names in the domain."
               }
@@ -1257,9 +929,7 @@
           },
           "AttributeNamesSizeBytes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Long"
-              },
+              { "$ref": "#/components/schemas/Long" },
               {
                 "description": "The total size of all unique attribute names in the domain, in bytes."
               }
@@ -1267,9 +937,7 @@
           },
           "AttributeValueCount": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Integer"
-              },
+              { "$ref": "#/components/schemas/Integer" },
               {
                 "description": "The number of all attribute name/value pairs in the domain."
               }
@@ -1277,9 +945,7 @@
           },
           "AttributeValuesSizeBytes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Long"
-              },
+              { "$ref": "#/components/schemas/Long" },
               {
                 "description": "The total size of all attribute values in the domain, in bytes."
               }
@@ -1287,9 +953,7 @@
           },
           "Timestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Integer"
-              },
+              { "$ref": "#/components/schemas/Integer" },
               {
                 "description": "The data and time when metadata was calculated, in Epoch (UNIX) seconds."
               }
@@ -1302,9 +966,7 @@
         "properties": {
           "Attributes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AttributeList"
-              },
+              { "$ref": "#/components/schemas/AttributeList" },
               {
                 "description": "The list of attributes returned by the operation."
               }
@@ -1317,9 +979,7 @@
         "properties": {
           "DomainNames": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainNameList"
-              },
+              { "$ref": "#/components/schemas/DomainNameList" },
               {
                 "description": "A list of domain names that match the expression."
               }
@@ -1327,9 +987,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "An opaque token indicating that there are more domains than the specified <code>MaxNumberOfDomains</code> still available."
               }
@@ -1339,11 +997,7 @@
       },
       "InvalidNextToken": {
         "type": "object",
-        "properties": {
-          "BoxUsage": {
-            "$ref": "#/components/schemas/Float"
-          }
-        },
+        "properties": { "BoxUsage": { "$ref": "#/components/schemas/Float" } },
         "description": "The specified NextToken is not valid. "
       },
       "ReplaceableAttribute": {
@@ -1352,29 +1006,19 @@
         "properties": {
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": "The name of the replaceable attribute."
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "The name of the replaceable attribute." }
             ]
           },
           "Value": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": "The value of the replaceable attribute."
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "The value of the replaceable attribute." }
             ]
           },
           "Replace": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": "A flag specifying whether or not to replace the attribute/value pair or to add a new attribute/value pair. The default setting is <code>false</code>."
               }
@@ -1388,9 +1032,7 @@
         "properties": {
           "Items": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ItemList"
-              },
+              { "$ref": "#/components/schemas/ItemList" },
               {
                 "description": "A list of items that match the select expression."
               }
@@ -1398,9 +1040,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "An opaque token indicating that more items than <code>MaxNumberOfItems</code> were matched, the response size exceeded 1 megabyte, or the execution time exceeded 5 seconds."
               }
@@ -1410,20 +1050,12 @@
       },
       "RequestTimeout": {
         "type": "object",
-        "properties": {
-          "BoxUsage": {
-            "$ref": "#/components/schemas/Float"
-          }
-        },
+        "properties": { "BoxUsage": { "$ref": "#/components/schemas/Float" } },
         "description": "A timeout occurred when attempting to query the specified domain with specified query expression."
       },
       "TooManyRequestedAttributes": {
         "type": "object",
-        "properties": {
-          "BoxUsage": {
-            "$ref": "#/components/schemas/Float"
-          }
-        },
+        "properties": { "BoxUsage": { "$ref": "#/components/schemas/Float" } },
         "description": "Too many attributes requested."
       },
       "Attribute": {
@@ -1432,104 +1064,61 @@
         "properties": {
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": "The name of the attribute."
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "The name of the attribute." }
             ]
           },
           "AlternateNameEncoding": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": ""
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "" }
             ]
           },
           "Value": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": "The value of the attribute."
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "The value of the attribute." }
             ]
           },
           "AlternateValueEncoding": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": ""
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "" }
             ]
           }
         },
         "description": ""
       },
-      "Float": {
-        "type": "number",
-        "format": "float"
-      },
+      "Float": { "type": "number", "format": "float" },
       "AttributeList": {
         "type": "array",
         "items": {
           "allOf": [
-            {
-              "$ref": "#/components/schemas/Attribute"
-            },
-            {
-              "xml": {
-                "name": "Attribute"
-              }
-            }
+            { "$ref": "#/components/schemas/Attribute" },
+            { "xml": { "name": "Attribute" } }
           ]
         },
-        "xml": {
-          "wrapped": false
-        }
+        "xml": { "wrapped": false }
       },
       "AttributeNameList": {
         "type": "array",
         "items": {
           "allOf": [
-            {
-              "$ref": "#/components/schemas/String"
-            },
-            {
-              "xml": {
-                "name": "AttributeName"
-              }
-            }
+            { "$ref": "#/components/schemas/String" },
+            { "xml": { "name": "AttributeName" } }
           ]
         },
-        "xml": {
-          "wrapped": false
-        }
+        "xml": { "wrapped": false }
       },
       "DeletableItemList": {
         "type": "array",
         "items": {
           "allOf": [
-            {
-              "$ref": "#/components/schemas/DeletableItem"
-            },
-            {
-              "xml": {
-                "name": "Item"
-              }
-            }
+            { "$ref": "#/components/schemas/DeletableItem" },
+            { "xml": { "name": "Item" } }
           ]
         },
-        "xml": {
-          "wrapped": false
-        }
+        "xml": { "wrapped": false }
       },
       "BatchDeleteAttributesRequest": {
         "type": "object",
@@ -1538,9 +1127,7 @@
         "properties": {
           "DomainName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The name of the domain in which the attributes are being deleted."
               }
@@ -1548,9 +1135,7 @@
           },
           "Items": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DeletableItemList"
-              },
+              { "$ref": "#/components/schemas/DeletableItemList" },
               {
                 "description": "A list of items on which to perform the operation."
               }
@@ -1562,19 +1147,11 @@
         "type": "array",
         "items": {
           "allOf": [
-            {
-              "$ref": "#/components/schemas/ReplaceableItem"
-            },
-            {
-              "xml": {
-                "name": "Item"
-              }
-            }
+            { "$ref": "#/components/schemas/ReplaceableItem" },
+            { "xml": { "name": "Item" } }
           ]
         },
-        "xml": {
-          "wrapped": false
-        }
+        "xml": { "wrapped": false }
       },
       "BatchPutAttributesRequest": {
         "type": "object",
@@ -1583,9 +1160,7 @@
         "properties": {
           "DomainName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The name of the domain in which the attributes are being stored."
               }
@@ -1593,9 +1168,7 @@
           },
           "Items": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ReplaceableItemList"
-              },
+              { "$ref": "#/components/schemas/ReplaceableItemList" },
               {
                 "description": "A list of items on which to perform the operation."
               }
@@ -1610,9 +1183,7 @@
         "properties": {
           "DomainName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The name of the domain to create. The name can range between 3 and 255 characters and can contain the following characters: a-z, A-Z, 0-9, '_', '-', and '.'."
               }
@@ -1624,28 +1195,18 @@
         "type": "array",
         "items": {
           "allOf": [
-            {
-              "$ref": "#/components/schemas/DeletableAttribute"
-            },
-            {
-              "xml": {
-                "name": "Attribute"
-              }
-            }
+            { "$ref": "#/components/schemas/DeletableAttribute" },
+            { "xml": { "name": "Attribute" } }
           ]
         },
-        "xml": {
-          "wrapped": false
-        }
+        "xml": { "wrapped": false }
       },
       "UpdateCondition": {
         "type": "object",
         "properties": {
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The name of the attribute involved in the condition."
               }
@@ -1653,9 +1214,7 @@
           },
           "Value": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The value of an attribute. This value can only be specified when the <code>Exists</code> parameter is equal to <code>true</code>."
               }
@@ -1663,9 +1222,7 @@
           },
           "Exists": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": "A value specifying whether or not the specified attribute must exist with the specified value in order for the update condition to be satisfied. Specify <code>true</code> if the attribute must exist for the update condition to be satisfied. Specify <code>false</code> if the attribute should not exist in order for the update condition to be satisfied."
               }
@@ -1681,9 +1238,7 @@
         "properties": {
           "DomainName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The name of the domain in which to perform the operation."
               }
@@ -1691,9 +1246,7 @@
           },
           "ItemName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The name of the item. Similar to rows on a spreadsheet, items represent individual objects that contain one or more value-attribute pairs."
               }
@@ -1701,9 +1254,7 @@
           },
           "Attributes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DeletableAttributeList"
-              },
+              { "$ref": "#/components/schemas/DeletableAttributeList" },
               {
                 "description": "A list of Attributes. Similar to columns on a spreadsheet, attributes represent categories of data that can be assigned to items."
               }
@@ -1711,9 +1262,7 @@
           },
           "Expected": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UpdateCondition"
-              },
+              { "$ref": "#/components/schemas/UpdateCondition" },
               {
                 "description": "The update condition which, if specified, determines whether the specified attributes will be deleted or not. The update condition must be satisfied in order for this request to be processed and the attributes to be deleted."
               }
@@ -1728,12 +1277,8 @@
         "properties": {
           "DomainName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": "The name of the domain to delete."
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "The name of the domain to delete." }
             ]
           }
         }
@@ -1745,9 +1290,7 @@
         "properties": {
           "DomainName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The name of the domain for which to display the metadata of."
               }
@@ -1755,29 +1298,17 @@
           }
         }
       },
-      "Integer": {
-        "type": "integer"
-      },
-      "Long": {
-        "type": "integer"
-      },
+      "Integer": { "type": "integer" },
+      "Long": { "type": "integer" },
       "DomainNameList": {
         "type": "array",
         "items": {
           "allOf": [
-            {
-              "$ref": "#/components/schemas/String"
-            },
-            {
-              "xml": {
-                "name": "DomainName"
-              }
-            }
+            { "$ref": "#/components/schemas/String" },
+            { "xml": { "name": "DomainName" } }
           ]
         },
-        "xml": {
-          "wrapped": false
-        }
+        "xml": { "wrapped": false }
       },
       "GetAttributesRequest": {
         "type": "object",
@@ -1786,9 +1317,7 @@
         "properties": {
           "DomainName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The name of the domain in which to perform the operation."
               }
@@ -1796,29 +1325,19 @@
           },
           "ItemName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": "The name of the item."
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "The name of the item." }
             ]
           },
           "AttributeNames": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AttributeNameList"
-              },
-              {
-                "description": "The names of the attributes."
-              }
+              { "$ref": "#/components/schemas/AttributeNameList" },
+              { "description": "The names of the attributes." }
             ]
           },
           "ConsistentRead": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": "Determines whether or not strong consistency should be enforced when data is read from SimpleDB. If <code>true</code>, any data previously written to SimpleDB will be returned. Otherwise, results will be consistent eventually, and the client may not see data that was written immediately before your read."
               }
@@ -1832,32 +1351,20 @@
         "properties": {
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": "The name of the item."
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "The name of the item." }
             ]
           },
           "AlternateNameEncoding": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": ""
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "" }
             ]
           },
           "Attributes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AttributeList"
-              },
-              {
-                "description": "A list of attributes."
-              }
+              { "$ref": "#/components/schemas/AttributeList" },
+              { "description": "A list of attributes." }
             ]
           }
         },
@@ -1867,19 +1374,11 @@
         "type": "array",
         "items": {
           "allOf": [
-            {
-              "$ref": "#/components/schemas/Item"
-            },
-            {
-              "xml": {
-                "name": "Item"
-              }
-            }
+            { "$ref": "#/components/schemas/Item" },
+            { "xml": { "name": "Item" } }
           ]
         },
-        "xml": {
-          "wrapped": false
-        }
+        "xml": { "wrapped": false }
       },
       "ListDomainsRequest": {
         "type": "object",
@@ -1887,9 +1386,7 @@
         "properties": {
           "MaxNumberOfDomains": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Integer"
-              },
+              { "$ref": "#/components/schemas/Integer" },
               {
                 "description": "The maximum number of domain names you want returned. The range is 1 to 100. The default setting is 100."
               }
@@ -1897,9 +1394,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "A string informing Amazon SimpleDB where to start the next list of domain names."
               }
@@ -1911,19 +1406,11 @@
         "type": "array",
         "items": {
           "allOf": [
-            {
-              "$ref": "#/components/schemas/ReplaceableAttribute"
-            },
-            {
-              "xml": {
-                "name": "Attribute"
-              }
-            }
+            { "$ref": "#/components/schemas/ReplaceableAttribute" },
+            { "xml": { "name": "Attribute" } }
           ]
         },
-        "xml": {
-          "wrapped": false
-        }
+        "xml": { "wrapped": false }
       },
       "PutAttributesRequest": {
         "type": "object",
@@ -1932,9 +1419,7 @@
         "properties": {
           "DomainName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The name of the domain in which to perform the operation."
               }
@@ -1942,29 +1427,19 @@
           },
           "ItemName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": "The name of the item."
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "The name of the item." }
             ]
           },
           "Attributes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ReplaceableAttributeList"
-              },
-              {
-                "description": "The list of attributes."
-              }
+              { "$ref": "#/components/schemas/ReplaceableAttributeList" },
+              { "description": "The list of attributes." }
             ]
           },
           "Expected": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UpdateCondition"
-              },
+              { "$ref": "#/components/schemas/UpdateCondition" },
               {
                 "description": "The update condition which, if specified, determines whether the specified attributes will be updated or not. The update condition must be satisfied in order for this request to be processed and the attributes to be updated."
               }
@@ -1979,19 +1454,13 @@
         "properties": {
           "SelectExpression": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": "The expression used to query the domain."
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "The expression used to query the domain." }
             ]
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "A string informing Amazon SimpleDB where to start the next list of <code>ItemNames</code>."
               }
@@ -1999,9 +1468,7 @@
           },
           "ConsistentRead": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": "Determines whether or not strong consistency should be enforced when data is read from SimpleDB. If <code>true</code>, any data previously written to SimpleDB will be returned. Otherwise, results will be consistent eventually, and the client may not see data that was written immediately before your read."
               }
@@ -2011,11 +1478,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2009-04-15",
     "endpointPrefix": "sdb",

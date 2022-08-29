@@ -142,16 +142,12 @@
         "operationId": "DeleteConnection",
         "description": "Delete the connection with the provided id.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "GoneException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GoneException"
-                }
+                "schema": { "$ref": "#/components/schemas/GoneException" }
               }
             }
           },
@@ -169,9 +165,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -182,35 +176,19 @@
             "in": "path",
             "required": true,
             "description": "",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Delete Connection"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetConnection",
@@ -230,9 +208,7 @@
             "description": "GoneException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GoneException"
-                }
+                "schema": { "$ref": "#/components/schemas/GoneException" }
               }
             }
           },
@@ -250,9 +226,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -263,9 +237,7 @@
             "in": "path",
             "required": true,
             "description": "",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Get Connection"
@@ -274,16 +246,12 @@
         "operationId": "PostToConnection",
         "description": "Sends the provided data to the specified connection.",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "GoneException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GoneException"
-                }
+                "schema": { "$ref": "#/components/schemas/GoneException" }
               }
             }
           },
@@ -311,9 +279,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -324,9 +290,7 @@
             "in": "path",
             "required": true,
             "description": "The identifier of the connection that a specific client is using.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -356,63 +320,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -435,38 +385,24 @@
         "properties": {
           "ConnectedAt": {
             "allOf": [
+              { "$ref": "#/components/schemas/__timestampIso8601" },
               {
-                "$ref": "#/components/schemas/__timestampIso8601"
-              },
-              {
-                "xml": {
-                  "name": "connectedAt"
-                },
+                "xml": { "name": "connectedAt" },
                 "description": "The time in ISO 8601 format for when the connection was established."
               }
             ]
           },
           "Identity": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Identity"
-              },
-              {
-                "xml": {
-                  "name": "identity"
-                }
-              }
+              { "$ref": "#/components/schemas/Identity" },
+              { "xml": { "name": "identity" } }
             ]
           },
           "LastActiveAt": {
             "allOf": [
+              { "$ref": "#/components/schemas/__timestampIso8601" },
               {
-                "$ref": "#/components/schemas/__timestampIso8601"
-              },
-              {
-                "xml": {
-                  "name": "lastActiveAt"
-                },
+                "xml": { "name": "lastActiveAt" },
                 "description": "The time in ISO 8601 format for when the connection was last active."
               }
             ]
@@ -474,39 +410,26 @@
         }
       },
       "PayloadTooLargeException": {},
-      "__string": {
-        "type": "string"
-      },
-      "__timestampIso8601": {
-        "type": "string",
-        "format": "date-time"
-      },
+      "__string": { "type": "string" },
+      "__timestampIso8601": { "type": "string", "format": "date-time" },
       "Identity": {
         "type": "object",
         "required": ["SourceIp", "UserAgent"],
         "properties": {
           "SourceIp": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "sourceIp"
-                },
+                "xml": { "name": "sourceIp" },
                 "description": "The source IP address of the TCP connection making the request to API Gateway."
               }
             ]
           },
           "UserAgent": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "userAgent"
-                },
+                "xml": { "name": "userAgent" },
                 "description": "The User Agent of the API caller."
               }
             ]
@@ -515,11 +438,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2018-11-29",
     "endpointPrefix": "execute-api",

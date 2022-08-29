@@ -314,12 +314,12 @@ export class GoogleApisDefinition extends MultiIntegrationDefinition {
       //   schemaUrl:
       //     'https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/googleapis.com/chat/v1/openapi.yaml',
       // },
-      {
-        integrationKey: 'google-sheets',
-        integrationVersion: '4',
-        schemaUrl:
-          'https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/googleapis.com/sheets/v4/openapi.yaml',
-      },
+      // {
+      //   integrationKey: 'google-sheets',
+      //   integrationVersion: '4',
+      //   schemaUrl:
+      //     'https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/googleapis.com/sheets/v4/openapi.yaml',
+      // },
       // {
       //   integrationKey: 'google-shopping-content',
       //   integrationVersion: '2',

@@ -154,9 +154,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -164,9 +162,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -208,7 +204,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["connectorProfileName", "connectorType", "connectionMode", "connectorProfileConfig"],
+                "required": [
+                  "connectorProfileName",
+                  "connectorType",
+                  "connectionMode",
+                  "connectorProfileConfig"
+                ],
                 "properties": {
                   "connectorProfileName": {
                     "description": " The name of the connector profile. The name is unique for each <code>ConnectorProfile</code> in your AWS account. ",
@@ -290,27 +291,13 @@
         "summary": "Create Connector Profile"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/create-flow": {
@@ -322,9 +309,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateFlowResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/CreateFlowResponse" }
               }
             }
           },
@@ -332,9 +317,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -372,9 +355,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -406,7 +387,13 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["flowName", "triggerConfig", "sourceFlowConfig", "destinationFlowConfigList", "tasks"],
+                "required": [
+                  "flowName",
+                  "triggerConfig",
+                  "sourceFlowConfig",
+                  "destinationFlowConfigList",
+                  "tasks"
+                ],
                 "properties": {
                   "flowName": {
                     "description": " The specified name of the flow. Spaces are not allowed. Use underscores (_) or hyphens (-) only. ",
@@ -433,9 +420,7 @@
                     "properties": {
                       "triggerType": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/TriggerType"
-                          },
+                          { "$ref": "#/components/schemas/TriggerType" },
                           {
                             "description": " Specifies the type of flow trigger. This can be <code>OnDemand</code>, <code>Scheduled</code>, or <code>Event</code>. "
                           }
@@ -443,9 +428,7 @@
                       },
                       "triggerProperties": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/TriggerProperties"
-                          },
+                          { "$ref": "#/components/schemas/TriggerProperties" },
                           {
                             "description": " Specifies the configuration details of a schedule-triggered flow as defined by the user. Currently, these settings only apply to the <code>Scheduled</code> trigger type. "
                           }
@@ -459,9 +442,7 @@
                     "properties": {
                       "connectorType": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/ConnectorType"
-                          },
+                          { "$ref": "#/components/schemas/ConnectorType" },
                           {
                             "description": " The type of connector, such as Salesforce, Amplitude, and so on. "
                           }
@@ -509,9 +490,7 @@
                   "tasks": {
                     "description": " A list of tasks that Amazon AppFlow performs while transferring the data in the flow run. ",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/Task"
-                    }
+                    "items": { "$ref": "#/components/schemas/Task" }
                   },
                   "tags": {
                     "description": " The tags used to organize, track, or control access for your flow. ",
@@ -530,27 +509,13 @@
         "summary": "Create Flow"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/delete-connector-profile": {
@@ -582,9 +547,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -626,27 +589,13 @@
         "summary": "Delete Connector Profile"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/delete-flow": {
@@ -658,9 +607,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteFlowResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/DeleteFlowResponse" }
               }
             }
           },
@@ -678,9 +625,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -722,27 +667,13 @@
         "summary": "Delete Flow"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/describe-connector-entity": {
@@ -764,9 +695,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -868,27 +797,13 @@
         "summary": "Describe Connector Entity"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/describe-connector-profiles": {
@@ -910,9 +825,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -931,18 +844,14 @@
           {
             "name": "maxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "nextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -1011,27 +920,13 @@
         "summary": "Describe Connector Profiles"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/describe-connectors": {
@@ -1053,9 +948,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1074,9 +967,7 @@
           {
             "name": "nextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -1091,9 +982,7 @@
                   "connectorTypes": {
                     "description": " The type of connector, such as Salesforce, Amplitude, and so on. ",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ConnectorType"
-                    },
+                    "items": { "$ref": "#/components/schemas/ConnectorType" },
                     "minItems": 0,
                     "maxItems": 100
                   },
@@ -1111,27 +1000,13 @@
         "summary": "Describe Connectors"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/describe-flow": {
@@ -1193,27 +1068,13 @@
         "summary": "Describe Flow"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/describe-flow-execution-records": {
@@ -1235,9 +1096,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1266,18 +1125,14 @@
           {
             "name": "maxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "nextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -1316,27 +1171,13 @@
         "summary": "Describe Flow Execution Records"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/list-connector-entities": {
@@ -1358,9 +1199,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1461,27 +1300,13 @@
         "summary": "List Connector Entities"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/list-flows": {
@@ -1493,9 +1318,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListFlowsResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/ListFlowsResponse" }
               }
             }
           },
@@ -1503,9 +1326,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1524,18 +1345,14 @@
           {
             "name": "maxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "nextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -1567,27 +1384,13 @@
         "summary": "List Flows"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/tags/{resourceArn}": {
@@ -1619,9 +1422,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1652,27 +1453,13 @@
         "summary": "List Tags For Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "TagResource",
@@ -1682,9 +1469,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TagResourceResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/TagResourceResponse" }
               }
             }
           },
@@ -1702,9 +1487,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1766,9 +1549,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StartFlowResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/StartFlowResponse" }
               }
             }
           },
@@ -1806,9 +1587,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           }
@@ -1836,27 +1615,13 @@
         "summary": "Start Flow"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/stop-flow": {
@@ -1868,9 +1633,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StopFlowResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/StopFlowResponse" }
               }
             }
           },
@@ -1878,9 +1641,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -1938,27 +1699,13 @@
         "summary": "Stop Flow"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/tags/{resourceArn}#tagKeys": {
@@ -1990,9 +1737,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -2026,9 +1771,7 @@
             "description": " The tag keys associated with the tag that you want to remove from your flow. ",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/TagKey"
-              },
+              "items": { "$ref": "#/components/schemas/TagKey" },
               "minItems": 0,
               "maxItems": 50
             }
@@ -2037,27 +1780,13 @@
         "summary": "Untag Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/update-connector-profile": {
@@ -2079,9 +1808,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -2099,9 +1826,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -2133,7 +1858,11 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["connectorProfileName", "connectionMode", "connectorProfileConfig"],
+                "required": [
+                  "connectorProfileName",
+                  "connectionMode",
+                  "connectorProfileConfig"
+                ],
                 "properties": {
                   "connectorProfileName": {
                     "description": " The name of the connector profile and is unique for each <code>ConnectorProfile</code> in the AWS Account. ",
@@ -2180,27 +1909,13 @@
         "summary": "Update Connector Profile"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/update-flow": {
@@ -2212,9 +1927,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UpdateFlowResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/UpdateFlowResponse" }
               }
             }
           },
@@ -2222,9 +1935,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -2252,9 +1963,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -2296,7 +2005,13 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["flowName", "triggerConfig", "destinationFlowConfigList", "tasks", "tasks"],
+                "required": [
+                  "flowName",
+                  "triggerConfig",
+                  "destinationFlowConfigList",
+                  "tasks",
+                  "tasks"
+                ],
                 "properties": {
                   "flowName": {
                     "description": " The specified name of the flow. Spaces are not allowed. Use underscores (_) or hyphens (-) only. ",
@@ -2316,9 +2031,7 @@
                     "properties": {
                       "triggerType": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/TriggerType"
-                          },
+                          { "$ref": "#/components/schemas/TriggerType" },
                           {
                             "description": " Specifies the type of flow trigger. This can be <code>OnDemand</code>, <code>Scheduled</code>, or <code>Event</code>. "
                           }
@@ -2326,9 +2039,7 @@
                       },
                       "triggerProperties": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/TriggerProperties"
-                          },
+                          { "$ref": "#/components/schemas/TriggerProperties" },
                           {
                             "description": " Specifies the configuration details of a schedule-triggered flow as defined by the user. Currently, these settings only apply to the <code>Scheduled</code> trigger type. "
                           }
@@ -2342,9 +2053,7 @@
                     "properties": {
                       "connectorType": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/ConnectorType"
-                          },
+                          { "$ref": "#/components/schemas/ConnectorType" },
                           {
                             "description": " The type of connector, such as Salesforce, Amplitude, and so on. "
                           }
@@ -2392,9 +2101,7 @@
                   "tasks": {
                     "description": " A list of tasks that Amazon AppFlow performs while transferring the data in the flow run. ",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/Task"
-                    }
+                    "items": { "$ref": "#/components/schemas/Task" }
                   }
                 }
               }
@@ -2404,27 +2111,13 @@
         "summary": "Update Flow"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -2433,63 +2126,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -2509,9 +2188,7 @@
         "properties": {
           "connectorProfileArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorProfileArn"
-              },
+              { "$ref": "#/components/schemas/ConnectorProfileArn" },
               {
                 "description": " The Amazon Resource Name (ARN) of the connector profile. "
               }
@@ -2867,22 +2544,14 @@
         "properties": {
           "flowArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FlowArn"
-              },
-              {
-                "description": " The flow's Amazon Resource Name (ARN). "
-              }
+              { "$ref": "#/components/schemas/FlowArn" },
+              { "description": " The flow's Amazon Resource Name (ARN). " }
             ]
           },
           "flowStatus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FlowStatus"
-              },
-              {
-                "description": " Indicates the current status of the flow. "
-              }
+              { "$ref": "#/components/schemas/FlowStatus" },
+              { "description": " Indicates the current status of the flow. " }
             ]
           }
         }
@@ -2896,9 +2565,7 @@
         "properties": {
           "Scheduled": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ScheduledTriggerProperties"
-              },
+              { "$ref": "#/components/schemas/ScheduledTriggerProperties" },
               {
                 "description": " Specifies the configuration details of a schedule-triggered flow as defined by the user. "
               }
@@ -2944,9 +2611,7 @@
         "properties": {
           "Amplitude": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AmplitudeSourceProperties"
-              },
+              { "$ref": "#/components/schemas/AmplitudeSourceProperties" },
               {
                 "description": " Specifies the information that is required for querying Amplitude. "
               }
@@ -2954,9 +2619,7 @@
           },
           "Datadog": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DatadogSourceProperties"
-              },
+              { "$ref": "#/components/schemas/DatadogSourceProperties" },
               {
                 "description": " Specifies the information that is required for querying Datadog. "
               }
@@ -2964,9 +2627,7 @@
           },
           "Dynatrace": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DynatraceSourceProperties"
-              },
+              { "$ref": "#/components/schemas/DynatraceSourceProperties" },
               {
                 "description": " Specifies the information that is required for querying Dynatrace. "
               }
@@ -2984,9 +2645,7 @@
           },
           "InforNexus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InforNexusSourceProperties"
-              },
+              { "$ref": "#/components/schemas/InforNexusSourceProperties" },
               {
                 "description": " Specifies the information that is required for querying Infor Nexus. "
               }
@@ -2994,9 +2653,7 @@
           },
           "Marketo": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MarketoSourceProperties"
-              },
+              { "$ref": "#/components/schemas/MarketoSourceProperties" },
               {
                 "description": " Specifies the information that is required for querying Marketo. "
               }
@@ -3004,9 +2661,7 @@
           },
           "S3": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/S3SourceProperties"
-              },
+              { "$ref": "#/components/schemas/S3SourceProperties" },
               {
                 "description": " Specifies the information that is required for querying Amazon S3. "
               }
@@ -3014,9 +2669,7 @@
           },
           "Salesforce": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SalesforceSourceProperties"
-              },
+              { "$ref": "#/components/schemas/SalesforceSourceProperties" },
               {
                 "description": " Specifies the information that is required for querying Salesforce. "
               }
@@ -3024,9 +2677,7 @@
           },
           "ServiceNow": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ServiceNowSourceProperties"
-              },
+              { "$ref": "#/components/schemas/ServiceNowSourceProperties" },
               {
                 "description": " Specifies the information that is required for querying ServiceNow. "
               }
@@ -3034,9 +2685,7 @@
           },
           "Singular": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SingularSourceProperties"
-              },
+              { "$ref": "#/components/schemas/SingularSourceProperties" },
               {
                 "description": " Specifies the information that is required for querying Singular. "
               }
@@ -3044,9 +2693,7 @@
           },
           "Slack": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SlackSourceProperties"
-              },
+              { "$ref": "#/components/schemas/SlackSourceProperties" },
               {
                 "description": " Specifies the information that is required for querying Slack. "
               }
@@ -3054,9 +2701,7 @@
           },
           "Trendmicro": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TrendmicroSourceProperties"
-              },
+              { "$ref": "#/components/schemas/TrendmicroSourceProperties" },
               {
                 "description": " Specifies the information that is required for querying Trend Micro. "
               }
@@ -3064,9 +2709,7 @@
           },
           "Veeva": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VeevaSourceProperties"
-              },
+              { "$ref": "#/components/schemas/VeevaSourceProperties" },
               {
                 "description": " Specifies the information that is required for querying Veeva. "
               }
@@ -3074,9 +2717,7 @@
           },
           "Zendesk": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ZendeskSourceProperties"
-              },
+              { "$ref": "#/components/schemas/ZendeskSourceProperties" },
               {
                 "description": " Specifies the information that is required for querying Zendesk. "
               }
@@ -3094,9 +2735,7 @@
         "properties": {
           "connectorType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorType"
-              },
+              { "$ref": "#/components/schemas/ConnectorType" },
               {
                 "description": " The type of connector, such as Salesforce, Amplitude, and so on. "
               }
@@ -3104,9 +2743,7 @@
           },
           "connectorProfileName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorProfileName"
-              },
+              { "$ref": "#/components/schemas/ConnectorProfileName" },
               {
                 "description": " The name of the connector profile. This name must be unique for each connector profile in the AWS account. "
               }
@@ -3114,9 +2751,7 @@
           },
           "destinationConnectorProperties": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DestinationConnectorProperties"
-              },
+              { "$ref": "#/components/schemas/DestinationConnectorProperties" },
               {
                 "description": " This stores the information that is required to query a particular connector. "
               }
@@ -3131,9 +2766,7 @@
         "properties": {
           "sourceFields": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SourceFields"
-              },
+              { "$ref": "#/components/schemas/SourceFields" },
               {
                 "description": " The source fields to which a particular task is applied. "
               }
@@ -3141,9 +2774,7 @@
           },
           "connectorOperator": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorOperator"
-              },
+              { "$ref": "#/components/schemas/ConnectorOperator" },
               {
                 "description": " The operation to be performed on the provided source fields. "
               }
@@ -3151,9 +2782,7 @@
           },
           "destinationField": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DestinationField"
-              },
+              { "$ref": "#/components/schemas/DestinationField" },
               {
                 "description": " A field in a destination connector, or a field value against which Amazon AppFlow validates a source field. "
               }
@@ -3161,9 +2790,7 @@
           },
           "taskType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TaskType"
-              },
+              { "$ref": "#/components/schemas/TaskType" },
               {
                 "description": " Specifies the particular task implementation that Amazon AppFlow performs. "
               }
@@ -3171,9 +2798,7 @@
           },
           "taskProperties": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TaskPropertiesMap"
-              },
+              { "$ref": "#/components/schemas/TaskPropertiesMap" },
               {
                 "description": " A map used to store task-related information. The execution service looks for particular information based on the <code>TaskType</code>. "
               }
@@ -3189,23 +2814,15 @@
       },
       "ResourceNotFoundException": {},
       "ConnectorServerException": {},
-      "DeleteConnectorProfileResponse": {
-        "type": "object",
-        "properties": {}
-      },
-      "DeleteFlowResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "DeleteConnectorProfileResponse": { "type": "object", "properties": {} },
+      "DeleteFlowResponse": { "type": "object", "properties": {} },
       "DescribeConnectorEntityResponse": {
         "type": "object",
         "required": ["connectorEntityFields"],
         "properties": {
           "connectorEntityFields": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorEntityFieldList"
-              },
+              { "$ref": "#/components/schemas/ConnectorEntityFieldList" },
               {
                 "description": " Describes the fields for that connector entity. For example, for an <i>account</i> entity, the fields would be <i>account name</i>, <i>account ID</i>, and so on. "
               }
@@ -3218,9 +2835,7 @@
         "properties": {
           "connectorProfileDetails": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorProfileDetailList"
-              },
+              { "$ref": "#/components/schemas/ConnectorProfileDetailList" },
               {
                 "description": " Returns information about the connector profiles associated with the flow. "
               }
@@ -3228,9 +2843,7 @@
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": " The pagination token for the next page of data. If <code>nextToken=null</code>, this means that all records have been fetched. "
               }
@@ -3243,9 +2856,7 @@
         "properties": {
           "connectorConfigurations": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorConfigurationsMap"
-              },
+              { "$ref": "#/components/schemas/ConnectorConfigurationsMap" },
               {
                 "description": " The configuration that is applied to the connectors used in the flow. "
               }
@@ -3253,9 +2864,7 @@
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": " The pagination token for the next page of data. "
               }
@@ -3268,29 +2877,19 @@
         "properties": {
           "flowArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FlowArn"
-              },
-              {
-                "description": " The flow's Amazon Resource Name (ARN). "
-              }
+              { "$ref": "#/components/schemas/FlowArn" },
+              { "description": " The flow's Amazon Resource Name (ARN). " }
             ]
           },
           "description": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FlowDescription"
-              },
-              {
-                "description": " A description of the flow. "
-              }
+              { "$ref": "#/components/schemas/FlowDescription" },
+              { "description": " A description of the flow. " }
             ]
           },
           "flowName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FlowName"
-              },
+              { "$ref": "#/components/schemas/FlowName" },
               {
                 "description": " The specified name of the flow. Spaces are not allowed. Use underscores (_) or hyphens (-) only. "
               }
@@ -3298,9 +2897,7 @@
           },
           "kmsArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/KMSArn"
-              },
+              { "$ref": "#/components/schemas/KMSArn" },
               {
                 "description": " The ARN (Amazon Resource Name) of the Key Management Service (KMS) key you provide for encryption. This is required if you do not want to use the Amazon AppFlow-managed KMS key. If you don't provide anything here, Amazon AppFlow uses the Amazon AppFlow-managed KMS key. "
               }
@@ -3308,19 +2905,13 @@
           },
           "flowStatus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FlowStatus"
-              },
-              {
-                "description": " Indicates the current status of the flow. "
-              }
+              { "$ref": "#/components/schemas/FlowStatus" },
+              { "description": " Indicates the current status of the flow. " }
             ]
           },
           "flowStatusMessage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FlowStatusMessage"
-              },
+              { "$ref": "#/components/schemas/FlowStatusMessage" },
               {
                 "description": " Contains an error message if the flow status is in a suspended or error state. This applies only to scheduled or event-triggered flows. "
               }
@@ -3328,9 +2919,7 @@
           },
           "sourceFlowConfig": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SourceFlowConfig"
-              },
+              { "$ref": "#/components/schemas/SourceFlowConfig" },
               {
                 "description": " The configuration that controls how Amazon AppFlow retrieves data from the source connector. "
               }
@@ -3338,9 +2927,7 @@
           },
           "destinationFlowConfigList": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DestinationFlowConfigList"
-              },
+              { "$ref": "#/components/schemas/DestinationFlowConfigList" },
               {
                 "description": " The configuration that controls how Amazon AppFlow transfers data to the destination connector. "
               }
@@ -3348,9 +2935,7 @@
           },
           "lastRunExecutionDetails": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ExecutionDetails"
-              },
+              { "$ref": "#/components/schemas/ExecutionDetails" },
               {
                 "description": " Describes the details of the most recent flow run. "
               }
@@ -3358,9 +2943,7 @@
           },
           "triggerConfig": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TriggerConfig"
-              },
+              { "$ref": "#/components/schemas/TriggerConfig" },
               {
                 "description": " The trigger settings that determine how and when the flow runs. "
               }
@@ -3368,9 +2951,7 @@
           },
           "tasks": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Tasks"
-              },
+              { "$ref": "#/components/schemas/Tasks" },
               {
                 "description": " A list of tasks that Amazon AppFlow performs while transferring the data in the flow run. "
               }
@@ -3378,39 +2959,25 @@
           },
           "createdAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Date"
-              },
-              {
-                "description": " Specifies when the flow was created. "
-              }
+              { "$ref": "#/components/schemas/Date" },
+              { "description": " Specifies when the flow was created. " }
             ]
           },
           "lastUpdatedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Date"
-              },
-              {
-                "description": " Specifies when the flow was last updated. "
-              }
+              { "$ref": "#/components/schemas/Date" },
+              { "description": " Specifies when the flow was last updated. " }
             ]
           },
           "createdBy": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CreatedBy"
-              },
-              {
-                "description": " The ARN of the user who created the flow. "
-              }
+              { "$ref": "#/components/schemas/CreatedBy" },
+              { "description": " The ARN of the user who created the flow. " }
             ]
           },
           "lastUpdatedBy": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UpdatedBy"
-              },
+              { "$ref": "#/components/schemas/UpdatedBy" },
               {
                 "description": " Specifies the user name of the account that performed the most recent update. "
               }
@@ -3418,9 +2985,7 @@
           },
           "tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagMap"
-              },
+              { "$ref": "#/components/schemas/TagMap" },
               {
                 "description": " The tags used to organize, track, or control access for your flow. "
               }
@@ -3433,9 +2998,7 @@
         "properties": {
           "flowExecutions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FlowExecutionList"
-              },
+              { "$ref": "#/components/schemas/FlowExecutionList" },
               {
                 "description": " Returns a list of all instances when this flow was run. "
               }
@@ -3443,9 +3006,7 @@
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": " The pagination token for the next page of data. "
               }
@@ -3459,9 +3020,7 @@
         "properties": {
           "connectorEntityMap": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorEntityMap"
-              },
+              { "$ref": "#/components/schemas/ConnectorEntityMap" },
               {
                 "description": " The response of <code>ListConnectorEntities</code> lists entities grouped by category. This map's key represents the group name, and its value contains the list of entities belonging to that group. "
               }
@@ -3474,9 +3033,7 @@
         "properties": {
           "flows": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FlowList"
-              },
+              { "$ref": "#/components/schemas/FlowList" },
               {
                 "description": " The list of flows associated with your account. "
               }
@@ -3484,12 +3041,8 @@
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
-              {
-                "description": " The pagination token for next page of data. "
-              }
+              { "$ref": "#/components/schemas/NextToken" },
+              { "description": " The pagination token for next page of data. " }
             ]
           }
         }
@@ -3499,9 +3052,7 @@
         "properties": {
           "tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagMap"
-              },
+              { "$ref": "#/components/schemas/TagMap" },
               {
                 "description": " The tags used to organize, track, or control access for your flow. "
               }
@@ -3514,29 +3065,19 @@
         "properties": {
           "flowArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FlowArn"
-              },
-              {
-                "description": " The flow's Amazon Resource Name (ARN). "
-              }
+              { "$ref": "#/components/schemas/FlowArn" },
+              { "description": " The flow's Amazon Resource Name (ARN). " }
             ]
           },
           "flowStatus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FlowStatus"
-              },
-              {
-                "description": " Indicates the current status of the flow. "
-              }
+              { "$ref": "#/components/schemas/FlowStatus" },
+              { "description": " Indicates the current status of the flow. " }
             ]
           },
           "executionId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ExecutionId"
-              },
+              { "$ref": "#/components/schemas/ExecutionId" },
               {
                 "description": " Returns the internal execution ID of an on-demand flow when the flow is started. For scheduled or event-triggered flows, this value is null. "
               }
@@ -3549,35 +3090,21 @@
         "properties": {
           "flowArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FlowArn"
-              },
-              {
-                "description": " The flow's Amazon Resource Name (ARN). "
-              }
+              { "$ref": "#/components/schemas/FlowArn" },
+              { "description": " The flow's Amazon Resource Name (ARN). " }
             ]
           },
           "flowStatus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FlowStatus"
-              },
-              {
-                "description": " Indicates the current status of the flow. "
-              }
+              { "$ref": "#/components/schemas/FlowStatus" },
+              { "description": " Indicates the current status of the flow. " }
             ]
           }
         }
       },
       "UnsupportedOperationException": {},
-      "TagResourceResponse": {
-        "type": "object",
-        "properties": {}
-      },
-      "UntagResourceResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "TagResourceResponse": { "type": "object", "properties": {} },
+      "UntagResourceResponse": { "type": "object", "properties": {} },
       "TagKey": {
         "type": "string",
         "pattern": "^(?!aws:)[a-zA-Z+-=._:/]+$",
@@ -3589,9 +3116,7 @@
         "properties": {
           "connectorProfileArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorProfileArn"
-              },
+              { "$ref": "#/components/schemas/ConnectorProfileArn" },
               {
                 "description": " The Amazon Resource Name (ARN) of the connector profile. "
               }
@@ -3604,12 +3129,8 @@
         "properties": {
           "flowStatus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FlowStatus"
-              },
-              {
-                "description": "Indicates the current status of the flow. "
-              }
+              { "$ref": "#/components/schemas/FlowStatus" },
+              { "description": "Indicates the current status of the flow. " }
             ]
           }
         }
@@ -3631,23 +3152,14 @@
         "maxLength": 512,
         "format": "password"
       },
-      "AccountName": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 512
-      },
-      "AggregationType": {
-        "type": "string",
-        "enum": ["None", "SingleFile"]
-      },
+      "AccountName": { "type": "string", "pattern": "\\S+", "maxLength": 512 },
+      "AggregationType": { "type": "string", "enum": ["None", "SingleFile"] },
       "AggregationConfig": {
         "type": "object",
         "properties": {
           "aggregationType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AggregationType"
-              },
+              { "$ref": "#/components/schemas/AggregationType" },
               {
                 "description": " Specifies whether Amazon AppFlow aggregates the flow records into a single file, or leave them unaggregated. "
               }
@@ -3656,15 +3168,8 @@
         },
         "description": " The aggregation settings that you can use to customize the output format of your flow data. "
       },
-      "AmplitudeConnectorOperator": {
-        "type": "string",
-        "enum": ["BETWEEN"]
-      },
-      "ApiKey": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 256
-      },
+      "AmplitudeConnectorOperator": { "type": "string", "enum": ["BETWEEN"] },
+      "ApiKey": { "type": "string", "pattern": "\\S+", "maxLength": 256 },
       "SecretKey": {
         "type": "string",
         "pattern": "\\S+",
@@ -3677,9 +3182,7 @@
         "properties": {
           "apiKey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ApiKey"
-              },
+              { "$ref": "#/components/schemas/ApiKey" },
               {
                 "description": " A unique alphanumeric identifier used to authenticate a user, developer, or calling program to your API. "
               }
@@ -3687,9 +3190,7 @@
           },
           "secretKey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SecretKey"
-              },
+              { "$ref": "#/components/schemas/SecretKey" },
               {
                 "description": " The Secret Access Key portion of the credentials. "
               }
@@ -3708,20 +3209,14 @@
         "properties": {},
         "description": " The connector metadata specific to Amplitude. "
       },
-      "Object": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 512
-      },
+      "Object": { "type": "string", "pattern": "\\S+", "maxLength": 512 },
       "AmplitudeSourceProperties": {
         "type": "object",
         "required": ["object"],
         "properties": {
           "object": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Object"
-              },
+              { "$ref": "#/components/schemas/Object" },
               {
                 "description": " The object specified in the Amplitude flow source. "
               }
@@ -3736,78 +3231,49 @@
         "maxLength": 256,
         "format": "password"
       },
-      "ApiToken": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 256
-      },
+      "ApiToken": { "type": "string", "pattern": "\\S+", "maxLength": 256 },
       "ApplicationKey": {
         "type": "string",
         "pattern": "\\S+",
         "maxLength": 512
       },
-      "AuthCode": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 512
-      },
-      "Boolean": {
-        "type": "boolean"
-      },
+      "AuthCode": { "type": "string", "pattern": "\\S+", "maxLength": 512 },
+      "Boolean": { "type": "boolean" },
       "BucketName": {
         "type": "string",
         "pattern": "\\S+",
         "minLength": 3,
         "maxLength": 63
       },
-      "BucketPrefix": {
-        "type": "string",
-        "pattern": ".*",
-        "maxLength": 512
-      },
-      "ClientId": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 512
-      },
+      "BucketPrefix": { "type": "string", "pattern": ".*", "maxLength": 512 },
+      "ClientId": { "type": "string", "pattern": "\\S+", "maxLength": 512 },
       "ClientSecret": {
         "type": "string",
         "pattern": "\\S+",
         "maxLength": 512,
         "format": "password"
       },
-      "ConnectionMode": {
-        "type": "string",
-        "enum": ["Public", "Private"]
-      },
+      "ConnectionMode": { "type": "string", "enum": ["Public", "Private"] },
       "ConnectorTypeList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ConnectorType"
-        },
+        "items": { "$ref": "#/components/schemas/ConnectorType" },
         "minItems": 0,
         "maxItems": 100
       },
       "SchedulingFrequencyTypeList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ScheduleFrequencyType"
-        }
+        "items": { "$ref": "#/components/schemas/ScheduleFrequencyType" }
       },
       "TriggerTypeList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/TriggerType"
-        }
+        "items": { "$ref": "#/components/schemas/TriggerType" }
       },
       "ConnectorMetadata": {
         "type": "object",
         "properties": {
           "Amplitude": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AmplitudeMetadata"
-              },
+              { "$ref": "#/components/schemas/AmplitudeMetadata" },
               {
                 "description": " The connector metadata specific to Amplitude. "
               }
@@ -3815,19 +3281,13 @@
           },
           "Datadog": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DatadogMetadata"
-              },
-              {
-                "description": " The connector metadata specific to Datadog. "
-              }
+              { "$ref": "#/components/schemas/DatadogMetadata" },
+              { "description": " The connector metadata specific to Datadog. " }
             ]
           },
           "Dynatrace": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DynatraceMetadata"
-              },
+              { "$ref": "#/components/schemas/DynatraceMetadata" },
               {
                 "description": " The connector metadata specific to Dynatrace. "
               }
@@ -3835,9 +3295,7 @@
           },
           "GoogleAnalytics": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GoogleAnalyticsMetadata"
-              },
+              { "$ref": "#/components/schemas/GoogleAnalyticsMetadata" },
               {
                 "description": " The connector metadata specific to Google Analytics. "
               }
@@ -3845,9 +3303,7 @@
           },
           "InforNexus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InforNexusMetadata"
-              },
+              { "$ref": "#/components/schemas/InforNexusMetadata" },
               {
                 "description": " The connector metadata specific to Infor Nexus. "
               }
@@ -3855,19 +3311,13 @@
           },
           "Marketo": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MarketoMetadata"
-              },
-              {
-                "description": " The connector metadata specific to Marketo. "
-              }
+              { "$ref": "#/components/schemas/MarketoMetadata" },
+              { "description": " The connector metadata specific to Marketo. " }
             ]
           },
           "Redshift": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RedshiftMetadata"
-              },
+              { "$ref": "#/components/schemas/RedshiftMetadata" },
               {
                 "description": " The connector metadata specific to Amazon Redshift. "
               }
@@ -3875,9 +3325,7 @@
           },
           "S3": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/S3Metadata"
-              },
+              { "$ref": "#/components/schemas/S3Metadata" },
               {
                 "description": " The connector metadata specific to Amazon S3. "
               }
@@ -3885,9 +3333,7 @@
           },
           "Salesforce": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SalesforceMetadata"
-              },
+              { "$ref": "#/components/schemas/SalesforceMetadata" },
               {
                 "description": " The connector metadata specific to Salesforce. "
               }
@@ -3895,9 +3341,7 @@
           },
           "ServiceNow": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ServiceNowMetadata"
-              },
+              { "$ref": "#/components/schemas/ServiceNowMetadata" },
               {
                 "description": " The connector metadata specific to ServiceNow. "
               }
@@ -3905,9 +3349,7 @@
           },
           "Singular": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SingularMetadata"
-              },
+              { "$ref": "#/components/schemas/SingularMetadata" },
               {
                 "description": " The connector metadata specific to Singular. "
               }
@@ -3915,19 +3357,13 @@
           },
           "Slack": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SlackMetadata"
-              },
-              {
-                "description": " The connector metadata specific to Slack. "
-              }
+              { "$ref": "#/components/schemas/SlackMetadata" },
+              { "description": " The connector metadata specific to Slack. " }
             ]
           },
           "Snowflake": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SnowflakeMetadata"
-              },
+              { "$ref": "#/components/schemas/SnowflakeMetadata" },
               {
                 "description": " The connector metadata specific to Snowflake. "
               }
@@ -3935,9 +3371,7 @@
           },
           "Trendmicro": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TrendmicroMetadata"
-              },
+              { "$ref": "#/components/schemas/TrendmicroMetadata" },
               {
                 "description": " The connector metadata specific to Trend Micro. "
               }
@@ -3945,29 +3379,19 @@
           },
           "Veeva": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VeevaMetadata"
-              },
-              {
-                "description": " The connector metadata specific to Veeva. "
-              }
+              { "$ref": "#/components/schemas/VeevaMetadata" },
+              { "description": " The connector metadata specific to Veeva. " }
             ]
           },
           "Zendesk": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ZendeskMetadata"
-              },
-              {
-                "description": " The connector metadata specific to Zendesk. "
-              }
+              { "$ref": "#/components/schemas/ZendeskMetadata" },
+              { "description": " The connector metadata specific to Zendesk. " }
             ]
           },
           "EventBridge": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EventBridgeMetadata"
-              },
+              { "$ref": "#/components/schemas/EventBridgeMetadata" },
               {
                 "description": " The connector metadata specific to Amazon EventBridge. "
               }
@@ -3975,9 +3399,7 @@
           },
           "Upsolver": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UpsolverMetadata"
-              },
+              { "$ref": "#/components/schemas/UpsolverMetadata" },
               {
                 "description": " The connector metadata specific to Upsolver. "
               }
@@ -3985,9 +3407,7 @@
           },
           "CustomerProfiles": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CustomerProfilesMetadata"
-              },
+              { "$ref": "#/components/schemas/CustomerProfilesMetadata" },
               {
                 "description": " The connector metadata specific to Amazon Connect Customer Profiles. "
               }
@@ -3995,17 +3415,13 @@
           },
           "Honeycode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HoneycodeMetadata"
-              },
+              { "$ref": "#/components/schemas/HoneycodeMetadata" },
               {
                 "description": " The connector metadata specific to Amazon Honeycode. "
               }
             ]
           },
-          "SAPOData": {
-            "$ref": "#/components/schemas/SAPODataMetadata"
-          }
+          "SAPOData": { "$ref": "#/components/schemas/SAPODataMetadata" }
         },
         "description": " A structure to specify connector-specific metadata such as <code>oAuthScopes</code>, <code>supportedRegions</code>, <code>privateLinkServiceUrl</code>, and so on. "
       },
@@ -4014,9 +3430,7 @@
         "properties": {
           "canUseAsSource": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": " Specifies whether the connector can be used as a source. "
               }
@@ -4024,9 +3438,7 @@
           },
           "canUseAsDestination": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": " Specifies whether the connector can be used as a destination. "
               }
@@ -4034,9 +3446,7 @@
           },
           "supportedDestinationConnectors": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorTypeList"
-              },
+              { "$ref": "#/components/schemas/ConnectorTypeList" },
               {
                 "description": " Lists the connectors that are available for use as destinations. "
               }
@@ -4044,9 +3454,7 @@
           },
           "supportedSchedulingFrequencies": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SchedulingFrequencyTypeList"
-              },
+              { "$ref": "#/components/schemas/SchedulingFrequencyTypeList" },
               {
                 "description": " Specifies the supported flow frequency for that connector. "
               }
@@ -4054,9 +3462,7 @@
           },
           "isPrivateLinkEnabled": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": " Specifies if PrivateLink is enabled for that connector. "
               }
@@ -4064,9 +3470,7 @@
           },
           "isPrivateLinkEndpointUrlRequired": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": " Specifies if a PrivateLink endpoint URL is required. "
               }
@@ -4074,9 +3478,7 @@
           },
           "supportedTriggerTypes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TriggerTypeList"
-              },
+              { "$ref": "#/components/schemas/TriggerTypeList" },
               {
                 "description": " Specifies the supported trigger types for the flow. "
               }
@@ -4084,9 +3486,7 @@
           },
           "connectorMetadata": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorMetadata"
-              },
+              { "$ref": "#/components/schemas/ConnectorMetadata" },
               {
                 "description": " Specifies connector-specific metadata such as <code>oAuthScopes</code>, <code>supportedRegions</code>, <code>privateLinkServiceUrl</code>, and so on. "
               }
@@ -4101,45 +3501,27 @@
           "$ref": "#/components/schemas/ConnectorConfiguration"
         }
       },
-      "Name": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 128
-      },
-      "Label": {
-        "type": "string",
-        "pattern": ".*",
-        "maxLength": 128
-      },
+      "Name": { "type": "string", "pattern": "\\S+", "maxLength": 128 },
+      "Label": { "type": "string", "pattern": ".*", "maxLength": 128 },
       "ConnectorEntity": {
         "type": "object",
         "required": ["name"],
         "properties": {
           "name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Name"
-              },
-              {
-                "description": " The name of the connector entity. "
-              }
+              { "$ref": "#/components/schemas/Name" },
+              { "description": " The name of the connector entity. " }
             ]
           },
           "label": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Label"
-              },
-              {
-                "description": " The label applied to the connector entity. "
-              }
+              { "$ref": "#/components/schemas/Label" },
+              { "description": " The label applied to the connector entity. " }
             ]
           },
           "hasNestedEntities": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": " Specifies whether the connector entity is a parent or a category and has more entities nested underneath it. If another call is made with <code>entitiesPath = \"the_current_entity_name_with_hasNestedEntities_true\"</code>, then it returns the nested entities underneath it. This provides a way to retrieve all supported entities in a recursive fashion. "
               }
@@ -4148,20 +3530,14 @@
         },
         "description": " The high-level entity that can be queried in Amazon AppFlow. For example, a Salesforce entity might be an <i>Account</i> or <i>Opportunity</i>, whereas a ServiceNow entity might be an <i>Incident</i>. "
       },
-      "Identifier": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 128
-      },
+      "Identifier": { "type": "string", "pattern": "\\S+", "maxLength": 128 },
       "SupportedFieldTypeDetails": {
         "type": "object",
         "required": ["v1"],
         "properties": {
           "v1": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FieldTypeDetails"
-              },
+              { "$ref": "#/components/schemas/FieldTypeDetails" },
               {
                 "description": " The initial supported version for <code>fieldType</code>. If this is later changed to a different version, v2 will be introduced. "
               }
@@ -4180,9 +3556,7 @@
         "properties": {
           "isRetrievable": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": " Indicates whether the field can be returned in a search result. "
               }
@@ -4190,12 +3564,8 @@
           },
           "isQueryable": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
-              {
-                "description": " Indicates if the field can be queried. "
-              }
+              { "$ref": "#/components/schemas/Boolean" },
+              { "description": " Indicates if the field can be queried. " }
             ]
           }
         },
@@ -4206,9 +3576,7 @@
         "properties": {
           "isCreatable": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": " Specifies if the destination field can be created by the current user. "
               }
@@ -4216,9 +3584,7 @@
           },
           "isNullable": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": " Specifies if the destination field can have a null value. "
               }
@@ -4226,9 +3592,7 @@
           },
           "isUpsertable": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": " Specifies if the flow run can either insert new rows in the destination field if they do not already exist, or update them if they do. "
               }
@@ -4236,9 +3600,7 @@
           },
           "isUpdatable": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": " Specifies whether the field can be updated during an <code>UPDATE</code> or <code>UPSERT</code> write operation. "
               }
@@ -4246,9 +3608,7 @@
           },
           "supportedWriteOperations": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SupportedWriteOperationList"
-              },
+              { "$ref": "#/components/schemas/SupportedWriteOperationList" },
               {
                 "description": " A list of supported write operations. For each write operation listed, this field can be used in <code>idFieldNames</code> when that write operation is present as a destination option. "
               }
@@ -4263,9 +3623,7 @@
         "properties": {
           "identifier": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Identifier"
-              },
+              { "$ref": "#/components/schemas/Identifier" },
               {
                 "description": " The unique identifier of the connector field. "
               }
@@ -4273,9 +3631,7 @@
           },
           "label": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Label"
-              },
+              { "$ref": "#/components/schemas/Label" },
               {
                 "description": " The label applied to a connector entity field. "
               }
@@ -4283,9 +3639,7 @@
           },
           "supportedFieldTypeDetails": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SupportedFieldTypeDetails"
-              },
+              { "$ref": "#/components/schemas/SupportedFieldTypeDetails" },
               {
                 "description": " Contains details regarding the supported <code>FieldType</code>, including the corresponding <code>filterOperators</code> and <code>supportedValues</code>. "
               }
@@ -4293,9 +3647,7 @@
           },
           "description": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Description"
-              },
+              { "$ref": "#/components/schemas/Description" },
               {
                 "description": " A description of the connector entity field. "
               }
@@ -4303,9 +3655,7 @@
           },
           "sourceProperties": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SourceFieldProperties"
-              },
+              { "$ref": "#/components/schemas/SourceFieldProperties" },
               {
                 "description": " The properties that can be applied to a field when the connector is being used as a source. "
               }
@@ -4313,9 +3663,7 @@
           },
           "destinationProperties": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DestinationFieldProperties"
-              },
+              { "$ref": "#/components/schemas/DestinationFieldProperties" },
               {
                 "description": " The properties applied to a field when the connector is being used as a destination. "
               }
@@ -4326,15 +3674,11 @@
       },
       "ConnectorEntityFieldList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ConnectorEntityField"
-        }
+        "items": { "$ref": "#/components/schemas/ConnectorEntityField" }
       },
       "ConnectorEntityList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ConnectorEntity"
-        }
+        "items": { "$ref": "#/components/schemas/ConnectorEntity" }
       },
       "ConnectorEntityMap": {
         "type": "object",
@@ -4357,9 +3701,7 @@
         "properties": {
           "oAuthScopes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OAuthScopeList"
-              },
+              { "$ref": "#/components/schemas/OAuthScopeList" },
               {
                 "description": " The desired authorization scope for the Google Analytics account. "
               }
@@ -4393,9 +3735,7 @@
         "properties": {
           "oAuthScopes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OAuthScopeList"
-              },
+              { "$ref": "#/components/schemas/OAuthScopeList" },
               {
                 "description": " The desired authorization scope for the Salesforce account. "
               }
@@ -4419,9 +3759,7 @@
         "properties": {
           "oAuthScopes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OAuthScopeList"
-              },
+              { "$ref": "#/components/schemas/OAuthScopeList" },
               {
                 "description": " The desired authorization scope for the Slack account. "
               }
@@ -4435,9 +3773,7 @@
         "properties": {
           "supportedRegions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RegionList"
-              },
+              { "$ref": "#/components/schemas/RegionList" },
               {
                 "description": " Specifies the supported AWS Regions when using Snowflake. "
               }
@@ -4461,9 +3797,7 @@
         "properties": {
           "oAuthScopes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OAuthScopeList"
-              },
+              { "$ref": "#/components/schemas/OAuthScopeList" },
               {
                 "description": " The desired authorization scope for the Zendesk account. "
               }
@@ -4477,19 +3811,13 @@
         "properties": {},
         "description": " The connector metadata specific to Amazon EventBridge. "
       },
-      "RedirectUri": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 512
-      },
+      "RedirectUri": { "type": "string", "pattern": "\\S+", "maxLength": 512 },
       "ConnectorOAuthRequest": {
         "type": "object",
         "properties": {
           "authCode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AuthCode"
-              },
+              { "$ref": "#/components/schemas/AuthCode" },
               {
                 "description": " The code provided by the connector when it has been authenticated via the connected app. "
               }
@@ -4497,9 +3825,7 @@
           },
           "redirectUri": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RedirectUri"
-              },
+              { "$ref": "#/components/schemas/RedirectUri" },
               {
                 "description": " The URL to which the authentication server redirects the browser after authorization has been granted. "
               }
@@ -4782,9 +4108,7 @@
         "properties": {
           "Amplitude": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AmplitudeConnectorOperator"
-              },
+              { "$ref": "#/components/schemas/AmplitudeConnectorOperator" },
               {
                 "description": " The operation to be performed on the provided Amplitude source fields. "
               }
@@ -4792,9 +4116,7 @@
           },
           "Datadog": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DatadogConnectorOperator"
-              },
+              { "$ref": "#/components/schemas/DatadogConnectorOperator" },
               {
                 "description": " The operation to be performed on the provided Datadog source fields. "
               }
@@ -4802,9 +4124,7 @@
           },
           "Dynatrace": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DynatraceConnectorOperator"
-              },
+              { "$ref": "#/components/schemas/DynatraceConnectorOperator" },
               {
                 "description": " The operation to be performed on the provided Dynatrace source fields. "
               }
@@ -4822,9 +4142,7 @@
           },
           "InforNexus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InforNexusConnectorOperator"
-              },
+              { "$ref": "#/components/schemas/InforNexusConnectorOperator" },
               {
                 "description": " The operation to be performed on the provided Infor Nexus source fields. "
               }
@@ -4832,9 +4150,7 @@
           },
           "Marketo": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MarketoConnectorOperator"
-              },
+              { "$ref": "#/components/schemas/MarketoConnectorOperator" },
               {
                 "description": " The operation to be performed on the provided Marketo source fields. "
               }
@@ -4842,9 +4158,7 @@
           },
           "S3": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/S3ConnectorOperator"
-              },
+              { "$ref": "#/components/schemas/S3ConnectorOperator" },
               {
                 "description": " The operation to be performed on the provided Amazon S3 source fields. "
               }
@@ -4852,9 +4166,7 @@
           },
           "Salesforce": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SalesforceConnectorOperator"
-              },
+              { "$ref": "#/components/schemas/SalesforceConnectorOperator" },
               {
                 "description": " The operation to be performed on the provided Salesforce source fields. "
               }
@@ -4862,9 +4174,7 @@
           },
           "ServiceNow": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ServiceNowConnectorOperator"
-              },
+              { "$ref": "#/components/schemas/ServiceNowConnectorOperator" },
               {
                 "description": " The operation to be performed on the provided ServiceNow source fields. "
               }
@@ -4872,9 +4182,7 @@
           },
           "Singular": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SingularConnectorOperator"
-              },
+              { "$ref": "#/components/schemas/SingularConnectorOperator" },
               {
                 "description": " The operation to be performed on the provided Singular source fields. "
               }
@@ -4882,9 +4190,7 @@
           },
           "Slack": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SlackConnectorOperator"
-              },
+              { "$ref": "#/components/schemas/SlackConnectorOperator" },
               {
                 "description": " The operation to be performed on the provided Slack source fields. "
               }
@@ -4892,9 +4198,7 @@
           },
           "Trendmicro": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TrendmicroConnectorOperator"
-              },
+              { "$ref": "#/components/schemas/TrendmicroConnectorOperator" },
               {
                 "description": " The operation to be performed on the provided Trend Micro source fields. "
               }
@@ -4902,9 +4206,7 @@
           },
           "Veeva": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VeevaConnectorOperator"
-              },
+              { "$ref": "#/components/schemas/VeevaConnectorOperator" },
               {
                 "description": " The operation to be performed on the provided Veeva source fields. "
               }
@@ -4912,9 +4214,7 @@
           },
           "Zendesk": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ZendeskConnectorOperator"
-              },
+              { "$ref": "#/components/schemas/ZendeskConnectorOperator" },
               {
                 "description": " The operation to be performed on the provided Zendesk source fields. "
               }
@@ -4922,9 +4222,7 @@
           },
           "SAPOData": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SAPODataConnectorOperator"
-              },
+              { "$ref": "#/components/schemas/SAPODataConnectorOperator" },
               {
                 "description": " The operation to be performed on the provided SAPOData source fields. "
               }
@@ -4938,18 +4236,13 @@
         "pattern": "arn:aws:kms:.*:[0-9]+:.*",
         "maxLength": 512
       },
-      "Date": {
-        "type": "string",
-        "format": "date-time"
-      },
+      "Date": { "type": "string", "format": "date-time" },
       "ConnectorProfile": {
         "type": "object",
         "properties": {
           "connectorProfileArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorProfileArn"
-              },
+              { "$ref": "#/components/schemas/ConnectorProfileArn" },
               {
                 "description": " The Amazon Resource Name (ARN) of the connector profile. "
               }
@@ -4957,9 +4250,7 @@
           },
           "connectorProfileName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorProfileName"
-              },
+              { "$ref": "#/components/schemas/ConnectorProfileName" },
               {
                 "description": " The name of the connector profile. The name is unique for each <code>ConnectorProfile</code> in the AWS account. "
               }
@@ -4967,9 +4258,7 @@
           },
           "connectorType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorType"
-              },
+              { "$ref": "#/components/schemas/ConnectorType" },
               {
                 "description": " The type of connector, such as Salesforce, Amplitude, and so on. "
               }
@@ -4977,9 +4266,7 @@
           },
           "connectionMode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectionMode"
-              },
+              { "$ref": "#/components/schemas/ConnectionMode" },
               {
                 "description": " Indicates the connection mode and if it is public or private. "
               }
@@ -4987,9 +4274,7 @@
           },
           "credentialsArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ARN"
-              },
+              { "$ref": "#/components/schemas/ARN" },
               {
                 "description": " The Amazon Resource Name (ARN) of the connector profile credentials. "
               }
@@ -4997,9 +4282,7 @@
           },
           "connectorProfileProperties": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorProfileProperties"
-              },
+              { "$ref": "#/components/schemas/ConnectorProfileProperties" },
               {
                 "description": " The connector-specific properties of the profile configuration. "
               }
@@ -5007,9 +4290,7 @@
           },
           "createdAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Date"
-              },
+              { "$ref": "#/components/schemas/Date" },
               {
                 "description": " Specifies when the connector profile was created. "
               }
@@ -5017,9 +4298,7 @@
           },
           "lastUpdatedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Date"
-              },
+              { "$ref": "#/components/schemas/Date" },
               {
                 "description": " Specifies when the connector profile was last updated. "
               }
@@ -5044,9 +4323,7 @@
         "properties": {
           "apiKey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ApiKey"
-              },
+              { "$ref": "#/components/schemas/ApiKey" },
               {
                 "description": " A unique alphanumeric identifier used to authenticate a user, developer, or calling program to your API. "
               }
@@ -5054,9 +4331,7 @@
           },
           "applicationKey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ApplicationKey"
-              },
+              { "$ref": "#/components/schemas/ApplicationKey" },
               {
                 "description": " Application keys, in conjunction with your API key, give you full access to Datadog’s programmatic API. Application keys are associated with the user account that created them. The application key is used to log all requests made to the API. "
               }
@@ -5071,9 +4346,7 @@
         "properties": {
           "apiToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ApiToken"
-              },
+              { "$ref": "#/components/schemas/ApiToken" },
               {
                 "description": " The API tokens used by Dynatrace API to authenticate various API calls. "
               }
@@ -5088,19 +4361,13 @@
         "properties": {
           "clientId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ClientId"
-              },
-              {
-                "description": " The identifier for the desired client. "
-              }
+              { "$ref": "#/components/schemas/ClientId" },
+              { "description": " The identifier for the desired client. " }
             ]
           },
           "clientSecret": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ClientSecret"
-              },
+              { "$ref": "#/components/schemas/ClientSecret" },
               {
                 "description": " The client secret used by the oauth client to authenticate to the authorization server. "
               }
@@ -5108,9 +4375,7 @@
           },
           "accessToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccessToken"
-              },
+              { "$ref": "#/components/schemas/AccessToken" },
               {
                 "description": " The credentials used to access protected Google Analytics resources. "
               }
@@ -5118,9 +4383,7 @@
           },
           "refreshToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RefreshToken"
-              },
+              { "$ref": "#/components/schemas/RefreshToken" },
               {
                 "description": " The credentials used to acquire new access tokens. This is required only for OAuth2 access tokens, and is not required for OAuth1 access tokens. "
               }
@@ -5128,9 +4391,7 @@
           },
           "oAuthRequest": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorOAuthRequest"
-              },
+              { "$ref": "#/components/schemas/ConnectorOAuthRequest" },
               {
                 "description": " The oauth requirement needed to request security tokens from the connector endpoint. "
               }
@@ -5145,42 +4406,26 @@
         "properties": {
           "accessKeyId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccessKeyId"
-              },
-              {
-                "description": " The Access Key portion of the credentials. "
-              }
+              { "$ref": "#/components/schemas/AccessKeyId" },
+              { "description": " The Access Key portion of the credentials. " }
             ]
           },
           "userId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Username"
-              },
-              {
-                "description": " The identifier for the user. "
-              }
+              { "$ref": "#/components/schemas/Username" },
+              { "description": " The identifier for the user. " }
             ]
           },
           "secretAccessKey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Key"
-              },
-              {
-                "description": " The secret key used to sign requests. "
-              }
+              { "$ref": "#/components/schemas/Key" },
+              { "description": " The secret key used to sign requests. " }
             ]
           },
           "datakey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Key"
-              },
-              {
-                "description": " The encryption keys used to encrypt data. "
-              }
+              { "$ref": "#/components/schemas/Key" },
+              { "description": " The encryption keys used to encrypt data. " }
             ]
           }
         },
@@ -5192,19 +4437,13 @@
         "properties": {
           "clientId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ClientId"
-              },
-              {
-                "description": " The identifier for the desired client. "
-              }
+              { "$ref": "#/components/schemas/ClientId" },
+              { "description": " The identifier for the desired client. " }
             ]
           },
           "clientSecret": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ClientSecret"
-              },
+              { "$ref": "#/components/schemas/ClientSecret" },
               {
                 "description": " The client secret used by the oauth client to authenticate to the authorization server. "
               }
@@ -5212,9 +4451,7 @@
           },
           "accessToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccessToken"
-              },
+              { "$ref": "#/components/schemas/AccessToken" },
               {
                 "description": " The credentials used to access protected Marketo resources. "
               }
@@ -5222,9 +4459,7 @@
           },
           "oAuthRequest": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorOAuthRequest"
-              },
+              { "$ref": "#/components/schemas/ConnectorOAuthRequest" },
               {
                 "description": " The oauth requirement needed to request security tokens from the connector endpoint. "
               }
@@ -5239,19 +4474,13 @@
         "properties": {
           "username": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Username"
-              },
-              {
-                "description": " The name of the user. "
-              }
+              { "$ref": "#/components/schemas/Username" },
+              { "description": " The name of the user. " }
             ]
           },
           "password": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Password"
-              },
+              { "$ref": "#/components/schemas/Password" },
               {
                 "description": " The password that corresponds to the user name. "
               }
@@ -5265,9 +4494,7 @@
         "properties": {
           "accessToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccessToken"
-              },
+              { "$ref": "#/components/schemas/AccessToken" },
               {
                 "description": " The credentials used to access protected Salesforce resources. "
               }
@@ -5275,9 +4502,7 @@
           },
           "refreshToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RefreshToken"
-              },
+              { "$ref": "#/components/schemas/RefreshToken" },
               {
                 "description": " The credentials used to acquire new access tokens. "
               }
@@ -5285,9 +4510,7 @@
           },
           "oAuthRequest": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorOAuthRequest"
-              },
+              { "$ref": "#/components/schemas/ConnectorOAuthRequest" },
               {
                 "description": " The oauth requirement needed to request security tokens from the connector endpoint. "
               }
@@ -5295,9 +4518,7 @@
           },
           "clientCredentialsArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ClientCredentialsArn"
-              },
+              { "$ref": "#/components/schemas/ClientCredentialsArn" },
               {
                 "description": " The secret manager ARN, which contains the client ID and client secret of the connected app. "
               }
@@ -5312,19 +4533,13 @@
         "properties": {
           "username": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Username"
-              },
-              {
-                "description": " The name of the user. "
-              }
+              { "$ref": "#/components/schemas/Username" },
+              { "description": " The name of the user. " }
             ]
           },
           "password": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Password"
-              },
+              { "$ref": "#/components/schemas/Password" },
               {
                 "description": " The password that corresponds to the user name. "
               }
@@ -5339,9 +4554,7 @@
         "properties": {
           "apiKey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ApiKey"
-              },
+              { "$ref": "#/components/schemas/ApiKey" },
               {
                 "description": " A unique alphanumeric identifier used to authenticate a user, developer, or calling program to your API. "
               }
@@ -5356,19 +4569,13 @@
         "properties": {
           "clientId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ClientId"
-              },
-              {
-                "description": " The identifier for the client. "
-              }
+              { "$ref": "#/components/schemas/ClientId" },
+              { "description": " The identifier for the client. " }
             ]
           },
           "clientSecret": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ClientSecret"
-              },
+              { "$ref": "#/components/schemas/ClientSecret" },
               {
                 "description": " The client secret used by the oauth client to authenticate to the authorization server. "
               }
@@ -5376,9 +4583,7 @@
           },
           "accessToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccessToken"
-              },
+              { "$ref": "#/components/schemas/AccessToken" },
               {
                 "description": " The credentials used to access protected Slack resources. "
               }
@@ -5386,9 +4591,7 @@
           },
           "oAuthRequest": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorOAuthRequest"
-              },
+              { "$ref": "#/components/schemas/ConnectorOAuthRequest" },
               {
                 "description": " The oauth requirement needed to request security tokens from the connector endpoint. "
               }
@@ -5403,19 +4606,13 @@
         "properties": {
           "username": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Username"
-              },
-              {
-                "description": " The name of the user. "
-              }
+              { "$ref": "#/components/schemas/Username" },
+              { "description": " The name of the user. " }
             ]
           },
           "password": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Password"
-              },
+              { "$ref": "#/components/schemas/Password" },
               {
                 "description": " The password that corresponds to the user name. "
               }
@@ -5430,9 +4627,7 @@
         "properties": {
           "apiSecretKey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ApiSecretKey"
-              },
+              { "$ref": "#/components/schemas/ApiSecretKey" },
               {
                 "description": " The Secret Access Key portion of the credentials. "
               }
@@ -5447,19 +4642,13 @@
         "properties": {
           "username": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Username"
-              },
-              {
-                "description": " The name of the user. "
-              }
+              { "$ref": "#/components/schemas/Username" },
+              { "description": " The name of the user. " }
             ]
           },
           "password": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Password"
-              },
+              { "$ref": "#/components/schemas/Password" },
               {
                 "description": " The password that corresponds to the user name. "
               }
@@ -5474,19 +4663,13 @@
         "properties": {
           "clientId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ClientId"
-              },
-              {
-                "description": " The identifier for the desired client. "
-              }
+              { "$ref": "#/components/schemas/ClientId" },
+              { "description": " The identifier for the desired client. " }
             ]
           },
           "clientSecret": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ClientSecret"
-              },
+              { "$ref": "#/components/schemas/ClientSecret" },
               {
                 "description": " The client secret used by the oauth client to authenticate to the authorization server. "
               }
@@ -5494,9 +4677,7 @@
           },
           "accessToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccessToken"
-              },
+              { "$ref": "#/components/schemas/AccessToken" },
               {
                 "description": " The credentials used to access protected Zendesk resources. "
               }
@@ -5504,9 +4685,7 @@
           },
           "oAuthRequest": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorOAuthRequest"
-              },
+              { "$ref": "#/components/schemas/ConnectorOAuthRequest" },
               {
                 "description": " The oauth requirement needed to request security tokens from the connector endpoint. "
               }
@@ -5517,9 +4696,7 @@
       },
       "ConnectorProfileDetailList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ConnectorProfile"
-        }
+        "items": { "$ref": "#/components/schemas/ConnectorProfile" }
       },
       "DatadogConnectorProfileProperties": {
         "type": "object",
@@ -5527,12 +4704,8 @@
         "properties": {
           "instanceUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InstanceUrl"
-              },
-              {
-                "description": " The location of the Datadog resource. "
-              }
+              { "$ref": "#/components/schemas/InstanceUrl" },
+              { "description": " The location of the Datadog resource. " }
             ]
           }
         },
@@ -5544,12 +4717,8 @@
         "properties": {
           "instanceUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InstanceUrl"
-              },
-              {
-                "description": " The location of the Dynatrace resource. "
-              }
+              { "$ref": "#/components/schemas/InstanceUrl" },
+              { "description": " The location of the Dynatrace resource. " }
             ]
           }
         },
@@ -5566,12 +4735,8 @@
         "properties": {
           "instanceUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InstanceUrl"
-              },
-              {
-                "description": " The location of the Infor Nexus resource. "
-              }
+              { "$ref": "#/components/schemas/InstanceUrl" },
+              { "description": " The location of the Infor Nexus resource. " }
             ]
           }
         },
@@ -5583,12 +4748,8 @@
         "properties": {
           "instanceUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InstanceUrl"
-              },
-              {
-                "description": " The location of the Marketo resource. "
-              }
+              { "$ref": "#/components/schemas/InstanceUrl" },
+              { "description": " The location of the Marketo resource. " }
             ]
           }
         },
@@ -5600,9 +4761,7 @@
         "properties": {
           "databaseUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DatabaseUrl"
-              },
+              { "$ref": "#/components/schemas/DatabaseUrl" },
               {
                 "description": " The JDBC URL of the Amazon Redshift cluster. "
               }
@@ -5610,19 +4769,13 @@
           },
           "bucketName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BucketName"
-              },
-              {
-                "description": " A name for the associated Amazon S3 bucket. "
-              }
+              { "$ref": "#/components/schemas/BucketName" },
+              { "description": " A name for the associated Amazon S3 bucket. " }
             ]
           },
           "bucketPrefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BucketPrefix"
-              },
+              { "$ref": "#/components/schemas/BucketPrefix" },
               {
                 "description": " The object key for the destination bucket in which Amazon AppFlow places the files. "
               }
@@ -5630,9 +4783,7 @@
           },
           "roleArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RoleArn"
-              },
+              { "$ref": "#/components/schemas/RoleArn" },
               {
                 "description": " The Amazon Resource Name (ARN) of the IAM role. "
               }
@@ -5646,19 +4797,13 @@
         "properties": {
           "instanceUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InstanceUrl"
-              },
-              {
-                "description": " The location of the Salesforce resource. "
-              }
+              { "$ref": "#/components/schemas/InstanceUrl" },
+              { "description": " The location of the Salesforce resource. " }
             ]
           },
           "isSandboxEnvironment": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": " Indicates whether the connector profile applies to a sandbox or production environment. "
               }
@@ -5673,12 +4818,8 @@
         "properties": {
           "instanceUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InstanceUrl"
-              },
-              {
-                "description": " The location of the ServiceNow resource. "
-              }
+              { "$ref": "#/components/schemas/InstanceUrl" },
+              { "description": " The location of the ServiceNow resource. " }
             ]
           }
         },
@@ -5695,12 +4836,8 @@
         "properties": {
           "instanceUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InstanceUrl"
-              },
-              {
-                "description": " The location of the Slack resource. "
-              }
+              { "$ref": "#/components/schemas/InstanceUrl" },
+              { "description": " The location of the Slack resource. " }
             ]
           }
         },
@@ -5712,19 +4849,13 @@
         "properties": {
           "warehouse": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Warehouse"
-              },
-              {
-                "description": " The name of the Snowflake warehouse. "
-              }
+              { "$ref": "#/components/schemas/Warehouse" },
+              { "description": " The name of the Snowflake warehouse. " }
             ]
           },
           "stage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Stage"
-              },
+              { "$ref": "#/components/schemas/Stage" },
               {
                 "description": " The name of the Amazon S3 stage that was created while setting up an Amazon S3 stage in the Snowflake account. This is written in the following format: &lt; Database&gt;&lt; Schema&gt;&lt;Stage Name&gt;. "
               }
@@ -5732,9 +4863,7 @@
           },
           "bucketName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BucketName"
-              },
+              { "$ref": "#/components/schemas/BucketName" },
               {
                 "description": " The name of the Amazon S3 bucket associated with Snowflake. "
               }
@@ -5742,9 +4871,7 @@
           },
           "bucketPrefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BucketPrefix"
-              },
+              { "$ref": "#/components/schemas/BucketPrefix" },
               {
                 "description": " The bucket path that refers to the Amazon S3 bucket associated with Snowflake. "
               }
@@ -5752,9 +4879,7 @@
           },
           "privateLinkServiceName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PrivateLinkServiceName"
-              },
+              { "$ref": "#/components/schemas/PrivateLinkServiceName" },
               {
                 "description": " The Snowflake Private Link service name to be used for private data transfers. "
               }
@@ -5762,22 +4887,14 @@
           },
           "accountName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccountName"
-              },
-              {
-                "description": " The name of the account. "
-              }
+              { "$ref": "#/components/schemas/AccountName" },
+              { "description": " The name of the account. " }
             ]
           },
           "region": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Region"
-              },
-              {
-                "description": " The AWS Region of the Snowflake account. "
-              }
+              { "$ref": "#/components/schemas/Region" },
+              { "description": " The AWS Region of the Snowflake account. " }
             ]
           }
         },
@@ -5794,12 +4911,8 @@
         "properties": {
           "instanceUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InstanceUrl"
-              },
-              {
-                "description": " The location of the Veeva resource. "
-              }
+              { "$ref": "#/components/schemas/InstanceUrl" },
+              { "description": " The location of the Veeva resource. " }
             ]
           }
         },
@@ -5811,12 +4924,8 @@
         "properties": {
           "instanceUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InstanceUrl"
-              },
-              {
-                "description": " The location of the Zendesk resource. "
-              }
+              { "$ref": "#/components/schemas/InstanceUrl" },
+              { "description": " The location of the Zendesk resource. " }
             ]
           }
         },
@@ -5844,9 +4953,7 @@
         "properties": {
           "triggerType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TriggerType"
-              },
+              { "$ref": "#/components/schemas/TriggerType" },
               {
                 "description": " Specifies the type of flow trigger. This can be <code>OnDemand</code>, <code>Scheduled</code>, or <code>Event</code>. "
               }
@@ -5854,9 +4961,7 @@
           },
           "triggerProperties": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TriggerProperties"
-              },
+              { "$ref": "#/components/schemas/TriggerProperties" },
               {
                 "description": " Specifies the configuration details of a schedule-triggered flow as defined by the user. Currently, these settings only apply to the <code>Scheduled</code> trigger type. "
               }
@@ -5871,9 +4976,7 @@
         "properties": {
           "connectorType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorType"
-              },
+              { "$ref": "#/components/schemas/ConnectorType" },
               {
                 "description": " The type of connector, such as Salesforce, Amplitude, and so on. "
               }
@@ -5881,9 +4984,7 @@
           },
           "connectorProfileName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorProfileName"
-              },
+              { "$ref": "#/components/schemas/ConnectorProfileName" },
               {
                 "description": " The name of the connector profile. This name must be unique for each connector profile in the AWS account. "
               }
@@ -5891,9 +4992,7 @@
           },
           "sourceConnectorProperties": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SourceConnectorProperties"
-              },
+              { "$ref": "#/components/schemas/SourceConnectorProperties" },
               {
                 "description": " Specifies the information that is required to query a particular source connector. "
               }
@@ -5901,9 +5000,7 @@
           },
           "incrementalPullConfig": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IncrementalPullConfig"
-              },
+              { "$ref": "#/components/schemas/IncrementalPullConfig" },
               {
                 "description": " Defines the configuration for a scheduled incremental data pull. If a valid configuration is provided, the fields specified in the configuration are used when querying for the incremental data pull. "
               }
@@ -5914,23 +5011,17 @@
       },
       "DestinationFlowConfigList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DestinationFlowConfig"
-        }
+        "items": { "$ref": "#/components/schemas/DestinationFlowConfig" }
       },
       "Tasks": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Task"
-        }
+        "items": { "$ref": "#/components/schemas/Task" }
       },
       "TagMap": {
         "type": "object",
         "minProperties": 0,
         "maxProperties": 50,
-        "additionalProperties": {
-          "$ref": "#/components/schemas/TagValue"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/TagValue" }
       },
       "FlowArn": {
         "type": "string",
@@ -5939,36 +5030,26 @@
       },
       "FlowStatus": {
         "type": "string",
-        "enum": ["Active", "Deprecated", "Deleted", "Draft", "Errored", "Suspended"]
+        "enum": [
+          "Active",
+          "Deprecated",
+          "Deleted",
+          "Draft",
+          "Errored",
+          "Suspended"
+        ]
       },
-      "CreatedBy": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 256
-      },
-      "DataPullMode": {
-        "type": "string",
-        "enum": ["Incremental", "Complete"]
-      },
-      "DatabaseUrl": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 512
-      },
-      "InstanceUrl": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 256
-      },
+      "CreatedBy": { "type": "string", "pattern": "\\S+", "maxLength": 256 },
+      "DataPullMode": { "type": "string", "enum": ["Incremental", "Complete"] },
+      "DatabaseUrl": { "type": "string", "pattern": "\\S+", "maxLength": 512 },
+      "InstanceUrl": { "type": "string", "pattern": "\\S+", "maxLength": 256 },
       "DatadogSourceProperties": {
         "type": "object",
         "required": ["object"],
         "properties": {
           "object": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Object"
-              },
+              { "$ref": "#/components/schemas/Object" },
               {
                 "description": " The object specified in the Datadog flow source. "
               }
@@ -5977,16 +5058,10 @@
         },
         "description": " The properties that are applied when Datadog is being used as a source. "
       },
-      "NextToken": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 2048
-      },
+      "NextToken": { "type": "string", "pattern": "\\S+", "maxLength": 2048 },
       "FlowExecutionList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ExecutionRecord"
-        }
+        "items": { "$ref": "#/components/schemas/ExecutionRecord" }
       },
       "FlowStatusMessage": {
         "type": "string",
@@ -5998,9 +5073,7 @@
         "properties": {
           "mostRecentExecutionMessage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MostRecentExecutionMessage"
-              },
+              { "$ref": "#/components/schemas/MostRecentExecutionMessage" },
               {
                 "description": " Describes the details of the most recent flow run. "
               }
@@ -6008,9 +5081,7 @@
           },
           "mostRecentExecutionTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Date"
-              },
+              { "$ref": "#/components/schemas/Date" },
               {
                 "description": " Specifies the time of the most recent flow run. "
               }
@@ -6018,9 +5089,7 @@
           },
           "mostRecentExecutionStatus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ExecutionStatus"
-              },
+              { "$ref": "#/components/schemas/ExecutionStatus" },
               {
                 "description": " Specifies the status of the most recent flow run. "
               }
@@ -6029,20 +5098,14 @@
         },
         "description": " Describes the details of the flow run, including the timestamp, status, and message. "
       },
-      "UpdatedBy": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 256
-      },
+      "UpdatedBy": { "type": "string", "pattern": "\\S+", "maxLength": 256 },
       "RedshiftDestinationProperties": {
         "type": "object",
         "required": ["object", "intermediateBucketName"],
         "properties": {
           "object": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Object"
-              },
+              { "$ref": "#/components/schemas/Object" },
               {
                 "description": " The object specified in the Amazon Redshift flow destination. "
               }
@@ -6050,9 +5113,7 @@
           },
           "intermediateBucketName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BucketName"
-              },
+              { "$ref": "#/components/schemas/BucketName" },
               {
                 "description": " The intermediate bucket that Amazon AppFlow uses when moving data into Amazon Redshift. "
               }
@@ -6060,9 +5121,7 @@
           },
           "bucketPrefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BucketPrefix"
-              },
+              { "$ref": "#/components/schemas/BucketPrefix" },
               {
                 "description": " The object key for the bucket in which Amazon AppFlow places the destination files. "
               }
@@ -6070,9 +5129,7 @@
           },
           "errorHandlingConfig": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ErrorHandlingConfig"
-              },
+              { "$ref": "#/components/schemas/ErrorHandlingConfig" },
               {
                 "description": " The settings that determine how Amazon AppFlow handles an error when placing data in the Amazon Redshift destination. For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the destination connector details. "
               }
@@ -6087,9 +5144,7 @@
         "properties": {
           "bucketName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BucketName"
-              },
+              { "$ref": "#/components/schemas/BucketName" },
               {
                 "description": " The Amazon S3 bucket name in which Amazon AppFlow places the transferred data. "
               }
@@ -6097,9 +5152,7 @@
           },
           "bucketPrefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BucketPrefix"
-              },
+              { "$ref": "#/components/schemas/BucketPrefix" },
               {
                 "description": " The object key for the destination bucket in which Amazon AppFlow places the files. "
               }
@@ -6117,9 +5170,7 @@
         "properties": {
           "object": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Object"
-              },
+              { "$ref": "#/components/schemas/Object" },
               {
                 "description": " The object specified in the Salesforce flow destination. "
               }
@@ -6127,9 +5178,7 @@
           },
           "errorHandlingConfig": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ErrorHandlingConfig"
-              },
+              { "$ref": "#/components/schemas/ErrorHandlingConfig" },
               {
                 "description": " The settings that determine how Amazon AppFlow handles an error when placing data in the Salesforce destination. For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the destination connector details. "
               }
@@ -6137,9 +5186,7 @@
           },
           "idFieldNames": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IdFieldNameList"
-              },
+              { "$ref": "#/components/schemas/IdFieldNameList" },
               {
                 "description": " The name of the field that Amazon AppFlow uses as an ID when performing a write operation such as update or delete. "
               }
@@ -6147,9 +5194,7 @@
           },
           "writeOperationType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/WriteOperationType"
-              },
+              { "$ref": "#/components/schemas/WriteOperationType" },
               {
                 "description": " This specifies the type of write operation to be performed in Salesforce. When the value is <code>UPSERT</code>, then <code>idFieldNames</code> is required. "
               }
@@ -6164,9 +5209,7 @@
         "properties": {
           "object": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Object"
-              },
+              { "$ref": "#/components/schemas/Object" },
               {
                 "description": " The object specified in the Snowflake flow destination. "
               }
@@ -6174,9 +5217,7 @@
           },
           "intermediateBucketName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BucketName"
-              },
+              { "$ref": "#/components/schemas/BucketName" },
               {
                 "description": " The intermediate bucket that Amazon AppFlow uses when moving data into Snowflake. "
               }
@@ -6184,9 +5225,7 @@
           },
           "bucketPrefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BucketPrefix"
-              },
+              { "$ref": "#/components/schemas/BucketPrefix" },
               {
                 "description": " The object key for the destination bucket in which Amazon AppFlow places the files. "
               }
@@ -6194,9 +5233,7 @@
           },
           "errorHandlingConfig": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ErrorHandlingConfig"
-              },
+              { "$ref": "#/components/schemas/ErrorHandlingConfig" },
               {
                 "description": " The settings that determine how Amazon AppFlow handles an error when placing data in the Snowflake destination. For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the destination connector details. "
               }
@@ -6211,9 +5248,7 @@
         "properties": {
           "object": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Object"
-              },
+              { "$ref": "#/components/schemas/Object" },
               {
                 "description": " The object specified in the Amazon EventBridge flow destination. "
               }
@@ -6230,9 +5265,7 @@
         "properties": {
           "Redshift": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RedshiftDestinationProperties"
-              },
+              { "$ref": "#/components/schemas/RedshiftDestinationProperties" },
               {
                 "description": " The properties required to query Amazon Redshift. "
               }
@@ -6240,12 +5273,8 @@
           },
           "S3": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/S3DestinationProperties"
-              },
-              {
-                "description": " The properties required to query Amazon S3. "
-              }
+              { "$ref": "#/components/schemas/S3DestinationProperties" },
+              { "description": " The properties required to query Amazon S3. " }
             ]
           },
           "Salesforce": {
@@ -6260,12 +5289,8 @@
           },
           "Snowflake": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SnowflakeDestinationProperties"
-              },
-              {
-                "description": " The properties required to query Snowflake. "
-              }
+              { "$ref": "#/components/schemas/SnowflakeDestinationProperties" },
+              { "description": " The properties required to query Snowflake. " }
             ]
           },
           "EventBridge": {
@@ -6280,12 +5305,8 @@
           },
           "Upsolver": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UpsolverDestinationProperties"
-              },
-              {
-                "description": " The properties required to query Upsolver. "
-              }
+              { "$ref": "#/components/schemas/UpsolverDestinationProperties" },
+              { "description": " The properties required to query Upsolver. " }
             ]
           },
           "LookoutMetrics": {
@@ -6300,9 +5321,7 @@
           },
           "Honeycode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HoneycodeDestinationProperties"
-              },
+              { "$ref": "#/components/schemas/HoneycodeDestinationProperties" },
               {
                 "description": " The properties required to query Amazon Honeycode. "
               }
@@ -6320,12 +5339,8 @@
           },
           "Zendesk": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ZendeskDestinationProperties"
-              },
-              {
-                "description": "The properties required to query Zendesk."
-              }
+              { "$ref": "#/components/schemas/ZendeskDestinationProperties" },
+              { "description": "The properties required to query Zendesk." }
             ]
           }
         },
@@ -6342,9 +5357,7 @@
         "properties": {
           "object": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Object"
-              },
+              { "$ref": "#/components/schemas/Object" },
               {
                 "description": " The object specified in the Dynatrace flow source. "
               }
@@ -6358,9 +5371,7 @@
         "properties": {
           "failOnFirstDestinationError": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": " Specifies if the flow should fail after the first instance of a failure when attempting to place data in the destination. "
               }
@@ -6368,30 +5379,20 @@
           },
           "bucketPrefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BucketPrefix"
-              },
-              {
-                "description": " Specifies the Amazon S3 bucket prefix. "
-              }
+              { "$ref": "#/components/schemas/BucketPrefix" },
+              { "description": " Specifies the Amazon S3 bucket prefix. " }
             ]
           },
           "bucketName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BucketName"
-              },
-              {
-                "description": " Specifies the name of the Amazon S3 bucket. "
-              }
+              { "$ref": "#/components/schemas/BucketName" },
+              { "description": " Specifies the name of the Amazon S3 bucket. " }
             ]
           }
         },
         "description": " The settings that determine how Amazon AppFlow handles an error when placing data in the destination. For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the destination connector details. "
       },
-      "Long": {
-        "type": "integer"
-      },
+      "Long": { "type": "integer" },
       "ExecutionMessage": {
         "type": "string",
         "pattern": "[\\s\\w/!@#+=.-]*",
@@ -6402,9 +5403,7 @@
         "properties": {
           "putFailuresCount": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Long"
-              },
+              { "$ref": "#/components/schemas/Long" },
               {
                 "description": " Specifies the failure count for the attempted flow. "
               }
@@ -6412,9 +5411,7 @@
           },
           "executionMessage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ExecutionMessage"
-              },
+              { "$ref": "#/components/schemas/ExecutionMessage" },
               {
                 "description": " Specifies the error message that appears if a flow fails. "
               }
@@ -6432,19 +5429,13 @@
         "type": "string",
         "enum": ["InProgress", "Successful", "Error"]
       },
-      "ExecutionId": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 256
-      },
+      "ExecutionId": { "type": "string", "pattern": "\\S+", "maxLength": 256 },
       "ExecutionResult": {
         "type": "object",
         "properties": {
           "errorInfo": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ErrorInfo"
-              },
+              { "$ref": "#/components/schemas/ErrorInfo" },
               {
                 "description": " Provides any error message information related to the flow run. "
               }
@@ -6452,9 +5443,7 @@
           },
           "bytesProcessed": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Long"
-              },
+              { "$ref": "#/components/schemas/Long" },
               {
                 "description": " The total number of bytes processed by the flow run. "
               }
@@ -6462,9 +5451,7 @@
           },
           "bytesWritten": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Long"
-              },
+              { "$ref": "#/components/schemas/Long" },
               {
                 "description": " The total number of bytes written as a result of the flow run. "
               }
@@ -6472,9 +5459,7 @@
           },
           "recordsProcessed": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Long"
-              },
+              { "$ref": "#/components/schemas/Long" },
               {
                 "description": " The number of records processed in the flow run. "
               }
@@ -6488,9 +5473,7 @@
         "properties": {
           "executionId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ExecutionId"
-              },
+              { "$ref": "#/components/schemas/ExecutionId" },
               {
                 "description": " Specifies the identifier of the given flow run. "
               }
@@ -6498,9 +5481,7 @@
           },
           "executionStatus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ExecutionStatus"
-              },
+              { "$ref": "#/components/schemas/ExecutionStatus" },
               {
                 "description": " Specifies the flow run status and whether it is in progress, has completed successfully, or has failed. "
               }
@@ -6508,29 +5489,19 @@
           },
           "executionResult": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ExecutionResult"
-              },
-              {
-                "description": " Describes the result of the given flow run. "
-              }
+              { "$ref": "#/components/schemas/ExecutionResult" },
+              { "description": " Describes the result of the given flow run. " }
             ]
           },
           "startedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Date"
-              },
-              {
-                "description": " Specifies the start time of the flow run. "
-              }
+              { "$ref": "#/components/schemas/Date" },
+              { "description": " Specifies the start time of the flow run. " }
             ]
           },
           "lastUpdatedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Date"
-              },
+              { "$ref": "#/components/schemas/Date" },
               {
                 "description": " Specifies the time of the most recent update. "
               }
@@ -6538,9 +5509,7 @@
           },
           "dataPullStartTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Date"
-              },
+              { "$ref": "#/components/schemas/Date" },
               {
                 "description": " The timestamp that determines the first new or updated record to be transferred in the flow run. "
               }
@@ -6548,9 +5517,7 @@
           },
           "dataPullEndTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Date"
-              },
+              { "$ref": "#/components/schemas/Date" },
               {
                 "description": " The timestamp that indicates the last new or updated record to be transferred in the flow run. "
               }
@@ -6559,20 +5526,14 @@
         },
         "description": " Specifies information about the past flow run instances for a given flow. "
       },
-      "FieldType": {
-        "type": "string"
-      },
+      "FieldType": { "type": "string" },
       "FilterOperatorList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Operator"
-        }
+        "items": { "$ref": "#/components/schemas/Operator" }
       },
       "SupportedValueList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Value"
-        }
+        "items": { "$ref": "#/components/schemas/Value" }
       },
       "FieldTypeDetails": {
         "type": "object",
@@ -6580,9 +5541,7 @@
         "properties": {
           "fieldType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FieldType"
-              },
+              { "$ref": "#/components/schemas/FieldType" },
               {
                 "description": " The type of field, such as string, integer, date, and so on. "
               }
@@ -6590,19 +5549,13 @@
           },
           "filterOperators": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FilterOperatorList"
-              },
-              {
-                "description": " The list of operators supported by a field. "
-              }
+              { "$ref": "#/components/schemas/FilterOperatorList" },
+              { "description": " The list of operators supported by a field. " }
             ]
           },
           "supportedValues": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SupportedValueList"
-              },
+              { "$ref": "#/components/schemas/SupportedValueList" },
               {
                 "description": " The list of values that a field can contain. For example, a Boolean <code>fieldType</code> can have two values: \"true\" and \"false\". "
               }
@@ -6611,10 +5564,7 @@
         },
         "description": " Contains details regarding the supported field type and the operators that can be applied for filtering. "
       },
-      "FileType": {
-        "type": "string",
-        "enum": ["CSV", "JSON", "PARQUET"]
-      },
+      "FileType": { "type": "string", "enum": ["CSV", "JSON", "PARQUET"] },
       "Operator": {
         "type": "string",
         "enum": [
@@ -6646,29 +5596,19 @@
         "properties": {
           "flowArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FlowArn"
-              },
-              {
-                "description": " The flow's Amazon Resource Name (ARN). "
-              }
+              { "$ref": "#/components/schemas/FlowArn" },
+              { "description": " The flow's Amazon Resource Name (ARN). " }
             ]
           },
           "description": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FlowDescription"
-              },
-              {
-                "description": " A user-entered description of the flow. "
-              }
+              { "$ref": "#/components/schemas/FlowDescription" },
+              { "description": " A user-entered description of the flow. " }
             ]
           },
           "flowName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FlowName"
-              },
+              { "$ref": "#/components/schemas/FlowName" },
               {
                 "description": " The specified name of the flow. Spaces are not allowed. Use underscores (_) or hyphens (-) only. "
               }
@@ -6676,19 +5616,13 @@
           },
           "flowStatus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FlowStatus"
-              },
-              {
-                "description": " Indicates the current status of the flow. "
-              }
+              { "$ref": "#/components/schemas/FlowStatus" },
+              { "description": " Indicates the current status of the flow. " }
             ]
           },
           "sourceConnectorType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorType"
-              },
+              { "$ref": "#/components/schemas/ConnectorType" },
               {
                 "description": " Specifies the source connector type, such as Salesforce, Amazon S3, Amplitude, and so on. "
               }
@@ -6696,9 +5630,7 @@
           },
           "destinationConnectorType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorType"
-              },
+              { "$ref": "#/components/schemas/ConnectorType" },
               {
                 "description": " Specifies the destination connector type, such as Salesforce, Amazon S3, Amplitude, and so on. "
               }
@@ -6706,9 +5638,7 @@
           },
           "triggerType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TriggerType"
-              },
+              { "$ref": "#/components/schemas/TriggerType" },
               {
                 "description": " Specifies the type of flow trigger. This can be <code>OnDemand</code>, <code>Scheduled</code>, or <code>Event</code>. "
               }
@@ -6716,39 +5646,25 @@
           },
           "createdAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Date"
-              },
-              {
-                "description": " Specifies when the flow was created. "
-              }
+              { "$ref": "#/components/schemas/Date" },
+              { "description": " Specifies when the flow was created. " }
             ]
           },
           "lastUpdatedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Date"
-              },
-              {
-                "description": " Specifies when the flow was last updated. "
-              }
+              { "$ref": "#/components/schemas/Date" },
+              { "description": " Specifies when the flow was last updated. " }
             ]
           },
           "createdBy": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CreatedBy"
-              },
-              {
-                "description": " The ARN of the user who created the flow. "
-              }
+              { "$ref": "#/components/schemas/CreatedBy" },
+              { "description": " The ARN of the user who created the flow. " }
             ]
           },
           "lastUpdatedBy": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UpdatedBy"
-              },
+              { "$ref": "#/components/schemas/UpdatedBy" },
               {
                 "description": " Specifies the account user name that most recently updated the flow. "
               }
@@ -6756,9 +5672,7 @@
           },
           "tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagMap"
-              },
+              { "$ref": "#/components/schemas/TagMap" },
               {
                 "description": " The tags used to organize, track, or control access for your flow. "
               }
@@ -6766,9 +5680,7 @@
           },
           "lastRunExecutionDetails": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ExecutionDetails"
-              },
+              { "$ref": "#/components/schemas/ExecutionDetails" },
               {
                 "description": " Describes the details of the most recent flow run. "
               }
@@ -6779,20 +5691,12 @@
       },
       "FlowList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/FlowDefinition"
-        }
+        "items": { "$ref": "#/components/schemas/FlowDefinition" }
       },
-      "RefreshToken": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 512
-      },
+      "RefreshToken": { "type": "string", "pattern": "\\S+", "maxLength": 512 },
       "OAuthScopeList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/OAuthScope"
-        }
+        "items": { "$ref": "#/components/schemas/OAuthScope" }
       },
       "GoogleAnalyticsSourceProperties": {
         "type": "object",
@@ -6800,9 +5704,7 @@
         "properties": {
           "object": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Object"
-              },
+              { "$ref": "#/components/schemas/Object" },
               {
                 "description": " The object specified in the Google Analytics flow source. "
               }
@@ -6811,25 +5713,15 @@
         },
         "description": " The properties that are applied when Google Analytics is being used as a source. "
       },
-      "Username": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 512
-      },
-      "Key": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 512
-      },
+      "Username": { "type": "string", "pattern": "\\S+", "maxLength": 512 },
+      "Key": { "type": "string", "pattern": "\\S+", "maxLength": 512 },
       "InforNexusSourceProperties": {
         "type": "object",
         "required": ["object"],
         "properties": {
           "object": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Object"
-              },
+              { "$ref": "#/components/schemas/Object" },
               {
                 "description": " The object specified in the Infor Nexus flow source. "
               }
@@ -6844,9 +5736,7 @@
         "properties": {
           "object": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Object"
-              },
+              { "$ref": "#/components/schemas/Object" },
               {
                 "description": " The object specified in the Marketo flow source. "
               }
@@ -6855,11 +5745,7 @@
         },
         "description": " The properties that are applied when Marketo is being used as a source. "
       },
-      "OAuthScope": {
-        "type": "string",
-        "pattern": "[\\w]*",
-        "maxLength": 128
-      },
+      "OAuthScope": { "type": "string", "pattern": "[\\w]*", "maxLength": 128 },
       "Password": {
         "type": "string",
         "pattern": ".*",
@@ -6879,9 +5765,7 @@
         "properties": {
           "prefixType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PrefixType"
-              },
+              { "$ref": "#/components/schemas/PrefixType" },
               {
                 "description": " Determines the level of granularity that's included in the prefix. "
               }
@@ -6889,9 +5773,7 @@
           },
           "prefixFormat": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PrefixFormat"
-              },
+              { "$ref": "#/components/schemas/PrefixFormat" },
               {
                 "description": " Determines the format of the prefix, and whether it applies to the file name, file path, or both. "
               }
@@ -6905,35 +5787,23 @@
         "pattern": "\\S+",
         "maxLength": 512
       },
-      "Property": {
-        "type": "string",
-        "pattern": ".+",
-        "maxLength": 2048
-      },
+      "Property": { "type": "string", "pattern": ".+", "maxLength": 2048 },
       "RoleArn": {
         "type": "string",
         "pattern": "arn:aws:iam:.*:[0-9]+:.*",
         "maxLength": 512
       },
-      "Region": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 64
-      },
+      "Region": { "type": "string", "pattern": "\\S+", "maxLength": 64 },
       "RegionList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Region"
-        }
+        "items": { "$ref": "#/components/schemas/Region" }
       },
       "S3OutputFormatConfig": {
         "type": "object",
         "properties": {
           "fileType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FileType"
-              },
+              { "$ref": "#/components/schemas/FileType" },
               {
                 "description": " Indicates the file type that Amazon AppFlow places in the Amazon S3 bucket. "
               }
@@ -6941,9 +5811,7 @@
           },
           "prefixConfig": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PrefixConfig"
-              },
+              { "$ref": "#/components/schemas/PrefixConfig" },
               {
                 "description": " Determines the prefix that Amazon AppFlow applies to the folder name in the Amazon S3 bucket. You can name folders according to the flow frequency and date. "
               }
@@ -6961,9 +5829,7 @@
         "properties": {
           "bucketName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BucketName"
-              },
+              { "$ref": "#/components/schemas/BucketName" },
               {
                 "description": " The Amazon S3 bucket name where the source files are stored. "
               }
@@ -6971,9 +5837,7 @@
           },
           "bucketPrefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BucketPrefix"
-              },
+              { "$ref": "#/components/schemas/BucketPrefix" },
               {
                 "description": " The object key for the Amazon S3 bucket in which the source files are stored. "
               }
@@ -6988,9 +5852,7 @@
         "properties": {
           "object": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Object"
-              },
+              { "$ref": "#/components/schemas/Object" },
               {
                 "description": " The object specified in the Salesforce flow source. "
               }
@@ -6998,9 +5860,7 @@
           },
           "enableDynamicFieldUpdate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": " The flag that enables dynamic fetching of new (recently added) fields in the Salesforce objects while running a flow. "
               }
@@ -7008,9 +5868,7 @@
           },
           "includeDeletedRecords": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": " Indicates whether Amazon AppFlow includes deleted files in the flow run. "
               }
@@ -7028,20 +5886,14 @@
         "type": "string",
         "enum": ["BYMINUTE", "HOURLY", "DAILY", "WEEKLY", "MONTHLY", "ONCE"]
       },
-      "Timezone": {
-        "type": "string",
-        "maxLength": 256,
-        "pattern": ".*"
-      },
+      "Timezone": { "type": "string", "maxLength": 256, "pattern": ".*" },
       "ScheduledTriggerProperties": {
         "type": "object",
         "required": ["scheduleExpression"],
         "properties": {
           "scheduleExpression": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ScheduleExpression"
-              },
+              { "$ref": "#/components/schemas/ScheduleExpression" },
               {
                 "description": " The scheduling expression that determines when and how often the rule runs. "
               }
@@ -7049,9 +5901,7 @@
           },
           "dataPullMode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DataPullMode"
-              },
+              { "$ref": "#/components/schemas/DataPullMode" },
               {
                 "description": " Specifies whether a scheduled flow has an incremental data transfer or a complete data transfer for each flow run. "
               }
@@ -7059,9 +5909,7 @@
           },
           "scheduleStartTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Date"
-              },
+              { "$ref": "#/components/schemas/Date" },
               {
                 "description": " Specifies the scheduled start time for a schedule-triggered flow. "
               }
@@ -7069,9 +5917,7 @@
           },
           "scheduleEndTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Date"
-              },
+              { "$ref": "#/components/schemas/Date" },
               {
                 "description": " Specifies the scheduled end time for a schedule-triggered flow. "
               }
@@ -7079,9 +5925,7 @@
           },
           "timezone": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timezone"
-              },
+              { "$ref": "#/components/schemas/Timezone" },
               {
                 "description": " Specifies the time zone used when referring to the date and time of a scheduled-triggered flow. "
               }
@@ -7089,9 +5933,7 @@
           },
           "scheduleOffset": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ScheduleOffset"
-              },
+              { "$ref": "#/components/schemas/ScheduleOffset" },
               {
                 "description": " Specifies the optional offset that is added to the time interval for a schedule-triggered flow. "
               }
@@ -7099,9 +5941,7 @@
           },
           "firstExecutionFrom": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Date"
-              },
+              { "$ref": "#/components/schemas/Date" },
               {
                 "description": " Specifies the date range for the records to import from the connector in the first flow run. "
               }
@@ -7116,9 +5956,7 @@
         "properties": {
           "object": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Object"
-              },
+              { "$ref": "#/components/schemas/Object" },
               {
                 "description": " The object specified in the ServiceNow flow source. "
               }
@@ -7133,9 +5971,7 @@
         "properties": {
           "object": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Object"
-              },
+              { "$ref": "#/components/schemas/Object" },
               {
                 "description": " The object specified in the Singular flow source. "
               }
@@ -7150,9 +5986,7 @@
         "properties": {
           "object": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Object"
-              },
+              { "$ref": "#/components/schemas/Object" },
               {
                 "description": " The object specified in the Slack flow source. "
               }
@@ -7166,20 +6000,14 @@
         "pattern": "[\\s\\w/!@#+=.-]*",
         "maxLength": 512
       },
-      "Stage": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 512
-      },
+      "Stage": { "type": "string", "pattern": "\\S+", "maxLength": 512 },
       "TrendmicroSourceProperties": {
         "type": "object",
         "required": ["object"],
         "properties": {
           "object": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Object"
-              },
+              { "$ref": "#/components/schemas/Object" },
               {
                 "description": " The object specified in the Trend Micro flow source. "
               }
@@ -7194,9 +6022,7 @@
         "properties": {
           "object": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Object"
-              },
+              { "$ref": "#/components/schemas/Object" },
               {
                 "description": " The object specified in the Veeva flow source. "
               }
@@ -7204,9 +6030,7 @@
           },
           "documentType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DocumentType"
-              },
+              { "$ref": "#/components/schemas/DocumentType" },
               {
                 "description": "The document type specified in the Veeva document extract flow."
               }
@@ -7214,9 +6038,7 @@
           },
           "includeSourceFiles": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": "Boolean value to include source files in Veeva document extract flow."
               }
@@ -7224,9 +6046,7 @@
           },
           "includeRenditions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": "Boolean value to include file renditions in Veeva document extract flow."
               }
@@ -7234,9 +6054,7 @@
           },
           "includeAllVersions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": "Boolean value to include All Versions of files in Veeva document extract flow."
               }
@@ -7251,9 +6069,7 @@
         "properties": {
           "object": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Object"
-              },
+              { "$ref": "#/components/schemas/Object" },
               {
                 "description": " The object specified in the Zendesk flow source. "
               }
@@ -7262,40 +6078,35 @@
         },
         "description": " The properties that are applied when using Zendesk as a flow source. "
       },
-      "String": {
-        "type": "string",
-        "pattern": ".*",
-        "maxLength": 2048
-      },
+      "String": { "type": "string", "pattern": ".*", "maxLength": 2048 },
       "SourceFields": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/String"
-        }
+        "items": { "$ref": "#/components/schemas/String" }
       },
-      "Value": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 128
-      },
+      "Value": { "type": "string", "pattern": "\\S+", "maxLength": 128 },
       "TaskType": {
         "type": "string",
-        "enum": ["Arithmetic", "Filter", "Map", "Mask", "Merge", "Truncate", "Validate", "Validate"]
+        "enum": [
+          "Arithmetic",
+          "Filter",
+          "Map",
+          "Mask",
+          "Merge",
+          "Truncate",
+          "Validate",
+          "Validate"
+        ]
       },
       "TaskPropertiesMap": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/Property"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/Property" }
       },
       "IncrementalPullConfig": {
         "type": "object",
         "properties": {
           "datetimeTypeFieldName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DatetimeTypeFieldName"
-              },
+              { "$ref": "#/components/schemas/DatetimeTypeFieldName" },
               {
                 "description": " A field that specifies the date time or timestamp field as the criteria to use when importing incremental records from the source. "
               }
@@ -7318,16 +6129,12 @@
       },
       "SupportedWriteOperationList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/WriteOperationType"
-        }
+        "items": { "$ref": "#/components/schemas/WriteOperationType" }
       },
       "IdFieldNameList": {
         "type": "array",
         "description": " A list of field names that can be used as an ID field when performing a write operation. ",
-        "items": {
-          "$ref": "#/components/schemas/Name"
-        },
+        "items": { "$ref": "#/components/schemas/Name" },
         "minItems": 0,
         "maxItems": 1
       },
@@ -7347,9 +6154,7 @@
         "properties": {
           "bucketName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UpsolverBucketName"
-              },
+              { "$ref": "#/components/schemas/UpsolverBucketName" },
               {
                 "description": " The Upsolver Amazon S3 bucket name in which Amazon AppFlow places the transferred data. "
               }
@@ -7357,9 +6162,7 @@
           },
           "bucketPrefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BucketPrefix"
-              },
+              { "$ref": "#/components/schemas/BucketPrefix" },
               {
                 "description": " The object key for the destination Upsolver Amazon S3 bucket in which Amazon AppFlow places the files. "
               }
@@ -7367,9 +6170,7 @@
           },
           "s3OutputFormatConfig": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UpsolverS3OutputFormatConfig"
-              },
+              { "$ref": "#/components/schemas/UpsolverS3OutputFormatConfig" },
               {
                 "description": " The configuration that determines how data is formatted when Upsolver is used as the flow destination. "
               }
@@ -7390,17 +6191,13 @@
         "properties": {
           "fileType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FileType"
-              },
+              { "$ref": "#/components/schemas/FileType" },
               {
                 "description": " Indicates the file type that Amazon AppFlow places in the Upsolver Amazon S3 bucket. "
               }
             ]
           },
-          "prefixConfig": {
-            "$ref": "#/components/schemas/PrefixConfig"
-          },
+          "prefixConfig": { "$ref": "#/components/schemas/PrefixConfig" },
           "aggregationConfig": {
             "$ref": "#/components/schemas/AggregationConfig"
           }
@@ -7428,9 +6225,7 @@
         "properties": {
           "username": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Username"
-              },
+              { "$ref": "#/components/schemas/Username" },
               {
                 "description": " The username to use to connect to a resource. "
               }
@@ -7438,9 +6233,7 @@
           },
           "password": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Password"
-              },
+              { "$ref": "#/components/schemas/Password" },
               {
                 "description": " The password to use to connect to a resource."
               }
@@ -7465,9 +6258,7 @@
         "properties": {
           "oAuthScopes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OAuthScopeList"
-              },
+              { "$ref": "#/components/schemas/OAuthScopeList" },
               {
                 "description": " The desired authorization scope for the Amazon Honeycode account. "
               }
@@ -7548,9 +6339,7 @@
         "properties": {
           "accessToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccessToken"
-              },
+              { "$ref": "#/components/schemas/AccessToken" },
               {
                 "description": " The credentials used to access protected Amazon Honeycode resources. "
               }
@@ -7558,9 +6347,7 @@
           },
           "refreshToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RefreshToken"
-              },
+              { "$ref": "#/components/schemas/RefreshToken" },
               {
                 "description": " The credentials used to acquire new access tokens. "
               }
@@ -7577,9 +6364,7 @@
         "properties": {
           "basicAuthCredentials": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BasicAuthCredentials"
-              },
+              { "$ref": "#/components/schemas/BasicAuthCredentials" },
               {
                 "description": " The SAPOData basic authentication credentials. "
               }
@@ -7587,9 +6372,7 @@
           },
           "oAuthCredentials": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OAuthCredentials"
-              },
+              { "$ref": "#/components/schemas/OAuthCredentials" },
               {
                 "description": " The SAPOData OAuth type authentication credentials. "
               }
@@ -7605,43 +6388,34 @@
       },
       "SAPODataConnectorProfileProperties": {
         "type": "object",
-        "required": ["applicationHostUrl", "applicationServicePath", "portNumber", "clientNumber"],
+        "required": [
+          "applicationHostUrl",
+          "applicationServicePath",
+          "portNumber",
+          "clientNumber"
+        ],
         "properties": {
           "applicationHostUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ApplicationHostUrl"
-              },
-              {
-                "description": " The location of the SAPOData resource. "
-              }
+              { "$ref": "#/components/schemas/ApplicationHostUrl" },
+              { "description": " The location of the SAPOData resource. " }
             ]
           },
           "applicationServicePath": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ApplicationServicePath"
-              },
-              {
-                "description": " The application path to catalog service. "
-              }
+              { "$ref": "#/components/schemas/ApplicationServicePath" },
+              { "description": " The application path to catalog service. " }
             ]
           },
           "portNumber": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PortNumber"
-              },
-              {
-                "description": " The port number of the SAPOData instance. "
-              }
+              { "$ref": "#/components/schemas/PortNumber" },
+              { "description": " The port number of the SAPOData instance. " }
             ]
           },
           "clientNumber": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ClientNumber"
-              },
+              { "$ref": "#/components/schemas/ClientNumber" },
               {
                 "description": " The client number for the client creating the connection. "
               }
@@ -7649,19 +6423,13 @@
           },
           "logonLanguage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LogonLanguage"
-              },
-              {
-                "description": " The logon language of SAPOData instance. "
-              }
+              { "$ref": "#/components/schemas/LogonLanguage" },
+              { "description": " The logon language of SAPOData instance. " }
             ]
           },
           "privateLinkServiceName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PrivateLinkServiceName"
-              },
+              { "$ref": "#/components/schemas/PrivateLinkServiceName" },
               {
                 "description": " The SAPOData Private Link service name to be used for private data transfers. "
               }
@@ -7669,9 +6437,7 @@
           },
           "oAuthProperties": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OAuthProperties"
-              },
+              { "$ref": "#/components/schemas/OAuthProperties" },
               {
                 "description": " The SAPOData OAuth properties required for OAuth type authentication. "
               }
@@ -7680,11 +6446,7 @@
         },
         "description": " The connector-specific profile properties required when using SAPOData. "
       },
-      "DomainName": {
-        "type": "string",
-        "pattern": "\\S+",
-        "maxLength": 64
-      },
+      "DomainName": { "type": "string", "pattern": "\\S+", "maxLength": 64 },
       "ObjectTypeName": {
         "type": "string",
         "pattern": "\\S+",
@@ -7696,9 +6458,7 @@
         "properties": {
           "domainName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainName"
-              },
+              { "$ref": "#/components/schemas/DomainName" },
               {
                 "description": " The unique name of the Amazon Connect Customer Profiles domain. "
               }
@@ -7706,9 +6466,7 @@
           },
           "objectTypeName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ObjectTypeName"
-              },
+              { "$ref": "#/components/schemas/ObjectTypeName" },
               {
                 "description": " The object specified in the Amazon Connect Customer Profiles flow destination. "
               }
@@ -7728,9 +6486,7 @@
         "properties": {
           "object": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Object"
-              },
+              { "$ref": "#/components/schemas/Object" },
               {
                 "description": " The object specified in the Amazon Honeycode flow destination. "
               }
@@ -7748,17 +6504,13 @@
         "properties": {
           "object": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Object"
-              },
+              { "$ref": "#/components/schemas/Object" },
               {
                 "description": "The object specified in the Zendesk flow destination."
               }
             ]
           },
-          "idFieldNames": {
-            "$ref": "#/components/schemas/IdFieldNameList"
-          },
+          "idFieldNames": { "$ref": "#/components/schemas/IdFieldNameList" },
           "errorHandlingConfig": {
             "$ref": "#/components/schemas/ErrorHandlingConfig"
           },
@@ -7784,19 +6536,13 @@
         "properties": {
           "clientId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ClientId"
-              },
-              {
-                "description": " The identifier for the desired client. "
-              }
+              { "$ref": "#/components/schemas/ClientId" },
+              { "description": " The identifier for the desired client. " }
             ]
           },
           "clientSecret": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ClientSecret"
-              },
+              { "$ref": "#/components/schemas/ClientSecret" },
               {
                 "description": " The client secret used by the OAuth client to authenticate to the authorization server. "
               }
@@ -7804,9 +6550,7 @@
           },
           "accessToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccessToken"
-              },
+              { "$ref": "#/components/schemas/AccessToken" },
               {
                 "description": " The access token used to access protected SAPOData resources. "
               }
@@ -7814,9 +6558,7 @@
           },
           "refreshToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RefreshToken"
-              },
+              { "$ref": "#/components/schemas/RefreshToken" },
               {
                 "description": " The refresh token used to refresh expired access token. "
               }
@@ -7824,9 +6566,7 @@
           },
           "oAuthRequest": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConnectorOAuthRequest"
-              },
+              { "$ref": "#/components/schemas/ConnectorOAuthRequest" },
               {
                 "description": " The OAuth requirement needed to request security tokens from the connector endpoint. "
               }
@@ -7846,9 +6586,7 @@
         "properties": {
           "tokenUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TokenUrl"
-              },
+              { "$ref": "#/components/schemas/TokenUrl" },
               {
                 "description": " The token url required to fetch access/refresh tokens using authorization code and also to refresh expired access token using refresh token."
               }
@@ -7856,9 +6594,7 @@
           },
           "authCodeUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AuthCodeUrl"
-              },
+              { "$ref": "#/components/schemas/AuthCodeUrl" },
               {
                 "description": " The authorization code url required to redirect to SAP Login Page to fetch authorization code for OAuth type authentication. "
               }
@@ -7866,9 +6602,7 @@
           },
           "oAuthScopes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OAuthScopeList"
-              },
+              { "$ref": "#/components/schemas/OAuthScopeList" },
               {
                 "description": " The OAuth scopes required for OAuth type authentication. "
               }
@@ -7877,14 +6611,16 @@
         },
         "description": " The OAuth properties required for OAuth type authentication. "
       },
-      "PortNumber": {
-        "type": "integer",
-        "minimum": 1,
-        "maximum": 65535
-      },
+      "PortNumber": { "type": "integer", "minimum": 1, "maximum": 65535 },
       "PrivateConnectionProvisioningFailureCause": {
         "type": "string",
-        "enum": ["CONNECTOR_AUTHENTICATION", "CONNECTOR_SERVER", "INTERNAL_SERVER", "ACCESS_DENIED", "VALIDATION"]
+        "enum": [
+          "CONNECTOR_AUTHENTICATION",
+          "CONNECTOR_SERVER",
+          "INTERNAL_SERVER",
+          "ACCESS_DENIED",
+          "VALIDATION"
+        ]
       },
       "PrivateConnectionProvisioningFailureMessage": {
         "type": "string",
@@ -7900,9 +6636,7 @@
         "properties": {
           "objectPath": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Object"
-              },
+              { "$ref": "#/components/schemas/Object" },
               {
                 "description": " The object path specified in the SAPOData flow source. "
               }
@@ -7911,18 +6645,10 @@
         },
         "description": " The properties that are applied when using SAPOData as a flow source. "
       },
-      "ScheduleOffset": {
-        "type": "integer",
-        "minimum": 0,
-        "maximum": 36000
-      }
+      "ScheduleOffset": { "type": "integer", "minimum": 0, "maximum": 36000 }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2020-08-23",
     "endpointPrefix": "appflow",

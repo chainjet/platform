@@ -198,9 +198,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -251,9 +249,7 @@
                     "properties": {
                       "states": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/States"
-                          },
+                          { "$ref": "#/components/schemas/States" },
                           {
                             "description": "Information about the states of the detector."
                           }
@@ -261,9 +257,7 @@
                       },
                       "initialStateName": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/StateName"
-                          },
+                          { "$ref": "#/components/schemas/StateName" },
                           {
                             "description": "The state that is entered at the creation of each detector (instance)."
                           }
@@ -292,9 +286,7 @@
                   "tags": {
                     "description": "Metadata that can be used to manage the detector model.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/Tag"
-                    }
+                    "items": { "$ref": "#/components/schemas/Tag" }
                   },
                   "evaluationMethod": {
                     "description": "Information about the order in which events are evaluated and how actions are executed. ",
@@ -309,27 +301,13 @@
         "summary": "Create Detector Model"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListDetectorModels",
@@ -359,9 +337,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -392,20 +368,14 @@
             "in": "query",
             "required": false,
             "description": "The token for the next set of results.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": "The maximum number of results to return at one time.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 250
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 250 }
           }
         ],
         "summary": "List Detector Models"
@@ -420,9 +390,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateInputResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/CreateInputResponse" }
               }
             }
           },
@@ -440,9 +408,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -504,9 +470,7 @@
                     "properties": {
                       "attributes": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/Attributes"
-                          },
+                          { "$ref": "#/components/schemas/Attributes" },
                           {
                             "description": "The attributes from the JSON payload that are made available by the input. Inputs are derived from messages sent to the AWS IoT Events system using <code>BatchPutMessage</code>. Each such message contains a JSON payload, and those attributes (and their paired values) specified here are available for use in the <code>condition</code> expressions used by detectors that monitor this input. "
                           }
@@ -517,9 +481,7 @@
                   "tags": {
                     "description": "Metadata that can be used to manage the input.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/Tag"
-                    }
+                    "items": { "$ref": "#/components/schemas/Tag" }
                   }
                 }
               }
@@ -529,27 +491,13 @@
         "summary": "Create Input"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListInputs",
@@ -559,9 +507,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListInputsResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/ListInputsResponse" }
               }
             }
           },
@@ -579,9 +525,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -612,20 +556,14 @@
             "in": "query",
             "required": false,
             "description": "The token for the next set of results.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": "The maximum number of results to return at one time.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 250
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 250 }
           }
         ],
         "summary": "List Inputs"
@@ -680,9 +618,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -724,27 +660,13 @@
         "summary": "Delete Detector Model"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "DescribeDetectorModel",
@@ -784,9 +706,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -829,11 +749,7 @@
             "in": "query",
             "required": false,
             "description": "The version of the detector model.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 128 }
           }
         ],
         "summary": "Describe Detector Model"
@@ -886,9 +802,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -941,9 +855,7 @@
                     "properties": {
                       "states": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/States"
-                          },
+                          { "$ref": "#/components/schemas/States" },
                           {
                             "description": "Information about the states of the detector."
                           }
@@ -951,9 +863,7 @@
                       },
                       "initialStateName": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/StateName"
-                          },
+                          { "$ref": "#/components/schemas/StateName" },
                           {
                             "description": "The state that is entered at the creation of each detector (instance)."
                           }
@@ -994,9 +904,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteInputResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/DeleteInputResponse" }
               }
             }
           },
@@ -1024,9 +932,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -1078,27 +984,13 @@
         "summary": "Delete Input"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "DescribeInput",
@@ -1138,9 +1030,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -1189,9 +1079,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UpdateInputResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/UpdateInputResponse" }
               }
             }
           },
@@ -1209,9 +1097,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -1289,9 +1175,7 @@
                     "properties": {
                       "attributes": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/Attributes"
-                          },
+                          { "$ref": "#/components/schemas/Attributes" },
                           {
                             "description": "The attributes from the JSON payload that are made available by the input. Inputs are derived from messages sent to the AWS IoT Events system using <code>BatchPutMessage</code>. Each such message contains a JSON payload, and those attributes (and their paired values) specified here are available for use in the <code>condition</code> expressions used by detectors that monitor this input. "
                           }
@@ -1336,9 +1220,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -1387,35 +1269,19 @@
         "summary": "Describe Logging Options"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "put": {
         "operationId": "PutLoggingOptions",
         "description": "<p>Sets or updates the AWS IoT Events logging options.</p> <p>If you update the value of any <code>loggingOptions</code> field, it takes up to one minute for the change to take effect. If you change the policy attached to the role you specified in the <code>roleArn</code> field (for example, to correct an invalid policy), it takes up to five minutes for that change to take effect.</p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "InvalidRequestException",
             "content": {
@@ -1430,9 +1296,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -1492,9 +1356,7 @@
                     "properties": {
                       "roleArn": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/AmazonResourceName"
-                          },
+                          { "$ref": "#/components/schemas/AmazonResourceName" },
                           {
                             "description": "The ARN of the role that grants permission to AWS IoT Events to perform logging."
                           }
@@ -1502,19 +1364,13 @@
                       },
                       "level": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/LoggingLevel"
-                          },
-                          {
-                            "description": "The logging level."
-                          }
+                          { "$ref": "#/components/schemas/LoggingLevel" },
+                          { "description": "The logging level." }
                         ]
                       },
                       "enabled": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/LoggingEnabled"
-                          },
+                          { "$ref": "#/components/schemas/LoggingEnabled" },
                           {
                             "description": "If TRUE, logging is enabled for AWS IoT Events."
                           }
@@ -1579,9 +1435,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -1624,46 +1478,26 @@
             "in": "query",
             "required": false,
             "description": "The token for the next set of results.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": "The maximum number of results to return at one time.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 250
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 250 }
           }
         ],
         "summary": "List Detector Model Versions"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/tags#resourceArn": {
@@ -1715,9 +1549,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -1738,37 +1570,19 @@
             "in": "query",
             "required": true,
             "description": "The ARN of the resource.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 2048
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 2048 }
           }
         ],
         "summary": "List Tags For Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "TagResource",
@@ -1778,9 +1592,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TagResourceResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/TagResourceResponse" }
               }
             }
           },
@@ -1818,9 +1630,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -1851,11 +1661,7 @@
             "in": "query",
             "required": true,
             "description": "The ARN of the resource.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 2048
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 2048 }
           }
         ],
         "requestBody": {
@@ -1869,9 +1675,7 @@
                   "tags": {
                     "description": "The new or modified tags for the resource.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/Tag"
-                    }
+                    "items": { "$ref": "#/components/schemas/Tag" }
                   }
                 }
               }
@@ -1930,9 +1734,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -1953,11 +1755,7 @@
             "in": "query",
             "required": true,
             "description": "The ARN of the resource.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 2048
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 2048 }
           },
           {
             "name": "tagKeys",
@@ -1966,36 +1764,20 @@
             "description": "A list of the keys of the tags to be removed from the resource.",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/TagKey"
-              }
+              "items": { "$ref": "#/components/schemas/TagKey" }
             }
           }
         ],
         "summary": "Untag Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/alarm-models": {
@@ -2057,9 +1839,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -2114,9 +1894,7 @@
                   "tags": {
                     "description": "<p>A list of key-value pairs that contain metadata for the alarm model. The tags help you manage the alarm model. For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/tagging-iotevents.html\">Tagging your AWS IoT Events resources</a> in the <i>AWS IoT Events Developer Guide</i>.</p> <p>You can create up to 50 tags for one alarm model.</p>",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/Tag"
-                    }
+                    "items": { "$ref": "#/components/schemas/Tag" }
                   },
                   "key": {
                     "description": "An input attribute used as a key to create an alarm. AWS IoT Events routes <a href=\"https://docs.aws.amazon.com/iotevents/latest/apireference/API_Input.html\">inputs</a> associated with this key to the alarm.",
@@ -2137,9 +1915,7 @@
                     "properties": {
                       "simpleRule": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/SimpleRule"
-                          },
+                          { "$ref": "#/components/schemas/SimpleRule" },
                           {
                             "description": "A rule that compares an input property value to a threshold value with a comparison operator."
                           }
@@ -2169,9 +1945,7 @@
                     "properties": {
                       "alarmActions": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/AlarmActions"
-                          },
+                          { "$ref": "#/components/schemas/AlarmActions" },
                           {
                             "description": "Specifies one or more supported actions to receive notifications when the alarm state changes."
                           }
@@ -2195,9 +1969,7 @@
                       },
                       "acknowledgeFlow": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/AcknowledgeFlow"
-                          },
+                          { "$ref": "#/components/schemas/AcknowledgeFlow" },
                           {
                             "description": "Specifies whether to get notified for alarm state changes."
                           }
@@ -2213,27 +1985,13 @@
         "summary": "Create Alarm Model"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListAlarmModels",
@@ -2263,9 +2021,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -2296,20 +2052,14 @@
             "in": "query",
             "required": false,
             "description": "The token that you can use to return the next set of results.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": "The maximum number of results to be returned per request.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 250
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 250 }
           }
         ],
         "summary": "List Alarm Models"
@@ -2364,9 +2114,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -2408,27 +2156,13 @@
         "summary": "Delete Alarm Model"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "DescribeAlarmModel",
@@ -2468,9 +2202,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -2513,11 +2245,7 @@
             "in": "query",
             "required": false,
             "description": "The version of the alarm model.",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 128 }
           }
         ],
         "summary": "Describe Alarm Model"
@@ -2570,9 +2298,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -2642,9 +2368,7 @@
                     "properties": {
                       "simpleRule": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/SimpleRule"
-                          },
+                          { "$ref": "#/components/schemas/SimpleRule" },
                           {
                             "description": "A rule that compares an input property value to a threshold value with a comparison operator."
                           }
@@ -2674,9 +2398,7 @@
                     "properties": {
                       "alarmActions": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/AlarmActions"
-                          },
+                          { "$ref": "#/components/schemas/AlarmActions" },
                           {
                             "description": "Specifies one or more supported actions to receive notifications when the alarm state changes."
                           }
@@ -2700,9 +2422,7 @@
                       },
                       "acknowledgeFlow": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/AcknowledgeFlow"
-                          },
+                          { "$ref": "#/components/schemas/AcknowledgeFlow" },
                           {
                             "description": "Specifies whether to get notified for alarm state changes."
                           }
@@ -2757,9 +2477,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -2790,35 +2508,19 @@
             "in": "path",
             "required": true,
             "description": "The ID of the analysis result that you want to retrieve.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Describe Detector Model Analysis"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/analysis/detector-models/{analysisId}/results": {
@@ -2860,9 +2562,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -2893,53 +2593,33 @@
             "in": "path",
             "required": true,
             "description": "The ID of the analysis result that you want to retrieve.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "The token that you can use to return the next set of results.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": "The maximum number of results to be returned per request.",
-            "schema": {
-              "type": "integer"
-            }
+            "schema": { "type": "integer" }
           }
         ],
         "summary": "Get Detector Model Analysis Results"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/alarm-models/{alarmModelName}/versions": {
@@ -2981,9 +2661,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -3026,46 +2704,26 @@
             "in": "query",
             "required": false,
             "description": "The token that you can use to return the next set of results.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": "The maximum number of results to be returned per request.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 250
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 250 }
           }
         ],
         "summary": "List Alarm Model Versions"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/input-routings": {
@@ -3097,9 +2755,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -3187,27 +2843,13 @@
         "summary": "List Input Routings"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/analysis/detector-models/": {
@@ -3249,9 +2891,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -3291,9 +2931,7 @@
                     "properties": {
                       "states": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/States"
-                          },
+                          { "$ref": "#/components/schemas/States" },
                           {
                             "description": "Information about the states of the detector."
                           }
@@ -3301,9 +2939,7 @@
                       },
                       "initialStateName": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/StateName"
-                          },
+                          { "$ref": "#/components/schemas/StateName" },
                           {
                             "description": "The state that is entered at the creation of each detector (instance)."
                           }
@@ -3319,27 +2955,13 @@
         "summary": "Start Detector Model Analysis"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -3348,63 +2970,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -3424,9 +3032,7 @@
         "properties": {
           "detectorModelConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DetectorModelConfiguration"
-              },
+              { "$ref": "#/components/schemas/DetectorModelConfiguration" },
               {
                 "description": "Information about how the detector model is configured."
               }
@@ -3436,38 +3042,24 @@
       },
       "States": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/State"
-        },
+        "items": { "$ref": "#/components/schemas/State" },
         "minItems": 1
       },
-      "StateName": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 128
-      },
+      "StateName": { "type": "string", "minLength": 1, "maxLength": 128 },
       "Tag": {
         "type": "object",
         "required": ["key", "value"],
         "properties": {
           "key": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagKey"
-              },
-              {
-                "description": "The tag's key."
-              }
+              { "$ref": "#/components/schemas/TagKey" },
+              { "description": "The tag's key." }
             ]
           },
           "value": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagValue"
-              },
-              {
-                "description": "The tag's value."
-              }
+              { "$ref": "#/components/schemas/TagValue" },
+              { "description": "The tag's value." }
             ]
           }
         },
@@ -3485,9 +3077,7 @@
         "properties": {
           "inputConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InputConfiguration"
-              },
+              { "$ref": "#/components/schemas/InputConfiguration" },
               {
                 "description": "Information about the configuration of the input."
               }
@@ -3497,32 +3087,20 @@
       },
       "Attributes": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Attribute"
-        },
+        "items": { "$ref": "#/components/schemas/Attribute" },
         "minItems": 1,
         "maxItems": 200
       },
-      "DeleteDetectorModelResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "DeleteDetectorModelResponse": { "type": "object", "properties": {} },
       "ResourceNotFoundException": {},
-      "DeleteInputResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "DeleteInputResponse": { "type": "object", "properties": {} },
       "DescribeDetectorModelResponse": {
         "type": "object",
         "properties": {
           "detectorModel": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DetectorModel"
-              },
-              {
-                "description": "Information about the detector model."
-              }
+              { "$ref": "#/components/schemas/DetectorModel" },
+              { "description": "Information about the detector model." }
             ]
           }
         }
@@ -3532,12 +3110,8 @@
         "properties": {
           "input": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Input"
-              },
-              {
-                "description": "Information about the input."
-              }
+              { "$ref": "#/components/schemas/Input" },
+              { "description": "Information about the input." }
             ]
           }
         }
@@ -3547,9 +3121,7 @@
         "properties": {
           "loggingOptions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LoggingOptions"
-              },
+              { "$ref": "#/components/schemas/LoggingOptions" },
               {
                 "description": "The current settings of the AWS IoT Events logging options."
               }
@@ -3563,9 +3135,7 @@
         "properties": {
           "detectorModelVersionSummaries": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DetectorModelVersionSummaries"
-              },
+              { "$ref": "#/components/schemas/DetectorModelVersionSummaries" },
               {
                 "description": "Summary information about the detector model versions."
               }
@@ -3573,9 +3143,7 @@
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "A token to retrieve the next set of results, or <code>null</code> if there are no additional results."
               }
@@ -3588,9 +3156,7 @@
         "properties": {
           "detectorModelSummaries": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DetectorModelSummaries"
-              },
+              { "$ref": "#/components/schemas/DetectorModelSummaries" },
               {
                 "description": "Summary information about the detector models."
               }
@@ -3598,9 +3164,7 @@
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "A token to retrieve the next set of results, or <code>null</code> if there are no additional results."
               }
@@ -3613,19 +3177,13 @@
         "properties": {
           "inputSummaries": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InputSummaries"
-              },
-              {
-                "description": "Summary information about the inputs."
-              }
+              { "$ref": "#/components/schemas/InputSummaries" },
+              { "description": "Summary information about the inputs." }
             ]
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "A token to retrieve the next set of results, or <code>null</code> if there are no additional results."
               }
@@ -3638,12 +3196,8 @@
         "properties": {
           "tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Tags"
-              },
-              {
-                "description": "The list of tags assigned to the resource."
-              }
+              { "$ref": "#/components/schemas/Tags" },
+              { "description": "The list of tags assigned to the resource." }
             ]
           }
         }
@@ -3653,41 +3207,22 @@
         "minLength": 1,
         "maxLength": 2048
       },
-      "LoggingLevel": {
-        "type": "string",
-        "enum": ["ERROR", "INFO", "DEBUG"]
-      },
-      "LoggingEnabled": {
-        "type": "boolean"
-      },
+      "LoggingLevel": { "type": "string", "enum": ["ERROR", "INFO", "DEBUG"] },
+      "LoggingEnabled": { "type": "boolean" },
       "DetectorDebugOptions": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DetectorDebugOption"
-        },
+        "items": { "$ref": "#/components/schemas/DetectorDebugOption" },
         "minItems": 1
       },
-      "TagResourceResponse": {
-        "type": "object",
-        "properties": {}
-      },
-      "UntagResourceResponse": {
-        "type": "object",
-        "properties": {}
-      },
-      "TagKey": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 128
-      },
+      "TagResourceResponse": { "type": "object", "properties": {} },
+      "UntagResourceResponse": { "type": "object", "properties": {} },
+      "TagKey": { "type": "string", "minLength": 1, "maxLength": 128 },
       "UpdateDetectorModelResponse": {
         "type": "object",
         "properties": {
           "detectorModelConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DetectorModelConfiguration"
-              },
+              { "$ref": "#/components/schemas/DetectorModelConfiguration" },
               {
                 "description": "Information about how the detector model is configured."
               }
@@ -3700,9 +3235,7 @@
         "properties": {
           "inputConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InputConfiguration"
-              },
+              { "$ref": "#/components/schemas/InputConfiguration" },
               {
                 "description": "Information about the configuration of the input."
               }
@@ -3716,22 +3249,14 @@
         "properties": {
           "variableName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VariableName"
-              },
-              {
-                "description": "The name of the variable."
-              }
+              { "$ref": "#/components/schemas/VariableName" },
+              { "description": "The name of the variable." }
             ]
           },
           "value": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VariableValue"
-              },
-              {
-                "description": "The new value of the variable."
-              }
+              { "$ref": "#/components/schemas/VariableValue" },
+              { "description": "The new value of the variable." }
             ]
           }
         },
@@ -3743,9 +3268,7 @@
         "properties": {
           "targetArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AmazonResourceName"
-              },
+              { "$ref": "#/components/schemas/AmazonResourceName" },
               {
                 "description": "The ARN of the Amazon SNS target where the message is sent."
               }
@@ -3753,9 +3276,7 @@
           },
           "payload": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Payload"
-              },
+              { "$ref": "#/components/schemas/Payload" },
               {
                 "description": "You can configure the action payload when you send a message as an Amazon SNS push notification."
               }
@@ -3770,9 +3291,7 @@
         "properties": {
           "mqttTopic": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MQTTTopic"
-              },
+              { "$ref": "#/components/schemas/MQTTTopic" },
               {
                 "description": "The MQTT topic of the message. You can use a string expression that includes variables (<code>$variable.&lt;variable-name&gt;</code>) and input values (<code>$input.&lt;input-name&gt;.&lt;path-to-datum&gt;</code>) as the topic string."
               }
@@ -3780,9 +3299,7 @@
           },
           "payload": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Payload"
-              },
+              { "$ref": "#/components/schemas/Payload" },
               {
                 "description": "You can configure the action payload when you publish a message to an AWS IoT Core topic."
               }
@@ -3797,19 +3314,13 @@
         "properties": {
           "timerName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimerName"
-              },
-              {
-                "description": "The name of the timer."
-              }
+              { "$ref": "#/components/schemas/TimerName" },
+              { "description": "The name of the timer." }
             ]
           },
           "seconds": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Seconds"
-              },
+              { "$ref": "#/components/schemas/Seconds" },
               {
                 "deprecated": true,
                 "description": "The number of seconds until the timer expires. The minimum value is 60 seconds to ensure accuracy. The maximum value is 31622400 seconds. seconds is deprecated. You can use durationExpression for SetTimerAction. The value of seconds can be used as a string expression for durationExpression."
@@ -3818,9 +3329,7 @@
           },
           "durationExpression": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VariableValue"
-              },
+              { "$ref": "#/components/schemas/VariableValue" },
               {
                 "description": "The duration of the timer, in seconds. You can use a string expression that includes numbers, variables (<code>$variable.&lt;variable-name&gt;</code>), and input values (<code>$input.&lt;input-name&gt;.&lt;path-to-datum&gt;</code>) as the duration. The range of the duration is 1-31622400 seconds. To ensure accuracy, the minimum duration is 60 seconds. The evaluated result of the duration is rounded down to the nearest whole number. "
               }
@@ -3835,12 +3344,8 @@
         "properties": {
           "timerName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimerName"
-              },
-              {
-                "description": "The name of the timer to clear."
-              }
+              { "$ref": "#/components/schemas/TimerName" },
+              { "description": "The name of the timer to clear." }
             ]
           }
         },
@@ -3852,12 +3357,8 @@
         "properties": {
           "timerName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimerName"
-              },
-              {
-                "description": "The name of the timer to reset."
-              }
+              { "$ref": "#/components/schemas/TimerName" },
+              { "description": "The name of the timer to reset." }
             ]
           }
         },
@@ -3869,9 +3370,7 @@
         "properties": {
           "functionArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AmazonResourceName"
-              },
+              { "$ref": "#/components/schemas/AmazonResourceName" },
               {
                 "description": "The ARN of the Lambda function that is executed."
               }
@@ -3879,9 +3378,7 @@
           },
           "payload": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Payload"
-              },
+              { "$ref": "#/components/schemas/Payload" },
               {
                 "description": "You can configure the action payload when you send a message to a Lambda function."
               }
@@ -3896,9 +3393,7 @@
         "properties": {
           "inputName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InputName"
-              },
+              { "$ref": "#/components/schemas/InputName" },
               {
                 "description": "The name of the AWS IoT Events input where the data is sent."
               }
@@ -3906,9 +3401,7 @@
           },
           "payload": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Payload"
-              },
+              { "$ref": "#/components/schemas/Payload" },
               {
                 "description": "You can configure the action payload when you send a message to an AWS IoT Events input."
               }
@@ -3923,9 +3416,7 @@
         "properties": {
           "queueUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/QueueUrl"
-              },
+              { "$ref": "#/components/schemas/QueueUrl" },
               {
                 "description": "The URL of the SQS queue where the data is written."
               }
@@ -3933,9 +3424,7 @@
           },
           "useBase64": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UseBase64"
-              },
+              { "$ref": "#/components/schemas/UseBase64" },
               {
                 "description": "Set this to TRUE if you want the data to be base-64 encoded before it is written to the queue. Otherwise, set this to FALSE."
               }
@@ -3943,9 +3432,7 @@
           },
           "payload": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Payload"
-              },
+              { "$ref": "#/components/schemas/Payload" },
               {
                 "description": "You can configure the action payload when you send a message to an Amazon SQS queue."
               }
@@ -3960,9 +3447,7 @@
         "properties": {
           "deliveryStreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DeliveryStreamName"
-              },
+              { "$ref": "#/components/schemas/DeliveryStreamName" },
               {
                 "description": "The name of the Kinesis Data Firehose delivery stream where the data is written."
               }
@@ -3970,9 +3455,7 @@
           },
           "separator": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FirehoseSeparator"
-              },
+              { "$ref": "#/components/schemas/FirehoseSeparator" },
               {
                 "description": "A character separator that is used to separate records written to the Kinesis Data Firehose delivery stream. Valid values are: '\\n' (newline), '\\t' (tab), '\\r\\n' (Windows newline), ',' (comma)."
               }
@@ -3980,9 +3463,7 @@
           },
           "payload": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Payload"
-              },
+              { "$ref": "#/components/schemas/Payload" },
               {
                 "description": "You can configure the action payload when you send a message to an Amazon Kinesis Data Firehose delivery stream."
               }
@@ -3997,9 +3478,7 @@
         "properties": {
           "hashKeyType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DynamoKeyType"
-              },
+              { "$ref": "#/components/schemas/DynamoKeyType" },
               {
                 "description": "<p>The data type for the hash key (also called the partition key). You can specify the following values:</p> <ul> <li> <p> <code>STRING</code> - The hash key is a string.</p> </li> <li> <p> <code>NUMBER</code> - The hash key is a number.</p> </li> </ul> <p>If you don't specify <code>hashKeyType</code>, the default value is <code>STRING</code>.</p>"
               }
@@ -4007,9 +3486,7 @@
           },
           "hashKeyField": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DynamoKeyField"
-              },
+              { "$ref": "#/components/schemas/DynamoKeyField" },
               {
                 "description": "The name of the hash key (also called the partition key)."
               }
@@ -4017,9 +3494,7 @@
           },
           "hashKeyValue": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DynamoKeyValue"
-              },
+              { "$ref": "#/components/schemas/DynamoKeyValue" },
               {
                 "description": "The value of the hash key (also called the partition key)."
               }
@@ -4027,9 +3502,7 @@
           },
           "rangeKeyType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DynamoKeyType"
-              },
+              { "$ref": "#/components/schemas/DynamoKeyType" },
               {
                 "description": "<p>The data type for the range key (also called the sort key), You can specify the following values:</p> <ul> <li> <p> <code>STRING</code> - The range key is a string.</p> </li> <li> <p> <code>NUMBER</code> - The range key is number.</p> </li> </ul> <p>If you don't specify <code>rangeKeyField</code>, the default value is <code>STRING</code>.</p>"
               }
@@ -4037,9 +3510,7 @@
           },
           "rangeKeyField": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DynamoKeyField"
-              },
+              { "$ref": "#/components/schemas/DynamoKeyField" },
               {
                 "description": "The name of the range key (also called the sort key)."
               }
@@ -4047,9 +3518,7 @@
           },
           "rangeKeyValue": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DynamoKeyValue"
-              },
+              { "$ref": "#/components/schemas/DynamoKeyValue" },
               {
                 "description": "The value of the range key (also called the sort key)."
               }
@@ -4057,9 +3526,7 @@
           },
           "operation": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DynamoOperation"
-              },
+              { "$ref": "#/components/schemas/DynamoOperation" },
               {
                 "description": "<p>The type of operation to perform. You can specify the following values: </p> <ul> <li> <p> <code>INSERT</code> - Insert data as a new item into the DynamoDB table. This item uses the specified hash key as a partition key. If you specified a range key, the item uses the range key as a sort key.</p> </li> <li> <p> <code>UPDATE</code> - Update an existing item of the DynamoDB table with new data. This item's partition key must match the specified hash key. If you specified a range key, the range key must match the item's sort key.</p> </li> <li> <p> <code>DELETE</code> - Delete an existing item of the DynamoDB table. This item's partition key must match the specified hash key. If you specified a range key, the range key must match the item's sort key.</p> </li> </ul> <p>If you don't specify this parameter, AWS IoT Events triggers the <code>INSERT</code> operation.</p>"
               }
@@ -4067,9 +3534,7 @@
           },
           "payloadField": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DynamoKeyField"
-              },
+              { "$ref": "#/components/schemas/DynamoKeyField" },
               {
                 "description": "<p>The name of the DynamoDB column that receives the action payload.</p> <p>If you don't specify this parameter, the name of the DynamoDB column is <code>payload</code>.</p>"
               }
@@ -4077,17 +3542,11 @@
           },
           "tableName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DynamoTableName"
-              },
-              {
-                "description": "The name of the DynamoDB table."
-              }
+              { "$ref": "#/components/schemas/DynamoTableName" },
+              { "description": "The name of the DynamoDB table." }
             ]
           },
-          "payload": {
-            "$ref": "#/components/schemas/Payload"
-          }
+          "payload": { "$ref": "#/components/schemas/Payload" }
         },
         "description": "<p>Defines an action to write to the Amazon DynamoDB table that you created. The standard action payload contains all attribute-value pairs that have the information about the detector model instance and the event that triggered the action. You can also customize the <a href=\"https://docs.aws.amazon.com/iotevents/latest/apireference/API_Payload.html\">payload</a>. One column of the DynamoDB table receives all attribute-value pairs in the payload that you specify.</p> <p>The <code>tableName</code> and <code>hashKeyField</code> values must match the table name and the partition key of the DynamoDB table. </p> <note> <p>If the DynamoDB table also has a sort key, you must specify <code>rangeKeyField</code>. The <code>rangeKeyField</code> value must match the sort key.</p> </note> <p/> <p>The <code>hashKeyValue</code> and <code>rangeKeyValue</code> use substitution templates. These templates provide data at runtime. The syntax is <code>${sql-expression}</code>.</p> <p>You can use expressions for parameters that are string data type. For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html\">Expressions</a> in the <i>AWS IoT Events Developer Guide</i>.</p> <note> <p>If the defined payload type is a string, <code>DynamoDBAction</code> writes non-JSON data to the DynamoDB table as binary data. The DynamoDB console displays the data as Base64-encoded text. The <code>payloadField</code> is <code>&lt;payload-field&gt;_raw</code>.</p> </note>"
       },
@@ -4097,17 +3556,11 @@
         "properties": {
           "tableName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DynamoTableName"
-              },
-              {
-                "description": "The name of the DynamoDB table."
-              }
+              { "$ref": "#/components/schemas/DynamoTableName" },
+              { "description": "The name of the DynamoDB table." }
             ]
           },
-          "payload": {
-            "$ref": "#/components/schemas/Payload"
-          }
+          "payload": { "$ref": "#/components/schemas/Payload" }
         },
         "description": "<p>Defines an action to write to the Amazon DynamoDB table that you created. The default action payload contains all attribute-value pairs that have the information about the detector model instance and the event that triggered the action. You can also customize the <a href=\"https://docs.aws.amazon.com/iotevents/latest/apireference/API_Payload.html\">payload</a>. A separate column of the DynamoDB table receives one attribute-value pair in the payload that you specify.</p> <important> <p>The <code>type</code> value for <code>Payload</code> must be <code>JSON</code>.</p> </important> <p>You can use expressions for parameters that are strings. For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html\">Expressions</a> in the <i>AWS IoT Events Developer Guide</i>.</p>"
       },
@@ -4117,9 +3570,7 @@
         "properties": {
           "entryId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AssetPropertyEntryId"
-              },
+              { "$ref": "#/components/schemas/AssetPropertyEntryId" },
               {
                 "description": "A unique identifier for this entry. You can use the entry ID to track which data entry causes an error in case of failure. The default is a new unique identifier. You can also specify an expression."
               }
@@ -4127,9 +3578,7 @@
           },
           "assetId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AssetId"
-              },
+              { "$ref": "#/components/schemas/AssetId" },
               {
                 "description": "The ID of the asset that has the specified property. You can specify an expression."
               }
@@ -4137,9 +3586,7 @@
           },
           "propertyId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AssetPropertyId"
-              },
+              { "$ref": "#/components/schemas/AssetPropertyId" },
               {
                 "description": "The ID of the asset property. You can specify an expression."
               }
@@ -4147,9 +3594,7 @@
           },
           "propertyAlias": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AssetPropertyAlias"
-              },
+              { "$ref": "#/components/schemas/AssetPropertyAlias" },
               {
                 "description": "The alias of the asset property. You can also specify an expression."
               }
@@ -4157,9 +3602,7 @@
           },
           "propertyValue": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AssetPropertyValue"
-              },
+              { "$ref": "#/components/schemas/AssetPropertyValue" },
               {
                 "description": "The value to send to the asset property. This value contains timestamp, quality, and value (TQV) information. "
               }
@@ -4173,29 +3616,19 @@
         "properties": {
           "setVariable": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SetVariableAction"
-              },
-              {
-                "description": "Sets a variable to a specified value."
-              }
+              { "$ref": "#/components/schemas/SetVariableAction" },
+              { "description": "Sets a variable to a specified value." }
             ]
           },
           "sns": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SNSTopicPublishAction"
-              },
-              {
-                "description": "Sends an Amazon SNS message."
-              }
+              { "$ref": "#/components/schemas/SNSTopicPublishAction" },
+              { "description": "Sends an Amazon SNS message." }
             ]
           },
           "iotTopicPublish": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IotTopicPublishAction"
-              },
+              { "$ref": "#/components/schemas/IotTopicPublishAction" },
               {
                 "description": "Publishes an MQTT message with the given topic to the AWS IoT message broker."
               }
@@ -4203,39 +3636,25 @@
           },
           "setTimer": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SetTimerAction"
-              },
-              {
-                "description": "Information needed to set the timer."
-              }
+              { "$ref": "#/components/schemas/SetTimerAction" },
+              { "description": "Information needed to set the timer." }
             ]
           },
           "clearTimer": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ClearTimerAction"
-              },
-              {
-                "description": "Information needed to clear the timer."
-              }
+              { "$ref": "#/components/schemas/ClearTimerAction" },
+              { "description": "Information needed to clear the timer." }
             ]
           },
           "resetTimer": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResetTimerAction"
-              },
-              {
-                "description": "Information needed to reset the timer."
-              }
+              { "$ref": "#/components/schemas/ResetTimerAction" },
+              { "description": "Information needed to reset the timer." }
             ]
           },
           "lambda": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LambdaAction"
-              },
+              { "$ref": "#/components/schemas/LambdaAction" },
               {
                 "description": "Calls a Lambda function, passing in information about the detector model instance and the event that triggered the action."
               }
@@ -4243,9 +3662,7 @@
           },
           "iotEvents": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IotEventsAction"
-              },
+              { "$ref": "#/components/schemas/IotEventsAction" },
               {
                 "description": "Sends AWS IoT Events input, which passes information about the detector model instance and the event that triggered the action."
               }
@@ -4253,9 +3670,7 @@
           },
           "sqs": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SqsAction"
-              },
+              { "$ref": "#/components/schemas/SqsAction" },
               {
                 "description": "Sends information about the detector model instance and the event that triggered the action to an Amazon SQS queue."
               }
@@ -4263,9 +3678,7 @@
           },
           "firehose": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FirehoseAction"
-              },
+              { "$ref": "#/components/schemas/FirehoseAction" },
               {
                 "description": "Sends information about the detector model instance and the event that triggered the action to an Amazon Kinesis Data Firehose delivery stream."
               }
@@ -4273,9 +3686,7 @@
           },
           "dynamoDB": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DynamoDBAction"
-              },
+              { "$ref": "#/components/schemas/DynamoDBAction" },
               {
                 "description": "Writes to the DynamoDB table that you created. The default action payload contains all attribute-value pairs that have the information about the detector model instance and the event that triggered the action. You can also customize the <a href=\"https://docs.aws.amazon.com/iotevents/latest/apireference/API_Payload.html\">payload</a>. One column of the DynamoDB table receives all attribute-value pairs in the payload that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-event-actions.html\">Actions</a> in <i>AWS IoT Events Developer Guide</i>."
               }
@@ -4283,9 +3694,7 @@
           },
           "dynamoDBv2": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DynamoDBv2Action"
-              },
+              { "$ref": "#/components/schemas/DynamoDBv2Action" },
               {
                 "description": "Writes to the DynamoDB table that you created. The default action payload contains all attribute-value pairs that have the information about the detector model instance and the event that triggered the action. You can also customize the <a href=\"https://docs.aws.amazon.com/iotevents/latest/apireference/API_Payload.html\">payload</a>. A separate column of the DynamoDB table receives one attribute-value pair in the payload that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-event-actions.html\">Actions</a> in <i>AWS IoT Events Developer Guide</i>."
               }
@@ -4293,9 +3702,7 @@
           },
           "iotSiteWise": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IotSiteWiseAction"
-              },
+              { "$ref": "#/components/schemas/IotSiteWiseAction" },
               {
                 "description": "Sends information about the detector model instance and the event that triggered the action to an asset property in AWS IoT SiteWise ."
               }
@@ -4306,52 +3713,26 @@
       },
       "Actions": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Action"
-        }
+        "items": { "$ref": "#/components/schemas/Action" }
       },
-      "AssetId": {
-        "type": "string"
-      },
-      "AssetPropertyAlias": {
-        "type": "string"
-      },
-      "AssetPropertyBooleanValue": {
-        "type": "string"
-      },
-      "AssetPropertyDoubleValue": {
-        "type": "string"
-      },
-      "AssetPropertyEntryId": {
-        "type": "string"
-      },
-      "AssetPropertyId": {
-        "type": "string"
-      },
-      "AssetPropertyIntegerValue": {
-        "type": "string"
-      },
-      "AssetPropertyOffsetInNanos": {
-        "type": "string"
-      },
-      "AssetPropertyQuality": {
-        "type": "string"
-      },
-      "AssetPropertyStringValue": {
-        "type": "string"
-      },
-      "AssetPropertyTimeInSeconds": {
-        "type": "string"
-      },
+      "AssetId": { "type": "string" },
+      "AssetPropertyAlias": { "type": "string" },
+      "AssetPropertyBooleanValue": { "type": "string" },
+      "AssetPropertyDoubleValue": { "type": "string" },
+      "AssetPropertyEntryId": { "type": "string" },
+      "AssetPropertyId": { "type": "string" },
+      "AssetPropertyIntegerValue": { "type": "string" },
+      "AssetPropertyOffsetInNanos": { "type": "string" },
+      "AssetPropertyQuality": { "type": "string" },
+      "AssetPropertyStringValue": { "type": "string" },
+      "AssetPropertyTimeInSeconds": { "type": "string" },
       "AssetPropertyTimestamp": {
         "type": "object",
         "required": ["timeInSeconds"],
         "properties": {
           "timeInSeconds": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AssetPropertyTimeInSeconds"
-              },
+              { "$ref": "#/components/schemas/AssetPropertyTimeInSeconds" },
               {
                 "description": "The timestamp, in seconds, in the Unix epoch format. The valid range is between 1-31556889864403199. You can also specify an expression."
               }
@@ -4359,9 +3740,7 @@
           },
           "offsetInNanos": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AssetPropertyOffsetInNanos"
-              },
+              { "$ref": "#/components/schemas/AssetPropertyOffsetInNanos" },
               {
                 "description": "The nanosecond offset converted from <code>timeInSeconds</code>. The valid range is between 0-999999999. You can also specify an expression."
               }
@@ -4375,9 +3754,7 @@
         "properties": {
           "stringValue": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AssetPropertyStringValue"
-              },
+              { "$ref": "#/components/schemas/AssetPropertyStringValue" },
               {
                 "description": "The asset property value is a string. You can also specify an expression. If you use an expression, the evaluated result should be a string."
               }
@@ -4385,9 +3762,7 @@
           },
           "integerValue": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AssetPropertyIntegerValue"
-              },
+              { "$ref": "#/components/schemas/AssetPropertyIntegerValue" },
               {
                 "description": "The asset property value is an integer. You can also specify an expression. If you use an expression, the evaluated result should be an integer."
               }
@@ -4395,9 +3770,7 @@
           },
           "doubleValue": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AssetPropertyDoubleValue"
-              },
+              { "$ref": "#/components/schemas/AssetPropertyDoubleValue" },
               {
                 "description": "The asset property value is a double. You can also specify an expression. If you use an expression, the evaluated result should be a double."
               }
@@ -4405,9 +3778,7 @@
           },
           "booleanValue": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AssetPropertyBooleanValue"
-              },
+              { "$ref": "#/components/schemas/AssetPropertyBooleanValue" },
               {
                 "description": "The asset property value is a Boolean value that must be <code>TRUE</code> or <code>FALSE</code>. You can also specify an expression. If you use an expression, the evaluated result should be a Boolean value."
               }
@@ -4422,19 +3793,13 @@
         "properties": {
           "value": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AssetPropertyVariant"
-              },
-              {
-                "description": "The value to send to an asset property."
-              }
+              { "$ref": "#/components/schemas/AssetPropertyVariant" },
+              { "description": "The value to send to an asset property." }
             ]
           },
           "timestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AssetPropertyTimestamp"
-              },
+              { "$ref": "#/components/schemas/AssetPropertyTimestamp" },
               {
                 "description": "The timestamp associated with the asset property value. The default is the current event time."
               }
@@ -4442,9 +3807,7 @@
           },
           "quality": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AssetPropertyQuality"
-              },
+              { "$ref": "#/components/schemas/AssetPropertyQuality" },
               {
                 "description": "The quality of the asset property value. The value must be <code>GOOD</code>, <code>BAD</code>, or <code>UNCERTAIN</code>. You can also specify an expression."
               }
@@ -4465,9 +3828,7 @@
         "properties": {
           "jsonPath": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AttributeJsonPath"
-              },
+              { "$ref": "#/components/schemas/AttributeJsonPath" },
               {
                 "description": "<p>An expression that specifies an attribute-value pair in a JSON structure. Use this to specify an attribute from the JSON payload that is made available by the input. Inputs are derived from messages sent to AWS IoT Events (<code>BatchPutMessage</code>). Each such message contains a JSON payload. The attribute (and its paired value) specified here are available for use in the <code>condition</code> expressions used by detectors. </p> <p>Syntax: <code>&lt;field-name&gt;.&lt;field-name&gt;...</code> </p>"
               }
@@ -4476,19 +3837,9 @@
         },
         "description": "The attributes from the JSON payload that are made available by the input. Inputs are derived from messages sent to the AWS IoT Events system using <code>BatchPutMessage</code>. Each such message contains a JSON payload. Those attributes (and their paired values) specified here are available for use in the <code>condition</code> expressions used by detectors. "
       },
-      "TimerName": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 128
-      },
-      "Condition": {
-        "type": "string",
-        "maxLength": 512
-      },
-      "ContentExpression": {
-        "type": "string",
-        "minLength": 1
-      },
+      "TimerName": { "type": "string", "minLength": 1, "maxLength": 128 },
+      "Condition": { "type": "string", "maxLength": 512 },
+      "ContentExpression": { "type": "string", "minLength": 1 },
       "DetectorModelName": {
         "type": "string",
         "pattern": "^[a-zA-Z0-9_-]+$",
@@ -4501,19 +3852,13 @@
         "properties": {
           "states": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/States"
-              },
-              {
-                "description": "Information about the states of the detector."
-              }
+              { "$ref": "#/components/schemas/States" },
+              { "description": "Information about the states of the detector." }
             ]
           },
           "initialStateName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StateName"
-              },
+              { "$ref": "#/components/schemas/StateName" },
               {
                 "description": "The state that is entered at the creation of each detector (instance)."
               }
@@ -4522,68 +3867,42 @@
         },
         "description": "Information that defines how a detector operates."
       },
-      "DetectorModelDescription": {
-        "type": "string",
-        "maxLength": 128
-      },
+      "DetectorModelDescription": { "type": "string", "maxLength": 128 },
       "Tags": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Tag"
-        }
+        "items": { "$ref": "#/components/schemas/Tag" }
       },
-      "EvaluationMethod": {
-        "type": "string",
-        "enum": ["BATCH", "SERIAL"]
-      },
+      "EvaluationMethod": { "type": "string", "enum": ["BATCH", "SERIAL"] },
       "DetectorModelConfiguration": {
         "type": "object",
         "properties": {
           "detectorModelName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DetectorModelName"
-              },
-              {
-                "description": "The name of the detector model."
-              }
+              { "$ref": "#/components/schemas/DetectorModelName" },
+              { "description": "The name of the detector model." }
             ]
           },
           "detectorModelVersion": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DetectorModelVersion"
-              },
-              {
-                "description": "The version of the detector model."
-              }
+              { "$ref": "#/components/schemas/DetectorModelVersion" },
+              { "description": "The version of the detector model." }
             ]
           },
           "detectorModelDescription": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DetectorModelDescription"
-              },
-              {
-                "description": "A brief description of the detector model."
-              }
+              { "$ref": "#/components/schemas/DetectorModelDescription" },
+              { "description": "A brief description of the detector model." }
             ]
           },
           "detectorModelArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DetectorModelArn"
-              },
-              {
-                "description": "The ARN of the detector model."
-              }
+              { "$ref": "#/components/schemas/DetectorModelArn" },
+              { "description": "The ARN of the detector model." }
             ]
           },
           "roleArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AmazonResourceName"
-              },
+              { "$ref": "#/components/schemas/AmazonResourceName" },
               {
                 "description": "The ARN of the role that grants permission to AWS IoT Events to perform its operations."
               }
@@ -4591,39 +3910,25 @@
           },
           "creationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "The time the detector model was created."
-              }
+              { "$ref": "#/components/schemas/Timestamp" },
+              { "description": "The time the detector model was created." }
             ]
           },
           "lastUpdateTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "The time the detector model was last updated."
-              }
+              { "$ref": "#/components/schemas/Timestamp" },
+              { "description": "The time the detector model was last updated." }
             ]
           },
           "status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DetectorModelVersionStatus"
-              },
-              {
-                "description": "The status of the detector model."
-              }
+              { "$ref": "#/components/schemas/DetectorModelVersionStatus" },
+              { "description": "The status of the detector model." }
             ]
           },
           "key": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AttributeJsonPath"
-              },
+              { "$ref": "#/components/schemas/AttributeJsonPath" },
               {
                 "description": "<p>The value used to identify a detector instance. When a device or system sends input, a new detector instance with a unique key value is created. AWS IoT Events can continue to route input to its corresponding detector instance based on this identifying information. </p> <p>This parameter uses a JSON-path expression to select the attribute-value pair in the message payload that is used for identification. To route the message to the correct detector instance, the device must send a message payload that contains the same attribute-value.</p>"
               }
@@ -4631,9 +3936,7 @@
           },
           "evaluationMethod": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EvaluationMethod"
-              },
+              { "$ref": "#/components/schemas/EvaluationMethod" },
               {
                 "description": "Information about the order in which events are evaluated and how actions are executed. "
               }
@@ -4648,19 +3951,14 @@
         "minLength": 1,
         "maxLength": 128
       },
-      "InputDescription": {
-        "type": "string",
-        "maxLength": 128
-      },
+      "InputDescription": { "type": "string", "maxLength": 128 },
       "InputDefinition": {
         "type": "object",
         "required": ["attributes"],
         "properties": {
           "attributes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Attributes"
-              },
+              { "$ref": "#/components/schemas/Attributes" },
               {
                 "description": "The attributes from the JSON payload that are made available by the input. Inputs are derived from messages sent to the AWS IoT Events system using <code>BatchPutMessage</code>. Each such message contains a JSON payload, and those attributes (and their paired values) specified here are available for use in the <code>condition</code> expressions used by detectors that monitor this input. "
               }
@@ -4681,70 +3979,44 @@
         "properties": {
           "inputName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InputName"
-              },
-              {
-                "description": "The name of the input."
-              }
+              { "$ref": "#/components/schemas/InputName" },
+              { "description": "The name of the input." }
             ]
           },
           "inputDescription": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InputDescription"
-              },
-              {
-                "description": "A brief description of the input."
-              }
+              { "$ref": "#/components/schemas/InputDescription" },
+              { "description": "A brief description of the input." }
             ]
           },
           "inputArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InputArn"
-              },
-              {
-                "description": "The ARN of the input."
-              }
+              { "$ref": "#/components/schemas/InputArn" },
+              { "description": "The ARN of the input." }
             ]
           },
           "creationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "The time the input was created."
-              }
+              { "$ref": "#/components/schemas/Timestamp" },
+              { "description": "The time the input was created." }
             ]
           },
           "lastUpdateTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "The last time the input was updated."
-              }
+              { "$ref": "#/components/schemas/Timestamp" },
+              { "description": "The last time the input was updated." }
             ]
           },
           "status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InputStatus"
-              },
-              {
-                "description": "The status of the input."
-              }
+              { "$ref": "#/components/schemas/InputStatus" },
+              { "description": "The status of the input." }
             ]
           }
         },
         "description": "Information about the configuration of an input."
       },
-      "DeliveryStreamName": {
-        "type": "string"
-      },
+      "DeliveryStreamName": { "type": "string" },
       "DetectorModelVersion": {
         "type": "string",
         "minLength": 1,
@@ -4755,9 +4027,7 @@
         "properties": {
           "detectorModelDefinition": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DetectorModelDefinition"
-              },
+              { "$ref": "#/components/schemas/DetectorModelDefinition" },
               {
                 "description": "Information that defines how a detector operates."
               }
@@ -4765,9 +4035,7 @@
           },
           "detectorModelConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DetectorModelConfiguration"
-              },
+              { "$ref": "#/components/schemas/DetectorModelConfiguration" },
               {
                 "description": "Information about how the detector is configured."
               }
@@ -4781,9 +4049,7 @@
         "properties": {
           "inputConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InputConfiguration"
-              },
+              { "$ref": "#/components/schemas/InputConfiguration" },
               {
                 "description": "Information about the configuration of an input."
               }
@@ -4791,12 +4057,8 @@
           },
           "inputDefinition": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InputDefinition"
-              },
-              {
-                "description": "The definition of the input."
-              }
+              { "$ref": "#/components/schemas/InputDefinition" },
+              { "description": "The definition of the input." }
             ]
           }
         },
@@ -4808,9 +4070,7 @@
         "properties": {
           "roleArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AmazonResourceName"
-              },
+              { "$ref": "#/components/schemas/AmazonResourceName" },
               {
                 "description": "The ARN of the role that grants permission to AWS IoT Events to perform logging."
               }
@@ -4818,19 +4078,13 @@
           },
           "level": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LoggingLevel"
-              },
-              {
-                "description": "The logging level."
-              }
+              { "$ref": "#/components/schemas/LoggingLevel" },
+              { "description": "The logging level." }
             ]
           },
           "enabled": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LoggingEnabled"
-              },
+              { "$ref": "#/components/schemas/LoggingEnabled" },
               {
                 "description": "If TRUE, logging is enabled for AWS IoT Events."
               }
@@ -4838,9 +4092,7 @@
           },
           "detectorDebugOptions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DetectorDebugOptions"
-              },
+              { "$ref": "#/components/schemas/DetectorDebugOptions" },
               {
                 "description": "Information that identifies those detector models and their detectors (instances) for which the logging level is given."
               }
@@ -4861,19 +4113,13 @@
         "properties": {
           "detectorModelName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DetectorModelName"
-              },
-              {
-                "description": "The name of the detector model."
-              }
+              { "$ref": "#/components/schemas/DetectorModelName" },
+              { "description": "The name of the detector model." }
             ]
           },
           "keyValue": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/KeyValue"
-              },
+              { "$ref": "#/components/schemas/KeyValue" },
               {
                 "description": "The value of the input attribute key used to create the detector (the instance of the detector model)."
               }
@@ -4882,13 +4128,8 @@
         },
         "description": "The detector model and the specific detectors (instances) for which the logging level is given."
       },
-      "DetectorModelArn": {
-        "type": "string"
-      },
-      "Timestamp": {
-        "type": "string",
-        "format": "date-time"
-      },
+      "DetectorModelArn": { "type": "string" },
+      "Timestamp": { "type": "string", "format": "date-time" },
       "DetectorModelVersionStatus": {
         "type": "string",
         "enum": [
@@ -4906,32 +4147,20 @@
         "properties": {
           "detectorModelName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DetectorModelName"
-              },
-              {
-                "description": "The name of the detector model."
-              }
+              { "$ref": "#/components/schemas/DetectorModelName" },
+              { "description": "The name of the detector model." }
             ]
           },
           "detectorModelDescription": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DetectorModelDescription"
-              },
-              {
-                "description": "A brief description of the detector model."
-              }
+              { "$ref": "#/components/schemas/DetectorModelDescription" },
+              { "description": "A brief description of the detector model." }
             ]
           },
           "creationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "The time the detector model was created."
-              }
+              { "$ref": "#/components/schemas/Timestamp" },
+              { "description": "The time the detector model was created." }
             ]
           }
         },
@@ -4939,48 +4168,32 @@
       },
       "DetectorModelSummaries": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DetectorModelSummary"
-        }
+        "items": { "$ref": "#/components/schemas/DetectorModelSummary" }
       },
       "DetectorModelVersionSummary": {
         "type": "object",
         "properties": {
           "detectorModelName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DetectorModelName"
-              },
-              {
-                "description": "The name of the detector model."
-              }
+              { "$ref": "#/components/schemas/DetectorModelName" },
+              { "description": "The name of the detector model." }
             ]
           },
           "detectorModelVersion": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DetectorModelVersion"
-              },
-              {
-                "description": "The ID of the detector model version."
-              }
+              { "$ref": "#/components/schemas/DetectorModelVersion" },
+              { "description": "The ID of the detector model version." }
             ]
           },
           "detectorModelArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DetectorModelArn"
-              },
-              {
-                "description": "The ARN of the detector model version."
-              }
+              { "$ref": "#/components/schemas/DetectorModelArn" },
+              { "description": "The ARN of the detector model version." }
             ]
           },
           "roleArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AmazonResourceName"
-              },
+              { "$ref": "#/components/schemas/AmazonResourceName" },
               {
                 "description": "The ARN of the role that grants the detector model permission to perform its tasks."
               }
@@ -4988,9 +4201,7 @@
           },
           "creationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The time the detector model version was created."
               }
@@ -4998,9 +4209,7 @@
           },
           "lastUpdateTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The last time the detector model version was updated."
               }
@@ -5008,19 +4217,13 @@
           },
           "status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DetectorModelVersionStatus"
-              },
-              {
-                "description": "The status of the detector model version."
-              }
+              { "$ref": "#/components/schemas/DetectorModelVersionStatus" },
+              { "description": "The status of the detector model version." }
             ]
           },
           "evaluationMethod": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EvaluationMethod"
-              },
+              { "$ref": "#/components/schemas/EvaluationMethod" },
               {
                 "description": "Information about the order in which events are evaluated and how actions are executed. "
               }
@@ -5031,34 +4234,20 @@
       },
       "DetectorModelVersionSummaries": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DetectorModelVersionSummary"
-        }
+        "items": { "$ref": "#/components/schemas/DetectorModelVersionSummary" }
       },
-      "DynamoKeyType": {
-        "type": "string"
-      },
-      "DynamoKeyField": {
-        "type": "string"
-      },
-      "DynamoKeyValue": {
-        "type": "string"
-      },
-      "DynamoOperation": {
-        "type": "string"
-      },
-      "DynamoTableName": {
-        "type": "string"
-      },
+      "DynamoKeyType": { "type": "string" },
+      "DynamoKeyField": { "type": "string" },
+      "DynamoKeyValue": { "type": "string" },
+      "DynamoOperation": { "type": "string" },
+      "DynamoTableName": { "type": "string" },
       "Payload": {
         "type": "object",
         "required": ["contentExpression", "type"],
         "properties": {
           "contentExpression": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ContentExpression"
-              },
+              { "$ref": "#/components/schemas/ContentExpression" },
               {
                 "description": "The content of the payload. You can use a string expression that includes quoted strings (<code>'&lt;string&gt;'</code>), variables (<code>$variable.&lt;variable-name&gt;</code>), input values (<code>$input.&lt;input-name&gt;.&lt;path-to-datum&gt;</code>), string concatenations, and quoted strings that contain <code>${}</code> as the content. The recommended maximum size of a content expression is 1 KB."
               }
@@ -5066,9 +4255,7 @@
           },
           "type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PayloadType"
-              },
+              { "$ref": "#/components/schemas/PayloadType" },
               {
                 "description": "The value of the payload type can be either <code>STRING</code> or <code>JSON</code>."
               }
@@ -5077,29 +4264,20 @@
         },
         "description": "<p>Information needed to configure the payload.</p> <p>By default, AWS IoT Events generates a standard payload in JSON for any action. This action payload contains all attribute-value pairs that have the information about the detector model instance and the event triggered the action. To configure the action payload, you can use <code>contentExpression</code>.</p>"
       },
-      "EventName": {
-        "type": "string",
-        "maxLength": 128
-      },
+      "EventName": { "type": "string", "maxLength": 128 },
       "Event": {
         "type": "object",
         "required": ["eventName"],
         "properties": {
           "eventName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EventName"
-              },
-              {
-                "description": "The name of the event."
-              }
+              { "$ref": "#/components/schemas/EventName" },
+              { "description": "The name of the event." }
             ]
           },
           "condition": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Condition"
-              },
+              { "$ref": "#/components/schemas/Condition" },
               {
                 "description": "Optional. The Boolean expression that, when TRUE, causes the <code>actions</code> to be performed. If not present, the actions are performed (=TRUE). If the expression result is not a Boolean value, the actions are not performed (=FALSE)."
               }
@@ -5107,12 +4285,8 @@
           },
           "actions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Actions"
-              },
-              {
-                "description": "The actions to be performed."
-              }
+              { "$ref": "#/components/schemas/Actions" },
+              { "description": "The actions to be performed." }
             ]
           }
         },
@@ -5120,17 +4294,13 @@
       },
       "Events": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Event"
-        }
+        "items": { "$ref": "#/components/schemas/Event" }
       },
       "FirehoseSeparator": {
         "type": "string",
         "pattern": "([\\n\\t])|(\\r\\n)|(,)"
       },
-      "InputArn": {
-        "type": "string"
-      },
+      "InputArn": { "type": "string" },
       "InputStatus": {
         "type": "string",
         "enum": ["CREATING", "UPDATING", "ACTIVE", "DELETING"]
@@ -5140,62 +4310,38 @@
         "properties": {
           "inputName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InputName"
-              },
-              {
-                "description": "The name of the input."
-              }
+              { "$ref": "#/components/schemas/InputName" },
+              { "description": "The name of the input." }
             ]
           },
           "inputDescription": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InputDescription"
-              },
-              {
-                "description": "A brief description of the input."
-              }
+              { "$ref": "#/components/schemas/InputDescription" },
+              { "description": "A brief description of the input." }
             ]
           },
           "inputArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InputArn"
-              },
-              {
-                "description": "The ARN of the input."
-              }
+              { "$ref": "#/components/schemas/InputArn" },
+              { "description": "The ARN of the input." }
             ]
           },
           "creationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "The time the input was created."
-              }
+              { "$ref": "#/components/schemas/Timestamp" },
+              { "description": "The time the input was created." }
             ]
           },
           "lastUpdateTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "The last time the input was updated."
-              }
+              { "$ref": "#/components/schemas/Timestamp" },
+              { "description": "The last time the input was updated." }
             ]
           },
           "status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InputStatus"
-              },
-              {
-                "description": "The status of the input."
-              }
+              { "$ref": "#/components/schemas/InputStatus" },
+              { "description": "The status of the input." }
             ]
           }
         },
@@ -5203,26 +4349,16 @@
       },
       "InputSummaries": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/InputSummary"
-        }
+        "items": { "$ref": "#/components/schemas/InputSummary" }
       },
-      "MQTTTopic": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 128
-      },
-      "NextToken": {
-        "type": "string"
-      },
+      "MQTTTopic": { "type": "string", "minLength": 1, "maxLength": 128 },
+      "NextToken": { "type": "string" },
       "OnEnterLifecycle": {
         "type": "object",
         "properties": {
           "events": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Events"
-              },
+              { "$ref": "#/components/schemas/Events" },
               {
                 "description": "Specifies the actions that are performed when the state is entered and the <code>condition</code> is <code>TRUE</code>."
               }
@@ -5236,9 +4372,7 @@
         "properties": {
           "events": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Events"
-              },
+              { "$ref": "#/components/schemas/Events" },
               {
                 "description": "Specifies the <code>actions</code> that are performed when the state is exited and the <code>condition</code> is <code>TRUE</code>."
               }
@@ -5249,18 +4383,14 @@
       },
       "TransitionEvents": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/TransitionEvent"
-        }
+        "items": { "$ref": "#/components/schemas/TransitionEvent" }
       },
       "OnInputLifecycle": {
         "type": "object",
         "properties": {
           "events": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Events"
-              },
+              { "$ref": "#/components/schemas/Events" },
               {
                 "description": "Specifies the actions performed when the <code>condition</code> evaluates to TRUE."
               }
@@ -5268,9 +4398,7 @@
           },
           "transitionEvents": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TransitionEvents"
-              },
+              { "$ref": "#/components/schemas/TransitionEvents" },
               {
                 "description": "Specifies the actions performed, and the next state entered, when a <code>condition</code> evaluates to TRUE."
               }
@@ -5279,51 +4407,30 @@
         },
         "description": "Specifies the actions performed when the <code>condition</code> evaluates to TRUE."
       },
-      "PayloadType": {
-        "type": "string",
-        "enum": ["STRING", "JSON"]
-      },
-      "QueueUrl": {
-        "type": "string"
-      },
-      "Seconds": {
-        "type": "integer",
-        "minimum": 1,
-        "maximum": 31622400
-      },
-      "VariableValue": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 1024
-      },
+      "PayloadType": { "type": "string", "enum": ["STRING", "JSON"] },
+      "QueueUrl": { "type": "string" },
+      "Seconds": { "type": "integer", "minimum": 1, "maximum": 31622400 },
+      "VariableValue": { "type": "string", "minLength": 1, "maxLength": 1024 },
       "VariableName": {
         "type": "string",
         "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$",
         "minLength": 1,
         "maxLength": 128
       },
-      "UseBase64": {
-        "type": "boolean"
-      },
+      "UseBase64": { "type": "boolean" },
       "State": {
         "type": "object",
         "required": ["stateName"],
         "properties": {
           "stateName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StateName"
-              },
-              {
-                "description": "The name of the state."
-              }
+              { "$ref": "#/components/schemas/StateName" },
+              { "description": "The name of the state." }
             ]
           },
           "onInput": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OnInputLifecycle"
-              },
+              { "$ref": "#/components/schemas/OnInputLifecycle" },
               {
                 "description": "When an input is received and the <code>condition</code> is TRUE, perform the specified <code>actions</code>."
               }
@@ -5331,9 +4438,7 @@
           },
           "onEnter": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OnEnterLifecycle"
-              },
+              { "$ref": "#/components/schemas/OnEnterLifecycle" },
               {
                 "description": "When entering this state, perform these <code>actions</code> if the <code>condition</code> is TRUE."
               }
@@ -5341,9 +4446,7 @@
           },
           "onExit": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OnExitLifecycle"
-              },
+              { "$ref": "#/components/schemas/OnExitLifecycle" },
               {
                 "description": "When exiting this state, perform these <code>actions</code> if the specified <code>condition</code> is <code>TRUE</code>."
               }
@@ -5352,30 +4455,20 @@
         },
         "description": "Information that defines a state of a detector."
       },
-      "TagValue": {
-        "type": "string",
-        "minLength": 0,
-        "maxLength": 256
-      },
+      "TagValue": { "type": "string", "minLength": 0, "maxLength": 256 },
       "TransitionEvent": {
         "type": "object",
         "required": ["eventName", "condition", "nextState"],
         "properties": {
           "eventName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EventName"
-              },
-              {
-                "description": "The name of the transition event."
-              }
+              { "$ref": "#/components/schemas/EventName" },
+              { "description": "The name of the transition event." }
             ]
           },
           "condition": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Condition"
-              },
+              { "$ref": "#/components/schemas/Condition" },
               {
                 "description": "Required. A Boolean expression that when TRUE causes the actions to be performed and the <code>nextState</code> to be entered."
               }
@@ -5383,22 +4476,14 @@
           },
           "actions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Actions"
-              },
-              {
-                "description": "The actions to be performed."
-              }
+              { "$ref": "#/components/schemas/Actions" },
+              { "description": "The actions to be performed." }
             ]
           },
           "nextState": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StateName"
-              },
-              {
-                "description": "The next state to enter."
-              }
+              { "$ref": "#/components/schemas/StateName" },
+              { "description": "The next state to enter." }
             ]
           }
         },
@@ -5409,9 +4494,7 @@
         "properties": {
           "creationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The time the alarm model was created, in the Unix epoch format."
               }
@@ -5419,9 +4502,7 @@
           },
           "alarmModelArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmModelArn"
-              },
+              { "$ref": "#/components/schemas/AlarmModelArn" },
               {
                 "description": "The ARN of the alarm model. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i>."
               }
@@ -5429,19 +4510,13 @@
           },
           "alarmModelVersion": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmModelVersion"
-              },
-              {
-                "description": "The version of the alarm model."
-              }
+              { "$ref": "#/components/schemas/AlarmModelVersion" },
+              { "description": "The version of the alarm model." }
             ]
           },
           "lastUpdateTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The time the alarm model was last updated, in the Unix epoch format."
               }
@@ -5449,9 +4524,7 @@
           },
           "status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmModelVersionStatus"
-              },
+              { "$ref": "#/components/schemas/AlarmModelVersionStatus" },
               {
                 "description": "<p>The status of the alarm model. The status can be one of the following values:</p> <ul> <li> <p> <code>ACTIVE</code> - The alarm model is active and it's ready to evaluate data.</p> </li> <li> <p> <code>ACTIVATING</code> - AWS IoT Events is activating your alarm model. Activating an alarm model can take up to a few minutes.</p> </li> <li> <p> <code>INACTIVE</code> - The alarm model is inactive, so it isn't ready to evaluate data. Check your alarm model information and update the alarm model.</p> </li> <li> <p> <code>FAILED</code> - You couldn't create or update the alarm model. Check your alarm model information and try again.</p> </li> </ul>"
               }
@@ -5465,9 +4538,7 @@
         "properties": {
           "inputProperty": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InputProperty"
-              },
+              { "$ref": "#/components/schemas/InputProperty" },
               {
                 "description": "The value on the left side of the comparison operator. You can specify an AWS IoT Events input attribute as an input property."
               }
@@ -5475,19 +4546,13 @@
           },
           "comparisonOperator": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ComparisonOperator"
-              },
-              {
-                "description": "The comparison operator."
-              }
+              { "$ref": "#/components/schemas/ComparisonOperator" },
+              { "description": "The comparison operator." }
             ]
           },
           "threshold": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Threshold"
-              },
+              { "$ref": "#/components/schemas/Threshold" },
               {
                 "description": "The value on the right side of the comparison operator. You can enter a number or specify an AWS IoT Events input attribute."
               }
@@ -5498,16 +4563,12 @@
       },
       "NotificationActions": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/NotificationAction"
-        },
+        "items": { "$ref": "#/components/schemas/NotificationAction" },
         "minItems": 1
       },
       "AlarmActions": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/AlarmAction"
-        }
+        "items": { "$ref": "#/components/schemas/AlarmAction" }
       },
       "InitializationConfiguration": {
         "type": "object",
@@ -5515,9 +4576,7 @@
         "properties": {
           "disabledOnInitialization": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DisabledOnInitialization"
-              },
+              { "$ref": "#/components/schemas/DisabledOnInitialization" },
               {
                 "description": "The value must be <code>TRUE</code> or <code>FALSE</code>. If <code>FALSE</code>, all alarm instances created based on the alarm model are activated. The default value is <code>TRUE</code>."
               }
@@ -5532,9 +4591,7 @@
         "properties": {
           "enabled": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AcknowledgeFlowEnabled"
-              },
+              { "$ref": "#/components/schemas/AcknowledgeFlowEnabled" },
               {
                 "description": "The value must be <code>TRUE</code> or <code>FALSE</code>. If <code>TRUE</code>, you receive a notification when the alarm state changes. You must choose to acknowledge the notification before the alarm state can return to <code>NORMAL</code>. If <code>FALSE</code>, you won't receive notifications. The alarm automatically changes to the <code>NORMAL</code> state when the input property value returns to the specified range."
               }
@@ -5543,18 +4600,13 @@
         },
         "description": "Specifies whether to get notified for alarm state changes."
       },
-      "DeleteAlarmModelResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "DeleteAlarmModelResponse": { "type": "object", "properties": {} },
       "DescribeAlarmModelResponse": {
         "type": "object",
         "properties": {
           "creationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The time the alarm model was created, in the Unix epoch format."
               }
@@ -5562,9 +4614,7 @@
           },
           "alarmModelArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmModelArn"
-              },
+              { "$ref": "#/components/schemas/AlarmModelArn" },
               {
                 "description": "The ARN of the alarm model. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i>."
               }
@@ -5572,19 +4622,13 @@
           },
           "alarmModelVersion": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmModelVersion"
-              },
-              {
-                "description": "The version of the alarm model."
-              }
+              { "$ref": "#/components/schemas/AlarmModelVersion" },
+              { "description": "The version of the alarm model." }
             ]
           },
           "lastUpdateTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The time the alarm model was last updated, in the Unix epoch format."
               }
@@ -5592,9 +4636,7 @@
           },
           "status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmModelVersionStatus"
-              },
+              { "$ref": "#/components/schemas/AlarmModelVersionStatus" },
               {
                 "description": "<p>The status of the alarm model. The status can be one of the following values:</p> <ul> <li> <p> <code>ACTIVE</code> - The alarm model is active and it's ready to evaluate data.</p> </li> <li> <p> <code>ACTIVATING</code> - AWS IoT Events is activating your alarm model. Activating an alarm model can take up to a few minutes.</p> </li> <li> <p> <code>INACTIVE</code> - The alarm model is inactive, so it isn't ready to evaluate data. Check your alarm model information and update the alarm model.</p> </li> <li> <p> <code>FAILED</code> - You couldn't create or update the alarm model. Check your alarm model information and try again.</p> </li> </ul>"
               }
@@ -5602,9 +4644,7 @@
           },
           "statusMessage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StatusMessage"
-              },
+              { "$ref": "#/components/schemas/StatusMessage" },
               {
                 "description": " Contains information about the status of the alarm model. "
               }
@@ -5612,29 +4652,19 @@
           },
           "alarmModelName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmModelName"
-              },
-              {
-                "description": "The name of the alarm model."
-              }
+              { "$ref": "#/components/schemas/AlarmModelName" },
+              { "description": "The name of the alarm model." }
             ]
           },
           "alarmModelDescription": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmModelDescription"
-              },
-              {
-                "description": "The description of the alarm model."
-              }
+              { "$ref": "#/components/schemas/AlarmModelDescription" },
+              { "description": "The description of the alarm model." }
             ]
           },
           "roleArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AmazonResourceName"
-              },
+              { "$ref": "#/components/schemas/AmazonResourceName" },
               {
                 "description": "The ARN of the IAM role that allows the alarm to perform actions and access AWS resources. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i>."
               }
@@ -5642,9 +4672,7 @@
           },
           "key": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AttributeJsonPath"
-              },
+              { "$ref": "#/components/schemas/AttributeJsonPath" },
               {
                 "description": "An input attribute used as a key to create an alarm. AWS IoT Events routes <a href=\"https://docs.aws.amazon.com/iotevents/latest/apireference/API_Input.html\">inputs</a> associated with this key to the alarm."
               }
@@ -5652,9 +4680,7 @@
           },
           "severity": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Severity"
-              },
+              { "$ref": "#/components/schemas/Severity" },
               {
                 "description": "A non-negative integer that reflects the severity level of the alarm."
               }
@@ -5662,19 +4688,13 @@
           },
           "alarmRule": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmRule"
-              },
-              {
-                "description": "Defines when your alarm is invoked."
-              }
+              { "$ref": "#/components/schemas/AlarmRule" },
+              { "description": "Defines when your alarm is invoked." }
             ]
           },
           "alarmNotification": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmNotification"
-              },
+              { "$ref": "#/components/schemas/AlarmNotification" },
               {
                 "description": "Contains information about one or more notification actions."
               }
@@ -5682,9 +4702,7 @@
           },
           "alarmEventActions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmEventActions"
-              },
+              { "$ref": "#/components/schemas/AlarmEventActions" },
               {
                 "description": "Contains information about one or more alarm actions."
               }
@@ -5692,9 +4710,7 @@
           },
           "alarmCapabilities": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmCapabilities"
-              },
+              { "$ref": "#/components/schemas/AlarmCapabilities" },
               {
                 "description": "Contains the configuration information of alarm state changes."
               }
@@ -5707,9 +4723,7 @@
         "properties": {
           "status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AnalysisStatus"
-              },
+              { "$ref": "#/components/schemas/AnalysisStatus" },
               {
                 "description": "<p>The status of the analysis activity. The status can be one of the following values:</p> <ul> <li> <p> <code>RUNNING</code> - AWS IoT Events is analyzing your detector model. This process can take several minutes to complete.</p> </li> <li> <p> <code>COMPLETE</code> - AWS IoT Events finished analyzing your detector model.</p> </li> <li> <p> <code>FAILED</code> - AWS IoT Events couldn't analyze your detector model. Try again later.</p> </li> </ul>"
               }
@@ -5722,9 +4736,7 @@
         "properties": {
           "analysisResults": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AnalysisResults"
-              },
+              { "$ref": "#/components/schemas/AnalysisResults" },
               {
                 "description": "Contains information about one or more analysis results."
               }
@@ -5732,9 +4744,7 @@
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "The token that you can use to return the next set of results, or <code>null</code> if there are no more results."
               }
@@ -5747,9 +4757,7 @@
         "properties": {
           "alarmModelVersionSummaries": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmModelVersionSummaries"
-              },
+              { "$ref": "#/components/schemas/AlarmModelVersionSummaries" },
               {
                 "description": "A list that summarizes each alarm model version."
               }
@@ -5757,9 +4765,7 @@
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "The token that you can use to return the next set of results, or <code>null</code> if there are no more results."
               }
@@ -5772,19 +4778,13 @@
         "properties": {
           "alarmModelSummaries": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmModelSummaries"
-              },
-              {
-                "description": "A list that summarizes each alarm model."
-              }
+              { "$ref": "#/components/schemas/AlarmModelSummaries" },
+              { "description": "A list that summarizes each alarm model." }
             ]
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "The token that you can use to return the next set of results, or <code>null</code> if there are no more results."
               }
@@ -5797,9 +4797,7 @@
         "properties": {
           "routedResources": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RoutedResources"
-              },
+              { "$ref": "#/components/schemas/RoutedResources" },
               {
                 "description": " Summary information about the routed resources. "
               }
@@ -5807,9 +4805,7 @@
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": " The token that you can use to return the next set of results, or <code>null</code> if there are no more results. "
               }
@@ -5823,9 +4819,7 @@
         "properties": {
           "inputName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InputName"
-              },
+              { "$ref": "#/components/schemas/InputName" },
               {
                 "description": " The name of the input routed to AWS IoT Events. "
               }
@@ -5855,9 +4849,7 @@
         "properties": {
           "analysisId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AnalysisId"
-              },
+              { "$ref": "#/components/schemas/AnalysisId" },
               {
                 "description": "The ID that you can use to retrieve the analysis result."
               }
@@ -5870,9 +4862,7 @@
         "properties": {
           "creationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The time the alarm model was created, in the Unix epoch format."
               }
@@ -5880,9 +4870,7 @@
           },
           "alarmModelArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmModelArn"
-              },
+              { "$ref": "#/components/schemas/AlarmModelArn" },
               {
                 "description": "The ARN of the alarm model. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i>."
               }
@@ -5890,19 +4878,13 @@
           },
           "alarmModelVersion": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmModelVersion"
-              },
-              {
-                "description": "The version of the alarm model."
-              }
+              { "$ref": "#/components/schemas/AlarmModelVersion" },
+              { "description": "The version of the alarm model." }
             ]
           },
           "lastUpdateTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The time the alarm model was last updated, in the Unix epoch format."
               }
@@ -5910,9 +4892,7 @@
           },
           "status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmModelVersionStatus"
-              },
+              { "$ref": "#/components/schemas/AlarmModelVersionStatus" },
               {
                 "description": "<p>The status of the alarm model. The status can be one of the following values:</p> <ul> <li> <p> <code>ACTIVE</code> - The alarm model is active and it's ready to evaluate data.</p> </li> <li> <p> <code>ACTIVATING</code> - AWS IoT Events is activating your alarm model. Activating an alarm model can take up to a few minutes.</p> </li> <li> <p> <code>INACTIVE</code> - The alarm model is inactive, so it isn't ready to evaluate data. Check your alarm model information and update the alarm model.</p> </li> <li> <p> <code>FAILED</code> - You couldn't create or update the alarm model. Check your alarm model information and try again.</p> </li> </ul>"
               }
@@ -5920,39 +4900,21 @@
           }
         }
       },
-      "AcknowledgeFlowEnabled": {
-        "type": "boolean"
-      },
+      "AcknowledgeFlowEnabled": { "type": "boolean" },
       "AlarmAction": {
         "type": "object",
         "properties": {
-          "sns": {
-            "$ref": "#/components/schemas/SNSTopicPublishAction"
-          },
+          "sns": { "$ref": "#/components/schemas/SNSTopicPublishAction" },
           "iotTopicPublish": {
             "$ref": "#/components/schemas/IotTopicPublishAction"
           },
-          "lambda": {
-            "$ref": "#/components/schemas/LambdaAction"
-          },
-          "iotEvents": {
-            "$ref": "#/components/schemas/IotEventsAction"
-          },
-          "sqs": {
-            "$ref": "#/components/schemas/SqsAction"
-          },
-          "firehose": {
-            "$ref": "#/components/schemas/FirehoseAction"
-          },
-          "dynamoDB": {
-            "$ref": "#/components/schemas/DynamoDBAction"
-          },
-          "dynamoDBv2": {
-            "$ref": "#/components/schemas/DynamoDBv2Action"
-          },
-          "iotSiteWise": {
-            "$ref": "#/components/schemas/IotSiteWiseAction"
-          }
+          "lambda": { "$ref": "#/components/schemas/LambdaAction" },
+          "iotEvents": { "$ref": "#/components/schemas/IotEventsAction" },
+          "sqs": { "$ref": "#/components/schemas/SqsAction" },
+          "firehose": { "$ref": "#/components/schemas/FirehoseAction" },
+          "dynamoDB": { "$ref": "#/components/schemas/DynamoDBAction" },
+          "dynamoDBv2": { "$ref": "#/components/schemas/DynamoDBv2Action" },
+          "iotSiteWise": { "$ref": "#/components/schemas/IotSiteWiseAction" }
         },
         "description": "Specifies one of the following actions to receive notifications when the alarm state changes."
       },
@@ -5961,9 +4923,7 @@
         "properties": {
           "initializationConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InitializationConfiguration"
-              },
+              { "$ref": "#/components/schemas/InitializationConfiguration" },
               {
                 "description": "Specifies the default alarm state. The configuration applies to all alarms that were created based on this alarm model."
               }
@@ -5971,9 +4931,7 @@
           },
           "acknowledgeFlow": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AcknowledgeFlow"
-              },
+              { "$ref": "#/components/schemas/AcknowledgeFlow" },
               {
                 "description": "Specifies whether to get notified for alarm state changes."
               }
@@ -5987,9 +4945,7 @@
         "properties": {
           "alarmActions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmActions"
-              },
+              { "$ref": "#/components/schemas/AlarmActions" },
               {
                 "description": "Specifies one or more supported actions to receive notifications when the alarm state changes."
               }
@@ -5998,13 +4954,8 @@
         },
         "description": "Contains information about one or more alarm actions."
       },
-      "AlarmModelArn": {
-        "type": "string"
-      },
-      "AlarmModelDescription": {
-        "type": "string",
-        "maxLength": 128
-      },
+      "AlarmModelArn": { "type": "string" },
+      "AlarmModelDescription": { "type": "string", "maxLength": 128 },
       "AlarmModelName": {
         "type": "string",
         "pattern": "^[a-zA-Z0-9_-]+$",
@@ -6016,9 +4967,7 @@
         "properties": {
           "creationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The time the alarm model was created, in the Unix epoch format."
               }
@@ -6026,22 +4975,14 @@
           },
           "alarmModelDescription": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmModelDescription"
-              },
-              {
-                "description": "The description of the alarm model."
-              }
+              { "$ref": "#/components/schemas/AlarmModelDescription" },
+              { "description": "The description of the alarm model." }
             ]
           },
           "alarmModelName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmModelName"
-              },
-              {
-                "description": "The name of the alarm model."
-              }
+              { "$ref": "#/components/schemas/AlarmModelName" },
+              { "description": "The name of the alarm model." }
             ]
           }
         },
@@ -6049,9 +4990,7 @@
       },
       "AlarmModelSummaries": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/AlarmModelSummary"
-        }
+        "items": { "$ref": "#/components/schemas/AlarmModelSummary" }
       },
       "AlarmModelVersion": {
         "type": "string",
@@ -6067,19 +5006,13 @@
         "properties": {
           "alarmModelName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmModelName"
-              },
-              {
-                "description": "The name of the alarm model."
-              }
+              { "$ref": "#/components/schemas/AlarmModelName" },
+              { "description": "The name of the alarm model." }
             ]
           },
           "alarmModelArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmModelArn"
-              },
+              { "$ref": "#/components/schemas/AlarmModelArn" },
               {
                 "description": "The ARN of the alarm model. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i>."
               }
@@ -6087,19 +5020,13 @@
           },
           "alarmModelVersion": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmModelVersion"
-              },
-              {
-                "description": "The version of the alarm model."
-              }
+              { "$ref": "#/components/schemas/AlarmModelVersion" },
+              { "description": "The version of the alarm model." }
             ]
           },
           "roleArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AmazonResourceName"
-              },
+              { "$ref": "#/components/schemas/AmazonResourceName" },
               {
                 "description": "The ARN of the IAM role that allows the alarm to perform actions and access AWS resources. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i>."
               }
@@ -6107,9 +5034,7 @@
           },
           "creationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The time the alarm model was created, in the Unix epoch format."
               }
@@ -6117,9 +5042,7 @@
           },
           "lastUpdateTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The time the alarm model was last updated, in the Unix epoch format."
               }
@@ -6127,9 +5050,7 @@
           },
           "status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AlarmModelVersionStatus"
-              },
+              { "$ref": "#/components/schemas/AlarmModelVersionStatus" },
               {
                 "description": "<p>The status of the alarm model. The status can be one of the following values:</p> <ul> <li> <p> <code>ACTIVE</code> - The alarm model is active and it's ready to evaluate data.</p> </li> <li> <p> <code>ACTIVATING</code> - AWS IoT Events is activating your alarm model. Activating an alarm model can take up to a few minutes.</p> </li> <li> <p> <code>INACTIVE</code> - The alarm model is inactive, so it isn't ready to evaluate data. Check your alarm model information and update the alarm model.</p> </li> <li> <p> <code>FAILED</code> - You couldn't create or update the alarm model. Check your alarm model information and try again.</p> </li> </ul>"
               }
@@ -6137,9 +5058,7 @@
           },
           "statusMessage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StatusMessage"
-              },
+              { "$ref": "#/components/schemas/StatusMessage" },
               {
                 "description": " Contains information about the status of the alarm model version. "
               }
@@ -6150,21 +5069,15 @@
       },
       "AlarmModelVersionSummaries": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/AlarmModelVersionSummary"
-        }
+        "items": { "$ref": "#/components/schemas/AlarmModelVersionSummary" }
       },
-      "StatusMessage": {
-        "type": "string"
-      },
+      "StatusMessage": { "type": "string" },
       "AlarmNotification": {
         "type": "object",
         "properties": {
           "notificationActions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NotificationActions"
-              },
+              { "$ref": "#/components/schemas/NotificationActions" },
               {
                 "description": "Contains the notification settings of an alarm model. The settings apply to all alarms that were created based on this alarm model."
               }
@@ -6178,9 +5091,7 @@
         "properties": {
           "simpleRule": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SimpleRule"
-              },
+              { "$ref": "#/components/schemas/SimpleRule" },
               {
                 "description": "A rule that compares an input property value to a threshold value with a comparison operator."
               }
@@ -6189,33 +5100,23 @@
         },
         "description": "Defines when your alarm is invoked."
       },
-      "AnalysisId": {
-        "type": "string"
-      },
-      "AnalysisMessage": {
-        "type": "string"
-      },
-      "AnalysisType": {
-        "type": "string"
-      },
+      "AnalysisId": { "type": "string" },
+      "AnalysisMessage": { "type": "string" },
+      "AnalysisType": { "type": "string" },
       "AnalysisResultLevel": {
         "type": "string",
         "enum": ["INFO", "WARNING", "ERROR"]
       },
       "AnalysisResultLocations": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/AnalysisResultLocation"
-        }
+        "items": { "$ref": "#/components/schemas/AnalysisResultLocation" }
       },
       "AnalysisResult": {
         "type": "object",
         "properties": {
           "type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AnalysisType"
-              },
+              { "$ref": "#/components/schemas/AnalysisType" },
               {
                 "description": "<p>The type of the analysis result. Analyses fall into the following types based on the validators used to generate the analysis result:</p> <ul> <li> <p> <code>supported-actions</code> - You must specify AWS IoT Events supported actions that work with other AWS services in a supported AWS Region.</p> </li> <li> <p> <code>service-limits</code> - Resources or API operations can't exceed service quotas (also known as limits). Update your detector model or request a quota increase.</p> </li> <li> <p> <code>structure</code> - The detector model must follow a structure that AWS IoT Events supports. </p> </li> <li> <p> <code>expression-syntax</code> - Your expression must follow the required syntax.</p> </li> <li> <p> <code>data-type</code> - Data types referenced in the detector model must be compatible.</p> </li> <li> <p> <code>referenced-data</code> - You must define the data referenced in your detector model before you can use the data.</p> </li> <li> <p> <code>referenced-resource</code> - Resources that the detector model uses must be available.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-analyze-api.html\">Running detector model analyses</a> in the <i>AWS IoT Events Developer Guide</i>.</p>"
               }
@@ -6223,9 +5124,7 @@
           },
           "level": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AnalysisResultLevel"
-              },
+              { "$ref": "#/components/schemas/AnalysisResultLevel" },
               {
                 "description": "<p>The severity level of the analysis result. Based on the severity level, analysis results fall into three general categories:</p> <ul> <li> <p> <code>INFO</code> - An information result tells you about a significant field in your detector model. This type of result usually doesn't require immediate action.</p> </li> <li> <p> <code>WARNING</code> - A warning result draws special attention to fields that might cause issues for your detector model. We recommend that you review warnings and take necessary actions before you use your detector model in production environments. Otherwise, the detector model might not work as expected.</p> </li> <li> <p> <code>ERROR</code> - An error result notifies you about a problem found in your detector model. You must fix all errors before you can publish your detector model.</p> </li> </ul>"
               }
@@ -6233,9 +5132,7 @@
           },
           "message": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AnalysisMessage"
-              },
+              { "$ref": "#/components/schemas/AnalysisMessage" },
               {
                 "description": "Contains additional information about the analysis result."
               }
@@ -6243,9 +5140,7 @@
           },
           "locations": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AnalysisResultLocations"
-              },
+              { "$ref": "#/components/schemas/AnalysisResultLocations" },
               {
                 "description": "Contains one or more locations that you can use to locate the fields in your detector model that the analysis result references."
               }
@@ -6254,17 +5149,13 @@
         },
         "description": "Contains the result of the analysis."
       },
-      "AnalysisResultLocationPath": {
-        "type": "string"
-      },
+      "AnalysisResultLocationPath": { "type": "string" },
       "AnalysisResultLocation": {
         "type": "object",
         "properties": {
           "path": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AnalysisResultLocationPath"
-              },
+              { "$ref": "#/components/schemas/AnalysisResultLocationPath" },
               {
                 "description": "A <a href=\"https://github.com/json-path/JsonPath\">JsonPath</a> expression that identifies the error field in your detector model."
               }
@@ -6275,17 +5166,13 @@
       },
       "AnalysisResults": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/AnalysisResult"
-        }
+        "items": { "$ref": "#/components/schemas/AnalysisResult" }
       },
       "AnalysisStatus": {
         "type": "string",
         "enum": ["RUNNING", "COMPLETE", "FAILED"]
       },
-      "AssetModelId": {
-        "type": "string"
-      },
+      "AssetModelId": { "type": "string" },
       "ComparisonOperator": {
         "type": "string",
         "enum": [
@@ -6297,35 +5184,21 @@
           "NOT_EQUAL"
         ]
       },
-      "Severity": {
-        "type": "integer",
-        "minimum": 0,
-        "maximum": 2147483647
-      },
-      "DisabledOnInitialization": {
-        "type": "boolean"
-      },
-      "FromEmail": {
-        "type": "string"
-      },
+      "Severity": { "type": "integer", "minimum": 0, "maximum": 2147483647 },
+      "DisabledOnInitialization": { "type": "boolean" },
+      "FromEmail": { "type": "string" },
       "EmailContent": {
         "type": "object",
         "properties": {
           "subject": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EmailSubject"
-              },
-              {
-                "description": "The subject of the email."
-              }
+              { "$ref": "#/components/schemas/EmailSubject" },
+              { "description": "The subject of the email." }
             ]
           },
           "additionalMessage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NotificationAdditionalMessage"
-              },
+              { "$ref": "#/components/schemas/NotificationAdditionalMessage" },
               {
                 "description": "The message that you want to send. The message can be up to 200 characters."
               }
@@ -6339,9 +5212,7 @@
         "properties": {
           "to": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RecipientDetails"
-              },
+              { "$ref": "#/components/schemas/RecipientDetails" },
               {
                 "description": "Specifies one or more recipients who receive the email."
               }
@@ -6356,9 +5227,7 @@
         "properties": {
           "from": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FromEmail"
-              },
+              { "$ref": "#/components/schemas/FromEmail" },
               {
                 "description": "<p>The email address that sends emails.</p> <important> <p>If you use the AWS IoT Events managed AWS Lambda function to manage your emails, you must <a href=\"https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses.html\">verify the email address that sends emails in Amazon SES</a>.</p> </important>"
               }
@@ -6366,19 +5235,13 @@
           },
           "content": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EmailContent"
-              },
-              {
-                "description": "Contains the subject and message of an email."
-              }
+              { "$ref": "#/components/schemas/EmailContent" },
+              { "description": "Contains the subject and message of an email." }
             ]
           },
           "recipients": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EmailRecipients"
-              },
+              { "$ref": "#/components/schemas/EmailRecipients" },
               {
                 "description": "<p>Contains the information of one or more recipients who receive the emails.</p> <important> <p>You must <a href=\"https://docs.aws.amazon.com/singlesignon/latest/userguide/addusers.html\">add the users that receive emails to your AWS SSO store</a>.</p> </important>"
               }
@@ -6389,51 +5252,31 @@
       },
       "EmailConfigurations": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/EmailConfiguration"
-        },
+        "items": { "$ref": "#/components/schemas/EmailConfiguration" },
         "minItems": 1
       },
-      "EmailSubject": {
-        "type": "string"
-      },
-      "NotificationAdditionalMessage": {
-        "type": "string"
-      },
+      "EmailSubject": { "type": "string" },
+      "NotificationAdditionalMessage": { "type": "string" },
       "RecipientDetails": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/RecipientDetail"
-        },
+        "items": { "$ref": "#/components/schemas/RecipientDetail" },
         "minItems": 1
       },
-      "IdentityStoreId": {
-        "type": "string"
-      },
-      "InputProperty": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 512
-      },
+      "IdentityStoreId": { "type": "string" },
+      "InputProperty": { "type": "string", "minLength": 1, "maxLength": 512 },
       "IotSiteWiseAssetModelPropertyIdentifier": {
         "type": "object",
         "required": ["assetModelId", "propertyId"],
         "properties": {
           "assetModelId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AssetModelId"
-              },
-              {
-                "description": " The ID of the AWS IoT SiteWise asset model. "
-              }
+              { "$ref": "#/components/schemas/AssetModelId" },
+              { "description": " The ID of the AWS IoT SiteWise asset model. " }
             ]
           },
           "propertyId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AssetPropertyId"
-              },
+              { "$ref": "#/components/schemas/AssetPropertyId" },
               {
                 "description": " The ID of the AWS IoT SiteWise asset property. "
               }
@@ -6444,24 +5287,18 @@
       },
       "RoutedResources": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/RoutedResource"
-        }
+        "items": { "$ref": "#/components/schemas/RoutedResource" }
       },
       "NotificationTargetActions": {
         "type": "object",
         "properties": {
-          "lambdaAction": {
-            "$ref": "#/components/schemas/LambdaAction"
-          }
+          "lambdaAction": { "$ref": "#/components/schemas/LambdaAction" }
         },
         "description": "Specifies an AWS Lambda function to manage alarm notifications. You can create one or use the <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/lambda-support.html\">AWS Lambda function provided by AWS IoT Events</a>."
       },
       "SMSConfigurations": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/SMSConfiguration"
-        },
+        "items": { "$ref": "#/components/schemas/SMSConfiguration" },
         "minItems": 1
       },
       "NotificationAction": {
@@ -6470,9 +5307,7 @@
         "properties": {
           "action": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NotificationTargetActions"
-              },
+              { "$ref": "#/components/schemas/NotificationTargetActions" },
               {
                 "description": "Specifies an AWS Lambda function to manage alarm notifications. You can create one or use the <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/lambda-support.html\">AWS Lambda function provided by AWS IoT Events</a>."
               }
@@ -6480,9 +5315,7 @@
           },
           "smsConfigurations": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SMSConfigurations"
-              },
+              { "$ref": "#/components/schemas/SMSConfigurations" },
               {
                 "description": "Contains the configuration information of SMS notifications."
               }
@@ -6490,9 +5323,7 @@
           },
           "emailConfigurations": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EmailConfigurations"
-              },
+              { "$ref": "#/components/schemas/EmailConfigurations" },
               {
                 "description": "Contains the configuration information of email notifications."
               }
@@ -6507,22 +5338,14 @@
         "properties": {
           "identityStoreId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IdentityStoreId"
-              },
-              {
-                "description": "The ID of the AWS SSO identity store."
-              }
+              { "$ref": "#/components/schemas/IdentityStoreId" },
+              { "description": "The ID of the AWS SSO identity store." }
             ]
           },
           "userId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SSOReferenceId"
-              },
-              {
-                "description": "The user ID."
-              }
+              { "$ref": "#/components/schemas/SSOReferenceId" },
+              { "description": "The user ID." }
             ]
           }
         },
@@ -6533,9 +5356,7 @@
         "properties": {
           "ssoIdentity": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SSOIdentity"
-              },
+              { "$ref": "#/components/schemas/SSOIdentity" },
               {
                 "description": "The AWS Single Sign-On (AWS SSO) authentication information."
               }
@@ -6544,27 +5365,19 @@
         },
         "description": "The information that identifies the recipient."
       },
-      "ResourceName": {
-        "type": "string"
-      },
+      "ResourceName": { "type": "string" },
       "RoutedResource": {
         "type": "object",
         "properties": {
           "name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceName"
-              },
-              {
-                "description": " The name of the routed resource. "
-              }
+              { "$ref": "#/components/schemas/ResourceName" },
+              { "description": " The name of the routed resource. " }
             ]
           },
           "arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AmazonResourceName"
-              },
+              { "$ref": "#/components/schemas/AmazonResourceName" },
               {
                 "description": " The ARN of the routed resource. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i>. "
               }
@@ -6573,28 +5386,20 @@
         },
         "description": " Contains information about the routed resource. "
       },
-      "SMSSenderId": {
-        "type": "string"
-      },
+      "SMSSenderId": { "type": "string" },
       "SMSConfiguration": {
         "type": "object",
         "required": ["recipients"],
         "properties": {
           "senderId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SMSSenderId"
-              },
-              {
-                "description": "The sender ID."
-              }
+              { "$ref": "#/components/schemas/SMSSenderId" },
+              { "description": "The sender ID." }
             ]
           },
           "additionalMessage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NotificationAdditionalMessage"
-              },
+              { "$ref": "#/components/schemas/NotificationAdditionalMessage" },
               {
                 "description": "The message that you want to send. The message can be up to 200 characters."
               }
@@ -6602,9 +5407,7 @@
           },
           "recipients": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RecipientDetails"
-              },
+              { "$ref": "#/components/schemas/RecipientDetails" },
               {
                 "description": "<p>Specifies one or more recipients who receive the message.</p> <important> <p>You must <a href=\"https://docs.aws.amazon.com/singlesignon/latest/userguide/addusers.html\">add the users that receive SMS messages to your AWS SSO store</a>.</p> </important>"
               }
@@ -6613,21 +5416,11 @@
         },
         "description": "Contains the configuration information of SMS notifications."
       },
-      "SSOReferenceId": {
-        "type": "string"
-      },
-      "Threshold": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 512
-      }
+      "SSOReferenceId": { "type": "string" },
+      "Threshold": { "type": "string", "minLength": 1, "maxLength": 512 }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2018-07-27",
     "endpointPrefix": "iotevents",

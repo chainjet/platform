@@ -177,9 +177,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -187,9 +185,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -197,9 +193,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -239,9 +233,7 @@
                   "channels": {
                     "description": "One or 2 channels to report to when anomalies are detected.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/Channel"
-                    },
+                    "items": { "$ref": "#/components/schemas/Channel" },
                     "minItems": 1,
                     "maxItems": 2
                   }
@@ -253,27 +245,13 @@
         "summary": "Add Notification Channels"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetNotificationConfiguration",
@@ -303,9 +281,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -313,9 +289,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -376,9 +350,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -386,9 +358,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -409,21 +379,14 @@
             "in": "query",
             "required": false,
             "description": " The end time of the time period for the returned time series values. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC. ",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "period",
             "in": "query",
             "required": false,
             "description": " The duration of the frame metrics used to return the time series values. Specify using the ISO 8601 format. The maximum period duration is one day (<code>PT24H</code> or <code>P1D</code>). ",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 64
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 64 }
           },
           {
             "name": "profilingGroupName",
@@ -442,20 +405,14 @@
             "in": "query",
             "required": false,
             "description": " The start time of the time period for the frame metrics used to return the time series values. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC. ",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "targetResolution",
             "in": "query",
             "required": false,
             "description": "<p>The requested resolution of time steps for the returned time series of values. If the requested target resolution is not available due to data not being retained we provide a best effort result by falling back to the most granular available resolution after the target resolution. There are 3 valid values. </p> <ul> <li> <p> <code>P1D</code> — 1 day </p> </li> <li> <p> <code>PT1H</code> — 1 hour </p> </li> <li> <p> <code>PT5M</code> — 5 minutes </p> </li> </ul>",
-            "schema": {
-              "type": "string",
-              "enum": ["P1D", "PT1H", "PT5M"]
-            }
+            "schema": { "type": "string", "enum": ["P1D", "PT1H", "PT5M"] }
           }
         ],
         "requestBody": {
@@ -468,9 +425,7 @@
                   "frameMetrics": {
                     "description": " The details of the metrics that are used to request a time series of values. The metric includes the name of the frame, the aggregation type to calculate the metric value for the frame, and the thread states to use to get the count for the metric value of the frame.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/FrameMetric"
-                    }
+                    "items": { "$ref": "#/components/schemas/FrameMetric" }
                   }
                 }
               }
@@ -480,27 +435,13 @@
         "summary": "Batch Get Frame Metric Data"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/profilingGroups/{profilingGroupName}/configureAgent": {
@@ -532,9 +473,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -542,9 +481,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -601,27 +538,13 @@
         "summary": "Configure Agent"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/profilingGroups#clientToken": {
@@ -663,9 +586,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -673,9 +594,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -683,9 +602,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           }
@@ -718,9 +635,7 @@
                     "properties": {
                       "profilingEnabled": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/Boolean"
-                          },
+                          { "$ref": "#/components/schemas/Boolean" },
                           {
                             "description": " A <code>Boolean</code> that specifies whether the profiling agent collects profiling data or not. Set to <code>true</code> to enable profiling. "
                           }
@@ -755,27 +670,13 @@
         "summary": "Create Profiling Group"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/profilingGroups/{profilingGroupName}": {
@@ -807,9 +708,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -817,9 +716,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -861,27 +758,13 @@
         "summary": "Delete Profiling Group"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "DescribeProfilingGroup",
@@ -911,9 +794,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -921,9 +802,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -982,9 +861,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -992,9 +869,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1002,9 +877,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -1047,9 +920,7 @@
                     "properties": {
                       "profilingEnabled": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/Boolean"
-                          },
+                          { "$ref": "#/components/schemas/Boolean" },
                           {
                             "description": " A <code>Boolean</code> that specifies whether the profiling agent collects profiling data or not. Set to <code>true</code> to enable profiling. "
                           }
@@ -1094,9 +965,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1104,9 +973,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           }
@@ -1117,20 +984,14 @@
             "in": "query",
             "required": false,
             "description": "A <code>Boolean</code> value indicating whether to only return reports from daily profiles. If set to <code>True</code>, only analysis data from daily profiles is returned. If set to <code>False</code>, analysis data is returned from smaller time windows (for example, one hour).",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": "The maximum number of results returned by <code> GetFindingsReportAccountSummary</code> in paginated output. When this parameter is used, <code>GetFindingsReportAccountSummary</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>GetFindingsReportAccountSummary</code> request with the returned <code>nextToken</code> value.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 1000
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 1000 }
           },
           {
             "name": "nextToken",
@@ -1148,27 +1009,13 @@
         "summary": "Get Findings Report Account Summary"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/profilingGroups/{profilingGroupName}/policy": {
@@ -1180,9 +1027,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetPolicyResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/GetPolicyResponse" }
               }
             }
           },
@@ -1200,9 +1045,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -1234,27 +1077,13 @@
         "summary": "Get Policy"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/profilingGroups/{profilingGroupName}/profile": {
@@ -1266,9 +1095,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetProfileResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/GetProfileResponse" }
               }
             }
           },
@@ -1286,9 +1113,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1296,9 +1121,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -1319,41 +1142,28 @@
             "in": "header",
             "required": false,
             "description": "<p> The format of the returned profiling data. The format maps to the <code>Accept</code> and <code>Content-Type</code> headers of the HTTP request. You can specify one of the following: or the default . </p> <pre><code> &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;application/json&lt;/code&gt; — standard JSON format &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;application/x-amzn-ion&lt;/code&gt; — the Amazon Ion data format. For more information, see &lt;a href=&quot;http://amzn.github.io/ion-docs/&quot;&gt;Amazon Ion&lt;/a&gt;. &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; </code></pre>",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "endTime",
             "in": "query",
             "required": false,
             "description": "<p> The end time of the requested profile. Specify using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC. </p> <p> If you specify <code>endTime</code>, then you must also specify <code>period</code> or <code>startTime</code>, but not both. </p>",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "maxDepth",
             "in": "query",
             "required": false,
             "description": " The maximum depth of the stacks in the code that is represented in the aggregated profile. For example, if CodeGuru Profiler finds a method <code>A</code>, which calls method <code>B</code>, which calls method <code>C</code>, which calls method <code>D</code>, then the depth is 4. If the <code>maxDepth</code> is set to 2, then the aggregated profile contains representations of methods <code>A</code> and <code>B</code>. ",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 10000
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 10000 }
           },
           {
             "name": "period",
             "in": "query",
             "required": false,
             "description": "<p> Used with <code>startTime</code> or <code>endTime</code> to specify the time range for the returned aggregated profile. Specify using the ISO 8601 format. For example, <code>P1DT1H1M1S</code>. </p> <pre><code> &lt;p&gt; To get the latest aggregated profile, specify only &lt;code&gt;period&lt;/code&gt;. &lt;/p&gt; </code></pre>",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 64
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 64 }
           },
           {
             "name": "profilingGroupName",
@@ -1372,36 +1182,19 @@
             "in": "query",
             "required": false,
             "description": "<p>The start time of the profile to get. Specify using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC.</p> <pre><code> &lt;p&gt; If you specify &lt;code&gt;startTime&lt;/code&gt;, then you must also specify &lt;code&gt;period&lt;/code&gt; or &lt;code&gt;endTime&lt;/code&gt;, but not both. &lt;/p&gt; </code></pre>",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           }
         ],
         "summary": "Get Profile"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/internal/profilingGroups/{profilingGroupName}/recommendations#endTime&startTime": {
@@ -1433,9 +1226,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1443,9 +1234,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -1466,10 +1255,7 @@
             "in": "query",
             "required": true,
             "description": " The start time of the profile to get analysis data about. You must specify <code>startTime</code> and <code>endTime</code>. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC. ",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "locale",
@@ -1498,36 +1284,19 @@
             "in": "query",
             "required": true,
             "description": " The end time of the profile to get analysis data about. You must specify <code>startTime</code> and <code>endTime</code>. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC. ",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           }
         ],
         "summary": "Get Recommendations"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/internal/profilingGroups/{profilingGroupName}/findingsReports#endTime&startTime": {
@@ -1559,9 +1328,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1569,9 +1336,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -1592,30 +1357,21 @@
             "in": "query",
             "required": false,
             "description": "A <code>Boolean</code> value indicating whether to only return reports from daily profiles. If set to <code>True</code>, only analysis data from daily profiles is returned. If set to <code>False</code>, analysis data is returned from smaller time windows (for example, one hour).",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "name": "endTime",
             "in": "query",
             "required": true,
             "description": " The end time of the profile to get analysis data about. You must specify <code>startTime</code> and <code>endTime</code>. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC. ",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": "The maximum number of report results returned by <code>ListFindingsReports</code> in paginated output. When this parameter is used, <code>ListFindingsReports</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListFindingsReports</code> request with the returned <code>nextToken</code> value.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 1000
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 1000 }
           },
           {
             "name": "nextToken",
@@ -1646,36 +1402,19 @@
             "in": "query",
             "required": true,
             "description": " The start time of the profile to get analysis data about. You must specify <code>startTime</code> and <code>endTime</code>. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC. ",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           }
         ],
         "summary": "List Findings Reports"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/profilingGroups/{profilingGroupName}/profileTimes#endTime&period&startTime": {
@@ -1707,9 +1446,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1717,9 +1454,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -1740,21 +1475,14 @@
             "in": "query",
             "required": true,
             "description": "The end time of the time range from which to list the profiles.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": "The maximum number of profile time results returned by <code>ListProfileTimes</code> in paginated output. When this parameter is used, <code>ListProfileTimes</code> only returns <code>maxResults</code> results in a single page with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListProfileTimes</code> request with the returned <code>nextToken</code> value. ",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 1000
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 1000 }
           },
           {
             "name": "nextToken",
@@ -1783,10 +1511,7 @@
             "in": "query",
             "required": true,
             "description": "<p> The aggregation period. This specifies the period during which an aggregation profile collects posted agent profiles for a profiling group. There are 3 valid values. </p> <ul> <li> <p> <code>P1D</code> — 1 day </p> </li> <li> <p> <code>PT1H</code> — 1 hour </p> </li> <li> <p> <code>PT5M</code> — 5 minutes </p> </li> </ul>",
-            "schema": {
-              "type": "string",
-              "enum": ["P1D", "PT1H", "PT5M"]
-            }
+            "schema": { "type": "string", "enum": ["P1D", "PT1H", "PT5M"] }
           },
           {
             "name": "profilingGroupName",
@@ -1805,36 +1530,19 @@
             "in": "query",
             "required": true,
             "description": "The start time of the time range from which to list the profiles.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           }
         ],
         "summary": "List Profile Times"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/profilingGroups": {
@@ -1866,9 +1574,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           }
@@ -1879,20 +1585,14 @@
             "in": "query",
             "required": false,
             "description": "A <code>Boolean</code> value indicating whether to include a description. If <code>true</code>, then a list of <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html\"> <code>ProfilingGroupDescription</code> </a> objects that contain detailed information about profiling groups is returned. If <code>false</code>, then a list of profiling group names is returned.",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": "The maximum number of profiling groups results returned by <code>ListProfilingGroups</code> in paginated output. When this parameter is used, <code>ListProfilingGroups</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListProfilingGroups</code> request with the returned <code>nextToken</code> value. ",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 1000
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 1000 }
           },
           {
             "name": "nextToken",
@@ -1910,27 +1610,13 @@
         "summary": "List Profiling Groups"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/tags/{resourceArn}": {
@@ -1962,9 +1648,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1985,35 +1669,19 @@
             "in": "path",
             "required": true,
             "description": " The Amazon Resource Name (ARN) of the resource that contains the tags to return. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "List Tags For Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "TagResource",
@@ -2023,9 +1691,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TagResourceResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/TagResourceResponse" }
               }
             }
           },
@@ -2043,9 +1709,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -2066,9 +1730,7 @@
             "in": "path",
             "required": true,
             "description": " The Amazon Resource Name (ARN) of the resource that the tags are added to. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -2123,9 +1785,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -2133,9 +1793,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -2156,9 +1814,7 @@
             "in": "header",
             "required": true,
             "description": "<p> The format of the submitted profiling data. The format maps to the <code>Accept</code> and <code>Content-Type</code> headers of the HTTP request. You can specify one of the following: or the default . </p> <pre><code> &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;application/json&lt;/code&gt; — standard JSON format &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;application/x-amzn-ion&lt;/code&gt; — the Amazon Ion data format. For more information, see &lt;a href=&quot;http://amzn.github.io/ion-docs/&quot;&gt;Amazon Ion&lt;/a&gt;. &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; </code></pre>",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "profileToken",
@@ -2205,27 +1861,13 @@
         "summary": "Post Agent Profile"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/profilingGroups/{profilingGroupName}/policy/{actionGroup}": {
@@ -2257,9 +1899,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -2267,9 +1907,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -2277,9 +1915,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -2300,10 +1936,7 @@
             "in": "path",
             "required": true,
             "description": " Specifies an action group that contains permissions to add to a profiling group resource. One action group is supported, <code>agentPermissions</code>, which grants permission to perform actions required by the profiling agent, <code>ConfigureAgent</code> and <code>PostAgentProfile</code> permissions. ",
-            "schema": {
-              "type": "string",
-              "enum": ["agentPermissions"]
-            }
+            "schema": { "type": "string", "enum": ["agentPermissions"] }
           },
           {
             "name": "profilingGroupName",
@@ -2329,9 +1962,7 @@
                   "principals": {
                     "description": " A list ARNs for the roles and users you want to grant access to the profiling group. Wildcards are not are supported in the ARNs. ",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/Principal"
-                    },
+                    "items": { "$ref": "#/components/schemas/Principal" },
                     "minItems": 1,
                     "maxItems": 50
                   },
@@ -2348,27 +1979,13 @@
         "summary": "Put Permission"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/profilingGroups/{profilingGroupName}/notificationConfiguration/{channelId}": {
@@ -2400,9 +2017,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -2410,9 +2025,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -2454,27 +2067,13 @@
         "summary": "Remove Notification Channel"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/profilingGroups/{profilingGroupName}/policy/{actionGroup}#revisionId": {
@@ -2506,9 +2105,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -2516,9 +2113,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -2526,9 +2121,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -2549,10 +2142,7 @@
             "in": "path",
             "required": true,
             "description": " Specifies an action group that contains the permissions to remove from a profiling group's resource-based policy. One action group is supported, <code>agentPermissions</code>, which grants <code>ConfigureAgent</code> and <code>PostAgentProfile</code> permissions. ",
-            "schema": {
-              "type": "string",
-              "enum": ["agentPermissions"]
-            }
+            "schema": { "type": "string", "enum": ["agentPermissions"] }
           },
           {
             "name": "profilingGroupName",
@@ -2580,27 +2170,13 @@
         "summary": "Remove Permission"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/internal/profilingGroups/{profilingGroupName}/anomalies/{anomalyInstanceId}/feedback": {
@@ -2632,9 +2208,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -2642,9 +2216,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -2708,27 +2280,13 @@
         "summary": "Submit Feedback"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/tags/{resourceArn}#tagKeys": {
@@ -2760,9 +2318,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -2783,9 +2339,7 @@
             "in": "path",
             "required": true,
             "description": " The Amazon Resource Name (ARN) of the resource that contains the tags to remove. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "tagKeys",
@@ -2794,36 +2348,20 @@
             "description": " A list of tag keys. Existing tags of resources with keys in this list are removed from the specified resource. ",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/String"
-              }
+              "items": { "$ref": "#/components/schemas/String" }
             }
           }
         ],
         "summary": "Untag Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -2832,63 +2370,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -2908,9 +2432,7 @@
         "properties": {
           "notificationConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NotificationConfiguration"
-              },
+              { "$ref": "#/components/schemas/NotificationConfiguration" },
               {
                 "description": "The new notification configuration for this profiling group."
               }
@@ -2925,9 +2447,7 @@
         "properties": {
           "eventPublishers": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EventPublishers"
-              },
+              { "$ref": "#/components/schemas/EventPublishers" },
               {
                 "description": "List of publishers for different type of events that may be detected in an application from the profile. Anomaly detection is the only event publisher in Profiler."
               }
@@ -2935,9 +2455,7 @@
           },
           "id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ChannelId"
-              },
+              { "$ref": "#/components/schemas/ChannelId" },
               {
                 "description": "Unique identifier for each <code>Channel</code> in the notification configuration of a Profiling Group. A random UUID for channelId is used when adding a channel to the notification configuration if not specified in the request."
               }
@@ -2945,9 +2463,7 @@
           },
           "uri": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ChannelUri"
-              },
+              { "$ref": "#/components/schemas/ChannelUri" },
               {
                 "description": "Unique arn of the resource to be used for notifications. We support a valid SNS topic arn as a channel uri."
               }
@@ -2975,9 +2491,7 @@
         "properties": {
           "endTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": " The end time of the time period for the returned time series values. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC. "
               }
@@ -2985,9 +2499,7 @@
           },
           "endTimes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ListOfTimestamps"
-              },
+              { "$ref": "#/components/schemas/ListOfTimestamps" },
               {
                 "description": " List of instances, or time steps, in the time series. For example, if the <code>period</code> is one day (<code>PT24H)</code>), and the <code>resolution</code> is five minutes (<code>PT5M</code>), then there are 288 <code>endTimes</code> in the list that are each five minutes appart. "
               }
@@ -2995,9 +2507,7 @@
           },
           "frameMetricData": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FrameMetricData"
-              },
+              { "$ref": "#/components/schemas/FrameMetricData" },
               {
                 "description": "Details of the metrics to request a time series of values. The metric includes the name of the frame, the aggregation type to calculate the metric value for the frame, and the thread states to use to get the count for the metric value of the frame."
               }
@@ -3005,9 +2515,7 @@
           },
           "resolution": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AggregationPeriod"
-              },
+              { "$ref": "#/components/schemas/AggregationPeriod" },
               {
                 "description": "<p>Resolution or granularity of the profile data used to generate the time series. This is the value used to jump through time steps in a time series. There are 3 valid values. </p> <ul> <li> <p> <code>P1D</code> — 1 day </p> </li> <li> <p> <code>PT1H</code> — 1 hour </p> </li> <li> <p> <code>PT5M</code> — 5 minutes </p> </li> </ul>"
               }
@@ -3015,9 +2523,7 @@
           },
           "startTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": " The start time of the time period for the returned time series values. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC. "
               }
@@ -3025,9 +2531,7 @@
           },
           "unprocessedEndTimes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UnprocessedEndTimeMap"
-              },
+              { "$ref": "#/components/schemas/UnprocessedEndTimeMap" },
               {
                 "description": "List of instances which remained unprocessed. This will create a missing time step in the list of end times."
               }
@@ -3042,9 +2546,7 @@
         "properties": {
           "frameName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": " Name of the method common across the multiple occurrences of a frame in an application profile."
               }
@@ -3052,9 +2554,7 @@
           },
           "threadStates": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ThreadStates"
-              },
+              { "$ref": "#/components/schemas/ThreadStates" },
               {
                 "description": "List of application runtime thread states used to get the counts for a frame a derive a metric value."
               }
@@ -3062,9 +2562,7 @@
           },
           "type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricType"
-              },
+              { "$ref": "#/components/schemas/MetricType" },
               {
                 "description": " A type of aggregation that specifies how a metric for a frame is analyzed. The supported value <code>AggregatedRelativeTotalTime</code> is an aggregation of the metric value for one frame that is calculated across the occurrences of all frames in a profile. "
               }
@@ -3079,9 +2577,7 @@
         "properties": {
           "configuration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AgentConfiguration"
-              },
+              { "$ref": "#/components/schemas/AgentConfiguration" },
               {
                 "description": " An <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_AgentConfiguration.html\"> <code>AgentConfiguration</code> </a> object that specifies if an agent profiles or not and for how long to return profiling data. "
               }
@@ -3090,18 +2586,14 @@
         },
         "description": "The structure representing the configureAgentResponse."
       },
-      "String": {
-        "type": "string"
-      },
+      "String": { "type": "string" },
       "CreateProfilingGroupResponse": {
         "type": "object",
         "required": ["profilingGroup"],
         "properties": {
           "profilingGroup": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProfilingGroupDescription"
-              },
+              { "$ref": "#/components/schemas/ProfilingGroupDescription" },
               {
                 "description": " The returned <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html\"> <code>ProfilingGroupDescription</code> </a> object that contains information about the created profiling group. "
               }
@@ -3110,9 +2602,7 @@
         },
         "description": "The structure representing the createProfilingGroupResponse."
       },
-      "Boolean": {
-        "type": "boolean"
-      },
+      "Boolean": { "type": "boolean" },
       "DeleteProfilingGroupResponse": {
         "type": "object",
         "properties": {},
@@ -3124,9 +2614,7 @@
         "properties": {
           "profilingGroup": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProfilingGroupDescription"
-              },
+              { "$ref": "#/components/schemas/ProfilingGroupDescription" },
               {
                 "description": " The returned <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html\"> <code>ProfilingGroupDescription</code> </a> object that contains information about the requested profiling group. "
               }
@@ -3141,9 +2629,7 @@
         "properties": {
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PaginationToken"
-              },
+              { "$ref": "#/components/schemas/PaginationToken" },
               {
                 "description": "The <code>nextToken</code> value to include in a future <code>GetFindingsReportAccountSummary</code> request. When the results of a <code>GetFindingsReportAccountSummary</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return."
               }
@@ -3151,9 +2637,7 @@
           },
           "reportSummaries": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FindingsReportSummaries"
-              },
+              { "$ref": "#/components/schemas/FindingsReportSummaries" },
               {
                 "description": "The return list of <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_FindingsReportSummary.html\"> <code>FindingsReportSummary</code> </a> objects taht contain summaries of analysis results for all profiling groups in your AWS account."
               }
@@ -3168,9 +2652,7 @@
         "properties": {
           "notificationConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NotificationConfiguration"
-              },
+              { "$ref": "#/components/schemas/NotificationConfiguration" },
               {
                 "description": "The current notification configuration for this profiling group."
               }
@@ -3185,9 +2667,7 @@
         "properties": {
           "policy": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The JSON-formatted resource-based policy attached to the <code>ProfilingGroup</code>."
               }
@@ -3195,9 +2675,7 @@
           },
           "revisionId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RevisionId"
-              },
+              { "$ref": "#/components/schemas/RevisionId" },
               {
                 "description": "A unique identifier for the current revision of the returned policy."
               }
@@ -3212,12 +2690,8 @@
         "properties": {
           "profile": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AggregatedProfile"
-              },
-              {
-                "description": "Information about the profile."
-              }
+              { "$ref": "#/components/schemas/AggregatedProfile" },
+              { "description": "Information about the profile." }
             ]
           }
         },
@@ -3235,9 +2709,7 @@
         "properties": {
           "anomalies": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Anomalies"
-              },
+              { "$ref": "#/components/schemas/Anomalies" },
               {
                 "description": " The list of anomalies that the analysis has found for this profile. "
               }
@@ -3245,9 +2717,7 @@
           },
           "profileEndTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": " The end time of the profile the analysis data is about. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC. "
               }
@@ -3255,9 +2725,7 @@
           },
           "profileStartTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": " The start time of the profile the analysis data is about. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC. "
               }
@@ -3265,9 +2733,7 @@
           },
           "profilingGroupName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProfilingGroupName"
-              },
+              { "$ref": "#/components/schemas/ProfilingGroupName" },
               {
                 "description": "The name of the profiling group the analysis data is about."
               }
@@ -3275,9 +2741,7 @@
           },
           "recommendations": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Recommendations"
-              },
+              { "$ref": "#/components/schemas/Recommendations" },
               {
                 "description": "The list of recommendations that the analysis found for this profile."
               }
@@ -3292,19 +2756,13 @@
         "properties": {
           "findingsReportSummaries": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FindingsReportSummaries"
-              },
-              {
-                "description": "The list of analysis results summaries."
-              }
+              { "$ref": "#/components/schemas/FindingsReportSummaries" },
+              { "description": "The list of analysis results summaries." }
             ]
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PaginationToken"
-              },
+              { "$ref": "#/components/schemas/PaginationToken" },
               {
                 "description": "The <code>nextToken</code> value to include in a future <code>ListFindingsReports</code> request. When the results of a <code>ListFindingsReports</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return."
               }
@@ -3319,9 +2777,7 @@
         "properties": {
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PaginationToken"
-              },
+              { "$ref": "#/components/schemas/PaginationToken" },
               {
                 "description": "The <code>nextToken</code> value to include in a future <code>ListProfileTimes</code> request. When the results of a <code>ListProfileTimes</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. "
               }
@@ -3329,9 +2785,7 @@
           },
           "profileTimes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProfileTimes"
-              },
+              { "$ref": "#/components/schemas/ProfileTimes" },
               {
                 "description": "The list of start times of the available profiles for the aggregation period in the specified time range. "
               }
@@ -3346,9 +2800,7 @@
         "properties": {
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PaginationToken"
-              },
+              { "$ref": "#/components/schemas/PaginationToken" },
               {
                 "description": "The <code>nextToken</code> value to include in a future <code>ListProfilingGroups</code> request. When the results of a <code>ListProfilingGroups</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. "
               }
@@ -3356,9 +2808,7 @@
           },
           "profilingGroupNames": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProfilingGroupNames"
-              },
+              { "$ref": "#/components/schemas/ProfilingGroupNames" },
               {
                 "description": " A returned list of profiling group names. A list of the names is returned only if <code>includeDescription</code> is <code>false</code>, otherwise a list of <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html\"> <code>ProfilingGroupDescription</code> </a> objects is returned. "
               }
@@ -3366,9 +2816,7 @@
           },
           "profilingGroups": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProfilingGroupDescriptions"
-              },
+              { "$ref": "#/components/schemas/ProfilingGroupDescriptions" },
               {
                 "description": " A returned list <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html\"> <code>ProfilingGroupDescription</code> </a> objects. A list of <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html\"> <code>ProfilingGroupDescription</code> </a> objects is returned only if <code>includeDescription</code> is <code>true</code>, otherwise a list of profiling group names is returned. "
               }
@@ -3382,9 +2830,7 @@
         "properties": {
           "tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagsMap"
-              },
+              { "$ref": "#/components/schemas/TagsMap" },
               {
                 "description": " The list of tags assigned to the specified resource. This is the list of tags returned in the response. "
               }
@@ -3403,9 +2849,7 @@
         "properties": {
           "policy": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": " The JSON-formatted resource-based policy on the profiling group that includes the added permissions. "
               }
@@ -3413,9 +2857,7 @@
           },
           "revisionId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RevisionId"
-              },
+              { "$ref": "#/components/schemas/RevisionId" },
               {
                 "description": " A universally unique identifier (UUID) for the revision of the resource-based policy that includes the added permissions. The JSON-formatted policy is in the <code>policy</code> element of the response. "
               }
@@ -3424,17 +2866,13 @@
         },
         "description": "The structure representing the <code>putPermissionResponse</code>."
       },
-      "Principal": {
-        "type": "string"
-      },
+      "Principal": { "type": "string" },
       "RemoveNotificationChannelResponse": {
         "type": "object",
         "properties": {
           "notificationConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NotificationConfiguration"
-              },
+              { "$ref": "#/components/schemas/NotificationConfiguration" },
               {
                 "description": "The new notification configuration for this profiling group."
               }
@@ -3449,9 +2887,7 @@
         "properties": {
           "policy": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": " The JSON-formatted resource-based policy on the profiling group after the specified permissions were removed. "
               }
@@ -3459,9 +2895,7 @@
           },
           "revisionId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RevisionId"
-              },
+              { "$ref": "#/components/schemas/RevisionId" },
               {
                 "description": " A universally unique identifier (UUID) for the revision of the resource-based policy after the specified permissions were removed. The updated JSON-formatted policy is in the <code>policy</code> element of the response. "
               }
@@ -3475,23 +2909,15 @@
         "properties": {},
         "description": "The structure representing the SubmitFeedbackResponse."
       },
-      "TagResourceResponse": {
-        "type": "object",
-        "properties": {}
-      },
-      "UntagResourceResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "TagResourceResponse": { "type": "object", "properties": {} },
+      "UntagResourceResponse": { "type": "object", "properties": {} },
       "UpdateProfilingGroupResponse": {
         "type": "object",
         "required": ["profilingGroup"],
         "properties": {
           "profilingGroup": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProfilingGroupDescription"
-              },
+              { "$ref": "#/components/schemas/ProfilingGroupDescription" },
               {
                 "description": " A <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html\"> <code>ProfilingGroupDescription</code> </a> that contains information about the returned updated profiling group. "
               }
@@ -3502,9 +2928,7 @@
       },
       "Channels": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Channel"
-        },
+        "items": { "$ref": "#/components/schemas/Channel" },
         "minItems": 1,
         "maxItems": 2
       },
@@ -3519,9 +2943,7 @@
         "properties": {
           "channels": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Channels"
-              },
+              { "$ref": "#/components/schemas/Channels" },
               {
                 "description": "List of up to two channels to be used for sending notifications for events detected from the application profile."
               }
@@ -3532,22 +2954,16 @@
       },
       "AgentParameters": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/String"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/String" }
       },
-      "Integer": {
-        "type": "integer"
-      },
+      "Integer": { "type": "integer" },
       "AgentConfiguration": {
         "type": "object",
         "required": ["periodInSeconds", "shouldProfile"],
         "properties": {
           "agentParameters": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AgentParameters"
-              },
+              { "$ref": "#/components/schemas/AgentParameters" },
               {
                 "description": "<p> Parameters used by the profiler. The valid parameters are: </p> <ul> <li> <p> <code>MaxStackDepth</code> - The maximum depth of the stacks in the code that is represented in the profile. For example, if CodeGuru Profiler finds a method <code>A</code>, which calls method <code>B</code>, which calls method <code>C</code>, which calls method <code>D</code>, then the depth is 4. If the <code>maxDepth</code> is set to 2, then the profiler evaluates <code>A</code> and <code>B</code>. </p> </li> <li> <p> <code>MemoryUsageLimitPercent</code> - The percentage of memory that is used by the profiler.</p> </li> <li> <p> <code>MinimumTimeForReportingInMilliseconds</code> - The minimum time in milliseconds between sending reports. </p> </li> <li> <p> <code>ReportingIntervalInMilliseconds</code> - The reporting interval in milliseconds used to report profiles. </p> </li> <li> <p> <code>SamplingIntervalInMilliseconds</code> - The sampling interval in milliseconds that is used to profile samples. </p> </li> </ul>"
               }
@@ -3555,9 +2971,7 @@
           },
           "periodInSeconds": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Integer"
-              },
+              { "$ref": "#/components/schemas/Integer" },
               {
                 "description": " How long a profiling agent should send profiling data using <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ConfigureAgent.html\"> <code>ConfigureAgent</code> </a>. For example, if this is set to 300, the profiling agent calls <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ConfigureAgent.html\"> <code>ConfigureAgent</code> </a> every 5 minutes to submit the profiled data collected during that period. "
               }
@@ -3565,9 +2979,7 @@
           },
           "shouldProfile": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": " A <code>Boolean</code> that specifies whether the profiling agent collects profiling data or not. Set to <code>true</code> to enable profiling. "
               }
@@ -3582,9 +2994,7 @@
         "properties": {
           "profilingEnabled": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": " A <code>Boolean</code> that specifies whether the profiling agent collects profiling data or not. Set to <code>true</code> to enable profiling. "
               }
@@ -3593,25 +3003,18 @@
         },
         "description": " Specifies whether profiling is enabled or disabled for a profiling group. It is used by <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ConfigureAgent.html\"> <code>ConfigureAgent</code> </a> to enable or disable profiling for a profiling group. "
       },
-      "AggregatedProfile": {
-        "type": "string"
-      },
+      "AggregatedProfile": { "type": "string" },
       "AggregationPeriod": {
         "type": "string",
         "enum": ["P1D", "PT1H", "PT5M"]
       },
-      "Timestamp": {
-        "type": "string",
-        "format": "date-time"
-      },
+      "Timestamp": { "type": "string", "format": "date-time" },
       "AggregatedProfileTime": {
         "type": "object",
         "properties": {
           "period": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AggregationPeriod"
-              },
+              { "$ref": "#/components/schemas/AggregationPeriod" },
               {
                 "description": "<p> The aggregation period. This indicates the period during which an aggregation profile collects posted agent profiles for a profiling group. Use one of three valid durations that are specified using the ISO 8601 format. </p> <ul> <li> <p> <code>P1D</code> — 1 day </p> </li> <li> <p> <code>PT1H</code> — 1 hour </p> </li> <li> <p> <code>PT5M</code> — 5 minutes </p> </li> </ul>"
               }
@@ -3619,9 +3022,7 @@
           },
           "start": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "<p> The time that aggregation of posted agent profiles for a profiling group starts. The aggregation profile contains profiles posted by the agent starting at this time for an aggregation period specified by the <code>period</code> property of the <code>AggregatedProfileTime</code> object. </p> <p> Specify <code>start</code> using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC. </p>"
               }
@@ -3636,9 +3037,7 @@
         "properties": {
           "instances": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AnomalyInstances"
-              },
+              { "$ref": "#/components/schemas/AnomalyInstances" },
               {
                 "description": " A list of the instances of the detected anomalies during the requested period. "
               }
@@ -3646,9 +3045,7 @@
           },
           "metric": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Metric"
-              },
+              { "$ref": "#/components/schemas/Metric" },
               {
                 "description": " Details about the metric that the analysis used when it detected the anomaly. The metric includes the name of the frame that was analyzed with the type and thread states used to derive the metric value for that frame. "
               }
@@ -3656,9 +3053,7 @@
           },
           "reason": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The reason for which metric was flagged as anomalous."
               }
@@ -3669,15 +3064,11 @@
       },
       "Anomalies": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Anomaly"
-        }
+        "items": { "$ref": "#/components/schemas/Anomaly" }
       },
       "AnomalyInstances": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/AnomalyInstance"
-        }
+        "items": { "$ref": "#/components/schemas/AnomalyInstance" }
       },
       "Metric": {
         "type": "object",
@@ -3685,9 +3076,7 @@
         "properties": {
           "frameName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": " The name of the method that appears as a frame in any stack in a profile. "
               }
@@ -3695,9 +3084,7 @@
           },
           "threadStates": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Strings"
-              },
+              { "$ref": "#/components/schemas/Strings" },
               {
                 "description": " The list of application runtime thread states that is used to calculate the metric value for the frame. "
               }
@@ -3705,9 +3092,7 @@
           },
           "type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricType"
-              },
+              { "$ref": "#/components/schemas/MetricType" },
               {
                 "description": " A type that specifies how a metric for a frame is analyzed. The supported value <code>AggregatedRelativeTotalTime</code> is an aggregation of the metric value for one frame that is calculated across the occurences of all frames in a profile."
               }
@@ -3722,9 +3107,7 @@
         "properties": {
           "type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FeedbackType"
-              },
+              { "$ref": "#/components/schemas/FeedbackType" },
               {
                 "description": "Optional <code>Positive</code> or <code>Negative</code> feedback submitted by the user about whether the recommendation is useful or not."
               }
@@ -3739,9 +3122,7 @@
         "properties": {
           "endTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": " The end time of the period during which the metric is flagged as anomalous. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC. "
               }
@@ -3749,9 +3130,7 @@
           },
           "id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": " The universally unique identifier (UUID) of an instance of an anomaly in a metric. "
               }
@@ -3759,9 +3138,7 @@
           },
           "startTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": " The start time of the period during which the metric is flagged as anomalous. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC. "
               }
@@ -3769,9 +3146,7 @@
           },
           "userFeedback": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UserFeedback"
-              },
+              { "$ref": "#/components/schemas/UserFeedback" },
               {
                 "description": "Feedback type on a specific instance of anomaly submitted by the user."
               }
@@ -3782,15 +3157,11 @@
       },
       "ListOfTimestamps": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/TimestampStructure"
-        }
+        "items": { "$ref": "#/components/schemas/TimestampStructure" }
       },
       "FrameMetricData": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/FrameMetricDatum"
-        }
+        "items": { "$ref": "#/components/schemas/FrameMetricDatum" }
       },
       "UnprocessedEndTimeMap": {
         "type": "object",
@@ -3800,9 +3171,7 @@
       },
       "EventPublishers": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/EventPublisher"
-        },
+        "items": { "$ref": "#/components/schemas/EventPublisher" },
         "minItems": 1,
         "maxItems": 1
       },
@@ -3814,24 +3183,17 @@
         "type": "string",
         "description": "Channel URI uniquely identifies a Notification Channel. TopicArn is the uri for an SNS channel, emailId is uri for an email channel etc. Currently we only support SNS channels and thus required to be an ARN"
       },
-      "ComputePlatform": {
-        "type": "string",
-        "enum": ["AWSLambda", "Default"]
-      },
+      "ComputePlatform": { "type": "string", "enum": ["AWSLambda", "Default"] },
       "TagsMap": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/String"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/String" }
       },
       "ProfilingGroupDescription": {
         "type": "object",
         "properties": {
           "agentOrchestrationConfig": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AgentOrchestrationConfig"
-              },
+              { "$ref": "#/components/schemas/AgentOrchestrationConfig" },
               {
                 "description": " An <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_AgentOrchestrationConfig.html\"> <code>AgentOrchestrationConfig</code> </a> object that indicates if the profiling group is enabled for profiled or not. "
               }
@@ -3839,9 +3201,7 @@
           },
           "arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProfilingGroupArn"
-              },
+              { "$ref": "#/components/schemas/ProfilingGroupArn" },
               {
                 "description": "The Amazon Resource Name (ARN) identifying the profiling group resource."
               }
@@ -3849,9 +3209,7 @@
           },
           "computePlatform": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ComputePlatform"
-              },
+              { "$ref": "#/components/schemas/ComputePlatform" },
               {
                 "description": " The compute platform of the profiling group. If it is set to <code>AWSLambda</code>, then the profiled application runs on AWS Lambda. If it is set to <code>Default</code>, then the profiled application runs on a compute platform that is not AWS Lambda, such an Amazon EC2 instance, an on-premises server, or a different platform. The default is <code>Default</code>. "
               }
@@ -3859,9 +3217,7 @@
           },
           "createdAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The time when the profiling group was created. Specify using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC. "
               }
@@ -3869,19 +3225,13 @@
           },
           "name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProfilingGroupName"
-              },
-              {
-                "description": "The name of the profiling group."
-              }
+              { "$ref": "#/components/schemas/ProfilingGroupName" },
+              { "description": "The name of the profiling group." }
             ]
           },
           "profilingStatus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProfilingStatus"
-              },
+              { "$ref": "#/components/schemas/ProfilingStatus" },
               {
                 "description": " A <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingStatus.html\"> <code>ProfilingStatus</code> </a> object that includes information about the last time a profile agent pinged back, the last time a profile was received, and the aggregation period and start time for the most recent aggregated profile. "
               }
@@ -3889,9 +3239,7 @@
           },
           "tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagsMap"
-              },
+              { "$ref": "#/components/schemas/TagsMap" },
               {
                 "description": " A list of the tags that belong to this profiling group. "
               }
@@ -3899,9 +3247,7 @@
           },
           "updatedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": " The date and time when the profiling group was last updated. Specify using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC. "
               }
@@ -3910,18 +3256,9 @@
         },
         "description": " Contains information about a profiling group. "
       },
-      "Double": {
-        "type": "number",
-        "format": "double"
-      },
-      "EventPublisher": {
-        "type": "string",
-        "enum": ["AnomalyDetection"]
-      },
-      "FeedbackType": {
-        "type": "string",
-        "enum": ["Negative", "Positive"]
-      },
+      "Double": { "type": "number", "format": "double" },
+      "EventPublisher": { "type": "string", "enum": ["AnomalyDetection"] },
+      "FeedbackType": { "type": "string", "enum": ["Negative", "Positive"] },
       "FindingsReportId": {
         "type": "string",
         "pattern": "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
@@ -3931,9 +3268,7 @@
         "properties": {
           "id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FindingsReportId"
-              },
+              { "$ref": "#/components/schemas/FindingsReportId" },
               {
                 "description": "The universally unique identifier (UUID) of the recommendation report."
               }
@@ -3941,9 +3276,7 @@
           },
           "profileEndTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": " The end time of the period during which the metric is flagged as anomalous. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC. "
               }
@@ -3951,9 +3284,7 @@
           },
           "profileStartTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The start time of the profile the analysis data is about. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC."
               }
@@ -3961,9 +3292,7 @@
           },
           "profilingGroupName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The name of the profiling group that is associated with the analysis data."
               }
@@ -3971,9 +3300,7 @@
           },
           "totalNumberOfFindings": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Integer"
-              },
+              { "$ref": "#/components/schemas/Integer" },
               {
                 "description": "The total number of different recommendations that were found by the analysis."
               }
@@ -3984,15 +3311,11 @@
       },
       "FindingsReportSummaries": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/FindingsReportSummary"
-        }
+        "items": { "$ref": "#/components/schemas/FindingsReportSummary" }
       },
       "ThreadStates": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/String"
-        }
+        "items": { "$ref": "#/components/schemas/String" }
       },
       "MetricType": {
         "type": "string",
@@ -4002,14 +3325,10 @@
         "type": "object",
         "required": ["frameMetric", "values"],
         "properties": {
-          "frameMetric": {
-            "$ref": "#/components/schemas/FrameMetric"
-          },
+          "frameMetric": { "$ref": "#/components/schemas/FrameMetric" },
           "values": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FrameMetricValues"
-              },
+              { "$ref": "#/components/schemas/FrameMetricValues" },
               {
                 "description": " A list of values that are associated with a frame metric. "
               }
@@ -4020,9 +3339,7 @@
       },
       "FrameMetricValues": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Double"
-        }
+        "items": { "$ref": "#/components/schemas/Double" }
       },
       "PaginationToken": {
         "type": "string",
@@ -4036,9 +3353,7 @@
       },
       "Recommendations": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Recommendation"
-        }
+        "items": { "$ref": "#/components/schemas/Recommendation" }
       },
       "TimestampStructure": {
         "type": "object",
@@ -4046,9 +3361,7 @@
         "properties": {
           "value": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": " A <code>Timestamp</code>. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC. "
               }
@@ -4059,33 +3372,23 @@
       },
       "ProfileTimes": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ProfileTime"
-        }
+        "items": { "$ref": "#/components/schemas/ProfileTime" }
       },
       "ProfilingGroupNames": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ProfilingGroupName"
-        }
+        "items": { "$ref": "#/components/schemas/ProfilingGroupName" }
       },
       "ProfilingGroupDescriptions": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ProfilingGroupDescription"
-        }
+        "items": { "$ref": "#/components/schemas/ProfilingGroupDescription" }
       },
-      "ProfilingGroupArn": {
-        "type": "string"
-      },
+      "ProfilingGroupArn": { "type": "string" },
       "Match": {
         "type": "object",
         "properties": {
           "frameAddress": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The location in the profiling graph that contains a recommendation found during analysis."
               }
@@ -4093,19 +3396,13 @@
           },
           "targetFramesIndex": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Integer"
-              },
-              {
-                "description": "The target frame that triggered a match."
-              }
+              { "$ref": "#/components/schemas/Integer" },
+              { "description": "The target frame that triggered a match." }
             ]
           },
           "thresholdBreachValue": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Double"
-              },
+              { "$ref": "#/components/schemas/Double" },
               {
                 "description": "The value in the profile data that exceeded the recommendation threshold."
               }
@@ -4116,21 +3413,15 @@
       },
       "Matches": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Match"
-        }
+        "items": { "$ref": "#/components/schemas/Match" }
       },
       "Strings": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/String"
-        }
+        "items": { "$ref": "#/components/schemas/String" }
       },
       "TargetFrames": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/TargetFrame"
-        }
+        "items": { "$ref": "#/components/schemas/TargetFrame" }
       },
       "Percentage": {
         "type": "number",
@@ -4143,9 +3434,7 @@
         "properties": {
           "countersToAggregate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Strings"
-              },
+              { "$ref": "#/components/schemas/Strings" },
               {
                 "description": " A list of the different counters used to determine if there is a match. "
               }
@@ -4153,9 +3442,7 @@
           },
           "description": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The description of the recommendation. This explains a potential inefficiency in a profiled application."
               }
@@ -4163,9 +3450,7 @@
           },
           "id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The universally unique identifier (UUID) of this pattern."
               }
@@ -4173,19 +3458,13 @@
           },
           "name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": "The name for this pattern."
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "The name for this pattern." }
             ]
           },
           "resolutionSteps": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": " A string that contains the steps recommended to address the potential inefficiency. "
               }
@@ -4193,9 +3472,7 @@
           },
           "targetFrames": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TargetFrames"
-              },
+              { "$ref": "#/components/schemas/TargetFrames" },
               {
                 "description": "A list of frame names that were searched during the analysis that generated a recommendation."
               }
@@ -4203,9 +3480,7 @@
           },
           "thresholdPercent": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Percentage"
-              },
+              { "$ref": "#/components/schemas/Percentage" },
               {
                 "description": " The percentage of time an application spends in one method that triggers a recommendation. The percentage of time is the same as the percentage of the total gathered sample counts during analysis. "
               }
@@ -4219,9 +3494,7 @@
         "properties": {
           "start": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The start time of a profile. It is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC."
               }
@@ -4235,9 +3508,7 @@
         "properties": {
           "latestAgentOrchestratedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The date and time when the profiling agent most recently pinged back. Specify using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC."
               }
@@ -4245,9 +3516,7 @@
           },
           "latestAgentProfileReportedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The date and time when the most recent profile was received. Specify using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC."
               }
@@ -4255,9 +3524,7 @@
           },
           "latestAggregatedProfile": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AggregatedProfileTime"
-              },
+              { "$ref": "#/components/schemas/AggregatedProfileTime" },
               {
                 "description": " An <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_AggregatedProfileTime.html\"> <code>AggregatedProfileTime</code> </a> object that contains the aggregation period and start time for an aggregated profile. "
               }
@@ -4279,9 +3546,7 @@
         "properties": {
           "allMatchesCount": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Integer"
-              },
+              { "$ref": "#/components/schemas/Integer" },
               {
                 "description": "How many different places in the profile graph triggered a match."
               }
@@ -4289,9 +3554,7 @@
           },
           "allMatchesSum": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Double"
-              },
+              { "$ref": "#/components/schemas/Double" },
               {
                 "description": "How much of the total sample count is potentially affected."
               }
@@ -4299,9 +3562,7 @@
           },
           "endTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "End time of the profile that was used by this analysis. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC."
               }
@@ -4309,9 +3570,7 @@
           },
           "pattern": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Pattern"
-              },
+              { "$ref": "#/components/schemas/Pattern" },
               {
                 "description": "The pattern that analysis recognized in the profile to make this recommendation."
               }
@@ -4319,9 +3578,7 @@
           },
           "startTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The start time of the profile that was used by this analysis. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC."
               }
@@ -4329,12 +3586,8 @@
           },
           "topMatches": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Matches"
-              },
-              {
-                "description": "List of the matches with most impact. "
-              }
+              { "$ref": "#/components/schemas/Matches" },
+              { "description": "List of the matches with most impact. " }
             ]
           }
         },
@@ -4342,17 +3595,11 @@
       },
       "TargetFrame": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/String"
-        }
+        "items": { "$ref": "#/components/schemas/String" }
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2019-07-18",
     "endpointPrefix": "codeguru-profiler",

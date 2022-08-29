@@ -73,27 +73,13 @@
         "summary": "Get Device Registration"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/SendHeartbeat": {
@@ -101,9 +87,7 @@
         "operationId": "SendHeartbeat",
         "description": "Use to get the current status of devices registered on SageMaker Edge Manager.",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "InternalServiceException",
             "content": {
@@ -127,16 +111,12 @@
                   "AgentMetrics": {
                     "description": "For internal use. Returns a list of SageMaker Edge Manager agent operating metrics.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/EdgeMetric"
-                    }
+                    "items": { "$ref": "#/components/schemas/EdgeMetric" }
                   },
                   "Models": {
                     "description": "Returns a list of models deployed on the the device.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/Model"
-                    }
+                    "items": { "$ref": "#/components/schemas/Model" }
                   },
                   "AgentVersion": {
                     "description": "Returns the version of the agent.",
@@ -167,27 +147,13 @@
         "summary": "Send Heartbeat"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -294,63 +260,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -369,9 +321,7 @@
         "properties": {
           "DeviceRegistration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DeviceRegistration"
-              },
+              { "$ref": "#/components/schemas/DeviceRegistration" },
               {
                 "description": "Describes if the device is currently registered with SageMaker Edge Manager."
               }
@@ -379,9 +329,7 @@
           },
           "CacheTTL": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CacheTTLSeconds"
-              },
+              { "$ref": "#/components/schemas/CacheTTLSeconds" },
               {
                 "description": "The amount of time, in seconds, that the registration status is stored on the device’s cache before it is refreshed."
               }
@@ -395,42 +343,26 @@
         "properties": {
           "Dimension": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Dimension"
-              },
-              {
-                "description": "The dimension of metrics published."
-              }
+              { "$ref": "#/components/schemas/Dimension" },
+              { "description": "The dimension of metrics published." }
             ]
           },
           "MetricName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Metric"
-              },
-              {
-                "description": "Returns the name of the metric."
-              }
+              { "$ref": "#/components/schemas/Metric" },
+              { "description": "Returns the name of the metric." }
             ]
           },
           "Value": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Value"
-              },
-              {
-                "description": "Returns the value of the metric."
-              }
+              { "$ref": "#/components/schemas/Value" },
+              { "description": "Returns the value of the metric." }
             ]
           },
           "Timestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "Timestamp of when the metric was requested."
-              }
+              { "$ref": "#/components/schemas/Timestamp" },
+              { "description": "Timestamp of when the metric was requested." }
             ]
           }
         },
@@ -441,39 +373,25 @@
         "properties": {
           "ModelName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ModelName"
-              },
-              {
-                "description": "The name of the model."
-              }
+              { "$ref": "#/components/schemas/ModelName" },
+              { "description": "The name of the model." }
             ]
           },
           "ModelVersion": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Version"
-              },
-              {
-                "description": "The version of the model."
-              }
+              { "$ref": "#/components/schemas/Version" },
+              { "description": "The version of the model." }
             ]
           },
           "LatestSampleTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "The timestamp of the last data sample taken."
-              }
+              { "$ref": "#/components/schemas/Timestamp" },
+              { "description": "The timestamp of the last data sample taken." }
             ]
           },
           "LatestInference": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The timestamp of the last inference that was made."
               }
@@ -481,12 +399,8 @@
           },
           "ModelMetrics": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EdgeMetrics"
-              },
-              {
-                "description": "Information required for model metrics."
-              }
+              { "$ref": "#/components/schemas/EdgeMetrics" },
+              { "description": "Information required for model metrics." }
             ]
           }
         },
@@ -514,19 +428,11 @@
         "minLength": 4,
         "maxLength": 100
       },
-      "Value": {
-        "type": "number",
-        "format": "double"
-      },
-      "Timestamp": {
-        "type": "string",
-        "format": "date-time"
-      },
+      "Value": { "type": "number", "format": "double" },
+      "Timestamp": { "type": "string", "format": "date-time" },
       "EdgeMetrics": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/EdgeMetric"
-        }
+        "items": { "$ref": "#/components/schemas/EdgeMetric" }
       },
       "ModelName": {
         "type": "string",
@@ -542,11 +448,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2020-09-23",
     "endpointPrefix": "edge.sagemaker",

@@ -142,16 +142,12 @@
         "operationId": "AcceptInvitation",
         "description": "<p>Accepts an invitation for the member account to contribute data to a behavior graph. This operation can only be called by an invited member account. </p> <p>The request provides the ARN of behavior graph.</p> <p>The member account status in the graph must be <code>INVITED</code>.</p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -179,9 +175,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           }
@@ -208,27 +202,13 @@
         "summary": "Accept Invitation"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/graph": {
@@ -240,9 +220,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateGraphResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/CreateGraphResponse" }
               }
             }
           },
@@ -250,9 +228,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -302,27 +278,13 @@
         }
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/graph/members": {
@@ -364,9 +326,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -404,9 +364,7 @@
                   "Accounts": {
                     "description": "The list of AWS accounts to invite to become member accounts in the behavior graph. For each invited account, the account list contains the account identifier and the AWS account root user email address.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/Account"
-                    },
+                    "items": { "$ref": "#/components/schemas/Account" },
                     "minItems": 1,
                     "maxItems": 50
                   },
@@ -422,27 +380,13 @@
         "summary": "Create Members"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/graph/removal": {
@@ -450,9 +394,7 @@
         "operationId": "DeleteGraph",
         "description": "<p>Disables the specified behavior graph and queues it to be deleted. This operation removes the graph from each member account's list of behavior graphs.</p> <p> <code>DeleteGraph</code> can only be called by the master account for a behavior graph.</p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "InternalServerException",
             "content": {
@@ -477,9 +419,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           }
@@ -506,27 +446,13 @@
         "summary": "Delete Graph"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/graph/members/removal": {
@@ -548,9 +474,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -578,9 +502,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           }
@@ -602,9 +524,7 @@
                   "AccountIds": {
                     "description": "The list of AWS account identifiers for the member accounts to delete from the behavior graph.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/AccountId"
-                    },
+                    "items": { "$ref": "#/components/schemas/AccountId" },
                     "minItems": 1,
                     "maxItems": 50
                   }
@@ -616,27 +536,13 @@
         "summary": "Delete Members"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/membership/removal": {
@@ -644,16 +550,12 @@
         "operationId": "DisassociateMembership",
         "description": "Removes the member account from the specified behavior graph. This operation can only be called by a member account that has the <code>ENABLED</code> status.",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -681,9 +583,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           }
@@ -710,27 +610,13 @@
         "summary": "Disassociate Membership"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/graph/members/get": {
@@ -742,9 +628,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetMembersResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/GetMembersResponse" }
               }
             }
           },
@@ -772,9 +656,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           }
@@ -796,9 +678,7 @@
                   "AccountIds": {
                     "description": "<p>The list of AWS account identifiers for the member account for which to return member details.</p> <p>You cannot use <code>GetMembers</code> to retrieve information about member accounts that were removed from the behavior graph.</p>",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/AccountId"
-                    },
+                    "items": { "$ref": "#/components/schemas/AccountId" },
                     "minItems": 1,
                     "maxItems": 50
                   }
@@ -810,27 +690,13 @@
         "summary": "Get Members"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/graphs/list": {
@@ -842,9 +708,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListGraphsResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/ListGraphsResponse" }
               }
             }
           },
@@ -862,9 +726,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           }
@@ -873,18 +735,14 @@
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -916,27 +774,13 @@
         "summary": "List Graphs"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/invitations/list": {
@@ -968,9 +812,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           }
@@ -979,18 +821,14 @@
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -1022,27 +860,13 @@
         "summary": "List Invitations"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/graph/members/list": {
@@ -1054,9 +878,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListMembersResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/ListMembersResponse" }
               }
             }
           },
@@ -1084,9 +906,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           }
@@ -1095,18 +915,14 @@
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -1144,27 +960,13 @@
         "summary": "List Members"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/invitation/removal": {
@@ -1172,16 +974,12 @@
         "operationId": "RejectInvitation",
         "description": "Rejects an invitation to contribute the account data to a behavior graph. This operation must be called by a member account that has the <code>INVITED</code> status.",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -1209,9 +1007,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           }
@@ -1238,27 +1034,13 @@
         "summary": "Reject Invitation"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/graph/member/monitoringstate": {
@@ -1266,16 +1048,12 @@
         "operationId": "StartMonitoringMember",
         "description": "<p>Sends a request to enable data ingest for a member account that has a status of <code>ACCEPTED_BUT_DISABLED</code>.</p> <p>For valid member accounts, the status is updated as follows.</p> <ul> <li> <p>If Detective enabled the member account, then the new status is <code>ENABLED</code>.</p> </li> <li> <p>If Detective cannot enable the member account, the status remains <code>ACCEPTED_BUT_DISABLED</code>. </p> </li> </ul>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -1313,9 +1091,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           }
@@ -1349,27 +1125,13 @@
         "summary": "Start Monitoring Member"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/tags/{ResourceArn}": {
@@ -1401,9 +1163,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1433,27 +1193,13 @@
         "summary": "List Tags For Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "TagResource",
@@ -1463,9 +1209,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TagResourceResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/TagResourceResponse" }
               }
             }
           },
@@ -1483,9 +1227,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1566,9 +1308,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1601,9 +1341,7 @@
             "description": "The tag keys of the tags to remove from the behavior graph. You can remove up to 50 tags at a time.",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/TagKey"
-              },
+              "items": { "$ref": "#/components/schemas/TagKey" },
               "minItems": 1,
               "maxItems": 50
             }
@@ -1612,27 +1350,13 @@
         "summary": "Untag Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -1641,63 +1365,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -1721,12 +1431,8 @@
         "properties": {
           "GraphArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GraphArn"
-              },
-              {
-                "description": "The ARN of the new behavior graph."
-              }
+              { "$ref": "#/components/schemas/GraphArn" },
+              { "description": "The ARN of the new behavior graph." }
             ]
           }
         }
@@ -1737,9 +1443,7 @@
         "properties": {
           "Members": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MemberDetailList"
-              },
+              { "$ref": "#/components/schemas/MemberDetailList" },
               {
                 "description": "The set of member account invitation requests that Detective was able to process. This includes accounts that are being verified, that failed verification, and that passed verification and are being sent an invitation."
               }
@@ -1747,9 +1451,7 @@
           },
           "UnprocessedAccounts": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UnprocessedAccountList"
-              },
+              { "$ref": "#/components/schemas/UnprocessedAccountList" },
               {
                 "description": "The list of accounts for which Detective was unable to process the invitation request. For each account, the list provides the reason why the request could not be processed. The list includes accounts that are already member accounts in the behavior graph."
               }
@@ -1763,19 +1465,13 @@
         "properties": {
           "AccountId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccountId"
-              },
-              {
-                "description": "The account identifier of the AWS account."
-              }
+              { "$ref": "#/components/schemas/AccountId" },
+              { "description": "The account identifier of the AWS account." }
             ]
           },
           "EmailAddress": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EmailAddress"
-              },
+              { "$ref": "#/components/schemas/EmailAddress" },
               {
                 "description": "The AWS account root user email address for the AWS account."
               }
@@ -1789,9 +1485,7 @@
         "properties": {
           "AccountIds": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccountIdList"
-              },
+              { "$ref": "#/components/schemas/AccountIdList" },
               {
                 "description": "The list of AWS account identifiers for the member accounts that Detective successfully deleted from the behavior graph."
               }
@@ -1799,9 +1493,7 @@
           },
           "UnprocessedAccounts": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UnprocessedAccountList"
-              },
+              { "$ref": "#/components/schemas/UnprocessedAccountList" },
               {
                 "description": "The list of member accounts that Detective was not able to delete from the behavior graph. For each member account, provides the reason that the deletion could not be processed."
               }
@@ -1820,9 +1512,7 @@
         "properties": {
           "MemberDetails": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MemberDetailList"
-              },
+              { "$ref": "#/components/schemas/MemberDetailList" },
               {
                 "description": "The member account details that Detective is returning in response to the request."
               }
@@ -1830,9 +1520,7 @@
           },
           "UnprocessedAccounts": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UnprocessedAccountList"
-              },
+              { "$ref": "#/components/schemas/UnprocessedAccountList" },
               {
                 "description": "<p>The requested member accounts for which Detective was unable to return member details.</p> <p>For each account, provides the reason why the request could not be processed.</p>"
               }
@@ -1845,9 +1533,7 @@
         "properties": {
           "GraphList": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GraphList"
-              },
+              { "$ref": "#/components/schemas/GraphList" },
               {
                 "description": "A list of behavior graphs that the account is a master for."
               }
@@ -1855,9 +1541,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PaginationToken"
-              },
+              { "$ref": "#/components/schemas/PaginationToken" },
               {
                 "description": "If there are more behavior graphs remaining in the results, then this is the pagination token to use to request the next page of behavior graphs."
               }
@@ -1870,9 +1554,7 @@
         "properties": {
           "Invitations": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MemberDetailList"
-              },
+              { "$ref": "#/components/schemas/MemberDetailList" },
               {
                 "description": "The list of behavior graphs for which the member account has open or accepted invitations."
               }
@@ -1880,9 +1562,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PaginationToken"
-              },
+              { "$ref": "#/components/schemas/PaginationToken" },
               {
                 "description": "If there are more behavior graphs remaining in the results, then this is the pagination token to use to request the next page of behavior graphs."
               }
@@ -1895,9 +1575,7 @@
         "properties": {
           "MemberDetails": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MemberDetailList"
-              },
+              { "$ref": "#/components/schemas/MemberDetailList" },
               {
                 "description": "<p>The list of member accounts in the behavior graph.</p> <p>The results include member accounts that did not pass verification and member accounts that have not yet accepted the invitation to the behavior graph. The results do not include member accounts that were removed from the behavior graph.</p>"
               }
@@ -1905,9 +1583,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PaginationToken"
-              },
+              { "$ref": "#/components/schemas/PaginationToken" },
               {
                 "description": "If there are more member accounts remaining in the results, then this is the pagination token to use to request the next page of member accounts."
               }
@@ -1927,46 +1603,31 @@
       },
       "AccountIdList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/AccountId"
-        },
+        "items": { "$ref": "#/components/schemas/AccountId" },
         "minItems": 1,
         "maxItems": 50
       },
       "MemberDetailList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/MemberDetail"
-        }
+        "items": { "$ref": "#/components/schemas/MemberDetail" }
       },
       "UnprocessedAccountList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/UnprocessedAccount"
-        }
+        "items": { "$ref": "#/components/schemas/UnprocessedAccount" }
       },
-      "Timestamp": {
-        "type": "string",
-        "format": "date-time"
-      },
+      "Timestamp": { "type": "string", "format": "date-time" },
       "Graph": {
         "type": "object",
         "properties": {
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GraphArn"
-              },
-              {
-                "description": "The ARN of the behavior graph."
-              }
+              { "$ref": "#/components/schemas/GraphArn" },
+              { "description": "The ARN of the behavior graph." }
             ]
           },
           "CreatedTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The date and time that the behavior graph was created. The value is in milliseconds since the epoch."
               }
@@ -1977,9 +1638,7 @@
       },
       "GraphList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Graph"
-        }
+        "items": { "$ref": "#/components/schemas/Graph" }
       },
       "PaginationToken": {
         "type": "string",
@@ -2000,18 +1659,13 @@
         "type": "string",
         "enum": ["VOLUME_TOO_HIGH", "VOLUME_UNKNOWN"]
       },
-      "Percentage": {
-        "type": "number",
-        "format": "double"
-      },
+      "Percentage": { "type": "number", "format": "double" },
       "MemberDetail": {
         "type": "object",
         "properties": {
           "AccountId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccountId"
-              },
+              { "$ref": "#/components/schemas/AccountId" },
               {
                 "description": "The AWS account identifier for the member account."
               }
@@ -2019,9 +1673,7 @@
           },
           "EmailAddress": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EmailAddress"
-              },
+              { "$ref": "#/components/schemas/EmailAddress" },
               {
                 "description": "The AWS account root user email address for the member account."
               }
@@ -2029,9 +1681,7 @@
           },
           "GraphArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GraphArn"
-              },
+              { "$ref": "#/components/schemas/GraphArn" },
               {
                 "description": "The ARN of the behavior graph that the member account was invited to."
               }
@@ -2039,9 +1689,7 @@
           },
           "MasterId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccountId"
-              },
+              { "$ref": "#/components/schemas/AccountId" },
               {
                 "description": "The AWS account identifier of the master account for the behavior graph.",
                 "deprecated": true
@@ -2050,9 +1698,7 @@
           },
           "Status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MemberStatus"
-              },
+              { "$ref": "#/components/schemas/MemberStatus" },
               {
                 "description": "<p>The current membership status of the member account. The status can have one of the following values:</p> <ul> <li> <p> <code>INVITED</code> - Indicates that the member was sent an invitation but has not yet responded.</p> </li> <li> <p> <code>VERIFICATION_IN_PROGRESS</code> - Indicates that Detective is verifying that the account identifier and email address provided for the member account match. If they do match, then Detective sends the invitation. If the email address and account identifier don't match, then the member cannot be added to the behavior graph.</p> </li> <li> <p> <code>VERIFICATION_FAILED</code> - Indicates that the account and email address provided for the member account do not match, and Detective did not send an invitation to the account.</p> </li> <li> <p> <code>ENABLED</code> - Indicates that the member account accepted the invitation to contribute to the behavior graph.</p> </li> <li> <p> <code>ACCEPTED_BUT_DISABLED</code> - Indicates that the member account accepted the invitation but is prevented from contributing data to the behavior graph. <code>DisabledReason</code> provides the reason why the member account is not enabled.</p> </li> </ul> <p>Member accounts that declined an invitation or that were removed from the behavior graph are not included.</p>"
               }
@@ -2060,9 +1706,7 @@
           },
           "DisabledReason": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MemberDisabledReason"
-              },
+              { "$ref": "#/components/schemas/MemberDisabledReason" },
               {
                 "description": "<p>For member accounts with a status of <code>ACCEPTED_BUT_DISABLED</code>, the reason that the member account is not enabled.</p> <p>The reason can have one of the following values:</p> <ul> <li> <p> <code>VOLUME_TOO_HIGH</code> - Indicates that adding the member account would cause the data volume for the behavior graph to be too high.</p> </li> <li> <p> <code>VOLUME_UNKNOWN</code> - Indicates that Detective is unable to verify the data volume for the member account. This is usually because the member account is not enrolled in Amazon GuardDuty. </p> </li> </ul>"
               }
@@ -2070,9 +1714,7 @@
           },
           "InvitedTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The date and time that Detective sent the invitation to the member account. The value is in milliseconds since the epoch."
               }
@@ -2080,9 +1722,7 @@
           },
           "UpdatedTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The date and time that the member account was last updated. The value is in milliseconds since the epoch."
               }
@@ -2090,9 +1730,7 @@
           },
           "PercentOfGraphUtilization": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Percentage"
-              },
+              { "$ref": "#/components/schemas/Percentage" },
               {
                 "description": "<p>The member account data volume as a percentage of the maximum allowed data volume. 0 indicates 0 percent, and 100 indicates 100 percent.</p> <p>Note that this is not the percentage of the behavior graph data volume.</p> <p>For example, the data volume for the behavior graph is 80 GB per day. The maximum data volume is 160 GB per day. If the data volume for the member account is 40 GB per day, then <code>PercentOfGraphUtilization</code> is 25. It represents 25% of the maximum allowed data volume. </p>",
                 "deprecated": true
@@ -2101,9 +1739,7 @@
           },
           "PercentOfGraphUtilizationUpdatedTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The date and time when the graph utilization percentage was last updated.",
                 "deprecated": true
@@ -2112,9 +1748,7 @@
           },
           "AdministratorId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccountId"
-              },
+              { "$ref": "#/components/schemas/AccountId" },
               {
                 "description": "The AWS account identifier of the administrator account for the behavior graph."
               }
@@ -2122,9 +1756,7 @@
           },
           "VolumeUsageInBytes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ByteValue"
-              },
+              { "$ref": "#/components/schemas/ByteValue" },
               {
                 "description": "The data volume in bytes per day for the member account."
               }
@@ -2132,9 +1764,7 @@
           },
           "VolumeUsageUpdatedTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The data and time when the member account data volume was last updated."
               }
@@ -2143,17 +1773,13 @@
         },
         "description": "Details about a member account that was invited to contribute to a behavior graph."
       },
-      "UnprocessedReason": {
-        "type": "string"
-      },
+      "UnprocessedReason": { "type": "string" },
       "UnprocessedAccount": {
         "type": "object",
         "properties": {
           "AccountId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccountId"
-              },
+              { "$ref": "#/components/schemas/AccountId" },
               {
                 "description": "The AWS account identifier of the member account that was not processed."
               }
@@ -2161,9 +1787,7 @@
           },
           "Reason": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UnprocessedReason"
-              },
+              { "$ref": "#/components/schemas/UnprocessedReason" },
               {
                 "description": "The reason that the member account request could not be processed."
               }
@@ -2172,18 +1796,13 @@
         },
         "description": "A member account that was included in a request but for which the request could not be processed."
       },
-      "TagValue": {
-        "type": "string",
-        "maxLength": 256
-      },
+      "TagValue": { "type": "string", "maxLength": 256 },
       "ListTagsForResourceResponse": {
         "type": "object",
         "properties": {
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagMap"
-              },
+              { "$ref": "#/components/schemas/TagMap" },
               {
                 "description": "The tag values that are assigned to the behavior graph. The request returns up to 50 tag values."
               }
@@ -2191,38 +1810,24 @@
           }
         }
       },
-      "TagResourceResponse": {
-        "type": "object",
-        "properties": {}
-      },
-      "UntagResourceResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "TagResourceResponse": { "type": "object", "properties": {} },
+      "UntagResourceResponse": { "type": "object", "properties": {} },
       "TagKey": {
         "type": "string",
         "pattern": "^(?!aws:)[a-zA-Z+-=._:/]+$",
         "minLength": 1,
         "maxLength": 128
       },
-      "ByteValue": {
-        "type": "integer"
-      },
+      "ByteValue": { "type": "integer" },
       "TagMap": {
         "type": "object",
         "minProperties": 1,
         "maxProperties": 50,
-        "additionalProperties": {
-          "$ref": "#/components/schemas/TagValue"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/TagValue" }
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2018-10-26",
     "endpointPrefix": "api.detective",

@@ -35,9 +35,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -65,9 +63,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -78,18 +74,14 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "backendEnvironmentName",
             "in": "path",
             "required": true,
             "description": "The name of the backend environment.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -112,27 +104,13 @@
         "summary": "Clone Backend"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend": {
@@ -154,9 +132,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -184,9 +160,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -200,10 +174,7 @@
                 "type": "object",
                 "required": ["appId", "appName", "backendEnvironmentName"],
                 "properties": {
-                  "appId": {
-                    "description": "The app ID.",
-                    "type": "string"
-                  },
+                  "appId": { "description": "The app ID.", "type": "string" },
                   "appName": {
                     "description": "The name of the app.",
                     "type": "string"
@@ -229,27 +200,13 @@
         "summary": "Create Backend"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/api": {
@@ -271,9 +228,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -301,9 +256,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -314,9 +267,7 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -325,7 +276,11 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["backendEnvironmentName", "resourceConfig", "resourceName"],
+                "required": [
+                  "backendEnvironmentName",
+                  "resourceConfig",
+                  "resourceName"
+                ],
                 "properties": {
                   "backendEnvironmentName": {
                     "description": "The name of the backend environment.",
@@ -341,22 +296,16 @@
                             "$ref": "#/components/schemas/ListOfBackendAPIAuthType"
                           },
                           {
-                            "xml": {
-                              "name": "additionalAuthTypes"
-                            },
+                            "xml": { "name": "additionalAuthTypes" },
                             "description": "Additional authentication methods used to interact with your data models."
                           }
                         ]
                       },
                       "ApiName": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "apiName"
-                            },
+                            "xml": { "name": "apiName" },
                             "description": "The API name used to interact with the data model, configured as a part of your Amplify project."
                           }
                         ]
@@ -367,48 +316,34 @@
                             "$ref": "#/components/schemas/BackendAPIConflictResolution"
                           },
                           {
-                            "xml": {
-                              "name": "conflictResolution"
-                            },
+                            "xml": { "name": "conflictResolution" },
                             "description": "The conflict resolution strategy for your data stored in the data models."
                           }
                         ]
                       },
                       "DefaultAuthType": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/BackendAPIAuthType" },
                           {
-                            "$ref": "#/components/schemas/BackendAPIAuthType"
-                          },
-                          {
-                            "xml": {
-                              "name": "defaultAuthType"
-                            },
+                            "xml": { "name": "defaultAuthType" },
                             "description": "The default authentication type for interacting with the configured data models in your Amplify project."
                           }
                         ]
                       },
                       "Service": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "service"
-                            },
+                            "xml": { "name": "service" },
                             "description": "The service used to provision and interact with the data model."
                           }
                         ]
                       },
                       "TransformSchema": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "transformSchema"
-                            },
+                            "xml": { "name": "transformSchema" },
                             "description": "The definition of the data model in the annotated transform of the GraphQL schema."
                           }
                         ]
@@ -427,27 +362,13 @@
         "summary": "Create Backend API"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/auth": {
@@ -469,9 +390,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -499,9 +418,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -512,9 +429,7 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -523,7 +438,11 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["backendEnvironmentName", "resourceConfig", "resourceName"],
+                "required": [
+                  "backendEnvironmentName",
+                  "resourceConfig",
+                  "resourceName"
+                ],
                 "properties": {
                   "backendEnvironmentName": {
                     "description": "The name of the backend environment.",
@@ -535,13 +454,9 @@
                     "properties": {
                       "AuthResources": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/AuthResources" },
                           {
-                            "$ref": "#/components/schemas/AuthResources"
-                          },
-                          {
-                            "xml": {
-                              "name": "authResources"
-                            },
+                            "xml": { "name": "authResources" },
                             "description": "Defines whether you want to configure only authentication or both authentication and authorization settings."
                           }
                         ]
@@ -552,22 +467,16 @@
                             "$ref": "#/components/schemas/CreateBackendAuthIdentityPoolConfig"
                           },
                           {
-                            "xml": {
-                              "name": "identityPoolConfigs"
-                            },
+                            "xml": { "name": "identityPoolConfigs" },
                             "description": "Describes the authorization configuration for the Amazon Cognito identity pool, provisioned as a part of your auth resource in the Amplify project."
                           }
                         ]
                       },
                       "Service": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/Service" },
                           {
-                            "$ref": "#/components/schemas/Service"
-                          },
-                          {
-                            "xml": {
-                              "name": "service"
-                            },
+                            "xml": { "name": "service" },
                             "description": "Defines the service name to use when configuring an authentication resource in your Amplify project."
                           }
                         ]
@@ -578,9 +487,7 @@
                             "$ref": "#/components/schemas/CreateBackendAuthUserPoolConfig"
                           },
                           {
-                            "xml": {
-                              "name": "userPoolConfigs"
-                            },
+                            "xml": { "name": "userPoolConfigs" },
                             "description": "Describes authentication configuration for the Amazon Cognito user pool, provisioned as a part of your auth resource in the Amplify project."
                           }
                         ]
@@ -599,27 +506,13 @@
         "summary": "Create Backend Auth"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/config": {
@@ -641,9 +534,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -671,9 +562,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -684,9 +573,7 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -708,27 +595,13 @@
         "summary": "Create Backend Config"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/challenge": {
@@ -740,9 +613,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateTokenResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/CreateTokenResponse" }
               }
             }
           },
@@ -750,9 +621,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -780,9 +649,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -793,35 +660,19 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Create Token"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/environments/{backendEnvironmentName}/remove": {
@@ -843,9 +694,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -873,9 +722,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -886,44 +733,26 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "backendEnvironmentName",
             "in": "path",
             "required": true,
             "description": "The name of the backend environment.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Delete Backend"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/api/{backendEnvironmentName}/remove": {
@@ -945,9 +774,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -975,9 +802,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -988,18 +813,14 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "backendEnvironmentName",
             "in": "path",
             "required": true,
             "description": "The name of the backend environment.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1020,22 +841,16 @@
                             "$ref": "#/components/schemas/ListOfBackendAPIAuthType"
                           },
                           {
-                            "xml": {
-                              "name": "additionalAuthTypes"
-                            },
+                            "xml": { "name": "additionalAuthTypes" },
                             "description": "Additional authentication methods used to interact with your data models."
                           }
                         ]
                       },
                       "ApiName": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "apiName"
-                            },
+                            "xml": { "name": "apiName" },
                             "description": "The API name used to interact with the data model, configured as a part of your Amplify project."
                           }
                         ]
@@ -1046,48 +861,34 @@
                             "$ref": "#/components/schemas/BackendAPIConflictResolution"
                           },
                           {
-                            "xml": {
-                              "name": "conflictResolution"
-                            },
+                            "xml": { "name": "conflictResolution" },
                             "description": "The conflict resolution strategy for your data stored in the data models."
                           }
                         ]
                       },
                       "DefaultAuthType": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/BackendAPIAuthType" },
                           {
-                            "$ref": "#/components/schemas/BackendAPIAuthType"
-                          },
-                          {
-                            "xml": {
-                              "name": "defaultAuthType"
-                            },
+                            "xml": { "name": "defaultAuthType" },
                             "description": "The default authentication type for interacting with the configured data models in your Amplify project."
                           }
                         ]
                       },
                       "Service": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "service"
-                            },
+                            "xml": { "name": "service" },
                             "description": "The service used to provision and interact with the data model."
                           }
                         ]
                       },
                       "TransformSchema": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "transformSchema"
-                            },
+                            "xml": { "name": "transformSchema" },
                             "description": "The definition of the data model in the annotated transform of the GraphQL schema."
                           }
                         ]
@@ -1106,27 +907,13 @@
         "summary": "Delete Backend API"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/auth/{backendEnvironmentName}/remove": {
@@ -1148,9 +935,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1178,9 +963,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -1191,18 +974,14 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "backendEnvironmentName",
             "in": "path",
             "required": true,
             "description": "The name of the backend environment.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1225,27 +1004,13 @@
         "summary": "Delete Backend Auth"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/challenge/{sessionId}/remove": {
@@ -1257,9 +1022,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteTokenResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/DeleteTokenResponse" }
               }
             }
           },
@@ -1267,9 +1030,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1297,9 +1058,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -1310,44 +1069,26 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "sessionId",
             "in": "path",
             "required": true,
             "description": "The session ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Delete Token"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/api/{backendEnvironmentName}/generateModels": {
@@ -1369,9 +1110,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1399,9 +1138,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -1412,18 +1149,14 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "backendEnvironmentName",
             "in": "path",
             "required": true,
             "description": "The name of the backend environment.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1446,27 +1179,13 @@
         "summary": "Generate Backend APIModels"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/details": {
@@ -1478,9 +1197,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetBackendResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/GetBackendResponse" }
               }
             }
           },
@@ -1488,9 +1205,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1518,9 +1233,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -1531,9 +1244,7 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1555,27 +1266,13 @@
         "summary": "Get Backend"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/api/{backendEnvironmentName}/details": {
@@ -1597,9 +1294,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1627,9 +1322,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -1640,18 +1333,14 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "backendEnvironmentName",
             "in": "path",
             "required": true,
             "description": "The name of the backend environment.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1672,22 +1361,16 @@
                             "$ref": "#/components/schemas/ListOfBackendAPIAuthType"
                           },
                           {
-                            "xml": {
-                              "name": "additionalAuthTypes"
-                            },
+                            "xml": { "name": "additionalAuthTypes" },
                             "description": "Additional authentication methods used to interact with your data models."
                           }
                         ]
                       },
                       "ApiName": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "apiName"
-                            },
+                            "xml": { "name": "apiName" },
                             "description": "The API name used to interact with the data model, configured as a part of your Amplify project."
                           }
                         ]
@@ -1698,48 +1381,34 @@
                             "$ref": "#/components/schemas/BackendAPIConflictResolution"
                           },
                           {
-                            "xml": {
-                              "name": "conflictResolution"
-                            },
+                            "xml": { "name": "conflictResolution" },
                             "description": "The conflict resolution strategy for your data stored in the data models."
                           }
                         ]
                       },
                       "DefaultAuthType": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/BackendAPIAuthType" },
                           {
-                            "$ref": "#/components/schemas/BackendAPIAuthType"
-                          },
-                          {
-                            "xml": {
-                              "name": "defaultAuthType"
-                            },
+                            "xml": { "name": "defaultAuthType" },
                             "description": "The default authentication type for interacting with the configured data models in your Amplify project."
                           }
                         ]
                       },
                       "Service": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "service"
-                            },
+                            "xml": { "name": "service" },
                             "description": "The service used to provision and interact with the data model."
                           }
                         ]
                       },
                       "TransformSchema": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "transformSchema"
-                            },
+                            "xml": { "name": "transformSchema" },
                             "description": "The definition of the data model in the annotated transform of the GraphQL schema."
                           }
                         ]
@@ -1758,27 +1427,13 @@
         "summary": "Get Backend API"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/api/{backendEnvironmentName}/getModels": {
@@ -1800,9 +1455,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1830,9 +1483,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -1843,18 +1494,14 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "backendEnvironmentName",
             "in": "path",
             "required": true,
             "description": "The name of the backend environment.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1877,27 +1524,13 @@
         "summary": "Get Backend APIModels"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/auth/{backendEnvironmentName}/details": {
@@ -1919,9 +1552,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1949,9 +1580,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -1962,18 +1591,14 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "backendEnvironmentName",
             "in": "path",
             "required": true,
             "description": "The name of the backend environment.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1996,27 +1621,13 @@
         "summary": "Get Backend Auth"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/job/{backendEnvironmentName}/{jobId}": {
@@ -2038,9 +1649,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2068,9 +1677,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -2081,53 +1688,33 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "backendEnvironmentName",
             "in": "path",
             "required": true,
             "description": "The name of the backend environment.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "jobId",
             "in": "path",
             "required": true,
             "description": "The ID for the job.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Get Backend Job"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "UpdateBackendJob",
@@ -2147,9 +1734,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2177,9 +1762,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -2190,27 +1773,21 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "backendEnvironmentName",
             "in": "path",
             "required": true,
             "description": "The name of the backend environment.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "jobId",
             "in": "path",
             "required": true,
             "description": "The ID for the job.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -2245,9 +1822,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetTokenResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/GetTokenResponse" }
               }
             }
           },
@@ -2255,9 +1830,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2285,9 +1858,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -2298,44 +1869,26 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "sessionId",
             "in": "path",
             "required": true,
             "description": "The session ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Get Token"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/auth/{backendEnvironmentName}/import": {
@@ -2357,9 +1910,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2387,9 +1938,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -2400,18 +1949,14 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "backendEnvironmentName",
             "in": "path",
             "required": true,
             "description": "The name of the backend environment.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -2446,27 +1991,13 @@
         "summary": "Import Backend Auth"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/job/{backendEnvironmentName}": {
@@ -2488,9 +2019,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2518,9 +2047,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -2531,34 +2058,26 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "backendEnvironmentName",
             "in": "path",
             "required": true,
             "description": "The name of the backend environment.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -2600,27 +2119,13 @@
         "summary": "List Backend Jobs"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/remove": {
@@ -2642,9 +2147,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2672,9 +2175,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -2685,9 +2186,7 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -2709,27 +2208,13 @@
         "summary": "Remove All Backends"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/config/remove": {
@@ -2751,9 +2236,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2781,9 +2264,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -2794,35 +2275,19 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Remove Backend Config"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/api/{backendEnvironmentName}": {
@@ -2844,9 +2309,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2874,9 +2337,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -2887,18 +2348,14 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "backendEnvironmentName",
             "in": "path",
             "required": true,
             "description": "The name of the backend environment.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -2919,22 +2376,16 @@
                             "$ref": "#/components/schemas/ListOfBackendAPIAuthType"
                           },
                           {
-                            "xml": {
-                              "name": "additionalAuthTypes"
-                            },
+                            "xml": { "name": "additionalAuthTypes" },
                             "description": "Additional authentication methods used to interact with your data models."
                           }
                         ]
                       },
                       "ApiName": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "apiName"
-                            },
+                            "xml": { "name": "apiName" },
                             "description": "The API name used to interact with the data model, configured as a part of your Amplify project."
                           }
                         ]
@@ -2945,48 +2396,34 @@
                             "$ref": "#/components/schemas/BackendAPIConflictResolution"
                           },
                           {
-                            "xml": {
-                              "name": "conflictResolution"
-                            },
+                            "xml": { "name": "conflictResolution" },
                             "description": "The conflict resolution strategy for your data stored in the data models."
                           }
                         ]
                       },
                       "DefaultAuthType": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/BackendAPIAuthType" },
                           {
-                            "$ref": "#/components/schemas/BackendAPIAuthType"
-                          },
-                          {
-                            "xml": {
-                              "name": "defaultAuthType"
-                            },
+                            "xml": { "name": "defaultAuthType" },
                             "description": "The default authentication type for interacting with the configured data models in your Amplify project."
                           }
                         ]
                       },
                       "Service": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "service"
-                            },
+                            "xml": { "name": "service" },
                             "description": "The service used to provision and interact with the data model."
                           }
                         ]
                       },
                       "TransformSchema": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "transformSchema"
-                            },
+                            "xml": { "name": "transformSchema" },
                             "description": "The definition of the data model in the annotated transform of the GraphQL schema."
                           }
                         ]
@@ -3005,27 +2442,13 @@
         "summary": "Update Backend API"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/auth/{backendEnvironmentName}": {
@@ -3047,9 +2470,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -3077,9 +2498,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -3090,18 +2509,14 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "backendEnvironmentName",
             "in": "path",
             "required": true,
             "description": "The name of the backend environment.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -3118,13 +2533,9 @@
                     "properties": {
                       "AuthResources": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/AuthResources" },
                           {
-                            "$ref": "#/components/schemas/AuthResources"
-                          },
-                          {
-                            "xml": {
-                              "name": "authResources"
-                            },
+                            "xml": { "name": "authResources" },
                             "description": "Defines the service name to use when configuring an authentication resource in your Amplify project."
                           }
                         ]
@@ -3135,22 +2546,16 @@
                             "$ref": "#/components/schemas/UpdateBackendAuthIdentityPoolConfig"
                           },
                           {
-                            "xml": {
-                              "name": "identityPoolConfigs"
-                            },
+                            "xml": { "name": "identityPoolConfigs" },
                             "description": "Describes the authorization configuration for the Amazon Cognito identity pool, provisioned as a part of your auth resource in the Amplify project."
                           }
                         ]
                       },
                       "Service": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/Service" },
                           {
-                            "$ref": "#/components/schemas/Service"
-                          },
-                          {
-                            "xml": {
-                              "name": "service"
-                            },
+                            "xml": { "name": "service" },
                             "description": "Defines the service name to use when configuring an authentication resource in your Amplify project."
                           }
                         ]
@@ -3161,9 +2566,7 @@
                             "$ref": "#/components/schemas/UpdateBackendAuthUserPoolConfig"
                           },
                           {
-                            "xml": {
-                              "name": "userPoolConfigs"
-                            },
+                            "xml": { "name": "userPoolConfigs" },
                             "description": "Describes the authentication configuration for the Amazon Cognito user pool, provisioned as a part of your auth resource in the Amplify project."
                           }
                         ]
@@ -3182,27 +2585,13 @@
         "summary": "Update Backend Auth"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/backend/{appId}/config/update": {
@@ -3224,9 +2613,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -3254,9 +2641,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -3267,9 +2652,7 @@
             "in": "path",
             "required": true,
             "description": "The app ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -3285,52 +2668,36 @@
                     "properties": {
                       "AwsCognitoIdentityPoolId": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "aws_cognito_identity_pool_id"
-                            },
+                            "xml": { "name": "aws_cognito_identity_pool_id" },
                             "description": "The Amazon Cognito identity pool ID used for the Amplify Admin UI login authorization."
                           }
                         ]
                       },
                       "AwsCognitoRegion": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "aws_cognito_region"
-                            },
+                            "xml": { "name": "aws_cognito_region" },
                             "description": "The AWS Region for the Amplify Admin UI login."
                           }
                         ]
                       },
                       "AwsUserPoolsId": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "aws_user_pools_id"
-                            },
+                            "xml": { "name": "aws_user_pools_id" },
                             "description": "The Amazon Cognito user pool ID used for Amplify Admin UI login authentication."
                           }
                         ]
                       },
                       "AwsUserPoolsWebClientId": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "aws_user_pools_web_client_id"
-                            },
+                            "xml": { "name": "aws_user_pools_web_client_id" },
                             "description": "The web client ID for the Amazon Cognito user pools."
                           }
                         ]
@@ -3345,27 +2712,13 @@
         "summary": "Update Backend Config"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -3472,63 +2825,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -3547,78 +2886,51 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "BackendEnvironmentName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "backendEnvironmentName"
-                },
+                "xml": { "name": "backendEnvironmentName" },
                 "description": "The name of the backend environment."
               }
             ]
           },
           "Error": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "error"
-                },
+                "xml": { "name": "error" },
                 "description": "If the request fails, this error is returned."
               }
             ]
           },
           "JobId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "jobId"
-                },
+                "xml": { "name": "jobId" },
                 "description": "The ID for the job."
               }
             ]
           },
           "Operation": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "operation"
-                },
+                "xml": { "name": "operation" },
                 "description": "The name of the operation."
               }
             ]
           },
           "Status": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "status"
-                },
+                "xml": { "name": "status" },
                 "description": "The current status of the request."
               }
             ]
@@ -3634,78 +2946,51 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "BackendEnvironmentName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "backendEnvironmentName"
-                },
+                "xml": { "name": "backendEnvironmentName" },
                 "description": "The name of the backend environment."
               }
             ]
           },
           "Error": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "error"
-                },
+                "xml": { "name": "error" },
                 "description": "If the request fails, this error is returned."
               }
             ]
           },
           "JobId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "jobId"
-                },
+                "xml": { "name": "jobId" },
                 "description": "The ID for the job."
               }
             ]
           },
           "Operation": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "operation"
-                },
+                "xml": { "name": "operation" },
                 "description": "The name of the operation."
               }
             ]
           },
           "Status": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "status"
-                },
+                "xml": { "name": "status" },
                 "description": "The current status of the request."
               }
             ]
@@ -3717,78 +3002,51 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "BackendEnvironmentName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "backendEnvironmentName"
-                },
+                "xml": { "name": "backendEnvironmentName" },
                 "description": "The name of the backend environment."
               }
             ]
           },
           "Error": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "error"
-                },
+                "xml": { "name": "error" },
                 "description": "If the request fails, this error is returned."
               }
             ]
           },
           "JobId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "jobId"
-                },
+                "xml": { "name": "jobId" },
                 "description": "The ID for the job."
               }
             ]
           },
           "Operation": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "operation"
-                },
+                "xml": { "name": "operation" },
                 "description": "The name of the operation."
               }
             ]
           },
           "Status": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "status"
-                },
+                "xml": { "name": "status" },
                 "description": "The current status of the request."
               }
             ]
@@ -3797,25 +3055,17 @@
       },
       "ListOfBackendAPIAuthType": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/BackendAPIAuthType"
-        }
+        "items": { "$ref": "#/components/schemas/BackendAPIAuthType" }
       },
-      "__string": {
-        "type": "string"
-      },
+      "__string": { "type": "string" },
       "BackendAPIConflictResolution": {
         "type": "object",
         "properties": {
           "ResolutionStrategy": {
             "allOf": [
+              { "$ref": "#/components/schemas/ResolutionStrategy" },
               {
-                "$ref": "#/components/schemas/ResolutionStrategy"
-              },
-              {
-                "xml": {
-                  "name": "resolutionStrategy"
-                },
+                "xml": { "name": "resolutionStrategy" },
                 "description": "The strategy for conflict resolution."
               }
             ]
@@ -3828,26 +3078,18 @@
         "properties": {
           "Mode": {
             "allOf": [
+              { "$ref": "#/components/schemas/Mode" },
               {
-                "$ref": "#/components/schemas/Mode"
-              },
-              {
-                "xml": {
-                  "name": "mode"
-                },
+                "xml": { "name": "mode" },
                 "description": "Describes the authentication mode."
               }
             ]
           },
           "Settings": {
             "allOf": [
+              { "$ref": "#/components/schemas/BackendAPIAppSyncAuthSettings" },
               {
-                "$ref": "#/components/schemas/BackendAPIAppSyncAuthSettings"
-              },
-              {
-                "xml": {
-                  "name": "settings"
-                },
+                "xml": { "name": "settings" },
                 "description": "Describes settings for the authentication mode."
               }
             ]
@@ -3860,78 +3102,51 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "BackendEnvironmentName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "backendEnvironmentName"
-                },
+                "xml": { "name": "backendEnvironmentName" },
                 "description": "The name of the backend environment."
               }
             ]
           },
           "Error": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "error"
-                },
+                "xml": { "name": "error" },
                 "description": "If the request fails, this error is returned."
               }
             ]
           },
           "JobId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "jobId"
-                },
+                "xml": { "name": "jobId" },
                 "description": "The ID for the job."
               }
             ]
           },
           "Operation": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "operation"
-                },
+                "xml": { "name": "operation" },
                 "description": "The name of the operation."
               }
             ]
           },
           "Status": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "status"
-                },
+                "xml": { "name": "status" },
                 "description": "The current status of the request."
               }
             ]
@@ -3948,26 +3163,18 @@
         "properties": {
           "IdentityPoolName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "identityPoolName"
-                },
+                "xml": { "name": "identityPoolName" },
                 "description": "Name of the Amazon Cognito identity pool used for authorization."
               }
             ]
           },
           "UnauthenticatedLogin": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "unauthenticatedLogin"
-                },
+                "xml": { "name": "unauthenticatedLogin" },
                 "description": "Set to true or false based on whether you want to enable guest authorization to your Amplify app."
               }
             ]
@@ -3975,13 +3182,14 @@
         },
         "description": "Describes authorization configurations for the auth resources, configured as a part of your Amplify project."
       },
-      "Service": {
-        "type": "string",
-        "enum": ["COGNITO"]
-      },
+      "Service": { "type": "string", "enum": ["COGNITO"] },
       "CreateBackendAuthUserPoolConfig": {
         "type": "object",
-        "required": ["RequiredSignUpAttributes", "SignInMethod", "UserPoolName"],
+        "required": [
+          "RequiredSignUpAttributes",
+          "SignInMethod",
+          "UserPoolName"
+        ],
         "properties": {
           "ForgotPassword": {
             "allOf": [
@@ -3989,35 +3197,25 @@
                 "$ref": "#/components/schemas/CreateBackendAuthForgotPasswordConfig"
               },
               {
-                "xml": {
-                  "name": "forgotPassword"
-                },
+                "xml": { "name": "forgotPassword" },
                 "description": "Describes the forgotten password policy for your Amazon Cognito user pool, configured as a part of your Amplify project."
               }
             ]
           },
           "Mfa": {
             "allOf": [
+              { "$ref": "#/components/schemas/CreateBackendAuthMFAConfig" },
               {
-                "$ref": "#/components/schemas/CreateBackendAuthMFAConfig"
-              },
-              {
-                "xml": {
-                  "name": "mfa"
-                },
+                "xml": { "name": "mfa" },
                 "description": "Describes whether to apply multi-factor authentication policies for your Amazon Cognito user pool configured as a part of your Amplify project."
               }
             ]
           },
           "OAuth": {
             "allOf": [
+              { "$ref": "#/components/schemas/CreateBackendAuthOAuthConfig" },
               {
-                "$ref": "#/components/schemas/CreateBackendAuthOAuthConfig"
-              },
-              {
-                "xml": {
-                  "name": "oAuth"
-                },
+                "xml": { "name": "oAuth" },
                 "description": "Describes the OAuth policy and rules for your Amazon Cognito user pool, configured as a part of your Amplify project."
               }
             ]
@@ -4028,9 +3226,7 @@
                 "$ref": "#/components/schemas/CreateBackendAuthPasswordPolicyConfig"
               },
               {
-                "xml": {
-                  "name": "passwordPolicy"
-                },
+                "xml": { "name": "passwordPolicy" },
                 "description": "Describes the password policy for your Amazon Cognito user pool, configured as a part of your Amplify project."
               }
             ]
@@ -4041,35 +3237,25 @@
                 "$ref": "#/components/schemas/ListOfRequiredSignUpAttributesElement"
               },
               {
-                "xml": {
-                  "name": "requiredSignUpAttributes"
-                },
+                "xml": { "name": "requiredSignUpAttributes" },
                 "description": "The required attributes to sign up new users in the user pool."
               }
             ]
           },
           "SignInMethod": {
             "allOf": [
+              { "$ref": "#/components/schemas/SignInMethod" },
               {
-                "$ref": "#/components/schemas/SignInMethod"
-              },
-              {
-                "xml": {
-                  "name": "signInMethod"
-                },
+                "xml": { "name": "signInMethod" },
                 "description": "Describes the sign-in methods that your Amplify app users use to log in using the Amazon Cognito user pool, configured as a part of your Amplify project."
               }
             ]
           },
           "UserPoolName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "userPoolName"
-                },
+                "xml": { "name": "userPoolName" },
                 "description": "The Amazon Cognito user pool name."
               }
             ]
@@ -4082,52 +3268,33 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "BackendEnvironmentName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "backendEnvironmentName"
-                },
+                "xml": { "name": "backendEnvironmentName" },
                 "description": "The name of the backend environment."
               }
             ]
           },
           "JobId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "jobId"
-                },
+                "xml": { "name": "jobId" },
                 "description": "The ID for the job."
               }
             ]
           },
           "Status": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "status"
-                },
+                "xml": { "name": "status" },
                 "description": "The current status of the request."
               }
             ]
@@ -4139,52 +3306,33 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "ChallengeCode": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "challengeCode"
-                },
+                "xml": { "name": "challengeCode" },
                 "description": "One-time challenge code for authenticating into the Amplify Admin UI."
               }
             ]
           },
           "SessionId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "sessionId"
-                },
+                "xml": { "name": "sessionId" },
                 "description": "A unique ID provided when creating a new challenge token."
               }
             ]
           },
           "Ttl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "ttl"
-                },
+                "xml": { "name": "ttl" },
                 "description": "The expiry time for the one-time generated token code."
               }
             ]
@@ -4196,78 +3344,51 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "BackendEnvironmentName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "backendEnvironmentName"
-                },
+                "xml": { "name": "backendEnvironmentName" },
                 "description": "The name of the backend environment."
               }
             ]
           },
           "Error": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "error"
-                },
+                "xml": { "name": "error" },
                 "description": "If the request fails, this error is returned."
               }
             ]
           },
           "JobId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "jobId"
-                },
+                "xml": { "name": "jobId" },
                 "description": "The ID for the job."
               }
             ]
           },
           "Operation": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "operation"
-                },
+                "xml": { "name": "operation" },
                 "description": "The name of the operation."
               }
             ]
           },
           "Status": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "status"
-                },
+                "xml": { "name": "status" },
                 "description": "The current status of the request."
               }
             ]
@@ -4279,78 +3400,51 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "BackendEnvironmentName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "backendEnvironmentName"
-                },
+                "xml": { "name": "backendEnvironmentName" },
                 "description": "The name of the backend environment."
               }
             ]
           },
           "Error": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "error"
-                },
+                "xml": { "name": "error" },
                 "description": "If the request fails, this error is returned."
               }
             ]
           },
           "JobId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "jobId"
-                },
+                "xml": { "name": "jobId" },
                 "description": "The ID for the job."
               }
             ]
           },
           "Operation": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "operation"
-                },
+                "xml": { "name": "operation" },
                 "description": "The name of the operation."
               }
             ]
           },
           "Status": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "status"
-                },
+                "xml": { "name": "status" },
                 "description": "The current status of the request."
               }
             ]
@@ -4362,78 +3456,51 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "BackendEnvironmentName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "backendEnvironmentName"
-                },
+                "xml": { "name": "backendEnvironmentName" },
                 "description": "The name of the backend environment."
               }
             ]
           },
           "Error": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "error"
-                },
+                "xml": { "name": "error" },
                 "description": "If the request fails, this error is returned."
               }
             ]
           },
           "JobId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "jobId"
-                },
+                "xml": { "name": "jobId" },
                 "description": "The ID for the job."
               }
             ]
           },
           "Operation": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "operation"
-                },
+                "xml": { "name": "operation" },
                 "description": "The name of the operation."
               }
             ]
           },
           "Status": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "status"
-                },
+                "xml": { "name": "status" },
                 "description": "The current status of the request."
               }
             ]
@@ -4445,13 +3512,9 @@
         "properties": {
           "IsSuccess": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "isSuccess"
-                },
+                "xml": { "name": "isSuccess" },
                 "description": "Indicates whether the request succeeded or failed."
               }
             ]
@@ -4463,78 +3526,51 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "BackendEnvironmentName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "backendEnvironmentName"
-                },
+                "xml": { "name": "backendEnvironmentName" },
                 "description": "The name of the backend environment."
               }
             ]
           },
           "Error": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "error"
-                },
+                "xml": { "name": "error" },
                 "description": "If the request fails, this error is returned."
               }
             ]
           },
           "JobId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "jobId"
-                },
+                "xml": { "name": "jobId" },
                 "description": "The ID for the job."
               }
             ]
           },
           "Operation": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "operation"
-                },
+                "xml": { "name": "operation" },
                 "description": "The name of the operation."
               }
             ]
           },
           "Status": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "status"
-                },
+                "xml": { "name": "status" },
                 "description": "The current status of the request."
               }
             ]
@@ -4546,78 +3582,51 @@
         "properties": {
           "AmplifyMetaConfig": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "amplifyMetaConfig"
-                },
+                "xml": { "name": "amplifyMetaConfig" },
                 "description": "A stringified version of the current configs for your Amplify project."
               }
             ]
           },
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "AppName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appName"
-                },
+                "xml": { "name": "appName" },
                 "description": "The name of the app."
               }
             ]
           },
           "BackendEnvironmentList": {
             "allOf": [
+              { "$ref": "#/components/schemas/ListOf__string" },
               {
-                "$ref": "#/components/schemas/ListOf__string"
-              },
-              {
-                "xml": {
-                  "name": "backendEnvironmentList"
-                },
+                "xml": { "name": "backendEnvironmentList" },
                 "description": "A list of backend environments in an array."
               }
             ]
           },
           "BackendEnvironmentName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "backendEnvironmentName"
-                },
+                "xml": { "name": "backendEnvironmentName" },
                 "description": "The name of the backend environment."
               }
             ]
           },
           "Error": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "error"
-                },
+                "xml": { "name": "error" },
                 "description": "If the request failed, this is the returned error."
               }
             ]
@@ -4629,65 +3638,42 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "BackendEnvironmentName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "backendEnvironmentName"
-                },
+                "xml": { "name": "backendEnvironmentName" },
                 "description": "The name of the backend environment."
               }
             ]
           },
           "Error": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "error"
-                },
+                "xml": { "name": "error" },
                 "description": "If the request fails, this error is returned."
               }
             ]
           },
           "ResourceConfig": {
             "allOf": [
+              { "$ref": "#/components/schemas/BackendAPIResourceConfig" },
               {
-                "$ref": "#/components/schemas/BackendAPIResourceConfig"
-              },
-              {
-                "xml": {
-                  "name": "resourceConfig"
-                },
+                "xml": { "name": "resourceConfig" },
                 "description": "The resource configuration for this response object."
               }
             ]
           },
           "ResourceName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "resourceName"
-                },
+                "xml": { "name": "resourceName" },
                 "description": "The name of this resource."
               }
             ]
@@ -4699,26 +3685,18 @@
         "properties": {
           "Models": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "models"
-                },
+                "xml": { "name": "models" },
                 "description": "Stringified JSON of the datastore model."
               }
             ]
           },
           "Status": {
             "allOf": [
+              { "$ref": "#/components/schemas/Status" },
               {
-                "$ref": "#/components/schemas/Status"
-              },
-              {
-                "xml": {
-                  "name": "status"
-                },
+                "xml": { "name": "status" },
                 "description": "The current status of the request."
               }
             ]
@@ -4730,39 +3708,24 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "BackendEnvironmentName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "backendEnvironmentName"
-                },
+                "xml": { "name": "backendEnvironmentName" },
                 "description": "The name of the backend environment."
               }
             ]
           },
           "Error": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "error"
-                },
+                "xml": { "name": "error" },
                 "description": "If the request fails, this error is returned."
               }
             ]
@@ -4773,22 +3736,16 @@
                 "$ref": "#/components/schemas/CreateBackendAuthResourceConfig"
               },
               {
-                "xml": {
-                  "name": "resourceConfig"
-                },
+                "xml": { "name": "resourceConfig" },
                 "description": "The resource configuration for authorization requests to the backend of your Amplify project."
               }
             ]
           },
           "ResourceName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "resourceName"
-                },
+                "xml": { "name": "resourceName" },
                 "description": "The name of this resource."
               }
             ]
@@ -4800,104 +3757,69 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "BackendEnvironmentName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "backendEnvironmentName"
-                },
+                "xml": { "name": "backendEnvironmentName" },
                 "description": "The name of the backend environment."
               }
             ]
           },
           "CreateTime": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "createTime"
-                },
+                "xml": { "name": "createTime" },
                 "description": "The time when the job was created."
               }
             ]
           },
           "Error": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "error"
-                },
+                "xml": { "name": "error" },
                 "description": "If the request fails, this error is returned."
               }
             ]
           },
           "JobId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "jobId"
-                },
+                "xml": { "name": "jobId" },
                 "description": "The ID for the job."
               }
             ]
           },
           "Operation": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "operation"
-                },
+                "xml": { "name": "operation" },
                 "description": "The name of the operation."
               }
             ]
           },
           "Status": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "status"
-                },
+                "xml": { "name": "status" },
                 "description": "The current status of the request."
               }
             ]
           },
           "UpdateTime": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "updateTime"
-                },
+                "xml": { "name": "updateTime" },
                 "description": "The time when the job was last updated."
               }
             ]
@@ -4909,52 +3831,33 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "ChallengeCode": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "challengeCode"
-                },
+                "xml": { "name": "challengeCode" },
                 "description": "The one-time challenge code for authenticating into the Amplify Admin UI."
               }
             ]
           },
           "SessionId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "sessionId"
-                },
+                "xml": { "name": "sessionId" },
                 "description": "A unique ID provided when creating a new challenge token."
               }
             ]
           },
           "Ttl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "ttl"
-                },
+                "xml": { "name": "ttl" },
                 "description": "The expiry time for the one-time generated token code."
               }
             ]
@@ -4966,78 +3869,51 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "BackendEnvironmentName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "backendEnvironmentName"
-                },
+                "xml": { "name": "backendEnvironmentName" },
                 "description": "The name of the backend environment."
               }
             ]
           },
           "Error": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "error"
-                },
+                "xml": { "name": "error" },
                 "description": "If the request fails, this error is returned."
               }
             ]
           },
           "JobId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "jobId"
-                },
+                "xml": { "name": "jobId" },
                 "description": "The ID for the job."
               }
             ]
           },
           "Operation": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "operation"
-                },
+                "xml": { "name": "operation" },
                 "description": "The name of the operation."
               }
             ]
           },
           "Status": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "status"
-                },
+                "xml": { "name": "status" },
                 "description": "The current status of the request."
               }
             ]
@@ -5049,26 +3925,18 @@
         "properties": {
           "Jobs": {
             "allOf": [
+              { "$ref": "#/components/schemas/ListOfBackendJobRespObj" },
               {
-                "$ref": "#/components/schemas/ListOfBackendJobRespObj"
-              },
-              {
-                "xml": {
-                  "name": "jobs"
-                },
+                "xml": { "name": "jobs" },
                 "description": "An array of jobs and their properties."
               }
             ]
           },
           "NextToken": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "nextToken"
-                },
+                "xml": { "name": "nextToken" },
                 "description": "The token for the next set of results."
               }
             ]
@@ -5080,65 +3948,42 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "Error": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "error"
-                },
+                "xml": { "name": "error" },
                 "description": "If the request fails, this error is returned."
               }
             ]
           },
           "JobId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "jobId"
-                },
+                "xml": { "name": "jobId" },
                 "description": "The ID for the job."
               }
             ]
           },
           "Operation": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "operation"
-                },
+                "xml": { "name": "operation" },
                 "description": "The name of the operation."
               }
             ]
           },
           "Status": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "status"
-                },
+                "xml": { "name": "status" },
                 "description": "The current status of the request."
               }
             ]
@@ -5150,13 +3995,9 @@
         "properties": {
           "Error": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "error"
-                },
+                "xml": { "name": "error" },
                 "description": "If the request fails, this error is returned."
               }
             ]
@@ -5168,78 +4009,51 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "BackendEnvironmentName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "backendEnvironmentName"
-                },
+                "xml": { "name": "backendEnvironmentName" },
                 "description": "The name of the backend environment."
               }
             ]
           },
           "Error": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "error"
-                },
+                "xml": { "name": "error" },
                 "description": "If the request fails, this error is returned."
               }
             ]
           },
           "JobId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "jobId"
-                },
+                "xml": { "name": "jobId" },
                 "description": "The ID for the job."
               }
             ]
           },
           "Operation": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "operation"
-                },
+                "xml": { "name": "operation" },
                 "description": "The name of the operation."
               }
             ]
           },
           "Status": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "status"
-                },
+                "xml": { "name": "status" },
                 "description": "The current status of the request."
               }
             ]
@@ -5251,78 +4065,51 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "BackendEnvironmentName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "backendEnvironmentName"
-                },
+                "xml": { "name": "backendEnvironmentName" },
                 "description": "The name of the backend environment."
               }
             ]
           },
           "Error": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "error"
-                },
+                "xml": { "name": "error" },
                 "description": "If the request fails, this error is returned."
               }
             ]
           },
           "JobId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "jobId"
-                },
+                "xml": { "name": "jobId" },
                 "description": "The ID for the job."
               }
             ]
           },
           "Operation": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "operation"
-                },
+                "xml": { "name": "operation" },
                 "description": "The name of the operation."
               }
             ]
           },
           "Status": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "status"
-                },
+                "xml": { "name": "status" },
                 "description": "The current status of the request."
               }
             ]
@@ -5334,13 +4121,9 @@
         "properties": {
           "UnauthenticatedLogin": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "unauthenticatedLogin"
-                },
+                "xml": { "name": "unauthenticatedLogin" },
                 "description": "A boolean value that can be set to allow or disallow guest-level authorization into your Amplify app."
               }
             ]
@@ -5357,35 +4140,25 @@
                 "$ref": "#/components/schemas/UpdateBackendAuthForgotPasswordConfig"
               },
               {
-                "xml": {
-                  "name": "forgotPassword"
-                },
+                "xml": { "name": "forgotPassword" },
                 "description": "Describes the forgot password policy for your Amazon Cognito user pool, configured as a part of your Amplify project."
               }
             ]
           },
           "Mfa": {
             "allOf": [
+              { "$ref": "#/components/schemas/UpdateBackendAuthMFAConfig" },
               {
-                "$ref": "#/components/schemas/UpdateBackendAuthMFAConfig"
-              },
-              {
-                "xml": {
-                  "name": "mfa"
-                },
+                "xml": { "name": "mfa" },
                 "description": "Describes whether to apply multi-factor authentication policies for your Amazon Cognito user pool configured as a part of your Amplify project."
               }
             ]
           },
           "OAuth": {
             "allOf": [
+              { "$ref": "#/components/schemas/UpdateBackendAuthOAuthConfig" },
               {
-                "$ref": "#/components/schemas/UpdateBackendAuthOAuthConfig"
-              },
-              {
-                "xml": {
-                  "name": "oAuth"
-                },
+                "xml": { "name": "oAuth" },
                 "description": "Describes the OAuth policy and rules for your Amazon Cognito user pool, configured as a part of your Amplify project."
               }
             ]
@@ -5396,9 +4169,7 @@
                 "$ref": "#/components/schemas/UpdateBackendAuthPasswordPolicyConfig"
               },
               {
-                "xml": {
-                  "name": "passwordPolicy"
-                },
+                "xml": { "name": "passwordPolicy" },
                 "description": "Describes the password policy for your Amazon Cognito user pool, configured as a part of your Amplify project."
               }
             ]
@@ -5411,52 +4182,33 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "BackendManagerAppId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "backendManagerAppId"
-                },
+                "xml": { "name": "backendManagerAppId" },
                 "description": "The app ID for the backend manager."
               }
             ]
           },
           "Error": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "error"
-                },
+                "xml": { "name": "error" },
                 "description": "If the request fails, this error is returned."
               }
             ]
           },
           "LoginAuthConfig": {
             "allOf": [
+              { "$ref": "#/components/schemas/LoginAuthConfigReqObj" },
               {
-                "$ref": "#/components/schemas/LoginAuthConfigReqObj"
-              },
-              {
-                "xml": {
-                  "name": "loginAuthConfig"
-                },
+                "xml": { "name": "loginAuthConfig" },
                 "description": "Describes the Amazon Cognito configurations for the Admin UI auth resource to log in with."
               }
             ]
@@ -5468,217 +4220,147 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "BackendEnvironmentName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "backendEnvironmentName"
-                },
+                "xml": { "name": "backendEnvironmentName" },
                 "description": "The name of the backend environment."
               }
             ]
           },
           "CreateTime": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "createTime"
-                },
+                "xml": { "name": "createTime" },
                 "description": "The time when the job was created."
               }
             ]
           },
           "Error": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "error"
-                },
+                "xml": { "name": "error" },
                 "description": "If the request fails, this error is returned."
               }
             ]
           },
           "JobId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "jobId"
-                },
+                "xml": { "name": "jobId" },
                 "description": "The ID for the job."
               }
             ]
           },
           "Operation": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "operation"
-                },
+                "xml": { "name": "operation" },
                 "description": "The name of the operation."
               }
             ]
           },
           "Status": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "status"
-                },
+                "xml": { "name": "status" },
                 "description": "The current status of the request."
               }
             ]
           },
           "UpdateTime": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "updateTime"
-                },
+                "xml": { "name": "updateTime" },
                 "description": "The time when the job was last updated."
               }
             ]
           }
         }
       },
-      "__double": {
-        "type": "number",
-        "format": "double"
-      },
+      "__double": { "type": "number", "format": "double" },
       "BackendAPIAppSyncAuthSettings": {
         "type": "object",
         "properties": {
           "CognitoUserPoolId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "cognitoUserPoolId"
-                },
+                "xml": { "name": "cognitoUserPoolId" },
                 "description": "The Amazon Cognito user pool ID, if Amazon Cognito was used as an authentication setting to access your data models."
               }
             ]
           },
           "Description": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "description"
-                },
+                "xml": { "name": "description" },
                 "description": "The API key description for API_KEY, if it was used as an authentication mechanism to access your data models."
               }
             ]
           },
           "ExpirationTime": {
             "allOf": [
+              { "$ref": "#/components/schemas/__double" },
               {
-                "$ref": "#/components/schemas/__double"
-              },
-              {
-                "xml": {
-                  "name": "expirationTime"
-                },
+                "xml": { "name": "expirationTime" },
                 "description": "The API key expiration time for API_KEY, if it was used as an authentication mechanism to access your data models."
               }
             ]
           },
           "OpenIDAuthTTL": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "openIDAuthTTL"
-                },
+                "xml": { "name": "openIDAuthTTL" },
                 "description": "The expiry time for the OpenID authentication mechanism."
               }
             ]
           },
           "OpenIDClientId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "openIDClientId"
-                },
+                "xml": { "name": "openIDClientId" },
                 "description": "The clientID for openID, if openID was used as an authentication setting to access your data models."
               }
             ]
           },
           "OpenIDIatTTL": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "openIDIatTTL"
-                },
+                "xml": { "name": "openIDIatTTL" },
                 "description": "The expiry time for the OpenID authentication mechanism."
               }
             ]
           },
           "OpenIDIssueURL": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "openIDIssueURL"
-                },
+                "xml": { "name": "openIDIssueURL" },
                 "description": "The openID issuer URL, if openID was used as an authentication setting to access your data models."
               }
             ]
           },
           "OpenIDProviderName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "openIDProviderName"
-                },
+                "xml": { "name": "openIDProviderName" },
                 "description": "The OpenID provider name, if OpenID was used as an authentication mechanism to access your data models."
               }
             ]
@@ -5688,7 +4370,12 @@
       },
       "Mode": {
         "type": "string",
-        "enum": ["API_KEY", "AWS_IAM", "AMAZON_COGNITO_USER_POOLS", "OPENID_CONNECT"]
+        "enum": [
+          "API_KEY",
+          "AWS_IAM",
+          "AMAZON_COGNITO_USER_POOLS",
+          "OPENID_CONNECT"
+        ]
       },
       "ResolutionStrategy": {
         "type": "string",
@@ -5699,78 +4386,54 @@
         "properties": {
           "AdditionalAuthTypes": {
             "allOf": [
+              { "$ref": "#/components/schemas/ListOfBackendAPIAuthType" },
               {
-                "$ref": "#/components/schemas/ListOfBackendAPIAuthType"
-              },
-              {
-                "xml": {
-                  "name": "additionalAuthTypes"
-                },
+                "xml": { "name": "additionalAuthTypes" },
                 "description": "Additional authentication methods used to interact with your data models."
               }
             ]
           },
           "ApiName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "apiName"
-                },
+                "xml": { "name": "apiName" },
                 "description": "The API name used to interact with the data model, configured as a part of your Amplify project."
               }
             ]
           },
           "ConflictResolution": {
             "allOf": [
+              { "$ref": "#/components/schemas/BackendAPIConflictResolution" },
               {
-                "$ref": "#/components/schemas/BackendAPIConflictResolution"
-              },
-              {
-                "xml": {
-                  "name": "conflictResolution"
-                },
+                "xml": { "name": "conflictResolution" },
                 "description": "The conflict resolution strategy for your data stored in the data models."
               }
             ]
           },
           "DefaultAuthType": {
             "allOf": [
+              { "$ref": "#/components/schemas/BackendAPIAuthType" },
               {
-                "$ref": "#/components/schemas/BackendAPIAuthType"
-              },
-              {
-                "xml": {
-                  "name": "defaultAuthType"
-                },
+                "xml": { "name": "defaultAuthType" },
                 "description": "The default authentication type for interacting with the configured data models in your Amplify project."
               }
             ]
           },
           "Service": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "service"
-                },
+                "xml": { "name": "service" },
                 "description": "The service used to provision and interact with the data model."
               }
             ]
           },
           "TransformSchema": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "transformSchema"
-                },
+                "xml": { "name": "transformSchema" },
                 "description": "The definition of the data model in the annotated transform of the GraphQL schema."
               }
             ]
@@ -5783,52 +4446,36 @@
         "properties": {
           "ClientId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "client_id"
-                },
+                "xml": { "name": "client_id" },
                 "description": "Describes the client_id (also called Services ID) that comes from Apple."
               }
             ]
           },
           "KeyId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "key_id"
-                },
+                "xml": { "name": "key_id" },
                 "description": "Describes the key_id that comes from Apple."
               }
             ]
           },
           "PrivateKey": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "private_key"
-                },
+                "xml": { "name": "private_key" },
                 "description": "Describes the private_key that comes from Apple."
               }
             ]
           },
           "TeamId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "team_id"
-                },
+                "xml": { "name": "team_id" },
                 "description": "Describes the team_id that comes from Apple."
               }
             ]
@@ -5841,26 +4488,18 @@
         "properties": {
           "ClientId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "client_id"
-                },
+                "xml": { "name": "client_id" },
                 "description": "Describes the client_id, which can be obtained from the third-party social federation provider."
               }
             ]
           },
           "ClientSecret": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "client_secret"
-                },
+                "xml": { "name": "client_secret" },
                 "description": "Describes the client_secret, which can be obtained from third-party social federation providers."
               }
             ]
@@ -5874,104 +4513,69 @@
         "properties": {
           "AppId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "appId"
-                },
-                "description": "The app ID."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "xml": { "name": "appId" }, "description": "The app ID." }
             ]
           },
           "BackendEnvironmentName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "backendEnvironmentName"
-                },
+                "xml": { "name": "backendEnvironmentName" },
                 "description": "The name of the backend environment."
               }
             ]
           },
           "CreateTime": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "createTime"
-                },
+                "xml": { "name": "createTime" },
                 "description": "The time when the job was created."
               }
             ]
           },
           "Error": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "error"
-                },
+                "xml": { "name": "error" },
                 "description": "If the request fails, this error is returned."
               }
             ]
           },
           "JobId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "jobId"
-                },
+                "xml": { "name": "jobId" },
                 "description": "The ID for the job."
               }
             ]
           },
           "Operation": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "operation"
-                },
+                "xml": { "name": "operation" },
                 "description": "The name of the operation."
               }
             ]
           },
           "Status": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "status"
-                },
+                "xml": { "name": "status" },
                 "description": "The current status of the request."
               }
             ]
           },
           "UpdateTime": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "updateTime"
-                },
+                "xml": { "name": "updateTime" },
                 "description": "The time when the job was last updated."
               }
             ]
@@ -5979,35 +4583,24 @@
         },
         "description": "The response object for this operation."
       },
-      "DeliveryMethod": {
-        "type": "string",
-        "enum": ["EMAIL", "SMS"]
-      },
+      "DeliveryMethod": { "type": "string", "enum": ["EMAIL", "SMS"] },
       "EmailSettings": {
         "type": "object",
         "properties": {
           "EmailMessage": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "emailMessage"
-                },
+                "xml": { "name": "emailMessage" },
                 "description": "The body of the email."
               }
             ]
           },
           "EmailSubject": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "emailSubject"
-                },
+                "xml": { "name": "emailSubject" },
                 "description": "The subject of the email."
               }
             ]
@@ -6020,13 +4613,9 @@
         "properties": {
           "SmsMessage": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "smsMessage"
-                },
+                "xml": { "name": "smsMessage" },
                 "description": "The body of the SMS message."
               }
             ]
@@ -6040,39 +4629,27 @@
         "properties": {
           "DeliveryMethod": {
             "allOf": [
+              { "$ref": "#/components/schemas/DeliveryMethod" },
               {
-                "$ref": "#/components/schemas/DeliveryMethod"
-              },
-              {
-                "xml": {
-                  "name": "deliveryMethod"
-                },
+                "xml": { "name": "deliveryMethod" },
                 "description": "Describes which mode to use (either SMS or email) to deliver messages to app users who want to recover their password."
               }
             ]
           },
           "EmailSettings": {
             "allOf": [
+              { "$ref": "#/components/schemas/EmailSettings" },
               {
-                "$ref": "#/components/schemas/EmailSettings"
-              },
-              {
-                "xml": {
-                  "name": "emailSettings"
-                },
+                "xml": { "name": "emailSettings" },
                 "description": "The configuration for the email sent when an app user forgets their password."
               }
             ]
           },
           "SmsSettings": {
             "allOf": [
+              { "$ref": "#/components/schemas/SmsSettings" },
               {
-                "$ref": "#/components/schemas/SmsSettings"
-              },
-              {
-                "xml": {
-                  "name": "smsSettings"
-                },
+                "xml": { "name": "smsSettings" },
                 "description": "The configuration for the SMS message sent when an app user forgets their password."
               }
             ]
@@ -6080,38 +4657,25 @@
         },
         "description": "Describes the forgot password policy for authenticating into the Amplify app."
       },
-      "__boolean": {
-        "type": "boolean"
-      },
-      "MFAMode": {
-        "type": "string",
-        "enum": ["ON", "OFF", "OPTIONAL"]
-      },
+      "__boolean": { "type": "boolean" },
+      "MFAMode": { "type": "string", "enum": ["ON", "OFF", "OPTIONAL"] },
       "Settings": {
         "type": "object",
         "properties": {
           "MfaTypes": {
             "allOf": [
+              { "$ref": "#/components/schemas/ListOfMfaTypesElement" },
               {
-                "$ref": "#/components/schemas/ListOfMfaTypesElement"
-              },
-              {
-                "xml": {
-                  "name": "mfaTypes"
-                },
+                "xml": { "name": "mfaTypes" },
                 "description": "The supported MFA types."
               }
             ]
           },
           "SmsMessage": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "smsMessage"
-                },
+                "xml": { "name": "smsMessage" },
                 "description": "The body of the SMS message."
               }
             ]
@@ -6125,9 +4689,7 @@
         "properties": {
           "MFAMode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MFAMode"
-              },
+              { "$ref": "#/components/schemas/MFAMode" },
               {
                 "description": "Describes whether MFA should be [ON, OFF, or OPTIONAL] for authentication in your Amplify project."
               }
@@ -6135,13 +4697,9 @@
           },
           "Settings": {
             "allOf": [
+              { "$ref": "#/components/schemas/Settings" },
               {
-                "$ref": "#/components/schemas/Settings"
-              },
-              {
-                "xml": {
-                  "name": "settings"
-                },
+                "xml": { "name": "settings" },
                 "description": "Describes the configuration settings and methods for your Amplify app users to use MFA."
               }
             ]
@@ -6149,21 +4707,14 @@
         },
         "description": "Describes whether to apply multi-factor authentication policies for your Amazon Cognito user pool configured as a part of your Amplify project."
       },
-      "OAuthGrantType": {
-        "type": "string",
-        "enum": ["CODE", "IMPLICIT"]
-      },
+      "OAuthGrantType": { "type": "string", "enum": ["CODE", "IMPLICIT"] },
       "ListOfOAuthScopesElement": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/OAuthScopesElement"
-        }
+        "items": { "$ref": "#/components/schemas/OAuthScopesElement" }
       },
       "ListOf__string": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/__string"
-        }
+        "items": { "$ref": "#/components/schemas/__string" }
       },
       "SocialProviderSettings": {
         "type": "object",
@@ -6185,82 +4736,63 @@
       },
       "CreateBackendAuthOAuthConfig": {
         "type": "object",
-        "required": ["RedirectSignOutURIs", "RedirectSignInURIs", "OAuthGrantType", "OAuthScopes"],
+        "required": [
+          "RedirectSignOutURIs",
+          "RedirectSignInURIs",
+          "OAuthGrantType",
+          "OAuthScopes"
+        ],
         "properties": {
           "DomainPrefix": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "domainPrefix"
-                },
+                "xml": { "name": "domainPrefix" },
                 "description": "The domain prefix for your Amplify app."
               }
             ]
           },
           "OAuthGrantType": {
             "allOf": [
+              { "$ref": "#/components/schemas/OAuthGrantType" },
               {
-                "$ref": "#/components/schemas/OAuthGrantType"
-              },
-              {
-                "xml": {
-                  "name": "oAuthGrantType"
-                },
+                "xml": { "name": "oAuthGrantType" },
                 "description": "The OAuth grant type that you use to allow app users to authenticate from your Amplify app."
               }
             ]
           },
           "OAuthScopes": {
             "allOf": [
+              { "$ref": "#/components/schemas/ListOfOAuthScopesElement" },
               {
-                "$ref": "#/components/schemas/ListOfOAuthScopesElement"
-              },
-              {
-                "xml": {
-                  "name": "oAuthScopes"
-                },
+                "xml": { "name": "oAuthScopes" },
                 "description": "List of OAuth-related flows used to allow your app users to authenticate from your Amplify app."
               }
             ]
           },
           "RedirectSignInURIs": {
             "allOf": [
+              { "$ref": "#/components/schemas/ListOf__string" },
               {
-                "$ref": "#/components/schemas/ListOf__string"
-              },
-              {
-                "xml": {
-                  "name": "redirectSignInURIs"
-                },
+                "xml": { "name": "redirectSignInURIs" },
                 "description": "The redirected URI for signing in to your Amplify app."
               }
             ]
           },
           "RedirectSignOutURIs": {
             "allOf": [
+              { "$ref": "#/components/schemas/ListOf__string" },
               {
-                "$ref": "#/components/schemas/ListOf__string"
-              },
-              {
-                "xml": {
-                  "name": "redirectSignOutURIs"
-                },
+                "xml": { "name": "redirectSignOutURIs" },
                 "description": "Redirect URLs that OAuth uses when a user signs out of an Amplify app."
               }
             ]
           },
           "SocialProviderSettings": {
             "allOf": [
+              { "$ref": "#/components/schemas/SocialProviderSettings" },
               {
-                "$ref": "#/components/schemas/SocialProviderSettings"
-              },
-              {
-                "xml": {
-                  "name": "socialProviderSettings"
-                },
+                "xml": { "name": "socialProviderSettings" },
                 "description": "The settings for using social providers to access your Amplify app."
               }
             ]
@@ -6270,9 +4802,7 @@
       },
       "ListOfAdditionalConstraintsElement": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/AdditionalConstraintsElement"
-        }
+        "items": { "$ref": "#/components/schemas/AdditionalConstraintsElement" }
       },
       "CreateBackendAuthPasswordPolicyConfig": {
         "type": "object",
@@ -6284,22 +4814,16 @@
                 "$ref": "#/components/schemas/ListOfAdditionalConstraintsElement"
               },
               {
-                "xml": {
-                  "name": "additionalConstraints"
-                },
+                "xml": { "name": "additionalConstraints" },
                 "description": "Additional constraints for the password used to access the backend of your Amplify project."
               }
             ]
           },
           "MinimumLength": {
             "allOf": [
+              { "$ref": "#/components/schemas/__double" },
               {
-                "$ref": "#/components/schemas/__double"
-              },
-              {
-                "xml": {
-                  "name": "minimumLength"
-                },
+                "xml": { "name": "minimumLength" },
                 "description": "The minimum length of the password used to access the backend of your Amplify project."
               }
             ]
@@ -6313,13 +4837,9 @@
         "properties": {
           "AuthResources": {
             "allOf": [
+              { "$ref": "#/components/schemas/AuthResources" },
               {
-                "$ref": "#/components/schemas/AuthResources"
-              },
-              {
-                "xml": {
-                  "name": "authResources"
-                },
+                "xml": { "name": "authResources" },
                 "description": "Defines whether you want to configure only authentication or both authentication and authorization settings."
               }
             ]
@@ -6330,22 +4850,16 @@
                 "$ref": "#/components/schemas/CreateBackendAuthIdentityPoolConfig"
               },
               {
-                "xml": {
-                  "name": "identityPoolConfigs"
-                },
+                "xml": { "name": "identityPoolConfigs" },
                 "description": "Describes the authorization configuration for the Amazon Cognito identity pool, provisioned as a part of your auth resource in the Amplify project."
               }
             ]
           },
           "Service": {
             "allOf": [
+              { "$ref": "#/components/schemas/Service" },
               {
-                "$ref": "#/components/schemas/Service"
-              },
-              {
-                "xml": {
-                  "name": "service"
-                },
+                "xml": { "name": "service" },
                 "description": "Defines the service name to use when configuring an authentication resource in your Amplify project."
               }
             ]
@@ -6356,9 +4870,7 @@
                 "$ref": "#/components/schemas/CreateBackendAuthUserPoolConfig"
               },
               {
-                "xml": {
-                  "name": "userPoolConfigs"
-                },
+                "xml": { "name": "userPoolConfigs" },
                 "description": "Describes authentication configuration for the Amazon Cognito user pool, provisioned as a part of your auth resource in the Amplify project."
               }
             ]
@@ -6376,67 +4888,46 @@
         "type": "string",
         "enum": ["EMAIL", "EMAIL_AND_PHONE_NUMBER", "PHONE_NUMBER", "USERNAME"]
       },
-      "Status": {
-        "type": "string",
-        "enum": ["LATEST", "STALE"]
-      },
+      "Status": { "type": "string", "enum": ["LATEST", "STALE"] },
       "ListOfBackendJobRespObj": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/BackendJobRespObj"
-        }
+        "items": { "$ref": "#/components/schemas/BackendJobRespObj" }
       },
       "LoginAuthConfigReqObj": {
         "type": "object",
         "properties": {
           "AwsCognitoIdentityPoolId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "aws_cognito_identity_pool_id"
-                },
+                "xml": { "name": "aws_cognito_identity_pool_id" },
                 "description": "The Amazon Cognito identity pool ID used for the Amplify Admin UI login authorization."
               }
             ]
           },
           "AwsCognitoRegion": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "aws_cognito_region"
-                },
+                "xml": { "name": "aws_cognito_region" },
                 "description": "The AWS Region for the Amplify Admin UI login."
               }
             ]
           },
           "AwsUserPoolsId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "aws_user_pools_id"
-                },
+                "xml": { "name": "aws_user_pools_id" },
                 "description": "The Amazon Cognito user pool ID used for Amplify Admin UI login authentication."
               }
             ]
           },
           "AwsUserPoolsWebClientId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "aws_user_pools_web_client_id"
-                },
+                "xml": { "name": "aws_user_pools_web_client_id" },
                 "description": "The web client ID for the Amazon Cognito user pools."
               }
             ]
@@ -6446,48 +4937,34 @@
       },
       "ListOfMfaTypesElement": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/MfaTypesElement"
-        }
+        "items": { "$ref": "#/components/schemas/MfaTypesElement" }
       },
       "UpdateBackendAuthForgotPasswordConfig": {
         "type": "object",
         "properties": {
           "DeliveryMethod": {
             "allOf": [
+              { "$ref": "#/components/schemas/DeliveryMethod" },
               {
-                "$ref": "#/components/schemas/DeliveryMethod"
-              },
-              {
-                "xml": {
-                  "name": "deliveryMethod"
-                },
+                "xml": { "name": "deliveryMethod" },
                 "description": "Describes which mode to use (either SMS or email) to deliver messages to app users that want to recover their password."
               }
             ]
           },
           "EmailSettings": {
             "allOf": [
+              { "$ref": "#/components/schemas/EmailSettings" },
               {
-                "$ref": "#/components/schemas/EmailSettings"
-              },
-              {
-                "xml": {
-                  "name": "emailSettings"
-                },
+                "xml": { "name": "emailSettings" },
                 "description": "The configuration for the email sent when an app user forgets their password."
               }
             ]
           },
           "SmsSettings": {
             "allOf": [
+              { "$ref": "#/components/schemas/SmsSettings" },
               {
-                "$ref": "#/components/schemas/SmsSettings"
-              },
-              {
-                "xml": {
-                  "name": "smsSettings"
-                },
+                "xml": { "name": "smsSettings" },
                 "description": "The configuration for the SMS message sent when an Amplify app user forgets their password."
               }
             ]
@@ -6500,9 +4977,7 @@
         "properties": {
           "MFAMode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MFAMode"
-              },
+              { "$ref": "#/components/schemas/MFAMode" },
               {
                 "description": "The MFA mode for the backend of your Amplify project."
               }
@@ -6510,13 +4985,9 @@
           },
           "Settings": {
             "allOf": [
+              { "$ref": "#/components/schemas/Settings" },
               {
-                "$ref": "#/components/schemas/Settings"
-              },
-              {
-                "xml": {
-                  "name": "settings"
-                },
+                "xml": { "name": "settings" },
                 "description": "The settings of your MFA configuration for the backend of your Amplify project."
               }
             ]
@@ -6529,78 +5000,54 @@
         "properties": {
           "DomainPrefix": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "domainPrefix"
-                },
+                "xml": { "name": "domainPrefix" },
                 "description": "The Amazon Cognito domain prefix used to create a hosted UI for authentication."
               }
             ]
           },
           "OAuthGrantType": {
             "allOf": [
+              { "$ref": "#/components/schemas/OAuthGrantType" },
               {
-                "$ref": "#/components/schemas/OAuthGrantType"
-              },
-              {
-                "xml": {
-                  "name": "oAuthGrantType"
-                },
+                "xml": { "name": "oAuthGrantType" },
                 "description": "The OAuth grant type to allow app users to authenticate from your Amplify app."
               }
             ]
           },
           "OAuthScopes": {
             "allOf": [
+              { "$ref": "#/components/schemas/ListOfOAuthScopesElement" },
               {
-                "$ref": "#/components/schemas/ListOfOAuthScopesElement"
-              },
-              {
-                "xml": {
-                  "name": "oAuthScopes"
-                },
+                "xml": { "name": "oAuthScopes" },
                 "description": "The list of OAuth-related flows that can allow users to authenticate from your Amplify app."
               }
             ]
           },
           "RedirectSignInURIs": {
             "allOf": [
+              { "$ref": "#/components/schemas/ListOf__string" },
               {
-                "$ref": "#/components/schemas/ListOf__string"
-              },
-              {
-                "xml": {
-                  "name": "redirectSignInURIs"
-                },
+                "xml": { "name": "redirectSignInURIs" },
                 "description": "Redirect URLs that OAuth uses when a user signs in to an Amplify app."
               }
             ]
           },
           "RedirectSignOutURIs": {
             "allOf": [
+              { "$ref": "#/components/schemas/ListOf__string" },
               {
-                "$ref": "#/components/schemas/ListOf__string"
-              },
-              {
-                "xml": {
-                  "name": "redirectSignOutURIs"
-                },
+                "xml": { "name": "redirectSignOutURIs" },
                 "description": "Redirect URLs that OAuth uses when a user signs out of an Amplify app."
               }
             ]
           },
           "SocialProviderSettings": {
             "allOf": [
+              { "$ref": "#/components/schemas/SocialProviderSettings" },
               {
-                "$ref": "#/components/schemas/SocialProviderSettings"
-              },
-              {
-                "xml": {
-                  "name": "socialProviderSettings"
-                },
+                "xml": { "name": "socialProviderSettings" },
                 "description": "Describes third-party social federation configurations for allowing your users to sign in with OAuth."
               }
             ]
@@ -6617,22 +5064,16 @@
                 "$ref": "#/components/schemas/ListOfAdditionalConstraintsElement"
               },
               {
-                "xml": {
-                  "name": "additionalConstraints"
-                },
+                "xml": { "name": "additionalConstraints" },
                 "description": "Describes additional constraints on password requirements to sign in to the auth resource, configured as a part of your Amplify project."
               }
             ]
           },
           "MinimumLength": {
             "allOf": [
+              { "$ref": "#/components/schemas/__double" },
               {
-                "$ref": "#/components/schemas/__double"
-              },
-              {
-                "xml": {
-                  "name": "minimumLength"
-                },
+                "xml": { "name": "minimumLength" },
                 "description": "Describes the minimum length of the password required to sign in to the auth resource, configured as a part of your Amplify project."
               }
             ]
@@ -6642,15 +5083,23 @@
       },
       "AdditionalConstraintsElement": {
         "type": "string",
-        "enum": ["REQUIRE_DIGIT", "REQUIRE_LOWERCASE", "REQUIRE_SYMBOL", "REQUIRE_UPPERCASE"]
+        "enum": [
+          "REQUIRE_DIGIT",
+          "REQUIRE_LOWERCASE",
+          "REQUIRE_SYMBOL",
+          "REQUIRE_UPPERCASE"
+        ]
       },
-      "MfaTypesElement": {
-        "type": "string",
-        "enum": ["SMS", "TOTP"]
-      },
+      "MfaTypesElement": { "type": "string", "enum": ["SMS", "TOTP"] },
       "OAuthScopesElement": {
         "type": "string",
-        "enum": ["PHONE", "EMAIL", "OPENID", "PROFILE", "AWS_COGNITO_SIGNIN_USER_ADMIN"]
+        "enum": [
+          "PHONE",
+          "EMAIL",
+          "OPENID",
+          "PROFILE",
+          "AWS_COGNITO_SIGNIN_USER_ADMIN"
+        ]
       },
       "RequiredSignUpAttributesElement": {
         "type": "string",
@@ -6676,11 +5125,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2020-08-11",
     "endpointPrefix": "amplifybackend",

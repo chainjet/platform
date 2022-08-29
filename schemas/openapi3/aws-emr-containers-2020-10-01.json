@@ -35,9 +35,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -81,27 +79,13 @@
         "summary": "Cancel Job Run"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "DescribeJobRun",
@@ -121,9 +105,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -196,9 +178,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -243,7 +223,14 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["name", "type", "releaseLabel", "executionRoleArn", "certificateArn", "clientToken"],
+                "required": [
+                  "name",
+                  "type",
+                  "releaseLabel",
+                  "executionRoleArn",
+                  "certificateArn",
+                  "clientToken"
+                ],
                 "properties": {
                   "name": {
                     "description": "The name of the managed endpoint.",
@@ -286,9 +273,7 @@
                     "properties": {
                       "applicationConfiguration": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/ConfigurationList"
-                          },
+                          { "$ref": "#/components/schemas/ConfigurationList" },
                           {
                             "description": "The configurations for the application running by the job run. "
                           }
@@ -330,27 +315,13 @@
         "summary": "Create Managed Endpoint"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListManagedEndpoints",
@@ -370,9 +341,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -405,20 +374,14 @@
             "in": "query",
             "required": false,
             "description": "The date and time before which the endpoints are created.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "createdAfter",
             "in": "query",
             "required": false,
             "description": " The date and time after which the endpoints are created.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "types",
@@ -427,9 +390,7 @@
             "description": "The types of the managed endpoints.",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/EndpointType"
-              },
+              "items": { "$ref": "#/components/schemas/EndpointType" },
               "maxItems": 10
             }
           },
@@ -440,9 +401,7 @@
             "description": "The states of the managed endpoints.",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/EndpointState"
-              },
+              "items": { "$ref": "#/components/schemas/EndpointState" },
               "maxItems": 10
             }
           },
@@ -451,9 +410,7 @@
             "in": "query",
             "required": false,
             "description": "The maximum number of managed endpoints that can be listed.",
-            "schema": {
-              "type": "integer"
-            }
+            "schema": { "type": "integer" }
           },
           {
             "name": "nextToken",
@@ -490,9 +447,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -549,19 +504,13 @@
                       },
                       "id": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/ClusterId"
-                          },
-                          {
-                            "description": "The ID of the container cluster."
-                          }
+                          { "$ref": "#/components/schemas/ClusterId" },
+                          { "description": "The ID of the container cluster." }
                         ]
                       },
                       "info": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/ContainerInfo"
-                          },
+                          { "$ref": "#/components/schemas/ContainerInfo" },
                           {
                             "description": "The information about the container cluster."
                           }
@@ -593,27 +542,13 @@
         "summary": "Create Virtual Cluster"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListVirtualClusters",
@@ -633,9 +568,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -668,30 +601,21 @@
             "in": "query",
             "required": false,
             "description": "The container provider type of the virtual cluster. EKS is the only supported type as of now.",
-            "schema": {
-              "type": "string",
-              "enum": ["EKS"]
-            }
+            "schema": { "type": "string", "enum": ["EKS"] }
           },
           {
             "name": "createdAfter",
             "in": "query",
             "required": false,
             "description": "The date and time after which the virtual clusters are created.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "createdBefore",
             "in": "query",
             "required": false,
             "description": "The date and time before which the virtual clusters are created.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "states",
@@ -700,9 +624,7 @@
             "description": "The states of the requested virtual clusters.",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/VirtualClusterState"
-              },
+              "items": { "$ref": "#/components/schemas/VirtualClusterState" },
               "maxItems": 10
             }
           },
@@ -711,9 +633,7 @@
             "in": "query",
             "required": false,
             "description": "The maximum number of virtual clusters that can be listed.",
-            "schema": {
-              "type": "integer"
-            }
+            "schema": { "type": "integer" }
           },
           {
             "name": "nextToken",
@@ -750,9 +670,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -796,27 +714,13 @@
         "summary": "Delete Managed Endpoint"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "DescribeManagedEndpoint",
@@ -836,9 +740,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -911,9 +813,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -945,27 +845,13 @@
         "summary": "Delete Virtual Cluster"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "DescribeVirtualCluster",
@@ -985,9 +871,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1038,9 +922,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListJobRunsResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/ListJobRunsResponse" }
               }
             }
           },
@@ -1048,9 +930,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1083,20 +963,14 @@
             "in": "query",
             "required": false,
             "description": "The date and time before which the job runs were submitted.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "createdAfter",
             "in": "query",
             "required": false,
             "description": "The date and time after which the job runs were submitted.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "name",
@@ -1117,9 +991,7 @@
             "description": "The states of the job run.",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/JobRunState"
-              },
+              "items": { "$ref": "#/components/schemas/JobRunState" },
               "maxItems": 10
             }
           },
@@ -1128,9 +1000,7 @@
             "in": "query",
             "required": false,
             "description": "The maximum number of job runs that can be listed.",
-            "schema": {
-              "type": "integer"
-            }
+            "schema": { "type": "integer" }
           },
           {
             "name": "nextToken",
@@ -1148,27 +1018,13 @@
         "summary": "List Job Runs"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "StartJobRun",
@@ -1178,9 +1034,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StartJobRunResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/StartJobRunResponse" }
               }
             }
           },
@@ -1188,9 +1042,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1235,7 +1087,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["clientToken", "executionRoleArn", "releaseLabel", "jobDriver"],
+                "required": [
+                  "clientToken",
+                  "executionRoleArn",
+                  "releaseLabel",
+                  "jobDriver"
+                ],
                 "properties": {
                   "name": {
                     "description": "The name of the job run.",
@@ -1287,9 +1144,7 @@
                     "properties": {
                       "applicationConfiguration": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/ConfigurationList"
-                          },
+                          { "$ref": "#/components/schemas/ConfigurationList" },
                           {
                             "description": "The configurations for the application running by the job run. "
                           }
@@ -1353,9 +1208,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1387,27 +1240,13 @@
         "summary": "List Tags For Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "TagResource",
@@ -1417,9 +1256,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TagResourceResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/TagResourceResponse" }
               }
             }
           },
@@ -1437,9 +1274,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1522,9 +1357,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1559,9 +1392,7 @@
             "description": "The tag keys of the resources.",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/String128"
-              },
+              "items": { "$ref": "#/components/schemas/String128" },
               "minItems": 0,
               "maxItems": 50
             }
@@ -1570,27 +1401,13 @@
         "summary": "Untag Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -1697,63 +1514,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -1772,9 +1575,7 @@
         "properties": {
           "id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdString"
-              },
+              { "$ref": "#/components/schemas/ResourceIdString" },
               {
                 "description": "The output contains the ID of the cancelled job run."
               }
@@ -1782,9 +1583,7 @@
           },
           "virtualClusterId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdString"
-              },
+              { "$ref": "#/components/schemas/ResourceIdString" },
               {
                 "description": "The output contains the virtual cluster ID for which the job run is cancelled."
               }
@@ -1799,9 +1598,7 @@
         "properties": {
           "id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdString"
-              },
+              { "$ref": "#/components/schemas/ResourceIdString" },
               {
                 "description": "The output contains the ID of the managed endpoint."
               }
@@ -1809,9 +1606,7 @@
           },
           "name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceNameString"
-              },
+              { "$ref": "#/components/schemas/ResourceNameString" },
               {
                 "description": "The output contains the name of the managed endpoint."
               }
@@ -1819,9 +1614,7 @@
           },
           "arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EndpointArn"
-              },
+              { "$ref": "#/components/schemas/EndpointArn" },
               {
                 "description": "The output contains the ARN of the managed endpoint."
               }
@@ -1829,9 +1622,7 @@
           },
           "virtualClusterId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdString"
-              },
+              { "$ref": "#/components/schemas/ResourceIdString" },
               {
                 "description": "The output contains the ID of the virtual cluster."
               }
@@ -1841,9 +1632,7 @@
       },
       "ConfigurationList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Configuration"
-        },
+        "items": { "$ref": "#/components/schemas/Configuration" },
         "maxItems": 100
       },
       "MonitoringConfiguration": {
@@ -1851,9 +1640,7 @@
         "properties": {
           "persistentAppUI": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PersistentAppUI"
-              },
+              { "$ref": "#/components/schemas/PersistentAppUI" },
               {
                 "description": "Monitoring configurations for the persistent application UI. "
               }
@@ -1864,16 +1651,12 @@
               {
                 "$ref": "#/components/schemas/CloudWatchMonitoringConfiguration"
               },
-              {
-                "description": "Monitoring configurations for CloudWatch."
-              }
+              { "description": "Monitoring configurations for CloudWatch." }
             ]
           },
           "s3MonitoringConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/S3MonitoringConfiguration"
-              },
+              { "$ref": "#/components/schemas/S3MonitoringConfiguration" },
               {
                 "description": "Amazon S3 configuration for monitoring log publishing."
               }
@@ -1894,19 +1677,13 @@
         "properties": {
           "id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdString"
-              },
-              {
-                "description": "This output contains the virtual cluster ID."
-              }
+              { "$ref": "#/components/schemas/ResourceIdString" },
+              { "description": "This output contains the virtual cluster ID." }
             ]
           },
           "name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceNameString"
-              },
+              { "$ref": "#/components/schemas/ResourceNameString" },
               {
                 "description": "This output contains the name of the virtual cluster."
               }
@@ -1914,9 +1691,7 @@
           },
           "arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VirtualClusterArn"
-              },
+              { "$ref": "#/components/schemas/VirtualClusterArn" },
               {
                 "description": "This output contains the ARN of virtual cluster."
               }
@@ -1924,10 +1699,7 @@
           }
         }
       },
-      "ContainerProviderType": {
-        "type": "string",
-        "enum": ["EKS"]
-      },
+      "ContainerProviderType": { "type": "string", "enum": ["EKS"] },
       "ClusterId": {
         "type": "string",
         "pattern": "^[0-9A-Za-z][A-Za-z0-9\\-_]*",
@@ -1939,12 +1711,8 @@
         "properties": {
           "eksInfo": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EksInfo"
-              },
-              {
-                "description": "The information about the EKS cluster."
-              }
+              { "$ref": "#/components/schemas/EksInfo" },
+              { "description": "The information about the EKS cluster." }
             ]
           }
         },
@@ -1955,9 +1723,7 @@
         "properties": {
           "id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdString"
-              },
+              { "$ref": "#/components/schemas/ResourceIdString" },
               {
                 "description": "The output displays the ID of the managed endpoint."
               }
@@ -1965,9 +1731,7 @@
           },
           "virtualClusterId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdString"
-              },
+              { "$ref": "#/components/schemas/ResourceIdString" },
               {
                 "description": "The output displays the ID of the endpoint's virtual cluster."
               }
@@ -1980,9 +1744,7 @@
         "properties": {
           "id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdString"
-              },
+              { "$ref": "#/components/schemas/ResourceIdString" },
               {
                 "description": "This output contains the ID of the virtual cluster that will be deleted. "
               }
@@ -1995,9 +1757,7 @@
         "properties": {
           "jobRun": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobRun"
-              },
+              { "$ref": "#/components/schemas/JobRun" },
               {
                 "description": "The output displays information about a job run."
               }
@@ -2010,9 +1770,7 @@
         "properties": {
           "endpoint": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Endpoint"
-              },
+              { "$ref": "#/components/schemas/Endpoint" },
               {
                 "description": "This output displays information about a managed endpoint."
               }
@@ -2025,9 +1783,7 @@
         "properties": {
           "virtualCluster": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VirtualCluster"
-              },
+              { "$ref": "#/components/schemas/VirtualCluster" },
               {
                 "description": "This output displays information about the specified virtual cluster."
               }
@@ -2040,9 +1796,7 @@
         "properties": {
           "jobRuns": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobRuns"
-              },
+              { "$ref": "#/components/schemas/JobRuns" },
               {
                 "description": "This output lists information about the specified job runs."
               }
@@ -2050,9 +1804,7 @@
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "This output displays the token for the next set of job runs."
               }
@@ -2062,26 +1814,28 @@
       },
       "JobRunState": {
         "type": "string",
-        "enum": ["PENDING", "SUBMITTED", "RUNNING", "FAILED", "CANCELLED", "CANCEL_PENDING", "COMPLETED"]
+        "enum": [
+          "PENDING",
+          "SUBMITTED",
+          "RUNNING",
+          "FAILED",
+          "CANCELLED",
+          "CANCEL_PENDING",
+          "COMPLETED"
+        ]
       },
       "ListManagedEndpointsResponse": {
         "type": "object",
         "properties": {
           "endpoints": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Endpoints"
-              },
-              {
-                "description": "The managed endpoints to be listed."
-              }
+              { "$ref": "#/components/schemas/Endpoints" },
+              { "description": "The managed endpoints to be listed." }
             ]
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": " The token for the next set of endpoints to return. "
               }
@@ -2097,19 +1851,21 @@
       },
       "EndpointState": {
         "type": "string",
-        "enum": ["CREATING", "ACTIVE", "TERMINATING", "TERMINATED", "TERMINATED_WITH_ERRORS"]
+        "enum": [
+          "CREATING",
+          "ACTIVE",
+          "TERMINATING",
+          "TERMINATED",
+          "TERMINATED_WITH_ERRORS"
+        ]
       },
       "ListTagsForResourceResponse": {
         "type": "object",
         "properties": {
           "tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagMap"
-              },
-              {
-                "description": "The tags assigned to resources."
-              }
+              { "$ref": "#/components/schemas/TagMap" },
+              { "description": "The tags assigned to resources." }
             ]
           }
         }
@@ -2119,9 +1875,7 @@
         "properties": {
           "virtualClusters": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VirtualClusters"
-              },
+              { "$ref": "#/components/schemas/VirtualClusters" },
               {
                 "description": "This output lists the specified virtual clusters."
               }
@@ -2129,9 +1883,7 @@
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "This output displays the token for the next set of virtual clusters."
               }
@@ -2148,19 +1900,13 @@
         "properties": {
           "id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdString"
-              },
-              {
-                "description": "This output displays the started job run ID."
-              }
+              { "$ref": "#/components/schemas/ResourceIdString" },
+              { "description": "This output displays the started job run ID." }
             ]
           },
           "name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceNameString"
-              },
+              { "$ref": "#/components/schemas/ResourceNameString" },
               {
                 "description": "This output displays the name of the started job run."
               }
@@ -2168,19 +1914,13 @@
           },
           "arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobArn"
-              },
-              {
-                "description": "This output lists the ARN of job run."
-              }
+              { "$ref": "#/components/schemas/JobArn" },
+              { "description": "This output lists the ARN of job run." }
             ]
           },
           "virtualClusterId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdString"
-              },
+              { "$ref": "#/components/schemas/ResourceIdString" },
               {
                 "description": "This output displays the virtual cluster ID for which the job run was submitted."
               }
@@ -2194,29 +1934,19 @@
         "properties": {
           "entryPoint": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EntryPointPath"
-              },
-              {
-                "description": "The entry point of job application."
-              }
+              { "$ref": "#/components/schemas/EntryPointPath" },
+              { "description": "The entry point of job application." }
             ]
           },
           "entryPointArguments": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EntryPointArguments"
-              },
-              {
-                "description": "The arguments for job application."
-              }
+              { "$ref": "#/components/schemas/EntryPointArguments" },
+              { "description": "The arguments for job application." }
             ]
           },
           "sparkSubmitParameters": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SparkSubmitParameters"
-              },
+              { "$ref": "#/components/schemas/SparkSubmitParameters" },
               {
                 "description": "The Spark submit parameters that are used for job runs."
               }
@@ -2225,14 +1955,8 @@
         },
         "description": "The information about job driver for Spark submit."
       },
-      "TagResourceResponse": {
-        "type": "object",
-        "properties": {}
-      },
-      "UntagResourceResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "TagResourceResponse": { "type": "object", "properties": {} },
+      "UntagResourceResponse": { "type": "object", "properties": {} },
       "String128": {
         "type": "string",
         "pattern": ".*\\S.*",
@@ -2275,22 +1999,14 @@
         "properties": {
           "logGroupName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LogGroupName"
-              },
-              {
-                "description": "The name of the log group for log publishing."
-              }
+              { "$ref": "#/components/schemas/LogGroupName" },
+              { "description": "The name of the log group for log publishing." }
             ]
           },
           "logStreamNamePrefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String256"
-              },
-              {
-                "description": "The specified name prefix for log streams."
-              }
+              { "$ref": "#/components/schemas/String256" },
+              { "description": "The specified name prefix for log streams." }
             ]
           }
         },
@@ -2308,12 +2024,8 @@
         "properties": {
           "classification": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String1024"
-              },
-              {
-                "description": "The classification within a configuration."
-              }
+              { "$ref": "#/components/schemas/String1024" },
+              { "description": "The classification within a configuration." }
             ]
           },
           "properties": {
@@ -2321,9 +2033,7 @@
           },
           "configurations": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConfigurationList"
-              },
+              { "$ref": "#/components/schemas/ConfigurationList" },
               {
                 "description": "A list of additional configurations to apply within a configuration object."
               }
@@ -2337,9 +2047,7 @@
         "properties": {
           "applicationConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConfigurationList"
-              },
+              { "$ref": "#/components/schemas/ConfigurationList" },
               {
                 "description": "The configurations for the application running by the job run. "
               }
@@ -2347,12 +2055,8 @@
           },
           "monitoringConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MonitoringConfiguration"
-              },
-              {
-                "description": "The configurations for monitoring."
-              }
+              { "$ref": "#/components/schemas/MonitoringConfiguration" },
+              { "description": "The configurations for monitoring." }
             ]
           }
         },
@@ -2363,12 +2067,8 @@
         "properties": {
           "namespace": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/KubernetesNamespace"
-              },
-              {
-                "description": "The namespaces of the EKS cluster."
-              }
+              { "$ref": "#/components/schemas/KubernetesNamespace" },
+              { "description": "The namespaces of the EKS cluster." }
             ]
           }
         },
@@ -2380,9 +2080,7 @@
         "properties": {
           "type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ContainerProviderType"
-              },
+              { "$ref": "#/components/schemas/ContainerProviderType" },
               {
                 "description": "The type of the container provider. EKS is the only supported type as of now."
               }
@@ -2390,22 +2088,14 @@
           },
           "id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ClusterId"
-              },
-              {
-                "description": "The ID of the container cluster."
-              }
+              { "$ref": "#/components/schemas/ClusterId" },
+              { "description": "The ID of the container cluster." }
             ]
           },
           "info": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ContainerInfo"
-              },
-              {
-                "description": "The information about the container cluster."
-              }
+              { "$ref": "#/components/schemas/ContainerInfo" },
+              { "description": "The information about the container cluster." }
             ]
           }
         },
@@ -2449,98 +2139,61 @@
         "minLength": 60,
         "maxLength": 1024
       },
-      "Date": {
-        "type": "string",
-        "format": "date-time"
-      },
+      "Date": { "type": "string", "format": "date-time" },
       "JobRun": {
         "type": "object",
         "properties": {
           "id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdString"
-              },
-              {
-                "description": "The ID of the job run."
-              }
+              { "$ref": "#/components/schemas/ResourceIdString" },
+              { "description": "The ID of the job run." }
             ]
           },
           "name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceNameString"
-              },
-              {
-                "description": "The name of the job run."
-              }
+              { "$ref": "#/components/schemas/ResourceNameString" },
+              { "description": "The name of the job run." }
             ]
           },
           "virtualClusterId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdString"
-              },
-              {
-                "description": "The ID of the job run's virtual cluster."
-              }
+              { "$ref": "#/components/schemas/ResourceIdString" },
+              { "description": "The ID of the job run's virtual cluster." }
             ]
           },
           "arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobArn"
-              },
-              {
-                "description": "The ARN of job run."
-              }
+              { "$ref": "#/components/schemas/JobArn" },
+              { "description": "The ARN of job run." }
             ]
           },
           "state": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobRunState"
-              },
-              {
-                "description": "The state of the job run. "
-              }
+              { "$ref": "#/components/schemas/JobRunState" },
+              { "description": "The state of the job run. " }
             ]
           },
           "clientToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ClientToken"
-              },
-              {
-                "description": "The client token used to start a job run."
-              }
+              { "$ref": "#/components/schemas/ClientToken" },
+              { "description": "The client token used to start a job run." }
             ]
           },
           "executionRoleArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IAMRoleArn"
-              },
-              {
-                "description": "The execution role ARN of the job run."
-              }
+              { "$ref": "#/components/schemas/IAMRoleArn" },
+              { "description": "The execution role ARN of the job run." }
             ]
           },
           "releaseLabel": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ReleaseLabel"
-              },
-              {
-                "description": "The release version of Amazon EMR."
-              }
+              { "$ref": "#/components/schemas/ReleaseLabel" },
+              { "description": "The release version of Amazon EMR." }
             ]
           },
           "configurationOverrides": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConfigurationOverrides"
-              },
+              { "$ref": "#/components/schemas/ConfigurationOverrides" },
               {
                 "description": "The configuration settings that are used to override default configuration."
               }
@@ -2548,19 +2201,13 @@
           },
           "jobDriver": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobDriver"
-              },
-              {
-                "description": "Parameters of job driver for the job run."
-              }
+              { "$ref": "#/components/schemas/JobDriver" },
+              { "description": "Parameters of job driver for the job run." }
             ]
           },
           "createdAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Date"
-              },
+              { "$ref": "#/components/schemas/Date" },
               {
                 "description": "The date and time when the job run was created."
               }
@@ -2568,19 +2215,13 @@
           },
           "createdBy": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RequestIdentityUserArn"
-              },
-              {
-                "description": "The user who created the job run."
-              }
+              { "$ref": "#/components/schemas/RequestIdentityUserArn" },
+              { "description": "The user who created the job run." }
             ]
           },
           "finishedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Date"
-              },
+              { "$ref": "#/components/schemas/Date" },
               {
                 "description": "The date and time when the job run has finished."
               }
@@ -2588,32 +2229,20 @@
           },
           "stateDetails": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String256"
-              },
-              {
-                "description": "Additional details of the job run state."
-              }
+              { "$ref": "#/components/schemas/String256" },
+              { "description": "Additional details of the job run state." }
             ]
           },
           "failureReason": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FailureReason"
-              },
-              {
-                "description": "The reasons why the job run has failed."
-              }
+              { "$ref": "#/components/schemas/FailureReason" },
+              { "description": "The reasons why the job run has failed." }
             ]
           },
           "tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagMap"
-              },
-              {
-                "description": "The assigned tags of the job run."
-              }
+              { "$ref": "#/components/schemas/TagMap" },
+              { "description": "The assigned tags of the job run." }
             ]
           }
         },
@@ -2624,69 +2253,43 @@
         "properties": {
           "id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdString"
-              },
-              {
-                "description": "The ID of the endpoint."
-              }
+              { "$ref": "#/components/schemas/ResourceIdString" },
+              { "description": "The ID of the endpoint." }
             ]
           },
           "name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceNameString"
-              },
-              {
-                "description": "The name of the endpoint."
-              }
+              { "$ref": "#/components/schemas/ResourceNameString" },
+              { "description": "The name of the endpoint." }
             ]
           },
           "arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EndpointArn"
-              },
-              {
-                "description": "The ARN of the endpoint."
-              }
+              { "$ref": "#/components/schemas/EndpointArn" },
+              { "description": "The ARN of the endpoint." }
             ]
           },
           "virtualClusterId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdString"
-              },
-              {
-                "description": "The ID of the endpoint's virtual cluster."
-              }
+              { "$ref": "#/components/schemas/ResourceIdString" },
+              { "description": "The ID of the endpoint's virtual cluster." }
             ]
           },
           "type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EndpointType"
-              },
-              {
-                "description": "The type of the endpoint."
-              }
+              { "$ref": "#/components/schemas/EndpointType" },
+              { "description": "The type of the endpoint." }
             ]
           },
           "state": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EndpointState"
-              },
-              {
-                "description": "The state of the endpoint."
-              }
+              { "$ref": "#/components/schemas/EndpointState" },
+              { "description": "The state of the endpoint." }
             ]
           },
           "releaseLabel": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ReleaseLabel"
-              },
+              { "$ref": "#/components/schemas/ReleaseLabel" },
               {
                 "description": "The EMR release version to be used for the endpoint."
               }
@@ -2694,29 +2297,19 @@
           },
           "executionRoleArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IAMRoleArn"
-              },
-              {
-                "description": "The execution role ARN of the endpoint."
-              }
+              { "$ref": "#/components/schemas/IAMRoleArn" },
+              { "description": "The execution role ARN of the endpoint." }
             ]
           },
           "certificateArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ACMCertArn"
-              },
-              {
-                "description": "The certificate ARN of the endpoint."
-              }
+              { "$ref": "#/components/schemas/ACMCertArn" },
+              { "description": "The certificate ARN of the endpoint." }
             ]
           },
           "configurationOverrides": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConfigurationOverrides"
-              },
+              { "$ref": "#/components/schemas/ConfigurationOverrides" },
               {
                 "description": "The configuration settings that are used to override existing configurations for endpoints."
               }
@@ -2724,19 +2317,13 @@
           },
           "serverUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UriString"
-              },
-              {
-                "description": "The server URL of the endpoint."
-              }
+              { "$ref": "#/components/schemas/UriString" },
+              { "description": "The server URL of the endpoint." }
             ]
           },
           "createdAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Date"
-              },
+              { "$ref": "#/components/schemas/Date" },
               {
                 "description": "The date and time when the endpoint was created."
               }
@@ -2744,9 +2331,7 @@
           },
           "securityGroup": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String256"
-              },
+              { "$ref": "#/components/schemas/String256" },
               {
                 "description": "The security group configuration of the endpoint. "
               }
@@ -2754,42 +2339,26 @@
           },
           "subnetIds": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SubnetIds"
-              },
-              {
-                "description": "The subnet IDs of the endpoint. "
-              }
+              { "$ref": "#/components/schemas/SubnetIds" },
+              { "description": "The subnet IDs of the endpoint. " }
             ]
           },
           "stateDetails": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String256"
-              },
-              {
-                "description": " Additional details of the endpoint state. "
-              }
+              { "$ref": "#/components/schemas/String256" },
+              { "description": " Additional details of the endpoint state. " }
             ]
           },
           "failureReason": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FailureReason"
-              },
-              {
-                "description": " The reasons why the endpoint has failed. "
-              }
+              { "$ref": "#/components/schemas/FailureReason" },
+              { "description": " The reasons why the endpoint has failed. " }
             ]
           },
           "tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagMap"
-              },
-              {
-                "description": "The tags of the endpoint. "
-              }
+              { "$ref": "#/components/schemas/TagMap" },
+              { "description": "The tags of the endpoint. " }
             ]
           }
         },
@@ -2800,49 +2369,31 @@
         "properties": {
           "id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdString"
-              },
-              {
-                "description": "The ID of the virtual cluster."
-              }
+              { "$ref": "#/components/schemas/ResourceIdString" },
+              { "description": "The ID of the virtual cluster." }
             ]
           },
           "name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceNameString"
-              },
-              {
-                "description": "The name of the virtual cluster."
-              }
+              { "$ref": "#/components/schemas/ResourceNameString" },
+              { "description": "The name of the virtual cluster." }
             ]
           },
           "arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VirtualClusterArn"
-              },
-              {
-                "description": "The ARN of the virtual cluster."
-              }
+              { "$ref": "#/components/schemas/VirtualClusterArn" },
+              { "description": "The ARN of the virtual cluster." }
             ]
           },
           "state": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VirtualClusterState"
-              },
-              {
-                "description": "The state of the virtual cluster."
-              }
+              { "$ref": "#/components/schemas/VirtualClusterState" },
+              { "description": "The state of the virtual cluster." }
             ]
           },
           "containerProvider": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ContainerProvider"
-              },
+              { "$ref": "#/components/schemas/ContainerProvider" },
               {
                 "description": "The container provider of the virtual cluster."
               }
@@ -2850,9 +2401,7 @@
           },
           "createdAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Date"
-              },
+              { "$ref": "#/components/schemas/Date" },
               {
                 "description": "The date and time when the virtual cluster is created."
               }
@@ -2860,12 +2409,8 @@
           },
           "tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagMap"
-              },
-              {
-                "description": "The assigned tags of the virtual cluster."
-              }
+              { "$ref": "#/components/schemas/TagMap" },
+              { "description": "The assigned tags of the virtual cluster." }
             ]
           }
         },
@@ -2885,19 +2430,20 @@
       },
       "SubnetIds": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/String256"
-        }
+        "items": { "$ref": "#/components/schemas/String256" }
       },
       "FailureReason": {
         "type": "string",
-        "enum": ["INTERNAL_ERROR", "USER_ERROR", "VALIDATION_ERROR", "CLUSTER_UNAVAILABLE"]
+        "enum": [
+          "INTERNAL_ERROR",
+          "USER_ERROR",
+          "VALIDATION_ERROR",
+          "CLUSTER_UNAVAILABLE"
+        ]
       },
       "Endpoints": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Endpoint"
-        }
+        "items": { "$ref": "#/components/schemas/Endpoint" }
       },
       "EntryPointArgument": {
         "type": "string",
@@ -2908,9 +2454,7 @@
       },
       "EntryPointArguments": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/EntryPointArgument"
-        }
+        "items": { "$ref": "#/components/schemas/EntryPointArgument" }
       },
       "EntryPointPath": {
         "type": "string",
@@ -2930,9 +2474,7 @@
         "properties": {
           "sparkSubmitJobDriver": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SparkSubmitJobDriver"
-              },
+              { "$ref": "#/components/schemas/SparkSubmitJobDriver" },
               {
                 "description": "The job driver parameters specified for spark submit."
               }
@@ -2949,9 +2491,7 @@
       },
       "JobRuns": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/JobRun"
-        }
+        "items": { "$ref": "#/components/schemas/JobRun" }
       },
       "NextToken": {
         "type": "string",
@@ -2961,26 +2501,17 @@
       },
       "VirtualClusters": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/VirtualCluster"
-        }
+        "items": { "$ref": "#/components/schemas/VirtualCluster" }
       },
-      "PersistentAppUI": {
-        "type": "string",
-        "enum": ["ENABLED", "DISABLED"]
-      },
+      "PersistentAppUI": { "type": "string", "enum": ["ENABLED", "DISABLED"] },
       "S3MonitoringConfiguration": {
         "type": "object",
         "required": ["logUri"],
         "properties": {
           "logUri": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UriString"
-              },
-              {
-                "description": "Amazon S3 destination URI for log publishing."
-              }
+              { "$ref": "#/components/schemas/UriString" },
+              { "description": "Amazon S3 destination URI for log publishing." }
             ]
           }
         },
@@ -2995,11 +2526,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2020-10-01",
     "endpointPrefix": "emr-containers",

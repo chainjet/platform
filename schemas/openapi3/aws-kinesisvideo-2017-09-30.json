@@ -148,103 +148,158 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetClipOutput"
+                  "type": "object",
+                  "properties": {
+                    "Payload": {
+                      "allOf": [
+                        { "type": "string" },
+                        {
+                          "description": "Traditional MP4 file that contains the media clip from the specified video stream. The output will contain the first 100 MB or the first 200 fragments from the specified start timestamp. For more information, see <a href=\"Kinesis Video Streams Limits\">Kinesis Video Streams Limits</a>. "
+                        }
+                      ]
+                    }
+                  }
                 }
               }
             }
           },
           "480": {
             "description": "ResourceNotFoundException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "481": {
             "description": "InvalidArgumentException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidArgumentException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "482": {
             "description": "ClientLimitExceededException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ClientLimitExceededException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "483": {
             "description": "NotAuthorizedException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotAuthorizedException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "484": {
             "description": "UnsupportedStreamMediaTypeException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnsupportedStreamMediaTypeException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "485": {
             "description": "MissingCodecPrivateDataException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MissingCodecPrivateDataException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "486": {
             "description": "InvalidCodecPrivateDataException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidCodecPrivateDataException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "487": {
             "description": "InvalidMediaFrameException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidMediaFrameException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "488": {
             "description": "NoDataRetentionException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NoDataRetentionException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           }
         },
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "X-Amz-Content-Sha256",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Date",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Algorithm",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Credential",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Security-Token",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Signature",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-SignedHeaders",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Content-Sha256",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Date",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Algorithm",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Credential",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Security-Token",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Signature",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-SignedHeaders",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -274,7 +329,8 @@
                       "FragmentSelectorType": {
                         "allOf": [
                           {
-                            "$ref": "#/components/schemas/ClipFragmentSelectorType"
+                            "type": "string",
+                            "enum": ["PRODUCER_TIMESTAMP", "SERVER_TIMESTAMP"]
                           },
                           {
                             "description": "The origin of the timestamps to use (Server or Producer)."
@@ -284,7 +340,27 @@
                       "TimestampRange": {
                         "allOf": [
                           {
-                            "$ref": "#/components/schemas/ClipTimestampRange"
+                            "type": "object",
+                            "required": ["StartTimestamp", "EndTimestamp"],
+                            "properties": {
+                              "StartTimestamp": {
+                                "allOf": [
+                                  { "type": "string", "format": "date-time" },
+                                  {
+                                    "description": "<p>The starting timestamp in the range of timestamps for which to return fragments. </p> <p>This value is inclusive. Fragments that start before the <code>StartTimestamp</code> and continue past it are included in the session. If <code>FragmentSelectorType</code> is <code>SERVER_TIMESTAMP</code>, the <code>StartTimestamp</code> must be later than the stream head. </p>"
+                                  }
+                                ]
+                              },
+                              "EndTimestamp": {
+                                "allOf": [
+                                  { "type": "string", "format": "date-time" },
+                                  {
+                                    "description": "<p>The end of the timestamp range for the requested media.</p> <p>This value must be within 3 hours of the specified <code>StartTimestamp</code>, and it must be later than the <code>StartTimestamp</code> value. If <code>FragmentSelectorType</code> for the request is <code>SERVER_TIMESTAMP</code>, this value must be in the past. </p> <p>This value is inclusive. The <code>EndTimestamp</code> is compared to the (starting) timestamp of the fragment. Fragments that start before the <code>EndTimestamp</code> value and continue past it are included in the session. </p>"
+                                  }
+                                ]
+                              }
+                            },
+                            "description": "<p>The range of timestamps for which to return fragments.</p> <p>The values in the ClipTimestampRange are <code>inclusive</code>. Fragments that begin before the start time but continue past it, or fragments that begin before the end time but continue past it, are included in the session. </p>"
                           },
                           {
                             "description": "The range of timestamps to return."
@@ -302,25 +378,53 @@
       },
       "parameters": [
         {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
+          "name": "X-Amz-Content-Sha256",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Date"
+          "name": "X-Amz-Date",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
+          "name": "X-Amz-Algorithm",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Credential"
+          "name": "X-Amz-Credential",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
+          "name": "X-Amz-Security-Token",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Signature"
+          "name": "X-Amz-Signature",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
+          "name": "X-Amz-SignedHeaders",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         }
       ]
     },
@@ -334,93 +438,154 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetDASHStreamingSessionURLOutput"
+                  "type": "object",
+                  "properties": {
+                    "DASHStreamingSessionURL": {
+                      "allOf": [
+                        { "type": "string" },
+                        {
+                          "description": "The URL (containing the session token) that a media player can use to retrieve the MPEG-DASH manifest."
+                        }
+                      ]
+                    }
+                  }
                 }
               }
             }
           },
           "480": {
             "description": "ResourceNotFoundException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "481": {
             "description": "InvalidArgumentException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidArgumentException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "482": {
             "description": "ClientLimitExceededException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ClientLimitExceededException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "483": {
             "description": "NotAuthorizedException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotAuthorizedException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "484": {
             "description": "UnsupportedStreamMediaTypeException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnsupportedStreamMediaTypeException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "485": {
             "description": "NoDataRetentionException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NoDataRetentionException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "486": {
             "description": "MissingCodecPrivateDataException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MissingCodecPrivateDataException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "487": {
             "description": "InvalidCodecPrivateDataException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidCodecPrivateDataException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           }
         },
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "X-Amz-Content-Sha256",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Date",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Algorithm",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Credential",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Security-Token",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Signature",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-SignedHeaders",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Content-Sha256",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Date",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Algorithm",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Credential",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Security-Token",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Signature",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-SignedHeaders",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -464,7 +629,8 @@
                       "FragmentSelectorType": {
                         "allOf": [
                           {
-                            "$ref": "#/components/schemas/DASHFragmentSelectorType"
+                            "type": "string",
+                            "enum": ["PRODUCER_TIMESTAMP", "SERVER_TIMESTAMP"]
                           },
                           {
                             "description": "<p>The source of the timestamps for the requested media.</p> <p>When <code>FragmentSelectorType</code> is set to <code>PRODUCER_TIMESTAMP</code> and <a>GetDASHStreamingSessionURLInput$PlaybackMode</a> is <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>, the first fragment ingested with a producer timestamp within the specified <a>FragmentSelector$TimestampRange</a> is included in the media playlist. In addition, the fragments with producer timestamps within the <code>TimestampRange</code> ingested immediately following the first fragment (up to the <a>GetDASHStreamingSessionURLInput$MaxManifestFragmentResults</a> value) are included. </p> <p>Fragments that have duplicate producer timestamps are deduplicated. This means that if producers are producing a stream of fragments with producer timestamps that are approximately equal to the true clock time, the MPEG-DASH manifest will contain all of the fragments within the requested timestamp range. If some fragments are ingested within the same time range and very different points in time, only the oldest ingested collection of fragments are returned.</p> <p>When <code>FragmentSelectorType</code> is set to <code>PRODUCER_TIMESTAMP</code> and <a>GetDASHStreamingSessionURLInput$PlaybackMode</a> is <code>LIVE</code>, the producer timestamps are used in the MP4 fragments and for deduplication. But the most recently ingested fragments based on server timestamps are included in the MPEG-DASH manifest. This means that even if fragments ingested in the past have producer timestamps with values now, they are not included in the HLS media playlist.</p> <p>The default is <code>SERVER_TIMESTAMP</code>.</p>"
@@ -474,7 +640,26 @@
                       "TimestampRange": {
                         "allOf": [
                           {
-                            "$ref": "#/components/schemas/DASHTimestampRange"
+                            "type": "object",
+                            "properties": {
+                              "StartTimestamp": {
+                                "allOf": [
+                                  { "type": "string", "format": "date-time" },
+                                  {
+                                    "description": "<p>The start of the timestamp range for the requested media.</p> <p>If the <code>DASHTimestampRange</code> value is specified, the <code>StartTimestamp</code> value is required.</p> <note> <p>This value is inclusive. Fragments that start before the <code>StartTimestamp</code> and continue past it are included in the session. If <code>FragmentSelectorType</code> is <code>SERVER_TIMESTAMP</code>, the <code>StartTimestamp</code> must be later than the stream head.</p> </note>"
+                                  }
+                                ]
+                              },
+                              "EndTimestamp": {
+                                "allOf": [
+                                  { "type": "string", "format": "date-time" },
+                                  {
+                                    "description": "<p>The end of the timestamp range for the requested media. This value must be within 3 hours of the specified <code>StartTimestamp</code>, and it must be later than the <code>StartTimestamp</code> value.</p> <p>If <code>FragmentSelectorType</code> for the request is <code>SERVER_TIMESTAMP</code>, this value must be in the past.</p> <p>The <code>EndTimestamp</code> value is required for <code>ON_DEMAND</code> mode, but optional for <code>LIVE_REPLAY</code> mode. If the <code>EndTimestamp</code> is not set for <code>LIVE_REPLAY</code> mode then the session will continue to include newly ingested fragments until the session expires.</p> <note> <p>This value is inclusive. The <code>EndTimestamp</code> is compared to the (starting) timestamp of the fragment. Fragments that start before the <code>EndTimestamp</code> value and continue past it are included in the session.</p> </note>"
+                                  }
+                                ]
+                              }
+                            },
+                            "description": "<p>The start and end of the timestamp range for the requested media.</p> <p>This value should not be present if <code>PlaybackType</code> is <code>LIVE</code>.</p> <note> <p>The values in the <code>DASHimestampRange</code> are inclusive. Fragments that begin before the start time but continue past it, or fragments that begin before the end time but continue past it, are included in the session.</p> </note>"
                           },
                           {
                             "description": "<p>The start and end of the timestamp range for the requested media.</p> <p>This value should not be present if <code>PlaybackType</code> is <code>LIVE</code>.</p>"
@@ -504,25 +689,53 @@
       },
       "parameters": [
         {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
+          "name": "X-Amz-Content-Sha256",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Date"
+          "name": "X-Amz-Date",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
+          "name": "X-Amz-Algorithm",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Credential"
+          "name": "X-Amz-Credential",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
+          "name": "X-Amz-Security-Token",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Signature"
+          "name": "X-Amz-Signature",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
+          "name": "X-Amz-SignedHeaders",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         }
       ]
     },
@@ -536,93 +749,154 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetHLSStreamingSessionURLOutput"
+                  "type": "object",
+                  "properties": {
+                    "HLSStreamingSessionURL": {
+                      "allOf": [
+                        { "type": "string" },
+                        {
+                          "description": "The URL (containing the session token) that a media player can use to retrieve the HLS master playlist."
+                        }
+                      ]
+                    }
+                  }
                 }
               }
             }
           },
           "480": {
             "description": "ResourceNotFoundException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "481": {
             "description": "InvalidArgumentException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidArgumentException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "482": {
             "description": "ClientLimitExceededException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ClientLimitExceededException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "483": {
             "description": "NotAuthorizedException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotAuthorizedException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "484": {
             "description": "UnsupportedStreamMediaTypeException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnsupportedStreamMediaTypeException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "485": {
             "description": "NoDataRetentionException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NoDataRetentionException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "486": {
             "description": "MissingCodecPrivateDataException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MissingCodecPrivateDataException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "487": {
             "description": "InvalidCodecPrivateDataException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidCodecPrivateDataException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           }
         },
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "X-Amz-Content-Sha256",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Date",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Algorithm",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Credential",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Security-Token",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Signature",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-SignedHeaders",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Content-Sha256",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Date",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Algorithm",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Credential",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Security-Token",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Signature",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-SignedHeaders",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -656,7 +930,8 @@
                       "FragmentSelectorType": {
                         "allOf": [
                           {
-                            "$ref": "#/components/schemas/HLSFragmentSelectorType"
+                            "type": "string",
+                            "enum": ["PRODUCER_TIMESTAMP", "SERVER_TIMESTAMP"]
                           },
                           {
                             "description": "<p>The source of the timestamps for the requested media.</p> <p>When <code>FragmentSelectorType</code> is set to <code>PRODUCER_TIMESTAMP</code> and <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>, the first fragment ingested with a producer timestamp within the specified <a>FragmentSelector$TimestampRange</a> is included in the media playlist. In addition, the fragments with producer timestamps within the <code>TimestampRange</code> ingested immediately following the first fragment (up to the <a>GetHLSStreamingSessionURLInput$MaxMediaPlaylistFragmentResults</a> value) are included. </p> <p>Fragments that have duplicate producer timestamps are deduplicated. This means that if producers are producing a stream of fragments with producer timestamps that are approximately equal to the true clock time, the HLS media playlists will contain all of the fragments within the requested timestamp range. If some fragments are ingested within the same time range and very different points in time, only the oldest ingested collection of fragments are returned.</p> <p>When <code>FragmentSelectorType</code> is set to <code>PRODUCER_TIMESTAMP</code> and <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is <code>LIVE</code>, the producer timestamps are used in the MP4 fragments and for deduplication. But the most recently ingested fragments based on server timestamps are included in the HLS media playlist. This means that even if fragments ingested in the past have producer timestamps with values now, they are not included in the HLS media playlist.</p> <p>The default is <code>SERVER_TIMESTAMP</code>.</p>"
@@ -666,7 +941,26 @@
                       "TimestampRange": {
                         "allOf": [
                           {
-                            "$ref": "#/components/schemas/HLSTimestampRange"
+                            "type": "object",
+                            "properties": {
+                              "StartTimestamp": {
+                                "allOf": [
+                                  { "type": "string", "format": "date-time" },
+                                  {
+                                    "description": "<p>The start of the timestamp range for the requested media.</p> <p>If the <code>HLSTimestampRange</code> value is specified, the <code>StartTimestamp</code> value is required.</p> <note> <p>This value is inclusive. Fragments that start before the <code>StartTimestamp</code> and continue past it are included in the session. If <code>FragmentSelectorType</code> is <code>SERVER_TIMESTAMP</code>, the <code>StartTimestamp</code> must be later than the stream head.</p> </note>"
+                                  }
+                                ]
+                              },
+                              "EndTimestamp": {
+                                "allOf": [
+                                  { "type": "string", "format": "date-time" },
+                                  {
+                                    "description": "<p>The end of the timestamp range for the requested media. This value must be within 3 hours of the specified <code>StartTimestamp</code>, and it must be later than the <code>StartTimestamp</code> value.</p> <p>If <code>FragmentSelectorType</code> for the request is <code>SERVER_TIMESTAMP</code>, this value must be in the past.</p> <p>The <code>EndTimestamp</code> value is required for <code>ON_DEMAND</code> mode, but optional for <code>LIVE_REPLAY</code> mode. If the <code>EndTimestamp</code> is not set for <code>LIVE_REPLAY</code> mode then the session will continue to include newly ingested fragments until the session expires.</p> <note> <p>This value is inclusive. The <code>EndTimestamp</code> is compared to the (starting) timestamp of the fragment. Fragments that start before the <code>EndTimestamp</code> value and continue past it are included in the session.</p> </note>"
+                                  }
+                                ]
+                              }
+                            },
+                            "description": "<p>The start and end of the timestamp range for the requested media.</p> <p>This value should not be present if <code>PlaybackType</code> is <code>LIVE</code>.</p> <note> <p>The values in the <code>HLSTimestampRange</code> are inclusive. Fragments that begin before the start time but continue past it, or fragments that begin before the end time but continue past it, are included in the session.</p> </note>"
                           },
                           {
                             "description": "<p>The start and end of the timestamp range for the requested media.</p> <p>This value should not be present if <code>PlaybackType</code> is <code>LIVE</code>.</p>"
@@ -711,25 +1005,53 @@
       },
       "parameters": [
         {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
+          "name": "X-Amz-Content-Sha256",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Date"
+          "name": "X-Amz-Date",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
+          "name": "X-Amz-Algorithm",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Credential"
+          "name": "X-Amz-Credential",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
+          "name": "X-Amz-Security-Token",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Signature"
+          "name": "X-Amz-Signature",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
+          "name": "X-Amz-SignedHeaders",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         }
       ]
     },
@@ -743,53 +1065,138 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetMediaForFragmentListOutput"
+                  "type": "object",
+                  "properties": {
+                    "Payload": {
+                      "allOf": [
+                        { "type": "string" },
+                        {
+                          "description": "<p>The payload that Kinesis Video Streams returns is a sequence of chunks from the specified stream. For information about the chunks, see <a href=\"http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html\">PutMedia</a>. The chunks that Kinesis Video Streams returns in the <code>GetMediaForFragmentList</code> call also include the following additional Matroska (MKV) tags: </p> <ul> <li> <p>AWS_KINESISVIDEO_FRAGMENT_NUMBER - Fragment number returned in the chunk.</p> </li> <li> <p>AWS_KINESISVIDEO_SERVER_SIDE_TIMESTAMP - Server-side timestamp of the fragment.</p> </li> <li> <p>AWS_KINESISVIDEO_PRODUCER_SIDE_TIMESTAMP - Producer-side timestamp of the fragment.</p> </li> </ul> <p>The following tags will be included if an exception occurs:</p> <ul> <li> <p>AWS_KINESISVIDEO_FRAGMENT_NUMBER - The number of the fragment that threw the exception</p> </li> <li> <p>AWS_KINESISVIDEO_EXCEPTION_ERROR_CODE - The integer code of the exception</p> </li> <li> <p>AWS_KINESISVIDEO_EXCEPTION_MESSAGE - A text description of the exception</p> </li> </ul>"
+                        }
+                      ]
+                    }
+                  }
                 }
               }
             }
           },
           "480": {
             "description": "ResourceNotFoundException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "481": {
             "description": "InvalidArgumentException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidArgumentException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "482": {
             "description": "ClientLimitExceededException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ClientLimitExceededException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "483": {
             "description": "NotAuthorizedException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotAuthorizedException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           }
         },
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "X-Amz-Content-Sha256",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Date",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Algorithm",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Credential",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Security-Token",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Signature",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-SignedHeaders",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Content-Sha256",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Date",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Algorithm",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Credential",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Security-Token",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Signature",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-SignedHeaders",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -809,7 +1216,10 @@
                     "description": "A list of the numbers of fragments for which to retrieve media. You retrieve these values with <a>ListFragments</a>.",
                     "type": "array",
                     "items": {
-                      "$ref": "#/components/schemas/FragmentNumberString"
+                      "type": "string",
+                      "pattern": "^[0-9]+$",
+                      "minLength": 1,
+                      "maxLength": 128
                     },
                     "minItems": 1,
                     "maxItems": 1000
@@ -830,25 +1240,53 @@
       },
       "parameters": [
         {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
+          "name": "X-Amz-Content-Sha256",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Date"
+          "name": "X-Amz-Date",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
+          "name": "X-Amz-Algorithm",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Credential"
+          "name": "X-Amz-Credential",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
+          "name": "X-Amz-Security-Token",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Signature"
+          "name": "X-Amz-Signature",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
+          "name": "X-Amz-SignedHeaders",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         }
       ]
     },
@@ -862,70 +1300,216 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ListFragmentsOutput"
+                  "type": "object",
+                  "properties": {
+                    "Fragments": {
+                      "allOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "FragmentNumber": {
+                                "allOf": [
+                                  {
+                                    "type": "string",
+                                    "pattern": "^[0-9]+$",
+                                    "minLength": 1,
+                                    "maxLength": 128
+                                  },
+                                  {
+                                    "description": "The unique identifier of the fragment. This value monotonically increases based on the ingestion order."
+                                  }
+                                ]
+                              },
+                              "FragmentSizeInBytes": {
+                                "allOf": [
+                                  { "type": "integer" },
+                                  {
+                                    "description": "The total fragment size, including information about the fragment and contained media data."
+                                  }
+                                ]
+                              },
+                              "ProducerTimestamp": {
+                                "allOf": [
+                                  { "type": "string", "format": "date-time" },
+                                  {
+                                    "description": "The timestamp from the producer corresponding to the fragment."
+                                  }
+                                ]
+                              },
+                              "ServerTimestamp": {
+                                "allOf": [
+                                  { "type": "string", "format": "date-time" },
+                                  {
+                                    "description": "The timestamp from the AWS server corresponding to the fragment."
+                                  }
+                                ]
+                              },
+                              "FragmentLengthInMilliseconds": {
+                                "allOf": [
+                                  { "type": "integer" },
+                                  {
+                                    "description": "The playback duration or other time value associated with the fragment."
+                                  }
+                                ]
+                              }
+                            },
+                            "description": "Represents a segment of video or other time-delimited data."
+                          }
+                        },
+                        {
+                          "description": "A list of archived <a>Fragment</a> objects from the stream that meet the selector criteria. Results are in no specific order, even across pages."
+                        }
+                      ]
+                    },
+                    "NextToken": {
+                      "allOf": [
+                        {
+                          "type": "string",
+                          "pattern": "[a-zA-Z0-9+/]+={0,2}",
+                          "minLength": 1,
+                          "maxLength": 4096
+                        },
+                        {
+                          "description": "If the returned list is truncated, the operation returns this token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return."
+                        }
+                      ]
+                    }
+                  }
                 }
               }
             }
           },
           "480": {
             "description": "ResourceNotFoundException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "481": {
             "description": "InvalidArgumentException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidArgumentException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "482": {
             "description": "ClientLimitExceededException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ClientLimitExceededException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           },
           "483": {
             "description": "NotAuthorizedException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotAuthorizedException"
-                }
-              }
-            }
+            "content": { "application/json": { "schema": {} } }
           }
         },
         "parameters": [
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
+          },
+          {
+            "name": "X-Amz-Content-Sha256",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Date",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Algorithm",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Credential",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Security-Token",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Signature",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-SignedHeaders",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Content-Sha256",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Date",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Algorithm",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Credential",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Security-Token",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-Signature",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
+          },
+          {
+            "name": "X-Amz-SignedHeaders",
+            "in": "header",
+            "schema": { "type": "string" },
+            "required": false,
+            "x-ignore": true
           }
         ],
         "requestBody": {
@@ -963,7 +1547,8 @@
                       "FragmentSelectorType": {
                         "allOf": [
                           {
-                            "$ref": "#/components/schemas/FragmentSelectorType"
+                            "type": "string",
+                            "enum": ["PRODUCER_TIMESTAMP", "SERVER_TIMESTAMP"]
                           },
                           {
                             "description": "The origin of the timestamps to use (Server or Producer)."
@@ -973,7 +1558,27 @@
                       "TimestampRange": {
                         "allOf": [
                           {
-                            "$ref": "#/components/schemas/TimestampRange"
+                            "type": "object",
+                            "required": ["StartTimestamp", "EndTimestamp"],
+                            "properties": {
+                              "StartTimestamp": {
+                                "allOf": [
+                                  { "type": "string", "format": "date-time" },
+                                  {
+                                    "description": "The starting timestamp in the range of timestamps for which to return fragments."
+                                  }
+                                ]
+                              },
+                              "EndTimestamp": {
+                                "allOf": [
+                                  { "type": "string", "format": "date-time" },
+                                  {
+                                    "description": "The ending timestamp in the range of timestamps for which to return fragments."
+                                  }
+                                ]
+                              }
+                            },
+                            "description": "The range of timestamps for which to return fragments."
                           },
                           {
                             "description": "The range of timestamps to return."
@@ -998,95 +1603,59 @@
       },
       "parameters": [
         {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
+          "name": "X-Amz-Content-Sha256",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Date"
+          "name": "X-Amz-Date",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
+          "name": "X-Amz-Algorithm",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Credential"
+          "name": "X-Amz-Credential",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
+          "name": "X-Amz-Security-Token",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-Signature"
+          "name": "X-Amz-Signature",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         },
         {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
+          "name": "X-Amz-SignedHeaders",
+          "in": "header",
+          "schema": { "type": "string" },
+          "required": false,
+          "x-ignore": true
         }
       ]
     }
   },
   "components": {
-    "parameters": {
-      "X-Amz-Content-Sha256": {
-        "name": "X-Amz-Content-Sha256",
-        "in": "header",
-        "schema": {
-          "type": "string"
-        },
-        "required": false,
-        "x-ignore": true
-      },
-      "X-Amz-Date": {
-        "name": "X-Amz-Date",
-        "in": "header",
-        "schema": {
-          "type": "string"
-        },
-        "required": false,
-        "x-ignore": true
-      },
-      "X-Amz-Algorithm": {
-        "name": "X-Amz-Algorithm",
-        "in": "header",
-        "schema": {
-          "type": "string"
-        },
-        "required": false,
-        "x-ignore": true
-      },
-      "X-Amz-Credential": {
-        "name": "X-Amz-Credential",
-        "in": "header",
-        "schema": {
-          "type": "string"
-        },
-        "required": false,
-        "x-ignore": true
-      },
-      "X-Amz-Security-Token": {
-        "name": "X-Amz-Security-Token",
-        "in": "header",
-        "schema": {
-          "type": "string"
-        },
-        "required": false,
-        "x-ignore": true
-      },
-      "X-Amz-Signature": {
-        "name": "X-Amz-Signature",
-        "in": "header",
-        "schema": {
-          "type": "string"
-        },
-        "required": false,
-        "x-ignore": true
-      },
-      "X-Amz-SignedHeaders": {
-        "name": "X-Amz-SignedHeaders",
-        "in": "header",
-        "schema": {
-          "type": "string"
-        },
-        "required": false,
-        "x-ignore": true
-      }
-    },
+    "parameters": {},
     "securitySchemes": {
       "hmac": {
         "type": "apiKey",
@@ -1096,320 +1665,9 @@
         "x-amazon-apigateway-authtype": "awsSigv4"
       }
     },
-    "schemas": {
-      "GetClipOutput": {
-        "type": "object",
-        "properties": {
-          "Payload": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Payload"
-              },
-              {
-                "description": "Traditional MP4 file that contains the media clip from the specified video stream. The output will contain the first 100 MB or the first 200 fragments from the specified start timestamp. For more information, see <a href=\"Kinesis Video Streams Limits\">Kinesis Video Streams Limits</a>. "
-              }
-            ]
-          }
-        }
-      },
-      "ClipFragmentSelectorType": {
-        "type": "string",
-        "enum": ["PRODUCER_TIMESTAMP", "SERVER_TIMESTAMP"]
-      },
-      "ClipTimestampRange": {
-        "type": "object",
-        "required": ["StartTimestamp", "EndTimestamp"],
-        "properties": {
-          "StartTimestamp": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "<p>The starting timestamp in the range of timestamps for which to return fragments. </p> <p>This value is inclusive. Fragments that start before the <code>StartTimestamp</code> and continue past it are included in the session. If <code>FragmentSelectorType</code> is <code>SERVER_TIMESTAMP</code>, the <code>StartTimestamp</code> must be later than the stream head. </p>"
-              }
-            ]
-          },
-          "EndTimestamp": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "<p>The end of the timestamp range for the requested media.</p> <p>This value must be within 3 hours of the specified <code>StartTimestamp</code>, and it must be later than the <code>StartTimestamp</code> value. If <code>FragmentSelectorType</code> for the request is <code>SERVER_TIMESTAMP</code>, this value must be in the past. </p> <p>This value is inclusive. The <code>EndTimestamp</code> is compared to the (starting) timestamp of the fragment. Fragments that start before the <code>EndTimestamp</code> value and continue past it are included in the session. </p>"
-              }
-            ]
-          }
-        },
-        "description": "<p>The range of timestamps for which to return fragments.</p> <p>The values in the ClipTimestampRange are <code>inclusive</code>. Fragments that begin before the start time but continue past it, or fragments that begin before the end time but continue past it, are included in the session. </p>"
-      },
-      "ResourceNotFoundException": {},
-      "InvalidArgumentException": {},
-      "ClientLimitExceededException": {},
-      "NotAuthorizedException": {},
-      "UnsupportedStreamMediaTypeException": {},
-      "MissingCodecPrivateDataException": {},
-      "InvalidCodecPrivateDataException": {},
-      "InvalidMediaFrameException": {},
-      "NoDataRetentionException": {},
-      "GetDASHStreamingSessionURLOutput": {
-        "type": "object",
-        "properties": {
-          "DASHStreamingSessionURL": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/DASHStreamingSessionURL"
-              },
-              {
-                "description": "The URL (containing the session token) that a media player can use to retrieve the MPEG-DASH manifest."
-              }
-            ]
-          }
-        }
-      },
-      "DASHFragmentSelectorType": {
-        "type": "string",
-        "enum": ["PRODUCER_TIMESTAMP", "SERVER_TIMESTAMP"]
-      },
-      "DASHTimestampRange": {
-        "type": "object",
-        "properties": {
-          "StartTimestamp": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "<p>The start of the timestamp range for the requested media.</p> <p>If the <code>DASHTimestampRange</code> value is specified, the <code>StartTimestamp</code> value is required.</p> <note> <p>This value is inclusive. Fragments that start before the <code>StartTimestamp</code> and continue past it are included in the session. If <code>FragmentSelectorType</code> is <code>SERVER_TIMESTAMP</code>, the <code>StartTimestamp</code> must be later than the stream head.</p> </note>"
-              }
-            ]
-          },
-          "EndTimestamp": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "<p>The end of the timestamp range for the requested media. This value must be within 3 hours of the specified <code>StartTimestamp</code>, and it must be later than the <code>StartTimestamp</code> value.</p> <p>If <code>FragmentSelectorType</code> for the request is <code>SERVER_TIMESTAMP</code>, this value must be in the past.</p> <p>The <code>EndTimestamp</code> value is required for <code>ON_DEMAND</code> mode, but optional for <code>LIVE_REPLAY</code> mode. If the <code>EndTimestamp</code> is not set for <code>LIVE_REPLAY</code> mode then the session will continue to include newly ingested fragments until the session expires.</p> <note> <p>This value is inclusive. The <code>EndTimestamp</code> is compared to the (starting) timestamp of the fragment. Fragments that start before the <code>EndTimestamp</code> value and continue past it are included in the session.</p> </note>"
-              }
-            ]
-          }
-        },
-        "description": "<p>The start and end of the timestamp range for the requested media.</p> <p>This value should not be present if <code>PlaybackType</code> is <code>LIVE</code>.</p> <note> <p>The values in the <code>DASHimestampRange</code> are inclusive. Fragments that begin before the start time but continue past it, or fragments that begin before the end time but continue past it, are included in the session.</p> </note>"
-      },
-      "GetHLSStreamingSessionURLOutput": {
-        "type": "object",
-        "properties": {
-          "HLSStreamingSessionURL": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/HLSStreamingSessionURL"
-              },
-              {
-                "description": "The URL (containing the session token) that a media player can use to retrieve the HLS master playlist."
-              }
-            ]
-          }
-        }
-      },
-      "HLSFragmentSelectorType": {
-        "type": "string",
-        "enum": ["PRODUCER_TIMESTAMP", "SERVER_TIMESTAMP"]
-      },
-      "HLSTimestampRange": {
-        "type": "object",
-        "properties": {
-          "StartTimestamp": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "<p>The start of the timestamp range for the requested media.</p> <p>If the <code>HLSTimestampRange</code> value is specified, the <code>StartTimestamp</code> value is required.</p> <note> <p>This value is inclusive. Fragments that start before the <code>StartTimestamp</code> and continue past it are included in the session. If <code>FragmentSelectorType</code> is <code>SERVER_TIMESTAMP</code>, the <code>StartTimestamp</code> must be later than the stream head.</p> </note>"
-              }
-            ]
-          },
-          "EndTimestamp": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "<p>The end of the timestamp range for the requested media. This value must be within 3 hours of the specified <code>StartTimestamp</code>, and it must be later than the <code>StartTimestamp</code> value.</p> <p>If <code>FragmentSelectorType</code> for the request is <code>SERVER_TIMESTAMP</code>, this value must be in the past.</p> <p>The <code>EndTimestamp</code> value is required for <code>ON_DEMAND</code> mode, but optional for <code>LIVE_REPLAY</code> mode. If the <code>EndTimestamp</code> is not set for <code>LIVE_REPLAY</code> mode then the session will continue to include newly ingested fragments until the session expires.</p> <note> <p>This value is inclusive. The <code>EndTimestamp</code> is compared to the (starting) timestamp of the fragment. Fragments that start before the <code>EndTimestamp</code> value and continue past it are included in the session.</p> </note>"
-              }
-            ]
-          }
-        },
-        "description": "<p>The start and end of the timestamp range for the requested media.</p> <p>This value should not be present if <code>PlaybackType</code> is <code>LIVE</code>.</p> <note> <p>The values in the <code>HLSTimestampRange</code> are inclusive. Fragments that begin before the start time but continue past it, or fragments that begin before the end time but continue past it, are included in the session.</p> </note>"
-      },
-      "GetMediaForFragmentListOutput": {
-        "type": "object",
-        "properties": {
-          "Payload": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Payload"
-              },
-              {
-                "description": "<p>The payload that Kinesis Video Streams returns is a sequence of chunks from the specified stream. For information about the chunks, see <a href=\"http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html\">PutMedia</a>. The chunks that Kinesis Video Streams returns in the <code>GetMediaForFragmentList</code> call also include the following additional Matroska (MKV) tags: </p> <ul> <li> <p>AWS_KINESISVIDEO_FRAGMENT_NUMBER - Fragment number returned in the chunk.</p> </li> <li> <p>AWS_KINESISVIDEO_SERVER_SIDE_TIMESTAMP - Server-side timestamp of the fragment.</p> </li> <li> <p>AWS_KINESISVIDEO_PRODUCER_SIDE_TIMESTAMP - Producer-side timestamp of the fragment.</p> </li> </ul> <p>The following tags will be included if an exception occurs:</p> <ul> <li> <p>AWS_KINESISVIDEO_FRAGMENT_NUMBER - The number of the fragment that threw the exception</p> </li> <li> <p>AWS_KINESISVIDEO_EXCEPTION_ERROR_CODE - The integer code of the exception</p> </li> <li> <p>AWS_KINESISVIDEO_EXCEPTION_MESSAGE - A text description of the exception</p> </li> </ul>"
-              }
-            ]
-          }
-        }
-      },
-      "FragmentNumberString": {
-        "type": "string",
-        "pattern": "^[0-9]+$",
-        "minLength": 1,
-        "maxLength": 128
-      },
-      "ListFragmentsOutput": {
-        "type": "object",
-        "properties": {
-          "Fragments": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/FragmentList"
-              },
-              {
-                "description": "A list of archived <a>Fragment</a> objects from the stream that meet the selector criteria. Results are in no specific order, even across pages."
-              }
-            ]
-          },
-          "NextToken": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
-              {
-                "description": "If the returned list is truncated, the operation returns this token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return."
-              }
-            ]
-          }
-        }
-      },
-      "FragmentSelectorType": {
-        "type": "string",
-        "enum": ["PRODUCER_TIMESTAMP", "SERVER_TIMESTAMP"]
-      },
-      "TimestampRange": {
-        "type": "object",
-        "required": ["StartTimestamp", "EndTimestamp"],
-        "properties": {
-          "StartTimestamp": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "The starting timestamp in the range of timestamps for which to return fragments."
-              }
-            ]
-          },
-          "EndTimestamp": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "The ending timestamp in the range of timestamps for which to return fragments."
-              }
-            ]
-          }
-        },
-        "description": "The range of timestamps for which to return fragments."
-      },
-      "Timestamp": {
-        "type": "string",
-        "format": "date-time"
-      },
-      "DASHStreamingSessionURL": {
-        "type": "string"
-      },
-      "Long": {
-        "type": "integer"
-      },
-      "Fragment": {
-        "type": "object",
-        "properties": {
-          "FragmentNumber": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/FragmentNumberString"
-              },
-              {
-                "description": "The unique identifier of the fragment. This value monotonically increases based on the ingestion order."
-              }
-            ]
-          },
-          "FragmentSizeInBytes": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Long"
-              },
-              {
-                "description": "The total fragment size, including information about the fragment and contained media data."
-              }
-            ]
-          },
-          "ProducerTimestamp": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "The timestamp from the producer corresponding to the fragment."
-              }
-            ]
-          },
-          "ServerTimestamp": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "The timestamp from the AWS server corresponding to the fragment."
-              }
-            ]
-          },
-          "FragmentLengthInMilliseconds": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Long"
-              },
-              {
-                "description": "The playback duration or other time value associated with the fragment."
-              }
-            ]
-          }
-        },
-        "description": "Represents a segment of video or other time-delimited data."
-      },
-      "FragmentList": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Fragment"
-        }
-      },
-      "Payload": {
-        "type": "string"
-      },
-      "HLSStreamingSessionURL": {
-        "type": "string"
-      },
-      "NextToken": {
-        "type": "string",
-        "pattern": "[a-zA-Z0-9+/]+={0,2}",
-        "minLength": 1,
-        "maxLength": 4096
-      }
-    }
+    "schemas": {}
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2017-09-30",
     "endpointPrefix": "kinesisvideo",

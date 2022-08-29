@@ -1,10 +1,6 @@
 {
   "openapi": "3.0.0",
-  "servers": [
-    {
-      "url": "https://docs.googleapis.com/"
-    }
-  ],
+  "servers": [{ "url": "https://docs.googleapis.com/" }],
   "info": {
     "title": "Google Docs",
     "version": "v1",
@@ -12,10 +8,7 @@
     "x-logo": {
       "url": "https://lh3.googleusercontent.com/pUpD9drFDLKrmLf6G611aBW4mN-KiWjiM1wJCztk3rHv8rg2vhicvasF9CT3Kf0JxbLFkXokGbyw1_ijyvU3=w160-h160"
     },
-    "contact": {
-      "name": "Google",
-      "url": "https://google.com"
-    },
+    "contact": { "name": "Google", "url": "https://google.com" },
     "description": "Reads and writes Google Docs documents.",
     "license": {
       "name": "Creative Commons Attribution 3.0",
@@ -23,50 +16,22 @@
     },
     "termsOfService": "https://developers.google.com/terms/"
   },
-  "externalDocs": {
-    "url": "https://developers.google.com/docs/"
-  },
-  "tags": [
-    {
-      "name": "documents"
-    }
-  ],
+  "externalDocs": { "url": "https://developers.google.com/docs/" },
+  "tags": [{ "name": "documents" }],
   "paths": {
     "/v1/documents": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Creates a blank document using the title given in the request. Other fields in the request, including any provided content, are ignored. Returns the created document.",
@@ -74,9 +39,7 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Document"
-              }
+              "schema": { "$ref": "#/components/schemas/Document" }
             }
           }
         },
@@ -84,9 +47,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Document"
-                }
+                "schema": { "$ref": "#/components/schemas/Document" }
               }
             },
             "description": "Successful response"
@@ -120,9 +81,7 @@
             "in": "path",
             "name": "documentId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The suggestions view mode to apply to the document. This allows viewing the document with all suggestions inline, accepted or rejected. If one is not specified, DEFAULT_FOR_CURRENT_ACCESS is used.",
@@ -143,9 +102,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Document"
-                }
+                "schema": { "$ref": "#/components/schemas/Document" }
               }
             },
             "description": "Successful response"
@@ -177,76 +134,32 @@
         "summary": "get documents"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ]
     },
     "/v1/documents/{documentId}:batchUpdate": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/_.xgafv"
-        },
-        {
-          "$ref": "#/components/parameters/access_token"
-        },
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/callback"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/upload_protocol"
-        },
-        {
-          "$ref": "#/components/parameters/uploadType"
-        }
+        { "$ref": "#/components/parameters/_.xgafv" },
+        { "$ref": "#/components/parameters/access_token" },
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/callback" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/upload_protocol" },
+        { "$ref": "#/components/parameters/uploadType" }
       ],
       "post": {
         "description": "Applies one or more updates to the document. Each request is validated before being applied. If any request is not valid, then the entire request will fail and nothing will be applied. Some requests have replies to give you some information about how they are applied. Other requests do not need to return information; these each return an empty reply. The order of replies matches that of the requests. For example, suppose you call batchUpdate with four updates, and only the third one returns information. The response would have two empty replies, the reply to the third request, and another empty reply, in that order. Because other users may be editing the document, the document might not exactly reflect your changes: your changes may be altered with respect to collaborator changes. If there are no collaborators, the document should reflect your changes. In any case, the updates in your request are guaranteed to be applied together atomically.",
@@ -257,9 +170,7 @@
             "in": "path",
             "name": "documentId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -308,101 +219,77 @@
         "description": "V1 error format.",
         "in": "query",
         "name": "$.xgafv",
-        "schema": {
-          "enum": ["1", "2"],
-          "type": "string"
-        },
+        "schema": { "enum": ["1", "2"], "type": "string" },
         "x-ignore": true
       },
       "access_token": {
         "description": "OAuth access token.",
         "in": "query",
         "name": "access_token",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "x-ignore": true
       },
       "alt": {
         "description": "Data format for response.",
         "in": "query",
         "name": "alt",
-        "schema": {
-          "enum": ["json", "media", "proto"],
-          "type": "string"
-        },
+        "schema": { "enum": ["json", "media", "proto"], "type": "string" },
         "x-ignore": true
       },
       "callback": {
         "description": "JSONP",
         "in": "query",
         "name": "callback",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "x-ignore": true
       },
       "fields": {
         "description": "Selector specifying which fields to include in a partial response.",
         "in": "query",
         "name": "fields",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "x-ignore": true
       },
       "key": {
         "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
         "in": "query",
         "name": "key",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "x-ignore": true
       },
       "oauth_token": {
         "description": "OAuth 2.0 token for the current user.",
         "in": "query",
         "name": "oauth_token",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "x-ignore": true
       },
       "prettyPrint": {
         "description": "Returns response with indentations and line breaks.",
         "in": "query",
         "name": "prettyPrint",
-        "schema": {
-          "type": "boolean"
-        },
+        "schema": { "type": "boolean" },
         "x-ignore": true
       },
       "quotaUser": {
         "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
         "in": "query",
         "name": "quotaUser",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "x-ignore": true
       },
       "uploadType": {
         "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
         "in": "query",
         "name": "uploadType",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "x-ignore": true
       },
       "upload_protocol": {
         "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
         "in": "query",
         "name": "upload_protocol",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "x-ignore": true
       }
     },
@@ -412,16 +299,12 @@
         "properties": {
           "suggestedDeletionIds": {
             "description": "The suggested deletion IDs. If empty, then there are no suggested deletions of this content.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedInsertionIds": {
             "description": "The suggested insertion IDs. An AutoText may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedTextStyleChanges": {
@@ -468,9 +351,7 @@
         "properties": {
           "requests": {
             "description": "A list of updates to apply to the document.",
-            "items": {
-              "$ref": "#/components/schemas/Request"
-            },
+            "items": { "$ref": "#/components/schemas/Request" },
             "type": "array"
           },
           "writeControl": {
@@ -489,9 +370,7 @@
           },
           "replies": {
             "description": "The reply of the updates. This maps 1:1 with the updates, although replies to some requests may be empty.",
-            "items": {
-              "$ref": "#/components/schemas/Response"
-            },
+            "items": { "$ref": "#/components/schemas/Response" },
             "type": "array"
           },
           "writeControl": {
@@ -506,9 +385,7 @@
         "properties": {
           "content": {
             "description": "The contents of the body. The indexes for the body's content begin at zero.",
-            "items": {
-              "$ref": "#/components/schemas/StructuralElement"
-            },
+            "items": { "$ref": "#/components/schemas/StructuralElement" },
             "type": "array"
           }
         },
@@ -566,16 +443,12 @@
         "properties": {
           "suggestedDeletionIds": {
             "description": "The suggested deletion IDs. If empty, then there are no suggested deletions of this content.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedInsertionIds": {
             "description": "The suggested insertion IDs. A ColumnBreak may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedTextStyleChanges": {
@@ -895,23 +768,17 @@
             "description": "Output only. The style of the document."
           },
           "footers": {
-            "additionalProperties": {
-              "$ref": "#/components/schemas/Footer"
-            },
+            "additionalProperties": { "$ref": "#/components/schemas/Footer" },
             "description": "Output only. The footers in the document, keyed by footer ID.",
             "type": "object"
           },
           "footnotes": {
-            "additionalProperties": {
-              "$ref": "#/components/schemas/Footnote"
-            },
+            "additionalProperties": { "$ref": "#/components/schemas/Footnote" },
             "description": "Output only. The footnotes in the document, keyed by footnote ID.",
             "type": "object"
           },
           "headers": {
-            "additionalProperties": {
-              "$ref": "#/components/schemas/Header"
-            },
+            "additionalProperties": { "$ref": "#/components/schemas/Header" },
             "description": "Output only. The headers in the document, keyed by header ID.",
             "type": "object"
           },
@@ -923,9 +790,7 @@
             "type": "object"
           },
           "lists": {
-            "additionalProperties": {
-              "$ref": "#/components/schemas/List"
-            },
+            "additionalProperties": { "$ref": "#/components/schemas/List" },
             "description": "Output only. The lists in the document, keyed by list ID.",
             "type": "object"
           },
@@ -1310,16 +1175,12 @@
         "properties": {
           "suggestedDeletionIds": {
             "description": "The suggested deletion IDs. If empty, then there are no suggested deletions of this content.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedInsertionIds": {
             "description": "The suggested insertion IDs. A Equation may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           }
         },
@@ -1330,9 +1191,7 @@
         "properties": {
           "content": {
             "description": "The contents of the footer. The indexes for a footer's content begin at zero.",
-            "items": {
-              "$ref": "#/components/schemas/StructuralElement"
-            },
+            "items": { "$ref": "#/components/schemas/StructuralElement" },
             "type": "array"
           },
           "footerId": {
@@ -1347,9 +1206,7 @@
         "properties": {
           "content": {
             "description": "The contents of the footnote. The indexes for a footnote's content begin at zero.",
-            "items": {
-              "$ref": "#/components/schemas/StructuralElement"
-            },
+            "items": { "$ref": "#/components/schemas/StructuralElement" },
             "type": "array"
           },
           "footnoteId": {
@@ -1372,16 +1229,12 @@
           },
           "suggestedDeletionIds": {
             "description": "The suggested deletion IDs. If empty, then there are no suggested deletions of this content.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedInsertionIds": {
             "description": "The suggested insertion IDs. A FootnoteReference may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedTextStyleChanges": {
@@ -1403,9 +1256,7 @@
         "properties": {
           "content": {
             "description": "The contents of the header. The indexes for a header's content begin at zero.",
-            "items": {
-              "$ref": "#/components/schemas/StructuralElement"
-            },
+            "items": { "$ref": "#/components/schemas/StructuralElement" },
             "type": "array"
           },
           "headerId": {
@@ -1420,16 +1271,12 @@
         "properties": {
           "suggestedDeletionIds": {
             "description": "The suggested deletion IDs. If empty, then there are no suggested deletions of this content.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedInsertionIds": {
             "description": "The suggested insertion IDs. A HorizontalRule may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedTextStyleChanges": {
@@ -1531,9 +1378,7 @@
           },
           "suggestedDeletionIds": {
             "description": "The suggested deletion IDs. If empty, then there are no suggested deletions of this content.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedInlineObjectPropertiesChanges": {
@@ -1559,16 +1404,12 @@
           },
           "suggestedDeletionIds": {
             "description": "The suggested deletion IDs. If empty, then there are no suggested deletions of this content.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedInsertionIds": {
             "description": "The suggested insertion IDs. An InlineObjectElement may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedTextStyleChanges": {
@@ -1761,10 +1602,7 @@
             "description": "The ID of a heading in this document.",
             "type": "string"
           },
-          "url": {
-            "description": "An external URL.",
-            "type": "string"
-          }
+          "url": { "description": "An external URL.", "type": "string" }
         },
         "type": "object"
       },
@@ -1797,9 +1635,7 @@
           },
           "suggestedDeletionIds": {
             "description": "The suggested deletion IDs. If empty, then there are no suggested deletions of this list.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedInsertionId": {
@@ -1821,9 +1657,7 @@
         "properties": {
           "nestingLevels": {
             "description": "Describes the properties of the bullets at the associated level. A list has at most nine levels of nesting with nesting level 0 corresponding to the top-most level and nesting level 8 corresponding to the most nested level. The nesting levels are returned in ascending order with the least nested returned first.",
-            "items": {
-              "$ref": "#/components/schemas/NestingLevel"
-            },
+            "items": { "$ref": "#/components/schemas/NestingLevel" },
             "type": "array"
           }
         },
@@ -1880,9 +1714,7 @@
           },
           "ranges": {
             "description": "The ranges that belong to this named range.",
-            "items": {
-              "$ref": "#/components/schemas/Range"
-            },
+            "items": { "$ref": "#/components/schemas/Range" },
             "type": "array"
           }
         },
@@ -1897,9 +1729,7 @@
           },
           "namedRanges": {
             "description": "The NamedRanges that share the same name.",
-            "items": {
-              "$ref": "#/components/schemas/NamedRange"
-            },
+            "items": { "$ref": "#/components/schemas/NamedRange" },
             "type": "array"
           }
         },
@@ -1970,9 +1800,7 @@
         "properties": {
           "styles": {
             "description": "The named styles. There is an entry for each of the possible named style types.",
-            "items": {
-              "$ref": "#/components/schemas/NamedStyle"
-            },
+            "items": { "$ref": "#/components/schemas/NamedStyle" },
             "type": "array"
           }
         },
@@ -2084,9 +1912,7 @@
         "properties": {
           "objectIds": {
             "description": "The object IDs.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           }
         },
@@ -2107,16 +1933,12 @@
         "properties": {
           "suggestedDeletionIds": {
             "description": "The suggested deletion IDs. If empty, then there are no suggested deletions of this content.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedInsertionIds": {
             "description": "The suggested insertion IDs. A PageBreak may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedTextStyleChanges": {
@@ -2142,9 +1964,7 @@
           },
           "elements": {
             "description": "The content of the paragraph broken down into its component parts.",
-            "items": {
-              "$ref": "#/components/schemas/ParagraphElement"
-            },
+            "items": { "$ref": "#/components/schemas/ParagraphElement" },
             "type": "array"
           },
           "paragraphStyle": {
@@ -2153,9 +1973,7 @@
           },
           "positionedObjectIds": {
             "description": "The IDs of the positioned objects tethered to this paragraph.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedBulletChanges": {
@@ -2266,7 +2084,13 @@
         "properties": {
           "alignment": {
             "description": "The text alignment for this paragraph.",
-            "enum": ["ALIGNMENT_UNSPECIFIED", "START", "CENTER", "END", "JUSTIFIED"],
+            "enum": [
+              "ALIGNMENT_UNSPECIFIED",
+              "START",
+              "CENTER",
+              "END",
+              "JUSTIFIED"
+            ],
             "type": "string"
           },
           "avoidWidowAndOrphan": {
@@ -2295,7 +2119,11 @@
           },
           "direction": {
             "description": "The text direction of this paragraph. If unset, the value defaults to LEFT_TO_RIGHT since paragraph direction is not inherited.",
-            "enum": ["CONTENT_DIRECTION_UNSPECIFIED", "LEFT_TO_RIGHT", "RIGHT_TO_LEFT"],
+            "enum": [
+              "CONTENT_DIRECTION_UNSPECIFIED",
+              "LEFT_TO_RIGHT",
+              "RIGHT_TO_LEFT"
+            ],
             "type": "string"
           },
           "headingId": {
@@ -2357,14 +2185,16 @@
           },
           "spacingMode": {
             "description": "The spacing mode for the paragraph.",
-            "enum": ["SPACING_MODE_UNSPECIFIED", "NEVER_COLLAPSE", "COLLAPSE_LISTS"],
+            "enum": [
+              "SPACING_MODE_UNSPECIFIED",
+              "NEVER_COLLAPSE",
+              "COLLAPSE_LISTS"
+            ],
             "type": "string"
           },
           "tabStops": {
             "description": "A list of the tab stops for this paragraph. The list of tab stops is not inherited. This property is read-only.",
-            "items": {
-              "$ref": "#/components/schemas/TabStop"
-            },
+            "items": { "$ref": "#/components/schemas/TabStop" },
             "type": "array"
           },
           "pageBreakBefore": {
@@ -2477,9 +2307,7 @@
           },
           "suggestedDeletionIds": {
             "description": "The suggested deletion IDs. If empty, then there are no suggested deletions of this content.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedInsertionId": {
@@ -2853,16 +2681,12 @@
           },
           "suggestedDeletionIds": {
             "description": "The suggested deletion IDs. If empty, then there are no suggested deletions of this content.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedInsertionIds": {
             "description": "The suggested insertion IDs. A SectionBreak may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           }
         },
@@ -2887,19 +2711,25 @@
         "properties": {
           "columnProperties": {
             "description": "The section's columns properties. If empty, the section contains one column with the default properties in the Docs editor. A section can be updated to have no more than three columns. When updating this property, setting a concrete value is required. Unsetting this property will result in a 400 bad request error.",
-            "items": {
-              "$ref": "#/components/schemas/SectionColumnProperties"
-            },
+            "items": { "$ref": "#/components/schemas/SectionColumnProperties" },
             "type": "array"
           },
           "columnSeparatorStyle": {
             "description": "The style of column separators. This style can be set even when there is one column in the section. When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.",
-            "enum": ["COLUMN_SEPARATOR_STYLE_UNSPECIFIED", "NONE", "BETWEEN_EACH_COLUMN"],
+            "enum": [
+              "COLUMN_SEPARATOR_STYLE_UNSPECIFIED",
+              "NONE",
+              "BETWEEN_EACH_COLUMN"
+            ],
             "type": "string"
           },
           "contentDirection": {
             "description": "The content direction of this section. If unset, the value defaults to LEFT_TO_RIGHT. When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.",
-            "enum": ["CONTENT_DIRECTION_UNSPECIFIED", "LEFT_TO_RIGHT", "RIGHT_TO_LEFT"],
+            "enum": [
+              "CONTENT_DIRECTION_UNSPECIFIED",
+              "LEFT_TO_RIGHT",
+              "RIGHT_TO_LEFT"
+            ],
             "type": "string"
           },
           "defaultFooterId": {
@@ -3235,7 +3065,12 @@
         "properties": {
           "alignment": {
             "description": "The alignment of this tab stop. If unset, the value defaults to START.",
-            "enum": ["TAB_STOP_ALIGNMENT_UNSPECIFIED", "START", "CENTER", "END"],
+            "enum": [
+              "TAB_STOP_ALIGNMENT_UNSPECIFIED",
+              "START",
+              "CENTER",
+              "END"
+            ],
             "type": "string"
           },
           "offset": {
@@ -3260,23 +3095,17 @@
           },
           "suggestedDeletionIds": {
             "description": "The suggested deletion IDs. If empty, then there are no suggested deletions of this content.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedInsertionIds": {
             "description": "The suggested insertion IDs. A Table may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "tableRows": {
             "description": "The contents and style of each row.",
-            "items": {
-              "$ref": "#/components/schemas/TableRow"
-            },
+            "items": { "$ref": "#/components/schemas/TableRow" },
             "type": "array"
           },
           "tableStyle": {
@@ -3291,9 +3120,7 @@
         "properties": {
           "content": {
             "description": "The content of the cell.",
-            "items": {
-              "$ref": "#/components/schemas/StructuralElement"
-            },
+            "items": { "$ref": "#/components/schemas/StructuralElement" },
             "type": "array"
           },
           "endIndex": {
@@ -3308,16 +3135,12 @@
           },
           "suggestedDeletionIds": {
             "description": "The suggested deletion IDs. If empty, then there are no suggested deletions of this content.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedInsertionIds": {
             "description": "The suggested insertion IDs. A TableCell may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedTableCellStyleChanges": {
@@ -3403,7 +3226,13 @@
           },
           "contentAlignment": {
             "description": "The alignment of the content in the table cell. The default alignment matches the alignment for newly created table cells in the Docs editor.",
-            "enum": ["CONTENT_ALIGNMENT_UNSPECIFIED", "CONTENT_ALIGNMENT_UNSUPPORTED", "TOP", "MIDDLE", "BOTTOM"],
+            "enum": [
+              "CONTENT_ALIGNMENT_UNSPECIFIED",
+              "CONTENT_ALIGNMENT_UNSUPPORTED",
+              "TOP",
+              "MIDDLE",
+              "BOTTOM"
+            ],
             "type": "string"
           },
           "paddingBottom": {
@@ -3493,7 +3322,11 @@
           },
           "widthType": {
             "description": "The width type of the column.",
-            "enum": ["WIDTH_TYPE_UNSPECIFIED", "EVENLY_DISTRIBUTED", "FIXED_WIDTH"],
+            "enum": [
+              "WIDTH_TYPE_UNSPECIFIED",
+              "EVENLY_DISTRIBUTED",
+              "FIXED_WIDTH"
+            ],
             "type": "string"
           }
         },
@@ -3504,23 +3337,17 @@
         "properties": {
           "content": {
             "description": "The content of the table of contents.",
-            "items": {
-              "$ref": "#/components/schemas/StructuralElement"
-            },
+            "items": { "$ref": "#/components/schemas/StructuralElement" },
             "type": "array"
           },
           "suggestedDeletionIds": {
             "description": "The suggested deletion IDs. If empty, then there are no suggested deletions of this content.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedInsertionIds": {
             "description": "The suggested insertion IDs. A TableOfContents may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           }
         },
@@ -3561,16 +3388,12 @@
           },
           "suggestedDeletionIds": {
             "description": "The suggested deletion IDs. If empty, then there are no suggested deletions of this content.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedInsertionIds": {
             "description": "The suggested insertion IDs. A TableRow may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedTableRowStyleChanges": {
@@ -3582,9 +3405,7 @@
           },
           "tableCells": {
             "description": "The contents and style of each cell in this row. It is possible for a table to be non-rectangular, so some rows may have a different number of cells than other rows in the same table.",
-            "items": {
-              "$ref": "#/components/schemas/TableCell"
-            },
+            "items": { "$ref": "#/components/schemas/TableCell" },
             "type": "array"
           },
           "tableRowStyle": {
@@ -3627,9 +3448,7 @@
         "properties": {
           "tableColumnProperties": {
             "description": "The properties of each column. Note that in Docs, tables contain rows and rows contain cells, similar to HTML. So the properties for a row can be found on the row's table_row_style.",
-            "items": {
-              "$ref": "#/components/schemas/TableColumnProperties"
-            },
+            "items": { "$ref": "#/components/schemas/TableColumnProperties" },
             "type": "array"
           }
         },
@@ -3644,16 +3463,12 @@
           },
           "suggestedDeletionIds": {
             "description": "The suggested deletion IDs. If empty, then there are no suggested deletions of this content.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedInsertionIds": {
             "description": "The suggested insertion IDs. A TextRun may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedTextStyleChanges": {
@@ -3679,7 +3494,12 @@
           },
           "baselineOffset": {
             "description": "The text's vertical offset from its normal position. Text with `SUPERSCRIPT` or `SUBSCRIPT` baseline offsets is automatically rendered in a smaller font size, computed based on the `font_size` field. The `font_size` itself is not affected by changes in this field.",
-            "enum": ["BASELINE_OFFSET_UNSPECIFIED", "NONE", "SUPERSCRIPT", "SUBSCRIPT"],
+            "enum": [
+              "BASELINE_OFFSET_UNSPECIFIED",
+              "NONE",
+              "SUPERSCRIPT",
+              "SUBSCRIPT"
+            ],
             "type": "string"
           },
           "bold": {
@@ -3862,10 +3682,7 @@
         "properties": {
           "columnIndices": {
             "description": "The list of zero-based column indices whose property should be updated. If no indices are specified, all columns will be updated.",
-            "items": {
-              "format": "int32",
-              "type": "integer"
-            },
+            "items": { "format": "int32", "type": "integer" },
             "type": "array"
           },
           "fields": {
@@ -3894,10 +3711,7 @@
           },
           "rowIndices": {
             "description": "The list of zero-based row indices whose style should be updated. If no indices are specified, all rows will be updated.",
-            "items": {
-              "format": "int32",
-              "type": "integer"
-            },
+            "items": { "format": "int32", "type": "integer" },
             "type": "array"
           },
           "tableRowStyle": {
@@ -3974,16 +3788,12 @@
           },
           "suggestedDeletionIds": {
             "description": "IDs for suggestions that remove this person link from the document. A Person might have multiple deletion IDs if, for example, multiple users suggest to delete it. If empty, then this person link isn't suggested for deletion.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedInsertionIds": {
             "description": "IDs for suggestions that insert this person link into the document. A Person might have multiple insertion IDs if it is a nested suggested change (a suggestion within a suggestion made by a different user, for example). If empty, then this person link isn't a suggested insertion.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedTextStyleChanges": {
@@ -4046,16 +3856,12 @@
           },
           "suggestedDeletionIds": {
             "description": "IDs for suggestions that remove this link from the document. A RichLink might have multiple deletion IDs if, for example, multiple users suggest to delete it. If empty, then this person link isn't suggested for deletion.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedInsertionIds": {
             "description": "IDs for suggestions that insert this link into the document. A RichLink might have multiple insertion IDs if it is a nested suggested change (a suggestion within a suggestion made by a different user, for example). If empty, then this person link isn't a suggested insertion.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "suggestedTextStyleChanges": {

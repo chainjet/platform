@@ -166,9 +166,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -186,9 +184,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -196,9 +192,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -227,9 +221,7 @@
                   "labels": {
                     "description": "<p>Labels to improve discovery of apps in search results.</p><p>Minimum length=1. Maximum length=127. Maximum number of labels: 10</p><p>Pattern: \"^[a-zA-Z0-9+\\\\-_:\\\\/@]+$\";</p>",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/__string"
-                    }
+                    "items": { "$ref": "#/components/schemas/__string" }
                   },
                   "licenseBody": {
                     "description": "<p>A local text file that contains the license of the app that matches the spdxLicenseID value of your application.\n The file has the format file://&lt;path>/&lt;filename>.</p><p>Maximum size 5 MB</p><p>You can specify only one of licenseBody and licenseUrl; otherwise, an error results.</p>",
@@ -283,27 +275,13 @@
         "summary": "Create Application"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListApplications",
@@ -323,9 +301,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -333,9 +309,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -353,9 +327,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -366,36 +338,26 @@
             "in": "query",
             "required": false,
             "description": "The total number of items to return.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "A token to specify where to start paginating.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "MaxItems",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -432,9 +394,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -452,9 +412,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -462,9 +420,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -475,18 +431,14 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) of the application.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "semanticVersion",
             "in": "path",
             "required": true,
             "description": "The semantic version of the new version.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -520,27 +472,13 @@
         "summary": "Create Application Version"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/applications/{applicationId}/changesets": {
@@ -572,9 +510,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -592,9 +528,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -605,9 +539,7 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) of the application.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -621,9 +553,7 @@
                   "capabilities": {
                     "description": "<p>A list of values that you must specify before you can deploy certain applications.\n Some applications might include resources that can affect permissions in your AWS\n account, for example, by creating new AWS Identity and Access Management (IAM) users.\n For those applications, you must explicitly acknowledge their capabilities by\n specifying this parameter.</p><p>The only valid values are CAPABILITY_IAM, CAPABILITY_NAMED_IAM,\n CAPABILITY_RESOURCE_POLICY, and CAPABILITY_AUTO_EXPAND.</p><p>The following resources require you to specify CAPABILITY_IAM or\n CAPABILITY_NAMED_IAM:\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html\">AWS::IAM::Group</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html\">AWS::IAM::InstanceProfile</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html\">AWS::IAM::Policy</a>, and\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html\">AWS::IAM::Role</a>.\n If the application contains IAM resources, you can specify either CAPABILITY_IAM\n or CAPABILITY_NAMED_IAM. If the application contains IAM resources\n with custom names, you must specify CAPABILITY_NAMED_IAM.</p><p>The following resources require you to specify CAPABILITY_RESOURCE_POLICY:\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html\">AWS::Lambda::Permission</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html\">AWS::IAM:Policy</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalingpolicy.html\">AWS::ApplicationAutoScaling::ScalingPolicy</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-policy.html\">AWS::S3::BucketPolicy</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-policy.html\">AWS::SQS::QueuePolicy</a>, and\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html\">AWS::SNS:TopicPolicy</a>.</p><p>Applications that contain one or more nested applications require you to specify\n CAPABILITY_AUTO_EXPAND.</p><p>If your application template contains any of the above resources, we recommend that you review\n all permissions associated with the application before deploying. If you don't specify\n this parameter for an application that requires capabilities, the call will fail.</p>",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/__string"
-                    }
+                    "items": { "$ref": "#/components/schemas/__string" }
                   },
                   "changeSetName": {
                     "description": "This property corresponds to the parameter of the same name for the <i>AWS CloudFormation <a href=\"https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/CreateChangeSet\">CreateChangeSet</a>\n </i> API.",
@@ -640,23 +570,17 @@
                   "notificationArns": {
                     "description": "This property corresponds to the parameter of the same name for the <i>AWS CloudFormation <a href=\"https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/CreateChangeSet\">CreateChangeSet</a>\n </i> API.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/__string"
-                    }
+                    "items": { "$ref": "#/components/schemas/__string" }
                   },
                   "parameterOverrides": {
                     "description": "A list of parameter values for the parameters of the application.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ParameterValue"
-                    }
+                    "items": { "$ref": "#/components/schemas/ParameterValue" }
                   },
                   "resourceTypes": {
                     "description": "This property corresponds to the parameter of the same name for the <i>AWS CloudFormation <a href=\"https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/CreateChangeSet\">CreateChangeSet</a>\n </i> API.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/__string"
-                    }
+                    "items": { "$ref": "#/components/schemas/__string" }
                   },
                   "rollbackConfiguration": {
                     "description": "This property corresponds to the <i>AWS CloudFormation <a href=\"https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/RollbackConfiguration\">RollbackConfiguration</a>\n </i> Data Type.",
@@ -664,13 +588,9 @@
                     "properties": {
                       "MonitoringTimeInMinutes": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__integer" },
                           {
-                            "$ref": "#/components/schemas/__integer"
-                          },
-                          {
-                            "xml": {
-                              "name": "monitoringTimeInMinutes"
-                            },
+                            "xml": { "name": "monitoringTimeInMinutes" },
                             "description": "This property corresponds to the content of the same name for the <i>AWS CloudFormation <a href=\"https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/RollbackConfiguration\">RollbackConfiguration</a>\n </i> Data Type."
                           }
                         ]
@@ -681,9 +601,7 @@
                             "$ref": "#/components/schemas/__listOfRollbackTrigger"
                           },
                           {
-                            "xml": {
-                              "name": "rollbackTriggers"
-                            },
+                            "xml": { "name": "rollbackTriggers" },
                             "description": "This property corresponds to the content of the same name for the <i>AWS CloudFormation <a href=\"https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/RollbackConfiguration\">RollbackConfiguration</a>\n </i> Data Type."
                           }
                         ]
@@ -701,9 +619,7 @@
                   "tags": {
                     "description": "This property corresponds to the parameter of the same name for the <i>AWS CloudFormation <a href=\"https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/CreateChangeSet\">CreateChangeSet</a>\n </i> API.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/Tag"
-                    }
+                    "items": { "$ref": "#/components/schemas/Tag" }
                   },
                   "templateId": {
                     "description": "<p>The UUID returned by CreateCloudFormationTemplate.</p><p>Pattern: [0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}</p>",
@@ -717,27 +633,13 @@
         "summary": "Create Cloud Formation Change Set"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/applications/{applicationId}/templates": {
@@ -759,9 +661,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -779,9 +679,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -799,9 +697,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -812,9 +708,7 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) of the application.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -836,27 +730,13 @@
         "summary": "Create Cloud Formation Template"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/applications/{applicationId}": {
@@ -864,16 +744,12 @@
         "operationId": "DeleteApplication",
         "description": "Deletes the specified application.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -891,9 +767,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -901,9 +775,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -921,9 +793,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           }
@@ -934,35 +804,19 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) of the application.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Delete Application"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetApplication",
@@ -982,9 +836,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1002,9 +854,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1022,9 +872,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -1035,18 +883,14 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) of the application.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "semanticVersion",
             "in": "query",
             "required": false,
             "description": "The semantic version of the application to get.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Get Application"
@@ -1069,9 +913,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1089,9 +931,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1099,9 +939,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1119,9 +957,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           }
@@ -1132,9 +968,7 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) of the application.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1159,9 +993,7 @@
                   "labels": {
                     "description": "<p>Labels to improve discovery of apps in search results.</p><p>Minimum length=1. Maximum length=127. Maximum number of labels: 10</p><p>Pattern: \"^[a-zA-Z0-9+\\\\-_:\\\\/@]+$\";</p>",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/__string"
-                    }
+                    "items": { "$ref": "#/components/schemas/__string" }
                   },
                   "readmeBody": {
                     "description": "<p>A text readme file in Markdown language that contains a more detailed description of the application and how it works.</p><p>Maximum size 5 MB</p>",
@@ -1198,9 +1030,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1218,9 +1048,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1238,9 +1066,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -1251,35 +1077,19 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) of the application.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Get Application Policy"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "put": {
         "operationId": "PutApplicationPolicy",
@@ -1299,9 +1109,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1319,9 +1127,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1339,9 +1145,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -1352,9 +1156,7 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) of the application.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1399,9 +1201,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1419,9 +1219,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1439,9 +1237,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -1452,44 +1248,26 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) of the application.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "templateId",
             "in": "path",
             "required": true,
             "description": "<p>The UUID returned by CreateCloudFormationTemplate.</p><p>Pattern: [0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}</p>",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Get Cloud Formation Template"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/applications/{applicationId}/dependencies": {
@@ -1511,9 +1289,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1531,9 +1307,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1551,9 +1325,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -1564,54 +1336,40 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) of the application.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "maxItems",
             "in": "query",
             "required": false,
             "description": "The total number of items to return.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "A token to specify where to start paginating.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "semanticVersion",
             "in": "query",
             "required": false,
             "description": "The semantic version of the application to get.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "MaxItems",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -1619,27 +1377,13 @@
         "summary": "List Application Dependencies"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/applications/{applicationId}/versions": {
@@ -1661,9 +1405,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1681,9 +1423,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1701,9 +1441,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -1714,45 +1452,33 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) of the application.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "maxItems",
             "in": "query",
             "required": false,
             "description": "The total number of items to return.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "A token to specify where to start paginating.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "MaxItems",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -1760,27 +1486,13 @@
         "summary": "List Application Versions"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/applications/{applicationId}/unshare": {
@@ -1788,16 +1500,12 @@
         "operationId": "UnshareApplication",
         "description": "<p>Unshares an application from an AWS Organization.</p><p>This operation can be called only from the organization's master account.</p>",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1815,9 +1523,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1835,9 +1541,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -1848,9 +1552,7 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) of the application.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1873,27 +1575,13 @@
         "summary": "Unshare Application"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -1902,63 +1590,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -1978,178 +1652,124 @@
         "properties": {
           "ApplicationId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "applicationId"
-                },
+                "xml": { "name": "applicationId" },
                 "description": "The application Amazon Resource Name (ARN)."
               }
             ]
           },
           "Author": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "author"
-                },
+                "xml": { "name": "author" },
                 "description": "<p>The name of the author publishing the app.</p><p>Minimum length=1. Maximum length=127.</p><p>Pattern \"^[a-z0-9](([a-z0-9]|-(?!-))*[a-z0-9])?$\";</p>"
               }
             ]
           },
           "CreationTime": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "creationTime"
-                },
+                "xml": { "name": "creationTime" },
                 "description": "The date and time this resource was created."
               }
             ]
           },
           "Description": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "description"
-                },
+                "xml": { "name": "description" },
                 "description": "<p>The description of the application.</p><p>Minimum length=1. Maximum length=256</p>"
               }
             ]
           },
           "HomePageUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "homePageUrl"
-                },
+                "xml": { "name": "homePageUrl" },
                 "description": "A URL with more information about the application, for example the location of your GitHub repository for the application."
               }
             ]
           },
           "IsVerifiedAuthor": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "isVerifiedAuthor"
-                },
+                "xml": { "name": "isVerifiedAuthor" },
                 "description": "Whether the author of this application has been verified. This means means that AWS has made a good faith review, as a reasonable and prudent service provider, of the information provided by the requester and has confirmed that the requester's identity is as claimed."
               }
             ]
           },
           "Labels": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
-              {
-                "xml": {
-                  "name": "labels"
-                },
+                "xml": { "name": "labels" },
                 "description": "<p>Labels to improve discovery of apps in search results.</p><p>Minimum length=1. Maximum length=127. Maximum number of labels: 10</p><p>Pattern: \"^[a-zA-Z0-9+\\\\-_:\\\\/@]+$\";</p>"
               }
             ]
           },
           "LicenseUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "licenseUrl"
-                },
+                "xml": { "name": "licenseUrl" },
                 "description": "<p>A link to a license file of the app that matches the spdxLicenseID value of your application.</p><p>Maximum size 5 MB</p>"
               }
             ]
           },
           "Name": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "name"
-                },
+                "xml": { "name": "name" },
                 "description": "<p>The name of the application.</p><p>Minimum length=1. Maximum length=140</p><p>Pattern: \"[a-zA-Z0-9\\\\-]+\";</p>"
               }
             ]
           },
           "ReadmeUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "readmeUrl"
-                },
+                "xml": { "name": "readmeUrl" },
                 "description": "<p>A link to the readme file in Markdown language that contains a more detailed description of the application and how it works.</p><p>Maximum size 5 MB</p>"
               }
             ]
           },
           "SpdxLicenseId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "spdxLicenseId"
-                },
+                "xml": { "name": "spdxLicenseId" },
                 "description": "A valid identifier from https://spdx.org/licenses/."
               }
             ]
           },
           "VerifiedAuthorUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "verifiedAuthorUrl"
-                },
+                "xml": { "name": "verifiedAuthorUrl" },
                 "description": "The URL to the public profile of a verified author. This URL is submitted by the author."
               }
             ]
           },
           "Version": {
             "allOf": [
+              { "$ref": "#/components/schemas/Version" },
               {
-                "$ref": "#/components/schemas/Version"
-              },
-              {
-                "xml": {
-                  "name": "version"
-                },
+                "xml": { "name": "version" },
                 "description": "Version information about the application."
               }
             ]
           }
         }
       },
-      "__string": {
-        "type": "string"
-      },
+      "__string": { "type": "string" },
       "TooManyRequestsException": {},
       "BadRequestException": {},
       "InternalServerErrorException": {},
@@ -2160,117 +1780,81 @@
         "properties": {
           "ApplicationId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "applicationId"
-                },
+                "xml": { "name": "applicationId" },
                 "description": "The application Amazon Resource Name (ARN)."
               }
             ]
           },
           "CreationTime": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "creationTime"
-                },
+                "xml": { "name": "creationTime" },
                 "description": "The date and time this resource was created."
               }
             ]
           },
           "ParameterDefinitions": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfParameterDefinition" },
               {
-                "$ref": "#/components/schemas/__listOfParameterDefinition"
-              },
-              {
-                "xml": {
-                  "name": "parameterDefinitions"
-                },
+                "xml": { "name": "parameterDefinitions" },
                 "description": "An array of parameter types supported by the application."
               }
             ]
           },
           "RequiredCapabilities": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfCapability" },
               {
-                "$ref": "#/components/schemas/__listOfCapability"
-              },
-              {
-                "xml": {
-                  "name": "requiredCapabilities"
-                },
+                "xml": { "name": "requiredCapabilities" },
                 "description": "<p>A list of values that you must specify before you can deploy certain applications.\n Some applications might include resources that can affect permissions in your AWS\n account, for example, by creating new AWS Identity and Access Management (IAM) users.\n For those applications, you must explicitly acknowledge their capabilities by\n specifying this parameter.</p><p>The only valid values are CAPABILITY_IAM, CAPABILITY_NAMED_IAM,\n CAPABILITY_RESOURCE_POLICY, and CAPABILITY_AUTO_EXPAND.</p><p>The following resources require you to specify CAPABILITY_IAM or\n CAPABILITY_NAMED_IAM:\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html\">AWS::IAM::Group</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html\">AWS::IAM::InstanceProfile</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html\">AWS::IAM::Policy</a>, and\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html\">AWS::IAM::Role</a>.\n If the application contains IAM resources, you can specify either CAPABILITY_IAM\n or CAPABILITY_NAMED_IAM. If the application contains IAM resources\n with custom names, you must specify CAPABILITY_NAMED_IAM.</p><p>The following resources require you to specify CAPABILITY_RESOURCE_POLICY:\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html\">AWS::Lambda::Permission</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html\">AWS::IAM:Policy</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalingpolicy.html\">AWS::ApplicationAutoScaling::ScalingPolicy</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-policy.html\">AWS::S3::BucketPolicy</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-policy.html\">AWS::SQS::QueuePolicy</a>, and\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html\">AWS::SNS::TopicPolicy</a>.</p><p>Applications that contain one or more nested applications require you to specify\n CAPABILITY_AUTO_EXPAND.</p><p>If your application template contains any of the above resources, we recommend that you review\n all permissions associated with the application before deploying. If you don't specify\n this parameter for an application that requires capabilities, the call will fail.</p>"
               }
             ]
           },
           "ResourcesSupported": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "resourcesSupported"
-                },
+                "xml": { "name": "resourcesSupported" },
                 "description": "Whether all of the AWS resources contained in this application are supported in the region\n in which it is being retrieved."
               }
             ]
           },
           "SemanticVersion": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "semanticVersion"
-                },
+                "xml": { "name": "semanticVersion" },
                 "description": "<p>The semantic version of the application:</p><p>\n <a href=\"https://semver.org/\">https://semver.org/</a>\n </p>"
               }
             ]
           },
           "SourceCodeArchiveUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "sourceCodeArchiveUrl"
-                },
+                "xml": { "name": "sourceCodeArchiveUrl" },
                 "description": "<p>A link to the S3 object that contains the ZIP archive of the source code for this version of your application.</p><p>Maximum size 50 MB</p>"
               }
             ]
           },
           "SourceCodeUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "sourceCodeUrl"
-                },
+                "xml": { "name": "sourceCodeUrl" },
                 "description": "A link to a public repository for the source code of your application, for example the URL of a specific GitHub commit."
               }
             ]
           },
           "TemplateUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "templateUrl"
-                },
+                "xml": { "name": "templateUrl" },
                 "description": "A link to the packaged AWS SAM template of your application."
               }
             ]
@@ -2282,52 +1866,36 @@
         "properties": {
           "ApplicationId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "applicationId"
-                },
+                "xml": { "name": "applicationId" },
                 "description": "The application Amazon Resource Name (ARN)."
               }
             ]
           },
           "ChangeSetId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "changeSetId"
-                },
+                "xml": { "name": "changeSetId" },
                 "description": "<p>The Amazon Resource Name (ARN) of the change set.</p><p>Length constraints: Minimum length of 1.</p><p>Pattern: ARN:[-a-zA-Z0-9:/]*</p>"
               }
             ]
           },
           "SemanticVersion": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "semanticVersion"
-                },
+                "xml": { "name": "semanticVersion" },
                 "description": "<p>The semantic version of the application:</p><p>\n <a href=\"https://semver.org/\">https://semver.org/</a>\n </p>"
               }
             ]
           },
           "StackId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "stackId"
-                },
+                "xml": { "name": "stackId" },
                 "description": "The unique ID of the stack."
               }
             ]
@@ -2340,26 +1908,18 @@
         "properties": {
           "Name": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "name"
-                },
+                "xml": { "name": "name" },
                 "description": "The key associated with the parameter. If you don't specify a key and value for a particular parameter, AWS CloudFormation\n uses the default value that is specified in your template."
               }
             ]
           },
           "Value": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "value"
-                },
+                "xml": { "name": "value" },
                 "description": "The input value associated with the parameter."
               }
             ]
@@ -2367,14 +1927,10 @@
         },
         "description": "Parameter value of the application."
       },
-      "__integer": {
-        "type": "integer"
-      },
+      "__integer": { "type": "integer" },
       "__listOfRollbackTrigger": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/RollbackTrigger"
-        }
+        "items": { "$ref": "#/components/schemas/RollbackTrigger" }
       },
       "Tag": {
         "type": "object",
@@ -2382,26 +1938,18 @@
         "properties": {
           "Key": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "key"
-                },
+                "xml": { "name": "key" },
                 "description": "This property corresponds to the content of the same name for the <i>AWS CloudFormation <a href=\"https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/Tag\">Tag</a>\n </i> Data Type."
               }
             ]
           },
           "Value": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "value"
-                },
+                "xml": { "name": "value" },
                 "description": "This property corresponds to the content of the same name for the <i>AWS CloudFormation <a href=\"https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/Tag\">\n Tag</a>\n </i>\n Data Type."
               }
             ]
@@ -2414,91 +1962,63 @@
         "properties": {
           "ApplicationId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "applicationId"
-                },
+                "xml": { "name": "applicationId" },
                 "description": "The application Amazon Resource Name (ARN)."
               }
             ]
           },
           "CreationTime": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "creationTime"
-                },
+                "xml": { "name": "creationTime" },
                 "description": "The date and time this resource was created."
               }
             ]
           },
           "ExpirationTime": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "expirationTime"
-                },
+                "xml": { "name": "expirationTime" },
                 "description": "The date and time this template expires. Templates\n expire 1 hour after creation."
               }
             ]
           },
           "SemanticVersion": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "semanticVersion"
-                },
+                "xml": { "name": "semanticVersion" },
                 "description": "<p>The semantic version of the application:</p><p>\n <a href=\"https://semver.org/\">https://semver.org/</a>\n </p>"
               }
             ]
           },
           "Status": {
             "allOf": [
+              { "$ref": "#/components/schemas/Status" },
               {
-                "$ref": "#/components/schemas/Status"
-              },
-              {
-                "xml": {
-                  "name": "status"
-                },
+                "xml": { "name": "status" },
                 "description": "<p>Status of the template creation workflow.</p><p>Possible values: PREPARING | ACTIVE | EXPIRED\n </p>"
               }
             ]
           },
           "TemplateId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "templateId"
-                },
+                "xml": { "name": "templateId" },
                 "description": "<p>The UUID returned by CreateCloudFormationTemplate.</p><p>Pattern: [0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}</p>"
               }
             ]
           },
           "TemplateUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "templateUrl"
-                },
+                "xml": { "name": "templateUrl" },
                 "description": "A link to the template that can be used to deploy the application using\n AWS CloudFormation."
               }
             ]
@@ -2511,169 +2031,117 @@
         "properties": {
           "ApplicationId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "applicationId"
-                },
+                "xml": { "name": "applicationId" },
                 "description": "The application Amazon Resource Name (ARN)."
               }
             ]
           },
           "Author": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "author"
-                },
+                "xml": { "name": "author" },
                 "description": "<p>The name of the author publishing the app.</p><p>Minimum length=1. Maximum length=127.</p><p>Pattern \"^[a-z0-9](([a-z0-9]|-(?!-))*[a-z0-9])?$\";</p>"
               }
             ]
           },
           "CreationTime": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "creationTime"
-                },
+                "xml": { "name": "creationTime" },
                 "description": "The date and time this resource was created."
               }
             ]
           },
           "Description": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "description"
-                },
+                "xml": { "name": "description" },
                 "description": "<p>The description of the application.</p><p>Minimum length=1. Maximum length=256</p>"
               }
             ]
           },
           "HomePageUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "homePageUrl"
-                },
+                "xml": { "name": "homePageUrl" },
                 "description": "A URL with more information about the application, for example the location of your GitHub repository for the application."
               }
             ]
           },
           "IsVerifiedAuthor": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "isVerifiedAuthor"
-                },
+                "xml": { "name": "isVerifiedAuthor" },
                 "description": "Whether the author of this application has been verified. This means means that AWS has made a good faith review, as a reasonable and prudent service provider, of the information provided by the requester and has confirmed that the requester's identity is as claimed."
               }
             ]
           },
           "Labels": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
-              {
-                "xml": {
-                  "name": "labels"
-                },
+                "xml": { "name": "labels" },
                 "description": "<p>Labels to improve discovery of apps in search results.</p><p>Minimum length=1. Maximum length=127. Maximum number of labels: 10</p><p>Pattern: \"^[a-zA-Z0-9+\\\\-_:\\\\/@]+$\";</p>"
               }
             ]
           },
           "LicenseUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "licenseUrl"
-                },
+                "xml": { "name": "licenseUrl" },
                 "description": "<p>A link to a license file of the app that matches the spdxLicenseID value of your application.</p><p>Maximum size 5 MB</p>"
               }
             ]
           },
           "Name": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "name"
-                },
+                "xml": { "name": "name" },
                 "description": "<p>The name of the application.</p><p>Minimum length=1. Maximum length=140</p><p>Pattern: \"[a-zA-Z0-9\\\\-]+\";</p>"
               }
             ]
           },
           "ReadmeUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "readmeUrl"
-                },
+                "xml": { "name": "readmeUrl" },
                 "description": "<p>A link to the readme file in Markdown language that contains a more detailed description of the application and how it works.</p><p>Maximum size 5 MB</p>"
               }
             ]
           },
           "SpdxLicenseId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "spdxLicenseId"
-                },
+                "xml": { "name": "spdxLicenseId" },
                 "description": "A valid identifier from https://spdx.org/licenses/."
               }
             ]
           },
           "VerifiedAuthorUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "verifiedAuthorUrl"
-                },
+                "xml": { "name": "verifiedAuthorUrl" },
                 "description": "The URL to the public profile of a verified author. This URL is submitted by the author."
               }
             ]
           },
           "Version": {
             "allOf": [
+              { "$ref": "#/components/schemas/Version" },
               {
-                "$ref": "#/components/schemas/Version"
-              },
-              {
-                "xml": {
-                  "name": "version"
-                },
+                "xml": { "name": "version" },
                 "description": "Version information about the application."
               }
             ]
@@ -2689,9 +2157,7 @@
                 "$ref": "#/components/schemas/__listOfApplicationPolicyStatement"
               },
               {
-                "xml": {
-                  "name": "statements"
-                },
+                "xml": { "name": "statements" },
                 "description": "An array of policy statements applied to the application."
               }
             ]
@@ -2703,91 +2169,63 @@
         "properties": {
           "ApplicationId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "applicationId"
-                },
+                "xml": { "name": "applicationId" },
                 "description": "The application Amazon Resource Name (ARN)."
               }
             ]
           },
           "CreationTime": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "creationTime"
-                },
+                "xml": { "name": "creationTime" },
                 "description": "The date and time this resource was created."
               }
             ]
           },
           "ExpirationTime": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "expirationTime"
-                },
+                "xml": { "name": "expirationTime" },
                 "description": "The date and time this template expires. Templates\n expire 1 hour after creation."
               }
             ]
           },
           "SemanticVersion": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "semanticVersion"
-                },
+                "xml": { "name": "semanticVersion" },
                 "description": "<p>The semantic version of the application:</p><p>\n <a href=\"https://semver.org/\">https://semver.org/</a>\n </p>"
               }
             ]
           },
           "Status": {
             "allOf": [
+              { "$ref": "#/components/schemas/Status" },
               {
-                "$ref": "#/components/schemas/Status"
-              },
-              {
-                "xml": {
-                  "name": "status"
-                },
+                "xml": { "name": "status" },
                 "description": "<p>Status of the template creation workflow.</p><p>Possible values: PREPARING | ACTIVE | EXPIRED\n </p>"
               }
             ]
           },
           "TemplateId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "templateId"
-                },
+                "xml": { "name": "templateId" },
                 "description": "<p>The UUID returned by CreateCloudFormationTemplate.</p><p>Pattern: [0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}</p>"
               }
             ]
           },
           "TemplateUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "templateUrl"
-                },
+                "xml": { "name": "templateUrl" },
                 "description": "A link to the template that can be used to deploy the application using\n AWS CloudFormation."
               }
             ]
@@ -2803,22 +2241,16 @@
                 "$ref": "#/components/schemas/__listOfApplicationDependencySummary"
               },
               {
-                "xml": {
-                  "name": "dependencies"
-                },
+                "xml": { "name": "dependencies" },
                 "description": "An array of application summaries nested in the application."
               }
             ]
           },
           "NextToken": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "nextToken"
-                },
+                "xml": { "name": "nextToken" },
                 "description": "The token to request the next page of results."
               }
             ]
@@ -2830,26 +2262,18 @@
         "properties": {
           "NextToken": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "nextToken"
-                },
+                "xml": { "name": "nextToken" },
                 "description": "The token to request the next page of results."
               }
             ]
           },
           "Versions": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfVersionSummary" },
               {
-                "$ref": "#/components/schemas/__listOfVersionSummary"
-              },
-              {
-                "xml": {
-                  "name": "versions"
-                },
+                "xml": { "name": "versions" },
                 "description": "An array of version summaries for the application."
               }
             ]
@@ -2861,26 +2285,18 @@
         "properties": {
           "Applications": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfApplicationSummary" },
               {
-                "$ref": "#/components/schemas/__listOfApplicationSummary"
-              },
-              {
-                "xml": {
-                  "name": "applications"
-                },
+                "xml": { "name": "applications" },
                 "description": "An array of application summaries."
               }
             ]
           },
           "NextToken": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "nextToken"
-                },
+                "xml": { "name": "nextToken" },
                 "description": "The token to request the next page of results."
               }
             ]
@@ -2896,9 +2312,7 @@
                 "$ref": "#/components/schemas/__listOfApplicationPolicyStatement"
               },
               {
-                "xml": {
-                  "name": "statements"
-                },
+                "xml": { "name": "statements" },
                 "description": "An array of policy statements applied to the application."
               }
             ]
@@ -2911,52 +2325,36 @@
         "properties": {
           "Actions": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
-              {
-                "xml": {
-                  "name": "actions"
-                },
+                "xml": { "name": "actions" },
                 "description": "For the list of actions supported for this operation, see <a href=\"https://docs.aws.amazon.com/serverlessrepo/latest/devguide/access-control-resource-based.html#application-permissions\">Application \n Permissions</a>."
               }
             ]
           },
           "PrincipalOrgIDs": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
-              {
-                "xml": {
-                  "name": "principalOrgIDs"
-                },
+                "xml": { "name": "principalOrgIDs" },
                 "description": "An array of PrinciplalOrgIDs, which corresponds to AWS IAM <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#principal-org-id\">aws:PrincipalOrgID</a> global condition key."
               }
             ]
           },
           "Principals": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
-              {
-                "xml": {
-                  "name": "principals"
-                },
+                "xml": { "name": "principals" },
                 "description": "An array of AWS account IDs, or * to make the application public."
               }
             ]
           },
           "StatementId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "statementId"
-                },
+                "xml": { "name": "statementId" },
                 "description": "A unique ID for the statement."
               }
             ]
@@ -2969,169 +2367,117 @@
         "properties": {
           "ApplicationId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "applicationId"
-                },
+                "xml": { "name": "applicationId" },
                 "description": "The application Amazon Resource Name (ARN)."
               }
             ]
           },
           "Author": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "author"
-                },
+                "xml": { "name": "author" },
                 "description": "<p>The name of the author publishing the app.</p><p>Minimum length=1. Maximum length=127.</p><p>Pattern \"^[a-z0-9](([a-z0-9]|-(?!-))*[a-z0-9])?$\";</p>"
               }
             ]
           },
           "CreationTime": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "creationTime"
-                },
+                "xml": { "name": "creationTime" },
                 "description": "The date and time this resource was created."
               }
             ]
           },
           "Description": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "description"
-                },
+                "xml": { "name": "description" },
                 "description": "<p>The description of the application.</p><p>Minimum length=1. Maximum length=256</p>"
               }
             ]
           },
           "HomePageUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "homePageUrl"
-                },
+                "xml": { "name": "homePageUrl" },
                 "description": "A URL with more information about the application, for example the location of your GitHub repository for the application."
               }
             ]
           },
           "IsVerifiedAuthor": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "isVerifiedAuthor"
-                },
+                "xml": { "name": "isVerifiedAuthor" },
                 "description": "Whether the author of this application has been verified. This means means that AWS has made a good faith review, as a reasonable and prudent service provider, of the information provided by the requester and has confirmed that the requester's identity is as claimed."
               }
             ]
           },
           "Labels": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
-              {
-                "xml": {
-                  "name": "labels"
-                },
+                "xml": { "name": "labels" },
                 "description": "<p>Labels to improve discovery of apps in search results.</p><p>Minimum length=1. Maximum length=127. Maximum number of labels: 10</p><p>Pattern: \"^[a-zA-Z0-9+\\\\-_:\\\\/@]+$\";</p>"
               }
             ]
           },
           "LicenseUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "licenseUrl"
-                },
+                "xml": { "name": "licenseUrl" },
                 "description": "<p>A link to a license file of the app that matches the spdxLicenseID value of your application.</p><p>Maximum size 5 MB</p>"
               }
             ]
           },
           "Name": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "name"
-                },
+                "xml": { "name": "name" },
                 "description": "<p>The name of the application.</p><p>Minimum length=1. Maximum length=140</p><p>Pattern: \"[a-zA-Z0-9\\\\-]+\";</p>"
               }
             ]
           },
           "ReadmeUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "readmeUrl"
-                },
+                "xml": { "name": "readmeUrl" },
                 "description": "<p>A link to the readme file in Markdown language that contains a more detailed description of the application and how it works.</p><p>Maximum size 5 MB</p>"
               }
             ]
           },
           "SpdxLicenseId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "spdxLicenseId"
-                },
+                "xml": { "name": "spdxLicenseId" },
                 "description": "A valid identifier from https://spdx.org/licenses/."
               }
             ]
           },
           "VerifiedAuthorUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "verifiedAuthorUrl"
-                },
+                "xml": { "name": "verifiedAuthorUrl" },
                 "description": "The URL to the public profile of a verified author. This URL is submitted by the author."
               }
             ]
           },
           "Version": {
             "allOf": [
+              { "$ref": "#/components/schemas/Version" },
               {
-                "$ref": "#/components/schemas/Version"
-              },
-              {
-                "xml": {
-                  "name": "version"
-                },
+                "xml": { "name": "version" },
                 "description": "Version information about the application."
               }
             ]
@@ -3144,26 +2490,18 @@
         "properties": {
           "ApplicationId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "applicationId"
-                },
+                "xml": { "name": "applicationId" },
                 "description": "The Amazon Resource Name (ARN) of the nested application."
               }
             ]
           },
           "SemanticVersion": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "semanticVersion"
-                },
+                "xml": { "name": "semanticVersion" },
                 "description": "The semantic version of the nested application."
               }
             ]
@@ -3173,9 +2511,7 @@
       },
       "__listOf__string": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/__string"
-        }
+        "items": { "$ref": "#/components/schemas/__string" }
       },
       "ApplicationSummary": {
         "type": "object",
@@ -3183,104 +2519,72 @@
         "properties": {
           "ApplicationId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "applicationId"
-                },
+                "xml": { "name": "applicationId" },
                 "description": "The application Amazon Resource Name (ARN)."
               }
             ]
           },
           "Author": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "author"
-                },
+                "xml": { "name": "author" },
                 "description": "<p>The name of the author publishing the app.</p><p>Minimum length=1. Maximum length=127.</p><p>Pattern \"^[a-z0-9](([a-z0-9]|-(?!-))*[a-z0-9])?$\";</p>"
               }
             ]
           },
           "CreationTime": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "creationTime"
-                },
+                "xml": { "name": "creationTime" },
                 "description": "The date and time this resource was created."
               }
             ]
           },
           "Description": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "description"
-                },
+                "xml": { "name": "description" },
                 "description": "<p>The description of the application.</p><p>Minimum length=1. Maximum length=256</p>"
               }
             ]
           },
           "HomePageUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "homePageUrl"
-                },
+                "xml": { "name": "homePageUrl" },
                 "description": "A URL with more information about the application, for example the location of your GitHub repository for the application."
               }
             ]
           },
           "Labels": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
-              {
-                "xml": {
-                  "name": "labels"
-                },
+                "xml": { "name": "labels" },
                 "description": "<p>Labels to improve discovery of apps in search results.</p><p>Minimum length=1. Maximum length=127. Maximum number of labels: 10</p><p>Pattern: \"^[a-zA-Z0-9+\\\\-_:\\\\/@]+$\";</p>"
               }
             ]
           },
           "Name": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "name"
-                },
+                "xml": { "name": "name" },
                 "description": "<p>The name of the application.</p><p>Minimum length=1. Maximum length=140</p><p>Pattern: \"[a-zA-Z0-9\\\\-]+\";</p>"
               }
             ]
           },
           "SpdxLicenseId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "spdxLicenseId"
-                },
+                "xml": { "name": "spdxLicenseId" },
                 "description": "A valid identifier from <a href=\"https://spdx.org/licenses/\">https://spdx.org/licenses/</a>."
               }
             ]
@@ -3298,9 +2602,7 @@
         ],
         "description": "Values that must be specified in order to deploy some applications."
       },
-      "__boolean": {
-        "type": "boolean"
-      },
+      "__boolean": { "type": "boolean" },
       "Version": {
         "type": "object",
         "required": [
@@ -3315,117 +2617,81 @@
         "properties": {
           "ApplicationId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "applicationId"
-                },
+                "xml": { "name": "applicationId" },
                 "description": "The application Amazon Resource Name (ARN)."
               }
             ]
           },
           "CreationTime": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "creationTime"
-                },
+                "xml": { "name": "creationTime" },
                 "description": "The date and time this resource was created."
               }
             ]
           },
           "ParameterDefinitions": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfParameterDefinition" },
               {
-                "$ref": "#/components/schemas/__listOfParameterDefinition"
-              },
-              {
-                "xml": {
-                  "name": "parameterDefinitions"
-                },
+                "xml": { "name": "parameterDefinitions" },
                 "description": "An array of parameter types supported by the application."
               }
             ]
           },
           "RequiredCapabilities": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfCapability" },
               {
-                "$ref": "#/components/schemas/__listOfCapability"
-              },
-              {
-                "xml": {
-                  "name": "requiredCapabilities"
-                },
+                "xml": { "name": "requiredCapabilities" },
                 "description": "<p>A list of values that you must specify before you can deploy certain applications.\n Some applications might include resources that can affect permissions in your AWS\n account, for example, by creating new AWS Identity and Access Management (IAM) users.\n For those applications, you must explicitly acknowledge their capabilities by\n specifying this parameter.</p><p>The only valid values are CAPABILITY_IAM, CAPABILITY_NAMED_IAM,\n CAPABILITY_RESOURCE_POLICY, and CAPABILITY_AUTO_EXPAND.</p><p>The following resources require you to specify CAPABILITY_IAM or\n CAPABILITY_NAMED_IAM:\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html\">AWS::IAM::Group</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html\">AWS::IAM::InstanceProfile</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html\">AWS::IAM::Policy</a>, and\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html\">AWS::IAM::Role</a>.\n If the application contains IAM resources, you can specify either CAPABILITY_IAM\n or CAPABILITY_NAMED_IAM. If the application contains IAM resources\n with custom names, you must specify CAPABILITY_NAMED_IAM.</p><p>The following resources require you to specify CAPABILITY_RESOURCE_POLICY:\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html\">AWS::Lambda::Permission</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html\">AWS::IAM:Policy</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalingpolicy.html\">AWS::ApplicationAutoScaling::ScalingPolicy</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-policy.html\">AWS::S3::BucketPolicy</a>,\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-policy.html\">AWS::SQS::QueuePolicy</a>, and\n <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html\">AWS::SNS::TopicPolicy</a>.</p><p>Applications that contain one or more nested applications require you to specify\n CAPABILITY_AUTO_EXPAND.</p><p>If your application template contains any of the above resources, we recommend that you review\n all permissions associated with the application before deploying. If you don't specify\n this parameter for an application that requires capabilities, the call will fail.</p>"
               }
             ]
           },
           "ResourcesSupported": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "resourcesSupported"
-                },
+                "xml": { "name": "resourcesSupported" },
                 "description": "Whether all of the AWS resources contained in this application are supported in the region\n in which it is being retrieved."
               }
             ]
           },
           "SemanticVersion": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "semanticVersion"
-                },
+                "xml": { "name": "semanticVersion" },
                 "description": "<p>The semantic version of the application:</p><p>\n <a href=\"https://semver.org/\">https://semver.org/</a>\n </p>"
               }
             ]
           },
           "SourceCodeArchiveUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "sourceCodeArchiveUrl"
-                },
+                "xml": { "name": "sourceCodeArchiveUrl" },
                 "description": "<p>A link to the S3 object that contains the ZIP archive of the source code for this version of your application.</p><p>Maximum size 50 MB</p>"
               }
             ]
           },
           "SourceCodeUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "sourceCodeUrl"
-                },
+                "xml": { "name": "sourceCodeUrl" },
                 "description": "A link to a public repository for the source code of your application, for example the URL of a specific GitHub commit."
               }
             ]
           },
           "TemplateUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "templateUrl"
-                },
+                "xml": { "name": "templateUrl" },
                 "description": "A link to the packaged AWS SAM template of your application."
               }
             ]
@@ -3435,15 +2701,11 @@
       },
       "__listOfParameterDefinition": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ParameterDefinition"
-        }
+        "items": { "$ref": "#/components/schemas/ParameterDefinition" }
       },
       "__listOfCapability": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Capability"
-        }
+        "items": { "$ref": "#/components/schemas/Capability" }
       },
       "Status": {
         "type": "string",
@@ -3451,27 +2713,19 @@
       },
       "__listOfApplicationPolicyStatement": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ApplicationPolicyStatement"
-        }
+        "items": { "$ref": "#/components/schemas/ApplicationPolicyStatement" }
       },
       "__listOfApplicationDependencySummary": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ApplicationDependencySummary"
-        }
+        "items": { "$ref": "#/components/schemas/ApplicationDependencySummary" }
       },
       "__listOfVersionSummary": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/VersionSummary"
-        }
+        "items": { "$ref": "#/components/schemas/VersionSummary" }
       },
       "__listOfApplicationSummary": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ApplicationSummary"
-        }
+        "items": { "$ref": "#/components/schemas/ApplicationSummary" }
       },
       "ParameterDefinition": {
         "type": "object",
@@ -3479,169 +2733,117 @@
         "properties": {
           "AllowedPattern": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "allowedPattern"
-                },
+                "xml": { "name": "allowedPattern" },
                 "description": "A regular expression that represents the patterns to allow for String types."
               }
             ]
           },
           "AllowedValues": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
-              {
-                "xml": {
-                  "name": "allowedValues"
-                },
+                "xml": { "name": "allowedValues" },
                 "description": "An array containing the list of values allowed for the parameter."
               }
             ]
           },
           "ConstraintDescription": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "constraintDescription"
-                },
+                "xml": { "name": "constraintDescription" },
                 "description": "<p>A string that explains a constraint when the constraint is violated. For example, without a constraint description,\n a parameter that has an allowed pattern of [A-Za-z0-9]+ displays the following error message when the user\n specifies an invalid value:</p><p>\n Malformed input-Parameter MyParameter must match pattern [A-Za-z0-9]+\n </p><p>By adding a constraint description, such as \"must contain only uppercase and lowercase letters and numbers,\" you can display\n the following customized error message:</p><p>\n Malformed input-Parameter MyParameter must contain only uppercase and lowercase letters and numbers.\n </p>"
               }
             ]
           },
           "DefaultValue": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "defaultValue"
-                },
+                "xml": { "name": "defaultValue" },
                 "description": "A value of the appropriate type for the template to use if no value is specified when a stack is created.\n If you define constraints for the parameter, you must specify a value that adheres to those constraints."
               }
             ]
           },
           "Description": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "description"
-                },
+                "xml": { "name": "description" },
                 "description": "A string of up to 4,000 characters that describes the parameter."
               }
             ]
           },
           "MaxLength": {
             "allOf": [
+              { "$ref": "#/components/schemas/__integer" },
               {
-                "$ref": "#/components/schemas/__integer"
-              },
-              {
-                "xml": {
-                  "name": "maxLength"
-                },
+                "xml": { "name": "maxLength" },
                 "description": "An integer value that determines the largest number of characters that you want to allow for String types."
               }
             ]
           },
           "MaxValue": {
             "allOf": [
+              { "$ref": "#/components/schemas/__integer" },
               {
-                "$ref": "#/components/schemas/__integer"
-              },
-              {
-                "xml": {
-                  "name": "maxValue"
-                },
+                "xml": { "name": "maxValue" },
                 "description": "A numeric value that determines the largest numeric value that you want to allow for Number types."
               }
             ]
           },
           "MinLength": {
             "allOf": [
+              { "$ref": "#/components/schemas/__integer" },
               {
-                "$ref": "#/components/schemas/__integer"
-              },
-              {
-                "xml": {
-                  "name": "minLength"
-                },
+                "xml": { "name": "minLength" },
                 "description": "An integer value that determines the smallest number of characters that you want to allow for String types."
               }
             ]
           },
           "MinValue": {
             "allOf": [
+              { "$ref": "#/components/schemas/__integer" },
               {
-                "$ref": "#/components/schemas/__integer"
-              },
-              {
-                "xml": {
-                  "name": "minValue"
-                },
+                "xml": { "name": "minValue" },
                 "description": "A numeric value that determines the smallest numeric value that you want to allow for Number types."
               }
             ]
           },
           "Name": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "name"
-                },
+                "xml": { "name": "name" },
                 "description": "The name of the parameter."
               }
             ]
           },
           "NoEcho": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "noEcho"
-                },
+                "xml": { "name": "noEcho" },
                 "description": "Whether to mask the parameter value whenever anyone makes a call that describes the stack. If you set the\n value to true, the parameter value is masked with asterisks (*****)."
               }
             ]
           },
           "ReferencedByResources": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
-              {
-                "xml": {
-                  "name": "referencedByResources"
-                },
+                "xml": { "name": "referencedByResources" },
                 "description": "A list of AWS SAM resources that use this parameter."
               }
             ]
           },
           "Type": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "type"
-                },
+                "xml": { "name": "type" },
                 "description": "<p>The type of the parameter.</p><p>Valid values: String | Number | List&lt;Number> | CommaDelimitedList\n </p><p>\n String: A literal string.</p><p>For example, users can specify \"MyUserName\".</p><p>\n Number: An integer or float. AWS CloudFormation validates the parameter value as a number. However, when you use the\n parameter elsewhere in your template (for example, by using the Ref intrinsic function), the parameter value becomes a string.</p><p>For example, users might specify \"8888\".</p><p>\n List&lt;Number>: An array of integers or floats that are separated by commas. AWS CloudFormation validates the parameter value as numbers. However, when\n you use the parameter elsewhere in your template (for example, by using the Ref intrinsic function), the parameter value becomes a list of strings.</p><p>For example, users might specify \"80,20\", and then Ref results in [\"80\",\"20\"].</p><p>\n CommaDelimitedList: An array of literal strings that are separated by commas. The total number of strings should be one more than the total number of commas.\n Also, each member string is space-trimmed.</p><p>For example, users might specify \"test,dev,prod\", and then Ref results in [\"test\",\"dev\",\"prod\"].</p>"
               }
             ]
@@ -3655,26 +2857,18 @@
         "properties": {
           "Arn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "arn"
-                },
+                "xml": { "name": "arn" },
                 "description": "This property corresponds to the content of the same name for the <i>AWS CloudFormation <a href=\"https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/RollbackTrigger\">RollbackTrigger</a>\n </i> Data Type."
               }
             ]
           },
           "Type": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "type"
-                },
+                "xml": { "name": "type" },
                 "description": "This property corresponds to the content of the same name for the <i>AWS CloudFormation <a href=\"https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/RollbackTrigger\">RollbackTrigger</a>\n </i> Data Type."
               }
             ]
@@ -3688,52 +2882,36 @@
         "properties": {
           "ApplicationId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "applicationId"
-                },
+                "xml": { "name": "applicationId" },
                 "description": "The application Amazon Resource Name (ARN)."
               }
             ]
           },
           "CreationTime": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "creationTime"
-                },
+                "xml": { "name": "creationTime" },
                 "description": "The date and time this resource was created."
               }
             ]
           },
           "SemanticVersion": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "semanticVersion"
-                },
+                "xml": { "name": "semanticVersion" },
                 "description": "<p>The semantic version of the application:</p><p>\n <a href=\"https://semver.org/\">https://semver.org/</a>\n </p>"
               }
             ]
           },
           "SourceCodeUrl": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "sourceCodeUrl"
-                },
+                "xml": { "name": "sourceCodeUrl" },
                 "description": "A link to a public repository for the source code of your application, for example the URL of a specific GitHub commit."
               }
             ]
@@ -3743,11 +2921,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2017-09-08",
     "endpointPrefix": "serverlessrepo",

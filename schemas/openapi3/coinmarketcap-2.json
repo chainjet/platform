@@ -5371,6 +5371,112 @@
         },
         "parameters": []
       }
+    },
+    "/v1/content/latest": {
+      "get": {
+        "summary": "Content Latest",
+        "operationId": "getV1ContentLatest",
+        "description": "Returns a paginated list of content pulled from CMC News/Headlines and Alexandria articles.\n\n  \n  **This endpoint is available on the following <a href=\"https://coinmarketcap.com/api/features\" target=\"_blank\">API plans</a>:**\n  - Professional\n  - Enterprise\n\n**Cache / Update frequency:** Five Minutes\n**Plan credit use:** 1 call credit per 100 items returned (rounded up).",
+        "parameters": [
+          {
+            "description": "Optionally offset the start (1-based index) of the paginated list of items to return.",
+            "name": "start",
+            "in": "query",
+            "schema": { "type": "integer", "minimum": 1, "default": 1 }
+          },
+          {
+            "description": "Optionally specify the number of results to return. Use this parameter and the \"start\" parameter to determine your own pagination size.",
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5000,
+              "default": 100
+            }
+          },
+          {
+            "description": "Optional cryptocurrency CoinMarketCap IDs. Example: 1027",
+            "name": "id",
+            "in": "query",
+            "schema": { "type": "string", "pattern": "^\\d*$" }
+          },
+          {
+            "description": "Alternatively pass one cryptocurrency slug. Example: \"ethereum\"",
+            "name": "slug",
+            "in": "query",
+            "schema": { "type": "string", "pattern": "^[0-9a-z-]*$" }
+          },
+          {
+            "description": "Alternatively pass one cryptocurrency symbols. Example: \"ETH\"",
+            "name": "symbol",
+            "in": "query",
+            "schema": { "type": "string", "pattern": "^[0-9A-Za-z$@\\-]*$" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Content_Latest_-_Response_Model"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTP_Status_400_Error_Object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTP_Status_401_Error_Object"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTP_Status_403_Error_Object"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTP_Status_429_Error_Object"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTP_Status_500_Error_Object"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "tags": [
@@ -11543,6 +11649,100 @@
           "status": { "$ref": "#/components/schemas/API_Status_Object" }
         },
         "required": ["data"]
+      },
+      "assets": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique CoinMarketCap ID for this cryptocurrency.",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of this cryptocurrency.",
+            "example": "Bitcoin"
+          },
+          "symbol": {
+            "type": "string",
+            "description": "The ticker symbol for this cryptocurrency.",
+            "example": "BTC"
+          },
+          "slug": {
+            "type": "string",
+            "description": "The web URL friendly shorthand version of this cryptocurrency name.",
+            "example": "bitcoin"
+          }
+        },
+        "required": ["id", "name", "symbol", "slug"]
+      },
+      "Model_1": {
+        "type": "object",
+        "properties": {
+          "cover": { "type": "string" },
+          "title": { "type": "string" },
+          "subtitle": { "type": "string" },
+          "source_name": { "type": "string" },
+          "source_url": { "type": "string" },
+          "type": { "type": "string" },
+          "assets": { "$ref": "#/components/schemas/assets" },
+          "created_at": {
+            "type": "string",
+            "format": "date",
+            "description": "Timestamp (ISO 8601) of the time this was created.",
+            "example": "2018-06-02T23:59:59.999Z"
+          },
+          "released_at": {
+            "type": "string",
+            "format": "date",
+            "description": "Timestamp (ISO 8601) of the time this was released.",
+            "example": "2018-06-02T23:59:59.999Z"
+          }
+        }
+      },
+      "Content_Latest_-_Results_array": {
+        "type": "array",
+        "description": "Array of content objects.",
+        "items": { "$ref": "#/components/schemas/Model_1" }
+      },
+      "Content_Latest_-_Response_Model": {
+        "type": "object",
+        "example": {
+          "data": [
+            {
+              "cover": "https://academy-public.coinmarketcap.com/optimized-uploads/0aec0502868046419ceace229f92601f.gif",
+              "assets": [
+                {
+                  "id": 1027,
+                  "name": "Ethereum",
+                  "symbol": "ETH",
+                  "slug": "ethereum"
+                }
+              ],
+              "created_at": "2021-05-05T00:00:00Z",
+              "released_at": "2021-05-05T00:00:00Z",
+              "title": "Article Title",
+              "subtitle": "Article Subtitle",
+              "type": "alexandria",
+              "source_name": "Connor Sephton",
+              "source_url": "https://coinmarketcap.com/alexandria/article/coinmarketcap-news-august-9-u-s-comes-for-tornado-cash"
+            }
+          ],
+          "status": {
+            "timestamp": "2018-06-02T22:51:28.209Z",
+            "error_code": 0,
+            "error_message": "",
+            "elapsed": 10,
+            "credit_count": 1
+          }
+        },
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Content_Latest_-_Results_array"
+          },
+          "status": { "$ref": "#/components/schemas/API_Status_Object" }
+        },
+        "required": ["data", "status"]
       }
     },
     "securitySchemes": {

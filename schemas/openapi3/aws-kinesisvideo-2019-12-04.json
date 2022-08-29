@@ -256,27 +256,13 @@
         "summary": "Get Ice Server Config"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/v1/send-alexa-offer-to-master": {
@@ -373,27 +359,13 @@
         "summary": "Send Alexa Offer To Master"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -402,63 +374,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -478,12 +436,8 @@
         "properties": {
           "IceServerList": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IceServerList"
-              },
-              {
-                "description": "The list of ICE server information objects."
-              }
+              { "$ref": "#/components/schemas/IceServerList" },
+              { "description": "The list of ICE server information objects." }
             ]
           }
         }
@@ -499,21 +453,13 @@
         "properties": {
           "Answer": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Answer"
-              },
-              {
-                "description": "The base64-encoded SDP answer content."
-              }
+              { "$ref": "#/components/schemas/Answer" },
+              { "description": "The base64-encoded SDP answer content." }
             ]
           }
         }
       },
-      "Answer": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 10000
-      },
+      "Answer": { "type": "string", "minLength": 1, "maxLength": 10000 },
       "Username": {
         "type": "string",
         "pattern": "[a-zA-Z0-9_.-]+",
@@ -522,15 +468,11 @@
       },
       "IceServerList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/IceServer"
-        }
+        "items": { "$ref": "#/components/schemas/IceServer" }
       },
       "Uris": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Uri"
-        }
+        "items": { "$ref": "#/components/schemas/Uri" }
       },
       "Password": {
         "type": "string",
@@ -538,19 +480,13 @@
         "minLength": 1,
         "maxLength": 256
       },
-      "Ttl": {
-        "type": "integer",
-        "minimum": 30,
-        "maximum": 86400
-      },
+      "Ttl": { "type": "integer", "minimum": 30, "maximum": 86400 },
       "IceServer": {
         "type": "object",
         "properties": {
           "Uris": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Uris"
-              },
+              { "$ref": "#/components/schemas/Uris" },
               {
                 "description": "An array of URIs, in the form specified in the <a href=\"https://tools.ietf.org/html/draft-petithuguenin-behave-turn-uris-03\">I-D.petithuguenin-behave-turn-uris</a> spec. These URIs provide the different addresses and/or protocols that can be used to reach the TURN server."
               }
@@ -558,29 +494,19 @@
           },
           "Username": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Username"
-              },
-              {
-                "description": "A username to login to the ICE server."
-              }
+              { "$ref": "#/components/schemas/Username" },
+              { "description": "A username to login to the ICE server." }
             ]
           },
           "Password": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Password"
-              },
-              {
-                "description": "A password to login to the ICE server."
-              }
+              { "$ref": "#/components/schemas/Password" },
+              { "description": "A password to login to the ICE server." }
             ]
           },
           "Ttl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Ttl"
-              },
+              { "$ref": "#/components/schemas/Ttl" },
               {
                 "description": "The period of time, in seconds, during which the username and password are valid."
               }
@@ -589,18 +515,10 @@
         },
         "description": "A structure for the ICE server connection data."
       },
-      "Uri": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 256
-      }
+      "Uri": { "type": "string", "minLength": 1, "maxLength": 256 }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2019-12-04",
     "endpointPrefix": "kinesisvideo",

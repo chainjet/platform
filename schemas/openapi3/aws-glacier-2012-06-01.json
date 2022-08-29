@@ -143,9 +143,7 @@
         "operationId": "AbortMultipartUpload",
         "description": "<p>This operation aborts a multipart upload identified by the upload ID.</p> <p>After the Abort Multipart Upload request succeeds, you cannot upload any more parts to the multipart upload or complete the multipart upload. Aborting a completed upload fails. However, aborting an already-aborted upload will succeed, for a short time. For more information about uploading a part and completing a multipart upload, see <a>UploadMultipartPart</a> and <a>CompleteMultipartUpload</a>.</p> <p>This operation is idempotent.</p> <p>An AWS account has full permission to perform all operations (actions). However, AWS Identity and Access Management (IAM) users don't have any permissions by default. You must grant them explicit permission to perform specific actions. For more information, see <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html\">Access Control Using AWS Identity and Access Management (IAM)</a>.</p> <p> For conceptual information and underlying REST API, see <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/working-with-archives.html\">Working with Archives in Amazon S3 Glacier</a> and <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/api-multipart-abort-upload.html\">Abort Multipart Upload</a> in the <i>Amazon Glacier Developer Guide</i>. </p>",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -193,53 +191,33 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "uploadId",
             "in": "path",
             "required": true,
             "description": "The upload ID of the multipart upload to delete.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Abort Multipart Upload"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "CompleteMultipartUpload",
@@ -302,45 +280,35 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "uploadId",
             "in": "path",
             "required": true,
             "description": "The upload ID of the multipart upload.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "x-amz-archive-size",
             "in": "header",
             "required": false,
             "description": "The total size, in bytes, of the entire archive. This value should be the sum of all the sizes of the individual parts that you uploaded.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "x-amz-sha256-tree-hash",
             "in": "header",
             "required": false,
             "description": "The SHA256 tree hash of the entire archive. It is the tree hash of SHA256 tree hash of the individual parts. If the value you specify in the request does not match the SHA256 tree hash of the final assembled archive as computed by Amazon S3 Glacier (Glacier), Glacier returns an error and the request fails.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Complete Multipart Upload"
@@ -353,9 +321,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListPartsOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/ListPartsOutput" }
               }
             }
           },
@@ -406,45 +372,35 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "uploadId",
             "in": "path",
             "required": true,
             "description": "The upload ID of the multipart upload.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "marker",
             "in": "query",
             "required": false,
             "description": "An opaque string used for pagination. This value specifies the part at which the listing of parts should begin. Get the marker value from the response of a previous List Parts response. You need only include the marker if you are continuing the pagination of results started in a previous List Parts request.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "limit",
             "in": "query",
             "required": false,
             "description": "The maximum number of parts to be returned. The default limit is 50. The number of parts returned might be fewer than the specified limit, but the number of returned parts never exceeds the limit.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "List Parts"
@@ -520,45 +476,35 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "uploadId",
             "in": "path",
             "required": true,
             "description": "The upload ID of the multipart upload.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "x-amz-sha256-tree-hash",
             "in": "header",
             "required": false,
             "description": "The SHA256 tree hash of the data being uploaded.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "Content-Range",
             "in": "header",
             "required": false,
             "description": "Identifies the range of bytes in the assembled archive that will be uploaded in this part. Amazon S3 Glacier uses this information to assemble the archive in the proper sequence. The format of this header follows RFC 2616. An example header is Content-Range:bytes 0-4194303/*.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -585,9 +531,7 @@
         "operationId": "AbortVaultLock",
         "description": "<p>This operation aborts the vault locking process if the vault lock is not in the <code>Locked</code> state. If the vault lock is in the <code>Locked</code> state when this operation is requested, the operation returns an <code>AccessDeniedException</code> error. Aborting the vault locking process removes the vault lock policy from the specified vault. </p> <p>A vault lock is put into the <code>InProgress</code> state by calling <a>InitiateVaultLock</a>. A vault lock is put into the <code>Locked</code> state by calling <a>CompleteVaultLock</a>. You can get the state of a vault lock by calling <a>GetVaultLock</a>. For more information about the vault locking process, see <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/vault-lock.html\">Amazon Glacier Vault Lock</a>. For more information about vault lock policies, see <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/vault-lock-policy.html\">Amazon Glacier Access Control with Vault Lock Policies</a>. </p> <p>This operation is idempotent. You can successfully invoke this operation multiple times, if the vault lock is in the <code>InProgress</code> state or if there is no policy associated with the vault.</p>",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -635,44 +579,26 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID. This value must match the AWS account ID associated with the credentials used to sign the request. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon Glacier uses the AWS account ID associated with the credentials used to sign the request. If you specify your account ID, do not include any hyphens ('-') in the ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Abort Vault Lock"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetVaultLock",
@@ -682,9 +608,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetVaultLockOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/GetVaultLockOutput" }
               }
             }
           },
@@ -735,18 +659,14 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Get Vault Lock"
@@ -812,18 +732,14 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID. This value must match the AWS account ID associated with the credentials used to sign the request. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon Glacier uses the AWS account ID associated with the credentials used to sign the request. If you specify your account ID, do not include any hyphens ('-') in the ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -839,12 +755,8 @@
                     "properties": {
                       "Policy": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/string"
-                          },
-                          {
-                            "description": "The vault lock policy."
-                          }
+                          { "$ref": "#/components/schemas/string" },
+                          { "description": "The vault lock policy." }
                         ]
                       }
                     }
@@ -862,9 +774,7 @@
         "operationId": "AddTagsToVault",
         "description": "This operation adds the specified tags to a vault. Each tag is composed of a key and a value. Each vault can have up to 10 tags. If your request would cause the tag limit for the vault to be exceeded, the operation throws the <code>LimitExceededException</code> error. If a tag already exists on the vault under a specified key, the existing key value will be overwritten. For more information about tags, see <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/tagging.html\">Tagging Amazon S3 Glacier Resources</a>. ",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "InvalidParameterValueException",
             "content": {
@@ -922,27 +832,20 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "operation",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["add"]
-            }
+            "schema": { "type": "string", "enum": ["add"] }
           }
         ],
         "requestBody": {
@@ -967,27 +870,13 @@
         "summary": "Add Tags To Vault"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/{accountId}/vaults/{vaultName}/lock-policy/{lockId}": {
@@ -995,9 +884,7 @@
         "operationId": "CompleteVaultLock",
         "description": "<p>This operation completes the vault locking process by transitioning the vault lock from the <code>InProgress</code> state to the <code>Locked</code> state, which causes the vault lock policy to become unchangeable. A vault lock is put into the <code>InProgress</code> state by calling <a>InitiateVaultLock</a>. You can obtain the state of the vault lock by calling <a>GetVaultLock</a>. For more information about the vault locking process, <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/vault-lock.html\">Amazon Glacier Vault Lock</a>. </p> <p>This operation is idempotent. This request is always successful if the vault lock is in the <code>Locked</code> state and the provided lock ID matches the lock ID originally used to lock the vault.</p> <p>If an invalid lock ID is passed in the request when the vault lock is in the <code>Locked</code> state, the operation returns an <code>AccessDeniedException</code> error. If an invalid lock ID is passed in the request when the vault lock is in the <code>InProgress</code> state, the operation throws an <code>InvalidParameter</code> error.</p>",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -1045,53 +932,33 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID. This value must match the AWS account ID associated with the credentials used to sign the request. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon Glacier uses the AWS account ID associated with the credentials used to sign the request. If you specify your account ID, do not include any hyphens ('-') in the ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "lockId",
             "in": "path",
             "required": true,
             "description": "The <code>lockId</code> value is the lock ID obtained from a <a>InitiateVaultLock</a> request.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Complete Vault Lock"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/{accountId}/vaults/{vaultName}": {
@@ -1103,9 +970,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateVaultOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/CreateVaultOutput" }
               }
             }
           },
@@ -1156,52 +1021,32 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID. This value must match the AWS account ID associated with the credentials used to sign the request. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you specify your account ID, do not include any hyphens ('-') in the ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Create Vault"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "delete": {
         "operationId": "DeleteVault",
         "description": "<p>This operation deletes a vault. Amazon S3 Glacier will delete a vault only if there are no archives in the vault as of the last inventory and there have been no writes to the vault since the last inventory. If either of these conditions is not satisfied, the vault deletion fails (that is, the vault is not removed) and Amazon S3 Glacier returns an error. You can use <a>DescribeVault</a> to return the number of archives in a vault, and you can use <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/api-initiate-job-post.html\">Initiate a Job (POST jobs)</a> to initiate a new inventory retrieval for a vault. The inventory contains the archive IDs you use to delete archives using <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/api-archive-delete.html\">Delete Archive (DELETE archive)</a>.</p> <p>This operation is idempotent.</p> <p>An AWS account has full permission to perform all operations (actions). However, AWS Identity and Access Management (IAM) users don't have any permissions by default. You must grant them explicit permission to perform specific actions. For more information, see <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html\">Access Control Using AWS Identity and Access Management (IAM)</a>.</p> <p> For conceptual information and underlying REST API, see <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/deleting-vaults.html\">Deleting a Vault in Amazon Glacier</a> and <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-delete.html\">Delete Vault </a> in the <i>Amazon S3 Glacier Developer Guide</i>. </p>",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -1249,18 +1094,14 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Delete Vault"
@@ -1273,9 +1114,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DescribeVaultOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/DescribeVaultOutput" }
               }
             }
           },
@@ -1326,18 +1165,14 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Describe Vault"
@@ -1348,9 +1183,7 @@
         "operationId": "DeleteArchive",
         "description": "<p>This operation deletes an archive from a vault. Subsequent requests to initiate a retrieval of this archive will fail. Archive retrievals that are in progress for this archive ID may or may not succeed according to the following scenarios:</p> <ul> <li> <p>If the archive retrieval job is actively preparing the data for download when Amazon S3 Glacier receives the delete archive request, the archival retrieval operation might fail.</p> </li> <li> <p>If the archive retrieval job has successfully prepared the archive for download when Amazon S3 Glacier receives the delete archive request, you will be able to download the output.</p> </li> </ul> <p>This operation is idempotent. Attempting to delete an already-deleted archive does not result in an error.</p> <p>An AWS account has full permission to perform all operations (actions). However, AWS Identity and Access Management (IAM) users don't have any permissions by default. You must grant them explicit permission to perform specific actions. For more information, see <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html\">Access Control Using AWS Identity and Access Management (IAM)</a>.</p> <p> For conceptual information and underlying REST API, see <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/deleting-an-archive.html\">Deleting an Archive in Amazon Glacier</a> and <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/api-archive-delete.html\">Delete Archive</a> in the <i>Amazon Glacier Developer Guide</i>. </p>",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -1398,53 +1231,33 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "archiveId",
             "in": "path",
             "required": true,
             "description": "The ID of the archive to delete.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Delete Archive"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/{accountId}/vaults/{vaultName}/access-policy": {
@@ -1452,9 +1265,7 @@
         "operationId": "DeleteVaultAccessPolicy",
         "description": "<p>This operation deletes the access policy associated with the specified vault. The operation is eventually consistent; that is, it might take some time for Amazon S3 Glacier to completely remove the access policy, and you might still see the effect of the policy for a short time after you send the delete request.</p> <p>This operation is idempotent. You can invoke delete multiple times, even if there is no policy associated with the vault. For more information about vault access policies, see <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/vault-access-policy.html\">Amazon Glacier Access Control with Vault Access Policies</a>. </p>",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -1502,44 +1313,26 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Delete Vault Access Policy"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetVaultAccessPolicy",
@@ -1602,18 +1395,14 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Get Vault Access Policy"
@@ -1622,9 +1411,7 @@
         "operationId": "SetVaultAccessPolicy",
         "description": "This operation configures an access policy for a vault and will overwrite an existing policy. To configure a vault access policy, send a PUT request to the <code>access-policy</code> subresource of the vault. An access policy is specific to a vault and is also called a vault subresource. You can set one access policy per vault and the policy can be up to 20 KB in size. For more information about vault access policies, see <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/vault-access-policy.html\">Amazon Glacier Access Control with Vault Access Policies</a>. ",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -1672,18 +1459,14 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1699,12 +1482,8 @@
                     "properties": {
                       "Policy": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/string"
-                          },
-                          {
-                            "description": "The vault access policy."
-                          }
+                          { "$ref": "#/components/schemas/string" },
+                          { "description": "The vault access policy." }
                         ]
                       }
                     }
@@ -1722,9 +1501,7 @@
         "operationId": "DeleteVaultNotifications",
         "description": "<p>This operation deletes the notification configuration set for a vault. The operation is eventually consistent; that is, it might take some time for Amazon S3 Glacier to completely disable the notifications and you might still receive some notifications for a short time after you send the delete request.</p> <p>An AWS account has full permission to perform all operations (actions). However, AWS Identity and Access Management (IAM) users don't have any permissions by default. You must grant them explicit permission to perform specific actions. For more information, see <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html\">Access Control Using AWS Identity and Access Management (IAM)</a>.</p> <p> For conceptual information and underlying REST API, see <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/configuring-notifications.html\">Configuring Vault Notifications in Amazon S3 Glacier</a> and <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-notifications-delete.html\">Delete Vault Notification Configuration </a> in the Amazon S3 Glacier Developer Guide. </p>",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -1772,44 +1549,26 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Delete Vault Notifications"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetVaultNotifications",
@@ -1872,18 +1631,14 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Get Vault Notifications"
@@ -1892,9 +1647,7 @@
         "operationId": "SetVaultNotifications",
         "description": "<p>This operation configures notifications that will be sent when specific events happen to a vault. By default, you don't get any notifications.</p> <p>To configure vault notifications, send a PUT request to the <code>notification-configuration</code> subresource of the vault. The request should include a JSON document that provides an Amazon SNS topic and specific events for which you want Amazon S3 Glacier to send notifications to the topic.</p> <p>Amazon SNS topics must grant permission to the vault to be allowed to publish notifications to the topic. You can configure a vault to publish a notification for the following vault events:</p> <ul> <li> <p> <b>ArchiveRetrievalCompleted</b> This event occurs when a job that was initiated for an archive retrieval is completed (<a>InitiateJob</a>). The status of the completed job can be \"Succeeded\" or \"Failed\". The notification sent to the SNS topic is the same output as returned from <a>DescribeJob</a>. </p> </li> <li> <p> <b>InventoryRetrievalCompleted</b> This event occurs when a job that was initiated for an inventory retrieval is completed (<a>InitiateJob</a>). The status of the completed job can be \"Succeeded\" or \"Failed\". The notification sent to the SNS topic is the same output as returned from <a>DescribeJob</a>. </p> </li> </ul> <p>An AWS account has full permission to perform all operations (actions). However, AWS Identity and Access Management (IAM) users don't have any permissions by default. You must grant them explicit permission to perform specific actions. For more information, see <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html\">Access Control Using AWS Identity and Access Management (IAM)</a>.</p> <p>For conceptual information and underlying REST API, see <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/configuring-notifications.html\">Configuring Vault Notifications in Amazon S3 Glacier</a> and <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-notifications-put.html\">Set Vault Notification Configuration </a> in the <i>Amazon Glacier Developer Guide</i>. </p>",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -1942,18 +1695,14 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1969,9 +1718,7 @@
                     "properties": {
                       "SNSTopic": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/string"
-                          },
+                          { "$ref": "#/components/schemas/string" },
                           {
                             "description": "The Amazon Simple Notification Service (Amazon SNS) topic Amazon Resource Name (ARN)."
                           }
@@ -2059,53 +1806,33 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "jobId",
             "in": "path",
             "required": true,
             "description": "The ID of the job to describe.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Describe Job"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/{accountId}/policies/data-retrieval": {
@@ -2160,43 +1887,25 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID. This value must match the AWS account ID associated with the credentials used to sign the request. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon Glacier uses the AWS account ID associated with the credentials used to sign the request. If you specify your account ID, do not include any hyphens ('-') in the ID. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Get Data Retrieval Policy"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "put": {
         "operationId": "SetDataRetrievalPolicy",
         "description": "<p>This operation sets and then enacts a data retrieval policy in the region specified in the PUT request. You can set one policy per region for an AWS account. The policy is enacted within a few minutes of a successful PUT operation.</p> <p>The set policy operation does not affect retrieval jobs that were in progress before the policy was enacted. For more information about data retrieval policies, see <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/data-retrieval-policy.html\">Amazon Glacier Data Retrieval Policies</a>. </p>",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "InvalidParameterValueException",
             "content": {
@@ -2234,9 +1943,7 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID. This value must match the AWS account ID associated with the credentials used to sign the request. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon Glacier uses the AWS account ID associated with the credentials used to sign the request. If you specify your account ID, do not include any hyphens ('-') in the ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -2279,9 +1986,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetJobOutputOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/GetJobOutputOutput" }
               }
             }
           },
@@ -2332,62 +2037,40 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "jobId",
             "in": "path",
             "required": true,
             "description": "The job ID whose data is downloaded.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "Range",
             "in": "header",
             "required": false,
             "description": "<p>The range of bytes to retrieve from the output. For example, if you want to download the first 1,048,576 bytes, specify the range as <code>bytes=0-1048575</code>. By default, this operation downloads the entire output.</p> <p>If the job output is large, then you can use a range to retrieve a portion of the output. This allows you to download the entire output in smaller chunks of bytes. For example, suppose you have 1 GB of job output you want to download and you decide to download 128 MB chunks of data at a time, which is a total of eight Get Job Output requests. You use the following process to download the job output:</p> <ol> <li> <p>Download a 128 MB chunk of output by specifying the appropriate byte range. Verify that all 128 MB of data was received.</p> </li> <li> <p>Along with the data, the response includes a SHA256 tree hash of the payload. You compute the checksum of the payload on the client and compare it with the checksum you received in the response to ensure you received all the expected data.</p> </li> <li> <p>Repeat steps 1 and 2 for all the eight 128 MB chunks of output data, each time specifying the appropriate byte range.</p> </li> <li> <p>After downloading all the parts of the job output, you have a list of eight checksum values. Compute the tree hash of these values to find the checksum of the entire output. Using the <a>DescribeJob</a> API, obtain job information of the job that provided you the output. The response includes the checksum of the entire archive stored in Amazon S3 Glacier. You compare this value with the checksum you computed to ensure you have downloaded the entire archive content with no errors.</p> <p/> </li> </ol>",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Get Job Output"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/{accountId}/vaults/{vaultName}/jobs": {
@@ -2399,9 +2082,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InitiateJobOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/InitiateJobOutput" }
               }
             }
           },
@@ -2472,18 +2153,14 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -2499,9 +2176,7 @@
                     "properties": {
                       "Format": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/string"
-                          },
+                          { "$ref": "#/components/schemas/string" },
                           {
                             "description": "When initiating a job to retrieve a vault inventory, you can optionally add this parameter to your request to specify the output format. If you are initiating an inventory job and do not specify a Format field, JSON is the default format. Valid values are \"CSV\" and \"JSON\"."
                           }
@@ -2509,9 +2184,7 @@
                       },
                       "Type": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/string"
-                          },
+                          { "$ref": "#/components/schemas/string" },
                           {
                             "description": "The job type. You can initiate a job to perform a select query on an archive, retrieve an archive, or get an inventory of a vault. Valid values are \"select\", \"archive-retrieval\" and \"inventory-retrieval\"."
                           }
@@ -2519,9 +2192,7 @@
                       },
                       "ArchiveId": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/string"
-                          },
+                          { "$ref": "#/components/schemas/string" },
                           {
                             "description": "The ID of the archive that you want to retrieve. This field is required only if <code>Type</code> is set to <code>select</code> or <code>archive-retrieval</code>code&gt;. An error occurs if you specify this request parameter for an inventory retrieval job request. "
                           }
@@ -2529,9 +2200,7 @@
                       },
                       "Description": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/string"
-                          },
+                          { "$ref": "#/components/schemas/string" },
                           {
                             "description": "The optional description for the job. The description must be less than or equal to 1,024 bytes. The allowable characters are 7-bit ASCII without control codes-specifically, ASCII values 32-126 decimal or 0x20-0x7E hexadecimal."
                           }
@@ -2539,9 +2208,7 @@
                       },
                       "SNSTopic": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/string"
-                          },
+                          { "$ref": "#/components/schemas/string" },
                           {
                             "description": "The Amazon SNS topic ARN to which Amazon S3 Glacier sends a notification when the job is completed and the output is ready for you to download. The specified topic publishes the notification to its subscribers. The SNS topic must exist."
                           }
@@ -2549,9 +2216,7 @@
                       },
                       "RetrievalByteRange": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/string"
-                          },
+                          { "$ref": "#/components/schemas/string" },
                           {
                             "description": "<p>The byte range to retrieve for an archive retrieval. in the form \"<i>StartByteValue</i>-<i>EndByteValue</i>\" If not specified, the whole archive is retrieved. If specified, the byte range must be megabyte (1024*1024) aligned which means that <i>StartByteValue</i> must be divisible by 1 MB and <i>EndByteValue</i> plus 1 must be divisible by 1 MB or be the end of the archive specified as the archive byte size value minus 1. If RetrievalByteRange is not megabyte aligned, this operation returns a 400 response. </p> <p>An error occurs if you specify this field for an inventory retrieval job request.</p>"
                           }
@@ -2559,9 +2224,7 @@
                       },
                       "Tier": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/string"
-                          },
+                          { "$ref": "#/components/schemas/string" },
                           {
                             "description": "The tier to use for a select or an archive retrieval job. Valid values are <code>Expedited</code>, <code>Standard</code>, or <code>Bulk</code>. <code>Standard</code> is the default."
                           }
@@ -2579,9 +2242,7 @@
                       },
                       "SelectParameters": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/SelectParameters"
-                          },
+                          { "$ref": "#/components/schemas/SelectParameters" },
                           {
                             "description": "Contains the parameters that define a job."
                           }
@@ -2589,9 +2250,7 @@
                       },
                       "OutputLocation": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/OutputLocation"
-                          },
+                          { "$ref": "#/components/schemas/OutputLocation" },
                           {
                             "description": "Contains information about the location where the select job results are stored."
                           }
@@ -2607,27 +2266,13 @@
         "summary": "Initiate Job"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListJobs",
@@ -2637,9 +2282,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListJobsOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/ListJobsOutput" }
               }
             }
           },
@@ -2690,54 +2333,42 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "limit",
             "in": "query",
             "required": false,
             "description": "The maximum number of jobs to be returned. The default limit is 50. The number of jobs returned might be fewer than the specified limit, but the number of returned jobs never exceeds the limit.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "marker",
             "in": "query",
             "required": false,
             "description": "An opaque string used for pagination. This value specifies the job at which the listing of jobs should begin. Get the marker value from a previous List Jobs response. You only need to include the marker if you are continuing the pagination of results started in a previous List Jobs request.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "statuscode",
             "in": "query",
             "required": false,
             "description": "The type of job status to return. You can specify the following values: <code>InProgress</code>, <code>Succeeded</code>, or <code>Failed</code>.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "completed",
             "in": "query",
             "required": false,
             "description": "The state of the jobs to return. You can specify <code>true</code> or <code>false</code>.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "List Jobs"
@@ -2805,62 +2436,40 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "x-amz-archive-description",
             "in": "header",
             "required": false,
             "description": "<p>The archive description that you are uploading in parts.</p> <p>The part size must be a megabyte (1024 KB) multiplied by a power of 2, for example 1048576 (1 MB), 2097152 (2 MB), 4194304 (4 MB), 8388608 (8 MB), and so on. The minimum allowable part size is 1 MB, and the maximum is 4 GB (4096 MB).</p>",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "x-amz-part-size",
             "in": "header",
             "required": false,
             "description": "The size of each part except the last, in bytes. The last part can be smaller than this part size.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Initiate Multipart Upload"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListMultipartUploads",
@@ -2923,36 +2532,28 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "marker",
             "in": "query",
             "required": false,
             "description": "An opaque string used for pagination. This value specifies the upload at which the listing of uploads should begin. Get the marker value from a previous List Uploads response. You need only include the marker if you are continuing the pagination of results started in a previous List Uploads request.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "limit",
             "in": "query",
             "required": false,
             "description": "Specifies the maximum number of uploads returned in the response body. If this value is not specified, the List Uploads operation returns up to 50 uploads.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "List Multipart Uploads"
@@ -3010,35 +2611,19 @@
             "in": "path",
             "required": true,
             "description": "The AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '-' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, don't include any hyphens ('-') in the ID. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "List Provisioned Capacity"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "PurchaseProvisionedCapacity",
@@ -3101,9 +2686,7 @@
             "in": "path",
             "required": true,
             "description": "The AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '-' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, don't include any hyphens ('-') in the ID. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Purchase Provisioned Capacity"
@@ -3171,44 +2754,26 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "List Tags For Vault"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/{accountId}/vaults": {
@@ -3220,9 +2785,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListVaultsOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/ListVaultsOutput" }
               }
             }
           },
@@ -3273,53 +2836,33 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID. This value must match the AWS account ID associated with the credentials used to sign the request. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon Glacier uses the AWS account ID associated with the credentials used to sign the request. If you specify your account ID, do not include any hyphens ('-') in the ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "marker",
             "in": "query",
             "required": false,
             "description": "A string used for pagination. The marker specifies the vault ARN after which the listing of vaults should begin.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "limit",
             "in": "query",
             "required": false,
             "description": "The maximum number of vaults to be returned. The default limit is 10. The number of vaults returned might be fewer than the specified limit, but the number of returned vaults never exceeds the limit.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "List Vaults"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/{accountId}/vaults/{vaultName}/tags#operation=remove": {
@@ -3327,9 +2870,7 @@
         "operationId": "RemoveTagsFromVault",
         "description": "This operation removes one or more tags from the set of tags attached to a vault. For more information about tags, see <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/tagging.html\">Tagging Amazon S3 Glacier Resources</a>. This operation is idempotent. The operation will be successful, even if there are no tags attached to the vault. ",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "InvalidParameterValueException",
             "content": {
@@ -3377,27 +2918,20 @@
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vaultName",
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "operation",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "enum": ["remove"]
-            }
+            "schema": { "type": "string", "enum": ["remove"] }
           }
         ],
         "requestBody": {
@@ -3410,9 +2944,7 @@
                   "TagKeys": {
                     "description": "A list of tag keys. Each corresponding tag is removed from the vault.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/string"
-                    }
+                    "items": { "$ref": "#/components/schemas/string" }
                   }
                 }
               }
@@ -3422,27 +2954,13 @@
         "summary": "Remove Tags From Vault"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/{accountId}/vaults/{vaultName}/archives": {
@@ -3517,36 +3035,28 @@
             "in": "path",
             "required": true,
             "description": "The name of the vault.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "accountId",
             "in": "path",
             "required": true,
             "description": "The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "x-amz-archive-description",
             "in": "header",
             "required": false,
             "description": "The optional description of the archive you are uploading.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "x-amz-sha256-tree-hash",
             "in": "header",
             "required": false,
             "description": "The SHA256 tree hash of the data being uploaded.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -3568,27 +3078,13 @@
         "summary": "Upload Archive"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -3597,63 +3093,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -3672,9 +3154,7 @@
       "InvalidParameterValueException": {},
       "MissingParameterValueException": {},
       "ServiceUnavailableException": {},
-      "TagValue": {
-        "type": "string"
-      },
+      "TagValue": { "type": "string" },
       "LimitExceededException": {},
       "ArchiveCreationOutput": {
         "type": "object",
@@ -3688,9 +3168,7 @@
       },
       "CreateVaultOutput": {
         "type": "object",
-        "example": {
-          "location": "/111122223333/vaults/my-vault"
-        },
+        "example": { "location": "/111122223333/vaults/my-vault" },
         "properties": {},
         "description": "Contains the Amazon S3 Glacier response to your request."
       },
@@ -3700,9 +3178,7 @@
           "Action": "InventoryRetrieval",
           "Completed": false,
           "CreationDate": "2015-07-17T20:23:41.616Z",
-          "InventoryRetrievalParameters": {
-            "Format": "JSON"
-          },
+          "InventoryRetrievalParameters": { "Format": "JSON" },
           "JobId": "zbxcm3Z_3z5UkoroF7SuZKrxgGoDc3RloGduS7Eg-RO47Yc6FxsdGBgf_Q2DK5Ejh18CnTS5XW4_XqlNHS61dsO4CnMW",
           "StatusCode": "InProgress",
           "VaultARN": "arn:aws:glacier:us-west-2:0123456789012:vaults/my-vault"
@@ -3710,9 +3186,7 @@
         "properties": {
           "JobId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "An opaque string that identifies an Amazon S3 Glacier job."
               }
@@ -3720,9 +3194,7 @@
           },
           "JobDescription": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The job description provided when initiating the job."
               }
@@ -3730,9 +3202,7 @@
           },
           "Action": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ActionCode"
-              },
+              { "$ref": "#/components/schemas/ActionCode" },
               {
                 "description": "The job type. This value is either <code>ArchiveRetrieval</code>, <code>InventoryRetrieval</code>, or <code>Select</code>. "
               }
@@ -3740,9 +3210,7 @@
           },
           "ArchiveId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The archive ID requested for a select job or archive retrieval. Otherwise, this field is null."
               }
@@ -3750,9 +3218,7 @@
           },
           "VaultARN": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The Amazon Resource Name (ARN) of the vault from which an archive retrieval was requested."
               }
@@ -3760,9 +3226,7 @@
           },
           "CreationDate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The UTC date when the job was created. This value is a string representation of ISO 8601 date format, for example <code>\"2012-03-20T17:03:43.221Z\"</code>."
               }
@@ -3770,9 +3234,7 @@
           },
           "Completed": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/boolean"
-              },
+              { "$ref": "#/components/schemas/boolean" },
               {
                 "description": "The job status. When a job is completed, you get the job's output using Get Job Output (GET output)."
               }
@@ -3780,9 +3242,7 @@
           },
           "StatusCode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StatusCode"
-              },
+              { "$ref": "#/components/schemas/StatusCode" },
               {
                 "description": "The status code can be <code>InProgress</code>, <code>Succeeded</code>, or <code>Failed</code>, and indicates the status of the job."
               }
@@ -3790,9 +3250,7 @@
           },
           "StatusMessage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "A friendly message that describes the job status."
               }
@@ -3800,9 +3258,7 @@
           },
           "ArchiveSizeInBytes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Size"
-              },
+              { "$ref": "#/components/schemas/Size" },
               {
                 "description": "For an archive retrieval job, this value is the size in bytes of the archive being requested for download. For an inventory retrieval or select job, this value is null."
               }
@@ -3810,9 +3266,7 @@
           },
           "InventorySizeInBytes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Size"
-              },
+              { "$ref": "#/components/schemas/Size" },
               {
                 "description": "For an inventory retrieval job, this value is the size in bytes of the inventory requested for download. For an archive retrieval or select job, this value is null."
               }
@@ -3820,9 +3274,7 @@
           },
           "SNSTopic": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "An Amazon SNS topic that receives notification."
               }
@@ -3830,9 +3282,7 @@
           },
           "CompletionDate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The UTC time that the job request completed. While the job is in progress, the value is null."
               }
@@ -3840,9 +3290,7 @@
           },
           "SHA256TreeHash": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "<p>For an archive retrieval job, this value is the checksum of the archive. Otherwise, this value is null.</p> <p>The SHA256 tree hash value for the requested range of an archive. If the <b>InitiateJob</b> request for an archive specified a tree-hash aligned range, then this field returns a value.</p> <p>If the whole archive is retrieved, this value is the same as the ArchiveSHA256TreeHash value.</p> <p>This field is null for the following:</p> <ul> <li> <p>Archive retrieval jobs that specify a range that is not tree-hash aligned</p> </li> </ul> <ul> <li> <p>Archival jobs that specify a range that is equal to the whole archive, when the job status is <code>InProgress</code> </p> </li> </ul> <ul> <li> <p>Inventory jobs</p> </li> <li> <p>Select jobs</p> </li> </ul>"
               }
@@ -3850,9 +3298,7 @@
           },
           "ArchiveSHA256TreeHash": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The SHA256 tree hash of the entire archive for an archive retrieval. For inventory retrieval or select jobs, this field is null."
               }
@@ -3860,9 +3306,7 @@
           },
           "RetrievalByteRange": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The retrieved byte range for archive retrieval jobs in the form <i>StartByteValue</i>-<i>EndByteValue</i>. If no range was specified in the archive retrieval, then the whole archive is retrieved. In this case, <i>StartByteValue</i> equals 0 and <i>EndByteValue</i> equals the size of the archive minus 1. For inventory retrieval or select jobs, this field is null. "
               }
@@ -3870,9 +3314,7 @@
           },
           "Tier": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The tier to use for a select or an archive retrieval. Valid values are <code>Expedited</code>, <code>Standard</code>, or <code>Bulk</code>. <code>Standard</code> is the default."
               }
@@ -3890,29 +3332,19 @@
           },
           "JobOutputPath": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
-              {
-                "description": "Contains the job output location."
-              }
+              { "$ref": "#/components/schemas/string" },
+              { "description": "Contains the job output location." }
             ]
           },
           "SelectParameters": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SelectParameters"
-              },
-              {
-                "description": "Contains the parameters used for a select."
-              }
+              { "$ref": "#/components/schemas/SelectParameters" },
+              { "description": "Contains the parameters used for a select." }
             ]
           },
           "OutputLocation": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OutputLocation"
-              },
+              { "$ref": "#/components/schemas/OutputLocation" },
               {
                 "description": "Contains the location where the data from the select job is stored."
               }
@@ -3933,29 +3365,19 @@
         "properties": {
           "VaultARN": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
-              {
-                "description": "The Amazon Resource Name (ARN) of the vault."
-              }
+              { "$ref": "#/components/schemas/string" },
+              { "description": "The Amazon Resource Name (ARN) of the vault." }
             ]
           },
           "VaultName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
-              {
-                "description": "The name of the vault."
-              }
+              { "$ref": "#/components/schemas/string" },
+              { "description": "The name of the vault." }
             ]
           },
           "CreationDate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The Universal Coordinated Time (UTC) date when the vault was created. This value should be a string in the ISO 8601 date format, for example <code>2012-03-20T17:03:43.221Z</code>."
               }
@@ -3963,9 +3385,7 @@
           },
           "LastInventoryDate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The Universal Coordinated Time (UTC) date when Amazon S3 Glacier completed the last vault inventory. This value should be a string in the ISO 8601 date format, for example <code>2012-03-20T17:03:43.221Z</code>."
               }
@@ -3973,9 +3393,7 @@
           },
           "NumberOfArchives": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/long"
-              },
+              { "$ref": "#/components/schemas/long" },
               {
                 "description": "The number of archives in the vault as of the last inventory date. This field will return <code>null</code> if an inventory has not yet run on the vault, for example if you just created the vault."
               }
@@ -3983,9 +3401,7 @@
           },
           "SizeInBytes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/long"
-              },
+              { "$ref": "#/components/schemas/long" },
               {
                 "description": "Total size, in bytes, of the archives in the vault as of the last inventory date. This field will return null if an inventory has not yet run on the vault, for example if you just created the vault."
               }
@@ -3999,19 +3415,14 @@
         "example": {
           "Policy": {
             "Rules": [
-              {
-                "BytesPerHour": 10737418240,
-                "Strategy": "BytesPerHour"
-              }
+              { "BytesPerHour": 10737418240, "Strategy": "BytesPerHour" }
             ]
           }
         },
         "properties": {
           "Policy": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DataRetrievalPolicy"
-              },
+              { "$ref": "#/components/schemas/DataRetrievalPolicy" },
               {
                 "description": "Contains the returned data retrieval policy in JSON format."
               }
@@ -4031,9 +3442,7 @@
         "properties": {
           "body": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Stream"
-              },
+              { "$ref": "#/components/schemas/Stream" },
               {
                 "description": "The job data, either archive data or inventory data."
               }
@@ -4041,9 +3450,7 @@
           },
           "status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/httpstatus"
-              },
+              { "$ref": "#/components/schemas/httpstatus" },
               {
                 "description": "The HTTP response code for a job output request. The value depends on whether a range was specified in the request."
               }
@@ -4062,9 +3469,7 @@
         "properties": {
           "policy": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VaultAccessPolicy"
-              },
+              { "$ref": "#/components/schemas/VaultAccessPolicy" },
               {
                 "description": "Contains the returned vault access policy as a JSON string."
               }
@@ -4084,9 +3489,7 @@
         "properties": {
           "Policy": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The vault lock policy as a JSON string, which uses \"\\\" as an escape character."
               }
@@ -4094,9 +3497,7 @@
           },
           "State": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The state of the vault lock. <code>InProgress</code> or <code>Locked</code>."
               }
@@ -4104,9 +3505,7 @@
           },
           "ExpirationDate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The UTC date and time at which the lock ID expires. This value can be <code>null</code> if the vault lock is in a <code>Locked</code> state."
               }
@@ -4114,9 +3513,7 @@
           },
           "CreationDate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The UTC date and time at which the vault lock was put into the <code>InProgress</code> state."
               }
@@ -4139,9 +3536,7 @@
         "properties": {
           "vaultNotificationConfig": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VaultNotificationConfig"
-              },
+              { "$ref": "#/components/schemas/VaultNotificationConfig" },
               {
                 "description": "Returns the notification configuration set on the vault."
               }
@@ -4159,17 +3554,13 @@
         "properties": {},
         "description": "Contains the Amazon S3 Glacier response to your request."
       },
-      "string": {
-        "type": "string"
-      },
+      "string": { "type": "string" },
       "InventoryRetrievalJobInput": {
         "type": "object",
         "properties": {
           "StartDate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The start of the date range in UTC for vault inventory retrieval that includes archives created on or after this date. This value should be a string in the ISO 8601 date format, for example <code>2013-03-20T17:03:43Z</code>."
               }
@@ -4177,9 +3568,7 @@
           },
           "EndDate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The end of the date range in UTC for vault inventory retrieval that includes archives created before this date. This value should be a string in the ISO 8601 date format, for example <code>2013-03-20T17:03:43Z</code>."
               }
@@ -4187,9 +3576,7 @@
           },
           "Limit": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "Specifies the maximum number of inventory items returned per vault inventory retrieval request. Valid values are greater than or equal to 1."
               }
@@ -4197,9 +3584,7 @@
           },
           "Marker": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "An opaque string that represents where to continue pagination of the vault inventory retrieval results. You use the marker in a new <b>InitiateJob</b> request to obtain additional inventory items. If there are no more inventory items, this value is <code>null</code>."
               }
@@ -4213,9 +3598,7 @@
         "properties": {
           "InputSerialization": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InputSerialization"
-              },
+              { "$ref": "#/components/schemas/InputSerialization" },
               {
                 "description": "Describes the serialization format of the object."
               }
@@ -4223,9 +3606,7 @@
           },
           "ExpressionType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ExpressionType"
-              },
+              { "$ref": "#/components/schemas/ExpressionType" },
               {
                 "description": "The type of the provided expression, for example <code>SQL</code>."
               }
@@ -4233,9 +3614,7 @@
           },
           "Expression": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The expression that is used to select the object."
               }
@@ -4243,9 +3622,7 @@
           },
           "OutputSerialization": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OutputSerialization"
-              },
+              { "$ref": "#/components/schemas/OutputSerialization" },
               {
                 "description": "Describes how the results of the select job are serialized."
               }
@@ -4259,9 +3636,7 @@
         "properties": {
           "S3": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/S3Location"
-              },
+              { "$ref": "#/components/schemas/S3Location" },
               {
                 "description": "Describes an S3 location that will receive the results of the job request."
               }
@@ -4283,9 +3658,7 @@
       },
       "InitiateVaultLockOutput": {
         "type": "object",
-        "example": {
-          "lockId": "AE863rKkWZU53SLW5be4DUcW"
-        },
+        "example": { "lockId": "AE863rKkWZU53SLW5be4DUcW" },
         "properties": {},
         "description": "Contains the Amazon S3 Glacier response to your request."
       },
@@ -4312,9 +3685,7 @@
               "Action": "InventoryRetrieval",
               "Completed": false,
               "CreationDate": "2015-07-17T20:23:41.616Z",
-              "InventoryRetrievalParameters": {
-                "Format": "JSON"
-              },
+              "InventoryRetrievalParameters": { "Format": "JSON" },
               "JobId": "zbxcm3Z_3z5UkoroF7SuZKrxgGoDc3RloGduS7Eg-RO47Yc6FxsdGBgf_Q2DK5Ejh18CnTS5XW4_XqlNHS61dsO4CnMW",
               "StatusCode": "InProgress",
               "VaultARN": "arn:aws:glacier:us-west-2:0123456789012:vaults/my-vault"
@@ -4324,9 +3695,7 @@
         "properties": {
           "JobList": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobList"
-              },
+              { "$ref": "#/components/schemas/JobList" },
               {
                 "description": "A list of job objects. Each job object contains metadata describing the job."
               }
@@ -4334,9 +3703,7 @@
           },
           "Marker": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": " An opaque string used for pagination that specifies the job at which the listing of jobs should begin. You get the <code>marker</code> value from a previous List Jobs response. You only need to include the marker if you are continuing the pagination of the results started in a previous List Jobs request. "
               }
@@ -4376,19 +3743,13 @@
         "properties": {
           "UploadsList": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UploadsList"
-              },
-              {
-                "description": "A list of in-progress multipart uploads."
-              }
+              { "$ref": "#/components/schemas/UploadsList" },
+              { "description": "A list of in-progress multipart uploads." }
             ]
           },
           "Marker": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "An opaque string that represents where to continue pagination of the results. You use the marker in a new List Multipart Uploads request to obtain more uploads in the list. If there are no more uploads, this value is <code>null</code>."
               }
@@ -4420,9 +3781,7 @@
         "properties": {
           "MultipartUploadId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The ID of the upload to which the parts are associated."
               }
@@ -4430,9 +3789,7 @@
           },
           "VaultARN": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The Amazon Resource Name (ARN) of the vault to which the multipart upload was initiated."
               }
@@ -4440,9 +3797,7 @@
           },
           "ArchiveDescription": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The description of the archive that was specified in the Initiate Multipart Upload request."
               }
@@ -4450,9 +3805,7 @@
           },
           "PartSizeInBytes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/long"
-              },
+              { "$ref": "#/components/schemas/long" },
               {
                 "description": "The part size in bytes. This is the same value that you specified in the Initiate Multipart Upload request."
               }
@@ -4460,9 +3813,7 @@
           },
           "CreationDate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The UTC time at which the multipart upload was initiated."
               }
@@ -4470,9 +3821,7 @@
           },
           "Parts": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PartList"
-              },
+              { "$ref": "#/components/schemas/PartList" },
               {
                 "description": "A list of the part sizes of the multipart upload. Each object in the array contains a <code>RangeBytes</code> and <code>sha256-tree-hash</code> name/value pair."
               }
@@ -4480,9 +3829,7 @@
           },
           "Marker": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "An opaque string that represents where to continue pagination of the results. You use the marker in a new List Parts request to obtain more jobs in the list. If there are no more parts, this value is <code>null</code>."
               }
@@ -4510,9 +3857,7 @@
         "properties": {
           "ProvisionedCapacityList": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProvisionedCapacityList"
-              },
+              { "$ref": "#/components/schemas/ProvisionedCapacityList" },
               {
                 "description": "The response body contains the following JSON fields."
               }
@@ -4522,18 +3867,11 @@
       },
       "ListTagsForVaultOutput": {
         "type": "object",
-        "example": {
-          "Tags": {
-            "date": "july2015",
-            "id": "1234"
-          }
-        },
+        "example": { "Tags": { "date": "july2015", "id": "1234" } },
         "properties": {
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagMap"
-              },
+              { "$ref": "#/components/schemas/TagMap" },
               {
                 "description": "The tags attached to the vault. Each tag is composed of a key and a value."
               }
@@ -4559,19 +3897,13 @@
         "properties": {
           "VaultList": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VaultList"
-              },
-              {
-                "description": "List of vaults."
-              }
+              { "$ref": "#/components/schemas/VaultList" },
+              { "description": "List of vaults." }
             ]
           },
           "Marker": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The vault ARN at which to continue pagination of the results. You use the marker in another List Vaults request to obtain more vaults in the list."
               }
@@ -4582,29 +3914,21 @@
       },
       "PurchaseProvisionedCapacityOutput": {
         "type": "object",
-        "example": {
-          "capacityId": "zSaq7NzHFQDANTfQkDen4V7z"
-        },
+        "example": { "capacityId": "zSaq7NzHFQDANTfQkDen4V7z" },
         "properties": {}
       },
       "DataRetrievalRulesList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DataRetrievalRule"
-        }
+        "items": { "$ref": "#/components/schemas/DataRetrievalRule" }
       },
       "NotificationEventList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/string"
-        }
+        "items": { "$ref": "#/components/schemas/string" }
       },
       "RequestTimeoutException": {},
       "UploadMultipartPartOutput": {
         "type": "object",
-        "example": {
-          "checksum": "c06f7cd4baacb087002a99a5f48bf953"
-        },
+        "example": { "checksum": "c06f7cd4baacb087002a99a5f48bf953" },
         "properties": {},
         "description": "Contains the Amazon S3 Glacier response to your request."
       },
@@ -4613,19 +3937,13 @@
         "properties": {
           "Grantee": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Grantee"
-              },
-              {
-                "description": "The grantee."
-              }
+              { "$ref": "#/components/schemas/Grantee" },
+              { "description": "The grantee." }
             ]
           },
           "Permission": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Permission"
-              },
+              { "$ref": "#/components/schemas/Permission" },
               {
                 "description": "Specifies the permission given to the grantee. "
               }
@@ -4636,9 +3954,7 @@
       },
       "AccessControlPolicyList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Grant"
-        }
+        "items": { "$ref": "#/components/schemas/Grant" }
       },
       "ActionCode": {
         "type": "string",
@@ -4646,22 +3962,15 @@
       },
       "TagMap": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/TagValue"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/TagValue" }
       },
-      "FileHeaderInfo": {
-        "type": "string",
-        "enum": ["USE", "IGNORE", "NONE"]
-      },
+      "FileHeaderInfo": { "type": "string", "enum": ["USE", "IGNORE", "NONE"] },
       "CSVInput": {
         "type": "object",
         "properties": {
           "FileHeaderInfo": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FileHeaderInfo"
-              },
+              { "$ref": "#/components/schemas/FileHeaderInfo" },
               {
                 "description": "Describes the first line of input. Valid values are <code>None</code>, <code>Ignore</code>, and <code>Use</code>."
               }
@@ -4669,9 +3978,7 @@
           },
           "Comments": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "A single character used to indicate that a row should be ignored when the character is present at the start of that row."
               }
@@ -4679,9 +3986,7 @@
           },
           "QuoteEscapeCharacter": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "A single character used for escaping the quotation-mark character inside an already escaped value."
               }
@@ -4689,9 +3994,7 @@
           },
           "RecordDelimiter": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "A value used to separate individual records from each other."
               }
@@ -4699,9 +4002,7 @@
           },
           "FieldDelimiter": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "A value used to separate individual fields from each other within a record."
               }
@@ -4709,9 +4010,7 @@
           },
           "QuoteCharacter": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "A value used as an escape character where the field delimiter is part of the value."
               }
@@ -4720,18 +4019,13 @@
         },
         "description": "Contains information about the comma-separated value (CSV) file to select from."
       },
-      "QuoteFields": {
-        "type": "string",
-        "enum": ["ALWAYS", "ASNEEDED"]
-      },
+      "QuoteFields": { "type": "string", "enum": ["ALWAYS", "ASNEEDED"] },
       "CSVOutput": {
         "type": "object",
         "properties": {
           "QuoteFields": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/QuoteFields"
-              },
+              { "$ref": "#/components/schemas/QuoteFields" },
               {
                 "description": "A value that indicates whether all output fields should be contained within quotation marks."
               }
@@ -4739,9 +4033,7 @@
           },
           "QuoteEscapeCharacter": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "A single character used for escaping the quotation-mark character inside an already escaped value."
               }
@@ -4749,9 +4041,7 @@
           },
           "RecordDelimiter": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "A value used to separate individual records from each other."
               }
@@ -4759,9 +4049,7 @@
           },
           "FieldDelimiter": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "A value used to separate individual fields from each other within a record."
               }
@@ -4769,9 +4057,7 @@
           },
           "QuoteCharacter": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "A value used as an escape character where the field delimiter is part of the value."
               }
@@ -4797,9 +4083,7 @@
         "properties": {
           "Rules": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DataRetrievalRulesList"
-              },
+              { "$ref": "#/components/schemas/DataRetrievalRulesList" },
               {
                 "description": "The policy rule. Although this is a list type, currently there must be only one rule, which contains a Strategy field and optionally a BytesPerHour field."
               }
@@ -4808,17 +4092,13 @@
         },
         "description": "Data retrieval policy."
       },
-      "NullableLong": {
-        "type": "integer"
-      },
+      "NullableLong": { "type": "integer" },
       "DataRetrievalRule": {
         "type": "object",
         "properties": {
           "Strategy": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "<p>The type of data retrieval policy to set.</p> <p>Valid values: BytesPerHour|FreeTier|None</p>"
               }
@@ -4826,9 +4106,7 @@
           },
           "BytesPerHour": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NullableLong"
-              },
+              { "$ref": "#/components/schemas/NullableLong" },
               {
                 "description": "<p>The maximum number of bytes that can be retrieved in an hour.</p> <p>This field is required only if the value of the Strategy field is <code>BytesPerHour</code>. Your PUT operation will be rejected if the Strategy field is not set to <code>BytesPerHour</code> and you set this field.</p>"
               }
@@ -4837,24 +4115,15 @@
         },
         "description": "Data retrieval policy rule."
       },
-      "DateTime": {
-        "type": "string"
-      },
-      "long": {
-        "type": "integer"
-      },
-      "EncryptionType": {
-        "type": "string",
-        "enum": ["aws:kms", "AES256"]
-      },
+      "DateTime": { "type": "string" },
+      "long": { "type": "integer" },
+      "EncryptionType": { "type": "string", "enum": ["aws:kms", "AES256"] },
       "Encryption": {
         "type": "object",
         "properties": {
           "EncryptionType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EncryptionType"
-              },
+              { "$ref": "#/components/schemas/EncryptionType" },
               {
                 "description": "The server-side encryption algorithm used when storing job results in Amazon S3, for example <code>AES256</code> or <code>aws:kms</code>."
               }
@@ -4862,9 +4131,7 @@
           },
           "KMSKeyId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The AWS KMS key ID to use for object encryption. All GET and PUT requests for an object protected by AWS KMS fail if not made by using Secure Sockets Layer (SSL) or Signature Version 4. "
               }
@@ -4872,9 +4139,7 @@
           },
           "KMSContext": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "Optional. If the encryption type is <code>aws:kms</code>, you can use this value to specify the encryption context for the job results."
               }
@@ -4883,27 +4148,16 @@
         },
         "description": "Contains information about the encryption used to store the job results in Amazon S3. "
       },
-      "ExpressionType": {
-        "type": "string",
-        "enum": ["SQL"]
-      },
-      "Stream": {
-        "type": "string"
-      },
-      "httpstatus": {
-        "type": "integer"
-      },
+      "ExpressionType": { "type": "string", "enum": ["SQL"] },
+      "Stream": { "type": "string" },
+      "httpstatus": { "type": "integer" },
       "VaultAccessPolicy": {
         "type": "object",
         "properties": {
           "Policy": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
-              {
-                "description": "The vault access policy."
-              }
+              { "$ref": "#/components/schemas/string" },
+              { "description": "The vault access policy." }
             ]
           }
         },
@@ -4914,9 +4168,7 @@
         "properties": {
           "SNSTopic": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The Amazon Simple Notification Service (Amazon SNS) topic Amazon Resource Name (ARN)."
               }
@@ -4924,9 +4176,7 @@
           },
           "Events": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NotificationEventList"
-              },
+              { "$ref": "#/components/schemas/NotificationEventList" },
               {
                 "description": "A list of one or more events for which Amazon S3 Glacier will send a notification to the specified Amazon SNS topic."
               }
@@ -4935,24 +4185,18 @@
         },
         "description": "Represents a vault's notification configuration."
       },
-      "boolean": {
-        "type": "boolean"
-      },
+      "boolean": { "type": "boolean" },
       "StatusCode": {
         "type": "string",
         "enum": ["InProgress", "Succeeded", "Failed"]
       },
-      "Size": {
-        "type": "integer"
-      },
+      "Size": { "type": "integer" },
       "InventoryRetrievalJobDescription": {
         "type": "object",
         "properties": {
           "Format": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The output format for the vault inventory list, which is set by the <b>InitiateJob</b> request when initiating a job to retrieve a vault inventory. Valid values are <code>CSV</code> and <code>JSON</code>."
               }
@@ -4960,9 +4204,7 @@
           },
           "StartDate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DateTime"
-              },
+              { "$ref": "#/components/schemas/DateTime" },
               {
                 "description": "The start of the date range in Universal Coordinated Time (UTC) for vault inventory retrieval that includes archives created on or after this date. This value should be a string in the ISO 8601 date format, for example <code>2013-03-20T17:03:43Z</code>."
               }
@@ -4970,9 +4212,7 @@
           },
           "EndDate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DateTime"
-              },
+              { "$ref": "#/components/schemas/DateTime" },
               {
                 "description": "The end of the date range in UTC for vault inventory retrieval that includes archives created before this date. This value should be a string in the ISO 8601 date format, for example <code>2013-03-20T17:03:43Z</code>."
               }
@@ -4980,9 +4220,7 @@
           },
           "Limit": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The maximum number of inventory items returned per vault inventory retrieval request. This limit is set when initiating the job with the a <b>InitiateJob</b> request. "
               }
@@ -4990,9 +4228,7 @@
           },
           "Marker": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "An opaque string that represents where to continue pagination of the vault inventory retrieval results. You use the marker in a new <b>InitiateJob</b> request to obtain additional inventory items. If there are no more inventory items, this value is <code>null</code>. For more information, see <a href=\"https://docs.aws.amazon.com/amazonglacier/latest/dev/api-initiate-job-post.html#api-initiate-job-post-vault-inventory-list-filtering\"> Range Inventory Retrieval</a>."
               }
@@ -5007,52 +4243,32 @@
         "properties": {
           "Type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Type"
-              },
-              {
-                "description": "Type of grantee"
-              }
+              { "$ref": "#/components/schemas/Type" },
+              { "description": "Type of grantee" }
             ]
           },
           "DisplayName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
-              {
-                "description": "Screen name of the grantee."
-              }
+              { "$ref": "#/components/schemas/string" },
+              { "description": "Screen name of the grantee." }
             ]
           },
           "URI": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
-              {
-                "description": "URI of the grantee group."
-              }
+              { "$ref": "#/components/schemas/string" },
+              { "description": "URI of the grantee group." }
             ]
           },
           "ID": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
-              {
-                "description": "The canonical user ID of the grantee."
-              }
+              { "$ref": "#/components/schemas/string" },
+              { "description": "The canonical user ID of the grantee." }
             ]
           },
           "EmailAddress": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
-              {
-                "description": "Email address of the grantee."
-              }
+              { "$ref": "#/components/schemas/string" },
+              { "description": "Email address of the grantee." }
             ]
           }
         },
@@ -5071,9 +4287,7 @@
         "properties": {
           "csv": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CSVInput"
-              },
+              { "$ref": "#/components/schemas/CSVInput" },
               {
                 "description": "Describes the serialization of a CSV-encoded object."
               }
@@ -5084,21 +4298,15 @@
       },
       "JobList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/GlacierJobDescription"
-        }
+        "items": { "$ref": "#/components/schemas/GlacierJobDescription" }
       },
       "UploadsList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/UploadListElement"
-        }
+        "items": { "$ref": "#/components/schemas/UploadListElement" }
       },
       "PartList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/PartListElement"
-        }
+        "items": { "$ref": "#/components/schemas/PartListElement" }
       },
       "ProvisionedCapacityList": {
         "type": "array",
@@ -5108,18 +4316,14 @@
       },
       "VaultList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DescribeVaultOutput"
-        }
+        "items": { "$ref": "#/components/schemas/DescribeVaultOutput" }
       },
       "S3Location": {
         "type": "object",
         "properties": {
           "BucketName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The name of the Amazon S3 bucket where the job results are stored."
               }
@@ -5127,9 +4331,7 @@
           },
           "Prefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The prefix that is prepended to the results for this request."
               }
@@ -5137,9 +4339,7 @@
           },
           "Encryption": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Encryption"
-              },
+              { "$ref": "#/components/schemas/Encryption" },
               {
                 "description": "Contains information about the encryption used to store the job results in Amazon S3."
               }
@@ -5147,9 +4347,7 @@
           },
           "CannedACL": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CannedACL"
-              },
+              { "$ref": "#/components/schemas/CannedACL" },
               {
                 "description": "The canned access control list (ACL) to apply to the job results."
               }
@@ -5157,9 +4355,7 @@
           },
           "AccessControlList": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccessControlPolicyList"
-              },
+              { "$ref": "#/components/schemas/AccessControlPolicyList" },
               {
                 "description": "A list of grants that control access to the staged results."
               }
@@ -5167,9 +4363,7 @@
           },
           "Tagging": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/hashmap"
-              },
+              { "$ref": "#/components/schemas/hashmap" },
               {
                 "description": "The tag-set that is applied to the job results."
               }
@@ -5177,9 +4371,7 @@
           },
           "UserMetadata": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/hashmap"
-              },
+              { "$ref": "#/components/schemas/hashmap" },
               {
                 "description": "A map of metadata to store with the job results in Amazon S3."
               }
@@ -5187,9 +4379,7 @@
           },
           "StorageClass": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StorageClass"
-              },
+              { "$ref": "#/components/schemas/StorageClass" },
               {
                 "description": "The storage class used to store the job results."
               }
@@ -5203,9 +4393,7 @@
         "properties": {
           "csv": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CSVOutput"
-              },
+              { "$ref": "#/components/schemas/CSVOutput" },
               {
                 "description": "Describes the serialization of CSV-encoded query results."
               }
@@ -5219,9 +4407,7 @@
         "properties": {
           "RangeInBytes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The byte range of a part, inclusive of the upper value of the range."
               }
@@ -5229,9 +4415,7 @@
           },
           "SHA256TreeHash": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The SHA256 tree hash value that Amazon S3 Glacier calculated for the part. This field is never <code>null</code>."
               }
@@ -5245,9 +4429,7 @@
         "properties": {
           "CapacityId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The ID that identifies the provisioned capacity unit."
               }
@@ -5255,9 +4437,7 @@
           },
           "StartDate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The date that the provisioned capacity unit was purchased, in Universal Coordinated Time (UTC)."
               }
@@ -5265,9 +4445,7 @@
           },
           "ExpirationDate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The date that the provisioned capacity unit expires, in Universal Coordinated Time (UTC)."
               }
@@ -5278,9 +4456,7 @@
       },
       "hashmap": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/string"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/string" }
       },
       "StorageClass": {
         "type": "string",
@@ -5291,19 +4467,13 @@
         "properties": {
           "MultipartUploadId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
-              {
-                "description": "The ID of a multipart upload."
-              }
+              { "$ref": "#/components/schemas/string" },
+              { "description": "The ID of a multipart upload." }
             ]
           },
           "VaultARN": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The Amazon Resource Name (ARN) of the vault that contains the archive."
               }
@@ -5311,9 +4481,7 @@
           },
           "ArchiveDescription": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The description of the archive that was specified in the Initiate Multipart Upload request."
               }
@@ -5321,9 +4489,7 @@
           },
           "PartSizeInBytes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/long"
-              },
+              { "$ref": "#/components/schemas/long" },
               {
                 "description": "The part size, in bytes, specified in the Initiate Multipart Upload request. This is the size of all the parts in the upload except the last part, which may be smaller than this size."
               }
@@ -5331,9 +4497,7 @@
           },
           "CreationDate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/string"
-              },
+              { "$ref": "#/components/schemas/string" },
               {
                 "description": "The UTC time at which the multipart upload was initiated."
               }
@@ -5344,11 +4508,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2012-06-01",
     "checksumFormat": "sha256",

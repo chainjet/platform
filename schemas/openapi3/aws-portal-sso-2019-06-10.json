@@ -199,54 +199,33 @@
             "in": "query",
             "required": true,
             "description": "The friendly name of the role that is assigned to the user.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "account_id",
             "in": "query",
             "required": true,
             "description": "The identifier for the AWS account that is assigned to the user.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "x-amz-sso_bearer_token",
             "in": "header",
             "required": true,
             "description": "The token issued by the <code>CreateToken</code> API call. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/OIDCAPIReference/API_CreateToken.html\">CreateToken</a> in the <i>AWS SSO OIDC API Reference Guide</i>.",
-            "schema": {
-              "type": "string",
-              "format": "password"
-            }
+            "schema": { "type": "string", "format": "password" }
           }
         ],
         "summary": "Get Role Credentials"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/assignment/roles#x-amz-sso_bearer_token&account_id": {
@@ -311,55 +290,40 @@
             "in": "query",
             "required": false,
             "description": "The page token from the previous response output when you request subsequent pages.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "max_result",
             "in": "query",
             "required": false,
             "description": "The number of items that clients can request per page.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "x-amz-sso_bearer_token",
             "in": "header",
             "required": true,
             "description": "The token issued by the <code>CreateToken</code> API call. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/OIDCAPIReference/API_CreateToken.html\">CreateToken</a> in the <i>AWS SSO OIDC API Reference Guide</i>.",
-            "schema": {
-              "type": "string",
-              "format": "password"
-            }
+            "schema": { "type": "string", "format": "password" }
           },
           {
             "name": "account_id",
             "in": "query",
             "required": true,
             "description": "The identifier for the AWS account that is assigned to the user.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "maxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "nextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -367,27 +331,13 @@
         "summary": "List Account Roles"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/assignment/accounts#x-amz-sso_bearer_token": {
@@ -452,46 +402,33 @@
             "in": "query",
             "required": false,
             "description": "(Optional) When requesting subsequent pages, this is the page token from the previous response output.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "max_result",
             "in": "query",
             "required": false,
             "description": "This is the number of items clients can request per page.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "x-amz-sso_bearer_token",
             "in": "header",
             "required": true,
             "description": "The token issued by the <code>CreateToken</code> API call. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/OIDCAPIReference/API_CreateToken.html\">CreateToken</a> in the <i>AWS SSO OIDC API Reference Guide</i>.",
-            "schema": {
-              "type": "string",
-              "format": "password"
-            }
+            "schema": { "type": "string", "format": "password" }
           },
           {
             "name": "maxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "nextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -499,27 +436,13 @@
         "summary": "List Accounts"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/logout#x-amz-sso_bearer_token": {
@@ -527,9 +450,7 @@
         "operationId": "Logout",
         "description": "Removes the client- and server-side session that is associated with the user.",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "InvalidRequestException",
             "content": {
@@ -567,36 +488,19 @@
             "in": "header",
             "required": true,
             "description": "The token issued by the <code>CreateToken</code> API call. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/OIDCAPIReference/API_CreateToken.html\">CreateToken</a> in the <i>AWS SSO OIDC API Reference Guide</i>.",
-            "schema": {
-              "type": "string",
-              "format": "password"
-            }
+            "schema": { "type": "string", "format": "password" }
           }
         ],
         "summary": "Logout"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -605,63 +509,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -681,9 +571,7 @@
         "properties": {
           "roleCredentials": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RoleCredentials"
-              },
+              { "$ref": "#/components/schemas/RoleCredentials" },
               {
                 "description": "The credentials for the role that is assigned to the user."
               }
@@ -700,9 +588,7 @@
         "properties": {
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextTokenType"
-              },
+              { "$ref": "#/components/schemas/NextTokenType" },
               {
                 "description": "The page token client that is used to retrieve the list of accounts."
               }
@@ -710,9 +596,7 @@
           },
           "roleList": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RoleListType"
-              },
+              { "$ref": "#/components/schemas/RoleListType" },
               {
                 "description": "A paginated response with the list of roles and the next token if more results are available."
               }
@@ -725,9 +609,7 @@
         "properties": {
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextTokenType"
-              },
+              { "$ref": "#/components/schemas/NextTokenType" },
               {
                 "description": "The page token client that is used to retrieve the list of accounts."
               }
@@ -735,9 +617,7 @@
           },
           "accountList": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccountListType"
-              },
+              { "$ref": "#/components/schemas/AccountListType" },
               {
                 "description": "A paginated response with the list of account information and the next token if more results are available."
               }
@@ -745,15 +625,9 @@
           }
         }
       },
-      "AccessKeyType": {
-        "type": "string"
-      },
-      "AccountIdType": {
-        "type": "string"
-      },
-      "AccountNameType": {
-        "type": "string"
-      },
+      "AccessKeyType": { "type": "string" },
+      "AccountIdType": { "type": "string" },
+      "AccountNameType": { "type": "string" },
       "EmailAddressType": {
         "type": "string",
         "minLength": 1,
@@ -764,9 +638,7 @@
         "properties": {
           "accountId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccountIdType"
-              },
+              { "$ref": "#/components/schemas/AccountIdType" },
               {
                 "description": "The identifier of the AWS account that is assigned to the user."
               }
@@ -774,9 +646,7 @@
           },
           "accountName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccountNameType"
-              },
+              { "$ref": "#/components/schemas/AccountNameType" },
               {
                 "description": "The display name of the AWS account that is assigned to the user."
               }
@@ -784,9 +654,7 @@
           },
           "emailAddress": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EmailAddressType"
-              },
+              { "$ref": "#/components/schemas/EmailAddressType" },
               {
                 "description": "The email address of the AWS account that is assigned to the user."
               }
@@ -797,24 +665,16 @@
       },
       "AccountListType": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/AccountInfo"
-        }
+        "items": { "$ref": "#/components/schemas/AccountInfo" }
       },
-      "ExpirationTimestampType": {
-        "type": "integer"
-      },
-      "RoleNameType": {
-        "type": "string"
-      },
+      "ExpirationTimestampType": { "type": "integer" },
+      "RoleNameType": { "type": "string" },
       "RoleCredentials": {
         "type": "object",
         "properties": {
           "accessKeyId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccessKeyType"
-              },
+              { "$ref": "#/components/schemas/AccessKeyType" },
               {
                 "description": "The identifier used for the temporary security credentials. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html\">Using Temporary Security Credentials to Request Access to AWS Resources</a> in the <i>AWS IAM User Guide</i>."
               }
@@ -822,9 +682,7 @@
           },
           "secretAccessKey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SecretAccessKeyType"
-              },
+              { "$ref": "#/components/schemas/SecretAccessKeyType" },
               {
                 "description": "The key that is used to sign the request. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html\">Using Temporary Security Credentials to Request Access to AWS Resources</a> in the <i>AWS IAM User Guide</i>."
               }
@@ -832,9 +690,7 @@
           },
           "sessionToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SessionTokenType"
-              },
+              { "$ref": "#/components/schemas/SessionTokenType" },
               {
                 "description": "The token used for temporary credentials. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html\">Using Temporary Security Credentials to Request Access to AWS Resources</a> in the <i>AWS IAM User Guide</i>."
               }
@@ -842,9 +698,7 @@
           },
           "expiration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ExpirationTimestampType"
-              },
+              { "$ref": "#/components/schemas/ExpirationTimestampType" },
               {
                 "description": "The date on which temporary security credentials expire."
               }
@@ -853,31 +707,19 @@
         },
         "description": "Provides information about the role credentials that are assigned to the user."
       },
-      "NextTokenType": {
-        "type": "string"
-      },
+      "NextTokenType": { "type": "string" },
       "RoleListType": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/RoleInfo"
-        }
+        "items": { "$ref": "#/components/schemas/RoleInfo" }
       },
-      "SecretAccessKeyType": {
-        "type": "string",
-        "format": "password"
-      },
-      "SessionTokenType": {
-        "type": "string",
-        "format": "password"
-      },
+      "SecretAccessKeyType": { "type": "string", "format": "password" },
+      "SessionTokenType": { "type": "string", "format": "password" },
       "RoleInfo": {
         "type": "object",
         "properties": {
           "roleName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RoleNameType"
-              },
+              { "$ref": "#/components/schemas/RoleNameType" },
               {
                 "description": "The friendly name of the role that is assigned to the user."
               }
@@ -885,9 +727,7 @@
           },
           "accountId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccountIdType"
-              },
+              { "$ref": "#/components/schemas/AccountIdType" },
               {
                 "description": "The identifier of the AWS account assigned to the user."
               }
@@ -898,11 +738,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2019-06-10",
     "endpointPrefix": "portal.sso",

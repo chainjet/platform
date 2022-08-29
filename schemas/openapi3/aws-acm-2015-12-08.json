@@ -143,9 +143,7 @@
         "operationId": "AddTagsToCertificate",
         "description": "<p>Adds one or more tags to an ACM certificate. Tags are labels that you can use to identify and organize your AWS resources. Each tag consists of a <code>key</code> and an optional <code>value</code>. You specify the certificate on input by its Amazon Resource Name (ARN). You specify the tag by using a key-value pair. </p> <p>You can apply a tag to just one certificate if you want to identify a specific characteristic of that certificate, or you can apply the same tag to multiple certificates if you want to filter for a common relationship among those certificates. Similarly, you can apply the same tag to multiple resources if you want to specify a relationship among those resources. For example, you can add the same tag to an ACM certificate and an Elastic Load Balancing load balancer to indicate that they are both used by the same website. For more information, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/tags.html\">Tagging ACM certificates</a>. </p> <p>To remove one or more tags, use the <a>RemoveTagsFromCertificate</a> action. To view all of the tags that have been applied to the certificate, use the <a>ListTagsForCertificate</a> action. </p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -160,9 +158,7 @@
             "description": "InvalidArnException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidArnException"
-                }
+                "schema": { "$ref": "#/components/schemas/InvalidArnException" }
               }
             }
           },
@@ -170,9 +166,7 @@
             "description": "InvalidTagException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidTagException"
-                }
+                "schema": { "$ref": "#/components/schemas/InvalidTagException" }
               }
             }
           },
@@ -190,9 +184,7 @@
             "description": "TagPolicyException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TagPolicyException"
-                }
+                "schema": { "$ref": "#/components/schemas/TagPolicyException" }
               }
             }
           },
@@ -210,9 +202,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           }
@@ -241,27 +231,13 @@
         "summary": "Add Tags To Certificate"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=CertificateManager.DeleteCertificate": {
@@ -269,9 +245,7 @@
         "operationId": "DeleteCertificate",
         "description": "<p>Deletes a certificate and its associated private key. If this action succeeds, the certificate no longer appears in the list that can be displayed by calling the <a>ListCertificates</a> action or be retrieved by calling the <a>GetCertificate</a> action. The certificate will not be available for use by AWS services integrated with ACM. </p> <note> <p>You cannot delete an ACM certificate that is being used by another AWS service. To delete a certificate that is in use, the certificate association must first be removed.</p> </note>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -296,9 +270,7 @@
             "description": "InvalidArnException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidArnException"
-                }
+                "schema": { "$ref": "#/components/schemas/InvalidArnException" }
               }
             }
           }
@@ -327,27 +299,13 @@
         "summary": "Delete Certificate"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=CertificateManager.DescribeCertificate": {
@@ -379,9 +337,7 @@
             "description": "InvalidArnException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidArnException"
-                }
+                "schema": { "$ref": "#/components/schemas/InvalidArnException" }
               }
             }
           }
@@ -410,27 +366,13 @@
         "summary": "Describe Certificate"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=CertificateManager.ExportCertificate": {
@@ -472,9 +414,7 @@
             "description": "InvalidArnException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidArnException"
-                }
+                "schema": { "$ref": "#/components/schemas/InvalidArnException" }
               }
             }
           }
@@ -503,27 +443,13 @@
         "summary": "Export Certificate"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=CertificateManager.GetCertificate": {
@@ -565,9 +491,7 @@
             "description": "InvalidArnException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidArnException"
-                }
+                "schema": { "$ref": "#/components/schemas/InvalidArnException" }
               }
             }
           }
@@ -576,9 +500,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetCertificateRequest"
-              }
+              "schema": { "$ref": "#/components/schemas/GetCertificateRequest" }
             }
           }
         },
@@ -596,27 +518,13 @@
         "summary": "Get Certificate"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=CertificateManager.ImportCertificate": {
@@ -658,9 +566,7 @@
             "description": "InvalidTagException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidTagException"
-                }
+                "schema": { "$ref": "#/components/schemas/InvalidTagException" }
               }
             }
           },
@@ -678,9 +584,7 @@
             "description": "TagPolicyException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TagPolicyException"
-                }
+                "schema": { "$ref": "#/components/schemas/TagPolicyException" }
               }
             }
           },
@@ -698,9 +602,7 @@
             "description": "InvalidArnException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidArnException"
-                }
+                "schema": { "$ref": "#/components/schemas/InvalidArnException" }
               }
             }
           }
@@ -729,27 +631,13 @@
         "summary": "Import Certificate"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=CertificateManager.ListCertificates": {
@@ -792,18 +680,14 @@
           {
             "name": "MaxItems",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           },
@@ -820,27 +704,13 @@
         "summary": "List Certificates"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=CertificateManager.ListTagsForCertificate": {
@@ -872,9 +742,7 @@
             "description": "InvalidArnException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidArnException"
-                }
+                "schema": { "$ref": "#/components/schemas/InvalidArnException" }
               }
             }
           }
@@ -903,27 +771,13 @@
         "summary": "List Tags For Certificate"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=CertificateManager.RemoveTagsFromCertificate": {
@@ -931,9 +785,7 @@
         "operationId": "RemoveTagsFromCertificate",
         "description": "<p>Remove one or more tags from an ACM certificate. A tag consists of a key-value pair. If you do not specify the value portion of the tag when calling this function, the tag will be removed regardless of value. If you specify a value, the tag is removed only if it is associated with the specified value. </p> <p>To add tags to a certificate, use the <a>AddTagsToCertificate</a> action. To view all of the tags that have been applied to a specific ACM certificate, use the <a>ListTagsForCertificate</a> action. </p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -948,9 +800,7 @@
             "description": "InvalidArnException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidArnException"
-                }
+                "schema": { "$ref": "#/components/schemas/InvalidArnException" }
               }
             }
           },
@@ -958,9 +808,7 @@
             "description": "InvalidTagException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidTagException"
-                }
+                "schema": { "$ref": "#/components/schemas/InvalidTagException" }
               }
             }
           },
@@ -968,9 +816,7 @@
             "description": "TagPolicyException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TagPolicyException"
-                }
+                "schema": { "$ref": "#/components/schemas/TagPolicyException" }
               }
             }
           },
@@ -988,9 +834,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           }
@@ -1019,27 +863,13 @@
         "summary": "Remove Tags From Certificate"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=CertificateManager.RenewCertificate": {
@@ -1047,9 +877,7 @@
         "operationId": "RenewCertificate",
         "description": "Renews an eligable ACM certificate. At this time, only exported private certificates can be renewed with this operation. In order to renew your ACM PCA certificates with ACM, you must first <a href=\"https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaPermissions.html\">grant the ACM service principal permission to do so</a>. For more information, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/manual-renewal.html\">Testing Managed Renewal</a> in the ACM User Guide.",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -1064,9 +892,7 @@
             "description": "InvalidArnException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidArnException"
-                }
+                "schema": { "$ref": "#/components/schemas/InvalidArnException" }
               }
             }
           }
@@ -1095,27 +921,13 @@
         "summary": "Renew Certificate"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=CertificateManager.RequestCertificate": {
@@ -1157,9 +969,7 @@
             "description": "InvalidArnException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidArnException"
-                }
+                "schema": { "$ref": "#/components/schemas/InvalidArnException" }
               }
             }
           },
@@ -1167,9 +977,7 @@
             "description": "InvalidTagException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidTagException"
-                }
+                "schema": { "$ref": "#/components/schemas/InvalidTagException" }
               }
             }
           },
@@ -1187,9 +995,7 @@
             "description": "TagPolicyException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TagPolicyException"
-                }
+                "schema": { "$ref": "#/components/schemas/TagPolicyException" }
               }
             }
           },
@@ -1228,27 +1034,13 @@
         "summary": "Request Certificate"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=CertificateManager.ResendValidationEmail": {
@@ -1256,9 +1048,7 @@
         "operationId": "ResendValidationEmail",
         "description": "Resends the email that requests domain ownership validation. The domain owner or an authorized representative must approve the ACM certificate before it can be issued. The certificate can be approved by clicking a link in the mail to navigate to the Amazon certificate approval website and then clicking <b>I Approve</b>. However, the validation email can be blocked by spam filters. Therefore, if you do not receive the original mail, you can request that the mail be resent within 72 hours of requesting the ACM certificate. If more than 72 hours have elapsed since your original request or since your last attempt to resend validation mail, you must request a new certificate. For more information about setting up your contact email addresses, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/setup-email.html\">Configure Email for your Domain</a>. ",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -1283,9 +1073,7 @@
             "description": "InvalidArnException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidArnException"
-                }
+                "schema": { "$ref": "#/components/schemas/InvalidArnException" }
               }
             }
           },
@@ -1324,27 +1112,13 @@
         "summary": "Resend Validation Email"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=CertificateManager.UpdateCertificateOptions": {
@@ -1352,9 +1126,7 @@
         "operationId": "UpdateCertificateOptions",
         "description": "Updates a certificate. Currently, you can use this function to specify whether to opt in to or out of recording your certificate in a certificate transparency log. For more information, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/acm-bestpractices.html#best-practices-transparency\"> Opting Out of Certificate Transparency Logging</a>. ",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -1389,9 +1161,7 @@
             "description": "InvalidArnException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvalidArnException"
-                }
+                "schema": { "$ref": "#/components/schemas/InvalidArnException" }
               }
             }
           }
@@ -1420,27 +1190,13 @@
         "summary": "Update Certificate Options"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=CertificateManager.GetAccountConfiguration": {
@@ -1472,9 +1228,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           }
@@ -1493,27 +1247,13 @@
         "summary": "Get Account Configuration"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=CertificateManager.PutAccountConfiguration": {
@@ -1521,16 +1261,12 @@
         "operationId": "PutAccountConfiguration",
         "description": "<p>Adds or modifies account-level configurations in ACM. </p> <p>The supported configuration option is <code>DaysBeforeExpiry</code>. This option specifies the number of days prior to certificate expiration when ACM starts generating <code>EventBridge</code> events. ACM sends one event per day per certificate until the certificate expires. By default, accounts receive events starting 45 days before certificate expiration.</p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -1538,9 +1274,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           },
@@ -1558,9 +1292,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           }
@@ -1589,27 +1321,13 @@
         "summary": "Put Account Configuration"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -1618,63 +1336,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -1696,9 +1400,7 @@
         "properties": {
           "CertificateArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "<p>String that contains the ARN of the ACM certificate to which the tag is to be applied. This must be of the form:</p> <p> <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code> </p> <p>For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>. </p>"
               }
@@ -1706,9 +1408,7 @@
           },
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagList"
-              },
+              { "$ref": "#/components/schemas/TagList" },
               {
                 "description": "The key-value pair that defines the tag. The tag value is optional."
               }
@@ -1729,9 +1429,7 @@
         "properties": {
           "CertificateArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "<p>String that contains the ARN of the ACM certificate to be deleted. This must be of the form:</p> <p> <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code> </p> <p>For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>"
               }
@@ -1745,12 +1443,8 @@
         "properties": {
           "Certificate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CertificateDetail"
-              },
-              {
-                "description": "Metadata about an ACM certificate."
-              }
+              { "$ref": "#/components/schemas/CertificateDetail" },
+              { "description": "Metadata about an ACM certificate." }
             ]
           }
         }
@@ -1762,9 +1456,7 @@
         "properties": {
           "CertificateArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "<p>The Amazon Resource Name (ARN) of the ACM certificate. The ARN must have the following form:</p> <p> <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code> </p> <p>For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>"
               }
@@ -1777,19 +1469,13 @@
         "properties": {
           "Certificate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CertificateBody"
-              },
-              {
-                "description": "The base64 PEM-encoded certificate."
-              }
+              { "$ref": "#/components/schemas/CertificateBody" },
+              { "description": "The base64 PEM-encoded certificate." }
             ]
           },
           "CertificateChain": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CertificateChain"
-              },
+              { "$ref": "#/components/schemas/CertificateChain" },
               {
                 "description": "The base64 PEM-encoded certificate chain. This does not include the certificate that you are exporting."
               }
@@ -1797,9 +1483,7 @@
           },
           "PrivateKey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PrivateKey"
-              },
+              { "$ref": "#/components/schemas/PrivateKey" },
               {
                 "description": "The encrypted private key associated with the public key in the certificate. The key is output in PKCS #8 format and is base64 PEM-encoded. "
               }
@@ -1814,9 +1498,7 @@
         "properties": {
           "CertificateArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "<p>An Amazon Resource Name (ARN) of the issued certificate. This must be of the form:</p> <p> <code>arn:aws:acm:region:account:certificate/12345678-1234-1234-1234-123456789012</code> </p>"
               }
@@ -1824,9 +1506,7 @@
           },
           "Passphrase": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PassphraseBlob"
-              },
+              { "$ref": "#/components/schemas/PassphraseBlob" },
               {
                 "description": "<p>Passphrase to associate with the encrypted exported private key. If you want to later decrypt the private key, you must have the passphrase. You can use the following OpenSSL command to decrypt a private key: </p> <p> <code>openssl rsa -in encrypted_key.pem -out decrypted_key.pem</code> </p>"
               }
@@ -1840,9 +1520,7 @@
         "properties": {
           "Certificate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CertificateBody"
-              },
+              { "$ref": "#/components/schemas/CertificateBody" },
               {
                 "description": "The ACM-issued certificate corresponding to the ARN specified as input."
               }
@@ -1850,9 +1528,7 @@
           },
           "CertificateChain": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CertificateChain"
-              },
+              { "$ref": "#/components/schemas/CertificateChain" },
               {
                 "description": "Certificates forming the requested certificate's chain of trust. The chain consists of the certificate of the issuing CA and the intermediate certificates of any other subordinate CAs. "
               }
@@ -1867,9 +1543,7 @@
         "properties": {
           "CertificateArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "<p>String that contains a certificate ARN in the following format:</p> <p> <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code> </p> <p>For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>"
               }
@@ -1882,9 +1556,7 @@
         "properties": {
           "CertificateArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "The <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Name (ARN)</a> of the imported certificate."
               }
@@ -1899,9 +1571,7 @@
         "properties": {
           "CertificateArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "The <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Name (ARN)</a> of an imported certificate to replace. To import a new certificate, omit this field. "
               }
@@ -1909,19 +1579,13 @@
           },
           "Certificate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CertificateBodyBlob"
-              },
-              {
-                "description": "The certificate to import."
-              }
+              { "$ref": "#/components/schemas/CertificateBodyBlob" },
+              { "description": "The certificate to import." }
             ]
           },
           "PrivateKey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PrivateKeyBlob"
-              },
+              { "$ref": "#/components/schemas/PrivateKeyBlob" },
               {
                 "description": "The private key that matches the public key in the certificate."
               }
@@ -1929,19 +1593,13 @@
           },
           "CertificateChain": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CertificateChainBlob"
-              },
-              {
-                "description": "The PEM encoded certificate chain."
-              }
+              { "$ref": "#/components/schemas/CertificateChainBlob" },
+              { "description": "The PEM encoded certificate chain." }
             ]
           },
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagList"
-              },
+              { "$ref": "#/components/schemas/TagList" },
               {
                 "description": "<p>One or more resource tags to associate with the imported certificate. </p> <p>Note: You cannot apply tags when reimporting a certificate.</p>"
               }
@@ -1955,9 +1613,7 @@
         "properties": {
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "When the list is truncated, this value is present and contains the value to use for the <code>NextToken</code> parameter in a subsequent pagination request."
               }
@@ -1965,12 +1621,8 @@
           },
           "CertificateSummaryList": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CertificateSummaryList"
-              },
-              {
-                "description": "A list of ACM certificates."
-              }
+              { "$ref": "#/components/schemas/CertificateSummaryList" },
+              { "description": "A list of ACM certificates." }
             ]
           }
         }
@@ -1981,19 +1633,13 @@
         "properties": {
           "CertificateStatuses": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CertificateStatuses"
-              },
-              {
-                "description": "Filter the certificate list by status value."
-              }
+              { "$ref": "#/components/schemas/CertificateStatuses" },
+              { "description": "Filter the certificate list by status value." }
             ]
           },
           "Includes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Filters"
-              },
+              { "$ref": "#/components/schemas/Filters" },
               {
                 "description": "Filter the certificate list. For more information, see the <a>Filters</a> structure."
               }
@@ -2001,9 +1647,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "Use this parameter only when paginating results and only in a subsequent request after you receive a response with truncated results. Set it to the value of <code>NextToken</code> from the response you just received."
               }
@@ -2011,9 +1655,7 @@
           },
           "MaxItems": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MaxItems"
-              },
+              { "$ref": "#/components/schemas/MaxItems" },
               {
                 "description": "Use this parameter when paginating results to specify the maximum number of items to return in the response. If additional items exist beyond the number you specify, the <code>NextToken</code> element is sent in the response. Use this <code>NextToken</code> value in a subsequent request to retrieve additional items."
               }
@@ -2027,9 +1669,7 @@
         "properties": {
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagList"
-              },
+              { "$ref": "#/components/schemas/TagList" },
               {
                 "description": "The key-value pairs that define the applied tags."
               }
@@ -2044,9 +1684,7 @@
         "properties": {
           "CertificateArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "<p>String that contains the ARN of the ACM certificate for which you want to list the tags. This must have the following form:</p> <p> <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code> </p> <p>For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>. </p>"
               }
@@ -2061,9 +1699,7 @@
         "properties": {
           "CertificateArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "<p>String that contains the ARN of the ACM Certificate with one or more tags that you want to remove. This must be of the form:</p> <p> <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code> </p> <p>For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>. </p>"
               }
@@ -2071,9 +1707,7 @@
           },
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagList"
-              },
+              { "$ref": "#/components/schemas/TagList" },
               {
                 "description": "The key-value pair that defines the tag to remove."
               }
@@ -2088,9 +1722,7 @@
         "properties": {
           "CertificateArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "<p>String that contains the ARN of the ACM certificate to be renewed. This must be of the form:</p> <p> <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code> </p> <p>For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>"
               }
@@ -2103,9 +1735,7 @@
         "properties": {
           "CertificateArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "<p>String that contains the ARN of the issued certificate. This must be of the form:</p> <p> <code>arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012</code> </p>"
               }
@@ -2120,9 +1750,7 @@
         "properties": {
           "DomainName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainNameString"
-              },
+              { "$ref": "#/components/schemas/DomainNameString" },
               {
                 "description": "<p> Fully qualified domain name (FQDN), such as www.example.com, that you want to secure with an ACM certificate. Use an asterisk (*) to create a wildcard certificate that protects several sites in the same domain. For example, *.example.com protects www.example.com, site.example.com, and images.example.com. </p> <p> The first domain name you enter cannot exceed 64 octets, including periods. Each subsequent Subject Alternative Name (SAN), however, can be up to 253 octets in length. </p>"
               }
@@ -2130,9 +1758,7 @@
           },
           "ValidationMethod": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ValidationMethod"
-              },
+              { "$ref": "#/components/schemas/ValidationMethod" },
               {
                 "description": "The method you want to use if you are requesting a public certificate to validate that you own or control domain. You can <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-validate-dns.html\">validate with DNS</a> or <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-validate-email.html\">validate with email</a>. We recommend that you use DNS validation. "
               }
@@ -2140,9 +1766,7 @@
           },
           "SubjectAlternativeNames": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainList"
-              },
+              { "$ref": "#/components/schemas/DomainList" },
               {
                 "description": "<p>Additional FQDNs to be included in the Subject Alternative Name extension of the ACM certificate. For example, add the name www.example.net to a certificate for which the <code>DomainName</code> field is www.example.com if users can reach your site by using either name. The maximum number of domain names that you can add to an ACM certificate is 100. However, the initial quota is 10 domain names. If you need more than 10 names, you must request a quota increase. For more information, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/acm-limits.html\">Quotas</a>.</p> <p> The maximum length of a SAN DNS name is 253 octets. The name is made up of multiple labels separated by periods. No label can be longer than 63 octets. Consider the following examples: </p> <ul> <li> <p> <code>(63 octets).(63 octets).(63 octets).(61 octets)</code> is legal because the total length is 253 octets (63+1+63+1+63+1+61) and no label exceeds 63 octets.</p> </li> <li> <p> <code>(64 octets).(63 octets).(63 octets).(61 octets)</code> is not legal because the total length exceeds 253 octets (64+1+63+1+63+1+61) and the first label exceeds 63 octets.</p> </li> <li> <p> <code>(63 octets).(63 octets).(63 octets).(62 octets)</code> is not legal because the total length of the DNS name (63+1+63+1+63+1+62) exceeds 253 octets.</p> </li> </ul>"
               }
@@ -2150,9 +1774,7 @@
           },
           "IdempotencyToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IdempotencyToken"
-              },
+              { "$ref": "#/components/schemas/IdempotencyToken" },
               {
                 "description": "Customer chosen string that can be used to distinguish between calls to <code>RequestCertificate</code>. Idempotency tokens time out after one hour. Therefore, if you call <code>RequestCertificate</code> multiple times with the same idempotency token within one hour, ACM recognizes that you are requesting only one certificate and will issue only one. If you change the idempotency token for each call, ACM recognizes that you are requesting multiple certificates."
               }
@@ -2160,9 +1782,7 @@
           },
           "DomainValidationOptions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainValidationOptionList"
-              },
+              { "$ref": "#/components/schemas/DomainValidationOptionList" },
               {
                 "description": "The domain name that you want ACM to use to send you emails so that you can validate domain ownership."
               }
@@ -2170,9 +1790,7 @@
           },
           "Options": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CertificateOptions"
-              },
+              { "$ref": "#/components/schemas/CertificateOptions" },
               {
                 "description": "Currently, you can use this parameter to specify whether to add the certificate to a certificate transparency log. Certificate transparency makes it possible to detect SSL/TLS certificates that have been mistakenly or maliciously issued. Certificates that have not been logged typically produce an error message in a browser. For more information, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/acm-bestpractices.html#best-practices-transparency\">Opting Out of Certificate Transparency Logging</a>."
               }
@@ -2180,9 +1798,7 @@
           },
           "CertificateAuthorityArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "<p>The Amazon Resource Name (ARN) of the private certificate authority (CA) that will be used to issue the certificate. If you do not provide an ARN and you are trying to request a private certificate, ACM will attempt to issue a public certificate. For more information about private CAs, see the <a href=\"https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaWelcome.html\">AWS Certificate Manager Private Certificate Authority (PCA)</a> user guide. The ARN must have the following form: </p> <p> <code>arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012</code> </p>"
               }
@@ -2190,9 +1806,7 @@
           },
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagList"
-              },
+              { "$ref": "#/components/schemas/TagList" },
               {
                 "description": "One or more resource tags to associate with the certificate."
               }
@@ -2208,9 +1822,7 @@
         "properties": {
           "CertificateArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "<p>String that contains the ARN of the requested certificate. The certificate ARN is generated and returned by the <a>RequestCertificate</a> action as soon as the request is made. By default, using this parameter causes email to be sent to all top-level domains you specified in the certificate request. The ARN must be of the form: </p> <p> <code>arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012</code> </p>"
               }
@@ -2218,9 +1830,7 @@
           },
           "Domain": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainNameString"
-              },
+              { "$ref": "#/components/schemas/DomainNameString" },
               {
                 "description": "The fully qualified domain name (FQDN) of the certificate that needs to be validated."
               }
@@ -2228,9 +1838,7 @@
           },
           "ValidationDomain": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainNameString"
-              },
+              { "$ref": "#/components/schemas/DomainNameString" },
               {
                 "description": "<p>The base validation domain that will act as the suffix of the email addresses that are used to send the emails. This must be the same as the <code>Domain</code> value or a superdomain of the <code>Domain</code> value. For example, if you requested a certificate for <code>site.subdomain.example.com</code> and specify a <b>ValidationDomain</b> of <code>subdomain.example.com</code>, ACM sends email to the domain registrant, technical contact, and administrative contact in WHOIS and the following five addresses:</p> <ul> <li> <p>admin@subdomain.example.com</p> </li> <li> <p>administrator@subdomain.example.com</p> </li> <li> <p>hostmaster@subdomain.example.com</p> </li> <li> <p>postmaster@subdomain.example.com</p> </li> <li> <p>webmaster@subdomain.example.com</p> </li> </ul>"
               }
@@ -2246,9 +1854,7 @@
         "properties": {
           "CertificateArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "<p>ARN of the requested certificate to update. This must be of the form:</p> <p> <code>arn:aws:acm:us-east-1:<i>account</i>:certificate/<i>12345678-1234-1234-1234-123456789012</i> </code> </p>"
               }
@@ -2256,9 +1862,7 @@
           },
           "Options": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CertificateOptions"
-              },
+              { "$ref": "#/components/schemas/CertificateOptions" },
               {
                 "description": "Use to update the options for your certificate. Currently, you can specify whether to add your certificate to a transparency log. Certificate transparency makes it possible to detect SSL/TLS certificates that have been mistakenly or maliciously issued. Certificates that have not been logged typically produce an error message in a browser. "
               }
@@ -2274,9 +1878,7 @@
       },
       "TagList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Tag"
-        },
+        "items": { "$ref": "#/components/schemas/Tag" },
         "minItems": 1,
         "maxItems": 50
       },
@@ -2310,27 +1912,18 @@
       },
       "DomainList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DomainNameString"
-        },
+        "items": { "$ref": "#/components/schemas/DomainNameString" },
         "minItems": 1,
         "maxItems": 100
       },
       "DomainValidationList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DomainValidation"
-        },
+        "items": { "$ref": "#/components/schemas/DomainValidation" },
         "minItems": 1,
         "maxItems": 1000
       },
-      "String": {
-        "type": "string"
-      },
-      "TStamp": {
-        "type": "string",
-        "format": "date-time"
-      },
+      "String": { "type": "string" },
+      "TStamp": { "type": "string", "format": "date-time" },
       "CertificateStatus": {
         "type": "string",
         "enum": [
@@ -2372,9 +1965,7 @@
       },
       "InUseList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/String"
-        }
+        "items": { "$ref": "#/components/schemas/String" }
       },
       "FailureReason": {
         "type": "string",
@@ -2408,9 +1999,7 @@
         "properties": {
           "RenewalStatus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RenewalStatus"
-              },
+              { "$ref": "#/components/schemas/RenewalStatus" },
               {
                 "description": "The status of ACM's <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/acm-renewal.html\">managed renewal</a> of the certificate."
               }
@@ -2418,9 +2007,7 @@
           },
           "DomainValidationOptions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainValidationList"
-              },
+              { "$ref": "#/components/schemas/DomainValidationList" },
               {
                 "description": "Contains information about the validation of each domain name in the certificate, as it pertains to ACM's <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/acm-renewal.html\">managed renewal</a>. This is different from the initial validation that occurs as a result of the <a>RequestCertificate</a> request. This field exists only when the certificate type is <code>AMAZON_ISSUED</code>."
               }
@@ -2428,9 +2015,7 @@
           },
           "RenewalStatusReason": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FailureReason"
-              },
+              { "$ref": "#/components/schemas/FailureReason" },
               {
                 "description": "The reason that a renewal request was unsuccessful."
               }
@@ -2438,9 +2023,7 @@
           },
           "UpdatedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TStamp"
-              },
+              { "$ref": "#/components/schemas/TStamp" },
               {
                 "description": "The time at which the renewal summary was last updated."
               }
@@ -2451,15 +2034,11 @@
       },
       "KeyUsageList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/KeyUsage"
-        }
+        "items": { "$ref": "#/components/schemas/KeyUsage" }
       },
       "ExtendedKeyUsageList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ExtendedKeyUsage"
-        }
+        "items": { "$ref": "#/components/schemas/ExtendedKeyUsage" }
       },
       "RenewalEligibility": {
         "type": "string",
@@ -2486,9 +2065,7 @@
         "properties": {
           "CertificateArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "The Amazon Resource Name (ARN) of the certificate. For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and AWS Service Namespaces</a> in the <i>AWS General Reference</i>."
               }
@@ -2496,9 +2073,7 @@
           },
           "DomainName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainNameString"
-              },
+              { "$ref": "#/components/schemas/DomainNameString" },
               {
                 "description": "The fully qualified domain name for the certificate, such as www.example.com or example.com."
               }
@@ -2506,9 +2081,7 @@
           },
           "SubjectAlternativeNames": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainList"
-              },
+              { "$ref": "#/components/schemas/DomainList" },
               {
                 "description": "One or more domain names (subject alternative names) included in the certificate. This list contains the domain names that are bound to the public key that is contained in the certificate. The subject alternative names include the canonical domain name (CN) of the certificate and additional domain names that can be used to connect to the website. "
               }
@@ -2516,9 +2089,7 @@
           },
           "DomainValidationOptions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainValidationList"
-              },
+              { "$ref": "#/components/schemas/DomainValidationList" },
               {
                 "description": "Contains information about the initial validation of each domain name that occurs as a result of the <a>RequestCertificate</a> request. This field exists only when the certificate type is <code>AMAZON_ISSUED</code>. "
               }
@@ -2526,19 +2097,13 @@
           },
           "Serial": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
-              {
-                "description": "The serial number of the certificate."
-              }
+              { "$ref": "#/components/schemas/String" },
+              { "description": "The serial number of the certificate." }
             ]
           },
           "Subject": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The name of the entity that is associated with the public key contained in the certificate."
               }
@@ -2546,9 +2111,7 @@
           },
           "Issuer": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The name of the certificate authority that issued and signed the certificate."
               }
@@ -2556,9 +2119,7 @@
           },
           "CreatedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TStamp"
-              },
+              { "$ref": "#/components/schemas/TStamp" },
               {
                 "description": "The time at which the certificate was requested. This value exists only when the certificate type is <code>AMAZON_ISSUED</code>. "
               }
@@ -2566,9 +2127,7 @@
           },
           "IssuedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TStamp"
-              },
+              { "$ref": "#/components/schemas/TStamp" },
               {
                 "description": "The time at which the certificate was issued. This value exists only when the certificate type is <code>AMAZON_ISSUED</code>. "
               }
@@ -2576,9 +2135,7 @@
           },
           "ImportedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TStamp"
-              },
+              { "$ref": "#/components/schemas/TStamp" },
               {
                 "description": "The date and time at which the certificate was imported. This value exists only when the certificate type is <code>IMPORTED</code>. "
               }
@@ -2586,19 +2143,13 @@
           },
           "Status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CertificateStatus"
-              },
-              {
-                "description": "The status of the certificate."
-              }
+              { "$ref": "#/components/schemas/CertificateStatus" },
+              { "description": "The status of the certificate." }
             ]
           },
           "RevokedAt": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TStamp"
-              },
+              { "$ref": "#/components/schemas/TStamp" },
               {
                 "description": "The time at which the certificate was revoked. This value exists only when the certificate status is <code>REVOKED</code>. "
               }
@@ -2606,9 +2157,7 @@
           },
           "RevocationReason": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RevocationReason"
-              },
+              { "$ref": "#/components/schemas/RevocationReason" },
               {
                 "description": "The reason the certificate was revoked. This value exists only when the certificate status is <code>REVOKED</code>. "
               }
@@ -2616,9 +2165,7 @@
           },
           "NotBefore": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TStamp"
-              },
+              { "$ref": "#/components/schemas/TStamp" },
               {
                 "description": "The time before which the certificate is not valid."
               }
@@ -2626,9 +2173,7 @@
           },
           "NotAfter": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TStamp"
-              },
+              { "$ref": "#/components/schemas/TStamp" },
               {
                 "description": "The time after which the certificate is not valid."
               }
@@ -2636,9 +2181,7 @@
           },
           "KeyAlgorithm": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/KeyAlgorithm"
-              },
+              { "$ref": "#/components/schemas/KeyAlgorithm" },
               {
                 "description": "The algorithm that was used to generate the public-private key pair."
               }
@@ -2646,9 +2189,7 @@
           },
           "SignatureAlgorithm": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The algorithm that was used to sign the certificate."
               }
@@ -2656,9 +2197,7 @@
           },
           "InUseBy": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InUseList"
-              },
+              { "$ref": "#/components/schemas/InUseList" },
               {
                 "description": "A list of ARNs for the AWS resources that are using the certificate. A certificate can be used by multiple AWS resources. "
               }
@@ -2666,9 +2205,7 @@
           },
           "FailureReason": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FailureReason"
-              },
+              { "$ref": "#/components/schemas/FailureReason" },
               {
                 "description": "The reason the certificate request failed. This value exists only when the certificate status is <code>FAILED</code>. For more information, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/troubleshooting.html#troubleshooting-failed\">Certificate Request Failed</a> in the <i>AWS Certificate Manager User Guide</i>. "
               }
@@ -2676,9 +2213,7 @@
           },
           "Type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CertificateType"
-              },
+              { "$ref": "#/components/schemas/CertificateType" },
               {
                 "description": "The source of the certificate. For certificates provided by ACM, this value is <code>AMAZON_ISSUED</code>. For certificates that you imported with <a>ImportCertificate</a>, this value is <code>IMPORTED</code>. ACM does not provide <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/acm-renewal.html\">managed renewal</a> for imported certificates. For more information about the differences between certificates that you import and those that ACM provides, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html\">Importing Certificates</a> in the <i>AWS Certificate Manager User Guide</i>. "
               }
@@ -2686,9 +2221,7 @@
           },
           "RenewalSummary": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RenewalSummary"
-              },
+              { "$ref": "#/components/schemas/RenewalSummary" },
               {
                 "description": "Contains information about the status of ACM's <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/acm-renewal.html\">managed renewal</a> for the certificate. This field exists only when the certificate type is <code>AMAZON_ISSUED</code>."
               }
@@ -2696,9 +2229,7 @@
           },
           "KeyUsages": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/KeyUsageList"
-              },
+              { "$ref": "#/components/schemas/KeyUsageList" },
               {
                 "description": "A list of Key Usage X.509 v3 extension objects. Each object is a string value that identifies the purpose of the public key contained in the certificate. Possible extension values include DIGITAL_SIGNATURE, KEY_ENCHIPHERMENT, NON_REPUDIATION, and more."
               }
@@ -2706,9 +2237,7 @@
           },
           "ExtendedKeyUsages": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ExtendedKeyUsageList"
-              },
+              { "$ref": "#/components/schemas/ExtendedKeyUsageList" },
               {
                 "description": "Contains a list of Extended Key Usage X.509 v3 extension objects. Each object specifies a purpose for which the certificate public key can be used and consists of a name and an object identifier (OID). "
               }
@@ -2716,9 +2245,7 @@
           },
           "CertificateAuthorityArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "<p>The Amazon Resource Name (ARN) of the ACM PCA private certificate authority (CA) that issued the certificate. This has the following format: </p> <p> <code>arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012</code> </p>"
               }
@@ -2726,9 +2253,7 @@
           },
           "RenewalEligibility": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RenewalEligibility"
-              },
+              { "$ref": "#/components/schemas/RenewalEligibility" },
               {
                 "description": "Specifies whether the certificate is eligible for renewal. At this time, only exported private certificates can be renewed with the <a>RenewCertificate</a> command."
               }
@@ -2736,9 +2261,7 @@
           },
           "Options": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CertificateOptions"
-              },
+              { "$ref": "#/components/schemas/CertificateOptions" },
               {
                 "description": "Value that specifies whether to add the certificate to a transparency log. Certificate transparency makes it possible to detect SSL certificates that have been mistakenly or maliciously issued. A browser might respond to certificate that has not been logged by showing an error message. The logs are cryptographically secure. "
               }
@@ -2753,18 +2276,14 @@
       },
       "CertificateStatuses": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/CertificateStatus"
-        }
+        "items": { "$ref": "#/components/schemas/CertificateStatus" }
       },
       "CertificateSummary": {
         "type": "object",
         "properties": {
           "CertificateArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Arn"
-              },
+              { "$ref": "#/components/schemas/Arn" },
               {
                 "description": "<p>Amazon Resource Name (ARN) of the certificate. This is of the form:</p> <p> <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code> </p> <p>For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>. </p>"
               }
@@ -2772,9 +2291,7 @@
           },
           "DomainName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainNameString"
-              },
+              { "$ref": "#/components/schemas/DomainNameString" },
               {
                 "description": "Fully qualified domain name (FQDN), such as www.example.com or example.com, for the certificate."
               }
@@ -2785,9 +2302,7 @@
       },
       "CertificateSummaryList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/CertificateSummary"
-        }
+        "items": { "$ref": "#/components/schemas/CertificateSummary" }
       },
       "DomainStatus": {
         "type": "string",
@@ -2795,9 +2310,7 @@
       },
       "ValidationEmailList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/String"
-        }
+        "items": { "$ref": "#/components/schemas/String" }
       },
       "ResourceRecord": {
         "type": "object",
@@ -2805,9 +2318,7 @@
         "properties": {
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The name of the DNS record to create in your domain. This is supplied by ACM."
               }
@@ -2815,9 +2326,7 @@
           },
           "Type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RecordType"
-              },
+              { "$ref": "#/components/schemas/RecordType" },
               {
                 "description": "The type of DNS record. Currently this can be <code>CNAME</code>."
               }
@@ -2825,9 +2334,7 @@
           },
           "Value": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The value of the CNAME record to add to your DNS database. This is supplied by ACM."
               }
@@ -2836,19 +2343,14 @@
         },
         "description": "Contains a DNS record value that you can use to can use to validate ownership or control of a domain. This is used by the <a>DescribeCertificate</a> action. "
       },
-      "ValidationMethod": {
-        "type": "string",
-        "enum": ["EMAIL", "DNS"]
-      },
+      "ValidationMethod": { "type": "string", "enum": ["EMAIL", "DNS"] },
       "DomainValidation": {
         "type": "object",
         "required": ["DomainName"],
         "properties": {
           "DomainName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainNameString"
-              },
+              { "$ref": "#/components/schemas/DomainNameString" },
               {
                 "description": "A fully qualified domain name (FQDN) in the certificate. For example, <code>www.example.com</code> or <code>example.com</code>. "
               }
@@ -2856,9 +2358,7 @@
           },
           "ValidationEmails": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ValidationEmailList"
-              },
+              { "$ref": "#/components/schemas/ValidationEmailList" },
               {
                 "description": "A list of email addresses that ACM used to send domain validation emails."
               }
@@ -2866,9 +2366,7 @@
           },
           "ValidationDomain": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainNameString"
-              },
+              { "$ref": "#/components/schemas/DomainNameString" },
               {
                 "description": "The domain name that ACM used to send domain validation emails."
               }
@@ -2876,9 +2374,7 @@
           },
           "ValidationStatus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainStatus"
-              },
+              { "$ref": "#/components/schemas/DomainStatus" },
               {
                 "description": "<p>The validation status of the domain name. This can be one of the following values:</p> <ul> <li> <p> <code>PENDING_VALIDATION</code> </p> </li> <li> <p> <code/>SUCCESS</p> </li> <li> <p> <code/>FAILED</p> </li> </ul>"
               }
@@ -2886,9 +2382,7 @@
           },
           "ResourceRecord": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceRecord"
-              },
+              { "$ref": "#/components/schemas/ResourceRecord" },
               {
                 "description": "<p>Contains the CNAME record that you add to your DNS database for domain validation. For more information, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-validate-dns.html\">Use DNS to Validate Domain Ownership</a>.</p> <p>Note: The CNAME information that you need does not include the name of your domain. If you include&#x2028; your domain name in the DNS database CNAME record, validation fails.&#x2028; For example, if the name is \"_a79865eb4cd1a6ab990a45779b4e0b96.yourdomain.com\", only \"_a79865eb4cd1a6ab990a45779b4e0b96\" must be used.</p>"
               }
@@ -2896,12 +2390,8 @@
           },
           "ValidationMethod": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ValidationMethod"
-              },
-              {
-                "description": "Specifies the domain validation method."
-              }
+              { "$ref": "#/components/schemas/ValidationMethod" },
+              { "description": "Specifies the domain validation method." }
             ]
           }
         },
@@ -2913,9 +2403,7 @@
         "properties": {
           "DomainName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainNameString"
-              },
+              { "$ref": "#/components/schemas/DomainNameString" },
               {
                 "description": "A fully qualified domain name (FQDN) in the certificate request."
               }
@@ -2923,9 +2411,7 @@
           },
           "ValidationDomain": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainNameString"
-              },
+              { "$ref": "#/components/schemas/DomainNameString" },
               {
                 "description": "<p>The domain name that you want ACM to use to send you validation emails. This domain name is the suffix of the email addresses that you want ACM to use. This must be the same as the <code>DomainName</code> value or a superdomain of the <code>DomainName</code> value. For example, if you request a certificate for <code>testing.example.com</code>, you can specify <code>example.com</code> for this value. In that case, ACM sends domain validation emails to the following five addresses:</p> <ul> <li> <p>admin@example.com</p> </li> <li> <p>administrator@example.com</p> </li> <li> <p>hostmaster@example.com</p> </li> <li> <p>postmaster@example.com</p> </li> <li> <p>webmaster@example.com</p> </li> </ul>"
               }
@@ -2936,9 +2422,7 @@
       },
       "DomainValidationOptionList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DomainValidationOption"
-        },
+        "items": { "$ref": "#/components/schemas/DomainValidationOption" },
         "minItems": 1,
         "maxItems": 100
       },
@@ -2977,19 +2461,13 @@
         "properties": {
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ExtendedKeyUsageName"
-              },
-              {
-                "description": "The name of an Extended Key Usage value."
-              }
+              { "$ref": "#/components/schemas/ExtendedKeyUsageName" },
+              { "description": "The name of an Extended Key Usage value." }
             ]
           },
           "OID": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "<p>An object identifier (OID) for the extension value. OIDs are strings of numbers separated by periods. The following OIDs are defined in RFC 3280 and RFC 5280. </p> <ul> <li> <p> <code>1.3.6.1.5.5.7.3.1 (TLS_WEB_SERVER_AUTHENTICATION)</code> </p> </li> <li> <p> <code>1.3.6.1.5.5.7.3.2 (TLS_WEB_CLIENT_AUTHENTICATION)</code> </p> </li> <li> <p> <code>1.3.6.1.5.5.7.3.3 (CODE_SIGNING)</code> </p> </li> <li> <p> <code>1.3.6.1.5.5.7.3.4 (EMAIL_PROTECTION)</code> </p> </li> <li> <p> <code>1.3.6.1.5.5.7.3.8 (TIME_STAMPING)</code> </p> </li> <li> <p> <code>1.3.6.1.5.5.7.3.9 (OCSP_SIGNING)</code> </p> </li> <li> <p> <code>1.3.6.1.5.5.7.3.5 (IPSEC_END_SYSTEM)</code> </p> </li> <li> <p> <code>1.3.6.1.5.5.7.3.6 (IPSEC_TUNNEL)</code> </p> </li> <li> <p> <code>1.3.6.1.5.5.7.3.7 (IPSEC_USER)</code> </p> </li> </ul>"
               }
@@ -3000,30 +2478,22 @@
       },
       "ExtendedKeyUsageFilterList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ExtendedKeyUsageName"
-        }
+        "items": { "$ref": "#/components/schemas/ExtendedKeyUsageName" }
       },
       "KeyUsageFilterList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/KeyUsageName"
-        }
+        "items": { "$ref": "#/components/schemas/KeyUsageName" }
       },
       "KeyAlgorithmList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/KeyAlgorithm"
-        }
+        "items": { "$ref": "#/components/schemas/KeyAlgorithm" }
       },
       "Filters": {
         "type": "object",
         "properties": {
           "extendedKeyUsage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ExtendedKeyUsageFilterList"
-              },
+              { "$ref": "#/components/schemas/ExtendedKeyUsageFilterList" },
               {
                 "description": "Specify one or more <a>ExtendedKeyUsage</a> extension values."
               }
@@ -3031,9 +2501,7 @@
           },
           "keyUsage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/KeyUsageFilterList"
-              },
+              { "$ref": "#/components/schemas/KeyUsageFilterList" },
               {
                 "description": "Specify one or more <a>KeyUsage</a> extension values."
               }
@@ -3041,9 +2509,7 @@
           },
           "keyTypes": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/KeyAlgorithmList"
-              },
+              { "$ref": "#/components/schemas/KeyAlgorithmList" },
               {
                 "description": "<p>Specify one or more algorithms that can be used to generate key pairs.</p> <p>Default filtering returns only <code>RSA_2048</code> certificates. To return other certificate types, provide the desired type signatures in a comma-separated list. For example, <code>\"keyTypes\": [\"RSA_2048,RSA_4096\"]</code> returns both <code>RSA_2048</code> and <code>RSA_4096</code> certificates.</p>"
               }
@@ -3085,9 +2551,7 @@
         "properties": {
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/KeyUsageName"
-              },
+              { "$ref": "#/components/schemas/KeyUsageName" },
               {
                 "description": "A string value that contains a Key Usage extension name."
               }
@@ -3102,15 +2566,8 @@
         "minLength": 1,
         "maxLength": 10000
       },
-      "MaxItems": {
-        "type": "integer",
-        "minimum": 1,
-        "maximum": 1000
-      },
-      "RecordType": {
-        "type": "string",
-        "enum": ["CNAME"]
-      },
+      "MaxItems": { "type": "integer", "minimum": 1, "maximum": 1000 },
+      "RecordType": { "type": "string", "enum": ["CNAME"] },
       "RenewalStatus": {
         "type": "string",
         "enum": [
@@ -3138,22 +2595,14 @@
         "properties": {
           "Key": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagKey"
-              },
-              {
-                "description": "The key of the tag."
-              }
+              { "$ref": "#/components/schemas/TagKey" },
+              { "description": "The key of the tag." }
             ]
           },
           "Value": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagValue"
-              },
-              {
-                "description": "The value of the tag."
-              }
+              { "$ref": "#/components/schemas/TagValue" },
+              { "description": "The value of the tag." }
             ]
           }
         },
@@ -3165,9 +2614,7 @@
         "properties": {
           "ExpiryEvents": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ExpiryEventsConfiguration"
-              },
+              { "$ref": "#/components/schemas/ExpiryEventsConfiguration" },
               {
                 "description": "Expiration events configuration options associated with the Amazon Web Services account."
               }
@@ -3183,9 +2630,7 @@
         "properties": {
           "ExpiryEvents": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ExpiryEventsConfiguration"
-              },
+              { "$ref": "#/components/schemas/ExpiryEventsConfiguration" },
               {
                 "description": "Specifies expiration events associated with an account."
               }
@@ -3193,9 +2638,7 @@
           },
           "IdempotencyToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IdempotencyToken"
-              },
+              { "$ref": "#/components/schemas/IdempotencyToken" },
               {
                 "description": "Customer-chosen string used to distinguish between calls to <code>PutAccountConfiguration</code>. Idempotency tokens time out after one hour. If you call <code>PutAccountConfiguration</code> multiple times with the same unexpired idempotency token, ACM treats it as the same request and returns the original result. If you change the idempotency token for each call, ACM treats each call as a new request."
               }
@@ -3205,18 +2648,13 @@
       },
       "ValidationException": {},
       "ConflictException": {},
-      "PositiveInteger": {
-        "type": "integer",
-        "minimum": 1
-      },
+      "PositiveInteger": { "type": "integer", "minimum": 1 },
       "ExpiryEventsConfiguration": {
         "type": "object",
         "properties": {
           "DaysBeforeExpiry": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PositiveInteger"
-              },
+              { "$ref": "#/components/schemas/PositiveInteger" },
               {
                 "description": "Specifies the number of days prior to certificate expiration when ACM starts generating <code>EventBridge</code> events. ACM sends one event per day per certificate until the certificate expires. By default, accounts receive events starting 45 days before certificate expiration."
               }
@@ -3227,11 +2665,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2015-12-08",
     "endpointPrefix": "acm",

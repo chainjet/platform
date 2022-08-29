@@ -160,35 +160,19 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the playback configuration.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Delete Playback Configuration"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetPlaybackConfiguration",
@@ -211,9 +195,7 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the playback configuration.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Get Playback Configuration"
@@ -241,46 +223,26 @@
             "in": "query",
             "required": false,
             "description": "Maximum number of records to return. ",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "NextToken",
             "in": "query",
             "required": false,
             "description": "Pagination token returned by the GET list request when results exceed the maximum allowed. Use the token to fetch the next page of results.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "List Playback Configurations"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/tags/{ResourceArn}": {
@@ -302,9 +264,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -315,50 +275,30 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) for the playback configuration. You can get this from the response to any playback configuration request. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "List Tags For Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "TagResource",
         "description": "Adds tags to the specified playback configuration resource. You can specify one or more tags to add. ",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -369,9 +309,7 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) for the playback configuration. You can get this from the response to any playback configuration request. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -431,9 +369,7 @@
                     "properties": {
                       "Mode": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/Mode"
-                          },
+                          { "$ref": "#/components/schemas/Mode" },
                           {
                             "description": "Sets the mode for avail suppression, also known as ad suppression. By default, ad suppression is off and all ad breaks are filled by MediaTailor with ads or slate."
                           }
@@ -441,9 +377,7 @@
                       },
                       "Value": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/__string"
-                          },
+                          { "$ref": "#/components/schemas/__string" },
                           {
                             "description": "The avail suppression value is a live edge offset time in HH:MM:SS. MediaTailor won't fill ad breaks on or behind this time in the manifest lookback window. "
                           }
@@ -457,9 +391,7 @@
                     "properties": {
                       "EndUrl": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/__string"
-                          },
+                          { "$ref": "#/components/schemas/__string" },
                           {
                             "description": "The URL for the end bumper asset. "
                           }
@@ -467,9 +399,7 @@
                       },
                       "StartUrl": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/__string"
-                          },
+                          { "$ref": "#/components/schemas/__string" },
                           {
                             "description": "The URL for the start bumper asset. "
                           }
@@ -483,9 +413,7 @@
                     "properties": {
                       "AdSegmentUrlPrefix": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/__string"
-                          },
+                          { "$ref": "#/components/schemas/__string" },
                           {
                             "description": "A non-default content delivery network (CDN) to serve ad segments. By default, AWS Elemental MediaTailor uses Amazon CloudFront with default cache settings as its CDN for ad segments. To set up an alternate CDN, create a rule in your CDN for the following origin: ads.mediatailor.&lt;region>.amazonaws.com. Then specify the rule's name in this AdSegmentUrlPrefix. When AWS Elemental MediaTailor serves a manifest, it reports your CDN as the source for ad segments."
                           }
@@ -493,9 +421,7 @@
                       },
                       "ContentSegmentUrlPrefix": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/__string"
-                          },
+                          { "$ref": "#/components/schemas/__string" },
                           {
                             "description": "A content delivery network (CDN) to cache content segments, so that content requests don’t always have to go to the origin server. First, create a rule in your CDN for the content segment origin server. Then specify the rule's name in this ContentSegmentUrlPrefix. When AWS Elemental MediaTailor serves a manifest, it reports your CDN as the source for content segments."
                           }
@@ -509,9 +435,7 @@
                     "properties": {
                       "MpdLocation": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/__string"
-                          },
+                          { "$ref": "#/components/schemas/__string" },
                           {
                             "description": "The setting that controls whether MediaTailor includes the Location tag in DASH manifests. MediaTailor populates the Location tag with the URL for manifest update requests, to be used by players that don't support sticky redirects. Disable this if you have CDN routing rules set up for accessing MediaTailor manifests, and you are either using client-side reporting or your players support sticky HTTP redirects. Valid values are DISABLED and EMT_DEFAULT. The EMT_DEFAULT setting enables the inclusion of the tag and is the default value. "
                           }
@@ -519,9 +443,7 @@
                       },
                       "OriginManifestType": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/OriginManifestType"
-                          },
+                          { "$ref": "#/components/schemas/OriginManifestType" },
                           {
                             "description": "The setting that controls whether MediaTailor handles manifests from the origin server as multi-period manifests or single-period manifests. If your origin server produces single-period manifests, set this to SINGLE_PERIOD. The default setting is MULTI_PERIOD. For multi-period manifests, omit this setting or set it to MULTI_PERIOD. "
                           }
@@ -535,9 +457,7 @@
                     "properties": {
                       "AdDecisionServerUrl": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/__string"
-                          },
+                          { "$ref": "#/components/schemas/__string" },
                           {
                             "description": "The URL for the ad decision server (ADS) for pre-roll ads. This includes the specification of static parameters and placeholders for dynamic parameters. AWS Elemental MediaTailor substitutes player-specific and session-specific parameters as needed when calling the ADS. Alternately, for testing, you can provide a static VAST URL. The maximum length is 25,000 characters."
                           }
@@ -545,9 +465,7 @@
                       },
                       "MaxDurationSeconds": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/__integer"
-                          },
+                          { "$ref": "#/components/schemas/__integer" },
                           {
                             "description": "The maximum allowed duration for the pre-roll ad avail. AWS Elemental MediaTailor won't play pre-roll ads to exceed this duration, regardless of the total duration of ads that the ADS returns."
                           }
@@ -615,27 +533,13 @@
         "summary": "Put Playback Configuration"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/tags/{ResourceArn}#tagKeys": {
@@ -643,16 +547,12 @@
         "operationId": "UntagResource",
         "description": "Removes tags from the specified playback configuration resource. You can specify one or more tags to remove. ",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           }
@@ -663,9 +563,7 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) for the playback configuration. You can get this from the response to any playback configuration request. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "tagKeys",
@@ -674,36 +572,20 @@
             "description": "A comma-separated list of the tag keys to remove from the playback configuration. ",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/__string"
-              }
+              "items": { "$ref": "#/components/schemas/__string" }
             }
           }
         ],
         "summary": "Untag Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/channel/{channelName}": {
@@ -728,9 +610,7 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the channel you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -747,9 +627,7 @@
                     "properties": {
                       "SourceLocationName": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/__string"
-                          },
+                          { "$ref": "#/components/schemas/__string" },
                           {
                             "description": "The name of the source location where the slate VOD source is stored."
                           }
@@ -757,9 +635,7 @@
                       },
                       "VodSourceName": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/__string"
-                          },
+                          { "$ref": "#/components/schemas/__string" },
                           {
                             "description": "The slate VOD source name. The VOD source must already exist in a source location before it can be used for slate."
                           }
@@ -794,27 +670,13 @@
         "summary": "Create Channel"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "delete": {
         "operationId": "DeleteChannel",
@@ -837,9 +699,7 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the channel you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Delete Channel"
@@ -865,9 +725,7 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the channel you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Describe Channel"
@@ -893,9 +751,7 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the channel you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -943,18 +799,14 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the channel you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "programName",
             "in": "path",
             "required": true,
             "description": "The identifier for the program you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -972,9 +824,7 @@
                   "AdBreaks": {
                     "description": "The ad break configuration settings.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/AdBreak"
-                    }
+                    "items": { "$ref": "#/components/schemas/AdBreak" }
                   },
                   "ScheduleConfiguration": {
                     "description": "Schedule configuration parameters. A channel must be stopped before changes can be made to the schedule.",
@@ -982,9 +832,7 @@
                     "properties": {
                       "Transition": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/Transition"
-                          },
+                          { "$ref": "#/components/schemas/Transition" },
                           {
                             "description": "Program transition configurations."
                           }
@@ -1008,27 +856,13 @@
         "summary": "Create Program"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "delete": {
         "operationId": "DeleteProgram",
@@ -1051,18 +885,14 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the channel you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "programName",
             "in": "path",
             "required": true,
             "description": "The identifier for the program you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Delete Program"
@@ -1088,18 +918,14 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the channel you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "programName",
             "in": "path",
             "required": true,
             "description": "The identifier for the program you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Describe Program"
@@ -1127,9 +953,7 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the source location you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1146,9 +970,7 @@
                     "properties": {
                       "AccessType": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/AccessType"
-                          },
+                          { "$ref": "#/components/schemas/AccessType" },
                           {
                             "description": "<p>The type of authentication used to access content from HttpConfiguration::BaseUrl on your source location. Accepted value: S3_SIGV4.</p> <p>S3_SIGV4 - AWS Signature Version 4 authentication for Amazon S3 hosted virtual-style access. If your source location base URL is an Amazon S3 bucket, MediaTailor can use AWS Signature Version 4 (SigV4) authentication to access the bucket where your source content is stored. Your MediaTailor source location baseURL must follow the S3 virtual hosted-style request URL format. For example, https://bucket-name.s3.Region.amazonaws.com/key-name.</p> <p>Before you can use S3_SIGV4, you must meet these requirements:</p> <p>• You must allow MediaTailor to access your S3 bucket by granting mediatailor.amazonaws.com principal access in IAM. For information about configuring access in IAM, see Access management in the IAM User Guide.</p> <p>• The mediatailor.amazonaws.com service principal must have permissions to read all top level manifests referenced by the VodSource packaging configurations.</p> <p>• The caller of the API must have s3:GetObject IAM permissions to read all top level manifests referenced by your MediaTailor VodSource packaging configurations.</p>"
                           }
@@ -1172,9 +994,7 @@
                     "properties": {
                       "BaseUrl": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/__string"
-                          },
+                          { "$ref": "#/components/schemas/__string" },
                           {
                             "description": "The hostname of the server that will be used to serve segments. This string must include the protocol, such as <b>https://</b>."
                           }
@@ -1188,9 +1008,7 @@
                     "properties": {
                       "BaseUrl": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/__string"
-                          },
+                          { "$ref": "#/components/schemas/__string" },
                           {
                             "description": "The base URL for the source location host server. This string must include the protocol, such as <b>https://</b>."
                           }
@@ -1213,27 +1031,13 @@
         "summary": "Create Source Location"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "delete": {
         "operationId": "DeleteSourceLocation",
@@ -1256,9 +1060,7 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the source location you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Delete Source Location"
@@ -1284,9 +1086,7 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the source location you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Describe Source Location"
@@ -1312,9 +1112,7 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the source location you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1331,9 +1129,7 @@
                     "properties": {
                       "AccessType": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/AccessType"
-                          },
+                          { "$ref": "#/components/schemas/AccessType" },
                           {
                             "description": "<p>The type of authentication used to access content from HttpConfiguration::BaseUrl on your source location. Accepted value: S3_SIGV4.</p> <p>S3_SIGV4 - AWS Signature Version 4 authentication for Amazon S3 hosted virtual-style access. If your source location base URL is an Amazon S3 bucket, MediaTailor can use AWS Signature Version 4 (SigV4) authentication to access the bucket where your source content is stored. Your MediaTailor source location baseURL must follow the S3 virtual hosted-style request URL format. For example, https://bucket-name.s3.Region.amazonaws.com/key-name.</p> <p>Before you can use S3_SIGV4, you must meet these requirements:</p> <p>• You must allow MediaTailor to access your S3 bucket by granting mediatailor.amazonaws.com principal access in IAM. For information about configuring access in IAM, see Access management in the IAM User Guide.</p> <p>• The mediatailor.amazonaws.com service principal must have permissions to read all top level manifests referenced by the VodSource packaging configurations.</p> <p>• The caller of the API must have s3:GetObject IAM permissions to read all top level manifests referenced by your MediaTailor VodSource packaging configurations.</p>"
                           }
@@ -1357,9 +1153,7 @@
                     "properties": {
                       "BaseUrl": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/__string"
-                          },
+                          { "$ref": "#/components/schemas/__string" },
                           {
                             "description": "The hostname of the server that will be used to serve segments. This string must include the protocol, such as <b>https://</b>."
                           }
@@ -1373,9 +1167,7 @@
                     "properties": {
                       "BaseUrl": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/__string"
-                          },
+                          { "$ref": "#/components/schemas/__string" },
                           {
                             "description": "The base URL for the source location host server. This string must include the protocol, such as <b>https://</b>."
                           }
@@ -1413,18 +1205,14 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the source location you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vodSourceName",
             "in": "path",
             "required": true,
             "description": "The identifier for the VOD source you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1457,27 +1245,13 @@
         "summary": "Create Vod Source"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "delete": {
         "operationId": "DeleteVodSource",
@@ -1500,18 +1274,14 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the source location you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vodSourceName",
             "in": "path",
             "required": true,
             "description": "The identifier for the VOD source you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Delete Vod Source"
@@ -1537,18 +1307,14 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the source location you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vodSourceName",
             "in": "path",
             "required": true,
             "description": "The identifier for the VOD source you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Describe Vod Source"
@@ -1574,18 +1340,14 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the source location you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "vodSourceName",
             "in": "path",
             "required": true,
             "description": "The identifier for the VOD source you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1633,35 +1395,19 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the channel you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Delete Channel Policy"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetChannelPolicy",
@@ -1684,9 +1430,7 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the channel you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Get Channel Policy"
@@ -1712,9 +1456,7 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the channel you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1759,54 +1501,40 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the channel you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "durationMinutes",
             "in": "query",
             "required": false,
             "description": "The schedule duration in minutes. The maximum duration is 4320 minutes (three days).",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": "Upper bound on number of records to return. The maximum number of results is 100.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "Pagination token from the GET list request. Use the token to fetch the next page of results.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -1814,27 +1542,13 @@
         "summary": "Get Channel Schedule"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/alerts#resourceArn": {
@@ -1846,9 +1560,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListAlertsResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/ListAlertsResponse" }
               }
             }
           }
@@ -1859,45 +1571,33 @@
             "in": "query",
             "required": false,
             "description": "Upper bound on number of records to return. The maximum number of results is 100.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "Pagination token from the GET list request. Use the token to fetch the next page of results.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "resourceArn",
             "in": "query",
             "required": true,
             "description": "The Amazon Resource Name (ARN) of the resource.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -1905,27 +1605,13 @@
         "summary": "List Alerts"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/channels": {
@@ -1950,36 +1636,26 @@
             "in": "query",
             "required": false,
             "description": "Upper bound on number of records to return. The maximum number of results is 100.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "Pagination token from the GET list request. Use the token to fetch the next page of results.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -1987,27 +1663,13 @@
         "summary": "List Channels"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/sourceLocations": {
@@ -2032,36 +1694,26 @@
             "in": "query",
             "required": false,
             "description": "Upper bound on number of records to return. The maximum number of results is 100.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "Pagination token from the GET list request. Use the token to fetch the next page of results.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -2069,27 +1721,13 @@
         "summary": "List Source Locations"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/sourceLocation/{sourceLocationName}/vodSources": {
@@ -2114,45 +1752,33 @@
             "in": "query",
             "required": false,
             "description": "Upper bound on number of records to return. The maximum number of results is 100.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "Pagination token from the GET list request. Use the token to fetch the next page of results.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "sourceLocationName",
             "in": "path",
             "required": true,
             "description": "The identifier for the source location you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -2160,27 +1786,13 @@
         "summary": "List Vod Sources"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/channel/{channelName}/start": {
@@ -2205,35 +1817,19 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the channel you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Start Channel"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/channel/{channelName}/stop": {
@@ -2245,9 +1841,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StopChannelResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/StopChannelResponse" }
               }
             }
           }
@@ -2258,35 +1852,19 @@
             "in": "path",
             "required": true,
             "description": "The identifier for the channel you are working on.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Stop Channel"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -2295,63 +1873,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -2375,9 +1939,7 @@
         "properties": {
           "AdDecisionServerUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The URL for the ad decision server (ADS). This includes the specification of static parameters and placeholders for dynamic parameters. AWS Elemental MediaTailor substitutes player-specific and session-specific parameters as needed when calling the ADS. Alternately, for testing, you can provide a static VAST URL. The maximum length is 25,000 characters."
               }
@@ -2385,9 +1947,7 @@
           },
           "AvailSuppression": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AvailSuppression"
-              },
+              { "$ref": "#/components/schemas/AvailSuppression" },
               {
                 "description": "The configuration for Avail Suppression. Ad suppression can be used to turn off ad personalization in a long manifest, or if a viewer joins mid-break."
               }
@@ -2395,9 +1955,7 @@
           },
           "Bumper": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Bumper"
-              },
+              { "$ref": "#/components/schemas/Bumper" },
               {
                 "description": "The configuration for bumpers. Bumpers are short audio or video clips that play at the start or before the end of an ad break. "
               }
@@ -2405,9 +1963,7 @@
           },
           "CdnConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CdnConfiguration"
-              },
+              { "$ref": "#/components/schemas/CdnConfiguration" },
               {
                 "description": "The configuration for using a content delivery network (CDN), like Amazon CloudFront, for content and ad segment management. "
               }
@@ -2415,39 +1971,25 @@
           },
           "DashConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DashConfiguration"
-              },
-              {
-                "description": "The configuration for DASH content. "
-              }
+              { "$ref": "#/components/schemas/DashConfiguration" },
+              { "description": "The configuration for DASH content. " }
             ]
           },
           "HlsConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HlsConfiguration"
-              },
-              {
-                "description": "The configuration for HLS content. "
-              }
+              { "$ref": "#/components/schemas/HlsConfiguration" },
+              { "description": "The configuration for HLS content. " }
             ]
           },
           "LivePreRollConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LivePreRollConfiguration"
-              },
-              {
-                "description": "The configuration for pre-roll ad insertion."
-              }
+              { "$ref": "#/components/schemas/LivePreRollConfiguration" },
+              { "description": "The configuration for pre-roll ad insertion." }
             ]
           },
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The identifier for the playback configuration."
               }
@@ -2455,9 +1997,7 @@
           },
           "PersonalizationThresholdSeconds": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__integerMin1"
-              },
+              { "$ref": "#/components/schemas/__integerMin1" },
               {
                 "description": "The maximum duration of underfilled ad time (in seconds) allowed in an ad break."
               }
@@ -2465,9 +2005,7 @@
           },
           "PlaybackConfigurationArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The Amazon Resource Name (ARN) for the playback configuration. "
               }
@@ -2475,9 +2013,7 @@
           },
           "PlaybackEndpointPrefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The URL that the player accesses to get a manifest from AWS Elemental MediaTailor. This session will use server-side reporting. "
               }
@@ -2485,9 +2021,7 @@
           },
           "SessionInitializationEndpointPrefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The URL that the player uses to initialize a session that uses client-side reporting. "
               }
@@ -2495,9 +2029,7 @@
           },
           "SlateAdUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The URL for a high-quality video asset to transcode and use to fill in time that's not used by ads. AWS Elemental MediaTailor shows the slate to fill in gaps in media content. Configuring the slate is optional for non-VPAID playback configurations. For VPAID, the slate is required because MediaTailor provides it in the slots designated for dynamic ad content. The slate must be a high-quality asset that contains both audio and video. "
               }
@@ -2505,22 +2037,16 @@
           },
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "The tags assigned to the playback configuration. "
               }
             ]
           },
           "TranscodeProfileName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The name that is used to associate this playback configuration with a custom transcode profile. This overrides the dynamic transcoding defaults of MediaTailor. Use this only if you have already set up custom profiles with the help of AWS Support."
               }
@@ -2528,9 +2054,7 @@
           },
           "VideoContentSourceUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The URL prefix for the master playlist for the stream, minus the asset ID. The maximum length is 512 characters."
               }
@@ -2538,9 +2062,7 @@
           },
           "ManifestProcessingRules": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ManifestProcessingRules"
-              },
+              { "$ref": "#/components/schemas/ManifestProcessingRules" },
               {
                 "description": "The configuration for manifest processing rules. Manifest processing rules enable customization of the personalized manifests created by MediaTailor."
               }
@@ -2548,9 +2070,7 @@
           },
           "ConfigurationAliases": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConfigurationAliasesResponse"
-              },
+              { "$ref": "#/components/schemas/ConfigurationAliasesResponse" },
               {
                 "description": "The player parameters and aliases used as dynamic variables during session initialization. For more information, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/variables-domain.html\">Domain Variables</a>."
               }
@@ -2563,9 +2083,7 @@
         "properties": {
           "Items": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__listOfPlaybackConfigurations"
-              },
+              { "$ref": "#/components/schemas/__listOfPlaybackConfigurations" },
               {
                 "description": "Array of playback configurations. This might be all the available configurations or a subset, depending on the settings that you provide and the total number of configurations stored. "
               }
@@ -2573,9 +2091,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "Pagination token returned by the GET list request when results exceed the maximum allowed. Use the token to fetch the next page of results."
               }
@@ -2588,13 +2104,9 @@
         "properties": {
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "A comma-separated list of tag key:value pairs. For example: \n {\n \"Key1\": \"Value1\",\n \"Key2\": \"Value2\"\n }\n "
               }
             ]
@@ -2607,9 +2119,7 @@
         "properties": {
           "AdDecisionServerUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The URL for the ad decision server (ADS). This includes the specification of static parameters and placeholders for dynamic parameters. AWS Elemental MediaTailor substitutes player-specific and session-specific parameters as needed when calling the ADS. Alternately, for testing, you can provide a static VAST URL. The maximum length is 25,000 characters."
               }
@@ -2617,9 +2127,7 @@
           },
           "AvailSuppression": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AvailSuppression"
-              },
+              { "$ref": "#/components/schemas/AvailSuppression" },
               {
                 "description": "The configuration for Avail Suppression. Ad suppression can be used to turn off ad personalization in a long manifest, or if a viewer joins mid-break."
               }
@@ -2627,9 +2135,7 @@
           },
           "Bumper": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Bumper"
-              },
+              { "$ref": "#/components/schemas/Bumper" },
               {
                 "description": "The configuration for bumpers. Bumpers are short audio or video clips that play at the start or before the end of an ad break. "
               }
@@ -2637,9 +2143,7 @@
           },
           "CdnConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CdnConfiguration"
-              },
+              { "$ref": "#/components/schemas/CdnConfiguration" },
               {
                 "description": "The configuration for using a content delivery network (CDN), like Amazon CloudFront, for content and ad segment management. "
               }
@@ -2647,39 +2151,25 @@
           },
           "DashConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DashConfiguration"
-              },
-              {
-                "description": "The configuration for DASH content. "
-              }
+              { "$ref": "#/components/schemas/DashConfiguration" },
+              { "description": "The configuration for DASH content. " }
             ]
           },
           "HlsConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HlsConfiguration"
-              },
-              {
-                "description": "The configuration for HLS content. "
-              }
+              { "$ref": "#/components/schemas/HlsConfiguration" },
+              { "description": "The configuration for HLS content. " }
             ]
           },
           "LivePreRollConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LivePreRollConfiguration"
-              },
-              {
-                "description": "The configuration for pre-roll ad insertion."
-              }
+              { "$ref": "#/components/schemas/LivePreRollConfiguration" },
+              { "description": "The configuration for pre-roll ad insertion." }
             ]
           },
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The identifier for the playback configuration."
               }
@@ -2687,9 +2177,7 @@
           },
           "PersonalizationThresholdSeconds": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__integerMin1"
-              },
+              { "$ref": "#/components/schemas/__integerMin1" },
               {
                 "description": "The maximum duration of underfilled ad time (in seconds) allowed in an ad break."
               }
@@ -2697,9 +2185,7 @@
           },
           "PlaybackConfigurationArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The Amazon Resource Name (ARN) for the playback configuration. "
               }
@@ -2707,9 +2193,7 @@
           },
           "PlaybackEndpointPrefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The URL that the player accesses to get a manifest from AWS Elemental MediaTailor. This session will use server-side reporting. "
               }
@@ -2717,9 +2201,7 @@
           },
           "SessionInitializationEndpointPrefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The URL that the player uses to initialize a session that uses client-side reporting. "
               }
@@ -2727,9 +2209,7 @@
           },
           "SlateAdUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The URL for a high-quality video asset to transcode and use to fill in time that's not used by ads. AWS Elemental MediaTailor shows the slate to fill in gaps in media content. Configuring the slate is optional for non-VPAID playback configurations. For VPAID, the slate is required because MediaTailor provides it in the slots designated for dynamic ad content. The slate must be a high-quality asset that contains both audio and video. "
               }
@@ -2737,22 +2217,16 @@
           },
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "The tags assigned to the playback configuration. "
               }
             ]
           },
           "TranscodeProfileName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The name that is used to associate this playback configuration with a custom transcode profile. This overrides the dynamic transcoding defaults of MediaTailor. Use this only if you have already set up custom profiles with the help of AWS Support."
               }
@@ -2760,9 +2234,7 @@
           },
           "VideoContentSourceUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The URL prefix for the master playlist for the stream, minus the asset ID. The maximum length is 512 characters."
               }
@@ -2770,9 +2242,7 @@
           },
           "ManifestProcessingRules": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ManifestProcessingRules"
-              },
+              { "$ref": "#/components/schemas/ManifestProcessingRules" },
               {
                 "description": "The configuration for manifest processing rules. Manifest processing rules enable customization of the personalized manifests created by MediaTailor."
               }
@@ -2780,9 +2250,7 @@
           },
           "ConfigurationAliases": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConfigurationAliasesResponse"
-              },
+              { "$ref": "#/components/schemas/ConfigurationAliasesResponse" },
               {
                 "description": "The player parameters and aliases used as dynamic variables during session initialization. For more information, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/variables-domain.html\">Domain Variables</a>."
               }
@@ -2790,28 +2258,19 @@
           }
         }
       },
-      "Mode": {
-        "enum": ["OFF", "BEHIND_LIVE_EDGE"],
-        "type": "string"
-      },
-      "__string": {
-        "type": "string"
-      },
+      "Mode": { "enum": ["OFF", "BEHIND_LIVE_EDGE"], "type": "string" },
+      "__string": { "type": "string" },
       "OriginManifestType": {
         "enum": ["SINGLE_PERIOD", "MULTI_PERIOD"],
         "type": "string"
       },
-      "__integer": {
-        "type": "integer"
-      },
+      "__integer": { "type": "integer" },
       "AvailSuppression": {
         "type": "object",
         "properties": {
           "Mode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Mode"
-              },
+              { "$ref": "#/components/schemas/Mode" },
               {
                 "description": "Sets the mode for avail suppression, also known as ad suppression. By default, ad suppression is off and all ad breaks are filled by MediaTailor with ads or slate."
               }
@@ -2819,9 +2278,7 @@
           },
           "Value": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The avail suppression value is a live edge offset time in HH:MM:SS. MediaTailor won't fill ad breaks on or behind this time in the manifest lookback window. "
               }
@@ -2835,22 +2292,14 @@
         "properties": {
           "EndUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The URL for the end bumper asset. "
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The URL for the end bumper asset. " }
             ]
           },
           "StartUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The URL for the start bumper asset. "
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The URL for the start bumper asset. " }
             ]
           }
         },
@@ -2861,9 +2310,7 @@
         "properties": {
           "AdSegmentUrlPrefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "A non-default content delivery network (CDN) to serve ad segments. By default, AWS Elemental MediaTailor uses Amazon CloudFront with default cache settings as its CDN for ad segments. To set up an alternate CDN, create a rule in your CDN for the following origin: ads.mediatailor.&lt;region>.amazonaws.com. Then specify the rule's name in this AdSegmentUrlPrefix. When AWS Elemental MediaTailor serves a manifest, it reports your CDN as the source for ad segments."
               }
@@ -2871,9 +2318,7 @@
           },
           "ContentSegmentUrlPrefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "A content delivery network (CDN) to cache content segments, so that content requests don’t always have to go to the origin server. First, create a rule in your CDN for the content segment origin server. Then specify the rule's name in this ContentSegmentUrlPrefix. When AWS Elemental MediaTailor serves a manifest, it reports your CDN as the source for content segments."
               }
@@ -2887,9 +2332,7 @@
         "properties": {
           "ManifestEndpointPrefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The URL generated by MediaTailor to initiate a playback session. The session uses server-side reporting. This setting is ignored in PUT operations. "
               }
@@ -2897,9 +2340,7 @@
           },
           "MpdLocation": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The setting that controls whether MediaTailor includes the Location tag in DASH manifests. MediaTailor populates the Location tag with the URL for manifest update requests, to be used by players that don't support sticky redirects. Disable this if you have CDN routing rules set up for accessing MediaTailor manifests, and you are either using client-side reporting or your players support sticky HTTP redirects. Valid values are DISABLED and EMT_DEFAULT. The EMT_DEFAULT setting enables the inclusion of the tag and is the default value. "
               }
@@ -2907,9 +2348,7 @@
           },
           "OriginManifestType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OriginManifestType"
-              },
+              { "$ref": "#/components/schemas/OriginManifestType" },
               {
                 "description": "The setting that controls whether MediaTailor handles manifests from the origin server as multi-period manifests or single-period manifests. If your origin server produces single-period manifests, set this to SINGLE_PERIOD. The default setting is MULTI_PERIOD. For multi-period manifests, omit this setting or set it to MULTI_PERIOD. "
               }
@@ -2923,9 +2362,7 @@
         "properties": {
           "ManifestEndpointPrefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The URL that is used to initiate a playback session for devices that support Apple HLS. The session uses server-side reporting."
               }
@@ -2939,9 +2376,7 @@
         "properties": {
           "AdDecisionServerUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The URL for the ad decision server (ADS) for pre-roll ads. This includes the specification of static parameters and placeholders for dynamic parameters. AWS Elemental MediaTailor substitutes player-specific and session-specific parameters as needed when calling the ADS. Alternately, for testing, you can provide a static VAST URL. The maximum length is 25,000 characters."
               }
@@ -2949,9 +2384,7 @@
           },
           "MaxDurationSeconds": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__integer"
-              },
+              { "$ref": "#/components/schemas/__integer" },
               {
                 "description": "The maximum allowed duration for the pre-roll ad avail. AWS Elemental MediaTailor won't play pre-roll ads to exceed this duration, regardless of the total duration of ads that the ADS returns."
               }
@@ -2960,30 +2393,21 @@
         },
         "description": "The configuration for pre-roll ad insertion."
       },
-      "__integerMin1": {
-        "type": "integer",
-        "minimum": 1
-      },
+      "__integerMin1": { "type": "integer", "minimum": 1 },
       "__mapOf__string": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/__string"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/__string" }
       },
       "__listOfPlaybackConfigurations": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/PlaybackConfiguration"
-        }
+        "items": { "$ref": "#/components/schemas/PlaybackConfiguration" }
       },
       "PlaybackConfiguration": {
         "type": "object",
         "properties": {
           "AdDecisionServerUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The URL for the ad decision server (ADS). This includes the specification of static parameters and placeholders for dynamic parameters. AWS Elemental MediaTailor substitutes player-specific and session-specific parameters as needed when calling the ADS. Alternately, for testing, you can provide a static VAST URL. The maximum length is 25,000 characters."
               }
@@ -2991,9 +2415,7 @@
           },
           "AvailSuppression": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AvailSuppression"
-              },
+              { "$ref": "#/components/schemas/AvailSuppression" },
               {
                 "description": "The configuration for Avail Suppression. Ad suppression can be used to turn off ad personalization in a long manifest, or if a viewer joins mid-break."
               }
@@ -3001,9 +2423,7 @@
           },
           "Bumper": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Bumper"
-              },
+              { "$ref": "#/components/schemas/Bumper" },
               {
                 "description": "The configuration for bumpers. Bumpers are short audio or video clips that play at the start or before the end of an ad break. "
               }
@@ -3011,9 +2431,7 @@
           },
           "CdnConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CdnConfiguration"
-              },
+              { "$ref": "#/components/schemas/CdnConfiguration" },
               {
                 "description": "The configuration for using a content delivery network (CDN), like Amazon CloudFront, for content and ad segment management. "
               }
@@ -3021,29 +2439,19 @@
           },
           "DashConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DashConfiguration"
-              },
-              {
-                "description": "The configuration for DASH content. "
-              }
+              { "$ref": "#/components/schemas/DashConfiguration" },
+              { "description": "The configuration for DASH content. " }
             ]
           },
           "HlsConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HlsConfiguration"
-              },
-              {
-                "description": "The configuration for HLS content. "
-              }
+              { "$ref": "#/components/schemas/HlsConfiguration" },
+              { "description": "The configuration for HLS content. " }
             ]
           },
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The identifier for the playback configuration."
               }
@@ -3051,9 +2459,7 @@
           },
           "PlaybackConfigurationArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The Amazon Resource Name (ARN) for the playback configuration. "
               }
@@ -3061,9 +2467,7 @@
           },
           "PlaybackEndpointPrefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The URL that the player accesses to get a manifest from AWS Elemental MediaTailor. This session will use server-side reporting. "
               }
@@ -3071,9 +2475,7 @@
           },
           "SessionInitializationEndpointPrefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The URL that the player uses to initialize a session that uses client-side reporting. "
               }
@@ -3081,9 +2483,7 @@
           },
           "SlateAdUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The URL for a high-quality video asset to transcode and use to fill in time that's not used by ads. AWS Elemental MediaTailor shows the slate to fill in gaps in media content. Configuring the slate is optional for non-VPAID playback configurations. For VPAID, the slate is required because MediaTailor provides it in the slots designated for dynamic ad content. The slate must be a high-quality asset that contains both audio and video. "
               }
@@ -3091,22 +2491,16 @@
           },
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "The tags assigned to the playback configuration. "
               }
             ]
           },
           "TranscodeProfileName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The name that is used to associate this playback configuration with a custom transcode profile. This overrides the dynamic transcoding defaults of MediaTailor. Use this only if you have already set up custom profiles with the help of AWS Support."
               }
@@ -3114,9 +2508,7 @@
           },
           "PersonalizationThresholdSeconds": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__integerMin1"
-              },
+              { "$ref": "#/components/schemas/__integerMin1" },
               {
                 "description": "The maximum duration of underfilled ad time (in seconds) allowed in an ad break."
               }
@@ -3124,9 +2516,7 @@
           },
           "VideoContentSourceUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The URL prefix for the master playlist for the stream, minus the asset ID. The maximum length is 512 characters."
               }
@@ -3134,9 +2524,7 @@
           },
           "ManifestProcessingRules": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ManifestProcessingRules"
-              },
+              { "$ref": "#/components/schemas/ManifestProcessingRules" },
               {
                 "description": "The configuration for manifest processing rules. Manifest processing rules enable customization of the personalized manifests created by MediaTailor."
               }
@@ -3144,9 +2532,7 @@
           },
           "ConfigurationAliases": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConfigurationAliasesResponse"
-              },
+              { "$ref": "#/components/schemas/ConfigurationAliasesResponse" },
               {
                 "description": "The player parameters and aliases used as dynamic variables during session initialization. For more information, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/variables-domain.html\">Domain Variables</a>."
               }
@@ -3154,12 +2540,8 @@
           },
           "LivePreRollConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LivePreRollConfiguration"
-              },
-              {
-                "description": "The configuration for pre-roll ad insertion."
-              }
+              { "$ref": "#/components/schemas/LivePreRollConfiguration" },
+              { "description": "The configuration for pre-roll ad insertion." }
             ]
           }
         },
@@ -3167,18 +2549,14 @@
       },
       "__listOf__string": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/__string"
-        }
+        "items": { "$ref": "#/components/schemas/__string" }
       },
       "AdMarkerPassthrough": {
         "type": "object",
         "properties": {
           "Enabled": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__boolean"
-              },
+              { "$ref": "#/components/schemas/__boolean" },
               {
                 "description": "<p>For HLS, when set to true, MediaTailor passes through EXT-X-CUE-IN, EXT-X-CUE-OUT, and EXT-X-SPLICEPOINT-SCTE35 ad markers from the origin manifest to the MediaTailor personalized manifest.</p><p>No logic is applied to these ad markers. For example, if EXT-X-CUE-OUT has a value of 60, but no ads are filled for that ad break, MediaTailor will not set the value to 0.</p>"
               }
@@ -3187,18 +2565,14 @@
         },
         "description": "The configuration for Ad Marker Passthrough. Ad marker passthrough can be used to pass ad markers from the origin to the customized manifest."
       },
-      "__boolean": {
-        "type": "boolean"
-      },
+      "__boolean": { "type": "boolean" },
       "ManifestProcessingRules": {
         "type": "object",
         "properties": {
           "AdMarkerPassthrough": {
             "$ref": "#/components/schemas/AdMarkerPassthrough",
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AdMarkerPassthrough"
-              },
+              { "$ref": "#/components/schemas/AdMarkerPassthrough" },
               {
                 "description": "<p>For HLS, when set to true, MediaTailor passes through EXT-X-CUE-IN, EXT-X-CUE-OUT, and EXT-X-SPLICEPOINT-SCTE35 ad markers from the origin manifest to the MediaTailor personalized manifest.</p> <p>No logic is applied to these ad markers. For example, if EXT-X-CUE-OUT has a value of 60, but no ads are filled for that ad break, MediaTailor will not set the value to 0.</p>"
               }
@@ -3212,29 +2586,19 @@
         "properties": {
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The ARN of the channel."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The ARN of the channel." }
             ]
           },
           "ChannelName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The name of the channel."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The name of the channel." }
             ]
           },
           "ChannelState": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ChannelState"
-              },
+              { "$ref": "#/components/schemas/ChannelState" },
               {
                 "description": "Indicates whether the channel is in a running state or not."
               }
@@ -3242,9 +2606,7 @@
           },
           "CreationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp of when the channel was created."
               }
@@ -3252,9 +2614,7 @@
           },
           "FillerSlate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SlateSource"
-              },
+              { "$ref": "#/components/schemas/SlateSource" },
               {
                 "description": "Contains information about the slate used to fill gaps between programs in the schedule."
               }
@@ -3262,9 +2622,7 @@
           },
           "LastModifiedTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp of when the channel was last modified."
               }
@@ -3272,33 +2630,21 @@
           },
           "Outputs": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResponseOutputs"
-              },
-              {
-                "description": "The channel's output properties."
-              }
+              { "$ref": "#/components/schemas/ResponseOutputs" },
+              { "description": "The channel's output properties." }
             ]
           },
           "PlaybackMode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The channel's playback mode."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The channel's playback mode." }
             ]
           },
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "The tags assigned to the channel."
               }
             ]
@@ -3311,29 +2657,19 @@
         "properties": {
           "DashPlaylistSettings": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DashPlaylistSettings"
-              },
-              {
-                "description": "DASH manifest configuration parameters."
-              }
+              { "$ref": "#/components/schemas/DashPlaylistSettings" },
+              { "description": "DASH manifest configuration parameters." }
             ]
           },
           "HlsPlaylistSettings": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HlsPlaylistSettings"
-              },
-              {
-                "description": "HLS playlist configuration parameters."
-              }
+              { "$ref": "#/components/schemas/HlsPlaylistSettings" },
+              { "description": "HLS playlist configuration parameters." }
             ]
           },
           "ManifestName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The name of the manifest for the channel. The name appears in the PlaybackUrl."
               }
@@ -3341,9 +2677,7 @@
           },
           "SourceGroup": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "A string used to match which HttpPackageConfiguration is used for each VodSource."
               }
@@ -3357,29 +2691,19 @@
         "properties": {
           "AdBreaks": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__listOfAdBreak"
-              },
-              {
-                "description": "The ad break configuration settings."
-              }
+              { "$ref": "#/components/schemas/__listOfAdBreak" },
+              { "description": "The ad break configuration settings." }
             ]
           },
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The ARN of the program."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The ARN of the program." }
             ]
           },
           "ChannelName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The name of the channel that the program belongs to."
               }
@@ -3387,9 +2711,7 @@
           },
           "CreationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp of when the program was created."
               }
@@ -3397,19 +2719,13 @@
           },
           "ProgramName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The name of the program."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The name of the program." }
             ]
           },
           "ScheduledStartTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The date and time that the program is scheduled to start in ISO 8601 format and Coordinated Universal Time (UTC). For example, the value 2021-03-27T17:48:16.751Z represents March 27, 2021 at 17:48:16.751 UTC."
               }
@@ -3417,19 +2733,13 @@
           },
           "SourceLocationName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The source location name."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The source location name." }
             ]
           },
           "VodSourceName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The name that's used to refer to a VOD source."
               }
@@ -3442,9 +2752,7 @@
         "properties": {
           "MessageType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MessageType"
-              },
+              { "$ref": "#/components/schemas/MessageType" },
               {
                 "description": "The SCTE-35 ad insertion type. Accepted value: SPLICE_INSERT."
               }
@@ -3452,9 +2760,7 @@
           },
           "OffsetMillis": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__long"
-              },
+              { "$ref": "#/components/schemas/__long" },
               {
                 "description": "How long (in milliseconds) after the beginning of the program that an ad starts. This value must fall within 100ms of a segment boundary, otherwise the ad break will be skipped."
               }
@@ -3462,19 +2768,13 @@
           },
           "Slate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SlateSource"
-              },
-              {
-                "description": "Ad break slate configuration."
-              }
+              { "$ref": "#/components/schemas/SlateSource" },
+              { "description": "Ad break slate configuration." }
             ]
           },
           "SpliceInsertMessage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SpliceInsertMessage"
-              },
+              { "$ref": "#/components/schemas/SpliceInsertMessage" },
               {
                 "description": "This defines the SCTE-35 splice_insert() message inserted around the ad. For information about using splice_insert(), see the SCTE-35 specficiaiton, section 9.7.3.1."
               }
@@ -3489,9 +2789,7 @@
         "properties": {
           "RelativePosition": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RelativePosition"
-              },
+              { "$ref": "#/components/schemas/RelativePosition" },
               {
                 "description": "The position where this program will be inserted relative to the RelativePosition."
               }
@@ -3499,9 +2797,7 @@
           },
           "RelativeProgram": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The name of the program that this program will be inserted next to, as defined by RelativePosition."
               }
@@ -3509,9 +2805,7 @@
           },
           "ScheduledStartTimeMillis": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__long"
-              },
+              { "$ref": "#/components/schemas/__long" },
               {
                 "description": "The date and time that the program is scheduled to start, in epoch milliseconds."
               }
@@ -3519,9 +2813,7 @@
           },
           "Type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "<p>Defines when the program plays in the schedule. You can set the value to ABSOLUTE or RELATIVE.</p> <p>ABSOLUTE - The program plays at a specific wall clock time. This setting can only be used for channels using the LINEAR PlaybackMode.</p> <p>Note the following considerations when using ABSOLUTE transitions:</p> <p>If the preceding program in the schedule has a duration that extends past the wall clock time, MediaTailor truncates the preceding program on a common segment boundary.</p> <p>If there are gaps in playback, MediaTailor plays the FillerSlate you configured for your linear channel.</p> <p>RELATIVE - The program is inserted into the schedule either before or after a program that you specify via RelativePosition.</p>"
               }
@@ -3535,9 +2827,7 @@
         "properties": {
           "AccessConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccessConfiguration"
-              },
+              { "$ref": "#/components/schemas/AccessConfiguration" },
               {
                 "description": "The access configuration for the source location."
               }
@@ -3545,19 +2835,13 @@
           },
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The ARN of the source location."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The ARN of the source location." }
             ]
           },
           "CreationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp that indicates when the source location was created."
               }
@@ -3575,9 +2859,7 @@
           },
           "HttpConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HttpConfiguration"
-              },
+              { "$ref": "#/components/schemas/HttpConfiguration" },
               {
                 "description": "The HTTP package configuration settings for the source location."
               }
@@ -3585,9 +2867,7 @@
           },
           "LastModifiedTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp that indicates when the source location was last modified."
               }
@@ -3595,23 +2875,15 @@
           },
           "SourceLocationName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The name of the source location."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The name of the source location." }
             ]
           },
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "The tags assigned to the source location."
               }
             ]
@@ -3627,9 +2899,7 @@
         "properties": {
           "HeaderName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The name of the HTTP header used to supply the access token in requests to the source location."
               }
@@ -3637,9 +2907,7 @@
           },
           "SecretArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The Amazon Resource Name (ARN) of the AWS Secrets Manager secret that contains the access token."
               }
@@ -3647,9 +2915,7 @@
           },
           "SecretStringKey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The AWS Secrets Manager <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_CreateSecret.html#SecretsManager-CreateSecret-request-SecretString.html\">SecretString</a> key associated with the access token. MediaTailor uses the key to look up SecretString key and value pair containing the access token."
               }
@@ -3663,19 +2929,13 @@
         "properties": {
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The ARN of the VOD source."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The ARN of the VOD source." }
             ]
           },
           "CreationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp that indicates when the VOD source was created."
               }
@@ -3683,29 +2943,19 @@
           },
           "HttpPackageConfigurations": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HttpPackageConfigurations"
-              },
-              {
-                "description": "The HTTP package configurations."
-              }
+              { "$ref": "#/components/schemas/HttpPackageConfigurations" },
+              { "description": "The HTTP package configurations." }
             ]
           },
           "LastModifiedTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
-              {
-                "description": "The ARN for the VOD source."
-              }
+              { "$ref": "#/components/schemas/__timestampUnix" },
+              { "description": "The ARN for the VOD source." }
             ]
           },
           "SourceLocationName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The name of the source location associated with the VOD source."
               }
@@ -3713,25 +2963,17 @@
           },
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "The tags assigned to the VOD source."
               }
             ]
           },
           "VodSourceName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The name of the VOD source."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The name of the VOD source." }
             ]
           }
         }
@@ -3742,9 +2984,7 @@
         "properties": {
           "Path": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The relative path to the URL for this VOD source. This is combined with SourceLocation::HttpConfiguration::BaseUrl to form a valid URL."
               }
@@ -3752,9 +2992,7 @@
           },
           "SourceGroup": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The name of the source group. This has to match one of the Channel::Outputs::SourceGroup."
               }
@@ -3762,9 +3000,7 @@
           },
           "Type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Type"
-              },
+              { "$ref": "#/components/schemas/Type" },
               {
                 "description": "The streaming protocol for this package configuration. Supported values are HLS and DASH."
               }
@@ -3773,54 +3009,29 @@
         },
         "description": "The HTTP package configuration properties for the requested VOD source."
       },
-      "DeleteChannelResponse": {
-        "type": "object",
-        "properties": {}
-      },
-      "DeleteChannelPolicyResponse": {
-        "type": "object",
-        "properties": {}
-      },
-      "DeleteProgramResponse": {
-        "type": "object",
-        "properties": {}
-      },
-      "DeleteSourceLocationResponse": {
-        "type": "object",
-        "properties": {}
-      },
-      "DeleteVodSourceResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "DeleteChannelResponse": { "type": "object", "properties": {} },
+      "DeleteChannelPolicyResponse": { "type": "object", "properties": {} },
+      "DeleteProgramResponse": { "type": "object", "properties": {} },
+      "DeleteSourceLocationResponse": { "type": "object", "properties": {} },
+      "DeleteVodSourceResponse": { "type": "object", "properties": {} },
       "DescribeChannelResponse": {
         "type": "object",
         "properties": {
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The ARN of the channel."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The ARN of the channel." }
             ]
           },
           "ChannelName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The name of the channel."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The name of the channel." }
             ]
           },
           "ChannelState": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ChannelState"
-              },
+              { "$ref": "#/components/schemas/ChannelState" },
               {
                 "description": "Indicates whether the channel is in a running state or not."
               }
@@ -3828,9 +3039,7 @@
           },
           "CreationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp of when the channel was created."
               }
@@ -3838,9 +3047,7 @@
           },
           "FillerSlate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SlateSource"
-              },
+              { "$ref": "#/components/schemas/SlateSource" },
               {
                 "description": "Contains information about the slate used to fill gaps between programs in the schedule."
               }
@@ -3848,9 +3055,7 @@
           },
           "LastModifiedTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp of when the channel was last modified."
               }
@@ -3858,33 +3063,21 @@
           },
           "Outputs": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResponseOutputs"
-              },
-              {
-                "description": "The channel's output properties."
-              }
+              { "$ref": "#/components/schemas/ResponseOutputs" },
+              { "description": "The channel's output properties." }
             ]
           },
           "PlaybackMode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The channel's playback mode."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The channel's playback mode." }
             ]
           },
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "The tags assigned to the channel."
               }
             ]
@@ -3896,29 +3089,19 @@
         "properties": {
           "AdBreaks": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__listOfAdBreak"
-              },
-              {
-                "description": "The ad break configuration settings."
-              }
+              { "$ref": "#/components/schemas/__listOfAdBreak" },
+              { "description": "The ad break configuration settings." }
             ]
           },
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The ARN of the program."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The ARN of the program." }
             ]
           },
           "ChannelName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The name of the channel that the program belongs to."
               }
@@ -3926,9 +3109,7 @@
           },
           "CreationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp of when the program was created."
               }
@@ -3936,19 +3117,13 @@
           },
           "ProgramName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The name of the program."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The name of the program." }
             ]
           },
           "ScheduledStartTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The date and time that the program is scheduled to start in ISO 8601 format and Coordinated Universal Time (UTC). For example, the value 2021-03-27T17:48:16.751Z represents March 27, 2021 at 17:48:16.751 UTC."
               }
@@ -3956,19 +3131,13 @@
           },
           "SourceLocationName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The source location name."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The source location name." }
             ]
           },
           "VodSourceName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The name that's used to refer to a VOD source."
               }
@@ -3981,9 +3150,7 @@
         "properties": {
           "AccessConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccessConfiguration"
-              },
+              { "$ref": "#/components/schemas/AccessConfiguration" },
               {
                 "description": "The access configuration for the source location."
               }
@@ -3991,19 +3158,13 @@
           },
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The ARN of the source location."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The ARN of the source location." }
             ]
           },
           "CreationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp that indicates when the source location was created."
               }
@@ -4021,9 +3182,7 @@
           },
           "HttpConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HttpConfiguration"
-              },
+              { "$ref": "#/components/schemas/HttpConfiguration" },
               {
                 "description": "The HTTP package configuration settings for the source location."
               }
@@ -4031,9 +3190,7 @@
           },
           "LastModifiedTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp that indicates when the source location was last modified."
               }
@@ -4041,23 +3198,15 @@
           },
           "SourceLocationName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The name of the source location."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The name of the source location." }
             ]
           },
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "The tags assigned to the source location."
               }
             ]
@@ -4069,19 +3218,13 @@
         "properties": {
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The ARN of the VOD source."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The ARN of the VOD source." }
             ]
           },
           "CreationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp that indicates when the VOD source was created."
               }
@@ -4089,29 +3232,19 @@
           },
           "HttpPackageConfigurations": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HttpPackageConfigurations"
-              },
-              {
-                "description": "The HTTP package configurations."
-              }
+              { "$ref": "#/components/schemas/HttpPackageConfigurations" },
+              { "description": "The HTTP package configurations." }
             ]
           },
           "LastModifiedTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
-              {
-                "description": "The ARN for the VOD source."
-              }
+              { "$ref": "#/components/schemas/__timestampUnix" },
+              { "description": "The ARN for the VOD source." }
             ]
           },
           "SourceLocationName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The name of the source location associated with the VOD source."
               }
@@ -4119,25 +3252,17 @@
           },
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "The tags assigned to the VOD source."
               }
             ]
           },
           "VodSourceName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The name of the VOD source."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The name of the VOD source." }
             ]
           }
         }
@@ -4147,12 +3272,8 @@
         "properties": {
           "Policy": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The IAM policy for the channel."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The IAM policy for the channel." }
             ]
           }
         }
@@ -4162,19 +3283,13 @@
         "properties": {
           "Items": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__listOfScheduleEntry"
-              },
-              {
-                "description": "An array of schedule entries for the channel."
-              }
+              { "$ref": "#/components/schemas/__listOfScheduleEntry" },
+              { "description": "An array of schedule entries for the channel." }
             ]
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "Pagination token from the GET list request. Use the token to fetch the next page of results."
               }
@@ -4187,9 +3302,7 @@
         "properties": {
           "Items": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__listOfAlert"
-              },
+              { "$ref": "#/components/schemas/__listOfAlert" },
               {
                 "description": "An array of alerts that are associated with this resource."
               }
@@ -4197,9 +3310,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "Pagination token from the list request. Use the token to fetch the next page of results."
               }
@@ -4212,9 +3323,7 @@
         "properties": {
           "Items": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__listOfChannel"
-              },
+              { "$ref": "#/components/schemas/__listOfChannel" },
               {
                 "description": "An array of channels that are associated with this account."
               }
@@ -4222,9 +3331,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "Pagination token returned by the list request when results exceed the maximum allowed. Use the token to fetch the next page of results."
               }
@@ -4237,19 +3344,13 @@
         "properties": {
           "Items": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__listOfSourceLocation"
-              },
-              {
-                "description": "An array of source locations."
-              }
+              { "$ref": "#/components/schemas/__listOfSourceLocation" },
+              { "description": "An array of source locations." }
             ]
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "Pagination token from the list request. Use the token to fetch the next page of results."
               }
@@ -4262,19 +3363,13 @@
         "properties": {
           "Items": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__listOfVodSource"
-              },
-              {
-                "description": "Lists the VOD sources."
-              }
+              { "$ref": "#/components/schemas/__listOfVodSource" },
+              { "description": "Lists the VOD sources." }
             ]
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "Pagination token from the list request. Use the token to fetch the next page of results."
               }
@@ -4282,46 +3377,27 @@
           }
         }
       },
-      "PutChannelPolicyResponse": {
-        "type": "object",
-        "properties": {}
-      },
-      "StartChannelResponse": {
-        "type": "object",
-        "properties": {}
-      },
-      "StopChannelResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "PutChannelPolicyResponse": { "type": "object", "properties": {} },
+      "StartChannelResponse": { "type": "object", "properties": {} },
+      "StopChannelResponse": { "type": "object", "properties": {} },
       "UpdateChannelResponse": {
         "type": "object",
         "properties": {
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The ARN of the channel."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The ARN of the channel." }
             ]
           },
           "ChannelName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The name of the channel."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The name of the channel." }
             ]
           },
           "ChannelState": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ChannelState"
-              },
+              { "$ref": "#/components/schemas/ChannelState" },
               {
                 "description": "Indicates whether the channel is in a running state or not."
               }
@@ -4329,9 +3405,7 @@
           },
           "CreationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp of when the channel was created."
               }
@@ -4339,9 +3413,7 @@
           },
           "FillerSlate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SlateSource"
-              },
+              { "$ref": "#/components/schemas/SlateSource" },
               {
                 "description": "Contains information about the slate used to fill gaps between programs in the schedule."
               }
@@ -4349,9 +3421,7 @@
           },
           "LastModifiedTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp of when the channel was last modified."
               }
@@ -4359,33 +3429,21 @@
           },
           "Outputs": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResponseOutputs"
-              },
-              {
-                "description": "The channel's output properties."
-              }
+              { "$ref": "#/components/schemas/ResponseOutputs" },
+              { "description": "The channel's output properties." }
             ]
           },
           "PlaybackMode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The channel's playback mode."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The channel's playback mode." }
             ]
           },
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "The tags assigned to the channel."
               }
             ]
@@ -4397,9 +3455,7 @@
         "properties": {
           "AccessConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccessConfiguration"
-              },
+              { "$ref": "#/components/schemas/AccessConfiguration" },
               {
                 "description": "The access configuration for the source location."
               }
@@ -4407,19 +3463,13 @@
           },
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The ARN of the source location."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The ARN of the source location." }
             ]
           },
           "CreationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp that indicates when the source location was created."
               }
@@ -4437,9 +3487,7 @@
           },
           "HttpConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HttpConfiguration"
-              },
+              { "$ref": "#/components/schemas/HttpConfiguration" },
               {
                 "description": "The HTTP package configuration settings for the source location."
               }
@@ -4447,9 +3495,7 @@
           },
           "LastModifiedTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp that indicates when the source location was last modified."
               }
@@ -4457,23 +3503,15 @@
           },
           "SourceLocationName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The name of the source location."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The name of the source location." }
             ]
           },
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "The tags assigned to the source location."
               }
             ]
@@ -4485,19 +3523,13 @@
         "properties": {
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The ARN of the VOD source."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The ARN of the VOD source." }
             ]
           },
           "CreationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp that indicates when the VOD source was created."
               }
@@ -4505,29 +3537,19 @@
           },
           "HttpPackageConfigurations": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HttpPackageConfigurations"
-              },
-              {
-                "description": "The HTTP package configurations."
-              }
+              { "$ref": "#/components/schemas/HttpPackageConfigurations" },
+              { "description": "The HTTP package configurations." }
             ]
           },
           "LastModifiedTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
-              {
-                "description": "The ARN for the VOD source."
-              }
+              { "$ref": "#/components/schemas/__timestampUnix" },
+              { "description": "The ARN for the VOD source." }
             ]
           },
           "SourceLocationName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The name of the source location associated with the VOD source."
               }
@@ -4535,25 +3557,17 @@
           },
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "The tags assigned to the VOD source."
               }
             ]
           },
           "VodSourceName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The name of the VOD source."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The name of the VOD source." }
             ]
           }
         }
@@ -4563,9 +3577,7 @@
         "properties": {
           "AccessType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccessType"
-              },
+              { "$ref": "#/components/schemas/AccessType" },
               {
                 "description": "<p>The type of authentication used to access content from HttpConfiguration::BaseUrl on your source location. Accepted value: S3_SIGV4.</p> <p>S3_SIGV4 - AWS Signature Version 4 authentication for Amazon S3 hosted virtual-style access. If your source location base URL is an Amazon S3 bucket, MediaTailor can use AWS Signature Version 4 (SigV4) authentication to access the bucket where your source content is stored. Your MediaTailor source location baseURL must follow the S3 virtual hosted-style request URL format. For example, https://bucket-name.s3.Region.amazonaws.com/key-name.</p> <p>Before you can use S3_SIGV4, you must meet these requirements:</p> <p>• You must allow MediaTailor to access your S3 bucket by granting mediatailor.amazonaws.com principal access in IAM. For information about configuring access in IAM, see Access management in the IAM User Guide.</p> <p>• The mediatailor.amazonaws.com service principal must have permissions to read all top level manifests referenced by the VodSource packaging configurations.</p> <p>• The caller of the API must have s3:GetObject IAM permissions to read all top level manifests referenced by your MediaTailor VodSource packaging configurations.</p>"
               }
@@ -4584,21 +3596,14 @@
         },
         "description": "Access configuration parameters."
       },
-      "MessageType": {
-        "enum": ["SPLICE_INSERT"],
-        "type": "string"
-      },
-      "__long": {
-        "type": "integer"
-      },
+      "MessageType": { "enum": ["SPLICE_INSERT"], "type": "string" },
+      "__long": { "type": "integer" },
       "SlateSource": {
         "type": "object",
         "properties": {
           "SourceLocationName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The name of the source location where the slate VOD source is stored."
               }
@@ -4606,9 +3611,7 @@
           },
           "VodSourceName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The slate VOD source name. The VOD source must already exist in a source location before it can be used for slate."
               }
@@ -4622,9 +3625,7 @@
         "properties": {
           "AvailNum": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__integer"
-              },
+              { "$ref": "#/components/schemas/__integer" },
               {
                 "description": "This is written to splice_insert.avail_num, as defined in section 9.7.3.1 of the SCTE-35 specification. The default value is 0. Values must be between 0 and 256, inclusive."
               }
@@ -4632,9 +3633,7 @@
           },
           "AvailsExpected": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__integer"
-              },
+              { "$ref": "#/components/schemas/__integer" },
               {
                 "description": "This is written to splice_insert.avails_expected, as defined in section 9.7.3.1 of the SCTE-35 specification. The default value is 0. Values must be between 0 and 256, inclusive."
               }
@@ -4642,9 +3641,7 @@
           },
           "SpliceEventId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__integer"
-              },
+              { "$ref": "#/components/schemas/__integer" },
               {
                 "description": "This is written to splice_insert.splice_event_id, as defined in section 9.7.3.1 of the SCTE-35 specification. The default value is 1."
               }
@@ -4652,9 +3649,7 @@
           },
           "UniqueProgramId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__integer"
-              },
+              { "$ref": "#/components/schemas/__integer" },
               {
                 "description": "This is written to splice_insert.unique_program_id, as defined in section 9.7.3.1 of the SCTE-35 specification. The default value is 0. Values must be between 0 and 256, inclusive."
               }
@@ -4663,10 +3658,7 @@
         },
         "description": "Splice insert message configuration."
       },
-      "__timestampUnix": {
-        "type": "string",
-        "format": "date-time"
-      },
+      "__timestampUnix": { "type": "string", "format": "date-time" },
       "Alert": {
         "required": [
           "ResourceArn",
@@ -4679,9 +3671,7 @@
         "properties": {
           "AlertCode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The code for the alert. For example, NOT_PROCESSED."
               }
@@ -4689,9 +3679,7 @@
           },
           "AlertMessage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "If an alert is generated for a resource, an explanation of the reason for the alert."
               }
@@ -4699,9 +3687,7 @@
           },
           "LastModifiedTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp when the alert was last modified."
               }
@@ -4709,9 +3695,7 @@
           },
           "RelatedResourceArns": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
                 "description": "The Amazon Resource Names (ARNs) related to this alert."
               }
@@ -4719,9 +3703,7 @@
           },
           "ResourceArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The Amazon Resource Name (ARN) of the resource."
               }
@@ -4732,9 +3714,7 @@
       },
       "ResponseOutputs": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ResponseOutputItem"
-        }
+        "items": { "$ref": "#/components/schemas/ResponseOutputItem" }
       },
       "Channel": {
         "required": [
@@ -4748,29 +3728,19 @@
         "properties": {
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The ARN of the channel."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The ARN of the channel." }
             ]
           },
           "ChannelName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The name of the channel."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The name of the channel." }
             ]
           },
           "ChannelState": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "Returns the state whether the channel is running or not."
               }
@@ -4778,9 +3748,7 @@
           },
           "CreationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp of when the channel was created."
               }
@@ -4788,9 +3756,7 @@
           },
           "FillerSlate": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SlateSource"
-              },
+              { "$ref": "#/components/schemas/SlateSource" },
               {
                 "description": "Contains information about the slate used to fill gaps between programs in the schedule. You must configure FillerSlate if your channel uses an LINEAR PlaybackMode."
               }
@@ -4798,9 +3764,7 @@
           },
           "LastModifiedTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp of when the channel was last modified."
               }
@@ -4808,19 +3772,13 @@
           },
           "Outputs": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResponseOutputs"
-              },
-              {
-                "description": "The channel's output properties."
-              }
+              { "$ref": "#/components/schemas/ResponseOutputs" },
+              { "description": "The channel's output properties." }
             ]
           },
           "PlaybackMode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "<p>The type of playback mode for this channel.</p> <p>LINEAR - Programs play back-to-back only once.</p> <p>LOOP - Programs play back-to-back in an endless loop. When the last program in the schedule plays, playback loops back to the first program in the schedule.</p>"
               }
@@ -4828,13 +3786,9 @@
           },
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "The tags to assign to the channel."
               }
             ]
@@ -4842,10 +3796,7 @@
         },
         "description": "The configuration parameters for a channel."
       },
-      "ChannelState": {
-        "enum": ["RUNNING", "STOPPED"],
-        "type": "string"
-      },
+      "ChannelState": { "enum": ["RUNNING", "STOPPED"], "type": "string" },
       "ConfigurationAliasesResponse": {
         "type": "object",
         "description": "The predefined aliases for dynamic variables.",
@@ -4855,18 +3806,14 @@
       },
       "__listOfAdBreak": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/AdBreak"
-        }
+        "items": { "$ref": "#/components/schemas/AdBreak" }
       },
       "DefaultSegmentDeliveryConfiguration": {
         "type": "object",
         "properties": {
           "BaseUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The hostname of the server that will be used to serve segments. This string must include the protocol, such as <b>https://</b>."
               }
@@ -4881,9 +3828,7 @@
         "properties": {
           "BaseUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The base URL for the source location host server. This string must include the protocol, such as <b>https://</b>."
               }
@@ -4895,18 +3840,14 @@
       "HttpPackageConfigurations": {
         "type": "array",
         "description": "The VOD source's HTTP package configuration settings.",
-        "items": {
-          "$ref": "#/components/schemas/HttpPackageConfiguration"
-        }
+        "items": { "$ref": "#/components/schemas/HttpPackageConfiguration" }
       },
       "DashPlaylistSettings": {
         "type": "object",
         "properties": {
           "ManifestWindowSeconds": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__integer"
-              },
+              { "$ref": "#/components/schemas/__integer" },
               {
                 "description": "The total duration (in seconds) of each manifest. Minimum value: 30 seconds. Maximum value: 3600 seconds."
               }
@@ -4914,9 +3855,7 @@
           },
           "MinBufferTimeSeconds": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__integer"
-              },
+              { "$ref": "#/components/schemas/__integer" },
               {
                 "description": "Minimum amount of content (measured in seconds) that a player must keep available in the buffer. Minimum value: 2 seconds. Maximum value: 60 seconds."
               }
@@ -4924,9 +3863,7 @@
           },
           "MinUpdatePeriodSeconds": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__integer"
-              },
+              { "$ref": "#/components/schemas/__integer" },
               {
                 "description": "Minimum amount of time (in seconds) that the player should wait before requesting updates to the manifest. Minimum value: 2 seconds. Maximum value: 60 seconds."
               }
@@ -4934,9 +3871,7 @@
           },
           "SuggestedPresentationDelaySeconds": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__integer"
-              },
+              { "$ref": "#/components/schemas/__integer" },
               {
                 "description": "Amount of time (in seconds) that the player should be from the live point at the end of the manifest. Minimum value: 2 seconds. Maximum value: 60 seconds."
               }
@@ -4947,18 +3882,14 @@
       },
       "__listOfScheduleEntry": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ScheduleEntry"
-        }
+        "items": { "$ref": "#/components/schemas/ScheduleEntry" }
       },
       "HlsPlaylistSettings": {
         "type": "object",
         "properties": {
           "ManifestWindowSeconds": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__integer"
-              },
+              { "$ref": "#/components/schemas/__integer" },
               {
                 "description": "The total duration (in seconds) of each manifest. Minimum value: 30 seconds. Maximum value: 3600 seconds."
               }
@@ -4967,33 +3898,22 @@
         },
         "description": "HLS playlist configuration parameters."
       },
-      "Type": {
-        "enum": ["DASH", "HLS"],
-        "type": "string"
-      },
+      "Type": { "enum": ["DASH", "HLS"], "type": "string" },
       "__listOfAlert": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Alert"
-        }
+        "items": { "$ref": "#/components/schemas/Alert" }
       },
       "__listOfChannel": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Channel"
-        }
+        "items": { "$ref": "#/components/schemas/Channel" }
       },
       "__listOfSourceLocation": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/SourceLocation"
-        }
+        "items": { "$ref": "#/components/schemas/SourceLocation" }
       },
       "__listOfVodSource": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/VodSource"
-        }
+        "items": { "$ref": "#/components/schemas/VodSource" }
       },
       "RelativePosition": {
         "enum": ["BEFORE_PROGRAM", "AFTER_PROGRAM"],
@@ -5005,29 +3925,19 @@
         "properties": {
           "DashPlaylistSettings": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DashPlaylistSettings"
-              },
-              {
-                "description": "DASH manifest configuration settings."
-              }
+              { "$ref": "#/components/schemas/DashPlaylistSettings" },
+              { "description": "DASH manifest configuration settings." }
             ]
           },
           "HlsPlaylistSettings": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HlsPlaylistSettings"
-              },
-              {
-                "description": "HLS manifest configuration settings."
-              }
+              { "$ref": "#/components/schemas/HlsPlaylistSettings" },
+              { "description": "HLS manifest configuration settings." }
             ]
           },
           "ManifestName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The name of the manifest for the channel that will appear in the channel output's playback URL."
               }
@@ -5035,19 +3945,13 @@
           },
           "PlaybackUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The URL used for playback by content players."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The URL used for playback by content players." }
             ]
           },
           "SourceGroup": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "A string used to associate a package configuration source group with a channel output."
               }
@@ -5061,9 +3965,7 @@
         "properties": {
           "ApproximateDurationSeconds": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__long"
-              },
+              { "$ref": "#/components/schemas/__long" },
               {
                 "description": "The approximate duration of the ad break, in seconds."
               }
@@ -5071,9 +3973,7 @@
           },
           "ApproximateStartTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The approximate time that the ad will start playing."
               }
@@ -5081,9 +3981,7 @@
           },
           "SourceLocationName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The name of the source location containing the VOD source used for the ad break."
               }
@@ -5091,9 +3989,7 @@
           },
           "VodSourceName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The name of the VOD source used for the ad break."
               }
@@ -5104,9 +4000,7 @@
       },
       "__listOfScheduleAdBreak": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ScheduleAdBreak"
-        }
+        "items": { "$ref": "#/components/schemas/ScheduleAdBreak" }
       },
       "ScheduleEntryType": {
         "enum": ["PROGRAM", "FILLER_SLATE"],
@@ -5124,9 +4018,7 @@
         "properties": {
           "ApproximateDurationSeconds": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__long"
-              },
+              { "$ref": "#/components/schemas/__long" },
               {
                 "description": "The approximate duration of this program, in seconds."
               }
@@ -5134,9 +4026,7 @@
           },
           "ApproximateStartTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The approximate time that the program will start playing."
               }
@@ -5144,19 +4034,13 @@
           },
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The ARN of the program."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The ARN of the program." }
             ]
           },
           "ChannelName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The name of the channel that uses this schedule."
               }
@@ -5164,29 +4048,19 @@
           },
           "ProgramName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The name of the program."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The name of the program." }
             ]
           },
           "ScheduleAdBreaks": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__listOfScheduleAdBreak"
-              },
-              {
-                "description": "The schedule's ad break properties."
-              }
+              { "$ref": "#/components/schemas/__listOfScheduleAdBreak" },
+              { "description": "The schedule's ad break properties." }
             ]
           },
           "ScheduleEntryType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ScheduleEntryType"
-              },
+              { "$ref": "#/components/schemas/ScheduleEntryType" },
               {
                 "description": "<p>The type of schedule entry.</p> <p>Valid values: PROGRAM or FILLER_SLATE.</p>"
               }
@@ -5194,22 +4068,14 @@
           },
           "SourceLocationName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The name of the source location."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The name of the source location." }
             ]
           },
           "VodSourceName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The name of the VOD source."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The name of the VOD source." }
             ]
           }
         },
@@ -5221,9 +4087,7 @@
         "properties": {
           "AccessConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AccessConfiguration"
-              },
+              { "$ref": "#/components/schemas/AccessConfiguration" },
               {
                 "description": "The access configuration for the source location."
               }
@@ -5231,19 +4095,13 @@
           },
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The ARN of the SourceLocation."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The ARN of the SourceLocation." }
             ]
           },
           "CreationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp that indicates when the source location was created."
               }
@@ -5254,16 +4112,12 @@
               {
                 "$ref": "#/components/schemas/DefaultSegmentDeliveryConfiguration"
               },
-              {
-                "description": "The default segment delivery configuration."
-              }
+              { "description": "The default segment delivery configuration." }
             ]
           },
           "HttpConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HttpConfiguration"
-              },
+              { "$ref": "#/components/schemas/HttpConfiguration" },
               {
                 "description": "The HTTP configuration for the source location."
               }
@@ -5271,9 +4125,7 @@
           },
           "LastModifiedTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp that indicates when the source location was last modified."
               }
@@ -5281,23 +4133,15 @@
           },
           "SourceLocationName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The name of the source location."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The name of the source location." }
             ]
           },
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "The tags assigned to the source location."
               }
             ]
@@ -5316,19 +4160,13 @@
         "properties": {
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The ARN for the VOD source."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The ARN for the VOD source." }
             ]
           },
           "CreationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp that indicates when the VOD source was created."
               }
@@ -5336,9 +4174,7 @@
           },
           "HttpPackageConfigurations": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HttpPackageConfigurations"
-              },
+              { "$ref": "#/components/schemas/HttpPackageConfigurations" },
               {
                 "description": "The HTTP package configurations for the VOD source."
               }
@@ -5346,9 +4182,7 @@
           },
           "LastModifiedTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__timestampUnix"
-              },
+              { "$ref": "#/components/schemas/__timestampUnix" },
               {
                 "description": "The timestamp that indicates when the VOD source was last modified."
               }
@@ -5356,9 +4190,7 @@
           },
           "SourceLocationName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
+              { "$ref": "#/components/schemas/__string" },
               {
                 "description": "The name of the source location that the VOD source is associated with."
               }
@@ -5366,25 +4198,17 @@
           },
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "The tags assigned to the VOD source."
               }
             ]
           },
           "VodSourceName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "description": "The name of the VOD source."
-              }
+              { "$ref": "#/components/schemas/__string" },
+              { "description": "The name of the VOD source." }
             ]
           }
         },
@@ -5392,11 +4216,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2018-04-23",
     "endpointPrefix": "api.mediatailor",

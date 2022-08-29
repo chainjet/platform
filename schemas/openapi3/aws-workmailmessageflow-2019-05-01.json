@@ -180,27 +180,13 @@
         "summary": "Get Raw Message Content"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "PutRawMessageContent",
@@ -240,9 +226,7 @@
             "description": "MessageRejected",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageRejected"
-                }
+                "schema": { "$ref": "#/components/schemas/MessageRejected" }
               }
             }
           },
@@ -250,9 +234,7 @@
             "description": "MessageFrozen",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageFrozen"
-                }
+                "schema": { "$ref": "#/components/schemas/MessageFrozen" }
               }
             }
           }
@@ -285,9 +267,7 @@
                     "properties": {
                       "s3Reference": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/S3Reference"
-                          },
+                          { "$ref": "#/components/schemas/S3Reference" },
                           {
                             "description": "The S3 reference of an email message."
                           }
@@ -309,63 +289,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -386,9 +352,7 @@
         "properties": {
           "messageContent": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/messageContentBlob"
-              },
+              { "$ref": "#/components/schemas/messageContentBlob" },
               {
                 "description": "The raw content of the email message, in MIME format."
               }
@@ -397,42 +361,27 @@
         }
       },
       "ResourceNotFoundException": {},
-      "messageContentBlob": {
-        "type": "string"
-      },
-      "PutRawMessageContentResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "messageContentBlob": { "type": "string" },
+      "PutRawMessageContentResponse": { "type": "object", "properties": {} },
       "S3Reference": {
         "type": "object",
         "required": ["bucket", "key"],
         "properties": {
           "bucket": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/s3BucketIdType"
-              },
-              {
-                "description": "The S3 bucket name."
-              }
+              { "$ref": "#/components/schemas/s3BucketIdType" },
+              { "description": "The S3 bucket name." }
             ]
           },
           "key": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/s3KeyIdType"
-              },
-              {
-                "description": "The S3 key object name."
-              }
+              { "$ref": "#/components/schemas/s3KeyIdType" },
+              { "description": "The S3 key object name." }
             ]
           },
           "objectVersion": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/s3VersionType"
-              },
+              { "$ref": "#/components/schemas/s3VersionType" },
               {
                 "description": "If you enable versioning for the bucket, you can specify the object version."
               }
@@ -464,11 +413,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2019-05-01",
     "endpointPrefix": "workmailmessageflow",

@@ -147,9 +147,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateAppResult"
-                }
+                "schema": { "$ref": "#/components/schemas/CreateAppResult" }
               }
             }
           },
@@ -157,9 +155,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -281,9 +277,7 @@
                   "customRules": {
                     "description": " The custom rewrite and redirect rules for an Amplify app. ",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/CustomRule"
-                    }
+                    "items": { "$ref": "#/components/schemas/CustomRule" }
                   },
                   "tags": {
                     "description": " The tag for an Amplify app. ",
@@ -317,9 +311,7 @@
                     "properties": {
                       "stage": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/Stage"
-                          },
+                          { "$ref": "#/components/schemas/Stage" },
                           {
                             "description": " Describes the current stage for the autocreated branch. "
                           }
@@ -327,9 +319,7 @@
                       },
                       "framework": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/Framework"
-                          },
+                          { "$ref": "#/components/schemas/Framework" },
                           {
                             "description": " The framework for the autocreated branch. "
                           }
@@ -337,9 +327,7 @@
                       },
                       "enableAutoBuild": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/EnableAutoBuild"
-                          },
+                          { "$ref": "#/components/schemas/EnableAutoBuild" },
                           {
                             "description": " Enables auto building for the autocreated branch. "
                           }
@@ -367,9 +355,7 @@
                       },
                       "enableBasicAuth": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/EnableBasicAuth"
-                          },
+                          { "$ref": "#/components/schemas/EnableBasicAuth" },
                           {
                             "description": " Enables basic authorization for the autocreated branch. "
                           }
@@ -377,9 +363,7 @@
                       },
                       "buildSpec": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/BuildSpec"
-                          },
+                          { "$ref": "#/components/schemas/BuildSpec" },
                           {
                             "description": " The build specification (build spec) for the autocreated branch. "
                           }
@@ -431,27 +415,13 @@
         "summary": "Create App"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListApps",
@@ -461,9 +431,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListAppsResult"
-                }
+                "schema": { "$ref": "#/components/schemas/ListAppsResult" }
               }
             }
           },
@@ -471,9 +439,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -504,21 +470,14 @@
             "in": "query",
             "required": false,
             "description": " A pagination token. If non-null, the pagination token is returned in a result. Pass its value in another request to retrieve more entries. ",
-            "schema": {
-              "type": "string",
-              "maxLength": 2000
-            }
+            "schema": { "type": "string", "maxLength": 2000 }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": " The maximum number of records to list in a single response. ",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           }
         ],
         "summary": "List Apps"
@@ -543,9 +502,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -563,9 +520,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -638,27 +593,13 @@
         "summary": "Create Backend Environment"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListBackendEnvironments",
@@ -678,9 +619,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -723,32 +662,21 @@
             "in": "query",
             "required": false,
             "description": " The name of the backend environment ",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 255 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": " A pagination token. Set to null to start listing backend environments from the start. If a non-null pagination token is returned in a result, pass its value in here to list more backend environments. ",
-            "schema": {
-              "type": "string",
-              "maxLength": 2000
-            }
+            "schema": { "type": "string", "maxLength": 2000 }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": " The maximum number of records to list in a single response. ",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           }
         ],
         "summary": "List Backend Environments"
@@ -763,9 +691,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateBranchResult"
-                }
+                "schema": { "$ref": "#/components/schemas/CreateBranchResult" }
               }
             }
           },
@@ -773,9 +699,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -793,9 +717,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -955,27 +877,13 @@
         "summary": "Create Branch"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListBranches",
@@ -985,9 +893,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListBranchesResult"
-                }
+                "schema": { "$ref": "#/components/schemas/ListBranchesResult" }
               }
             }
           },
@@ -995,9 +901,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1040,21 +944,14 @@
             "in": "query",
             "required": false,
             "description": " A pagination token. Set to null to start listing branches from the start. If a non-null pagination token is returned in a result, pass its value in here to list more branches. ",
-            "schema": {
-              "type": "string",
-              "maxLength": 2000
-            }
+            "schema": { "type": "string", "maxLength": 2000 }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": " The maximum number of records to list in a single response. ",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           }
         ],
         "summary": "List Branches"
@@ -1079,9 +976,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1134,11 +1029,7 @@
             "in": "path",
             "required": true,
             "description": " The name for the branch, for the job. ",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 255 }
           }
         ],
         "requestBody": {
@@ -1163,27 +1054,13 @@
         "summary": "Create Deployment"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/apps/{appId}/domains": {
@@ -1205,9 +1082,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1225,9 +1100,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1322,27 +1195,13 @@
         "summary": "Create Domain Association"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListDomainAssociations",
@@ -1362,9 +1221,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1407,21 +1264,14 @@
             "in": "query",
             "required": false,
             "description": " A pagination token. Set to null to start listing apps from the start. If non-null, a pagination token is returned in a result. Pass its value in here to list more projects. ",
-            "schema": {
-              "type": "string",
-              "maxLength": 2000
-            }
+            "schema": { "type": "string", "maxLength": 2000 }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": " The maximum number of records to list in a single response. ",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           }
         ],
         "summary": "List Domain Associations"
@@ -1436,9 +1286,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateWebhookResult"
-                }
+                "schema": { "$ref": "#/components/schemas/CreateWebhookResult" }
               }
             }
           },
@@ -1446,9 +1294,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1466,9 +1312,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1544,27 +1388,13 @@
         "summary": "Create Webhook"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListWebhooks",
@@ -1574,9 +1404,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListWebhooksResult"
-                }
+                "schema": { "$ref": "#/components/schemas/ListWebhooksResult" }
               }
             }
           },
@@ -1584,9 +1412,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1639,21 +1465,14 @@
             "in": "query",
             "required": false,
             "description": " A pagination token. Set to null to start listing webhooks from the start. If non-null,the pagination token is returned in a result. Pass its value in here to list more webhooks. ",
-            "schema": {
-              "type": "string",
-              "maxLength": 2000
-            }
+            "schema": { "type": "string", "maxLength": 2000 }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": " The maximum number of records to list in a single response. ",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           }
         ],
         "summary": "List Webhooks"
@@ -1668,9 +1487,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteAppResult"
-                }
+                "schema": { "$ref": "#/components/schemas/DeleteAppResult" }
               }
             }
           },
@@ -1678,9 +1495,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1688,9 +1503,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1742,27 +1555,13 @@
         "summary": "Delete App"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetApp",
@@ -1772,9 +1571,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetAppResult"
-                }
+                "schema": { "$ref": "#/components/schemas/GetAppResult" }
               }
             }
           },
@@ -1782,9 +1579,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1792,9 +1587,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1843,9 +1636,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UpdateAppResult"
-                }
+                "schema": { "$ref": "#/components/schemas/UpdateAppResult" }
               }
             }
           },
@@ -1853,9 +1644,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1863,9 +1652,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1961,9 +1748,7 @@
                   "customRules": {
                     "description": " The custom redirect and rewrite rules for an Amplify app. ",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/CustomRule"
-                    }
+                    "items": { "$ref": "#/components/schemas/CustomRule" }
                   },
                   "buildSpec": {
                     "description": " The build specification (build spec) file for an Amplify app build. ",
@@ -1988,9 +1773,7 @@
                     "properties": {
                       "stage": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/Stage"
-                          },
+                          { "$ref": "#/components/schemas/Stage" },
                           {
                             "description": " Describes the current stage for the autocreated branch. "
                           }
@@ -1998,9 +1781,7 @@
                       },
                       "framework": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/Framework"
-                          },
+                          { "$ref": "#/components/schemas/Framework" },
                           {
                             "description": " The framework for the autocreated branch. "
                           }
@@ -2008,9 +1789,7 @@
                       },
                       "enableAutoBuild": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/EnableAutoBuild"
-                          },
+                          { "$ref": "#/components/schemas/EnableAutoBuild" },
                           {
                             "description": " Enables auto building for the autocreated branch. "
                           }
@@ -2038,9 +1817,7 @@
                       },
                       "enableBasicAuth": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/EnableBasicAuth"
-                          },
+                          { "$ref": "#/components/schemas/EnableBasicAuth" },
                           {
                             "description": " Enables basic authorization for the autocreated branch. "
                           }
@@ -2048,9 +1825,7 @@
                       },
                       "buildSpec": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/BuildSpec"
-                          },
+                          { "$ref": "#/components/schemas/BuildSpec" },
                           {
                             "description": " The build specification (build spec) for the autocreated branch. "
                           }
@@ -2139,9 +1914,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2159,9 +1932,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2204,37 +1975,19 @@
             "in": "path",
             "required": true,
             "description": " The name of a backend environment of an Amplify app. ",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 255 }
           }
         ],
         "summary": "Delete Backend Environment"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetBackendEnvironment",
@@ -2254,9 +2007,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2274,9 +2025,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2309,11 +2058,7 @@
             "in": "path",
             "required": true,
             "description": " The name for the backend environment. ",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 255 }
           }
         ],
         "summary": "Get Backend Environment"
@@ -2328,9 +2073,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteBranchResult"
-                }
+                "schema": { "$ref": "#/components/schemas/DeleteBranchResult" }
               }
             }
           },
@@ -2338,9 +2081,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2358,9 +2099,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2403,37 +2142,19 @@
             "in": "path",
             "required": true,
             "description": " The name for the branch. ",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 255 }
           }
         ],
         "summary": "Delete Branch"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetBranch",
@@ -2443,9 +2164,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetBranchResult"
-                }
+                "schema": { "$ref": "#/components/schemas/GetBranchResult" }
               }
             }
           },
@@ -2453,9 +2172,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2473,9 +2190,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2508,11 +2223,7 @@
             "in": "path",
             "required": true,
             "description": " The name for the branch. ",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 255 }
           }
         ],
         "summary": "Get Branch"
@@ -2525,9 +2236,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UpdateBranchResult"
-                }
+                "schema": { "$ref": "#/components/schemas/UpdateBranchResult" }
               }
             }
           },
@@ -2535,9 +2244,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2555,9 +2262,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2600,11 +2305,7 @@
             "in": "path",
             "required": true,
             "description": " The name for the branch. ",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 255 }
           }
         ],
         "requestBody": {
@@ -2721,9 +2422,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2741,9 +2440,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2786,36 +2483,19 @@
             "in": "path",
             "required": true,
             "description": " The name of the domain. ",
-            "schema": {
-              "type": "string",
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "maxLength": 255 }
           }
         ],
         "summary": "Delete Domain Association"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetDomainAssociation",
@@ -2835,9 +2515,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2855,9 +2533,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2890,10 +2566,7 @@
             "in": "path",
             "required": true,
             "description": " The name of the domain. ",
-            "schema": {
-              "type": "string",
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "maxLength": 255 }
           }
         ],
         "summary": "Get Domain Association"
@@ -2916,9 +2589,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2936,9 +2607,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2981,10 +2650,7 @@
             "in": "path",
             "required": true,
             "description": " The name of the domain. ",
-            "schema": {
-              "type": "string",
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "maxLength": 255 }
           }
         ],
         "requestBody": {
@@ -3037,9 +2703,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteJobResult"
-                }
+                "schema": { "$ref": "#/components/schemas/DeleteJobResult" }
               }
             }
           },
@@ -3047,9 +2711,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -3077,9 +2739,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -3112,47 +2772,26 @@
             "in": "path",
             "required": true,
             "description": " The name for the branch, for the job. ",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 255 }
           },
           {
             "name": "jobId",
             "in": "path",
             "required": true,
             "description": " The unique ID for the job. ",
-            "schema": {
-              "type": "string",
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "maxLength": 255 }
           }
         ],
         "summary": "Delete Job"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetJob",
@@ -3162,9 +2801,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetJobResult"
-                }
+                "schema": { "$ref": "#/components/schemas/GetJobResult" }
               }
             }
           },
@@ -3172,9 +2809,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -3202,9 +2837,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -3237,21 +2870,14 @@
             "in": "path",
             "required": true,
             "description": " The branch name for the job. ",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 255 }
           },
           {
             "name": "jobId",
             "in": "path",
             "required": true,
             "description": " The unique ID for the job. ",
-            "schema": {
-              "type": "string",
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "maxLength": 255 }
           }
         ],
         "summary": "Get Job"
@@ -3266,9 +2892,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteWebhookResult"
-                }
+                "schema": { "$ref": "#/components/schemas/DeleteWebhookResult" }
               }
             }
           },
@@ -3276,9 +2900,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -3306,9 +2928,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -3329,36 +2949,19 @@
             "in": "path",
             "required": true,
             "description": " The unique ID for a webhook. ",
-            "schema": {
-              "type": "string",
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "maxLength": 255 }
           }
         ],
         "summary": "Delete Webhook"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetWebhook",
@@ -3368,9 +2971,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetWebhookResult"
-                }
+                "schema": { "$ref": "#/components/schemas/GetWebhookResult" }
               }
             }
           },
@@ -3378,9 +2979,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -3408,9 +3007,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -3431,10 +3028,7 @@
             "in": "path",
             "required": true,
             "description": " The unique ID for a webhook. ",
-            "schema": {
-              "type": "string",
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "maxLength": 255 }
           }
         ],
         "summary": "Get Webhook"
@@ -3447,9 +3041,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UpdateWebhookResult"
-                }
+                "schema": { "$ref": "#/components/schemas/UpdateWebhookResult" }
               }
             }
           },
@@ -3457,9 +3049,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -3477,9 +3067,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -3510,10 +3098,7 @@
             "in": "path",
             "required": true,
             "description": " The unique ID for a webhook. ",
-            "schema": {
-              "type": "string",
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "maxLength": 255 }
           }
         ],
         "requestBody": {
@@ -3561,9 +3146,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -3571,9 +3154,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -3643,27 +3224,13 @@
         "summary": "Generate Access Logs"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/artifacts/{artifactId}": {
@@ -3685,9 +3252,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -3715,9 +3280,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -3738,36 +3301,19 @@
             "in": "path",
             "required": true,
             "description": " The unique ID for an artifact. ",
-            "schema": {
-              "type": "string",
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "maxLength": 255 }
           }
         ],
         "summary": "Get Artifact Url"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/apps/{appId}/branches/{branchName}/jobs/{jobId}/artifacts": {
@@ -3779,9 +3325,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListArtifactsResult"
-                }
+                "schema": { "$ref": "#/components/schemas/ListArtifactsResult" }
               }
             }
           },
@@ -3789,9 +3333,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -3844,68 +3386,40 @@
             "in": "path",
             "required": true,
             "description": " The name of a branch that is part of an Amplify app. ",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 255 }
           },
           {
             "name": "jobId",
             "in": "path",
             "required": true,
             "description": " The unique ID for a job. ",
-            "schema": {
-              "type": "string",
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "maxLength": 255 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": " A pagination token. Set to null to start listing artifacts from start. If a non-null pagination token is returned in a result, pass its value in here to list more artifacts. ",
-            "schema": {
-              "type": "string",
-              "maxLength": 2000
-            }
+            "schema": { "type": "string", "maxLength": 2000 }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": " The maximum number of records to list in a single response. ",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           }
         ],
         "summary": "List Artifacts"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/apps/{appId}/branches/{branchName}/jobs": {
@@ -3917,9 +3431,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListJobsResult"
-                }
+                "schema": { "$ref": "#/components/schemas/ListJobsResult" }
               }
             }
           },
@@ -3927,9 +3439,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -3982,58 +3492,33 @@
             "in": "path",
             "required": true,
             "description": " The name for a branch. ",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 255 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": " A pagination token. Set to null to start listing steps from the start. If a non-null pagination token is returned in a result, pass its value in here to list more steps. ",
-            "schema": {
-              "type": "string",
-              "maxLength": 2000
-            }
+            "schema": { "type": "string", "maxLength": 2000 }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": " The maximum number of records to list in a single response. ",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           }
         ],
         "summary": "List Jobs"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "StartJob",
@@ -4043,9 +3528,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StartJobResult"
-                }
+                "schema": { "$ref": "#/components/schemas/StartJobResult" }
               }
             }
           },
@@ -4053,9 +3536,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -4083,9 +3564,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -4118,11 +3597,7 @@
             "in": "path",
             "required": true,
             "description": " The branch name for the job. ",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 255 }
           }
         ],
         "requestBody": {
@@ -4201,9 +3676,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -4224,36 +3697,19 @@
             "in": "path",
             "required": true,
             "description": " The Amazon Resource Name (ARN) to use to list tags. ",
-            "schema": {
-              "type": "string",
-              "pattern": "^arn:aws:amplify:.*"
-            }
+            "schema": { "type": "string", "pattern": "^arn:aws:amplify:.*" }
           }
         ],
         "summary": "List Tags For Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "TagResource",
@@ -4263,9 +3719,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TagResourceResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/TagResourceResponse" }
               }
             }
           },
@@ -4283,9 +3737,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -4306,10 +3758,7 @@
             "in": "path",
             "required": true,
             "description": " The Amazon Resource Name (ARN) to use to tag a resource. ",
-            "schema": {
-              "type": "string",
-              "pattern": "^arn:aws:amplify:.*"
-            }
+            "schema": { "type": "string", "pattern": "^arn:aws:amplify:.*" }
           }
         ],
         "requestBody": {
@@ -4356,9 +3805,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -4386,9 +3833,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -4421,11 +3866,7 @@
             "in": "path",
             "required": true,
             "description": " The name for the branch, for the job. ",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 255 }
           }
         ],
         "requestBody": {
@@ -4453,27 +3894,13 @@
         "summary": "Start Deployment"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/apps/{appId}/branches/{branchName}/jobs/{jobId}/stop": {
@@ -4485,9 +3912,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StopJobResult"
-                }
+                "schema": { "$ref": "#/components/schemas/StopJobResult" }
               }
             }
           },
@@ -4495,9 +3920,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -4525,9 +3948,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -4560,47 +3981,26 @@
             "in": "path",
             "required": true,
             "description": " The name for the branch, for the job. ",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "minLength": 1, "maxLength": 255 }
           },
           {
             "name": "jobId",
             "in": "path",
             "required": true,
             "description": " The unique id for the job. ",
-            "schema": {
-              "type": "string",
-              "maxLength": 255
-            }
+            "schema": { "type": "string", "maxLength": 255 }
           }
         ],
         "summary": "Stop Job"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/tags/{resourceArn}#tagKeys": {
@@ -4632,9 +4032,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -4655,10 +4053,7 @@
             "in": "path",
             "required": true,
             "description": " The Amazon Resource Name (ARN) to use to untag a resource. ",
-            "schema": {
-              "type": "string",
-              "pattern": "^arn:aws:amplify:.*"
-            }
+            "schema": { "type": "string", "pattern": "^arn:aws:amplify:.*" }
           },
           {
             "name": "tagKeys",
@@ -4667,9 +4062,7 @@
             "description": " The tag keys to use to untag a resource. ",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/TagKey"
-              },
+              "items": { "$ref": "#/components/schemas/TagKey" },
               "minItems": 1,
               "maxItems": 50
             }
@@ -4678,27 +4071,13 @@
         "summary": "Untag Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -4707,63 +4086,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -4781,25 +4146,16 @@
       "CreateAppResult": {
         "type": "object",
         "required": ["app"],
-        "properties": {
-          "app": {
-            "$ref": "#/components/schemas/App"
-          }
-        }
+        "properties": { "app": { "$ref": "#/components/schemas/App" } }
       },
-      "EnvValue": {
-        "type": "string",
-        "maxLength": 1000
-      },
+      "EnvValue": { "type": "string", "maxLength": 1000 },
       "CustomRule": {
         "type": "object",
         "required": ["source", "target"],
         "properties": {
           "source": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Source"
-              },
+              { "$ref": "#/components/schemas/Source" },
               {
                 "description": " The source pattern for a URL rewrite or redirect rule. "
               }
@@ -4807,9 +4163,7 @@
           },
           "target": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Target"
-              },
+              { "$ref": "#/components/schemas/Target" },
               {
                 "description": " The target pattern for a URL rewrite or redirect rule. "
               }
@@ -4817,9 +4171,7 @@
           },
           "status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Status"
-              },
+              { "$ref": "#/components/schemas/Status" },
               {
                 "description": " The status code for a URL rewrite or redirect rule. "
               }
@@ -4827,9 +4179,7 @@
           },
           "condition": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Condition"
-              },
+              { "$ref": "#/components/schemas/Condition" },
               {
                 "description": " The condition for a URL rewrite or redirect rule, such as a country code. "
               }
@@ -4838,10 +4188,7 @@
         },
         "description": " Describes a custom rewrite or redirect rule. "
       },
-      "TagValue": {
-        "type": "string",
-        "maxLength": 256
-      },
+      "TagValue": { "type": "string", "maxLength": 256 },
       "AutoBranchCreationPattern": {
         "type": "string",
         "minLength": 1,
@@ -4857,40 +4204,26 @@
           "PULL_REQUEST"
         ]
       },
-      "Framework": {
-        "type": "string",
-        "maxLength": 255
-      },
-      "EnableAutoBuild": {
-        "type": "boolean"
-      },
+      "Framework": { "type": "string", "maxLength": 255 },
+      "EnableAutoBuild": { "type": "boolean" },
       "EnvironmentVariables": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/EnvValue"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/EnvValue" }
       },
       "BasicAuthCredentials": {
         "type": "string",
         "maxLength": 2000,
         "format": "password"
       },
-      "EnableBasicAuth": {
-        "type": "boolean"
-      },
+      "EnableBasicAuth": { "type": "boolean" },
       "BuildSpec": {
         "type": "string",
         "description": " The build specification (build spec) file for an Amplify app build. ",
         "minLength": 1,
         "maxLength": 25000
       },
-      "EnablePullRequestPreview": {
-        "type": "boolean"
-      },
-      "PullRequestEnvironmentName": {
-        "type": "string",
-        "maxLength": 20
-      },
+      "EnablePullRequestPreview": { "type": "boolean" },
+      "PullRequestEnvironmentName": { "type": "string", "maxLength": 20 },
       "BadRequestException": {},
       "UnauthorizedException": {},
       "InternalFailureException": {},
@@ -4902,9 +4235,7 @@
         "properties": {
           "backendEnvironment": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BackendEnvironment"
-              },
+              { "$ref": "#/components/schemas/BackendEnvironment" },
               {
                 "description": " Describes the backend environment for an Amplify app. "
               }
@@ -4920,9 +4251,7 @@
         "properties": {
           "branch": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Branch"
-              },
+              { "$ref": "#/components/schemas/Branch" },
               {
                 "description": " Describes the branch for an Amplify app, which maps to a third-party repository branch. "
               }
@@ -4937,9 +4266,7 @@
         "properties": {
           "jobId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobId"
-              },
+              { "$ref": "#/components/schemas/JobId" },
               {
                 "description": " The job ID for this deployment. will supply to start deployment api. "
               }
@@ -4947,9 +4274,7 @@
           },
           "fileUploadUrls": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FileUploadUrls"
-              },
+              { "$ref": "#/components/schemas/FileUploadUrls" },
               {
                 "description": " When the <code>fileMap</code> argument is provided in the request, <code>fileUploadUrls</code> will contain a map of file names to upload URLs. "
               }
@@ -4957,9 +4282,7 @@
           },
           "zipUploadUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UploadUrl"
-              },
+              { "$ref": "#/components/schemas/UploadUrl" },
               {
                 "description": " When the <code>fileMap</code> argument is not provided in the request, this <code>zipUploadUrl</code> is returned. "
               }
@@ -4968,19 +4291,14 @@
         },
         "description": " The result structure for the create a new deployment request. "
       },
-      "MD5Hash": {
-        "type": "string",
-        "maxLength": 32
-      },
+      "MD5Hash": { "type": "string", "maxLength": 32 },
       "CreateDomainAssociationResult": {
         "type": "object",
         "required": ["domainAssociation"],
         "properties": {
           "domainAssociation": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainAssociation"
-              },
+              { "$ref": "#/components/schemas/DomainAssociation" },
               {
                 "description": " Describes the structure of a domain association, which associates a custom domain with an Amplify app. "
               }
@@ -4995,22 +4313,14 @@
         "properties": {
           "prefix": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainPrefix"
-              },
-              {
-                "description": " The prefix setting for the subdomain. "
-              }
+              { "$ref": "#/components/schemas/DomainPrefix" },
+              { "description": " The prefix setting for the subdomain. " }
             ]
           },
           "branchName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BranchName"
-              },
-              {
-                "description": " The branch name setting for the subdomain. "
-              }
+              { "$ref": "#/components/schemas/BranchName" },
+              { "description": " The branch name setting for the subdomain. " }
             ]
           }
         },
@@ -5027,9 +4337,7 @@
         "properties": {
           "webhook": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Webhook"
-              },
+              { "$ref": "#/components/schemas/Webhook" },
               {
                 "description": " Describes a webhook that connects repository events to an Amplify app. "
               }
@@ -5041,11 +4349,7 @@
       "DeleteAppResult": {
         "type": "object",
         "required": ["app"],
-        "properties": {
-          "app": {
-            "$ref": "#/components/schemas/App"
-          }
-        },
+        "properties": { "app": { "$ref": "#/components/schemas/App" } },
         "description": " The result structure for the delete app request. "
       },
       "DeleteBackendEnvironmentResult": {
@@ -5054,9 +4358,7 @@
         "properties": {
           "backendEnvironment": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BackendEnvironment"
-              },
+              { "$ref": "#/components/schemas/BackendEnvironment" },
               {
                 "description": " Describes the backend environment for an Amplify app. "
               }
@@ -5071,9 +4373,7 @@
         "properties": {
           "branch": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Branch"
-              },
+              { "$ref": "#/components/schemas/Branch" },
               {
                 "description": " The branch for an Amplify app, which maps to a third-party repository branch. "
               }
@@ -5095,9 +4395,7 @@
         "type": "object",
         "required": ["jobSummary"],
         "properties": {
-          "jobSummary": {
-            "$ref": "#/components/schemas/JobSummary"
-          }
+          "jobSummary": { "$ref": "#/components/schemas/JobSummary" }
         },
         "description": " The result structure for the delete job request. "
       },
@@ -5107,9 +4405,7 @@
         "properties": {
           "webhook": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Webhook"
-              },
+              { "$ref": "#/components/schemas/Webhook" },
               {
                 "description": " Describes a webhook that connects repository events to an Amplify app. "
               }
@@ -5123,9 +4419,7 @@
         "properties": {
           "logUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LogUrl"
-              },
+              { "$ref": "#/components/schemas/LogUrl" },
               {
                 "description": " The pre-signed URL for the requested access logs. "
               }
@@ -5137,11 +4431,7 @@
       "GetAppResult": {
         "type": "object",
         "required": ["app"],
-        "properties": {
-          "app": {
-            "$ref": "#/components/schemas/App"
-          }
-        }
+        "properties": { "app": { "$ref": "#/components/schemas/App" } }
       },
       "GetArtifactUrlResult": {
         "type": "object",
@@ -5149,22 +4439,14 @@
         "properties": {
           "artifactId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ArtifactId"
-              },
-              {
-                "description": " The unique ID for an artifact. "
-              }
+              { "$ref": "#/components/schemas/ArtifactId" },
+              { "description": " The unique ID for an artifact. " }
             ]
           },
           "artifactUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ArtifactUrl"
-              },
-              {
-                "description": " The presigned URL for the artifact. "
-              }
+              { "$ref": "#/components/schemas/ArtifactUrl" },
+              { "description": " The presigned URL for the artifact. " }
             ]
           }
         },
@@ -5176,9 +4458,7 @@
         "properties": {
           "backendEnvironment": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BackendEnvironment"
-              },
+              { "$ref": "#/components/schemas/BackendEnvironment" },
               {
                 "description": " Describes the backend environment for an Amplify app. "
               }
@@ -5190,11 +4470,7 @@
       "GetBranchResult": {
         "type": "object",
         "required": ["branch"],
-        "properties": {
-          "branch": {
-            "$ref": "#/components/schemas/Branch"
-          }
-        }
+        "properties": { "branch": { "$ref": "#/components/schemas/Branch" } }
       },
       "GetDomainAssociationResult": {
         "type": "object",
@@ -5202,9 +4478,7 @@
         "properties": {
           "domainAssociation": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainAssociation"
-              },
+              { "$ref": "#/components/schemas/DomainAssociation" },
               {
                 "description": " Describes the structure of a domain association, which associates a custom domain with an Amplify app. "
               }
@@ -5216,11 +4490,7 @@
       "GetJobResult": {
         "type": "object",
         "required": ["job"],
-        "properties": {
-          "job": {
-            "$ref": "#/components/schemas/Job"
-          }
-        }
+        "properties": { "job": { "$ref": "#/components/schemas/Job" } }
       },
       "GetWebhookResult": {
         "type": "object",
@@ -5228,12 +4498,8 @@
         "properties": {
           "webhook": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Webhook"
-              },
-              {
-                "description": " Describes the structure of a webhook. "
-              }
+              { "$ref": "#/components/schemas/Webhook" },
+              { "description": " Describes the structure of a webhook. " }
             ]
           }
         },
@@ -5245,19 +4511,13 @@
         "properties": {
           "apps": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Apps"
-              },
-              {
-                "description": " A list of Amplify apps. "
-              }
+              { "$ref": "#/components/schemas/Apps" },
+              { "description": " A list of Amplify apps. " }
             ]
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": " A pagination token. Set to null to start listing apps from start. If non-null, the pagination token is returned in a result. Pass its value in here to list more projects. "
               }
@@ -5272,19 +4532,13 @@
         "properties": {
           "artifacts": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Artifacts"
-              },
-              {
-                "description": " A list of artifacts. "
-              }
+              { "$ref": "#/components/schemas/Artifacts" },
+              { "description": " A list of artifacts. " }
             ]
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": " A pagination token. If a non-null pagination token is returned in a result, pass its value in another request to retrieve more entries. "
               }
@@ -5299,9 +4553,7 @@
         "properties": {
           "backendEnvironments": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BackendEnvironments"
-              },
+              { "$ref": "#/components/schemas/BackendEnvironments" },
               {
                 "description": " The list of backend environments for an Amplify app. "
               }
@@ -5309,9 +4561,7 @@
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": " A pagination token. If a non-null pagination token is returned in a result, pass its value in another request to retrieve more entries. "
               }
@@ -5326,19 +4576,13 @@
         "properties": {
           "branches": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Branches"
-              },
-              {
-                "description": " A list of branches for an Amplify app. "
-              }
+              { "$ref": "#/components/schemas/Branches" },
+              { "description": " A list of branches for an Amplify app. " }
             ]
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": " A pagination token. If a non-null pagination token is returned in a result, pass its value in another request to retrieve more entries. "
               }
@@ -5353,19 +4597,13 @@
         "properties": {
           "domainAssociations": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainAssociations"
-              },
-              {
-                "description": " A list of domain associations. "
-              }
+              { "$ref": "#/components/schemas/DomainAssociations" },
+              { "description": " A list of domain associations. " }
             ]
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": " A pagination token. If non-null, a pagination token is returned in a result. Pass its value in another request to retrieve more entries. "
               }
@@ -5380,9 +4618,7 @@
         "properties": {
           "jobSummaries": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobSummaries"
-              },
+              { "$ref": "#/components/schemas/JobSummaries" },
               {
                 "description": " The result structure for the list job result request. "
               }
@@ -5390,9 +4626,7 @@
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": " A pagination token. If non-null the pagination token is returned in a result. Pass its value in another request to retrieve more entries. "
               }
@@ -5406,9 +4640,7 @@
         "properties": {
           "tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagMap"
-              },
+              { "$ref": "#/components/schemas/TagMap" },
               {
                 "description": " A list of tags for the specified The Amazon Resource Name (ARN). "
               }
@@ -5424,19 +4656,13 @@
         "properties": {
           "webhooks": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Webhooks"
-              },
-              {
-                "description": " A list of webhooks. "
-              }
+              { "$ref": "#/components/schemas/Webhooks" },
+              { "description": " A list of webhooks. " }
             ]
           },
           "nextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": " A pagination token. If non-null, the pagination token is returned in a result. Pass its value in another request to retrieve more entries. "
               }
@@ -5451,12 +4677,8 @@
         "properties": {
           "jobSummary": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobSummary"
-              },
-              {
-                "description": " The summary for the job. "
-              }
+              { "$ref": "#/components/schemas/JobSummary" },
+              { "description": " The summary for the job. " }
             ]
           }
         },
@@ -5468,12 +4690,8 @@
         "properties": {
           "jobSummary": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobSummary"
-              },
-              {
-                "description": " The summary for the job. "
-              }
+              { "$ref": "#/components/schemas/JobSummary" },
+              { "description": " The summary for the job. " }
             ]
           }
         },
@@ -5485,12 +4703,8 @@
         "properties": {
           "jobSummary": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobSummary"
-              },
-              {
-                "description": " The summary for the job. "
-              }
+              { "$ref": "#/components/schemas/JobSummary" },
+              { "description": " The summary for the job. " }
             ]
           }
         },
@@ -5518,12 +4732,8 @@
         "properties": {
           "app": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/App"
-              },
-              {
-                "description": " Represents the updated Amplify app. "
-              }
+              { "$ref": "#/components/schemas/App" },
+              { "description": " Represents the updated Amplify app. " }
             ]
           }
         },
@@ -5535,9 +4745,7 @@
         "properties": {
           "branch": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Branch"
-              },
+              { "$ref": "#/components/schemas/Branch" },
               {
                 "description": " The branch for an Amplify app, which maps to a third-party repository branch. "
               }
@@ -5552,9 +4760,7 @@
         "properties": {
           "domainAssociation": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainAssociation"
-              },
+              { "$ref": "#/components/schemas/DomainAssociation" },
               {
                 "description": " Describes a domain association, which associates a custom domain with an Amplify app. "
               }
@@ -5569,9 +4775,7 @@
         "properties": {
           "webhook": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Webhook"
-              },
+              { "$ref": "#/components/schemas/Webhook" },
               {
                 "description": " Describes a webhook that connects repository events to an Amplify app. "
               }
@@ -5580,83 +4784,40 @@
         },
         "description": " The result structure for the update webhook request. "
       },
-      "ActiveJobId": {
-        "type": "string",
-        "maxLength": 1000
-      },
+      "ActiveJobId": { "type": "string", "maxLength": 1000 },
       "AppId": {
         "type": "string",
         "minLength": 1,
         "maxLength": 255,
         "pattern": "d[a-z0-9]+"
       },
-      "AppArn": {
-        "type": "string",
-        "maxLength": 1000
-      },
-      "Name": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 255
-      },
+      "AppArn": { "type": "string", "maxLength": 1000 },
+      "Name": { "type": "string", "minLength": 1, "maxLength": 255 },
       "TagMap": {
         "type": "object",
         "minProperties": 1,
         "maxProperties": 50,
-        "additionalProperties": {
-          "$ref": "#/components/schemas/TagValue"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/TagValue" }
       },
-      "Description": {
-        "type": "string",
-        "maxLength": 1000
-      },
-      "Repository": {
-        "type": "string",
-        "maxLength": 1000
-      },
-      "Platform": {
-        "type": "string",
-        "enum": ["WEB"]
-      },
-      "CreateTime": {
-        "type": "string",
-        "format": "date-time"
-      },
-      "UpdateTime": {
-        "type": "string",
-        "format": "date-time"
-      },
-      "ServiceRoleArn": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 1000
-      },
-      "DefaultDomain": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 1000
-      },
-      "EnableBranchAutoBuild": {
-        "type": "boolean"
-      },
-      "EnableBranchAutoDeletion": {
-        "type": "boolean"
-      },
+      "Description": { "type": "string", "maxLength": 1000 },
+      "Repository": { "type": "string", "maxLength": 1000 },
+      "Platform": { "type": "string", "enum": ["WEB"] },
+      "CreateTime": { "type": "string", "format": "date-time" },
+      "UpdateTime": { "type": "string", "format": "date-time" },
+      "ServiceRoleArn": { "type": "string", "minLength": 1, "maxLength": 1000 },
+      "DefaultDomain": { "type": "string", "minLength": 1, "maxLength": 1000 },
+      "EnableBranchAutoBuild": { "type": "boolean" },
+      "EnableBranchAutoDeletion": { "type": "boolean" },
       "CustomRules": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/CustomRule"
-        }
+        "items": { "$ref": "#/components/schemas/CustomRule" }
       },
       "ProductionBranch": {
         "type": "object",
         "properties": {
           "lastDeployTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LastDeployTime"
-              },
+              { "$ref": "#/components/schemas/LastDeployTime" },
               {
                 "description": " The last deploy time of the production branch. "
               }
@@ -5664,19 +4825,13 @@
           },
           "status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Status"
-              },
-              {
-                "description": " The status of the production branch. "
-              }
+              { "$ref": "#/components/schemas/Status" },
+              { "description": " The status of the production branch. " }
             ]
           },
           "thumbnailUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ThumbnailUrl"
-              },
+              { "$ref": "#/components/schemas/ThumbnailUrl" },
               {
                 "description": " The thumbnail URL for the production branch. "
               }
@@ -5684,34 +4839,24 @@
           },
           "branchName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BranchName"
-              },
-              {
-                "description": " The branch name for the production branch. "
-              }
+              { "$ref": "#/components/schemas/BranchName" },
+              { "description": " The branch name for the production branch. " }
             ]
           }
         },
         "description": " Describes the information about a production branch for an Amplify app. "
       },
-      "EnableAutoBranchCreation": {
-        "type": "boolean"
-      },
+      "EnableAutoBranchCreation": { "type": "boolean" },
       "AutoBranchCreationPatterns": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/AutoBranchCreationPattern"
-        }
+        "items": { "$ref": "#/components/schemas/AutoBranchCreationPattern" }
       },
       "AutoBranchCreationConfig": {
         "type": "object",
         "properties": {
           "stage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Stage"
-              },
+              { "$ref": "#/components/schemas/Stage" },
               {
                 "description": " Describes the current stage for the autocreated branch. "
               }
@@ -5719,19 +4864,13 @@
           },
           "framework": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Framework"
-              },
-              {
-                "description": " The framework for the autocreated branch. "
-              }
+              { "$ref": "#/components/schemas/Framework" },
+              { "description": " The framework for the autocreated branch. " }
             ]
           },
           "enableAutoBuild": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnableAutoBuild"
-              },
+              { "$ref": "#/components/schemas/EnableAutoBuild" },
               {
                 "description": " Enables auto building for the autocreated branch. "
               }
@@ -5739,9 +4878,7 @@
           },
           "environmentVariables": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnvironmentVariables"
-              },
+              { "$ref": "#/components/schemas/EnvironmentVariables" },
               {
                 "description": " The environment variables for the autocreated branch. "
               }
@@ -5749,9 +4886,7 @@
           },
           "basicAuthCredentials": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BasicAuthCredentials"
-              },
+              { "$ref": "#/components/schemas/BasicAuthCredentials" },
               {
                 "description": " The basic authorization credentials for the autocreated branch. "
               }
@@ -5759,9 +4894,7 @@
           },
           "enableBasicAuth": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnableBasicAuth"
-              },
+              { "$ref": "#/components/schemas/EnableBasicAuth" },
               {
                 "description": " Enables basic authorization for the autocreated branch. "
               }
@@ -5769,9 +4902,7 @@
           },
           "buildSpec": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BuildSpec"
-              },
+              { "$ref": "#/components/schemas/BuildSpec" },
               {
                 "description": " The build specification (build spec) for the autocreated branch. "
               }
@@ -5779,9 +4910,7 @@
           },
           "enablePullRequestPreview": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnablePullRequestPreview"
-              },
+              { "$ref": "#/components/schemas/EnablePullRequestPreview" },
               {
                 "description": " Enables pull request preview for the autocreated branch. "
               }
@@ -5789,9 +4918,7 @@
           },
           "pullRequestEnvironmentName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PullRequestEnvironmentName"
-              },
+              { "$ref": "#/components/schemas/PullRequestEnvironmentName" },
               {
                 "description": " The Amplify environment name for the pull request. "
               }
@@ -5799,9 +4926,7 @@
           },
           "enablePerformanceMode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnablePerformanceMode"
-              },
+              { "$ref": "#/components/schemas/EnablePerformanceMode" },
               {
                 "description": " Performance mode optimizes for faster hosting performance by keeping content cached at the edge for a longer interval. Enabling performance mode will mean that hosting configuration or code changes can take up to 10 minutes to roll out. "
               }
@@ -5829,19 +4954,13 @@
         "properties": {
           "appId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AppId"
-              },
-              {
-                "description": " The unique ID of the Amplify app. "
-              }
+              { "$ref": "#/components/schemas/AppId" },
+              { "description": " The unique ID of the Amplify app. " }
             ]
           },
           "appArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AppArn"
-              },
+              { "$ref": "#/components/schemas/AppArn" },
               {
                 "description": " The Amazon Resource Name (ARN) of the Amplify app. "
               }
@@ -5849,59 +4968,37 @@
           },
           "name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Name"
-              },
-              {
-                "description": " The name for the Amplify app. "
-              }
+              { "$ref": "#/components/schemas/Name" },
+              { "description": " The name for the Amplify app. " }
             ]
           },
           "tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagMap"
-              },
-              {
-                "description": " The tag for the Amplify app. "
-              }
+              { "$ref": "#/components/schemas/TagMap" },
+              { "description": " The tag for the Amplify app. " }
             ]
           },
           "description": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Description"
-              },
-              {
-                "description": " The description for the Amplify app. "
-              }
+              { "$ref": "#/components/schemas/Description" },
+              { "description": " The description for the Amplify app. " }
             ]
           },
           "repository": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Repository"
-              },
-              {
-                "description": " The repository for the Amplify app. "
-              }
+              { "$ref": "#/components/schemas/Repository" },
+              { "description": " The repository for the Amplify app. " }
             ]
           },
           "platform": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Platform"
-              },
-              {
-                "description": " The platform for the Amplify app. "
-              }
+              { "$ref": "#/components/schemas/Platform" },
+              { "description": " The platform for the Amplify app. " }
             ]
           },
           "createTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CreateTime"
-              },
+              { "$ref": "#/components/schemas/CreateTime" },
               {
                 "description": " Creates a date and time for the Amplify app. "
               }
@@ -5909,9 +5006,7 @@
           },
           "updateTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UpdateTime"
-              },
+              { "$ref": "#/components/schemas/UpdateTime" },
               {
                 "description": " Updates the date and time for the Amplify app. "
               }
@@ -5919,9 +5014,7 @@
           },
           "iamServiceRoleArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ServiceRoleArn"
-              },
+              { "$ref": "#/components/schemas/ServiceRoleArn" },
               {
                 "description": " The AWS Identity and Access Management (IAM) service role for the Amazon Resource Name (ARN) of the Amplify app. "
               }
@@ -5929,9 +5022,7 @@
           },
           "environmentVariables": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnvironmentVariables"
-              },
+              { "$ref": "#/components/schemas/EnvironmentVariables" },
               {
                 "description": " The environment variables for the Amplify app. "
               }
@@ -5939,19 +5030,13 @@
           },
           "defaultDomain": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DefaultDomain"
-              },
-              {
-                "description": " The default domain for the Amplify app. "
-              }
+              { "$ref": "#/components/schemas/DefaultDomain" },
+              { "description": " The default domain for the Amplify app. " }
             ]
           },
           "enableBranchAutoBuild": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnableBranchAutoBuild"
-              },
+              { "$ref": "#/components/schemas/EnableBranchAutoBuild" },
               {
                 "description": " Enables the auto-building of branches for the Amplify app. "
               }
@@ -5959,9 +5044,7 @@
           },
           "enableBranchAutoDeletion": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnableBranchAutoDeletion"
-              },
+              { "$ref": "#/components/schemas/EnableBranchAutoDeletion" },
               {
                 "description": " Automatically disconnect a branch in the Amplify Console when you delete a branch from your Git repository. "
               }
@@ -5969,9 +5052,7 @@
           },
           "enableBasicAuth": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnableBasicAuth"
-              },
+              { "$ref": "#/components/schemas/EnableBasicAuth" },
               {
                 "description": " Enables basic authorization for the Amplify app's branches. "
               }
@@ -5979,9 +5060,7 @@
           },
           "basicAuthCredentials": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BasicAuthCredentials"
-              },
+              { "$ref": "#/components/schemas/BasicAuthCredentials" },
               {
                 "description": " The basic authorization credentials for branches for the Amplify app. "
               }
@@ -5989,9 +5068,7 @@
           },
           "customRules": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CustomRules"
-              },
+              { "$ref": "#/components/schemas/CustomRules" },
               {
                 "description": " Describes the custom redirect and rewrite rules for the Amplify app. "
               }
@@ -5999,9 +5076,7 @@
           },
           "productionBranch": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ProductionBranch"
-              },
+              { "$ref": "#/components/schemas/ProductionBranch" },
               {
                 "description": " Describes the information about a production branch of the Amplify app. "
               }
@@ -6009,9 +5084,7 @@
           },
           "buildSpec": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BuildSpec"
-              },
+              { "$ref": "#/components/schemas/BuildSpec" },
               {
                 "description": " Describes the content of the build specification (build spec) for the Amplify app. "
               }
@@ -6019,9 +5092,7 @@
           },
           "enableAutoBranchCreation": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnableAutoBranchCreation"
-              },
+              { "$ref": "#/components/schemas/EnableAutoBranchCreation" },
               {
                 "description": " Enables automated branch creation for the Amplify app. "
               }
@@ -6029,9 +5100,7 @@
           },
           "autoBranchCreationPatterns": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AutoBranchCreationPatterns"
-              },
+              { "$ref": "#/components/schemas/AutoBranchCreationPatterns" },
               {
                 "description": " Describes the automated branch creation glob patterns for the Amplify app. "
               }
@@ -6039,9 +5108,7 @@
           },
           "autoBranchCreationConfig": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AutoBranchCreationConfig"
-              },
+              { "$ref": "#/components/schemas/AutoBranchCreationConfig" },
               {
                 "description": " Describes the automated branch creation configuration for the Amplify app. "
               }
@@ -6049,9 +5116,7 @@
           },
           "customHeaders": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CustomHeaders"
-              },
+              { "$ref": "#/components/schemas/CustomHeaders" },
               {
                 "description": "Describes the custom HTTP headers for the Amplify app."
               }
@@ -6062,59 +5127,35 @@
       },
       "Apps": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/App"
-        }
+        "items": { "$ref": "#/components/schemas/App" }
       },
-      "ArtifactFileName": {
-        "type": "string",
-        "maxLength": 1000
-      },
-      "ArtifactId": {
-        "type": "string",
-        "maxLength": 255
-      },
+      "ArtifactFileName": { "type": "string", "maxLength": 1000 },
+      "ArtifactId": { "type": "string", "maxLength": 255 },
       "Artifact": {
         "type": "object",
         "required": ["artifactFileName", "artifactId"],
         "properties": {
           "artifactFileName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ArtifactFileName"
-              },
-              {
-                "description": " The file name for the artifact. "
-              }
+              { "$ref": "#/components/schemas/ArtifactFileName" },
+              { "description": " The file name for the artifact. " }
             ]
           },
           "artifactId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ArtifactId"
-              },
-              {
-                "description": " The unique ID for the artifact. "
-              }
+              { "$ref": "#/components/schemas/ArtifactId" },
+              { "description": " The unique ID for the artifact. " }
             ]
           }
         },
         "description": " Describes an artifact. "
       },
-      "ArtifactUrl": {
-        "type": "string",
-        "maxLength": 1000
-      },
+      "ArtifactUrl": { "type": "string", "maxLength": 1000 },
       "Artifacts": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Artifact"
-        }
+        "items": { "$ref": "#/components/schemas/Artifact" }
       },
-      "ArtifactsUrl": {
-        "type": "string",
-        "maxLength": 1000
-      },
+      "ArtifactsUrl": { "type": "string", "maxLength": 1000 },
       "AssociatedResource": {
         "type": "string",
         "minLength": 1,
@@ -6122,15 +5163,11 @@
       },
       "AssociatedResources": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/AssociatedResource"
-        }
+        "items": { "$ref": "#/components/schemas/AssociatedResource" }
       },
       "AutoSubDomainCreationPatterns": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/AutoSubDomainCreationPattern"
-        }
+        "items": { "$ref": "#/components/schemas/AutoSubDomainCreationPattern" }
       },
       "AutoSubDomainIAMRole": {
         "type": "string",
@@ -6142,16 +5179,8 @@
         "minLength": 1,
         "maxLength": 1000
       },
-      "EnvironmentName": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 255
-      },
-      "StackName": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 255
-      },
+      "EnvironmentName": { "type": "string", "minLength": 1, "maxLength": 255 },
+      "StackName": { "type": "string", "minLength": 1, "maxLength": 255 },
       "DeploymentArtifacts": {
         "type": "string",
         "minLength": 1,
@@ -6168,9 +5197,7 @@
         "properties": {
           "backendEnvironmentArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BackendEnvironmentArn"
-              },
+              { "$ref": "#/components/schemas/BackendEnvironmentArn" },
               {
                 "description": " The Amazon Resource Name (ARN) for a backend environment that is part of an Amplify app. "
               }
@@ -6178,9 +5205,7 @@
           },
           "environmentName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnvironmentName"
-              },
+              { "$ref": "#/components/schemas/EnvironmentName" },
               {
                 "description": " The name for a backend environment that is part of an Amplify app. "
               }
@@ -6188,9 +5213,7 @@
           },
           "stackName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StackName"
-              },
+              { "$ref": "#/components/schemas/StackName" },
               {
                 "description": " The AWS CloudFormation stack name of a backend environment. "
               }
@@ -6198,19 +5221,13 @@
           },
           "deploymentArtifacts": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DeploymentArtifacts"
-              },
-              {
-                "description": " The name of deployment artifacts. "
-              }
+              { "$ref": "#/components/schemas/DeploymentArtifacts" },
+              { "description": " The name of deployment artifacts. " }
             ]
           },
           "createTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CreateTime"
-              },
+              { "$ref": "#/components/schemas/CreateTime" },
               {
                 "description": " The creation date and time for a backend environment that is part of an Amplify app. "
               }
@@ -6218,9 +5235,7 @@
           },
           "updateTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UpdateTime"
-              },
+              { "$ref": "#/components/schemas/UpdateTime" },
               {
                 "description": " The last updated date and time for a backend environment that is part of an Amplify app. "
               }
@@ -6231,42 +5246,19 @@
       },
       "BackendEnvironments": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/BackendEnvironment"
-        }
+        "items": { "$ref": "#/components/schemas/BackendEnvironment" }
       },
-      "BranchArn": {
-        "type": "string",
-        "maxLength": 1000
-      },
-      "BranchName": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 255
-      },
-      "DisplayName": {
-        "type": "string",
-        "maxLength": 255
-      },
-      "EnableNotification": {
-        "type": "boolean"
-      },
+      "BranchArn": { "type": "string", "maxLength": 1000 },
+      "BranchName": { "type": "string", "minLength": 1, "maxLength": 255 },
+      "DisplayName": { "type": "string", "maxLength": 255 },
+      "EnableNotification": { "type": "boolean" },
       "CustomDomains": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/CustomDomain"
-        },
+        "items": { "$ref": "#/components/schemas/CustomDomain" },
         "maxItems": 255
       },
-      "TotalNumberOfJobs": {
-        "type": "string",
-        "maxLength": 1000
-      },
-      "ThumbnailUrl": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 2000
-      },
+      "TotalNumberOfJobs": { "type": "string", "maxLength": 1000 },
+      "ThumbnailUrl": { "type": "string", "minLength": 1, "maxLength": 2000 },
       "TTL": {
         "type": "string",
         "description": " The content Time to Live (TTL) for the website in seconds. "
@@ -6295,9 +5287,7 @@
         "properties": {
           "branchArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BranchArn"
-              },
+              { "$ref": "#/components/schemas/BranchArn" },
               {
                 "description": " The Amazon Resource Name (ARN) for a branch that is part of an Amplify app. "
               }
@@ -6305,9 +5295,7 @@
           },
           "branchName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BranchName"
-              },
+              { "$ref": "#/components/schemas/BranchName" },
               {
                 "description": " The name for the branch that is part of an Amplify app. "
               }
@@ -6315,9 +5303,7 @@
           },
           "description": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Description"
-              },
+              { "$ref": "#/components/schemas/Description" },
               {
                 "description": " The description for the branch that is part of an Amplify app. "
               }
@@ -6325,19 +5311,13 @@
           },
           "tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagMap"
-              },
-              {
-                "description": " The tag for the branch of an Amplify app. "
-              }
+              { "$ref": "#/components/schemas/TagMap" },
+              { "description": " The tag for the branch of an Amplify app. " }
             ]
           },
           "stage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Stage"
-              },
+              { "$ref": "#/components/schemas/Stage" },
               {
                 "description": " The current stage for the branch that is part of an Amplify app. "
               }
@@ -6345,9 +5325,7 @@
           },
           "displayName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DisplayName"
-              },
+              { "$ref": "#/components/schemas/DisplayName" },
               {
                 "description": " The display name for the branch. This is used as the default domain prefix. "
               }
@@ -6355,9 +5333,7 @@
           },
           "enableNotification": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnableNotification"
-              },
+              { "$ref": "#/components/schemas/EnableNotification" },
               {
                 "description": " Enables notifications for a branch that is part of an Amplify app. "
               }
@@ -6365,9 +5341,7 @@
           },
           "createTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CreateTime"
-              },
+              { "$ref": "#/components/schemas/CreateTime" },
               {
                 "description": " The creation date and time for a branch that is part of an Amplify app. "
               }
@@ -6375,9 +5349,7 @@
           },
           "updateTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UpdateTime"
-              },
+              { "$ref": "#/components/schemas/UpdateTime" },
               {
                 "description": " The last updated date and time for a branch that is part of an Amplify app. "
               }
@@ -6385,9 +5357,7 @@
           },
           "environmentVariables": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnvironmentVariables"
-              },
+              { "$ref": "#/components/schemas/EnvironmentVariables" },
               {
                 "description": " The environment variables specific to a branch of an Amplify app. "
               }
@@ -6395,9 +5365,7 @@
           },
           "enableAutoBuild": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnableAutoBuild"
-              },
+              { "$ref": "#/components/schemas/EnableAutoBuild" },
               {
                 "description": " Enables auto-building on push for a branch of an Amplify app. "
               }
@@ -6405,9 +5373,7 @@
           },
           "customDomains": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CustomDomains"
-              },
+              { "$ref": "#/components/schemas/CustomDomains" },
               {
                 "description": " The custom domains for a branch of an Amplify app. "
               }
@@ -6415,9 +5381,7 @@
           },
           "framework": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Framework"
-              },
+              { "$ref": "#/components/schemas/Framework" },
               {
                 "description": " The framework for a branch of an Amplify app. "
               }
@@ -6425,9 +5389,7 @@
           },
           "activeJobId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ActiveJobId"
-              },
+              { "$ref": "#/components/schemas/ActiveJobId" },
               {
                 "description": " The ID of the active job for a branch of an Amplify app. "
               }
@@ -6435,9 +5397,7 @@
           },
           "totalNumberOfJobs": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TotalNumberOfJobs"
-              },
+              { "$ref": "#/components/schemas/TotalNumberOfJobs" },
               {
                 "description": " The total number of jobs that are part of an Amplify app. "
               }
@@ -6445,9 +5405,7 @@
           },
           "enableBasicAuth": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnableBasicAuth"
-              },
+              { "$ref": "#/components/schemas/EnableBasicAuth" },
               {
                 "description": " Enables basic authorization for a branch of an Amplify app. "
               }
@@ -6455,9 +5413,7 @@
           },
           "thumbnailUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ThumbnailUrl"
-              },
+              { "$ref": "#/components/schemas/ThumbnailUrl" },
               {
                 "description": " The thumbnail URL for the branch of an Amplify app. "
               }
@@ -6465,9 +5421,7 @@
           },
           "basicAuthCredentials": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BasicAuthCredentials"
-              },
+              { "$ref": "#/components/schemas/BasicAuthCredentials" },
               {
                 "description": " The basic authorization credentials for a branch of an Amplify app. "
               }
@@ -6475,9 +5429,7 @@
           },
           "buildSpec": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BuildSpec"
-              },
+              { "$ref": "#/components/schemas/BuildSpec" },
               {
                 "description": " The build specification (build spec) content for the branch of an Amplify app. "
               }
@@ -6485,9 +5437,7 @@
           },
           "ttl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TTL"
-              },
+              { "$ref": "#/components/schemas/TTL" },
               {
                 "description": " The content Time to Live (TTL) for the website in seconds. "
               }
@@ -6495,9 +5445,7 @@
           },
           "associatedResources": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AssociatedResources"
-              },
+              { "$ref": "#/components/schemas/AssociatedResources" },
               {
                 "description": " A list of custom resources that are linked to this branch. "
               }
@@ -6505,9 +5453,7 @@
           },
           "enablePullRequestPreview": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnablePullRequestPreview"
-              },
+              { "$ref": "#/components/schemas/EnablePullRequestPreview" },
               {
                 "description": " Enables pull request preview for the branch. "
               }
@@ -6515,9 +5461,7 @@
           },
           "pullRequestEnvironmentName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PullRequestEnvironmentName"
-              },
+              { "$ref": "#/components/schemas/PullRequestEnvironmentName" },
               {
                 "description": " The Amplify environment name for the pull request. "
               }
@@ -6525,9 +5469,7 @@
           },
           "destinationBranch": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BranchName"
-              },
+              { "$ref": "#/components/schemas/BranchName" },
               {
                 "description": " The destination branch if the branch is a pull request branch. "
               }
@@ -6535,9 +5477,7 @@
           },
           "sourceBranch": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BranchName"
-              },
+              { "$ref": "#/components/schemas/BranchName" },
               {
                 "description": " The source branch if the branch is a pull request branch. "
               }
@@ -6545,9 +5485,7 @@
           },
           "backendEnvironmentArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BackendEnvironmentArn"
-              },
+              { "$ref": "#/components/schemas/BackendEnvironmentArn" },
               {
                 "description": " The Amazon Resource Name (ARN) for a backend environment that is part of an Amplify app. "
               }
@@ -6555,9 +5493,7 @@
           },
           "enablePerformanceMode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnablePerformanceMode"
-              },
+              { "$ref": "#/components/schemas/EnablePerformanceMode" },
               {
                 "description": " Performance mode optimizes for faster hosting performance by keeping content cached at the edge for a longer interval. Enabling performance mode will mean that hosting configuration or code changes can take up to 10 minutes to roll out. "
               }
@@ -6568,56 +5504,26 @@
       },
       "Branches": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Branch"
-        },
+        "items": { "$ref": "#/components/schemas/Branch" },
         "maxItems": 255
       },
       "CertificateVerificationDNSRecord": {
         "type": "string",
         "maxLength": 1000
       },
-      "CommitId": {
-        "type": "string",
-        "maxLength": 255
-      },
-      "CommitMessage": {
-        "type": "string",
-        "maxLength": 10000
-      },
-      "CommitTime": {
-        "type": "string",
-        "format": "date-time"
-      },
-      "Condition": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 2048
-      },
-      "Context": {
-        "type": "string"
-      },
-      "JobId": {
-        "type": "string",
-        "maxLength": 255
-      },
+      "CommitId": { "type": "string", "maxLength": 255 },
+      "CommitMessage": { "type": "string", "maxLength": 10000 },
+      "CommitTime": { "type": "string", "format": "date-time" },
+      "Condition": { "type": "string", "minLength": 1, "maxLength": 2048 },
+      "Context": { "type": "string" },
+      "JobId": { "type": "string", "maxLength": 255 },
       "FileUploadUrls": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/UploadUrl"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/UploadUrl" }
       },
-      "UploadUrl": {
-        "type": "string",
-        "maxLength": 1000
-      },
-      "DomainName": {
-        "type": "string",
-        "maxLength": 255
-      },
-      "EnableAutoSubDomain": {
-        "type": "boolean"
-      },
+      "UploadUrl": { "type": "string", "maxLength": 1000 },
+      "DomainName": { "type": "string", "maxLength": 255 },
+      "EnableAutoSubDomain": { "type": "boolean" },
       "DomainAssociation": {
         "type": "object",
         "required": [
@@ -6631,9 +5537,7 @@
         "properties": {
           "domainAssociationArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainAssociationArn"
-              },
+              { "$ref": "#/components/schemas/DomainAssociationArn" },
               {
                 "description": " The Amazon Resource Name (ARN) for the domain association. "
               }
@@ -6641,19 +5545,13 @@
           },
           "domainName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainName"
-              },
-              {
-                "description": " The name of the domain. "
-              }
+              { "$ref": "#/components/schemas/DomainName" },
+              { "description": " The name of the domain. " }
             ]
           },
           "enableAutoSubDomain": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnableAutoSubDomain"
-              },
+              { "$ref": "#/components/schemas/EnableAutoSubDomain" },
               {
                 "description": " Enables the automated creation of subdomains for branches. "
               }
@@ -6661,9 +5559,7 @@
           },
           "autoSubDomainCreationPatterns": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AutoSubDomainCreationPatterns"
-              },
+              { "$ref": "#/components/schemas/AutoSubDomainCreationPatterns" },
               {
                 "description": " Sets branch patterns for automatic subdomain creation. "
               }
@@ -6671,9 +5567,7 @@
           },
           "autoSubDomainIAMRole": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/AutoSubDomainIAMRole"
-              },
+              { "$ref": "#/components/schemas/AutoSubDomainIAMRole" },
               {
                 "description": " The required AWS Identity and Access Management (IAM) service role for the Amazon Resource Name (ARN) for automatically creating subdomains. "
               }
@@ -6681,9 +5575,7 @@
           },
           "domainStatus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DomainStatus"
-              },
+              { "$ref": "#/components/schemas/DomainStatus" },
               {
                 "description": " The current status of the domain association. "
               }
@@ -6691,9 +5583,7 @@
           },
           "statusReason": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StatusReason"
-              },
+              { "$ref": "#/components/schemas/StatusReason" },
               {
                 "description": " The reason for the current status of the domain association. "
               }
@@ -6711,12 +5601,8 @@
           },
           "subDomains": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SubDomains"
-              },
-              {
-                "description": " The subdomains for the domain association. "
-              }
+              { "$ref": "#/components/schemas/SubDomains" },
+              { "description": " The subdomains for the domain association. " }
             ]
           }
         },
@@ -6736,9 +5622,7 @@
         "properties": {
           "webhookArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/WebhookArn"
-              },
+              { "$ref": "#/components/schemas/WebhookArn" },
               {
                 "description": " The Amazon Resource Name (ARN) for the webhook. "
               }
@@ -6746,29 +5630,19 @@
           },
           "webhookId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/WebhookId"
-              },
-              {
-                "description": " The ID of the webhook. "
-              }
+              { "$ref": "#/components/schemas/WebhookId" },
+              { "description": " The ID of the webhook. " }
             ]
           },
           "webhookUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/WebhookUrl"
-              },
-              {
-                "description": " The URL of the webhook. "
-              }
+              { "$ref": "#/components/schemas/WebhookUrl" },
+              { "description": " The URL of the webhook. " }
             ]
           },
           "branchName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BranchName"
-              },
+              { "$ref": "#/components/schemas/BranchName" },
               {
                 "description": " The name for a branch that is part of an Amplify app. "
               }
@@ -6776,60 +5650,30 @@
           },
           "description": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Description"
-              },
-              {
-                "description": " The description for a webhook. "
-              }
+              { "$ref": "#/components/schemas/Description" },
+              { "description": " The description for a webhook. " }
             ]
           },
           "createTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CreateTime"
-              },
-              {
-                "description": " The create date and time for a webhook. "
-              }
+              { "$ref": "#/components/schemas/CreateTime" },
+              { "description": " The create date and time for a webhook. " }
             ]
           },
           "updateTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UpdateTime"
-              },
-              {
-                "description": " Updates the date and time for a webhook. "
-              }
+              { "$ref": "#/components/schemas/UpdateTime" },
+              { "description": " Updates the date and time for a webhook. " }
             ]
           }
         },
         "description": " Describes a webhook that connects repository events to an Amplify app. "
       },
-      "CustomDomain": {
-        "type": "string",
-        "maxLength": 255
-      },
-      "Source": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 2048
-      },
-      "Target": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 2048
-      },
-      "Status": {
-        "type": "string",
-        "minLength": 3,
-        "maxLength": 7
-      },
-      "DNSRecord": {
-        "type": "string",
-        "maxLength": 1000
-      },
+      "CustomDomain": { "type": "string", "maxLength": 255 },
+      "Source": { "type": "string", "minLength": 1, "maxLength": 2048 },
+      "Target": { "type": "string", "minLength": 1, "maxLength": 2048 },
+      "Status": { "type": "string", "minLength": 3, "maxLength": 7 },
+      "DNSRecord": { "type": "string", "maxLength": 1000 },
       "JobSummary": {
         "type": "object",
         "required": [
@@ -6845,29 +5689,19 @@
         "properties": {
           "jobArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobArn"
-              },
-              {
-                "description": " The Amazon Resource Name (ARN) for the job. "
-              }
+              { "$ref": "#/components/schemas/JobArn" },
+              { "description": " The Amazon Resource Name (ARN) for the job. " }
             ]
           },
           "jobId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobId"
-              },
-              {
-                "description": " The unique ID for the job. "
-              }
+              { "$ref": "#/components/schemas/JobId" },
+              { "description": " The unique ID for the job. " }
             ]
           },
           "commitId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CommitId"
-              },
+              { "$ref": "#/components/schemas/CommitId" },
               {
                 "description": " The commit ID from a third-party repository provider for the job. "
               }
@@ -6875,9 +5709,7 @@
           },
           "commitMessage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CommitMessage"
-              },
+              { "$ref": "#/components/schemas/CommitMessage" },
               {
                 "description": " The commit message from a third-party repository provider for the job. "
               }
@@ -6885,49 +5717,31 @@
           },
           "commitTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CommitTime"
-              },
-              {
-                "description": " The commit date and time for the job. "
-              }
+              { "$ref": "#/components/schemas/CommitTime" },
+              { "description": " The commit date and time for the job. " }
             ]
           },
           "startTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StartTime"
-              },
-              {
-                "description": " The start date and time for the job. "
-              }
+              { "$ref": "#/components/schemas/StartTime" },
+              { "description": " The start date and time for the job. " }
             ]
           },
           "status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobStatus"
-              },
-              {
-                "description": " The current status for the job. "
-              }
+              { "$ref": "#/components/schemas/JobStatus" },
+              { "description": " The current status for the job. " }
             ]
           },
           "endTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EndTime"
-              },
-              {
-                "description": " The end date and time for the job. "
-              }
+              { "$ref": "#/components/schemas/EndTime" },
+              { "description": " The end date and time for the job. " }
             ]
           },
           "jobType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobType"
-              },
+              { "$ref": "#/components/schemas/JobType" },
               {
                 "description": " The type for the job. If the value is <code>RELEASE</code>, the job was manually released from its source by using the <code>StartJob</code> API. If the value is <code>RETRY</code>, the job was manually retried using the <code>StartJob</code> API. If the value is <code>WEB_HOOK</code>, the job was automatically triggered by webhooks. "
               }
@@ -6936,14 +5750,8 @@
         },
         "description": " Describes the summary for an execution job for an Amplify app. "
       },
-      "WebhookId": {
-        "type": "string",
-        "maxLength": 255
-      },
-      "DomainAssociationArn": {
-        "type": "string",
-        "maxLength": 1000
-      },
+      "WebhookId": { "type": "string", "maxLength": 255 },
+      "DomainAssociationArn": { "type": "string", "maxLength": 1000 },
       "DomainStatus": {
         "type": "string",
         "enum": [
@@ -6957,49 +5765,28 @@
           "UPDATING"
         ]
       },
-      "StatusReason": {
-        "type": "string",
-        "maxLength": 1000
-      },
+      "StatusReason": { "type": "string", "maxLength": 1000 },
       "SubDomains": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/SubDomain"
-        },
+        "items": { "$ref": "#/components/schemas/SubDomain" },
         "maxItems": 255
       },
       "DomainAssociations": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DomainAssociation"
-        },
+        "items": { "$ref": "#/components/schemas/DomainAssociation" },
         "maxItems": 255
       },
-      "DomainPrefix": {
-        "type": "string",
-        "maxLength": 255
-      },
-      "EndTime": {
-        "type": "string",
-        "format": "date-time"
-      },
-      "StartTime": {
-        "type": "string",
-        "format": "date-time"
-      },
-      "LogUrl": {
-        "type": "string",
-        "maxLength": 1000
-      },
+      "DomainPrefix": { "type": "string", "maxLength": 255 },
+      "EndTime": { "type": "string", "format": "date-time" },
+      "StartTime": { "type": "string", "format": "date-time" },
+      "LogUrl": { "type": "string", "maxLength": 1000 },
       "Job": {
         "type": "object",
         "required": ["summary", "steps"],
         "properties": {
           "summary": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobSummary"
-              },
+              { "$ref": "#/components/schemas/JobSummary" },
               {
                 "description": " Describes the summary for an execution job for an Amplify app. "
               }
@@ -7007,9 +5794,7 @@
           },
           "steps": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Steps"
-              },
+              { "$ref": "#/components/schemas/Steps" },
               {
                 "description": " The execution steps for an execution job, for an Amplify app. "
               }
@@ -7020,14 +5805,9 @@
       },
       "Steps": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Step"
-        }
+        "items": { "$ref": "#/components/schemas/Step" }
       },
-      "JobArn": {
-        "type": "string",
-        "maxLength": 1000
-      },
+      "JobArn": { "type": "string", "maxLength": 1000 },
       "JobStatus": {
         "type": "string",
         "enum": [
@@ -7042,66 +5822,39 @@
       },
       "JobSummaries": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/JobSummary"
-        }
+        "items": { "$ref": "#/components/schemas/JobSummary" }
       },
       "JobType": {
         "type": "string",
         "enum": ["RELEASE", "RETRY", "MANUAL", "WEB_HOOK"],
         "maxLength": 10
       },
-      "LastDeployTime": {
-        "type": "string",
-        "format": "date-time"
-      },
-      "NextToken": {
-        "type": "string",
-        "maxLength": 2000
-      },
+      "LastDeployTime": { "type": "string", "format": "date-time" },
+      "NextToken": { "type": "string", "maxLength": 2000 },
       "Webhooks": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Webhook"
-        }
+        "items": { "$ref": "#/components/schemas/Webhook" }
       },
       "Screenshots": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/ThumbnailUrl"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/ThumbnailUrl" }
       },
-      "StepName": {
-        "type": "string",
-        "maxLength": 255
-      },
-      "TestArtifactsUrl": {
-        "type": "string",
-        "maxLength": 1000
-      },
-      "TestConfigUrl": {
-        "type": "string",
-        "maxLength": 1000
-      },
+      "StepName": { "type": "string", "maxLength": 255 },
+      "TestArtifactsUrl": { "type": "string", "maxLength": 1000 },
+      "TestConfigUrl": { "type": "string", "maxLength": 1000 },
       "Step": {
         "type": "object",
         "required": ["stepName", "startTime", "status", "endTime"],
         "properties": {
           "stepName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StepName"
-              },
-              {
-                "description": " The name of the execution step. "
-              }
+              { "$ref": "#/components/schemas/StepName" },
+              { "description": " The name of the execution step. " }
             ]
           },
           "startTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StartTime"
-              },
+              { "$ref": "#/components/schemas/StartTime" },
               {
                 "description": " The start date and time of the execution step. "
               }
@@ -7109,19 +5862,13 @@
           },
           "status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/JobStatus"
-              },
-              {
-                "description": " The status of the execution step. "
-              }
+              { "$ref": "#/components/schemas/JobStatus" },
+              { "description": " The status of the execution step. " }
             ]
           },
           "endTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EndTime"
-              },
+              { "$ref": "#/components/schemas/EndTime" },
               {
                 "description": " The end date and time of the execution step. "
               }
@@ -7129,19 +5876,13 @@
           },
           "logUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/LogUrl"
-              },
-              {
-                "description": " The URL to the logs for the execution step. "
-              }
+              { "$ref": "#/components/schemas/LogUrl" },
+              { "description": " The URL to the logs for the execution step. " }
             ]
           },
           "artifactsUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ArtifactsUrl"
-              },
+              { "$ref": "#/components/schemas/ArtifactsUrl" },
               {
                 "description": " The URL to the artifact for the execution step. "
               }
@@ -7149,9 +5890,7 @@
           },
           "testArtifactsUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TestArtifactsUrl"
-              },
+              { "$ref": "#/components/schemas/TestArtifactsUrl" },
               {
                 "description": " The URL to the test artifact for the execution step. "
               }
@@ -7159,9 +5898,7 @@
           },
           "testConfigUrl": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TestConfigUrl"
-              },
+              { "$ref": "#/components/schemas/TestConfigUrl" },
               {
                 "description": " The URL to the test configuration for the execution step. "
               }
@@ -7169,9 +5906,7 @@
           },
           "screenshots": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Screenshots"
-              },
+              { "$ref": "#/components/schemas/Screenshots" },
               {
                 "description": " The list of screenshot URLs for the execution step, if relevant. "
               }
@@ -7179,19 +5914,13 @@
           },
           "statusReason": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StatusReason"
-              },
-              {
-                "description": " The reason for the current step status. "
-              }
+              { "$ref": "#/components/schemas/StatusReason" },
+              { "description": " The reason for the current step status. " }
             ]
           },
           "context": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Context"
-              },
+              { "$ref": "#/components/schemas/Context" },
               {
                 "description": " The context for the current step. Includes a build image if the step is build. "
               }
@@ -7200,69 +5929,39 @@
         },
         "description": " Describes an execution step, for an execution job, for an Amplify app. "
       },
-      "Verified": {
-        "type": "boolean"
-      },
+      "Verified": { "type": "boolean" },
       "SubDomain": {
         "type": "object",
         "required": ["subDomainSetting", "verified", "dnsRecord"],
         "properties": {
           "subDomainSetting": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SubDomainSetting"
-              },
-              {
-                "description": " Describes the settings for the subdomain. "
-              }
+              { "$ref": "#/components/schemas/SubDomainSetting" },
+              { "description": " Describes the settings for the subdomain. " }
             ]
           },
           "verified": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Verified"
-              },
-              {
-                "description": " The verified status of the subdomain "
-              }
+              { "$ref": "#/components/schemas/Verified" },
+              { "description": " The verified status of the subdomain " }
             ]
           },
           "dnsRecord": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DNSRecord"
-              },
-              {
-                "description": " The DNS record for the subdomain. "
-              }
+              { "$ref": "#/components/schemas/DNSRecord" },
+              { "description": " The DNS record for the subdomain. " }
             ]
           }
         },
         "description": " The subdomain for the domain association. "
       },
-      "WebhookArn": {
-        "type": "string",
-        "maxLength": 1000
-      },
-      "WebhookUrl": {
-        "type": "string",
-        "maxLength": 1000
-      },
-      "EnablePerformanceMode": {
-        "type": "boolean"
-      },
-      "CustomHeaders": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 25000
-      }
+      "WebhookArn": { "type": "string", "maxLength": 1000 },
+      "WebhookUrl": { "type": "string", "maxLength": 1000 },
+      "EnablePerformanceMode": { "type": "boolean" },
+      "CustomHeaders": { "type": "string", "minLength": 1, "maxLength": 25000 }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2017-07-25",
     "endpointPrefix": "amplify",

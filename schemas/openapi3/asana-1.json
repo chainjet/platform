@@ -923,7 +923,7 @@
                 "description": "The type of the custom field. Must be one of the given values.\n",
                 "type": "string",
                 "example": "text",
-                "enum": ["text", "enum", "number", "number"]
+                "enum": ["text", "enum", "number", "number", "date"]
               },
               "type": {
                 "description": "*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.\n",
@@ -970,6 +970,22 @@
                 "type": "string",
                 "readOnly": true,
                 "example": "blue"
+              },
+              "date_value": {
+                "description": "*Conditional*. Only relevant for custom fields of type `date`. This object reflects the chosen date (and optionally, time) value of a date custom field. If no date is selected, the value of `date_value` will be `null`.",
+                "type": "object",
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "description": "A string representing the date in YYYY-MM-DD format.",
+                    "example": "2024-08-23"
+                  },
+                  "date_time": {
+                    "type": "string",
+                    "description": "A string representing the date in ISO 8601 format. If no time value is selected, the value of `date-time` will be `null`.",
+                    "example": "2024-08-23T22:00:00.000Z"
+                  }
+                }
               }
             }
           }

@@ -1,10 +1,6 @@
 {
   "openapi": "3.0.0",
-  "servers": [
-    {
-      "url": "https://www.googleapis.com/drive/v3"
-    }
-  ],
+  "servers": [{ "url": "https://www.googleapis.com/drive/v3" }],
   "info": {
     "title": "Google Drive",
     "version": "v3",
@@ -12,10 +8,7 @@
     "x-logo": {
       "url": "https://lh3.googleusercontent.com/f4sDhGNGFnO38pNp-LVDXlpQmlr3kDE3RNciaImc_lUDpFysmw_9JI_KI1tiv6v0RYX0MErO0wxFuNJ0aawx5w=w160-h80"
     },
-    "contact": {
-      "name": "Google",
-      "url": "https://google.com"
-    },
+    "contact": { "name": "Google", "url": "https://google.com" },
     "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
     "license": {
       "name": "Creative Commons Attribution 3.0",
@@ -23,40 +16,18 @@
     },
     "termsOfService": "https://developers.google.com/terms/"
   },
-  "externalDocs": {
-    "url": "https://developers.google.com/drive/"
-  },
+  "externalDocs": { "url": "https://developers.google.com/drive/" },
   "tags": [
-    {
-      "name": "about"
-    },
-    {
-      "name": "changes"
-    },
-    {
-      "name": "channels"
-    },
-    {
-      "name": "comments"
-    },
-    {
-      "name": "drives"
-    },
-    {
-      "name": "files"
-    },
-    {
-      "name": "permissions"
-    },
-    {
-      "name": "replies"
-    },
-    {
-      "name": "revisions"
-    },
-    {
-      "name": "teamdrives"
-    }
+    { "name": "about" },
+    { "name": "changes" },
+    { "name": "channels" },
+    { "name": "comments" },
+    { "name": "drives" },
+    { "name": "files" },
+    { "name": "permissions" },
+    { "name": "replies" },
+    { "name": "revisions" },
+    { "name": "teamdrives" }
   ],
   "paths": {
     "/about": {
@@ -67,9 +38,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/About"
-                }
+                "schema": { "$ref": "#/components/schemas/About" }
               }
             },
             "description": "Successful response"
@@ -93,8 +62,12 @@
             "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
-            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"],
-            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]
+            "Oauth2": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ],
+            "Oauth2c": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ]
           },
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
@@ -109,27 +82,13 @@
         "summary": "get about"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ]
     },
     "/changes": {
@@ -142,126 +101,92 @@
             "in": "query",
             "name": "pageToken",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.",
             "in": "query",
             "name": "driveId",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.",
             "in": "query",
             "name": "includeCorpusRemovals",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Whether both My Drive and shared drive items should be included in results.",
             "in": "query",
             "name": "includeItemsFromAllDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
             "in": "query",
             "name": "includePermissionsForView",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.",
             "in": "query",
             "name": "includeRemoved",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use includeItemsFromAllDrives instead.",
             "in": "query",
             "name": "includeTeamDriveItems",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "The maximum number of changes to return per page.",
             "in": "query",
             "name": "pageSize",
-            "schema": {
-              "maximum": 1000,
-              "minimum": 1,
-              "type": "integer"
-            }
+            "schema": { "maximum": 1000, "minimum": 1, "type": "integer" }
           },
           {
             "description": "Whether to restrict the results to changes inside the My Drive hierarchy. This omits changes to files such as those in the Application Data folder or shared files which have not been added to My Drive.",
             "in": "query",
             "name": "restrictToMyDrive",
-            "schema": {
-              "type": "boolean",
-              "maximum": 1000,
-              "minimum": 1
-            }
+            "schema": { "type": "boolean", "maximum": 1000, "minimum": 1 }
           },
           {
             "description": "A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.",
             "in": "query",
             "name": "spaces",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether the requesting application supports both My Drives and shared drives.",
             "in": "query",
             "name": "supportsAllDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use supportsAllDrives instead.",
             "in": "query",
             "name": "supportsTeamDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use driveId instead.",
             "in": "query",
             "name": "teamDriveId",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Deprecated use driveId instead.",
             "in": "query",
             "name": "teamDriveId",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ChangeList"
-                }
+                "schema": { "$ref": "#/components/schemas/ChangeList" }
               }
             },
             "description": "Successful response"
@@ -285,8 +210,12 @@
             "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
-            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"],
-            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]
+            "Oauth2": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ],
+            "Oauth2c": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ]
           },
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
@@ -301,27 +230,13 @@
         "summary": "list changes"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ]
     },
     "/changes/startPageToken": {
@@ -333,42 +248,32 @@
             "description": "The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive is returned.",
             "in": "query",
             "name": "driveId",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether the requesting application supports both My Drives and shared drives.",
             "in": "query",
             "name": "supportsAllDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use supportsAllDrives instead.",
             "in": "query",
             "name": "supportsTeamDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use driveId instead.",
             "in": "query",
             "name": "teamDriveId",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StartPageToken"
-                }
+                "schema": { "$ref": "#/components/schemas/StartPageToken" }
               }
             },
             "description": "Successful response"
@@ -392,8 +297,12 @@
             "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
-            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"],
-            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]
+            "Oauth2": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ],
+            "Oauth2c": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ]
           },
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
@@ -408,52 +317,24 @@
         "summary": "get Start Page Token changes"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ]
     },
     "/changes/watch": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ],
       "post": {
         "description": "Subscribes to changes for a user.",
@@ -464,125 +345,91 @@
             "in": "query",
             "name": "pageToken",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.",
             "in": "query",
             "name": "driveId",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.",
             "in": "query",
             "name": "includeCorpusRemovals",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Whether both My Drive and shared drive items should be included in results.",
             "in": "query",
             "name": "includeItemsFromAllDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
             "in": "query",
             "name": "includePermissionsForView",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.",
             "in": "query",
             "name": "includeRemoved",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use includeItemsFromAllDrives instead.",
             "in": "query",
             "name": "includeTeamDriveItems",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "The maximum number of changes to return per page.",
             "in": "query",
             "name": "pageSize",
-            "schema": {
-              "maximum": 1000,
-              "minimum": 1,
-              "type": "integer"
-            }
+            "schema": { "maximum": 1000, "minimum": 1, "type": "integer" }
           },
           {
             "description": "Whether to restrict the results to changes inside the My Drive hierarchy. This omits changes to files such as those in the Application Data folder or shared files which have not been added to My Drive.",
             "in": "query",
             "name": "restrictToMyDrive",
-            "schema": {
-              "type": "boolean",
-              "maximum": 1000,
-              "minimum": 1
-            }
+            "schema": { "type": "boolean", "maximum": 1000, "minimum": 1 }
           },
           {
             "description": "A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.",
             "in": "query",
             "name": "spaces",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether the requesting application supports both My Drives and shared drives.",
             "in": "query",
             "name": "supportsAllDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use supportsAllDrives instead.",
             "in": "query",
             "name": "supportsTeamDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use driveId instead.",
             "in": "query",
             "name": "teamDriveId",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Deprecated use driveId instead.",
             "in": "query",
             "name": "teamDriveId",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Channel"
-              }
+              "schema": { "$ref": "#/components/schemas/Channel" }
             }
           }
         },
@@ -590,9 +437,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Channel"
-                }
+                "schema": { "$ref": "#/components/schemas/Channel" }
               }
             },
             "description": "Successful response"
@@ -616,8 +461,12 @@
             "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
-            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"],
-            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]
+            "Oauth2": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ],
+            "Oauth2c": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ]
           },
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
@@ -634,27 +483,13 @@
     },
     "/channels/stop": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ],
       "post": {
         "description": "Stop watching resources through this channel",
@@ -662,17 +497,11 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Channel"
-              }
+              "schema": { "$ref": "#/components/schemas/Channel" }
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive"],
@@ -691,8 +520,12 @@
             "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
-            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"],
-            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]
+            "Oauth2": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ],
+            "Oauth2c": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ]
           },
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
@@ -716,45 +549,32 @@
             "description": "Maximum number of shared drives to return.",
             "in": "query",
             "name": "pageSize",
-            "schema": {
-              "maximum": 100,
-              "minimum": 1,
-              "type": "integer"
-            }
+            "schema": { "maximum": 100, "minimum": 1, "type": "integer" }
           },
           {
             "description": "Page token for shared drives.",
             "in": "query",
             "name": "pageToken",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Query string for searching shared drives.",
             "in": "query",
             "name": "q",
-            "schema": {
-              "title": "Query",
-              "type": "string"
-            }
+            "schema": { "title": "Query", "type": "string" }
           },
           {
             "description": "Issue the request as a domain administrator; if set to true, then all shared drives of the domain in which the requester is an administrator are returned.",
             "in": "query",
             "name": "useDomainAdminAccess",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DriveList"
-                }
+                "schema": { "$ref": "#/components/schemas/DriveList" }
               }
             },
             "description": "Successful response"
@@ -774,27 +594,13 @@
         "summary": "list drives"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ],
       "post": {
         "description": "Creates a new shared drive.",
@@ -805,17 +611,13 @@
             "in": "query",
             "name": "requestId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Drive"
-              }
+              "schema": { "$ref": "#/components/schemas/Drive" }
             }
           }
         },
@@ -823,9 +625,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Drive"
-                }
+                "schema": { "$ref": "#/components/schemas/Drive" }
               }
             },
             "description": "Successful response"
@@ -851,32 +651,22 @@
             "in": "path",
             "name": "driveId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether any items inside the shared drive should also be deleted. This option is only supported when useDomainAdminAccess is also set to true.",
             "in": "query",
             "name": "allowItemDeletion",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.",
             "in": "query",
             "name": "useDomainAdminAccess",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive"],
@@ -895,26 +685,20 @@
             "in": "path",
             "name": "driveId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.",
             "in": "query",
             "name": "useDomainAdminAccess",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Drive"
-                }
+                "schema": { "$ref": "#/components/schemas/Drive" }
               }
             },
             "description": "Successful response"
@@ -934,27 +718,13 @@
         "summary": "get drives"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ],
       "patch": {
         "description": "Updates the metadate for a shared drive.",
@@ -965,25 +735,19 @@
             "in": "path",
             "name": "driveId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.",
             "in": "query",
             "name": "useDomainAdminAccess",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Drive"
-              }
+              "schema": { "$ref": "#/components/schemas/Drive" }
             }
           }
         },
@@ -991,9 +755,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Drive"
-                }
+                "schema": { "$ref": "#/components/schemas/Drive" }
               }
             },
             "description": "Successful response"
@@ -1011,27 +773,13 @@
     },
     "/drives/{driveId}/hide": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ],
       "post": {
         "description": "Hides a shared drive from the default view.",
@@ -1042,18 +790,14 @@
             "in": "path",
             "name": "driveId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Drive"
-                }
+                "schema": { "$ref": "#/components/schemas/Drive" }
               }
             },
             "description": "Successful response"
@@ -1071,27 +815,13 @@
     },
     "/drives/{driveId}/unhide": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ],
       "post": {
         "description": "Restores a shared drive to the default view.",
@@ -1102,18 +832,14 @@
             "in": "path",
             "name": "driveId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Drive"
-                }
+                "schema": { "$ref": "#/components/schemas/Drive" }
               }
             },
             "description": "Successful response"
@@ -1138,136 +864,98 @@
             "description": "Groupings of files to which the query applies. Supported groupings are: 'user' (files created by, opened by, or shared directly with the user), 'drive' (files in the specified shared drive as indicated by the 'driveId'), 'domain' (files shared to the user's domain), and 'allDrives' (A combination of 'user' and 'drive' for all drives where the user is a member). When able, use 'user' or 'drive', instead of 'allDrives', for efficiency.",
             "in": "query",
             "name": "corpora",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The source of files to list. Deprecated: use 'corpora' instead.",
             "in": "query",
             "name": "corpus",
-            "schema": {
-              "enum": ["domain", "user"],
-              "type": "string"
-            }
+            "schema": { "enum": ["domain", "user"], "type": "string" }
           },
           {
             "description": "ID of the shared drive to search.",
             "in": "query",
             "name": "driveId",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether both My Drive and shared drive items should be included in results.",
             "in": "query",
             "name": "includeItemsFromAllDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
             "in": "query",
             "name": "includePermissionsForView",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Deprecated use includeItemsFromAllDrives instead.",
             "in": "query",
             "name": "includeTeamDriveItems",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "A comma-separated list of sort keys. Valid keys are 'createdTime', 'folder', 'modifiedByMeTime', 'modifiedTime', 'name', 'name_natural', 'quotaBytesUsed', 'recency', 'sharedWithMeTime', 'starred', and 'viewedByMeTime'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedTime desc,name. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.",
             "in": "query",
             "name": "orderBy",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached.",
             "in": "query",
             "name": "pageSize",
-            "schema": {
-              "maximum": 1000,
-              "minimum": 1,
-              "type": "integer"
-            }
+            "schema": { "maximum": 1000, "minimum": 1, "type": "integer" }
           },
           {
             "description": "The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.",
             "in": "query",
             "name": "pageToken",
-            "schema": {
-              "type": "string",
-              "maximum": 1000,
-              "minimum": 1
-            }
+            "schema": { "type": "string", "maximum": 1000, "minimum": 1 }
           },
           {
             "description": "A query for filtering the file results. See the \"Search for Files\" guide for supported syntax.",
             "in": "query",
             "name": "q",
-            "schema": {
-              "title": "Query",
-              "type": "string"
-            }
+            "schema": { "title": "Query", "type": "string" }
           },
           {
             "description": "A comma-separated list of spaces to query within the corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.",
             "in": "query",
             "name": "spaces",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether the requesting application supports both My Drives and shared drives.",
             "in": "query",
             "name": "supportsAllDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use supportsAllDrives instead.",
             "in": "query",
             "name": "supportsTeamDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use driveId instead.",
             "in": "query",
             "name": "teamDriveId",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Deprecated use driveId instead.",
             "in": "query",
             "name": "teamDriveId",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FileList"
-                }
+                "schema": { "$ref": "#/components/schemas/FileList" }
               }
             },
             "description": "Successful response"
@@ -1291,8 +979,12 @@
             "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
-            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"],
-            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]
+            "Oauth2": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ],
+            "Oauth2c": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ]
           },
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
@@ -1307,27 +999,13 @@
         "summary": "list files"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ],
       "post": {
         "description": "Creates a new file.",
@@ -1337,81 +1015,61 @@
             "description": "Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.",
             "in": "query",
             "name": "enforceSingleParent",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.",
             "in": "query",
             "name": "ignoreDefaultVisibility",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
             "in": "query",
             "name": "includePermissionsForView",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.",
             "in": "query",
             "name": "keepRevisionForever",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "A language hint for OCR processing during image import (ISO 639-1 code).",
             "in": "query",
             "name": "ocrLanguage",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether the requesting application supports both My Drives and shared drives.",
             "in": "query",
             "name": "supportsAllDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use supportsAllDrives instead.",
             "in": "query",
             "name": "supportsTeamDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Whether to use the uploaded content as indexable text.",
             "in": "query",
             "name": "useContentAsIndexableText",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Whether to use the uploaded content as indexable text.",
             "in": "query",
             "name": "useContentAsIndexableText",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "requestBody": {
           "content": {
             "application/octet-stream": {
-              "schema": {
-                "$ref": "#/components/schemas/File"
-              }
+              "schema": { "$ref": "#/components/schemas/File" }
             }
           }
         },
@@ -1419,9 +1077,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/File"
-                }
+                "schema": { "$ref": "#/components/schemas/File" }
               }
             },
             "description": "Successful response"
@@ -1454,36 +1110,26 @@
             "description": "The number of IDs to return.",
             "in": "query",
             "name": "count",
-            "schema": {
-              "maximum": 1000,
-              "minimum": 1,
-              "type": "integer"
-            }
+            "schema": { "maximum": 1000, "minimum": 1, "type": "integer" }
           },
           {
             "description": "The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'.",
             "in": "query",
             "name": "space",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The type of items which the IDs can be used for. Supported values are 'files' and 'shortcuts'. Note that 'shortcuts' are only supported in the drive 'space'. (Default: 'files')",
             "in": "query",
             "name": "type",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GeneratedIds"
-                }
+                "schema": { "$ref": "#/components/schemas/GeneratedIds" }
               }
             },
             "description": "Successful response"
@@ -1507,27 +1153,13 @@
         "summary": "generate Ids files"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ]
     },
     "/files/trash": {
@@ -1539,16 +1171,10 @@
             "description": "Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter will only take effect if the item is not in a shared drive. If an item's last parent is deleted but the item itself is not, the item will be placed under its owner's root.",
             "in": "query",
             "name": "enforceSingleParent",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive"],
@@ -1559,27 +1185,13 @@
         "summary": "empty Trash files"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ]
     },
     "/files/{fileId}": {
@@ -1592,40 +1204,28 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter will only take effect if the item is not in a shared drive. If an item's last parent is deleted but the item itself is not, the item will be placed under its owner's root.",
             "in": "query",
             "name": "enforceSingleParent",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Whether the requesting application supports both My Drives and shared drives.",
             "in": "query",
             "name": "supportsAllDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use supportsAllDrives instead.",
             "in": "query",
             "name": "supportsTeamDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive"],
@@ -1652,58 +1252,44 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.",
             "in": "query",
             "name": "acknowledgeAbuse",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
             "in": "query",
             "name": "includePermissionsForView",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether the requesting application supports both My Drives and shared drives.",
             "in": "query",
             "name": "supportsAllDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use supportsAllDrives instead.",
             "in": "query",
             "name": "supportsTeamDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use supportsAllDrives instead.",
             "in": "query",
             "name": "supportsTeamDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/File"
-                }
+                "schema": { "$ref": "#/components/schemas/File" }
               }
             },
             "description": "Successful response"
@@ -1727,8 +1313,12 @@
             "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
-            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"],
-            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]
+            "Oauth2": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ],
+            "Oauth2c": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ]
           },
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
@@ -1743,27 +1333,13 @@
         "summary": "get files"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ],
       "patch": {
         "description": "Updates a file's metadata and/or content. This method supports patch semantics.",
@@ -1774,97 +1350,73 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "A comma-separated list of parent IDs to add.",
             "in": "query",
             "name": "addParents",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the item's owner makes a request to add a single parent, the item is removed from all current folders and placed in the requested folder. Other requests that increase the number of parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.",
             "in": "query",
             "name": "enforceSingleParent",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
             "in": "query",
             "name": "includePermissionsForView",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.",
             "in": "query",
             "name": "keepRevisionForever",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "A language hint for OCR processing during image import (ISO 639-1 code).",
             "in": "query",
             "name": "ocrLanguage",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "A comma-separated list of parent IDs to remove.",
             "in": "query",
             "name": "removeParents",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether the requesting application supports both My Drives and shared drives.",
             "in": "query",
             "name": "supportsAllDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use supportsAllDrives instead.",
             "in": "query",
             "name": "supportsTeamDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Whether to use the uploaded content as indexable text.",
             "in": "query",
             "name": "useContentAsIndexableText",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Whether to use the uploaded content as indexable text.",
             "in": "query",
             "name": "useContentAsIndexableText",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "requestBody": {
           "content": {
             "application/octet-stream": {
-              "schema": {
-                "$ref": "#/components/schemas/File"
-              }
+              "schema": { "$ref": "#/components/schemas/File" }
             }
           }
         },
@@ -1872,9 +1424,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/File"
-                }
+                "schema": { "$ref": "#/components/schemas/File" }
               }
             },
             "description": "Successful response"
@@ -1916,52 +1466,38 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether to include deleted comments. Deleted comments will not include their original content.",
             "in": "query",
             "name": "includeDeleted",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "The maximum number of comments to return per page.",
             "in": "query",
             "name": "pageSize",
-            "schema": {
-              "maximum": 100,
-              "minimum": 1,
-              "type": "integer"
-            }
+            "schema": { "maximum": 100, "minimum": 1, "type": "integer" }
           },
           {
             "description": "The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.",
             "in": "query",
             "name": "pageToken",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The minimum value of 'modifiedTime' for the result comments (RFC 3339 date-time).",
             "in": "query",
             "name": "startModifiedTime",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CommentList"
-                }
+                "schema": { "$ref": "#/components/schemas/CommentList" }
               }
             },
             "description": "Successful response"
@@ -1985,27 +1521,13 @@
         "summary": "list comments"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ],
       "post": {
         "description": "Creates a new comment on a file.",
@@ -2016,17 +1538,13 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Comment"
-              }
+              "schema": { "$ref": "#/components/schemas/Comment" }
             }
           }
         },
@@ -2034,9 +1552,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Comment"
-                }
+                "schema": { "$ref": "#/components/schemas/Comment" }
               }
             },
             "description": "Successful response"
@@ -2066,25 +1582,17 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The ID of the comment.",
             "in": "path",
             "name": "commentId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive"],
@@ -2107,35 +1615,27 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The ID of the comment.",
             "in": "path",
             "name": "commentId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether to return deleted comments. Deleted comments will not include their original content.",
             "in": "query",
             "name": "includeDeleted",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Comment"
-                }
+                "schema": { "$ref": "#/components/schemas/Comment" }
               }
             },
             "description": "Successful response"
@@ -2159,27 +1659,13 @@
         "summary": "get comments"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ],
       "patch": {
         "description": "Updates a comment with patch semantics.",
@@ -2190,26 +1676,20 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The ID of the comment.",
             "in": "path",
             "name": "commentId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Comment"
-              }
+              "schema": { "$ref": "#/components/schemas/Comment" }
             }
           }
         },
@@ -2217,9 +1697,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Comment"
-                }
+                "schema": { "$ref": "#/components/schemas/Comment" }
               }
             },
             "description": "Successful response"
@@ -2249,53 +1727,39 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The ID of the comment.",
             "in": "path",
             "name": "commentId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether to include deleted replies. Deleted replies will not include their original content.",
             "in": "query",
             "name": "includeDeleted",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "The maximum number of replies to return per page.",
             "in": "query",
             "name": "pageSize",
-            "schema": {
-              "maximum": 100,
-              "minimum": 1,
-              "type": "integer"
-            }
+            "schema": { "maximum": 100, "minimum": 1, "type": "integer" }
           },
           {
             "description": "The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.",
             "in": "query",
             "name": "pageToken",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ReplyList"
-                }
+                "schema": { "$ref": "#/components/schemas/ReplyList" }
               }
             },
             "description": "Successful response"
@@ -2319,27 +1783,13 @@
         "summary": "list replies"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ],
       "post": {
         "description": "Creates a new reply to a comment.",
@@ -2350,26 +1800,20 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The ID of the comment.",
             "in": "path",
             "name": "commentId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Reply"
-              }
+              "schema": { "$ref": "#/components/schemas/Reply" }
             }
           }
         },
@@ -2377,9 +1821,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Reply"
-                }
+                "schema": { "$ref": "#/components/schemas/Reply" }
               }
             },
             "description": "Successful response"
@@ -2409,34 +1851,24 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The ID of the comment.",
             "in": "path",
             "name": "commentId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The ID of the reply.",
             "in": "path",
             "name": "replyId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive"],
@@ -2459,44 +1891,34 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The ID of the comment.",
             "in": "path",
             "name": "commentId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The ID of the reply.",
             "in": "path",
             "name": "replyId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether to return deleted replies. Deleted replies will not include their original content.",
             "in": "query",
             "name": "includeDeleted",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Reply"
-                }
+                "schema": { "$ref": "#/components/schemas/Reply" }
               }
             },
             "description": "Successful response"
@@ -2520,27 +1942,13 @@
         "summary": "get replies"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ],
       "patch": {
         "description": "Updates a reply with patch semantics.",
@@ -2551,35 +1959,27 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The ID of the comment.",
             "in": "path",
             "name": "commentId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The ID of the reply.",
             "in": "path",
             "name": "replyId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Reply"
-              }
+              "schema": { "$ref": "#/components/schemas/Reply" }
             }
           }
         },
@@ -2587,9 +1987,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Reply"
-                }
+                "schema": { "$ref": "#/components/schemas/Reply" }
               }
             },
             "description": "Successful response"
@@ -2611,27 +2009,13 @@
     },
     "/files/{fileId}/copy": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ],
       "post": {
         "description": "Creates a copy of a file and applies any requested updates with patch semantics. Folders cannot be copied.",
@@ -2642,81 +2026,61 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.",
             "in": "query",
             "name": "enforceSingleParent",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.",
             "in": "query",
             "name": "ignoreDefaultVisibility",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
             "in": "query",
             "name": "includePermissionsForView",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.",
             "in": "query",
             "name": "keepRevisionForever",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "A language hint for OCR processing during image import (ISO 639-1 code).",
             "in": "query",
             "name": "ocrLanguage",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether the requesting application supports both My Drives and shared drives.",
             "in": "query",
             "name": "supportsAllDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use supportsAllDrives instead.",
             "in": "query",
             "name": "supportsTeamDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use supportsAllDrives instead.",
             "in": "query",
             "name": "supportsTeamDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/File"
-              }
+              "schema": { "$ref": "#/components/schemas/File" }
             }
           }
         },
@@ -2724,9 +2088,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/File"
-                }
+                "schema": { "$ref": "#/components/schemas/File" }
               }
             },
             "description": "Successful response"
@@ -2764,25 +2126,17 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The MIME type of the format requested for this export.",
             "in": "query",
             "name": "mimeType",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive"],
@@ -2801,27 +2155,13 @@
         "summary": "export files"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ]
     },
     "/files/{fileId}/permissions": {
@@ -2834,68 +2174,50 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
             "in": "query",
             "name": "includePermissionsForView",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The maximum number of permissions to return per page. When not set for files in a shared drive, at most 100 results will be returned. When not set for files that are not in a shared drive, the entire list will be returned.",
             "in": "query",
             "name": "pageSize",
-            "schema": {
-              "maximum": 100,
-              "minimum": 1,
-              "type": "integer"
-            }
+            "schema": { "maximum": 100, "minimum": 1, "type": "integer" }
           },
           {
             "description": "The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.",
             "in": "query",
             "name": "pageToken",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether the requesting application supports both My Drives and shared drives.",
             "in": "query",
             "name": "supportsAllDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use supportsAllDrives instead.",
             "in": "query",
             "name": "supportsTeamDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.",
             "in": "query",
             "name": "useDomainAdminAccess",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PermissionList"
-                }
+                "schema": { "$ref": "#/components/schemas/PermissionList" }
               }
             },
             "description": "Successful response"
@@ -2915,8 +2237,12 @@
             "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
-            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"],
-            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]
+            "Oauth2": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ],
+            "Oauth2c": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ]
           },
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
@@ -2931,27 +2257,13 @@
         "summary": "list permissions"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ],
       "post": {
         "description": "Creates a permission for a file or shared drive.",
@@ -2962,81 +2274,61 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "A plain text custom message to include in the notification email.",
             "in": "query",
             "name": "emailMessage",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. See moveToNewOwnersRoot for details.",
             "in": "query",
             "name": "enforceSingleParent",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "This parameter only takes effect if the item is not in a shared drive and the request is attempting to transfer the ownership of the item. When set to true, the item is moved to the new owner's My Drive root folder and all prior parents removed. If set to false, when enforceSingleParent=true, parents are not changed. If set to false, when enforceSingleParent=false, existing parents are not changed; however, the file will be added to the new owner's My Drive root folder, unless it is already in the new owner's My Drive.",
             "in": "query",
             "name": "moveToNewOwnersRoot",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Whether to send a notification email when sharing to users or groups. This defaults to true for users and groups, and is not allowed for other requests. It must not be disabled for ownership transfers.",
             "in": "query",
             "name": "sendNotificationEmail",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Whether the requesting application supports both My Drives and shared drives.",
             "in": "query",
             "name": "supportsAllDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use supportsAllDrives instead.",
             "in": "query",
             "name": "supportsTeamDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.",
             "in": "query",
             "name": "transferOwnership",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.",
             "in": "query",
             "name": "useDomainAdminAccess",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Permission"
-              }
+              "schema": { "$ref": "#/components/schemas/Permission" }
             }
           }
         },
@@ -3044,9 +2336,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Permission"
-                }
+                "schema": { "$ref": "#/components/schemas/Permission" }
               }
             },
             "description": "Successful response"
@@ -3076,49 +2366,35 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The ID of the permission.",
             "in": "path",
             "name": "permissionId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether the requesting application supports both My Drives and shared drives.",
             "in": "query",
             "name": "supportsAllDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use supportsAllDrives instead.",
             "in": "query",
             "name": "supportsTeamDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.",
             "in": "query",
             "name": "useDomainAdminAccess",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive"],
@@ -3141,51 +2417,39 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The ID of the permission.",
             "in": "path",
             "name": "permissionId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether the requesting application supports both My Drives and shared drives.",
             "in": "query",
             "name": "supportsAllDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use supportsAllDrives instead.",
             "in": "query",
             "name": "supportsTeamDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.",
             "in": "query",
             "name": "useDomainAdminAccess",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Permission"
-                }
+                "schema": { "$ref": "#/components/schemas/Permission" }
               }
             },
             "description": "Successful response"
@@ -3205,8 +2469,12 @@
             "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
-            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"],
-            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]
+            "Oauth2": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ],
+            "Oauth2c": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ]
           },
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
@@ -3221,27 +2489,13 @@
         "summary": "get permissions"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ],
       "patch": {
         "description": "Updates a permission with patch semantics.",
@@ -3252,66 +2506,50 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The ID of the permission.",
             "in": "path",
             "name": "permissionId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether to remove the expiration date.",
             "in": "query",
             "name": "removeExpiration",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Whether the requesting application supports both My Drives and shared drives.",
             "in": "query",
             "name": "supportsAllDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use supportsAllDrives instead.",
             "in": "query",
             "name": "supportsTeamDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.",
             "in": "query",
             "name": "transferOwnership",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.",
             "in": "query",
             "name": "useDomainAdminAccess",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Permission"
-              }
+              "schema": { "$ref": "#/components/schemas/Permission" }
             }
           }
         },
@@ -3319,9 +2557,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Permission"
-                }
+                "schema": { "$ref": "#/components/schemas/Permission" }
               }
             },
             "description": "Successful response"
@@ -3351,36 +2587,26 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The maximum number of revisions to return per page.",
             "in": "query",
             "name": "pageSize",
-            "schema": {
-              "maximum": 1000,
-              "minimum": 1,
-              "type": "integer"
-            }
+            "schema": { "maximum": 1000, "minimum": 1, "type": "integer" }
           },
           {
             "description": "The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.",
             "in": "query",
             "name": "pageToken",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RevisionList"
-                }
+                "schema": { "$ref": "#/components/schemas/RevisionList" }
               }
             },
             "description": "Successful response"
@@ -3404,8 +2630,12 @@
             "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
-            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"],
-            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]
+            "Oauth2": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ],
+            "Oauth2c": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ]
           },
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
@@ -3420,27 +2650,13 @@
         "summary": "list revisions"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ]
     },
     "/files/{fileId}/revisions/{revisionId}": {
@@ -3453,25 +2669,17 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The ID of the revision.",
             "in": "path",
             "name": "revisionId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive"],
@@ -3498,35 +2706,27 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The ID of the revision.",
             "in": "path",
             "name": "revisionId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.",
             "in": "query",
             "name": "acknowledgeAbuse",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Revision"
-                }
+                "schema": { "$ref": "#/components/schemas/Revision" }
               }
             },
             "description": "Successful response"
@@ -3550,8 +2750,12 @@
             "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
-            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"],
-            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]
+            "Oauth2": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ],
+            "Oauth2c": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ]
           },
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
@@ -3566,27 +2770,13 @@
         "summary": "get revisions"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ],
       "patch": {
         "description": "Updates a revision with patch semantics.",
@@ -3597,26 +2787,20 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The ID of the revision.",
             "in": "path",
             "name": "revisionId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Revision"
-              }
+              "schema": { "$ref": "#/components/schemas/Revision" }
             }
           }
         },
@@ -3624,9 +2808,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Revision"
-                }
+                "schema": { "$ref": "#/components/schemas/Revision" }
               }
             },
             "description": "Successful response"
@@ -3652,27 +2834,13 @@
     },
     "/files/{fileId}/watch": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ],
       "post": {
         "description": "Subscribes to changes to a file",
@@ -3683,57 +2851,43 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.",
             "in": "query",
             "name": "acknowledgeAbuse",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
             "in": "query",
             "name": "includePermissionsForView",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Whether the requesting application supports both My Drives and shared drives.",
             "in": "query",
             "name": "supportsAllDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use supportsAllDrives instead.",
             "in": "query",
             "name": "supportsTeamDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           },
           {
             "description": "Deprecated use supportsAllDrives instead.",
             "in": "query",
             "name": "supportsTeamDrives",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Channel"
-              }
+              "schema": { "$ref": "#/components/schemas/Channel" }
             }
           }
         },
@@ -3741,9 +2895,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Channel"
-                }
+                "schema": { "$ref": "#/components/schemas/Channel" }
               }
             },
             "description": "Successful response"
@@ -3767,8 +2919,12 @@
             "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
-            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"],
-            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]
+            "Oauth2": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ],
+            "Oauth2c": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ]
           },
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive.photos.readonly"],
@@ -3792,45 +2948,32 @@
             "description": "Maximum number of Team Drives to return.",
             "in": "query",
             "name": "pageSize",
-            "schema": {
-              "maximum": 100,
-              "minimum": 1,
-              "type": "integer"
-            }
+            "schema": { "maximum": 100, "minimum": 1, "type": "integer" }
           },
           {
             "description": "Page token for Team Drives.",
             "in": "query",
             "name": "pageToken",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Query string for searching Team Drives.",
             "in": "query",
             "name": "q",
-            "schema": {
-              "title": "Query",
-              "type": "string"
-            }
+            "schema": { "title": "Query", "type": "string" }
           },
           {
             "description": "Issue the request as a domain administrator; if set to true, then all Team Drives of the domain in which the requester is an administrator are returned.",
             "in": "query",
             "name": "useDomainAdminAccess",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TeamDriveList"
-                }
+                "schema": { "$ref": "#/components/schemas/TeamDriveList" }
               }
             },
             "description": "Successful response"
@@ -3850,27 +2993,13 @@
         "summary": "list teamdrives"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ],
       "post": {
         "description": "Deprecated use drives.create instead.",
@@ -3881,17 +3010,13 @@
             "in": "query",
             "name": "requestId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TeamDrive"
-              }
+              "schema": { "$ref": "#/components/schemas/TeamDrive" }
             }
           }
         },
@@ -3899,9 +3024,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TeamDrive"
-                }
+                "schema": { "$ref": "#/components/schemas/TeamDrive" }
               }
             },
             "description": "Successful response"
@@ -3927,16 +3050,10 @@
             "in": "path",
             "name": "teamDriveId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
+        "responses": { "200": { "description": "Successful response" } },
         "security": [
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive"],
@@ -3955,26 +3072,20 @@
             "in": "path",
             "name": "teamDriveId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.",
             "in": "query",
             "name": "useDomainAdminAccess",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TeamDrive"
-                }
+                "schema": { "$ref": "#/components/schemas/TeamDrive" }
               }
             },
             "description": "Successful response"
@@ -3994,27 +3105,13 @@
         "summary": "get teamdrives"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ],
       "patch": {
         "description": "Deprecated use drives.update instead",
@@ -4025,25 +3122,19 @@
             "in": "path",
             "name": "teamDriveId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.",
             "in": "query",
             "name": "useDomainAdminAccess",
-            "schema": {
-              "type": "boolean"
-            }
+            "schema": { "type": "boolean" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TeamDrive"
-              }
+              "schema": { "$ref": "#/components/schemas/TeamDrive" }
             }
           }
         },
@@ -4051,9 +3142,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TeamDrive"
-                }
+                "schema": { "$ref": "#/components/schemas/TeamDrive" }
               }
             },
             "description": "Successful response"
@@ -4079,36 +3168,26 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "description": "The maximum number of labels to return per page. When not set, this defaults to 100.",
             "in": "query",
             "name": "maxResults",
-            "schema": {
-              "maximum": 100,
-              "minimum": 1,
-              "type": "integer"
-            }
+            "schema": { "maximum": 100, "minimum": 1, "type": "integer" }
           },
           {
             "description": "The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.",
             "in": "query",
             "name": "pageToken",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LabelList"
-                }
+                "schema": { "$ref": "#/components/schemas/LabelList" }
               }
             },
             "description": "Successful response"
@@ -4128,8 +3207,12 @@
             "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata"]
           },
           {
-            "Oauth2": ["https://www.googleapis.com/auth/drive.metadata.readonly"],
-            "Oauth2c": ["https://www.googleapis.com/auth/drive.metadata.readonly"]
+            "Oauth2": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ],
+            "Oauth2c": [
+              "https://www.googleapis.com/auth/drive.metadata.readonly"
+            ]
           },
           {
             "Oauth2": ["https://www.googleapis.com/auth/drive.readonly"],
@@ -4140,52 +3223,24 @@
         "summary": "list Labels files"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ]
     },
     "/files/{fileId}/modifyLabels": {
       "parameters": [
-        {
-          "$ref": "#/components/parameters/alt"
-        },
-        {
-          "$ref": "#/components/parameters/fields"
-        },
-        {
-          "$ref": "#/components/parameters/key"
-        },
-        {
-          "$ref": "#/components/parameters/oauth_token"
-        },
-        {
-          "$ref": "#/components/parameters/prettyPrint"
-        },
-        {
-          "$ref": "#/components/parameters/quotaUser"
-        },
-        {
-          "$ref": "#/components/parameters/userIp"
-        }
+        { "$ref": "#/components/parameters/alt" },
+        { "$ref": "#/components/parameters/fields" },
+        { "$ref": "#/components/parameters/key" },
+        { "$ref": "#/components/parameters/oauth_token" },
+        { "$ref": "#/components/parameters/prettyPrint" },
+        { "$ref": "#/components/parameters/quotaUser" },
+        { "$ref": "#/components/parameters/userIp" }
       ],
       "post": {
         "description": "Modifies the set of labels on a file.",
@@ -4196,17 +3251,13 @@
             "in": "path",
             "name": "fileId",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ModifyLabelsRequest"
-              }
+              "schema": { "$ref": "#/components/schemas/ModifyLabelsRequest" }
             }
           }
         },
@@ -4247,64 +3298,49 @@
         "description": "Data format for the response.",
         "in": "query",
         "name": "alt",
-        "schema": {
-          "enum": ["json"],
-          "type": "string"
-        },
+        "schema": { "enum": ["json"], "type": "string" },
         "x-ignore": true
       },
       "fields": {
         "description": "Selector specifying which fields to include in a partial response.",
         "in": "query",
         "name": "fields",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "x-ignore": true
       },
       "key": {
         "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
         "in": "query",
         "name": "key",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "x-ignore": true
       },
       "oauth_token": {
         "description": "OAuth 2.0 token for the current user.",
         "in": "query",
         "name": "oauth_token",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "x-ignore": true
       },
       "prettyPrint": {
         "description": "Returns response with indentations and line breaks.",
         "in": "query",
         "name": "prettyPrint",
-        "schema": {
-          "type": "boolean"
-        },
+        "schema": { "type": "boolean" },
         "x-ignore": true
       },
       "quotaUser": {
         "description": "An opaque string that represents a user for quota purposes. Must not exceed 40 characters.",
         "in": "query",
         "name": "quotaUser",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "x-ignore": true
       },
       "userIp": {
         "description": "Deprecated. Please use quotaUser instead.",
         "in": "query",
         "name": "userIp",
-        "schema": {
-          "type": "string"
-        }
+        "schema": { "type": "string" }
       }
     },
     "schemas": {
@@ -4346,9 +3382,7 @@
           },
           "exportFormats": {
             "additionalProperties": {
-              "items": {
-                "type": "string"
-              },
+              "items": { "type": "string" },
               "type": "array"
             },
             "description": "A map of source MIME type to possible targets for all supported exports.",
@@ -4356,16 +3390,12 @@
           },
           "folderColorPalette": {
             "description": "The currently supported folder colors as RGB hex strings.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "importFormats": {
             "additionalProperties": {
-              "items": {
-                "type": "string"
-              },
+              "items": { "type": "string" },
               "type": "array"
             },
             "description": "A map of source MIME type to possible targets for all supported imports.",
@@ -4377,10 +3407,7 @@
             "type": "string"
           },
           "maxImportSizes": {
-            "additionalProperties": {
-              "format": "int64",
-              "type": "string"
-            },
+            "additionalProperties": { "format": "int64", "type": "string" },
             "description": "A map of maximum import sizes by MIME type, in bytes.",
             "type": "object"
           },
@@ -4500,9 +3527,7 @@
         "properties": {
           "changes": {
             "description": "The list of changes. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.",
-            "items": {
-              "$ref": "#/components/schemas/Change"
-            },
+            "items": { "$ref": "#/components/schemas/Change" },
             "type": "array"
           },
           "kind": {
@@ -4601,10 +3626,7 @@
             "description": "The content of the comment with HTML formatting.",
             "type": "string"
           },
-          "id": {
-            "description": "The ID of the comment.",
-            "type": "string"
-          },
+          "id": { "description": "The ID of the comment.", "type": "string" },
           "kind": {
             "default": "drive#comment",
             "description": "Identifies what kind of resource this is. Value: the fixed string \"drive#comment\".",
@@ -4631,9 +3653,7 @@
           },
           "replies": {
             "description": "The full list of replies to the comment in chronological order.",
-            "items": {
-              "$ref": "#/components/schemas/Reply"
-            },
+            "items": { "$ref": "#/components/schemas/Reply" },
             "type": "array"
           },
           "resolved": {
@@ -4648,9 +3668,7 @@
         "properties": {
           "comments": {
             "description": "The list of comments. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.",
-            "items": {
-              "$ref": "#/components/schemas/Comment"
-            },
+            "items": { "$ref": "#/components/schemas/Comment" },
             "type": "array"
           },
           "kind": {
@@ -4870,9 +3888,7 @@
         "properties": {
           "drives": {
             "description": "The list of shared drives. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.",
-            "items": {
-              "$ref": "#/components/schemas/Drive"
-            },
+            "items": { "$ref": "#/components/schemas/Drive" },
             "type": "array"
           },
           "kind": {
@@ -4891,9 +3907,7 @@
         "description": "The metadata for a file.",
         "properties": {
           "appProperties": {
-            "additionalProperties": {
-              "type": "string"
-            },
+            "additionalProperties": { "type": "string" },
             "description": "A collection of arbitrary key-value pairs which are private to the requesting app.\nEntries with null values are cleared in update and copy requests.",
             "type": "object"
           },
@@ -5082,9 +4096,7 @@
           },
           "contentRestrictions": {
             "description": "Restrictions for accessing the content of the file. Only populated if such a restriction exists.",
-            "items": {
-              "$ref": "#/components/schemas/ContentRestriction"
-            },
+            "items": { "$ref": "#/components/schemas/ContentRestriction" },
             "type": "array"
           },
           "copyRequiresWriterPermission": {
@@ -5145,10 +4157,7 @@
             "description": "A static, unauthenticated link to the file's icon.",
             "type": "string"
           },
-          "id": {
-            "description": "The ID of the file.",
-            "type": "string"
-          },
+          "id": { "description": "The ID of the file.", "type": "string" },
           "imageMediaMetadata": {
             "description": "Additional metadata about image media, if available.",
             "properties": {
@@ -5315,36 +4324,26 @@
           },
           "owners": {
             "description": "The owners of the file. Currently, only certain legacy files may have more than one owner. Not populated for items in shared drives.",
-            "items": {
-              "$ref": "#/components/schemas/User"
-            },
+            "items": { "$ref": "#/components/schemas/User" },
             "type": "array"
           },
           "parents": {
             "description": "The IDs of the parent folders which contain the file.\nIf not specified as part of a create request, the file will be placed directly in the user's My Drive folder. If not specified as part of a copy request, the file will inherit any discoverable parents of the source file. Update requests must use the addParents and removeParents parameters to modify the parents list.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "permissionIds": {
             "description": "List of permission IDs for users with access to this file.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "permissions": {
             "description": "The full list of permissions for the file. This is only available if the requesting user can share the file. Not populated for items in shared drives.",
-            "items": {
-              "$ref": "#/components/schemas/Permission"
-            },
+            "items": { "$ref": "#/components/schemas/Permission" },
             "type": "array"
           },
           "properties": {
-            "additionalProperties": {
-              "type": "string"
-            },
+            "additionalProperties": { "type": "string" },
             "description": "A collection of arbitrary key-value pairs which are visible to all apps.\nEntries with null values are cleared in update and copy requests.",
             "type": "object"
           },
@@ -5391,9 +4390,7 @@
           },
           "spaces": {
             "description": "The list of spaces which contain the file. The currently supported values are 'drive', 'appDataFolder' and 'photos'.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "starred": {
@@ -5482,9 +4479,7 @@
             "properties": {
               "labels": {
                 "description": "The set of labels on the file as requested by the label IDs in the includeLabels parameter. By default, no labels are returned.",
-                "items": {
-                  "$ref": "#/components/schemas/Label"
-                },
+                "items": { "$ref": "#/components/schemas/Label" },
                 "type": "array"
               }
             },
@@ -5507,6 +4502,14 @@
           "resourceKey": {
             "description": "A key needed to access the item via a shared link.",
             "type": "string"
+          },
+          "sha1Checksum": {
+            "description": "The SHA1 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.",
+            "type": "string"
+          },
+          "sha256Checksum": {
+            "description": "The SHA256 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.",
+            "type": "string"
           }
         },
         "type": "object"
@@ -5516,9 +4519,7 @@
         "properties": {
           "files": {
             "description": "The list of files. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.",
-            "items": {
-              "$ref": "#/components/schemas/File"
-            },
+            "items": { "$ref": "#/components/schemas/File" },
             "type": "array"
           },
           "incompleteSearch": {
@@ -5542,9 +4543,7 @@
         "properties": {
           "ids": {
             "description": "The IDs generated for the requesting user in the specified space.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "kind": {
@@ -5685,9 +4684,7 @@
           },
           "permissions": {
             "description": "The list of permissions. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.",
-            "items": {
-              "$ref": "#/components/schemas/Permission"
-            },
+            "items": { "$ref": "#/components/schemas/Permission" },
             "type": "array"
           }
         },
@@ -5721,10 +4718,7 @@
             "description": "The content of the reply with HTML formatting.",
             "type": "string"
           },
-          "id": {
-            "description": "The ID of the reply.",
-            "type": "string"
-          },
+          "id": { "description": "The ID of the reply.", "type": "string" },
           "kind": {
             "default": "drive#reply",
             "description": "Identifies what kind of resource this is. Value: the fixed string \"drive#reply\".",
@@ -5752,9 +4746,7 @@
           },
           "replies": {
             "description": "The list of replies. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.",
-            "items": {
-              "$ref": "#/components/schemas/Reply"
-            },
+            "items": { "$ref": "#/components/schemas/Reply" },
             "type": "array"
           }
         },
@@ -5771,10 +4763,7 @@
             "description": "Links for exporting Google Docs to specific formats.",
             "type": "object"
           },
-          "id": {
-            "description": "The ID of the revision.",
-            "type": "string"
-          },
+          "id": { "description": "The ID of the revision.", "type": "string" },
           "keepForever": {
             "description": "Whether to keep this revision forever, even if it is no longer the head revision. If not set, the revision will be automatically purged 30 days after newer content is uploaded. This can be set on a maximum of 200 revisions for a file.\nThis field is only applicable to files with binary content in Drive.",
             "type": "boolean"
@@ -5843,9 +4832,7 @@
           },
           "revisions": {
             "description": "The list of revisions. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.",
-            "items": {
-              "$ref": "#/components/schemas/Revision"
-            },
+            "items": { "$ref": "#/components/schemas/Revision" },
             "type": "array"
           }
         },
@@ -6052,9 +5039,7 @@
           },
           "teamDrives": {
             "description": "The list of Team Drives. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.",
-            "items": {
-              "$ref": "#/components/schemas/TeamDrive"
-            },
+            "items": { "$ref": "#/components/schemas/TeamDrive" },
             "type": "array"
           }
         },
@@ -6101,10 +5086,7 @@
             "description": "A map of the label's fields keyed by the field ID.",
             "type": "object"
           },
-          "id": {
-            "description": "The ID of the label.",
-            "type": "string"
-          },
+          "id": { "description": "The ID of the label.", "type": "string" },
           "kind": {
             "default": "drive#label",
             "description": "This is always drive#label",
@@ -6122,10 +5104,7 @@
         "properties": {
           "dateString": {
             "description": "Only present if valueType is dateString. RFC 3339 formatted date: YYYY-MM-DD.",
-            "items": {
-              "format": "date",
-              "type": "string"
-            },
+            "items": { "format": "date", "type": "string" },
             "type": "array"
           },
           "id": {
@@ -6134,10 +5113,7 @@
           },
           "integer": {
             "description": "Only present if valueType is integer.",
-            "items": {
-              "format": "int64",
-              "type": "string"
-            },
+            "items": { "format": "int64", "type": "string" },
             "type": "array"
           },
           "kind": {
@@ -6147,23 +5123,17 @@
           },
           "selection": {
             "description": "Only present if valueType is selection.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "text": {
             "description": "Only present if valueType is text.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "user": {
             "description": "Only present if valueType is user.",
-            "items": {
-              "$ref": "#/components/schemas/User"
-            },
+            "items": { "$ref": "#/components/schemas/User" },
             "type": "array"
           },
           "valueType": {
@@ -6187,39 +5157,27 @@
           },
           "setDateValues": {
             "description": "Replaces a dateString field with these new values. The values must be strings in the RFC 3339 full-date format: YYYY-MM-DD.",
-            "items": {
-              "format": "date",
-              "type": "string"
-            },
+            "items": { "format": "date", "type": "string" },
             "type": "array"
           },
           "setIntegerValues": {
             "description": "Replaces an integer field with these new values.",
-            "items": {
-              "format": "int64",
-              "type": "string"
-            },
+            "items": { "format": "int64", "type": "string" },
             "type": "array"
           },
           "setSelectionValues": {
             "description": "Replaces a selection field with these new values.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "setTextValues": {
             "description": "Replaces a text field with these new values.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "setUserValues": {
             "description": "Replaces a user field with these new values. The values must be valid email addresses.",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "type": "array"
           },
           "unsetValues": {
@@ -6239,9 +5197,7 @@
           },
           "labels": {
             "description": "The list of labels.",
-            "items": {
-              "$ref": "#/components/schemas/Label"
-            },
+            "items": { "$ref": "#/components/schemas/Label" },
             "type": "array"
           },
           "nextPageToken": {
@@ -6256,9 +5212,7 @@
         "properties": {
           "fieldModifications": {
             "description": "The list of modifications to this label's fields.",
-            "items": {
-              "$ref": "#/components/schemas/LabelFieldModification"
-            },
+            "items": { "$ref": "#/components/schemas/LabelFieldModification" },
             "type": "array"
           },
           "kind": {
@@ -6287,9 +5241,7 @@
           },
           "labelModifications": {
             "description": "The list of modifications to apply to the labels on the file.",
-            "items": {
-              "$ref": "#/components/schemas/LabelModification"
-            },
+            "items": { "$ref": "#/components/schemas/LabelModification" },
             "type": "array"
           }
         },
@@ -6305,9 +5257,7 @@
           },
           "modifiedLabels": {
             "description": "The list of labels which were added or updated by the request.",
-            "items": {
-              "$ref": "#/components/schemas/Label"
-            },
+            "items": { "$ref": "#/components/schemas/Label" },
             "type": "array"
           }
         },

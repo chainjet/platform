@@ -143,9 +143,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateGroupOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/CreateGroupOutput" }
               }
             }
           },
@@ -153,9 +151,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -163,9 +159,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -228,9 +222,7 @@
                     "properties": {
                       "Type": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/QueryType"
-                          },
+                          { "$ref": "#/components/schemas/QueryType" },
                           {
                             "description": "<p>The type of the query. You can use the following values:</p> <ul> <li> <p> <i> <code>CLOUDFORMATION_STACK_1_0:</code> </i> A JSON syntax that lets you specify a CloudFormation stack ARN.</p> </li> <li> <p> <i> <code>TAG_FILTERS_1_0:</code> </i> A JSON syntax that lets you specify a collection of simple tag filters for resource types and tags, as supported by the AWS Tagging API <a href=\"https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_GetResources.html#resourcegrouptagging-GetResources-request-ResourceTypeFilters\"> <code>ResourceTypeFilters</code> parameter of the <code>tagging:GetResources</code> </a> operation. If you specify more than one tag key, only resources that match all tag keys, and at least one value of each specified tag key, are returned in your query. If you specify more than one value for a tag key, a resource matches the filter if it has a tag key value that matches <i>any</i> of the specified values.</p> <p>For example, consider the following sample query for resources that have two tags, <code>Stage</code> and <code>Version</code>, with two values each:</p> <p> <code>[{\"Key\":\"Stage\",\"Values\":[\"Test\",\"Deploy\"]},{\"Key\":\"Version\",\"Values\":[\"1\",\"2\"]}]</code> </p> <p>The results of this query could include the following.</p> <ul> <li> <p>An EC2 instance that has the following two tags: <code>{\"Key\":\"Stage\",\"Value\":\"Deploy\"}</code>, and <code>{\"Key\":\"Version\",\"Value\":\"2\"}</code> </p> </li> <li> <p>An S3 bucket that has the following two tags: <code>{\"Key\":\"Stage\",\"Value\":\"Test\"}</code>, and <code>{\"Key\":\"Version\",\"Value\":\"1\"}</code> </p> </li> </ul> <p>The query would not include the following items in the results, however. </p> <ul> <li> <p>An EC2 instance that has only the following tag: <code>{\"Key\":\"Stage\",\"Value\":\"Deploy\"}</code>.</p> <p>The instance does not have <b>all</b> of the tag keys specified in the filter, so it is excluded from the results.</p> </li> <li> <p>An RDS database that has the following two tags: <code>{\"Key\":\"Stage\",\"Value\":\"Archived\"}</code>, and <code>{\"Key\":\"Version\",\"Value\":\"4\"}</code> </p> <p>The database has all of the tag keys, but none of those keys has an associated value that matches at least one of the specified values in the filter.</p> </li> </ul> </li> </ul>"
                           }
@@ -238,9 +230,7 @@
                       },
                       "Query": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/Query"
-                          },
+                          { "$ref": "#/components/schemas/Query" },
                           {
                             "description": "The query that defines a group or a search."
                           }
@@ -271,27 +261,13 @@
         "summary": "Create Group"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/delete-group": {
@@ -303,9 +279,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteGroupOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/DeleteGroupOutput" }
               }
             }
           },
@@ -313,9 +287,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -323,9 +295,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -333,9 +303,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -400,27 +368,13 @@
         "summary": "Delete Group"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/get-group": {
@@ -432,9 +386,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetGroupOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/GetGroupOutput" }
               }
             }
           },
@@ -442,9 +394,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -452,9 +402,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -462,9 +410,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -529,27 +475,13 @@
         "summary": "Get Group"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/get-group-configuration": {
@@ -571,9 +503,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -581,9 +511,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -591,9 +519,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -651,27 +577,13 @@
         "summary": "Get Group Configuration"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/get-group-query": {
@@ -683,9 +595,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetGroupQueryOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/GetGroupQueryOutput" }
               }
             }
           },
@@ -693,9 +603,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -703,9 +611,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -713,9 +619,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -780,27 +684,13 @@
         "summary": "Get Group Query"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/resources/{Arn}/tags": {
@@ -812,9 +702,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetTagsOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/GetTagsOutput" }
               }
             }
           },
@@ -822,9 +710,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -832,9 +718,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -842,9 +726,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -896,27 +778,13 @@
         "summary": "Get Tags"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "put": {
         "operationId": "Tag",
@@ -926,9 +794,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TagOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/TagOutput" }
               }
             }
           },
@@ -936,9 +802,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -946,9 +810,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -956,9 +818,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1037,9 +897,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UntagOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/UntagOutput" }
               }
             }
           },
@@ -1047,9 +905,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1057,9 +913,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1067,9 +921,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1129,9 +981,7 @@
                   "Keys": {
                     "description": "The keys of the tags to be removed.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/TagKey"
-                    }
+                    "items": { "$ref": "#/components/schemas/TagKey" }
                   }
                 }
               }
@@ -1160,9 +1010,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1170,9 +1018,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1180,9 +1026,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1236,9 +1080,7 @@
                   "ResourceArns": {
                     "description": "The list of ARNs for resources to be added to the group. ",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ResourceArn"
-                    },
+                    "items": { "$ref": "#/components/schemas/ResourceArn" },
                     "minItems": 1,
                     "maxItems": 10
                   }
@@ -1250,27 +1092,13 @@
         "summary": "Group Resources"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/list-group-resources": {
@@ -1302,9 +1130,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1312,9 +1138,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1322,9 +1146,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1363,18 +1185,14 @@
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -1403,9 +1221,7 @@
                   "Filters": {
                     "description": "<p>Filters, formatted as <a>ResourceFilter</a> objects, that you want to apply to a <code>ListGroupResources</code> operation. Filters the results to include only those of the specified resource types.</p> <ul> <li> <p> <code>resource-type</code> - Filter resources by their type. Specify up to five resource types in the format <code>AWS::ServiceCode::ResourceType</code>. For example, <code>AWS::EC2::Instance</code>, or <code>AWS::S3::Bucket</code>. </p> </li> </ul> <p>When you specify a <code>resource-type</code> filter for <code>ListGroupResources</code>, AWS Resource Groups validates your filter resource types against the types that are defined in the query associated with the group. For example, if a group contains only S3 buckets because its query specifies only that resource type, but your <code>resource-type</code> filter includes EC2 instances, AWS Resource Groups does not filter for EC2 instances. In this case, a <code>ListGroupResources</code> request returns a <code>BadRequestException</code> error with a message similar to the following:</p> <p> <code>The resource types specified as filters in the request are not valid.</code> </p> <p>The error includes a list of resource types that failed the validation because they are not part of the query associated with the group. This validation doesn't occur when the group query specifies <code>AWS::AllSupported</code>, because a group based on such a query can contain any of the allowed resource types for the query type (tag-based or AWS CloudFormation stack-based queries).</p>",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ResourceFilter"
-                    }
+                    "items": { "$ref": "#/components/schemas/ResourceFilter" }
                   },
                   "MaxResults": {
                     "description": "The total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the <code>NextToken</code> response element is present and has a value (is not null). Include that value as the <code>NextToken</code> request parameter in the next call to the operation to get the next part of the results. Note that the service might return fewer results than the maximum even when there are more results available. You should check <code>NextToken</code> after every operation to ensure that you receive all of the results.",
@@ -1428,27 +1244,13 @@
         "summary": "List Group Resources"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/groups-list": {
@@ -1460,9 +1262,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListGroupsOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/ListGroupsOutput" }
               }
             }
           },
@@ -1470,9 +1270,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1480,9 +1278,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1523,11 +1319,7 @@
             "in": "query",
             "required": false,
             "description": "The total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the <code>NextToken</code> response element is present and has a value (is not null). Include that value as the <code>NextToken</code> request parameter in the next call to the operation to get the next part of the results. Note that the service might return fewer results than the maximum even when there are more results available. You should check <code>NextToken</code> after every operation to ensure that you receive all of the results.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 50
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 50 }
           },
           {
             "name": "nextToken",
@@ -1544,18 +1336,14 @@
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -1570,9 +1358,7 @@
                   "Filters": {
                     "description": "<p>Filters, formatted as <a>GroupFilter</a> objects, that you want to apply to a <code>ListGroups</code> operation.</p> <ul> <li> <p> <code>resource-type</code> - Filter the results to include only those of the specified resource types. Specify up to five resource types in the format <code>AWS::<i>ServiceCode</i>::<i>ResourceType</i> </code>. For example, <code>AWS::EC2::Instance</code>, or <code>AWS::S3::Bucket</code>.</p> </li> <li> <p> <code>configuration-type</code> - Filter the results to include only those groups that have the specified configuration types attached. The current supported values are:</p> <ul> <li> <p>AWS:EC2::CapacityReservationPool</p> </li> </ul> </li> </ul>",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/GroupFilter"
-                    }
+                    "items": { "$ref": "#/components/schemas/GroupFilter" }
                   }
                 }
               }
@@ -1582,27 +1368,13 @@
         "summary": "List Groups"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/resources/search": {
@@ -1634,9 +1406,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1644,9 +1414,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1685,18 +1453,14 @@
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -1715,9 +1479,7 @@
                     "properties": {
                       "Type": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/QueryType"
-                          },
+                          { "$ref": "#/components/schemas/QueryType" },
                           {
                             "description": "<p>The type of the query. You can use the following values:</p> <ul> <li> <p> <i> <code>CLOUDFORMATION_STACK_1_0:</code> </i> A JSON syntax that lets you specify a CloudFormation stack ARN.</p> </li> <li> <p> <i> <code>TAG_FILTERS_1_0:</code> </i> A JSON syntax that lets you specify a collection of simple tag filters for resource types and tags, as supported by the AWS Tagging API <a href=\"https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_GetResources.html#resourcegrouptagging-GetResources-request-ResourceTypeFilters\"> <code>ResourceTypeFilters</code> parameter of the <code>tagging:GetResources</code> </a> operation. If you specify more than one tag key, only resources that match all tag keys, and at least one value of each specified tag key, are returned in your query. If you specify more than one value for a tag key, a resource matches the filter if it has a tag key value that matches <i>any</i> of the specified values.</p> <p>For example, consider the following sample query for resources that have two tags, <code>Stage</code> and <code>Version</code>, with two values each:</p> <p> <code>[{\"Key\":\"Stage\",\"Values\":[\"Test\",\"Deploy\"]},{\"Key\":\"Version\",\"Values\":[\"1\",\"2\"]}]</code> </p> <p>The results of this query could include the following.</p> <ul> <li> <p>An EC2 instance that has the following two tags: <code>{\"Key\":\"Stage\",\"Value\":\"Deploy\"}</code>, and <code>{\"Key\":\"Version\",\"Value\":\"2\"}</code> </p> </li> <li> <p>An S3 bucket that has the following two tags: <code>{\"Key\":\"Stage\",\"Value\":\"Test\"}</code>, and <code>{\"Key\":\"Version\",\"Value\":\"1\"}</code> </p> </li> </ul> <p>The query would not include the following items in the results, however. </p> <ul> <li> <p>An EC2 instance that has only the following tag: <code>{\"Key\":\"Stage\",\"Value\":\"Deploy\"}</code>.</p> <p>The instance does not have <b>all</b> of the tag keys specified in the filter, so it is excluded from the results.</p> </li> <li> <p>An RDS database that has the following two tags: <code>{\"Key\":\"Stage\",\"Value\":\"Archived\"}</code>, and <code>{\"Key\":\"Version\",\"Value\":\"4\"}</code> </p> <p>The database has all of the tag keys, but none of those keys has an associated value that matches at least one of the specified values in the filter.</p> </li> </ul> </li> </ul>"
                           }
@@ -1725,9 +1487,7 @@
                       },
                       "Query": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/Query"
-                          },
+                          { "$ref": "#/components/schemas/Query" },
                           {
                             "description": "The query that defines a group or a search."
                           }
@@ -1756,27 +1516,13 @@
         "summary": "Search Resources"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/ungroup-resources": {
@@ -1798,9 +1544,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1808,9 +1552,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1818,9 +1560,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1874,9 +1614,7 @@
                   "ResourceArns": {
                     "description": "The ARNs of the resources to be removed from the group.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ResourceArn"
-                    },
+                    "items": { "$ref": "#/components/schemas/ResourceArn" },
                     "minItems": 1,
                     "maxItems": 10
                   }
@@ -1888,27 +1626,13 @@
         "summary": "Ungroup Resources"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/update-group": {
@@ -1920,9 +1644,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UpdateGroupOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/UpdateGroupOutput" }
               }
             }
           },
@@ -1930,9 +1652,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1940,9 +1660,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1950,9 +1668,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2023,27 +1739,13 @@
         "summary": "Update Group"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/update-group-query": {
@@ -2065,9 +1767,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2075,9 +1775,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -2085,9 +1783,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2151,9 +1847,7 @@
                     "properties": {
                       "Type": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/QueryType"
-                          },
+                          { "$ref": "#/components/schemas/QueryType" },
                           {
                             "description": "<p>The type of the query. You can use the following values:</p> <ul> <li> <p> <i> <code>CLOUDFORMATION_STACK_1_0:</code> </i> A JSON syntax that lets you specify a CloudFormation stack ARN.</p> </li> <li> <p> <i> <code>TAG_FILTERS_1_0:</code> </i> A JSON syntax that lets you specify a collection of simple tag filters for resource types and tags, as supported by the AWS Tagging API <a href=\"https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_GetResources.html#resourcegrouptagging-GetResources-request-ResourceTypeFilters\"> <code>ResourceTypeFilters</code> parameter of the <code>tagging:GetResources</code> </a> operation. If you specify more than one tag key, only resources that match all tag keys, and at least one value of each specified tag key, are returned in your query. If you specify more than one value for a tag key, a resource matches the filter if it has a tag key value that matches <i>any</i> of the specified values.</p> <p>For example, consider the following sample query for resources that have two tags, <code>Stage</code> and <code>Version</code>, with two values each:</p> <p> <code>[{\"Key\":\"Stage\",\"Values\":[\"Test\",\"Deploy\"]},{\"Key\":\"Version\",\"Values\":[\"1\",\"2\"]}]</code> </p> <p>The results of this query could include the following.</p> <ul> <li> <p>An EC2 instance that has the following two tags: <code>{\"Key\":\"Stage\",\"Value\":\"Deploy\"}</code>, and <code>{\"Key\":\"Version\",\"Value\":\"2\"}</code> </p> </li> <li> <p>An S3 bucket that has the following two tags: <code>{\"Key\":\"Stage\",\"Value\":\"Test\"}</code>, and <code>{\"Key\":\"Version\",\"Value\":\"1\"}</code> </p> </li> </ul> <p>The query would not include the following items in the results, however. </p> <ul> <li> <p>An EC2 instance that has only the following tag: <code>{\"Key\":\"Stage\",\"Value\":\"Deploy\"}</code>.</p> <p>The instance does not have <b>all</b> of the tag keys specified in the filter, so it is excluded from the results.</p> </li> <li> <p>An RDS database that has the following two tags: <code>{\"Key\":\"Stage\",\"Value\":\"Archived\"}</code>, and <code>{\"Key\":\"Version\",\"Value\":\"4\"}</code> </p> <p>The database has all of the tag keys, but none of those keys has an associated value that matches at least one of the specified values in the filter.</p> </li> </ul> </li> </ul>"
                           }
@@ -2161,9 +1855,7 @@
                       },
                       "Query": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/Query"
-                          },
+                          { "$ref": "#/components/schemas/Query" },
                           {
                             "description": "The query that defines a group or a search."
                           }
@@ -2179,27 +1871,13 @@
         "summary": "Update Group Query"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/put-group-configuration": {
@@ -2221,9 +1899,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2231,9 +1907,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -2241,9 +1915,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2309,27 +1981,13 @@
         "summary": "Put Group Configuration"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -2338,63 +1996,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -2414,39 +2058,25 @@
         "properties": {
           "Group": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Group"
-              },
-              {
-                "description": "The description of the resource group."
-              }
+              { "$ref": "#/components/schemas/Group" },
+              { "description": "The description of the resource group." }
             ]
           },
           "ResourceQuery": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceQuery"
-              },
-              {
-                "description": "The resource query associated with the group."
-              }
+              { "$ref": "#/components/schemas/ResourceQuery" },
+              { "description": "The resource query associated with the group." }
             ]
           },
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Tags"
-              },
-              {
-                "description": "The tags associated with the group."
-              }
+              { "$ref": "#/components/schemas/Tags" },
+              { "description": "The tags associated with the group." }
             ]
           },
           "GroupConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupConfiguration"
-              },
+              { "$ref": "#/components/schemas/GroupConfiguration" },
               {
                 "description": "<p>The service configuration associated with the resource group. AWS Resource Groups supports adding service configurations for the following resource group types:</p> <ul> <li> <p> <code>AWS::EC2::CapacityReservationPool</code> - Amazon EC2 capacity reservation pools. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-using.html#create-cr-group\">Working with capacity reservation groups</a> in the <i>EC2 Users Guide</i>.</p> </li> </ul>"
               }
@@ -2461,11 +2091,7 @@
         "minLength": 1,
         "maxLength": 128
       },
-      "Query": {
-        "type": "string",
-        "pattern": "[\\s\\S]*",
-        "maxLength": 4096
-      },
+      "Query": { "type": "string", "pattern": "[\\s\\S]*", "maxLength": 4096 },
       "TagValue": {
         "type": "string",
         "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
@@ -2478,9 +2104,7 @@
         "properties": {
           "Type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupConfigurationType"
-              },
+              { "$ref": "#/components/schemas/GroupConfigurationType" },
               {
                 "description": "<p>Specifies the type of group configuration item. Each item must have a unique value for <code>type</code>.</p> <p>You can specify the following string values:</p> <ul> <li> <p> <code>AWS::EC2::CapacityReservationPool</code> </p> <p>For more information about EC2 capacity reservation groups, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-using.html#create-cr-group\">Working with capacity reservation groups</a> in the <i>EC2 Users Guide</i>.</p> </li> <li> <p> <code>AWS::ResourceGroups::Generic</code> - Supports parameters that configure the behavior of resource groups of any type.</p> </li> </ul>"
               }
@@ -2488,9 +2112,7 @@
           },
           "Parameters": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupParameterList"
-              },
+              { "$ref": "#/components/schemas/GroupParameterList" },
               {
                 "description": "A collection of parameters for this group configuration item."
               }
@@ -2509,9 +2131,7 @@
         "properties": {
           "Group": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Group"
-              },
+              { "$ref": "#/components/schemas/Group" },
               {
                 "description": "A full description of the deleted resource group."
               }
@@ -2525,12 +2145,8 @@
         "properties": {
           "Group": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Group"
-              },
-              {
-                "description": "A full description of the resource group."
-              }
+              { "$ref": "#/components/schemas/Group" },
+              { "description": "A full description of the resource group." }
             ]
           }
         }
@@ -2540,9 +2156,7 @@
         "properties": {
           "GroupConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupConfiguration"
-              },
+              { "$ref": "#/components/schemas/GroupConfiguration" },
               {
                 "description": "The configuration associated with the specified group."
               }
@@ -2555,9 +2169,7 @@
         "properties": {
           "GroupQuery": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupQuery"
-              },
+              { "$ref": "#/components/schemas/GroupQuery" },
               {
                 "description": "The resource query associated with the specified group."
               }
@@ -2570,19 +2182,13 @@
         "properties": {
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupArn"
-              },
-              {
-                "description": "The ARN of the tagged resource group."
-              }
+              { "$ref": "#/components/schemas/GroupArn" },
+              { "description": "The ARN of the tagged resource group." }
             ]
           },
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Tags"
-              },
+              { "$ref": "#/components/schemas/Tags" },
               {
                 "description": "The tags associated with the specified resource group."
               }
@@ -2595,9 +2201,7 @@
         "properties": {
           "Succeeded": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceArnList"
-              },
+              { "$ref": "#/components/schemas/ResourceArnList" },
               {
                 "description": "The ARNs of the resources that were successfully added to the group by this operation."
               }
@@ -2605,9 +2209,7 @@
           },
           "Failed": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FailedResourceList"
-              },
+              { "$ref": "#/components/schemas/FailedResourceList" },
               {
                 "description": "The ARNs of the resources that failed to be added to the group by this operation."
               }
@@ -2615,9 +2217,7 @@
           },
           "Pending": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PendingResourceList"
-              },
+              { "$ref": "#/components/schemas/PendingResourceList" },
               {
                 "description": "A list of ARNs of any resources that are still in the process of being added to the group by this operation. These pending additions continue asynchronously. You can check the status of pending additions by using the <code> <a>ListGroupResources</a> </code> operation, and checking the <code>Resources</code> array in the response and the <code>Status</code> field of each object in that array. "
               }
@@ -2634,9 +2234,7 @@
         "properties": {
           "ResourceIdentifiers": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdentifierList"
-              },
+              { "$ref": "#/components/schemas/ResourceIdentifierList" },
               {
                 "description": "The ARNs and resource types of resources that are members of the group that you specified.",
                 "deprecated": true
@@ -2645,9 +2243,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "If present, indicates that more output is available than is included in the current response. Use this value in the <code>NextToken</code> request parameter in a subsequent call to the operation to get the next part of the output. You should repeat this until the <code>NextToken</code> response element comes back as <code>null</code>."
               }
@@ -2655,9 +2251,7 @@
           },
           "QueryErrors": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/QueryErrorList"
-              },
+              { "$ref": "#/components/schemas/QueryErrorList" },
               {
                 "description": "A list of <code>QueryError</code> objects. Each error is an object that contains <code>ErrorCode</code> and <code>Message</code> structures. Possible values for <code>ErrorCode</code> are <code>CLOUDFORMATION_STACK_INACTIVE</code> and <code>CLOUDFORMATION_STACK_NOT_EXISTING</code>."
               }
@@ -2665,9 +2259,7 @@
           },
           "Resources": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ListGroupResourcesItemList"
-              },
+              { "$ref": "#/components/schemas/ListGroupResourcesItemList" },
               {
                 "description": "An array of resources from which you can determine each resource's identity, type, and group membership status."
               }
@@ -2681,9 +2273,7 @@
         "properties": {
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceFilterName"
-              },
+              { "$ref": "#/components/schemas/ResourceFilterName" },
               {
                 "description": "The name of the filter. Filter names are case-sensitive."
               }
@@ -2691,9 +2281,7 @@
           },
           "Values": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceFilterValues"
-              },
+              { "$ref": "#/components/schemas/ResourceFilterValues" },
               {
                 "description": "One or more filter values. Allowed filter values vary by resource filter name, and are case-sensitive."
               }
@@ -2708,9 +2296,7 @@
         "properties": {
           "GroupIdentifiers": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupIdentifierList"
-              },
+              { "$ref": "#/components/schemas/GroupIdentifierList" },
               {
                 "description": "A list of <a>GroupIdentifier</a> objects. Each identifier is an object that contains both the <code>Name</code> and the <code>GroupArn</code>."
               }
@@ -2718,9 +2304,7 @@
           },
           "Groups": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupList"
-              },
+              { "$ref": "#/components/schemas/GroupList" },
               {
                 "deprecated": true,
                 "description": "This output element is deprecated and shouldn't be used. Refer to <code>GroupIdentifiers</code> instead.This field is deprecated, use GroupIdentifiers instead."
@@ -2729,9 +2313,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "If present, indicates that more output is available than is included in the current response. Use this value in the <code>NextToken</code> request parameter in a subsequent call to the operation to get the next part of the output. You should repeat this until the <code>NextToken</code> response element comes back as <code>null</code>."
               }
@@ -2745,9 +2327,7 @@
         "properties": {
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupFilterName"
-              },
+              { "$ref": "#/components/schemas/GroupFilterName" },
               {
                 "description": "The name of the filter. Filter names are case-sensitive."
               }
@@ -2755,9 +2335,7 @@
           },
           "Values": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupFilterValues"
-              },
+              { "$ref": "#/components/schemas/GroupFilterValues" },
               {
                 "description": "One or more filter values. Allowed filter values vary by group filter name, and are case-sensitive."
               }
@@ -2771,9 +2349,7 @@
         "properties": {
           "ResourceIdentifiers": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceIdentifierList"
-              },
+              { "$ref": "#/components/schemas/ResourceIdentifierList" },
               {
                 "description": "The ARNs and resource types of resources that are members of the group that you specified."
               }
@@ -2781,9 +2357,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "If present, indicates that more output is available than is included in the current response. Use this value in the <code>NextToken</code> request parameter in a subsequent call to the operation to get the next part of the output. You should repeat this until the <code>NextToken</code> response element comes back as <code>null</code>."
               }
@@ -2791,9 +2365,7 @@
           },
           "QueryErrors": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/QueryErrorList"
-              },
+              { "$ref": "#/components/schemas/QueryErrorList" },
               {
                 "description": "A list of <code>QueryError</code> objects. Each error is an object that contains <code>ErrorCode</code> and <code>Message</code> structures. Possible values for <code>ErrorCode</code> are <code>CLOUDFORMATION_STACK_INACTIVE</code> and <code>CLOUDFORMATION_STACK_NOT_EXISTING</code>."
               }
@@ -2806,19 +2378,13 @@
         "properties": {
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupArn"
-              },
-              {
-                "description": "The ARN of the tagged resource."
-              }
+              { "$ref": "#/components/schemas/GroupArn" },
+              { "description": "The ARN of the tagged resource." }
             ]
           },
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Tags"
-              },
+              { "$ref": "#/components/schemas/Tags" },
               {
                 "description": "The tags that have been added to the specified resource group."
               }
@@ -2831,9 +2397,7 @@
         "properties": {
           "Succeeded": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceArnList"
-              },
+              { "$ref": "#/components/schemas/ResourceArnList" },
               {
                 "description": "The ARNs of the resources that were successfully removed from the group."
               }
@@ -2841,9 +2405,7 @@
           },
           "Failed": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FailedResourceList"
-              },
+              { "$ref": "#/components/schemas/FailedResourceList" },
               {
                 "description": "The resources that failed to be removed from the group."
               }
@@ -2851,9 +2413,7 @@
           },
           "Pending": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PendingResourceList"
-              },
+              { "$ref": "#/components/schemas/PendingResourceList" },
               {
                 "description": "A list of any resources that are still in the process of being removed from the group by this operation. These pending removals continue asynchronously. You can check the status of pending removals by using the <code> <a>ListGroupResources</a> </code> operation. After the resource is successfully removed, it no longer appears in the response."
               }
@@ -2866,9 +2426,7 @@
         "properties": {
           "Arn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupArn"
-              },
+              { "$ref": "#/components/schemas/GroupArn" },
               {
                 "description": "The ARN of the resource group from which tags have been removed."
               }
@@ -2876,12 +2434,8 @@
           },
           "Keys": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagKeyList"
-              },
-              {
-                "description": "The keys of the tags that were removed."
-              }
+              { "$ref": "#/components/schemas/TagKeyList" },
+              { "description": "The keys of the tags that were removed." }
             ]
           }
         }
@@ -2897,12 +2451,8 @@
         "properties": {
           "Group": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Group"
-              },
-              {
-                "description": "The update description of the resource group."
-              }
+              { "$ref": "#/components/schemas/Group" },
+              { "description": "The update description of the resource group." }
             ]
           }
         }
@@ -2912,9 +2462,7 @@
         "properties": {
           "GroupQuery": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupQuery"
-              },
+              { "$ref": "#/components/schemas/GroupQuery" },
               {
                 "description": "The updated resource query associated with the resource group after the update."
               }
@@ -2939,9 +2487,7 @@
         "properties": {
           "Type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/QueryType"
-              },
+              { "$ref": "#/components/schemas/QueryType" },
               {
                 "description": "<p>The type of the query. You can use the following values:</p> <ul> <li> <p> <i> <code>CLOUDFORMATION_STACK_1_0:</code> </i> A JSON syntax that lets you specify a CloudFormation stack ARN.</p> </li> <li> <p> <i> <code>TAG_FILTERS_1_0:</code> </i> A JSON syntax that lets you specify a collection of simple tag filters for resource types and tags, as supported by the AWS Tagging API <a href=\"https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_GetResources.html#resourcegrouptagging-GetResources-request-ResourceTypeFilters\"> <code>ResourceTypeFilters</code> parameter of the <code>tagging:GetResources</code> </a> operation. If you specify more than one tag key, only resources that match all tag keys, and at least one value of each specified tag key, are returned in your query. If you specify more than one value for a tag key, a resource matches the filter if it has a tag key value that matches <i>any</i> of the specified values.</p> <p>For example, consider the following sample query for resources that have two tags, <code>Stage</code> and <code>Version</code>, with two values each:</p> <p> <code>[{\"Key\":\"Stage\",\"Values\":[\"Test\",\"Deploy\"]},{\"Key\":\"Version\",\"Values\":[\"1\",\"2\"]}]</code> </p> <p>The results of this query could include the following.</p> <ul> <li> <p>An EC2 instance that has the following two tags: <code>{\"Key\":\"Stage\",\"Value\":\"Deploy\"}</code>, and <code>{\"Key\":\"Version\",\"Value\":\"2\"}</code> </p> </li> <li> <p>An S3 bucket that has the following two tags: <code>{\"Key\":\"Stage\",\"Value\":\"Test\"}</code>, and <code>{\"Key\":\"Version\",\"Value\":\"1\"}</code> </p> </li> </ul> <p>The query would not include the following items in the results, however. </p> <ul> <li> <p>An EC2 instance that has only the following tag: <code>{\"Key\":\"Stage\",\"Value\":\"Deploy\"}</code>.</p> <p>The instance does not have <b>all</b> of the tag keys specified in the filter, so it is excluded from the results.</p> </li> <li> <p>An RDS database that has the following two tags: <code>{\"Key\":\"Stage\",\"Value\":\"Archived\"}</code>, and <code>{\"Key\":\"Version\",\"Value\":\"4\"}</code> </p> <p>The database has all of the tag keys, but none of those keys has an associated value that matches at least one of the specified values in the filter.</p> </li> </ul> </li> </ul>"
               }
@@ -2949,12 +2495,8 @@
           },
           "Query": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Query"
-              },
-              {
-                "description": "The query that defines a group or a search."
-              }
+              { "$ref": "#/components/schemas/Query" },
+              { "description": "The query that defines a group or a search." }
             ]
           }
         },
@@ -2962,15 +2504,11 @@
       },
       "Tags": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/TagValue"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/TagValue" }
       },
       "GroupConfigurationList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/GroupConfigurationItem"
-        },
+        "items": { "$ref": "#/components/schemas/GroupConfigurationItem" },
         "maxItems": 2
       },
       "Group": {
@@ -2979,32 +2517,20 @@
         "properties": {
           "GroupArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupArn"
-              },
-              {
-                "description": "The ARN of the resource group."
-              }
+              { "$ref": "#/components/schemas/GroupArn" },
+              { "description": "The ARN of the resource group." }
             ]
           },
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupName"
-              },
-              {
-                "description": "The name of the resource group."
-              }
+              { "$ref": "#/components/schemas/GroupName" },
+              { "description": "The name of the resource group." }
             ]
           },
           "Description": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Description"
-              },
-              {
-                "description": "The description of the resource group."
-              }
+              { "$ref": "#/components/schemas/Description" },
+              { "description": "The description of the resource group." }
             ]
           }
         },
@@ -3015,9 +2541,7 @@
         "properties": {
           "Configuration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupConfigurationList"
-              },
+              { "$ref": "#/components/schemas/GroupConfigurationList" },
               {
                 "description": "The configuration currently associated with the group and in effect."
               }
@@ -3025,9 +2549,7 @@
           },
           "ProposedConfiguration": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupConfigurationList"
-              },
+              { "$ref": "#/components/schemas/GroupConfigurationList" },
               {
                 "description": "If present, the new configuration that is in the process of being applied to the group."
               }
@@ -3035,9 +2557,7 @@
           },
           "Status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupConfigurationStatus"
-              },
+              { "$ref": "#/components/schemas/GroupConfigurationStatus" },
               {
                 "description": "The current status of an attempt to update the group configuration."
               }
@@ -3056,24 +2576,14 @@
         },
         "description": "A service configuration associated with a resource group. The configuration options are determined by the AWS service that defines the <code>Type</code>, and specifies which resources can be included in the group. You can add a service configuration when you create the group."
       },
-      "ErrorCode": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 128
-      },
-      "ErrorMessage": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 1024
-      },
+      "ErrorCode": { "type": "string", "minLength": 1, "maxLength": 128 },
+      "ErrorMessage": { "type": "string", "minLength": 1, "maxLength": 1024 },
       "FailedResource": {
         "type": "object",
         "properties": {
           "ResourceArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceArn"
-              },
+              { "$ref": "#/components/schemas/ResourceArn" },
               {
                 "description": "The ARN of the resource that failed to be added or removed."
               }
@@ -3081,9 +2591,7 @@
           },
           "ErrorMessage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ErrorMessage"
-              },
+              { "$ref": "#/components/schemas/ErrorMessage" },
               {
                 "description": "The error message text associated with the failure."
               }
@@ -3091,12 +2599,8 @@
           },
           "ErrorCode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ErrorCode"
-              },
-              {
-                "description": "The error code associated with the failure."
-              }
+              { "$ref": "#/components/schemas/ErrorCode" },
+              { "description": "The error code associated with the failure." }
             ]
           }
         },
@@ -3104,9 +2608,7 @@
       },
       "FailedResourceList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/FailedResource"
-        }
+        "items": { "$ref": "#/components/schemas/FailedResource" }
       },
       "GroupQuery": {
         "type": "object",
@@ -3114,9 +2616,7 @@
         "properties": {
           "GroupName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupName"
-              },
+              { "$ref": "#/components/schemas/GroupName" },
               {
                 "description": "The name of the resource group that is associated with the specified resource query."
               }
@@ -3124,9 +2624,7 @@
           },
           "ResourceQuery": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceQuery"
-              },
+              { "$ref": "#/components/schemas/ResourceQuery" },
               {
                 "description": "The resource query that determines which AWS resources are members of the associated resource group."
               }
@@ -3145,9 +2643,7 @@
         "type": "string",
         "enum": ["UPDATING", "UPDATE_COMPLETE", "UPDATE_FAILED"]
       },
-      "GroupConfigurationFailureReason": {
-        "type": "string"
-      },
+      "GroupConfigurationFailureReason": { "type": "string" },
       "GroupConfigurationType": {
         "type": "string",
         "pattern": "AWS::[a-zA-Z0-9]+::[a-zA-Z0-9]+",
@@ -3155,9 +2651,7 @@
       },
       "GroupParameterList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/GroupConfigurationParameter"
-        }
+        "items": { "$ref": "#/components/schemas/GroupConfigurationParameter" }
       },
       "GroupConfigurationParameterName": {
         "type": "string",
@@ -3210,9 +2704,7 @@
       },
       "GroupFilterValues": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/GroupFilterValue"
-        },
+        "items": { "$ref": "#/components/schemas/GroupFilterValue" },
         "minItems": 1,
         "maxItems": 5
       },
@@ -3227,22 +2719,14 @@
         "properties": {
           "GroupName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupName"
-              },
-              {
-                "description": "The name of the resource group."
-              }
+              { "$ref": "#/components/schemas/GroupName" },
+              { "description": "The name of the resource group." }
             ]
           },
           "GroupArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GroupArn"
-              },
-              {
-                "description": "The ARN of the resource group."
-              }
+              { "$ref": "#/components/schemas/GroupArn" },
+              { "description": "The ARN of the resource group." }
             ]
           }
         },
@@ -3250,21 +2734,15 @@
       },
       "GroupIdentifierList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/GroupIdentifier"
-        }
+        "items": { "$ref": "#/components/schemas/GroupIdentifier" }
       },
       "GroupList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Group"
-        }
+        "items": { "$ref": "#/components/schemas/Group" }
       },
       "ResourceArnList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ResourceArn"
-        },
+        "items": { "$ref": "#/components/schemas/ResourceArn" },
         "minItems": 1,
         "maxItems": 10
       },
@@ -3276,31 +2754,26 @@
       },
       "ResourceIdentifierList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ResourceIdentifier"
-        }
+        "items": { "$ref": "#/components/schemas/ResourceIdentifier" }
       },
       "QueryErrorList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/QueryError"
-        }
+        "items": { "$ref": "#/components/schemas/QueryError" }
       },
       "QueryErrorCode": {
         "type": "string",
-        "enum": ["CLOUDFORMATION_STACK_INACTIVE", "CLOUDFORMATION_STACK_NOT_EXISTING"]
+        "enum": [
+          "CLOUDFORMATION_STACK_INACTIVE",
+          "CLOUDFORMATION_STACK_NOT_EXISTING"
+        ]
       },
-      "QueryErrorMessage": {
-        "type": "string"
-      },
+      "QueryErrorMessage": { "type": "string" },
       "QueryError": {
         "type": "object",
         "properties": {
           "ErrorCode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/QueryErrorCode"
-              },
+              { "$ref": "#/components/schemas/QueryErrorCode" },
               {
                 "description": "Possible values are <code>CLOUDFORMATION_STACK_INACTIVE</code> and <code>CLOUDFORMATION_STACK_NOT_EXISTING</code>."
               }
@@ -3308,9 +2781,7 @@
           },
           "Message": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/QueryErrorMessage"
-              },
+              { "$ref": "#/components/schemas/QueryErrorMessage" },
               {
                 "description": "A message that explains the <code>ErrorCode</code> value. Messages might state that the specified CloudFormation stack does not exist (or no longer exists). For <code>CLOUDFORMATION_STACK_INACTIVE</code>, the message typically states that the CloudFormation stack has a status that is not (or no longer) active, such as <code>CREATE_FAILED</code>."
               }
@@ -3319,15 +2790,10 @@
         },
         "description": "A two-part error structure that can occur in <code>ListGroupResources</code> or <code>SearchResources</code> operations on CloudFormation stack-based queries. The error occurs if the CloudFormation stack on which the query is based either does not exist, or has a status that renders the stack inactive. A <code>QueryError</code> occurrence does not necessarily mean that AWS Resource Groups could not complete the operation, but the resulting group might have no member resources."
       },
-      "ResourceFilterName": {
-        "type": "string",
-        "enum": ["resource-type"]
-      },
+      "ResourceFilterName": { "type": "string", "enum": ["resource-type"] },
       "ResourceFilterValues": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ResourceFilterValue"
-        },
+        "items": { "$ref": "#/components/schemas/ResourceFilterValue" },
         "minItems": 1,
         "maxItems": 5
       },
@@ -3346,19 +2812,13 @@
         "properties": {
           "ResourceArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceArn"
-              },
-              {
-                "description": "The ARN of a resource."
-              }
+              { "$ref": "#/components/schemas/ResourceArn" },
+              { "description": "The ARN of a resource." }
             ]
           },
           "ResourceType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceType"
-              },
+              { "$ref": "#/components/schemas/ResourceType" },
               {
                 "description": "The resource type of a resource, such as <code>AWS::EC2::Instance</code>."
               }
@@ -3369,31 +2829,20 @@
       },
       "TagKeyList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/TagKey"
-        }
+        "items": { "$ref": "#/components/schemas/TagKey" }
       },
-      "PutGroupConfigurationOutput": {
-        "type": "object",
-        "properties": {}
-      },
+      "PutGroupConfigurationOutput": { "type": "object", "properties": {} },
       "PendingResourceList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/PendingResource"
-        }
+        "items": { "$ref": "#/components/schemas/PendingResource" }
       },
       "ResourceStatus": {
         "type": "object",
         "properties": {
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceStatusValue"
-              },
-              {
-                "description": "The current status."
-              }
+              { "$ref": "#/components/schemas/ResourceStatusValue" },
+              { "description": "The current status." }
             ]
           }
         },
@@ -3402,14 +2851,10 @@
       "ListGroupResourcesItem": {
         "type": "object",
         "properties": {
-          "Identifier": {
-            "$ref": "#/components/schemas/ResourceIdentifier"
-          },
+          "Identifier": { "$ref": "#/components/schemas/ResourceIdentifier" },
           "Status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceStatus"
-              },
+              { "$ref": "#/components/schemas/ResourceStatus" },
               {
                 "description": "<p>A structure that contains the status of this resource's membership in the group.</p> <note> <p>This field is present in the response only if the group is of type <code>AWS::EC2::HostManagement</code>.</p> </note>"
               }
@@ -3420,18 +2865,14 @@
       },
       "ListGroupResourcesItemList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ListGroupResourcesItem"
-        }
+        "items": { "$ref": "#/components/schemas/ListGroupResourcesItem" }
       },
       "PendingResource": {
         "type": "object",
         "properties": {
           "ResourceArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceArn"
-              },
+              { "$ref": "#/components/schemas/ResourceArn" },
               {
                 "description": "The Amazon resource name (ARN) of the resource that's in a pending state."
               }
@@ -3440,17 +2881,10 @@
         },
         "description": "A structure that identifies a resource that is currently pending addition to the group as a member. Adding a resource to a resource group happens asynchronously as a background task and this one isn't completed yet."
       },
-      "ResourceStatusValue": {
-        "type": "string",
-        "enum": ["PENDING"]
-      }
+      "ResourceStatusValue": { "type": "string", "enum": ["PENDING"] }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2017-11-27",
     "endpointPrefix": "resource-groups",

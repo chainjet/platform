@@ -157,9 +157,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -187,9 +185,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -197,9 +193,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -231,26 +225,18 @@
                     "properties": {
                       "Id": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "id"
-                            },
+                            "xml": { "name": "id" },
                             "description": "Required. The unique ID that Amazon MQ generates for the configuration."
                           }
                         ]
                       },
                       "Revision": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__integer" },
                           {
-                            "$ref": "#/components/schemas/__integer"
-                          },
-                          {
-                            "xml": {
-                              "name": "revision"
-                            },
+                            "xml": { "name": "revision" },
                             "description": "The revision number of the configuration."
                           }
                         ]
@@ -276,26 +262,18 @@
                     "properties": {
                       "KmsKeyId": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "kmsKeyId"
-                            },
+                            "xml": { "name": "kmsKeyId" },
                             "description": "The symmetric customer master key (CMK) to use for the AWS Key Management Service (KMS). This key is used to encrypt your data at rest. If not provided, Amazon MQ will use a default CMK to encrypt your data."
                           }
                         ]
                       },
                       "UseAwsOwnedKey": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__boolean" },
                           {
-                            "$ref": "#/components/schemas/__boolean"
-                          },
-                          {
-                            "xml": {
-                              "name": "useAwsOwnedKey"
-                            },
+                            "xml": { "name": "useAwsOwnedKey" },
                             "description": "Enables the use of an AWS owned CMK using AWS Key Management Service (KMS)."
                           }
                         ]
@@ -321,143 +299,99 @@
                     "properties": {
                       "Hosts": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__listOf__string" },
                           {
-                            "$ref": "#/components/schemas/__listOf__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "hosts"
-                            },
+                            "xml": { "name": "hosts" },
                             "description": "Fully qualified domain name of the LDAP server. Optional failover server."
                           }
                         ]
                       },
                       "RoleBase": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "roleBase"
-                            },
+                            "xml": { "name": "roleBase" },
                             "description": "Fully qualified name of the directory to search for a user’s groups."
                           }
                         ]
                       },
                       "RoleName": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "roleName"
-                            },
+                            "xml": { "name": "roleName" },
                             "description": "Specifies the LDAP attribute that identifies the group name attribute in the object returned from the group membership query."
                           }
                         ]
                       },
                       "RoleSearchMatching": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "roleSearchMatching"
-                            },
+                            "xml": { "name": "roleSearchMatching" },
                             "description": "The search criteria for groups."
                           }
                         ]
                       },
                       "RoleSearchSubtree": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__boolean" },
                           {
-                            "$ref": "#/components/schemas/__boolean"
-                          },
-                          {
-                            "xml": {
-                              "name": "roleSearchSubtree"
-                            },
+                            "xml": { "name": "roleSearchSubtree" },
                             "description": "The directory search scope for the role. If set to true, scope is to search the entire sub-tree."
                           }
                         ]
                       },
                       "ServiceAccountPassword": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "serviceAccountPassword"
-                            },
+                            "xml": { "name": "serviceAccountPassword" },
                             "description": "Service account password."
                           }
                         ]
                       },
                       "ServiceAccountUsername": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "serviceAccountUsername"
-                            },
+                            "xml": { "name": "serviceAccountUsername" },
                             "description": "Service account username."
                           }
                         ]
                       },
                       "UserBase": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "userBase"
-                            },
+                            "xml": { "name": "userBase" },
                             "description": "Fully qualified name of the directory where you want to search for users."
                           }
                         ]
                       },
                       "UserRoleName": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "userRoleName"
-                            },
+                            "xml": { "name": "userRoleName" },
                             "description": "Specifies the name of the LDAP attribute for the user group membership."
                           }
                         ]
                       },
                       "UserSearchMatching": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "userSearchMatching"
-                            },
+                            "xml": { "name": "userSearchMatching" },
                             "description": "The search criteria for users."
                           }
                         ]
                       },
                       "UserSearchSubtree": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__boolean" },
                           {
-                            "$ref": "#/components/schemas/__boolean"
-                          },
-                          {
-                            "xml": {
-                              "name": "userSearchSubtree"
-                            },
+                            "xml": { "name": "userSearchSubtree" },
                             "description": "The directory search scope for the user. If set to true, scope is to search the entire sub-tree."
                           }
                         ]
@@ -470,26 +404,18 @@
                     "properties": {
                       "Audit": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__boolean" },
                           {
-                            "$ref": "#/components/schemas/__boolean"
-                          },
-                          {
-                            "xml": {
-                              "name": "audit"
-                            },
+                            "xml": { "name": "audit" },
                             "description": "Enables audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged."
                           }
                         ]
                       },
                       "General": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__boolean" },
                           {
-                            "$ref": "#/components/schemas/__boolean"
-                          },
-                          {
-                            "xml": {
-                              "name": "general"
-                            },
+                            "xml": { "name": "general" },
                             "description": "Enables general logging."
                           }
                         ]
@@ -502,39 +428,27 @@
                     "properties": {
                       "DayOfWeek": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/DayOfWeek" },
                           {
-                            "$ref": "#/components/schemas/DayOfWeek"
-                          },
-                          {
-                            "xml": {
-                              "name": "dayOfWeek"
-                            },
+                            "xml": { "name": "dayOfWeek" },
                             "description": "Required. The day of the week."
                           }
                         ]
                       },
                       "TimeOfDay": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "timeOfDay"
-                            },
+                            "xml": { "name": "timeOfDay" },
                             "description": "Required. The time, in 24-hour format."
                           }
                         ]
                       },
                       "TimeZone": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "timeZone"
-                            },
+                            "xml": { "name": "timeZone" },
                             "description": "The time zone, UTC by default, in either the Country/City format, or the UTC offset format."
                           }
                         ]
@@ -548,9 +462,7 @@
                   "securityGroups": {
                     "description": "The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/__string"
-                    }
+                    "items": { "$ref": "#/components/schemas/__string" }
                   },
                   "storageType": {
                     "description": "The storage type of the broker.",
@@ -560,9 +472,7 @@
                   "subnetIds": {
                     "description": "The list of groups (2 maximum) that define which subnets and IP ranges the broker can use from different Availability Zones. A SINGLE_INSTANCE deployment requires one subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ deployment requires two subnets.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/__string"
-                    }
+                    "items": { "$ref": "#/components/schemas/__string" }
                   },
                   "tags": {
                     "description": "Create tags when creating the broker.",
@@ -574,9 +484,7 @@
                   "users": {
                     "description": "Required. The list of ActiveMQ users (persons or applications) who can access queues and topics. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/User"
-                    }
+                    "items": { "$ref": "#/components/schemas/User" }
                   }
                 },
                 "required": [
@@ -596,27 +504,13 @@
         "summary": "Create Broker"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListBrokers",
@@ -626,9 +520,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListBrokersResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/ListBrokersResponse" }
               }
             }
           },
@@ -636,9 +528,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -656,9 +546,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -669,36 +557,26 @@
             "in": "query",
             "required": false,
             "description": "The maximum number of brokers that Amazon MQ can return per page (20 by default). This value must be an integer from 5 to 100.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -725,9 +603,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -745,9 +621,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -755,9 +629,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -804,27 +676,13 @@
         "summary": "Create Configuration"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListConfigurations",
@@ -844,9 +702,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -864,9 +720,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -877,20 +731,14 @@
             "in": "query",
             "required": false,
             "description": "The maximum number of configurations that Amazon MQ can return per page (20 by default). This value must be an integer from 5 to 100.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "List Configurations"
@@ -901,16 +749,12 @@
         "operationId": "CreateTags",
         "description": "Add a tag to a resource.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -918,9 +762,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -938,9 +780,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -951,9 +791,7 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) of the resource tag.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -978,27 +816,13 @@
         "summary": "Create Tags"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListTags",
@@ -1008,9 +832,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListTagsResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/ListTagsResponse" }
               }
             }
           },
@@ -1018,9 +840,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1028,9 +848,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1048,9 +866,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -1061,9 +877,7 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) of the resource tag.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "List Tags"
@@ -1078,9 +892,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateUserResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/CreateUserResponse" }
               }
             }
           },
@@ -1088,9 +900,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1098,9 +908,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1118,9 +926,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -1128,9 +934,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -1141,18 +945,14 @@
             "in": "path",
             "required": true,
             "description": "The unique ID that Amazon MQ generates for the broker.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "username",
             "in": "path",
             "required": true,
             "description": "The username of the ActiveMQ user. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1169,9 +969,7 @@
                   "groups": {
                     "description": "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/__string"
-                    }
+                    "items": { "$ref": "#/components/schemas/__string" }
                   },
                   "password": {
                     "description": "Required. The password of the user. This value must be at least 12 characters long, must contain at least 4 unique characters, and must not contain commas.",
@@ -1186,27 +984,13 @@
         "summary": "Create User"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "delete": {
         "operationId": "DeleteUser",
@@ -1216,9 +1000,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteUserResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/DeleteUserResponse" }
               }
             }
           },
@@ -1226,9 +1008,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1236,9 +1016,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1256,9 +1034,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -1269,18 +1045,14 @@
             "in": "path",
             "required": true,
             "description": "The unique ID that Amazon MQ generates for the broker.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "username",
             "in": "path",
             "required": true,
             "description": "The username of the ActiveMQ user. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Delete User"
@@ -1303,9 +1075,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1313,9 +1083,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1333,9 +1101,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -1346,18 +1112,14 @@
             "in": "path",
             "required": true,
             "description": "The unique ID that Amazon MQ generates for the broker.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "username",
             "in": "path",
             "required": true,
             "description": "The username of the ActiveMQ user. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Describe User"
@@ -1370,9 +1132,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UpdateUserResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/UpdateUserResponse" }
               }
             }
           },
@@ -1380,9 +1140,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1390,9 +1148,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1410,9 +1166,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -1420,9 +1174,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -1433,18 +1185,14 @@
             "in": "path",
             "required": true,
             "description": "The unique ID that Amazon MQ generates for the broker.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "username",
             "in": "path",
             "required": true,
             "description": "Required. The username of the ActiveMQ user. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1461,9 +1209,7 @@
                   "groups": {
                     "description": "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/__string"
-                    }
+                    "items": { "$ref": "#/components/schemas/__string" }
                   },
                   "password": {
                     "description": "The password of the user. This value must be at least 12 characters long, must contain at least 4 unique characters, and must not contain commas.",
@@ -1496,9 +1242,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1506,9 +1250,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1526,9 +1268,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -1539,35 +1279,19 @@
             "in": "path",
             "required": true,
             "description": "The unique ID that Amazon MQ generates for the broker.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Delete Broker"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "DescribeBroker",
@@ -1587,9 +1311,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1597,9 +1319,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1617,9 +1337,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -1630,9 +1348,7 @@
             "in": "path",
             "required": true,
             "description": "The name of the broker. This value must be unique in your AWS account, 1-50 characters long, must contain only letters, numbers, dashes, and underscores, and must not contain whitespaces, brackets, wildcard characters, or special characters.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Describe Broker"
@@ -1655,9 +1371,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1665,9 +1379,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1685,9 +1397,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -1695,9 +1405,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -1708,9 +1416,7 @@
             "in": "path",
             "required": true,
             "description": "The unique ID that Amazon MQ generates for the broker.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1735,26 +1441,18 @@
                     "properties": {
                       "Id": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "id"
-                            },
+                            "xml": { "name": "id" },
                             "description": "Required. The unique ID that Amazon MQ generates for the configuration."
                           }
                         ]
                       },
                       "Revision": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__integer" },
                           {
-                            "$ref": "#/components/schemas/__integer"
-                          },
-                          {
-                            "xml": {
-                              "name": "revision"
-                            },
+                            "xml": { "name": "revision" },
                             "description": "The revision number of the configuration."
                           }
                         ]
@@ -1775,143 +1473,99 @@
                     "properties": {
                       "Hosts": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__listOf__string" },
                           {
-                            "$ref": "#/components/schemas/__listOf__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "hosts"
-                            },
+                            "xml": { "name": "hosts" },
                             "description": "Fully qualified domain name of the LDAP server. Optional failover server."
                           }
                         ]
                       },
                       "RoleBase": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "roleBase"
-                            },
+                            "xml": { "name": "roleBase" },
                             "description": "Fully qualified name of the directory to search for a user’s groups."
                           }
                         ]
                       },
                       "RoleName": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "roleName"
-                            },
+                            "xml": { "name": "roleName" },
                             "description": "Specifies the LDAP attribute that identifies the group name attribute in the object returned from the group membership query."
                           }
                         ]
                       },
                       "RoleSearchMatching": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "roleSearchMatching"
-                            },
+                            "xml": { "name": "roleSearchMatching" },
                             "description": "The search criteria for groups."
                           }
                         ]
                       },
                       "RoleSearchSubtree": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__boolean" },
                           {
-                            "$ref": "#/components/schemas/__boolean"
-                          },
-                          {
-                            "xml": {
-                              "name": "roleSearchSubtree"
-                            },
+                            "xml": { "name": "roleSearchSubtree" },
                             "description": "The directory search scope for the role. If set to true, scope is to search the entire sub-tree."
                           }
                         ]
                       },
                       "ServiceAccountPassword": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "serviceAccountPassword"
-                            },
+                            "xml": { "name": "serviceAccountPassword" },
                             "description": "Service account password."
                           }
                         ]
                       },
                       "ServiceAccountUsername": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "serviceAccountUsername"
-                            },
+                            "xml": { "name": "serviceAccountUsername" },
                             "description": "Service account username."
                           }
                         ]
                       },
                       "UserBase": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "userBase"
-                            },
+                            "xml": { "name": "userBase" },
                             "description": "Fully qualified name of the directory where you want to search for users."
                           }
                         ]
                       },
                       "UserRoleName": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "userRoleName"
-                            },
+                            "xml": { "name": "userRoleName" },
                             "description": "Specifies the name of the LDAP attribute for the user group membership."
                           }
                         ]
                       },
                       "UserSearchMatching": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "userSearchMatching"
-                            },
+                            "xml": { "name": "userSearchMatching" },
                             "description": "The search criteria for users."
                           }
                         ]
                       },
                       "UserSearchSubtree": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__boolean" },
                           {
-                            "$ref": "#/components/schemas/__boolean"
-                          },
-                          {
-                            "xml": {
-                              "name": "userSearchSubtree"
-                            },
+                            "xml": { "name": "userSearchSubtree" },
                             "description": "The directory search scope for the user. If set to true, scope is to search the entire sub-tree."
                           }
                         ]
@@ -1924,26 +1578,18 @@
                     "properties": {
                       "Audit": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__boolean" },
                           {
-                            "$ref": "#/components/schemas/__boolean"
-                          },
-                          {
-                            "xml": {
-                              "name": "audit"
-                            },
+                            "xml": { "name": "audit" },
                             "description": "Enables audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged."
                           }
                         ]
                       },
                       "General": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__boolean" },
                           {
-                            "$ref": "#/components/schemas/__boolean"
-                          },
-                          {
-                            "xml": {
-                              "name": "general"
-                            },
+                            "xml": { "name": "general" },
                             "description": "Enables general logging."
                           }
                         ]
@@ -1953,9 +1599,7 @@
                   "securityGroups": {
                     "description": "The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/__string"
-                    }
+                    "items": { "$ref": "#/components/schemas/__string" }
                   },
                   "maintenanceWindowStartTime": {
                     "description": "The scheduled time period relative to UTC during which Amazon MQ begins to apply pending updates or patches to the broker.",
@@ -1963,39 +1607,27 @@
                     "properties": {
                       "DayOfWeek": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/DayOfWeek" },
                           {
-                            "$ref": "#/components/schemas/DayOfWeek"
-                          },
-                          {
-                            "xml": {
-                              "name": "dayOfWeek"
-                            },
+                            "xml": { "name": "dayOfWeek" },
                             "description": "Required. The day of the week."
                           }
                         ]
                       },
                       "TimeOfDay": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "timeOfDay"
-                            },
+                            "xml": { "name": "timeOfDay" },
                             "description": "Required. The time, in 24-hour format."
                           }
                         ]
                       },
                       "TimeZone": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "timeZone"
-                            },
+                            "xml": { "name": "timeZone" },
                             "description": "The time zone, UTC by default, in either the Country/City format, or the UTC offset format."
                           }
                         ]
@@ -2015,16 +1647,12 @@
         "operationId": "DeleteTags",
         "description": "Removes a tag from a resource.",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "480": {
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2032,9 +1660,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2052,9 +1678,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -2065,9 +1689,7 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) of the resource tag.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "tagKeys",
@@ -2076,36 +1698,20 @@
             "description": "An array of tag keys to delete",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/__string"
-              }
+              "items": { "$ref": "#/components/schemas/__string" }
             }
           }
         ],
         "summary": "Delete Tags"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/v1/broker-engine-types": {
@@ -2127,9 +1733,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2147,9 +1751,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -2160,55 +1762,33 @@
             "in": "query",
             "required": false,
             "description": "Filter response by engine type.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": "The maximum number of engine types that Amazon MQ can return per page (20 by default). This value must be an integer from 5 to 100.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Describe Broker Engine Types"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/v1/broker-instance-options": {
@@ -2230,9 +1810,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2250,9 +1828,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -2263,73 +1839,47 @@
             "in": "query",
             "required": false,
             "description": "Filter response by engine type.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "hostInstanceType",
             "in": "query",
             "required": false,
             "description": "Filter response by host instance type.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": "The maximum number of instance options that Amazon MQ can return per page (20 by default). This value must be an integer from 5 to 100.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "storageType",
             "in": "query",
             "required": false,
             "description": "Filter response by storage type.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Describe Broker Instance Options"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/v1/configurations/{configuration-id}": {
@@ -2351,9 +1901,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2361,9 +1909,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2381,9 +1927,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -2394,35 +1938,19 @@
             "in": "path",
             "required": true,
             "description": "The unique ID that Amazon MQ generates for the configuration.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Describe Configuration"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "put": {
         "operationId": "UpdateConfiguration",
@@ -2442,9 +1970,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2452,9 +1978,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2472,9 +1996,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           },
@@ -2482,9 +2004,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -2495,9 +2015,7 @@
             "in": "path",
             "required": true,
             "description": "The unique ID that Amazon MQ generates for the configuration.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -2543,9 +2061,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2553,9 +2069,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2573,9 +2087,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -2586,44 +2098,26 @@
             "in": "path",
             "required": true,
             "description": "The unique ID that Amazon MQ generates for the configuration.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "configuration-revision",
             "in": "path",
             "required": true,
             "description": "The revision of the configuration.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Describe Configuration Revision"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/v1/configurations/{configuration-id}/revisions": {
@@ -2645,9 +2139,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2655,9 +2147,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2675,9 +2165,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -2688,55 +2176,33 @@
             "in": "path",
             "required": true,
             "description": "The unique ID that Amazon MQ generates for the configuration.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": "The maximum number of configurations that Amazon MQ can return per page (20 by default). This value must be an integer from 5 to 100.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "List Configuration Revisions"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/v1/brokers/{broker-id}/users": {
@@ -2748,9 +2214,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListUsersResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/ListUsersResponse" }
               }
             }
           },
@@ -2758,9 +2222,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2768,9 +2230,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2788,9 +2248,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -2801,55 +2259,33 @@
             "in": "path",
             "required": true,
             "description": "The unique ID that Amazon MQ generates for the broker.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "maxResults",
             "in": "query",
             "required": false,
             "description": "The maximum number of ActiveMQ users that can be returned per page (20 by default). This value must be an integer from 5 to 100.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "List Users"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/v1/brokers/{broker-id}/reboot": {
@@ -2871,9 +2307,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2881,9 +2315,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2901,9 +2333,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           }
@@ -2914,35 +2344,19 @@
             "in": "path",
             "required": true,
             "description": "The unique ID that Amazon MQ generates for the broker.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Reboot Broker"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -2951,63 +2365,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -3027,46 +2427,30 @@
         "properties": {
           "BrokerArn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "brokerArn"
-                },
+                "xml": { "name": "brokerArn" },
                 "description": "The Amazon Resource Name (ARN) of the broker."
               }
             ]
           },
           "BrokerId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "brokerId"
-                },
+                "xml": { "name": "brokerId" },
                 "description": "The unique ID that Amazon MQ generates for the broker."
               }
             ]
           }
         }
       },
-      "__string": {
-        "type": "string"
-      },
-      "__integer": {
-        "type": "integer"
-      },
-      "__boolean": {
-        "type": "boolean"
-      },
+      "__string": { "type": "string" },
+      "__integer": { "type": "integer" },
+      "__boolean": { "type": "boolean" },
       "__listOf__string": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/__string"
-        }
+        "items": { "$ref": "#/components/schemas/__string" }
       },
       "DayOfWeek": {
         "type": "string",
@@ -3085,52 +2469,36 @@
         "properties": {
           "ConsoleAccess": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "consoleAccess"
-                },
+                "xml": { "name": "consoleAccess" },
                 "description": "Enables access to the the ActiveMQ Web Console for the ActiveMQ user."
               }
             ]
           },
           "Groups": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
-              {
-                "xml": {
-                  "name": "groups"
-                },
+                "xml": { "name": "groups" },
                 "description": "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long."
               }
             ]
           },
           "Password": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "password"
-                },
+                "xml": { "name": "password" },
                 "description": "Required. The password of the ActiveMQ user. This value must be at least 12 characters long, must contain at least 4 unique characters, and must not contain commas."
               }
             ]
           },
           "Username": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "username"
-                },
+                "xml": { "name": "username" },
                 "description": "Required. The username of the ActiveMQ user. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long."
               }
             ]
@@ -3149,78 +2517,54 @@
         "properties": {
           "Arn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "arn"
-                },
+                "xml": { "name": "arn" },
                 "description": "Required. The Amazon Resource Name (ARN) of the configuration."
               }
             ]
           },
           "AuthenticationStrategy": {
             "allOf": [
+              { "$ref": "#/components/schemas/AuthenticationStrategy" },
               {
-                "$ref": "#/components/schemas/AuthenticationStrategy"
-              },
-              {
-                "xml": {
-                  "name": "authenticationStrategy"
-                },
+                "xml": { "name": "authenticationStrategy" },
                 "description": "The authentication strategy associated with the configuration."
               }
             ]
           },
           "Created": {
             "allOf": [
+              { "$ref": "#/components/schemas/__timestampIso8601" },
               {
-                "$ref": "#/components/schemas/__timestampIso8601"
-              },
-              {
-                "xml": {
-                  "name": "created"
-                },
+                "xml": { "name": "created" },
                 "description": "Required. The date and time of the configuration."
               }
             ]
           },
           "Id": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "id"
-                },
+                "xml": { "name": "id" },
                 "description": "Required. The unique ID that Amazon MQ generates for the configuration."
               }
             ]
           },
           "LatestRevision": {
             "allOf": [
+              { "$ref": "#/components/schemas/ConfigurationRevision" },
               {
-                "$ref": "#/components/schemas/ConfigurationRevision"
-              },
-              {
-                "xml": {
-                  "name": "latestRevision"
-                },
+                "xml": { "name": "latestRevision" },
                 "description": "The latest revision of the configuration."
               }
             ]
           },
           "Name": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "name"
-                },
+                "xml": { "name": "name" },
                 "description": "Required. The name of the configuration. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 1-150 characters long."
               }
             ]
@@ -3228,395 +2572,273 @@
         }
       },
       "NotFoundException": {},
-      "CreateUserResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "CreateUserResponse": { "type": "object", "properties": {} },
       "DeleteBrokerResponse": {
         "type": "object",
         "properties": {
           "BrokerId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "brokerId"
-                },
+                "xml": { "name": "brokerId" },
                 "description": "The unique ID that Amazon MQ generates for the broker."
               }
             ]
           }
         }
       },
-      "DeleteUserResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "DeleteUserResponse": { "type": "object", "properties": {} },
       "DescribeBrokerResponse": {
         "type": "object",
         "properties": {
           "AuthenticationStrategy": {
             "allOf": [
+              { "$ref": "#/components/schemas/AuthenticationStrategy" },
               {
-                "$ref": "#/components/schemas/AuthenticationStrategy"
-              },
-              {
-                "xml": {
-                  "name": "authenticationStrategy"
-                },
+                "xml": { "name": "authenticationStrategy" },
                 "description": "The authentication strategy used to secure the broker."
               }
             ]
           },
           "AutoMinorVersionUpgrade": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "autoMinorVersionUpgrade"
-                },
+                "xml": { "name": "autoMinorVersionUpgrade" },
                 "description": "Required. Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions. The automatic upgrades occur during the maintenance window of the broker or after a manual broker reboot."
               }
             ]
           },
           "BrokerArn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "brokerArn"
-                },
+                "xml": { "name": "brokerArn" },
                 "description": "The Amazon Resource Name (ARN) of the broker."
               }
             ]
           },
           "BrokerId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "brokerId"
-                },
+                "xml": { "name": "brokerId" },
                 "description": "The unique ID that Amazon MQ generates for the broker."
               }
             ]
           },
           "BrokerInstances": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfBrokerInstance" },
               {
-                "$ref": "#/components/schemas/__listOfBrokerInstance"
-              },
-              {
-                "xml": {
-                  "name": "brokerInstances"
-                },
+                "xml": { "name": "brokerInstances" },
                 "description": "A list of information about allocated brokers."
               }
             ]
           },
           "BrokerName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "brokerName"
-                },
+                "xml": { "name": "brokerName" },
                 "description": "The name of the broker. This value must be unique in your AWS account, 1-50 characters long, must contain only letters, numbers, dashes, and underscores, and must not contain whitespaces, brackets, wildcard characters, or special characters."
               }
             ]
           },
           "BrokerState": {
             "allOf": [
+              { "$ref": "#/components/schemas/BrokerState" },
               {
-                "$ref": "#/components/schemas/BrokerState"
-              },
-              {
-                "xml": {
-                  "name": "brokerState"
-                },
+                "xml": { "name": "brokerState" },
                 "description": "The status of the broker."
               }
             ]
           },
           "Configurations": {
             "allOf": [
+              { "$ref": "#/components/schemas/Configurations" },
               {
-                "$ref": "#/components/schemas/Configurations"
-              },
-              {
-                "xml": {
-                  "name": "configurations"
-                },
+                "xml": { "name": "configurations" },
                 "description": "The list of all revisions for the specified configuration."
               }
             ]
           },
           "Created": {
             "allOf": [
+              { "$ref": "#/components/schemas/__timestampIso8601" },
               {
-                "$ref": "#/components/schemas/__timestampIso8601"
-              },
-              {
-                "xml": {
-                  "name": "created"
-                },
+                "xml": { "name": "created" },
                 "description": "The time when the broker was created."
               }
             ]
           },
           "DeploymentMode": {
             "allOf": [
+              { "$ref": "#/components/schemas/DeploymentMode" },
               {
-                "$ref": "#/components/schemas/DeploymentMode"
-              },
-              {
-                "xml": {
-                  "name": "deploymentMode"
-                },
+                "xml": { "name": "deploymentMode" },
                 "description": "Required. The deployment mode of the broker."
               }
             ]
           },
           "EncryptionOptions": {
             "allOf": [
+              { "$ref": "#/components/schemas/EncryptionOptions" },
               {
-                "$ref": "#/components/schemas/EncryptionOptions"
-              },
-              {
-                "xml": {
-                  "name": "encryptionOptions"
-                },
+                "xml": { "name": "encryptionOptions" },
                 "description": "Encryption options for the broker."
               }
             ]
           },
           "EngineType": {
             "allOf": [
+              { "$ref": "#/components/schemas/EngineType" },
               {
-                "$ref": "#/components/schemas/EngineType"
-              },
-              {
-                "xml": {
-                  "name": "engineType"
-                },
+                "xml": { "name": "engineType" },
                 "description": "Required. The type of broker engine. Note: Currently, Amazon MQ supports only ACTIVEMQ."
               }
             ]
           },
           "EngineVersion": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "engineVersion"
-                },
+                "xml": { "name": "engineVersion" },
                 "description": "The version of the broker engine. For a list of supported engine versions, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html"
               }
             ]
           },
           "HostInstanceType": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "hostInstanceType"
-                },
+                "xml": { "name": "hostInstanceType" },
                 "description": "The broker's instance type."
               }
             ]
           },
           "LdapServerMetadata": {
             "allOf": [
+              { "$ref": "#/components/schemas/LdapServerMetadataOutput" },
               {
-                "$ref": "#/components/schemas/LdapServerMetadataOutput"
-              },
-              {
-                "xml": {
-                  "name": "ldapServerMetadata"
-                },
+                "xml": { "name": "ldapServerMetadata" },
                 "description": "The metadata of the LDAP server used to authenticate and authorize connections to the broker."
               }
             ]
           },
           "Logs": {
             "allOf": [
+              { "$ref": "#/components/schemas/LogsSummary" },
               {
-                "$ref": "#/components/schemas/LogsSummary"
-              },
-              {
-                "xml": {
-                  "name": "logs"
-                },
+                "xml": { "name": "logs" },
                 "description": "The list of information about logs currently enabled and pending to be deployed for the specified broker."
               }
             ]
           },
           "MaintenanceWindowStartTime": {
             "allOf": [
+              { "$ref": "#/components/schemas/WeeklyStartTime" },
               {
-                "$ref": "#/components/schemas/WeeklyStartTime"
-              },
-              {
-                "xml": {
-                  "name": "maintenanceWindowStartTime"
-                },
+                "xml": { "name": "maintenanceWindowStartTime" },
                 "description": "The parameters that determine the WeeklyStartTime."
               }
             ]
           },
           "PendingAuthenticationStrategy": {
             "allOf": [
+              { "$ref": "#/components/schemas/AuthenticationStrategy" },
               {
-                "$ref": "#/components/schemas/AuthenticationStrategy"
-              },
-              {
-                "xml": {
-                  "name": "pendingAuthenticationStrategy"
-                },
+                "xml": { "name": "pendingAuthenticationStrategy" },
                 "description": "The authentication strategy that will be applied when the broker is rebooted."
               }
             ]
           },
           "PendingEngineVersion": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "pendingEngineVersion"
-                },
+                "xml": { "name": "pendingEngineVersion" },
                 "description": "The version of the broker engine to upgrade to. For a list of supported engine versions, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html"
               }
             ]
           },
           "PendingHostInstanceType": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "pendingHostInstanceType"
-                },
+                "xml": { "name": "pendingHostInstanceType" },
                 "description": "The host instance type of the broker to upgrade to. For a list of supported instance types, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide//broker.html#broker-instance-types"
               }
             ]
           },
           "PendingLdapServerMetadata": {
             "allOf": [
+              { "$ref": "#/components/schemas/LdapServerMetadataOutput" },
               {
-                "$ref": "#/components/schemas/LdapServerMetadataOutput"
-              },
-              {
-                "xml": {
-                  "name": "pendingLdapServerMetadata"
-                },
+                "xml": { "name": "pendingLdapServerMetadata" },
                 "description": "The metadata of the LDAP server that will be used to authenticate and authorize connections to the broker once it is rebooted."
               }
             ]
           },
           "PendingSecurityGroups": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
-              {
-                "xml": {
-                  "name": "pendingSecurityGroups"
-                },
+                "xml": { "name": "pendingSecurityGroups" },
                 "description": "The list of pending security groups to authorize connections to brokers."
               }
             ]
           },
           "PubliclyAccessible": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "publiclyAccessible"
-                },
+                "xml": { "name": "publiclyAccessible" },
                 "description": "Required. Enables connections from applications outside of the VPC that hosts the broker's subnets."
               }
             ]
           },
           "SecurityGroups": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
-              {
-                "xml": {
-                  "name": "securityGroups"
-                },
+                "xml": { "name": "securityGroups" },
                 "description": "The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers."
               }
             ]
           },
           "StorageType": {
             "allOf": [
+              { "$ref": "#/components/schemas/BrokerStorageType" },
               {
-                "$ref": "#/components/schemas/BrokerStorageType"
-              },
-              {
-                "xml": {
-                  "name": "storageType"
-                },
+                "xml": { "name": "storageType" },
                 "description": "The broker's storage type."
               }
             ]
           },
           "SubnetIds": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
-              {
-                "xml": {
-                  "name": "subnetIds"
-                },
+                "xml": { "name": "subnetIds" },
                 "description": "The list of groups (2 maximum) that define which subnets and IP ranges the broker can use from different Availability Zones. A SINGLE_INSTANCE deployment requires one subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ deployment requires two subnets."
               }
             ]
           },
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "The list of all tags associated with this broker."
               }
             ]
           },
           "Users": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfUserSummary" },
               {
-                "$ref": "#/components/schemas/__listOfUserSummary"
-              },
-              {
-                "xml": {
-                  "name": "users"
-                },
+                "xml": { "name": "users" },
                 "description": "The list of all ActiveMQ usernames for the specified broker."
               }
             ]
@@ -3628,39 +2850,27 @@
         "properties": {
           "BrokerEngineTypes": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfBrokerEngineType" },
               {
-                "$ref": "#/components/schemas/__listOfBrokerEngineType"
-              },
-              {
-                "xml": {
-                  "name": "brokerEngineTypes"
-                },
+                "xml": { "name": "brokerEngineTypes" },
                 "description": "List of available engine types and versions."
               }
             ]
           },
           "MaxResults": {
             "allOf": [
+              { "$ref": "#/components/schemas/__integerMin5Max100" },
               {
-                "$ref": "#/components/schemas/__integerMin5Max100"
-              },
-              {
-                "xml": {
-                  "name": "maxResults"
-                },
+                "xml": { "name": "maxResults" },
                 "description": "Required. The maximum number of engine types that can be returned per page (20 by default). This value must be an integer from 5 to 100."
               }
             ]
           },
           "NextToken": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "nextToken"
-                },
+                "xml": { "name": "nextToken" },
                 "description": "The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty."
               }
             ]
@@ -3672,39 +2882,27 @@
         "properties": {
           "BrokerInstanceOptions": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfBrokerInstanceOption" },
               {
-                "$ref": "#/components/schemas/__listOfBrokerInstanceOption"
-              },
-              {
-                "xml": {
-                  "name": "brokerInstanceOptions"
-                },
+                "xml": { "name": "brokerInstanceOptions" },
                 "description": "List of available broker instance options."
               }
             ]
           },
           "MaxResults": {
             "allOf": [
+              { "$ref": "#/components/schemas/__integerMin5Max100" },
               {
-                "$ref": "#/components/schemas/__integerMin5Max100"
-              },
-              {
-                "xml": {
-                  "name": "maxResults"
-                },
+                "xml": { "name": "maxResults" },
                 "description": "Required. The maximum number of instance options that can be returned per page (20 by default). This value must be an integer from 5 to 100."
               }
             ]
           },
           "NextToken": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "nextToken"
-                },
+                "xml": { "name": "nextToken" },
                 "description": "The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty."
               }
             ]
@@ -3716,130 +2914,90 @@
         "properties": {
           "Arn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "arn"
-                },
+                "xml": { "name": "arn" },
                 "description": "Required. The ARN of the configuration."
               }
             ]
           },
           "AuthenticationStrategy": {
             "allOf": [
+              { "$ref": "#/components/schemas/AuthenticationStrategy" },
               {
-                "$ref": "#/components/schemas/AuthenticationStrategy"
-              },
-              {
-                "xml": {
-                  "name": "authenticationStrategy"
-                },
+                "xml": { "name": "authenticationStrategy" },
                 "description": "The authentication strategy associated with the configuration."
               }
             ]
           },
           "Created": {
             "allOf": [
+              { "$ref": "#/components/schemas/__timestampIso8601" },
               {
-                "$ref": "#/components/schemas/__timestampIso8601"
-              },
-              {
-                "xml": {
-                  "name": "created"
-                },
+                "xml": { "name": "created" },
                 "description": "Required. The date and time of the configuration revision."
               }
             ]
           },
           "Description": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "description"
-                },
+                "xml": { "name": "description" },
                 "description": "Required. The description of the configuration."
               }
             ]
           },
           "EngineType": {
             "allOf": [
+              { "$ref": "#/components/schemas/EngineType" },
               {
-                "$ref": "#/components/schemas/EngineType"
-              },
-              {
-                "xml": {
-                  "name": "engineType"
-                },
+                "xml": { "name": "engineType" },
                 "description": "Required. The type of broker engine. Note: Currently, Amazon MQ supports only ACTIVEMQ."
               }
             ]
           },
           "EngineVersion": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "engineVersion"
-                },
+                "xml": { "name": "engineVersion" },
                 "description": "Required. The version of the broker engine. For a list of supported engine versions, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html"
               }
             ]
           },
           "Id": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "id"
-                },
+                "xml": { "name": "id" },
                 "description": "Required. The unique ID that Amazon MQ generates for the configuration."
               }
             ]
           },
           "LatestRevision": {
             "allOf": [
+              { "$ref": "#/components/schemas/ConfigurationRevision" },
               {
-                "$ref": "#/components/schemas/ConfigurationRevision"
-              },
-              {
-                "xml": {
-                  "name": "latestRevision"
-                },
+                "xml": { "name": "latestRevision" },
                 "description": "Required. The latest revision of the configuration."
               }
             ]
           },
           "Name": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "name"
-                },
+                "xml": { "name": "name" },
                 "description": "Required. The name of the configuration. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 1-150 characters long."
               }
             ]
           },
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "The list of all tags associated with this configuration."
               }
             ]
@@ -3851,52 +3009,36 @@
         "properties": {
           "ConfigurationId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "configurationId"
-                },
+                "xml": { "name": "configurationId" },
                 "description": "Required. The unique ID that Amazon MQ generates for the configuration."
               }
             ]
           },
           "Created": {
             "allOf": [
+              { "$ref": "#/components/schemas/__timestampIso8601" },
               {
-                "$ref": "#/components/schemas/__timestampIso8601"
-              },
-              {
-                "xml": {
-                  "name": "created"
-                },
+                "xml": { "name": "created" },
                 "description": "Required. The date and time of the configuration."
               }
             ]
           },
           "Data": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "data"
-                },
+                "xml": { "name": "data" },
                 "description": "Required. The base64-encoded XML configuration."
               }
             ]
           },
           "Description": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "description"
-                },
+                "xml": { "name": "description" },
                 "description": "The description of the configuration."
               }
             ]
@@ -3908,65 +3050,45 @@
         "properties": {
           "BrokerId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "brokerId"
-                },
+                "xml": { "name": "brokerId" },
                 "description": "Required. The unique ID that Amazon MQ generates for the broker."
               }
             ]
           },
           "ConsoleAccess": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "consoleAccess"
-                },
+                "xml": { "name": "consoleAccess" },
                 "description": "Enables access to the the ActiveMQ Web Console for the ActiveMQ user."
               }
             ]
           },
           "Groups": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
-              {
-                "xml": {
-                  "name": "groups"
-                },
+                "xml": { "name": "groups" },
                 "description": "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long."
               }
             ]
           },
           "Pending": {
             "allOf": [
+              { "$ref": "#/components/schemas/UserPendingChanges" },
               {
-                "$ref": "#/components/schemas/UserPendingChanges"
-              },
-              {
-                "xml": {
-                  "name": "pending"
-                },
+                "xml": { "name": "pending" },
                 "description": "The status of the changes pending for the ActiveMQ user."
               }
             ]
           },
           "Username": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "username"
-                },
+                "xml": { "name": "username" },
                 "description": "Required. The username of the ActiveMQ user. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long."
               }
             ]
@@ -3978,26 +3100,18 @@
         "properties": {
           "BrokerSummaries": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfBrokerSummary" },
               {
-                "$ref": "#/components/schemas/__listOfBrokerSummary"
-              },
-              {
-                "xml": {
-                  "name": "brokerSummaries"
-                },
+                "xml": { "name": "brokerSummaries" },
                 "description": "A list of information about all brokers."
               }
             ]
           },
           "NextToken": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "nextToken"
-                },
+                "xml": { "name": "nextToken" },
                 "description": "The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty."
               }
             ]
@@ -4009,52 +3123,36 @@
         "properties": {
           "ConfigurationId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "configurationId"
-                },
+                "xml": { "name": "configurationId" },
                 "description": "The unique ID that Amazon MQ generates for the configuration."
               }
             ]
           },
           "MaxResults": {
             "allOf": [
+              { "$ref": "#/components/schemas/__integer" },
               {
-                "$ref": "#/components/schemas/__integer"
-              },
-              {
-                "xml": {
-                  "name": "maxResults"
-                },
+                "xml": { "name": "maxResults" },
                 "description": "The maximum number of configuration revisions that can be returned per page (20 by default). This value must be an integer from 5 to 100."
               }
             ]
           },
           "NextToken": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "nextToken"
-                },
+                "xml": { "name": "nextToken" },
                 "description": "The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty."
               }
             ]
           },
           "Revisions": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfConfigurationRevision" },
               {
-                "$ref": "#/components/schemas/__listOfConfigurationRevision"
-              },
-              {
-                "xml": {
-                  "name": "revisions"
-                },
+                "xml": { "name": "revisions" },
                 "description": "The list of all revisions for the specified configuration."
               }
             ]
@@ -4066,39 +3164,27 @@
         "properties": {
           "Configurations": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfConfiguration" },
               {
-                "$ref": "#/components/schemas/__listOfConfiguration"
-              },
-              {
-                "xml": {
-                  "name": "configurations"
-                },
+                "xml": { "name": "configurations" },
                 "description": "The list of all revisions for the specified configuration."
               }
             ]
           },
           "MaxResults": {
             "allOf": [
+              { "$ref": "#/components/schemas/__integer" },
               {
-                "$ref": "#/components/schemas/__integer"
-              },
-              {
-                "xml": {
-                  "name": "maxResults"
-                },
+                "xml": { "name": "maxResults" },
                 "description": "The maximum number of configurations that Amazon MQ can return per page (20 by default). This value must be an integer from 5 to 100."
               }
             ]
           },
           "NextToken": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "nextToken"
-                },
+                "xml": { "name": "nextToken" },
                 "description": "The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty."
               }
             ]
@@ -4110,13 +3196,9 @@
         "properties": {
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "The key-value pair for the resource tag."
               }
             ]
@@ -4128,191 +3210,132 @@
         "properties": {
           "BrokerId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "brokerId"
-                },
+                "xml": { "name": "brokerId" },
                 "description": "Required. The unique ID that Amazon MQ generates for the broker."
               }
             ]
           },
           "MaxResults": {
             "allOf": [
+              { "$ref": "#/components/schemas/__integerMin5Max100" },
               {
-                "$ref": "#/components/schemas/__integerMin5Max100"
-              },
-              {
-                "xml": {
-                  "name": "maxResults"
-                },
+                "xml": { "name": "maxResults" },
                 "description": "Required. The maximum number of ActiveMQ users that can be returned per page (20 by default). This value must be an integer from 5 to 100."
               }
             ]
           },
           "NextToken": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "nextToken"
-                },
+                "xml": { "name": "nextToken" },
                 "description": "The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty."
               }
             ]
           },
           "Users": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfUserSummary" },
               {
-                "$ref": "#/components/schemas/__listOfUserSummary"
-              },
-              {
-                "xml": {
-                  "name": "users"
-                },
+                "xml": { "name": "users" },
                 "description": "Required. The list of all ActiveMQ usernames for the specified broker."
               }
             ]
           }
         }
       },
-      "RebootBrokerResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "RebootBrokerResponse": { "type": "object", "properties": {} },
       "UpdateBrokerResponse": {
         "type": "object",
         "properties": {
           "AuthenticationStrategy": {
             "allOf": [
+              { "$ref": "#/components/schemas/AuthenticationStrategy" },
               {
-                "$ref": "#/components/schemas/AuthenticationStrategy"
-              },
-              {
-                "xml": {
-                  "name": "authenticationStrategy"
-                },
+                "xml": { "name": "authenticationStrategy" },
                 "description": "The authentication strategy used to secure the broker."
               }
             ]
           },
           "AutoMinorVersionUpgrade": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "autoMinorVersionUpgrade"
-                },
+                "xml": { "name": "autoMinorVersionUpgrade" },
                 "description": "The new value of automatic upgrades to new minor version for brokers."
               }
             ]
           },
           "BrokerId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "brokerId"
-                },
+                "xml": { "name": "brokerId" },
                 "description": "Required. The unique ID that Amazon MQ generates for the broker."
               }
             ]
           },
           "Configuration": {
             "allOf": [
+              { "$ref": "#/components/schemas/ConfigurationId" },
               {
-                "$ref": "#/components/schemas/ConfigurationId"
-              },
-              {
-                "xml": {
-                  "name": "configuration"
-                },
+                "xml": { "name": "configuration" },
                 "description": "The ID of the updated configuration."
               }
             ]
           },
           "EngineVersion": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "engineVersion"
-                },
+                "xml": { "name": "engineVersion" },
                 "description": "The version of the broker engine to upgrade to. For a list of supported engine versions, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html"
               }
             ]
           },
           "HostInstanceType": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "hostInstanceType"
-                },
+                "xml": { "name": "hostInstanceType" },
                 "description": "The host instance type of the broker to upgrade to. For a list of supported instance types, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide//broker.html#broker-instance-types"
               }
             ]
           },
           "LdapServerMetadata": {
             "allOf": [
+              { "$ref": "#/components/schemas/LdapServerMetadataOutput" },
               {
-                "$ref": "#/components/schemas/LdapServerMetadataOutput"
-              },
-              {
-                "xml": {
-                  "name": "ldapServerMetadata"
-                },
+                "xml": { "name": "ldapServerMetadata" },
                 "description": "The metadata of the LDAP server used to authenticate and authorize connections to the broker."
               }
             ]
           },
           "Logs": {
             "allOf": [
+              { "$ref": "#/components/schemas/Logs" },
               {
-                "$ref": "#/components/schemas/Logs"
-              },
-              {
-                "xml": {
-                  "name": "logs"
-                },
+                "xml": { "name": "logs" },
                 "description": "The list of information about logs to be enabled for the specified broker."
               }
             ]
           },
           "SecurityGroups": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
-              {
-                "xml": {
-                  "name": "securityGroups"
-                },
+                "xml": { "name": "securityGroups" },
                 "description": "The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers."
               }
             ]
           },
           "MaintenanceWindowStartTime": {
             "allOf": [
+              { "$ref": "#/components/schemas/WeeklyStartTime" },
               {
-                "$ref": "#/components/schemas/WeeklyStartTime"
-              },
-              {
-                "xml": {
-                  "name": "maintenanceWindowStartTime"
-                },
+                "xml": { "name": "maintenanceWindowStartTime" },
                 "description": "The parameters that determine the WeeklyStartTime."
               }
             ]
@@ -4324,88 +3347,61 @@
         "properties": {
           "Arn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "arn"
-                },
+                "xml": { "name": "arn" },
                 "description": "Required. The Amazon Resource Name (ARN) of the configuration."
               }
             ]
           },
           "Created": {
             "allOf": [
+              { "$ref": "#/components/schemas/__timestampIso8601" },
               {
-                "$ref": "#/components/schemas/__timestampIso8601"
-              },
-              {
-                "xml": {
-                  "name": "created"
-                },
+                "xml": { "name": "created" },
                 "description": "Required. The date and time of the configuration."
               }
             ]
           },
           "Id": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "id"
-                },
+                "xml": { "name": "id" },
                 "description": "Required. The unique ID that Amazon MQ generates for the configuration."
               }
             ]
           },
           "LatestRevision": {
             "allOf": [
+              { "$ref": "#/components/schemas/ConfigurationRevision" },
               {
-                "$ref": "#/components/schemas/ConfigurationRevision"
-              },
-              {
-                "xml": {
-                  "name": "latestRevision"
-                },
+                "xml": { "name": "latestRevision" },
                 "description": "The latest revision of the configuration."
               }
             ]
           },
           "Name": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "name"
-                },
+                "xml": { "name": "name" },
                 "description": "Required. The name of the configuration. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 1-150 characters long."
               }
             ]
           },
           "Warnings": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfSanitizationWarning" },
               {
-                "$ref": "#/components/schemas/__listOfSanitizationWarning"
-              },
-              {
-                "xml": {
-                  "name": "warnings"
-                },
+                "xml": { "name": "warnings" },
                 "description": "The list of the first 20 warnings about the configuration XML elements or attributes that were sanitized."
               }
             ]
           }
         }
       },
-      "UpdateUserResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "UpdateUserResponse": { "type": "object", "properties": {} },
       "AuthenticationStrategy": {
         "type": "string",
         "enum": ["SIMPLE", "LDAP"],
@@ -4416,13 +3412,9 @@
         "properties": {
           "Name": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "name"
-                },
+                "xml": { "name": "name" },
                 "description": "Id for the availability zone."
               }
             ]
@@ -4437,35 +3429,25 @@
       },
       "__listOfEngineVersion": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/EngineVersion"
-        }
+        "items": { "$ref": "#/components/schemas/EngineVersion" }
       },
       "BrokerEngineType": {
         "type": "object",
         "properties": {
           "EngineType": {
             "allOf": [
+              { "$ref": "#/components/schemas/EngineType" },
               {
-                "$ref": "#/components/schemas/EngineType"
-              },
-              {
-                "xml": {
-                  "name": "engineType"
-                },
+                "xml": { "name": "engineType" },
                 "description": "The type of broker engine."
               }
             ]
           },
           "EngineVersions": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfEngineVersion" },
               {
-                "$ref": "#/components/schemas/__listOfEngineVersion"
-              },
-              {
-                "xml": {
-                  "name": "engineVersions"
-                },
+                "xml": { "name": "engineVersions" },
                 "description": "The list of engine versions."
               }
             ]
@@ -4478,39 +3460,27 @@
         "properties": {
           "ConsoleURL": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "consoleURL"
-                },
+                "xml": { "name": "consoleURL" },
                 "description": "The URL of the broker's ActiveMQ Web Console."
               }
             ]
           },
           "Endpoints": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
-              {
-                "xml": {
-                  "name": "endpoints"
-                },
+                "xml": { "name": "endpoints" },
                 "description": "The broker's wire-level protocol endpoints."
               }
             ]
           },
           "IpAddress": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "ipAddress"
-                },
+                "xml": { "name": "ipAddress" },
                 "description": "The IP address of the Elastic Network Interface (ENI) attached to the broker."
               }
             ]
@@ -4520,9 +3490,7 @@
       },
       "__listOfAvailabilityZone": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/AvailabilityZone"
-        }
+        "items": { "$ref": "#/components/schemas/AvailabilityZone" }
       },
       "BrokerStorageType": {
         "type": "string",
@@ -4531,87 +3499,61 @@
       },
       "__listOfDeploymentMode": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DeploymentMode"
-        }
+        "items": { "$ref": "#/components/schemas/DeploymentMode" }
       },
       "BrokerInstanceOption": {
         "type": "object",
         "properties": {
           "AvailabilityZones": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfAvailabilityZone" },
               {
-                "$ref": "#/components/schemas/__listOfAvailabilityZone"
-              },
-              {
-                "xml": {
-                  "name": "availabilityZones"
-                },
+                "xml": { "name": "availabilityZones" },
                 "description": "The list of available az."
               }
             ]
           },
           "EngineType": {
             "allOf": [
+              { "$ref": "#/components/schemas/EngineType" },
               {
-                "$ref": "#/components/schemas/EngineType"
-              },
-              {
-                "xml": {
-                  "name": "engineType"
-                },
+                "xml": { "name": "engineType" },
                 "description": "The type of broker engine."
               }
             ]
           },
           "HostInstanceType": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "hostInstanceType"
-                },
+                "xml": { "name": "hostInstanceType" },
                 "description": "The type of broker instance."
               }
             ]
           },
           "StorageType": {
             "allOf": [
+              { "$ref": "#/components/schemas/BrokerStorageType" },
               {
-                "$ref": "#/components/schemas/BrokerStorageType"
-              },
-              {
-                "xml": {
-                  "name": "storageType"
-                },
+                "xml": { "name": "storageType" },
                 "description": "The broker's storage type."
               }
             ]
           },
           "SupportedDeploymentModes": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfDeploymentMode" },
               {
-                "$ref": "#/components/schemas/__listOfDeploymentMode"
-              },
-              {
-                "xml": {
-                  "name": "supportedDeploymentModes"
-                },
+                "xml": { "name": "supportedDeploymentModes" },
                 "description": "The list of supported deployment modes."
               }
             ]
           },
           "SupportedEngineVersions": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
-              {
-                "xml": {
-                  "name": "supportedEngineVersions"
-                },
+                "xml": { "name": "supportedEngineVersions" },
                 "description": "The list of supported engine versions."
               }
             ]
@@ -4630,10 +3572,7 @@
         ],
         "description": "The status of the broker."
       },
-      "__timestampIso8601": {
-        "type": "string",
-        "format": "date-time"
-      },
+      "__timestampIso8601": { "type": "string", "format": "date-time" },
       "DeploymentMode": {
         "type": "string",
         "enum": [
@@ -4648,104 +3587,72 @@
         "properties": {
           "BrokerArn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "brokerArn"
-                },
+                "xml": { "name": "brokerArn" },
                 "description": "The Amazon Resource Name (ARN) of the broker."
               }
             ]
           },
           "BrokerId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "brokerId"
-                },
+                "xml": { "name": "brokerId" },
                 "description": "The unique ID that Amazon MQ generates for the broker."
               }
             ]
           },
           "BrokerName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "brokerName"
-                },
+                "xml": { "name": "brokerName" },
                 "description": "The name of the broker. This value must be unique in your AWS account, 1-50 characters long, must contain only letters, numbers, dashes, and underscores, and must not contain whitespaces, brackets, wildcard characters, or special characters."
               }
             ]
           },
           "BrokerState": {
             "allOf": [
+              { "$ref": "#/components/schemas/BrokerState" },
               {
-                "$ref": "#/components/schemas/BrokerState"
-              },
-              {
-                "xml": {
-                  "name": "brokerState"
-                },
+                "xml": { "name": "brokerState" },
                 "description": "The status of the broker."
               }
             ]
           },
           "Created": {
             "allOf": [
+              { "$ref": "#/components/schemas/__timestampIso8601" },
               {
-                "$ref": "#/components/schemas/__timestampIso8601"
-              },
-              {
-                "xml": {
-                  "name": "created"
-                },
+                "xml": { "name": "created" },
                 "description": "The time when the broker was created."
               }
             ]
           },
           "DeploymentMode": {
             "allOf": [
+              { "$ref": "#/components/schemas/DeploymentMode" },
               {
-                "$ref": "#/components/schemas/DeploymentMode"
-              },
-              {
-                "xml": {
-                  "name": "deploymentMode"
-                },
+                "xml": { "name": "deploymentMode" },
                 "description": "Required. The deployment mode of the broker."
               }
             ]
           },
           "HostInstanceType": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "hostInstanceType"
-                },
+                "xml": { "name": "hostInstanceType" },
                 "description": "The broker's instance type."
               }
             ]
           },
           "EngineType": {
             "allOf": [
+              { "$ref": "#/components/schemas/EngineType" },
               {
-                "$ref": "#/components/schemas/EngineType"
-              },
-              {
-                "xml": {
-                  "name": "engineType"
-                },
+                "xml": { "name": "engineType" },
                 "description": "Required. The type of broker engine."
               }
             ]
@@ -4764,39 +3671,27 @@
         "properties": {
           "Created": {
             "allOf": [
+              { "$ref": "#/components/schemas/__timestampIso8601" },
               {
-                "$ref": "#/components/schemas/__timestampIso8601"
-              },
-              {
-                "xml": {
-                  "name": "created"
-                },
+                "xml": { "name": "created" },
                 "description": "Required. The date and time of the configuration revision."
               }
             ]
           },
           "Description": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "description"
-                },
+                "xml": { "name": "description" },
                 "description": "The description of the configuration revision."
               }
             ]
           },
           "Revision": {
             "allOf": [
+              { "$ref": "#/components/schemas/__integer" },
               {
-                "$ref": "#/components/schemas/__integer"
-              },
-              {
-                "xml": {
-                  "name": "revision"
-                },
+                "xml": { "name": "revision" },
                 "description": "Required. The revision number of the configuration."
               }
             ]
@@ -4807,139 +3702,97 @@
       },
       "__mapOf__string": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/__string"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/__string" }
       },
       "Configuration": {
         "type": "object",
         "properties": {
           "Arn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "arn"
-                },
+                "xml": { "name": "arn" },
                 "description": "Required. The ARN of the configuration."
               }
             ]
           },
           "AuthenticationStrategy": {
             "allOf": [
+              { "$ref": "#/components/schemas/AuthenticationStrategy" },
               {
-                "$ref": "#/components/schemas/AuthenticationStrategy"
-              },
-              {
-                "xml": {
-                  "name": "authenticationStrategy"
-                },
+                "xml": { "name": "authenticationStrategy" },
                 "description": "The authentication strategy associated with the configuration."
               }
             ]
           },
           "Created": {
             "allOf": [
+              { "$ref": "#/components/schemas/__timestampIso8601" },
               {
-                "$ref": "#/components/schemas/__timestampIso8601"
-              },
-              {
-                "xml": {
-                  "name": "created"
-                },
+                "xml": { "name": "created" },
                 "description": "Required. The date and time of the configuration revision."
               }
             ]
           },
           "Description": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "description"
-                },
+                "xml": { "name": "description" },
                 "description": "Required. The description of the configuration."
               }
             ]
           },
           "EngineType": {
             "allOf": [
+              { "$ref": "#/components/schemas/EngineType" },
               {
-                "$ref": "#/components/schemas/EngineType"
-              },
-              {
-                "xml": {
-                  "name": "engineType"
-                },
+                "xml": { "name": "engineType" },
                 "description": "Required. The type of broker engine. Note: Currently, Amazon MQ supports only ACTIVEMQ."
               }
             ]
           },
           "EngineVersion": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "engineVersion"
-                },
+                "xml": { "name": "engineVersion" },
                 "description": "Required. The version of the broker engine. For a list of supported engine versions, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html"
               }
             ]
           },
           "Id": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "id"
-                },
+                "xml": { "name": "id" },
                 "description": "Required. The unique ID that Amazon MQ generates for the configuration."
               }
             ]
           },
           "LatestRevision": {
             "allOf": [
+              { "$ref": "#/components/schemas/ConfigurationRevision" },
               {
-                "$ref": "#/components/schemas/ConfigurationRevision"
-              },
-              {
-                "xml": {
-                  "name": "latestRevision"
-                },
+                "xml": { "name": "latestRevision" },
                 "description": "Required. The latest revision of the configuration."
               }
             ]
           },
           "Name": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "name"
-                },
+                "xml": { "name": "name" },
                 "description": "Required. The name of the configuration. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 1-150 characters long."
               }
             ]
           },
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "The list of all tags associated with this configuration."
               }
             ]
@@ -4963,26 +3816,18 @@
         "properties": {
           "Id": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "id"
-                },
+                "xml": { "name": "id" },
                 "description": "Required. The unique ID that Amazon MQ generates for the configuration."
               }
             ]
           },
           "Revision": {
             "allOf": [
+              { "$ref": "#/components/schemas/__integer" },
               {
-                "$ref": "#/components/schemas/__integer"
-              },
-              {
-                "xml": {
-                  "name": "revision"
-                },
+                "xml": { "name": "revision" },
                 "description": "The revision number of the configuration."
               }
             ]
@@ -4993,48 +3838,34 @@
       },
       "__listOfConfigurationId": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ConfigurationId"
-        }
+        "items": { "$ref": "#/components/schemas/ConfigurationId" }
       },
       "Configurations": {
         "type": "object",
         "properties": {
           "Current": {
             "allOf": [
+              { "$ref": "#/components/schemas/ConfigurationId" },
               {
-                "$ref": "#/components/schemas/ConfigurationId"
-              },
-              {
-                "xml": {
-                  "name": "current"
-                },
+                "xml": { "name": "current" },
                 "description": "The current configuration of the broker."
               }
             ]
           },
           "History": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfConfigurationId" },
               {
-                "$ref": "#/components/schemas/__listOfConfigurationId"
-              },
-              {
-                "xml": {
-                  "name": "history"
-                },
+                "xml": { "name": "history" },
                 "description": "The history of configurations applied to the broker."
               }
             ]
           },
           "Pending": {
             "allOf": [
+              { "$ref": "#/components/schemas/ConfigurationId" },
               {
-                "$ref": "#/components/schemas/ConfigurationId"
-              },
-              {
-                "xml": {
-                  "name": "pending"
-                },
+                "xml": { "name": "pending" },
                 "description": "The pending configuration of the broker."
               }
             ]
@@ -5048,26 +3879,18 @@
         "properties": {
           "KmsKeyId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "kmsKeyId"
-                },
+                "xml": { "name": "kmsKeyId" },
                 "description": "The symmetric customer master key (CMK) to use for the AWS Key Management Service (KMS). This key is used to encrypt your data at rest. If not provided, Amazon MQ will use a default CMK to encrypt your data."
               }
             ]
           },
           "UseAwsOwnedKey": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "useAwsOwnedKey"
-                },
+                "xml": { "name": "useAwsOwnedKey" },
                 "description": "Enables the use of an AWS owned CMK using AWS Key Management Service (KMS)."
               }
             ]
@@ -5080,26 +3903,18 @@
         "properties": {
           "Audit": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "audit"
-                },
+                "xml": { "name": "audit" },
                 "description": "Enables audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged."
               }
             ]
           },
           "General": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "general"
-                },
+                "xml": { "name": "general" },
                 "description": "Enables general logging."
               }
             ]
@@ -5112,39 +3927,27 @@
         "properties": {
           "DayOfWeek": {
             "allOf": [
+              { "$ref": "#/components/schemas/DayOfWeek" },
               {
-                "$ref": "#/components/schemas/DayOfWeek"
-              },
-              {
-                "xml": {
-                  "name": "dayOfWeek"
-                },
+                "xml": { "name": "dayOfWeek" },
                 "description": "Required. The day of the week."
               }
             ]
           },
           "TimeOfDay": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "timeOfDay"
-                },
+                "xml": { "name": "timeOfDay" },
                 "description": "Required. The time, in 24-hour format."
               }
             ]
           },
           "TimeZone": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "timeZone"
-                },
+                "xml": { "name": "timeZone" },
                 "description": "The time zone, UTC by default, in either the Country/City format, or the UTC offset format."
               }
             ]
@@ -5155,9 +3958,7 @@
       },
       "__listOfBrokerEngineType": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/BrokerEngineType"
-        }
+        "items": { "$ref": "#/components/schemas/BrokerEngineType" }
       },
       "__integerMin5Max100": {
         "type": "integer",
@@ -5166,145 +3967,101 @@
       },
       "__listOfBrokerInstanceOption": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/BrokerInstanceOption"
-        }
+        "items": { "$ref": "#/components/schemas/BrokerInstanceOption" }
       },
       "__listOfBrokerInstance": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/BrokerInstance"
-        }
+        "items": { "$ref": "#/components/schemas/BrokerInstance" }
       },
       "LdapServerMetadataOutput": {
         "type": "object",
         "properties": {
           "Hosts": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
-              {
-                "xml": {
-                  "name": "hosts"
-                },
+                "xml": { "name": "hosts" },
                 "description": "Fully qualified domain name of the LDAP server. Optional failover server."
               }
             ]
           },
           "RoleBase": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "roleBase"
-                },
+                "xml": { "name": "roleBase" },
                 "description": "Fully qualified name of the directory to search for a user’s groups."
               }
             ]
           },
           "RoleName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "roleName"
-                },
+                "xml": { "name": "roleName" },
                 "description": "Specifies the LDAP attribute that identifies the group name attribute in the object returned from the group membership query."
               }
             ]
           },
           "RoleSearchMatching": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "roleSearchMatching"
-                },
+                "xml": { "name": "roleSearchMatching" },
                 "description": "The search criteria for groups."
               }
             ]
           },
           "RoleSearchSubtree": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "roleSearchSubtree"
-                },
+                "xml": { "name": "roleSearchSubtree" },
                 "description": "The directory search scope for the role. If set to true, scope is to search the entire sub-tree."
               }
             ]
           },
           "ServiceAccountUsername": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "serviceAccountUsername"
-                },
+                "xml": { "name": "serviceAccountUsername" },
                 "description": "Service account username."
               }
             ]
           },
           "UserBase": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "userBase"
-                },
+                "xml": { "name": "userBase" },
                 "description": "Fully qualified name of the directory where you want to search for users."
               }
             ]
           },
           "UserRoleName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "userRoleName"
-                },
+                "xml": { "name": "userRoleName" },
                 "description": "Specifies the name of the LDAP attribute for the user group membership."
               }
             ]
           },
           "UserSearchMatching": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "userSearchMatching"
-                },
+                "xml": { "name": "userSearchMatching" },
                 "description": "The search criteria for users."
               }
             ]
           },
           "UserSearchSubtree": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "userSearchSubtree"
-                },
+                "xml": { "name": "userSearchSubtree" },
                 "description": "The directory search scope for the user. If set to true, scope is to search the entire sub-tree."
               }
             ]
@@ -5325,65 +4082,45 @@
         "properties": {
           "Audit": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "audit"
-                },
+                "xml": { "name": "audit" },
                 "description": "Enables audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged."
               }
             ]
           },
           "AuditLogGroup": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "auditLogGroup"
-                },
+                "xml": { "name": "auditLogGroup" },
                 "description": "The location of the CloudWatch Logs log group where audit logs are sent."
               }
             ]
           },
           "General": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "general"
-                },
+                "xml": { "name": "general" },
                 "description": "Enables general logging."
               }
             ]
           },
           "GeneralLogGroup": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "generalLogGroup"
-                },
+                "xml": { "name": "generalLogGroup" },
                 "description": "The location of the CloudWatch Logs log group where general logs are sent."
               }
             ]
           },
           "Pending": {
             "allOf": [
+              { "$ref": "#/components/schemas/PendingLogs" },
               {
-                "$ref": "#/components/schemas/PendingLogs"
-              },
-              {
-                "xml": {
-                  "name": "pending"
-                },
+                "xml": { "name": "pending" },
                 "description": "The list of information about logs pending to be deployed for the specified broker."
               }
             ]
@@ -5394,48 +4131,34 @@
       },
       "__listOfUserSummary": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/UserSummary"
-        }
+        "items": { "$ref": "#/components/schemas/UserSummary" }
       },
       "UserPendingChanges": {
         "type": "object",
         "properties": {
           "ConsoleAccess": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "consoleAccess"
-                },
+                "xml": { "name": "consoleAccess" },
                 "description": "Enables access to the the ActiveMQ Web Console for the ActiveMQ user."
               }
             ]
           },
           "Groups": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
-              {
-                "xml": {
-                  "name": "groups"
-                },
+                "xml": { "name": "groups" },
                 "description": "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long."
               }
             ]
           },
           "PendingChange": {
             "allOf": [
+              { "$ref": "#/components/schemas/ChangeType" },
               {
-                "$ref": "#/components/schemas/ChangeType"
-              },
-              {
-                "xml": {
-                  "name": "pendingChange"
-                },
+                "xml": { "name": "pendingChange" },
                 "description": "Required. The type of change pending for the ActiveMQ user."
               }
             ]
@@ -5449,13 +4172,9 @@
         "properties": {
           "Name": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "name"
-                },
+                "xml": { "name": "name" },
                 "description": "Id for the version."
               }
             ]
@@ -5465,47 +4184,33 @@
       },
       "__listOfBrokerSummary": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/BrokerSummary"
-        }
+        "items": { "$ref": "#/components/schemas/BrokerSummary" }
       },
       "__listOfConfigurationRevision": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ConfigurationRevision"
-        }
+        "items": { "$ref": "#/components/schemas/ConfigurationRevision" }
       },
       "__listOfConfiguration": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Configuration"
-        }
+        "items": { "$ref": "#/components/schemas/Configuration" }
       },
       "PendingLogs": {
         "type": "object",
         "properties": {
           "Audit": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "audit"
-                },
+                "xml": { "name": "audit" },
                 "description": "Enables audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged."
               }
             ]
           },
           "General": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "general"
-                },
+                "xml": { "name": "general" },
                 "description": "Enables general logging."
               }
             ]
@@ -5527,39 +4232,27 @@
         "properties": {
           "AttributeName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "attributeName"
-                },
+                "xml": { "name": "attributeName" },
                 "description": "The name of the XML attribute that has been sanitized."
               }
             ]
           },
           "ElementName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "elementName"
-                },
+                "xml": { "name": "elementName" },
                 "description": "The name of the XML element that has been sanitized."
               }
             ]
           },
           "Reason": {
             "allOf": [
+              { "$ref": "#/components/schemas/SanitizationWarningReason" },
               {
-                "$ref": "#/components/schemas/SanitizationWarningReason"
-              },
-              {
-                "xml": {
-                  "name": "reason"
-                },
+                "xml": { "name": "reason" },
                 "description": "Required. The reason for which the XML elements or attributes were sanitized."
               }
             ]
@@ -5570,35 +4263,25 @@
       },
       "__listOfSanitizationWarning": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/SanitizationWarning"
-        }
+        "items": { "$ref": "#/components/schemas/SanitizationWarning" }
       },
       "UserSummary": {
         "type": "object",
         "properties": {
           "PendingChange": {
             "allOf": [
+              { "$ref": "#/components/schemas/ChangeType" },
               {
-                "$ref": "#/components/schemas/ChangeType"
-              },
-              {
-                "xml": {
-                  "name": "pendingChange"
-                },
+                "xml": { "name": "pendingChange" },
                 "description": "The type of change pending for the ActiveMQ user."
               }
             ]
           },
           "Username": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "username"
-                },
+                "xml": { "name": "username" },
                 "description": "Required. The username of the ActiveMQ user. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long."
               }
             ]
@@ -5609,11 +4292,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2017-11-27",
     "endpointPrefix": "mq",

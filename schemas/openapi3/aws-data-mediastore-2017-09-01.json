@@ -176,9 +176,7 @@
             "description": "InternalServerError",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalServerError"
-                }
+                "schema": { "$ref": "#/components/schemas/InternalServerError" }
               }
             }
           }
@@ -200,27 +198,13 @@
         "summary": "Delete Object"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "head": {
         "operationId": "DescribeObject",
@@ -260,9 +244,7 @@
             "description": "InternalServerError",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalServerError"
-                }
+                "schema": { "$ref": "#/components/schemas/InternalServerError" }
               }
             }
           }
@@ -291,9 +273,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetObjectResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/GetObjectResponse" }
               }
             }
           },
@@ -331,9 +311,7 @@
             "description": "InternalServerError",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalServerError"
-                }
+                "schema": { "$ref": "#/components/schemas/InternalServerError" }
               }
             }
           }
@@ -372,9 +350,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PutObjectResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/PutObjectResponse" }
               }
             }
           },
@@ -392,9 +368,7 @@
             "description": "InternalServerError",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalServerError"
-                }
+                "schema": { "$ref": "#/components/schemas/InternalServerError" }
               }
             }
           }
@@ -427,9 +401,7 @@
             "in": "header",
             "required": false,
             "description": "<p>An optional <code>CacheControl</code> header that allows the caller to control the object's cache behavior. Headers can be passed in as specified in the HTTP at <a href=\"https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9\">https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9</a>.</p> <p>Headers with a custom user-defined value are also accepted.</p>",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "x-amz-storage-class",
@@ -485,9 +457,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListItemsResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/ListItemsResponse" }
               }
             }
           },
@@ -505,9 +475,7 @@
             "description": "InternalServerError",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalServerError"
-                }
+                "schema": { "$ref": "#/components/schemas/InternalServerError" }
               }
             }
           }
@@ -530,46 +498,26 @@
             "in": "query",
             "required": false,
             "description": "<p>The maximum number of results to return per API request. For example, you submit a <code>ListItems</code> request with <code>MaxResults</code> set at 500. Although 2,000 items match your request, the service returns no more than the first 500 items. (The service also returns a <code>NextToken</code> value that you can use to fetch the next batch of results.) The service might return fewer results than the <code>MaxResults</code> value.</p> <p>If <code>MaxResults</code> is not included in the request, the service defaults to pagination with a maximum of 1,000 results per page.</p>",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 1000
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 1000 }
           },
           {
             "name": "NextToken",
             "in": "query",
             "required": false,
             "description": "<p>The token that identifies which batch of results that you want to see. For example, you submit a <code>ListItems</code> request with <code>MaxResults</code> set at 500. The service returns the first batch of results (up to 500) and a <code>NextToken</code> value. To see the next batch of results, you can submit the <code>ListItems</code> request a second time and specify the <code>NextToken</code> value.</p> <p>Tokens expire after 15 minutes.</p>",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "List Items"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -578,63 +526,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -649,35 +583,23 @@
       }
     },
     "schemas": {
-      "DeleteObjectResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "DeleteObjectResponse": { "type": "object", "properties": {} },
       "ContainerNotFoundException": {},
       "ObjectNotFoundException": {},
       "InternalServerError": {},
-      "DescribeObjectResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "DescribeObjectResponse": { "type": "object", "properties": {} },
       "GetObjectResponse": {
         "type": "object",
         "properties": {
           "Body": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PayloadBlob"
-              },
-              {
-                "description": "The bytes of the object. "
-              }
+              { "$ref": "#/components/schemas/PayloadBlob" },
+              { "description": "The bytes of the object. " }
             ]
           },
           "StatusCode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/statusCode"
-              },
+              { "$ref": "#/components/schemas/statusCode" },
               {
                 "description": "The HTML status code of the request. Status codes ranging from 200 to 299 indicate success. All other status codes indicate the type of error that occurred."
               }
@@ -691,9 +613,7 @@
         "properties": {
           "Items": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ItemList"
-              },
+              { "$ref": "#/components/schemas/ItemList" },
               {
                 "description": "The metadata entries for the folders and objects at the requested path."
               }
@@ -701,9 +621,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PaginationToken"
-              },
+              { "$ref": "#/components/schemas/PaginationToken" },
               {
                 "description": "The token that can be used in a request to view the next set of results. For example, you submit a <code>ListItems</code> request that matches 2,000 items with <code>MaxResults</code> set at 500. The service returns the first batch of results (up to 500) and a <code>NextToken</code> value that can be used to fetch the next batch of results."
               }
@@ -716,9 +634,7 @@
         "properties": {
           "ContentSHA256": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SHA256Hash"
-              },
+              { "$ref": "#/components/schemas/SHA256Hash" },
               {
                 "description": "The SHA256 digest of the object that is persisted."
               }
@@ -726,9 +642,7 @@
           },
           "ETag": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ETag"
-              },
+              { "$ref": "#/components/schemas/ETag" },
               {
                 "description": "Unique identifier of the object in the container."
               }
@@ -736,9 +650,7 @@
           },
           "StorageClass": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StorageClass"
-              },
+              { "$ref": "#/components/schemas/StorageClass" },
               {
                 "description": "The storage class where the object was persisted. The class should be “Temporal”."
               }
@@ -756,56 +668,30 @@
         "minLength": 1,
         "maxLength": 64
       },
-      "NonNegativeLong": {
-        "type": "integer",
-        "minimum": 0
-      },
-      "TimeStamp": {
-        "type": "string",
-        "format": "date-time"
-      },
-      "PayloadBlob": {
-        "type": "string"
-      },
-      "statusCode": {
-        "type": "integer"
-      },
-      "ItemName": {
-        "type": "string",
-        "pattern": "[A-Za-z0-9_\\.\\-\\~]+"
-      },
-      "ItemType": {
-        "type": "string",
-        "enum": ["OBJECT", "FOLDER"]
-      },
+      "NonNegativeLong": { "type": "integer", "minimum": 0 },
+      "TimeStamp": { "type": "string", "format": "date-time" },
+      "PayloadBlob": { "type": "string" },
+      "statusCode": { "type": "integer" },
+      "ItemName": { "type": "string", "pattern": "[A-Za-z0-9_\\.\\-\\~]+" },
+      "ItemType": { "type": "string", "enum": ["OBJECT", "FOLDER"] },
       "Item": {
         "type": "object",
         "properties": {
           "Name": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ItemName"
-              },
-              {
-                "description": "The name of the item."
-              }
+              { "$ref": "#/components/schemas/ItemName" },
+              { "description": "The name of the item." }
             ]
           },
           "Type": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ItemType"
-              },
-              {
-                "description": "The item type (folder or object)."
-              }
+              { "$ref": "#/components/schemas/ItemType" },
+              { "description": "The item type (folder or object)." }
             ]
           },
           "ETag": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ETag"
-              },
+              { "$ref": "#/components/schemas/ETag" },
               {
                 "description": "The ETag that represents a unique instance of the item."
               }
@@ -813,9 +699,7 @@
           },
           "LastModified": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TimeStamp"
-              },
+              { "$ref": "#/components/schemas/TimeStamp" },
               {
                 "description": "The date and time that the item was last modified."
               }
@@ -823,22 +707,14 @@
           },
           "ContentType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ContentType"
-              },
-              {
-                "description": "The content type of the item."
-              }
+              { "$ref": "#/components/schemas/ContentType" },
+              { "description": "The content type of the item." }
             ]
           },
           "ContentLength": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NonNegativeLong"
-              },
-              {
-                "description": "The length of the item in bytes."
-              }
+              { "$ref": "#/components/schemas/NonNegativeLong" },
+              { "description": "The length of the item in bytes." }
             ]
           }
         },
@@ -846,13 +722,9 @@
       },
       "ItemList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Item"
-        }
+        "items": { "$ref": "#/components/schemas/Item" }
       },
-      "PaginationToken": {
-        "type": "string"
-      },
+      "PaginationToken": { "type": "string" },
       "StorageClass": {
         "type": "string",
         "enum": ["TEMPORAL"],
@@ -867,11 +739,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2017-09-01",
     "endpointPrefix": "data.mediastore",

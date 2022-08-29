@@ -143,9 +143,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           },
@@ -173,9 +171,7 @@
             "description": "ConflictException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictException"
-                }
+                "schema": { "$ref": "#/components/schemas/ConflictException" }
               }
             }
           }
@@ -228,27 +224,13 @@
         "summary": "Create Endpoint"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/S3Outposts/DeleteEndpoint#endpointId&outpostId": {
@@ -256,9 +238,7 @@
         "operationId": "DeleteEndpoint",
         "description": "<p>S3 on Outposts access points simplify managing data access at scale for shared datasets in Amazon S3 on Outposts. S3 on Outposts uses endpoints to connect to Outposts buckets so that you can perform actions within your virtual private cloud (VPC). </p> <p>This action deletes an endpoint. </p> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_CreateEndpoint.html\">CreateEndpoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_ListEndpoints.html\">ListEndpoints</a> </p> </li> </ul>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "InternalServerException",
             "content": {
@@ -293,9 +273,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           }
@@ -329,27 +307,13 @@
         "summary": "Delete Endpoint"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/S3Outposts/ListEndpoints": {
@@ -361,9 +325,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListEndpointsResult"
-                }
+                "schema": { "$ref": "#/components/schemas/ListEndpointsResult" }
               }
             }
           },
@@ -401,9 +363,7 @@
             "description": "ValidationException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationException"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationException" }
               }
             }
           }
@@ -426,27 +386,19 @@
             "in": "query",
             "required": false,
             "description": "The max number of endpoints that can be returned on the request.",
-            "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 100
-            }
+            "schema": { "type": "integer", "minimum": 0, "maximum": 100 }
           },
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -454,27 +406,13 @@
         "summary": "List Endpoints"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -483,63 +421,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -558,9 +482,7 @@
         "properties": {
           "EndpointArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EndpointArn"
-              },
+              { "$ref": "#/components/schemas/EndpointArn" },
               {
                 "description": "The Amazon Resource Name (ARN) of the endpoint."
               }
@@ -578,9 +500,7 @@
         "properties": {
           "Endpoints": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Endpoints"
-              },
+              { "$ref": "#/components/schemas/Endpoints" },
               {
                 "description": "Returns an array of endpoints associated with AWS Outpost."
               }
@@ -588,21 +508,13 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
-              {
-                "description": "The next endpoint returned in the list."
-              }
+              { "$ref": "#/components/schemas/NextToken" },
+              { "description": "The next endpoint returned in the list." }
             ]
           }
         }
       },
-      "CidrBlock": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 20
-      },
+      "CidrBlock": { "type": "string", "minLength": 1, "maxLength": 20 },
       "OutpostId": {
         "type": "string",
         "pattern": "^(op-[a-f0-9]{17}|\\d{12}|ec2)$",
@@ -627,28 +539,21 @@
         "minLength": 5,
         "maxLength": 500
       },
-      "CreationTime": {
-        "type": "string",
-        "format": "date-time"
-      },
+      "CreationTime": { "type": "string", "format": "date-time" },
       "EndpointStatus": {
         "type": "string",
         "enum": ["PENDING", "AVAILABLE", "Deleting"]
       },
       "NetworkInterfaces": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/NetworkInterface"
-        }
+        "items": { "$ref": "#/components/schemas/NetworkInterface" }
       },
       "Endpoint": {
         "type": "object",
         "properties": {
           "EndpointArn": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EndpointArn"
-              },
+              { "$ref": "#/components/schemas/EndpointArn" },
               {
                 "description": "The Amazon Resource Name (ARN) of the endpoint."
               }
@@ -656,79 +561,49 @@
           },
           "OutpostsId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OutpostId"
-              },
-              {
-                "description": "The ID of the AWS Outpost."
-              }
+              { "$ref": "#/components/schemas/OutpostId" },
+              { "description": "The ID of the AWS Outpost." }
             ]
           },
           "CidrBlock": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CidrBlock"
-              },
-              {
-                "description": "The VPC CIDR committed by this endpoint."
-              }
+              { "$ref": "#/components/schemas/CidrBlock" },
+              { "description": "The VPC CIDR committed by this endpoint." }
             ]
           },
           "Status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EndpointStatus"
-              },
-              {
-                "description": "The status of the endpoint."
-              }
+              { "$ref": "#/components/schemas/EndpointStatus" },
+              { "description": "The status of the endpoint." }
             ]
           },
           "CreationTime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CreationTime"
-              },
-              {
-                "description": "The time the endpoint was created."
-              }
+              { "$ref": "#/components/schemas/CreationTime" },
+              { "description": "The time the endpoint was created." }
             ]
           },
           "NetworkInterfaces": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NetworkInterfaces"
-              },
-              {
-                "description": "The network interface of the endpoint."
-              }
+              { "$ref": "#/components/schemas/NetworkInterfaces" },
+              { "description": "The network interface of the endpoint." }
             ]
           },
           "VpcId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/VpcId"
-              },
-              {
-                "description": "The ID of the VPC used for the endpoint."
-              }
+              { "$ref": "#/components/schemas/VpcId" },
+              { "description": "The ID of the VPC used for the endpoint." }
             ]
           },
           "SubnetId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SubnetId"
-              },
-              {
-                "description": "The ID of the subnet used for the endpoint."
-              }
+              { "$ref": "#/components/schemas/SubnetId" },
+              { "description": "The ID of the subnet used for the endpoint." }
             ]
           },
           "SecurityGroupId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SecurityGroupId"
-              },
+              { "$ref": "#/components/schemas/SecurityGroupId" },
               {
                 "description": "The ID of the security group used for the endpoint."
               }
@@ -736,19 +611,13 @@
           },
           "AccessType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EndpointAccessType"
-              },
-              {
-                "description": "<p/>"
-              }
+              { "$ref": "#/components/schemas/EndpointAccessType" },
+              { "description": "<p/>" }
             ]
           },
           "CustomerOwnedIpv4Pool": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CustomerOwnedIpv4Pool"
-              },
+              { "$ref": "#/components/schemas/CustomerOwnedIpv4Pool" },
               {
                 "description": "The ID of the customer-owned IPv4 pool used for the endpoint."
               }
@@ -759,9 +628,7 @@
       },
       "Endpoints": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Endpoint"
-        }
+        "items": { "$ref": "#/components/schemas/Endpoint" }
       },
       "NextToken": {
         "type": "string",
@@ -779,12 +646,8 @@
         "properties": {
           "NetworkInterfaceId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NetworkInterfaceId"
-              },
-              {
-                "description": "The ID for the network interface."
-              }
+              { "$ref": "#/components/schemas/NetworkInterfaceId" },
+              { "description": "The ID for the network interface." }
             ]
           }
         },
@@ -798,16 +661,10 @@
         "type": "string",
         "pattern": "^ipv4pool-coip-([0-9a-f]{17})$"
       },
-      "VpcId": {
-        "type": "string"
-      }
+      "VpcId": { "type": "string" }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2017-07-25",
     "endpointPrefix": "s3-outposts",

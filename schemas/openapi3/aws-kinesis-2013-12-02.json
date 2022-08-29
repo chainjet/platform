@@ -143,9 +143,7 @@
         "operationId": "AddTagsToStream",
         "description": "<p>Adds or updates tags for the specified Kinesis data stream. Each time you invoke this operation, you can specify up to 10 tags. If you want to add more than 10 tags to your stream, you can invoke this operation multiple times. In total, each stream can have up to 50 tags.</p> <p>If tags have already been assigned to the stream, <code>AddTagsToStream</code> overwrites any existing tags that correspond to the specified tag keys.</p> <p> <a>AddTagsToStream</a> has a limit of five transactions per second per account.</p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -191,9 +189,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddTagsToStreamInput"
-              }
+              "schema": { "$ref": "#/components/schemas/AddTagsToStreamInput" }
             }
           }
         },
@@ -211,27 +207,13 @@
         "summary": "Add Tags To Stream"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.CreateStream": {
@@ -239,9 +221,7 @@
         "operationId": "CreateStream",
         "description": "<p>Creates a Kinesis data stream. A stream captures and transports data records that are continuously emitted from different data sources or <i>producers</i>. Scale-out within a stream is explicitly supported by means of shards, which are uniquely identified groups of data records in a stream.</p> <p>You specify and control the number of shards that a stream is composed of. Each shard can support reads up to five transactions per second, up to a maximum data read total of 2 MiB per second. Each shard can support writes up to 1,000 records per second, up to a maximum data write total of 1 MiB per second. If the amount of data input increases or decreases, you can add or remove shards.</p> <p>The stream name identifies the stream. The name is scoped to the AWS account used by the application. It is also scoped by AWS Region. That is, two streams in two different accounts can have the same name, and two streams in the same account, but in two different Regions, can have the same name.</p> <p> <code>CreateStream</code> is an asynchronous operation. Upon receiving a <code>CreateStream</code> request, Kinesis Data Streams immediately returns and sets the stream status to <code>CREATING</code>. After the stream is created, Kinesis Data Streams sets the stream status to <code>ACTIVE</code>. You should perform read and write operations only on an <code>ACTIVE</code> stream. </p> <p>You receive a <code>LimitExceededException</code> when making a <code>CreateStream</code> request when you try to do one of the following:</p> <ul> <li> <p>Have more than five streams in the <code>CREATING</code> state at any point in time.</p> </li> <li> <p>Create more shards than are authorized for your account.</p> </li> </ul> <p>For the default shard limit for an AWS account, see <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html\">Amazon Kinesis Data Streams Limits</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>. To increase this limit, <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html\">contact AWS Support</a>.</p> <p>You can use <code>DescribeStream</code> to check the stream status, which is returned in <code>StreamStatus</code>.</p> <p> <a>CreateStream</a> has a limit of five transactions per second per account.</p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ResourceInUseException",
             "content": {
@@ -277,9 +257,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateStreamInput"
-              }
+              "schema": { "$ref": "#/components/schemas/CreateStreamInput" }
             }
           }
         },
@@ -297,27 +275,13 @@
         "summary": "Create Stream"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.DecreaseStreamRetentionPeriod": {
@@ -325,9 +289,7 @@
         "operationId": "DecreaseStreamRetentionPeriod",
         "description": "<p>Decreases the Kinesis data stream's retention period, which is the length of time data records are accessible after they are added to the stream. The minimum value of a stream's retention period is 24 hours.</p> <p>This operation may result in lost data. For example, if the stream's retention period is 48 hours and is decreased to 24 hours, any data already in the stream that is older than 24 hours is inaccessible.</p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ResourceInUseException",
             "content": {
@@ -393,27 +355,13 @@
         "summary": "Decrease Stream Retention Period"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.DeleteStream": {
@@ -421,9 +369,7 @@
         "operationId": "DeleteStream",
         "description": "<p>Deletes a Kinesis data stream and all its shards and data. You must shut down any applications that are operating on the stream before you delete the stream. If an application attempts to operate on a deleted stream, it receives the exception <code>ResourceNotFoundException</code>.</p> <p>If the stream is in the <code>ACTIVE</code> state, you can delete it. After a <code>DeleteStream</code> request, the specified stream is in the <code>DELETING</code> state until Kinesis Data Streams completes the deletion.</p> <p> <b>Note:</b> Kinesis Data Streams might continue to accept data read and write operations, such as <a>PutRecord</a>, <a>PutRecords</a>, and <a>GetRecords</a>, on a stream in the <code>DELETING</code> state until the stream deletion is complete.</p> <p>When you delete a stream, any shards in that stream are also deleted, and any tags are dissociated from the stream.</p> <p>You can use the <a>DescribeStream</a> operation to check the state of the stream, which is returned in <code>StreamStatus</code>.</p> <p> <a>DeleteStream</a> has a limit of five transactions per second per account.</p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -459,9 +405,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeleteStreamInput"
-              }
+              "schema": { "$ref": "#/components/schemas/DeleteStreamInput" }
             }
           }
         },
@@ -479,27 +423,13 @@
         "summary": "Delete Stream"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.DeregisterStreamConsumer": {
@@ -507,9 +437,7 @@
         "operationId": "DeregisterStreamConsumer",
         "description": "<p>To deregister a consumer, provide its ARN. Alternatively, you can provide the ARN of the data stream and the name you gave the consumer when you registered it. You may also provide all three parameters, as long as they don't conflict with each other. If you don't know the name or ARN of the consumer that you want to deregister, you can use the <a>ListStreamConsumers</a> operation to get a list of the descriptions of all the consumers that are currently registered with a given data stream. The description of a consumer contains its name and ARN.</p> <p>This operation has a limit of five transactions per second per stream.</p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "LimitExceededException",
             "content": {
@@ -565,27 +493,13 @@
         "summary": "Deregister Stream Consumer"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.DescribeLimits": {
@@ -618,9 +532,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DescribeLimitsInput"
-              }
+              "schema": { "$ref": "#/components/schemas/DescribeLimitsInput" }
             }
           }
         },
@@ -638,27 +550,13 @@
         "summary": "Describe Limits"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.DescribeStream": {
@@ -701,9 +599,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DescribeStreamInput"
-              }
+              "schema": { "$ref": "#/components/schemas/DescribeStreamInput" }
             }
           }
         },
@@ -711,18 +607,14 @@
           {
             "name": "Limit",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "ExclusiveStartShardId",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           },
@@ -739,27 +631,13 @@
         "summary": "Describe Stream"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.DescribeStreamConsumer": {
@@ -832,27 +710,13 @@
         "summary": "Describe Stream Consumer"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.DescribeStreamSummary": {
@@ -915,27 +779,13 @@
         "summary": "Describe Stream Summary"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.DisableEnhancedMonitoring": {
@@ -1018,27 +868,13 @@
         "summary": "Disable Enhanced Monitoring"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.EnableEnhancedMonitoring": {
@@ -1121,27 +957,13 @@
         "summary": "Enable Enhanced Monitoring"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.GetRecords": {
@@ -1153,9 +975,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetRecordsOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/GetRecordsOutput" }
               }
             }
           },
@@ -1243,9 +1063,7 @@
             "description": "KMSOptInRequired",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/KMSOptInRequired"
-                }
+                "schema": { "$ref": "#/components/schemas/KMSOptInRequired" }
               }
             }
           },
@@ -1264,9 +1082,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetRecordsInput"
-              }
+              "schema": { "$ref": "#/components/schemas/GetRecordsInput" }
             }
           }
         },
@@ -1284,27 +1100,13 @@
         "summary": "Get Records"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.GetShardIterator": {
@@ -1357,9 +1159,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetShardIteratorInput"
-              }
+              "schema": { "$ref": "#/components/schemas/GetShardIteratorInput" }
             }
           }
         },
@@ -1377,27 +1177,13 @@
         "summary": "Get Shard Iterator"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.IncreaseStreamRetentionPeriod": {
@@ -1405,9 +1191,7 @@
         "operationId": "IncreaseStreamRetentionPeriod",
         "description": "<p>Increases the Kinesis data stream's retention period, which is the length of time data records are accessible after they are added to the stream. The maximum value of a stream's retention period is 168 hours (7 days).</p> <p>If you choose a longer stream retention period, this operation increases the time period during which records that have not yet expired are accessible. However, it does not make previous, expired data (older than the stream's previous retention period) accessible after the operation has been called. For example, if a stream's retention period is set to 24 hours and is increased to 168 hours, any data that is older than 24 hours remains inaccessible to consumer applications.</p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ResourceInUseException",
             "content": {
@@ -1473,27 +1257,13 @@
         "summary": "Increase Stream Retention Period"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.ListShards": {
@@ -1505,9 +1275,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListShardsOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/ListShardsOutput" }
               }
             }
           },
@@ -1566,9 +1334,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ListShardsInput"
-              }
+              "schema": { "$ref": "#/components/schemas/ListShardsInput" }
             }
           }
         },
@@ -1586,27 +1352,13 @@
         "summary": "List Shards"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.ListStreamConsumers": {
@@ -1689,18 +1441,14 @@
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           },
@@ -1717,27 +1465,13 @@
         "summary": "List Stream Consumers"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.ListStreams": {
@@ -1749,9 +1483,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListStreamsOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/ListStreamsOutput" }
               }
             }
           },
@@ -1770,9 +1502,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ListStreamsInput"
-              }
+              "schema": { "$ref": "#/components/schemas/ListStreamsInput" }
             }
           }
         },
@@ -1780,18 +1510,14 @@
           {
             "name": "Limit",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "ExclusiveStartStreamName",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           },
@@ -1808,27 +1534,13 @@
         "summary": "List Streams"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.ListTagsForStream": {
@@ -1901,27 +1613,13 @@
         "summary": "List Tags For Stream"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.MergeShards": {
@@ -1929,9 +1627,7 @@
         "operationId": "MergeShards",
         "description": "<p>Merges two adjacent shards in a Kinesis data stream and combines them into a single shard to reduce the stream's capacity to ingest and transport data. Two shards are considered adjacent if the union of the hash key ranges for the two shards form a contiguous set with no gaps. For example, if you have two shards, one with a hash key range of 276...381 and the other with a hash key range of 382...454, then you could merge these two shards into a single shard that would have a hash key range of 276...454. After the merge, the single child shard receives data for all hash key values covered by the two parent shards.</p> <p> <code>MergeShards</code> is called when there is a need to reduce the overall capacity of a stream because of excess capacity that is not being used. You must specify the shard to be merged and the adjacent shard for a stream. For more information about merging shards, see <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-sdk-java-resharding-merge.html\">Merge Two Shards</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.</p> <p>If the stream is in the <code>ACTIVE</code> state, you can call <code>MergeShards</code>. If a stream is in the <code>CREATING</code>, <code>UPDATING</code>, or <code>DELETING</code> state, <code>MergeShards</code> returns a <code>ResourceInUseException</code>. If the specified stream does not exist, <code>MergeShards</code> returns a <code>ResourceNotFoundException</code>. </p> <p>You can use <a>DescribeStream</a> to check the state of the stream, which is returned in <code>StreamStatus</code>.</p> <p> <code>MergeShards</code> is an asynchronous operation. Upon receiving a <code>MergeShards</code> request, Amazon Kinesis Data Streams immediately returns a response and sets the <code>StreamStatus</code> to <code>UPDATING</code>. After the operation is completed, Kinesis Data Streams sets the <code>StreamStatus</code> to <code>ACTIVE</code>. Read and write operations continue to work while the stream is in the <code>UPDATING</code> state. </p> <p>You use <a>DescribeStream</a> to determine the shard IDs that are specified in the <code>MergeShards</code> request. </p> <p>If you try to operate on too many streams in parallel using <a>CreateStream</a>, <a>DeleteStream</a>, <code>MergeShards</code>, or <a>SplitShard</a>, you receive a <code>LimitExceededException</code>. </p> <p> <code>MergeShards</code> has a limit of five transactions per second per account.</p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -1977,9 +1673,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MergeShardsInput"
-              }
+              "schema": { "$ref": "#/components/schemas/MergeShardsInput" }
             }
           }
         },
@@ -1997,27 +1691,13 @@
         "summary": "Merge Shards"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.PutRecord": {
@@ -2029,9 +1709,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PutRecordOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/PutRecordOutput" }
               }
             }
           },
@@ -2109,9 +1787,7 @@
             "description": "KMSOptInRequired",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/KMSOptInRequired"
-                }
+                "schema": { "$ref": "#/components/schemas/KMSOptInRequired" }
               }
             }
           },
@@ -2130,9 +1806,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PutRecordInput"
-              }
+              "schema": { "$ref": "#/components/schemas/PutRecordInput" }
             }
           }
         },
@@ -2150,27 +1824,13 @@
         "summary": "Put Record"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.PutRecords": {
@@ -2182,9 +1842,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PutRecordsOutput"
-                }
+                "schema": { "$ref": "#/components/schemas/PutRecordsOutput" }
               }
             }
           },
@@ -2262,9 +1920,7 @@
             "description": "KMSOptInRequired",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/KMSOptInRequired"
-                }
+                "schema": { "$ref": "#/components/schemas/KMSOptInRequired" }
               }
             }
           },
@@ -2283,9 +1939,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PutRecordsInput"
-              }
+              "schema": { "$ref": "#/components/schemas/PutRecordsInput" }
             }
           }
         },
@@ -2303,27 +1957,13 @@
         "summary": "Put Records"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.RegisterStreamConsumer": {
@@ -2406,27 +2046,13 @@
         "summary": "Register Stream Consumer"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.RemoveTagsFromStream": {
@@ -2434,9 +2060,7 @@
         "operationId": "RemoveTagsFromStream",
         "description": "<p>Removes tags from the specified Kinesis data stream. Removed tags are deleted and cannot be recovered after this operation successfully completes.</p> <p>If you specify a tag that does not exist, it is ignored.</p> <p> <a>RemoveTagsFromStream</a> has a limit of five transactions per second per account.</p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -2502,27 +2126,13 @@
         "summary": "Remove Tags From Stream"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.SplitShard": {
@@ -2530,9 +2140,7 @@
         "operationId": "SplitShard",
         "description": "<p>Splits a shard into two new shards in the Kinesis data stream, to increase the stream's capacity to ingest and transport data. <code>SplitShard</code> is called when there is a need to increase the overall capacity of a stream because of an expected increase in the volume of data records being ingested. </p> <p>You can also use <code>SplitShard</code> when a shard appears to be approaching its maximum utilization; for example, the producers sending data into the specific shard are suddenly sending more than previously anticipated. You can also call <code>SplitShard</code> to increase stream capacity, so that more Kinesis Data Streams applications can simultaneously read data from the stream for real-time processing. </p> <p>You must specify the shard to be split and the new hash key, which is the position in the shard where the shard gets split in two. In many cases, the new hash key might be the average of the beginning and ending hash key, but it can be any hash key value in the range being mapped into the shard. For more information, see <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-sdk-java-resharding-split.html\">Split a Shard</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.</p> <p>You can use <a>DescribeStream</a> to determine the shard ID and hash key values for the <code>ShardToSplit</code> and <code>NewStartingHashKey</code> parameters that are specified in the <code>SplitShard</code> request.</p> <p> <code>SplitShard</code> is an asynchronous operation. Upon receiving a <code>SplitShard</code> request, Kinesis Data Streams immediately returns a response and sets the stream status to <code>UPDATING</code>. After the operation is completed, Kinesis Data Streams sets the stream status to <code>ACTIVE</code>. Read and write operations continue to work while the stream is in the <code>UPDATING</code> state. </p> <p>You can use <code>DescribeStream</code> to check the status of the stream, which is returned in <code>StreamStatus</code>. If the stream is in the <code>ACTIVE</code> state, you can call <code>SplitShard</code>. If a stream is in <code>CREATING</code> or <code>UPDATING</code> or <code>DELETING</code> states, <code>DescribeStream</code> returns a <code>ResourceInUseException</code>.</p> <p>If the specified stream does not exist, <code>DescribeStream</code> returns a <code>ResourceNotFoundException</code>. If you try to create more shards than are authorized for your account, you receive a <code>LimitExceededException</code>. </p> <p>For the default shard limit for an AWS account, see <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html\">Kinesis Data Streams Limits</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>. To increase this limit, <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html\">contact AWS Support</a>.</p> <p>If you try to operate on too many streams simultaneously using <a>CreateStream</a>, <a>DeleteStream</a>, <a>MergeShards</a>, and/or <a>SplitShard</a>, you receive a <code>LimitExceededException</code>. </p> <p> <code>SplitShard</code> has a limit of five transactions per second per account.</p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ResourceNotFoundException",
             "content": {
@@ -2578,9 +2186,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SplitShardInput"
-              }
+              "schema": { "$ref": "#/components/schemas/SplitShardInput" }
             }
           }
         },
@@ -2598,27 +2204,13 @@
         "summary": "Split Shard"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.StartStreamEncryption": {
@@ -2626,9 +2218,7 @@
         "operationId": "StartStreamEncryption",
         "description": "<p>Enables or updates server-side encryption using an AWS KMS key for a specified stream. </p> <p>Starting encryption is an asynchronous operation. Upon receiving the request, Kinesis Data Streams returns immediately and sets the status of the stream to <code>UPDATING</code>. After the update is complete, Kinesis Data Streams sets the status of the stream back to <code>ACTIVE</code>. Updating or applying encryption normally takes a few seconds to complete, but it can take minutes. You can continue to read and write data to your stream while its status is <code>UPDATING</code>. Once the status of the stream is <code>ACTIVE</code>, encryption begins for records written to the stream. </p> <p>API Limits: You can successfully apply a new AWS KMS key for server-side encryption 25 times in a rolling 24-hour period.</p> <p>Note: It can take up to 5 seconds after the stream is in an <code>ACTIVE</code> status before all records written to the stream are encrypted. After you enable encryption, you can verify that encryption is applied by inspecting the API response from <code>PutRecord</code> or <code>PutRecords</code>.</p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "InvalidArgumentException",
             "content": {
@@ -2713,9 +2303,7 @@
             "description": "KMSOptInRequired",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/KMSOptInRequired"
-                }
+                "schema": { "$ref": "#/components/schemas/KMSOptInRequired" }
               }
             }
           },
@@ -2754,27 +2342,13 @@
         "summary": "Start Stream Encryption"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.StopStreamEncryption": {
@@ -2782,9 +2356,7 @@
         "operationId": "StopStreamEncryption",
         "description": "<p>Disables server-side encryption for a specified stream. </p> <p>Stopping encryption is an asynchronous operation. Upon receiving the request, Kinesis Data Streams returns immediately and sets the status of the stream to <code>UPDATING</code>. After the update is complete, Kinesis Data Streams sets the status of the stream back to <code>ACTIVE</code>. Stopping encryption normally takes a few seconds to complete, but it can take minutes. You can continue to read and write data to your stream while its status is <code>UPDATING</code>. Once the status of the stream is <code>ACTIVE</code>, records written to the stream are no longer encrypted by Kinesis Data Streams. </p> <p>API Limits: You can successfully disable server-side encryption 25 times in a rolling 24-hour period. </p> <p>Note: It can take up to 5 seconds after the stream is in an <code>ACTIVE</code> status before all records written to the stream are no longer subject to encryption. After you disabled encryption, you can verify that encryption is not applied by inspecting the API response from <code>PutRecord</code> or <code>PutRecords</code>.</p>",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "InvalidArgumentException",
             "content": {
@@ -2850,27 +2422,13 @@
         "summary": "Stop Stream Encryption"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/#X-Amz-Target=Kinesis_20131202.UpdateShardCount": {
@@ -2933,9 +2491,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateShardCountInput"
-              }
+              "schema": { "$ref": "#/components/schemas/UpdateShardCountInput" }
             }
           }
         },
@@ -2953,27 +2509,13 @@
         "summary": "Update Shard Count"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -2982,63 +2524,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -3060,19 +2588,13 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
-              {
-                "description": "The name of the stream."
-              }
+              { "$ref": "#/components/schemas/StreamName" },
+              { "description": "The name of the stream." }
             ]
           },
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagMap"
-              },
+              { "$ref": "#/components/schemas/TagMap" },
               {
                 "description": "A set of up to 10 key-value pairs to use to create the tags."
               }
@@ -3092,9 +2614,7 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
+              { "$ref": "#/components/schemas/StreamName" },
               {
                 "description": "A name to identify the stream. The stream name is scoped to the AWS account used by the application that creates the stream. It is also scoped by AWS Region. That is, two streams in two different AWS accounts can have the same name. Two streams in the same AWS account but in two different Regions can also have the same name."
               }
@@ -3102,9 +2622,7 @@
           },
           "ShardCount": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PositiveIntegerObject"
-              },
+              { "$ref": "#/components/schemas/PositiveIntegerObject" },
               {
                 "description": "The number of shards that the stream will use. The throughput of the stream is a function of the number of shards; more shards are required for greater provisioned throughput."
               }
@@ -3120,19 +2638,13 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
-              {
-                "description": "The name of the stream to modify."
-              }
+              { "$ref": "#/components/schemas/StreamName" },
+              { "description": "The name of the stream to modify." }
             ]
           },
           "RetentionPeriodHours": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RetentionPeriodHours"
-              },
+              { "$ref": "#/components/schemas/RetentionPeriodHours" },
               {
                 "description": "The new retention period of the stream, in hours. Must be less than the current retention period."
               }
@@ -3148,19 +2660,13 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
-              {
-                "description": "The name of the stream to delete."
-              }
+              { "$ref": "#/components/schemas/StreamName" },
+              { "description": "The name of the stream to delete." }
             ]
           },
           "EnforceConsumerDeletion": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BooleanObject"
-              },
+              { "$ref": "#/components/schemas/BooleanObject" },
               {
                 "description": "If this parameter is unset (<code>null</code>) or if you set it to <code>false</code>, and the stream has registered consumers, the call to <code>DeleteStream</code> fails with a <code>ResourceInUseException</code>. "
               }
@@ -3175,9 +2681,7 @@
         "properties": {
           "StreamARN": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamARN"
-              },
+              { "$ref": "#/components/schemas/StreamARN" },
               {
                 "description": "The ARN of the Kinesis data stream that the consumer is registered with. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kinesis-streams\">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>."
               }
@@ -3185,19 +2689,13 @@
           },
           "ConsumerName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConsumerName"
-              },
-              {
-                "description": "The name that you gave to the consumer."
-              }
+              { "$ref": "#/components/schemas/ConsumerName" },
+              { "description": "The name that you gave to the consumer." }
             ]
           },
           "ConsumerARN": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConsumerARN"
-              },
+              { "$ref": "#/components/schemas/ConsumerARN" },
               {
                 "description": "The ARN returned by Kinesis Data Streams when you registered the consumer. If you don't know the ARN of the consumer that you want to deregister, you can use the ListStreamConsumers operation to get a list of the descriptions of all the consumers that are currently registered with a given data stream. The description of a consumer contains its ARN."
               }
@@ -3211,22 +2709,14 @@
         "properties": {
           "ShardLimit": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShardCountObject"
-              },
-              {
-                "description": "The maximum number of shards."
-              }
+              { "$ref": "#/components/schemas/ShardCountObject" },
+              { "description": "The maximum number of shards." }
             ]
           },
           "OpenShardCount": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShardCountObject"
-              },
-              {
-                "description": "The number of open shards."
-              }
+              { "$ref": "#/components/schemas/ShardCountObject" },
+              { "description": "The number of open shards." }
             ]
           }
         }
@@ -3242,9 +2732,7 @@
         "properties": {
           "StreamDescription": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamDescription"
-              },
+              { "$ref": "#/components/schemas/StreamDescription" },
               {
                 "description": "The current status of the stream, the stream Amazon Resource Name (ARN), an array of shard objects that comprise the stream, and whether there are more shards available."
               }
@@ -3260,19 +2748,13 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
-              {
-                "description": "The name of the stream to describe."
-              }
+              { "$ref": "#/components/schemas/StreamName" },
+              { "description": "The name of the stream to describe." }
             ]
           },
           "Limit": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DescribeStreamInputLimit"
-              },
+              { "$ref": "#/components/schemas/DescribeStreamInputLimit" },
               {
                 "description": "The maximum number of shards to return in a single call. The default value is 100. If you specify a value greater than 100, at most 100 shards are returned."
               }
@@ -3280,12 +2762,8 @@
           },
           "ExclusiveStartShardId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShardId"
-              },
-              {
-                "description": "The shard ID of the shard to start with."
-              }
+              { "$ref": "#/components/schemas/ShardId" },
+              { "description": "The shard ID of the shard to start with." }
             ]
           }
         },
@@ -3297,9 +2775,7 @@
         "properties": {
           "ConsumerDescription": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConsumerDescription"
-              },
+              { "$ref": "#/components/schemas/ConsumerDescription" },
               {
                 "description": "An object that represents the details of the consumer."
               }
@@ -3313,9 +2789,7 @@
         "properties": {
           "StreamARN": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamARN"
-              },
+              { "$ref": "#/components/schemas/StreamARN" },
               {
                 "description": "The ARN of the Kinesis data stream that the consumer is registered with. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kinesis-streams\">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>."
               }
@@ -3323,19 +2797,13 @@
           },
           "ConsumerName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConsumerName"
-              },
-              {
-                "description": "The name that you gave to the consumer."
-              }
+              { "$ref": "#/components/schemas/ConsumerName" },
+              { "description": "The name that you gave to the consumer." }
             ]
           },
           "ConsumerARN": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConsumerARN"
-              },
+              { "$ref": "#/components/schemas/ConsumerARN" },
               {
                 "description": "The ARN returned by Kinesis Data Streams when you registered the consumer."
               }
@@ -3349,9 +2817,7 @@
         "properties": {
           "StreamDescriptionSummary": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamDescriptionSummary"
-              },
+              { "$ref": "#/components/schemas/StreamDescriptionSummary" },
               {
                 "description": "A <a>StreamDescriptionSummary</a> containing information about the stream."
               }
@@ -3366,12 +2832,8 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
-              {
-                "description": "The name of the stream to describe."
-              }
+              { "$ref": "#/components/schemas/StreamName" },
+              { "description": "The name of the stream to describe." }
             ]
           }
         }
@@ -3381,19 +2843,13 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
-              {
-                "description": "The name of the Kinesis data stream."
-              }
+              { "$ref": "#/components/schemas/StreamName" },
+              { "description": "The name of the Kinesis data stream." }
             ]
           },
           "CurrentShardLevelMetrics": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricsNameList"
-              },
+              { "$ref": "#/components/schemas/MetricsNameList" },
               {
                 "description": "Represents the current state of the metrics that are in the enhanced state before the operation."
               }
@@ -3401,9 +2857,7 @@
           },
           "DesiredShardLevelMetrics": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricsNameList"
-              },
+              { "$ref": "#/components/schemas/MetricsNameList" },
               {
                 "description": "Represents the list of all the metrics that would be in the enhanced state after the operation."
               }
@@ -3419,9 +2873,7 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
+              { "$ref": "#/components/schemas/StreamName" },
               {
                 "description": "The name of the Kinesis data stream for which to disable enhanced monitoring."
               }
@@ -3429,9 +2881,7 @@
           },
           "ShardLevelMetrics": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricsNameList"
-              },
+              { "$ref": "#/components/schemas/MetricsNameList" },
               {
                 "description": "<p>List of shard-level metrics to disable.</p> <p>The following are the valid shard-level metrics. The value \"<code>ALL</code>\" disables every metric.</p> <ul> <li> <p> <code>IncomingBytes</code> </p> </li> <li> <p> <code>IncomingRecords</code> </p> </li> <li> <p> <code>OutgoingBytes</code> </p> </li> <li> <p> <code>OutgoingRecords</code> </p> </li> <li> <p> <code>WriteProvisionedThroughputExceeded</code> </p> </li> <li> <p> <code>ReadProvisionedThroughputExceeded</code> </p> </li> <li> <p> <code>IteratorAgeMilliseconds</code> </p> </li> <li> <p> <code>ALL</code> </p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/monitoring-with-cloudwatch.html\">Monitoring the Amazon Kinesis Data Streams Service with Amazon CloudWatch</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.</p>"
               }
@@ -3447,9 +2897,7 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
+              { "$ref": "#/components/schemas/StreamName" },
               {
                 "description": "The name of the stream for which to enable enhanced monitoring."
               }
@@ -3457,9 +2905,7 @@
           },
           "ShardLevelMetrics": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricsNameList"
-              },
+              { "$ref": "#/components/schemas/MetricsNameList" },
               {
                 "description": "<p>List of shard-level metrics to enable.</p> <p>The following are the valid shard-level metrics. The value \"<code>ALL</code>\" enables every metric.</p> <ul> <li> <p> <code>IncomingBytes</code> </p> </li> <li> <p> <code>IncomingRecords</code> </p> </li> <li> <p> <code>OutgoingBytes</code> </p> </li> <li> <p> <code>OutgoingRecords</code> </p> </li> <li> <p> <code>WriteProvisionedThroughputExceeded</code> </p> </li> <li> <p> <code>ReadProvisionedThroughputExceeded</code> </p> </li> <li> <p> <code>IteratorAgeMilliseconds</code> </p> </li> <li> <p> <code>ALL</code> </p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/monitoring-with-cloudwatch.html\">Monitoring the Amazon Kinesis Data Streams Service with Amazon CloudWatch</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.</p>"
               }
@@ -3474,19 +2920,13 @@
         "properties": {
           "Records": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RecordList"
-              },
-              {
-                "description": "The data records retrieved from the shard."
-              }
+              { "$ref": "#/components/schemas/RecordList" },
+              { "description": "The data records retrieved from the shard." }
             ]
           },
           "NextShardIterator": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShardIterator"
-              },
+              { "$ref": "#/components/schemas/ShardIterator" },
               {
                 "description": "The next position in the shard from which to start sequentially reading data records. If set to <code>null</code>, the shard has been closed and the requested iterator does not return any more data. "
               }
@@ -3494,17 +2934,13 @@
           },
           "MillisBehindLatest": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MillisBehindLatest"
-              },
+              { "$ref": "#/components/schemas/MillisBehindLatest" },
               {
                 "description": "The number of milliseconds the <a>GetRecords</a> response is from the tip of the stream, indicating how far behind current time the consumer is. A value of zero indicates that record processing is caught up, and there are no new records to process at this moment."
               }
             ]
           },
-          "ChildShards": {
-            "$ref": "#/components/schemas/ChildShardList"
-          }
+          "ChildShards": { "$ref": "#/components/schemas/ChildShardList" }
         },
         "description": "Represents the output for <a>GetRecords</a>."
       },
@@ -3515,9 +2951,7 @@
         "properties": {
           "ShardIterator": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShardIterator"
-              },
+              { "$ref": "#/components/schemas/ShardIterator" },
               {
                 "description": "The position in the shard from which you want to start sequentially reading data records. A shard iterator specifies this position using the sequence number of a data record in the shard."
               }
@@ -3525,9 +2959,7 @@
           },
           "Limit": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/GetRecordsInputLimit"
-              },
+              { "$ref": "#/components/schemas/GetRecordsInputLimit" },
               {
                 "description": "The maximum number of records to return. Specify a value of up to 10,000. If you specify a value that is greater than 10,000, <a>GetRecords</a> throws <code>InvalidArgumentException</code>. The default value is 10,000."
               }
@@ -3549,9 +2981,7 @@
         "properties": {
           "ShardIterator": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShardIterator"
-              },
+              { "$ref": "#/components/schemas/ShardIterator" },
               {
                 "description": "The position in the shard from which to start reading data records sequentially. A shard iterator specifies this position using the sequence number of a data record in a shard."
               }
@@ -3567,19 +2997,13 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
-              {
-                "description": "The name of the Amazon Kinesis data stream."
-              }
+              { "$ref": "#/components/schemas/StreamName" },
+              { "description": "The name of the Amazon Kinesis data stream." }
             ]
           },
           "ShardId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShardId"
-              },
+              { "$ref": "#/components/schemas/ShardId" },
               {
                 "description": "The shard ID of the Kinesis Data Streams shard to get the iterator for."
               }
@@ -3587,9 +3011,7 @@
           },
           "ShardIteratorType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShardIteratorType"
-              },
+              { "$ref": "#/components/schemas/ShardIteratorType" },
               {
                 "description": "<p>Determines how the shard iterator is used to start reading data records from the shard.</p> <p>The following are the valid Amazon Kinesis shard iterator types:</p> <ul> <li> <p>AT_SEQUENCE_NUMBER - Start reading from the position denoted by a specific sequence number, provided in the value <code>StartingSequenceNumber</code>.</p> </li> <li> <p>AFTER_SEQUENCE_NUMBER - Start reading right after the position denoted by a specific sequence number, provided in the value <code>StartingSequenceNumber</code>.</p> </li> <li> <p>AT_TIMESTAMP - Start reading from the position denoted by a specific time stamp, provided in the value <code>Timestamp</code>.</p> </li> <li> <p>TRIM_HORIZON - Start reading at the last untrimmed record in the shard in the system, which is the oldest data record in the shard.</p> </li> <li> <p>LATEST - Start reading just after the most recent record in the shard, so that you always read the most recent data in the shard.</p> </li> </ul>"
               }
@@ -3597,9 +3019,7 @@
           },
           "StartingSequenceNumber": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SequenceNumber"
-              },
+              { "$ref": "#/components/schemas/SequenceNumber" },
               {
                 "description": "The sequence number of the data record in the shard from which to start reading. Used with shard iterator type AT_SEQUENCE_NUMBER and AFTER_SEQUENCE_NUMBER."
               }
@@ -3607,9 +3027,7 @@
           },
           "Timestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The time stamp of the data record from which to start reading. Used with shard iterator type AT_TIMESTAMP. A time stamp is the Unix epoch date with precision in milliseconds. For example, <code>2016-04-04T19:58:46.480-00:00</code> or <code>1459799926.480</code>. If a record with this exact time stamp does not exist, the iterator returned is for the next (later) record. If the time stamp is older than the current trim horizon, the iterator returned is for the oldest untrimmed data record (TRIM_HORIZON)."
               }
@@ -3625,19 +3043,13 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
-              {
-                "description": "The name of the stream to modify."
-              }
+              { "$ref": "#/components/schemas/StreamName" },
+              { "description": "The name of the stream to modify." }
             ]
           },
           "RetentionPeriodHours": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RetentionPeriodHours"
-              },
+              { "$ref": "#/components/schemas/RetentionPeriodHours" },
               {
                 "description": "The new retention period of the stream, in hours. Must be more than the current retention period."
               }
@@ -3651,9 +3063,7 @@
         "properties": {
           "Shards": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShardList"
-              },
+              { "$ref": "#/components/schemas/ShardList" },
               {
                 "description": "An array of JSON objects. Each object represents one shard and specifies the IDs of the shard, the shard's parent, and the shard that's adjacent to the shard's parent. Each object also contains the starting and ending hash keys and the starting and ending sequence numbers for the shard."
               }
@@ -3661,9 +3071,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "<p>When the number of shards in the data stream is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of shards in the data stream, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListShards</code> to list the next set of shards. For more information about the use of this pagination token when calling the <code>ListShards</code> operation, see <a>ListShardsInput$NextToken</a>.</p> <important> <p>Tokens expire after 300 seconds. When you obtain a value for <code>NextToken</code> in the response to a call to <code>ListShards</code>, you have 300 seconds to use that value. If you specify an expired token in a call to <code>ListShards</code>, you get <code>ExpiredNextTokenException</code>.</p> </important>"
               }
@@ -3677,9 +3085,7 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
+              { "$ref": "#/components/schemas/StreamName" },
               {
                 "description": "<p>The name of the data stream whose shards you want to list. </p> <p>You cannot specify this parameter if you specify the <code>NextToken</code> parameter.</p>"
               }
@@ -3687,9 +3093,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "<p>When the number of shards in the data stream is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of shards in the data stream, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListShards</code> to list the next set of shards.</p> <p>Don't specify <code>StreamName</code> or <code>StreamCreationTimestamp</code> if you specify <code>NextToken</code> because the latter unambiguously identifies the stream.</p> <p>You can optionally specify a value for the <code>MaxResults</code> parameter when you specify <code>NextToken</code>. If you specify a <code>MaxResults</code> value that is less than the number of shards that the operation returns if you don't specify <code>MaxResults</code>, the response will contain a new <code>NextToken</code> value. You can use the new <code>NextToken</code> value in a subsequent call to the <code>ListShards</code> operation.</p> <important> <p>Tokens expire after 300 seconds. When you obtain a value for <code>NextToken</code> in the response to a call to <code>ListShards</code>, you have 300 seconds to use that value. If you specify an expired token in a call to <code>ListShards</code>, you get <code>ExpiredNextTokenException</code>.</p> </important>"
               }
@@ -3697,9 +3101,7 @@
           },
           "ExclusiveStartShardId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShardId"
-              },
+              { "$ref": "#/components/schemas/ShardId" },
               {
                 "description": "<p>Specify this parameter to indicate that you want to list the shards starting with the shard whose ID immediately follows <code>ExclusiveStartShardId</code>.</p> <p>If you don't specify this parameter, the default behavior is for <code>ListShards</code> to list the shards starting with the first one in the stream.</p> <p>You cannot specify this parameter if you specify <code>NextToken</code>.</p>"
               }
@@ -3707,9 +3109,7 @@
           },
           "MaxResults": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ListShardsInputLimit"
-              },
+              { "$ref": "#/components/schemas/ListShardsInputLimit" },
               {
                 "description": "<p>The maximum number of shards to return in a single call to <code>ListShards</code>. The minimum value you can specify for this parameter is 1, and the maximum is 10,000, which is also the default.</p> <p>When the number of shards to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListShards</code> to list the next set of shards.</p>"
               }
@@ -3717,17 +3117,13 @@
           },
           "StreamCreationTimestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "<p>Specify this input parameter to distinguish data streams that have the same name. For example, if you create a data stream and then delete it, and you later create another data stream with the same name, you can use this input parameter to specify which of the two streams you want to list the shards for.</p> <p>You cannot specify this parameter if you specify the <code>NextToken</code> parameter.</p>"
               }
             ]
           },
-          "ShardFilter": {
-            "$ref": "#/components/schemas/ShardFilter"
-          }
+          "ShardFilter": { "$ref": "#/components/schemas/ShardFilter" }
         }
       },
       "ExpiredNextTokenException": {},
@@ -3736,9 +3132,7 @@
         "properties": {
           "Consumers": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConsumerList"
-              },
+              { "$ref": "#/components/schemas/ConsumerList" },
               {
                 "description": "An array of JSON objects. Each object represents one registered consumer."
               }
@@ -3746,9 +3140,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "<p>When the number of consumers that are registered with the data stream is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of registered consumers, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListStreamConsumers</code> to list the next set of registered consumers. For more information about the use of this pagination token when calling the <code>ListStreamConsumers</code> operation, see <a>ListStreamConsumersInput$NextToken</a>.</p> <important> <p>Tokens expire after 300 seconds. When you obtain a value for <code>NextToken</code> in the response to a call to <code>ListStreamConsumers</code>, you have 300 seconds to use that value. If you specify an expired token in a call to <code>ListStreamConsumers</code>, you get <code>ExpiredNextTokenException</code>.</p> </important>"
               }
@@ -3763,9 +3155,7 @@
         "properties": {
           "StreamARN": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamARN"
-              },
+              { "$ref": "#/components/schemas/StreamARN" },
               {
                 "description": "The ARN of the Kinesis data stream for which you want to list the registered consumers. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kinesis-streams\">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>."
               }
@@ -3773,9 +3163,7 @@
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "<p>When the number of consumers that are registered with the data stream is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of consumers that are registered with the data stream, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListStreamConsumers</code> to list the next set of registered consumers.</p> <p>Don't specify <code>StreamName</code> or <code>StreamCreationTimestamp</code> if you specify <code>NextToken</code> because the latter unambiguously identifies the stream.</p> <p>You can optionally specify a value for the <code>MaxResults</code> parameter when you specify <code>NextToken</code>. If you specify a <code>MaxResults</code> value that is less than the number of consumers that the operation returns if you don't specify <code>MaxResults</code>, the response will contain a new <code>NextToken</code> value. You can use the new <code>NextToken</code> value in a subsequent call to the <code>ListStreamConsumers</code> operation to list the next set of consumers.</p> <important> <p>Tokens expire after 300 seconds. When you obtain a value for <code>NextToken</code> in the response to a call to <code>ListStreamConsumers</code>, you have 300 seconds to use that value. If you specify an expired token in a call to <code>ListStreamConsumers</code>, you get <code>ExpiredNextTokenException</code>.</p> </important>"
               }
@@ -3783,9 +3171,7 @@
           },
           "MaxResults": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ListStreamConsumersInputLimit"
-              },
+              { "$ref": "#/components/schemas/ListStreamConsumersInputLimit" },
               {
                 "description": "The maximum number of consumers that you want a single call of <code>ListStreamConsumers</code> to return."
               }
@@ -3793,9 +3179,7 @@
           },
           "StreamCreationTimestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "<p>Specify this input parameter to distinguish data streams that have the same name. For example, if you create a data stream and then delete it, and you later create another data stream with the same name, you can use this input parameter to specify which of the two streams you want to list the consumers for. </p> <p>You can't specify this parameter if you specify the NextToken parameter. </p>"
               }
@@ -3809,9 +3193,7 @@
         "properties": {
           "StreamNames": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamNameList"
-              },
+              { "$ref": "#/components/schemas/StreamNameList" },
               {
                 "description": "The names of the streams that are associated with the AWS account making the <code>ListStreams</code> request."
               }
@@ -3819,9 +3201,7 @@
           },
           "HasMoreStreams": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BooleanObject"
-              },
+              { "$ref": "#/components/schemas/BooleanObject" },
               {
                 "description": "If set to <code>true</code>, there are more streams available to list."
               }
@@ -3836,19 +3216,13 @@
         "properties": {
           "Limit": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ListStreamsInputLimit"
-              },
-              {
-                "description": "The maximum number of streams to list."
-              }
+              { "$ref": "#/components/schemas/ListStreamsInputLimit" },
+              { "description": "The maximum number of streams to list." }
             ]
           },
           "ExclusiveStartStreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
+              { "$ref": "#/components/schemas/StreamName" },
               {
                 "description": "The name of the stream to start the list with."
               }
@@ -3863,9 +3237,7 @@
         "properties": {
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagList"
-              },
+              { "$ref": "#/components/schemas/TagList" },
               {
                 "description": "A list of tags associated with <code>StreamName</code>, starting with the first tag after <code>ExclusiveStartTagKey</code> and up to the specified <code>Limit</code>. "
               }
@@ -3873,9 +3245,7 @@
           },
           "HasMoreTags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BooleanObject"
-              },
+              { "$ref": "#/components/schemas/BooleanObject" },
               {
                 "description": "If set to <code>true</code>, more tags are available. To request additional tags, set <code>ExclusiveStartTagKey</code> to the key of the last tag returned."
               }
@@ -3891,19 +3261,13 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
-              {
-                "description": "The name of the stream."
-              }
+              { "$ref": "#/components/schemas/StreamName" },
+              { "description": "The name of the stream." }
             ]
           },
           "ExclusiveStartTagKey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagKey"
-              },
+              { "$ref": "#/components/schemas/TagKey" },
               {
                 "description": "The key to use as the starting point for the list of tags. If this parameter is set, <code>ListTagsForStream</code> gets all tags that occur after <code>ExclusiveStartTagKey</code>. "
               }
@@ -3911,9 +3275,7 @@
           },
           "Limit": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ListTagsForStreamInputLimit"
-              },
+              { "$ref": "#/components/schemas/ListTagsForStreamInputLimit" },
               {
                 "description": "The number of tags to return. If this number is less than the total number of tags associated with the stream, <code>HasMoreTags</code> is set to <code>true</code>. To list additional tags, set <code>ExclusiveStartTagKey</code> to the last key in the response."
               }
@@ -3929,19 +3291,13 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
-              {
-                "description": "The name of the stream for the merge."
-              }
+              { "$ref": "#/components/schemas/StreamName" },
+              { "description": "The name of the stream for the merge." }
             ]
           },
           "ShardToMerge": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShardId"
-              },
+              { "$ref": "#/components/schemas/ShardId" },
               {
                 "description": "The shard ID of the shard to combine with the adjacent shard for the merge."
               }
@@ -3949,9 +3305,7 @@
           },
           "AdjacentShardToMerge": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShardId"
-              },
+              { "$ref": "#/components/schemas/ShardId" },
               {
                 "description": "The shard ID of the adjacent shard for the merge."
               }
@@ -3966,9 +3320,7 @@
         "properties": {
           "ShardId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShardId"
-              },
+              { "$ref": "#/components/schemas/ShardId" },
               {
                 "description": "The shard ID of the shard where the data record was placed."
               }
@@ -3976,9 +3328,7 @@
           },
           "SequenceNumber": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SequenceNumber"
-              },
+              { "$ref": "#/components/schemas/SequenceNumber" },
               {
                 "description": "The sequence number identifier that was assigned to the put data record. The sequence number for the record is unique across all records in the stream. A sequence number is the identifier associated with every record put into the stream."
               }
@@ -3986,9 +3336,7 @@
           },
           "EncryptionType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EncryptionType"
-              },
+              { "$ref": "#/components/schemas/EncryptionType" },
               {
                 "description": "<p>The encryption type to use on the record. This parameter can be one of the following values:</p> <ul> <li> <p> <code>NONE</code>: Do not encrypt the records in the stream.</p> </li> <li> <p> <code>KMS</code>: Use server-side encryption on the records in the stream using a customer-managed AWS KMS key.</p> </li> </ul>"
               }
@@ -4004,9 +3352,7 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
+              { "$ref": "#/components/schemas/StreamName" },
               {
                 "description": "The name of the stream to put the data record into."
               }
@@ -4014,9 +3360,7 @@
           },
           "Data": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Data"
-              },
+              { "$ref": "#/components/schemas/Data" },
               {
                 "description": "The data blob to put into the record, which is base64-encoded when the blob is serialized. When the data blob (the payload before base64-encoding) is added to the partition key size, the total size must not exceed the maximum record size (1 MiB)."
               }
@@ -4024,9 +3368,7 @@
           },
           "PartitionKey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PartitionKey"
-              },
+              { "$ref": "#/components/schemas/PartitionKey" },
               {
                 "description": "Determines which shard in the stream the data record is assigned to. Partition keys are Unicode strings with a maximum length limit of 256 characters for each key. Amazon Kinesis Data Streams uses the partition key as input to a hash function that maps the partition key and associated data to a specific shard. Specifically, an MD5 hash function is used to map partition keys to 128-bit integer values and to map associated data records to shards. As a result of this hashing mechanism, all data records with the same partition key map to the same shard within the stream."
               }
@@ -4034,9 +3376,7 @@
           },
           "ExplicitHashKey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HashKey"
-              },
+              { "$ref": "#/components/schemas/HashKey" },
               {
                 "description": "The hash value used to explicitly determine the shard the data record is assigned to by overriding the partition key hash."
               }
@@ -4044,9 +3384,7 @@
           },
           "SequenceNumberForOrdering": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SequenceNumber"
-              },
+              { "$ref": "#/components/schemas/SequenceNumber" },
               {
                 "description": "Guarantees strictly increasing sequence numbers, for puts from the same client and to the same partition key. Usage: set the <code>SequenceNumberForOrdering</code> of record <i>n</i> to the sequence number of record <i>n-1</i> (as returned in the result when putting record <i>n-1</i>). If this parameter is not set, records are coarsely ordered based on arrival time."
               }
@@ -4061,9 +3399,7 @@
         "properties": {
           "FailedRecordCount": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PositiveIntegerObject"
-              },
+              { "$ref": "#/components/schemas/PositiveIntegerObject" },
               {
                 "description": "The number of unsuccessfully processed records in a <code>PutRecords</code> request."
               }
@@ -4071,9 +3407,7 @@
           },
           "Records": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PutRecordsResultEntryList"
-              },
+              { "$ref": "#/components/schemas/PutRecordsResultEntryList" },
               {
                 "description": "An array of successfully and unsuccessfully processed record results, correlated with the request by natural ordering. A record that is successfully added to a stream includes <code>SequenceNumber</code> and <code>ShardId</code> in the result. A record that fails to be added to a stream includes <code>ErrorCode</code> and <code>ErrorMessage</code> in the result."
               }
@@ -4081,9 +3415,7 @@
           },
           "EncryptionType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EncryptionType"
-              },
+              { "$ref": "#/components/schemas/EncryptionType" },
               {
                 "description": "<p>The encryption type used on the records. This parameter can be one of the following values:</p> <ul> <li> <p> <code>NONE</code>: Do not encrypt the records.</p> </li> <li> <p> <code>KMS</code>: Use server-side encryption on the records using a customer-managed AWS KMS key.</p> </li> </ul>"
               }
@@ -4099,22 +3431,14 @@
         "properties": {
           "Records": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PutRecordsRequestEntryList"
-              },
-              {
-                "description": "The records associated with the request."
-              }
+              { "$ref": "#/components/schemas/PutRecordsRequestEntryList" },
+              { "description": "The records associated with the request." }
             ]
           },
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
-              {
-                "description": "The stream name associated with the request."
-              }
+              { "$ref": "#/components/schemas/StreamName" },
+              { "description": "The stream name associated with the request." }
             ]
           }
         },
@@ -4126,9 +3450,7 @@
         "properties": {
           "Consumer": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Consumer"
-              },
+              { "$ref": "#/components/schemas/Consumer" },
               {
                 "description": "An object that represents the details of the consumer you registered. When you register a consumer, it gets an ARN that is generated by Kinesis Data Streams."
               }
@@ -4143,9 +3465,7 @@
         "properties": {
           "StreamARN": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamARN"
-              },
+              { "$ref": "#/components/schemas/StreamARN" },
               {
                 "description": "The ARN of the Kinesis data stream that you want to register the consumer with. For more info, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kinesis-streams\">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>."
               }
@@ -4153,9 +3473,7 @@
           },
           "ConsumerName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConsumerName"
-              },
+              { "$ref": "#/components/schemas/ConsumerName" },
               {
                 "description": "For a given Kinesis data stream, each consumer must have a unique name. However, consumer names don't have to be unique across data streams."
               }
@@ -4170,19 +3488,13 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
-              {
-                "description": "The name of the stream."
-              }
+              { "$ref": "#/components/schemas/StreamName" },
+              { "description": "The name of the stream." }
             ]
           },
           "TagKeys": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagKeyList"
-              },
+              { "$ref": "#/components/schemas/TagKeyList" },
               {
                 "description": "A list of tag keys. Each corresponding tag is removed from the stream."
               }
@@ -4198,29 +3510,19 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
-              {
-                "description": "The name of the stream for the shard split."
-              }
+              { "$ref": "#/components/schemas/StreamName" },
+              { "description": "The name of the stream for the shard split." }
             ]
           },
           "ShardToSplit": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShardId"
-              },
-              {
-                "description": "The shard ID of the shard to split."
-              }
+              { "$ref": "#/components/schemas/ShardId" },
+              { "description": "The shard ID of the shard to split." }
             ]
           },
           "NewStartingHashKey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HashKey"
-              },
+              { "$ref": "#/components/schemas/HashKey" },
               {
                 "description": "A hash key value for the starting hash key of one of the child shards created by the split. The hash key range for a given shard constitutes a set of ordered contiguous positive integers. The value for <code>NewStartingHashKey</code> must be in the range of hash keys being mapped into the shard. The <code>NewStartingHashKey</code> hash key value and all higher hash key values in hash key range are distributed to one of the child shards. All the lower hash key values in the range are distributed to the other child shard."
               }
@@ -4236,9 +3538,7 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
+              { "$ref": "#/components/schemas/StreamName" },
               {
                 "description": "The name of the stream for which to start encrypting records."
               }
@@ -4246,9 +3546,7 @@
           },
           "EncryptionType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EncryptionType"
-              },
+              { "$ref": "#/components/schemas/EncryptionType" },
               {
                 "description": "The encryption type to use. The only valid value is <code>KMS</code>."
               }
@@ -4256,9 +3554,7 @@
           },
           "KeyId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/KeyId"
-              },
+              { "$ref": "#/components/schemas/KeyId" },
               {
                 "description": "<p>The GUID for the customer-managed AWS KMS key to use for encryption. This value can be a globally unique identifier, a fully specified Amazon Resource Name (ARN) to either an alias or a key, or an alias name prefixed by \"alias/\".You can also use a master key owned by Kinesis Data Streams by specifying the alias <code>aws/kinesis</code>.</p> <ul> <li> <p>Key ARN example: <code>arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012</code> </p> </li> <li> <p>Alias ARN example: <code>arn:aws:kms:us-east-1:123456789012:alias/MyAliasName</code> </p> </li> <li> <p>Globally unique key ID example: <code>12345678-1234-1234-1234-123456789012</code> </p> </li> <li> <p>Alias name example: <code>alias/MyAliasName</code> </p> </li> <li> <p>Master key owned by Kinesis Data Streams: <code>alias/aws/kinesis</code> </p> </li> </ul>"
               }
@@ -4273,9 +3569,7 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
+              { "$ref": "#/components/schemas/StreamName" },
               {
                 "description": "The name of the stream on which to stop encrypting records."
               }
@@ -4283,9 +3577,7 @@
           },
           "EncryptionType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EncryptionType"
-              },
+              { "$ref": "#/components/schemas/EncryptionType" },
               {
                 "description": "The encryption type. The only valid value is <code>KMS</code>."
               }
@@ -4293,9 +3585,7 @@
           },
           "KeyId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/KeyId"
-              },
+              { "$ref": "#/components/schemas/KeyId" },
               {
                 "description": "<p>The GUID for the customer-managed AWS KMS key to use for encryption. This value can be a globally unique identifier, a fully specified Amazon Resource Name (ARN) to either an alias or a key, or an alias name prefixed by \"alias/\".You can also use a master key owned by Kinesis Data Streams by specifying the alias <code>aws/kinesis</code>.</p> <ul> <li> <p>Key ARN example: <code>arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012</code> </p> </li> <li> <p>Alias ARN example: <code>arn:aws:kms:us-east-1:123456789012:alias/MyAliasName</code> </p> </li> <li> <p>Globally unique key ID example: <code>12345678-1234-1234-1234-123456789012</code> </p> </li> <li> <p>Alias name example: <code>alias/MyAliasName</code> </p> </li> <li> <p>Master key owned by Kinesis Data Streams: <code>alias/aws/kinesis</code> </p> </li> </ul>"
               }
@@ -4308,32 +3598,20 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
-              {
-                "description": "The name of the stream."
-              }
+              { "$ref": "#/components/schemas/StreamName" },
+              { "description": "The name of the stream." }
             ]
           },
           "CurrentShardCount": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PositiveIntegerObject"
-              },
-              {
-                "description": "The current number of shards."
-              }
+              { "$ref": "#/components/schemas/PositiveIntegerObject" },
+              { "description": "The current number of shards." }
             ]
           },
           "TargetShardCount": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PositiveIntegerObject"
-              },
-              {
-                "description": "The updated number of shards."
-              }
+              { "$ref": "#/components/schemas/PositiveIntegerObject" },
+              { "description": "The updated number of shards." }
             ]
           }
         }
@@ -4345,19 +3623,13 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
-              {
-                "description": "The name of the stream."
-              }
+              { "$ref": "#/components/schemas/StreamName" },
+              { "description": "The name of the stream." }
             ]
           },
           "TargetShardCount": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PositiveIntegerObject"
-              },
+              { "$ref": "#/components/schemas/PositiveIntegerObject" },
               {
                 "description": "<p>The new number of shards. This value has the following default limits. By default, you cannot do the following: </p> <ul> <li> <p>Set this value to more than double your current shard count for a stream.</p> </li> <li> <p>Set this value below half your current shard count for a stream.</p> </li> <li> <p>Set this value to more than 500 shards in a stream (the default limit for shard count per stream is 500 per account per region), unless you request a limit increase.</p> </li> <li> <p>Scale a stream with more than 500 shards down unless you set this value to less than 500 shards.</p> </li> </ul>"
               }
@@ -4365,9 +3637,7 @@
           },
           "ScalingType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ScalingType"
-              },
+              { "$ref": "#/components/schemas/ScalingType" },
               {
                 "description": "The scaling type. Uniform scaling creates shards of equal size."
               }
@@ -4385,13 +3655,9 @@
         "type": "object",
         "minProperties": 1,
         "maxProperties": 200,
-        "additionalProperties": {
-          "$ref": "#/components/schemas/TagValue"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/TagValue" }
       },
-      "BooleanObject": {
-        "type": "boolean"
-      },
+      "BooleanObject": { "type": "boolean" },
       "ShardId": {
         "type": "string",
         "pattern": "[a-zA-Z0-9_.-]+",
@@ -4400,9 +3666,7 @@
       },
       "ShardIdList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ShardId"
-        }
+        "items": { "$ref": "#/components/schemas/ShardId" }
       },
       "HashKeyRange": {
         "type": "object",
@@ -4410,22 +3674,14 @@
         "properties": {
           "StartingHashKey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HashKey"
-              },
-              {
-                "description": "The starting hash key of the hash key range."
-              }
+              { "$ref": "#/components/schemas/HashKey" },
+              { "description": "The starting hash key of the hash key range." }
             ]
           },
           "EndingHashKey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HashKey"
-              },
-              {
-                "description": "The ending hash key of the hash key range."
-              }
+              { "$ref": "#/components/schemas/HashKey" },
+              { "description": "The ending hash key of the hash key range." }
             ]
           }
         },
@@ -4435,22 +3691,14 @@
         "type": "object",
         "required": ["ShardId", "ParentShards", "HashKeyRange"],
         "properties": {
-          "ShardId": {
-            "$ref": "#/components/schemas/ShardId"
-          },
-          "ParentShards": {
-            "$ref": "#/components/schemas/ShardIdList"
-          },
-          "HashKeyRange": {
-            "$ref": "#/components/schemas/HashKeyRange"
-          }
+          "ShardId": { "$ref": "#/components/schemas/ShardId" },
+          "ParentShards": { "$ref": "#/components/schemas/ShardIdList" },
+          "HashKeyRange": { "$ref": "#/components/schemas/HashKeyRange" }
         }
       },
       "ChildShardList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ChildShard"
-        }
+        "items": { "$ref": "#/components/schemas/ChildShard" }
       },
       "ConsumerName": {
         "type": "string",
@@ -4468,10 +3716,7 @@
         "type": "string",
         "enum": ["CREATING", "DELETING", "ACTIVE"]
       },
-      "Timestamp": {
-        "type": "string",
-        "format": "date-time"
-      },
+      "Timestamp": { "type": "string", "format": "date-time" },
       "Consumer": {
         "type": "object",
         "required": [
@@ -4483,9 +3728,7 @@
         "properties": {
           "ConsumerName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConsumerName"
-              },
+              { "$ref": "#/components/schemas/ConsumerName" },
               {
                 "description": "The name of the consumer is something you choose when you register the consumer."
               }
@@ -4493,9 +3736,7 @@
           },
           "ConsumerARN": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConsumerARN"
-              },
+              { "$ref": "#/components/schemas/ConsumerARN" },
               {
                 "description": "<p>When you register a consumer, Kinesis Data Streams generates an ARN for it. You need this ARN to be able to call <a>SubscribeToShard</a>.</p> <p>If you delete a consumer and then create a new one with the same name, it won't have the same ARN. That's because consumer ARNs contain the creation timestamp. This is important to keep in mind if you have IAM policies that reference consumer ARNs.</p>"
               }
@@ -4503,9 +3744,7 @@
           },
           "ConsumerStatus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConsumerStatus"
-              },
+              { "$ref": "#/components/schemas/ConsumerStatus" },
               {
                 "description": "A consumer can't read data while in the <code>CREATING</code> or <code>DELETING</code> states."
               }
@@ -4513,12 +3752,8 @@
           },
           "ConsumerCreationTimestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "<p/>"
-              }
+              { "$ref": "#/components/schemas/Timestamp" },
+              { "description": "<p/>" }
             ]
           }
         },
@@ -4547,9 +3782,7 @@
         "properties": {
           "ConsumerName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConsumerName"
-              },
+              { "$ref": "#/components/schemas/ConsumerName" },
               {
                 "description": "The name of the consumer is something you choose when you register the consumer."
               }
@@ -4557,9 +3790,7 @@
           },
           "ConsumerARN": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConsumerARN"
-              },
+              { "$ref": "#/components/schemas/ConsumerARN" },
               {
                 "description": "<p>When you register a consumer, Kinesis Data Streams generates an ARN for it. You need this ARN to be able to call <a>SubscribeToShard</a>.</p> <p>If you delete a consumer and then create a new one with the same name, it won't have the same ARN. That's because consumer ARNs contain the creation timestamp. This is important to keep in mind if you have IAM policies that reference consumer ARNs.</p>"
               }
@@ -4567,9 +3798,7 @@
           },
           "ConsumerStatus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConsumerStatus"
-              },
+              { "$ref": "#/components/schemas/ConsumerStatus" },
               {
                 "description": "A consumer can't read data while in the <code>CREATING</code> or <code>DELETING</code> states."
               }
@@ -4577,19 +3806,13 @@
           },
           "ConsumerCreationTimestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
-              {
-                "description": "<p/>"
-              }
+              { "$ref": "#/components/schemas/Timestamp" },
+              { "description": "<p/>" }
             ]
           },
           "StreamARN": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamARN"
-              },
+              { "$ref": "#/components/schemas/StreamARN" },
               {
                 "description": "The ARN of the stream with which you registered the consumer."
               }
@@ -4600,22 +3823,11 @@
       },
       "ConsumerList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Consumer"
-        }
+        "items": { "$ref": "#/components/schemas/Consumer" }
       },
-      "PositiveIntegerObject": {
-        "type": "integer",
-        "minimum": 1
-      },
-      "Data": {
-        "type": "string",
-        "minLength": 0,
-        "maxLength": 1048576
-      },
-      "RetentionPeriodHours": {
-        "type": "integer"
-      },
+      "PositiveIntegerObject": { "type": "integer", "minimum": 1 },
+      "Data": { "type": "string", "minLength": 0, "maxLength": 1048576 },
+      "RetentionPeriodHours": { "type": "integer" },
       "ShardCountObject": {
         "type": "integer",
         "minimum": 0,
@@ -4641,19 +3853,13 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
-              {
-                "description": "The name of the stream being described."
-              }
+              { "$ref": "#/components/schemas/StreamName" },
+              { "description": "The name of the stream being described." }
             ]
           },
           "StreamARN": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamARN"
-              },
+              { "$ref": "#/components/schemas/StreamARN" },
               {
                 "description": "The Amazon Resource Name (ARN) for the stream being described."
               }
@@ -4661,9 +3867,7 @@
           },
           "StreamStatus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamStatus"
-              },
+              { "$ref": "#/components/schemas/StreamStatus" },
               {
                 "description": "<p>The current status of the stream being described. The stream status is one of the following states:</p> <ul> <li> <p> <code>CREATING</code> - The stream is being created. Kinesis Data Streams immediately returns and sets <code>StreamStatus</code> to <code>CREATING</code>.</p> </li> <li> <p> <code>DELETING</code> - The stream is being deleted. The specified stream is in the <code>DELETING</code> state until Kinesis Data Streams completes the deletion.</p> </li> <li> <p> <code>ACTIVE</code> - The stream exists and is ready for read and write operations or deletion. You should perform read and write operations only on an <code>ACTIVE</code> stream.</p> </li> <li> <p> <code>UPDATING</code> - Shards in the stream are being merged or split. Read and write operations continue to work while the stream is in the <code>UPDATING</code> state.</p> </li> </ul>"
               }
@@ -4671,19 +3875,13 @@
           },
           "Shards": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShardList"
-              },
-              {
-                "description": "The shards that comprise the stream."
-              }
+              { "$ref": "#/components/schemas/ShardList" },
+              { "description": "The shards that comprise the stream." }
             ]
           },
           "HasMoreShards": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BooleanObject"
-              },
+              { "$ref": "#/components/schemas/BooleanObject" },
               {
                 "description": "If set to <code>true</code>, more shards in the stream are available to describe."
               }
@@ -4691,9 +3889,7 @@
           },
           "RetentionPeriodHours": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RetentionPeriodHours"
-              },
+              { "$ref": "#/components/schemas/RetentionPeriodHours" },
               {
                 "description": "The current retention period, in hours. Minimum value of 24. Maximum value of 168."
               }
@@ -4701,9 +3897,7 @@
           },
           "StreamCreationTimestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The approximate time that the stream was created."
               }
@@ -4711,9 +3905,7 @@
           },
           "EnhancedMonitoring": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnhancedMonitoringList"
-              },
+              { "$ref": "#/components/schemas/EnhancedMonitoringList" },
               {
                 "description": "Represents the current enhanced monitoring settings of the stream."
               }
@@ -4721,9 +3913,7 @@
           },
           "EncryptionType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EncryptionType"
-              },
+              { "$ref": "#/components/schemas/EncryptionType" },
               {
                 "description": "<p>The server-side encryption type used on the stream. This parameter can be one of the following values:</p> <ul> <li> <p> <code>NONE</code>: Do not encrypt the records in the stream.</p> </li> <li> <p> <code>KMS</code>: Use server-side encryption on the records in the stream using a customer-managed AWS KMS key.</p> </li> </ul>"
               }
@@ -4731,9 +3921,7 @@
           },
           "KeyId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/KeyId"
-              },
+              { "$ref": "#/components/schemas/KeyId" },
               {
                 "description": "<p>The GUID for the customer-managed AWS KMS key to use for encryption. This value can be a globally unique identifier, a fully specified ARN to either an alias or a key, or an alias name prefixed by \"alias/\".You can also use a master key owned by Kinesis Data Streams by specifying the alias <code>aws/kinesis</code>.</p> <ul> <li> <p>Key ARN example: <code>arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012</code> </p> </li> <li> <p>Alias ARN example: <code>arn:aws:kms:us-east-1:123456789012:alias/MyAliasName</code> </p> </li> <li> <p>Globally unique key ID example: <code>12345678-1234-1234-1234-123456789012</code> </p> </li> <li> <p>Alias name example: <code>alias/MyAliasName</code> </p> </li> <li> <p>Master key owned by Kinesis Data Streams: <code>alias/aws/kinesis</code> </p> </li> </ul>"
               }
@@ -4756,19 +3944,13 @@
         "properties": {
           "StreamName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamName"
-              },
-              {
-                "description": "The name of the stream being described."
-              }
+              { "$ref": "#/components/schemas/StreamName" },
+              { "description": "The name of the stream being described." }
             ]
           },
           "StreamARN": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamARN"
-              },
+              { "$ref": "#/components/schemas/StreamARN" },
               {
                 "description": "The Amazon Resource Name (ARN) for the stream being described."
               }
@@ -4776,9 +3958,7 @@
           },
           "StreamStatus": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamStatus"
-              },
+              { "$ref": "#/components/schemas/StreamStatus" },
               {
                 "description": "<p>The current status of the stream being described. The stream status is one of the following states:</p> <ul> <li> <p> <code>CREATING</code> - The stream is being created. Kinesis Data Streams immediately returns and sets <code>StreamStatus</code> to <code>CREATING</code>.</p> </li> <li> <p> <code>DELETING</code> - The stream is being deleted. The specified stream is in the <code>DELETING</code> state until Kinesis Data Streams completes the deletion.</p> </li> <li> <p> <code>ACTIVE</code> - The stream exists and is ready for read and write operations or deletion. You should perform read and write operations only on an <code>ACTIVE</code> stream.</p> </li> <li> <p> <code>UPDATING</code> - Shards in the stream are being merged or split. Read and write operations continue to work while the stream is in the <code>UPDATING</code> state.</p> </li> </ul>"
               }
@@ -4786,19 +3966,13 @@
           },
           "RetentionPeriodHours": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RetentionPeriodHours"
-              },
-              {
-                "description": "The current retention period, in hours."
-              }
+              { "$ref": "#/components/schemas/RetentionPeriodHours" },
+              { "description": "The current retention period, in hours." }
             ]
           },
           "StreamCreationTimestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The approximate time that the stream was created."
               }
@@ -4806,9 +3980,7 @@
           },
           "EnhancedMonitoring": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EnhancedMonitoringList"
-              },
+              { "$ref": "#/components/schemas/EnhancedMonitoringList" },
               {
                 "description": "Represents the current enhanced monitoring settings of the stream."
               }
@@ -4816,9 +3988,7 @@
           },
           "EncryptionType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EncryptionType"
-              },
+              { "$ref": "#/components/schemas/EncryptionType" },
               {
                 "description": "<p>The encryption type used. This value is one of the following:</p> <ul> <li> <p> <code>KMS</code> </p> </li> <li> <p> <code>NONE</code> </p> </li> </ul>"
               }
@@ -4826,9 +3996,7 @@
           },
           "KeyId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/KeyId"
-              },
+              { "$ref": "#/components/schemas/KeyId" },
               {
                 "description": "<p>The GUID for the customer-managed AWS KMS key to use for encryption. This value can be a globally unique identifier, a fully specified ARN to either an alias or a key, or an alias name prefixed by \"alias/\".You can also use a master key owned by Kinesis Data Streams by specifying the alias <code>aws/kinesis</code>.</p> <ul> <li> <p>Key ARN example: <code>arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012</code> </p> </li> <li> <p>Alias ARN example: <code> arn:aws:kms:us-east-1:123456789012:alias/MyAliasName</code> </p> </li> <li> <p>Globally unique key ID example: <code>12345678-1234-1234-1234-123456789012</code> </p> </li> <li> <p>Alias name example: <code>alias/MyAliasName</code> </p> </li> <li> <p>Master key owned by Kinesis Data Streams: <code>alias/aws/kinesis</code> </p> </li> </ul>"
               }
@@ -4836,19 +4004,13 @@
           },
           "OpenShardCount": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShardCountObject"
-              },
-              {
-                "description": "The number of open shards in the stream."
-              }
+              { "$ref": "#/components/schemas/ShardCountObject" },
+              { "description": "The number of open shards in the stream." }
             ]
           },
           "ConsumerCount": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ConsumerCountObject"
-              },
+              { "$ref": "#/components/schemas/ConsumerCountObject" },
               {
                 "description": "The number of enhanced fan-out consumers registered with the stream."
               }
@@ -4859,24 +4021,17 @@
       },
       "MetricsNameList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/MetricsName"
-        },
+        "items": { "$ref": "#/components/schemas/MetricsName" },
         "minItems": 1,
         "maxItems": 7
       },
-      "EncryptionType": {
-        "type": "string",
-        "enum": ["NONE", "KMS"]
-      },
+      "EncryptionType": { "type": "string", "enum": ["NONE", "KMS"] },
       "EnhancedMetrics": {
         "type": "object",
         "properties": {
           "ShardLevelMetrics": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricsNameList"
-              },
+              { "$ref": "#/components/schemas/MetricsNameList" },
               {
                 "description": "<p>List of shard-level metrics.</p> <p>The following are the valid shard-level metrics. The value \"<code>ALL</code>\" enhances every metric.</p> <ul> <li> <p> <code>IncomingBytes</code> </p> </li> <li> <p> <code>IncomingRecords</code> </p> </li> <li> <p> <code>OutgoingBytes</code> </p> </li> <li> <p> <code>OutgoingRecords</code> </p> </li> <li> <p> <code>WriteProvisionedThroughputExceeded</code> </p> </li> <li> <p> <code>ReadProvisionedThroughputExceeded</code> </p> </li> <li> <p> <code>IteratorAgeMilliseconds</code> </p> </li> <li> <p> <code>ALL</code> </p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/kinesis/latest/dev/monitoring-with-cloudwatch.html\">Monitoring the Amazon Kinesis Data Streams Service with Amazon CloudWatch</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.</p>"
               }
@@ -4887,21 +4042,11 @@
       },
       "EnhancedMonitoringList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/EnhancedMetrics"
-        }
+        "items": { "$ref": "#/components/schemas/EnhancedMetrics" }
       },
-      "ErrorCode": {
-        "type": "string"
-      },
-      "ErrorMessage": {
-        "type": "string"
-      },
-      "ShardIterator": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 512
-      },
+      "ErrorCode": { "type": "string" },
+      "ErrorMessage": { "type": "string" },
+      "ShardIterator": { "type": "string", "minLength": 1, "maxLength": 512 },
       "GetRecordsInputLimit": {
         "type": "integer",
         "minimum": 1,
@@ -4909,14 +4054,9 @@
       },
       "RecordList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Record"
-        }
+        "items": { "$ref": "#/components/schemas/Record" }
       },
-      "MillisBehindLatest": {
-        "type": "integer",
-        "minimum": 0
-      },
+      "MillisBehindLatest": { "type": "integer", "minimum": 0 },
       "ShardIteratorType": {
         "type": "string",
         "enum": [
@@ -4927,24 +4067,10 @@
           "AT_TIMESTAMP"
         ]
       },
-      "SequenceNumber": {
-        "type": "string",
-        "pattern": "0|([1-9]\\d{0,128})"
-      },
-      "HashKey": {
-        "type": "string",
-        "pattern": "0|([1-9]\\d{0,38})"
-      },
-      "KeyId": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 2048
-      },
-      "NextToken": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 1048576
-      },
+      "SequenceNumber": { "type": "string", "pattern": "0|([1-9]\\d{0,128})" },
+      "HashKey": { "type": "string", "pattern": "0|([1-9]\\d{0,38})" },
+      "KeyId": { "type": "string", "minLength": 1, "maxLength": 2048 },
+      "NextToken": { "type": "string", "minLength": 1, "maxLength": 1048576 },
       "ListShardsInputLimit": {
         "type": "integer",
         "minimum": 1,
@@ -4954,22 +4080,14 @@
         "type": "object",
         "required": ["Type"],
         "properties": {
-          "Type": {
-            "$ref": "#/components/schemas/ShardFilterType"
-          },
-          "ShardId": {
-            "$ref": "#/components/schemas/ShardId"
-          },
-          "Timestamp": {
-            "$ref": "#/components/schemas/Timestamp"
-          }
+          "Type": { "$ref": "#/components/schemas/ShardFilterType" },
+          "ShardId": { "$ref": "#/components/schemas/ShardId" },
+          "Timestamp": { "$ref": "#/components/schemas/Timestamp" }
         }
       },
       "ShardList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Shard"
-        }
+        "items": { "$ref": "#/components/schemas/Shard" }
       },
       "ListStreamConsumersInputLimit": {
         "type": "integer",
@@ -4983,15 +4101,9 @@
       },
       "StreamNameList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/StreamName"
-        }
+        "items": { "$ref": "#/components/schemas/StreamName" }
       },
-      "TagKey": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 128
-      },
+      "TagKey": { "type": "string", "minLength": 1, "maxLength": 128 },
       "ListTagsForStreamInputLimit": {
         "type": "integer",
         "minimum": 1,
@@ -4999,9 +4111,7 @@
       },
       "TagList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Tag"
-        },
+        "items": { "$ref": "#/components/schemas/Tag" },
         "minItems": 0,
         "maxItems": 200
       },
@@ -5018,24 +4128,16 @@
           "ALL"
         ]
       },
-      "PartitionKey": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 256
-      },
+      "PartitionKey": { "type": "string", "minLength": 1, "maxLength": 256 },
       "PutRecordsRequestEntryList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/PutRecordsRequestEntry"
-        },
+        "items": { "$ref": "#/components/schemas/PutRecordsRequestEntry" },
         "minItems": 1,
         "maxItems": 500
       },
       "PutRecordsResultEntryList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/PutRecordsResultEntry"
-        },
+        "items": { "$ref": "#/components/schemas/PutRecordsResultEntry" },
         "minItems": 1,
         "maxItems": 500
       },
@@ -5045,9 +4147,7 @@
         "properties": {
           "Data": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Data"
-              },
+              { "$ref": "#/components/schemas/Data" },
               {
                 "description": "The data blob to put into the record, which is base64-encoded when the blob is serialized. When the data blob (the payload before base64-encoding) is added to the partition key size, the total size must not exceed the maximum record size (1 MiB)."
               }
@@ -5055,9 +4155,7 @@
           },
           "ExplicitHashKey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HashKey"
-              },
+              { "$ref": "#/components/schemas/HashKey" },
               {
                 "description": "The hash value used to determine explicitly the shard that the data record is assigned to by overriding the partition key hash."
               }
@@ -5065,9 +4163,7 @@
           },
           "PartitionKey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PartitionKey"
-              },
+              { "$ref": "#/components/schemas/PartitionKey" },
               {
                 "description": "Determines which shard in the stream the data record is assigned to. Partition keys are Unicode strings with a maximum length limit of 256 characters for each key. Amazon Kinesis Data Streams uses the partition key as input to a hash function that maps the partition key and associated data to a specific shard. Specifically, an MD5 hash function is used to map partition keys to 128-bit integer values and to map associated data records to shards. As a result of this hashing mechanism, all data records with the same partition key map to the same shard within the stream."
               }
@@ -5081,9 +4177,7 @@
         "properties": {
           "SequenceNumber": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SequenceNumber"
-              },
+              { "$ref": "#/components/schemas/SequenceNumber" },
               {
                 "description": "The sequence number for an individual record result."
               }
@@ -5091,19 +4185,13 @@
           },
           "ShardId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShardId"
-              },
-              {
-                "description": "The shard ID for an individual record result."
-              }
+              { "$ref": "#/components/schemas/ShardId" },
+              { "description": "The shard ID for an individual record result." }
             ]
           },
           "ErrorCode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ErrorCode"
-              },
+              { "$ref": "#/components/schemas/ErrorCode" },
               {
                 "description": "The error code for an individual record result. <code>ErrorCodes</code> can be either <code>ProvisionedThroughputExceededException</code> or <code>InternalFailure</code>."
               }
@@ -5111,9 +4199,7 @@
           },
           "ErrorMessage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ErrorMessage"
-              },
+              { "$ref": "#/components/schemas/ErrorMessage" },
               {
                 "description": "The error message for an individual record result. An <code>ErrorCode</code> value of <code>ProvisionedThroughputExceededException</code> has an error message that includes the account ID, stream name, and shard ID. An <code>ErrorCode</code> value of <code>InternalFailure</code> has the error message <code>\"Internal Service Failure\"</code>."
               }
@@ -5128,9 +4214,7 @@
         "properties": {
           "SequenceNumber": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SequenceNumber"
-              },
+              { "$ref": "#/components/schemas/SequenceNumber" },
               {
                 "description": "The unique identifier of the record within its shard."
               }
@@ -5138,9 +4222,7 @@
           },
           "ApproximateArrivalTimestamp": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The approximate time that the record was inserted into the stream."
               }
@@ -5148,9 +4230,7 @@
           },
           "Data": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Data"
-              },
+              { "$ref": "#/components/schemas/Data" },
               {
                 "description": "The data blob. The data in the blob is both opaque and immutable to Kinesis Data Streams, which does not inspect, interpret, or change the data in the blob in any way. When the data blob (the payload before base64-encoding) is added to the partition key size, the total size must not exceed the maximum record size (1 MiB)."
               }
@@ -5158,9 +4238,7 @@
           },
           "PartitionKey": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PartitionKey"
-              },
+              { "$ref": "#/components/schemas/PartitionKey" },
               {
                 "description": "Identifies which shard in the stream the data record is assigned to."
               }
@@ -5168,9 +4246,7 @@
           },
           "EncryptionType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EncryptionType"
-              },
+              { "$ref": "#/components/schemas/EncryptionType" },
               {
                 "description": "<p>The encryption type used on the record. This parameter can be one of the following values:</p> <ul> <li> <p> <code>NONE</code>: Do not encrypt the records in the stream.</p> </li> <li> <p> <code>KMS</code>: Use server-side encryption on the records in the stream using a customer-managed AWS KMS key.</p> </li> </ul>"
               }
@@ -5181,35 +4257,24 @@
       },
       "TagKeyList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/TagKey"
-        },
+        "items": { "$ref": "#/components/schemas/TagKey" },
         "minItems": 1,
         "maxItems": 50
       },
-      "ScalingType": {
-        "type": "string",
-        "enum": ["UNIFORM_SCALING"]
-      },
+      "ScalingType": { "type": "string", "enum": ["UNIFORM_SCALING"] },
       "SequenceNumberRange": {
         "type": "object",
         "required": ["StartingSequenceNumber"],
         "properties": {
           "StartingSequenceNumber": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SequenceNumber"
-              },
-              {
-                "description": "The starting sequence number for the range."
-              }
+              { "$ref": "#/components/schemas/SequenceNumber" },
+              { "description": "The starting sequence number for the range." }
             ]
           },
           "EndingSequenceNumber": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SequenceNumber"
-              },
+              { "$ref": "#/components/schemas/SequenceNumber" },
               {
                 "description": "The ending sequence number for the range. Shards that are in the OPEN state have an ending sequence number of <code>null</code>."
               }
@@ -5224,9 +4289,7 @@
         "properties": {
           "ShardId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShardId"
-              },
+              { "$ref": "#/components/schemas/ShardId" },
               {
                 "description": "The unique identifier of the shard within the stream."
               }
@@ -5234,19 +4297,13 @@
           },
           "ParentShardId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShardId"
-              },
-              {
-                "description": "The shard ID of the shard's parent."
-              }
+              { "$ref": "#/components/schemas/ShardId" },
+              { "description": "The shard ID of the shard's parent." }
             ]
           },
           "AdjacentParentShardId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ShardId"
-              },
+              { "$ref": "#/components/schemas/ShardId" },
               {
                 "description": "The shard ID of the shard adjacent to the shard's parent."
               }
@@ -5254,9 +4311,7 @@
           },
           "HashKeyRange": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HashKeyRange"
-              },
+              { "$ref": "#/components/schemas/HashKeyRange" },
               {
                 "description": "The range of possible hash key values for the shard, which is a set of ordered contiguous positive integers."
               }
@@ -5264,9 +4319,7 @@
           },
           "SequenceNumberRange": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SequenceNumberRange"
-              },
+              { "$ref": "#/components/schemas/SequenceNumberRange" },
               {
                 "description": "The range of possible sequence numbers for the shard."
               }
@@ -5290,20 +4343,14 @@
         "type": "string",
         "enum": ["CREATING", "DELETING", "ACTIVE", "UPDATING"]
       },
-      "TagValue": {
-        "type": "string",
-        "minLength": 0,
-        "maxLength": 256
-      },
+      "TagValue": { "type": "string", "minLength": 0, "maxLength": 256 },
       "Tag": {
         "type": "object",
         "required": ["Key"],
         "properties": {
           "Key": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagKey"
-              },
+              { "$ref": "#/components/schemas/TagKey" },
               {
                 "description": "A unique identifier for the tag. Maximum length: 128 characters. Valid characters: Unicode letters, digits, white space, _ . / = + - % @"
               }
@@ -5311,9 +4358,7 @@
           },
           "Value": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TagValue"
-              },
+              { "$ref": "#/components/schemas/TagValue" },
               {
                 "description": "An optional string, typically used to describe or define the tag. Maximum length: 256 characters. Valid characters: Unicode letters, digits, white space, _ . / = + - % @"
               }
@@ -5324,19 +4369,13 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2013-12-02",
     "endpointPrefix": "kinesis",
     "jsonVersion": "1.1",
     "protocol": "json",
-    "protocolSettings": {
-      "h2": "eventstream"
-    },
+    "protocolSettings": { "h2": "eventstream" },
     "serviceAbbreviation": "Kinesis",
     "serviceFullName": "Amazon Kinesis",
     "serviceId": "Kinesis",

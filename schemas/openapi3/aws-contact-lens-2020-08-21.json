@@ -75,9 +75,7 @@
             "description": "ThrottlingException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThrottlingException"
-                }
+                "schema": { "$ref": "#/components/schemas/ThrottlingException" }
               }
             }
           }
@@ -86,18 +84,14 @@
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -145,27 +139,13 @@
         "summary": "List Realtime Contact Analysis Segments"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -272,63 +252,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -351,16 +317,12 @@
               {
                 "$ref": "#/components/schemas/RealtimeContactAnalysisSegments"
               },
-              {
-                "description": "An analyzed transcript or category."
-              }
+              { "description": "An analyzed transcript or category." }
             ]
           },
           "NextToken": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/NextToken"
-              },
+              { "$ref": "#/components/schemas/NextToken" },
               {
                 "description": "<p>If there are additional results, this is the token for the next set of results. If response includes <code>nextToken</code> there are two possible scenarios:</p> <ul> <li> <p>There are more segments so another call is required to get them.</p> </li> <li> <p>There are no more segments at this time, but more may be available later (real-time analysis is in progress) so the client should call the operation again to get new segments.</p> </li> </ul> <p>If response does not include <code>nextToken</code>, the analysis is completed (successfully or failed) and there are no more segments to retrieve.</p>"
               }
@@ -375,9 +337,7 @@
       "ThrottlingException": {},
       "MatchedCategories": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/CategoryName"
-        },
+        "items": { "$ref": "#/components/schemas/CategoryName" },
         "minItems": 0,
         "maxItems": 150
       },
@@ -395,9 +355,7 @@
         "properties": {
           "MatchedCategories": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MatchedCategories"
-              },
+              { "$ref": "#/components/schemas/MatchedCategories" },
               {
                 "description": "The category rules that have been matched in the analyzed segment."
               }
@@ -405,9 +363,7 @@
           },
           "MatchedDetails": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MatchedDetails"
-              },
+              { "$ref": "#/components/schemas/MatchedDetails" },
               {
                 "description": "The category rule that was matched and when it occurred in the transcript."
               }
@@ -418,9 +374,7 @@
       },
       "PointsOfInterest": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/PointOfInterest"
-        },
+        "items": { "$ref": "#/components/schemas/PointOfInterest" },
         "minItems": 0,
         "maxItems": 20
       },
@@ -430,9 +384,7 @@
         "properties": {
           "PointsOfInterest": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/PointsOfInterest"
-              },
+              { "$ref": "#/components/schemas/PointsOfInterest" },
               {
                 "description": "The section of audio where the category rule was detected."
               }
@@ -447,32 +399,21 @@
         "minLength": 1,
         "maxLength": 256
       },
-      "CharacterOffset": {
-        "type": "integer",
-        "minimum": 0
-      },
+      "CharacterOffset": { "type": "integer", "minimum": 0 },
       "CharacterOffsets": {
         "type": "object",
         "required": ["BeginOffsetChar", "EndOffsetChar"],
         "properties": {
           "BeginOffsetChar": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CharacterOffset"
-              },
-              {
-                "description": "The beginning of the issue."
-              }
+              { "$ref": "#/components/schemas/CharacterOffset" },
+              { "description": "The beginning of the issue." }
             ]
           },
           "EndOffsetChar": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CharacterOffset"
-              },
-              {
-                "description": "The end of the issue."
-              }
+              { "$ref": "#/components/schemas/CharacterOffset" },
+              { "description": "The end of the issue." }
             ]
           }
         },
@@ -484,9 +425,7 @@
         "properties": {
           "CharacterOffsets": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CharacterOffsets"
-              },
+              { "$ref": "#/components/schemas/CharacterOffsets" },
               {
                 "description": "The offset for when the issue was detected in the segment."
               }
@@ -497,9 +436,7 @@
       },
       "IssuesDetected": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/IssueDetected"
-        },
+        "items": { "$ref": "#/components/schemas/IssueDetected" },
         "minItems": 0,
         "maxItems": 20
       },
@@ -517,10 +454,7 @@
         "minItems": 0,
         "maxItems": 100
       },
-      "OffsetMillis": {
-        "type": "integer",
-        "minimum": 0
-      },
+      "OffsetMillis": { "type": "integer", "minimum": 0 },
       "ParticipantId": {
         "type": "string",
         "pattern": ".*\\S.*",
@@ -539,9 +473,7 @@
         "properties": {
           "BeginOffsetMillis": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OffsetMillis"
-              },
+              { "$ref": "#/components/schemas/OffsetMillis" },
               {
                 "description": "The beginning offset in milliseconds where the category rule was detected."
               }
@@ -549,9 +481,7 @@
           },
           "EndOffsetMillis": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OffsetMillis"
-              },
+              { "$ref": "#/components/schemas/OffsetMillis" },
               {
                 "description": "The ending offset in milliseconds where the category rule was detected."
               }
@@ -574,29 +504,19 @@
         "properties": {
           "Id": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TranscriptId"
-              },
-              {
-                "description": "The identifier of the transcript."
-              }
+              { "$ref": "#/components/schemas/TranscriptId" },
+              { "description": "The identifier of the transcript." }
             ]
           },
           "ParticipantId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ParticipantId"
-              },
-              {
-                "description": "The identifier of the participant."
-              }
+              { "$ref": "#/components/schemas/ParticipantId" },
+              { "description": "The identifier of the participant." }
             ]
           },
           "ParticipantRole": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ParticipantRole"
-              },
+              { "$ref": "#/components/schemas/ParticipantRole" },
               {
                 "description": "The role of participant. For example, is it a customer, agent, or system."
               }
@@ -604,19 +524,13 @@
           },
           "Content": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/TranscriptContent"
-              },
-              {
-                "description": "The content of the transcript."
-              }
+              { "$ref": "#/components/schemas/TranscriptContent" },
+              { "description": "The content of the transcript." }
             ]
           },
           "BeginOffsetMillis": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OffsetMillis"
-              },
+              { "$ref": "#/components/schemas/OffsetMillis" },
               {
                 "description": "The beginning offset in the contact for this transcript."
               }
@@ -624,9 +538,7 @@
           },
           "EndOffsetMillis": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/OffsetMillis"
-              },
+              { "$ref": "#/components/schemas/OffsetMillis" },
               {
                 "description": "The end offset in the contact for this transcript."
               }
@@ -634,9 +546,7 @@
           },
           "Sentiment": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SentimentValue"
-              },
+              { "$ref": "#/components/schemas/SentimentValue" },
               {
                 "description": "The sentiment of the detected for this piece of transcript."
               }
@@ -644,9 +554,7 @@
           },
           "IssuesDetected": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/IssuesDetected"
-              },
+              { "$ref": "#/components/schemas/IssuesDetected" },
               {
                 "description": "List of positions where issues were detected on the transcript."
               }
@@ -660,22 +568,14 @@
         "properties": {
           "Transcript": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Transcript"
-              },
-              {
-                "description": "The analyzed transcript."
-              }
+              { "$ref": "#/components/schemas/Transcript" },
+              { "description": "The analyzed transcript." }
             ]
           },
           "Categories": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Categories"
-              },
-              {
-                "description": "The matched category rules."
-              }
+              { "$ref": "#/components/schemas/Categories" },
+              { "description": "The matched category rules." }
             ]
           }
         },
@@ -698,11 +598,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2020-08-21",
     "endpointPrefix": "contact-lens",

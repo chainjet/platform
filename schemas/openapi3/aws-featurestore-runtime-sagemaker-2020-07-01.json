@@ -35,9 +35,7 @@
             "description": "ValidationError",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationError" }
               }
             }
           },
@@ -45,9 +43,7 @@
             "description": "InternalFailure",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalFailure"
-                }
+                "schema": { "$ref": "#/components/schemas/InternalFailure" }
               }
             }
           },
@@ -55,9 +51,7 @@
             "description": "ServiceUnavailable",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceUnavailable"
-                }
+                "schema": { "$ref": "#/components/schemas/ServiceUnavailable" }
               }
             }
           },
@@ -65,9 +59,7 @@
             "description": "AccessForbidden",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AccessForbidden"
-                }
+                "schema": { "$ref": "#/components/schemas/AccessForbidden" }
               }
             }
           }
@@ -98,27 +90,13 @@
         "summary": "Batch Get Record"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/FeatureGroup/{FeatureGroupName}#RecordIdentifierValueAsString&EventTime": {
@@ -126,16 +104,12 @@
         "operationId": "DeleteRecord",
         "description": "Deletes a <code>Record</code> from a <code>FeatureGroup</code>. A new record will show up in the <code>OfflineStore</code> when the <code>DeleteRecord</code> API is called. This record will have a value of <code>True</code> in the <code>is_deleted</code> column.",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ValidationError",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationError" }
               }
             }
           },
@@ -143,9 +117,7 @@
             "description": "InternalFailure",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalFailure"
-                }
+                "schema": { "$ref": "#/components/schemas/InternalFailure" }
               }
             }
           },
@@ -153,9 +125,7 @@
             "description": "ServiceUnavailable",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceUnavailable"
-                }
+                "schema": { "$ref": "#/components/schemas/ServiceUnavailable" }
               }
             }
           },
@@ -163,9 +133,7 @@
             "description": "AccessForbidden",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AccessForbidden"
-                }
+                "schema": { "$ref": "#/components/schemas/AccessForbidden" }
               }
             }
           }
@@ -188,48 +156,26 @@
             "in": "query",
             "required": true,
             "description": "The value for the <code>RecordIdentifier</code> that uniquely identifies the record, in string format. ",
-            "schema": {
-              "type": "string",
-              "pattern": ".*",
-              "maxLength": 358400
-            }
+            "schema": { "type": "string", "pattern": ".*", "maxLength": 358400 }
           },
           {
             "name": "EventTime",
             "in": "query",
             "required": true,
             "description": "Timestamp indicating when the deletion event occurred. <code>EventTime</code> can be used to query data at a certain point in time.",
-            "schema": {
-              "type": "string",
-              "pattern": ".*",
-              "maxLength": 358400
-            }
+            "schema": { "type": "string", "pattern": ".*", "maxLength": 358400 }
           }
         ],
         "summary": "Delete Record"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/FeatureGroup/{FeatureGroupName}#RecordIdentifierValueAsString": {
@@ -241,9 +187,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetRecordResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/GetRecordResponse" }
               }
             }
           },
@@ -251,9 +195,7 @@
             "description": "ValidationError",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationError" }
               }
             }
           },
@@ -261,9 +203,7 @@
             "description": "ResourceNotFound",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFound"
-                }
+                "schema": { "$ref": "#/components/schemas/ResourceNotFound" }
               }
             }
           },
@@ -271,9 +211,7 @@
             "description": "InternalFailure",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalFailure"
-                }
+                "schema": { "$ref": "#/components/schemas/InternalFailure" }
               }
             }
           },
@@ -281,9 +219,7 @@
             "description": "ServiceUnavailable",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceUnavailable"
-                }
+                "schema": { "$ref": "#/components/schemas/ServiceUnavailable" }
               }
             }
           },
@@ -291,9 +227,7 @@
             "description": "AccessForbidden",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AccessForbidden"
-                }
+                "schema": { "$ref": "#/components/schemas/AccessForbidden" }
               }
             }
           }
@@ -316,11 +250,7 @@
             "in": "query",
             "required": true,
             "description": "The value that corresponds to <code>RecordIdentifier</code> type and uniquely identifies the record in the <code>FeatureGroup</code>. ",
-            "schema": {
-              "type": "string",
-              "pattern": ".*",
-              "maxLength": 358400
-            }
+            "schema": { "type": "string", "pattern": ".*", "maxLength": 358400 }
           },
           {
             "name": "FeatureName",
@@ -329,9 +259,7 @@
             "description": "List of names of Features to be retrieved. If not specified, the latest value for all the Features are returned.",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/FeatureName"
-              },
+              "items": { "$ref": "#/components/schemas/FeatureName" },
               "minItems": 1
             }
           }
@@ -339,27 +267,13 @@
         "summary": "Get Record"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/FeatureGroup/{FeatureGroupName}": {
@@ -367,16 +281,12 @@
         "operationId": "PutRecord",
         "description": "Used for data ingestion into the <code>FeatureStore</code>. The <code>PutRecord</code> API writes to both the <code>OnlineStore</code> and <code>OfflineStore</code>. If the record is the latest record for the <code>recordIdentifier</code>, the record is written to both the <code>OnlineStore</code> and <code>OfflineStore</code>. If the record is a historic record, it is written only to the <code>OfflineStore</code>.",
         "responses": {
-          "200": {
-            "description": "Success"
-          },
+          "200": { "description": "Success" },
           "480": {
             "description": "ValidationError",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
+                "schema": { "$ref": "#/components/schemas/ValidationError" }
               }
             }
           },
@@ -384,9 +294,7 @@
             "description": "InternalFailure",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalFailure"
-                }
+                "schema": { "$ref": "#/components/schemas/InternalFailure" }
               }
             }
           },
@@ -394,9 +302,7 @@
             "description": "ServiceUnavailable",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceUnavailable"
-                }
+                "schema": { "$ref": "#/components/schemas/ServiceUnavailable" }
               }
             }
           },
@@ -404,9 +310,7 @@
             "description": "AccessForbidden",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AccessForbidden"
-                }
+                "schema": { "$ref": "#/components/schemas/AccessForbidden" }
               }
             }
           }
@@ -436,9 +340,7 @@
                   "Record": {
                     "description": "<p>List of FeatureValues to be inserted. This will be a full over-write. If you only want to update few of the feature values, do the following:</p> <ul> <li> <p>Use <code>GetRecord</code> to retrieve the latest record.</p> </li> <li> <p>Update the record returned from <code>GetRecord</code>. </p> </li> <li> <p>Use <code>PutRecord</code> to update feature values.</p> </li> </ul>",
                     "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/FeatureValue"
-                    },
+                    "items": { "$ref": "#/components/schemas/FeatureValue" },
                     "minItems": 1
                   }
                 }
@@ -449,27 +351,13 @@
         "summary": "Put Record"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -576,63 +464,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -652,9 +526,7 @@
         "properties": {
           "Records": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BatchGetRecordResultDetails"
-              },
+              { "$ref": "#/components/schemas/BatchGetRecordResultDetails" },
               {
                 "description": "A list of Records you requested to be retrieved in batch."
               }
@@ -662,9 +534,7 @@
           },
           "Errors": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/BatchGetRecordErrors"
-              },
+              { "$ref": "#/components/schemas/BatchGetRecordErrors" },
               {
                 "description": "A list of errors that have occured when retrieving a batch of Records."
               }
@@ -672,9 +542,7 @@
           },
           "UnprocessedIdentifiers": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/UnprocessedIdentifiers"
-              },
+              { "$ref": "#/components/schemas/UnprocessedIdentifiers" },
               {
                 "description": "A unprocessed list of <code>FeatureGroup</code> names, with their corresponding <code>RecordIdentifier</code> value, and Feature name."
               }
@@ -688,9 +556,7 @@
         "properties": {
           "FeatureGroupName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FeatureGroupName"
-              },
+              { "$ref": "#/components/schemas/FeatureGroupName" },
               {
                 "description": "A <code>FeatureGroupName</code> containing Records you are retrieving in a batch."
               }
@@ -698,9 +564,7 @@
           },
           "RecordIdentifiersValueAsString": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RecordIdentifiers"
-              },
+              { "$ref": "#/components/schemas/RecordIdentifiers" },
               {
                 "description": "The value for a list of record identifiers in string format."
               }
@@ -708,9 +572,7 @@
           },
           "FeatureNames": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FeatureNames"
-              },
+              { "$ref": "#/components/schemas/FeatureNames" },
               {
                 "description": "List of names of Features to be retrieved. If not specified, the latest value for all the Features are returned."
               }
@@ -728,9 +590,7 @@
         "properties": {
           "Record": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Record"
-              },
+              { "$ref": "#/components/schemas/Record" },
               {
                 "description": "The record you requested. A list of <code>FeatureValues</code>."
               }
@@ -751,9 +611,7 @@
         "properties": {
           "FeatureName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FeatureName"
-              },
+              { "$ref": "#/components/schemas/FeatureName" },
               {
                 "description": "The name of a feature that a feature value corresponds to."
               }
@@ -761,9 +619,7 @@
           },
           "ValueAsString": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ValueAsString"
-              },
+              { "$ref": "#/components/schemas/ValueAsString" },
               {
                 "description": "The value associated with a feature, in string format. Note that features types can be String, Integral, or Fractional. This value represents all three types as a string."
               }
@@ -777,19 +633,19 @@
         "pattern": ".*",
         "maxLength": 358400
       },
-      "Message": {
-        "type": "string",
-        "maxLength": 2048
-      },
+      "Message": { "type": "string", "maxLength": 2048 },
       "BatchGetRecordError": {
         "type": "object",
-        "required": ["FeatureGroupName", "RecordIdentifierValueAsString", "ErrorCode", "ErrorMessage"],
+        "required": [
+          "FeatureGroupName",
+          "RecordIdentifierValueAsString",
+          "ErrorCode",
+          "ErrorMessage"
+        ],
         "properties": {
           "FeatureGroupName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ValueAsString"
-              },
+              { "$ref": "#/components/schemas/ValueAsString" },
               {
                 "description": "The name of the feature group that the record belongs to."
               }
@@ -797,9 +653,7 @@
           },
           "RecordIdentifierValueAsString": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ValueAsString"
-              },
+              { "$ref": "#/components/schemas/ValueAsString" },
               {
                 "description": "The value for the <code>RecordIdentifier</code> in string format of a Record from a <code>FeatureGroup</code> that is causing an error when attempting to be retrieved."
               }
@@ -807,9 +661,7 @@
           },
           "ErrorCode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ValueAsString"
-              },
+              { "$ref": "#/components/schemas/ValueAsString" },
               {
                 "description": "The error code of an error that has occured when attempting to retrieve a batch of Records. For more information on errors, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_feature_store_GetRecord.html#API_feature_store_GetRecord_Errors\"> Errors</a>."
               }
@@ -817,9 +669,7 @@
           },
           "ErrorMessage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Message"
-              },
+              { "$ref": "#/components/schemas/Message" },
               {
                 "description": "The error message of an error that has occured when attempting to retrieve a record in the batch."
               }
@@ -830,9 +680,7 @@
       },
       "BatchGetRecordErrors": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/BatchGetRecordError"
-        },
+        "items": { "$ref": "#/components/schemas/BatchGetRecordError" },
         "minItems": 0
       },
       "FeatureGroupName": {
@@ -843,49 +691,41 @@
       },
       "RecordIdentifiers": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ValueAsString"
-        },
+        "items": { "$ref": "#/components/schemas/ValueAsString" },
         "minItems": 1,
         "maxItems": 100
       },
       "FeatureNames": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/FeatureName"
-        },
+        "items": { "$ref": "#/components/schemas/FeatureName" },
         "minItems": 1
       },
       "BatchGetRecordResultDetails": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/BatchGetRecordResultDetail"
-        },
+        "items": { "$ref": "#/components/schemas/BatchGetRecordResultDetail" },
         "minItems": 0
       },
       "UnprocessedIdentifiers": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/BatchGetRecordIdentifier"
-        },
+        "items": { "$ref": "#/components/schemas/BatchGetRecordIdentifier" },
         "minItems": 0
       },
       "Record": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/FeatureValue"
-        },
+        "items": { "$ref": "#/components/schemas/FeatureValue" },
         "minItems": 1
       },
       "BatchGetRecordResultDetail": {
         "type": "object",
-        "required": ["FeatureGroupName", "RecordIdentifierValueAsString", "Record"],
+        "required": [
+          "FeatureGroupName",
+          "RecordIdentifierValueAsString",
+          "Record"
+        ],
         "properties": {
           "FeatureGroupName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ValueAsString"
-              },
+              { "$ref": "#/components/schemas/ValueAsString" },
               {
                 "description": "The <code>FeatureGroupName</code> containing Records you retrieved in a batch."
               }
@@ -893,9 +733,7 @@
           },
           "RecordIdentifierValueAsString": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/ValueAsString"
-              },
+              { "$ref": "#/components/schemas/ValueAsString" },
               {
                 "description": "The value of the record identifer in string format."
               }
@@ -903,12 +741,8 @@
           },
           "Record": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Record"
-              },
-              {
-                "description": "The <code>Record</code> retrieved."
-              }
+              { "$ref": "#/components/schemas/Record" },
+              { "description": "The <code>Record</code> retrieved." }
             ]
           }
         },
@@ -916,11 +750,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2020-07-01",
     "endpointPrefix": "featurestore-runtime.sagemaker",

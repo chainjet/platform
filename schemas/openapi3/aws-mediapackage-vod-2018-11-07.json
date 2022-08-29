@@ -147,9 +147,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateAssetResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/CreateAssetResponse" }
               }
             }
           },
@@ -177,9 +175,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -187,9 +183,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -263,27 +257,13 @@
         "summary": "Create Asset"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListAssets",
@@ -293,9 +273,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListAssetsResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/ListAssetsResponse" }
               }
             }
           },
@@ -323,9 +301,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -333,9 +309,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -366,45 +340,33 @@
             "in": "query",
             "required": false,
             "description": "Upper bound on number of records to return.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 1000
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 1000 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "A token used to resume pagination from the end of a previous request.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "packagingGroupId",
             "in": "query",
             "required": false,
             "description": "Returns Assets associated with the specified PackagingGroup.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -451,9 +413,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -461,9 +421,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -503,14 +461,8 @@
                     "properties": {
                       "Encryption": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/CmafEncryption"
-                          },
-                          {
-                            "xml": {
-                              "name": "encryption"
-                            }
-                          }
+                          { "$ref": "#/components/schemas/CmafEncryption" },
+                          { "xml": { "name": "encryption" } }
                         ]
                       },
                       "HlsManifests": {
@@ -519,31 +471,23 @@
                             "$ref": "#/components/schemas/__listOfHlsManifest"
                           },
                           {
-                            "xml": {
-                              "name": "hlsManifests"
-                            },
+                            "xml": { "name": "hlsManifests" },
                             "description": "A list of HLS manifest configurations."
                           }
                         ]
                       },
                       "SegmentDurationSeconds": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__integer" },
                           {
-                            "$ref": "#/components/schemas/__integer"
-                          },
-                          {
-                            "xml": {
-                              "name": "segmentDurationSeconds"
-                            },
+                            "xml": { "name": "segmentDurationSeconds" },
                             "description": "Duration (in seconds) of each fragment. Actual fragments will be\nrounded to the nearest multiple of the source fragment duration.\n"
                           }
                         ]
                       },
                       "IncludeEncoderConfigurationInSegments": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/__boolean"
-                          },
+                          { "$ref": "#/components/schemas/__boolean" },
                           {
                             "xml": {
                               "name": "includeEncoderConfigurationInSegments"
@@ -564,23 +508,15 @@
                             "$ref": "#/components/schemas/__listOfDashManifest"
                           },
                           {
-                            "xml": {
-                              "name": "dashManifests"
-                            },
+                            "xml": { "name": "dashManifests" },
                             "description": "A list of DASH manifest configurations."
                           }
                         ]
                       },
                       "Encryption": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/DashEncryption"
-                          },
-                          {
-                            "xml": {
-                              "name": "encryption"
-                            }
-                          }
+                          { "$ref": "#/components/schemas/DashEncryption" },
+                          { "xml": { "name": "encryption" } }
                         ]
                       },
                       "PeriodTriggers": {
@@ -589,22 +525,16 @@
                             "$ref": "#/components/schemas/__listOf__PeriodTriggersElement"
                           },
                           {
-                            "xml": {
-                              "name": "periodTriggers"
-                            },
+                            "xml": { "name": "periodTriggers" },
                             "description": "A list of triggers that controls when the outgoing Dynamic Adaptive Streaming over HTTP (DASH)\nMedia Presentation Description (MPD) will be partitioned into multiple periods. If empty, the content will not\nbe partitioned into more than one period. If the list contains \"ADS\", new periods will be created where\nthe Asset contains SCTE-35 ad markers.\n"
                           }
                         ]
                       },
                       "SegmentDurationSeconds": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__integer" },
                           {
-                            "$ref": "#/components/schemas/__integer"
-                          },
-                          {
-                            "xml": {
-                              "name": "segmentDurationSeconds"
-                            },
+                            "xml": { "name": "segmentDurationSeconds" },
                             "description": "Duration (in seconds) of each segment. Actual segments will be\nrounded to the nearest multiple of the source segment duration.\n"
                           }
                         ]
@@ -615,18 +545,14 @@
                             "$ref": "#/components/schemas/SegmentTemplateFormat"
                           },
                           {
-                            "xml": {
-                              "name": "segmentTemplateFormat"
-                            },
+                            "xml": { "name": "segmentTemplateFormat" },
                             "description": "Determines the type of SegmentTemplate included in the Media Presentation Description (MPD).  When set to NUMBER_WITH_TIMELINE, a full timeline is presented in each SegmentTemplate, with $Number$ media URLs.  When set to TIME_WITH_TIMELINE, a full timeline is presented in each SegmentTemplate, with $Time$ media URLs. When set to NUMBER_WITH_DURATION, only a duration is included in each SegmentTemplate, with $Number$ media URLs."
                           }
                         ]
                       },
                       "IncludeEncoderConfigurationInSegments": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/__boolean"
-                          },
+                          { "$ref": "#/components/schemas/__boolean" },
                           {
                             "xml": {
                               "name": "includeEncoderConfigurationInSegments"
@@ -643,14 +569,8 @@
                     "properties": {
                       "Encryption": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/HlsEncryption"
-                          },
-                          {
-                            "xml": {
-                              "name": "encryption"
-                            }
-                          }
+                          { "$ref": "#/components/schemas/HlsEncryption" },
+                          { "xml": { "name": "encryption" } }
                         ]
                       },
                       "HlsManifests": {
@@ -659,35 +579,25 @@
                             "$ref": "#/components/schemas/__listOfHlsManifest"
                           },
                           {
-                            "xml": {
-                              "name": "hlsManifests"
-                            },
+                            "xml": { "name": "hlsManifests" },
                             "description": "A list of HLS manifest configurations."
                           }
                         ]
                       },
                       "SegmentDurationSeconds": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__integer" },
                           {
-                            "$ref": "#/components/schemas/__integer"
-                          },
-                          {
-                            "xml": {
-                              "name": "segmentDurationSeconds"
-                            },
+                            "xml": { "name": "segmentDurationSeconds" },
                             "description": "Duration (in seconds) of each fragment. Actual fragments will be\nrounded to the nearest multiple of the source fragment duration.\n"
                           }
                         ]
                       },
                       "UseAudioRenditionGroup": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__boolean" },
                           {
-                            "$ref": "#/components/schemas/__boolean"
-                          },
-                          {
-                            "xml": {
-                              "name": "useAudioRenditionGroup"
-                            },
+                            "xml": { "name": "useAudioRenditionGroup" },
                             "description": "When enabled, audio streams will be placed in rendition groups in the output."
                           }
                         ]
@@ -704,14 +614,8 @@
                     "properties": {
                       "Encryption": {
                         "allOf": [
-                          {
-                            "$ref": "#/components/schemas/MssEncryption"
-                          },
-                          {
-                            "xml": {
-                              "name": "encryption"
-                            }
-                          }
+                          { "$ref": "#/components/schemas/MssEncryption" },
+                          { "xml": { "name": "encryption" } }
                         ]
                       },
                       "MssManifests": {
@@ -720,22 +624,16 @@
                             "$ref": "#/components/schemas/__listOfMssManifest"
                           },
                           {
-                            "xml": {
-                              "name": "mssManifests"
-                            },
+                            "xml": { "name": "mssManifests" },
                             "description": "A list of MSS manifest configurations."
                           }
                         ]
                       },
                       "SegmentDurationSeconds": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__integer" },
                           {
-                            "$ref": "#/components/schemas/__integer"
-                          },
-                          {
-                            "xml": {
-                              "name": "segmentDurationSeconds"
-                            },
+                            "xml": { "name": "segmentDurationSeconds" },
                             "description": "The duration (in seconds) of each segment."
                           }
                         ]
@@ -761,27 +659,13 @@
         "summary": "Create Packaging Configuration"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListPackagingConfigurations",
@@ -821,9 +705,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -831,9 +713,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -864,45 +744,33 @@
             "in": "query",
             "required": false,
             "description": "Upper bound on number of records to return.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 1000
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 1000 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "A token used to resume pagination from the end of a previous request.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "packagingGroupId",
             "in": "query",
             "required": false,
             "description": "Returns MediaPackage VOD PackagingConfigurations associated with the specified PackagingGroup.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -949,9 +817,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -959,9 +825,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1001,26 +865,18 @@
                     "properties": {
                       "CdnIdentifierSecret": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "cdnIdentifierSecret"
-                            },
+                            "xml": { "name": "cdnIdentifierSecret" },
                             "description": "The Amazon Resource Name (ARN) for the secret in AWS Secrets Manager that is used for CDN authorization."
                           }
                         ]
                       },
                       "SecretsRoleArn": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "secretsRoleArn"
-                            },
+                            "xml": { "name": "secretsRoleArn" },
                             "description": "The Amazon Resource Name (ARN) for the IAM role that allows MediaPackage to communicate with AWS Secrets Manager."
                           }
                         ]
@@ -1044,13 +900,9 @@
                     "properties": {
                       "LogGroupName": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "logGroupName"
-                            },
+                            "xml": { "name": "logGroupName" },
                             "description": "Customize the log group name."
                           }
                         ]
@@ -1065,27 +917,13 @@
         "summary": "Create Packaging Group"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListPackagingGroups",
@@ -1125,9 +963,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1135,9 +971,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1168,36 +1002,26 @@
             "in": "query",
             "required": false,
             "description": "Upper bound on number of records to return.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 1000
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 1000 }
           },
           {
             "name": "nextToken",
             "in": "query",
             "required": false,
             "description": "A token used to resume pagination from the end of a previous request.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "MaxResults",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination limit",
             "required": false
           },
           {
             "name": "NextToken",
             "in": "query",
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "description": "Pagination token",
             "required": false
           }
@@ -1214,9 +1038,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteAssetResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/DeleteAssetResponse" }
               }
             }
           },
@@ -1244,9 +1066,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1254,9 +1074,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1287,35 +1105,19 @@
             "in": "path",
             "required": true,
             "description": "The ID of the MediaPackage VOD Asset resource to delete.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Delete Asset"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "DescribeAsset",
@@ -1355,9 +1157,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1365,9 +1165,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1398,9 +1196,7 @@
             "in": "path",
             "required": true,
             "description": "The ID of an MediaPackage VOD Asset resource.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Describe Asset"
@@ -1445,9 +1241,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1455,9 +1249,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1488,35 +1280,19 @@
             "in": "path",
             "required": true,
             "description": "The ID of the MediaPackage VOD PackagingConfiguration resource to delete.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Delete Packaging Configuration"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "DescribePackagingConfiguration",
@@ -1556,9 +1332,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1566,9 +1340,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1599,9 +1371,7 @@
             "in": "path",
             "required": true,
             "description": "The ID of a MediaPackage VOD PackagingConfiguration resource.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Describe Packaging Configuration"
@@ -1646,9 +1416,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1656,9 +1424,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1689,35 +1455,19 @@
             "in": "path",
             "required": true,
             "description": "The ID of the MediaPackage VOD PackagingGroup resource to delete.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Delete Packaging Group"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "DescribePackagingGroup",
@@ -1757,9 +1507,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1767,9 +1515,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1800,9 +1546,7 @@
             "in": "path",
             "required": true,
             "description": "The ID of a MediaPackage VOD PackagingGroup resource.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Describe Packaging Group"
@@ -1845,9 +1589,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1855,9 +1597,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -1888,9 +1628,7 @@
             "in": "path",
             "required": true,
             "description": "The ID of a MediaPackage VOD PackagingGroup resource.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -1906,26 +1644,18 @@
                     "properties": {
                       "CdnIdentifierSecret": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "cdnIdentifierSecret"
-                            },
+                            "xml": { "name": "cdnIdentifierSecret" },
                             "description": "The Amazon Resource Name (ARN) for the secret in AWS Secrets Manager that is used for CDN authorization."
                           }
                         ]
                       },
                       "SecretsRoleArn": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "secretsRoleArn"
-                            },
+                            "xml": { "name": "secretsRoleArn" },
                             "description": "The Amazon Resource Name (ARN) for the IAM role that allows MediaPackage to communicate with AWS Secrets Manager."
                           }
                         ]
@@ -1962,53 +1692,31 @@
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) for the resource. You can get this from the response to any request to the resource.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "List Tags For Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "post": {
         "operationId": "TagResource",
         "description": "Adds tags to the specified resource. You can specify one or more tags to add.",
-        "responses": {
-          "204": {
-            "description": "Success"
-          }
-        },
+        "responses": { "204": { "description": "Success" } },
         "parameters": [
           {
             "name": "resource-arn",
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) for the resource. You can get this from the response to any request to the resource.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -2038,20 +1746,14 @@
       "delete": {
         "operationId": "UntagResource",
         "description": "Removes tags from the specified resource. You can specify one or more tags to remove.",
-        "responses": {
-          "204": {
-            "description": "Success"
-          }
-        },
+        "responses": { "204": { "description": "Success" } },
         "parameters": [
           {
             "name": "resource-arn",
             "in": "path",
             "required": true,
             "description": "The Amazon Resource Name (ARN) for the resource. You can get this from the response to any request to the resource.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "tagKeys",
@@ -2060,36 +1762,20 @@
             "description": "A comma-separated list of the tag keys to remove from the resource.",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/__string"
-              }
+              "items": { "$ref": "#/components/schemas/__string" }
             }
           }
         ],
         "summary": "Untag Resource"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/packaging_groups/{id}/configure_logs": {
@@ -2131,9 +1817,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -2141,9 +1825,7 @@
             "description": "NotFoundException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFoundException"
-                }
+                "schema": { "$ref": "#/components/schemas/NotFoundException" }
               }
             }
           },
@@ -2174,9 +1856,7 @@
             "in": "path",
             "required": true,
             "description": "The ID of a MediaPackage VOD PackagingGroup resource.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
@@ -2192,13 +1872,9 @@
                     "properties": {
                       "LogGroupName": {
                         "allOf": [
+                          { "$ref": "#/components/schemas/__string" },
                           {
-                            "$ref": "#/components/schemas/__string"
-                          },
-                          {
-                            "xml": {
-                              "name": "logGroupName"
-                            },
+                            "xml": { "name": "logGroupName" },
                             "description": "Customize the log group name."
                           }
                         ]
@@ -2213,27 +1889,13 @@
         "summary": "Configure Logs"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -2242,63 +1904,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -2318,125 +1966,85 @@
         "properties": {
           "Arn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "arn"
-                },
+                "xml": { "name": "arn" },
                 "description": "The ARN of the Asset."
               }
             ]
           },
           "CreatedAt": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "createdAt"
-                },
+                "xml": { "name": "createdAt" },
                 "description": "The time the Asset was initially submitted for Ingest."
               }
             ]
           },
           "EgressEndpoints": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfEgressEndpoint" },
               {
-                "$ref": "#/components/schemas/__listOfEgressEndpoint"
-              },
-              {
-                "xml": {
-                  "name": "egressEndpoints"
-                },
+                "xml": { "name": "egressEndpoints" },
                 "description": "The list of egress endpoints available for the Asset."
               }
             ]
           },
           "Id": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "id"
-                },
+                "xml": { "name": "id" },
                 "description": "The unique identifier for the Asset."
               }
             ]
           },
           "PackagingGroupId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "packagingGroupId"
-                },
+                "xml": { "name": "packagingGroupId" },
                 "description": "The ID of the PackagingGroup for the Asset."
               }
             ]
           },
           "ResourceId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "resourceId"
-                },
+                "xml": { "name": "resourceId" },
                 "description": "The resource ID to include in SPEKE key requests."
               }
             ]
           },
           "SourceArn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "sourceArn"
-                },
+                "xml": { "name": "sourceArn" },
                 "description": "ARN of the source object in S3."
               }
             ]
           },
           "SourceRoleArn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "sourceRoleArn"
-                },
+                "xml": { "name": "sourceRoleArn" },
                 "description": "The IAM role_arn used to access the source S3 bucket."
               }
             ]
           },
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Tags"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                }
-              }
+              { "$ref": "#/components/schemas/Tags" },
+              { "xml": { "name": "tags" } }
             ]
           }
         }
       },
-      "__string": {
-        "type": "string"
-      },
+      "__string": { "type": "string" },
       "UnprocessableEntityException": {},
       "InternalServerErrorException": {},
       "ForbiddenException": {},
@@ -2448,101 +2056,59 @@
         "properties": {
           "Arn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "arn"
-                },
+                "xml": { "name": "arn" },
                 "description": "The ARN of the PackagingConfiguration."
               }
             ]
           },
           "CmafPackage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CmafPackage"
-              },
-              {
-                "xml": {
-                  "name": "cmafPackage"
-                }
-              }
+              { "$ref": "#/components/schemas/CmafPackage" },
+              { "xml": { "name": "cmafPackage" } }
             ]
           },
           "DashPackage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DashPackage"
-              },
-              {
-                "xml": {
-                  "name": "dashPackage"
-                }
-              }
+              { "$ref": "#/components/schemas/DashPackage" },
+              { "xml": { "name": "dashPackage" } }
             ]
           },
           "HlsPackage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HlsPackage"
-              },
-              {
-                "xml": {
-                  "name": "hlsPackage"
-                }
-              }
+              { "$ref": "#/components/schemas/HlsPackage" },
+              { "xml": { "name": "hlsPackage" } }
             ]
           },
           "Id": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "id"
-                },
+                "xml": { "name": "id" },
                 "description": "The ID of the PackagingConfiguration."
               }
             ]
           },
           "MssPackage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MssPackage"
-              },
-              {
-                "xml": {
-                  "name": "mssPackage"
-                }
-              }
+              { "$ref": "#/components/schemas/MssPackage" },
+              { "xml": { "name": "mssPackage" } }
             ]
           },
           "PackagingGroupId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "packagingGroupId"
-                },
+                "xml": { "name": "packagingGroupId" },
                 "description": "The ID of a PackagingGroup."
               }
             ]
           },
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Tags"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                }
-              }
+              { "$ref": "#/components/schemas/Tags" },
+              { "xml": { "name": "tags" } }
             ]
           }
         }
@@ -2553,25 +2119,15 @@
         "properties": {
           "SpekeKeyProvider": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SpekeKeyProvider"
-              },
-              {
-                "xml": {
-                  "name": "spekeKeyProvider"
-                }
-              }
+              { "$ref": "#/components/schemas/SpekeKeyProvider" },
+              { "xml": { "name": "spekeKeyProvider" } }
             ]
           },
           "ConstantInitializationVector": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "constantInitializationVector"
-                },
+                "xml": { "name": "constantInitializationVector" },
                 "description": "An optional 128-bit, 16-byte hex value represented by a 32-character string, used in conjunction with the key for encrypting blocks. If you don't specify a value, then MediaPackage creates the constant initialization vector (IV)."
               }
             ]
@@ -2581,18 +2137,12 @@
       },
       "__listOfHlsManifest": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/HlsManifest"
-        }
+        "items": { "$ref": "#/components/schemas/HlsManifest" }
       },
-      "__integer": {
-        "type": "integer"
-      },
+      "__integer": { "type": "integer" },
       "__listOfDashManifest": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DashManifest"
-        }
+        "items": { "$ref": "#/components/schemas/DashManifest" }
       },
       "DashEncryption": {
         "required": ["SpekeKeyProvider"],
@@ -2600,14 +2150,8 @@
         "properties": {
           "SpekeKeyProvider": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SpekeKeyProvider"
-              },
-              {
-                "xml": {
-                  "name": "spekeKeyProvider"
-                }
-              }
+              { "$ref": "#/components/schemas/SpekeKeyProvider" },
+              { "xml": { "name": "spekeKeyProvider" } }
             ]
           }
         },
@@ -2615,9 +2159,7 @@
       },
       "__listOf__PeriodTriggersElement": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/__PeriodTriggersElement"
-        }
+        "items": { "$ref": "#/components/schemas/__PeriodTriggersElement" }
       },
       "SegmentTemplateFormat": {
         "enum": [
@@ -2633,62 +2175,40 @@
         "properties": {
           "ConstantInitializationVector": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "constantInitializationVector"
-                },
+                "xml": { "name": "constantInitializationVector" },
                 "description": "A constant initialization vector for encryption (optional).\nWhen not specified the initialization vector will be periodically rotated.\n"
               }
             ]
           },
           "EncryptionMethod": {
             "allOf": [
+              { "$ref": "#/components/schemas/EncryptionMethod" },
               {
-                "$ref": "#/components/schemas/EncryptionMethod"
-              },
-              {
-                "xml": {
-                  "name": "encryptionMethod"
-                },
+                "xml": { "name": "encryptionMethod" },
                 "description": "The encryption method to use."
               }
             ]
           },
           "SpekeKeyProvider": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SpekeKeyProvider"
-              },
-              {
-                "xml": {
-                  "name": "spekeKeyProvider"
-                }
-              }
+              { "$ref": "#/components/schemas/SpekeKeyProvider" },
+              { "xml": { "name": "spekeKeyProvider" } }
             ]
           }
         },
         "description": "An HTTP Live Streaming (HLS) encryption configuration."
       },
-      "__boolean": {
-        "type": "boolean"
-      },
+      "__boolean": { "type": "boolean" },
       "MssEncryption": {
         "required": ["SpekeKeyProvider"],
         "type": "object",
         "properties": {
           "SpekeKeyProvider": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/SpekeKeyProvider"
-              },
-              {
-                "xml": {
-                  "name": "spekeKeyProvider"
-                }
-              }
+              { "$ref": "#/components/schemas/SpekeKeyProvider" },
+              { "xml": { "name": "spekeKeyProvider" } }
             ]
           }
         },
@@ -2696,219 +2216,143 @@
       },
       "__listOfMssManifest": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/MssManifest"
-        }
+        "items": { "$ref": "#/components/schemas/MssManifest" }
       },
       "CreatePackagingGroupResponse": {
         "type": "object",
         "properties": {
           "Arn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "arn"
-                },
+                "xml": { "name": "arn" },
                 "description": "The ARN of the PackagingGroup."
               }
             ]
           },
           "Authorization": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Authorization"
-              },
-              {
-                "xml": {
-                  "name": "authorization"
-                }
-              }
+              { "$ref": "#/components/schemas/Authorization" },
+              { "xml": { "name": "authorization" } }
             ]
           },
           "DomainName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "domainName"
-                },
+                "xml": { "name": "domainName" },
                 "description": "The fully qualified domain name for Assets in the PackagingGroup."
               }
             ]
           },
           "Id": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "id"
-                },
+                "xml": { "name": "id" },
                 "description": "The ID of the PackagingGroup."
               }
             ]
           },
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Tags"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                }
-              }
+              { "$ref": "#/components/schemas/Tags" },
+              { "xml": { "name": "tags" } }
             ]
           },
           "EgressAccessLogs": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EgressAccessLogs"
-              },
-              {
-                "xml": {
-                  "name": "egressAccessLogs"
-                }
-              }
+              { "$ref": "#/components/schemas/EgressAccessLogs" },
+              { "xml": { "name": "egressAccessLogs" } }
             ]
           }
         }
       },
-      "DeleteAssetResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "DeleteAssetResponse": { "type": "object", "properties": {} },
       "DeletePackagingConfigurationResponse": {
         "type": "object",
         "properties": {}
       },
-      "DeletePackagingGroupResponse": {
-        "type": "object",
-        "properties": {}
-      },
+      "DeletePackagingGroupResponse": { "type": "object", "properties": {} },
       "DescribeAssetResponse": {
         "type": "object",
         "properties": {
           "Arn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "arn"
-                },
+                "xml": { "name": "arn" },
                 "description": "The ARN of the Asset."
               }
             ]
           },
           "CreatedAt": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "createdAt"
-                },
+                "xml": { "name": "createdAt" },
                 "description": "The time the Asset was initially submitted for Ingest."
               }
             ]
           },
           "EgressEndpoints": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfEgressEndpoint" },
               {
-                "$ref": "#/components/schemas/__listOfEgressEndpoint"
-              },
-              {
-                "xml": {
-                  "name": "egressEndpoints"
-                },
+                "xml": { "name": "egressEndpoints" },
                 "description": "The list of egress endpoints available for the Asset."
               }
             ]
           },
           "Id": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "id"
-                },
+                "xml": { "name": "id" },
                 "description": "The unique identifier for the Asset."
               }
             ]
           },
           "PackagingGroupId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "packagingGroupId"
-                },
+                "xml": { "name": "packagingGroupId" },
                 "description": "The ID of the PackagingGroup for the Asset."
               }
             ]
           },
           "ResourceId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "resourceId"
-                },
+                "xml": { "name": "resourceId" },
                 "description": "The resource ID to include in SPEKE key requests."
               }
             ]
           },
           "SourceArn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "sourceArn"
-                },
+                "xml": { "name": "sourceArn" },
                 "description": "ARN of the source object in S3."
               }
             ]
           },
           "SourceRoleArn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "sourceRoleArn"
-                },
+                "xml": { "name": "sourceRoleArn" },
                 "description": "The IAM role_arn used to access the source S3 bucket."
               }
             ]
           },
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Tags"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                }
-              }
+              { "$ref": "#/components/schemas/Tags" },
+              { "xml": { "name": "tags" } }
             ]
           }
         }
@@ -2918,101 +2362,59 @@
         "properties": {
           "Arn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "arn"
-                },
+                "xml": { "name": "arn" },
                 "description": "The ARN of the PackagingConfiguration."
               }
             ]
           },
           "CmafPackage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CmafPackage"
-              },
-              {
-                "xml": {
-                  "name": "cmafPackage"
-                }
-              }
+              { "$ref": "#/components/schemas/CmafPackage" },
+              { "xml": { "name": "cmafPackage" } }
             ]
           },
           "DashPackage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DashPackage"
-              },
-              {
-                "xml": {
-                  "name": "dashPackage"
-                }
-              }
+              { "$ref": "#/components/schemas/DashPackage" },
+              { "xml": { "name": "dashPackage" } }
             ]
           },
           "HlsPackage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HlsPackage"
-              },
-              {
-                "xml": {
-                  "name": "hlsPackage"
-                }
-              }
+              { "$ref": "#/components/schemas/HlsPackage" },
+              { "xml": { "name": "hlsPackage" } }
             ]
           },
           "Id": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "id"
-                },
+                "xml": { "name": "id" },
                 "description": "The ID of the PackagingConfiguration."
               }
             ]
           },
           "MssPackage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MssPackage"
-              },
-              {
-                "xml": {
-                  "name": "mssPackage"
-                }
-              }
+              { "$ref": "#/components/schemas/MssPackage" },
+              { "xml": { "name": "mssPackage" } }
             ]
           },
           "PackagingGroupId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "packagingGroupId"
-                },
+                "xml": { "name": "packagingGroupId" },
                 "description": "The ID of a PackagingGroup."
               }
             ]
           },
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Tags"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                }
-              }
+              { "$ref": "#/components/schemas/Tags" },
+              { "xml": { "name": "tags" } }
             ]
           }
         }
@@ -3022,77 +2424,47 @@
         "properties": {
           "Arn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "arn"
-                },
+                "xml": { "name": "arn" },
                 "description": "The ARN of the PackagingGroup."
               }
             ]
           },
           "Authorization": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Authorization"
-              },
-              {
-                "xml": {
-                  "name": "authorization"
-                }
-              }
+              { "$ref": "#/components/schemas/Authorization" },
+              { "xml": { "name": "authorization" } }
             ]
           },
           "DomainName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "domainName"
-                },
+                "xml": { "name": "domainName" },
                 "description": "The fully qualified domain name for Assets in the PackagingGroup."
               }
             ]
           },
           "Id": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "id"
-                },
+                "xml": { "name": "id" },
                 "description": "The ID of the PackagingGroup."
               }
             ]
           },
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Tags"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                }
-              }
+              { "$ref": "#/components/schemas/Tags" },
+              { "xml": { "name": "tags" } }
             ]
           },
           "EgressAccessLogs": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EgressAccessLogs"
-              },
-              {
-                "xml": {
-                  "name": "egressAccessLogs"
-                }
-              }
+              { "$ref": "#/components/schemas/EgressAccessLogs" },
+              { "xml": { "name": "egressAccessLogs" } }
             ]
           }
         }
@@ -3102,26 +2474,18 @@
         "properties": {
           "Assets": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfAssetShallow" },
               {
-                "$ref": "#/components/schemas/__listOfAssetShallow"
-              },
-              {
-                "xml": {
-                  "name": "assets"
-                },
+                "xml": { "name": "assets" },
                 "description": "A list of MediaPackage VOD Asset resources."
               }
             ]
           },
           "NextToken": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "nextToken"
-                },
+                "xml": { "name": "nextToken" },
                 "description": "A token that can be used to resume pagination from the end of the collection."
               }
             ]
@@ -3133,26 +2497,18 @@
         "properties": {
           "NextToken": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "nextToken"
-                },
+                "xml": { "name": "nextToken" },
                 "description": "A token that can be used to resume pagination from the end of the collection."
               }
             ]
           },
           "PackagingConfigurations": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfPackagingConfiguration" },
               {
-                "$ref": "#/components/schemas/__listOfPackagingConfiguration"
-              },
-              {
-                "xml": {
-                  "name": "packagingConfigurations"
-                },
+                "xml": { "name": "packagingConfigurations" },
                 "description": "A list of MediaPackage VOD PackagingConfiguration resources."
               }
             ]
@@ -3164,26 +2520,18 @@
         "properties": {
           "NextToken": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "nextToken"
-                },
+                "xml": { "name": "nextToken" },
                 "description": "A token that can be used to resume pagination from the end of the collection."
               }
             ]
           },
           "PackagingGroups": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfPackagingGroup" },
               {
-                "$ref": "#/components/schemas/__listOfPackagingGroup"
-              },
-              {
-                "xml": {
-                  "name": "packagingGroups"
-                },
+                "xml": { "name": "packagingGroups" },
                 "description": "A list of MediaPackage VOD PackagingGroup resources."
               }
             ]
@@ -3195,13 +2543,9 @@
         "properties": {
           "Tags": {
             "allOf": [
+              { "$ref": "#/components/schemas/__mapOf__string" },
               {
-                "$ref": "#/components/schemas/__mapOf__string"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                },
+                "xml": { "name": "tags" },
                 "description": "A collection of tags associated with a resource"
               }
             ]
@@ -3213,77 +2557,47 @@
         "properties": {
           "Arn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "arn"
-                },
+                "xml": { "name": "arn" },
                 "description": "The ARN of the PackagingGroup."
               }
             ]
           },
           "Authorization": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Authorization"
-              },
-              {
-                "xml": {
-                  "name": "authorization"
-                }
-              }
+              { "$ref": "#/components/schemas/Authorization" },
+              { "xml": { "name": "authorization" } }
             ]
           },
           "DomainName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "domainName"
-                },
+                "xml": { "name": "domainName" },
                 "description": "The fully qualified domain name for Assets in the PackagingGroup."
               }
             ]
           },
           "Id": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "id"
-                },
+                "xml": { "name": "id" },
                 "description": "The ID of the PackagingGroup."
               }
             ]
           },
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Tags"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                }
-              }
+              { "$ref": "#/components/schemas/Tags" },
+              { "xml": { "name": "tags" } }
             ]
           },
           "EgressAccessLogs": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EgressAccessLogs"
-              },
-              {
-                "xml": {
-                  "name": "egressAccessLogs"
-                }
-              }
+              { "$ref": "#/components/schemas/EgressAccessLogs" },
+              { "xml": { "name": "egressAccessLogs" } }
             ]
           }
         }
@@ -3295,114 +2609,78 @@
       "Tags": {
         "type": "object",
         "description": "A collection of tags associated with a resource",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/__string"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/__string" }
       },
       "AssetShallow": {
         "type": "object",
         "properties": {
           "Arn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "arn"
-                },
+                "xml": { "name": "arn" },
                 "description": "The ARN of the Asset."
               }
             ]
           },
           "CreatedAt": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "createdAt"
-                },
+                "xml": { "name": "createdAt" },
                 "description": "The time the Asset was initially submitted for Ingest."
               }
             ]
           },
           "Id": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "id"
-                },
+                "xml": { "name": "id" },
                 "description": "The unique identifier for the Asset."
               }
             ]
           },
           "PackagingGroupId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "packagingGroupId"
-                },
+                "xml": { "name": "packagingGroupId" },
                 "description": "The ID of the PackagingGroup for the Asset."
               }
             ]
           },
           "ResourceId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "resourceId"
-                },
+                "xml": { "name": "resourceId" },
                 "description": "The resource ID to include in SPEKE key requests."
               }
             ]
           },
           "SourceArn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "sourceArn"
-                },
+                "xml": { "name": "sourceArn" },
                 "description": "ARN of the source object in S3."
               }
             ]
           },
           "SourceRoleArn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "sourceRoleArn"
-                },
+                "xml": { "name": "sourceRoleArn" },
                 "description": "The IAM role ARN used to access the source S3 bucket."
               }
             ]
           },
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Tags"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                }
-              }
+              { "$ref": "#/components/schemas/Tags" },
+              { "xml": { "name": "tags" } }
             ]
           }
         },
@@ -3414,26 +2692,18 @@
         "properties": {
           "CdnIdentifierSecret": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "cdnIdentifierSecret"
-                },
+                "xml": { "name": "cdnIdentifierSecret" },
                 "description": "The Amazon Resource Name (ARN) for the secret in AWS Secrets Manager that is used for CDN authorization."
               }
             ]
           },
           "SecretsRoleArn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "secretsRoleArn"
-                },
+                "xml": { "name": "secretsRoleArn" },
                 "description": "The Amazon Resource Name (ARN) for the IAM role that allows MediaPackage to communicate with AWS Secrets Manager."
               }
             ]
@@ -3447,39 +2717,27 @@
         "properties": {
           "RoleArn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "roleArn"
-                },
+                "xml": { "name": "roleArn" },
                 "description": "An Amazon Resource Name (ARN) of an IAM role that AWS Elemental\nMediaPackage will assume when accessing the key provider service.\n"
               }
             ]
           },
           "SystemIds": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOf__string" },
               {
-                "$ref": "#/components/schemas/__listOf__string"
-              },
-              {
-                "xml": {
-                  "name": "systemIds"
-                },
+                "xml": { "name": "systemIds" },
                 "description": "The system IDs to include in key requests."
               }
             ]
           },
           "Url": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "url"
-                },
+                "xml": { "name": "url" },
                 "description": "The URL of the external key provider service."
               }
             ]
@@ -3493,51 +2751,33 @@
         "properties": {
           "Encryption": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CmafEncryption"
-              },
-              {
-                "xml": {
-                  "name": "encryption"
-                }
-              }
+              { "$ref": "#/components/schemas/CmafEncryption" },
+              { "xml": { "name": "encryption" } }
             ]
           },
           "HlsManifests": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfHlsManifest" },
               {
-                "$ref": "#/components/schemas/__listOfHlsManifest"
-              },
-              {
-                "xml": {
-                  "name": "hlsManifests"
-                },
+                "xml": { "name": "hlsManifests" },
                 "description": "A list of HLS manifest configurations."
               }
             ]
           },
           "SegmentDurationSeconds": {
             "allOf": [
+              { "$ref": "#/components/schemas/__integer" },
               {
-                "$ref": "#/components/schemas/__integer"
-              },
-              {
-                "xml": {
-                  "name": "segmentDurationSeconds"
-                },
+                "xml": { "name": "segmentDurationSeconds" },
                 "description": "Duration (in seconds) of each fragment. Actual fragments will be\nrounded to the nearest multiple of the source fragment duration.\n"
               }
             ]
           },
           "IncludeEncoderConfigurationInSegments": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "includeEncoderConfigurationInSegments"
-                },
+                "xml": { "name": "includeEncoderConfigurationInSegments" },
                 "description": "When includeEncoderConfigurationInSegments is set to true, MediaPackage places your encoder's Sequence Parameter Set (SPS), Picture Parameter Set (PPS), and Video Parameter Set (VPS) metadata in every video segment instead of in the init fragment. This lets you use different SPS/PPS/VPS settings for your assets during content playback.\n"
               }
             ]
@@ -3547,9 +2787,7 @@
       },
       "__listOfEgressEndpoint": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/EgressEndpoint"
-        }
+        "items": { "$ref": "#/components/schemas/EgressEndpoint" }
       },
       "DashPackage": {
         "required": ["DashManifests"],
@@ -3557,27 +2795,17 @@
         "properties": {
           "DashManifests": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfDashManifest" },
               {
-                "$ref": "#/components/schemas/__listOfDashManifest"
-              },
-              {
-                "xml": {
-                  "name": "dashManifests"
-                },
+                "xml": { "name": "dashManifests" },
                 "description": "A list of DASH manifest configurations."
               }
             ]
           },
           "Encryption": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DashEncryption"
-              },
-              {
-                "xml": {
-                  "name": "encryption"
-                }
-              }
+              { "$ref": "#/components/schemas/DashEncryption" },
+              { "xml": { "name": "encryption" } }
             ]
           },
           "PeriodTriggers": {
@@ -3586,48 +2814,34 @@
                 "$ref": "#/components/schemas/__listOf__PeriodTriggersElement"
               },
               {
-                "xml": {
-                  "name": "periodTriggers"
-                },
+                "xml": { "name": "periodTriggers" },
                 "description": "A list of triggers that controls when the outgoing Dynamic Adaptive Streaming over HTTP (DASH)\nMedia Presentation Description (MPD) will be partitioned into multiple periods. If empty, the content will not\nbe partitioned into more than one period. If the list contains \"ADS\", new periods will be created where\nthe Asset contains SCTE-35 ad markers.\n"
               }
             ]
           },
           "SegmentDurationSeconds": {
             "allOf": [
+              { "$ref": "#/components/schemas/__integer" },
               {
-                "$ref": "#/components/schemas/__integer"
-              },
-              {
-                "xml": {
-                  "name": "segmentDurationSeconds"
-                },
+                "xml": { "name": "segmentDurationSeconds" },
                 "description": "Duration (in seconds) of each segment. Actual segments will be\nrounded to the nearest multiple of the source segment duration.\n"
               }
             ]
           },
           "SegmentTemplateFormat": {
             "allOf": [
+              { "$ref": "#/components/schemas/SegmentTemplateFormat" },
               {
-                "$ref": "#/components/schemas/SegmentTemplateFormat"
-              },
-              {
-                "xml": {
-                  "name": "segmentTemplateFormat"
-                },
+                "xml": { "name": "segmentTemplateFormat" },
                 "description": "Determines the type of SegmentTemplate included in the Media Presentation Description (MPD).  When set to NUMBER_WITH_TIMELINE, a full timeline is presented in each SegmentTemplate, with $Number$ media URLs.  When set to TIME_WITH_TIMELINE, a full timeline is presented in each SegmentTemplate, with $Time$ media URLs. When set to NUMBER_WITH_DURATION, only a duration is included in each SegmentTemplate, with $Number$ media URLs."
               }
             ]
           },
           "IncludeEncoderConfigurationInSegments": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "includeEncoderConfigurationInSegments"
-                },
+                "xml": { "name": "includeEncoderConfigurationInSegments" },
                 "description": "When includeEncoderConfigurationInSegments is set to true, MediaPackage places your encoder's Sequence Parameter Set (SPS), Picture Parameter Set (PPS), and Video Parameter Set (VPS) metadata in every video segment instead of in the init fragment. This lets you use different SPS/PPS/VPS settings for your assets during content playback.\n"
               }
             ]
@@ -3641,51 +2855,33 @@
         "properties": {
           "Encryption": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HlsEncryption"
-              },
-              {
-                "xml": {
-                  "name": "encryption"
-                }
-              }
+              { "$ref": "#/components/schemas/HlsEncryption" },
+              { "xml": { "name": "encryption" } }
             ]
           },
           "HlsManifests": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfHlsManifest" },
               {
-                "$ref": "#/components/schemas/__listOfHlsManifest"
-              },
-              {
-                "xml": {
-                  "name": "hlsManifests"
-                },
+                "xml": { "name": "hlsManifests" },
                 "description": "A list of HLS manifest configurations."
               }
             ]
           },
           "SegmentDurationSeconds": {
             "allOf": [
+              { "$ref": "#/components/schemas/__integer" },
               {
-                "$ref": "#/components/schemas/__integer"
-              },
-              {
-                "xml": {
-                  "name": "segmentDurationSeconds"
-                },
+                "xml": { "name": "segmentDurationSeconds" },
                 "description": "Duration (in seconds) of each fragment. Actual fragments will be\nrounded to the nearest multiple of the source fragment duration.\n"
               }
             ]
           },
           "UseAudioRenditionGroup": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "useAudioRenditionGroup"
-                },
+                "xml": { "name": "useAudioRenditionGroup" },
                 "description": "When enabled, audio streams will be placed in rendition groups in the output."
               }
             ]
@@ -3699,38 +2895,24 @@
         "properties": {
           "Encryption": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MssEncryption"
-              },
-              {
-                "xml": {
-                  "name": "encryption"
-                }
-              }
+              { "$ref": "#/components/schemas/MssEncryption" },
+              { "xml": { "name": "encryption" } }
             ]
           },
           "MssManifests": {
             "allOf": [
+              { "$ref": "#/components/schemas/__listOfMssManifest" },
               {
-                "$ref": "#/components/schemas/__listOfMssManifest"
-              },
-              {
-                "xml": {
-                  "name": "mssManifests"
-                },
+                "xml": { "name": "mssManifests" },
                 "description": "A list of MSS manifest configurations."
               }
             ]
           },
           "SegmentDurationSeconds": {
             "allOf": [
+              { "$ref": "#/components/schemas/__integer" },
               {
-                "$ref": "#/components/schemas/__integer"
-              },
-              {
-                "xml": {
-                  "name": "segmentDurationSeconds"
-                },
+                "xml": { "name": "segmentDurationSeconds" },
                 "description": "The duration (in seconds) of each segment."
               }
             ]
@@ -3738,52 +2920,34 @@
         },
         "description": "A Microsoft Smooth Streaming (MSS) PackagingConfiguration."
       },
-      "ManifestLayout": {
-        "enum": ["FULL", "COMPACT"],
-        "type": "string"
-      },
-      "Profile": {
-        "enum": ["NONE", "HBBTV_1_5"],
-        "type": "string"
-      },
+      "ManifestLayout": { "enum": ["FULL", "COMPACT"], "type": "string" },
+      "Profile": { "enum": ["NONE", "HBBTV_1_5"], "type": "string" },
       "StreamSelection": {
         "type": "object",
         "properties": {
           "MaxVideoBitsPerSecond": {
             "allOf": [
+              { "$ref": "#/components/schemas/__integer" },
               {
-                "$ref": "#/components/schemas/__integer"
-              },
-              {
-                "xml": {
-                  "name": "maxVideoBitsPerSecond"
-                },
+                "xml": { "name": "maxVideoBitsPerSecond" },
                 "description": "The maximum video bitrate (bps) to include in output."
               }
             ]
           },
           "MinVideoBitsPerSecond": {
             "allOf": [
+              { "$ref": "#/components/schemas/__integer" },
               {
-                "$ref": "#/components/schemas/__integer"
-              },
-              {
-                "xml": {
-                  "name": "minVideoBitsPerSecond"
-                },
+                "xml": { "name": "minVideoBitsPerSecond" },
                 "description": "The minimum video bitrate (bps) to include in output."
               }
             ]
           },
           "StreamOrder": {
             "allOf": [
+              { "$ref": "#/components/schemas/StreamOrder" },
               {
-                "$ref": "#/components/schemas/StreamOrder"
-              },
-              {
-                "xml": {
-                  "name": "streamOrder"
-                },
+                "xml": { "name": "streamOrder" },
                 "description": "A directive that determines the order of streams in the output."
               }
             ]
@@ -3796,66 +2960,44 @@
         "properties": {
           "ManifestLayout": {
             "allOf": [
+              { "$ref": "#/components/schemas/ManifestLayout" },
               {
-                "$ref": "#/components/schemas/ManifestLayout"
-              },
-              {
-                "xml": {
-                  "name": "manifestLayout"
-                },
+                "xml": { "name": "manifestLayout" },
                 "description": "Determines the position of some tags in the Media Presentation Description (MPD).  When set to FULL, elements like SegmentTemplate and ContentProtection are included in each Representation.  When set to COMPACT, duplicate elements are combined and presented at the AdaptationSet level."
               }
             ]
           },
           "ManifestName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "manifestName"
-                },
+                "xml": { "name": "manifestName" },
                 "description": "An optional string to include in the name of the manifest."
               }
             ]
           },
           "MinBufferTimeSeconds": {
             "allOf": [
+              { "$ref": "#/components/schemas/__integer" },
               {
-                "$ref": "#/components/schemas/__integer"
-              },
-              {
-                "xml": {
-                  "name": "minBufferTimeSeconds"
-                },
+                "xml": { "name": "minBufferTimeSeconds" },
                 "description": "Minimum duration (in seconds) that a player will buffer media before starting the presentation."
               }
             ]
           },
           "Profile": {
             "allOf": [
+              { "$ref": "#/components/schemas/Profile" },
               {
-                "$ref": "#/components/schemas/Profile"
-              },
-              {
-                "xml": {
-                  "name": "profile"
-                },
+                "xml": { "name": "profile" },
                 "description": "The Dynamic Adaptive Streaming over HTTP (DASH) profile type.  When set to \"HBBTV_1_5\", HbbTV 1.5 compliant output is enabled."
               }
             ]
           },
           "StreamSelection": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamSelection"
-              },
-              {
-                "xml": {
-                  "name": "streamSelection"
-                }
-              }
+              { "$ref": "#/components/schemas/StreamSelection" },
+              { "xml": { "name": "streamSelection" } }
             ]
           }
         },
@@ -3866,26 +3008,18 @@
         "properties": {
           "PackagingConfigurationId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "packagingConfigurationId"
-                },
+                "xml": { "name": "packagingConfigurationId" },
                 "description": "The ID of the PackagingConfiguration being applied to the Asset."
               }
             ]
           },
           "Url": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "url"
-                },
+                "xml": { "name": "url" },
                 "description": "The URL of the parent manifest for the repackaged Asset."
               }
             ]
@@ -3902,79 +3036,53 @@
         "properties": {
           "AdMarkers": {
             "allOf": [
+              { "$ref": "#/components/schemas/AdMarkers" },
               {
-                "$ref": "#/components/schemas/AdMarkers"
-              },
-              {
-                "xml": {
-                  "name": "adMarkers"
-                },
+                "xml": { "name": "adMarkers" },
                 "description": "This setting controls how ad markers are included in the packaged OriginEndpoint.\n\"NONE\" will omit all SCTE-35 ad markers from the output.\n\"PASSTHROUGH\" causes the manifest to contain a copy of the SCTE-35 ad\nmarkers (comments) taken directly from the input HTTP Live Streaming (HLS) manifest.\n\"SCTE35_ENHANCED\" generates ad markers and blackout tags based on SCTE-35\nmessages in the input source.\n"
               }
             ]
           },
           "IncludeIframeOnlyStream": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "includeIframeOnlyStream"
-                },
+                "xml": { "name": "includeIframeOnlyStream" },
                 "description": "When enabled, an I-Frame only stream will be included in the output."
               }
             ]
           },
           "ManifestName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "manifestName"
-                },
+                "xml": { "name": "manifestName" },
                 "description": "An optional string to include in the name of the manifest."
               }
             ]
           },
           "ProgramDateTimeIntervalSeconds": {
             "allOf": [
+              { "$ref": "#/components/schemas/__integer" },
               {
-                "$ref": "#/components/schemas/__integer"
-              },
-              {
-                "xml": {
-                  "name": "programDateTimeIntervalSeconds"
-                },
+                "xml": { "name": "programDateTimeIntervalSeconds" },
                 "description": "The interval (in seconds) between each EXT-X-PROGRAM-DATE-TIME tag\ninserted into manifests. Additionally, when an interval is specified\nID3Timed Metadata messages will be generated every 5 seconds using the\ningest time of the content.\nIf the interval is not specified, or set to 0, then\nno EXT-X-PROGRAM-DATE-TIME tags will be inserted into manifests and no\nID3Timed Metadata messages will be generated. Note that irrespective\nof this parameter, if any ID3 Timed Metadata is found in HTTP Live Streaming (HLS) input,\nit will be passed through to HLS output.\n"
               }
             ]
           },
           "RepeatExtXKey": {
             "allOf": [
+              { "$ref": "#/components/schemas/__boolean" },
               {
-                "$ref": "#/components/schemas/__boolean"
-              },
-              {
-                "xml": {
-                  "name": "repeatExtXKey"
-                },
+                "xml": { "name": "repeatExtXKey" },
                 "description": "When enabled, the EXT-X-KEY tag will be repeated in output manifests."
               }
             ]
           },
           "StreamSelection": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamSelection"
-              },
-              {
-                "xml": {
-                  "name": "streamSelection"
-                }
-              }
+              { "$ref": "#/components/schemas/StreamSelection" },
+              { "xml": { "name": "streamSelection" } }
             ]
           }
         },
@@ -3982,54 +3090,36 @@
       },
       "__listOfAssetShallow": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/AssetShallow"
-        }
+        "items": { "$ref": "#/components/schemas/AssetShallow" }
       },
       "__listOfPackagingConfiguration": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/PackagingConfiguration"
-        }
+        "items": { "$ref": "#/components/schemas/PackagingConfiguration" }
       },
       "__listOfPackagingGroup": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/PackagingGroup"
-        }
+        "items": { "$ref": "#/components/schemas/PackagingGroup" }
       },
       "__mapOf__string": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/__string"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/__string" }
       },
       "MssManifest": {
         "type": "object",
         "properties": {
           "ManifestName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "manifestName"
-                },
+                "xml": { "name": "manifestName" },
                 "description": "An optional string to include in the name of the manifest."
               }
             ]
           },
           "StreamSelection": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/StreamSelection"
-              },
-              {
-                "xml": {
-                  "name": "streamSelection"
-                }
-              }
+              { "$ref": "#/components/schemas/StreamSelection" },
+              { "xml": { "name": "streamSelection" } }
             ]
           }
         },
@@ -4040,101 +3130,59 @@
         "properties": {
           "Arn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "arn"
-                },
+                "xml": { "name": "arn" },
                 "description": "The ARN of the PackagingConfiguration."
               }
             ]
           },
           "CmafPackage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/CmafPackage"
-              },
-              {
-                "xml": {
-                  "name": "cmafPackage"
-                }
-              }
+              { "$ref": "#/components/schemas/CmafPackage" },
+              { "xml": { "name": "cmafPackage" } }
             ]
           },
           "DashPackage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/DashPackage"
-              },
-              {
-                "xml": {
-                  "name": "dashPackage"
-                }
-              }
+              { "$ref": "#/components/schemas/DashPackage" },
+              { "xml": { "name": "dashPackage" } }
             ]
           },
           "HlsPackage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HlsPackage"
-              },
-              {
-                "xml": {
-                  "name": "hlsPackage"
-                }
-              }
+              { "$ref": "#/components/schemas/HlsPackage" },
+              { "xml": { "name": "hlsPackage" } }
             ]
           },
           "Id": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "id"
-                },
+                "xml": { "name": "id" },
                 "description": "The ID of the PackagingConfiguration."
               }
             ]
           },
           "MssPackage": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MssPackage"
-              },
-              {
-                "xml": {
-                  "name": "mssPackage"
-                }
-              }
+              { "$ref": "#/components/schemas/MssPackage" },
+              { "xml": { "name": "mssPackage" } }
             ]
           },
           "PackagingGroupId": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "packagingGroupId"
-                },
+                "xml": { "name": "packagingGroupId" },
                 "description": "The ID of a PackagingGroup."
               }
             ]
           },
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Tags"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                }
-              }
+              { "$ref": "#/components/schemas/Tags" },
+              { "xml": { "name": "tags" } }
             ]
           }
         },
@@ -4145,77 +3193,47 @@
         "properties": {
           "Arn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "arn"
-                },
+                "xml": { "name": "arn" },
                 "description": "The ARN of the PackagingGroup."
               }
             ]
           },
           "Authorization": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Authorization"
-              },
-              {
-                "xml": {
-                  "name": "authorization"
-                }
-              }
+              { "$ref": "#/components/schemas/Authorization" },
+              { "xml": { "name": "authorization" } }
             ]
           },
           "DomainName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "domainName"
-                },
+                "xml": { "name": "domainName" },
                 "description": "The fully qualified domain name for Assets in the PackagingGroup."
               }
             ]
           },
           "Id": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "id"
-                },
+                "xml": { "name": "id" },
                 "description": "The ID of the PackagingGroup."
               }
             ]
           },
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Tags"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                }
-              }
+              { "$ref": "#/components/schemas/Tags" },
+              { "xml": { "name": "tags" } }
             ]
           },
           "EgressAccessLogs": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EgressAccessLogs"
-              },
-              {
-                "xml": {
-                  "name": "egressAccessLogs"
-                }
-              }
+              { "$ref": "#/components/schemas/EgressAccessLogs" },
+              { "xml": { "name": "egressAccessLogs" } }
             ]
           }
         },
@@ -4223,9 +3241,7 @@
       },
       "__listOf__string": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/__string"
-        }
+        "items": { "$ref": "#/components/schemas/__string" }
       },
       "StreamOrder": {
         "enum": [
@@ -4235,86 +3251,53 @@
         ],
         "type": "string"
       },
-      "__PeriodTriggersElement": {
-        "enum": ["ADS"],
-        "type": "string"
-      },
+      "__PeriodTriggersElement": { "enum": ["ADS"], "type": "string" },
       "ConfigureLogsResponse": {
         "type": "object",
         "properties": {
           "Arn": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "arn"
-                },
+                "xml": { "name": "arn" },
                 "description": "The ARN of the PackagingGroup."
               }
             ]
           },
           "Authorization": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Authorization"
-              },
-              {
-                "xml": {
-                  "name": "authorization"
-                }
-              }
+              { "$ref": "#/components/schemas/Authorization" },
+              { "xml": { "name": "authorization" } }
             ]
           },
           "DomainName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "domainName"
-                },
+                "xml": { "name": "domainName" },
                 "description": "The fully qualified domain name for Assets in the PackagingGroup."
               }
             ]
           },
           "EgressAccessLogs": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EgressAccessLogs"
-              },
-              {
-                "xml": {
-                  "name": "egressAccessLogs"
-                }
-              }
+              { "$ref": "#/components/schemas/EgressAccessLogs" },
+              { "xml": { "name": "egressAccessLogs" } }
             ]
           },
           "Id": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "id"
-                },
+                "xml": { "name": "id" },
                 "description": "The ID of the PackagingGroup."
               }
             ]
           },
           "Tags": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Tags"
-              },
-              {
-                "xml": {
-                  "name": "tags"
-                }
-              }
+              { "$ref": "#/components/schemas/Tags" },
+              { "xml": { "name": "tags" } }
             ]
           }
         }
@@ -4324,13 +3307,9 @@
         "properties": {
           "LogGroupName": {
             "allOf": [
+              { "$ref": "#/components/schemas/__string" },
               {
-                "$ref": "#/components/schemas/__string"
-              },
-              {
-                "xml": {
-                  "name": "logGroupName"
-                },
+                "xml": { "name": "logGroupName" },
                 "description": "Customize the log group name."
               }
             ]
@@ -4340,11 +3319,7 @@
       }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2018-11-07",
     "endpointPrefix": "mediapackage-vod",

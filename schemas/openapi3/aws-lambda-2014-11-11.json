@@ -170,9 +170,7 @@
             "x-aws-exception": true,
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceException"
-                }
+                "schema": { "$ref": "#/components/schemas/ServiceException" }
               }
             }
           }
@@ -221,27 +219,13 @@
         "summary": "Add Event Source"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "ListEventSources",
@@ -284,9 +268,7 @@
             "x-aws-exception": true,
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceException"
-                }
+                "schema": { "$ref": "#/components/schemas/ServiceException" }
               }
             }
           }
@@ -297,9 +279,7 @@
             "in": "query",
             "required": false,
             "description": "The Amazon Resource Name (ARN) of the Amazon Kinesis stream.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "FunctionName",
@@ -318,20 +298,14 @@
             "in": "query",
             "required": false,
             "description": "Optional string. An opaque pagination token returned from a previous <code>ListEventSources</code> operation. If present, specifies to continue the list from where the returning call left off. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "MaxItems",
             "in": "query",
             "required": false,
             "description": "Optional integer. Specifies the maximum number of event sources to return in response. This value must be greater than 0.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 10000
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 10000 }
           }
         ],
         "summary": "List Event Sources"
@@ -342,9 +316,7 @@
         "operationId": "DeleteFunction",
         "description": "<p>Deletes the specified Lambda function code and configuration.</p> <p>This operation requires permission for the <code>lambda:DeleteFunction</code> action.</p>",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "404": {
             "description": "ResourceNotFoundException",
             "x-aws-exception": true,
@@ -361,9 +333,7 @@
             "x-aws-exception": true,
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceException"
-                }
+                "schema": { "$ref": "#/components/schemas/ServiceException" }
               }
             }
           }
@@ -385,27 +355,13 @@
         "summary": "Delete Function"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "get": {
         "operationId": "GetFunction",
@@ -415,9 +371,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetFunctionResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/GetFunctionResponse" }
               }
             }
           },
@@ -437,9 +391,7 @@
             "x-aws-exception": true,
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceException"
-                }
+                "schema": { "$ref": "#/components/schemas/ServiceException" }
               }
             }
           }
@@ -503,9 +455,7 @@
             "x-aws-exception": true,
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceException"
-                }
+                "schema": { "$ref": "#/components/schemas/ServiceException" }
               }
             }
           }
@@ -516,43 +466,25 @@
             "in": "path",
             "required": true,
             "description": "The AWS Lambda assigned ID of the event source mapping.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Get Event Source"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "delete": {
         "operationId": "RemoveEventSource",
         "description": "<p>Removes an event source mapping. This means AWS Lambda will no longer invoke the function for events in the associated source.</p> <p>This operation requires permission for the <code>lambda:RemoveEventSource</code> action.</p>",
         "responses": {
-          "204": {
-            "description": "Success"
-          },
+          "204": { "description": "Success" },
           "400": {
             "description": "InvalidParameterValueException",
             "x-aws-exception": true,
@@ -580,9 +512,7 @@
             "x-aws-exception": true,
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceException"
-                }
+                "schema": { "$ref": "#/components/schemas/ServiceException" }
               }
             }
           }
@@ -593,9 +523,7 @@
             "in": "path",
             "required": true,
             "description": "The event source mapping ID.",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "summary": "Remove Event Source"
@@ -632,9 +560,7 @@
             "x-aws-exception": true,
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceException"
-                }
+                "schema": { "$ref": "#/components/schemas/ServiceException" }
               }
             }
           }
@@ -656,27 +582,13 @@
         "summary": "Get Function Configuration"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ],
       "put": {
         "operationId": "UpdateFunctionConfiguration",
@@ -719,9 +631,7 @@
             "x-aws-exception": true,
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceException"
-                }
+                "schema": { "$ref": "#/components/schemas/ServiceException" }
               }
             }
           }
@@ -754,43 +664,28 @@
             "in": "query",
             "required": false,
             "description": "The function that Lambda calls to begin executing your function. For Node.js, it is the <i>module-name.export</i> value in your function. ",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-zA-Z0-9./\\-_]+"
-            }
+            "schema": { "type": "string", "pattern": "[a-zA-Z0-9./\\-_]+" }
           },
           {
             "name": "Description",
             "in": "query",
             "required": false,
             "description": "A short user-defined function description. Lambda does not use this value. Assign a meaningful description as you see fit.",
-            "schema": {
-              "type": "string",
-              "minLength": 0,
-              "maxLength": 256
-            }
+            "schema": { "type": "string", "minLength": 0, "maxLength": 256 }
           },
           {
             "name": "Timeout",
             "in": "query",
             "required": false,
             "description": "The function execution time at which Lambda should terminate the function. Because the execution time has cost implications, we recommend you set this value based on your expected execution time. The default is 3 seconds. ",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 60
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 60 }
           },
           {
             "name": "MemorySize",
             "in": "query",
             "required": false,
             "description": "The amount of memory, in MB, your Lambda function is given. Lambda uses this memory size to infer the amount of CPU allocated to your function. Your function use-case determines your CPU and memory requirements. For example, a database operation might need less memory compared to an image processing function. The default value is 128 MB. The value must be a multiple of 64 MB.",
-            "schema": {
-              "type": "integer",
-              "minimum": 128,
-              "maximum": 1024
-            }
+            "schema": { "type": "integer", "minimum": 128, "maximum": 1024 }
           }
         ],
         "summary": "Update Function Configuration"
@@ -805,9 +700,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InvokeAsyncResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/InvokeAsyncResponse" }
               }
             }
           },
@@ -838,9 +731,7 @@
             "x-aws-exception": true,
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceException"
-                }
+                "schema": { "$ref": "#/components/schemas/ServiceException" }
               }
             }
           }
@@ -879,27 +770,13 @@
         "summary": "Invoke Async"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/2014-11-13/functions/": {
@@ -922,9 +799,7 @@
             "x-aws-exception": true,
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceException"
-                }
+                "schema": { "$ref": "#/components/schemas/ServiceException" }
               }
             }
           }
@@ -935,46 +810,26 @@
             "in": "query",
             "required": false,
             "description": "Optional string. An opaque pagination token returned from a previous <code>ListFunctions</code> operation. If present, indicates where to continue the listing. ",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "MaxItems",
             "in": "query",
             "required": false,
             "description": "Optional integer. Specifies the maximum number of AWS Lambda functions to return in response. This parameter value must be greater than 0.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 10000
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 10000 }
           }
         ],
         "summary": "List Functions"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     },
     "/2014-11-13/functions/{FunctionName}#Runtime&Role&Handler&Mode": {
@@ -1019,9 +874,7 @@
             "x-aws-exception": true,
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceException"
-                }
+                "schema": { "$ref": "#/components/schemas/ServiceException" }
               }
             }
           }
@@ -1044,10 +897,7 @@
             "in": "query",
             "required": true,
             "description": "The runtime environment for the Lambda function you are uploading. Currently, Lambda supports only \"nodejs\" as the runtime.",
-            "schema": {
-              "type": "string",
-              "enum": ["nodejs"]
-            }
+            "schema": { "type": "string", "enum": ["nodejs"] }
           },
           {
             "name": "Role",
@@ -1064,53 +914,35 @@
             "in": "query",
             "required": true,
             "description": "The function that Lambda calls to begin execution. For Node.js, it is the <i>module-name</i>.<i>export</i> value in your function. ",
-            "schema": {
-              "type": "string",
-              "pattern": "[a-zA-Z0-9./\\-_]+"
-            }
+            "schema": { "type": "string", "pattern": "[a-zA-Z0-9./\\-_]+" }
           },
           {
             "name": "Mode",
             "in": "query",
             "required": true,
             "description": "How the Lambda function will be invoked. Lambda supports only the \"event\" mode. ",
-            "schema": {
-              "type": "string",
-              "enum": ["event"]
-            }
+            "schema": { "type": "string", "enum": ["event"] }
           },
           {
             "name": "Description",
             "in": "query",
             "required": false,
             "description": "A short, user-defined function description. Lambda does not use this value. Assign a meaningful description as you see fit.",
-            "schema": {
-              "type": "string",
-              "minLength": 0,
-              "maxLength": 256
-            }
+            "schema": { "type": "string", "minLength": 0, "maxLength": 256 }
           },
           {
             "name": "Timeout",
             "in": "query",
             "required": false,
             "description": "The function execution time at which Lambda should terminate the function. Because the execution time has cost implications, we recommend you set this value based on your expected execution time. The default is 3 seconds. ",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 60
-            }
+            "schema": { "type": "integer", "minimum": 1, "maximum": 60 }
           },
           {
             "name": "MemorySize",
             "in": "query",
             "required": false,
             "description": "The amount of memory, in MB, your Lambda function is given. Lambda uses this memory size to infer the amount of CPU allocated to your function. Your function use-case determines your CPU and memory requirements. For example, database operation might need less memory compared to image processing function. The default value is 128 MB. The value must be a multiple of 64 MB.",
-            "schema": {
-              "type": "integer",
-              "minimum": 128,
-              "maximum": 1024
-            }
+            "schema": { "type": "integer", "minimum": 128, "maximum": 1024 }
           }
         ],
         "requestBody": {
@@ -1133,27 +965,13 @@
         "summary": "Upload Function"
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Date"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Algorithm"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Credential"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Security-Token"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-Signature"
-        },
-        {
-          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
-        }
+        { "$ref": "#/components/parameters/X-Amz-Content-Sha256" },
+        { "$ref": "#/components/parameters/X-Amz-Date" },
+        { "$ref": "#/components/parameters/X-Amz-Algorithm" },
+        { "$ref": "#/components/parameters/X-Amz-Credential" },
+        { "$ref": "#/components/parameters/X-Amz-Security-Token" },
+        { "$ref": "#/components/parameters/X-Amz-Signature" },
+        { "$ref": "#/components/parameters/X-Amz-SignedHeaders" }
       ]
     }
   },
@@ -1162,63 +980,49 @@
       "X-Amz-Content-Sha256": {
         "name": "X-Amz-Content-Sha256",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Date": {
         "name": "X-Amz-Date",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Algorithm": {
         "name": "X-Amz-Algorithm",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Credential": {
         "name": "X-Amz-Credential",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Security-Token": {
         "name": "X-Amz-Security-Token",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-Signature": {
         "name": "X-Amz-Signature",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       },
       "X-Amz-SignedHeaders": {
         "name": "X-Amz-SignedHeaders",
         "in": "header",
-        "schema": {
-          "type": "string"
-        },
+        "schema": { "type": "string" },
         "required": false,
         "x-ignore": true
       }
@@ -1238,9 +1042,7 @@
         "properties": {
           "UUID": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The AWS Lambda assigned opaque identifier for the mapping."
               }
@@ -1248,9 +1050,7 @@
           },
           "BatchSize": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Integer"
-              },
+              { "$ref": "#/components/schemas/Integer" },
               {
                 "description": "The largest number of records that AWS Lambda will POST in the invocation request to your function."
               }
@@ -1258,9 +1058,7 @@
           },
           "EventSource": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The Amazon Resource Name (ARN) of the Amazon Kinesis stream that is the source of events."
               }
@@ -1268,9 +1066,7 @@
           },
           "FunctionName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FunctionName"
-              },
+              { "$ref": "#/components/schemas/FunctionName" },
               {
                 "description": "The Lambda function to invoke when AWS Lambda detects an event on the stream."
               }
@@ -1278,9 +1074,7 @@
           },
           "Parameters": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Map"
-              },
+              { "$ref": "#/components/schemas/Map" },
               {
                 "description": "The map (key-value pairs) defining the configuration for AWS Lambda to use when reading the event source."
               }
@@ -1288,9 +1082,7 @@
           },
           "Role": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RoleArn"
-              },
+              { "$ref": "#/components/schemas/RoleArn" },
               {
                 "description": "The ARN of the IAM role (invocation role) that AWS Lambda can assume to read from the stream and invoke the function."
               }
@@ -1298,9 +1090,7 @@
           },
           "LastModified": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The UTC time string indicating the last time the event mapping was updated."
               }
@@ -1308,9 +1098,7 @@
           },
           "IsActive": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Boolean"
-              },
+              { "$ref": "#/components/schemas/Boolean" },
               {
                 "description": "Indicates whether the event source mapping is currently honored. Events are only processes if IsActive is true."
               }
@@ -1318,9 +1106,7 @@
           },
           "Status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The description of the health of the event source mapping. Valid values are: \"PENDING\", \"OK\", and \"PROBLEM:<i>message</i>\". Initially this staus is \"PENDING\". When AWS Lambda begins processing events, it changes the status to \"OK\"."
               }
@@ -1329,42 +1115,28 @@
         },
         "description": "Describes mapping between an Amazon Kinesis stream and a Lambda function."
       },
-      "String": {
-        "type": "string"
-      },
+      "String": { "type": "string" },
       "ServiceException": {
         "type": "object",
         "properties": {
-          "Type": {
-            "$ref": "#/components/schemas/String"
-          },
-          "Message": {
-            "$ref": "#/components/schemas/String"
-          }
+          "Type": { "$ref": "#/components/schemas/String" },
+          "Message": { "$ref": "#/components/schemas/String" }
         },
         "description": "The AWS Lambda service encountered an internal error."
       },
       "InvalidParameterValueException": {
         "type": "object",
         "properties": {
-          "Type": {
-            "$ref": "#/components/schemas/String"
-          },
-          "message": {
-            "$ref": "#/components/schemas/String"
-          }
+          "Type": { "$ref": "#/components/schemas/String" },
+          "message": { "$ref": "#/components/schemas/String" }
         },
         "description": "One of the parameters in the request is invalid. For example, if you provided an IAM role for AWS Lambda to assume in the <code>UploadFunction</code> or the <code>UpdateFunctionConfiguration</code> API, that AWS Lambda is unable to assume you will get this exception. "
       },
       "ResourceNotFoundException": {
         "type": "object",
         "properties": {
-          "Type": {
-            "$ref": "#/components/schemas/String"
-          },
-          "Message": {
-            "$ref": "#/components/schemas/String"
-          }
+          "Type": { "$ref": "#/components/schemas/String" },
+          "Message": { "$ref": "#/components/schemas/String" }
         },
         "description": "The function or the event source specified in the request does not exist."
       },
@@ -1374,9 +1146,7 @@
           "Configuration": {
             "$ref": "#/components/schemas/FunctionConfiguration"
           },
-          "Code": {
-            "$ref": "#/components/schemas/FunctionCodeLocation"
-          }
+          "Code": { "$ref": "#/components/schemas/FunctionCodeLocation" }
         },
         "description": "This response contains the object for AWS Lambda function location (see <a>API_FunctionCodeLocation</a>"
       },
@@ -1385,19 +1155,13 @@
         "properties": {
           "FunctionName": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FunctionName"
-              },
-              {
-                "description": "The name of the function."
-              }
+              { "$ref": "#/components/schemas/FunctionName" },
+              { "description": "The name of the function." }
             ]
           },
           "FunctionARN": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FunctionArn"
-              },
+              { "$ref": "#/components/schemas/FunctionArn" },
               {
                 "description": "The Amazon Resource Name (ARN) assigned to the function."
               }
@@ -1405,9 +1169,7 @@
           },
           "ConfigurationId": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "A Lambda-assigned unique identifier for the current function code and related configuration."
               }
@@ -1415,9 +1177,7 @@
           },
           "Runtime": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Runtime"
-              },
+              { "$ref": "#/components/schemas/Runtime" },
               {
                 "description": "The runtime environment for the Lambda function."
               }
@@ -1425,9 +1185,7 @@
           },
           "Role": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/RoleArn"
-              },
+              { "$ref": "#/components/schemas/RoleArn" },
               {
                 "description": "The Amazon Resource Name (ARN) of the IAM role that Lambda assumes when it executes your function to access any other Amazon Web Services (AWS) resources."
               }
@@ -1435,9 +1193,7 @@
           },
           "Handler": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Handler"
-              },
+              { "$ref": "#/components/schemas/Handler" },
               {
                 "description": "The function Lambda calls to begin executing your function."
               }
@@ -1445,9 +1201,7 @@
           },
           "Mode": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Mode"
-              },
+              { "$ref": "#/components/schemas/Mode" },
               {
                 "description": "The type of the Lambda function you uploaded. "
               }
@@ -1455,9 +1209,7 @@
           },
           "CodeSize": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Long"
-              },
+              { "$ref": "#/components/schemas/Long" },
               {
                 "description": "The size, in bytes, of the function .zip file you uploaded."
               }
@@ -1465,19 +1217,13 @@
           },
           "Description": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Description"
-              },
-              {
-                "description": "The user-provided description."
-              }
+              { "$ref": "#/components/schemas/Description" },
+              { "description": "The user-provided description." }
             ]
           },
           "Timeout": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timeout"
-              },
+              { "$ref": "#/components/schemas/Timeout" },
               {
                 "description": "The function execution time at which Lambda should terminate the function. Because the execution time has cost implications, we recommend you set this value based on your expected execution time. The default is 3 seconds. "
               }
@@ -1485,9 +1231,7 @@
           },
           "MemorySize": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/MemorySize"
-              },
+              { "$ref": "#/components/schemas/MemorySize" },
               {
                 "description": "The memory size, in MB, you configured for the function. Must be a multiple of 64 MB."
               }
@@ -1495,9 +1239,7 @@
           },
           "LastModified": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/Timestamp"
-              },
+              { "$ref": "#/components/schemas/Timestamp" },
               {
                 "description": "The timestamp of the last time you updated the function."
               }
@@ -1511,12 +1253,8 @@
         "properties": {
           "Status": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/HttpStatus"
-              },
-              {
-                "description": "It will be 202 upon success."
-              }
+              { "$ref": "#/components/schemas/HttpStatus" },
+              { "description": "It will be 202 upon success." }
             ]
           }
         },
@@ -1525,12 +1263,8 @@
       "InvalidRequestContentException": {
         "type": "object",
         "properties": {
-          "Type": {
-            "$ref": "#/components/schemas/String"
-          },
-          "message": {
-            "$ref": "#/components/schemas/String"
-          }
+          "Type": { "$ref": "#/components/schemas/String" },
+          "message": { "$ref": "#/components/schemas/String" }
         },
         "description": "The request body could not be parsed as JSON."
       },
@@ -1539,9 +1273,7 @@
         "properties": {
           "NextMarker": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "A string, present if there are more event source mappings."
               }
@@ -1549,9 +1281,7 @@
           },
           "EventSources": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/EventSourceList"
-              },
+              { "$ref": "#/components/schemas/EventSourceList" },
               {
                 "description": "An arrary of <code>EventSourceConfiguration</code> objects."
               }
@@ -1565,9 +1295,7 @@
         "properties": {
           "NextMarker": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "A string, present if there are more functions."
               }
@@ -1575,12 +1303,8 @@
           },
           "Functions": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/FunctionList"
-              },
-              {
-                "description": "A list of Lambda functions."
-              }
+              { "$ref": "#/components/schemas/FunctionList" },
+              { "description": "A list of Lambda functions." }
             ]
           }
         },
@@ -1596,32 +1320,17 @@
         "type": "string",
         "pattern": "arn:aws:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+"
       },
-      "Integer": {
-        "type": "integer"
-      },
+      "Integer": { "type": "integer" },
       "Map": {
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/String"
-        }
+        "additionalProperties": { "$ref": "#/components/schemas/String" }
       },
-      "Description": {
-        "type": "string",
-        "minLength": 0,
-        "maxLength": 256
-      },
-      "Timestamp": {
-        "type": "string",
-        "format": "date-time"
-      },
-      "Boolean": {
-        "type": "boolean"
-      },
+      "Description": { "type": "string", "minLength": 0, "maxLength": 256 },
+      "Timestamp": { "type": "string", "format": "date-time" },
+      "Boolean": { "type": "boolean" },
       "EventSourceList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/EventSourceConfiguration"
-        }
+        "items": { "$ref": "#/components/schemas/EventSourceConfiguration" }
       },
       "FunctionArn": {
         "type": "string",
@@ -1632,9 +1341,7 @@
         "properties": {
           "RepositoryType": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The repository from which you can download the function."
               }
@@ -1642,9 +1349,7 @@
           },
           "Location": {
             "allOf": [
-              {
-                "$ref": "#/components/schemas/String"
-              },
+              { "$ref": "#/components/schemas/String" },
               {
                 "description": "The presigned URL you can use to download the function's .zip file that you previously uploaded. The URL is valid for up to 10 minutes."
               }
@@ -1653,47 +1358,20 @@
         },
         "description": "The object for the Lambda function location."
       },
-      "Runtime": {
-        "type": "string",
-        "enum": ["nodejs"]
-      },
-      "Handler": {
-        "type": "string",
-        "pattern": "[a-zA-Z0-9./\\-_]+"
-      },
-      "Mode": {
-        "type": "string",
-        "enum": ["event"]
-      },
-      "Long": {
-        "type": "integer"
-      },
-      "Timeout": {
-        "type": "integer",
-        "minimum": 1,
-        "maximum": 60
-      },
-      "MemorySize": {
-        "type": "integer",
-        "minimum": 128,
-        "maximum": 1024
-      },
+      "Runtime": { "type": "string", "enum": ["nodejs"] },
+      "Handler": { "type": "string", "pattern": "[a-zA-Z0-9./\\-_]+" },
+      "Mode": { "type": "string", "enum": ["event"] },
+      "Long": { "type": "integer" },
+      "Timeout": { "type": "integer", "minimum": 1, "maximum": 60 },
+      "MemorySize": { "type": "integer", "minimum": 128, "maximum": 1024 },
       "FunctionList": {
         "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/FunctionConfiguration"
-        }
+        "items": { "$ref": "#/components/schemas/FunctionConfiguration" }
       },
-      "HttpStatus": {
-        "type": "integer"
-      }
+      "HttpStatus": { "type": "integer" }
     }
   },
-  "security": [
-    {
-      "hmac": []
-    }
-  ],
+  "security": [{ "hmac": [] }],
   "x-metadata": {
     "apiVersion": "2014-11-11",
     "endpointPrefix": "lambda",
