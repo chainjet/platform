@@ -1,0 +1,760 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "BTTCscan",
+    "version": "1",
+    "x-categories": ["blockchain"],
+    "x-logo": {
+      "url": "https://raw.githubusercontent.com/chainjet/assets/master/dapps/bttcscan.com.png"
+    }
+  },
+  "externalDocs": { "url": "https://bttcscan.com/apis" },
+  "servers": [{ "url": "https://api.bttcscan.com" }],
+  "paths": {
+    "/api?module=account&action=balancemulti&tag=latest": {
+      "get": {
+        "summary": "Get Ether balance",
+        "description": "Returns the Ether balance for one or more addresses",
+        "operationId": "getEtherBalance",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "description": "The addresses to get the balance for",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": { "type": "string" },
+              "minItems": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ether balance for multiple address",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "balance": { "type": "string" },
+                          "account": { "type": "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api?module=account&action=txlist&startblock=0&endblock=99999999&page=1&offset=10&sort=desc": {
+      "get": {
+        "x-triggerIdKey": "result[].hash",
+        "x-triggerSummary": "New transaction",
+        "x-triggerDescription": "Triggers for every new transaction on a given address",
+        "summary": "List transactions",
+        "description": "Returns the transactions for a given address",
+        "operationId": "listTransactions",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "description": "The address to get the transactions for",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transactions for an address",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "blockNumber": { "type": "string" },
+                          "timeStamp": { "type": "string" },
+                          "hash": { "type": "string" },
+                          "nonce": { "type": "string" },
+                          "blockHash": { "type": "string" },
+                          "transactionIndex": { "type": "string" },
+                          "from": { "type": "string" },
+                          "to": { "type": "string" },
+                          "value": { "type": "string" },
+                          "gas": { "type": "string" },
+                          "gasPrice": { "type": "string" },
+                          "isError": { "type": "string" },
+                          "txreceipt_status": { "type": "string" },
+                          "input": { "type": "string" },
+                          "contractAddress": { "type": "string" },
+                          "cumulativeGasUsed": { "type": "string" },
+                          "gasUsed": { "type": "string" },
+                          "confirmations": { "type": "string" },
+                          "methodId": { "type": "string" },
+                          "functionName": { "type": "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api?module=account&action=txlistinternal&startblock=0&endblock=99999999&page=1&offset=10&sort=desc": {
+      "get": {
+        "x-triggerIdKey": "result[].hash",
+        "x-triggerSummary": "New internal transaction",
+        "x-triggerDescription": "Triggers for every new internal transaction on a given address",
+        "summary": "List internal transactions",
+        "description": "Returns the internal transactions for a given address",
+        "operationId": "listInternalTransactions",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "description": "The address to get the transactions for",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Internal Transactions for an address",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "blockNumber": { "type": "string" },
+                          "timeStamp": { "type": "string" },
+                          "hash": { "type": "string" },
+                          "from": { "type": "string" },
+                          "to": { "type": "string" },
+                          "value": { "type": "string" },
+                          "contractAddress": { "type": "string" },
+                          "input": { "type": "string" },
+                          "type": { "type": "string" },
+                          "gas": { "type": "string" },
+                          "gasUsed": { "type": "string" },
+                          "traceId": { "type": "string" },
+                          "isError": { "type": "string" },
+                          "errCode": { "type": "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api?module=account&action=tokentx&page=1&offset=10&startblock=0&endblock=99999999&sort=desc": {
+      "get": {
+        "x-triggerIdKey": "result[].hash",
+        "x-triggerSummary": "New ERC20 token transfer",
+        "x-triggerDescription": "Triggers for every ERC20 token transfer on a given address or for a given token",
+        "summary": "List ERC20 token transfers",
+        "description": "Returns the ERC20 token transfers for a given address or for a given token",
+        "operationId": "listERC20TokenTransfers",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "description": "Filter by receiver address",
+            "required": false,
+            "schema": { "type": "string", "title": "Receiver address" }
+          },
+          {
+            "name": "contractaddress",
+            "in": "query",
+            "description": "Filter by token contract address",
+            "required": false,
+            "schema": { "type": "string", "title": "Token address" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Token Transfers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "blockNumber": { "type": "string" },
+                          "timeStamp": { "type": "string" },
+                          "hash": { "type": "string" },
+                          "nonce": { "type": "string" },
+                          "blockHash": { "type": "string" },
+                          "from": { "type": "string" },
+                          "to": { "type": "string" },
+                          "value": { "type": "string" },
+                          "tokenName": { "type": "string" },
+                          "tokenSymbol": { "type": "string" },
+                          "tokenDecimal": { "type": "string" },
+                          "transactionIndex": { "type": "string" },
+                          "gas": { "type": "string" },
+                          "gasPrice": { "type": "string" },
+                          "gasUsed": { "type": "string" },
+                          "cumulativeGasUsed": { "type": "string" },
+                          "confirmations": { "type": "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api?module=account&action=tokennfttx&page=1&offset=10&startblock=0&endblock=99999999&sort=desc": {
+      "get": {
+        "x-triggerIdKey": "result[].hash",
+        "x-triggerSummary": "New ERC721 token transfer",
+        "x-triggerDescription": "Triggers for every ERC721 token transfer on a given address or for a given token",
+        "summary": "List ERC721 token transfers",
+        "description": "Returns the ERC721 token transfers for a given address or for a given token",
+        "operationId": "listERC721TokenTransfers",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "description": "Filter by receiver address",
+            "required": false,
+            "schema": { "type": "string", "title": "Receiver address" }
+          },
+          {
+            "name": "contractaddress",
+            "in": "query",
+            "description": "Filter by token contract address",
+            "required": false,
+            "schema": { "type": "string", "title": "Token address" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Token Transfers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "blockNumber": { "type": "string" },
+                          "timeStamp": { "type": "string" },
+                          "hash": { "type": "string" },
+                          "nonce": { "type": "string" },
+                          "blockHash": { "type": "string" },
+                          "contractAddress": { "type": "string" },
+                          "from": { "type": "string" },
+                          "to": { "type": "string" },
+                          "tokenId": { "type": "string" },
+                          "tokenName": { "type": "string" },
+                          "tokenSymbol": { "type": "string" },
+                          "tokenDecimal": { "type": "string" },
+                          "transactionIndex": { "type": "string" },
+                          "gas": { "type": "string" },
+                          "gasPrice": { "type": "string" },
+                          "gasUsed": { "type": "string" },
+                          "cumulativeGasUsed": { "type": "string" },
+                          "confirmations": { "type": "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api?module=account&action=token1155tx&page=1&offset=10&startblock=0&endblock=99999999&sort=desc": {
+      "get": {
+        "x-triggerIdKey": "result[].hash",
+        "x-triggerSummary": "New ERC1155 Token Transfer",
+        "x-triggerDescription": "Triggers for every ERC1155 token transfer on a given address or for a given token",
+        "summary": "List ERC1155 Token Transfers",
+        "description": "Returns the ERC1155 token transfers for a given address or for a given token",
+        "operationId": "listERC1155TokenTransfers",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "description": "Filter by receiver address",
+            "required": false,
+            "schema": { "type": "string", "title": "Receiver address" }
+          },
+          {
+            "name": "contractaddress",
+            "in": "query",
+            "description": "Filter by token contract address",
+            "required": false,
+            "schema": { "type": "string", "title": "Token address" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Token Transfers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "blockNumber": { "type": "string" },
+                          "timeStamp": { "type": "string" },
+                          "hash": { "type": "string" },
+                          "nonce": { "type": "string" },
+                          "blockHash": { "type": "string" },
+                          "transactionIndex": { "type": "string" },
+                          "gas": { "type": "string" },
+                          "gasPrice": { "type": "string" },
+                          "gasUsed": { "type": "string" },
+                          "cumulativeGasUsed": { "type": "string" },
+                          "contractAddress": { "type": "string" },
+                          "from": { "type": "string" },
+                          "to": { "type": "string" },
+                          "tokenId": { "type": "string" },
+                          "tokenValue": { "type": "string" },
+                          "tokenName": { "type": "string" },
+                          "tokenSymbol": { "type": "string" },
+                          "confirmations": { "type": "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api?module=account&action=getminedblocks&blocktype=blocks&page=1&offset=10": {
+      "get": {
+        "x-triggerIdKey": "result[].hash",
+        "x-triggerSummary": "New block mined by a given address",
+        "x-triggerDescription": "Triggers for every new block mined by a given address",
+        "summary": "List Blocks mined by a given address",
+        "description": "Returns the blocks mined by a given address",
+        "operationId": "listBlocksMinedByAddress",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Blocks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "blockNumber": { "type": "string" },
+                          "timeStamp": { "type": "string" },
+                          "blockReward": { "type": "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api?module=contract&action=getabi": {
+      "get": {
+        "summary": "Get contract ABI",
+        "description": "Returns the contract ABI. It only works for contracts with verified source code.",
+        "operationId": "getContractAbi",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contract ABI",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" },
+                    "result": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api?module=contract&action=getsourcecode": {
+      "get": {
+        "summary": "Get contract source code",
+        "description": "Returns the contract source code. It only works for contracts with verified source code.",
+        "operationId": "getContractSourceCode",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contract ABI",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "SourceCode": { "type": "string" },
+                          "ABI": { "type": "string" },
+                          "ContractName": { "type": "string" },
+                          "CompilerVersion": { "type": "string" },
+                          "OptimizationUsed": { "type": "string" },
+                          "Runs": { "type": "string" },
+                          "ConstructorArguments": { "type": "string" },
+                          "EVMVersion": { "type": "string" },
+                          "Library": { "type": "string" },
+                          "LicenseType": { "type": "string" },
+                          "Proxy": { "type": "string" },
+                          "Implementation": { "type": "string" },
+                          "SwarmSource": { "type": "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api?module=block&action=getblockcountdown": {
+      "get": {
+        "summary": "Get estimated block countdown",
+        "description": "Returns the estimated time remaining, in seconds, until a certain block is mined.",
+        "operationId": "getBlockCountdown",
+        "parameters": [
+          {
+            "name": "blockno",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "title": "Block Number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Block Countdown",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" },
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "CurrentBlock": { "type": "string" },
+                        "CountdownBlock": { "type": "string" },
+                        "RemainingBlock": { "type": "string" },
+                        "EstimateTimeInSec": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api?module=block&action=getblocknobytime": {
+      "get": {
+        "summary": "Get block number by timestamp",
+        "description": "Returns the block number that was mined at a certain timestamp.",
+        "operationId": "getBlockNumberByTime",
+        "parameters": [
+          {
+            "name": "timestamp",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The integer representing the Unix timestamp in seconds."
+            }
+          },
+          {
+            "name": "closest",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "before",
+              "enum": ["before", "after"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Block Number",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" },
+                    "result": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api?module=logs&action=getLogs&page=1&offset=10": {
+      "get": {
+        "summary": "Get logs by address",
+        "description": "Returns the event logs from an address, with optional filtering by block range.",
+        "operationId": "getLogsByAddress",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "fromBlock",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "title": "From Block" }
+          },
+          {
+            "name": "toBlock",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "title": "To Block" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "1",
+              "description": "Page number, if pagination is required"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "10",
+              "description": "Number of transactions returned per page"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Logs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "blockNumber": { "type": "string" },
+                          "timeStamp": { "type": "string" },
+                          "blockReward": { "type": "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api?module=stats&action=tokensupply": {
+      "get": {
+        "summary": "Get token total supply",
+        "description": "Returns the total supply of an ERC20 token.",
+        "operationId": "getTokenTotalSupply",
+        "parameters": [
+          {
+            "name": "contractaddress",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "title": "Token address" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Token Supply",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" },
+                    "result": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api?module=account&action=tokenbalance&tag=latest": {
+      "get": {
+        "summary": "Get token balance",
+        "description": "Returns the current balance of an ERC20 token for an address.",
+        "operationId": "getTokenBalance",
+        "parameters": [
+          {
+            "name": "contractaddress",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Token address",
+              "description": "The contract address of the ERC20 token"
+            }
+          },
+          {
+            "name": "address",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The address to check for token balance"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Token Balance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" },
+                    "result": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "token": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "token",
+        "description": "You need to create a free account on bttcscan.com, then go to API Keys, create a new one and paste the token here."
+      }
+    },
+    "schemas": {}
+  }
+}

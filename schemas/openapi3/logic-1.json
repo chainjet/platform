@@ -1,0 +1,100 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Logic",
+    "version": "1",
+    "x-categories": ["popular", "chainjet"],
+    "x-logo": {
+      "url": "https://raw.githubusercontent.com/chainjet/assets/master/integrations/logic.svg"
+    }
+  },
+  "paths": {
+    "/decision": {
+      "get": {
+        "operationId": "decision",
+        "summary": "Decision",
+        "description": "Conditionally choose between two paths.",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "title": "Decision name",
+              "description": "Decision name to be displayed on the flow chart.",
+              "type": "string"
+            }
+          },
+          {
+            "name": "expression",
+            "in": "query",
+            "schema": { "$ref": "#/components/schemas/OrExpressions" }
+          }
+        ],
+        "responses": { "200": { "description": "Condition response" } }
+      }
+    },
+    "/assertions": {
+      "get": {
+        "operationId": "assertions",
+        "summary": "Assertions",
+        "description": "Fail the workflow if one or more conditions are not satisfied.",
+        "parameters": [
+          {
+            "name": "assertions",
+            "in": "query",
+            "schema": {
+              "title": "Assertions",
+              "type": "array",
+              "items": { "$ref": "#/components/schemas/Expression" },
+              "minItems": 1
+            }
+          }
+        ],
+        "responses": { "200": { "description": "" } }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Expression": {
+        "type": "object",
+        "required": ["comparator"],
+        "properties": {
+          "leftValue": { "title": "Value", "type": "string" },
+          "comparator": {
+            "title": "Comparator",
+            "type": "string",
+            "oneOf": [
+              { "title": "Equals", "x-const": "=" },
+              { "title": "Not Equal", "x-const": "!=" },
+              { "title": "Contains", "x-const": "contains" },
+              { "title": "Not Contain", "x-const": "!contains" },
+              { "title": "Starts With", "x-const": "startsWith" },
+              { "title": "Not Start With", "x-const": "!startsWith" },
+              { "title": "Ends With", "x-const": "endsWith" },
+              { "title": "Not End With", "x-const": "!endsWith" },
+              { "title": "Greather Than", "x-const": ">" },
+              { "title": "Greather or Equal Than", "x-const": ">=" },
+              { "title": "Less Than", "x-const": "<" },
+              { "title": "Less or Equal Than", "x-const": "<=" }
+            ]
+          },
+          "rightValue": { "title": "Value", "type": "string" }
+        }
+      },
+      "AndExpressions": {
+        "type": "array",
+        "items": { "$ref": "#/components/schemas/Expression" },
+        "minItems": 1,
+        "maxItems": 1
+      },
+      "OrExpressions": {
+        "type": "array",
+        "items": { "$ref": "#/components/schemas/AndExpressions" },
+        "minItems": 1,
+        "maxItems": 1
+      }
+    }
+  }
+}

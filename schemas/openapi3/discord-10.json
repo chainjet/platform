@@ -1,0 +1,940 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Discord",
+    "version": "10",
+    "x-categories": ["popular", "chat"],
+    "x-logo": {
+      "url": "https://raw.githubusercontent.com/chainjet/assets/master/integrations/discord.svg"
+    }
+  },
+  "externalDocs": { "url": "https://discord.com/developers" },
+  "servers": [{ "url": "https://discord.com/api" }],
+  "paths": {
+    "/users/@me/guilds": {
+      "get": {
+        "x-actionOnly": true,
+        "operationId": "getCurrentUserGuilds",
+        "summary": "Get current user's servers",
+        "description": "Get a list of servers the current user is in.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "A list of guilds the current user is in.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Guild" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/guilds/{guildId}/channels": {
+      "get": {
+        "x-actionOnly": true,
+        "summary": "Get server channels",
+        "description": "Get all channels in a server.",
+        "operationId": "getGuildChannels",
+        "parameters": [
+          {
+            "name": "guildId",
+            "in": "path",
+            "description": "The server ID",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of channels",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Channel" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/channels/{channelId}/messages": {
+      "get": {
+        "x-actionOnly": true,
+        "summary": "List channel messages",
+        "description": "Get a list of the latest messages from a channel.",
+        "operationId": "getChannelMessages",
+        "x-asyncSchemas": [{ "name": "channelId" }],
+        "parameters": [
+          {
+            "name": "channelId",
+            "in": "path",
+            "description": "The ID of the channel.",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "around",
+            "in": "query",
+            "description": "Get messages around this message ID",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "before",
+            "in": "query",
+            "description": "Get messages before this message ID",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "description": "Get messages after this message ID",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Max number of messages to return (1-100)",
+            "required": false,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "string", "title": "id of the message" },
+                      "channel_id": {
+                        "type": "string",
+                        "title": "id of the channel the message was sent in"
+                      },
+                      "user": { "$ref": "#/components/schemas/User" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Send a message",
+        "description": "Create a message in a channel.",
+        "operationId": "sendMessage",
+        "x-asyncSchemas": [{ "name": "channelId" }],
+        "parameters": [
+          {
+            "name": "channelId",
+            "in": "path",
+            "description": "The ID of the channel.",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SendMessage" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Message",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Message" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/applications/{applicationId}/commands": {
+      "post": {
+        "externalDocs": {
+          "url": "https://discord.com/developers/docs/interactions/application-commands#create-global-application-command"
+        },
+        "x-ignore": true,
+        "summary": "Create a global command",
+        "description": "Create a global command for an application.",
+        "operationId": "createGlobalCommand",
+        "parameters": [
+          {
+            "name": "applicationId",
+            "in": "path",
+            "description": "The ID of the application.",
+            "required": true,
+            "schema": { "x-hidden": true, "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "description"],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "title": "Name",
+                    "description": "The name of the command"
+                  },
+                  "description": {
+                    "type": "string",
+                    "title": "Description",
+                    "description": "The description of the command"
+                  },
+                  "type": {
+                    "type": "string",
+                    "title": "Type",
+                    "description": "The type of the command",
+                    "default": 1,
+                    "oneOf": [
+                      { "title": "CHAT_INPUT", "x-const": 1 },
+                      { "title": "USER", "x-const": 2 },
+                      { "title": "MESSAGE", "x-const": 3 }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Command",
+            "content": { "application/json": { "schema": {} } }
+          }
+        }
+      }
+    },
+    "/applications/{applicationId}/guilds/{guildId}/commands": {
+      "post": {
+        "externalDocs": {
+          "url": "https://discord.com/developers/docs/interactions/application-commands#create-guild-application-command"
+        },
+        "summary": "Create a server command",
+        "description": "Create a command for a specific server.",
+        "operationId": "createGuildCommand",
+        "parameters": [
+          {
+            "name": "applicationId",
+            "in": "path",
+            "description": "The ID of the application.",
+            "required": true,
+            "schema": { "x-hidden": true, "type": "string" }
+          },
+          {
+            "name": "guildId",
+            "in": "path",
+            "description": "The server in which the command will be created.",
+            "required": true,
+            "schema": { "x-hidden": true, "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "description"],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "title": "Name",
+                    "description": "The name of the command"
+                  },
+                  "description": {
+                    "type": "string",
+                    "title": "Description",
+                    "description": "The description of the command"
+                  },
+                  "type": {
+                    "type": "string",
+                    "title": "Type",
+                    "description": "The type of the command",
+                    "default": 1,
+                    "oneOf": [
+                      { "title": "CHAT_INPUT", "x-const": 1 },
+                      { "title": "USER", "x-const": 2 },
+                      { "title": "MESSAGE", "x-const": 3 }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Command",
+            "content": { "application/json": { "schema": {} } }
+          }
+        }
+      }
+    },
+    "/#new-slash-command-guild": {
+      "get": {
+        "x-triggerOnly": true,
+        "x-triggerInstant": true,
+        "summary": "New slash command on a server",
+        "description": "Triggers when a slash command is sent on a server.",
+        "operationId": "newSlashCommandGuild",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Name of the command",
+            "required": true,
+            "schema": { "type": "string", "maxLength": 32 }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "Description of the command",
+            "required": true,
+            "schema": { "type": "string", "maxLength": 100 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Application command response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "app_permissions": { "type": "string" },
+                    "application_id": { "type": "string" },
+                    "channel_id": { "type": "string" },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "guild_id": { "type": "string" },
+                        "id": { "type": "string" },
+                        "name": { "type": "string" },
+                        "type": { "type": "integer" }
+                      }
+                    },
+                    "guild_id": { "type": "string" },
+                    "guild_locale": { "type": "string" },
+                    "id": { "type": "string" },
+                    "locale": { "type": "string" },
+                    "member": {
+                      "type": "object",
+                      "properties": {
+                        "avatar": { "type": "string" },
+                        "communication_disabled_until": { "type": "string" },
+                        "deaf": { "type": "boolean" },
+                        "flags": { "type": "integer" },
+                        "is_pending": { "type": "boolean" },
+                        "joined_at": { "type": "string" },
+                        "mute": { "type": "boolean" },
+                        "nick": { "type": "string" },
+                        "pending": { "type": "boolean" },
+                        "permissions": { "type": "string" },
+                        "premium_since": { "type": "string" },
+                        "roles": { "type": "array", "items": {} },
+                        "user": {
+                          "type": "object",
+                          "properties": {
+                            "avatar": { "type": "string" },
+                            "discriminator": { "type": "string" },
+                            "id": { "type": "string" },
+                            "public_flags": { "type": "integer" },
+                            "username": { "type": "string" }
+                          }
+                        }
+                      }
+                    },
+                    "token": { "type": "string" },
+                    "type": { "type": "integer" },
+                    "version": { "type": "integer" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/webhooks/{applicationId}/{token}": {
+      "post": {
+        "summary": "Send follow-up message",
+        "description": "Send a follow-up message after receiving a slash command.",
+        "operationId": "sendFollowupMessage",
+        "parameters": [
+          {
+            "name": "applicationId",
+            "in": "path",
+            "required": true,
+            "schema": { "x-hidden": true, "type": "string" }
+          },
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SendMessage" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Message",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Message" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://discord.com/api/oauth2/authorize",
+            "tokenUrl": "https://discord.com/api/oauth2/token",
+            "scopes": {
+              "identify": "Access to your email address",
+              "bot": "Create and manage bots"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "Guild": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "title": "id of the guild" },
+          "name": { "type": "string", "title": "name of the guild" },
+          "icon": { "type": "string", "title": "icon of the guild" },
+          "owner": {
+            "type": "boolean",
+            "title": "whether the user is the owner of the guild"
+          },
+          "owner_id": { "type": "string", "title": "id of the guild owner" },
+          "permissions": {
+            "type": "integer",
+            "title": "permissions of the user in the guild"
+          },
+          "afk_channel_id": {
+            "type": "string",
+            "title": "id of the afk channel"
+          },
+          "afk_timeout": { "type": "integer", "title": "afk timeout" },
+          "widget_enabled": {
+            "type": "boolean",
+            "title": "whether the widget is enabled"
+          },
+          "widget_channel_id": {
+            "type": "string",
+            "title": "id of the widget channel"
+          },
+          "verification_level": {
+            "type": "integer",
+            "title": "verification level"
+          },
+          "default_message_notifications": {
+            "type": "integer",
+            "title": "default message notifications"
+          },
+          "explicit_content_filter": {
+            "type": "integer",
+            "title": "explicit content filter"
+          },
+          "roles": {
+            "type": "array",
+            "title": "roles",
+            "items": { "$ref": "#/components/schemas/Role" }
+          },
+          "emojis": {
+            "type": "array",
+            "title": "emojis",
+            "items": { "$ref": "#/components/schemas/Emoji" }
+          },
+          "features": {
+            "type": "array",
+            "title": "features",
+            "items": { "type": "string", "title": "feature" }
+          },
+          "mfa_level": { "type": "integer", "title": "mfa level" },
+          "application_id": {
+            "type": "string",
+            "title": "id of the application"
+          },
+          "system_channel_id": {
+            "type": "string",
+            "title": "id of the system channel"
+          },
+          "system_channel_flags": {
+            "type": "integer",
+            "title": "system channel flags"
+          },
+          "rules_channel_id": {
+            "type": "string",
+            "title": "id of the rules channel"
+          },
+          "max_presences": { "type": "integer", "title": "max presences" },
+          "max_members": { "type": "integer", "title": "max members" },
+          "vanity_url_code": { "type": "string", "title": "vanity url code" },
+          "description": { "type": "string", "title": "description" },
+          "banner": { "type": "string", "title": "banner" },
+          "premium_tier": { "type": "integer", "title": "premium tier" },
+          "premium_subscription_count": {
+            "type": "integer",
+            "title": "premium subscription count"
+          },
+          "preferred_locale": { "type": "string", "title": "preferred locale" },
+          "public_updates_channel_id": {
+            "type": "string",
+            "title": "id of the public updates channel"
+          },
+          "max_video_channel_users": {
+            "type": "integer",
+            "title": "max video channel users"
+          },
+          "approximate_member_count": {
+            "type": "integer",
+            "title": "approximate member count"
+          },
+          "approximate_presence_count": {
+            "type": "integer",
+            "title": "approximate presence count"
+          },
+          "welcome_screen": {
+            "type": "object",
+            "title": "welcome screen",
+            "properties": {
+              "description": { "type": "string", "title": "description" },
+              "welcome_channels": {
+                "type": "array",
+                "title": "welcome channels",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "channel_id": { "type": "string", "title": "channel id" },
+                    "description": { "type": "string", "title": "description" },
+                    "emoji_id": { "type": "string", "title": "emoji id" },
+                    "emoji_name": { "type": "string", "title": "emoji name" }
+                  }
+                }
+              }
+            }
+          },
+          "nsfw_level": { "type": "integer", "title": "nsfw level" },
+          "premium_progress_bar_enabled": {
+            "type": "boolean",
+            "title": "whether the premium progress bar is enabled"
+          }
+        }
+      },
+      "Channel": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "title": "id of the channel" },
+          "type": { "type": "integer", "title": "type of the channel" },
+          "guild_id": {
+            "type": "string",
+            "title": "id of the guild the channel is in"
+          },
+          "position": { "type": "integer", "title": "position of the channel" },
+          "permission_overwrites": {
+            "type": "array",
+            "title": "permission overwrites for the channel",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string", "title": "id of the overwrite" },
+                "type": { "type": "string", "title": "type of the overwrite" },
+                "allow": { "type": "integer", "title": "allow permissions" },
+                "deny": { "type": "integer", "title": "deny permissions" }
+              }
+            }
+          },
+          "name": { "type": "string", "title": "name of the channel" },
+          "topic": { "type": "string", "title": "topic of the channel" },
+          "nsfw": { "type": "boolean", "title": "whether the channel is nsfw" },
+          "last_message_id": {
+            "type": "string",
+            "title": "id of the last message in the channel"
+          },
+          "bitrate": { "type": "integer", "title": "bitrate of the channel" },
+          "user_limit": {
+            "type": "integer",
+            "title": "user limit of the channel"
+          },
+          "rate_limit_per_user": {
+            "type": "integer",
+            "title": "rate limit per user of the channel"
+          },
+          "recipients": {
+            "type": "array",
+            "title": "recipients of the channel",
+            "items": { "$ref": "#/components/schemas/User" }
+          },
+          "icon": { "type": "string", "title": "icon of the channel" },
+          "owner_id": {
+            "type": "string",
+            "title": "id of the owner of the channel"
+          },
+          "application_id": {
+            "type": "string",
+            "title": "id of the application that created the channel"
+          },
+          "parent_id": {
+            "type": "string",
+            "title": "id of the parent of the channel"
+          },
+          "last_pin_timestamp": {
+            "type": "string",
+            "title": "timestamp of the last pinned message"
+          },
+          "message_count": {
+            "type": "integer",
+            "title": "number of messages in the channel"
+          },
+          "member_count": {
+            "type": "integer",
+            "title": "number of members in the channel"
+          },
+          "default_auto_archive_duration": {
+            "type": "integer",
+            "title": "default auto-archive duration of the channel"
+          },
+          "permissions": {
+            "type": "string",
+            "title": "permissions of the channel"
+          },
+          "flags": { "type": "integer", "title": "flags of the channel" },
+          "total_message_sent": {
+            "type": "integer",
+            "title": "total number of messages sent in the channel"
+          }
+        }
+      },
+      "Role": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "title": "id of the role" },
+          "name": { "type": "string", "title": "name of the role" },
+          "color": { "type": "integer", "title": "color of the role" },
+          "hoist": {
+            "type": "boolean",
+            "title": "whether the role is hoisted"
+          },
+          "position": { "type": "integer", "title": "position of the role" },
+          "permissions": {
+            "type": "integer",
+            "title": "permissions of the role"
+          },
+          "managed": {
+            "type": "boolean",
+            "title": "whether the role is managed"
+          },
+          "mentionable": {
+            "type": "boolean",
+            "title": "whether the role is mentionable"
+          }
+        }
+      },
+      "Emoji": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "title": "id of the emoji" },
+          "name": { "type": "string", "title": "name of the emoji" }
+        }
+      },
+      "User": {
+        "type": "object",
+        "title": "user that sent the message",
+        "properties": {
+          "id": { "type": "string", "title": "the user's id" },
+          "username": {
+            "type": "string",
+            "title": "the user's username, not unique across the platform"
+          },
+          "discriminator": {
+            "type": "string",
+            "title": "the user's 4-digit discord-tag"
+          },
+          "avatar": { "type": "string", "title": "the user's avatar hash" },
+          "bot": {
+            "type": "boolean",
+            "title": "whether the user belongs to an OAuth2 application"
+          },
+          "system": {
+            "type": "boolean",
+            "title": "whether the user is an Official Discord System user (part of the urgent message system)"
+          },
+          "mfa_enabled": {
+            "type": "boolean",
+            "title": "whether the user has two factor enabled on their account"
+          },
+          "banner": { "type": "string", "title": "the user's banner hash" },
+          "accent_color": {
+            "type": "string",
+            "title": "the user's banner color encoded as an integer representation of hexadecimal color code"
+          },
+          "locale": {
+            "type": "string",
+            "title": "the user's chosen language option"
+          },
+          "verified": {
+            "type": "boolean",
+            "title": "whether the email on this account has been verified"
+          },
+          "email": { "type": "string", "title": "the user's email address" },
+          "flags": {
+            "type": "integer",
+            "title": "the bitwise flags for the user"
+          },
+          "premium_type": {
+            "type": "integer",
+            "title": "the type of Nitro subscription on a user's account"
+          },
+          "public_flags": {
+            "type": "integer",
+            "title": "the bitwise flags for the user's public profile"
+          }
+        }
+      },
+      "Embed": {
+        "type": "object",
+        "title": "embedded rich content",
+        "properties": {
+          "title": { "type": "string", "title": "title of the embed" },
+          "type": {
+            "type": "string",
+            "title": "type of the embed",
+            "enum": ["rich", "image", "video", "gifv", "article", "link"]
+          },
+          "description": {
+            "type": "string",
+            "title": "description of the embed"
+          },
+          "url": { "type": "string", "title": "url of the embed" },
+          "timestamp": { "type": "string", "title": "timestamp of the embed" },
+          "color": { "type": "integer", "title": "color of the embed" },
+          "footer": {
+            "type": "object",
+            "title": "footer of the embed",
+            "properties": {
+              "text": { "type": "string", "title": "text of the footer" },
+              "icon_url": {
+                "type": "string",
+                "title": "url of the footer icon"
+              }
+            }
+          },
+          "image": {
+            "type": "object",
+            "title": "image of the embed",
+            "properties": {
+              "url": { "type": "string", "title": "url of the image" },
+              "height": { "type": "integer", "title": "height of the image" },
+              "width": { "type": "integer", "title": "width of the image" }
+            }
+          },
+          "thumbnail": {
+            "type": "object",
+            "title": "thumbnail of the embed",
+            "properties": {
+              "url": { "type": "string", "title": "url of the thumbnail" },
+              "height": {
+                "type": "integer",
+                "title": "height of the thumbnail"
+              },
+              "width": { "type": "integer", "title": "width of the thumbnail" }
+            }
+          },
+          "video": {
+            "type": "object",
+            "title": "video of the embed",
+            "properties": {
+              "url": { "type": "string", "title": "url of the video" },
+              "height": { "type": "integer", "title": "height of the video" },
+              "width": { "type": "integer", "title": "width of the video" }
+            }
+          }
+        }
+      },
+      "Message": {
+        "type": "object",
+        "title": "message",
+        "properties": {
+          "id": { "type": "string", "title": "the message's id" },
+          "channel_id": {
+            "type": "string",
+            "title": "the message's channel id"
+          },
+          "author": { "$ref": "#/components/schemas/User" },
+          "content": { "type": "string", "title": "the message's content" },
+          "timestamp": { "type": "string", "title": "the message's timestamp" },
+          "edited_timestamp": {
+            "type": "string",
+            "title": "the message's edited timestamp"
+          },
+          "tts": {
+            "type": "boolean",
+            "title": "whether the message is text-to-speech"
+          },
+          "mention_everyone": {
+            "type": "boolean",
+            "title": "whether @everyone is mentioned in the message"
+          },
+          "mentions": {
+            "type": "array",
+            "title": "mentions in the message",
+            "items": { "$ref": "#/components/schemas/User" }
+          },
+          "mention_roles": {
+            "type": "array",
+            "title": "roles mentioned in the message",
+            "items": { "type": "string", "title": "role id" }
+          },
+          "mention_channels": {
+            "type": "array",
+            "title": "channels mentioned in the message",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string", "title": "id of the channel" },
+                "guild_id": {
+                  "type": "string",
+                  "title": "id of the guild containing the channel"
+                },
+                "type": { "type": "integer", "title": "type of the channel" },
+                "name": { "type": "string", "title": "name of the channel" }
+              }
+            }
+          },
+          "attachments": {
+            "type": "array",
+            "title": "attachments in the message",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string", "title": "id of the attachment" },
+                "filename": {
+                  "type": "string",
+                  "title": "filename of the attachment"
+                },
+                "size": {
+                  "type": "integer",
+                  "title": "size of the attachment"
+                },
+                "url": { "type": "string", "title": "url of the attachment" },
+                "proxy_url": {
+                  "type": "string",
+                  "title": "url of the attachment"
+                },
+                "height": {
+                  "type": "integer",
+                  "title": "height of the attachment"
+                },
+                "width": {
+                  "type": "integer",
+                  "title": "width of the attachment"
+                }
+              }
+            }
+          },
+          "embeds": {
+            "type": "array",
+            "title": "embeds in the message",
+            "items": { "$ref": "#/components/schemas/Embed" }
+          },
+          "reactions": {
+            "type": "array",
+            "title": "reactions in the message",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "title": "times this emoji has been used to react"
+                },
+                "me": {
+                  "type": "boolean",
+                  "title": "whether the current user reacted to the message"
+                },
+                "emoji": {
+                  "type": "object",
+                  "title": "emoji of the reaction",
+                  "properties": {
+                    "id": { "type": "string", "title": "id of the emoji" },
+                    "name": { "type": "string", "title": "name of the emoji" }
+                  }
+                }
+              }
+            }
+          },
+          "nonce": { "type": "string", "title": "nonce of the message" },
+          "pinned": {
+            "type": "boolean",
+            "title": "whether the message is pinned"
+          },
+          "webhook_id": {
+            "type": "string",
+            "title": "id of the webhook that sent the message"
+          },
+          "type": { "type": "integer", "title": "type of the message" },
+          "application_id": {
+            "type": "string",
+            "title": "id of the application that sent the message"
+          }
+        }
+      },
+      "SendMessage": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "title": "Message content",
+            "description": "Message to send. Up to 2000 characters",
+            "x-ui:widget": "textarea"
+          },
+          "tts": {
+            "type": "boolean",
+            "title": "Text-to-speech (TTS)",
+            "description": "Whether the message should be read aloud by Discord"
+          },
+          "embeds": {
+            "type": "array",
+            "title": "Embeds",
+            "description": "Embedded rich content (up to 6000 characters)",
+            "items": { "$ref": "#/components/schemas/Embed" }
+          }
+        }
+      }
+    }
+  },
+  "security": [{ "oauth2": ["identify", "guilds", "bot"] }]
+}

@@ -1,0 +1,535 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "2018-11-29",
+    "x-release": "v4",
+    "title": "Amazon API Gateway Management",
+    "description": "The Amazon API Gateway Management API allows you to directly manage runtime aspects of your deployed APIs. To use it, you must explicitly set the SDK's endpoint to point to the endpoint of your deployed API. The endpoint will be of the form https&#x3A;//{api-id}.execute-api.{region}.amazonaws.com/{stage}, or will be the endpoint corresponding to your API's custom domain and base path, if applicable.",
+    "x-logo": {
+      "url": "https://raw.githubusercontent.com/chainjet/assets/master/integrations/aws/Arch_Amazon-API-Gateway_64.svg"
+    },
+    "termsOfService": "https://aws.amazon.com/service-terms/",
+    "contact": {
+      "name": "Mike Ralphson",
+      "email": "mike.ralphson@gmail.com",
+      "url": "https://github.com/mermade/aws2openapi",
+      "x-twitter": "PermittedSoc"
+    },
+    "license": {
+      "name": "Apache 2.0 License",
+      "url": "http://www.apache.org/licenses/"
+    },
+    "x-providerName": "amazonaws.com",
+    "x-serviceName": "apigatewaymanagementapi",
+    "x-origin": [
+      {
+        "contentType": "application/json",
+        "url": "https://raw.githubusercontent.com/aws/aws-sdk-js/master/apis/apigatewaymanagementapi-2018-11-29.normal.json",
+        "converter": {
+          "url": "https://github.com/mermade/aws2openapi",
+          "version": "1.0.0"
+        },
+        "x-apisguru-driver": "external"
+      }
+    ],
+    "x-apiClientRegistration": {
+      "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
+    },
+    "x-apisguru-categories": ["cloud"],
+    "x-preferred": true
+  },
+  "externalDocs": {
+    "description": "Amazon Web Services documentation",
+    "url": "https://docs.aws.amazon.com/execute-api/"
+  },
+  "servers": [
+    {
+      "url": "http://execute-api.{region}.amazonaws.com",
+      "variables": {
+        "region": {
+          "description": "The AWS region",
+          "enum": [
+            "us-east-1",
+            "us-east-2",
+            "us-west-1",
+            "us-west-2",
+            "us-gov-west-1",
+            "us-gov-east-1",
+            "ca-central-1",
+            "eu-north-1",
+            "eu-west-1",
+            "eu-west-2",
+            "eu-west-3",
+            "eu-central-1",
+            "eu-south-1",
+            "af-south-1",
+            "ap-northeast-1",
+            "ap-northeast-2",
+            "ap-northeast-3",
+            "ap-southeast-1",
+            "ap-southeast-2",
+            "ap-east-1",
+            "ap-south-1",
+            "sa-east-1",
+            "me-south-1"
+          ],
+          "default": "us-east-1"
+        }
+      },
+      "description": "The AmazonApiGatewayManagementApi multi-region endpoint"
+    },
+    {
+      "url": "https://execute-api.{region}.amazonaws.com",
+      "variables": {
+        "region": {
+          "description": "The AWS region",
+          "enum": [
+            "us-east-1",
+            "us-east-2",
+            "us-west-1",
+            "us-west-2",
+            "us-gov-west-1",
+            "us-gov-east-1",
+            "ca-central-1",
+            "eu-north-1",
+            "eu-west-1",
+            "eu-west-2",
+            "eu-west-3",
+            "eu-central-1",
+            "eu-south-1",
+            "af-south-1",
+            "ap-northeast-1",
+            "ap-northeast-2",
+            "ap-northeast-3",
+            "ap-southeast-1",
+            "ap-southeast-2",
+            "ap-east-1",
+            "ap-south-1",
+            "sa-east-1",
+            "me-south-1"
+          ],
+          "default": "us-east-1"
+        }
+      },
+      "description": "The AmazonApiGatewayManagementApi multi-region endpoint"
+    },
+    {
+      "url": "http://execute-api.{region}.amazonaws.com.cn",
+      "variables": {
+        "region": {
+          "description": "The AWS region",
+          "enum": ["cn-north-1", "cn-northwest-1"],
+          "default": "cn-north-1"
+        }
+      },
+      "description": "The AmazonApiGatewayManagementApi endpoint for China (Beijing) and China (Ningxia)"
+    },
+    {
+      "url": "https://execute-api.{region}.amazonaws.com.cn",
+      "variables": {
+        "region": {
+          "description": "The AWS region",
+          "enum": ["cn-north-1", "cn-northwest-1"],
+          "default": "cn-north-1"
+        }
+      },
+      "description": "The AmazonApiGatewayManagementApi endpoint for China (Beijing) and China (Ningxia)"
+    }
+  ],
+  "paths": {
+    "/@connections/{connectionId}": {
+      "delete": {
+        "operationId": "DeleteConnection",
+        "description": "Delete the connection with the provided id.",
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "480": {
+            "description": "GoneException",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GoneException"
+                }
+              }
+            }
+          },
+          "481": {
+            "description": "LimitExceededException",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LimitExceededException"
+                }
+              }
+            }
+          },
+          "482": {
+            "description": "ForbiddenException",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenException"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "connectionId",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "Delete Connection"
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/X-Amz-Content-Sha256"
+        },
+        {
+          "$ref": "#/components/parameters/X-Amz-Date"
+        },
+        {
+          "$ref": "#/components/parameters/X-Amz-Algorithm"
+        },
+        {
+          "$ref": "#/components/parameters/X-Amz-Credential"
+        },
+        {
+          "$ref": "#/components/parameters/X-Amz-Security-Token"
+        },
+        {
+          "$ref": "#/components/parameters/X-Amz-Signature"
+        },
+        {
+          "$ref": "#/components/parameters/X-Amz-SignedHeaders"
+        }
+      ],
+      "get": {
+        "operationId": "GetConnection",
+        "description": "Get information about the connection with the provided id.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetConnectionResponse"
+                }
+              }
+            }
+          },
+          "480": {
+            "description": "GoneException",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GoneException"
+                }
+              }
+            }
+          },
+          "481": {
+            "description": "LimitExceededException",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LimitExceededException"
+                }
+              }
+            }
+          },
+          "482": {
+            "description": "ForbiddenException",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenException"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "connectionId",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "Get Connection"
+      },
+      "post": {
+        "operationId": "PostToConnection",
+        "description": "Sends the provided data to the specified connection.",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "480": {
+            "description": "GoneException",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GoneException"
+                }
+              }
+            }
+          },
+          "481": {
+            "description": "LimitExceededException",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LimitExceededException"
+                }
+              }
+            }
+          },
+          "482": {
+            "description": "PayloadTooLargeException",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PayloadTooLargeException"
+                }
+              }
+            }
+          },
+          "483": {
+            "description": "ForbiddenException",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenException"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "connectionId",
+            "in": "path",
+            "required": true,
+            "description": "The identifier of the connection that a specific client is using.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["Data"],
+                "properties": {
+                  "Data": {
+                    "description": "The data to be sent to the client specified by its connection id.",
+                    "type": "string",
+                    "maxLength": 131072
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Post To Connection"
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "X-Amz-Content-Sha256": {
+        "name": "X-Amz-Content-Sha256",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        },
+        "required": false,
+        "x-ignore": true
+      },
+      "X-Amz-Date": {
+        "name": "X-Amz-Date",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        },
+        "required": false,
+        "x-ignore": true
+      },
+      "X-Amz-Algorithm": {
+        "name": "X-Amz-Algorithm",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        },
+        "required": false,
+        "x-ignore": true
+      },
+      "X-Amz-Credential": {
+        "name": "X-Amz-Credential",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        },
+        "required": false,
+        "x-ignore": true
+      },
+      "X-Amz-Security-Token": {
+        "name": "X-Amz-Security-Token",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        },
+        "required": false,
+        "x-ignore": true
+      },
+      "X-Amz-Signature": {
+        "name": "X-Amz-Signature",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        },
+        "required": false,
+        "x-ignore": true
+      },
+      "X-Amz-SignedHeaders": {
+        "name": "X-Amz-SignedHeaders",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        },
+        "required": false,
+        "x-ignore": true
+      }
+    },
+    "securitySchemes": {
+      "hmac": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header",
+        "description": "Amazon Signature authorization v4",
+        "x-amazon-apigateway-authtype": "awsSigv4"
+      }
+    },
+    "schemas": {
+      "GoneException": {},
+      "LimitExceededException": {},
+      "ForbiddenException": {},
+      "GetConnectionResponse": {
+        "type": "object",
+        "properties": {
+          "ConnectedAt": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/__timestampIso8601"
+              },
+              {
+                "xml": {
+                  "name": "connectedAt"
+                },
+                "description": "The time in ISO 8601 format for when the connection was established."
+              }
+            ]
+          },
+          "Identity": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Identity"
+              },
+              {
+                "xml": {
+                  "name": "identity"
+                }
+              }
+            ]
+          },
+          "LastActiveAt": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/__timestampIso8601"
+              },
+              {
+                "xml": {
+                  "name": "lastActiveAt"
+                },
+                "description": "The time in ISO 8601 format for when the connection was last active."
+              }
+            ]
+          }
+        }
+      },
+      "PayloadTooLargeException": {},
+      "__string": {
+        "type": "string"
+      },
+      "__timestampIso8601": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "Identity": {
+        "type": "object",
+        "required": ["SourceIp", "UserAgent"],
+        "properties": {
+          "SourceIp": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/__string"
+              },
+              {
+                "xml": {
+                  "name": "sourceIp"
+                },
+                "description": "The source IP address of the TCP connection making the request to API Gateway."
+              }
+            ]
+          },
+          "UserAgent": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/__string"
+              },
+              {
+                "xml": {
+                  "name": "userAgent"
+                },
+                "description": "The User Agent of the API caller."
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "hmac": []
+    }
+  ],
+  "x-metadata": {
+    "apiVersion": "2018-11-29",
+    "endpointPrefix": "execute-api",
+    "signingName": "execute-api",
+    "serviceFullName": "AmazonApiGatewayManagementApi",
+    "serviceId": "ApiGatewayManagementApi",
+    "protocol": "rest-json",
+    "jsonVersion": "1.1",
+    "uid": "apigatewaymanagementapi-2018-11-29",
+    "signatureVersion": "v4",
+    "targetPrefix": "ApiGatewayManagementApi"
+  }
+}

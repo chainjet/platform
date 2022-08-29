@@ -1,0 +1,1111 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Giphy",
+    "version": "1.0",
+    "title": "Giphy",
+    "termsOfService": "https://developers.giphy.com/",
+    "contact": {
+      "email": "support@giphy.com"
+    }
+  },
+  "externalDocs": {
+    "description": "Official Giphy Documentation",
+    "url": "https://developers.giphy.com/docs/"
+  },
+  "tags": [
+    {
+      "name": "gifs"
+    },
+    {
+      "name": "stickers"
+    }
+  ],
+  "security": [
+    {
+      "api_key": []
+    }
+  ],
+  "paths": {
+    "/gifs/search": {
+      "get": {
+        "tags": ["gifs"],
+        "summary": "Search GIFs",
+        "description": "Search all GIPHY GIFs for a word or phrase. Punctuation will be stripped and ignored.  Use a plus or url encode for phrases. Example paul+rudd, ryan+gosling or american+psycho.\n",
+        "operationId": "searchGifs",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/query"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/rating"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Gif"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          }
+        }
+      }
+    },
+    "/gifs/trending": {
+      "get": {
+        "tags": ["gifs"],
+        "summary": "Trending GIFs",
+        "description": "Fetch GIFs currently trending online. Hand curated by the GIPHY editorial team.  The data returned mirrors the GIFs showcased on the GIPHY homepage. Returns 25 results by default.\n",
+        "operationId": "trendingGifs",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/rating"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Gif"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          }
+        }
+      }
+    },
+    "/gifs/translate": {
+      "get": {
+        "tags": ["gifs"],
+        "summary": "Translate phrase to GIF",
+        "description": "The translate API draws on search, but uses the GIPHY `special sauce` to handle translating from one vocabulary to another. In this case, words and phrases to GIF\n",
+        "operationId": "translateGif",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/term"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Gif"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          }
+        }
+      }
+    },
+    "/gifs/random": {
+      "get": {
+        "tags": ["gifs"],
+        "summary": "Random GIF",
+        "description": "Returns a random GIF, limited by tag. Excluding the tag parameter will return a random GIF from the GIPHY catalog.\n",
+        "operationId": "randomGif",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/tag"
+          },
+          {
+            "$ref": "#/components/parameters/rating"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Gif"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          }
+        }
+      }
+    },
+    "/gifs/{gifId}": {
+      "get": {
+        "tags": ["gifs"],
+        "summary": "Get GIF by Id",
+        "description": "Returns a GIF given that GIF's unique ID\n",
+        "operationId": "getGifById",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/gifId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Gif"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          }
+        }
+      }
+    },
+    "/gifs": {
+      "get": {
+        "tags": ["gifs"],
+        "summary": "Get GIFs by ID",
+        "description": "A multiget version of the get GIF by ID endpoint.\n",
+        "operationId": "getGifsById",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/gifIds"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Gif"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          }
+        }
+      }
+    },
+    "/stickers/search": {
+      "get": {
+        "tags": ["stickers"],
+        "summary": "Search Stickers",
+        "description": "Replicates the functionality and requirements of the classic GIPHY search, but returns animated stickers rather than GIFs.\n",
+        "operationId": "searchStickers",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/query"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/rating"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Gif"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          }
+        }
+      }
+    },
+    "/stickers/trending": {
+      "get": {
+        "tags": ["stickers"],
+        "summary": "Trending Stickers",
+        "description": "Fetch Stickers currently trending online. Hand curated by the GIPHY editorial team. Returns 25 results by default.\n",
+        "operationId": "trendingStickers",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/rating"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Gif"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          }
+        }
+      }
+    },
+    "/stickers/translate": {
+      "get": {
+        "tags": ["stickers"],
+        "summary": "Translate phrase to Sticker",
+        "description": "The translate API draws on search, but uses the GIPHY `special sauce` to handle translating from one vocabulary to another. In this case, words and phrases to GIFs.\n",
+        "operationId": "translateSticker",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/term"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Gif"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          }
+        }
+      }
+    },
+    "/stickers/random": {
+      "get": {
+        "tags": ["stickers"],
+        "summary": "Random Sticker",
+        "description": "Returns a random GIF, limited by tag. Excluding the tag parameter will return a random GIF from the GIPHY catalog.\n",
+        "operationId": "randomSticker",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/tag"
+          },
+          {
+            "$ref": "#/components/parameters/rating"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Gif"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.giphy.com/v1"
+    }
+  ],
+  "components": {
+    "parameters": {
+      "query": {
+        "name": "q",
+        "in": "query",
+        "required": true,
+        "description": "Search query term or prhase.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "term": {
+        "name": "s",
+        "in": "query",
+        "required": true,
+        "description": "Search term.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "tag": {
+        "name": "tag",
+        "in": "query",
+        "description": "Filters results by specified tag.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "limit": {
+        "name": "limit",
+        "in": "query",
+        "description": "The maximum number of records to return.",
+        "schema": {
+          "type": "integer",
+          "format": "int32",
+          "default": 25
+        }
+      },
+      "offset": {
+        "name": "offset",
+        "in": "query",
+        "description": "An optional results offset.",
+        "schema": {
+          "type": "integer",
+          "format": "int32",
+          "default": 0
+        }
+      },
+      "rating": {
+        "name": "rating",
+        "in": "query",
+        "description": "Filters results by specified rating.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "lang": {
+        "name": "lang",
+        "in": "query",
+        "description": "Specify default language for regional content; use a 2-letter ISO 639-1 language code.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "gifId": {
+        "name": "gifId",
+        "in": "path",
+        "required": true,
+        "description": "Filters results by specified GIF ID.",
+        "schema": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "gifIds": {
+        "name": "ids",
+        "in": "query",
+        "description": "Filters results by specified GIF IDs, separated by commas.",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Your request was formatted incorrectly or missing required parameters."
+      },
+      "Forbidden": {
+        "description": "You weren't authorized to make your request; most likely this indicates an issue with your API Key."
+      },
+      "NotFound": {
+        "description": "The particular GIF you are requesting was not found. This occurs, for example, if you request a GIF by an id that does not exist."
+      },
+      "TooManyRequests": {
+        "description": "Your API Key is making too many requests. Read about [requesting a Production Key](https://developers.giphy.com/docs/#access) to upgrade your API Key rate limits.\n"
+      }
+    },
+    "securitySchemes": {
+      "api_key": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "api_key"
+      }
+    },
+    "schemas": {
+      "Pagination": {
+        "type": "object",
+        "description": "The Pagination Object contains information relating to the number of total results available as well as the number of results fetched and their relative positions.\n",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Position in pagination.",
+            "example": 75
+          },
+          "total_count": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Total number of items available.",
+            "example": 250
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Total number of items returned.",
+            "example": 25
+          }
+        }
+      },
+      "Meta": {
+        "type": "object",
+        "description": "The Meta Object contains basic information regarding the request, whether it was successful, and the response given by the API.  Check `responses` to see a description of types of response codes the API might give you under different cirumstances.\n",
+        "properties": {
+          "msg": {
+            "type": "string",
+            "description": "HTTP Response Message",
+            "example": "OK"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "description": "HTTP Response Code",
+            "example": 200
+          },
+          "response_id": {
+            "type": "string",
+            "description": "A unique ID paired with this response from the API.",
+            "example": "57eea03c72381f86e05c35d2"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "description": "The User Object contains information about the user associated with a GIF and URLs to assets such as that user's avatar image, profile, and more.",
+        "properties": {
+          "avatar_url": {
+            "type": "string",
+            "description": "The URL for this user's avatar image.",
+            "example": "https://media1.giphy.com/avatars/election2016/XwYrZi5H87o6.gif"
+          },
+          "banner_url": {
+            "type": "string",
+            "description": "The URL for the banner image that appears atop this user's profile page.",
+            "example": "https://media4.giphy.com/avatars/cheezburger/XkuejOhoGLE6.jpg"
+          },
+          "profile_url": {
+            "type": "string",
+            "description": "The URL for this user's profile.",
+            "example": "https://giphy.com/cheezburger/"
+          },
+          "username": {
+            "type": "string",
+            "description": "The username associated with this user.",
+            "example": "joecool4000"
+          },
+          "display_name": {
+            "type": "string",
+            "description": "The display name associated with this user (contains formatting the base username might not).",
+            "example": "JoeCool4000"
+          },
+          "twitter": {
+            "type": "string",
+            "description": "The Twitter username associated with this user, if applicable.",
+            "example": "@joecool4000"
+          }
+        }
+      },
+      "Image": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "The publicly-accessible direct URL for this GIF.",
+            "example": "https://media1.giphy.com/media/cZ7rmKfFYOvYI/200.gif"
+          },
+          "width": {
+            "type": "string",
+            "description": "The width of this GIF in pixels.",
+            "example": "320"
+          },
+          "height": {
+            "type": "string",
+            "description": "The height of this GIF in pixels.",
+            "example": "200"
+          },
+          "size": {
+            "type": "string",
+            "description": "The size of this GIF in bytes.",
+            "example": "32381"
+          },
+          "frames": {
+            "type": "string",
+            "description": "The number of frames in this GIF.",
+            "example": "15"
+          },
+          "mp4": {
+            "type": "string",
+            "description": "The URL for this GIF in .MP4 format.",
+            "example": "https://media1.giphy.com/media/cZ7rmKfFYOvYI/giphy.mp4"
+          },
+          "mp4_size": {
+            "type": "string",
+            "description": "The size in bytes of the .MP4 file corresponding to this GIF.",
+            "example": "25123"
+          },
+          "webp": {
+            "type": "string",
+            "description": "The URL for this GIF in .webp format.",
+            "example": "https://media1.giphy.com/media/cZ7rmKfFYOvYI/giphy.webp"
+          },
+          "webp_size": {
+            "type": "string",
+            "description": "The size in bytes of the .webp file corresponding to this GIF.",
+            "example": "12321"
+          }
+        }
+      },
+      "Gif": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["gif"],
+            "description": "Type of the gif. By default, this is almost always gif",
+            "default": "gif"
+          },
+          "id": {
+            "type": "string",
+            "description": "This GIF's unique ID",
+            "example": "YsTs5ltWtEhnq"
+          },
+          "slug": {
+            "type": "string",
+            "description": "The unique slug used in this GIF's URL",
+            "example": "confused-flying-YsTs5ltWtEhnq"
+          },
+          "url": {
+            "type": "string",
+            "description": "The unique URL for this GIF",
+            "example": "http://giphy.com/gifs/confused-flying-YsTs5ltWtEhnq"
+          },
+          "bitly_url": {
+            "type": "string",
+            "description": "The unique bit.ly URL for this GIF",
+            "example": "http://gph.is/1gsWDcL"
+          },
+          "embded_url": {
+            "type": "string",
+            "description": "A URL used for embedding this GIF",
+            "example": "http://giphy.com/embed/YsTs5ltWtEhnq"
+          },
+          "username": {
+            "type": "string",
+            "description": "The username this GIF is attached to, if applicable",
+            "example": "JoeCool4000"
+          },
+          "source": {
+            "type": "string",
+            "description": "The page on which this GIF was found",
+            "example": "http://www.reddit.com/r/reactiongifs/comments/1xpyaa/superman_goes_to_hollywood/"
+          },
+          "rating": {
+            "type": "string",
+            "description": "The MPAA-style rating for this content. Examples include Y, G, PG, PG-13 and R",
+            "example": "g"
+          },
+          "content_url": {
+            "type": "string",
+            "description": "Currently unused"
+          },
+          "tags": {
+            "type": "array",
+            "description": "An array of tags for this GIF (Note: Not available when using the Public Beta Key)\n",
+            "items": {
+              "type": "string",
+              "description": "Tag name"
+            }
+          },
+          "featured_tags": {
+            "type": "array",
+            "description": "An array of featured tags for this GIF (Note: Not available when using the Public Beta Key)\n",
+            "items": {
+              "type": "string",
+              "description": "Tag name"
+            }
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "source_tld": {
+            "type": "string",
+            "description": "The top level domain of the source URL.",
+            "example": "cheezburger.com"
+          },
+          "source_post_url": {
+            "type": "string",
+            "description": "The URL of the webpage on which this GIF was found.",
+            "example": "http://cheezburger.com/5282328320"
+          },
+          "update_datetime": {
+            "type": "string",
+            "description": "The date on which this GIF was last updated.",
+            "format": "date-time",
+            "example": "2013-08-01 12:41:48"
+          },
+          "create_datetime": {
+            "type": "string",
+            "description": "The date this GIF was added to the GIPHY database.",
+            "format": "date-time",
+            "example": "2013-08-01 12:41:48"
+          },
+          "import_datetime": {
+            "type": "string",
+            "description": "The creation or upload date from this GIF's source.",
+            "format": "date-time",
+            "example": "2013-08-01 12:41:48"
+          },
+          "trending_datetime": {
+            "type": "string",
+            "description": "The date on which this gif was marked trending, if applicable.",
+            "format": "date-time",
+            "example": "2013-08-01 12:41:48"
+          },
+          "images": {
+            "type": "object",
+            "description": "An object containing data for various available formats and sizes of this GIF.",
+            "properties": {
+              "fixed_height": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Image"
+                  },
+                  {
+                    "description": "Data surrounding versions of this GIF with a fixed height of 200 pixels. Good for mobile use."
+                  }
+                ]
+              },
+              "fixed_height_still": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Image"
+                  },
+                  {
+                    "description": "Data surrounding a static image of this GIF with a fixed height of 200 pixels."
+                  }
+                ]
+              },
+              "fixed_height_downsampled": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Image"
+                  },
+                  {
+                    "description": "Data surrounding versions of this GIF with a fixed height of 200 pixels and the number of frames reduced to 6."
+                  }
+                ]
+              },
+              "fixed_width": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Image"
+                  },
+                  {
+                    "description": "Data surrounding versions of this GIF with a fixed width of 200 pixels. Good for mobile use."
+                  }
+                ]
+              },
+              "fixed_width_still": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Image"
+                  },
+                  {
+                    "description": "Data surrounding a static image of this GIF with a fixed width of 200 pixels."
+                  }
+                ]
+              },
+              "fixed_width_downsampled": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Image"
+                  },
+                  {
+                    "description": "Data surrounding versions of this GIF with a fixed width of 200 pixels and the number of frames reduced to 6."
+                  }
+                ]
+              },
+              "fixed_height_small": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Image"
+                  },
+                  {
+                    "description": "Data surrounding versions of this GIF with a fixed height of 100 pixels. Good for mobile keyboards."
+                  }
+                ]
+              },
+              "fixed_height_small_still": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Image"
+                  },
+                  {
+                    "description": "Data surrounding a static image of this GIF with a fixed height of 100 pixels."
+                  }
+                ]
+              },
+              "fixed_width_small": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Image"
+                  },
+                  {
+                    "description": "Data surrounding versions of this GIF with a fixed width of 100 pixels. Good for mobile keyboards."
+                  }
+                ]
+              },
+              "fixed_width_small_still": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Image"
+                  },
+                  {
+                    "description": "Data surrounding a static image of this GIF with a fixed width of 100 pixels."
+                  }
+                ]
+              },
+              "downsized": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Image"
+                  },
+                  {
+                    "description": "Data surrounding a version of this GIF downsized to be under 2mb."
+                  }
+                ]
+              },
+              "downsized_still": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Image"
+                  },
+                  {
+                    "description": "Data surrounding a static preview image of the downsized version of this GIF."
+                  }
+                ]
+              },
+              "downsized_large": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Image"
+                  },
+                  {
+                    "description": "Data surrounding a version of this GIF downsized to be under 8mb."
+                  }
+                ]
+              },
+              "downsized_medium": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Image"
+                  },
+                  {
+                    "description": "Data surrounding a version of this GIF downsized to be under 5mb."
+                  }
+                ]
+              },
+              "downsized_small": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Image"
+                  },
+                  {
+                    "description": "Data surrounding a version of this GIF downsized to be under 200kb."
+                  }
+                ]
+              },
+              "original": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Image"
+                  },
+                  {
+                    "description": "Data surrounding the original version of this GIF. Good for desktop use."
+                  }
+                ]
+              },
+              "original_still": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Image"
+                  },
+                  {
+                    "description": "Data surrounding a static preview image of the original GIF."
+                  }
+                ]
+              },
+              "looping": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Image"
+                  },
+                  {
+                    "description": "Data surrounding a version of this GIF set to loop for 15 seconds."
+                  }
+                ]
+              },
+              "preview": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Image"
+                  },
+                  {
+                    "description": "Data surrounding a version of this GIF in .MP4 format limited to 50kb that displays the first 1-2 seconds of the GIF."
+                  }
+                ]
+              },
+              "preview_gif": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Image"
+                  },
+                  {
+                    "description": "Data surrounding a version of this GIF limited to 50kb that displays the first 1-2 seconds of the GIF."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

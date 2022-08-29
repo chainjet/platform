@@ -1,0 +1,2252 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Makerlog",
+    "description": "Makerlog is the home of the maker community. Share your work, get feedback, and much more.",
+    "version": "v1",
+    "x-logo": {
+      "url": "https://flowoid.s3.amazonaws.com/logos/makerlog.webp"
+    },
+    "x-categories": ["productivity"]
+  },
+  "security": [
+    {
+      "OAuth2": []
+    }
+  ],
+  "paths": {
+    "/notifications/": {
+      "get": {
+        "summary": "List notifications",
+        "operationId": "notifications_list",
+        "description": "All read notifications in past 24hrs and all unread.",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Notification"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["notifications"]
+      },
+      "parameters": []
+    },
+    "/notifications/mark_all_read/": {
+      "get": {
+        "summary": "Get read notifications",
+        "operationId": "notifications_mark_all_read",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Notification"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["notifications"]
+      },
+      "parameters": []
+    },
+    "/notifications/unread/": {
+      "get": {
+        "summary": "Get unread notifications",
+        "operationId": "notifications_unread",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Notification"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["notifications"]
+      },
+      "parameters": []
+    },
+    "/notifications/unread_count/": {
+      "get": {
+        "x-actionOnly": true,
+        "summary": "Notifications unread count",
+        "operationId": "notifications_unread_count",
+        "description": "Unread counts for polling.",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Notification"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["notifications"]
+      },
+      "parameters": []
+    },
+    "/notifications/{id}/": {
+      "get": {
+        "summary": "Get a notification",
+        "operationId": "notifications_read",
+        "description": "Get a notification by id",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notification"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["notifications"]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/notifications/{id}/mark_read/": {
+      "get": {
+        "summary": "Mark notification as read",
+        "operationId": "notifications_mark_read",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notification"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["notifications"]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/products/": {
+      "get": {
+        "summary": "List products",
+        "operationId": "products_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": ["count", "results"],
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "next": {
+                      "type": "string",
+                      "format": "uri",
+                      "nullable": true
+                    },
+                    "previous": {
+                      "type": "string",
+                      "format": "uri",
+                      "nullable": true
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Product"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["products"]
+      },
+      "post": {
+        "summary": "Create a product",
+        "operationId": "products_create",
+        "description": "",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Product"
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["products"]
+      },
+      "parameters": []
+    },
+    "/products/common_tags/": {
+      "get": {
+        "x-actionOnly": true,
+        "summary": "Get product common tags",
+        "operationId": "products_common_tags",
+        "description": "Utilized for fancy autocomplete.",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": ["count", "results"],
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "next": {
+                      "type": "string",
+                      "format": "uri",
+                      "nullable": true
+                    },
+                    "previous": {
+                      "type": "string",
+                      "format": "uri",
+                      "nullable": true
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Product"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["products"]
+      },
+      "parameters": []
+    },
+    "/products/suggest_tags/": {
+      "get": {
+        "x-actionOnly": true,
+        "summary": "Get product suggest tags",
+        "operationId": "products_suggest_tags",
+        "description": "Utilized for fancy autocomplete.",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": ["count", "results"],
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "next": {
+                      "type": "string",
+                      "format": "uri",
+                      "nullable": true
+                    },
+                    "previous": {
+                      "type": "string",
+                      "format": "uri",
+                      "nullable": true
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Product"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["products"]
+      },
+      "parameters": []
+    },
+    "/products/{slug}/": {
+      "get": {
+        "summary": "Get a product",
+        "operationId": "products_read",
+        "description": "Get a product by slug",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["products"]
+      },
+      "put": {
+        "x-ignore": true,
+        "summary": "Update a product",
+        "operationId": "products_update",
+        "description": "",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Product"
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["products"]
+      },
+      "patch": {
+        "summary": "Update a product",
+        "operationId": "products_partial_update",
+        "description": "",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Product"
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["products"]
+      },
+      "delete": {
+        "summary": "Delete a product",
+        "operationId": "products_delete",
+        "description": "",
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": ["products"]
+      },
+      "parameters": [
+        {
+          "name": "slug",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "slug",
+            "pattern": "^[-a-zA-Z0-9_]+$"
+          }
+        }
+      ]
+    },
+    "/products/{slug}/leave/": {
+      "post": {
+        "summary": "Leave a product",
+        "operationId": "products_leave",
+        "description": "",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Product"
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["products"]
+      },
+      "parameters": [
+        {
+          "name": "slug",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "slug",
+            "pattern": "^[-a-zA-Z0-9_]+$"
+          }
+        }
+      ]
+    },
+    "/products/{slug}/people/": {
+      "get": {
+        "summary": "Get product people",
+        "operationId": "products_people",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["products"]
+      },
+      "parameters": [
+        {
+          "name": "slug",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "slug",
+            "pattern": "^[-a-zA-Z0-9_]+$"
+          }
+        }
+      ]
+    },
+    "/products/{slug}/projects/": {
+      "get": {
+        "summary": "Get product projects",
+        "operationId": "products_projects",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["products"]
+      },
+      "parameters": [
+        {
+          "name": "slug",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "slug",
+            "pattern": "^[-a-zA-Z0-9_]+$"
+          }
+        }
+      ]
+    },
+    "/products/{slug}/related_products/": {
+      "get": {
+        "summary": "Get product related products",
+        "operationId": "products_related_products",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["products"]
+      },
+      "parameters": [
+        {
+          "name": "slug",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "slug",
+            "pattern": "^[-a-zA-Z0-9_]+$"
+          }
+        }
+      ]
+    },
+    "/products/{slug}/stats/": {
+      "get": {
+        "summary": "Get product stats",
+        "operationId": "products_stats",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["products"]
+      },
+      "parameters": [
+        {
+          "name": "slug",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "slug",
+            "pattern": "^[-a-zA-Z0-9_]+$"
+          }
+        }
+      ]
+    },
+    "/projects/": {
+      "get": {
+        "summary": "List projects",
+        "operationId": "projects_list",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Project"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["projects"]
+      },
+      "post": {
+        "summary": "Create a project",
+        "operationId": "projects_create",
+        "description": "Create a new project (#hashtag).",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Project"
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["projects"]
+      },
+      "parameters": []
+    },
+    "/projects/{id}/": {
+      "get": {
+        "summary": "Get a project",
+        "operationId": "projects_read",
+        "description": "Get the details for a project.",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["projects"]
+      },
+      "put": {
+        "x-ignore": true,
+        "operationId": "projects_update",
+        "summary": "-",
+        "description": "",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Project"
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["projects"]
+      },
+      "patch": {
+        "summary": "Update a project",
+        "operationId": "projects_partial_update",
+        "description": "",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Project"
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["projects"]
+      },
+      "delete": {
+        "summary": "Delete a project",
+        "operationId": "projects_delete",
+        "description": "Deletes a project.",
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": ["projects"]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/projects/{id}/related/": {
+      "get": {
+        "summary": "Get related projects",
+        "operationId": "projects_related",
+        "description": "Gets user and products associated to this project/hashtag.",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["projects"]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/tasks/": {
+      "get": {
+        "summary": "List tasks",
+        "operationId": "tasks_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "done",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "created_at",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date_range",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": ["count", "results"],
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "next": {
+                      "type": "string",
+                      "format": "uri",
+                      "nullable": true
+                    },
+                    "previous": {
+                      "type": "string",
+                      "format": "uri",
+                      "nullable": true
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Task"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["tasks"]
+      },
+      "post": {
+        "summary": "Create a task",
+        "operationId": "tasks_create",
+        "description": "",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Task"
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["tasks"]
+      },
+      "parameters": []
+    },
+    "/tasks/sync/": {
+      "get": {
+        "x-actionOnly": true,
+        "summary": "Get tasks sync",
+        "operationId": "tasks_sync",
+        "description": "",
+        "parameters": [
+          {
+            "name": "done",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "created_at",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date_range",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": ["count", "results"],
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "next": {
+                      "type": "string",
+                      "format": "uri",
+                      "nullable": true
+                    },
+                    "previous": {
+                      "type": "string",
+                      "format": "uri",
+                      "nullable": true
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Task"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["tasks"]
+      },
+      "parameters": []
+    },
+    "/tasks/{id}/": {
+      "get": {
+        "summary": "Get a task",
+        "operationId": "tasks_read",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["tasks"]
+      },
+      "put": {
+        "x-ignore": true,
+        "operationId": "tasks_update",
+        "description": "",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Task"
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["tasks"],
+        "summary": "tasks update"
+      },
+      "patch": {
+        "summary": "Update a task",
+        "operationId": "tasks_partial_update",
+        "description": "",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Task"
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["tasks"]
+      },
+      "delete": {
+        "summary": "Delete a task",
+        "operationId": "tasks_delete",
+        "description": "",
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": ["tasks"]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/tasks/{id}/embed/": {
+      "get": {
+        "x-actionOnly": true,
+        "summary": "Get task embed",
+        "operationId": "tasks_embed",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["tasks"]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/tasks/{id}/praise/": {
+      "get": {
+        "summary": "Get task praises",
+        "operationId": "tasks_praise_read",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["tasks"]
+      },
+      "post": {
+        "summary": "Praise a task",
+        "operationId": "tasks_praise_create",
+        "description": "",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Task"
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["tasks"]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/users/common_tags/": {
+      "get": {
+        "x-actionOnly": true,
+        "summary": "Get user common tags",
+        "operationId": "users_common_tags",
+        "description": "Utilized for fancy autocomplete.",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": ["count", "results"],
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "next": {
+                      "type": "string",
+                      "format": "uri",
+                      "nullable": true
+                    },
+                    "previous": {
+                      "type": "string",
+                      "format": "uri",
+                      "nullable": true
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/User"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      },
+      "parameters": []
+    },
+    "/users/suggest_tags/": {
+      "get": {
+        "x-actionOnly": true,
+        "summary": "Get user suggest tags",
+        "operationId": "users_suggest_tags",
+        "description": "Utilized for fancy autocomplete.",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": ["count", "results"],
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "next": {
+                      "type": "string",
+                      "format": "uri",
+                      "nullable": true
+                    },
+                    "previous": {
+                      "type": "string",
+                      "format": "uri",
+                      "nullable": true
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/User"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      },
+      "parameters": []
+    },
+    "/users/{username}/": {
+      "get": {
+        "summary": "Get an user",
+        "operationId": "users_read",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      },
+      "put": {
+        "x-ignore": true,
+        "operationId": "users_update",
+        "description": "",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/User"
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["users"],
+        "summary": "users update"
+      },
+      "patch": {
+        "summary": "Update an user",
+        "operationId": "users_partial_update",
+        "description": "",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/User"
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      },
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/users/{username}/achievements/": {
+      "get": {
+        "summary": "Get user achievements",
+        "operationId": "users_achievements",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      },
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/users/{username}/activity_graph/": {
+      "get": {
+        "summary": "Get user activity graph",
+        "operationId": "users_activity_graph",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      },
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/users/{username}/embed/": {
+      "get": {
+        "summary": "Get user embed",
+        "operationId": "users_embed",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      },
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/users/{username}/is_following/": {
+      "get": {
+        "summary": "Get user following",
+        "operationId": "users_is_following",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      },
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/users/{username}/products/": {
+      "get": {
+        "summary": "Get user products",
+        "operationId": "users_products",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      },
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/users/{username}/related_users/": {
+      "get": {
+        "summary": "Get user related products",
+        "operationId": "users_related_users",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      },
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/users/{username}/stats/": {
+      "get": {
+        "summary": "Get user stats",
+        "operationId": "users_stats",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      },
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/users/{username}/stats_embed/": {
+      "get": {
+        "summary": "Get user stats embed",
+        "operationId": "users_stats_embed",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      },
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.getmakerlog.com/"
+    }
+  ],
+  "components": {
+    "requestBodies": {
+      "Product": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Product"
+            }
+          }
+        },
+        "required": true
+      },
+      "Project": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          }
+        },
+        "required": true
+      },
+      "Task": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Task"
+            }
+          }
+        },
+        "required": true
+      },
+      "User": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        },
+        "required": true
+      }
+    },
+    "securitySchemes": {
+      "OAuth2": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://api.getmakerlog.com/oauth/authorize",
+            "tokenUrl": "https://api.getmakerlog.com/oauth/token/",
+            "scopes": {
+              "tasks:read": "",
+              "tasks:write": "",
+              "products:read": "",
+              "products:write": "",
+              "projects:read": "",
+              "projects:write": "",
+              "notifications:read": "",
+              "user:read": "",
+              "user:write": ""
+            }
+          }
+        }
+      },
+      "Basic": {
+        "type": "http",
+        "scheme": "basic"
+      },
+      "Bearer": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
+    "schemas": {
+      "User": {
+        "title": "Recipient",
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "ID",
+            "type": "integer",
+            "readOnly": true
+          },
+          "username": {
+            "title": "Username",
+            "type": "string",
+            "readOnly": true,
+            "minLength": 1
+          },
+          "first_name": {
+            "title": "First name",
+            "type": "string",
+            "maxLength": 150
+          },
+          "last_name": {
+            "title": "Last name",
+            "type": "string",
+            "maxLength": 150
+          },
+          "status": {
+            "title": "Status",
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "title": "Description",
+            "type": "string",
+            "nullable": true
+          },
+          "verified": {
+            "title": "Verified",
+            "type": "boolean",
+            "readOnly": true
+          },
+          "private": {
+            "title": "Private",
+            "type": "boolean"
+          },
+          "avatar": {
+            "title": "Avatar",
+            "type": "string",
+            "readOnly": true,
+            "format": "uri"
+          },
+          "streak": {
+            "title": "Streak",
+            "type": "string",
+            "readOnly": true
+          },
+          "timezone": {
+            "title": "Timezone",
+            "type": "string",
+            "readOnly": true
+          },
+          "week_tda": {
+            "title": "Week tda",
+            "type": "string",
+            "readOnly": true
+          },
+          "twitter_handle": {
+            "title": "Twitter handle",
+            "type": "string",
+            "maxLength": 140,
+            "nullable": true
+          },
+          "instagram_handle": {
+            "title": "Instagram handle",
+            "type": "string",
+            "maxLength": 140,
+            "nullable": true
+          },
+          "product_hunt_handle": {
+            "title": "Product hunt handle",
+            "type": "string",
+            "maxLength": 140,
+            "nullable": true
+          },
+          "github_handle": {
+            "title": "Github handle",
+            "type": "string",
+            "maxLength": 140,
+            "nullable": true
+          },
+          "telegram_handle": {
+            "title": "Telegram handle",
+            "type": "string",
+            "maxLength": 140,
+            "nullable": true
+          },
+          "nomadlist_handle": {
+            "title": "Nomadlist handle",
+            "type": "string",
+            "maxLength": 140,
+            "nullable": true
+          },
+          "bmc_handle": {
+            "title": "Bmc handle",
+            "type": "string",
+            "maxLength": 140,
+            "nullable": true
+          },
+          "header": {
+            "title": "Header",
+            "type": "string",
+            "readOnly": true,
+            "format": "uri"
+          },
+          "is_staff": {
+            "title": "Staff status",
+            "description": "Designates whether the user can log into this admin site.",
+            "type": "boolean",
+            "readOnly": true
+          },
+          "donor": {
+            "title": "Donor",
+            "type": "boolean",
+            "readOnly": true
+          },
+          "shipstreams_handle": {
+            "title": "Shipstreams handle",
+            "type": "string",
+            "maxLength": 140,
+            "nullable": true
+          },
+          "website": {
+            "title": "Website",
+            "type": "string",
+            "format": "uri",
+            "maxLength": 140,
+            "nullable": true
+          },
+          "tester": {
+            "title": "Tester",
+            "type": "boolean",
+            "readOnly": true
+          },
+          "is_live": {
+            "title": "Is live",
+            "type": "boolean",
+            "readOnly": true
+          },
+          "digest": {
+            "title": "Digest",
+            "type": "boolean"
+          },
+          "gold": {
+            "title": "Gold",
+            "type": "boolean",
+            "readOnly": true
+          },
+          "accent": {
+            "title": "Accent",
+            "type": "string",
+            "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+            "maxLength": 18,
+            "minLength": 1
+          },
+          "maker_score": {
+            "title": "Maker score",
+            "type": "string",
+            "readOnly": true
+          },
+          "dark_mode": {
+            "title": "Dark mode",
+            "type": "boolean"
+          },
+          "weekends_off": {
+            "title": "Weekends off",
+            "type": "boolean"
+          },
+          "hardcore_mode": {
+            "title": "Hardcore mode",
+            "type": "boolean"
+          },
+          "email_notifications": {
+            "title": "Email notifications",
+            "type": "boolean"
+          },
+          "og_image": {
+            "title": "Og image",
+            "type": "string",
+            "readOnly": true,
+            "format": "uri"
+          },
+          "date_joined": {
+            "title": "Date joined",
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "interests": {
+            "title": "Interests",
+            "type": "string"
+          }
+        }
+      },
+      "Notification": {
+        "required": ["id", "key", "read", "verb", "broadcast_link", "created"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "key": {
+            "title": "Key",
+            "type": "string",
+            "maxLength": 20,
+            "minLength": 1
+          },
+          "read": {
+            "title": "Read",
+            "type": "boolean"
+          },
+          "verb": {
+            "title": "Verb",
+            "type": "string",
+            "maxLength": 20,
+            "minLength": 1
+          },
+          "recipient": {
+            "$ref": "#/components/schemas/User"
+          },
+          "actor": {
+            "title": "Actor",
+            "type": "string",
+            "readOnly": true
+          },
+          "unread": {
+            "title": "Unread",
+            "type": "boolean",
+            "readOnly": true
+          },
+          "target_type": {
+            "title": "Target type",
+            "type": "string",
+            "readOnly": true
+          },
+          "target": {
+            "title": "Target",
+            "type": "string",
+            "readOnly": true
+          },
+          "obj_type": {
+            "title": "Obj type",
+            "type": "string",
+            "readOnly": true
+          },
+          "obj": {
+            "title": "Obj",
+            "type": "string",
+            "readOnly": true
+          },
+          "broadcast_link": {
+            "title": "Broadcast link",
+            "type": "string",
+            "minLength": 1
+          },
+          "created": {
+            "title": "Created",
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Product": {
+        "required": ["name", "projects", "description"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "ID",
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "title": "Name",
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 1
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string",
+            "format": "slug",
+            "pattern": "^[-a-zA-Z0-9_]+$",
+            "readOnly": true,
+            "minLength": 1
+          },
+          "user": {
+            "title": "User",
+            "type": "integer",
+            "readOnly": true
+          },
+          "team": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "uniqueItems": true
+          },
+          "product_hunt": {
+            "title": "Product hunt",
+            "type": "string",
+            "format": "uri",
+            "maxLength": 200,
+            "nullable": true
+          },
+          "twitter": {
+            "title": "Twitter",
+            "type": "string",
+            "maxLength": 50,
+            "nullable": true
+          },
+          "website": {
+            "title": "Website",
+            "type": "string",
+            "format": "uri",
+            "minLength": 1
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "uniqueItems": true
+          },
+          "launched": {
+            "title": "Launched",
+            "type": "boolean"
+          },
+          "icon": {
+            "title": "Icon",
+            "type": "string",
+            "readOnly": true,
+            "format": "uri"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string",
+            "minLength": 1
+          },
+          "accent": {
+            "title": "Accent",
+            "type": "string",
+            "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+            "maxLength": 18,
+            "minLength": 1
+          },
+          "created_at": {
+            "title": "Created at",
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "launched_at": {
+            "title": "Launched at",
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "tags": {
+            "title": "Tags",
+            "type": "string"
+          }
+        }
+      },
+      "Project": {
+        "required": ["name"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "ID",
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "title": "Name",
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 1
+          },
+          "private": {
+            "title": "Private",
+            "type": "boolean"
+          },
+          "user": {
+            "title": "User",
+            "type": "integer",
+            "readOnly": true
+          }
+        }
+      },
+      "Task": {
+        "required": ["content"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "ID",
+            "type": "integer",
+            "readOnly": true
+          },
+          "event": {
+            "title": "Event",
+            "type": "string",
+            "enum": [
+              "slack",
+              "discord",
+              "trello",
+              "webhook",
+              "github",
+              "nodehost",
+              "todoist",
+              "gitlab",
+              "shipstreams",
+              "telegram"
+            ],
+            "readOnly": true
+          },
+          "done": {
+            "title": "Done",
+            "type": "boolean"
+          },
+          "in_progress": {
+            "title": "In progress",
+            "type": "boolean"
+          },
+          "content": {
+            "title": "Content",
+            "type": "string",
+            "minLength": 1
+          },
+          "created_at": {
+            "title": "Created at",
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "updated_at": {
+            "title": "Updated at",
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "due_at": {
+            "title": "Due at",
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "done_at": {
+            "title": "Done at",
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string",
+            "nullable": true
+          },
+          "project_set": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Project"
+            },
+            "readOnly": true
+          },
+          "product_set": {
+            "title": "Product set",
+            "type": "string",
+            "readOnly": true
+          },
+          "praise": {
+            "title": "Praise",
+            "type": "string",
+            "readOnly": true
+          },
+          "attachment": {
+            "title": "Attachment",
+            "type": "string",
+            "readOnly": true,
+            "format": "uri"
+          },
+          "comment_count": {
+            "title": "Comment count",
+            "type": "string",
+            "readOnly": true
+          },
+          "og_image": {
+            "title": "Og image",
+            "type": "string",
+            "readOnly": true,
+            "format": "uri"
+          },
+          "video": {
+            "title": "Video",
+            "type": "string",
+            "readOnly": true,
+            "format": "uri"
+          }
+        }
+      }
+    }
+  }
+}

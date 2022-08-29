@@ -56,14 +56,9 @@ export const OpenApiUtils = {
 
   async getLocalIntegrationSchema(integrationKey: string, integrationVersion: string): Promise<OpenAPIObject | null> {
     try {
-      if (process.env.NODE_ENV === 'development') {
-        const schemaPath = this.getSchemaFilePath(integrationKey, integrationVersion)
-        const schemaJson = (await fs.promises.readFile(schemaPath)).toString()
-        return JSON.parse(schemaJson)
-      } else {
-        const schemaJson = await import(`@chainjet/schemas/openapi3/${integrationKey}-${integrationVersion}.json`)
-        return schemaJson
-      }
+      const schemaPath = this.getSchemaFilePath(integrationKey, integrationVersion)
+      const schemaJson = (await fs.promises.readFile(schemaPath)).toString()
+      return JSON.parse(schemaJson)
     } catch (e) {
       this.logger.error(`Error fetching schema for ${integrationKey}-${integrationVersion} ${e?.message ?? e}`)
       return null
@@ -78,7 +73,7 @@ export const OpenApiUtils = {
   },
 
   getSchemaFilePath(integrationKey: string, integrationVersion: string): string {
-    return path.join(__dirname, '../../../../schemas/openapi3', `${integrationKey}-${integrationVersion}.json`)
+    return path.join(__dirname, '../../../schemas/openapi3', `${integrationKey}-${integrationVersion}.json`)
   },
 
   async saveSchema(schema: OpenAPIObject, integrationKey: string, integrationVersion: string): Promise<any> {

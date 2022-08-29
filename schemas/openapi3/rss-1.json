@@ -1,0 +1,106 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "RSS Feed",
+    "version": "1",
+    "x-categories": ["chainjet"],
+    "x-logo": {
+      "url": "https://raw.githubusercontent.com/chainjet/assets/master/integrations/rss.svg"
+    }
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "x-triggerName": "New item",
+        "x-triggerIdKey": "items[].link",
+        "operationId": "getRSS",
+        "summary": "Get RSS Feed items",
+        "description": "Get items from a RSS Feed",
+        "parameters": [
+          {
+            "name": "url",
+            "description": "RSS Feed URL",
+            "required": true,
+            "in": "query",
+            "schema": { "title": "URL", "type": "string", "format": "uri" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RSS Feed response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["title", "link", "description", "items"],
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "properties": {
+                          "title": { "type": "string" },
+                          "link": { "type": "string" },
+                          "description": { "type": "string" },
+                          "descriptionPlainText": {
+                            "title": "Description plain text",
+                            "type": "string"
+                          },
+                          "author": { "type": "string" },
+                          "category": { "type": "string" },
+                          "comments": { "type": "string" },
+                          "enclosure": { "type": "string" },
+                          "guid": { "type": "string" },
+                          "pubDate": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "source": { "type": "string" }
+                        }
+                      }
+                    },
+                    "title": { "type": "string" },
+                    "link": { "type": "string" },
+                    "description": { "type": "string" },
+                    "language": { "type": "string" },
+                    "copyright": { "type": "string" },
+                    "managingEditor": { "type": "string" },
+                    "webMaster": { "type": "string" },
+                    "pubDate": { "type": "string", "format": "date-time" },
+                    "lastBuildDate": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "category": { "type": "string" },
+                    "generator": { "type": "string" },
+                    "docs": { "type": "string" },
+                    "cloud": { "type": "string" },
+                    "ttl": { "type": "integer" },
+                    "image": {
+                      "type": "object",
+                      "properties": {
+                        "url": { "type": "string" },
+                        "title": { "type": "string" },
+                        "link": { "type": "string" }
+                      }
+                    },
+                    "textInput": {
+                      "type": "object",
+                      "properties": {
+                        "title": { "type": "string" },
+                        "description": { "type": "string" },
+                        "name": { "type": "string" },
+                        "link": { "type": "string" }
+                      }
+                    },
+                    "skipHours": { "type": "integer" },
+                    "skipDays": { "type": "integer" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

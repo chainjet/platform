@@ -1,0 +1,2400 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Gumroad",
+    "description": "Gumroad",
+    "version": "2",
+    "termsOfService": "https://gumroad.com/terms",
+    "x-categories": ["e-commerce"],
+    "x-logo": { "url": "https://flowoid.s3.amazonaws.com/logos/gumroad.svg" },
+    "contact": { "name": "ChainJet", "url": "https://chainjet.io" },
+    "license": { "name": "MIT", "url": "https://www.mit.edu/~amini/LICENSE.md" }
+  },
+  "paths": {
+    "/products": {
+      "get": {
+        "x-triggerIdKey": "products[].id",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "products": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "custom_summary",
+                          "description",
+                          "deleted",
+                          "name",
+                          "require_shipping",
+                          "published",
+                          "url",
+                          "id",
+                          "price",
+                          "currency",
+                          "short_url",
+                          "formatted_price",
+                          "shown_on_profile",
+                          "sales_count",
+                          "sales_usd_cents"
+                        ],
+                        "properties": {
+                          "custom_permalink": {},
+                          "custom_receipt": {},
+                          "custom_summary": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "custom_fields": {
+                            "type": "array",
+                            "items": { "properties": {} }
+                          },
+                          "customizable_price": {},
+                          "description": { "type": "string", "minLength": 1 },
+                          "deleted": { "type": "boolean" },
+                          "max_purchase_count": {},
+                          "name": { "type": "string", "minLength": 1 },
+                          "preview_url": {},
+                          "require_shipping": { "type": "boolean" },
+                          "subscription_duration": {},
+                          "published": { "type": "boolean" },
+                          "url": { "type": "string", "minLength": 1 },
+                          "id": { "type": "string", "minLength": 1 },
+                          "price": { "type": "number" },
+                          "currency": { "type": "string", "minLength": 1 },
+                          "short_url": { "type": "string", "minLength": 1 },
+                          "formatted_price": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "file_info": { "type": "object", "properties": {} },
+                          "shown_on_profile": { "type": "boolean" },
+                          "sales_count": { "type": "string", "minLength": 1 },
+                          "sales_usd_cents": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": ["success", "products"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List products",
+        "description": "Retrieve all of the existing products for the authenticated user.",
+        "x-triggerDescription": "Triggers for every new product.",
+        "operationId": "/products.get"
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "product": {
+                      "type": "object",
+                      "properties": {
+                        "custom_permalink": {},
+                        "custom_receipt": {},
+                        "custom_summary": { "type": "string", "minLength": 1 },
+                        "custom_fields": {
+                          "type": "array",
+                          "items": { "properties": {} }
+                        },
+                        "customizable_price": {},
+                        "description": { "type": "string", "minLength": 1 },
+                        "deleted": { "type": "boolean" },
+                        "max_purchase_count": {},
+                        "name": { "type": "string", "minLength": 1 },
+                        "preview_url": {},
+                        "require_shipping": { "type": "boolean" },
+                        "subscription_duration": {},
+                        "published": { "type": "boolean" },
+                        "url": { "type": "string", "minLength": 1 },
+                        "id": { "type": "string", "minLength": 1 },
+                        "price": { "type": "number" },
+                        "currency": { "type": "string", "minLength": 1 },
+                        "short_url": { "type": "string", "minLength": 1 },
+                        "formatted_price": { "type": "string", "minLength": 1 },
+                        "file_info": { "type": "object", "properties": {} },
+                        "shown_on_profile": { "type": "boolean" },
+                        "sales_count": { "type": "string", "minLength": 1 },
+                        "sales_usd_cents": { "type": "string", "minLength": 1 }
+                      },
+                      "required": [
+                        "custom_summary",
+                        "custom_fields",
+                        "description",
+                        "deleted",
+                        "name",
+                        "require_shipping",
+                        "published",
+                        "url",
+                        "id",
+                        "price",
+                        "currency",
+                        "short_url",
+                        "formatted_price",
+                        "file_info",
+                        "shown_on_profile",
+                        "sales_count",
+                        "sales_usd_cents"
+                      ]
+                    }
+                  },
+                  "required": ["success", "product"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get a product",
+        "description": "Retrieve the details of a product.",
+        "operationId": "/products/{id}.get"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "message": { "type": "string", "minLength": 1 }
+                  },
+                  "required": ["success", "message"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete a product",
+        "description": "Permanently delete a product.",
+        "operationId": "/products/{id}.delete"
+      }
+    },
+    "/products/{id}/enable": {
+      "put": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "product": {
+                      "type": "object",
+                      "properties": {
+                        "custom_permalink": {},
+                        "custom_receipt": {},
+                        "custom_summary": { "type": "string", "minLength": 1 },
+                        "custom_fields": {
+                          "type": "array",
+                          "items": { "properties": {} }
+                        },
+                        "customizable_price": {},
+                        "description": { "type": "string", "minLength": 1 },
+                        "deleted": { "type": "boolean" },
+                        "max_purchase_count": {},
+                        "name": { "type": "string", "minLength": 1 },
+                        "preview_url": {},
+                        "require_shipping": { "type": "boolean" },
+                        "subscription_duration": {},
+                        "published": { "type": "boolean" },
+                        "url": { "type": "string", "minLength": 1 },
+                        "id": { "type": "string", "minLength": 1 },
+                        "price": { "type": "number" },
+                        "currency": { "type": "string", "minLength": 1 },
+                        "short_url": { "type": "string", "minLength": 1 },
+                        "formatted_price": { "type": "string", "minLength": 1 },
+                        "file_info": { "type": "object", "properties": {} },
+                        "shown_on_profile": { "type": "boolean" },
+                        "sales_count": { "type": "string", "minLength": 1 },
+                        "sales_usd_cents": { "type": "string", "minLength": 1 }
+                      },
+                      "required": [
+                        "custom_summary",
+                        "custom_fields",
+                        "description",
+                        "deleted",
+                        "name",
+                        "require_shipping",
+                        "published",
+                        "url",
+                        "id",
+                        "price",
+                        "currency",
+                        "short_url",
+                        "formatted_price",
+                        "file_info",
+                        "shown_on_profile",
+                        "sales_count",
+                        "sales_usd_cents"
+                      ]
+                    }
+                  },
+                  "required": ["success", "product"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Enable a product",
+        "description": "Enable an existing product.",
+        "operationId": "/products/{id}/enable.put"
+      }
+    },
+    "/products/{id}/disable": {
+      "put": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "product": {
+                      "type": "object",
+                      "properties": {
+                        "custom_permalink": {},
+                        "custom_receipt": {},
+                        "custom_summary": { "type": "string", "minLength": 1 },
+                        "custom_fields": {
+                          "type": "array",
+                          "items": { "properties": {} }
+                        },
+                        "customizable_price": {},
+                        "description": { "type": "string", "minLength": 1 },
+                        "deleted": { "type": "boolean" },
+                        "max_purchase_count": {},
+                        "name": { "type": "string", "minLength": 1 },
+                        "preview_url": {},
+                        "require_shipping": { "type": "boolean" },
+                        "subscription_duration": {},
+                        "published": { "type": "boolean" },
+                        "url": { "type": "string", "minLength": 1 },
+                        "id": { "type": "string", "minLength": 1 },
+                        "price": { "type": "number" },
+                        "currency": { "type": "string", "minLength": 1 },
+                        "short_url": { "type": "string", "minLength": 1 },
+                        "formatted_price": { "type": "string", "minLength": 1 },
+                        "file_info": { "type": "object", "properties": {} },
+                        "shown_on_profile": { "type": "boolean" },
+                        "view_count": { "type": "string", "minLength": 1 },
+                        "sales_count": { "type": "string", "minLength": 1 },
+                        "sales_usd_cents": { "type": "string", "minLength": 1 }
+                      },
+                      "required": [
+                        "custom_summary",
+                        "custom_fields",
+                        "description",
+                        "deleted",
+                        "name",
+                        "require_shipping",
+                        "published",
+                        "url",
+                        "id",
+                        "price",
+                        "currency",
+                        "short_url",
+                        "formatted_price",
+                        "file_info",
+                        "shown_on_profile",
+                        "view_count",
+                        "sales_count",
+                        "sales_usd_cents"
+                      ]
+                    }
+                  },
+                  "required": ["success", "product"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Disable a product",
+        "description": "Disable an existing product.",
+        "operationId": "/products/{id}/disable.put"
+      }
+    },
+    "/products/{product_id}/variant_categories": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": { "$ref": "#/components/requestBodies/Body" },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "variant_category": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string", "minLength": 1 },
+                        "title": { "type": "string", "minLength": 1 }
+                      },
+                      "required": ["id", "title"]
+                    }
+                  },
+                  "required": ["success", "variant_category"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a variant category",
+        "description": "Create a new variant category on a product.",
+        "operationId": "/products/{product_id}/variant_categories.post"
+      },
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "variant_categories": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": ["id", "title"],
+                        "properties": {
+                          "id": { "type": "string", "minLength": 1 },
+                          "title": { "type": "string", "minLength": 1 }
+                        }
+                      }
+                    }
+                  },
+                  "required": ["success", "variant_categories"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List variant categories",
+        "description": "Retrieve all of the existing variant categories of a product.",
+        "operationId": "/products/{product_id}/variant_categories.get"
+      }
+    },
+    "/products/{product_id}/variant_categories/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "variant_category": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string", "minLength": 1 },
+                        "title": { "type": "string", "minLength": 1 }
+                      },
+                      "required": ["id", "title"]
+                    }
+                  },
+                  "required": ["success", "variant_category"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get a variant category",
+        "description": "Retrieve the details of a variant category of a product.",
+        "operationId": "/products/{product_id}/variant_categories/{id}.get"
+      },
+      "put": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": { "$ref": "#/components/requestBodies/Body" },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "variant_category": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string", "minLength": 1 },
+                        "title": { "type": "string", "minLength": 1 }
+                      },
+                      "required": ["id", "title"]
+                    }
+                  },
+                  "required": ["success", "variant_category"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update a variant category",
+        "description": "Edit a variant category of an existing product.",
+        "operationId": "/products/{product_id}/variant_categories/{id}.put"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "message": { "type": "string", "minLength": 1 }
+                  },
+                  "required": ["success", "message"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete a variant category",
+        "description": "Permanently delete a variant category of a product.",
+        "operationId": "/products/{product_id}/variant_categories/{id}.delete"
+      }
+    },
+    "/products/{product_id}/variant_categories/{variant_category_id}/variants": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "path",
+            "name": "variant_category_id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": { "$ref": "#/components/requestBodies/Body2" },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "variant": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string", "minLength": 1 },
+                        "max_purchase_count": {},
+                        "name": { "type": "string", "minLength": 1 },
+                        "price_difference_cents": { "type": "number" }
+                      },
+                      "required": ["id", "name", "price_difference_cents"]
+                    }
+                  },
+                  "required": ["success", "variant"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a new variant",
+        "description": "Create a new variant of a product.",
+        "operationId": "/products/{product_id}/variant_categories/{variant_category_id}/variants.post"
+      },
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "path",
+            "name": "variant_category_id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "variants": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": ["id", "name", "price_difference_cents"],
+                        "properties": {
+                          "id": { "type": "string", "minLength": 1 },
+                          "max_purchase_count": {},
+                          "name": { "type": "string", "minLength": 1 },
+                          "price_difference_cents": { "type": "number" }
+                        }
+                      }
+                    }
+                  },
+                  "required": ["success", "variants"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List variants",
+        "description": "Retrieve all of the existing variants in a variant category.",
+        "operationId": "/products/{product_id}/variant_categories/{variant_category_id}/variants.get"
+      }
+    },
+    "/products/{product_id}/variant_categories/{variant_category_id}/variants/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "path",
+            "name": "variant_category_id",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "variant": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string", "minLength": 1 },
+                        "max_purchase_count": {},
+                        "name": { "type": "string", "minLength": 1 },
+                        "price_difference_cents": { "type": "number" }
+                      },
+                      "required": ["id", "name", "price_difference_cents"]
+                    }
+                  },
+                  "required": ["success", "variant"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get a variant",
+        "description": "Retrieve the details of a variant of a product.",
+        "operationId": "/products/{product_id}/variant_categories/{variant_category_id}/variants/{id}.get"
+      },
+      "put": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "path",
+            "name": "variant_category_id",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": { "$ref": "#/components/requestBodies/Body2" },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "variant": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string", "minLength": 1 },
+                        "max_purchase_count": {},
+                        "name": { "type": "string", "minLength": 1 },
+                        "price_difference_cents": { "type": "number" }
+                      },
+                      "required": ["id", "name", "price_difference_cents"]
+                    }
+                  },
+                  "required": ["success", "variant"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update a variant",
+        "description": "Edit a variant of an existing product.",
+        "operationId": "/products/{product_id}/variant_categories/{variant_category_id}/variants/{id}.put"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "path",
+            "name": "variant_category_id",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "message": { "type": "string", "minLength": 1 }
+                  },
+                  "required": ["success", "message"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete a variant",
+        "description": "Permanently delete a variant of a product.",
+        "operationId": "/products/{product_id}/variant_categories/{variant_category_id}/variants/{id}.delete"
+      }
+    },
+    "/products/{product_id}/offer_codes": {
+      "get": {
+        "x-triggerIdKey": "offer_codes[].id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "offer_codes": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "id",
+                          "name",
+                          "amount_cents",
+                          "universal",
+                          "times_used"
+                        ],
+                        "properties": {
+                          "id": { "type": "string", "minLength": 1 },
+                          "name": { "type": "string", "minLength": 1 },
+                          "amount_cents": { "type": "number" },
+                          "max_purchase_count": {},
+                          "universal": { "type": "boolean" },
+                          "times_used": { "type": "number" }
+                        }
+                      }
+                    }
+                  },
+                  "required": ["success", "offer_codes"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List offer codes",
+        "description": "Retrieve all of the existing offer codes for a product. Either amount_cents or percent_off will be returned depending if the offer code is a fixed amount off or a percentage off. A universal offer code is one that applies to all products.",
+        "x-triggerDescription": "Triggers for every new offer code.",
+        "operationId": "/products/{product_id}/offer_codes.get"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "name": { "type": "string" },
+                  "amount_off": { "type": "number" },
+                  "offer_type": { "type": "string", "default": "cents" },
+                  "max_purchase_count": { "type": "number" },
+                  "universal": { "type": "boolean", "default": false }
+                },
+                "required": ["name", "amount_off", "universal"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "offer_code": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string", "minLength": 1 },
+                        "name": { "type": "string", "minLength": 1 },
+                        "amount_cents": { "type": "number" },
+                        "max_purchase_count": {},
+                        "times_used": { "type": "number" }
+                      },
+                      "required": ["id", "name", "amount_cents", "times_used"]
+                    }
+                  },
+                  "required": ["success", "offer_code"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create an offer code",
+        "description": "Create a new offer code for a product. Default offer code is in cents. A universal offer code is one that applies to all products.",
+        "operationId": "/products/{product_id}/offer_codes.post"
+      }
+    },
+    "/products/{product_id}/offer_codes/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "offer_code": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string", "minLength": 1 },
+                        "name": { "type": "string", "minLength": 1 },
+                        "amount_cents": { "type": "number" },
+                        "max_purchase_count": {},
+                        "times_used": { "type": "number" }
+                      },
+                      "required": ["id", "name", "amount_cents", "times_used"]
+                    }
+                  },
+                  "required": ["success", "offer_code"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get an offer codes",
+        "description": "Retrieve the details of a specific offer code of a product",
+        "operationId": "/products/{product_id}/offer_codes/{id}.get"
+      },
+      "put": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "offer_code": { "type": "string" },
+                  "max_purchase_count": { "type": "number" }
+                },
+                "required": ["offer_code", "max_purchase_count"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "offer_code": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string", "minLength": 1 },
+                        "name": { "type": "string", "minLength": 1 },
+                        "amount_cents": { "type": "number" },
+                        "max_purchase_count": { "type": "number" },
+                        "universal": { "type": "boolean" }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "amount_cents",
+                        "max_purchase_count",
+                        "universal"
+                      ]
+                    }
+                  },
+                  "required": ["success", "offer_code"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update an offer code",
+        "description": "Edit an existing product's offer code.",
+        "operationId": "/products/{product_id}/offer_codes/{id}.put"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "message": { "type": "string", "minLength": 1 }
+                  },
+                  "required": ["success", "message"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete an offer code",
+        "description": "Permanently delete a product's offer code.",
+        "operationId": "/products/{product_id}/offer_codes/{id}.delete"
+      }
+    },
+    "/products/{product_id}/custom_fields": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "custom_fields": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": ["name", "required"],
+                        "properties": {
+                          "name": { "type": "string", "minLength": 1 },
+                          "required": { "type": "string", "minLength": 1 }
+                        }
+                      }
+                    }
+                  },
+                  "required": ["success", "custom_fields"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List custom fields",
+        "description": "Retrieve all of the existing custom fields for a product.",
+        "operationId": "/products/{product_id}/custom_fields.get"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "variant": { "type": "string" },
+                  "name": { "type": "string" },
+                  "required": { "type": "boolean" }
+                },
+                "required": ["variant", "name", "required"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "custom_field": {
+                      "type": "object",
+                      "properties": {
+                        "name": { "type": "string", "minLength": 1 },
+                        "required": { "type": "string", "minLength": 1 }
+                      },
+                      "required": ["name", "required"]
+                    }
+                  },
+                  "required": ["success", "custom_field"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a custom field",
+        "description": "Create a new custom field for a product.",
+        "operationId": "/products/{product_id}/custom_fields.post"
+      }
+    },
+    "/products/{product_id}/custom_fields/{name}": {
+      "put": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "variant": { "type": "string" },
+                  "required": { "type": "boolean" }
+                },
+                "required": ["variant", "required"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "custom_field": {
+                      "type": "object",
+                      "properties": {
+                        "name": { "type": "string", "minLength": 1 },
+                        "required": { "type": "string", "minLength": 1 }
+                      },
+                      "required": ["name", "required"]
+                    }
+                  },
+                  "required": ["success", "custom_field"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update a custom field",
+        "description": "Edit an existing product's custom field.",
+        "operationId": "/products/{product_id}/custom_fields/{name}.put"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "message": { "type": "string", "minLength": 1 }
+                  },
+                  "required": ["success", "message"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete a custom field",
+        "description": "Permanently delete a product's custom field.",
+        "operationId": "/products/{product_id}/custom_fields/{name}.delete"
+      }
+    },
+    "/user": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "bio": { "type": "string", "minLength": 1 },
+                        "facebook_profile": {},
+                        "name": { "type": "string", "minLength": 1 },
+                        "twitter_handle": {},
+                        "user_id": { "type": "string", "minLength": 1 },
+                        "email": { "type": "string", "minLength": 1 },
+                        "url": { "type": "string", "minLength": 1 }
+                      },
+                      "required": ["bio", "name", "user_id", "email", "url"]
+                    }
+                  },
+                  "required": ["success", "user"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get current user data",
+        "description": "Retrieve the user's data.",
+        "operationId": "/user.get"
+      }
+    },
+    "/resource_subscriptions": {
+      "put": {
+        "x-ignore": true,
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "resource_subscription": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string", "minLength": 1 },
+                        "resource_name": { "type": "string", "minLength": 1 },
+                        "post_url": { "type": "string", "minLength": 1 }
+                      },
+                      "required": ["id", "resource_name", "post_url"]
+                    }
+                  },
+                  "required": ["success", "resource_subscription"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Subscribe to a resource",
+        "description": "Subscribe to a resource. Currently there are 5 supported resource names - \"sale\", \"refund\", \"dispute\", \"dispute_won\", and \"cancellation\". sale - When subscribed to this resource, you will be notified of the user's sales with an HTTP POST to your post_url. The format of the POST is described on the Gumroad Ping page.refund - When subscribed to this resource, you will be notified of refunds to the user's sales with an HTTP POST to your post_url. The format of the POST is same as described on the Gumroad Ping page.dispute - When subscribed to this resource, you will be notified of the disputes raised against user's sales with an HTTP POST to your post_url. The format of the POST is described on the Gumroad Ping page.dispute_won - When subscribed to this resource, you will be notified of the sale disputes won by the user with an HTTP POST to your post_url. The format of the POST is described on the Gumroad Ping page.cancellation - When subscribed to this resource, you will be notified of cancellations of the user's subscribers with an HTTP POST to your post_url.In each POST request, Gumroad sends these parameters:\nsubscription_id: id of the subscription\nproduct_id: id of the product\nproduct_name: name of the product\nuser_id: user id of the subscriber\nuser_email: email address of the subscriber\npurchase_ids: array of charge ids belonging to this subscription\ncreated_at: timestamp when subscription was created\ncharge_occurrence_count: number of charges made for this subscription\nrecurrence: subscription duration - monthly/quarterly/biannually/yearly\ncancelled: true if subscription has been cancelled, otherwise false\ncancelled_at: timestamp at which subscription was cancelled\ncancelled_by_admin: true if subscription was been cancelled by admin, otherwise not present\ncancelled_by_buyer: true if subscription was been cancelled by buyer, otherwise not present\ncancelled_by_seller: true if subscription was been cancelled by seller, otherwise not present\ncancelled_due_to_payment_failures: true if subscription was been cancelled automatically because of payment failure, otherwise not present",
+        "operationId": "/resource_subscriptions.put"
+      },
+      "get": {
+        "x-ignore": true,
+        "parameters": [
+          {
+            "name": "resource_name",
+            "required": true,
+            "in": "query",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "resource_subscriptions": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": ["id", "resource_name", "post_url"],
+                        "properties": {
+                          "id": { "type": "string", "minLength": 1 },
+                          "resource_name": { "type": "string", "minLength": 1 },
+                          "post_url": { "type": "string", "minLength": 1 }
+                        }
+                      }
+                    }
+                  },
+                  "required": ["success", "resource_subscriptions"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List resource subscriptions",
+        "description": "Show all active subscriptions of user for the input resource.",
+        "operationId": "/resource_subscriptions.get"
+      }
+    },
+    "/resource_subscriptions/{resource_subscription_id}": {
+      "delete": {
+        "x-ignore": true,
+        "parameters": [
+          {
+            "in": "path",
+            "name": "resource_subscription_id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "message": { "type": "string", "minLength": 1 }
+                  },
+                  "required": ["success", "message"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Unsubscribe from resource",
+        "description": "Unsubscribe from a resource.",
+        "operationId": "/resource_subscriptions/{resource_subscription_id}.delete"
+      }
+    },
+    "/sales": {
+      "get": {
+        "x-triggerIdKey": "sales[].id",
+        "parameters": [
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "email",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "schema": { "type": "number", "default": 1 }
+          },
+          {
+            "name": "product_id",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "next_page_url": { "type": "string", "minLength": 1 },
+                    "sales": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "id",
+                          "email",
+                          "seller_id",
+                          "timestamp",
+                          "created_at",
+                          "product_name",
+                          "price",
+                          "gumroad_fee",
+                          "subscription_duration",
+                          "formatted_display_price",
+                          "formatted_total_price",
+                          "product_id",
+                          "purchase_email",
+                          "full_name",
+                          "paid",
+                          "variants",
+                          "variants_and_quantity",
+                          "has_custom_fields",
+                          "order_id",
+                          "is_product_physical",
+                          "purchaser_id",
+                          "is_recurring_billing",
+                          "is_following",
+                          "subscription_id",
+                          "cancelled",
+                          "ended",
+                          "referrer"
+                        ],
+                        "properties": {
+                          "id": { "type": "string", "minLength": 1 },
+                          "email": { "type": "string", "minLength": 1 },
+                          "seller_id": { "type": "string", "minLength": 1 },
+                          "timestamp": { "type": "string", "minLength": 1 },
+                          "created_at": { "type": "string", "minLength": 1 },
+                          "product_name": { "type": "string", "minLength": 1 },
+                          "price": { "type": "number" },
+                          "gumroad_fee": { "type": "number" },
+                          "subscription_duration": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "formatted_display_price": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "formatted_total_price": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "product_id": { "type": "string", "minLength": 1 },
+                          "purchase_email": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "full_name": { "type": "string", "minLength": 1 },
+                          "paid": { "type": "boolean" },
+                          "variants": { "type": "string" },
+                          "variants_and_quantity": { "type": "string" },
+                          "has_custom_fields": { "type": "boolean" },
+                          "custom_fields": {
+                            "type": "object",
+                            "properties": {
+                              "Twitter handle": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": ["Twitter handle"]
+                          },
+                          "order_id": { "type": "number" },
+                          "is_product_physical": { "type": "boolean" },
+                          "purchaser_id": { "type": "string", "minLength": 1 },
+                          "is_recurring_billing": { "type": "boolean" },
+                          "is_following": { "type": "boolean" },
+                          "subscription_id": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "cancelled": { "type": "boolean" },
+                          "ended": { "type": "boolean" },
+                          "referrer": { "type": "string", "minLength": 1 }
+                        }
+                      }
+                    }
+                  },
+                  "required": ["success", "next_page_url", "sales"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List sales",
+        "description": "Retrieves all of the successful sales by the authenticated user.",
+        "x-triggerDescription": "Triggers for every successful sale.",
+        "operationId": "/sales.get"
+      }
+    },
+    "/sales/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "sale": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string", "minLength": 1 },
+                        "email": { "type": "string", "minLength": 1 },
+                        "seller_id": { "type": "string", "minLength": 1 },
+                        "timestamp": { "type": "string", "minLength": 1 },
+                        "created_at": { "type": "string", "minLength": 1 },
+                        "product_name": { "type": "string", "minLength": 1 },
+                        "price": { "type": "number" },
+                        "gumroad_fee": { "type": "number" },
+                        "subscription_duration": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "formatted_display_price": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "formatted_total_price": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "product_id": { "type": "string", "minLength": 1 },
+                        "purchase_email": { "type": "string", "minLength": 1 },
+                        "full_name": { "type": "string", "minLength": 1 },
+                        "paid": { "type": "boolean" },
+                        "variants": { "type": "string" },
+                        "variants_and_quantity": { "type": "string" },
+                        "has_custom_fields": { "type": "boolean" },
+                        "custom_fields": {
+                          "type": "object",
+                          "properties": {
+                            "Twitter handle": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": ["Twitter handle"]
+                        },
+                        "order_id": { "type": "number" },
+                        "is_product_physical": { "type": "boolean" },
+                        "purchaser_id": { "type": "string", "minLength": 1 },
+                        "is_recurring_billing": { "type": "boolean" },
+                        "is_following": { "type": "boolean" },
+                        "subscription_id": { "type": "string", "minLength": 1 },
+                        "cancelled": { "type": "boolean" },
+                        "ended": { "type": "boolean" },
+                        "referrer": { "type": "string", "minLength": 1 },
+                        "quantity": { "type": "number" }
+                      },
+                      "required": [
+                        "id",
+                        "email",
+                        "seller_id",
+                        "timestamp",
+                        "created_at",
+                        "product_name",
+                        "price",
+                        "gumroad_fee",
+                        "subscription_duration",
+                        "formatted_display_price",
+                        "formatted_total_price",
+                        "product_id",
+                        "purchase_email",
+                        "full_name",
+                        "paid",
+                        "variants",
+                        "variants_and_quantity",
+                        "has_custom_fields",
+                        "custom_fields",
+                        "order_id",
+                        "is_product_physical",
+                        "purchaser_id",
+                        "is_recurring_billing",
+                        "is_following",
+                        "subscription_id",
+                        "cancelled",
+                        "ended",
+                        "referrer",
+                        "quantity"
+                      ]
+                    }
+                  },
+                  "required": ["success", "sale"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get a sale",
+        "description": "Retrieves the details of a sale by this user.",
+        "operationId": "/sales/{id}.get"
+      }
+    },
+    "/sales/{id}/mark_as_shipped": {
+      "put": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": { "tracking_url": { "type": "string" } }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "sale": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string", "minLength": 1 },
+                        "email": { "type": "string", "minLength": 1 },
+                        "timestamp": { "type": "string", "minLength": 1 },
+                        "created_at": { "type": "string", "minLength": 1 },
+                        "product_name": { "type": "string", "minLength": 1 },
+                        "price": { "type": "number" },
+                        "subscription_duration": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "formatted_display_price": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "formatted_total_price": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "product_id": { "type": "string", "minLength": 1 },
+                        "purchase_email": { "type": "string", "minLength": 1 },
+                        "full_name": { "type": "string", "minLength": 1 },
+                        "paid": { "type": "boolean" },
+                        "variants": { "type": "string" },
+                        "variants_and_quantity": { "type": "string" },
+                        "has_custom_fields": { "type": "boolean" },
+                        "custom_fields": {
+                          "type": "object",
+                          "properties": {
+                            "Twitter handle": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": ["Twitter handle"]
+                        },
+                        "order_id": { "type": "number" },
+                        "is_product_physical": { "type": "boolean" },
+                        "purchaser_id": { "type": "string", "minLength": 1 },
+                        "is_recurring_billing": { "type": "boolean" },
+                        "is_following": { "type": "boolean" },
+                        "subscription_id": { "type": "string", "minLength": 1 },
+                        "cancelled": { "type": "boolean" },
+                        "ended": { "type": "boolean" },
+                        "referrer": { "type": "string", "minLength": 1 },
+                        "shipped": { "type": "boolean" },
+                        "tracking_url": { "type": "string", "minLength": 1 },
+                        "quantity": { "type": "number" }
+                      },
+                      "required": [
+                        "id",
+                        "email",
+                        "timestamp",
+                        "created_at",
+                        "product_name",
+                        "price",
+                        "subscription_duration",
+                        "formatted_display_price",
+                        "formatted_total_price",
+                        "product_id",
+                        "purchase_email",
+                        "full_name",
+                        "paid",
+                        "variants",
+                        "variants_and_quantity",
+                        "has_custom_fields",
+                        "custom_fields",
+                        "order_id",
+                        "is_product_physical",
+                        "purchaser_id",
+                        "is_recurring_billing",
+                        "is_following",
+                        "subscription_id",
+                        "cancelled",
+                        "ended",
+                        "referrer",
+                        "shipped",
+                        "tracking_url",
+                        "quantity"
+                      ]
+                    }
+                  },
+                  "required": ["success", "sale"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Mark sale as shipped",
+        "description": "Marks a sale as shipped.",
+        "operationId": "/sales/{id}/mark_as_shipped.put"
+      }
+    },
+    "/sales/{id}/refund": {
+      "put": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": { "amount_cents": { "type": "number" } }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "sale": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string", "minLength": 1 },
+                        "email": { "type": "string", "minLength": 1 },
+                        "timestamp": { "type": "string", "minLength": 1 },
+                        "daystamp": { "type": "string", "minLength": 1 },
+                        "created_at": { "type": "string", "minLength": 1 },
+                        "product_name": { "type": "string", "minLength": 1 },
+                        "product_has_variants": { "type": "boolean" },
+                        "price": { "type": "number" },
+                        "formatted_display_price": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "formatted_total_price": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "currency_symbol": { "type": "string", "minLength": 1 },
+                        "amount_refundable_in_currency": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "product_id": { "type": "string", "minLength": 1 },
+                        "product_permalink": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "refunded": { "type": "boolean" },
+                        "partially_refunded": { "type": "boolean" },
+                        "chargedback": { "type": "boolean" },
+                        "purchase_email": { "type": "string", "minLength": 1 },
+                        "full_name": { "type": "string", "minLength": 1 },
+                        "paid": { "type": "boolean" },
+                        "has_variants": { "type": "boolean" },
+                        "variants_and_quantity": { "type": "string" },
+                        "has_custom_fields": { "type": "boolean" },
+                        "custom_fields": {
+                          "type": "object",
+                          "properties": {
+                            "Twitter handle": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": ["Twitter handle"]
+                        },
+                        "order_id": { "type": "number" },
+                        "is_product_physical": { "type": "boolean" },
+                        "purchaser_id": { "type": "string", "minLength": 1 },
+                        "is_recurring_billing": { "type": "boolean" },
+                        "can_contact": { "type": "boolean" },
+                        "is_following": { "type": "boolean" },
+                        "cancelled": { "type": "boolean" },
+                        "ended": { "type": "boolean" },
+                        "is_additional_contribution": { "type": "boolean" },
+                        "discover_fee_charged": { "type": "boolean" },
+                        "is_gift_sender_purchase": { "type": "boolean" },
+                        "is_gift_receiver_purchase": { "type": "boolean" },
+                        "referrer": { "type": "string", "minLength": 1 },
+                        "card": {
+                          "type": "object",
+                          "properties": {
+                            "visual": { "type": "string", "minLength": 1 },
+                            "type": { "type": "string", "minLength": 1 },
+                            "bin": {},
+                            "expiry_month": { "type": "number" },
+                            "expiry_year": { "type": "number" }
+                          },
+                          "required": [
+                            "visual",
+                            "type",
+                            "expiry_month",
+                            "expiry_year"
+                          ]
+                        },
+                        "product_rating": {},
+                        "reviews_count": { "type": "number" },
+                        "average_rating": { "type": "number" },
+                        "quantity": { "type": "number" }
+                      },
+                      "required": [
+                        "id",
+                        "email",
+                        "timestamp",
+                        "daystamp",
+                        "created_at",
+                        "product_name",
+                        "product_has_variants",
+                        "price",
+                        "formatted_display_price",
+                        "formatted_total_price",
+                        "currency_symbol",
+                        "amount_refundable_in_currency",
+                        "product_id",
+                        "product_permalink",
+                        "refunded",
+                        "partially_refunded",
+                        "chargedback",
+                        "purchase_email",
+                        "full_name",
+                        "paid",
+                        "has_variants",
+                        "variants_and_quantity",
+                        "has_custom_fields",
+                        "custom_fields",
+                        "order_id",
+                        "is_product_physical",
+                        "purchaser_id",
+                        "is_recurring_billing",
+                        "can_contact",
+                        "is_following",
+                        "cancelled",
+                        "ended",
+                        "is_additional_contribution",
+                        "discover_fee_charged",
+                        "is_gift_sender_purchase",
+                        "is_gift_receiver_purchase",
+                        "referrer",
+                        "card",
+                        "reviews_count",
+                        "average_rating",
+                        "quantity"
+                      ]
+                    }
+                  },
+                  "required": ["success", "sale"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Refund a sale",
+        "description": "Refunds a sale.",
+        "operationId": "/sales/{id}/refund.put"
+      }
+    },
+    "/products/{product_id}/subscribers": {
+      "get": {
+        "x-triggerIdKey": "subscribers[].id",
+        "parameters": [
+          {
+            "name": "email",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "subscribers": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "id",
+                          "product_id",
+                          "product_name",
+                          "user_id",
+                          "user_email",
+                          "created_at",
+                          "recurrence"
+                        ],
+                        "properties": {
+                          "id": { "type": "string", "minLength": 1 },
+                          "product_id": { "type": "string", "minLength": 1 },
+                          "product_name": { "type": "string", "minLength": 1 },
+                          "user_id": { "type": "string", "minLength": 1 },
+                          "user_email": { "type": "string", "minLength": 1 },
+                          "purchase_ids": {
+                            "type": "array",
+                            "items": { "properties": {} }
+                          },
+                          "created_at": { "type": "string", "minLength": 1 },
+                          "cancelled_at": {},
+                          "user_requested_cancellation_at": {},
+                          "charge_occurrence_count": {},
+                          "recurrence": { "type": "string", "minLength": 1 },
+                          "ended_at": {}
+                        }
+                      }
+                    }
+                  },
+                  "required": ["success", "subscribers"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List product subscribers",
+        "description": "Retrieves all of the active subscribers for one of the authenticated user's products.",
+        "x-triggerDescription": "Triggers for every new active subscriber.",
+        "operationId": "/products/{product_id}/subscribers.get"
+      }
+    },
+    "/subscribers/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "subscribers": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string", "minLength": 1 },
+                        "product_id": { "type": "string", "minLength": 1 },
+                        "product_name": { "type": "string", "minLength": 1 },
+                        "user_id": { "type": "string", "minLength": 1 },
+                        "user_email": { "type": "string", "minLength": 1 },
+                        "purchase_ids": {
+                          "type": "array",
+                          "items": { "properties": {} }
+                        },
+                        "created_at": { "type": "string", "minLength": 1 },
+                        "cancelled_at": {},
+                        "user_requested_cancellation_at": {},
+                        "charge_occurrence_count": {},
+                        "recurrence": { "type": "string", "minLength": 1 },
+                        "ended_at": {}
+                      },
+                      "required": [
+                        "id",
+                        "product_id",
+                        "product_name",
+                        "user_id",
+                        "user_email",
+                        "purchase_ids",
+                        "created_at",
+                        "recurrence"
+                      ]
+                    }
+                  },
+                  "required": ["success", "subscribers"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get a product subscriber",
+        "description": "Retrieves the details of a subscriber to this user's product.",
+        "operationId": "/subscribers/{id}.get"
+      }
+    },
+    "/licenses/verify": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "product_permalink": { "type": "string" },
+                  "license_key": { "type": "string" },
+                  "increment_uses_count": { "type": "boolean", "default": true }
+                },
+                "required": ["product_permalink", "license_key"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "uses": { "type": "number" },
+                    "purchase": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string", "minLength": 1 },
+                        "seller_id": { "type": "string", "minLength": 1 },
+                        "purchaser_id": { "type": "string", "minLength": 1 },
+                        "gumroad_fee": { "type": "string", "minLength": 1 },
+                        "product_name": { "type": "string", "minLength": 1 },
+                        "created_at": { "type": "string", "minLength": 1 },
+                        "full_name": { "type": "string", "minLength": 1 },
+                        "variants": { "type": "string" },
+                        "refunded": { "type": "boolean" },
+                        "chargebacked": { "type": "boolean" },
+                        "subscription_cancelled_at": {},
+                        "subscription_failed_at": {},
+                        "custom_fields": {
+                          "type": "array",
+                          "items": { "properties": {} }
+                        },
+                        "email": { "type": "string", "minLength": 1 }
+                      },
+                      "required": [
+                        "id",
+                        "seller_id",
+                        "purchaser_id",
+                        "gumroad_fee",
+                        "product_name",
+                        "created_at",
+                        "full_name",
+                        "variants",
+                        "refunded",
+                        "chargebacked",
+                        "custom_fields",
+                        "email"
+                      ]
+                    }
+                  },
+                  "required": ["success", "uses", "purchase"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Verify a license",
+        "description": "Verify a license",
+        "operationId": "/licenses/verify.post"
+      }
+    },
+    "/licenses/enable": {
+      "put": {
+        "requestBody": { "$ref": "#/components/requestBodies/Body3" },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "uses": { "type": "number" },
+                    "purchase": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string", "minLength": 1 },
+                        "seller_id": { "type": "string", "minLength": 1 },
+                        "purchaser_id": { "type": "string", "minLength": 1 },
+                        "gumroad_fee": { "type": "string", "minLength": 1 },
+                        "product_name": { "type": "string", "minLength": 1 },
+                        "created_at": { "type": "string", "minLength": 1 },
+                        "full_name": { "type": "string", "minLength": 1 },
+                        "variants": { "type": "string" },
+                        "refunded": { "type": "boolean" },
+                        "chargebacked": { "type": "boolean" },
+                        "subscription_cancelled_at": {},
+                        "subscription_failed_at": {},
+                        "custom_fields": {
+                          "type": "array",
+                          "items": { "properties": {} }
+                        },
+                        "email": { "type": "string", "minLength": 1 }
+                      },
+                      "required": [
+                        "id",
+                        "seller_id",
+                        "purchaser_id",
+                        "gumroad_fee",
+                        "product_name",
+                        "created_at",
+                        "full_name",
+                        "variants",
+                        "refunded",
+                        "chargebacked",
+                        "custom_fields",
+                        "email"
+                      ]
+                    }
+                  },
+                  "required": ["success", "uses", "purchase"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Enable a license",
+        "description": "Enable a license",
+        "operationId": "/licenses/enable.put"
+      }
+    },
+    "/licenses/disable": {
+      "put": {
+        "requestBody": { "$ref": "#/components/requestBodies/Body3" },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "uses": { "type": "number" },
+                    "purchase": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string", "minLength": 1 },
+                        "seller_id": { "type": "string", "minLength": 1 },
+                        "purchaser_id": { "type": "string", "minLength": 1 },
+                        "gumroad_fee": { "type": "string", "minLength": 1 },
+                        "product_name": { "type": "string", "minLength": 1 },
+                        "created_at": { "type": "string", "minLength": 1 },
+                        "full_name": { "type": "string", "minLength": 1 },
+                        "variants": { "type": "string" },
+                        "refunded": { "type": "boolean" },
+                        "chargebacked": { "type": "boolean" },
+                        "subscription_cancelled_at": {},
+                        "subscription_failed_at": {},
+                        "custom_fields": {
+                          "type": "array",
+                          "items": { "properties": {} }
+                        },
+                        "email": { "type": "string", "minLength": 1 }
+                      },
+                      "required": [
+                        "id",
+                        "seller_id",
+                        "purchaser_id",
+                        "gumroad_fee",
+                        "product_name",
+                        "created_at",
+                        "full_name",
+                        "variants",
+                        "refunded",
+                        "chargebacked",
+                        "custom_fields",
+                        "email"
+                      ]
+                    }
+                  },
+                  "required": ["success", "uses", "purchase"]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Disable a license",
+        "description": "Disable a license",
+        "operationId": "/licenses/disable.put"
+      }
+    }
+  },
+  "servers": [{ "url": "https://api.gumroad.com/v2" }],
+  "components": {
+    "requestBodies": {
+      "Body": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "variant_category": { "type": "string" },
+                "title": { "type": "string" }
+              },
+              "required": ["variant_category", "title"]
+            }
+          }
+        }
+      },
+      "Body2": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "variant": { "type": "string" },
+                "name": { "type": "string" },
+                "price_difference_cents": { "type": "number" },
+                "max_purchase_count": { "type": "number" }
+              },
+              "required": ["variant", "name", "price_difference_cents"]
+            }
+          }
+        }
+      },
+      "Body3": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "product_permalink": { "type": "string" },
+                "license_key": { "type": "string" }
+              },
+              "required": ["product_permalink", "license_key"]
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://gumroad.com/oauth/authorize",
+            "tokenUrl": "https://gumroad.com/oauth/token",
+            "scopes": {
+              "edit_products": "read/write access to the user's products and their variants, offer codes, and custom fields.",
+              "view_sales": "read access to the user's products' sales information, including sales counts. This scope is also required in order to subscribe to the user's sales.",
+              "mark_sales_as_shipped": "write access to mark the user's products' sales as shipped.",
+              "refund_sales": "write access to refund the user's products' sales."
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [{ "oauth2": [] }]
+}

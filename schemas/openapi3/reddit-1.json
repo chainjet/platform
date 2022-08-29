@@ -1,0 +1,209 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Reddit",
+    "version": "1",
+    "x-logo": {
+      "url": "https://raw.githubusercontent.com/chainjet/assets/master/integrations/reddit.png"
+    },
+    "x-categories": ["popular"]
+  },
+  "paths": {
+    "/reddit-list-comments-in-a-post": {
+      "get": {
+        "operationId": "reddit-list-comments-in-a-post",
+        "x-learnResponseIntegration": true,
+        "x-actionOnly": true,
+        "summary": "",
+        "parameters": [
+          {
+            "name": "subredditPost",
+            "in": "query",
+            "description": "The post ID in base36 (for example, 15bfi0). You can find it in the post URL.",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": {} } }
+          }
+        }
+      }
+    },
+    "/reddit-list-subreddits-by-query": {
+      "get": {
+        "operationId": "reddit-list-subreddits-by-query",
+        "x-learnResponseIntegration": true,
+        "x-actionOnly": true,
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": {} } }
+          }
+        }
+      }
+    },
+    "/reddit-search-post": {
+      "get": {
+        "operationId": "reddit-search-post",
+        "x-learnResponseIntegration": true,
+        "x-actionOnly": true,
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": {} } }
+          }
+        }
+      }
+    },
+    "/reddit-submit-a-comment": {
+      "get": {
+        "operationId": "reddit-submit-a-comment",
+        "x-learnResponseIntegration": true,
+        "x-actionOnly": true,
+        "summary": "",
+        "parameters": [
+          {
+            "name": "text",
+            "in": "query",
+            "schema": { "x-ui:widget": "textarea" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": {} } }
+          }
+        }
+      }
+    },
+    "/reddit-submit-a-post": {
+      "get": {
+        "operationId": "reddit-submit-a-post",
+        "x-learnResponseIntegration": true,
+        "x-actionOnly": true,
+        "summary": "",
+        "parameters": [
+          {
+            "name": "text",
+            "in": "query",
+            "schema": { "x-ui:widget": "textarea" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": {} } }
+          }
+        }
+      }
+    },
+    "/reddit-new-comments-by-user": {
+      "get": {
+        "operationId": "reddit-new-comments-by-user",
+        "x-learnResponseIntegration": true,
+        "x-triggerOnly": true,
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": {} } }
+          }
+        }
+      }
+    },
+    "/reddit-new-comments-on-a-post": {
+      "get": {
+        "operationId": "reddit-new-comments-on-a-post",
+        "x-learnResponseIntegration": true,
+        "x-triggerOnly": true,
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": {} } }
+          }
+        }
+      }
+    },
+    "/reddit-new-hot-posts-on-a-subreddit": {
+      "get": {
+        "operationId": "reddit-new-hot-posts-on-a-subreddit",
+        "x-learnResponseIntegration": true,
+        "x-triggerOnly": true,
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": {} } }
+          }
+        }
+      }
+    },
+    "/reddit-new-links-by-user": {
+      "get": {
+        "operationId": "reddit-new-links-by-user",
+        "x-learnResponseIntegration": true,
+        "x-triggerOnly": true,
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": {} } }
+          }
+        }
+      }
+    },
+    "/reddit-new-links-on-a-subreddit": {
+      "get": {
+        "operationId": "reddit-new-links-on-a-subreddit",
+        "x-learnResponseIntegration": true,
+        "x-triggerOnly": true,
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": {} } }
+          }
+        }
+      }
+    },
+    "/reddit-new-saved-post-by-user": {
+      "get": {
+        "operationId": "reddit-new-saved-post-by-user",
+        "x-learnResponseIntegration": true,
+        "x-triggerOnly": true,
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": {} } }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://ssl.reddit.com/api/v1/authorize",
+            "tokenUrl": "https://ssl.reddit.com/api/v1/access_token",
+            "scopes": {
+              "identity": "identity",
+              "read": "read",
+              "save": "save",
+              "submit": "submit",
+              "vote": "vote"
+            }
+          }
+        }
+      }
+    }
+  }
+}
