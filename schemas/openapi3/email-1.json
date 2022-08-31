@@ -1,0 +1,52 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Email",
+    "version": "1",
+    "x-categories": ["email"],
+    "x-logo": {
+      "url": "https://raw.githubusercontent.com/chainjet/assets/master/integrations/email.svg"
+    }
+  },
+  "paths": {
+    "/": {
+      "post": {
+        "operationId": "sendEmailToYourself",
+        "summary": "Send email to yourself",
+        "description": "Send an email to yourself",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["subject", "body"],
+                "properties": {
+                  "subject": { "title": "Subject", "type": "string" },
+                  "body": {
+                    "title": "Message body",
+                    "type": "string",
+                    "x-ui:widget": "textarea",
+                    "x-ui:rows": 10
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Email Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "MessageId": { "type": "string" } }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

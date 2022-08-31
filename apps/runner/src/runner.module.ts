@@ -2,6 +2,7 @@ import { CommonModule } from '@app/common'
 import { DefinitionsModule } from '@app/definitions'
 import { forwardRef, Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
+import { UsersModule } from 'apps/api/src/users/users.module'
 import { mongoForRoot } from '../../../libs/common/src/utils/mongodb'
 import { AccountCredentialsModule } from '../../api/src/account-credentials/account-credentials.module'
 import { AuthModule } from '../../api/src/auth/auth.module'
@@ -22,6 +23,7 @@ import { StaticRunner } from './services/static-runner.service'
     ConfigModule.forRoot(),
     mongoForRoot(),
     CommonModule,
+    UsersModule,
     IntegrationsModule,
     IntegrationAccountsModule,
     IntegrationActionsModule,

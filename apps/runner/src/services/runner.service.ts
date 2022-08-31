@@ -2,7 +2,7 @@ import { isEmptyObj } from '@app/common/utils/object.utils'
 import { Definition, IntegrationDefinitionFactory, RunResponse } from '@app/definitions'
 import { generateSchemaFromObject } from '@app/definitions/schema/utils/jsonSchemaUtils'
 import { Injectable, Logger, NotFoundException } from '@nestjs/common'
-import { ConfigService } from '@nestjs/config'
+import { UserService } from 'apps/api/src/users/services/user.service'
 import { ObjectId } from 'bson'
 import mongoose from 'mongoose'
 import { Observable } from 'rxjs'
@@ -36,8 +36,8 @@ export class RunnerService {
   private readonly logger = new Logger(RunnerService.name)
 
   constructor(
-    private readonly configService: ConfigService,
     private readonly operationRunnerService: OperationRunnerService,
+    private readonly userService: UserService,
     private readonly integrationService: IntegrationService,
     private readonly integrationAccountService: IntegrationAccountService,
     private readonly integrationActionService: IntegrationActionService,
@@ -115,6 +115,11 @@ export class RunnerService {
       return
     }
 
+    const user = await this.userService.findById(userId.toString())
+    if (!user) {
+      throw new NotFoundException(`User ${userId} not found`)
+    }
+
     let runResponse: RunResponse
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     try {
@@ -126,6 +131,11 @@ export class RunnerService {
         credentials,
         accountCredential,
         workflowOperation: workflowTrigger,
+        user: {
+          id: userId.toString(),
+          username: user.username,
+          email: user.email,
+        },
       })
 
       // triggers can return a promise with the outputs or an observable which will emit one or more outputs
@@ -216,6 +226,11 @@ export class RunnerService {
           credentials,
           accountCredential,
           workflowOperation: workflowTrigger,
+          user: {
+            id: userId.toString(),
+            username: user.username,
+            email: user.email,
+          },
         })
         newItem.item = {
           ...populatedOutputs,
@@ -301,6 +316,11 @@ export class RunnerService {
       return
     }
 
+    const user = await this.userService.findById(userId.toString())
+    if (!user) {
+      throw new NotFoundException(`User ${userId} not found`)
+    }
+
     let runResponse: RunResponse
     try {
       const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
@@ -312,6 +332,11 @@ export class RunnerService {
         credentials,
         accountCredential,
         workflowOperation: workflowAction,
+        user: {
+          id: userId.toString(),
+          username: user.username,
+          email: user.email,
+        },
       })
       await this.workflowRunService.markActionAsCompleted(userId, workflowRun._id, workflowRunAction)
     } catch (e) {

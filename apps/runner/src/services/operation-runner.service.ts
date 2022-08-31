@@ -32,6 +32,11 @@ export type BaseRunOptions = {
   inputs: StepInputs
   credentials: StepInputs // TODO we could remove this and read it from accountCredentials
   accountCredential: AccountCredential | null // needed to store refreshed access token
+  user?: {
+    id: string
+    username: string
+    email: string
+  }
 }
 
 export type OperationRunOptions = BaseRunOptions & {
