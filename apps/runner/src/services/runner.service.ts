@@ -428,7 +428,7 @@ export class RunnerService {
         }
       }
 
-      credentials = accountCredential.credentials
+      credentials = accountCredential.credentials ?? {}
 
       if (accountCredential.integrationAccount) {
         integrationAccount =
