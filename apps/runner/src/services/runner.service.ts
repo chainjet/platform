@@ -242,7 +242,9 @@ export class RunnerService {
     await this.workflowRunService.markTriggerAsCompleted(userId, workflowRun._id, true, triggerIds)
     await this.workflowTriggerService.updateOne(workflowTrigger.id, { lastId: triggerIds[0], store: runResponse.store })
 
-    const triggerOutputsList = newItems.reverse().map((data) => ({ [workflowTrigger.id]: data.item }))
+    const triggerOutputsList = newItems
+      .reverse()
+      .map((data) => ({ [workflowTrigger.id]: data.item, trigger: data.item }))
     await this.runWorkflowActions(rootActions, triggerOutputsList, workflowRun)
   }
 
