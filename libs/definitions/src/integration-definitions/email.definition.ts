@@ -29,7 +29,7 @@ export class EmailDefinition extends SingleIntegrationDefinition {
         Body: {
           Html: {
             Charset: 'UTF-8',
-            Data: inputs.body,
+            Data: inputs.body.replace(/\n/g, '<br/>'),
           },
           Text: {
             Charset: 'UTF-8',
