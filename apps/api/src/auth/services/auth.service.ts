@@ -68,6 +68,7 @@ export class AuthService {
       'reference',
       'account',
       'projects',
+      'create',
     ].some((value) => username === value)
   }
 }
