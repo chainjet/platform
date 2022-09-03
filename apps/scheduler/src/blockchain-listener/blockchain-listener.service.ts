@@ -106,11 +106,13 @@ export class BlockchainListenerService {
             }
           }
 
+          const outputs = {
+            ...log,
+            log: logArgs,
+          }
           const hookOutputs = {
-            [workflowTrigger.id]: {
-              ...log,
-              log: logArgs,
-            },
+            [workflowTrigger.id]: outputs,
+            trigger: outputs,
           }
 
           const rootActions = await this.workflowActionService.find({ workflow: workflow.id, isRootAction: true })
