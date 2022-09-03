@@ -666,21 +666,18 @@ function getAsyncSchemasForPipedream(
 
         const propSchema = integrationOperation.schemaRequest.properties?.[curr.name] ?? {}
 
-        // if there is only one item, set it as default
-        const asyncSchema: JSONSchema7 = {
-          ...(items.length === 1 ? { default: parseJsonSchemaValue(propSchema, items[0].value) } : {}),
-        }
+        const defaultValue = parseJsonSchemaValue(propSchema, items[0].value)
 
         // items can be an array of strings or an array of { label: string, value: any }
         if (items.every((item) => typeof item === 'string')) {
           return {
-            ...asyncSchema,
+            default: defaultValue,
             enum: items,
           }
         }
 
         return {
-          ...asyncSchema,
+          default: defaultValue,
           oneOf: items.map((item) => ({
             title: item.label,
             const: parseJsonSchemaValue(propSchema, item.value),

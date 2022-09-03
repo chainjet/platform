@@ -236,7 +236,7 @@ export class DiscordDefinition extends SingleIntegrationDefinition {
           return {}
         }
         return {
-          ...(channels.length === 1 ? { default: channels[0].id } : {}),
+          default: channels[0].id,
           oneOf: channels
             .filter(
               (channels) =>
