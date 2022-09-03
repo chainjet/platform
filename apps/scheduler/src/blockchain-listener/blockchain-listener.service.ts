@@ -108,6 +108,7 @@ export class BlockchainListenerService {
 
           const outputs = {
             ...log,
+            eventName: updatedTrigger.inputs?.event,
             log: logArgs,
           }
           const hookOutputs = {
