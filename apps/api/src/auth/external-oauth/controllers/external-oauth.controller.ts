@@ -75,6 +75,9 @@ export class ExternalOAuthController {
     session: Record<string, any>,
   ): Promise<void> {
     session.oAuthLogin = true
+    if (req.query.redirect_to) {
+      session.redirectTo = req.query.redirect_to.toString()
+    }
     const provider = key as LoginProvider
     const strategy = this.oauthStrategyFactory.ensureLoginProviderStrategy(provider)
     passport.authenticate(strategy.strategyName, strategy.strategyOptions)(req, res, next)
@@ -176,7 +179,7 @@ export class ExternalOAuthController {
         encryptedCredentials: CryptoJS.AES.encrypt(JSON.stringify(credentials), credentialKey).toString(),
       })
 
-      if (session.redirectTo) {
+      if (session.redirectTo && session.redirectTo.startsWith('/')) {
         res.redirect(session.redirectTo)
       } else {
         res.sendFile(path.resolve('apps/api/src/auth/external-oauth/views/oauth-response.html'))
@@ -205,7 +208,10 @@ export class ExternalOAuthController {
         profile,
         primaryEmail,
       )
-      const completeAuthPath = `${process.env.FRONTEND_ENDPOINT}/login/complete-auth?id=${userProviderId}&code=${completeAuthCode}&provider=${provider}`
+      const redirectTo = session.redirectTo?.startsWith('/') ? session.redirectTo : null
+      const completeAuthPath =
+        `${process.env.FRONTEND_ENDPOINT}/login/complete-auth?id=${userProviderId}&code=${completeAuthCode}&provider=${provider}` +
+        (redirectTo ? `&redirect_to=${redirectTo}` : '')
       if (user) {
         res.redirect(completeAuthPath)
       } else {
