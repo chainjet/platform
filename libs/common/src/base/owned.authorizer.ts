@@ -3,14 +3,19 @@ import { Injectable } from '@nestjs/common'
 import { Filter } from '@ptc-org/nestjs-query-core'
 import { Authorizer, CustomAuthorizer } from '@ptc-org/nestjs-query-graphql'
 import { Types } from 'mongoose'
-import { ADMIN_USERS } from '../../../../apps/api/src/auth/config/admins'
 import { GqlContext } from '../../../../apps/api/src/auth/typings/gql-context'
 
 @Injectable()
 export class OwnedAuthorizer<T extends BaseEntity> implements CustomAuthorizer<T> {
   async authorize(context: GqlContext): Promise<Filter<T>> {
-    if (ADMIN_USERS.includes(context.req.user.username)) {
-      return {}
+    if (process.env.ADMIN_ROLE_KEY) {
+      const admins = process.env.ADMIN_USERS?.split(',') || []
+      if (
+        admins.includes(context.req.user.username) &&
+        context.req.headers['x-role-key'] === process.env.ADMIN_ROLE_KEY
+      ) {
+        return {}
+      }
     }
 
     return { owner: { eq: new Types.ObjectId(context.req.user.id.toString()) } } as unknown as Filter<T>
