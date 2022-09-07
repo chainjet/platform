@@ -38,6 +38,7 @@ export class HooksController {
     if (!integration) {
       throw new NotFoundException(`Integration ${integrationKey} not found`)
     }
+    this.logger.log(`Received webhook for integration ${integrationKey}`)
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     const { response, runs } = await definition.onHookReceived(req, {
@@ -56,6 +57,7 @@ export class HooksController {
       this.logger.log(`Running workflow ${workflow.id} triggered by hook on ${integrationKey}`)
 
       const hookOutputs = {
+        trigger: run.outputs,
         [run.workflowTrigger.id]: run.outputs,
       }
 
