@@ -246,7 +246,10 @@ export class OperationRunnerService {
     try {
       return await definition.run(opts)
     } catch (e) {
-      if (opts.integrationAccount) {
+      if (
+        opts.integrationAccount &&
+        [IntegrationAuthType.oauth1, IntegrationAuthType.oauth2].includes(opts.integrationAccount.authType)
+      ) {
         // refresh credentials and try again
         opts.credentials.accessToken = await this.oauthStrategyFactory.refreshOauth2AccessToken(
           opts.integrationAccount.key,
@@ -255,8 +258,8 @@ export class OperationRunnerService {
         )
         return await definition.run(opts)
       }
+      throw e
     }
-    return null
   }
 
   requestInterceptor(definition: Definition, opts: RequestInterceptorOptions): request.OptionsWithUrl {
