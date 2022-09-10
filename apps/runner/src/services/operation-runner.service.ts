@@ -62,18 +62,15 @@ export class OperationRunnerService {
     private readonly metricService: MetricService,
   ) {}
 
-  async runTriggerCheck(
-    definition: Definition,
-    opts: OperationRunOptions,
-  ): Promise<RunResponse | Observable<RunResponse>> {
+  async runTriggerCheck(definition: Definition, opts: OperationRunOptions): Promise<RunResponse> {
     this.logger.debug(
       `Running trigger ${opts.operation.key} of ${opts.integration.key} with inputs "${JSON.stringify(opts.inputs)}"`,
     )
 
     // If the definition has its own run definition, use it
     const definitionRunOutputs = await this.runDefinitionWithRefreshCredentials(definition, opts)
-    if (definitionRunOutputs && 'outputs' in definitionRunOutputs) {
-      return definitionRunOutputs
+    if (definitionRunOutputs && !isEmptyObj(definitionRunOutputs)) {
+      return this.convertObservableToRunResponse(definitionRunOutputs)
     }
 
     return this.runOperation(definition, opts)
@@ -86,8 +83,11 @@ export class OperationRunnerService {
 
     // If the definition has its own run definition, use it
     const definitionRunOutputs = await this.runDefinitionWithRefreshCredentials(definition, opts)
-    if (definitionRunOutputs && 'outputs' in definitionRunOutputs) {
-      return definitionRunOutputs
+    if (definitionRunOutputs && !isEmptyObj(definitionRunOutputs)) {
+      if ('outputs' in definitionRunOutputs) {
+        return definitionRunOutputs
+      }
+      return this.convertObservableToRunResponse(definitionRunOutputs)
     }
 
     return this.runOperation(definition, opts)
@@ -260,6 +260,28 @@ export class OperationRunnerService {
       }
       throw e
     }
+  }
+
+  private async convertObservableToRunResponse(res: RunResponse | Observable<RunResponse>): Promise<RunResponse> {
+    if ('outputs' in res) {
+      return res
+    }
+    return new Promise((resolve, reject) => {
+      const items: any[] = []
+      let store: RunResponse['store']
+      res.subscribe({
+        next(item) {
+          items.push(item.outputs)
+          store = item.store
+        },
+        error(err) {
+          reject(err)
+        },
+        complete() {
+          resolve({ outputs: { items }, store })
+        },
+      })
+    })
   }
 
   requestInterceptor(definition: Definition, opts: RequestInterceptorOptions): request.OptionsWithUrl {

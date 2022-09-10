@@ -123,7 +123,7 @@ export class RunnerService {
     let runResponse: RunResponse
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     try {
-      const res = await this.operationRunnerService.runTriggerCheck(definition, {
+      runResponse = await this.operationRunnerService.runTriggerCheck(definition, {
         integration,
         integrationAccount,
         operation: integrationTrigger,
@@ -137,28 +137,6 @@ export class RunnerService {
           email: user.email,
         },
       })
-
-      // triggers can return a promise with the outputs or an observable which will emit one or more outputs
-      if ('outputs' in res) {
-        runResponse = res
-      } else {
-        runResponse = await new Promise((resolve, reject) => {
-          const items: any[] = []
-          let store: RunResponse['store']
-          ;(res as Observable<RunResponse>).subscribe({
-            next(item) {
-              items.push(item.outputs)
-              store = item.store
-            },
-            error(err) {
-              reject(err)
-            },
-            complete() {
-              resolve({ outputs: { items }, store })
-            },
-          })
-        })
-      }
     } catch (e) {
       let error = definition.parseError(e)
       if (!error || error.toString() === '[object Object]') {
