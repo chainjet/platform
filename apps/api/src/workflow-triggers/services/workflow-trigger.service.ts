@@ -1,8 +1,12 @@
 import { BaseService } from '@app/common/base/base.service'
+import { isEmptyObj } from '@app/common/utils/object.utils'
 import { IntegrationDefinitionFactory } from '@app/definitions'
+import { generateSchemaFromObject } from '@app/definitions/schema/utils/jsonSchemaUtils'
 import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
 import { DeepPartial, DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { mongoose, ReturnModelType } from '@typegoose/typegoose'
+import { OperationRunnerService } from 'apps/runner/src/services/operation-runner.service'
+import { extractTriggerItems } from 'apps/runner/src/utils/trigger.utils'
 import cronParser from 'cron-parser'
 import _ from 'lodash'
 import { InjectModel } from 'nestjs-typegoose'
@@ -13,8 +17,11 @@ import { capitalize } from '../../../../../libs/common/src/utils/string.utils'
 import { assertNever } from '../../../../../libs/common/src/utils/typescript.utils'
 import { AccountCredential } from '../../account-credentials/entities/account-credential'
 import { AccountCredentialService } from '../../account-credentials/services/account-credentials.service'
+import { IntegrationAccount } from '../../integration-accounts/entities/integration-account'
+import { IntegrationAccountService } from '../../integration-accounts/services/integration-account.service'
 import { IntegrationTriggerService } from '../../integration-triggers/services/integration-trigger.service'
 import { IntegrationService } from '../../integrations/services/integration.service'
+import { UserService } from '../../users/services/user.service'
 import { Workflow } from '../../workflows/entities/workflow'
 import { WorkflowService } from '../../workflows/services/workflow.service'
 import { TriggerSchedule } from '../entities/trigger-schedule'
@@ -26,11 +33,14 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
 
   constructor(
     @InjectModel(WorkflowTrigger) protected readonly model: ReturnModelType<typeof WorkflowTrigger>,
+    protected userService: UserService,
     protected workflowService: WorkflowService,
     protected accountCredentialService: AccountCredentialService,
     protected integrationService: IntegrationService,
+    protected integrationAccountService: IntegrationAccountService,
     protected integrationTriggerService: IntegrationTriggerService,
     protected integrationDefinitionFactory: IntegrationDefinitionFactory,
+    protected operationRunnerService: OperationRunnerService,
   ) {
     super(model)
   }
@@ -74,6 +84,46 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     const workflowTrigger = await definition.beforeCreateWorkflowTrigger(record, integrationTrigger, accountCredential)
+
+    // test workflow trigger and store outputs
+    if (!integrationTrigger.instant) {
+      let integrationAccount: IntegrationAccount | null = null
+      if (integration.integrationAccount) {
+        integrationAccount =
+          (await this.integrationAccountService.findById(integration.integrationAccount.toString())) ?? null
+      }
+      const user = (await this.userService.findById(record.owner.toString()))!
+
+      const runResponse = await this.operationRunnerService.runTriggerCheck(definition, {
+        integration,
+        integrationAccount,
+        inputs: workflowTrigger.inputs ?? {},
+        credentials: accountCredential?.credentials ?? {},
+        accountCredential,
+        user: {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+        },
+        operation: integrationTrigger,
+        workflowOperation: workflowTrigger as WorkflowTrigger,
+      })
+
+      // learn schema response at integration or workflow level
+      const triggerItems = extractTriggerItems(integrationTrigger.idKey!, runResponse.outputs)
+      if (triggerItems.length && !isEmptyObj(triggerItems[0].item)) {
+        if (integrationTrigger.learnResponseIntegration && !integrationTrigger.schemaResponse) {
+          integrationTrigger.schemaResponse = generateSchemaFromObject(triggerItems[0].item)
+          await this.integrationTriggerService.updateOne(integrationTrigger.id, {
+            schemaResponse: integrationTrigger.schemaResponse,
+          })
+        }
+        if (integrationTrigger.learnResponseWorkflow) {
+          workflowTrigger.schemaResponse = generateSchemaFromObject(triggerItems[0].item)
+        }
+      }
+    }
+
     const createdEntity = await super.createOne(workflowTrigger)
     await definition.afterCreateWorkflowTrigger(createdEntity, integrationTrigger, accountCredential, (data) =>
       super.updateOne(createdEntity.id, data),
@@ -147,6 +197,38 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       integrationTrigger,
       accountCredential,
     )
+
+    // test workflow trigger and store outputs
+    if (!integrationTrigger.instant) {
+      let integrationAccount: IntegrationAccount | null = null
+      if (integration.integrationAccount) {
+        integrationAccount =
+          (await this.integrationAccountService.findById(integration.integrationAccount.toString())) ?? null
+      }
+      const user = (await this.userService.findById(workflowTrigger.owner.toString()))!
+
+      const runResponse = await this.operationRunnerService.runTriggerCheck(definition, {
+        integration,
+        integrationAccount,
+        inputs: workflowTrigger.inputs ?? {},
+        credentials: accountCredential?.credentials ?? {},
+        accountCredential,
+        user: {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+        },
+        operation: integrationTrigger,
+        workflowOperation: workflowTrigger as WorkflowTrigger,
+      })
+
+      // learn schema response at workflow level
+      const triggerItems = extractTriggerItems(integrationTrigger.idKey!, runResponse.outputs)
+      if (triggerItems.length && !isEmptyObj(triggerItems[0].item) && integrationTrigger.learnResponseWorkflow) {
+        workflowTrigger.schemaResponse = generateSchemaFromObject(triggerItems[0].item)
+      }
+    }
+
     const updatedEntity = await super.updateOne(id, updatedWorkflowTrigger, opts)
     await definition.afterUpdateWorkflowTrigger(updatedEntity, integrationTrigger, accountCredential, (data) =>
       super.updateOne(updatedEntity.id, data, opts),

@@ -5,7 +5,6 @@ import { Injectable, Logger, NotFoundException } from '@nestjs/common'
 import { UserService } from 'apps/api/src/users/services/user.service'
 import { ObjectId } from 'bson'
 import mongoose from 'mongoose'
-import { Observable } from 'rxjs'
 import { Reference } from '../../../../libs/common/src/typings/mongodb'
 import { AccountCredential } from '../../../api/src/account-credentials/entities/account-credential'
 import { AccountCredentialService } from '../../../api/src/account-credentials/services/account-credentials.service'
@@ -155,22 +154,6 @@ export class RunnerService {
 
     const triggerItems = extractTriggerItems(integrationTrigger.idKey, runResponse.outputs)
     const triggerIds = triggerItems.map((item) => item.id.toString())
-
-    // learn schema response at integration or workflow level
-    if (triggerItems.length && !isEmptyObj(triggerItems[0].item)) {
-      if (integrationTrigger.learnResponseIntegration && !integrationTrigger.schemaResponse) {
-        integrationTrigger.schemaResponse = generateSchemaFromObject(triggerItems[0].item)
-        await this.integrationTriggerService.updateOne(integrationTrigger.id, {
-          schemaResponse: integrationTrigger.schemaResponse,
-        })
-      }
-      if (integrationTrigger.learnResponseWorkflow && !workflowTrigger.schemaResponse) {
-        workflowTrigger.schemaResponse = generateSchemaFromObject(triggerItems[0].item)
-        await this.workflowTriggerService.updateOne(workflowTrigger.id, {
-          schemaResponse: workflowTrigger.schemaResponse,
-        })
-      }
-    }
 
     let newItems: Array<{ id: string | number; item: Record<string, unknown> }> = []
     if (workflowTrigger.lastId) {
