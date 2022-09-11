@@ -97,6 +97,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
   ): Promise<void> {
     await this.updateById(workflowRun._id, {
       $set: {
+        status: WorkflowRunStatus.failed,
         'triggerRun.status': WorkflowRunStatus.failed,
         'triggerRun.finishedAt': Date.now(),
         errorMessage,
