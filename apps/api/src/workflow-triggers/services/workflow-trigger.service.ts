@@ -200,8 +200,8 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
 
     // test workflow trigger and store outputs
     const testNeeded =
-      workflowTrigger.credentials !== updatedWorkflowTrigger.credentials ||
-      !_.isEqual(workflowTrigger.inputs, updatedWorkflowTrigger.inputs)
+      (updatedWorkflowTrigger.credentials && workflowTrigger.credentials !== updatedWorkflowTrigger.credentials) ||
+      (updatedWorkflowTrigger.inputs && !_.isEqual(workflowTrigger.inputs, updatedWorkflowTrigger.inputs))
     if (!integrationTrigger.instant && testNeeded) {
       let integrationAccount: IntegrationAccount | null = null
       if (integration.integrationAccount) {
