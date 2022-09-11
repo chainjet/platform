@@ -199,7 +199,10 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     )
 
     // test workflow trigger and store outputs
-    if (!integrationTrigger.instant) {
+    const testNeeded =
+      workflowTrigger.credentials !== updatedWorkflowTrigger.credentials ||
+      !_.isEqual(workflowTrigger.inputs, updatedWorkflowTrigger.inputs)
+    if (!integrationTrigger.instant && testNeeded) {
       let integrationAccount: IntegrationAccount | null = null
       if (integration.integrationAccount) {
         integrationAccount =
@@ -210,7 +213,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       const runResponse = await this.operationRunnerService.runTriggerCheck(definition, {
         integration,
         integrationAccount,
-        inputs: workflowTrigger.inputs ?? {},
+        inputs: updatedWorkflowTrigger.inputs ?? {},
         credentials: accountCredential?.credentials ?? {},
         accountCredential,
         user: {
