@@ -1317,6 +1317,7 @@ export interface IMutation {
     deleteOneWorkflowTrigger(input: DeleteOneWorkflowTriggerInput): WorkflowTriggerDeleteResponse | Promise<WorkflowTriggerDeleteResponse>;
     deleteManyWorkflowTriggers(input: DeleteManyWorkflowTriggersInput): DeleteManyResponse | Promise<DeleteManyResponse>;
     checkWorkflowTrigger(id: string): WorkflowTrigger | Promise<WorkflowTrigger>;
+    testWorkflowTrigger(id: string): WorkflowTrigger | Promise<WorkflowTrigger>;
 }
 
 export type DateTime = any;

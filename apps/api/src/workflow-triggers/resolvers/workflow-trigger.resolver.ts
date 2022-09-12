@@ -39,4 +39,18 @@ export class WorkflowTriggerResolver extends BaseResolver(WorkflowTrigger, {
     await this.workflowTriggerService.updateNextCheck(trigger)
     return trigger
   }
+
+  @Mutation(() => WorkflowTrigger)
+  async testWorkflowTrigger(
+    @UserId() userId: ObjectId,
+    @Args('id', { type: () => GraphQLString }) id: string,
+  ): Promise<WorkflowTrigger | null> {
+    const trigger = await this.workflowTriggerService.findById(id)
+    if (!trigger || trigger.owner.toString() !== userId.toString() || !trigger.schedule?.frequency) {
+      return null
+    }
+    void this.runnerService.runWorkflowTriggerCheck(trigger, WorkflowRunStartedByOptions.user, { ignoreLastId: true })
+    await this.workflowTriggerService.updateNextCheck(trigger)
+    return trigger
+  }
 }

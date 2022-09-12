@@ -52,6 +52,7 @@ export class RunnerService {
   async runWorkflowTriggerCheck(
     workflowTrigger: WorkflowTrigger,
     startedBy: WorkflowRunStartedByOptions,
+    opts?: { ignoreLastId?: boolean },
   ): Promise<void> {
     this.logger.debug(`Checking for trigger ${workflowTrigger.id}`)
 
@@ -156,7 +157,7 @@ export class RunnerService {
     const triggerIds = triggerItems.map((item) => item.id.toString())
 
     let newItems: Array<{ id: string | number; item: Record<string, unknown> }> = []
-    if (workflowTrigger.lastId) {
+    if (workflowTrigger.lastId && !opts?.ignoreLastId) {
       const lastItemIndex = triggerIds.indexOf(workflowTrigger.lastId?.toString())
       // if the last id was not found, we need to trigger for all, otherwise only for new items
       if (lastItemIndex === -1) {
