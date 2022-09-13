@@ -47,7 +47,7 @@ export class WorkflowTriggerResolver extends BaseResolver(WorkflowTrigger, {
   ): Promise<WorkflowTrigger | null> {
     const trigger = await this.workflowTriggerService.findById(id)
     if (!trigger || trigger.owner.toString() !== userId.toString() || !trigger.schedule?.frequency) {
-      return null
+      return trigger ?? null
     }
     void this.runnerService.runWorkflowTriggerCheck(trigger, WorkflowRunStartedByOptions.user, { ignoreLastId: true })
     await this.workflowTriggerService.updateNextCheck(trigger)
