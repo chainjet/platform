@@ -1,4 +1,5 @@
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
+import { blockchainConfigList } from '@blockchain/blockchain/blockchain.config'
 import { ExplorerService } from '@blockchain/blockchain/explorer/explorer.service'
 import { MulticallService } from '@blockchain/blockchain/multicall/multicall.service'
 import { ProviderService } from '@blockchain/blockchain/provider/provider.service'
@@ -165,5 +166,14 @@ export class BlockchainDefinition extends SingleIntegrationDefinition {
     integrationTrigger: IntegrationTrigger,
   ): Promise<DeepPartial<WorkflowTrigger>> {
     return this.beforeCreateWorkflowTrigger(workflowTrigger, integrationTrigger)
+  }
+
+  parseError(e: any): string {
+    let error = e.response?.text ?? e.response ?? e.message ?? ''
+    const config = blockchainConfigList()
+    for (const network of Object.values(config.networks)) {
+      error = error.replaceAll(network.url, '<RPC>')
+    }
+    return error
   }
 }
