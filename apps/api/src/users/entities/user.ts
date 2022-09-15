@@ -65,6 +65,9 @@ export class User extends BaseEntity {
     set: (val) => val,
   })
   apiKey?: string
+
+  // updates once every 24 hours
+  lastActiveAt?: Date
 }
 
 @InputType()
