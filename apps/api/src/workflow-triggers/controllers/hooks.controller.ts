@@ -159,6 +159,7 @@ export class HooksController {
     }
 
     const hookOutputs = {
+      trigger: triggerOutputs,
       [workflowTrigger.id]: triggerOutputs,
     }
 
