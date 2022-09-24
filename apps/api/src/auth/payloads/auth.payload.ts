@@ -1,5 +1,4 @@
 import { Field, ObjectType } from '@nestjs/graphql'
-import { Project } from '../../projects/entities/project'
 import { User } from '../../users/entities/user'
 
 @ObjectType()
@@ -30,9 +29,6 @@ export class RegisterPayload {
 
   @Field()
   token: AuthToken
-
-  @Field()
-  project: Project
 }
 
 @ObjectType()
@@ -60,7 +56,4 @@ export class CompleteExternalAuthPayload {
 
   @Field()
   token: AuthToken
-
-  @Field({ nullable: true })
-  project?: Project
 }

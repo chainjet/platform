@@ -6,7 +6,6 @@ import { SessionModule } from 'nestjs-session'
 import { EmailsModule } from '../../../../libs/emails/src'
 import { AccountCredentialsModule } from '../account-credentials/account-credentials.module'
 import { IntegrationAccountsModule } from '../integration-accounts/integration-accounts.module'
-import { ProjectsModule } from '../projects/projects.module'
 import { UsersModule } from '../users/users.module'
 import { ExternalOAuthController } from './external-oauth/controllers/external-oauth.controller'
 import { OAuthStrategyFactory } from './external-oauth/oauth-strategy.factory'
@@ -37,7 +36,6 @@ import { OwnershipService } from './services/ownership.service'
 
     UsersModule,
     forwardRef(() => AccountCredentialsModule),
-    ProjectsModule,
     IntegrationAccountsModule,
     EmailsModule,
   ],

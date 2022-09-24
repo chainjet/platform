@@ -8,7 +8,6 @@ import { GraphQLBoolean, GraphQLString } from 'graphql'
 import { firstValueFrom } from 'rxjs'
 import { EmailService } from '../../../../../libs/emails/src/services/email.service'
 import { ResetPasswordTemplate } from '../../../../../libs/emails/src/templates/resetPasswordTemplate'
-import { ProjectService } from '../../projects/services/project.service'
 import { User } from '../../users/entities/user'
 import { UserService } from '../../users/services/user.service'
 import { UserId } from '../decorators/user-id.decorator'
@@ -30,7 +29,6 @@ export class AuthResolver {
   constructor(
     private readonly authService: AuthService,
     private readonly userService: UserService,
-    private readonly projectService: ProjectService,
     private readonly emailService: EmailService,
     private readonly httpService: HttpService,
   ) {}
@@ -198,12 +196,6 @@ export class AuthResolver {
       )
     }
 
-    const project = await this.projectService.createOne({
-      owner: user._id,
-      name: 'Main',
-      public: false,
-    })
-
     const plainRefreshToken = await this.authService.generateAndSaveRefreshToken(user)
 
     return {
@@ -212,7 +204,6 @@ export class AuthResolver {
         ...this.authService.generateAccessToken(user),
         refreshToken: plainRefreshToken,
       },
-      project,
     }
   }
 }

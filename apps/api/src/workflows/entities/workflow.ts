@@ -7,7 +7,6 @@ import { Injectable } from '@nestjs/common'
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql'
 import { Authorize, FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { pre, prop } from '@typegoose/typegoose'
-import { Project } from '../../projects/entities/project'
 import { User } from '../../users/entities/user'
 import { WorkflowAction } from '../../workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from '../../workflow-triggers/entities/workflow-trigger'
@@ -30,7 +29,6 @@ export class WorkflowAuthorizer extends OwnedAuthorizer<Workflow> {}
 @OwnedEntity()
 @Authorize<Workflow>(WorkflowAuthorizer)
 @EntityRef('owner', () => User)
-@EntityRef('project', () => Project)
 @EntityRef('trigger', () => WorkflowTrigger, { nullable: true, relationName: '.workflow' })
 @EntityConnection('actions', () => WorkflowAction, { nullable: true, relationName: '.workflow' })
 export class Workflow extends BaseEntity {
@@ -38,14 +36,13 @@ export class Workflow extends BaseEntity {
   @prop({ ref: User, required: true, index: true })
   readonly owner: Reference<User>
 
-  @FilterableField(() => ID)
-  @prop({ ref: Project, required: true })
-  readonly project: Reference<Project>
-
   @FilterableField()
   @prop({ required: true })
   name: string
 
+  /**
+   * @deprecated
+   */
   @FilterableField()
   @prop({ required: true, unique: true })
   slug: string
@@ -70,9 +67,6 @@ export class Workflow extends BaseEntity {
 export class CreateWorkflowInput {
   @Field()
   name: string
-
-  @Field(() => ID)
-  project: Reference<Project>
 
   @Field(() => ID, { nullable: true })
   runOnFailure?: Reference<Workflow>

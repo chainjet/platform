@@ -7,7 +7,6 @@ import { IntegrationAccountsModule } from '../../../apps/api/src/integration-acc
 import { IntegrationActionsModule } from '../../../apps/api/src/integration-actions/integration-actions.module'
 import { IntegrationTriggersModule } from '../../../apps/api/src/integration-triggers/integration-triggers.module'
 import { IntegrationsModule } from '../../../apps/api/src/integrations/integrations.module'
-import { ProjectsModule } from '../../../apps/api/src/projects/projects.module'
 import { UsersModule } from '../../../apps/api/src/users/users.module'
 import { WorkflowActionsModule } from '../../../apps/api/src/workflow-actions/workflow-actions.module'
 import { WorkflowRunsModule } from '../../../apps/api/src/workflow-runs/workflow-runs.module'
@@ -25,7 +24,6 @@ const moduleList = [
   TestDatabaseModule,
   AuthModule,
   UsersModule,
-  ProjectsModule,
   IntegrationsModule,
   IntegrationAccountsModule,
   IntegrationTriggersModule,

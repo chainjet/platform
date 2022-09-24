@@ -14,7 +14,6 @@ import { IntegrationAccountsModule } from './integration-accounts/integration-ac
 import { IntegrationActionsModule } from './integration-actions/integration-actions.module'
 import { IntegrationTriggersModule } from './integration-triggers/integration-triggers.module'
 import { IntegrationsModule } from './integrations/integrations.module'
-import { ProjectsModule } from './projects/projects.module'
 import { UsersModule } from './users/users.module'
 import { WorkflowActionsModule } from './workflow-actions/workflow-actions.module'
 import { WorkflowRunsModule } from './workflow-runs/workflow-runs.module'
@@ -36,7 +35,6 @@ import { WorkflowsModule } from './workflows/workflows.module'
     }),
     AuthModule,
     UsersModule,
-    ProjectsModule,
     IntegrationsModule,
     IntegrationAccountsModule,
     IntegrationActionsModule,

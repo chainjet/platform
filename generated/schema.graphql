@@ -399,13 +399,37 @@ type UserEdge {
   cursor: ConnectionCursor!
 }
 
-type Project {
-  id: ID!
-  createdAt: DateTime!
-  owner: User!
-  name: String!
-  public: Boolean!
-  slug: String!
+type AuthToken {
+  accessToken: String!
+  accessTokenExpiration: DateTime!
+  refreshToken: String!
+}
+
+type LoginPayload {
+  user: User!
+  token: AuthToken!
+}
+
+type RegisterPayload {
+  user: User!
+  token: AuthToken!
+}
+
+type VerifyEmailPayload {
+  error: String
+}
+
+type ResetPasswordPayload {
+  result: Boolean!
+}
+
+type CompletePasswordPayload {
+  error: String
+}
+
+type CompleteExternalAuthPayload {
+  user: User!
+  token: AuthToken!
 }
 
 type WorkflowNextAction {
@@ -447,7 +471,6 @@ type Workflow {
   id: ID!
   createdAt: DateTime!
   owner: User!
-  project: Project!
   name: String!
   slug: String!
   state: String
@@ -493,7 +516,6 @@ type WorkflowDeleteResponse {
   id: ID
   createdAt: DateTime
   owner: ID
-  project: ID
   name: String
   slug: String
   state: String
@@ -530,66 +552,6 @@ type WorkflowActionsConnection {
 
   """Array of edges."""
   edges: [WorkflowActionEdge!]!
-}
-
-type ProjectDeleteResponse {
-  id: ID
-  createdAt: DateTime
-  owner: ID
-  name: String
-  public: Boolean
-  slug: String
-}
-
-type ProjectEdge {
-  """The node containing the Project"""
-  node: Project!
-
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
-}
-
-type ProjectConnection {
-  """Paging information"""
-  pageInfo: PageInfo!
-
-  """Array of edges."""
-  edges: [ProjectEdge!]!
-}
-
-type AuthToken {
-  accessToken: String!
-  accessTokenExpiration: DateTime!
-  refreshToken: String!
-}
-
-type LoginPayload {
-  user: User!
-  token: AuthToken!
-}
-
-type RegisterPayload {
-  user: User!
-  token: AuthToken!
-  project: Project!
-}
-
-type VerifyEmailPayload {
-  error: String
-}
-
-type ResetPasswordPayload {
-  result: Boolean!
-}
-
-type CompletePasswordPayload {
-  error: String
-}
-
-type CompleteExternalAuthPayload {
-  user: User!
-  token: AuthToken!
-  project: Project
 }
 
 type WorkflowRunAction {
@@ -893,20 +855,6 @@ type Query {
     """Specify to sort results."""
     sorting: [WorkflowSort!] = []
   ): WorkflowConnection!
-  project(
-    """The id of the record to find."""
-    id: ID!
-  ): Project!
-  projects(
-    """Limit or page results."""
-    paging: CursorPaging = {first: 10}
-
-    """Specify to filter the records returned."""
-    filter: ProjectFilter = {}
-
-    """Specify to sort results."""
-    sorting: [ProjectSort!] = []
-  ): ProjectConnection!
   workflowAction(
     """The id of the record to find."""
     id: ID!
@@ -1099,7 +1047,6 @@ input WorkflowFilter {
   id: IDFilterComparison
   createdAt: DateFieldComparison
   owner: IDFilterComparison
-  project: IDFilterComparison
   name: StringFieldComparison
   slug: StringFieldComparison
 }
@@ -1111,31 +1058,6 @@ input WorkflowSort {
 }
 
 enum WorkflowSortFields {
-  id
-  createdAt
-  owner
-  project
-  name
-  slug
-}
-
-input ProjectFilter {
-  and: [ProjectFilter!]
-  or: [ProjectFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-  owner: IDFilterComparison
-  name: StringFieldComparison
-  slug: StringFieldComparison
-}
-
-input ProjectSort {
-  field: ProjectSortFields!
-  direction: SortDirection!
-  nulls: SortNulls
-}
-
-enum ProjectSortFields {
   id
   createdAt
   owner
@@ -1299,12 +1221,6 @@ type Mutation {
   updateManyWorkflows(input: UpdateManyWorkflowsInput!): UpdateManyResponse!
   deleteOneWorkflow(input: DeleteOneWorkflowInput!): WorkflowDeleteResponse!
   deleteManyWorkflows(input: DeleteManyWorkflowsInput!): DeleteManyResponse!
-  createOneProject(input: CreateOneProjectInput!): Project!
-  createManyProjects(input: CreateManyProjectsInput!): [Project!]!
-  updateOneProject(input: UpdateOneProjectInput!): Project!
-  updateManyProjects(input: UpdateManyProjectsInput!): UpdateManyResponse!
-  deleteOneProject(input: DeleteOneProjectInput!): ProjectDeleteResponse!
-  deleteManyProjects(input: DeleteManyProjectsInput!): DeleteManyResponse!
   createOneWorkflowAction(input: CreateOneWorkflowActionInput!): WorkflowAction!
   createManyWorkflowActions(input: CreateManyWorkflowActionsInput!): [WorkflowAction!]!
   updateOneWorkflowAction(input: UpdateOneWorkflowActionInput!): WorkflowAction!
@@ -1410,7 +1326,6 @@ input CreateOneWorkflowInput {
 
 input CreateWorkflowInput {
   name: String!
-  project: ID!
   runOnFailure: ID
 }
 
@@ -1446,7 +1361,6 @@ input WorkflowUpdateFilter {
   id: IDFilterComparison
   createdAt: DateFieldComparison
   owner: IDFilterComparison
-  project: IDFilterComparison
   name: StringFieldComparison
   slug: StringFieldComparison
 }
@@ -1464,73 +1378,6 @@ input DeleteManyWorkflowsInput {
 input WorkflowDeleteFilter {
   and: [WorkflowDeleteFilter!]
   or: [WorkflowDeleteFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-  owner: IDFilterComparison
-  project: IDFilterComparison
-  name: StringFieldComparison
-  slug: StringFieldComparison
-}
-
-input CreateOneProjectInput {
-  """The record to create"""
-  project: CreateProjectInput!
-}
-
-input CreateProjectInput {
-  name: String!
-  public: Boolean = false
-}
-
-input CreateManyProjectsInput {
-  """Array of records to create"""
-  projects: [CreateProjectInput!]!
-}
-
-input UpdateOneProjectInput {
-  """The id of the record to update"""
-  id: ID!
-
-  """The update to apply."""
-  update: UpdateProjectInput!
-}
-
-input UpdateProjectInput {
-  name: String
-  public: Boolean
-}
-
-input UpdateManyProjectsInput {
-  """Filter used to find fields to update"""
-  filter: ProjectUpdateFilter!
-
-  """The update to apply to all records found using the filter"""
-  update: UpdateProjectInput!
-}
-
-input ProjectUpdateFilter {
-  and: [ProjectUpdateFilter!]
-  or: [ProjectUpdateFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-  owner: IDFilterComparison
-  name: StringFieldComparison
-  slug: StringFieldComparison
-}
-
-input DeleteOneProjectInput {
-  """The id of the record to delete."""
-  id: ID!
-}
-
-input DeleteManyProjectsInput {
-  """Filter to find records to delete"""
-  filter: ProjectDeleteFilter!
-}
-
-input ProjectDeleteFilter {
-  and: [ProjectDeleteFilter!]
-  or: [ProjectDeleteFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
   owner: IDFilterComparison

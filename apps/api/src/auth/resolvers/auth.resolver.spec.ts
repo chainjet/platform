@@ -63,16 +63,6 @@ describe('AuthResolver', () => {
       expect(res.token.refreshToken).toBeDefined()
       expect(httpService.request).toHaveBeenCalledTimes(1)
     })
-
-    it('should create a new project', async () => {
-      const res = await resolver.register('test@example.org', 'test', 'test')
-      const user = await UserModel.findOne({ username: 'test' })
-      const project = await mock.projectService.findOne({ owner: user?.id })
-      expect(project?.name).toBe('First Project')
-      expect(project?.public).toBe(false)
-      expect(res.project.name).toBe('First Project')
-      expect(res.project.slug).toBe('test/first-project')
-    })
   })
 
   describe('requestPasswordReset', () => {

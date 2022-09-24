@@ -1,38 +1,27 @@
 import { BaseService } from '@app/common/base/base.service'
 import { SecurityUtils } from '@app/common/utils/security.utils'
 import { slugify } from '@app/common/utils/string.utils'
-import { BadRequestException, forwardRef, Inject, Injectable, Logger, NotFoundException } from '@nestjs/common'
+import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
 import { DeepPartial, DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
-import { ProjectService } from '../../projects/services/project.service'
 import { Workflow } from '../entities/workflow'
 
 @Injectable()
 export class WorkflowService extends BaseService<Workflow> {
   protected readonly logger = new Logger(WorkflowService.name)
 
-  constructor(
-    @InjectModel(Workflow) protected readonly model: ReturnModelType<typeof Workflow>,
-    @Inject(forwardRef(() => ProjectService)) protected projectService: ProjectService,
-  ) {
+  constructor(@InjectModel(Workflow) protected readonly model: ReturnModelType<typeof Workflow>) {
     super(model)
   }
 
   async createOne(record: DeepPartial<Workflow>): Promise<Workflow> {
-    if (!record.project || !record.owner || !record.name) {
+    if (!record.owner || !record.name) {
       throw new BadRequestException()
     }
 
-    const project = await this.projectService.findById(record.project.toString())
-
-    // Verify project exist and the user has access to it
-    if (!project?.owner || project.owner.toString() !== record.owner.toString()) {
-      throw new NotFoundException('Project not found')
-    }
-
     // set workflow slug
-    record.slug = `${project.slug}/workflow/${slugify(record.name)}`
+    record.slug = `main/workflow/${slugify(record.name)}`
 
     const slugExists = await this.model.exists({ slug: record.slug })
     if (slugExists) {

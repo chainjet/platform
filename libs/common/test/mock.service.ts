@@ -8,8 +8,6 @@ import { IntegrationTrigger } from '../../../apps/api/src/integration-triggers/e
 import { IntegrationTriggerService } from '../../../apps/api/src/integration-triggers/services/integration-trigger.service'
 import { Integration } from '../../../apps/api/src/integrations/entities/integration'
 import { IntegrationService } from '../../../apps/api/src/integrations/services/integration.service'
-import { CreateProjectInput, Project } from '../../../apps/api/src/projects/entities/project'
-import { ProjectService } from '../../../apps/api/src/projects/services/project.service'
 import { User } from '../../../apps/api/src/users/entities/user'
 import { UserProvider } from '../../../apps/api/src/users/entities/user-provider'
 import { UserProviderService } from '../../../apps/api/src/users/services/user-provider.service'
@@ -38,7 +36,6 @@ export class MockService {
     public authService: AuthService,
     public userService: UserService,
     public userProviderService: UserProviderService,
-    public projectService: ProjectService,
     public integrationService: IntegrationService,
     public integrationTriggerService: IntegrationTriggerService,
     public integrationActionService: IntegrationActionService,
@@ -51,7 +48,6 @@ export class MockService {
 
   user: User
   userProvider: UserProvider
-  project: Project
   integration: Integration
   integrationTrigger: IntegrationTrigger
   integrationAction: IntegrationAction
@@ -164,32 +160,9 @@ export class MockService {
     return await this.createIntegrationAction(record)
   }
 
-  getInstanceOfProject(record: DeepPartial<CreateProjectInput & Project> = {}): Project {
-    return plainToClass(Project, {
-      owner: this.user?._id,
-      name: 'Test Project',
-      slug: 'test/test-project',
-      public: false,
-      ...record,
-    })
-  }
-
-  async createProject(record: DeepPartial<CreateProjectInput & Project> = {}): Promise<Project> {
-    this.project = (await this.projectService.Model.create(this.getInstanceOfProject(record))).toObject({
-      virtuals: true,
-    })
-    return this.project
-  }
-
-  async createProjectDeep(record: DeepPartial<CreateProjectInput & Project> = {}): Promise<Project> {
-    await this.createUser()
-    return await this.createProject(record)
-  }
-
   getInstanceOfWorkflow(record: DeepPartial<CreateWorkflowInput & Workflow> = {}): Workflow {
     return plainToClass(Workflow, {
       owner: this.user?._id,
-      project: this.project?._id,
       name: 'Test Workflow',
       slug: 'test/test-project/test-workflow',
       ...record,
@@ -204,7 +177,6 @@ export class MockService {
   }
 
   async createWorkflowDeep(record: DeepPartial<CreateWorkflowInput & Workflow> = {}): Promise<Workflow> {
-    await this.createProjectDeep()
     return await this.createWorkflow(record)
   }
 

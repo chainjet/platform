@@ -100,15 +100,6 @@ export enum WorkflowSortFields {
     id = "id",
     createdAt = "createdAt",
     owner = "owner",
-    project = "project",
-    name = "name",
-    slug = "slug"
-}
-
-export enum ProjectSortFields {
-    id = "id",
-    createdAt = "createdAt",
-    owner = "owner",
     name = "name",
     slug = "slug"
 }
@@ -339,29 +330,12 @@ export interface WorkflowFilter {
     id?: Nullable<IDFilterComparison>;
     createdAt?: Nullable<DateFieldComparison>;
     owner?: Nullable<IDFilterComparison>;
-    project?: Nullable<IDFilterComparison>;
     name?: Nullable<StringFieldComparison>;
     slug?: Nullable<StringFieldComparison>;
 }
 
 export interface WorkflowSort {
     field: WorkflowSortFields;
-    direction: SortDirection;
-    nulls?: Nullable<SortNulls>;
-}
-
-export interface ProjectFilter {
-    and?: Nullable<ProjectFilter[]>;
-    or?: Nullable<ProjectFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
-    owner?: Nullable<IDFilterComparison>;
-    name?: Nullable<StringFieldComparison>;
-    slug?: Nullable<StringFieldComparison>;
-}
-
-export interface ProjectSort {
-    field: ProjectSortFields;
     direction: SortDirection;
     nulls?: Nullable<SortNulls>;
 }
@@ -544,7 +518,6 @@ export interface CreateOneWorkflowInput {
 
 export interface CreateWorkflowInput {
     name: string;
-    project: string;
     runOnFailure?: Nullable<string>;
 }
 
@@ -573,7 +546,6 @@ export interface WorkflowUpdateFilter {
     id?: Nullable<IDFilterComparison>;
     createdAt?: Nullable<DateFieldComparison>;
     owner?: Nullable<IDFilterComparison>;
-    project?: Nullable<IDFilterComparison>;
     name?: Nullable<StringFieldComparison>;
     slug?: Nullable<StringFieldComparison>;
 }
@@ -589,63 +561,6 @@ export interface DeleteManyWorkflowsInput {
 export interface WorkflowDeleteFilter {
     and?: Nullable<WorkflowDeleteFilter[]>;
     or?: Nullable<WorkflowDeleteFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
-    owner?: Nullable<IDFilterComparison>;
-    project?: Nullable<IDFilterComparison>;
-    name?: Nullable<StringFieldComparison>;
-    slug?: Nullable<StringFieldComparison>;
-}
-
-export interface CreateOneProjectInput {
-    project: CreateProjectInput;
-}
-
-export interface CreateProjectInput {
-    name: string;
-    public?: Nullable<boolean>;
-}
-
-export interface CreateManyProjectsInput {
-    projects: CreateProjectInput[];
-}
-
-export interface UpdateOneProjectInput {
-    id: string;
-    update: UpdateProjectInput;
-}
-
-export interface UpdateProjectInput {
-    name?: Nullable<string>;
-    public?: Nullable<boolean>;
-}
-
-export interface UpdateManyProjectsInput {
-    filter: ProjectUpdateFilter;
-    update: UpdateProjectInput;
-}
-
-export interface ProjectUpdateFilter {
-    and?: Nullable<ProjectUpdateFilter[]>;
-    or?: Nullable<ProjectUpdateFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
-    owner?: Nullable<IDFilterComparison>;
-    name?: Nullable<StringFieldComparison>;
-    slug?: Nullable<StringFieldComparison>;
-}
-
-export interface DeleteOneProjectInput {
-    id: string;
-}
-
-export interface DeleteManyProjectsInput {
-    filter: ProjectDeleteFilter;
-}
-
-export interface ProjectDeleteFilter {
-    and?: Nullable<ProjectDeleteFilter[]>;
-    or?: Nullable<ProjectDeleteFilter[]>;
     id?: Nullable<IDFilterComparison>;
     createdAt?: Nullable<DateFieldComparison>;
     owner?: Nullable<IDFilterComparison>;
@@ -948,13 +863,37 @@ export interface UserEdge {
     cursor: ConnectionCursor;
 }
 
-export interface Project {
-    id: string;
-    createdAt: DateTime;
-    owner: User;
-    name: string;
-    public: boolean;
-    slug: string;
+export interface AuthToken {
+    accessToken: string;
+    accessTokenExpiration: DateTime;
+    refreshToken: string;
+}
+
+export interface LoginPayload {
+    user: User;
+    token: AuthToken;
+}
+
+export interface RegisterPayload {
+    user: User;
+    token: AuthToken;
+}
+
+export interface VerifyEmailPayload {
+    error?: Nullable<string>;
+}
+
+export interface ResetPasswordPayload {
+    result: boolean;
+}
+
+export interface CompletePasswordPayload {
+    error?: Nullable<string>;
+}
+
+export interface CompleteExternalAuthPayload {
+    user: User;
+    token: AuthToken;
 }
 
 export interface WorkflowNextAction {
@@ -996,7 +935,6 @@ export interface Workflow {
     id: string;
     createdAt: DateTime;
     owner: User;
-    project: Project;
     name: string;
     slug: string;
     state?: Nullable<string>;
@@ -1009,7 +947,6 @@ export interface WorkflowDeleteResponse {
     id?: Nullable<string>;
     createdAt?: Nullable<DateTime>;
     owner?: Nullable<string>;
-    project?: Nullable<string>;
     name?: Nullable<string>;
     slug?: Nullable<string>;
     state?: Nullable<string>;
@@ -1034,60 +971,6 @@ export interface WorkflowActionEdge {
 export interface WorkflowActionsConnection {
     pageInfo: PageInfo;
     edges: WorkflowActionEdge[];
-}
-
-export interface ProjectDeleteResponse {
-    id?: Nullable<string>;
-    createdAt?: Nullable<DateTime>;
-    owner?: Nullable<string>;
-    name?: Nullable<string>;
-    public?: Nullable<boolean>;
-    slug?: Nullable<string>;
-}
-
-export interface ProjectEdge {
-    node: Project;
-    cursor: ConnectionCursor;
-}
-
-export interface ProjectConnection {
-    pageInfo: PageInfo;
-    edges: ProjectEdge[];
-}
-
-export interface AuthToken {
-    accessToken: string;
-    accessTokenExpiration: DateTime;
-    refreshToken: string;
-}
-
-export interface LoginPayload {
-    user: User;
-    token: AuthToken;
-}
-
-export interface RegisterPayload {
-    user: User;
-    token: AuthToken;
-    project: Project;
-}
-
-export interface VerifyEmailPayload {
-    error?: Nullable<string>;
-}
-
-export interface ResetPasswordPayload {
-    result: boolean;
-}
-
-export interface CompletePasswordPayload {
-    error?: Nullable<string>;
-}
-
-export interface CompleteExternalAuthPayload {
-    user: User;
-    token: AuthToken;
-    project?: Nullable<Project>;
 }
 
 export interface WorkflowRunAction {
@@ -1256,8 +1139,6 @@ export interface IQuery {
     integrationTriggers(search?: Nullable<string>, paging?: Nullable<CursorPaging>, filter?: Nullable<IntegrationTriggerFilter>, sorting?: Nullable<IntegrationTriggerSort[]>): IntegrationTriggerConnection | Promise<IntegrationTriggerConnection>;
     workflow(id: string): Workflow | Promise<Workflow>;
     workflows(paging?: Nullable<CursorPaging>, filter?: Nullable<WorkflowFilter>, sorting?: Nullable<WorkflowSort[]>): WorkflowConnection | Promise<WorkflowConnection>;
-    project(id: string): Project | Promise<Project>;
-    projects(paging?: Nullable<CursorPaging>, filter?: Nullable<ProjectFilter>, sorting?: Nullable<ProjectSort[]>): ProjectConnection | Promise<ProjectConnection>;
     workflowAction(id: string): WorkflowAction | Promise<WorkflowAction>;
     workflowActions(paging?: Nullable<CursorPaging>, filter?: Nullable<WorkflowActionFilter>, sorting?: Nullable<WorkflowActionSort[]>): WorkflowActionConnection | Promise<WorkflowActionConnection>;
     workflowNextAction(id: string): WorkflowNextAction | Promise<WorkflowNextAction>;
@@ -1298,12 +1179,6 @@ export interface IMutation {
     updateManyWorkflows(input: UpdateManyWorkflowsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
     deleteOneWorkflow(input: DeleteOneWorkflowInput): WorkflowDeleteResponse | Promise<WorkflowDeleteResponse>;
     deleteManyWorkflows(input: DeleteManyWorkflowsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
-    createOneProject(input: CreateOneProjectInput): Project | Promise<Project>;
-    createManyProjects(input: CreateManyProjectsInput): Project[] | Promise<Project[]>;
-    updateOneProject(input: UpdateOneProjectInput): Project | Promise<Project>;
-    updateManyProjects(input: UpdateManyProjectsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
-    deleteOneProject(input: DeleteOneProjectInput): ProjectDeleteResponse | Promise<ProjectDeleteResponse>;
-    deleteManyProjects(input: DeleteManyProjectsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
     createOneWorkflowAction(input: CreateOneWorkflowActionInput): WorkflowAction | Promise<WorkflowAction>;
     createManyWorkflowActions(input: CreateManyWorkflowActionsInput): WorkflowAction[] | Promise<WorkflowAction[]>;
     updateOneWorkflowAction(input: UpdateOneWorkflowActionInput): WorkflowAction | Promise<WorkflowAction>;
