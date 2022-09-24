@@ -28,26 +28,6 @@ describe('WorkflowService', () => {
   })
 
   describe('updateOne', () => {
-    it('should update workflow slug if workflow name changed', async () => {
-      const workflow = await mock.createWorkflowDeep({
-        name: 'test',
-        slug: 'test/test/workflow/test',
-      })
-      await service.updateOne(workflow.id, { name: 'new-name' })
-      const updated = await service.findById(workflow.id)
-      expect(updated?.slug).toEqual('test/test/workflow/new-name')
-    })
-
-    it('should not change the slug if workflow name is not changed', async () => {
-      const workflow = await mock.createWorkflowDeep({
-        name: 'test',
-        slug: 'test/test/workflow/test',
-      })
-      await service.updateOne(workflow.id, {})
-      const updated = await service.findById(workflow.id)
-      expect(updated?.slug).toEqual('test/test/workflow/test')
-    })
-
     it('should throw an error if runOnFailure', async () => {
       const workflow = await mock.createWorkflowDeep()
       await expect(service.updateOne(workflow.id, { runOnFailure: workflow._id })).rejects.toThrow(

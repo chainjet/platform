@@ -1,6 +1,4 @@
 import { BaseService } from '@app/common/base/base.service'
-import { SecurityUtils } from '@app/common/utils/security.utils'
-import { slugify } from '@app/common/utils/string.utils'
 import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
 import { DeepPartial, DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
@@ -20,14 +18,6 @@ export class WorkflowService extends BaseService<Workflow> {
       throw new BadRequestException()
     }
 
-    // set workflow slug
-    record.slug = `main/workflow/${slugify(record.name)}`
-
-    const slugExists = await this.model.exists({ slug: record.slug })
-    if (slugExists) {
-      record.slug += `-${SecurityUtils.generateRandomString(6)}`
-    }
-
     return await super.createOne(record)
   }
 
@@ -36,10 +26,6 @@ export class WorkflowService extends BaseService<Workflow> {
 
     if (!workflow) {
       throw new NotFoundException()
-    }
-
-    if (record.name && record.name !== workflow.name) {
-      record.slug = `${workflow.slug.split('/').slice(0, -1).join('/')}/${slugify(record.name)}`
     }
 
     if (record.runOnFailure?.toString() === workflow.id) {

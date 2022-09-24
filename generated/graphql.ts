@@ -100,8 +100,7 @@ export enum WorkflowSortFields {
     id = "id",
     createdAt = "createdAt",
     owner = "owner",
-    name = "name",
-    slug = "slug"
+    name = "name"
 }
 
 export enum WorkflowNextActionSortFields {
@@ -331,7 +330,6 @@ export interface WorkflowFilter {
     createdAt?: Nullable<DateFieldComparison>;
     owner?: Nullable<IDFilterComparison>;
     name?: Nullable<StringFieldComparison>;
-    slug?: Nullable<StringFieldComparison>;
 }
 
 export interface WorkflowSort {
@@ -547,7 +545,6 @@ export interface WorkflowUpdateFilter {
     createdAt?: Nullable<DateFieldComparison>;
     owner?: Nullable<IDFilterComparison>;
     name?: Nullable<StringFieldComparison>;
-    slug?: Nullable<StringFieldComparison>;
 }
 
 export interface DeleteOneWorkflowInput {
@@ -565,7 +562,6 @@ export interface WorkflowDeleteFilter {
     createdAt?: Nullable<DateFieldComparison>;
     owner?: Nullable<IDFilterComparison>;
     name?: Nullable<StringFieldComparison>;
-    slug?: Nullable<StringFieldComparison>;
 }
 
 export interface CreateOneWorkflowActionInput {
@@ -936,7 +932,6 @@ export interface Workflow {
     createdAt: DateTime;
     owner: User;
     name: string;
-    slug: string;
     state?: Nullable<string>;
     runOnFailure?: Nullable<string>;
     trigger?: Nullable<WorkflowTrigger>;
@@ -948,7 +943,6 @@ export interface WorkflowDeleteResponse {
     createdAt?: Nullable<DateTime>;
     owner?: Nullable<string>;
     name?: Nullable<string>;
-    slug?: Nullable<string>;
     state?: Nullable<string>;
     runOnFailure?: Nullable<string>;
 }

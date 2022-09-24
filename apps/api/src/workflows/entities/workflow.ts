@@ -40,13 +40,6 @@ export class Workflow extends BaseEntity {
   @prop({ required: true })
   name: string
 
-  /**
-   * @deprecated
-   */
-  @FilterableField()
-  @prop({ required: true, unique: true })
-  slug: string
-
   @Field({ nullable: true })
   @prop({ enum: WorkflowState })
   state: WorkflowState

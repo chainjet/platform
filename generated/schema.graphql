@@ -472,7 +472,6 @@ type Workflow {
   createdAt: DateTime!
   owner: User!
   name: String!
-  slug: String!
   state: String
   runOnFailure: ID
   trigger: WorkflowTrigger
@@ -517,7 +516,6 @@ type WorkflowDeleteResponse {
   createdAt: DateTime
   owner: ID
   name: String
-  slug: String
   state: String
   runOnFailure: ID
 }
@@ -1048,7 +1046,6 @@ input WorkflowFilter {
   createdAt: DateFieldComparison
   owner: IDFilterComparison
   name: StringFieldComparison
-  slug: StringFieldComparison
 }
 
 input WorkflowSort {
@@ -1062,7 +1059,6 @@ enum WorkflowSortFields {
   createdAt
   owner
   name
-  slug
 }
 
 input WorkflowNextActionFilter {
@@ -1362,7 +1358,6 @@ input WorkflowUpdateFilter {
   createdAt: DateFieldComparison
   owner: IDFilterComparison
   name: StringFieldComparison
-  slug: StringFieldComparison
 }
 
 input DeleteOneWorkflowInput {
@@ -1382,7 +1377,6 @@ input WorkflowDeleteFilter {
   createdAt: DateFieldComparison
   owner: IDFilterComparison
   name: StringFieldComparison
-  slug: StringFieldComparison
 }
 
 input CreateOneWorkflowActionInput {

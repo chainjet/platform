@@ -164,7 +164,6 @@ export class MockService {
     return plainToClass(Workflow, {
       owner: this.user?._id,
       name: 'Test Workflow',
-      slug: 'test/test-project/test-workflow',
       ...record,
     })
   }
