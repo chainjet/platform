@@ -21,6 +21,9 @@ async function bootstrap(): Promise<void> {
       resave: false,
       saveUninitialized: false,
       store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
+      cookie: {
+        secure: process.env.NODE_ENV !== 'development',
+      },
     }),
   )
   await app.listen(process.env.PORT ?? 8000)
