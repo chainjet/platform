@@ -368,13 +368,9 @@ type IntegrationTriggersConnection {
 type User {
   id: ID!
   createdAt: DateTime!
-  username: String!
   email: String!
   operationsUsedMonth: Int!
   name: String
-  website: String
-  company: String
-  apiKey: String
 }
 
 type AccountCredential {
@@ -387,49 +383,12 @@ type AccountCredential {
   schemaRefs: JSONObject
 }
 
-type GenerateApiTokenPayload {
-  apiKey: String!
-}
-
 type UserEdge {
   """The node containing the User"""
   node: User!
 
   """Cursor for this node."""
   cursor: ConnectionCursor!
-}
-
-type AuthToken {
-  accessToken: String!
-  accessTokenExpiration: DateTime!
-  refreshToken: String!
-}
-
-type LoginPayload {
-  user: User!
-  token: AuthToken!
-}
-
-type RegisterPayload {
-  user: User!
-  token: AuthToken!
-}
-
-type VerifyEmailPayload {
-  error: String
-}
-
-type ResetPasswordPayload {
-  result: Boolean!
-}
-
-type CompletePasswordPayload {
-  error: String
-}
-
-type CompleteExternalAuthPayload {
-  user: User!
-  token: AuthToken!
 }
 
 type WorkflowNextAction {
@@ -1194,17 +1153,7 @@ enum WorkflowRunActionSortFields {
 }
 
 type Mutation {
-  login(username: String!, password: String!): LoginPayload!
-  register(email: String!, username: String!, password: String!): RegisterPayload!
-  logout: Boolean!
-  getAccessToken: String!
-  verifyEmail(username: String!, code: String!): VerifyEmailPayload!
-  requestPasswordReset(email: String!): ResetPasswordPayload!
-  completePasswordReset(username: String!, code: String!, password: String!): CompletePasswordPayload!
-  completeExternalAuth(id: String!, code: String!, username: String!, email: String!): CompleteExternalAuthPayload!
   updateOneUser(input: UpdateOneUserInput!): User!
-  changePassword(oldPassword: String!, newPassword: String!): User!
-  generateApiKey: GenerateApiTokenPayload!
   createOneAccountCredential(input: CreateOneAccountCredentialInput!): AccountCredential!
   createManyAccountCredentials(input: CreateManyAccountCredentialsInput!): [AccountCredential!]!
   updateOneAccountCredential(input: UpdateOneAccountCredentialInput!): AccountCredential!
@@ -1243,8 +1192,6 @@ input UpdateOneUserInput {
 
 input UpdateUserInput {
   name: String
-  website: String
-  company: String
   email: String
 }
 

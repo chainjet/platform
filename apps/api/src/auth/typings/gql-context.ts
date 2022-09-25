@@ -1,6 +1,6 @@
 export interface GqlUserContext {
   id: string
-  username: string
+  address: string
 }
 
 export interface GqlContext {

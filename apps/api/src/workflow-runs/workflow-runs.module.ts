@@ -1,6 +1,7 @@
 import { forwardRef, Module } from '@nestjs/common'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { NestjsQueryTypegooseModule } from '../../../../libs/common/src/NestjsQueryTypegooseModule'
+import { AuthModule } from '../auth/auth.module'
 import { UsersModule } from '../users/users.module'
 import { WorkflowTriggersModule } from '../workflow-triggers/workflow-triggers.module'
 import { WorkflowsModule } from '../workflows/workflows.module'
@@ -36,6 +37,7 @@ import { WorkflowSleepService } from './services/workflow-sleep.service'
       ],
       dtos: [{ DTOClass: WorkflowRun }, { DTOClass: WorkflowSleep }],
     }),
+    AuthModule, // required for GraphqlGuard
     UsersModule,
     WorkflowsModule,
     forwardRef(() => WorkflowTriggersModule),

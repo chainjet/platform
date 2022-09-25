@@ -102,7 +102,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
         accountCredential,
         user: {
           id: user.id,
-          username: user.username,
+          address: user.address,
           email: user.email,
         },
         operation: integrationTrigger,
@@ -218,7 +218,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
         accountCredential,
         user: {
           id: user.id,
-          username: user.username,
+          address: user.address,
           email: user.email,
         },
         operation: integrationTrigger,

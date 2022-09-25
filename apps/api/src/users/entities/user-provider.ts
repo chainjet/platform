@@ -31,6 +31,9 @@ class UserProviderPhoto {
   value: string
 }
 
+/**
+ * @deprecated
+ */
 export class UserProvider extends BaseEntity {
   @prop({ ref: User, index: true, sparse: true })
   user?: Reference<User>

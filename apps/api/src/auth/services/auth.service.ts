@@ -1,74 +1,37 @@
-import { SecurityUtils } from '@app/common/utils/security.utils'
 import { Injectable } from '@nestjs/common'
-import { JwtService } from '@nestjs/jwt'
+import { getAddress } from 'ethers/lib/utils'
+import { SiweMessage } from 'siwe'
 import { User } from '../../users/entities/user'
 import { UserService } from '../../users/services/user.service'
-import { GqlUserContext } from '../typings/gql-context'
 
 @Injectable()
 export class AuthService {
-  constructor(protected readonly jwtService: JwtService, protected readonly userService: UserService) {}
+  constructor(protected readonly userService: UserService) {}
 
-  generateAccessToken(user: User): { accessToken: string; accessTokenExpiration: Date } {
-    const accessToken = this.jwtService.sign({
-      id: user.id,
-      username: user.username,
-    })
+  async validateSignature(message: string, signature: string, nonce: string | null) {
+    const siweMessage = new SiweMessage(message)
+    const fields = await siweMessage.validate(signature)
 
-    // TODO move to config
-    const expiration = 1000 * 60 * 60 * 7 // 1 week
+    const validSignature =
+      (!nonce || fields.nonce === nonce) &&
+      fields.statement === 'Sign-In on ChainJet.' &&
+      fields.version === '1' &&
+      fields.uri === process.env.FRONTEND_ENDPOINT &&
+      fields.domain === process.env.FRONTEND_ENDPOINT.replace('https://', '').replace('http://', '')
 
-    return {
-      accessToken,
-      accessTokenExpiration: new Date(Date.now() + expiration),
+    if (!validSignature) {
+      throw new Error('Invalid Signature')
     }
+
+    return fields
   }
 
-  async generateAndSaveRefreshToken(user: User): Promise<string> {
-    const plainRefreshToken = SecurityUtils.generateRandomString(48)
-    const refreshTokenHash = await SecurityUtils.hashWithBcrypt(plainRefreshToken, 12)
-    await this.userService.updateOne(user.id, { refreshTokenHash })
-    return plainRefreshToken
-  }
-
-  async generateAndSaveResetPasswordToken(user: User): Promise<string> {
-    const plainResetPasswordToken = SecurityUtils.generateRandomString(48)
-    const resetPasswordToken = await SecurityUtils.hashWithBcrypt(plainResetPasswordToken, 12)
-    await this.userService.updateOne(user.id, { resetPasswordToken })
-    return plainResetPasswordToken
-  }
-
-  decodeAccessToken(accessToken: string): GqlUserContext {
-    return this.jwtService.decode(accessToken) as GqlUserContext
-  }
-
-  blacklistedUsername(username: string): boolean {
-    return [
-      'api',
-      'graphql',
-      'hooks',
-      'login',
-      'register',
-      'settings',
-      'legal',
-      'credentials',
-      'integrations',
-      'pricing',
-      'oauth',
-      'apps',
-      'docs',
-      'images',
-      'logos',
-      'static',
-      'dist',
-      'styles',
-      'js',
-      'css',
-      'fonts',
-      'reference',
-      'account',
-      'projects',
-      'create',
-    ].some((value) => username === value)
+  async validateUserWithSignature(message: string, signature: string): Promise<{ user?: User; fields?: SiweMessage }> {
+    const fields = await this.validateSignature(message, signature, null)
+    const user = await this.userService.findOne({ address: getAddress(fields.address) })
+    if (user && user.nonces.includes(fields.nonce)) {
+      return { user, fields }
+    }
+    return {}
   }
 }

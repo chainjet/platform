@@ -62,7 +62,7 @@ export class MockService {
 
   getInstanceOfUser(record: DeepPartial<User> = {}): User {
     return plainToClass(User, {
-      username: 'test',
+      address: '0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF',
       email: 'test@example.com',
       ...record,
     })

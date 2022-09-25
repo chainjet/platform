@@ -3,6 +3,7 @@ import { forwardRef, Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { RunnerModule } from '../../../runner/src/runner.module'
+import { AuthModule } from '../auth/auth.module'
 import { IntegrationAccountsModule } from '../integration-accounts/integration-accounts.module'
 import { IntegrationsModule } from '../integrations/integrations.module'
 import { UsersModule } from '../users/users.module'
@@ -17,7 +18,8 @@ import { AccountCredentialService } from './services/account-credentials.service
       imports: [NestjsQueryTypegooseModule.forFeature([AccountCredential])],
       dtos: [{ DTOClass: AccountCredential }],
     }),
-    UsersModule, // required for GraphqlGuard
+    AuthModule,
+    UsersModule,
     IntegrationsModule,
     IntegrationAccountsModule,
     forwardRef(() => RunnerModule),

@@ -133,7 +133,7 @@ export class RunnerService {
         workflowOperation: workflowTrigger,
         user: {
           id: userId.toString(),
-          username: user.username,
+          address: user.address,
           email: user.email,
         },
       })
@@ -190,7 +190,7 @@ export class RunnerService {
           workflowOperation: workflowTrigger,
           user: {
             id: userId.toString(),
-            username: user.username,
+            address: user.address,
             email: user.email,
           },
         })
@@ -298,7 +298,7 @@ export class RunnerService {
         workflowOperation: workflowAction,
         user: {
           id: userId.toString(),
-          username: user.username,
+          address: user.address,
           email: user.email,
         },
       })

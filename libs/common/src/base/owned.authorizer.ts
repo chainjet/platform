@@ -11,7 +11,7 @@ export class OwnedAuthorizer<T extends BaseEntity> implements CustomAuthorizer<T
     if (process.env.ADMIN_ROLE_KEY) {
       const admins = process.env.ADMIN_USERS?.split(',') || []
       if (
-        admins.includes(context.req.user.username) &&
+        admins.includes(context.req.user.address) &&
         context.req.headers['x-role-key'] === process.env.ADMIN_ROLE_KEY
       ) {
         return {}

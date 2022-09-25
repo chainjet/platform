@@ -34,7 +34,7 @@ export type BaseRunOptions = {
   accountCredential: AccountCredential | null // needed to store refreshed access token
   user?: {
     id: string
-    username: string
+    address: string
     email: string
   }
 }

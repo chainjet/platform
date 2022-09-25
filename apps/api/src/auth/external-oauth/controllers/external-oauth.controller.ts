@@ -4,13 +4,11 @@ import { mongoose } from '@typegoose/typegoose'
 import CryptoJS from 'crypto-js'
 import { NextFunction, Request, Response } from 'express'
 import _ from 'lodash'
-import passport, { Profile } from 'passport'
+import passport from 'passport'
 import path from 'path'
 import { AccountCredentialService } from '../../../account-credentials/services/account-credentials.service'
-import { UserService } from '../../../users/services/user.service'
 import { GqlUserContext } from '../../typings/gql-context'
 import { NotAuthRequiredCookieGuard } from '../guards/cookie.guard'
-import { LoginProvider } from '../login-strategies/LoginProviderStrategy'
 import { OAuthResponse, OAuthStrategyFactory } from '../oauth-strategy.factory'
 
 @Controller('account-credentials')
@@ -20,7 +18,6 @@ export class ExternalOAuthController {
   constructor(
     private readonly oauthStrategyFactory: OAuthStrategyFactory,
     private readonly accountCredentialService: AccountCredentialService,
-    private readonly userService: UserService,
     private readonly configService: ConfigService,
   ) {}
 
@@ -30,25 +27,6 @@ export class ExternalOAuthController {
     @Req() req: Request,
     @Res() res: Response,
     @Next() next: NextFunction,
-    @Session() session: Record<string, any>,
-  ): Promise<void> {
-    session.authenticatingKey = key
-    session.redirectTo = undefined
-    session.oAuthLogin = undefined
-
-    if (req.query.login) {
-      await this.startLoginOAuth(key, req, res, next, session)
-    } else {
-      await this.startIntegrationOAuth(key, req, res, next, session)
-    }
-  }
-
-  async startIntegrationOAuth(
-    key: string,
-    req: Request,
-    res: Response,
-    next: NextFunction,
-    session: Record<string, any>,
   ): Promise<void> {
     const integrationAccount = await this.oauthStrategyFactory.ensureStrategy(key)
 
@@ -67,22 +45,6 @@ export class ExternalOAuthController {
     })(req, res, next)
   }
 
-  async startLoginOAuth(
-    key: string,
-    req: Request,
-    res: Response,
-    next: NextFunction,
-    session: Record<string, any>,
-  ): Promise<void> {
-    session.oAuthLogin = true
-    if (req.query.redirect_to) {
-      session.redirectTo = req.query.redirect_to.toString()
-    }
-    const provider = key as LoginProvider
-    const strategy = this.oauthStrategyFactory.ensureLoginProviderStrategy(provider)
-    passport.authenticate(strategy.strategyName, strategy.strategyOptions)(req, res, next)
-  }
-
   @UseGuards(NotAuthRequiredCookieGuard)
   @Get('oauth/:key/callback')
   async completeOAuth(
@@ -91,24 +53,11 @@ export class ExternalOAuthController {
     @Res() res: Response,
     @Session() session: Record<string, any>,
   ): Promise<void> {
-    if (session.oAuthLogin) {
-      await this.completeLoginOAuth(key, req, res, session)
-    } else {
-      await this.completeIntegrationOAuth(key, req, res, session)
-    }
-  }
-
-  async completeIntegrationOAuth(
-    key: string,
-    req: Request,
-    res: Response,
-    session: Record<string, any>,
-  ): Promise<void> {
     if (!req.user) {
       const queryString = Object.entries(req.query)
         .map(([key, value]) => `key=${value}`)
         .join('&')
-      res.redirect(`${process.env.FRONTEND_ENDPOINT}/register?adding_integration_account=${key}&${queryString}`)
+      res.redirect(`${process.env.FRONTEND_ENDPOINT}/login?adding_integration_account=${key}&${queryString}`)
       return
     }
 
@@ -183,39 +132,6 @@ export class ExternalOAuthController {
         res.redirect(session.redirectTo)
       } else {
         res.sendFile(path.resolve('apps/api/src/auth/external-oauth/views/oauth-response.html'))
-      }
-    })
-  }
-
-  async completeLoginOAuth(key: string, req: Request, res: Response, session: Record<string, any>): Promise<void> {
-    const provider = key as LoginProvider
-    const strategy = this.oauthStrategyFactory.ensureLoginProviderStrategy(provider)
-    passport.authenticate(strategy.strategyName)(req, res, async () => {
-      if (!req.user) {
-        res.send('Unexpected error, please try again.')
-        return
-      }
-      const { providerKey, profile } = req.user as { providerKey: LoginProvider; profile: Profile }
-
-      const primaryEmail = profile.emails?.length
-        ? { ...(profile?.emails?.[0] as { value: string; verified?: boolean }) }
-        : null
-
-      const user = primaryEmail?.value ? await this.userService.findOne({ email: primaryEmail.value }) : null
-      const { userProviderId, completeAuthCode } = await this.userService.createOrUpdateAccountFromLoginProvider(
-        user,
-        providerKey,
-        profile,
-        primaryEmail,
-      )
-      const redirectTo = session.redirectTo?.startsWith('/') ? session.redirectTo : null
-      const completeAuthPath =
-        `${process.env.FRONTEND_ENDPOINT}/login/complete-auth?id=${userProviderId}&code=${completeAuthCode}&provider=${provider}` +
-        (redirectTo ? `&redirect_to=${redirectTo}` : '')
-      if (user) {
-        res.redirect(completeAuthPath)
-      } else {
-        res.redirect(`${completeAuthPath}&completeUsername=true&completeEmail=true&email=${primaryEmail?.value ?? ''}`)
       }
     })
   }

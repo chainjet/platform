@@ -5,6 +5,7 @@ import { AuthModule } from '../auth/auth.module'
 import { IntegrationActionsModule } from '../integration-actions/integration-actions.module'
 import { IntegrationTriggersModule } from '../integration-triggers/integration-triggers.module'
 import { IntegrationsModule } from '../integrations/integrations.module'
+import { UsersModule } from '../users/users.module'
 import { AsyncSchemaResolver } from './resolvers/async-schema.resolver'
 
 @Module({
@@ -15,6 +16,7 @@ import { AsyncSchemaResolver } from './resolvers/async-schema.resolver'
     IntegrationActionsModule,
     DefinitionsModule,
     RunnerModule,
+    UsersModule, // required for GraphqlGuard
   ],
   providers: [AsyncSchemaResolver],
 })

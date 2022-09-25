@@ -2,6 +2,7 @@ import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModu
 import { Module } from '@nestjs/common'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { EmailsModule } from '../../../../libs/emails/src'
+import { AuthModule } from '../auth/auth.module'
 import { User } from './entities/user'
 import { UserProvider } from './entities/user-provider'
 import { UserAuthorizer } from './resolvers/user.authorizer'
@@ -15,6 +16,7 @@ import { UserService } from './services/user.service'
       imports: [NestjsQueryTypegooseModule.forFeature([User, UserProvider])],
       dtos: [{ DTOClass: User }],
     }),
+    AuthModule, // required for GraphqlGuard
     EmailsModule,
   ],
   providers: [UserResolver, UserService, UserAuthorizer, UserProviderService],

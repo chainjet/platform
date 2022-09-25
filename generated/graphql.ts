@@ -448,8 +448,6 @@ export interface UpdateOneUserInput {
 
 export interface UpdateUserInput {
     name?: Nullable<string>;
-    website?: Nullable<string>;
-    company?: Nullable<string>;
     email?: Nullable<string>;
 }
 
@@ -831,13 +829,9 @@ export interface IntegrationTriggersConnection {
 export interface User {
     id: string;
     createdAt: DateTime;
-    username: string;
     email: string;
     operationsUsedMonth: number;
     name?: Nullable<string>;
-    website?: Nullable<string>;
-    company?: Nullable<string>;
-    apiKey?: Nullable<string>;
 }
 
 export interface AccountCredential {
@@ -850,46 +844,9 @@ export interface AccountCredential {
     schemaRefs?: Nullable<JSONObject>;
 }
 
-export interface GenerateApiTokenPayload {
-    apiKey: string;
-}
-
 export interface UserEdge {
     node: User;
     cursor: ConnectionCursor;
-}
-
-export interface AuthToken {
-    accessToken: string;
-    accessTokenExpiration: DateTime;
-    refreshToken: string;
-}
-
-export interface LoginPayload {
-    user: User;
-    token: AuthToken;
-}
-
-export interface RegisterPayload {
-    user: User;
-    token: AuthToken;
-}
-
-export interface VerifyEmailPayload {
-    error?: Nullable<string>;
-}
-
-export interface ResetPasswordPayload {
-    result: boolean;
-}
-
-export interface CompletePasswordPayload {
-    error?: Nullable<string>;
-}
-
-export interface CompleteExternalAuthPayload {
-    user: User;
-    token: AuthToken;
 }
 
 export interface WorkflowNextAction {
@@ -1150,17 +1107,7 @@ export interface IQuery {
 }
 
 export interface IMutation {
-    login(username: string, password: string): LoginPayload | Promise<LoginPayload>;
-    register(email: string, username: string, password: string): RegisterPayload | Promise<RegisterPayload>;
-    logout(): boolean | Promise<boolean>;
-    getAccessToken(): string | Promise<string>;
-    verifyEmail(username: string, code: string): VerifyEmailPayload | Promise<VerifyEmailPayload>;
-    requestPasswordReset(email: string): ResetPasswordPayload | Promise<ResetPasswordPayload>;
-    completePasswordReset(username: string, code: string, password: string): CompletePasswordPayload | Promise<CompletePasswordPayload>;
-    completeExternalAuth(id: string, code: string, username: string, email: string): CompleteExternalAuthPayload | Promise<CompleteExternalAuthPayload>;
     updateOneUser(input: UpdateOneUserInput): User | Promise<User>;
-    changePassword(oldPassword: string, newPassword: string): User | Promise<User>;
-    generateApiKey(): GenerateApiTokenPayload | Promise<GenerateApiTokenPayload>;
     createOneAccountCredential(input: CreateOneAccountCredentialInput): AccountCredential | Promise<AccountCredential>;
     createManyAccountCredentials(input: CreateManyAccountCredentialsInput): AccountCredential[] | Promise<AccountCredential[]>;
     updateOneAccountCredential(input: UpdateOneAccountCredentialInput): AccountCredential | Promise<AccountCredential>;

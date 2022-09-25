@@ -1,37 +1,39 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common'
-import { Observable } from 'rxjs'
+import { User } from 'apps/api/src/users/entities/user'
 import { AuthService } from '../../services/auth.service'
-import { GqlUserContext } from '../../typings/gql-context'
 
 @Injectable()
 export class CookieGuard implements CanActivate {
   constructor(private readonly authService: AuthService) {}
 
-  canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
-    const user = this.getUserFromContext(context)
-    context.switchToHttp().getRequest().user = user
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    const user = await this.getUserFromContext(context)
     return !!user?.id
   }
 
-  getAccessTokenContext(context: ExecutionContext): string | null {
+  getTokenDataFromContext(context: ExecutionContext): { message: string; signature: string } | null {
     try {
       const cookie = context.switchToHttp().getRequest()?.headers?.cookie
       const tokenStr = decodeURIComponent(cookie.split('cj-token=')?.[1]?.split(';')?.[0])
-      const { accessToken } = JSON.parse(tokenStr)
-      return accessToken
+      const { token } = JSON.parse(tokenStr)
+      return JSON.parse(token)
     } catch (e) {
       return null
     }
   }
 
-  getUserFromContext(context: ExecutionContext): GqlUserContext | null {
+  async getUserFromContext(context: ExecutionContext): Promise<User | null> {
     try {
-      const accessToken = this.getAccessTokenContext(context)
-      if (!accessToken) {
+      const tokenData = this.getTokenDataFromContext(context)
+      if (!tokenData) {
         return null
       }
-      // TODO renew access token if expired (using refresh token from cookies)
-      return this.authService.decodeAccessToken(accessToken)
+      const { message, signature } = tokenData
+      const { user, fields } = await this.authService.validateUserWithSignature(message, signature)
+      const req = context.switchToHttp().getRequest()
+      req.user = user
+      req.nonce = fields?.nonce
+      return user ?? null
     } catch {
       return null
     }
