@@ -844,6 +844,16 @@ export interface AccountCredential {
     schemaRefs?: Nullable<JSONObject>;
 }
 
+export interface AuthToken {
+    accessToken: string;
+    accessTokenExpiration: DateTime;
+    refreshToken: string;
+}
+
+export interface RequestMigrationPayload {
+    result: boolean;
+}
+
 export interface UserEdge {
     node: User;
     cursor: ConnectionCursor;
@@ -1108,6 +1118,8 @@ export interface IQuery {
 
 export interface IMutation {
     updateOneUser(input: UpdateOneUserInput): User | Promise<User>;
+    requestMigration(email: string): RequestMigrationPayload | Promise<RequestMigrationPayload>;
+    completeMigration(email: string, code: string, data: string): RequestMigrationPayload | Promise<RequestMigrationPayload>;
     createOneAccountCredential(input: CreateOneAccountCredentialInput): AccountCredential | Promise<AccountCredential>;
     createManyAccountCredentials(input: CreateManyAccountCredentialsInput): AccountCredential[] | Promise<AccountCredential[]>;
     updateOneAccountCredential(input: UpdateOneAccountCredentialInput): AccountCredential | Promise<AccountCredential>;

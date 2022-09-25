@@ -38,9 +38,9 @@ export class VerifyEmailPayload {
 }
 
 @ObjectType()
-export class ResetPasswordPayload {
+export class RequestMigrationPayload {
   @Field()
-  result: true
+  result: boolean
 }
 
 @ObjectType()

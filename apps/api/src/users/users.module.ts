@@ -5,6 +5,7 @@ import { EmailsModule } from '../../../../libs/emails/src'
 import { AuthModule } from '../auth/auth.module'
 import { User } from './entities/user'
 import { UserProvider } from './entities/user-provider'
+import { MigrationResolver } from './resolvers/migration.resolver'
 import { UserAuthorizer } from './resolvers/user.authorizer'
 import { UserResolver } from './resolvers/user.resolver'
 import { UserProviderService } from './services/user-provider.service'
@@ -19,7 +20,7 @@ import { UserService } from './services/user.service'
     AuthModule, // required for GraphqlGuard
     EmailsModule,
   ],
-  providers: [UserResolver, UserService, UserAuthorizer, UserProviderService],
+  providers: [UserResolver, UserService, UserAuthorizer, UserProviderService, MigrationResolver],
   exports: [UserService, UserProviderService],
 })
 export class UsersModule {}

@@ -383,6 +383,16 @@ type AccountCredential {
   schemaRefs: JSONObject
 }
 
+type AuthToken {
+  accessToken: String!
+  accessTokenExpiration: DateTime!
+  refreshToken: String!
+}
+
+type RequestMigrationPayload {
+  result: Boolean!
+}
+
 type UserEdge {
   """The node containing the User"""
   node: User!
@@ -1154,6 +1164,8 @@ enum WorkflowRunActionSortFields {
 
 type Mutation {
   updateOneUser(input: UpdateOneUserInput!): User!
+  requestMigration(email: String!): RequestMigrationPayload!
+  completeMigration(email: String!, code: String!, data: String!): RequestMigrationPayload!
   createOneAccountCredential(input: CreateOneAccountCredentialInput!): AccountCredential!
   createManyAccountCredentials(input: CreateManyAccountCredentialsInput!): [AccountCredential!]!
   updateOneAccountCredential(input: UpdateOneAccountCredentialInput!): AccountCredential!
