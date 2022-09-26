@@ -27,7 +27,12 @@ export class ExternalOAuthController {
     @Req() req: Request,
     @Res() res: Response,
     @Next() next: NextFunction,
+    @Session() session: Record<string, any>,
   ): Promise<void> {
+    session.authenticatingKey = key
+    session.redirectTo = undefined
+    session.oAuthLogin = undefined
+
     const integrationAccount = await this.oauthStrategyFactory.ensureStrategy(key)
 
     const customInstallUrl = integrationAccount.securitySchema?.['x-customInstallUrl']
