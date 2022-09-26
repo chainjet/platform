@@ -62,6 +62,16 @@ export class UserService extends BaseService<User> {
         address: getAddress(message.address),
         nonces: [message.nonce],
       })
+      if (process.env.SIGN_UP_WORKFLOW_HOOK) {
+        await fetch(process.env.SIGN_UP_WORKFLOW_HOOK, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({ address: message.address }),
+        })
+      }
     }
   }
 
