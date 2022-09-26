@@ -1,6 +1,7 @@
 import { isEmptyObj } from '@app/common/utils/object.utils'
 import { capitalize, humanize } from '@app/common/utils/string.utils'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
+import { isAddress } from 'ethers/lib/utils'
 import { JSONSchema7 } from 'json-schema'
 import { OpenAPIObject, OperationObject, ParameterObject, SchemaObject } from 'openapi3-ts'
 import pluralize from 'pluralize'
@@ -275,14 +276,15 @@ function filterValidInputs(inputs: SubgraphInput[]): SubgraphInput[] {
 
 function resolveFilters(filters: Array<{ key: string; comparator: string; value: string }>): string {
   const whereClause = filters.map((filter) => {
+    const filterValue = isAddress(filter.value) ? filter.value.toLowerCase() : filter.value
     if (filter.key.includes('.')) {
       const parts = filter.key.split('.')
       if (parts.length > 2) {
         throw new Error(`Nested subfilters not supported`)
       }
-      return `${parts[0]}_: { ${getComparatorKey(parts[1], filter.comparator)}: "${filter.value}" }`
+      return `${parts[0]}_: { ${getComparatorKey(parts[1], filter.comparator)}: "${filterValue}" }`
     }
-    return `${getComparatorKey(filter.key, filter.comparator)}: "${filter.value}"`
+    return `${getComparatorKey(filter.key, filter.comparator)}: "${filterValue}"`
   })
   return `{ ${whereClause} }`
 }
