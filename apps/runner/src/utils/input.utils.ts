@@ -83,6 +83,8 @@ export function calculateExpression(input: string, references: Record<string, Re
     }
     return ('' + str).substring(start, end)
   })
+  parser.set('lowercase', (str: string) => (str ? ('' + str).toLowerCase() : str))
+  parser.set('uppercase', (str: string) => (str ? ('' + str).toUpperCase() : str))
   return parser.evaluate(expression)
 }
 
