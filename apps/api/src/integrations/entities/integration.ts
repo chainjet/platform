@@ -42,7 +42,7 @@ export class Integration extends BaseEntity {
    * Parent integration key (e.g. aws)
    */
   @FilterableField({ nullable: true })
-  @prop()
+  @prop({ index: true })
   parentKey?: string
 
   @Field(() => ID, { nullable: true })
