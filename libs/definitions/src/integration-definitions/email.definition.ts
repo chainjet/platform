@@ -17,13 +17,14 @@ export class EmailDefinition extends SingleIntegrationDefinition {
   })
 
   async run({ inputs, user }: OperationRunOptions): Promise<RunResponse> {
-    if (!inputs.subject || !inputs.body || !user?.email) {
-      throw new Error('Subject and body are required')
+    const emailTo = inputs.email ?? user?.email
+    if (!inputs.subject || !inputs.body || !emailTo) {
+      throw new Error('Email, subject and body are required')
     }
 
     const params = {
       Destination: {
-        ToAddresses: [user.email],
+        ToAddresses: [emailTo],
       },
       Message: {
         Body: {

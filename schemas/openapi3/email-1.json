@@ -12,15 +12,20 @@
     "/": {
       "post": {
         "operationId": "sendEmailToYourself",
-        "summary": "Send email to yourself",
+        "summary": "Send email",
         "description": "Send an email to yourself",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["subject", "body"],
+                "required": ["email", "subject", "body"],
                 "properties": {
+                  "email": {
+                    "title": "Email",
+                    "type": "string",
+                    "format": "email"
+                  },
                   "subject": { "title": "Subject", "type": "string" },
                   "body": {
                     "title": "Message body",
