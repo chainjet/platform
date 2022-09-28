@@ -12,7 +12,8 @@ export function extractTriggerItems(
   }
 
   const items = _.get(data, keyParts[0]) as Array<Record<string, unknown>>
-  return (sortByCreationDate(items) ?? [])
+  const sortItems = sortByCreationDate(items)
+  return (Array.isArray(sortItems) ? sortItems : [])
     .map((item) => {
       let itemValue
 
