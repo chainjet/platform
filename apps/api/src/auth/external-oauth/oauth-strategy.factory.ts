@@ -6,15 +6,10 @@ import { Strategy as OAuth1Strategy } from 'passport-oauth1'
 import { Strategy as OAuth2Strategy } from 'passport-oauth2'
 import refresh from 'passport-oauth2-refresh'
 import { promisify } from 'util'
-import { assertNever } from '../../../../../libs/common/src/utils/typescript.utils'
 import { AccountCredential } from '../../account-credentials/entities/account-credential'
 import { AccountCredentialService } from '../../account-credentials/services/account-credentials.service'
 import { IntegrationAccount } from '../../integration-accounts/entities/integration-account'
 import { IntegrationAccountService } from '../../integration-accounts/services/integration-account.service'
-import { FacebookLoginStrategy } from './login-strategies/FacebookLoginStrategy'
-import { GithubLoginStrategy } from './login-strategies/GithubLoginStrategy'
-import { GoogleLoginStrategy } from './login-strategies/GoogleLoginStrategy'
-import { LoginProvider, LoginProviderStrategy } from './login-strategies/LoginProviderStrategy'
 
 type ProviderCallback = (err?: any, user?: any, info?: any) => void
 
@@ -55,7 +50,6 @@ export type OAuthResponse = OAuth1Response | OAuth2Response
 export class OAuthStrategyFactory {
   private readonly logger = new Logger(OAuthStrategyFactory.name)
   private readonly integrationStrategies: Map<string, IntegrationAccount> = new Map()
-  private readonly loginStrategies: Map<LoginProvider, LoginProviderStrategy> = new Map()
 
   constructor(
     private readonly integrationAccountService: IntegrationAccountService,
@@ -236,51 +230,5 @@ export class OAuthStrategyFactory {
 
   getOAuthStrategyName(integrationAccountKey: string): string {
     return `integration-${integrationAccountKey}`
-  }
-
-  getLoginStrategyName(providerKey: LoginProvider): string {
-    return `login-${providerKey}`
-  }
-
-  ensureLoginProviderStrategy(providerKey: LoginProvider): LoginProviderStrategy {
-    const cachedStrategy = this.loginStrategies.get(providerKey)
-    if (cachedStrategy) {
-      return cachedStrategy
-    }
-
-    this.logger.log(`Creating login strategy for ${providerKey}`)
-
-    const strategyName = this.getLoginStrategyName(providerKey)
-    const callbackURL = `${process.env.API_ENDPOINT}/account-credentials/oauth/${providerKey}/callback`
-
-    let strategy: LoginProviderStrategy
-    switch (providerKey) {
-      case 'google':
-        strategy = new GoogleLoginStrategy(strategyName, callbackURL)
-        break
-      case 'facebook':
-        strategy = new FacebookLoginStrategy(strategyName, callbackURL)
-        break
-      case 'github':
-        strategy = new GithubLoginStrategy(strategyName, callbackURL)
-        break
-      default:
-        assertNever(providerKey)
-        throw new Error('Unexpected provider')
-    }
-
-    strategy.registerStrategy((...args) => this.loginAuthCallback(providerKey, ...args))
-    this.loginStrategies.set(providerKey, strategy)
-    return strategy
-  }
-
-  loginAuthCallback(
-    providerKey: LoginProvider,
-    accessToken: string,
-    refreshToken: string,
-    profile: Profile,
-    cb: ProviderCallback,
-  ): void {
-    cb(undefined, { providerKey, profile })
   }
 }

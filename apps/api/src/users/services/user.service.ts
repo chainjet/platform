@@ -10,7 +10,6 @@ import { SecurityUtils } from '../../../../../libs/common/src/utils/security.uti
 import { EmailService } from '../../../../../libs/emails/src/services/email.service'
 import { EmailVerificationTemplate } from '../../../../../libs/emails/src/templates/emailVerificationTemplate'
 import { User } from '../entities/user'
-import { UserProviderService } from './user-provider.service'
 
 @Injectable()
 export class UserService extends BaseService<User> {
@@ -18,7 +17,6 @@ export class UserService extends BaseService<User> {
 
   constructor(
     @InjectModel(User) protected readonly model: ReturnModelType<typeof User>,
-    private readonly userProviderService: UserProviderService,
     private readonly emailService: EmailService,
   ) {
     super(model)

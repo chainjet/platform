@@ -5,8 +5,6 @@ import { closeMongoConnection } from '../../../../../libs/common/test/database/t
 import { MockModule } from '../../../../../libs/common/test/mock.module'
 import { MockService } from '../../../../../libs/common/test/mock.service'
 import { User } from '../entities/user'
-import { UserProvider } from '../entities/user-provider'
-import { UserProviderService } from '../services/user-provider.service'
 import { UserService } from '../services/user.service'
 import { UserAuthorizer } from './user.authorizer'
 import { UserResolver } from './user.resolver'
@@ -17,8 +15,8 @@ describe('UserResolver', () => {
 
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([User, UserProvider]), MockModule],
-      providers: [UserResolver, UserService, UserAuthorizer, UserProviderService],
+      imports: [TypegooseModule.forFeature([User]), MockModule],
+      providers: [UserResolver, UserService, UserAuthorizer],
     }).compile()
 
     resolver = testModule.get<UserResolver>(UserResolver)

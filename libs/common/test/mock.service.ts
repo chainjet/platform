@@ -9,8 +9,6 @@ import { IntegrationTriggerService } from '../../../apps/api/src/integration-tri
 import { Integration } from '../../../apps/api/src/integrations/entities/integration'
 import { IntegrationService } from '../../../apps/api/src/integrations/services/integration.service'
 import { User } from '../../../apps/api/src/users/entities/user'
-import { UserProvider } from '../../../apps/api/src/users/entities/user-provider'
-import { UserProviderService } from '../../../apps/api/src/users/services/user-provider.service'
 import { UserService } from '../../../apps/api/src/users/services/user.service'
 import {
   CreateWorkflowActionInput,
@@ -35,7 +33,6 @@ export class MockService {
   constructor(
     public authService: AuthService,
     public userService: UserService,
-    public userProviderService: UserProviderService,
     public integrationService: IntegrationService,
     public integrationTriggerService: IntegrationTriggerService,
     public integrationActionService: IntegrationActionService,
@@ -47,7 +44,6 @@ export class MockService {
   ) {}
 
   user: User
-  userProvider: UserProvider
   integration: Integration
   integrationTrigger: IntegrationTrigger
   integrationAction: IntegrationAction
@@ -71,30 +67,6 @@ export class MockService {
   async createUser(record: DeepPartial<User> = {}): Promise<User> {
     this.user = (await this.userService.Model.create(this.getInstanceOfUser(record))).toObject({ virtuals: true })
     return this.user
-  }
-
-  getInstanceOfUserProvider(record: DeepPartial<UserProvider> = {}): UserProvider {
-    return plainToClass(UserProvider, {
-      user: this.user?._id,
-      provider: 'google',
-      primaryEmail: 'test@example.com',
-      profileId: '123',
-      displayName: 'Test User',
-      emails: [{ value: 'test@example.com', verified: false }],
-      ...record,
-    })
-  }
-
-  async createUserProvider(record: DeepPartial<UserProvider> = {}): Promise<UserProvider> {
-    this.userProvider = (await this.userProviderService.Model.create(this.getInstanceOfUserProvider(record))).toObject({
-      virtuals: true,
-    })
-    return this.userProvider
-  }
-
-  async createUserProviderDeep(record: DeepPartial<UserProvider> = {}): Promise<UserProvider> {
-    await this.createUser()
-    return await this.createUserProvider(record)
   }
 
   getInstanceOfIntegration(record: DeepPartial<Integration> = {}): Integration {

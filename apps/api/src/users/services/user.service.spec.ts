@@ -6,8 +6,6 @@ import { MockModule } from '../../../../../libs/common/test/mock.module'
 import { MockService } from '../../../../../libs/common/test/mock.service'
 import { EmailService } from '../../../../../libs/emails/src/services/email.service'
 import { User } from '../entities/user'
-import { UserProvider } from '../entities/user-provider'
-import { UserProviderService } from './user-provider.service'
 import { UserService } from './user.service'
 
 describe('UserService', () => {
@@ -17,8 +15,8 @@ describe('UserService', () => {
 
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([User, UserProvider]), MockModule],
-      providers: [UserService, UserProviderService],
+      imports: [TypegooseModule.forFeature([User]), MockModule],
+      providers: [UserService],
     }).compile()
 
     service = testModule.get<UserService>(UserService)
