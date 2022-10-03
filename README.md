@@ -2,7 +2,7 @@
   <a href="https://chainjet.io" target="blank"><img src="https://chainjet.io/logo.svg" width="320" alt="ChainJet Logo" /></a>
 </p>
   
-<p align="center">A workflow automation platform specialized on blockchain, with more than 300 integrations.</p>
+<p align="center">A no-code platform for building on-chain or off-chain automations.</p>
 <p align="center">
   <a href="https://twitter.com/chainjetio"><img src="https://img.shields.io/twitter/follow/chainjetio.svg?style=social&label=Follow"></a>
   <a href="https://discord.gg/QFnSwqj9YH" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
@@ -10,17 +10,14 @@
 
 ## Description
 
-[ChainJet](https://chainjet.io) is a workflow automation platform specialized in blockchain and cloud infrastructure.
+[ChainJet](https://chainjet.io) is a no-code platform for building on-chain or off-chain task automations. With ChainJet, users can integrate multiple services to automate all kinds of tasks.
+ChainJet provides a collection of modules that perform a particular task each (e.g., transferring a token) and can be connected to one another to define the steps the automation will follow.
 
 ## Demo
 
 [:tv: A short video (~3 mins)](https://www.youtube.com/watch?v=zCaqp2JnFA0) showing how to use ChainJet.
 
-## Cloud solution
-
-:cloud: We offer ChainJet as a managed cloud service, and we have a **free plan**. Get started [here](https://chainjet.io).
-
-## Self-hosted solution
+## How to run locally
 
 ### Prerequisites:
 
