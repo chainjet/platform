@@ -67,9 +67,9 @@ export const blockchainConfigList: () => { networks: { [chainId: number]: IBlock
       explorers: [new BlockScoutExplorer('https://blockscout.com/xdai/mainnet/api')],
       multicall2Address: '0x67dA5f2FfaDDfF067AB9d5F025F8810634d84287',
     },
-    [ChainId.GÖRLI]: {
-      key: 'gorli',
-      url: process.env.GORLI_RPC_URL!,
+    [ChainId.GOERLI]: {
+      key: 'goerli',
+      url: process.env.GOERLI_RPC_URL!,
       explorers: [new EtherScanExplorer('https://api-goerli.etherscan.io/api', process.env.ETHERSCAN_KEY!)],
       multicall2Address: '0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696',
     },
