@@ -31,12 +31,12 @@ export class IntegrationInstallerService {
   /**
    * Creates or updates integration(s), integration account(s) and integration operations
    */
-  async install(definition: Definition): Promise<void> {
+  async install(definition: Definition, fetchSchemas: boolean): Promise<void> {
     const integrationsData = await definition.getIntegrationsData()
     for (const integrationData of integrationsData) {
       try {
         this.logger.log(`Installing ${integrationData.integrationKey}...`)
-        const schema = await this.updateIntegrationSchema(definition, integrationData)
+        const schema = await this.updateIntegrationSchema(definition, integrationData, fetchSchemas)
         if (schema) {
           const { integration } = await this.createOrUpdateIntegration(definition, schema, integrationData)
           await this.installIntegration(definition, integration, schema)
@@ -195,9 +195,9 @@ export class IntegrationInstallerService {
   protected async updateIntegrationSchema(
     definition: Definition,
     integrationData: SingleIntegrationData,
+    fetchSchemas: boolean,
   ): Promise<OpenAPIObject | null> {
-    // Never fetch external schemas on production
-    const schemaUrl = process.env.NODE_ENV === 'development' ? integrationData.schemaUrl : null
+    const schemaUrl = fetchSchemas ? integrationData.schemaUrl : null
 
     const { integrationKey, integrationVersion } = integrationData
 

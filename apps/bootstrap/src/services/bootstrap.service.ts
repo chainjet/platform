@@ -9,14 +9,14 @@ export class BootstrapService {
     protected integrationInstallerService: IntegrationInstallerService,
   ) {}
 
-  async bootstrapIntegrations(integration?: string): Promise<void> {
+  async bootstrapIntegrations(integration?: string, fetchSchemas = false): Promise<void> {
     if (integration) {
       const definition = this.integrationDefinitionFactory.getDefinition(integration)
-      await this.integrationInstallerService.install(definition)
+      await this.integrationInstallerService.install(definition, fetchSchemas)
     } else {
       const definitions = this.integrationDefinitionFactory.getAllDefinitions()
       for (const definition of definitions) {
-        await this.integrationInstallerService.install(definition)
+        await this.integrationInstallerService.install(definition, fetchSchemas)
       }
     }
   }
