@@ -8,10 +8,11 @@ contract LongTaskMock is Ownable {
 
     event Incremented(uint256 counter);
 
-    function run(uint256 _from, uint256 _to) external {
+    function run(uint256 _from, uint256 _to) external returns (uint256) {
         for (uint256 i = _from; i < _to; i++) {
             counter += 1;
         }
         emit Incremented(counter);
+        return counter;
     }
 }

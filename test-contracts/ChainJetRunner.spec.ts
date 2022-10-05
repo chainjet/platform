@@ -186,16 +186,18 @@ describe('ChainJetRunner', () => {
   })
 
   describe('run', () => {
+    const gasLimit = 30000000
+
     it('should get the gas overhead', async () => {
       const chainJetRunner = await deployChainJetRunner()
       const originalGasOverhead = await chainJetRunner.gasOverhead()
       await chainJetRunner.setGasOverhead(0)
-      const taskMock = await deployTaskMock(alice)
+      const taskMock = await deployLongTaskMock(alice)
       await chainJetRunner.connect(alice).enableTask(taskMock.address, { value: parseUnits('1') })
-      const calldata = taskMock.interface.encodeFunctionData('run', [2])
+      const calldata = taskMock.interface.encodeFunctionData('run', [0, 100])
 
       const deployerBalanceBefore = await deployer.getBalance()
-      const tx = await chainJetRunner.run(taskMock.address, calldata)
+      const tx = await chainJetRunner.run(taskMock.address, calldata, gasLimit, { gasLimit })
       const receipt = await tx.wait()
       const { effectiveGasPrice } = receipt
 
@@ -210,7 +212,7 @@ describe('ChainJetRunner', () => {
       const calldata = taskMock.interface.encodeFunctionData('run', [2])
 
       const devBalanceBefore = await dev.getBalance()
-      const tx = await chainJetRunner.connect(dev).run(taskMock.address, calldata)
+      const tx = await chainJetRunner.connect(dev).run(taskMock.address, calldata, gasLimit, { gasLimit })
 
       expect(await dev.getBalance()).to.eq(devBalanceBefore)
       const resolvedTx = await tx.wait()
@@ -227,14 +229,33 @@ describe('ChainJetRunner', () => {
       const calldata = taskMock.interface.encodeFunctionData('run', [0, 100])
 
       const devBalanceBefore = await dev.getBalance()
-      const tx = await chainJetRunner.connect(dev).run(taskMock.address, calldata)
+      const tx = await chainJetRunner.connect(dev).run(taskMock.address, calldata, gasLimit, { gasLimit })
 
       expect(await dev.getBalance()).to.eq(devBalanceBefore)
       const receipt = await tx.wait()
       const { gasUsed, effectiveGasPrice } = receipt
       const totalGas = gasUsed.mul(effectiveGasPrice)
-      expect(await taskMock.counter()).to.eq(2)
+      expect(await taskMock.counter()).to.eq(100)
       expect(await chainJetRunner.balances(alice.address)).to.eq(parseUnits('1').sub(totalGas))
+    })
+
+    it('should revert if task is not enabled', async () => {
+      const chainJetRunner = await deployChainJetRunner()
+      const taskMock = await deployTaskMock(alice)
+      const calldata = taskMock.interface.encodeFunctionData('run', [2])
+
+      await expect(chainJetRunner.run(taskMock.address, calldata, gasLimit)).to.be.revertedWith('run: task not enabled')
+    })
+
+    it('should revert if balance is insufficient', async () => {
+      const chainJetRunner = await deployChainJetRunner()
+      const taskMock = await deployTaskMock(alice)
+      await chainJetRunner.connect(alice).enableTask(taskMock.address, { value: 100 })
+      const calldata = taskMock.interface.encodeFunctionData('run', [2])
+
+      await expect(chainJetRunner.run(taskMock.address, calldata, gasLimit)).to.be.revertedWith(
+        'run: insufficient balance',
+      )
     })
   })
 })

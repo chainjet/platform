@@ -13,7 +13,7 @@ contract ChainJetRunner is OwnableUpgradeable {
     mapping(address => Task) public tasks;
     mapping(address => uint256) public balances;
     mapping(address => bool) public whitelist; // whitelisted network operators
-    uint256 public gasOverhead = 42840;
+    uint256 public gasOverhead = 16765;
 
     event TaskEnabled(address indexed task, address indexed owner);
     event TaskDisabled(address indexed task);
@@ -63,21 +63,21 @@ contract ChainJetRunner is OwnableUpgradeable {
         emit Withdraw(msg.sender, _amount);
     }
 
-    function run(address _task, bytes memory _data)
-        external
-        onlyWhitelisted
-        returns (bool success, bytes memory returndata)
-    {
-        uint256 startGas = gasleft();
+    function run(
+        address _task,
+        bytes calldata _data,
+        uint256 _gasLimit
+    ) external onlyWhitelisted returns (bool success) {
         Task memory task = tasks[_task];
         require(task.addr != address(0), 'run: task not enabled');
-        (success, returndata) = _task.call(_data);
-        uint256 etherUsed = (gasOverhead + (startGas - gasleft())) * tx.gasprice;
+        (success, ) = _task.call(_data);
+        uint256 etherUsed = (gasOverhead + _gasLimit - gasleft()) * tx.gasprice;
         require(balances[task.owner] >= etherUsed, 'run: insufficient balance');
-        balances[task.owner] -= etherUsed;
+        unchecked {
+            balances[task.owner] -= etherUsed;
+        }
         payable(msg.sender).transfer(etherUsed);
         emit Run(_task, etherUsed);
-        return (success, returndata);
     }
 
     function setWhitelist(address _addr, bool _whitelisted) external onlyOwner {
