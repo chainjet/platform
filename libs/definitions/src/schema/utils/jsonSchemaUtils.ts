@@ -1,3 +1,4 @@
+import $RefParser from '@apidevtools/json-schema-ref-parser'
 import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
 import JsonSchemaGenerator from 'json-schema-generator'
 import defaultsDeep from 'lodash.defaultsdeep'
@@ -101,12 +102,34 @@ export function transformConstExtension(schema: JSONSchema7): JSONSchema7 {
   return applySchemaChangeRecursively(schema, transformConstExtension)
 }
 
+/**
+ * if a schema has properties but not type, set type to object
+ */
+export function transformAddTypeObject(schema: JSONSchema7): JSONSchema7 {
+  if (schema.properties && !schema.type) {
+    schema.type = 'object'
+  }
+  return applySchemaChangeRecursively(schema, transformAddTypeObject)
+}
+
 export function transformDynamicRefExtension(schema: JSONSchema7): JSONSchema7 {
   if (schema['x-dynamicRef']) {
     schema.$ref = schema['x-dynamicRef']
     delete schema['x-dynamicRef']
   }
   return applySchemaChangeRecursively(schema, transformDynamicRefExtension)
+}
+
+export function prepareInputsJsonSchema(schema: JSONSchema7): JSONSchema7 {
+  schema = hideParamsWithSingleEnum(schema)
+  schema = fixSchemaWithOneOf(schema)
+  schema = removeSchemaMarkdown(schema)
+  schema = removeDeprecatedProperties(schema) ?? {}
+  schema = removeIgnoredProperties(schema) ?? {}
+  schema = transformConstExtension(schema) ?? {}
+  schema = transformAddTypeObject(schema) ?? {}
+  schema = transformDynamicRefExtension(schema) ?? {}
+  return schema
 }
 
 /**
@@ -217,4 +240,13 @@ export function parseJsonSchemaValue(propSchema: JSONSchema7Definition, value: a
   }
 
   return value
+}
+
+export async function dereferenceJsonSchema(schema: JSONSchema7, components: object): Promise<JSONSchema7> {
+  const dereferenced = (await $RefParser.dereference({
+    ...schema,
+    components,
+  })) as JSONSchema7
+  delete (dereferenced as any).components
+  return dereferenced
 }

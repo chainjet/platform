@@ -37,6 +37,11 @@ export enum SortNulls {
     NULLS_LAST = "NULLS_LAST"
 }
 
+export enum OperationType {
+    OffChain = "OffChain",
+    EVM = "EVM"
+}
+
 export enum IntegrationActionSortFields {
     id = "id",
     createdAt = "createdAt",
@@ -45,6 +50,7 @@ export enum IntegrationActionSortFields {
     name = "name",
     deprecated = "deprecated",
     category = "category",
+    type = "type",
     skipAuth = "skipAuth"
 }
 
@@ -227,7 +233,25 @@ export interface IntegrationActionFilter {
     name?: Nullable<StringFieldComparison>;
     deprecated?: Nullable<BooleanFieldComparison>;
     category?: Nullable<StringFieldComparison>;
+    type?: Nullable<OperationTypeFilterComparison>;
     skipAuth?: Nullable<BooleanFieldComparison>;
+}
+
+export interface OperationTypeFilterComparison {
+    is?: Nullable<boolean>;
+    isNot?: Nullable<boolean>;
+    eq?: Nullable<OperationType>;
+    neq?: Nullable<OperationType>;
+    gt?: Nullable<OperationType>;
+    gte?: Nullable<OperationType>;
+    lt?: Nullable<OperationType>;
+    lte?: Nullable<OperationType>;
+    like?: Nullable<OperationType>;
+    notLike?: Nullable<OperationType>;
+    iLike?: Nullable<OperationType>;
+    notILike?: Nullable<OperationType>;
+    in?: Nullable<OperationType[]>;
+    notIn?: Nullable<OperationType[]>;
 }
 
 export interface IntegrationActionSort {
@@ -775,6 +799,7 @@ export interface IntegrationAction {
     description?: Nullable<string>;
     deprecated: boolean;
     category?: Nullable<string>;
+    type: OperationType;
     skipAuth: boolean;
     schemaRequest: JSONObject;
     schemaResponse?: Nullable<JSONObject>;

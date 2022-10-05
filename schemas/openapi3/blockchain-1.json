@@ -9,27 +9,6 @@
     }
   },
   "paths": {
-    "/readContract": {
-      "get": {
-        "operationId": "readContract",
-        "summary": "Read Contract",
-        "description": "Make a call to read from a smart contract",
-        "parameters": [
-          { "$ref": "#/components/parameters/network", "required": true },
-          { "$ref": "#/components/parameters/address", "required": true }
-        ],
-        "responses": {
-          "200": {
-            "description": "Smart Contract Response",
-            "content": {
-              "application/json": {
-                "schema": { "type": "object", "properties": {} }
-              }
-            }
-          }
-        }
-      }
-    },
     "/newEvent": {
       "get": {
         "x-triggerOnly": true,
@@ -74,50 +53,6 @@
                     },
                     "transactionHash": { "type": "string" },
                     "logIndex": { "type": "integer" }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/getTokenBalance": {
-      "get": {
-        "operationId": "getTokenBalance",
-        "summary": "Get Token Balance",
-        "description": "Get the balance of a wallet or contract on a ERC20 token",
-        "parameters": [
-          {
-            "name": "network",
-            "in": "query",
-            "$ref": "#/components/parameters/network",
-            "required": true
-          },
-          {
-            "name": "tokenAddress",
-            "in": "query",
-            "$ref": "#/components/parameters/address",
-            "required": true
-          },
-          {
-            "name": "balanceOfAddress",
-            "in": "query",
-            "$ref": "#/components/parameters/address",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Token Balance Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "balance": { "type": "string" },
-                    "tokenDecimals": { "type": "integer" },
-                    "convertedBalance": { "type": "integer" }
                   }
                 }
               }

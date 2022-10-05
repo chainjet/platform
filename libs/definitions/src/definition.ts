@@ -19,6 +19,7 @@ import { IntegrationService } from '../../../apps/api/src/integrations/services/
 import { WorkflowAction } from '../../../apps/api/src/workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from '../../../apps/api/src/workflow-triggers/entities/workflow-trigger'
 import { OperationRunnerService, OperationRunOptions } from '../../../apps/runner/src/services/operation-runner.service'
+import { Operation } from './operation'
 
 export interface StepInputs {
   [key: string]: any
@@ -66,6 +67,7 @@ export abstract class Definition {
   protected readonly logger: Logger = new Logger(Definition.name)
   readonly validOperationMethods = ['get', 'post', 'put', 'delete', 'patch']
   readonly allowedTriggerMethods = ['get']
+  actions: Operation[] = []
 
   constructor(
     protected readonly schemaService: SchemaService,
@@ -279,6 +281,11 @@ export abstract class Definition {
    * Observable responses are only used by triggers
    */
   run(opts: OperationRunOptions): Promise<RunResponse | Observable<RunResponse> | null> | null {
+    for (const action of this.actions) {
+      if (action.key === opts.operation.key) {
+        return action.run(opts)
+      }
+    }
     return null
   }
 

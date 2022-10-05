@@ -9,15 +9,7 @@ import mergeAllOf, { Options as MergeAllOfOptions } from 'json-schema-merge-allo
 import { OpenAPIObject, OperationObject } from 'openapi3-ts'
 import { PathsObject } from 'openapi3-ts/src/model/OpenApi'
 import { isEmptyObj } from '../../../../common/src/utils/object.utils'
-import {
-  fixSchemaWithOneOf,
-  hideParamsWithSingleEnum,
-  removeDeprecatedProperties,
-  removeIgnoredProperties,
-  removeSchemaMarkdown,
-  transformConstExtension,
-  transformDynamicRefExtension,
-} from './jsonSchemaUtils'
+import { prepareInputsJsonSchema, transformDynamicRefExtension } from './jsonSchemaUtils'
 
 interface OpenApi2SchemaOptions {
   dateToDateTime?: boolean
@@ -116,13 +108,7 @@ function buildPaths(
         resultSchema.request = appendParameters(resultSchema.request, operationSpec, schemaOptions)
       }
 
-      resultSchema.request = hideParamsWithSingleEnum(resultSchema.request)
-      resultSchema.request = fixSchemaWithOneOf(resultSchema.request)
-      resultSchema.request = removeSchemaMarkdown(resultSchema.request)
-      resultSchema.request = removeDeprecatedProperties(resultSchema.request) ?? {}
-      resultSchema.request = removeIgnoredProperties(resultSchema.request) ?? {}
-      resultSchema.request = transformConstExtension(resultSchema.request) ?? {}
-      resultSchema.request = transformDynamicRefExtension(resultSchema.request) ?? {}
+      resultSchema.request = prepareInputsJsonSchema(resultSchema.request)
 
       if (operationSpec.responses) {
         resultSchema.responses = buildResponses(operationSpec.responses, schemaOptions)

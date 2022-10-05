@@ -21,7 +21,7 @@ import { AppveyorDefinition } from './integration-definitions/appveyor.definitio
 import { ArbiscanDefinition } from './integration-definitions/arbiscan.definition'
 import { AsanaDefinition } from './integration-definitions/asana.definition'
 import { AurorascanDefinition } from './integration-definitions/aurorascan.definition'
-import { BlockchainDefinition } from './integration-definitions/blockchain.definition'
+import { BlockchainDefinition } from './integration-definitions/blockchain/blockchain.definition'
 import { BobascanDefinition } from './integration-definitions/bobascan.definition'
 import { BscscanDefinition } from './integration-definitions/bscscan.definition'
 import { BttcscanDefinition } from './integration-definitions/bttcscan.definition'

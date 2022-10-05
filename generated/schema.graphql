@@ -261,7 +261,31 @@ input IntegrationActionFilter {
   name: StringFieldComparison
   deprecated: BooleanFieldComparison
   category: StringFieldComparison
+  type: OperationTypeFilterComparison
   skipAuth: BooleanFieldComparison
+}
+
+input OperationTypeFilterComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: OperationType
+  neq: OperationType
+  gt: OperationType
+  gte: OperationType
+  lt: OperationType
+  lte: OperationType
+  like: OperationType
+  notLike: OperationType
+  iLike: OperationType
+  notILike: OperationType
+  in: [OperationType!]
+  notIn: [OperationType!]
+}
+
+"""Operation type"""
+enum OperationType {
+  OffChain
+  EVM
 }
 
 input IntegrationActionSort {
@@ -278,6 +302,7 @@ enum IntegrationActionSortFields {
   name
   deprecated
   category
+  type
   skipAuth
 }
 
@@ -290,6 +315,7 @@ type IntegrationAction {
   description: String
   deprecated: Boolean!
   category: String
+  type: OperationType!
   skipAuth: Boolean!
   schemaRequest: JSONObject!
   schemaResponse: JSONObject

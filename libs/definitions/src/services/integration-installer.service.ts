@@ -13,7 +13,12 @@ import { getItemSchemaFromRes } from '../../../../apps/runner/src/utils/trigger.
 import { decycle, retrocycle } from '../../../common/src/utils/json.utils'
 import { addEllipsis, stripMarkdown, stripMarkdownSync } from '../../../common/src/utils/string.utils'
 import { SchemaService } from '../schema/services/schema.service'
-import { removeActionOnlyProperties, removeTriggerOnlyProperties } from '../schema/utils/jsonSchemaUtils'
+import {
+  dereferenceJsonSchema,
+  prepareInputsJsonSchema,
+  removeActionOnlyProperties,
+  removeTriggerOnlyProperties,
+} from '../schema/utils/jsonSchemaUtils'
 import { openapi2schema } from '../schema/utils/openapi2schema'
 import { OpenApiUtils } from '../schema/utils/openApiUtils'
 
@@ -59,6 +64,34 @@ export class IntegrationInstallerService {
     schema = await definition.updateSchemaBeforeInstall(schema)
     const jsonSchema = await openapi2schema(schema)
 
+    const usedOperationIds: string[] = []
+    for (const action of definition.actions) {
+      if (usedOperationIds.includes(action.key)) {
+        throw new Error(`Duplicated operation id ${action.key}`)
+      }
+      usedOperationIds.push(action.key)
+
+      const schemaRequest = prepareInputsJsonSchema(await dereferenceJsonSchema(action.inputs, schema.components ?? {}))
+      const schemaResponse = await dereferenceJsonSchema(action.outputs, schema.components ?? {})
+
+      await this.integrationActionService.createOrUpdateOne({
+        type: action.type,
+        key: action.key,
+        name: action.name,
+        integration: new mongoose.Types.ObjectId(integration.id),
+        description: action.description,
+        fullDescription: action.description,
+        deprecated: action.deprecated,
+        skipAuth: action.skipAuth,
+        schemaId: action.key,
+        schemaRequest,
+        schemaResponse,
+        learnResponseWorkflow: action.learnResponseWorkflow,
+        learnResponseIntegration: action.learnResponseIntegration,
+        metadata: action.metadata,
+      })
+    }
+
     for (const [schemaPath, pathSpec] of Object.entries(schema.paths)) {
       const operationEntries = Object.entries(pathSpec)
         .filter((entry: [string, OperationObject]) => !entry[1]['x-ignore'] && !entry[1].deprecated)
@@ -70,6 +103,11 @@ export class IntegrationInstallerService {
         if (!operationObject.operationId) {
           operationObject.operationId = `${schemaPath}.${schemaMethod}`
         }
+
+        if (usedOperationIds.includes(operationObject.operationId)) {
+          throw new Error(`Duplicated operation id ${operationObject.operationId}`)
+        }
+        usedOperationIds.push(operationObject.operationId)
 
         if (!operationObject.summary) {
           throw new Error(`Missing summary for operation ${operationObject.operationId}`)
@@ -202,8 +240,8 @@ export class IntegrationInstallerService {
     const { integrationKey, integrationVersion } = integrationData
 
     let schema = await this.schemaService.getSchema({
-      integrationKey: integrationKey,
-      integrationVersion: integrationVersion,
+      integrationKey,
+      integrationVersion,
       schemaUrl,
       refetch: true,
       updateSchemaAfterFetch: definition.updateSchemaAfterFetch,
@@ -211,7 +249,7 @@ export class IntegrationInstallerService {
 
     // Don't create draft integrations on production
     if (schema.info['x-draft'] && process.env.NODE_ENV !== 'development') {
-      this.logger.log(`Integration ${integrationData.integrationKey} is marked as draft and won't be installed on prod`)
+      this.logger.log(`Integration ${integrationKey} is marked as draft and won't be installed on prod`)
       return null
     }
 

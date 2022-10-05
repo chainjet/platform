@@ -2,7 +2,8 @@ import { BaseEntity } from '@app/common/base/base-entity'
 import { EntityRef } from '@app/common/decorators/entity-ref.decorator'
 import { jsonProp } from '@app/common/decorators/props/json-prop.decorator'
 import { Reference } from '@app/common/typings/mongodb'
-import { Field, ID, ObjectType } from '@nestjs/graphql'
+import { OperationType } from '@app/definitions/types/OperationType'
+import { Field, ID, ObjectType, registerEnumType } from '@nestjs/graphql'
 import { FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
 import { GraphQLJSONObject } from 'graphql-type-json'
@@ -44,6 +45,10 @@ export class IntegrationAction extends BaseEntity {
   @FilterableField({ nullable: true })
   @prop({ index: true })
   category?: string
+
+  @FilterableField(() => OperationType)
+  @prop({ default: OperationType.OffChain, enum: OperationType, type: String })
+  type?: OperationType = OperationType.OffChain
 
   @FilterableField()
   @prop({ default: false })
@@ -101,3 +106,9 @@ export class IntegrationAction extends BaseEntity {
   @jsonProp()
   metadata?: Record<string, any>
 }
+
+// Create a GraphQL enum for OperationType
+registerEnumType(OperationType, {
+  name: 'OperationType',
+  description: 'Operation type',
+})
