@@ -21,6 +21,7 @@ contract ChainJetRunner is OwnableUpgradeable {
     event Withdraw(address indexed sender, uint256 amount);
     event Run(address indexed task, uint256 etherUsed);
     event SetWhitelist(address indexed operator, bool status);
+    event SetGasOverhead(uint256 gasOverhead);
 
     modifier onlyWhitelisted() {
         require(whitelist[msg.sender], 'onlyWhitelisted: caller is not whitelisted');
@@ -87,5 +88,6 @@ contract ChainJetRunner is OwnableUpgradeable {
 
     function setGasOverhead(uint256 _gasOverhead) external onlyOwner {
         gasOverhead = _gasOverhead;
+        emit SetGasOverhead(_gasOverhead);
     }
 }
