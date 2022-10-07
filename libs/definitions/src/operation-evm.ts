@@ -7,17 +7,18 @@ export enum MutabilityEvm {
   Pure = 'pure',
 }
 
-export type ArgsEvm = Array<{ type: string; name: string }>
+export type VarEvm = { type: string; name: string }
 
 export type TemplateEvm = {
   code: string
   imports: string[]
   mutability: MutabilityEvm
-  args: ArgsEvm
+  args: VarEvm[]
+  vars: VarEvm[]
 }
 
 export abstract class OperationEvm extends Operation {
   type = OperationType.EVM
 
-  abstract template(inputs: Record<string, any>): TemplateEvm
+  abstract template(inputs: Record<string, any>, usedVars: VarEvm[]): TemplateEvm
 }

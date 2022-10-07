@@ -1,6 +1,6 @@
 import { onChainNetworkField } from '@app/definitions/contants/fields'
-import { ArgsEvm, MutabilityEvm, OperationEvm } from '@app/definitions/operation-evm'
-import { hasInterpolation } from '@app/definitions/utils/interpolation.utils'
+import { MutabilityEvm, OperationEvm, VarEvm } from '@app/definitions/operation-evm'
+import { getVarName, hasInterpolation } from '@app/definitions/utils/field.utils'
 import { getAddress } from 'ethers/lib/utils'
 import { JSONSchema7 } from 'json-schema'
 
@@ -36,8 +36,8 @@ export default class GetTokenBalanceEvmAction extends OperationEvm {
     },
   }
 
-  template(inputs: Record<string, any>) {
-    const args: ArgsEvm = []
+  template(inputs: Record<string, any>, usedVars: VarEvm[]) {
+    const args: VarEvm[] = []
     let tokenAdress: string
     if (hasInterpolation(inputs.tokenAddress)) {
       tokenAdress = '_token'
@@ -55,13 +55,16 @@ export default class GetTokenBalanceEvmAction extends OperationEvm {
       balanceOfAddress = getAddress(inputs.balanceOfAddress)
     }
 
+    const balanceVarName = getVarName('balance', usedVars)
+
     return {
       imports: ['@openzeppelin/contracts/token/ERC20/IERC20.sol'],
       code: `
-      uint256 balance = IERC20(${tokenAdress}).balanceOf(${balanceOfAddress});
+      uint256 ${balanceVarName} = IERC20(${tokenAdress}).balanceOf(${balanceOfAddress});
       `,
       mutability: MutabilityEvm.View,
       args,
+      vars: [{ name: 'balance', type: 'uint256' }],
     }
   }
 }

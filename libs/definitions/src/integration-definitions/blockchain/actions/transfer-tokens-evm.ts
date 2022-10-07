@@ -1,6 +1,6 @@
 import { onChainNetworkField } from '@app/definitions/contants/fields'
-import { ArgsEvm, MutabilityEvm, OperationEvm } from '@app/definitions/operation-evm'
-import { hasInterpolation } from '@app/definitions/utils/interpolation.utils'
+import { MutabilityEvm, OperationEvm, VarEvm } from '@app/definitions/operation-evm'
+import { hasInterpolation } from '@app/definitions/utils/field.utils'
 import { getAddress } from 'ethers/lib/utils'
 import { JSONSchema7 } from 'json-schema'
 
@@ -41,7 +41,7 @@ export default class TransferTokensEvmAction extends OperationEvm {
   }
 
   template(inputs: Record<string, any>) {
-    const args: ArgsEvm = []
+    const args: VarEvm[] = []
     let tokenAdress: string
     if (hasInterpolation(inputs.tokenAddress)) {
       tokenAdress = '_token'
@@ -80,6 +80,7 @@ export default class TransferTokensEvmAction extends OperationEvm {
       `,
       mutability: MutabilityEvm.Modify,
       args,
+      vars: [],
     }
   }
 }

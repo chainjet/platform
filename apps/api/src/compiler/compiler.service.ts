@@ -1,5 +1,5 @@
 import { IntegrationDefinitionFactory } from '@app/definitions'
-import { MutabilityEvm, OperationEvm, TemplateEvm } from '@app/definitions/operation-evm'
+import { MutabilityEvm, OperationEvm, TemplateEvm, VarEvm } from '@app/definitions/operation-evm'
 import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common'
 import fs from 'fs'
 import { OperationType } from 'generated/graphql'
@@ -41,8 +41,10 @@ export class CompilerService {
     const contractContent = (await fs.promises.readFile(contractPath, 'utf8')).toString()
 
     const templates: TemplateEvm[] = []
+    const usedVars: VarEvm[] = []
     for (const workflowAction of workflowActions) {
-      const template = await this.getTemplate(workflowAction)
+      const template = await this.getTemplate(workflowAction, workflowActions, usedVars)
+      usedVars.push(...template.vars)
       templates.push(template)
     }
 
@@ -102,7 +104,7 @@ export class CompilerService {
     ]
   }
 
-  private async getTemplate(workflowAction: WorkflowAction) {
+  private async getTemplate(workflowAction: WorkflowAction, allActions: WorkflowAction[], usedVars: VarEvm[]) {
     const integrationAction = await this.integrationActionService.findById(
       workflowAction.integrationAction._id.toString(),
     )
@@ -115,7 +117,7 @@ export class CompilerService {
     }
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     const operationAction = definition.actions.find((action) => action.key === integrationAction.key) as OperationEvm
-    return operationAction.template(workflowAction.inputs)
+    return operationAction.template(workflowAction.inputs, usedVars)
   }
 
   private async compileSourceCode(workflowId: string, sourcecode: string) {
