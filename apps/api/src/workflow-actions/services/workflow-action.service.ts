@@ -92,7 +92,7 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
 
     // set workflow network if it has on-chain actions
     if (integrationAction.type === OperationType.EVM) {
-      if (workflow.network && workflow.network !== data.inputs.network) {
+      if (workflow.network && workflow.network.toString() !== data.inputs.network.toString()) {
         throw new BadRequestException(
           `Workflow network ${workflow.network} does not match action network ${data.inputs.network}`,
         )

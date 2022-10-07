@@ -1,6 +1,5 @@
 import { RunResponse } from '@app/definitions/definition'
-import { Operation } from '@app/definitions/operation'
-import { OperationType } from '@app/definitions/types/OperationType'
+import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { ExplorerService } from '@blockchain/blockchain/explorer/explorer.service'
 import { ProviderService } from '@blockchain/blockchain/provider/provider.service'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
@@ -8,8 +7,7 @@ import { MethodAbi } from 'ethereum-types'
 import { ethers } from 'ethers'
 import { JSONSchema7 } from 'json-schema'
 
-export class ReadContractAction extends Operation {
-  type = OperationType.OffChain
+export class ReadContractAction extends OperationOffChain {
   key = 'readContract'
   name = 'Read Contract'
   description = 'Make a call to read from a smart contract'

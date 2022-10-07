@@ -1,13 +1,11 @@
 import { RunResponse } from '@app/definitions/definition'
-import { Operation } from '@app/definitions/operation'
-import { OperationType } from '@app/definitions/types/OperationType'
+import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { MulticallService } from '@blockchain/blockchain/multicall/multicall.service'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { BigNumber, ethers } from 'ethers'
 import { JSONSchema7 } from 'json-schema'
 
-export class GetTokenBalanceAction extends Operation {
-  type = OperationType.OffChain
+export class GetTokenBalanceAction extends OperationOffChain {
   key = 'getTokenBalance'
   name = 'Get Token Balance'
   description = 'Get the balance of a wallet or contract on a ERC20 token'

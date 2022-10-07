@@ -9,14 +9,21 @@ import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-
 import { WorkflowTrigger } from 'apps/api/src/workflow-triggers/entities/workflow-trigger'
 import { EventAbi, MethodAbi } from 'ethereum-types'
 import { GetTokenBalanceAction } from './actions/get-token-balance'
+import GetTokenBalanceEvmAction from './actions/get-token-balance-evm'
 import { ReadContractAction } from './actions/read-contract'
+import TransferTokensEvmAction from './actions/transfer-tokens-evm'
 
 export class BlockchainDefinition extends SingleIntegrationDefinition {
   integrationKey = 'blockchain'
   integrationVersion = '1'
   schemaUrl = null
 
-  actions = [new GetTokenBalanceAction(), new ReadContractAction()]
+  actions = [
+    new GetTokenBalanceAction(),
+    new ReadContractAction(),
+    new GetTokenBalanceEvmAction(),
+    new TransferTokensEvmAction(),
+  ]
 
   async beforeCreateWorkflowAction(
     workflowAction: DeepPartial<WorkflowAction>,
