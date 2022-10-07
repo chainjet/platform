@@ -1,5 +1,6 @@
 import { BaseService } from '@app/common/base/base.service'
 import { ObjectID } from '@app/common/utils/mongodb'
+import { OperationType } from '@app/definitions/types/OperationType'
 import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
 import { DeepPartial, DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
@@ -87,6 +88,17 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     const integration = await this.integrationService.findById(integrationAction.integration.toString())
     if (!integration) {
       throw new NotFoundException(`Integration ${integrationAction.integration} not found`)
+    }
+
+    // set workflow network if it has on-chain actions
+    if (integrationAction.type === OperationType.EVM) {
+      if (workflow.network && workflow.network !== data.inputs.network) {
+        throw new BadRequestException(
+          `Workflow network ${workflow.network} does not match action network ${data.inputs.network}`,
+        )
+      } else if (!workflow.network) {
+        await this.workflowService.updateOne(workflow.id, { network: data.inputs.network })
+      }
     }
 
     data.name = capitalize(integrationAction.name)

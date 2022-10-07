@@ -469,6 +469,8 @@ type Workflow {
   name: String!
   state: String
   runOnFailure: ID
+  address: String
+  network: String
   trigger: WorkflowTrigger
   actions(
     """Limit or page results."""
@@ -506,6 +508,12 @@ enum WorkflowActionSortFields {
   isRootAction
 }
 
+type CompileWorkflow {
+  bytecode: String!
+  abi: [JSONObject!]!
+  sourcecode: String!
+}
+
 type WorkflowDeleteResponse {
   id: ID
   createdAt: DateTime
@@ -513,6 +521,8 @@ type WorkflowDeleteResponse {
   name: String
   state: String
   runOnFailure: ID
+  address: String
+  network: String
 }
 
 type WorkflowEdge {
@@ -848,6 +858,7 @@ type Query {
     """Specify to sort results."""
     sorting: [WorkflowSort!] = []
   ): WorkflowConnection!
+  compileWorkflow(workflowId: ID!): CompileWorkflow!
   workflowAction(
     """The id of the record to find."""
     id: ID!

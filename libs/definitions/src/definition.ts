@@ -20,6 +20,7 @@ import { WorkflowAction } from '../../../apps/api/src/workflow-actions/entities/
 import { WorkflowTrigger } from '../../../apps/api/src/workflow-triggers/entities/workflow-trigger'
 import { OperationRunnerService, OperationRunOptions } from '../../../apps/runner/src/services/operation-runner.service'
 import { Operation } from './operation'
+import { OperationOffChain } from './opertion-offchain'
 
 export interface StepInputs {
   [key: string]: any
@@ -282,8 +283,8 @@ export abstract class Definition {
    */
   run(opts: OperationRunOptions): Promise<RunResponse | Observable<RunResponse> | null> | null {
     for (const action of this.actions) {
-      if (action.key === opts.operation.key) {
-        return action.run(opts)
+      if (action.key === opts.operation.key && 'run' in action) {
+        return (action as OperationOffChain).run(opts)
       }
     }
     return null

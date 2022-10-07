@@ -1,7 +1,4 @@
-import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { JSONSchema7 } from 'json-schema'
-import { Observable } from 'rxjs'
-import { RunResponse } from './definition'
 import { OperationType } from './types/OperationType'
 
 export abstract class Operation {
@@ -17,6 +14,4 @@ export abstract class Operation {
   learnResponseIntegration = false
   learnResponseWorkflow = false
   metadata: object
-
-  abstract run(opts: OperationRunOptions): Promise<RunResponse | Observable<RunResponse> | null> | null
 }

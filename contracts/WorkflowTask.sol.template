@@ -1,0 +1,23 @@
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.17;
+
+/* {{imports}} */
+
+contract WorkflowTask {
+    address public immutable owner;
+    address public immutable runner;
+
+    modifier onlyChainJetRunner() {
+        require(msg.sender == runner, 'onlyChainJetRunner: invalid caller');
+        _;
+    }
+
+    constructor(address _runner) {
+        owner = msg.sender;
+        runner = _runner;
+    }
+
+    function run(/* {{args}} */) external /* {{mutability}} */ onlyChainJetRunner {
+        /* {{code}} */
+    }
+}

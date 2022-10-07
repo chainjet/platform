@@ -926,8 +926,16 @@ export interface Workflow {
     name: string;
     state?: Nullable<string>;
     runOnFailure?: Nullable<string>;
+    address?: Nullable<string>;
+    network?: Nullable<string>;
     trigger?: Nullable<WorkflowTrigger>;
     actions?: Nullable<WorkflowActionsConnection>;
+}
+
+export interface CompileWorkflow {
+    bytecode: string;
+    abi: JSONObject[];
+    sourcecode: string;
 }
 
 export interface WorkflowDeleteResponse {
@@ -937,6 +945,8 @@ export interface WorkflowDeleteResponse {
     name?: Nullable<string>;
     state?: Nullable<string>;
     runOnFailure?: Nullable<string>;
+    address?: Nullable<string>;
+    network?: Nullable<string>;
 }
 
 export interface WorkflowEdge {
@@ -1125,6 +1135,7 @@ export interface IQuery {
     integrationTriggers(search?: Nullable<string>, paging?: Nullable<CursorPaging>, filter?: Nullable<IntegrationTriggerFilter>, sorting?: Nullable<IntegrationTriggerSort[]>): IntegrationTriggerConnection | Promise<IntegrationTriggerConnection>;
     workflow(id: string): Workflow | Promise<Workflow>;
     workflows(paging?: Nullable<CursorPaging>, filter?: Nullable<WorkflowFilter>, sorting?: Nullable<WorkflowSort[]>): WorkflowConnection | Promise<WorkflowConnection>;
+    compileWorkflow(workflowId: string): CompileWorkflow | Promise<CompileWorkflow>;
     workflowAction(id: string): WorkflowAction | Promise<WorkflowAction>;
     workflowActions(paging?: Nullable<CursorPaging>, filter?: Nullable<WorkflowActionFilter>, sorting?: Nullable<WorkflowActionSort[]>): WorkflowActionConnection | Promise<WorkflowActionConnection>;
     workflowNextAction(id: string): WorkflowNextAction | Promise<WorkflowNextAction>;

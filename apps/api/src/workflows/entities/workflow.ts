@@ -7,6 +7,7 @@ import { Injectable } from '@nestjs/common'
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql'
 import { Authorize, FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { pre, prop } from '@typegoose/typegoose'
+import { GraphQLString } from 'graphql'
 import { User } from '../../users/entities/user'
 import { WorkflowAction } from '../../workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from '../../workflow-triggers/entities/workflow-trigger'
@@ -54,6 +55,15 @@ export class Workflow extends BaseEntity {
   @Field(() => ID, { nullable: true })
   @prop({ ref: Workflow })
   runOnFailure?: Reference<Workflow>
+
+  // deployed address
+  @Field(() => GraphQLString, { nullable: true })
+  @prop()
+  address?: string
+
+  @Field(() => GraphQLString, { nullable: true })
+  @prop()
+  network?: string
 }
 
 @InputType()
