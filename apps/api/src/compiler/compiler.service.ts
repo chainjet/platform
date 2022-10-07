@@ -2,6 +2,7 @@ import { IntegrationDefinitionFactory } from '@app/definitions'
 import { MutabilityEvm, OperationEvm, TemplateEvm } from '@app/definitions/operation-evm'
 import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common'
 import fs from 'fs'
+import { OperationType } from 'generated/graphql'
 import hre from 'hardhat'
 import {
   TASK_COMPILE_SOLIDITY_CHECK_ERRORS,
@@ -50,8 +51,8 @@ export class CompilerService {
     )
     const code = templates.map((template) => template.code.trim()).join('\n')
     const mutability = templates.reduce((prev, curr) => {
-      if (curr.mutability === MutabilityEvm.None || prev === MutabilityEvm.None) {
-        return MutabilityEvm.None
+      if (curr.mutability === MutabilityEvm.Modify || prev === MutabilityEvm.Modify) {
+        return MutabilityEvm.Modify
       }
       if (curr.mutability === MutabilityEvm.View || prev === MutabilityEvm.View) {
         return MutabilityEvm.View
@@ -77,10 +78,28 @@ export class CompilerService {
     }
   }
 
-  // TODO
   private async getOnChainWorkflowActions(workflow: Workflow): Promise<WorkflowAction[]> {
-    const routeAction = await this.workflowActionService.findOne({ workflow: workflow.id, isRootAction: true })
-    return routeAction ? [routeAction] : []
+    const actions = await this.workflowActionService.find({ workflow: workflow.id, type: OperationType.EVM })
+    const routeAction = actions.find((action) => action.isRootAction)
+    return routeAction ? this.getActionTree(actions, routeAction) : []
+  }
+
+  private getActionTree(allActions: WorkflowAction[], action?: WorkflowAction): WorkflowAction[] {
+    if (!action) {
+      return []
+    }
+    if (!action.nextActions || action.nextActions.length === 0) {
+      return [action]
+    }
+    return [
+      action,
+      ...action.nextActions.flatMap((next) =>
+        this.getActionTree(
+          allActions,
+          allActions.find((a) => a._id.toString() === next.action._id.toString()),
+        ),
+      ),
+    ]
   }
 
   private async getTemplate(workflowAction: WorkflowAction) {

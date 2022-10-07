@@ -2,7 +2,7 @@ import { Operation } from './operation'
 import { OperationType } from './types/OperationType'
 
 export enum MutabilityEvm {
-  None = '',
+  Modify = '',
   View = 'view',
   Pure = 'pure',
 }
