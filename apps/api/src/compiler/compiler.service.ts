@@ -1,5 +1,6 @@
 import { IntegrationDefinitionFactory } from '@app/definitions'
 import { MutabilityEvm, OperationEvm, TemplateEvm, VarEvm } from '@app/definitions/operation-evm'
+import { getInterpolatedValue } from '@app/definitions/utils/field.utils'
 import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common'
 import fs from 'fs'
 import { OperationType } from 'generated/graphql'
@@ -44,7 +45,7 @@ export class CompilerService {
     const usedVars: VarEvm[] = []
     for (const workflowAction of workflowActions) {
       const template = await this.getTemplate(workflowAction, workflowActions, usedVars)
-      usedVars.push(...template.vars)
+      usedVars.push(...template.args, ...template.vars)
       templates.push(template)
     }
 
@@ -117,7 +118,22 @@ export class CompilerService {
     }
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     const operationAction = definition.actions.find((action) => action.key === integrationAction.key) as OperationEvm
-    return operationAction.template(workflowAction.inputs, usedVars)
+
+    // interpolate solidity variables
+    const inputs = { ...workflowAction.inputs }
+    for (const [key, value] of Object.entries(inputs)) {
+      const interpolated = getInterpolatedValue(value)
+      if (interpolated && interpolated.split('.').length === 2) {
+        const id = interpolated.split('.')[0]
+        const action = allActions.find((action) => action._id.toString() === id)
+        if (action) {
+          const varKey = interpolated.split('.')[1]
+          inputs[key] = `{{solidity:${varKey}}}`
+        }
+      }
+    }
+
+    return operationAction.template(inputs, usedVars)
   }
 
   private async compileSourceCode(workflowId: string, sourcecode: string) {
