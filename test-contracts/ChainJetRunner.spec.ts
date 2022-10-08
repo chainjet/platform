@@ -132,6 +132,45 @@ describe('ChainJetRunner', () => {
     })
   })
 
+  describe('replaceTask', () => {
+    it('should replace a task', async () => {
+      const chainJetRunner = await deployChainJetRunner()
+      const taskMock = await deployTaskMock(alice)
+      const taskMock2 = await deployTaskMock(alice)
+      await chainJetRunner.connect(alice).enableTask(taskMock.address, { value: parseUnits('1') })
+      await chainJetRunner.connect(alice).replaceTask(taskMock.address, taskMock2.address)
+
+      const taskEnabled = await chainJetRunner.tasks(taskMock.address)
+      expect(taskEnabled[0]).to.eq(ZERO_ADDRESS)
+      expect(taskEnabled[1]).to.eq(ZERO_ADDRESS)
+
+      const taskEnabled2 = await chainJetRunner.tasks(taskMock2.address)
+      expect(taskEnabled2[0]).to.eq(taskMock2.address)
+      expect(taskEnabled2[1]).to.eq(alice.address)
+    })
+
+    it('should revert if caller is not the owner', async () => {
+      const chainJetRunner = await deployChainJetRunner()
+      const taskMock = await deployTaskMock(alice)
+      const taskMock2 = await deployTaskMock(alice)
+      await chainJetRunner.connect(alice).enableTask(taskMock.address, { value: parseUnits('1') })
+
+      await expect(chainJetRunner.connect(eve).replaceTask(taskMock.address, taskMock2.address)).to.be.revertedWith(
+        'disableTask: caller is not the owner',
+      )
+    })
+
+    it('should revert if the task is not enabled', async () => {
+      const chainJetRunner = await deployChainJetRunner()
+      const taskMock = await deployTaskMock(carol)
+      const taskMock2 = await deployTaskMock(carol)
+
+      await expect(chainJetRunner.connect(carol).replaceTask(taskMock.address, taskMock2.address)).to.be.revertedWith(
+        'disableTask: task not enabled',
+      )
+    })
+  })
+
   describe('deposit', () => {
     it('should increase depositor balance', async () => {
       const chainJetRunner = await deployChainJetRunner()

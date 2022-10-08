@@ -33,7 +33,7 @@ contract ChainJetRunner is OwnableUpgradeable {
         __Ownable_init();
     }
 
-    function enableTask(address _task) external payable {
+    function enableTask(address _task) public payable {
         require(IOwnable(_task).owner() == msg.sender, 'enableTask: caller is not the owner');
         require(tasks[_task].addr == address(0), 'enableTask: task already enabled');
         if (msg.value > 0) {
@@ -45,11 +45,16 @@ contract ChainJetRunner is OwnableUpgradeable {
         emit TaskEnabled(_task, msg.sender);
     }
 
-    function disableTask(address _task) external {
+    function disableTask(address _task) public {
         require(tasks[_task].addr != address(0), 'disableTask: task not enabled');
         require(tasks[_task].owner == msg.sender, 'disableTask: caller is not the owner');
         delete tasks[_task];
         emit TaskDisabled(_task);
+    }
+
+    function replaceTask(address _oldTask, address _newTask) external {
+        disableTask(_oldTask);
+        enableTask(_newTask);
     }
 
     function deposit() external payable {
