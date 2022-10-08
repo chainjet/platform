@@ -1,21 +1,22 @@
-require('@nomicfoundation/hardhat-toolbox')
+import '@nomicfoundation/hardhat-toolbox'
+import { ChainId } from './libs/blockchain/src/types/ChainId'
 require('dotenv').config()
 
 module.exports = {
   solidity: '0.8.17',
   networks: {
     ethereum: {
-      chainId: 1,
+      chainId: ChainId.ETHEREUM,
       url: process.env.ETHEREUM_RPC_URL,
       accounts: [process.env.PRIVATE_KEY_DEV],
     },
     goerli: {
-      chainId: 5,
+      chainId: ChainId.GOERLI,
       url: process.env.GOERLI_RPC_URL,
       accounts: [process.env.PRIVATE_KEY_DEV],
     },
     polygon: {
-      chainId: 137,
+      chainId: ChainId.POLYGON,
       url: process.env.POLYGON_RPC_URL,
       accounts: [process.env.PRIVATE_KEY_DEV],
     },
