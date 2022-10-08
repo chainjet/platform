@@ -13,7 +13,7 @@ contract ChainJetRunner is OwnableUpgradeable {
     mapping(address => Task) public tasks;
     mapping(address => uint256) public balances;
     mapping(address => bool) public whitelist; // whitelisted network operators
-    uint256 public gasOverhead = 16765;
+    uint256 public gasOverhead;
 
     event TaskEnabled(address indexed task, address indexed owner);
     event TaskDisabled(address indexed task);
@@ -30,6 +30,7 @@ contract ChainJetRunner is OwnableUpgradeable {
 
     function initialize() external initializer {
         whitelist[msg.sender] = true;
+        gasOverhead = 16765;
         __Ownable_init();
     }
 
