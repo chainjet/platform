@@ -154,6 +154,18 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       update.nextCheck = this.getTriggerNextCheck(workflowTrigger, true)
     }
 
+    const workflow = await this.workflowService.findById(workflowTrigger.workflow.toString())
+    if (!workflow) {
+      throw new NotFoundException(`Workflow for trigger ${workflowTrigger.id} not found`)
+    }
+
+    // If the workflow has on-chain actions, the workflow needs to be deployed first
+    if (workflowEnabled) {
+      if (workflow.network && !workflow.address) {
+        throw new BadRequestException('Workflow is not deployed yet')
+      }
+    }
+
     // Restart workflow failures if workflow is reenabled
     if (workflowEnabled) {
       update.consecutiveWorkflowFails = 0

@@ -553,6 +553,7 @@ export interface UpdateOneWorkflowInput {
 export interface UpdateWorkflowInput {
     name?: Nullable<string>;
     runOnFailure?: Nullable<string>;
+    address?: Nullable<string>;
 }
 
 export interface UpdateManyWorkflowsInput {

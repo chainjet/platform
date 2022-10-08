@@ -90,6 +90,8 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
       throw new NotFoundException(`Integration ${integrationAction.integration} not found`)
     }
 
+    const workflowTrigger = await this.workflowTriggerService.findOne({ workflow: workflow.id })
+
     // set workflow network if it has on-chain actions
     if (integrationAction.type === OperationType.EVM) {
       if (workflow.network && workflow.network.toString() !== data.inputs.network.toString()) {
@@ -98,6 +100,9 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
         )
       } else if (!workflow.network) {
         await this.workflowService.updateOne(workflow.id, { network: data.inputs.network })
+        if (workflowTrigger?.enabled) {
+          await this.workflowTriggerService.updateOne(workflowTrigger.id, { enabled: false })
+        }
       }
     }
 
@@ -140,9 +145,8 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
 
     // Initialize trigger nextCheck
     if (data.isRootAction) {
-      const trigger = await this.workflowTriggerService.findOne({ workflow: workflow.id })
-      if (trigger && !trigger.nextCheck) {
-        await this.workflowTriggerService.updateNextCheck(trigger)
+      if (workflowTrigger && !workflowTrigger.nextCheck) {
+        await this.workflowTriggerService.updateNextCheck(workflowTrigger)
       }
     }
 
@@ -157,6 +161,15 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     const workflowAction = await this.findById(id, opts)
     if (!workflowAction) {
       throw new Error(`Workflow action "${id}" not found`)
+    }
+
+    const workflow = await this.workflowService.findById(workflowAction.workflow.toString())
+    if (!workflow) {
+      throw new Error(`Workflow "${workflowAction.workflow}" not found`)
+    }
+
+    if (workflow.network && workflow.address) {
+      throw new Error('Cannot update workflow action after the workflow was deployed')
     }
 
     const integrationAction = await this.integrationActionService.findById(workflowAction.integrationAction.toString())
