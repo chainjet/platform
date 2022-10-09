@@ -212,6 +212,15 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
       throw new NotFoundException('Workflow action not found')
     }
 
+    const workflow = await this.workflowService.findById(workflowAction.workflow.toString())
+    if (!workflow) {
+      return super.deleteOne(id, opts)
+    }
+
+    if (workflow.network && workflow.address) {
+      throw new Error('Cannot delete workflow action after the workflow was deployed')
+    }
+
     // Update isRootAction on next actions
     if (workflowAction.isRootAction && workflowAction.nextActions.length) {
       const nextActionIds = workflowAction.nextActions.map((next) => next.action)
