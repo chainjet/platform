@@ -1,4 +1,5 @@
 import { MetricService } from '@app/common/metrics/metric.service'
+import { OperationType } from '@app/definitions/types/OperationType'
 import { forwardRef, Inject, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common'
 import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from 'apps/api/src/workflow-triggers/entities/workflow-trigger'
@@ -25,6 +26,7 @@ import { IntegrationAction } from '../../../api/src/integration-actions/entities
 import { IntegrationActionService } from '../../../api/src/integration-actions/services/integration-action.service'
 import { IntegrationTrigger } from '../../../api/src/integration-triggers/entities/integration-trigger'
 import { Integration } from '../../../api/src/integrations/entities/integration'
+import { EvmRunnerService } from './evm-runner.service'
 
 export type BaseRunOptions = {
   integration: Integration
@@ -60,6 +62,7 @@ export class OperationRunnerService {
     protected integrationDefinitionFactory: IntegrationDefinitionFactory,
     @Inject(forwardRef(() => AccountCredentialService)) protected accountCredentialService: AccountCredentialService,
     private readonly metricService: MetricService,
+    private readonly evmRunnerService: EvmRunnerService,
   ) {}
 
   async runTriggerCheck(definition: Definition, opts: OperationRunOptions): Promise<RunResponse> {
@@ -77,6 +80,14 @@ export class OperationRunnerService {
   }
 
   async runAction(definition: Definition, opts: OperationRunOptions): Promise<RunResponse> {
+    if (
+      opts.workflowOperation &&
+      'type' in opts.workflowOperation &&
+      opts.workflowOperation.type === OperationType.EVM
+    ) {
+      return this.evmRunnerService.run(definition, opts)
+    }
+
     this.logger.debug(
       `Running action ${opts.operation.key} of ${opts.integration.key} with inputs "${JSON.stringify(opts.inputs)}"`,
     )

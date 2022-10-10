@@ -444,6 +444,8 @@ type WorkflowAction {
   nextActions: [WorkflowNextAction!]
   credentials: AccountCredential
   schemaResponse: JSONObject
+  type: OperationType!
+  address: String!
 }
 
 type WorkflowTrigger {
@@ -697,6 +699,8 @@ type WorkflowActionDeleteResponse {
   nextActions: [WorkflowNextAction!]
   credentials: ID
   schemaResponse: JSONObject
+  type: OperationType
+  address: String
 }
 
 type WorkflowActionConnection {
@@ -1337,7 +1341,6 @@ input UpdateOneWorkflowInput {
 input UpdateWorkflowInput {
   name: String
   runOnFailure: ID
-  address: String
 }
 
 input UpdateManyWorkflowsInput {
@@ -1408,6 +1411,7 @@ input UpdateWorkflowActionInput {
   name: String!
   inputs: JSONObject
   credentials: ID
+  address: String
 }
 
 input UpdateManyWorkflowActionsInput {

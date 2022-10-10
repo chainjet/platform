@@ -82,7 +82,4 @@ export class UpdateWorkflowInput {
 
   @Field(() => ID, { nullable: true })
   runOnFailure?: Reference<Workflow>
-
-  @Field(() => GraphQLString, { nullable: true })
-  address?: string
 }

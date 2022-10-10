@@ -1,4 +1,4 @@
-import { CeloProvider } from '@celo-tools/celo-ethers-wrapper'
+import { CeloProvider, CeloWallet } from '@celo-tools/celo-ethers-wrapper'
 import { Injectable } from '@nestjs/common'
 import { ethers } from 'ethers'
 import { BlockchainConfigService } from '../blockchain.config'
@@ -29,14 +29,13 @@ export class ProviderService {
     return this.readProviders[chainId]
   }
 
-  // getSignedProvider(chainId: ChainId, account: keyof NamedAccount) {
-  //   const provider = this.getReadOnlyProvider(chainId)
-  //   const pk = this.configService.get(`accounts.${account}`)
-  //   if (chainId === ChainId.CELO) {
-  //     return new CeloWallet(pk, provider)
-  //   }
-  //   return new ethers.Wallet(pk, provider)
-  // }
+  getSignedProvider(chainId: ChainId, privateKey: string) {
+    const provider = this.getReadOnlyProvider(chainId)
+    if (chainId === ChainId.CELO) {
+      return new CeloWallet(privateKey, provider)
+    }
+    return new ethers.Wallet(privateKey, provider)
+  }
 
   // signMessage(chainId: ChainId, account: keyof NamedAccount, message: string) {
   //   const provider = this.getSignedProvider(chainId, account)

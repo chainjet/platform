@@ -4,10 +4,12 @@ import { EntityRef } from '@app/common/decorators/entity-ref.decorator'
 import { OwnedEntity } from '@app/common/decorators/owned-entity.decorator'
 import { jsonProp } from '@app/common/decorators/props/json-prop.decorator'
 import { Reference } from '@app/common/typings/mongodb'
+import { OperationType } from '@app/definitions/types/OperationType'
 import { Injectable } from '@nestjs/common'
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql'
 import { Authorize, FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
+import { GraphQLString } from 'graphql'
 import { GraphQLJSONObject } from 'graphql-type-json'
 import { JSONSchema7 } from 'json-schema'
 import { AccountCredential } from '../../account-credentials/entities/account-credential'
@@ -39,6 +41,9 @@ export class WorkflowAction extends BaseEntity {
   @prop({ default: false })
   isRootAction: boolean
 
+  @prop()
+  isContractRootAction?: boolean
+
   @Field(() => ID)
   @prop({ ref: IntegrationAction, required: true })
   readonly integrationAction!: Reference<IntegrationAction>
@@ -67,6 +72,14 @@ export class WorkflowAction extends BaseEntity {
   // generic store to save data relative to the workflow trigger like ids fetched
   @jsonProp()
   store?: Record<string, any>
+
+  @Field(() => OperationType)
+  @prop({ enum: OperationType, type: String })
+  type: OperationType
+
+  @Field(() => GraphQLString)
+  @prop()
+  address?: string
 }
 
 @InputType()
@@ -103,4 +116,7 @@ export class UpdateWorkflowActionInput {
 
   @Field(() => ID, { nullable: true })
   credentials?: Reference<AccountCredential>
+
+  @Field(() => GraphQLString, { nullable: true })
+  address?: string
 }

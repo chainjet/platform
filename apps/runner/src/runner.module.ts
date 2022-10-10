@@ -1,5 +1,6 @@
 import { CommonModule } from '@app/common'
 import { DefinitionsModule } from '@app/definitions'
+import { BlockchainModule } from '@blockchain/blockchain'
 import { forwardRef, Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { UsersModule } from 'apps/api/src/users/users.module'
@@ -14,6 +15,7 @@ import { WorkflowActionsModule } from '../../api/src/workflow-actions/workflow-a
 import { WorkflowRunsModule } from '../../api/src/workflow-runs/workflow-runs.module'
 import { WorkflowTriggersModule } from '../../api/src/workflow-triggers/workflow-triggers.module'
 import { WorkflowsModule } from '../../api/src/workflows/workflows.module'
+import { EvmRunnerService } from './services/evm-runner.service'
 import { OperationRunnerService } from './services/operation-runner.service'
 import { RunnerService } from './services/runner.service'
 import { StaticRunner } from './services/static-runner.service'
@@ -38,8 +40,9 @@ import { StaticRunner } from './services/static-runner.service'
     forwardRef(() => AccountCredentialsModule),
     AuthModule,
     DefinitionsModule,
+    BlockchainModule,
   ],
-  providers: [RunnerService, OperationRunnerService, StaticRunner],
+  providers: [RunnerService, OperationRunnerService, StaticRunner, EvmRunnerService],
   exports: [RunnerService, OperationRunnerService, StaticRunner],
 })
 export class RunnerModule {}

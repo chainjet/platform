@@ -1,9 +1,9 @@
 import { IntegrationDefinitionFactory } from '@app/definitions'
 import { MutabilityEvm, OperationEvm, TemplateEvm, VarEvm } from '@app/definitions/operation-evm'
+import { OperationType } from '@app/definitions/types/OperationType'
 import { getInterpolatedValue } from '@app/definitions/utils/field.utils'
 import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common'
 import fs from 'fs'
-import { OperationType } from 'generated/graphql'
 import hre from 'hardhat'
 import {
   TASK_COMPILE_SOLIDITY_CHECK_ERRORS,
@@ -57,11 +57,8 @@ export class CompilerService {
       if (curr.mutability === MutabilityEvm.Modify || prev === MutabilityEvm.Modify) {
         return MutabilityEvm.Modify
       }
-      if (curr.mutability === MutabilityEvm.View || prev === MutabilityEvm.View) {
-        return MutabilityEvm.View
-      }
-      return MutabilityEvm.Pure
-    }, MutabilityEvm.Pure)
+      return MutabilityEvm.View
+    }, MutabilityEvm.View)
     const args = templates
       .flatMap((template) => template.args)
       .map((arg) => `${arg.type} ${arg.name}`)
@@ -83,7 +80,7 @@ export class CompilerService {
 
   private async getOnChainWorkflowActions(workflow: Workflow): Promise<WorkflowAction[]> {
     const actions = await this.workflowActionService.find({ workflow: workflow.id, type: OperationType.EVM })
-    const routeAction = actions.find((action) => action.isRootAction)
+    const routeAction = actions.find((action) => action.isContractRootAction)
     return routeAction ? this.getActionTree(actions, routeAction) : []
   }
 
@@ -160,7 +157,7 @@ export class CompilerService {
     })
 
     const compilationJob = compilationJobs[0]
-    this.logger.log(`Compiling job with version '${compilationJob.getSolcConfig().version}'`)
+    this.logger.log(`Compiling workflow ${workflowId} with solidity '${compilationJob.getSolcConfig().version}'`)
     const input: CompilerInput = await hre.run(TASK_COMPILE_SOLIDITY_GET_COMPILER_INPUT, {
       compilationJob,
     })

@@ -553,7 +553,6 @@ export interface UpdateOneWorkflowInput {
 export interface UpdateWorkflowInput {
     name?: Nullable<string>;
     runOnFailure?: Nullable<string>;
-    address?: Nullable<string>;
 }
 
 export interface UpdateManyWorkflowsInput {
@@ -614,6 +613,7 @@ export interface UpdateWorkflowActionInput {
     name: string;
     inputs?: Nullable<JSONObject>;
     credentials?: Nullable<string>;
+    address?: Nullable<string>;
 }
 
 export interface UpdateManyWorkflowActionsInput {
@@ -902,6 +902,8 @@ export interface WorkflowAction {
     nextActions?: Nullable<WorkflowNextAction[]>;
     credentials?: Nullable<AccountCredential>;
     schemaResponse?: Nullable<JSONObject>;
+    type: OperationType;
+    address: string;
 }
 
 export interface WorkflowTrigger {
@@ -1071,6 +1073,8 @@ export interface WorkflowActionDeleteResponse {
     nextActions?: Nullable<WorkflowNextAction[]>;
     credentials?: Nullable<string>;
     schemaResponse?: Nullable<JSONObject>;
+    type?: Nullable<OperationType>;
+    address?: Nullable<string>;
 }
 
 export interface WorkflowActionConnection {

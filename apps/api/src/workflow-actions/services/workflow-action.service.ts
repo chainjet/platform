@@ -4,6 +4,7 @@ import { OperationType } from '@app/definitions/types/OperationType'
 import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
 import { DeepPartial, DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
+import { isAddress } from 'ethers/lib/utils'
 import { InjectModel } from 'nestjs-typegoose'
 import { capitalize } from '../../../../../libs/common/src/utils/string.utils'
 import { IntegrationDefinitionFactory } from '../../../../../libs/definitions/src/integration-definition.factory'
@@ -84,7 +85,7 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     if (!integrationAction) {
       throw new NotFoundException('Integration action not found')
     }
-
+    data.type = integrationAction.type
     const integration = await this.integrationService.findById(integrationAction.integration.toString())
     if (!integration) {
       throw new NotFoundException(`Integration ${integrationAction.integration} not found`)
@@ -92,8 +93,8 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
 
     const workflowTrigger = await this.workflowTriggerService.findOne({ workflow: workflow.id })
 
-    // set workflow network if it has on-chain actions
     if (integrationAction.type === OperationType.EVM) {
+      // set workflow network if it has on-chain actions
       if (workflow.network && workflow.network.toString() !== data.inputs.network.toString()) {
         throw new BadRequestException(
           `Workflow network ${workflow.network} does not match action network ${data.inputs.network}`,
@@ -103,6 +104,11 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
         if (workflowTrigger?.enabled) {
           await this.workflowTriggerService.updateOne(workflowTrigger.id, { enabled: false })
         }
+      }
+
+      // set is evm root action
+      if (!previousAction || previousAction.type !== OperationType.EVM) {
+        data.isContractRootAction = true
       }
     }
 
@@ -170,6 +176,21 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
 
     if (workflow.network && workflow.address) {
       throw new Error('Cannot update workflow action after the workflow was deployed')
+    }
+
+    // verify contract address and save it on the workflow
+    if (update.address) {
+      if (workflowAction.address && workflowAction.address !== update.address) {
+        throw new Error('Cannot update workflow action address after it was deployed')
+      }
+      if (!workflowAction.isContractRootAction) {
+        throw new BadRequestException('Address can only be set on contract root actions')
+      }
+      if (!isAddress(update.address)) {
+        throw new BadRequestException('Invalid contract address')
+      }
+      workflow.address = update.address
+      await this.workflowService.updateOne(workflow.id, { address: update.address })
     }
 
     const integrationAction = await this.integrationActionService.findById(workflowAction.integrationAction.toString())
