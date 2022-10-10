@@ -46,11 +46,16 @@ export default class TransferTokensEvmAction extends OperationEvm {
     const amount = parseUint256Type(inputs.amount, 'amount', usedVars)
     const args: VarEvm[] = [...tokenAdress.args, ...fromAddress.args, ...toAddress.args, ...amount.args]
 
+    let code: string
+    if (fromAddress.value.trim() === 'address(this)') {
+      code = `IERC20(${tokenAdress.value}).transfer(${toAddress.value}, ${amount.value});`
+    } else {
+      code = `IERC20(${tokenAdress.value}).transferFrom(${fromAddress.value}, ${toAddress.value}, ${amount.value});`
+    }
+
     return {
       imports: ['@openzeppelin/contracts/token/ERC20/IERC20.sol'],
-      code: `
-      IERC20(${tokenAdress.value}).transferFrom(${fromAddress.value}, ${toAddress.value}, ${amount.value});
-      `,
+      code,
       mutability: MutabilityEvm.Modify,
       args,
       vars: [],
