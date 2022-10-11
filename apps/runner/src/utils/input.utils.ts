@@ -69,6 +69,13 @@ export function calculateExpression(input: string, references: Record<string, Re
   }
 
   const expression = operators.reduce((prev, operatorMatch) => {
+    // don't replace matches between quotes
+    const quoteMatch = input.substring(0, operatorMatch.index).match(/['"]/g)
+    const isBetweenQuotes = quoteMatch && quoteMatch.length % 2 === 1
+    if (isBetweenQuotes) {
+      return prev
+    }
+
     let value = _.get(references, operatorMatch[0]) as unknown
     if (typeof value === 'string' || typeof value === 'object') {
       value = `"${stringifyInput(value)}"`
@@ -85,6 +92,14 @@ export function calculateExpression(input: string, references: Record<string, Re
   })
   parser.set('lowercase', (str: string) => (str ? ('' + str).toLowerCase() : str))
   parser.set('uppercase', (str: string) => (str ? ('' + str).toUpperCase() : str))
+  parser.set('extract', (str: string, template: string, replace: string) => {
+    const escaped = template.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    const regex = escaped.replace(/\\\*\\\*\\\*+/g, '(.+)')
+    if (str.match(regex)) {
+      return str.replace(new RegExp(regex), replace)
+    }
+    return ''
+  })
   return parser.evaluate(expression)
 }
 
