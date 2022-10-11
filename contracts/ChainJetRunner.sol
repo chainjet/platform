@@ -19,7 +19,7 @@ contract ChainJetRunner is OwnableUpgradeable {
     event TaskDisabled(address indexed task);
     event Deposit(address indexed sender, uint256 amount);
     event Withdraw(address indexed sender, uint256 amount);
-    event Run(address indexed task, uint256 etherUsed);
+    event Run(address indexed task, uint256 etherUsed, bool success);
     event SetWhitelist(address indexed operator, bool status);
     event SetGasOverhead(uint256 gasOverhead);
 
@@ -30,7 +30,7 @@ contract ChainJetRunner is OwnableUpgradeable {
 
     function initialize() external initializer {
         whitelist[msg.sender] = true;
-        gasOverhead = 16765;
+        gasOverhead = 17127;
         __Ownable_init();
     }
 
@@ -84,7 +84,7 @@ contract ChainJetRunner is OwnableUpgradeable {
             balances[task.owner] -= etherUsed;
         }
         payable(msg.sender).transfer(etherUsed);
-        emit Run(_task, etherUsed);
+        emit Run(_task, etherUsed, success);
     }
 
     function setWhitelist(address _addr, bool _whitelisted) external onlyOwner {
