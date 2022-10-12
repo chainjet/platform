@@ -204,9 +204,11 @@ export class RunnerService {
       }
     }
 
-    await this.workflowRunService.markTriggerAsCompleted(userId, workflowRun._id, true, triggerIds)
+    const newItemIds = newItems.map((item) => item.id.toString())
+
+    await this.workflowRunService.markTriggerAsCompleted(userId, workflowRun._id, true, newItemIds)
     await this.workflowUsedIdService.createMany(
-      triggerIds.map((id) => ({ workflow: workflowTrigger.workflow, triggerId: id })),
+      newItemIds.map((id) => ({ workflow: workflowTrigger.workflow, triggerId: id })),
     )
 
     if (runResponse.store !== workflowTrigger.store) {
