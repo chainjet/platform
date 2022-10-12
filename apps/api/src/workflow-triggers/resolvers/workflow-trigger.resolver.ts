@@ -49,7 +49,7 @@ export class WorkflowTriggerResolver extends BaseResolver(WorkflowTrigger, {
     if (!trigger || trigger.owner.toString() !== userId.toString() || !trigger.schedule?.frequency) {
       return trigger ?? null
     }
-    void this.runnerService.runWorkflowTriggerCheck(trigger, WorkflowRunStartedByOptions.user, { ignoreLastId: true })
+    void this.runnerService.runWorkflowTriggerCheck(trigger, WorkflowRunStartedByOptions.user, { ignoreUsedId: true })
     await this.workflowTriggerService.updateNextCheck(trigger)
     return trigger
   }

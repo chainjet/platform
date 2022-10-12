@@ -3,6 +3,7 @@ import { Definition, IntegrationDefinitionFactory, RunResponse } from '@app/defi
 import { generateSchemaFromObject } from '@app/definitions/schema/utils/jsonSchemaUtils'
 import { Injectable, Logger, NotFoundException } from '@nestjs/common'
 import { UserService } from 'apps/api/src/users/services/user.service'
+import { WorkflowUsedIdService } from 'apps/api/src/workflow-triggers/services/workflow-used-id.service'
 import { ObjectId } from 'bson'
 import mongoose from 'mongoose'
 import { Reference } from '../../../../libs/common/src/typings/mongodb'
@@ -45,6 +46,7 @@ export class RunnerService {
     private readonly workflowActionService: WorkflowActionService,
     private readonly workflowTriggerService: WorkflowTriggerService,
     private readonly workflowRunService: WorkflowRunService,
+    private readonly workflowUsedIdService: WorkflowUsedIdService,
     private readonly accountCredentialService: AccountCredentialService,
     private readonly integrationDefinitionFactory: IntegrationDefinitionFactory,
   ) {}
@@ -52,7 +54,7 @@ export class RunnerService {
   async runWorkflowTriggerCheck(
     workflowTrigger: WorkflowTrigger,
     startedBy: WorkflowRunStartedByOptions,
-    opts?: { ignoreLastId?: boolean },
+    opts?: { ignoreUsedId?: boolean },
   ): Promise<void> {
     this.logger.debug(`Checking for trigger ${workflowTrigger.id}`)
 
@@ -157,14 +159,15 @@ export class RunnerService {
     const triggerIds = triggerItems.map((item) => item.id.toString())
 
     let newItems: Array<{ id: string | number; item: Record<string, unknown> }> = []
-    if (workflowTrigger.lastId && !opts?.ignoreLastId) {
-      const lastItemIndex = triggerIds.indexOf(workflowTrigger.lastId?.toString())
-      // if the last id was not found, we need to trigger for all, otherwise only for new items
-      if (lastItemIndex === -1) {
-        newItems = triggerItems
-      } else {
-        newItems = triggerItems.slice(0, lastItemIndex)
-      }
+    if (!opts?.ignoreUsedId) {
+      const usedIds = await this.workflowUsedIdService.find({
+        workflow: workflowTrigger.workflow,
+        triggerId: { $in: triggerIds },
+      })
+
+      newItems = triggerItems.filter(
+        (item) => !usedIds.find((usedId) => usedId.triggerId.toString() === item.id.toString()),
+      )
     } else {
       newItems = triggerItems.slice(0, 1)
     }
@@ -202,7 +205,13 @@ export class RunnerService {
     }
 
     await this.workflowRunService.markTriggerAsCompleted(userId, workflowRun._id, true, triggerIds)
-    await this.workflowTriggerService.updateOne(workflowTrigger.id, { lastId: triggerIds[0], store: runResponse.store })
+    await this.workflowUsedIdService.createMany(
+      triggerIds.map((id) => ({ workflow: workflowTrigger.workflow, triggerId: id })),
+    )
+
+    if (runResponse.store !== workflowTrigger.store) {
+      await this.workflowTriggerService.updateOne(workflowTrigger.id, { store: runResponse.store })
+    }
 
     const triggerOutputsList = newItems
       .reverse()

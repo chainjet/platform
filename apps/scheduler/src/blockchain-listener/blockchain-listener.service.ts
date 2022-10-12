@@ -8,6 +8,7 @@ import { IntegrationService } from 'apps/api/src/integrations/services/integrati
 import { WorkflowActionService } from 'apps/api/src/workflow-actions/services/workflow-action.service'
 import { WorkflowRunService } from 'apps/api/src/workflow-runs/services/workflow-run.service'
 import { WorkflowTriggerService } from 'apps/api/src/workflow-triggers/services/workflow-trigger.service'
+import { WorkflowUsedIdService } from 'apps/api/src/workflow-triggers/services/workflow-used-id.service'
 import { WorkflowService } from 'apps/api/src/workflows/services/workflow.service'
 import { RunnerService } from 'apps/runner/src/services/runner.service'
 import { EventAbi } from 'ethereum-types'
@@ -28,6 +29,7 @@ export class BlockchainListenerService {
     private workflowTriggerService: WorkflowTriggerService,
     private workflowActionService: WorkflowActionService,
     private workflowRunService: WorkflowRunService,
+    private workflowUsedIdService: WorkflowUsedIdService,
     private runnerService: RunnerService,
     private explorerService: ExplorerService,
   ) {}
@@ -116,15 +118,23 @@ export class BlockchainListenerService {
             trigger: outputs,
           }
 
-          const rootActions = await this.workflowActionService.find({ workflow: workflow.id, isRootAction: true })
-          const workflowRun = await this.workflowRunService.createOneByInstantTrigger(
-            integration,
-            integrationTrigger,
-            workflow,
-            workflowTrigger,
-            rootActions.length > 0,
-          )
-          void this.runnerService.runWorkflowActions(rootActions, [hookOutputs], workflowRun)
+          try {
+            await this.workflowUsedIdService.createOne({
+              workflow: workflowTrigger.workflow,
+              triggerId: log.transactionHash,
+            })
+            const rootActions = await this.workflowActionService.find({ workflow: workflow.id, isRootAction: true })
+            const workflowRun = await this.workflowRunService.createOneByInstantTrigger(
+              integration,
+              integrationTrigger,
+              workflow,
+              workflowTrigger,
+              rootActions.length > 0,
+            )
+            void this.runnerService.runWorkflowActions(rootActions, [hookOutputs], workflowRun)
+          } catch (e) {
+            this.logger.error(`Error running workflow ${workflow.id}: ${e?.message}`)
+          }
         }
 
         contract.on(filter, this.listeners[workflowTrigger.id])

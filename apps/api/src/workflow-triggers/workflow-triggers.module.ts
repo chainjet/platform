@@ -14,14 +14,19 @@ import { WorkflowRunsModule } from '../workflow-runs/workflow-runs.module'
 import { WorkflowsModule } from '../workflows/workflows.module'
 import { HooksController } from './controllers/hooks.controller'
 import { WorkflowTrigger, WorkflowTriggerAuthorizer } from './entities/workflow-trigger'
+import { WorkflowUsedId } from './entities/workflow-used-id'
 import { WorkflowTriggerResolver } from './resolvers/workflow-trigger.resolver'
 import { WorkflowTriggerService } from './services/workflow-trigger.service'
+import { WorkflowUsedIdService } from './services/workflow-used-id.service'
 
 @Module({
   imports: [
     NestjsQueryGraphQLModule.forFeature({
-      imports: [NestjsQueryTypegooseModule.forFeature([WorkflowTrigger])],
-      dtos: [{ DTOClass: WorkflowTrigger }],
+      imports: [
+        NestjsQueryTypegooseModule.forFeature([WorkflowTrigger]),
+        NestjsQueryTypegooseModule.forFeature([WorkflowUsedId]),
+      ],
+      dtos: [{ DTOClass: WorkflowTrigger }, { DTOClass: WorkflowUsedId }],
     }),
     AuthModule,
     UsersModule, // required for GraphqlGuard
@@ -37,8 +42,8 @@ import { WorkflowTriggerService } from './services/workflow-trigger.service'
     // TODO remove forwardRef once Runner calls are replaced with queues
     forwardRef(() => RunnerModule),
   ],
-  providers: [WorkflowTriggerResolver, WorkflowTriggerService, WorkflowTriggerAuthorizer],
-  exports: [WorkflowTriggerService],
+  providers: [WorkflowTriggerResolver, WorkflowTriggerService, WorkflowTriggerAuthorizer, WorkflowUsedIdService],
+  exports: [WorkflowTriggerService, WorkflowUsedIdService],
   controllers: [HooksController],
 })
 export class WorkflowTriggersModule {}
