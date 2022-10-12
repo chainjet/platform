@@ -204,18 +204,29 @@ export class RunnerService {
       }
     }
 
-    const newItemIds = newItems.map((item) => item.id.toString())
+    const createdItems: Array<{ id: string | number; item: Record<string, unknown> }> = []
+    for (const newItem of newItems) {
+      try {
+        await this.workflowUsedIdService.createOne({
+          workflow: workflowTrigger.workflow,
+          triggerId: newItem.id.toString(),
+        })
+        createdItems.push(newItem)
+      } catch (e) {}
+    }
 
-    await this.workflowRunService.markTriggerAsCompleted(userId, workflowRun._id, true, newItemIds)
-    await this.workflowUsedIdService.createMany(
-      newItemIds.map((id) => ({ workflow: workflowTrigger.workflow, triggerId: id })),
+    await this.workflowRunService.markTriggerAsCompleted(
+      userId,
+      workflowRun._id,
+      true,
+      createdItems.map((item) => item.id.toString()),
     )
 
     if (runResponse.store !== workflowTrigger.store) {
       await this.workflowTriggerService.updateOne(workflowTrigger.id, { store: runResponse.store })
     }
 
-    const triggerOutputsList = newItems
+    const triggerOutputsList = createdItems
       .reverse()
       .map((data) => ({ [workflowTrigger.id]: data.item, trigger: data.item }))
     await this.runWorkflowActions(rootActions, triggerOutputsList, workflowRun)
