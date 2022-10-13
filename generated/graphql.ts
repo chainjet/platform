@@ -931,6 +931,8 @@ export interface Workflow {
     runOnFailure?: Nullable<string>;
     address?: Nullable<string>;
     network?: Nullable<string>;
+    isTemplate?: Nullable<boolean>;
+    templateSchema?: Nullable<JSONObject>;
     trigger?: Nullable<WorkflowTrigger>;
     actions?: Nullable<WorkflowActionsConnection>;
 }
@@ -950,6 +952,8 @@ export interface WorkflowDeleteResponse {
     runOnFailure?: Nullable<string>;
     address?: Nullable<string>;
     network?: Nullable<string>;
+    isTemplate?: Nullable<boolean>;
+    templateSchema?: Nullable<JSONObject>;
 }
 
 export interface WorkflowEdge {

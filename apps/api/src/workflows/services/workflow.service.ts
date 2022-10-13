@@ -40,4 +40,60 @@ export class WorkflowService extends BaseService<Workflow> {
   async deleteOne(id: string, opts?: DeleteOneOptions<Workflow>): Promise<Workflow> {
     return await super.deleteOne(id, opts)
   }
+
+  async updateTemplateSettings(
+    workflow: Workflow,
+    inputs: Record<string, any>,
+    oldInputs?: Record<string, any>,
+  ): Promise<boolean> {
+    const getTemplateFields = (inputs: Record<string, any>): string[] => {
+      const result = Object.values(inputs).reduce((acc, value) => {
+        if (typeof value === 'string') {
+          const matches = value.matchAll(/{{\s*([^}]+)\s*}}/g)
+          const results = Array.from(matches).map((match) => match[1].trim().replace('template.', ''))
+          return [...acc, ...results]
+        }
+        return acc
+      }, [])
+      return Array.from(new Set(result))
+    }
+
+    const newTemplateFields = getTemplateFields(inputs)
+    const oldTemplateFields = getTemplateFields(oldInputs ?? {})
+
+    // workflow is not a template
+    if (!workflow.isTemplate && !newTemplateFields.length) {
+      return false
+    }
+
+    // if the template didn't change, don't do anything
+    if (
+      newTemplateFields.length === oldTemplateFields.length &&
+      newTemplateFields.every((value) => oldTemplateFields.includes(value))
+    ) {
+      return false
+    }
+
+    const schema = workflow.templateSchema ?? {
+      type: 'object',
+    }
+    schema.properties = schema.properties ?? {}
+
+    // delete old fields
+    const deletedTemplateFields = oldTemplateFields.filter((value) => !newTemplateFields.includes(value))
+    deletedTemplateFields.forEach((field) => {
+      delete schema.properties![field]
+    })
+
+    // add new fields
+    const addedTemplateFields = newTemplateFields.filter((value) => !oldTemplateFields.includes(value))
+    addedTemplateFields.forEach((field) => {
+      schema.properties![field] = {
+        type: 'string',
+      }
+    })
+
+    await this.updateById(workflow._id, { isTemplate: true, templateSchema: schema })
+    return true
+  }
 }

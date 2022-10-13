@@ -128,6 +128,9 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     await definition.afterCreateWorkflowTrigger(createdEntity, integrationTrigger, accountCredential, (data) =>
       super.updateOne(createdEntity.id, data),
     )
+
+    await this.workflowService.updateTemplateSettings(workflow, createdEntity.inputs ?? {})
+
     return createdEntity
   }
 
@@ -248,6 +251,9 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     await definition.afterUpdateWorkflowTrigger(updatedEntity, integrationTrigger, accountCredential, (data) =>
       super.updateOne(updatedEntity.id, data, opts),
     )
+
+    await this.workflowService.updateTemplateSettings(workflow, updatedEntity.inputs ?? {}, workflowTrigger.inputs)
+
     return updatedEntity
   }
 
@@ -282,6 +288,12 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     await definition.beforeDeleteWorkflowTrigger(workflowTrigger, integrationTrigger, accountCredential)
     const deletedEntity = super.deleteOne(id, opts)
     await definition.afterDeleteWorkflowTrigger(workflowTrigger, integrationTrigger, accountCredential)
+
+    const workflow = await this.workflowService.findById(workflowTrigger.workflow.toString())
+    if (workflow) {
+      await this.workflowService.updateTemplateSettings(workflow, {}, workflowTrigger.inputs)
+    }
+
     return deletedEntity
   }
 

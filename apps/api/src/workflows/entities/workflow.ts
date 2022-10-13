@@ -2,12 +2,15 @@ import { BaseEntity } from '@app/common/base/base-entity'
 import { OwnedAuthorizer } from '@app/common/base/owned.authorizer'
 import { EntityConnection, EntityRef } from '@app/common/decorators/entity-ref.decorator'
 import { OwnedEntity } from '@app/common/decorators/owned-entity.decorator'
+import { jsonProp } from '@app/common/decorators/props/json-prop.decorator'
 import { Reference } from '@app/common/typings/mongodb'
 import { Injectable } from '@nestjs/common'
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql'
 import { Authorize, FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { pre, prop } from '@typegoose/typegoose'
-import { GraphQLString } from 'graphql'
+import { GraphQLBoolean, GraphQLString } from 'graphql'
+import { GraphQLJSONObject } from 'graphql-type-json'
+import { JSONSchema7 } from 'json-schema'
 import { User } from '../../users/entities/user'
 import { WorkflowAction } from '../../workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from '../../workflow-triggers/entities/workflow-trigger'
@@ -64,6 +67,14 @@ export class Workflow extends BaseEntity {
   @Field(() => GraphQLString, { nullable: true })
   @prop()
   network?: string
+
+  @Field(() => GraphQLBoolean, { nullable: true })
+  @prop()
+  isTemplate?: boolean
+
+  @Field(() => GraphQLJSONObject, { nullable: true })
+  @jsonProp()
+  templateSchema?: JSONSchema7
 }
 
 @InputType()

@@ -473,6 +473,8 @@ type Workflow {
   runOnFailure: ID
   address: String
   network: String
+  isTemplate: Boolean
+  templateSchema: JSONObject
   trigger: WorkflowTrigger
   actions(
     """Limit or page results."""
@@ -525,6 +527,8 @@ type WorkflowDeleteResponse {
   runOnFailure: ID
   address: String
   network: String
+  isTemplate: Boolean
+  templateSchema: JSONObject
 }
 
 type WorkflowEdge {

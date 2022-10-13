@@ -3,6 +3,7 @@ import { OperationType } from '@app/definitions/types/OperationType'
 import { forwardRef, Inject, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common'
 import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from 'apps/api/src/workflow-triggers/entities/workflow-trigger'
+import { Workflow } from 'apps/api/src/workflows/entities/workflow'
 import { OAuth } from 'oauth'
 import { OpenAPIObject } from 'openapi3-ts'
 import request from 'request'
@@ -43,6 +44,7 @@ export type BaseRunOptions = {
 
 export type OperationRunOptions = BaseRunOptions & {
   operation: IntegrationAction | IntegrationTrigger
+  workflow?: Workflow
   workflowOperation?: WorkflowAction | WorkflowTrigger
 }
 

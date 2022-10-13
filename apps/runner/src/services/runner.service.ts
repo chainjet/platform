@@ -1,7 +1,7 @@
 import { isEmptyObj } from '@app/common/utils/object.utils'
 import { Definition, IntegrationDefinitionFactory, RunResponse } from '@app/definitions'
 import { generateSchemaFromObject } from '@app/definitions/schema/utils/jsonSchemaUtils'
-import { Injectable, Logger, NotFoundException } from '@nestjs/common'
+import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
 import { UserService } from 'apps/api/src/users/services/user.service'
 import { WorkflowUsedIdService } from 'apps/api/src/workflow-triggers/services/workflow-used-id.service'
 import { ObjectId } from 'bson'
@@ -89,6 +89,17 @@ export class RunnerService {
       throw new NotFoundException(`Integration ${integrationTrigger.integration} not found`)
     }
 
+    const workflow = await this.workflowService.findById(workflowTrigger.workflow.toString())
+    if (!workflow) {
+      throw new NotFoundException(`Workflow ${workflowTrigger.workflow} not found`)
+    }
+    if (workflow.isTemplate) {
+      if (workflowTrigger.enabled) {
+        await this.workflowTriggerService.updateById(workflowTrigger._id, { enabled: false })
+      }
+      throw new BadRequestException(`Workflow ${workflow.id} is a template and cannot be run`)
+    }
+
     const workflowRun = await this.workflowRunService.createOne({
       owner: workflowTrigger.owner,
       workflow: workflowTrigger.workflow,
@@ -126,6 +137,7 @@ export class RunnerService {
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     try {
       runResponse = await this.operationRunnerService.runTriggerCheck(definition, {
+        workflow,
         integration,
         integrationAccount,
         operation: integrationTrigger,
@@ -184,6 +196,7 @@ export class RunnerService {
     if (integrationTrigger.triggerPopulate?.operationId) {
       for (const newItem of newItems) {
         const populatedOutputs = await this.populateTrigger(definition, newItem.item, {
+          workflow,
           integration,
           integrationAccount,
           operation: integrationTrigger,
@@ -246,14 +259,24 @@ export class RunnerService {
     triggerOutputsList: Array<Record<string, Record<string, unknown>>>,
     workflowRun: WorkflowRun,
   ): Promise<void> {
+    const workflow = await this.workflowService.findById(workflowRun.workflow.toString())
+    if (!workflow) {
+      throw new NotFoundException(`Workflow ${workflowRun.workflow} not found`)
+    }
+    if (workflow.isTemplate) {
+      throw new BadRequestException(`Workflow ${workflow.id} is a template and cannot be run`)
+    }
     for (const triggerOutputs of triggerOutputsList) {
-      const promises = rootActions.map((action) => this.runWorkflowActionsTree(action, triggerOutputs, workflowRun))
+      const promises = rootActions.map((action) =>
+        this.runWorkflowActionsTree(workflow, action, triggerOutputs, workflowRun),
+      )
       await Promise.all(promises)
     }
     await this.workflowRunService.markWorkflowRunAsCompleted(workflowRun._id)
   }
 
-  async runWorkflowActionsTree(
+  private async runWorkflowActionsTree(
+    workflow: Workflow,
     workflowAction: WorkflowAction,
     previousOutputs: Record<string, Record<string, unknown>>,
     workflowRun: WorkflowRun,
@@ -311,6 +334,7 @@ export class RunnerService {
     try {
       const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
       runResponse = await this.operationRunnerService.runAction(definition, {
+        workflow,
         integration,
         integrationAccount,
         operation: integrationAction,
@@ -387,7 +411,7 @@ export class RunnerService {
       if (!nextAction) {
         throw new Error(`WorkflowAction ${workflowNextAction.action} not found`)
       }
-      await this.runWorkflowActionsTree(nextAction, nextActionInputs, workflowRun)
+      await this.runWorkflowActionsTree(workflow, nextAction, nextActionInputs, workflowRun)
     }
   }
 
@@ -453,12 +477,18 @@ export class RunnerService {
     const workflowRun = await this.workflowRunService.findById(workflowSleep.workflowRun.toString())
     const workflowAction = await this.workflowActionService.findById(workflowSleep.workflowAction.toString())
     if (workflowRun && workflowAction) {
+      const workflow = await this.workflowService.findById(workflowAction.workflow.toString())
+      if (!workflow) {
+        return
+      }
       await this.workflowRunService.wakeUpWorkflowRun(workflowRun)
       const nextActionInputs = (workflowSleep.nextActionInputs ?? {}) as Record<string, Record<string, unknown>>
       const actions = await this.workflowActionService.findByIds(
         workflowAction.nextActions.map((next) => next.action) as mongoose.Types.ObjectId[],
       )
-      const promises = actions.map((action) => this.runWorkflowActionsTree(action, nextActionInputs, workflowRun))
+      const promises = actions.map((action) =>
+        this.runWorkflowActionsTree(workflow, action, nextActionInputs, workflowRun),
+      )
       await Promise.all(promises)
       await this.workflowRunService.markWorkflowRunAsCompleted(workflowRun._id)
     }
