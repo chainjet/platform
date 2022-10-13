@@ -1,7 +1,7 @@
 import { isEmptyObj } from '@app/common/utils/object.utils'
 import { Definition, IntegrationDefinitionFactory, RunResponse } from '@app/definitions'
 import { generateSchemaFromObject } from '@app/definitions/schema/utils/jsonSchemaUtils'
-import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
+import { Injectable, Logger } from '@nestjs/common'
 import { UserService } from 'apps/api/src/users/services/user.service'
 import { WorkflowUsedIdService } from 'apps/api/src/workflow-triggers/services/workflow-used-id.service'
 import { ObjectId } from 'bson'
@@ -74,30 +74,32 @@ export class RunnerService {
       workflowTrigger.integrationTrigger.toString(),
     )
     if (!integrationTrigger) {
-      // TODO this should be reported as a ServerError
-      throw new NotFoundException(`IntegrationTrigger ${workflowTrigger.integrationTrigger} not found`)
+      this.logger.error(`IntegrationTrigger ${workflowTrigger.integrationTrigger} not found`)
+      return
     }
 
     if (!integrationTrigger.idKey) {
-      // TODO this should be reported as a ServerError
-      throw new Error(`Tried to run an integration trigger without idKey (id: ${integrationTrigger.id})`)
+      this.logger.error(`Tried to run an integration trigger without idKey (id: ${integrationTrigger.id})`)
+      return
     }
 
     const integration = await this.integrationService.findById(integrationTrigger.integration.toString())
     if (!integration) {
-      // TODO this should be reported as a ServerError
-      throw new NotFoundException(`Integration ${integrationTrigger.integration} not found`)
+      this.logger.error(`Integration ${integrationTrigger.integration} not found`)
+      return
     }
 
     const workflow = await this.workflowService.findById(workflowTrigger.workflow.toString())
     if (!workflow) {
-      throw new NotFoundException(`Workflow ${workflowTrigger.workflow} not found`)
+      this.logger.error(`Workflow ${workflowTrigger.workflow} not found`)
+      return
     }
     if (workflow.isTemplate) {
       if (workflowTrigger.enabled) {
         await this.workflowTriggerService.updateById(workflowTrigger._id, { enabled: false })
       }
-      throw new BadRequestException(`Workflow ${workflow.id} is a template and cannot be run`)
+      this.logger.error(`Workflow ${workflow.id} is a template and cannot be run`)
+      return
     }
 
     const workflowRun = await this.workflowRunService.createOne({
@@ -130,7 +132,8 @@ export class RunnerService {
 
     const user = await this.userService.findById(userId.toString())
     if (!user) {
-      throw new NotFoundException(`User ${userId} not found`)
+      this.logger.error(`User ${userId} not found`)
+      return
     }
 
     let runResponse: RunResponse
@@ -261,10 +264,12 @@ export class RunnerService {
   ): Promise<void> {
     const workflow = await this.workflowService.findById(workflowRun.workflow.toString())
     if (!workflow) {
-      throw new NotFoundException(`Workflow ${workflowRun.workflow} not found`)
+      this.logger.error(`Workflow ${workflowRun.workflow} not found`)
+      return
     }
     if (workflow.isTemplate) {
-      throw new BadRequestException(`Workflow ${workflow.id} is a template and cannot be run`)
+      this.logger.error(`Workflow ${workflow.id} is a template and cannot be run`)
+      return
     }
     for (const triggerOutputs of triggerOutputsList) {
       const promises = rootActions.map((action) =>
@@ -287,13 +292,13 @@ export class RunnerService {
 
     const integrationAction = await this.integrationActionService.findById(workflowAction.integrationAction.toString())
     if (!integrationAction) {
-      // TODO this should be reported as a ServerError
-      throw new NotFoundException(`IntegrationAction ${workflowAction.integrationAction} not found`)
+      this.logger.error(`IntegrationAction ${workflowAction.integrationAction} not found`)
+      return
     }
     const integration = await this.integrationService.findById(integrationAction.integration.toString())
     if (!integration) {
-      // TODO this should be reported as a ServerError
-      throw new NotFoundException(`Integration ${integrationAction.integration} not found`)
+      this.logger.error(`Integration ${integrationAction.integration} not found`)
+      return
     }
 
     const workflowRunAction = await this.workflowRunService.addRunningAction(
@@ -327,7 +332,8 @@ export class RunnerService {
 
     const user = await this.userService.findById(userId.toString())
     if (!user) {
-      throw new NotFoundException(`User ${userId} not found`)
+      this.logger.error(`User ${userId} not found`)
+      return
     }
 
     let runResponse: RunResponse
@@ -409,7 +415,8 @@ export class RunnerService {
     for (const workflowNextAction of nextActions) {
       const nextAction = await this.workflowActionService.findById(workflowNextAction.action.toString())
       if (!nextAction) {
-        throw new Error(`WorkflowAction ${workflowNextAction.action} not found`)
+        this.logger.error(`WorkflowAction ${workflowNextAction.action} not found`)
+        return
       }
       await this.runWorkflowActionsTree(workflow, nextAction, nextActionInputs, workflowRun)
     }
