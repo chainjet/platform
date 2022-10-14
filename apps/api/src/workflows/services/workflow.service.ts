@@ -50,7 +50,9 @@ export class WorkflowService extends BaseService<Workflow> {
       const result = Object.values(inputs).reduce((acc, value) => {
         if (typeof value === 'string') {
           const matches = value.matchAll(/{{\s*([^}]+)\s*}}/g)
-          const results = Array.from(matches).map((match) => match[1].trim().replace('template.', ''))
+          const results = Array.from(matches)
+            .filter((match) => match[1].includes('template.'))
+            .map((match) => match[1].trim().replace('template.', ''))
           return [...acc, ...results]
         }
         return acc
