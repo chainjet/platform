@@ -15,6 +15,7 @@ import { IntegrationActionService } from '../../integration-actions/services/int
 import { IntegrationTrigger } from '../../integration-triggers/entities/integration-trigger'
 import { IntegrationTriggerService } from '../../integration-triggers/services/integration-trigger.service'
 import { IntegrationService } from '../../integrations/services/integration.service'
+import { UserService } from '../../users/services/user.service'
 
 @ObjectType('AsyncSchema')
 export class AsyncSchemaDto {
@@ -27,6 +28,7 @@ export class AsyncSchemaResolver {
   private readonly logger: Logger = new Logger(AsyncSchemaResolver.name)
 
   constructor(
+    private readonly userService: UserService,
     private readonly integrationService: IntegrationService,
     private readonly integrationTriggerService: IntegrationTriggerService,
     private readonly integrationActionService: IntegrationActionService,
@@ -47,6 +49,11 @@ export class AsyncSchemaResolver {
     @Args({ name: 'integrationTriggerId', type: () => GraphQLString, nullable: true }) integrationTriggerId?: string,
     @Args({ name: 'integrationActionId', type: () => GraphQLString, nullable: true }) integrationActionId?: string,
   ): Promise<AsyncSchemaDto> {
+    const user = await this.userService.findOne({ _id: userId })
+    if (!user) {
+      throw new NotFoundException(`User with id ${userId} not found`)
+    }
+
     const integration = await this.integrationService.findOne({
       _id: integrationId,
       owner: userId,
@@ -100,6 +107,11 @@ export class AsyncSchemaResolver {
       credentials,
       accountCredential,
       operationRunnerService: this.operationRunnerService,
+      user: {
+        id: userId.toString(),
+        address: user.address,
+        email: user.email,
+      },
     }
 
     const runWithRefreshCredentialsRetry = async <T>(cb: () => Promise<T>) => {

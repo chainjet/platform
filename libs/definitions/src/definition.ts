@@ -412,6 +412,10 @@ export abstract class Definition {
   async getAsyncSchemas(
     operation: IntegrationAction | IntegrationTrigger,
   ): Promise<{ [key: string]: (props: GetAsyncSchemasProps) => Promise<JSONSchema7> }> {
+    const action = this.actions.find((action) => action.key === operation.key)
+    if (action) {
+      return action.getAsyncSchemas(operation)
+    }
     return {}
   }
 
@@ -422,6 +426,10 @@ export abstract class Definition {
     operation: IntegrationAction | IntegrationTrigger,
     props: GetAsyncSchemasProps,
   ): Promise<{ [key: string]: JSONSchema7 }> {
+    const action = this.actions.find((action) => action.key === operation.key)
+    if (action) {
+      return action.getAdditionalAsyncSchema(operation, props)
+    }
     return {}
   }
 

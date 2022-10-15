@@ -409,24 +409,6 @@ type AccountCredential {
   schemaRefs: JSONObject
 }
 
-type AuthToken {
-  accessToken: String!
-  accessTokenExpiration: DateTime!
-  refreshToken: String!
-}
-
-type RequestMigrationPayload {
-  result: Boolean!
-}
-
-type UserEdge {
-  """The node containing the User"""
-  node: User!
-
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
-}
-
 type WorkflowNextAction {
   action: WorkflowAction!
   condition: String
@@ -510,6 +492,24 @@ enum WorkflowActionSortFields {
   owner
   workflow
   isRootAction
+}
+
+type AuthToken {
+  accessToken: String!
+  accessTokenExpiration: DateTime!
+  refreshToken: String!
+}
+
+type RequestMigrationPayload {
+  result: Boolean!
+}
+
+type UserEdge {
+  """The node containing the User"""
+  node: User!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
 }
 
 type CompileWorkflow {

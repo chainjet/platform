@@ -67,6 +67,7 @@ import { TelegramBotDefinition } from './integration-definitions/telegram-bot.de
 import { UniswapV2Definition } from './integration-definitions/uniswapv2.definition'
 import { UniswapV3Definition } from './integration-definitions/uniswapv3.definition'
 import { WebhookDefinition } from './integration-definitions/webhook.definition'
+import { WorkflowsDefinition } from './integration-definitions/workflows/workflows.definition'
 
 @Injectable()
 export class IntegrationDefinitionFactory {
@@ -143,6 +144,7 @@ export class IntegrationDefinitionFactory {
     uniswapv2: UniswapV2Definition,
     uniswapv3: UniswapV3Definition,
     webhook: WebhookDefinition,
+    workflows: WorkflowsDefinition,
     // youcanbookme: YoucanbookmeDefinition,
     zoom: ZoomDefinition,
   }

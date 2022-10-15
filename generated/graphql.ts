@@ -870,21 +870,6 @@ export interface AccountCredential {
     schemaRefs?: Nullable<JSONObject>;
 }
 
-export interface AuthToken {
-    accessToken: string;
-    accessTokenExpiration: DateTime;
-    refreshToken: string;
-}
-
-export interface RequestMigrationPayload {
-    result: boolean;
-}
-
-export interface UserEdge {
-    node: User;
-    cursor: ConnectionCursor;
-}
-
 export interface WorkflowNextAction {
     action: WorkflowAction;
     condition?: Nullable<string>;
@@ -935,6 +920,21 @@ export interface Workflow {
     templateSchema?: Nullable<JSONObject>;
     trigger?: Nullable<WorkflowTrigger>;
     actions?: Nullable<WorkflowActionsConnection>;
+}
+
+export interface AuthToken {
+    accessToken: string;
+    accessTokenExpiration: DateTime;
+    refreshToken: string;
+}
+
+export interface RequestMigrationPayload {
+    result: boolean;
+}
+
+export interface UserEdge {
+    node: User;
+    cursor: ConnectionCursor;
 }
 
 export interface CompileWorkflow {

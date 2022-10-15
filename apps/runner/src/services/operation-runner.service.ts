@@ -38,7 +38,7 @@ export type BaseRunOptions = {
   user?: {
     id: string
     address: string
-    email: string
+    email?: string
   }
 }
 

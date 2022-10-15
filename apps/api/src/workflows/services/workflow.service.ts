@@ -8,9 +8,11 @@ import { Workflow } from '../entities/workflow'
 @Injectable()
 export class WorkflowService extends BaseService<Workflow> {
   protected readonly logger = new Logger(WorkflowService.name)
+  static instance: WorkflowService
 
   constructor(@InjectModel(Workflow) protected readonly model: ReturnModelType<typeof Workflow>) {
     super(model)
+    WorkflowService.instance = this
   }
 
   async createOne(record: DeepPartial<Workflow>): Promise<Workflow> {

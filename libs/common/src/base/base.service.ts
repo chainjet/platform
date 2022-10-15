@@ -4,7 +4,7 @@ import { Injectable, Logger } from '@nestjs/common'
 import { DeepPartial, Filter, Query, UpdateManyResponse, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { mongoose, ReturnModelType } from '@typegoose/typegoose'
 import { ObjectId, UpdateResult } from 'mongodb'
-import { FilterQuery, QueryOptions, UpdateQuery } from 'mongoose'
+import { FilterQuery, HydratedDocument, QueryOptions, UpdateQuery } from 'mongoose'
 
 @Injectable()
 export abstract class BaseService<T extends BaseEntity> extends TypegooseQueryService<T> {
@@ -63,7 +63,11 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
     return docs.map((doc) => doc.toObject(this.documentToObjectOptions) as T)
   }
 
-  find(conditions: FilterQuery<new () => T>, projection?: any | null, options?: QueryOptions): Promise<T[]> {
+  find(
+    conditions: FilterQuery<new () => T>,
+    projection?: any | null,
+    options?: QueryOptions,
+  ): Promise<HydratedDocument<T>[]> {
     return this.model.find(conditions, projection, options).exec()
   }
 

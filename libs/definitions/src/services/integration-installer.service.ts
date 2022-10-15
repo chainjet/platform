@@ -74,6 +74,8 @@ export class IntegrationInstallerService {
       const schemaRequest = prepareInputsJsonSchema(await dereferenceJsonSchema(action.inputs, schema.components ?? {}))
       const schemaResponse = await dereferenceJsonSchema(action.outputs, schema.components ?? {})
 
+      schemaRequest['x-asyncSchemas'] = action.asyncSchemas
+
       await this.integrationActionService.createOrUpdateOne({
         type: action.type,
         key: action.key,
