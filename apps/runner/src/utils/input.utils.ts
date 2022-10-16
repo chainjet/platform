@@ -68,6 +68,7 @@ export function calculateExpression(input: string, references: Record<string, Re
     return _.get(references, input)
   }
 
+  const expressionCache = {}
   const expression = operators.reduce((prev, operatorMatch) => {
     // don't replace matches between quotes
     const quoteMatch = input.substring(0, operatorMatch.index).match(/['"]/g)
@@ -77,7 +78,16 @@ export function calculateExpression(input: string, references: Record<string, Re
     }
 
     let value = _.get(references, operatorMatch[0]) as unknown
+
     if (typeof value === 'string' || typeof value === 'object') {
+      // to support the find function, we need to cache the array before stringifying it
+      if (Array.isArray(value)) {
+        const functName = input.match(/^(\w+)\([^)]*\)+/)?.[1]
+        if (functName === 'find') {
+          expressionCache[operatorMatch[0]] = value
+          value = operatorMatch[0]
+        }
+      }
       value = `"${stringifyInput(value)}"`
     }
     return prev.replace(operatorMatch[0], value as string)
@@ -98,6 +108,13 @@ export function calculateExpression(input: string, references: Record<string, Re
     const regex = escaped.replace(/\\\*\\\*\\\*+/g, '(.+)')
     if (str.match(regex)) {
       return str.replace(new RegExp(regex), replace)
+    }
+    return ''
+  })
+  parser.set('find', (list: any[], path: string, value: string) => {
+    if (typeof list === 'string') {
+      console.log(`expressionCache[list] ==>`, expressionCache[list])
+      return (expressionCache[list] as any[])?.find((item) => _.get(item, path) === value) ?? ''
     }
     return ''
   })
