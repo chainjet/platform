@@ -123,6 +123,12 @@ export const blockchainConfigList: () => { networks: { [chainId: number]: IBlock
     //   url: process.env.SEPOLIA_RPC_URL!,
     //   explorers: [new EtherScanExplorer('https://api-sepolia.etherscan.io/api', process.env.ETHERSCAN_KEY!)],
     // },
+    [ChainId.TOMBCHAIN]: {
+      key: 'tombchain',
+      url: process.env.TOMBCHAIN_RPC_URL!,
+      explorers: [new BlockScoutExplorer('https://tombscout.com/api')],
+      multicall2Address: '0x9A79912305602863CD4C5facA24BA168f65f7020',
+    },
   },
 })
 

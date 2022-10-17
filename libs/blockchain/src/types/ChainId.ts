@@ -37,4 +37,5 @@ export enum ChainId {
   ROPSTEN = 3,
   SEPOLIA = 11155111,
   TELOS = 40,
+  TOMBCHAIN = 6969,
 }
