@@ -12,7 +12,7 @@ import { WorkflowUsedIdService } from 'apps/api/src/workflow-triggers/services/w
 import { WorkflowService } from 'apps/api/src/workflows/services/workflow.service'
 import { RunnerService } from 'apps/runner/src/services/runner.service'
 import { EventAbi } from 'ethereum-types'
-import { BigNumber, ethers } from 'ethers'
+import { ethers } from 'ethers'
 import { shuffle } from 'lodash'
 
 @Injectable()
@@ -103,9 +103,7 @@ export class BlockchainListenerService {
 
           const logArgs = {}
           for (const logKey of Object.keys(log.args)) {
-            if (BigNumber.isBigNumber(log.args[logKey])) {
-              logArgs[logKey] = log.args[logKey].toString()
-            }
+            logArgs[logKey] = log.args[logKey].toString()
           }
 
           const outputs = {
