@@ -20,7 +20,7 @@ import { WorkflowActionsModule } from './workflow-actions/workflow-actions.modul
 import { WorkflowRunsModule } from './workflow-runs/workflow-runs.module'
 import { WorkflowTriggersModule } from './workflow-triggers/workflow-triggers.module'
 import { WorkflowsModule } from './workflows/workflows.module'
-import { TemplatesModule } from './templates/templates.module';
+import { TemplatesModule } from './templates/templates.module'
 
 @Module({
   imports: [

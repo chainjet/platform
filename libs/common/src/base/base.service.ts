@@ -4,7 +4,7 @@ import { Injectable, Logger } from '@nestjs/common'
 import { DeepPartial, Filter, Query, UpdateManyResponse, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { mongoose, ReturnModelType } from '@typegoose/typegoose'
 import { ObjectId, UpdateResult } from 'mongodb'
-import { FilterQuery, HydratedDocument, QueryOptions, UpdateQuery } from 'mongoose'
+import { FilterQuery, HydratedDocument, ProjectionType, QueryOptions, UpdateQuery } from 'mongoose'
 
 @Injectable()
 export abstract class BaseService<T extends BaseEntity> extends TypegooseQueryService<T> {
@@ -71,11 +71,17 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
     return this.model.find(conditions, projection, options).exec()
   }
 
-  async findOne(conditions?: FilterQuery<new () => T>): Promise<T | null> {
+  async findOne(
+    conditions?: FilterQuery<new () => T>,
+    projection?: ProjectionType<T> | null,
+    options?: QueryOptions<T> | null,
+  ): Promise<T | null> {
     if (!conditions) {
       return null
     }
-    return (await this.model.findOne(conditions).exec())?.toObject(this.documentToObjectOptions) ?? null
+    return (
+      (await this.model.findOne(conditions, projection, options).exec())?.toObject(this.documentToObjectOptions) ?? null
+    )
   }
 
   async findByIds(ids: mongoose.Types.ObjectId[], projection?: any | null, options?: QueryOptions): Promise<T[]> {

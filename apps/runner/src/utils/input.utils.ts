@@ -113,7 +113,6 @@ export function calculateExpression(input: string, references: Record<string, Re
   })
   parser.set('find', (list: any[], path: string, value: string) => {
     if (typeof list === 'string') {
-      console.log(`expressionCache[list] ==>`, expressionCache[list])
       return (expressionCache[list] as any[])?.find((item) => _.get(item, path) === value) ?? ''
     }
     return ''
