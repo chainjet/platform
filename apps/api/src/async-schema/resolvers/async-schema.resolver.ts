@@ -3,6 +3,7 @@ import { Logger, NotFoundException, UseGuards } from '@nestjs/common'
 import { Args, Field, ObjectType, Query, Resolver } from '@nestjs/graphql'
 import { OperationRunnerService } from 'apps/runner/src/services/operation-runner.service'
 import { RunnerService } from 'apps/runner/src/services/runner.service'
+import deepmerge from 'deepmerge'
 import { GraphQLString } from 'graphql'
 import { GraphQLJSONObject } from 'graphql-type-json'
 import { JSONSchema7 } from 'json-schema'
@@ -149,10 +150,7 @@ export class AsyncSchemaResolver {
       (await runWithRefreshCredentialsRetry(() => definition.getAdditionalAsyncSchema(operation, props))) ?? {}
 
     return {
-      schemas: {
-        ...schemas,
-        ...additionalSchemas,
-      },
+      schemas: deepmerge(schemas, additionalSchemas),
     }
   }
 }
