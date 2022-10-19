@@ -77,6 +77,7 @@ export class HooksController {
 
   @All(':hookId')
   async receiveHook(@Param('hookId') hookId: string, @Req() req: Request): Promise<any> {
+    hookId = hookId?.trim() ?? ''
     this.logger.log(`${hookId} - Received hook`)
 
     const workflowTrigger = await this.workflowTriggerService.findOne({ hookId })
