@@ -65,6 +65,44 @@ export class IntegrationInstallerService {
     const jsonSchema = await openapi2schema(schema)
 
     const usedOperationIds: string[] = []
+
+    // create or update triggers
+    for (const trigger of definition.triggers) {
+      if (usedOperationIds.includes(trigger.key)) {
+        throw new Error(`Duplicated operation id ${trigger.key}`)
+      }
+      usedOperationIds.push(trigger.key)
+
+      const schemaRequest = prepareInputsJsonSchema(
+        await dereferenceJsonSchema(trigger.inputs, schema.components ?? {}),
+      )
+      const schemaResponse = await dereferenceJsonSchema(trigger.outputs, schema.components ?? {})
+
+      schemaRequest['x-asyncSchemas'] = trigger.asyncSchemas
+
+      await this.integrationTriggerService.createOrUpdateOne({
+        key: trigger.key,
+        name: trigger.name,
+        integration: new mongoose.Types.ObjectId(integration.id),
+        description: trigger.description,
+        fullDescription: trigger.description,
+        deprecated: trigger.deprecated,
+        skipAuth: trigger.skipAuth,
+        schemaId: trigger.key,
+        schemaRequest,
+        schemaResponse,
+        triggerPopulate: trigger.triggerPopulate,
+        idKey: trigger.idKey,
+        instant: !!trigger.triggerInstant || !!trigger.triggerHook,
+        isWebhook: !!trigger.triggerHook,
+        hookInstructions: trigger.triggerHookInstructions,
+        learnResponseWorkflow: trigger.learnResponseWorkflow,
+        learnResponseIntegration: trigger.learnResponseIntegration,
+        metadata: trigger.metadata,
+      })
+    }
+
+    // create or update actions
     for (const action of definition.actions) {
       if (usedOperationIds.includes(action.key)) {
         throw new Error(`Duplicated operation id ${action.key}`)
@@ -94,6 +132,7 @@ export class IntegrationInstallerService {
       })
     }
 
+    // create or udpdate operations defined on the schema
     for (const [schemaPath, pathSpec] of Object.entries(schema.paths)) {
       const operationEntries = Object.entries(pathSpec)
         .filter((entry: [string, OperationObject]) => !entry[1]['x-ignore'] && !entry[1].deprecated)

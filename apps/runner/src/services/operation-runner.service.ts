@@ -111,7 +111,7 @@ export class OperationRunnerService {
       await definition.beforeOperationRun(opts)
 
     if (!operation.schemaId || !operation.schemaPath || !operation.schemaMethod) {
-      throw new InternalServerErrorException(`Action ${operation.key} does not have schema data`)
+      throw new InternalServerErrorException(`Operation ${operation.key} does not have schema data`)
     }
 
     // TODO can we avoid fetching the entire schema from disk? can we generate it dynamically from our db?

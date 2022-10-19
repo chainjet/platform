@@ -20,6 +20,7 @@ import { WorkflowAction } from '../../../apps/api/src/workflow-actions/entities/
 import { WorkflowTrigger } from '../../../apps/api/src/workflow-triggers/entities/workflow-trigger'
 import { OperationRunnerService, OperationRunOptions } from '../../../apps/runner/src/services/operation-runner.service'
 import { Operation } from './operation'
+import { OperationTrigger } from './operation-trigger'
 import { OperationOffChain } from './opertion-offchain'
 
 export interface StepInputs {
@@ -68,6 +69,7 @@ export abstract class Definition {
   protected readonly logger: Logger = new Logger(Definition.name)
   readonly validOperationMethods = ['get', 'post', 'put', 'delete', 'patch']
   readonly allowedTriggerMethods = ['get']
+  triggers: OperationTrigger[] = []
   actions: Operation[] = []
 
   constructor(
@@ -77,6 +79,10 @@ export abstract class Definition {
     protected readonly integrationActionService: IntegrationActionService,
     protected readonly integrationTriggerService: IntegrationTriggerService,
   ) {}
+
+  get operations() {
+    return [...this.triggers, ...this.actions]
+  }
 
   protected _triggerNamePrefixes = ['get', 'gets', 'list all', 'lists all', 'list', 'lists', 'returns a list of']
 
@@ -282,9 +288,9 @@ export abstract class Definition {
    * Observable responses are only used by triggers
    */
   run(opts: OperationRunOptions): Promise<RunResponse | Observable<RunResponse> | null> | null {
-    for (const action of this.actions) {
-      if (action.key === opts.operation.key && 'run' in action) {
-        return (action as OperationOffChain).run(opts)
+    for (const operation of this.operations) {
+      if (operation.key === opts.operation.key && 'run' in operation) {
+        return (operation as OperationOffChain).run(opts)
       }
     }
     return null
@@ -412,9 +418,9 @@ export abstract class Definition {
   async getAsyncSchemas(
     operation: IntegrationAction | IntegrationTrigger,
   ): Promise<{ [key: string]: (props: GetAsyncSchemasProps) => Promise<JSONSchema7> }> {
-    const action = this.actions.find((action) => action.key === operation.key)
-    if (action) {
-      return action.getAsyncSchemas(operation)
+    const defOperation = this.operations.find((op) => op.key === operation.key)
+    if (defOperation) {
+      return defOperation.getAsyncSchemas(operation)
     }
     return {}
   }
@@ -426,9 +432,9 @@ export abstract class Definition {
     operation: IntegrationAction | IntegrationTrigger,
     props: GetAsyncSchemasProps,
   ): Promise<{ [key: string]: JSONSchema7 }> {
-    const action = this.actions.find((action) => action.key === operation.key)
-    if (action) {
-      return action.getAdditionalAsyncSchema(operation, props)
+    const defOperation = this.operations.find((op) => op.key === operation.key)
+    if (defOperation) {
+      return defOperation.getAdditionalAsyncSchema(operation, props)
     }
     return {}
   }
