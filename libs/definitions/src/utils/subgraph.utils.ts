@@ -125,12 +125,17 @@ type Endpoints = {
   default: number
 }
 
-export async function fetchGraphqlQuery(endpoint: string, query: string): Promise<any> {
+export async function sendGraphqlQuery(
+  endpoint: string,
+  query: string,
+  headers: Record<string, any> = {},
+): Promise<any> {
   const res = await fetch(endpoint, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
+      ...headers,
     },
     body: JSON.stringify({ query }),
   })
@@ -160,7 +165,7 @@ export async function runSubgraphOperation(
       ${queryKey} (${isTrigger ? 'first: 5,' : ''}${orderByStatement} where: ${where})
         ${schemaToQueryBody(schemaForQueryBody ?? {})}
   }`
-  const res = await fetchGraphqlQuery(endpoints[endpoints.default], query)
+  const res = await sendGraphqlQuery(endpoints[endpoints.default], query)
   if (res.errors) {
     throw new Error(res.errors[0].message)
   }
@@ -173,7 +178,7 @@ export async function updateSubgraphSchemaBeforeInstall(
   endpoints: Endpoints,
   schema: OpenAPIObject,
 ): Promise<OpenAPIObject> {
-  const graphqlSchema = await fetchGraphqlQuery(endpoints[endpoints.default], introspectionQuery)
+  const graphqlSchema = await sendGraphqlQuery(endpoints[endpoints.default], introspectionQuery)
   const globalTypes: SubgraphType[] = graphqlSchema.data.__schema.types
   const queryType = globalTypes.find((type) => type.name === 'Query') // fields has all queries
 

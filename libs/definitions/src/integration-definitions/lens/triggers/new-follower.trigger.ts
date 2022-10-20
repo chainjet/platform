@@ -1,6 +1,6 @@
 import { RunResponse } from '@app/definitions/definition'
 import { OperationTrigger } from '@app/definitions/operation-trigger'
-import { fetchGraphqlQuery as sendGraphqlQuery } from '@app/definitions/utils/subgraph.utils'
+import { sendGraphqlQuery } from '@app/definitions/utils/subgraph.utils'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { JSONSchema7 } from 'json-schema'
 
@@ -18,6 +18,7 @@ export class NewFollowerTrigger extends OperationTrigger {
       profileId: {
         title: 'Profile ID',
         type: 'string',
+        description: 'A Lens profile ID (e.g. 0x012cd6)',
       },
     },
   }

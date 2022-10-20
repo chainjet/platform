@@ -1,6 +1,6 @@
 import { RunResponse } from '@app/definitions/definition'
 import { OperationTrigger } from '@app/definitions/operation-trigger'
-import { fetchGraphqlQuery } from '@app/definitions/utils/subgraph.utils'
+import { sendGraphqlQuery } from '@app/definitions/utils/subgraph.utils'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { JSONSchema7 } from 'json-schema'
 
@@ -18,6 +18,7 @@ export class NewPostTrigger extends OperationTrigger {
       profileId: {
         title: 'Profile ID',
         type: 'string',
+        description: 'A Lens profile ID (e.g. 0x012cd6)',
       },
     },
   }
@@ -170,7 +171,7 @@ export class NewPostTrigger extends OperationTrigger {
         }
       }
     `
-    const res = await fetchGraphqlQuery('https://api.lens.dev/', query)
+    const res = await sendGraphqlQuery('https://api.lens.dev/', query)
     if (!res?.data?.publications?.items.length) {
       throw new Error(res.errors?.[0]?.message ?? 'Bad response from lens')
     }
