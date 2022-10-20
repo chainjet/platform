@@ -170,6 +170,16 @@ export class RunnerService {
       return
     }
 
+    // store refreshed credentials
+    if (accountCredential && runResponse.refreshedCredentials) {
+      this.accountCredentialService.updateOne(accountCredential.id, {
+        credentialInputs: {
+          ...accountCredential.credentials,
+          ...runResponse.refreshedCredentials,
+        },
+      })
+    }
+
     const triggerItems = extractTriggerItems(integrationTrigger.idKey, runResponse.outputs)
     const triggerIds = triggerItems.map((item) => item.id.toString())
 
@@ -371,6 +381,16 @@ export class RunnerService {
       )
       this.logger.error(`Run WorkflowAction ${workflowAction.id} failed with error ${error}`)
       return
+    }
+
+    // store refreshed credentials
+    if (accountCredential && runResponse.refreshedCredentials) {
+      this.accountCredentialService.updateOne(accountCredential.id, {
+        credentialInputs: {
+          ...accountCredential.credentials,
+          ...runResponse.refreshedCredentials,
+        },
+      })
     }
 
     // learn schema response at integration or workflow level

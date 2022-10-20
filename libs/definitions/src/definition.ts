@@ -54,6 +54,7 @@ export interface RunResponse {
   condition?: boolean
   sleepUntil?: Date
   store?: Record<string, any>
+  refreshedCredentials?: Record<string, any>
 }
 
 export type GetAsyncSchemasProps = OperationRunOptions & {
