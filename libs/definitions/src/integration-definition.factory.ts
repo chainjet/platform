@@ -45,6 +45,7 @@ import { GraphqlDefinition } from './integration-definitions/graphql.definition'
 import { GumroadDefinition } from './integration-definitions/gumroad.definition'
 import { HetznerCloudDefinition } from './integration-definitions/hetzner-cloud.definition'
 import { HttpDefinition } from './integration-definitions/http.definition'
+import { LensDefinition } from './integration-definitions/lens/lens.definition'
 import { ListsDefinition } from './integration-definitions/lists/list.definition'
 import { LogicDefinition } from './integration-definitions/logic.definition'
 import { MailchimpMarketingDefinition } from './integration-definitions/mailchimp-marketing.definition'
@@ -115,6 +116,7 @@ export class IntegrationDefinitionFactory {
     'hetzner-cloud': HetznerCloudDefinition,
     http: HttpDefinition,
     // kubernetes: KubernetesDefinition,
+    lens: LensDefinition,
     // linode: LinodeDefinition,
     lists: ListsDefinition,
     logic: LogicDefinition,

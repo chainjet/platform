@@ -198,6 +198,12 @@ export const OpenApiUtils = {
               },
             },
           }
+        } else if (securityScheme.scheme === 'custom') {
+          return {
+            authType: IntegrationAuthType.custom,
+            securitySchema: this.applySecuritySchemeExtensions(securityScheme),
+            securitySchemeKey: key,
+          }
         }
         return {
           authType: IntegrationAuthType.http,
