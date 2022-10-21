@@ -564,6 +564,11 @@ type WorkflowActionsConnection {
   edges: [WorkflowActionEdge!]!
 }
 
+type BlockchainTransaction {
+  chainId: Float!
+  hash: String!
+}
+
 type WorkflowRunAction {
   id: ID!
   createdAt: DateTime!
@@ -603,6 +608,7 @@ type WorkflowRun {
   operationsUsed: Int!
   errorMessage: String
   errorResponse: String
+  transactions: [BlockchainTransaction!]
 }
 
 """Specifies who started the workflow run"""

@@ -6,6 +6,7 @@ import { EntityRef } from '../../../../../libs/common/src/decorators/entity-ref.
 import { Reference } from '../../../../../libs/common/src/typings/mongodb'
 import { User } from '../../users/entities/user'
 import { Workflow } from '../../workflows/entities/workflow'
+import { BlockchainTransaction } from './blockchain-transaction'
 import { WorkflowRunAction } from './workflow-run-action'
 import { WorkflowRunStartedByOptions } from './workflow-run-started-by-options'
 import { WorkflowRunStatus } from './workflow-run-status'
@@ -48,4 +49,8 @@ export class WorkflowRun extends BaseEntity {
   @Field({ nullable: true })
   @prop()
   errorResponse: string
+
+  @Field(() => [BlockchainTransaction], { nullable: true })
+  @prop({ type: Object, default: [] })
+  transactions?: BlockchainTransaction[]
 }

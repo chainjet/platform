@@ -364,7 +364,12 @@ export class RunnerService {
           email: user.email,
         },
       })
-      await this.workflowRunService.markActionAsCompleted(userId, workflowRun._id, workflowRunAction)
+      await this.workflowRunService.markActionAsCompleted(
+        userId,
+        workflowRun._id,
+        workflowRunAction,
+        runResponse.transactions,
+      )
     } catch (e) {
       const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
       let error = definition.parseError(e)

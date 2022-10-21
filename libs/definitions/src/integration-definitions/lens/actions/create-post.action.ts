@@ -1,6 +1,7 @@
 import { RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { sendGraphqlQuery } from '@app/definitions/utils/subgraph.utils'
+import { ChainId } from '@blockchain/blockchain/types/ChainId'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import Arweave from 'arweave'
 import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
@@ -143,6 +144,12 @@ export class CreatePostAction extends OperationOffChain {
         txId: res.data.createPostViaDispatcher.txId,
       },
       refreshedCredentials,
+      transactions: [
+        {
+          chainId: ChainId.POLYGON,
+          hash: res.data.createPostViaDispatcher.txHash,
+        },
+      ],
     }
   }
 }

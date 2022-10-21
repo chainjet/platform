@@ -1,4 +1,5 @@
 import { BaseService } from '@app/common/base/base.service'
+import { ChainId } from '@blockchain/blockchain/types/ChainId'
 import { Injectable, Logger } from '@nestjs/common'
 import { mongoose, ReturnModelType } from '@typegoose/typegoose'
 import { ObjectId } from 'bson'
@@ -143,6 +144,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     userId: ObjectId,
     workflowRunId: ObjectId,
     workflowRunAction: WorkflowRunAction,
+    transactions?: Array<{ hash: string; chainId: ChainId }>,
   ): Promise<void> {
     await this.update(
       { _id: workflowRunId, 'actionRuns._id': workflowRunAction._id },
@@ -152,6 +154,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
           'actionRuns.$.finishedAt': Date.now(),
         },
         $inc: { operationsUsed: 1 },
+        ...(transactions ? { $push: { transactions: { $each: transactions } } } : {}),
       },
     )
     await this.userService.incrementOperationsUsed(userId)
