@@ -577,6 +577,7 @@ type WorkflowRunAction {
   operationName: String!
   status: WorkflowRunStatus!
   finishedAt: DateTime
+  transactions: [BlockchainTransaction!]
 }
 
 """Status of a workflow run (running, completed or failed)"""
@@ -608,7 +609,6 @@ type WorkflowRun {
   operationsUsed: Int!
   errorMessage: String
   errorResponse: String
-  transactions: [BlockchainTransaction!]
 }
 
 """Specifies who started the workflow run"""

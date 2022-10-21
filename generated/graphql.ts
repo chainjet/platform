@@ -990,6 +990,7 @@ export interface WorkflowRunAction {
     operationName: string;
     status: WorkflowRunStatus;
     finishedAt?: Nullable<DateTime>;
+    transactions?: Nullable<BlockchainTransaction[]>;
 }
 
 export interface WorkflowRunTrigger {
@@ -1013,7 +1014,6 @@ export interface WorkflowRun {
     operationsUsed: number;
     errorMessage?: Nullable<string>;
     errorResponse?: Nullable<string>;
-    transactions?: Nullable<BlockchainTransaction[]>;
 }
 
 export interface WorkflowRunEdge {

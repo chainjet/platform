@@ -152,9 +152,9 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
         $set: {
           'actionRuns.$.status': WorkflowRunStatus.completed,
           'actionRuns.$.finishedAt': Date.now(),
+          'actionRuns.$.transactions': transactions,
         },
         $inc: { operationsUsed: 1 },
-        ...(transactions ? { $push: { transactions: { $each: transactions } } } : {}),
       },
     )
     await this.userService.incrementOperationsUsed(userId)

@@ -5,6 +5,7 @@ import { BaseEntity } from '../../../../../libs/common/src/base/base-entity'
 import { EntityRef } from '../../../../../libs/common/src/decorators/entity-ref.decorator'
 import { Reference } from '../../../../../libs/common/src/typings/mongodb'
 import { WorkflowAction } from '../../workflow-actions/entities/workflow-action'
+import { BlockchainTransaction } from './blockchain-transaction'
 import { WorkflowRunStatus } from './workflow-run-status'
 
 @ObjectType()
@@ -29,4 +30,8 @@ export class WorkflowRunAction extends BaseEntity {
   @Field({ nullable: true })
   @prop()
   finishedAt: Date
+
+  @Field(() => [BlockchainTransaction], { nullable: true })
+  @prop({ type: Object })
+  transactions?: BlockchainTransaction[]
 }
