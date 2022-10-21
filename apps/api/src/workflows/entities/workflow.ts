@@ -34,7 +34,11 @@ export class WorkflowAuthorizer extends OwnedAuthorizer<Workflow> {}
 @Authorize<Workflow>(WorkflowAuthorizer)
 @EntityRef('owner', () => User)
 @EntityRef('trigger', () => WorkflowTrigger, { nullable: true, relationName: '.workflow' })
-@EntityConnection('actions', () => WorkflowAction, { nullable: true, relationName: '.workflow' })
+@EntityConnection('actions', () => WorkflowAction, {
+  nullable: true,
+  relationName: '.workflow',
+  defaultResultSize: 40,
+})
 export class Workflow extends BaseEntity {
   @FilterableField(() => ID)
   @prop({ ref: User, required: true, index: true })
