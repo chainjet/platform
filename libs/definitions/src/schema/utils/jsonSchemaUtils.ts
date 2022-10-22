@@ -60,6 +60,18 @@ export function removeDeprecatedProperties(schema: JSONSchema7 & { deprecated?: 
   return applySchemaChangeRecursively(schema, removeDeprecatedProperties)
 }
 
+export function removeDuplicatedEnumValues(schema: JSONSchema7): JSONSchema7 | undefined {
+  if (schema.properties) {
+    for (const [propKey, property] of Object.entries(schema.properties)) {
+      if (typeof property !== 'boolean' && property.type === 'string' && property.enum?.length) {
+        ;(schema.properties[propKey] as JSONSchema7).enum = [...new Set(property.enum)]
+      }
+    }
+  }
+
+  return applySchemaChangeRecursively(schema, removeDuplicatedEnumValues)
+}
+
 export function removeIgnoredProperties(schema: JSONSchema7 & { ['x-ignore']?: boolean }): JSONSchema7 | undefined {
   return removePropertiesWith(schema, 'x-ignore')
 }
@@ -126,6 +138,7 @@ export function prepareInputsJsonSchema(schema: JSONSchema7): JSONSchema7 {
   schema = removeSchemaMarkdown(schema)
   schema = removeDeprecatedProperties(schema) ?? {}
   schema = removeIgnoredProperties(schema) ?? {}
+  schema = removeDuplicatedEnumValues(schema) ?? {}
   schema = transformConstExtension(schema) ?? {}
   schema = transformAddTypeObject(schema) ?? {}
   schema = transformDynamicRefExtension(schema) ?? {}
