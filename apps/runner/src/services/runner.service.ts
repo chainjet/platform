@@ -247,10 +247,7 @@ export class RunnerService {
       true,
       createdItems.map((item) => item.id.toString()),
     )
-
-    if (runResponse.store !== workflowTrigger.store) {
-      await this.workflowTriggerService.updateOne(workflowTrigger.id, { store: runResponse.store })
-    }
+    await this.workflowTriggerService.updateOne(workflowTrigger.id, { lastId: triggerIds[0], store: runResponse.store })
 
     const triggerOutputsList = createdItems
       .reverse()
