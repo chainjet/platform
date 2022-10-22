@@ -184,7 +184,11 @@ export class RunnerService {
     const triggerIds = triggerItems.map((item) => item.id.toString())
 
     let newItems: Array<{ id: string | number; item: Record<string, unknown> }> = []
-    if (!opts?.ignoreUsedId) {
+
+    // if it's the first time running it, or it's a manual run, use only the latest item
+    if (!workflowTrigger.lastId || opts?.ignoreUsedId) {
+      newItems = triggerItems.slice(0, 1)
+    } else if (!opts?.ignoreUsedId) {
       const usedIds = await this.workflowUsedIdService.find({
         workflow: workflowTrigger.workflow,
         triggerId: { $in: triggerIds },
@@ -193,8 +197,6 @@ export class RunnerService {
       newItems = triggerItems.filter(
         (item) => !usedIds.find((usedId) => usedId.triggerId.toString() === item.id.toString()),
       )
-    } else {
-      newItems = triggerItems.slice(0, 1)
     }
 
     if (newItems.length === 0) {
