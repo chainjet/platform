@@ -54,7 +54,7 @@ export class RunnerService {
   async runWorkflowTriggerCheck(
     workflowTrigger: WorkflowTrigger,
     startedBy: WorkflowRunStartedByOptions,
-    opts?: { ignoreUsedId?: boolean },
+    opts?: { ignoreLastId?: boolean },
   ): Promise<void> {
     this.logger.debug(`Checking for trigger ${workflowTrigger.id}`)
 
@@ -185,18 +185,26 @@ export class RunnerService {
 
     let newItems: Array<{ id: string | number; item: Record<string, unknown> }> = []
 
-    // if it's the first time running it, or it's a manual run, use only the latest item
-    if (!workflowTrigger.lastId || opts?.ignoreUsedId) {
-      newItems = triggerItems.slice(0, 1)
-    } else if (!opts?.ignoreUsedId) {
+    if (workflowTrigger.lastId && !opts?.ignoreLastId) {
+      const lastItemIndex = triggerIds.indexOf(workflowTrigger.lastId?.toString())
+
+      // filter out items older than lastId
+      if (lastItemIndex === -1) {
+        newItems = triggerItems
+      } else {
+        newItems = triggerItems.slice(0, lastItemIndex)
+      }
+
+      // filter out used ids
       const usedIds = await this.workflowUsedIdService.find({
         workflow: workflowTrigger.workflow,
-        triggerId: { $in: triggerIds },
+        triggerId: { $in: newItems.map((item) => item.id.toString()) },
       })
-
-      newItems = triggerItems.filter(
+      newItems = newItems.filter(
         (item) => !usedIds.find((usedId) => usedId.triggerId.toString() === item.id.toString()),
       )
+    } else {
+      newItems = triggerItems.slice(0, 1)
     }
 
     if (newItems.length === 0) {
