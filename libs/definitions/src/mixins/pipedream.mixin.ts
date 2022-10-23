@@ -297,11 +297,20 @@ function mapPipedreamPropertyToJsonSchemaParam(
     if (Array.isArray(prop.options)) {
       // if the options are all strings, we can use enum, otherwise we need to use oneOf
       if (prop.options.every((option) => typeof option === 'string')) {
-        schema.enum = prop.options
+        if (schema.type === 'array') {
+          ;(schema.items as SchemaObject).enum = prop.options
+        } else {
+          schema.enum = prop.options
+        }
+      } else if (schema.type === 'array') {
+        ;(schema.items as SchemaObject).oneOf = prop.options.map((option) => ({
+          title: option.label,
+          const: option.value,
+        }))
       } else {
         schema.oneOf = prop.options.map((option) => ({
           title: option.label,
-          'x-const': option.value,
+          const: option.value,
         }))
       }
     } else if (typeof prop.options === 'function') {
