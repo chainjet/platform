@@ -223,7 +223,7 @@ export class OAuthStrategyFactory {
       throw e
     }
     if (accountCredential) {
-      await this.accountCredentialService.updateOne(accountCredential.id, { credentials })
+      await this.accountCredentialService.updateOne(accountCredential.id, { credentialInputs: credentials })
     }
     return credentials.accessToken
   }
