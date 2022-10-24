@@ -505,6 +505,13 @@ async function runPipedreamOperation(
   operation: PipedreamOperation,
   opts: OperationRunOptions,
 ): Promise<RunResponse | Observable<RunResponse>> {
+  operation = {
+    ...operation,
+    methods: {
+      ...operation.methods,
+    },
+  }
+
   const { bindData } = getBindData(operation, opts)
 
   if (operation.type === 'action') {
@@ -706,10 +713,17 @@ async function runPipedreamAfterCreateWorkflowTrigger(
   accountCredential: AccountCredential | null,
   update: (data: Partial<WorkflowTrigger>) => Promise<WorkflowTrigger>,
 ) {
-  const operation = operations.find(
+  let operation = operations.find(
     (operation) => operation.type === 'source' && operation.key === integrationTrigger.key,
   ) as PipedreamSource
   if (operation) {
+    operation = {
+      ...operation,
+      methods: {
+        ...operation.methods,
+      },
+    }
+
     const { bindData, hookId } = getBindData(operation, {
       operation: integrationTrigger,
       workflowOperation: workflowTrigger,
@@ -717,6 +731,13 @@ async function runPipedreamAfterCreateWorkflowTrigger(
       credentials: accountCredential?.credentials ?? {},
       accountCredential,
     })
+
+    for (const key of Object.keys(operation.methods ?? {})) {
+      operation.methods![key] = operation.methods![key].bind(bindData)
+      bindData[key] = operation.methods![key]
+    }
+    bindData['$emit'] = () => {}
+
     const tempStore = {}
     bindData.db = {
       get: (key: string) => tempStore[key],
@@ -746,10 +767,17 @@ async function runPipedreamAfterUpdateWorkflowTrigger(
   accountCredential: AccountCredential | null,
   update: (data: Partial<WorkflowTrigger>) => Promise<WorkflowTrigger>,
 ) {
-  const operation = operations.find(
+  let operation = operations.find(
     (operation) => operation.type === 'source' && operation.key === integrationTrigger.key,
   ) as PipedreamSource
   if (operation && operation.hooks?.activate) {
+    operation = {
+      ...operation,
+      methods: {
+        ...operation.methods,
+      },
+    }
+
     const { bindData } = getBindData(operation, {
       operation: integrationTrigger,
       workflowOperation: workflowTrigger,
@@ -757,6 +785,13 @@ async function runPipedreamAfterUpdateWorkflowTrigger(
       credentials: accountCredential?.credentials ?? {},
       accountCredential,
     })
+
+    for (const key of Object.keys(operation.methods ?? {})) {
+      operation.methods![key] = operation.methods![key].bind(bindData)
+      bindData[key] = operation.methods![key]
+    }
+    bindData['$emit'] = () => {}
+
     const tempStore = {
       ...(workflowTrigger?.store ?? {}),
     }
@@ -766,7 +801,7 @@ async function runPipedreamAfterUpdateWorkflowTrigger(
         tempStore[key] = value
       },
     }
-    await operation.hooks.activate.bind(bindData)()
+    await operation.hooks!.activate!.bind(bindData)()
     await update({ store: tempStore }) // TODO only if workflowTrigger.store != tempStore
   }
 }
@@ -777,10 +812,17 @@ async function runPipedreamAfterDeleteWorkflowTrigger(
   integrationTrigger: IntegrationTrigger,
   accountCredential: AccountCredential | null,
 ) {
-  const operation = operations.find(
+  let operation = operations.find(
     (operation) => operation.type === 'source' && operation.key === integrationTrigger.key,
   ) as PipedreamSource
   if (operation && operation.hooks?.deactivate) {
+    operation = {
+      ...operation,
+      methods: {
+        ...operation.methods,
+      },
+    }
+
     const { bindData } = getBindData(operation, {
       operation: integrationTrigger,
       workflowOperation: workflowTrigger,
@@ -788,6 +830,13 @@ async function runPipedreamAfterDeleteWorkflowTrigger(
       credentials: accountCredential?.credentials ?? {},
       accountCredential,
     })
+
+    for (const key of Object.keys(operation.methods ?? {})) {
+      operation.methods![key] = operation.methods![key].bind(bindData)
+      bindData[key] = operation.methods![key]
+    }
+    bindData['$emit'] = () => {}
+
     const tempStore = {
       ...(workflowTrigger?.store ?? {}),
     }
@@ -797,6 +846,6 @@ async function runPipedreamAfterDeleteWorkflowTrigger(
         tempStore[key] = value
       },
     }
-    await operation.hooks.deactivate.bind(bindData)()
+    await operation.hooks!.deactivate!.bind(bindData)()
   }
 }
