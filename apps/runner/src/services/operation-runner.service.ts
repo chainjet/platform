@@ -75,7 +75,7 @@ export class OperationRunnerService {
     // If the definition has its own run definition, use it
     const definitionRunOutputs = await this.runDefinitionWithRefreshCredentials(definition, opts)
     if (definitionRunOutputs && !isEmptyObj(definitionRunOutputs)) {
-      return this.convertObservableToRunResponse(definitionRunOutputs)
+      return definitionRunOutputs
     }
 
     return this.runOperation(definition, opts)
@@ -97,10 +97,7 @@ export class OperationRunnerService {
     // If the definition has its own run definition, use it
     const definitionRunOutputs = await this.runDefinitionWithRefreshCredentials(definition, opts)
     if (definitionRunOutputs && !isEmptyObj(definitionRunOutputs)) {
-      if ('outputs' in definitionRunOutputs) {
-        return definitionRunOutputs
-      }
-      return this.convertObservableToRunResponse(definitionRunOutputs)
+      return definitionRunOutputs
     }
 
     return this.runOperation(definition, opts)
@@ -255,9 +252,13 @@ export class OperationRunnerService {
   private async runDefinitionWithRefreshCredentials(
     definition: Definition,
     opts: OperationRunOptions,
-  ): Promise<RunResponse | Observable<RunResponse> | null> {
+  ): Promise<RunResponse | null> {
     try {
-      return await definition.run(opts)
+      const runResponse = await definition.run(opts)
+      if (runResponse) {
+        return await this.convertObservableToRunResponse(runResponse)
+      }
+      return runResponse
     } catch (e) {
       if (
         opts.integrationAccount &&
@@ -269,7 +270,11 @@ export class OperationRunnerService {
           opts.accountCredential,
           opts.credentials,
         )
-        return await definition.run(opts)
+        const res = await definition.run(opts)
+        if (res) {
+          return await this.convertObservableToRunResponse(res)
+        }
+        return res
       }
       throw e
     }
