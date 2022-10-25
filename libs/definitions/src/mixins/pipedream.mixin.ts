@@ -67,21 +67,21 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
 
     abstract getOperation(type: string, key: string): Promise<PipedreamOperation>
 
-    async afterCreateWorkflowTrigger(
+    async beforeCreateWorkflowTrigger(
       workflowTrigger: WorkflowTrigger,
       integrationTrigger: IntegrationTrigger,
       accountCredential: AccountCredential | null,
-      update: (data: Partial<WorkflowTrigger>) => Promise<WorkflowTrigger>,
-    ) {
-      await runPipedreamAfterCreateWorkflowTrigger(
+    ): Promise<WorkflowTrigger> {
+      return await runPipedreamBeforeCreateWorkflowTrigger(
+        this.integrationKey,
         await this.getOperations(),
         workflowTrigger,
         integrationTrigger,
         accountCredential,
-        update,
       )
     }
 
+    // TODO run before update
     async afterUpdateWorkflowTrigger(
       workflowTrigger: WorkflowTrigger,
       integrationTrigger: IntegrationTrigger,
@@ -89,6 +89,7 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
       update: (data: Partial<WorkflowTrigger>) => Promise<WorkflowTrigger>,
     ) {
       await runPipedreamAfterUpdateWorkflowTrigger(
+        this.integrationKey,
         await this.getOperations(),
         workflowTrigger,
         integrationTrigger,
@@ -97,12 +98,14 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
       )
     }
 
+    // TODO run before delete
     async afterDeleteWorkflowTrigger(
       workflowTrigger: WorkflowTrigger,
       integrationTrigger: IntegrationTrigger,
       accountCredential: AccountCredential | null,
     ) {
       await runPipedreamAfterDeleteWorkflowTrigger(
+        this.integrationKey,
         await this.getOperations(),
         workflowTrigger,
         integrationTrigger,
@@ -124,7 +127,7 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
       const operations = await this.getOperations()
       const operation = operations.find((a) => a.key === opts.operation.key)
       if (operation) {
-        return runPipedreamOperation(operation, opts)
+        return runPipedreamOperation(this.integrationKey, operation, opts)
       }
       return null
     }
@@ -138,13 +141,13 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
       const operation = operations.find((a) => a.key === opts.operation.key)
       if (operation) {
         console.log(`Workflow received for operation:`, operation.key)
-        await runPipedreamOperation(operation, opts)
+        await runPipedreamOperation(this.integrationKey, operation, opts)
       }
       return false
     }
 
     async getAsyncSchemas(operation: IntegrationAction | IntegrationTrigger) {
-      return getAsyncSchemasForPipedream(await this.getOperations(), operation)
+      return getAsyncSchemasForPipedream(this.integrationKey, await this.getOperations(), operation)
     }
 
     async getAdditionalAsyncSchema(
@@ -160,7 +163,7 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
         return {}
       }
 
-      const { bindData } = getBindData(pipedreamOperation, props)
+      const { bindData } = getBindData(this.integrationKey, pipedreamOperation, props)
       const additionalProps = await pipedreamOperation.additionalProps.bind(bindData)({})
 
       const additionalSchemas = {}
@@ -275,7 +278,7 @@ function mapPipedreamPropertyToJsonSchemaParam(
   }
 
   if ('description' in prop && prop.description) {
-    param.description = prop.description
+    param.description = prop.description?.replace(/pipedream/gi, 'ChainJet')
   }
 
   if ('default' in prop && prop.default) {
@@ -429,6 +432,7 @@ async function updatePipedreamSchemaBeforeInstall(
 }
 
 function getBindData(
+  integrationKey: string,
   operation: PipedreamOperation,
   opts: {
     operation: IntegrationAction | IntegrationTrigger
@@ -450,6 +454,7 @@ function getBindData(
   const $auth = {
     oauth_access_token: opts.credentials.accessToken,
     oauth_refresh_token: opts.credentials.refreshToken,
+    oauth_signer_uri: `${process.env.API_ENDPOINT}/account-credentials/oauth1-sign/${integrationKey}`,
     ...opts.credentials,
   }
 
@@ -502,6 +507,7 @@ function getBindData(
 }
 
 async function runPipedreamOperation(
+  integrationKey: string,
   operation: PipedreamOperation,
   opts: OperationRunOptions,
 ): Promise<RunResponse | Observable<RunResponse>> {
@@ -512,7 +518,7 @@ async function runPipedreamOperation(
     },
   }
 
-  const { bindData } = getBindData(operation, opts)
+  const { bindData } = getBindData(integrationKey, operation, opts)
 
   if (operation.type === 'action') {
     for (const key of Object.keys(operation.methods ?? {})) {
@@ -631,6 +637,7 @@ async function getPipedreamOperations(
 }
 
 function getAsyncSchemasForPipedream(
+  integrationKey: string,
   operations: PipedreamOperation[],
   integrationOperation: IntegrationAction | IntegrationTrigger,
 ) {
@@ -667,7 +674,7 @@ function getAsyncSchemasForPipedream(
           return {}
         }
 
-        const { bindData } = getBindData(pipedreamOperation, { ...props, inputs: propInputs })
+        const { bindData } = getBindData(integrationKey, pipedreamOperation, { ...props, inputs: propInputs })
         let items = await pipedreamProp.options.bind(bindData)({ page: 0, prevContext: {}, ...propInputs })
 
         // items can be an array or an object where the options keys hold the items array
@@ -706,13 +713,13 @@ function getAsyncSchemasForPipedream(
   }, {})
 }
 
-async function runPipedreamAfterCreateWorkflowTrigger(
+async function runPipedreamBeforeCreateWorkflowTrigger(
+  integrationKey: string,
   operations: PipedreamOperation[],
   workflowTrigger: WorkflowTrigger,
   integrationTrigger: IntegrationTrigger,
   accountCredential: AccountCredential | null,
-  update: (data: Partial<WorkflowTrigger>) => Promise<WorkflowTrigger>,
-) {
+): Promise<WorkflowTrigger> {
   let operation = operations.find(
     (operation) => operation.type === 'source' && operation.key === integrationTrigger.key,
   ) as PipedreamSource
@@ -724,7 +731,7 @@ async function runPipedreamAfterCreateWorkflowTrigger(
       },
     }
 
-    const { bindData, hookId } = getBindData(operation, {
+    const { bindData, hookId } = getBindData(integrationKey, operation, {
       operation: integrationTrigger,
       workflowOperation: workflowTrigger,
       inputs: workflowTrigger.inputs ?? {},
@@ -746,7 +753,7 @@ async function runPipedreamAfterCreateWorkflowTrigger(
       },
     }
     if (hookId) {
-      await update({ hookId })
+      workflowTrigger.hookId = hookId
     }
     if (operation.hooks?.deploy) {
       await operation.hooks.deploy.bind(bindData)()
@@ -755,12 +762,14 @@ async function runPipedreamAfterCreateWorkflowTrigger(
       await operation.hooks.activate.bind(bindData)()
     }
     if (!isEmptyObj(tempStore)) {
-      await update({ store: tempStore })
+      workflowTrigger.store = tempStore
     }
   }
+  return workflowTrigger
 }
 
 async function runPipedreamAfterUpdateWorkflowTrigger(
+  integrationKey: string,
   operations: PipedreamOperation[],
   workflowTrigger: WorkflowTrigger,
   integrationTrigger: IntegrationTrigger,
@@ -778,7 +787,7 @@ async function runPipedreamAfterUpdateWorkflowTrigger(
       },
     }
 
-    const { bindData } = getBindData(operation, {
+    const { bindData } = getBindData(integrationKey, operation, {
       operation: integrationTrigger,
       workflowOperation: workflowTrigger,
       inputs: workflowTrigger.inputs ?? {},
@@ -807,6 +816,7 @@ async function runPipedreamAfterUpdateWorkflowTrigger(
 }
 
 async function runPipedreamAfterDeleteWorkflowTrigger(
+  integrationKey: string,
   operations: PipedreamOperation[],
   workflowTrigger: WorkflowTrigger,
   integrationTrigger: IntegrationTrigger,
@@ -823,7 +833,7 @@ async function runPipedreamAfterDeleteWorkflowTrigger(
       },
     }
 
-    const { bindData } = getBindData(operation, {
+    const { bindData } = getBindData(integrationKey, operation, {
       operation: integrationTrigger,
       workflowOperation: workflowTrigger,
       inputs: workflowTrigger.inputs ?? {},

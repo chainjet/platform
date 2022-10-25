@@ -1,9 +1,24 @@
-import { Controller, Get, Logger, Next, Param, Req, Res, Session, UseGuards } from '@nestjs/common'
+import {
+  Controller,
+  Get,
+  Logger,
+  Next,
+  NotFoundException,
+  Param,
+  Post,
+  Req,
+  Res,
+  Session,
+  UseGuards,
+} from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { mongoose } from '@typegoose/typegoose'
+import { IntegrationAccountService } from 'apps/api/src/integration-accounts/services/integration-account.service'
+import { IntegrationService } from 'apps/api/src/integrations/services/integration.service'
 import CryptoJS from 'crypto-js'
 import { NextFunction, Request, Response } from 'express'
 import _ from 'lodash'
+import { OAuth } from 'oauth'
 import passport from 'passport'
 import path from 'path'
 import { AccountCredentialService } from '../../../account-credentials/services/account-credentials.service'
@@ -17,6 +32,8 @@ export class ExternalOAuthController {
 
   constructor(
     private readonly oauthStrategyFactory: OAuthStrategyFactory,
+    private readonly integrationService: IntegrationService,
+    private readonly integrationAccountService: IntegrationAccountService,
     private readonly accountCredentialService: AccountCredentialService,
     private readonly configService: ConfigService,
   ) {}
@@ -139,5 +156,34 @@ export class ExternalOAuthController {
         res.sendFile(path.resolve('apps/api/src/auth/external-oauth/views/oauth-response.html'))
       }
     })
+  }
+
+  @Post('oauth1-sign/:key')
+  async signOauthCredentials(@Param('key') key: string, @Req() req: Request) {
+    const { token, requestData } = req.body ?? {}
+    const integration = await this.integrationService.findOne({ key })
+    if (!integration || !integration.integrationAccount) {
+      throw new NotFoundException(`Integration with key ${key} not found`)
+    }
+    const integrationAccount = await this.integrationAccountService.findById(
+      integration.integrationAccount._id.toString(),
+    )
+    if (!integrationAccount) {
+      throw new NotFoundException(`Integration account with key ${key} not found`)
+    }
+    const consumerKey = process.env[`${integrationAccount.key.toUpperCase()}_CONSUMER_KEY`] ?? ''
+    const consumerSecret = process.env[`${integrationAccount.key.toUpperCase()}_CONSUMER_SECRET`] ?? ''
+    const requestTokenURL = integrationAccount.securitySchema?.['x-requestTokenURL']
+    const accessTokenURL = integrationAccount.securitySchema?.['x-accessTokenURL']
+    const signatureMethod = integrationAccount.securitySchema?.['x-signatureMethod']
+    return new OAuth(
+      requestTokenURL,
+      accessTokenURL,
+      consumerKey,
+      consumerSecret,
+      '1.0',
+      '',
+      signatureMethod,
+    ).authHeader(requestData.url.toString(), token.key, token.secret, requestData.method)
   }
 }

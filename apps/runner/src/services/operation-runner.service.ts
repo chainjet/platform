@@ -260,10 +260,7 @@ export class OperationRunnerService {
       }
       return runResponse
     } catch (e) {
-      if (
-        opts.integrationAccount &&
-        [IntegrationAuthType.oauth1, IntegrationAuthType.oauth2].includes(opts.integrationAccount.authType)
-      ) {
+      if (opts.integrationAccount && [IntegrationAuthType.oauth2].includes(opts.integrationAccount.authType)) {
         // refresh credentials and try again
         opts.credentials.accessToken = await this.oauthStrategyFactory.refreshOauth2AccessToken(
           opts.integrationAccount.key,

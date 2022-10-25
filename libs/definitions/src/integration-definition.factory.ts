@@ -66,6 +66,7 @@ import { SleepDefinition } from './integration-definitions/sleep.definition'
 import { SnowtraceDefinition } from './integration-definitions/snowtrace.definition'
 import { StatuspageDefinition } from './integration-definitions/statuspage.definition'
 import { TelegramBotDefinition } from './integration-definitions/telegram-bot.definition'
+import { TwitterDefinition } from './integration-definitions/twitter.definition'
 import { UniswapV2Definition } from './integration-definitions/uniswapv2.definition'
 import { UniswapV3Definition } from './integration-definitions/uniswapv3.definition'
 import { WebhookDefinition } from './integration-definitions/webhook.definition'
@@ -145,6 +146,7 @@ export class IntegrationDefinitionFactory {
     'telegram-bot': TelegramBotDefinition,
     trello: TrelloDefinition,
     // twilio: TwilioDefinition,
+    twitter: TwitterDefinition,
     uniswapv2: UniswapV2Definition,
     uniswapv3: UniswapV3Definition,
     webhook: WebhookDefinition,
