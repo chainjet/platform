@@ -452,8 +452,8 @@ function getBindData(
   }
 
   const $auth = {
-    oauth_access_token: opts.credentials.accessToken,
-    oauth_refresh_token: opts.credentials.refreshToken,
+    oauth_access_token: opts.credentials.accessToken ?? opts.credentials.token,
+    oauth_refresh_token: opts.credentials.refreshToken ?? opts.credentials.tokenSecret,
     oauth_signer_uri: `${process.env.API_ENDPOINT}/account-credentials/oauth1-sign/${integrationKey}`,
     ...opts.credentials,
   }
