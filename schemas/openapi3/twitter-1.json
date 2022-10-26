@@ -43,6 +43,18 @@
         "x-actionOnly": true,
         "x-learnResponseWorkflow": true,
         "summary": "",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The text of your status update, typically up to 140 characters. Note: In order to comply with Twitter’s terms of service, this text will have all @mentions removed. Please refer to our docs for more details.",
+              "x-ui:widget": "textarea"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
