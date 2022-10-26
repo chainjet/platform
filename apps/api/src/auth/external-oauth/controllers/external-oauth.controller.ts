@@ -151,7 +151,7 @@ export class ExternalOAuthController {
       })
 
       if (session.redirectTo && session.redirectTo.startsWith('/')) {
-        res.redirect(session.redirectTo)
+        res.redirect(`${process.env.FRONTEND_ENDPOINT}${session.redirectTo}`)
       } else {
         res.sendFile(path.resolve('apps/api/src/auth/external-oauth/views/oauth-response.html'))
       }
