@@ -248,12 +248,12 @@ export class GoogleApisDefinition extends MultiIntegrationDefinition {
       // },
 
       // G Suite
-      {
-        integrationKey: 'gmail',
-        integrationVersion: '1',
-        schemaUrl:
-          'https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/googleapis.com/gmail/v1/openapi.yaml',
-      },
+      // {
+      //   integrationKey: 'gmail',
+      //   integrationVersion: '1',
+      //   schemaUrl:
+      //     'https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/googleapis.com/gmail/v1/openapi.yaml',
+      // },
       // {
       //   integrationKey: 'google-apps-activity',
       //   integrationVersion: '1',
