@@ -257,7 +257,11 @@ export class RunnerService {
       true,
       createdItems.map((item) => item.id.toString()),
     )
-    await this.workflowTriggerService.updateOne(workflowTrigger.id, { lastId: triggerIds[0], store: runResponse.store })
+    await this.workflowTriggerService.updateOne(workflowTrigger.id, {
+      lastId: triggerIds[0],
+      lastItem: triggerItems[0]?.item ?? {},
+      store: runResponse.store,
+    })
 
     const triggerOutputsList = createdItems
       .reverse()
@@ -371,6 +375,7 @@ export class RunnerService {
           email: user.email,
         },
       })
+      await this.workflowActionService.updateById(workflowAction._id, { lastItem: runResponse.outputs ?? {} })
       await this.workflowRunService.markActionAsCompleted(
         userId,
         workflowRun._id,

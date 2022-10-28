@@ -61,6 +61,9 @@ export class WorkflowAction extends BaseEntity {
   @prop({ _id: false, type: WorkflowNextAction, default: [] })
   nextActions: WorkflowNextAction[]
 
+  @jsonProp()
+  lastItem?: Record<string, any>
+
   @Field(() => ID, { nullable: true })
   @prop({ ref: AccountCredential })
   credentials?: Reference<AccountCredential>

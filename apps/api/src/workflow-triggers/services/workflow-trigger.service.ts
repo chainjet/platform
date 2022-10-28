@@ -122,6 +122,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
           workflowTrigger.schemaResponse = generateSchemaFromObject(triggerItems[0].item)
         }
       }
+      workflowTrigger.lastItem = triggerItems[0]?.item ?? {}
     }
 
     const createdEntity = await super.createOne(workflowTrigger)
@@ -245,6 +246,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       if (triggerItems.length && !isEmptyObj(triggerItems[0].item) && integrationTrigger.learnResponseWorkflow) {
         workflowTrigger.schemaResponse = generateSchemaFromObject(triggerItems[0].item)
       }
+      workflowTrigger.lastItem = triggerItems[0]?.item ?? {}
     }
 
     const updatedEntity = await super.updateOne(id, updatedWorkflowTrigger, opts)

@@ -88,6 +88,9 @@ export class WorkflowTrigger extends BaseEntity {
   @prop()
   lastId?: string
 
+  @jsonProp()
+  lastItem?: Record<string, any>
+
   @Field({ nullable: true })
   @prop({ index: true, sparse: true })
   hookId?: string
