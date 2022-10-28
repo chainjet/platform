@@ -2,6 +2,7 @@ import { RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { sendGraphqlQuery } from '@app/definitions/utils/subgraph.utils'
 import { ChainId } from '@blockchain/blockchain/types/ChainId'
+import { Logger } from '@nestjs/common'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import Arweave from 'arweave'
 import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
@@ -40,7 +41,9 @@ export class CreatePostAction extends OperationOffChain {
     },
   }
 
-  async run({ inputs, credentials }: OperationRunOptions): Promise<RunResponse> {
+  protected readonly logger = new Logger(CreatePostAction.name)
+
+  async run({ inputs, credentials, workflow }: OperationRunOptions): Promise<RunResponse> {
     if (!credentials?.refreshToken || !credentials?.profileId) {
       throw new Error('Authentication is expired, please connect the profile again')
     }
@@ -58,7 +61,7 @@ export class CreatePostAction extends OperationOffChain {
     const { imageUrl } = inputs
     let imageMimeType = imageUrl ? `image/${imageUrl.split('.').pop()}` : null
     if (!imageMimeType || ![3, 4].includes(imageMimeType.length)) {
-      imageMimeType = 'image/jpeg'
+      imageMimeType = imageUrl ? 'image/jpeg' : null
     }
 
     const data = {
@@ -108,6 +111,7 @@ export class CreatePostAction extends OperationOffChain {
     if (!refreshedCredentials) {
       throw new Error('Authentication is expired, please connect the profile again')
     }
+    this.logger.log(`Creating lens post: ${workflow?.id} ${profileId} ${fileUrl}`)
     const query = `
     mutation CreatePostViaDispatcher {
       createPostViaDispatcher(
@@ -136,7 +140,8 @@ export class CreatePostAction extends OperationOffChain {
       if (res?.errors?.[0]?.message) {
         throw new Error(res.errors[0].message)
       }
-      throw new Error('Failed to follow profile')
+      this.logger.error(`Failed to create lens post: ${workflow?.id} ${res?.errors ?? res?.data}`)
+      throw new Error(`Failed to post message: ${res?.errors ?? res?.data}`)
     }
     return {
       outputs: {
