@@ -20,7 +20,7 @@ import { WorkflowSchedulerService } from './services/workflow-scheduler.service'
     ScheduleModule.forRoot(),
     forwardRef(() => WorkflowTriggersModule),
     forwardRef(() => WorkflowRunsModule),
-    RunnerModule,
+    forwardRef(() => RunnerModule),
     BlockchainModule,
     IntegrationsModule,
     IntegrationTriggersModule,

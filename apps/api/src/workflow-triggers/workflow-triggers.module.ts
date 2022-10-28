@@ -29,7 +29,7 @@ import { WorkflowUsedIdService } from './services/workflow-used-id.service'
       dtos: [{ DTOClass: WorkflowTrigger }, { DTOClass: WorkflowUsedId }],
     }),
     AuthModule,
-    UsersModule, // required for GraphqlGuard
+    UsersModule,
     IntegrationsModule,
     IntegrationAccountsModule,
     IntegrationTriggersModule,
