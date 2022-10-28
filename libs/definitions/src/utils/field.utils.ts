@@ -62,3 +62,28 @@ export function parseUint256Type(input: string, name: string, usedVars: VarEvm[]
   }
   return { value, args }
 }
+
+/**
+ * Returns an array of the interpolated variables on the inputs
+ * See field.utils.spec.ts for examples
+ */
+export function getInterpolatedVariables(inputs: Record<string, any>): string[] {
+  const vars: string[] = []
+  for (const input of Object.values(inputs)) {
+    if (typeof input === 'object') {
+      vars.push(...getInterpolatedVariables(input))
+    } else if (typeof input === 'string') {
+      const matches = (input ?? '').toString().matchAll(/{{\s*([^}]+)\s*}}/g)
+      for (const match of matches) {
+        const varMatches = match[1].matchAll(/[a-zA-Z_][a-zA-Z0-9_.]*/g)
+        for (const varMatch of varMatches) {
+          const varName = varMatch ? varMatch[0].trim() : null
+          if (varName && varName.includes('.') && !vars.includes(varName)) {
+            vars.push(varName)
+          }
+        }
+      }
+    }
+  }
+  return vars
+}

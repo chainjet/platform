@@ -28,3 +28,7 @@ export function convertKeys<T extends Record<string, unknown>>(object: T, fn: (k
     return acc
   }, {}) as T
 }
+
+export function isObjectId(id: string): boolean {
+  return /^[0-9a-fA-F]{24}$/.test(id)
+}

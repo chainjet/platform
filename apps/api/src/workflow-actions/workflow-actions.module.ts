@@ -1,6 +1,7 @@
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { forwardRef, Module } from '@nestjs/common'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
+import { RunnerModule } from 'apps/runner/src/runner.module'
 import { DefinitionsModule } from '../../../../libs/definitions/src/definitions.module'
 import { AccountCredentialsModule } from '../account-credentials/account-credentials.module'
 import { AuthModule } from '../auth/auth.module'
@@ -39,6 +40,7 @@ import { WorkflowActionService } from './services/workflow-action.service'
     WorkflowsModule,
     forwardRef(() => WorkflowTriggersModule),
     forwardRef(() => AccountCredentialsModule),
+    forwardRef(() => RunnerModule),
     DefinitionsModule,
   ],
   providers: [WorkflowActionResolver, WorkflowActionService, WorkflowActionAuthorizer],

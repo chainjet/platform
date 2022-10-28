@@ -1190,6 +1190,7 @@ export interface IMutation {
     updateManyWorkflowActions(input: UpdateManyWorkflowActionsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
     deleteOneWorkflowAction(input: DeleteOneWorkflowActionInput): WorkflowActionDeleteResponse | Promise<WorkflowActionDeleteResponse>;
     deleteManyWorkflowActions(input: DeleteManyWorkflowActionsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
+    testWorkflowAction(id: string): WorkflowAction | Promise<WorkflowAction>;
     createOneWorkflowTrigger(input: CreateOneWorkflowTriggerInput): WorkflowTrigger | Promise<WorkflowTrigger>;
     createManyWorkflowTriggers(input: CreateManyWorkflowTriggersInput): WorkflowTrigger[] | Promise<WorkflowTrigger[]>;
     updateOneWorkflowTrigger(input: UpdateOneWorkflowTriggerInput): WorkflowTrigger | Promise<WorkflowTrigger>;
