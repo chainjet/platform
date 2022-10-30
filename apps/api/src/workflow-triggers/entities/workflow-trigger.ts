@@ -88,6 +88,7 @@ export class WorkflowTrigger extends BaseEntity {
   @prop()
   lastId?: string
 
+  @Field(() => GraphQLJSONObject, { nullable: true })
   @jsonProp()
   lastItem?: Record<string, any>
 

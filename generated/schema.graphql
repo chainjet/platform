@@ -425,6 +425,7 @@ type WorkflowAction {
   name: String!
   inputs: JSONObject
   nextActions: [WorkflowNextAction!]
+  lastItem: JSONObject
   credentials: AccountCredential
   schemaResponse: JSONObject
   type: OperationType!
@@ -443,6 +444,7 @@ type WorkflowTrigger {
   schedule: JSONObject
   enabled: Boolean!
   maxConsecutiveFailures: Int!
+  lastItem: JSONObject
   hookId: String
   schemaResponse: JSONObject
 }
@@ -678,6 +680,7 @@ type WorkflowTriggerDeleteResponse {
   schedule: JSONObject
   enabled: Boolean
   maxConsecutiveFailures: Int
+  lastItem: JSONObject
   hookId: String
   schemaResponse: JSONObject
 }
@@ -708,6 +711,7 @@ type WorkflowActionDeleteResponse {
   name: String
   inputs: JSONObject
   nextActions: [WorkflowNextAction!]
+  lastItem: JSONObject
   credentials: ID
   schemaResponse: JSONObject
   type: OperationType

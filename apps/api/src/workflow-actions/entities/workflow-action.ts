@@ -61,6 +61,7 @@ export class WorkflowAction extends BaseEntity {
   @prop({ _id: false, type: WorkflowNextAction, default: [] })
   nextActions: WorkflowNextAction[]
 
+  @Field(() => GraphQLJSONObject, { nullable: true })
   @jsonProp()
   lastItem?: Record<string, any>
 

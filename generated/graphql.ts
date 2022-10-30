@@ -886,6 +886,7 @@ export interface WorkflowAction {
     name: string;
     inputs?: Nullable<JSONObject>;
     nextActions?: Nullable<WorkflowNextAction[]>;
+    lastItem?: Nullable<JSONObject>;
     credentials?: Nullable<AccountCredential>;
     schemaResponse?: Nullable<JSONObject>;
     type: OperationType;
@@ -904,6 +905,7 @@ export interface WorkflowTrigger {
     schedule?: Nullable<JSONObject>;
     enabled: boolean;
     maxConsecutiveFailures: number;
+    lastItem?: Nullable<JSONObject>;
     hookId?: Nullable<string>;
     schemaResponse?: Nullable<JSONObject>;
 }
@@ -1058,6 +1060,7 @@ export interface WorkflowTriggerDeleteResponse {
     schedule?: Nullable<JSONObject>;
     enabled?: Nullable<boolean>;
     maxConsecutiveFailures?: Nullable<number>;
+    lastItem?: Nullable<JSONObject>;
     hookId?: Nullable<string>;
     schemaResponse?: Nullable<JSONObject>;
 }
@@ -1082,6 +1085,7 @@ export interface WorkflowActionDeleteResponse {
     name?: Nullable<string>;
     inputs?: Nullable<JSONObject>;
     nextActions?: Nullable<WorkflowNextAction[]>;
+    lastItem?: Nullable<JSONObject>;
     credentials?: Nullable<string>;
     schemaResponse?: Nullable<JSONObject>;
     type?: Nullable<OperationType>;
