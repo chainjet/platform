@@ -25,7 +25,7 @@ export class WebhookDefinition extends SingleIntegrationDefinition {
 
   async getDynamicSchemaOutputs(req: Request): Promise<Record<string, unknown>> {
     return {
-      queryParams: req.query ?? {},
+      query: req.query ?? {},
       body: req.body ?? {},
       headers: req.headers ?? {},
       httpMethod: req.method,
