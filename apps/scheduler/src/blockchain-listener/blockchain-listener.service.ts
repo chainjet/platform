@@ -129,6 +129,10 @@ export class BlockchainListenerService {
               workflowTrigger,
               rootActions.length > 0,
             )
+            await this.workflowTriggerService.updateById(workflowTrigger.id, {
+              lastId: log.transactionHash,
+              lastItem: outputs,
+            })
             void this.runnerService.runWorkflowActions(rootActions, [hookOutputs], workflowRun)
           } catch (e) {
             this.logger.error(`Error running workflow ${workflow.id}: ${e?.message}`)

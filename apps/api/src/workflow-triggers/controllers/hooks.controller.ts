@@ -69,6 +69,9 @@ export class HooksController {
         run.workflowTrigger,
         rootActions.length > 0,
       )
+      await this.workflowTriggerService.updateById(run.workflowTrigger._id, {
+        lastItem: run.outputs,
+      })
       void this.runnerService.runWorkflowActions(rootActions, [hookOutputs], workflowRun)
     }
 
@@ -172,6 +175,9 @@ export class HooksController {
       workflowTrigger,
       rootActions.length > 0,
     )
+    await this.workflowTriggerService.updateById(workflowTrigger._id, {
+      lastItem: triggerOutputs,
+    })
     void this.runnerService.runWorkflowActions(rootActions, [hookOutputs], workflowRun)
 
     return {
