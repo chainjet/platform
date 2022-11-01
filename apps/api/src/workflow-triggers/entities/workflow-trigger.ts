@@ -24,12 +24,10 @@ export class WorkflowTriggerAuthorizer extends OwnedAuthorizer<WorkflowTrigger> 
 @OwnedEntity()
 @Authorize<WorkflowTrigger>(WorkflowTriggerAuthorizer)
 @modelOptions({ options: { allowMixed: Severity.ALLOW } })
-@EntityRef('owner', () => User)
 @EntityRef('workflow', () => Workflow)
 @EntityRef('integrationTrigger', () => IntegrationTrigger)
 @EntityRef('credentials', () => AccountCredential, { nullable: true })
 export class WorkflowTrigger extends BaseEntity {
-  @FilterableField(() => ID)
   @prop({ ref: User, required: true, index: true })
   readonly owner!: Reference<User>
 

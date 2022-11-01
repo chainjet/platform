@@ -20,10 +20,8 @@ export class AccountCredentialAuthorizer extends OwnedAuthorizer<AccountCredenti
 @ObjectType()
 @OwnedEntity()
 @Authorize<AccountCredential>(AccountCredentialAuthorizer)
-@EntityRef('owner', () => User)
 @EntityRef('integrationAccount', () => IntegrationAccount)
 export class AccountCredential extends BaseEntity {
-  @FilterableField(() => ID)
   @prop({ ref: User, required: true, index: true })
   readonly owner!: Reference<User>
 

@@ -8,6 +8,7 @@ import { Injectable } from '@nestjs/common'
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql'
 import { Authorize, FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { pre, prop } from '@typegoose/typegoose'
+import { getAddress, isAddress } from 'ethers/lib/utils'
 import { GraphQLBoolean, GraphQLString } from 'graphql'
 import { GraphQLJSONObject } from 'graphql-type-json'
 import { JSONSchema7 } from 'json-schema'
@@ -34,7 +35,6 @@ export class WorkflowAuthorizer extends OwnedAuthorizerWithCustomPrivacy<Workflo
 @ObjectType()
 @OwnedEntity()
 @Authorize<Workflow>(WorkflowAuthorizer)
-@EntityRef('owner', () => User)
 @EntityRef('trigger', () => WorkflowTrigger, { nullable: true, relationName: '.workflow' })
 @EntityConnection('actions', () => WorkflowAction, {
   nullable: true,
@@ -42,9 +42,12 @@ export class WorkflowAuthorizer extends OwnedAuthorizerWithCustomPrivacy<Workflo
   defaultResultSize: 40,
 })
 export class Workflow extends BaseEntity {
-  @FilterableField(() => ID)
   @prop({ ref: User, required: true, index: true })
   readonly owner: Reference<User>
+
+  @Field(() => GraphQLString)
+  @prop({ required: true, validate: isAddress, set: (addr) => addr && getAddress(addr) })
+  ownerAddress: string
 
   @FilterableField()
   @prop({ required: true })

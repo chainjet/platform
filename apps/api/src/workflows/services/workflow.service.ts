@@ -3,6 +3,7 @@ import { BadRequestException, Injectable, Logger, NotFoundException } from '@nes
 import { DeepPartial, DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
+import { UserService } from '../../users/services/user.service'
 import { Workflow } from '../entities/workflow'
 
 @Injectable()
@@ -10,7 +11,10 @@ export class WorkflowService extends BaseService<Workflow> {
   protected readonly logger = new Logger(WorkflowService.name)
   static instance: WorkflowService
 
-  constructor(@InjectModel(Workflow) protected readonly model: ReturnModelType<typeof Workflow>) {
+  constructor(
+    @InjectModel(Workflow) protected readonly model: ReturnModelType<typeof Workflow>,
+    protected userService: UserService,
+  ) {
     super(model)
     WorkflowService.instance = this
   }
@@ -20,6 +24,12 @@ export class WorkflowService extends BaseService<Workflow> {
       throw new BadRequestException()
     }
 
+    const user = await this.userService.findById(record.owner.toString())
+    if (!user) {
+      throw new NotFoundException(`User ${record.owner} not found.`)
+    }
+
+    record.ownerAddress = user.address
     return await super.createOne(record)
   }
 

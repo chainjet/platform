@@ -24,12 +24,10 @@ export class WorkflowActionAuthorizer extends OwnedAuthorizer<WorkflowAction> {}
 @ObjectType()
 @OwnedEntity()
 @Authorize<WorkflowAction>(WorkflowActionAuthorizer)
-@EntityRef('owner', () => User)
 @EntityRef('workflow', () => Workflow)
 @EntityRef('integrationAction', () => IntegrationAction)
 @EntityRef('credentials', () => AccountCredential, { nullable: true })
 export class WorkflowAction extends BaseEntity {
-  @FilterableField(() => ID)
   @prop({ ref: User, required: true, index: true })
   readonly owner!: Reference<User>
 

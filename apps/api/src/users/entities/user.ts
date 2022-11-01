@@ -1,18 +1,20 @@
 import { BaseEntity } from '@app/common/base/base-entity'
 import { Field, InputType, Int, ObjectType } from '@nestjs/graphql'
-import { FilterableField } from '@ptc-org/nestjs-query-graphql'
+import { Authorize, FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
 import { IsEmail } from 'class-validator'
 import { getAddress, isAddress } from 'ethers/lib/utils'
+import { UserAuthorizer } from '../resolvers/user.authorizer'
 
 @ObjectType()
+@Authorize<User>(UserAuthorizer)
 export class User extends BaseEntity {
   @prop({
     required: true,
     unique: true,
     sparse: true, // TODO remove after migration
     validate: isAddress,
-    set: getAddress,
+    set: (addr) => addr && getAddress(addr),
   })
   address: string
 

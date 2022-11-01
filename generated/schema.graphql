@@ -403,7 +403,6 @@ type User {
 type AccountCredential {
   id: ID!
   createdAt: DateTime!
-  owner: User!
   integrationAccount: IntegrationAccount!
   name: String!
   fields: JSONObject
@@ -418,7 +417,6 @@ type WorkflowNextAction {
 type WorkflowAction {
   id: ID!
   createdAt: DateTime!
-  owner: User!
   workflow: Workflow!
   isRootAction: Boolean!
   integrationAction: IntegrationAction!
@@ -435,7 +433,6 @@ type WorkflowAction {
 type WorkflowTrigger {
   id: ID!
   createdAt: DateTime!
-  owner: User!
   workflow: Workflow!
   integrationTrigger: IntegrationTrigger!
   name: String!
@@ -452,7 +449,7 @@ type WorkflowTrigger {
 type Workflow {
   id: ID!
   createdAt: DateTime!
-  owner: User!
+  ownerAddress: String!
   name: String!
   state: String
   runOnFailure: ID
@@ -479,7 +476,6 @@ input WorkflowActionFilter {
   or: [WorkflowActionFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
-  owner: IDFilterComparison
   workflow: IDFilterComparison
   isRootAction: BooleanFieldComparison
 }
@@ -493,7 +489,6 @@ input WorkflowActionSort {
 enum WorkflowActionSortFields {
   id
   createdAt
-  owner
   workflow
   isRootAction
 }
@@ -525,7 +520,7 @@ type CompileWorkflow {
 type WorkflowDeleteResponse {
   id: ID
   createdAt: DateTime
-  owner: ID
+  ownerAddress: String
   name: String
   state: String
   runOnFailure: ID
@@ -673,7 +668,6 @@ type WorkflowRunActionConnection {
 type WorkflowTriggerDeleteResponse {
   id: ID
   createdAt: DateTime
-  owner: ID
   workflow: ID
   integrationTrigger: ID
   name: String
@@ -706,7 +700,6 @@ type WorkflowTriggerConnection {
 type WorkflowActionDeleteResponse {
   id: ID
   createdAt: DateTime
-  owner: ID
   workflow: ID
   isRootAction: Boolean
   integrationAction: ID
@@ -747,7 +740,6 @@ type WorkflowNextActionConnection {
 type AccountCredentialDeleteResponse {
   id: ID
   createdAt: DateTime
-  owner: ID
   integrationAccount: ID
   name: String
   fields: JSONObject
@@ -973,7 +965,6 @@ input AccountCredentialFilter {
   or: [AccountCredentialFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
-  owner: IDFilterComparison
   integrationAccount: IDFilterComparison
 }
 
@@ -986,7 +977,6 @@ input AccountCredentialSort {
 enum AccountCredentialSortFields {
   id
   createdAt
-  owner
   integrationAccount
 }
 
@@ -1071,7 +1061,6 @@ input WorkflowFilter {
   or: [WorkflowFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
-  owner: IDFilterComparison
   name: StringFieldComparison
 }
 
@@ -1084,7 +1073,6 @@ input WorkflowSort {
 enum WorkflowSortFields {
   id
   createdAt
-  owner
   name
 }
 
@@ -1109,7 +1097,6 @@ input WorkflowTriggerFilter {
   or: [WorkflowTriggerFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
-  owner: IDFilterComparison
   workflow: IDFilterComparison
 }
 
@@ -1122,7 +1109,6 @@ input WorkflowTriggerSort {
 enum WorkflowTriggerSortFields {
   id
   createdAt
-  owner
   workflow
 }
 
@@ -1310,7 +1296,6 @@ input AccountCredentialUpdateFilter {
   or: [AccountCredentialUpdateFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
-  owner: IDFilterComparison
   integrationAccount: IDFilterComparison
 }
 
@@ -1329,7 +1314,6 @@ input AccountCredentialDeleteFilter {
   or: [AccountCredentialDeleteFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
-  owner: IDFilterComparison
   integrationAccount: IDFilterComparison
 }
 
@@ -1376,7 +1360,6 @@ input WorkflowUpdateFilter {
   or: [WorkflowUpdateFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
-  owner: IDFilterComparison
   name: StringFieldComparison
 }
 
@@ -1395,7 +1378,6 @@ input WorkflowDeleteFilter {
   or: [WorkflowDeleteFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
-  owner: IDFilterComparison
   name: StringFieldComparison
 }
 
@@ -1447,7 +1429,6 @@ input WorkflowActionUpdateFilter {
   or: [WorkflowActionUpdateFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
-  owner: IDFilterComparison
   workflow: IDFilterComparison
   isRootAction: BooleanFieldComparison
 }
@@ -1467,7 +1448,6 @@ input WorkflowActionDeleteFilter {
   or: [WorkflowActionDeleteFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
-  owner: IDFilterComparison
   workflow: IDFilterComparison
   isRootAction: BooleanFieldComparison
 }
@@ -1522,7 +1502,6 @@ input WorkflowTriggerUpdateFilter {
   or: [WorkflowTriggerUpdateFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
-  owner: IDFilterComparison
   workflow: IDFilterComparison
 }
 
@@ -1541,6 +1520,5 @@ input WorkflowTriggerDeleteFilter {
   or: [WorkflowTriggerDeleteFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
-  owner: IDFilterComparison
   workflow: IDFilterComparison
 }

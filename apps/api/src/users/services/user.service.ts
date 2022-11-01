@@ -32,7 +32,7 @@ export class UserService extends BaseService<User> {
   }
 
   async updateOne(id: string, record: DeepPartial<User>, opts?: UpdateOneOptions<User>): Promise<User> {
-    const user = await this.findById(id)
+    const user = await this.findById(id, opts)
     if (!user) {
       throw new NotFoundException()
     }
