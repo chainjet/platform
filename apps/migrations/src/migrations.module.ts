@@ -13,6 +13,7 @@ import { WorkflowsModule } from 'apps/api/src/workflows/workflows.module'
 import { mongoForRoot } from '../../../libs/common/src/utils/mongodb'
 import { MigrationsService } from './migrations.service'
 import { Migration0002 } from './migrations/0002-remove-integration'
+import { Migration0003 } from './migrations/0003-add-workflow-owner-address'
 
 @Module({
   imports: [
@@ -30,6 +31,6 @@ import { Migration0002 } from './migrations/0002-remove-integration'
     WorkflowRunsModule,
   ],
   controllers: [],
-  providers: [MigrationsService, Migration0002],
+  providers: [MigrationsService, Migration0002, Migration0003],
 })
 export class MigrationsModule {}
