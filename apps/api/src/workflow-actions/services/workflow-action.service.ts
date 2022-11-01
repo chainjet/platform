@@ -117,7 +117,7 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     const workflowAction = await definition.beforeCreateWorkflowAction(data, integrationAction, accountCredential)
 
-    this.logger.debug(`Creating record: ${JSON.stringify(workflowAction)}`)
+    this.logger.debug(`Creating workflow action: ${JSON.stringify(workflowAction)}`)
     const createdWorkflowAction = await super.createOne(workflowAction)
     await definition.afterCreateWorkflowAction(createdWorkflowAction, integrationAction, accountCredential, (data) =>
       super.updateOne(createdWorkflowAction.id, data),

@@ -1,5 +1,7 @@
+import { OwnedAuthorizer } from '@app/common/base/owned.authorizer'
+import { Injectable } from '@nestjs/common'
 import { Field, ID, Int, ObjectType } from '@nestjs/graphql'
-import { FilterableField } from '@ptc-org/nestjs-query-graphql'
+import { Authorize, FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
 import { BaseEntity } from '../../../../../libs/common/src/base/base-entity'
 import { EntityRef } from '../../../../../libs/common/src/decorators/entity-ref.decorator'
@@ -11,7 +13,12 @@ import { WorkflowRunStartedByOptions } from './workflow-run-started-by-options'
 import { WorkflowRunStatus } from './workflow-run-status'
 import { WorkflowRunTrigger } from './workflow-run-trigger'
 
+@Injectable()
+export class WorkflowRunAuthorizer extends OwnedAuthorizer<WorkflowRun> {}
+
+// OwnedEntity is not needed because workflow runs cannot be created by the user
 @ObjectType()
+@Authorize<WorkflowRun>(WorkflowRunAuthorizer)
 @EntityRef('workflow', () => Workflow)
 export class WorkflowRun extends BaseEntity {
   @prop({ ref: User, required: true, index: true })

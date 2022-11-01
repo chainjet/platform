@@ -1,5 +1,5 @@
 import { BaseEntity } from '@app/common/base/base-entity'
-import { OwnedAuthorizer } from '@app/common/base/owned.authorizer'
+import { OwnedAuthorizerWithCustomPrivacy } from '@app/common/base/owned.authorizer'
 import { EntityConnection, EntityRef } from '@app/common/decorators/entity-ref.decorator'
 import { OwnedEntity } from '@app/common/decorators/owned-entity.decorator'
 import { jsonProp } from '@app/common/decorators/props/json-prop.decorator'
@@ -22,7 +22,9 @@ enum WorkflowState {
 }
 
 @Injectable()
-export class WorkflowAuthorizer extends OwnedAuthorizer<Workflow> {}
+export class WorkflowAuthorizer extends OwnedAuthorizerWithCustomPrivacy<Workflow> {
+  sharableRelations = ['integration', 'integrationAction', 'integrationTrigger', 'trigger', 'actions']
+}
 
 @pre<Workflow>('save', function () {
   if (this.isModified('state')) {
@@ -75,6 +77,9 @@ export class Workflow extends BaseEntity {
   @Field(() => GraphQLBoolean, { nullable: true })
   @prop()
   isTemplate?: boolean
+
+  @prop()
+  isPublic?: boolean
 
   @Field(() => GraphQLJSONObject, { nullable: true })
   @jsonProp()
