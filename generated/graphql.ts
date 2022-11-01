@@ -540,6 +540,7 @@ export interface CreateOneWorkflowInput {
 export interface CreateWorkflowInput {
     name: string;
     runOnFailure?: Nullable<string>;
+    isPublic?: Nullable<boolean>;
 }
 
 export interface CreateManyWorkflowsInput {
@@ -554,6 +555,7 @@ export interface UpdateOneWorkflowInput {
 export interface UpdateWorkflowInput {
     name?: Nullable<string>;
     runOnFailure?: Nullable<string>;
+    isPublic?: Nullable<boolean>;
 }
 
 export interface UpdateManyWorkflowsInput {
@@ -920,6 +922,7 @@ export interface Workflow {
     address?: Nullable<string>;
     network?: Nullable<string>;
     isTemplate?: Nullable<boolean>;
+    isPublic: boolean;
     templateSchema?: Nullable<JSONObject>;
     trigger?: Nullable<WorkflowTrigger>;
     actions?: Nullable<WorkflowActionsConnection>;
@@ -956,6 +959,7 @@ export interface WorkflowDeleteResponse {
     address?: Nullable<string>;
     network?: Nullable<string>;
     isTemplate?: Nullable<boolean>;
+    isPublic?: Nullable<boolean>;
     templateSchema?: Nullable<JSONObject>;
 }
 

@@ -78,8 +78,9 @@ export class Workflow extends BaseEntity {
   @prop()
   isTemplate?: boolean
 
+  @Field(() => GraphQLBoolean, { defaultValue: false })
   @prop()
-  isPublic?: boolean
+  isPublic?: boolean = false
 
   @Field(() => GraphQLJSONObject, { nullable: true })
   @jsonProp()
@@ -93,6 +94,9 @@ export class CreateWorkflowInput {
 
   @Field(() => ID, { nullable: true })
   runOnFailure?: Reference<Workflow>
+
+  @Field(() => GraphQLBoolean, { defaultValue: false })
+  isPublic?: boolean = false
 }
 
 @InputType()
@@ -102,4 +106,7 @@ export class UpdateWorkflowInput {
 
   @Field(() => ID, { nullable: true })
   runOnFailure?: Reference<Workflow>
+
+  @Field(() => GraphQLBoolean, { defaultValue: false })
+  isPublic?: boolean = false
 }

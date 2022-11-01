@@ -459,6 +459,7 @@ type Workflow {
   address: String
   network: String
   isTemplate: Boolean
+  isPublic: Boolean!
   templateSchema: JSONObject
   trigger: WorkflowTrigger
   actions(
@@ -531,6 +532,7 @@ type WorkflowDeleteResponse {
   address: String
   network: String
   isTemplate: Boolean
+  isPublic: Boolean
   templateSchema: JSONObject
 }
 
@@ -1339,6 +1341,7 @@ input CreateOneWorkflowInput {
 input CreateWorkflowInput {
   name: String!
   runOnFailure: ID
+  isPublic: Boolean = false
 }
 
 input CreateManyWorkflowsInput {
@@ -1357,6 +1360,7 @@ input UpdateOneWorkflowInput {
 input UpdateWorkflowInput {
   name: String
   runOnFailure: ID
+  isPublic: Boolean = false
 }
 
 input UpdateManyWorkflowsInput {

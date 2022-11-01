@@ -29,6 +29,7 @@ export class OwnedAuthorizer<T extends BaseEntity> implements CustomAuthorizer<T
 @Injectable()
 export abstract class OwnedAuthorizerWithCustomPrivacy<T extends BaseEntity> extends OwnedAuthorizer<T> {
   abstract sharableRelations: string[]
+  ownerRelationName = 'owner'
 
   async authorize(context: GqlContext, authorizationContext?: AuthorizationContext): Promise<Filter<T>> {
     const filter = await super.authorize(context, authorizationContext)
@@ -52,12 +53,12 @@ export abstract class OwnedAuthorizerWithCustomPrivacy<T extends BaseEntity> ext
     const filter = await this.authorize(context, authorizationContext)
     const filterHasPrivacy = '$or' in filter && (filter as any).$or.some((item) => item.isPublic)
     if (filterHasPrivacy) {
-      if (relationName === 'owner') {
+      if (relationName === this.ownerRelationName) {
         return {
           address: { eq: context.req.user.address },
-        } as unknown as Filter<T>
+        } as Filter<unknown>
       }
-      return { owner: { eq: new Types.ObjectId(context.req.user.id.toString()) } } as unknown as Filter<T>
+      return { owner: { eq: new Types.ObjectId(context.req.user.id.toString()) } } as Filter<unknown>
     }
     return {}
   }
