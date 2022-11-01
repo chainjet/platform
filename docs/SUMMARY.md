@@ -2,3 +2,6 @@
 
 * [Introduction](README.md)
 * [Workflows](workflows.md)
+
+## Integrations
+* [Telegram](integrations/telegram.md)
