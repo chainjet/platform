@@ -15,3 +15,13 @@ Create a Telegram bot (BotFahter), configure it and add it to the group. Follow 
 ![](https://i.imgur.com/LKyMRgX.jpeg)
 
 4 - To add the bot to your Telegram group, go to ADD MEMBER and look for your bot with the user name you've given it and add it.
+
+### How to get the **CHAT ID**
+
+If the Telegram group is **public**, simply add @ to the beginning of the group name found in the link to join. Example: if the link is: t.me/chainjet the ID will be @chainjet.
+
+![](https://i.imgur.com/gNe4ZgP.jpg)
+
+For **private groups**, you must use the telegram bot, [RawDataBot](https://t.me/raw_data_bot). Search for that user in telegram and share the group invitation link. The bot will return a message with the ID, just copy it and paste in the corresponding field in your workflow.
+
+![](https://33333.cdn.cke-cs.com/kSW7V9NHUXugvhoQeFaf/animations/c52286d8a1b25c3cb0fa21c994a5dab2dd80eda22a314fb6.gif)
