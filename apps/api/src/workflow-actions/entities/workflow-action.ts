@@ -1,5 +1,5 @@
 import { BaseEntity } from '@app/common/base/base-entity'
-import { OwnedAuthorizer } from '@app/common/base/owned.authorizer'
+import { OwnedAuthorizerWithCustomPrivacy } from '@app/common/base/owned.authorizer'
 import { EntityRef } from '@app/common/decorators/entity-ref.decorator'
 import { OwnedEntity } from '@app/common/decorators/owned-entity.decorator'
 import { jsonProp } from '@app/common/decorators/props/json-prop.decorator'
@@ -19,7 +19,9 @@ import { Workflow } from '../../workflows/entities/workflow'
 import { WorkflowNextAction } from './workflow-next-action'
 
 @Injectable()
-export class WorkflowActionAuthorizer extends OwnedAuthorizer<WorkflowAction> {}
+export class WorkflowActionAuthorizer extends OwnedAuthorizerWithCustomPrivacy<WorkflowAction> {
+  sharableRelations = ['integration', 'integrationAction', 'integrationTrigger', 'trigger', 'actions']
+}
 
 @ObjectType()
 @OwnedEntity()
