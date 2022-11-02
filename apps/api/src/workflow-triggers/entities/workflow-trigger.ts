@@ -23,7 +23,6 @@ export class WorkflowTriggerAuthorizer extends OwnedAuthorizer<WorkflowTrigger> 
 @ObjectType()
 @OwnedEntity()
 @Authorize<WorkflowTrigger>(WorkflowTriggerAuthorizer)
-@modelOptions({ options: { allowMixed: Severity.ALLOW } })
 @EntityRef('workflow', () => Workflow)
 @EntityRef('integrationTrigger', () => IntegrationTrigger)
 @EntityRef('credentials', () => AccountCredential, { nullable: true })
