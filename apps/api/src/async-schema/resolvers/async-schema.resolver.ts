@@ -55,10 +55,7 @@ export class AsyncSchemaResolver {
       throw new NotFoundException(`User with id ${userId} not found`)
     }
 
-    const integration = await this.integrationService.findOne({
-      _id: integrationId,
-      owner: userId,
-    })
+    const integration = await this.integrationService.findOne({ _id: integrationId })
     if (!integration) {
       throw new NotFoundException('Integration not found')
     }
