@@ -430,22 +430,6 @@ type WorkflowAction {
   address: String!
 }
 
-type WorkflowTrigger {
-  id: ID!
-  createdAt: DateTime!
-  workflow: Workflow!
-  integrationTrigger: IntegrationTrigger!
-  name: String!
-  inputs: JSONObject
-  credentials: AccountCredential
-  schedule: JSONObject
-  enabled: Boolean!
-  maxConsecutiveFailures: Int!
-  lastItem: JSONObject
-  hookId: String
-  schemaResponse: JSONObject
-}
-
 type Workflow {
   id: ID!
   createdAt: DateTime!
@@ -491,6 +475,22 @@ enum WorkflowActionSortFields {
   createdAt
   workflow
   isRootAction
+}
+
+type WorkflowTrigger {
+  id: ID!
+  createdAt: DateTime!
+  workflow: Workflow!
+  integrationTrigger: IntegrationTrigger!
+  name: String!
+  inputs: JSONObject
+  credentials: AccountCredential
+  schedule: JSONObject
+  enabled: Boolean!
+  maxConsecutiveFailures: Int!
+  lastItem: JSONObject
+  hookId: String
+  schemaResponse: JSONObject
 }
 
 type AuthToken {

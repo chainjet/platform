@@ -2,7 +2,7 @@ import { BaseService } from '@app/common/base/base.service'
 import { isEmptyObj } from '@app/common/utils/object.utils'
 import { IntegrationDefinitionFactory } from '@app/definitions'
 import { generateSchemaFromObject } from '@app/definitions/schema/utils/jsonSchemaUtils'
-import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
+import { BadRequestException, forwardRef, Inject, Injectable, Logger, NotFoundException } from '@nestjs/common'
 import { DeepPartial, DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { mongoose, ReturnModelType } from '@typegoose/typegoose'
 import { OperationRunnerService } from 'apps/runner/src/services/operation-runner.service'
@@ -34,11 +34,12 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
   constructor(
     @InjectModel(WorkflowTrigger) protected readonly model: ReturnModelType<typeof WorkflowTrigger>,
     protected userService: UserService,
-    protected workflowService: WorkflowService,
+    @Inject(forwardRef(() => WorkflowService)) protected workflowService: WorkflowService,
     protected accountCredentialService: AccountCredentialService,
     protected integrationService: IntegrationService,
     protected integrationAccountService: IntegrationAccountService,
     protected integrationTriggerService: IntegrationTriggerService,
+    @Inject(forwardRef(() => IntegrationDefinitionFactory))
     protected integrationDefinitionFactory: IntegrationDefinitionFactory,
     protected operationRunnerService: OperationRunnerService,
   ) {

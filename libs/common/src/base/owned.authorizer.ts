@@ -51,7 +51,7 @@ export abstract class OwnedAuthorizerWithCustomPrivacy<T extends BaseEntity> ext
     }
 
     const filter = await this.authorize(context, authorizationContext)
-    const filterHasPrivacy = '$or' in filter && (filter as any).$or.some((item) => item.isPublic)
+    const filterHasPrivacy = 'or' in filter && (filter as any).or.some((item) => item.isPublic)
     if (filterHasPrivacy) {
       if (relationName === this.ownerRelationName) {
         return {

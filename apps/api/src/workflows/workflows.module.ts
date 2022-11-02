@@ -4,6 +4,8 @@ import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { AuthModule } from '../auth/auth.module'
 import { CompilerModule } from '../compiler/compiler.module'
 import { UsersModule } from '../users/users.module'
+import { WorkflowActionsModule } from '../workflow-actions/workflow-actions.module'
+import { WorkflowTriggersModule } from '../workflow-triggers/workflow-triggers.module'
 import { Workflow, WorkflowAuthorizer } from './entities/workflow'
 import { WorkflowResolver } from './resolvers/workflow.resolver'
 import { WorkflowService } from './services/workflow.service'
@@ -17,6 +19,8 @@ import { WorkflowService } from './services/workflow.service'
     AuthModule, // required for GraphqlGuard
     UsersModule, // required for GraphqlGuard
     forwardRef(() => CompilerModule),
+    forwardRef(() => WorkflowTriggersModule),
+    forwardRef(() => WorkflowActionsModule),
   ],
   providers: [WorkflowResolver, WorkflowService, WorkflowAuthorizer],
   exports: [WorkflowService],

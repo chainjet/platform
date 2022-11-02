@@ -2,8 +2,11 @@ import { BaseService } from '@app/common/base/base.service'
 import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
 import { DeepPartial, DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
+import { ObjectId } from 'mongodb'
 import { InjectModel } from 'nestjs-typegoose'
 import { UserService } from '../../users/services/user.service'
+import { WorkflowActionService } from '../../workflow-actions/services/workflow-action.service'
+import { WorkflowTriggerService } from '../../workflow-triggers/services/workflow-trigger.service'
 import { Workflow } from '../entities/workflow'
 
 @Injectable()
@@ -13,6 +16,8 @@ export class WorkflowService extends BaseService<Workflow> {
 
   constructor(
     @InjectModel(Workflow) protected readonly model: ReturnModelType<typeof Workflow>,
+    protected workflowTriggerService: WorkflowTriggerService,
+    protected workflowActionService: WorkflowActionService,
     protected userService: UserService,
   ) {
     super(model)
@@ -47,9 +52,9 @@ export class WorkflowService extends BaseService<Workflow> {
     return await super.updateOne(id, record, opts)
   }
 
-  // TODO delete workflow trigger and actions. We could use a queue to avoid circular dependency
-  //      and to remove everything on the background.
   async deleteOne(id: string, opts?: DeleteOneOptions<Workflow>): Promise<Workflow> {
+    await this.workflowTriggerService.deleteOneNative({ workflow: new ObjectId(id) })
+    await this.workflowActionService.deleteManyNative({ workflow: new ObjectId(id) })
     return await super.deleteOne(id, opts)
   }
 

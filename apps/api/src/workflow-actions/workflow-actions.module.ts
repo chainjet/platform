@@ -37,7 +37,7 @@ import { WorkflowActionService } from './services/workflow-action.service'
     AuthModule,
     IntegrationsModule,
     IntegrationActionsModule,
-    WorkflowsModule,
+    forwardRef(() => WorkflowsModule),
     forwardRef(() => WorkflowTriggersModule),
     forwardRef(() => AccountCredentialsModule),
     forwardRef(() => RunnerModule),

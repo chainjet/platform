@@ -34,7 +34,7 @@ import { WorkflowUsedIdService } from './services/workflow-used-id.service'
     IntegrationAccountsModule,
     IntegrationTriggersModule,
     forwardRef(() => AccountCredentialsModule),
-    WorkflowsModule,
+    forwardRef(() => WorkflowsModule),
     forwardRef(() => WorkflowActionsModule),
     forwardRef(() => WorkflowRunsModule),
     DefinitionsModule,

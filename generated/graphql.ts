@@ -877,22 +877,6 @@ export interface WorkflowAction {
     address: string;
 }
 
-export interface WorkflowTrigger {
-    id: string;
-    createdAt: DateTime;
-    workflow: Workflow;
-    integrationTrigger: IntegrationTrigger;
-    name: string;
-    inputs?: Nullable<JSONObject>;
-    credentials?: Nullable<AccountCredential>;
-    schedule?: Nullable<JSONObject>;
-    enabled: boolean;
-    maxConsecutiveFailures: number;
-    lastItem?: Nullable<JSONObject>;
-    hookId?: Nullable<string>;
-    schemaResponse?: Nullable<JSONObject>;
-}
-
 export interface Workflow {
     id: string;
     createdAt: DateTime;
@@ -907,6 +891,22 @@ export interface Workflow {
     templateSchema?: Nullable<JSONObject>;
     trigger?: Nullable<WorkflowTrigger>;
     actions?: Nullable<WorkflowActionsConnection>;
+}
+
+export interface WorkflowTrigger {
+    id: string;
+    createdAt: DateTime;
+    workflow: Workflow;
+    integrationTrigger: IntegrationTrigger;
+    name: string;
+    inputs?: Nullable<JSONObject>;
+    credentials?: Nullable<AccountCredential>;
+    schedule?: Nullable<JSONObject>;
+    enabled: boolean;
+    maxConsecutiveFailures: number;
+    lastItem?: Nullable<JSONObject>;
+    hookId?: Nullable<string>;
+    schemaResponse?: Nullable<JSONObject>;
 }
 
 export interface AuthToken {

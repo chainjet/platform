@@ -1,7 +1,7 @@
 import { BaseService } from '@app/common/base/base.service'
 import { ObjectID } from '@app/common/utils/mongodb'
 import { OperationType } from '@app/definitions/types/OperationType'
-import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
+import { BadRequestException, forwardRef, Inject, Injectable, Logger, NotFoundException } from '@nestjs/common'
 import { DeepPartial, DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { isAddress } from 'ethers/lib/utils'
@@ -25,9 +25,10 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     @InjectModel(WorkflowAction) protected readonly model: ReturnModelType<typeof WorkflowAction>,
     protected integrationService: IntegrationService,
     protected integrationActionService: IntegrationActionService,
-    protected workflowService: WorkflowService,
+    @Inject(forwardRef(() => WorkflowService)) protected workflowService: WorkflowService,
     protected workflowTriggerService: WorkflowTriggerService,
     protected accountCredentialService: AccountCredentialService,
+    @Inject(forwardRef(() => IntegrationDefinitionFactory))
     protected integrationDefinitionFactory: IntegrationDefinitionFactory,
   ) {
     super(model)
