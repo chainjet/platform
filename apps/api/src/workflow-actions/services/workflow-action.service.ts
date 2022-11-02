@@ -49,6 +49,8 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
       throw new NotFoundException('Workflow not found')
     }
 
+    record.isPublic = workflow.isPublic
+
     // Verify credentials exists and the user has access to it
     let accountCredential: AccountCredential | null = null
     if (data.credentials) {

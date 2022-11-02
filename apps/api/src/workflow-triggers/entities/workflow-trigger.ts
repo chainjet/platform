@@ -7,7 +7,7 @@ import { Reference } from '@app/common/typings/mongodb'
 import { Injectable } from '@nestjs/common'
 import { Field, ID, InputType, Int, ObjectType } from '@nestjs/graphql'
 import { Authorize, FilterableField } from '@ptc-org/nestjs-query-graphql'
-import { modelOptions, prop, Severity } from '@typegoose/typegoose'
+import { prop } from '@typegoose/typegoose'
 import { GraphQLJSONObject } from 'graphql-type-json'
 import { JSONSchema7 } from 'json-schema'
 import { Schema } from 'mongoose'
@@ -100,6 +100,10 @@ export class WorkflowTrigger extends BaseEntity {
   // generic store to save data relative to the workflow trigger like ids fetched
   @jsonProp()
   store?: Record<string, any>
+
+  // it will always be the same as workflow.isPublic
+  @prop()
+  isPublic?: boolean
 }
 
 @InputType()

@@ -82,6 +82,10 @@ export class WorkflowAction extends BaseEntity {
   @Field(() => GraphQLString)
   @prop()
   address?: string
+
+  // it will always be the same as workflow.isPublic
+  @prop()
+  isPublic?: boolean
 }
 
 @InputType()

@@ -57,6 +57,8 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       throw new NotFoundException(`Workflow ${record.workflow} not found`)
     }
 
+    record.isPublic = workflow.isPublic
+
     // Verify credentials exists and the user has access to it
     let accountCredential: AccountCredential | null = null
     if (record.credentials) {

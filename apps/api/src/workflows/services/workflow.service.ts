@@ -49,6 +49,12 @@ export class WorkflowService extends BaseService<Workflow> {
       throw new BadRequestException('Run On Failure cannot be set with the same workflow ID.')
     }
 
+    // propagate isPublic to the trigger and all actions
+    if (record.isPublic !== undefined && record.isPublic !== workflow.isPublic) {
+      await this.workflowTriggerService.updateOneNative({ workflow: new ObjectId(id) }, { isPublic: record.isPublic })
+      await this.workflowActionService.updateManyNative({ workflow: new ObjectId(id) }, { isPublic: record.isPublic })
+    }
+
     return await super.updateOne(id, record, opts)
   }
 

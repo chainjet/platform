@@ -134,6 +134,10 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
     return this.model.updateOne(conditions, query).exec()
   }
 
+  updateManyNative(conditions: FilterQuery<new () => T>, query: UpdateQuery<new () => T>): Promise<UpdateResult> {
+    return this.model.updateMany(conditions, query).exec()
+  }
+
   async deleteOneNative(conditions: FilterQuery<new () => T>): Promise<void> {
     await this.model.deleteOne(conditions).exec()
   }
