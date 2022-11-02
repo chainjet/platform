@@ -35,7 +35,7 @@ export abstract class OwnedAuthorizerWithCustomPrivacy<T extends BaseEntity> ext
     const filter = await super.authorize(context, authorizationContext)
     if (authorizationContext?.readonly && authorizationContext?.many === false) {
       if ('owner' in filter) {
-        return { $or: [{ owner: (filter as any).owner }, { isPublic: true }] } as unknown as Filter<T>
+        return { or: [{ owner: (filter as any).owner }, { isPublic: { eq: true } }] } as unknown as Filter<T>
       }
     }
     return filter
