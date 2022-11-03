@@ -1,6 +1,6 @@
 import { BaseResolver } from '@app/common/base/base.resolver'
 import { BadRequestException, NotFoundException, UseGuards, UseInterceptors } from '@nestjs/common'
-import { Args, Field, ObjectType, Query, Resolver } from '@nestjs/graphql'
+import { Args, Field, Mutation, ObjectType, Query, Resolver } from '@nestjs/graphql'
 import { Authorizer, AuthorizerInterceptor, InjectAuthorizer } from '@ptc-org/nestjs-query-graphql'
 import { GraphQLID, GraphQLString } from 'graphql'
 import { GraphQLJSONObject } from 'graphql-type-json'
@@ -55,5 +55,17 @@ export class WorkflowResolver extends BaseResolver(Workflow, {
     }
 
     return await this.compilerService.compile(workflow)
+  }
+
+  @Mutation(() => Workflow)
+  async forkWorkflow(
+    @UserId() userId: Types.ObjectId,
+    @Args({ name: 'workflowId', type: () => GraphQLID }) workflowId: string,
+  ) {
+    const workflow = await this.workflowService.findByIdWithReadPermissions(workflowId, userId.toString())
+    if (!workflow) {
+      throw new NotFoundException('Workflow not found')
+    }
+    return await this.workflowService.fork(workflow, userId.toString())
   }
 }

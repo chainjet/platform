@@ -87,3 +87,38 @@ export function getInterpolatedVariables(inputs: Record<string, any>): string[] 
   }
   return vars
 }
+
+/**
+ * Replace template fields recursively.
+ */
+export function replaceTemplateFields(
+  idsMap: Map<string, string>,
+  inputs: Record<string, any>,
+  templateInputs: Record<string, any> = {},
+): Record<string, any> {
+  const result = {}
+  for (const [key, value] of Object.entries(inputs)) {
+    if (typeof value === 'object') {
+      result[key] = replaceTemplateFields(idsMap, value, templateInputs)
+    } else if (typeof value === 'string') {
+      let newValue = value
+      const matches = value.matchAll(/{{\s*([^}]+)\s*}}/g)
+      for (const match of matches) {
+        if (match[1].trim().startsWith('template.')) {
+          newValue = newValue.replace(match[0], templateInputs[match[1].trim().replace('template.', '')])
+        } else {
+          // replace interpolated ids
+          const oldId = match[1].split('.')[0].trim()
+          const newId = idsMap.get(oldId)
+          if (newId) {
+            newValue = newValue.replace(oldId, newId)
+          }
+        }
+      }
+      result[key] = newValue
+    } else {
+      result[key] = value
+    }
+  }
+  return result
+}

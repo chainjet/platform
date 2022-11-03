@@ -1,3 +1,4 @@
+import { replaceTemplateFields } from '@app/definitions/utils/field.utils'
 import { BadRequestException, Injectable } from '@nestjs/common'
 import { Types } from 'mongoose'
 import { WorkflowActionService } from '../../workflow-actions/services/workflow-action.service'
@@ -48,7 +49,7 @@ export class TemplateService {
         lastId: undefined,
         nextCheck: undefined,
         enabled: true,
-        inputs: this.replaceTemplateFields(idsMap, trigger.inputs ?? {}, inputs ?? {}),
+        inputs: replaceTemplateFields(idsMap, trigger.inputs ?? {}, inputs ?? {}),
       })
       idsMap.set(trigger.id, newTrigger.id)
     }
@@ -60,46 +61,11 @@ export class TemplateService {
         _id: undefined,
         owner: userId,
         workflow: workflow._id,
-        inputs: this.replaceTemplateFields(idsMap, action.inputs ?? {}, inputs ?? {}),
+        inputs: replaceTemplateFields(idsMap, action.inputs ?? {}, inputs ?? {}),
       })
       idsMap.set(action.id, newAction.id)
     }
 
     return workflow
-  }
-
-  /**
-   * Replace template fields recursively.
-   */
-  replaceTemplateFields(
-    idsMap: Map<string, string>,
-    inputs: Record<string, any>,
-    templateInputs: Record<string, any>,
-  ): Record<string, any> {
-    const result = {}
-    for (const [key, value] of Object.entries(inputs)) {
-      if (typeof value === 'object') {
-        result[key] = this.replaceTemplateFields(idsMap, value, templateInputs)
-      } else if (typeof value === 'string') {
-        let newValue = value
-        const matches = value.matchAll(/{{\s*([^}]+)\s*}}/g)
-        for (const match of matches) {
-          if (match[1].trim().startsWith('template.')) {
-            newValue = newValue.replace(match[0], templateInputs[match[1].trim().replace('template.', '')])
-          } else {
-            // replace interpolated ids
-            const oldId = match[1].split('.')[0].trim()
-            const newId = idsMap.get(oldId)
-            if (newId) {
-              newValue = newValue.replace(oldId, newId)
-            }
-          }
-        }
-        result[key] = newValue
-      } else {
-        result[key] = value
-      }
-    }
-    return result
   }
 }

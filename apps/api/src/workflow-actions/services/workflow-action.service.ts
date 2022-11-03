@@ -35,17 +35,16 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
   }
 
   // TODO verify record complies with schema
-  async createOne(record: DeepPartial<WorkflowAction>): Promise<WorkflowAction> {
+  async createOne(record: CreateWorkflowActionInput & DeepPartial<WorkflowAction>): Promise<WorkflowAction> {
     this.logger.debug(`Create workflow action request with data: ${JSON.stringify(record)}`)
-    const data = record as CreateWorkflowActionInput & DeepPartial<WorkflowAction>
 
-    if (!data.workflow || !data.owner || !data.integrationAction) {
+    if (!record.workflow || !record.owner || !record.integrationAction) {
       throw new NotFoundException('Workflow not found')
     }
 
     // Verify workflow exist and the user has access to it
-    const workflow = await this.workflowService.findById(data.workflow.toString())
-    if (!workflow?.owner || workflow.owner.toString() !== data.owner.toString()) {
+    const workflow = await this.workflowService.findById(record.workflow.toString())
+    if (!workflow?.owner || workflow.owner.toString() !== record.owner.toString()) {
       throw new NotFoundException('Workflow not found')
     }
 
@@ -53,42 +52,50 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
 
     // Verify credentials exists and the user has access to it
     let accountCredential: AccountCredential | null = null
-    if (data.credentials) {
-      accountCredential = (await this.accountCredentialService.findById(data.credentials.toString())) ?? null
-      if (!accountCredential?.owner || accountCredential.owner.toString() !== data.owner.toString()) {
+    if (record.credentials) {
+      accountCredential = (await this.accountCredentialService.findById(record.credentials.toString())) ?? null
+      if (!accountCredential?.owner || accountCredential.owner.toString() !== record.owner.toString()) {
         throw new NotFoundException('Account credentials not found')
       }
     }
 
-    // Verify previous action exists and the user has access to it
+    // Verify previous action exists and belongs to the same workflow
     let previousAction: WorkflowAction | undefined
-    if (data.previousAction) {
-      previousAction = await this.findById(data.previousAction.toString())
-      if (!previousAction?.owner || previousAction.owner.toString() !== data.owner.toString()) {
+    if (record.previousAction) {
+      previousAction = await this.findById(record.previousAction.toString())
+      if (
+        !previousAction?.owner ||
+        previousAction.owner.toString() !== record.owner.toString() ||
+        previousAction.workflow.toString() !== record.workflow.toString()
+      ) {
         throw new NotFoundException('Action not found')
       }
     }
 
-    // Verify next action exists and the user has access to it
+    // Verify next action exists and belongs to the same workflow
     let nextAction: WorkflowAction | undefined
-    if (data.nextAction) {
-      nextAction = await this.findById(data.nextAction.toString())
-      if (!nextAction?.owner || nextAction.owner.toString() !== data.owner.toString()) {
+    if (record.nextAction) {
+      nextAction = await this.findById(record.nextAction.toString())
+      if (
+        !nextAction?.owner ||
+        nextAction.owner.toString() !== record.owner.toString() ||
+        nextAction.workflow.toString() !== record.workflow.toString()
+      ) {
         throw new NotFoundException('Action not found')
       }
-      data.nextActions = [{ action: nextAction._id }]
+      record.nextActions = [{ action: nextAction._id }]
     }
 
     // Mark the action as first action
     if (!previousAction) {
-      data.isRootAction = true
+      record.isRootAction = true
     }
 
-    const integrationAction = await this.integrationActionService.findById(data.integrationAction.toString())
+    const integrationAction = await this.integrationActionService.findById(record.integrationAction.toString())
     if (!integrationAction) {
       throw new NotFoundException('Integration action not found')
     }
-    data.type = integrationAction.type
+    record.type = integrationAction.type
     const integration = await this.integrationService.findById(integrationAction.integration.toString())
     if (!integration) {
       throw new NotFoundException(`Integration ${integrationAction.integration} not found`)
@@ -98,12 +105,12 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
 
     if (integrationAction.type === OperationType.EVM) {
       // set workflow network if it has on-chain actions
-      if (workflow.network && workflow.network.toString() !== data.inputs.network.toString()) {
+      if (workflow.network && workflow.network.toString() !== record.inputs.network.toString()) {
         throw new BadRequestException(
-          `Workflow network ${workflow.network} does not match action network ${data.inputs.network}`,
+          `Workflow network ${workflow.network} does not match action network ${record.inputs.network}`,
         )
       } else if (!workflow.network) {
-        await this.workflowService.updateOne(workflow.id, { network: data.inputs.network })
+        await this.workflowService.updateOne(workflow.id, { network: record.inputs.network })
         if (workflowTrigger?.enabled) {
           await this.workflowTriggerService.updateOne(workflowTrigger.id, { enabled: false })
         }
@@ -111,14 +118,14 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
 
       // set is evm root action
       if (!previousAction || previousAction.type !== OperationType.EVM) {
-        data.isContractRootAction = true
+        record.isContractRootAction = true
       }
     }
 
-    data.name = capitalize(integrationAction.name)
+    record.name = capitalize(integrationAction.name)
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-    const workflowAction = await definition.beforeCreateWorkflowAction(data, integrationAction, accountCredential)
+    const workflowAction = await definition.beforeCreateWorkflowAction(record, integrationAction, accountCredential)
 
     this.logger.debug(`Creating workflow action: ${JSON.stringify(workflowAction)}`)
     const createdWorkflowAction = await super.createOne(workflowAction)
@@ -130,7 +137,7 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     if (previousAction) {
       const nextActions = [
         ...previousAction.nextActions,
-        { action: new ObjectID(createdWorkflowAction.id), condition: data.previousActionCondition ?? undefined },
+        { action: new ObjectID(createdWorkflowAction.id), condition: record.previousActionCondition ?? undefined },
       ] as Array<WorkflowNextAction>
 
       // If both a previous and next actions were given, means that the action is being added in between 2 actions.
@@ -153,7 +160,7 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     }
 
     // Initialize trigger nextCheck
-    if (data.isRootAction) {
+    if (record.isRootAction) {
       if (workflowTrigger && !workflowTrigger.nextCheck) {
         await this.workflowTriggerService.updateNextCheck(workflowTrigger)
       }

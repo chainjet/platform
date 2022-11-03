@@ -1,10 +1,12 @@
 import { BaseService } from '@app/common/base/base.service'
+import { replaceTemplateFields } from '@app/definitions/utils/field.utils'
 import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
 import { DeepPartial, DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { ObjectId } from 'mongodb'
 import { InjectModel } from 'nestjs-typegoose'
 import { UserService } from '../../users/services/user.service'
+import { sortActionTree } from '../../workflow-actions/actions.utils'
 import { WorkflowActionService } from '../../workflow-actions/services/workflow-action.service'
 import { WorkflowTriggerService } from '../../workflow-triggers/services/workflow-trigger.service'
 import { Workflow } from '../entities/workflow'
@@ -22,6 +24,17 @@ export class WorkflowService extends BaseService<Workflow> {
   ) {
     super(model)
     WorkflowService.instance = this
+  }
+
+  async findByIdWithReadPermissions(id: string, userId: string): Promise<Workflow | null> {
+    const workflow = await this.findById(id)
+    if (!workflow) {
+      return null
+    }
+    if (workflow.isPublic || workflow.owner.toString() === userId) {
+      return workflow
+    }
+    return null
   }
 
   async createOne(record: DeepPartial<Workflow>): Promise<Workflow> {
@@ -120,5 +133,71 @@ export class WorkflowService extends BaseService<Workflow> {
 
     await this.updateById(workflow._id, { isTemplate: true, templateSchema: schema })
     return true
+  }
+
+  async fork(workflow: Workflow, userId: string): Promise<Workflow> {
+    const user = await this.userService.findById(userId)
+    if (!user) {
+      throw new NotFoundException(`User ${userId} not found.`)
+    }
+    const isOwner = workflow.owner.toString() === userId
+    const forkedWorkflow = await this.createOne({
+      owner: user._id,
+      name: workflow.name,
+      network: workflow.network,
+      isTemplate: workflow.isTemplate,
+      isPublic: workflow.isPublic,
+      templateSchema: workflow.templateSchema,
+      runOnFailure: isOwner ? workflow.runOnFailure : undefined,
+    })
+
+    const trigger = await this.workflowTriggerService.findOne({ workflow: workflow.id })
+    if (!trigger) {
+      throw new NotFoundException(`Trigger for workflow ${workflow.id} not found.`)
+    }
+
+    const idsMap = new Map<string, string>()
+    const forkedTrigger = await this.workflowTriggerService.createOne({
+      owner: user._id,
+      workflow: forkedWorkflow._id,
+      integrationTrigger: trigger.integrationTrigger,
+      name: trigger.name,
+      inputs: replaceTemplateFields(idsMap, trigger.inputs ?? {}),
+      credentials: isOwner ? trigger.credentials : undefined,
+      schedule: trigger.schedule,
+      enabled: true,
+      maxConsecutiveFailures: trigger.maxConsecutiveFailures,
+      schemaResponse: isOwner ? trigger.schemaResponse : undefined,
+      isPublic: workflow.isPublic,
+    })
+    idsMap.set(trigger.id, forkedTrigger.id)
+
+    const actions = await this.workflowActionService.find({ workflow: workflow.id })
+    const sortedActions = sortActionTree(actions)
+
+    const previousActionMap = new Map<string, string>()
+    for (const action of sortedActions) {
+      // we need to previous action to create the new action
+      for (const nextAction of action.nextActions) {
+        previousActionMap.set(nextAction.action.toString(), action.id)
+      }
+
+      const forkedAction = await this.workflowActionService.createOne({
+        owner: user._id,
+        workflow: forkedWorkflow._id,
+        isRootAction: action.isRootAction,
+        isContractRootAction: action.isContractRootAction,
+        integrationAction: action.integrationAction,
+        name: action.name,
+        inputs: replaceTemplateFields(idsMap, action.inputs ?? {}),
+        previousAction: idsMap.get(previousActionMap.get(action.id) ?? '') as any,
+        credentials: isOwner ? action.credentials : undefined,
+        schemaResponse: isOwner ? action.schemaResponse : undefined,
+        type: action.type,
+        isPublic: workflow.isPublic,
+      })
+      idsMap.set(action.id, forkedAction.id)
+    }
+    return forkedWorkflow
   }
 }
