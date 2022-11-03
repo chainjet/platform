@@ -220,9 +220,8 @@ export class DiscordDefinition extends SingleIntegrationDefinition {
         })
         const channels = (channelOutputs.outputs as unknown as any[]) // TODO fix type on definition.ts
           .filter(
-            (channels) =>
+            (channel) =>
               ![
-                CHANNEL_TYPES.GUILD_VOICE,
                 CHANNEL_TYPES.GUILD_CATEGORY,
                 CHANNEL_TYPES.GUILD_NEWS_THREAD,
                 CHANNEL_TYPES.GUILD_PUBLIC_THREAD,
@@ -230,7 +229,7 @@ export class DiscordDefinition extends SingleIntegrationDefinition {
                 CHANNEL_TYPES.GUILD_STAGE_VOICE,
                 CHANNEL_TYPES.GUILD_DIRECTORY,
                 CHANNEL_TYPES.GUILD_FORUM,
-              ].includes(channels.type),
+              ].includes(channel.type),
           )
         if (!channels?.length) {
           return {}
@@ -239,9 +238,8 @@ export class DiscordDefinition extends SingleIntegrationDefinition {
           default: channels[0].id,
           oneOf: channels
             .filter(
-              (channels) =>
+              (channel) =>
                 ![
-                  CHANNEL_TYPES.GUILD_VOICE,
                   CHANNEL_TYPES.GUILD_CATEGORY,
                   CHANNEL_TYPES.GUILD_NEWS_THREAD,
                   CHANNEL_TYPES.GUILD_PUBLIC_THREAD,
@@ -249,10 +247,10 @@ export class DiscordDefinition extends SingleIntegrationDefinition {
                   CHANNEL_TYPES.GUILD_STAGE_VOICE,
                   CHANNEL_TYPES.GUILD_DIRECTORY,
                   CHANNEL_TYPES.GUILD_FORUM,
-                ].includes(channels.type),
+                ].includes(channel.type),
             )
             .map((channel) => ({
-              title: channel.name,
+              title: channel.type === CHANNEL_TYPES.GUILD_VOICE ? `${channel.name} (Voice)` : channel.name,
               const: channel.id,
             })),
         }
