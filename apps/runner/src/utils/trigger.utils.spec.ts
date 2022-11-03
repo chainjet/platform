@@ -1,5 +1,5 @@
 import { JSONSchema7 } from 'json-schema'
-import { extractFirstItem, extractTriggerItems, getItemSchemaFromRes } from './trigger.utils'
+import { extractFirstItem, extractTriggerItems, getCreationDate, getItemSchemaFromRes } from './trigger.utils'
 
 describe('Trigger Utils', () => {
   describe('extratTriggerItems', () => {
@@ -124,6 +124,53 @@ describe('Trigger Utils', () => {
         },
       }
       expect(getItemSchemaFromRes('[].id', schema)).toBeNull()
+    })
+  })
+
+  describe('getCreationDate', () => {
+    it('should return the creation date of items using ISO dates', () => {
+      const item1 = {
+        createdAt: '2020-01-01T00:00:00.000Z',
+      }
+      const item2 = {
+        created_at: '2020-01-01T00:00:00.000Z',
+      }
+      const item3 = {
+        creationdate: '2020-01-01T00:00:00.000Z',
+      }
+      const item4 = {
+        creationDate: '2020-01-01T00:00:00.000Z',
+      }
+      const item5 = {
+        timestamp: '2020-01-01T00:00:00.000Z',
+      }
+      expect(getCreationDate(item1)).toEqual(new Date('2020-01-01T00:00:00.000Z'))
+      expect(getCreationDate(item2)).toEqual(new Date('2020-01-01T00:00:00.000Z'))
+      expect(getCreationDate(item3)).toEqual(new Date('2020-01-01T00:00:00.000Z'))
+      expect(getCreationDate(item4)).toEqual(new Date('2020-01-01T00:00:00.000Z'))
+      expect(getCreationDate(item5)).toEqual(new Date('2020-01-01T00:00:00.000Z'))
+    })
+
+    it('should return the creation date of items using unix timestamps in milliseconds', () => {
+      const item1 = {
+        timestamp: 1577836800000,
+      }
+      const item2 = {
+        timestamp: '1577836800000',
+      }
+      expect(getCreationDate(item1)).toEqual(new Date('2020-01-01T00:00:00.000Z'))
+      expect(getCreationDate(item2)).toEqual(new Date('2020-01-01T00:00:00.000Z'))
+    })
+
+    it('should return the creation date of items using unix timestamps in seconds', () => {
+      const item1 = {
+        timestamp: 1577836800,
+      }
+      const item2 = {
+        timestamp: '1577836800',
+      }
+      expect(getCreationDate(item1)).toEqual(new Date('2020-01-01T00:00:00.000Z'))
+      expect(getCreationDate(item2)).toEqual(new Date('2020-01-01T00:00:00.000Z'))
     })
   })
 })

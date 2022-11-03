@@ -180,7 +180,22 @@ export class RunnerService {
       })
     }
 
-    const triggerItems = extractTriggerItems(integrationTrigger.idKey, runResponse.outputs)
+    let triggerItems = extractTriggerItems(integrationTrigger.idKey, runResponse.outputs)
+
+    // filter out items that are too old (max age is interval + 1 day)
+    if (triggerItems?.[0]?.createdAt && workflowTrigger.schedule?.frequency === 'interval') {
+      const interval = workflowTrigger.schedule.interval
+      if (interval) {
+        triggerItems = triggerItems.filter((item) => {
+          if (!item.createdAt) {
+            return true
+          }
+          const diff = new Date().getTime() - item.createdAt.getTime()
+          return diff <= interval * 1000 + 1000 * 60 * 60 * 24
+        })
+      }
+    }
+
     const triggerIds = triggerItems.map((item) => item.id.toString())
 
     let newItems: Array<{ id: string | number; item: Record<string, unknown> }> = []
