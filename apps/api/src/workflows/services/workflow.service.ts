@@ -175,13 +175,14 @@ export class WorkflowService extends BaseService<Workflow> {
     const actions = await this.workflowActionService.find({ workflow: workflow.id })
     const sortedActions = sortActionTree(actions)
 
-    const previousActionMap = new Map<string, string>()
+    const previousActionMap = new Map<string, { id: string; condition: string | undefined }>()
     for (const action of sortedActions) {
       // we need to previous action to create the new action
       for (const nextAction of action.nextActions) {
-        previousActionMap.set(nextAction.action.toString(), action.id)
+        previousActionMap.set(nextAction.action.toString(), { id: action.id, condition: nextAction.condition })
       }
 
+      const previousAction = previousActionMap.get(action.id)
       const forkedAction = await this.workflowActionService.createOne({
         owner: user._id,
         workflow: forkedWorkflow._id,
@@ -190,7 +191,8 @@ export class WorkflowService extends BaseService<Workflow> {
         integrationAction: action.integrationAction,
         name: action.name,
         inputs: replaceTemplateFields(idsMap, action.inputs ?? {}),
-        previousAction: idsMap.get(previousActionMap.get(action.id) ?? '') as any,
+        previousAction: idsMap.get(previousAction?.id ?? '') as any,
+        previousActionCondition: previousAction?.condition,
         credentials: isOwner ? action.credentials : undefined,
         schemaResponse: isOwner ? action.schemaResponse : undefined,
         type: action.type,
