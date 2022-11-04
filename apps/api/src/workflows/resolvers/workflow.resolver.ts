@@ -61,11 +61,13 @@ export class WorkflowResolver extends BaseResolver(Workflow, {
   async forkWorkflow(
     @UserId() userId: Types.ObjectId,
     @Args({ name: 'workflowId', type: () => GraphQLID }) workflowId: string,
+    @Args({ name: 'templateInputs', type: () => GraphQLJSONObject, nullable: true })
+    templateInputs: Record<string, any>,
   ) {
     const workflow = await this.workflowService.findByIdWithReadPermissions(workflowId, userId.toString())
     if (!workflow) {
       throw new NotFoundException('Workflow not found')
     }
-    return await this.workflowService.fork(workflow, userId.toString())
+    return await this.workflowService.fork(workflow, userId.toString(), templateInputs)
   }
 }
