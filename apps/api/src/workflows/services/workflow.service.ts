@@ -5,6 +5,10 @@ import { DeepPartial, DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs
 import { ReturnModelType } from '@typegoose/typegoose'
 import { ObjectId } from 'mongodb'
 import { InjectModel } from 'nestjs-typegoose'
+import { AccountCredentialService } from '../../account-credentials/services/account-credentials.service'
+import { IntegrationActionService } from '../../integration-actions/services/integration-action.service'
+import { IntegrationTriggerService } from '../../integration-triggers/services/integration-trigger.service'
+import { IntegrationService } from '../../integrations/services/integration.service'
 import { UserService } from '../../users/services/user.service'
 import { sortActionTree } from '../../workflow-actions/actions.utils'
 import { WorkflowActionService } from '../../workflow-actions/services/workflow-action.service'
@@ -18,9 +22,13 @@ export class WorkflowService extends BaseService<Workflow> {
 
   constructor(
     @InjectModel(Workflow) protected readonly model: ReturnModelType<typeof Workflow>,
+    protected integrationService: IntegrationService,
+    protected integrationTriggerSerice: IntegrationTriggerService,
+    protected integrationActionService: IntegrationActionService,
     protected workflowTriggerService: WorkflowTriggerService,
     protected workflowActionService: WorkflowActionService,
     protected userService: UserService,
+    protected accountCredentialService: AccountCredentialService,
   ) {
     super(model)
     WorkflowService.instance = this
@@ -135,12 +143,22 @@ export class WorkflowService extends BaseService<Workflow> {
     return true
   }
 
-  async fork(workflow: Workflow, userId: string, templateInputs: Record<string, any>): Promise<Workflow> {
+  async fork(
+    workflow: Workflow,
+    userId: string,
+    templateInputs: Record<string, any>,
+    credentialIds: Record<string, string>,
+  ): Promise<Workflow> {
     const user = await this.userService.findById(userId)
     if (!user) {
       throw new NotFoundException(`User ${userId} not found.`)
     }
     const isOwner = workflow.owner.toString() === userId
+    const accountCredentials = await this.accountCredentialService.find({
+      _id: { $in: Object.values(credentialIds) },
+      owner: new ObjectId(userId),
+    })
+
     const forkedWorkflow = await this.createOne({
       owner: user._id,
       name: workflow.name,
@@ -156,6 +174,22 @@ export class WorkflowService extends BaseService<Workflow> {
       throw new NotFoundException(`Trigger for workflow ${workflow.id} not found.`)
     }
 
+    // get account credentials for the trigger
+    const integrationTrigger = await this.integrationTriggerSerice.findById(trigger.integrationTrigger.toString())
+    if (!integrationTrigger) {
+      throw new NotFoundException(`Integration trigger ${trigger.integrationTrigger} not found.`)
+    }
+    const integrationForTrigger = await this.integrationService.findById(integrationTrigger.integration.toString())
+    if (!integrationForTrigger) {
+      throw new NotFoundException(`Integration ${integrationTrigger.integration} not found.`)
+    }
+    const credentialsForTrigger =
+      integrationForTrigger.integrationAccount &&
+      accountCredentials.find(
+        (credential) =>
+          credential.integrationAccount.toString() === integrationForTrigger.integrationAccount!.toString(),
+      )
+
     const idsMap = new Map<string, string>()
     const forkedTrigger = await this.workflowTriggerService.createOne({
       owner: user._id,
@@ -163,7 +197,7 @@ export class WorkflowService extends BaseService<Workflow> {
       integrationTrigger: trigger.integrationTrigger,
       name: trigger.name,
       inputs: replaceTemplateFields(idsMap, trigger.inputs ?? {}, templateInputs),
-      credentials: isOwner ? trigger.credentials : undefined,
+      credentials: credentialsForTrigger?.id,
       schedule: trigger.schedule,
       enabled: true,
       maxConsecutiveFailures: trigger.maxConsecutiveFailures,
@@ -182,6 +216,22 @@ export class WorkflowService extends BaseService<Workflow> {
         previousActionMap.set(nextAction.action.toString(), { id: action.id, condition: nextAction.condition })
       }
 
+      // get account credentials for the action
+      const integrationAction = await this.integrationActionService.findById(action.integrationAction.toString())
+      if (!integrationAction) {
+        throw new NotFoundException(`Integration action ${action.integrationAction} not found.`)
+      }
+      const integrationForAction = await this.integrationService.findById(integrationAction.integration.toString())
+      if (!integrationForAction) {
+        throw new NotFoundException(`Integration ${integrationAction.integration} not found.`)
+      }
+      const credentialsForAction =
+        integrationForAction.integrationAccount &&
+        accountCredentials.find(
+          (credential) =>
+            credential.integrationAccount.toString() === integrationForAction.integrationAccount!.toString(),
+        )
+
       const previousAction = previousActionMap.get(action.id)
       const forkedAction = await this.workflowActionService.createOne({
         owner: user._id,
@@ -193,7 +243,7 @@ export class WorkflowService extends BaseService<Workflow> {
         inputs: replaceTemplateFields(idsMap, action.inputs ?? {}, templateInputs),
         previousAction: idsMap.get(previousAction?.id ?? '') as any,
         previousActionCondition: previousAction?.condition,
-        credentials: isOwner ? action.credentials : undefined,
+        credentials: credentialsForAction?.id,
         schemaResponse: isOwner ? action.schemaResponse : undefined,
         type: action.type,
         isPublic: workflow.isPublic,

@@ -1170,7 +1170,7 @@ export interface IMutation {
     updateManyWorkflows(input: UpdateManyWorkflowsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
     deleteOneWorkflow(input: DeleteOneWorkflowInput): WorkflowDeleteResponse | Promise<WorkflowDeleteResponse>;
     deleteManyWorkflows(input: DeleteManyWorkflowsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
-    forkWorkflow(workflowId: string, templateInputs?: Nullable<JSONObject>): Workflow | Promise<Workflow>;
+    forkWorkflow(workflowId: string, templateInputs?: Nullable<JSONObject>, credentialIds?: Nullable<JSONObject>): Workflow | Promise<Workflow>;
     createOneWorkflowAction(input: CreateOneWorkflowActionInput): WorkflowAction | Promise<WorkflowAction>;
     createManyWorkflowActions(input: CreateManyWorkflowActionsInput): WorkflowAction[] | Promise<WorkflowAction[]>;
     updateOneWorkflowAction(input: UpdateOneWorkflowActionInput): WorkflowAction | Promise<WorkflowAction>;
