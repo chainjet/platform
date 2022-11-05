@@ -5,7 +5,7 @@ export interface GqlUserContext {
 
 export interface GqlContext {
   req: {
-    user: GqlUserContext
+    user?: GqlUserContext
     headers: Record<string, string>
   }
 }

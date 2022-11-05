@@ -8,6 +8,10 @@ import { GqlContext } from '../../../../apps/api/src/auth/typings/gql-context'
 @Injectable()
 export class OwnedAuthorizer<T extends BaseEntity> implements CustomAuthorizer<T> {
   async authorize(context: GqlContext, authorizationContext?: AuthorizationContext): Promise<Filter<T>> {
+    if (!context.req.user) {
+      return { owner: { eq: '000000000000000000000000' } } as unknown as Filter<T>
+    }
+
     if (process.env.ADMIN_ROLE_KEY) {
       const admins = process.env.ADMIN_USERS?.split(',') || []
       if (
@@ -55,8 +59,11 @@ export abstract class OwnedAuthorizerWithCustomPrivacy<T extends BaseEntity> ext
     if (filterHasPrivacy) {
       if (relationName === this.ownerRelationName) {
         return {
-          address: { eq: context.req.user.address },
+          address: { eq: context.req.user?.address ?? '-' },
         } as Filter<unknown>
+      }
+      if (!context.req.user) {
+        return { owner: { eq: '000000000000000000000000' } } as Filter<unknown>
       }
       return { owner: { eq: new Types.ObjectId(context.req.user.id.toString()) } } as Filter<unknown>
     }

@@ -1,3 +1,4 @@
+import { UnauthorizedException } from '@nestjs/common'
 import { BeforeCreateOne, CreateOneInputType } from '@ptc-org/nestjs-query-graphql'
 import { GqlContext } from '../../../../apps/api/src/auth/typings/gql-context'
 
@@ -11,6 +12,9 @@ export function OwnedEntity(opts: OwnedEntityOptions = {}): ClassDecorator {
 
     // Add the owner from the auth request
     BeforeCreateOne((query: CreateOneInputType<any>, context: GqlContext) => {
+      if (!context.req.user) {
+        throw new UnauthorizedException(`Unauthorized`)
+      }
       return {
         ...query,
         input: {

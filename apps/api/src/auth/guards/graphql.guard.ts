@@ -19,11 +19,10 @@ export class GraphqlGuard implements CanActivate {
         const { user } = await this.authService.validateUserWithSignature(message, signature)
         if (user) {
           req.user = user
-          return true
         }
       } catch {}
     }
-    return false
+    return true
   }
 
   getRequest(context: ExecutionContext): GqlContext['req'] {
