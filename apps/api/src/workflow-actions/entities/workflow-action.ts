@@ -20,7 +20,15 @@ import { WorkflowNextAction } from './workflow-next-action'
 
 @Injectable()
 export class WorkflowActionAuthorizer extends OwnedAuthorizerWithCustomPrivacy<WorkflowAction> {
-  sharableRelations = ['integration', 'integrationAction', 'integrationTrigger', 'trigger', 'actions']
+  sharableRelations = [
+    'integration',
+    'integrationAction',
+    'integrationTrigger',
+    'integrationAccount',
+    'trigger',
+    'actions',
+    'action',
+  ]
 }
 
 @ObjectType()

@@ -19,7 +19,15 @@ import { TriggerSchedule } from './trigger-schedule'
 
 @Injectable()
 export class WorkflowTriggerAuthorizer extends OwnedAuthorizerWithCustomPrivacy<WorkflowTrigger> {
-  sharableRelations = ['integration', 'integrationAction', 'integrationTrigger', 'trigger', 'actions']
+  sharableRelations = [
+    'integration',
+    'integrationAction',
+    'integrationTrigger',
+    'integrationAccount',
+    'trigger',
+    'actions',
+    'action',
+  ]
 }
 
 @ObjectType()

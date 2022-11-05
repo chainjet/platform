@@ -24,7 +24,15 @@ enum WorkflowState {
 
 @Injectable()
 export class WorkflowAuthorizer extends OwnedAuthorizerWithCustomPrivacy<Workflow> {
-  sharableRelations = ['integration', 'integrationAction', 'integrationTrigger', 'trigger', 'actions', 'action']
+  sharableRelations = [
+    'integration',
+    'integrationAction',
+    'integrationTrigger',
+    'integrationAccount',
+    'trigger',
+    'actions',
+    'action',
+  ]
 }
 
 @pre<Workflow>('save', function () {
