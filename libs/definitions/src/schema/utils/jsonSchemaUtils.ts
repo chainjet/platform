@@ -135,7 +135,6 @@ export function transformDynamicRefExtension(schema: JSONSchema7): JSONSchema7 {
 export function prepareInputsJsonSchema(schema: JSONSchema7): JSONSchema7 {
   schema = hideParamsWithSingleEnum(schema)
   schema = fixSchemaWithOneOf(schema)
-  schema = removeSchemaMarkdown(schema)
   schema = removeDeprecatedProperties(schema) ?? {}
   schema = removeIgnoredProperties(schema) ?? {}
   schema = removeDuplicatedEnumValues(schema) ?? {}

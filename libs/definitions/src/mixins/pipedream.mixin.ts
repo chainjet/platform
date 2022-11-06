@@ -278,7 +278,9 @@ function mapPipedreamPropertyToJsonSchemaParam(
   }
 
   if ('description' in prop && prop.description) {
-    param.description = prop.description?.replace(/pipedream/gi, 'ChainJet')
+    param.description = prop.description
+      ?.replace(/https?:\/\/(www\.)?pipedream\.com\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g, '')
+      ?.replace(/pipedream/gi, 'ChainJet')
   }
 
   if ('default' in prop && prop.default) {
