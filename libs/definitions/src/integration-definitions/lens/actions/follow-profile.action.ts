@@ -17,7 +17,8 @@ export class FollowProfileAction extends OperationOffChain {
       profileId: {
         title: 'Profile ID',
         type: 'string',
-        description: 'A Lens profile ID (e.g. 0x012cd6)',
+        description:
+          'A Lens profile ID (e.g. 0x012cd6). See [docs](https://docs.chainjet.io/integrations/lens#how-to-get-the-profile-id.) to learn how to find it.',
       },
     },
   }
