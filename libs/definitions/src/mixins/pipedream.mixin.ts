@@ -701,12 +701,27 @@ function getAsyncSchemasForPipedream(
           }
         }
 
-        return {
-          default: defaultValue,
-          oneOf: items.map((item) => ({
-            title: item.label,
-            const: parseJsonSchemaValue(propSchema, item.value),
-          })),
+        if (pipedreamProp.type.endsWith('[]')) {
+          // array of oneOf
+          return {
+            type: 'array',
+            items: {
+              default: defaultValue,
+              oneOf: items.map((item) => ({
+                title: item.label,
+                const: parseJsonSchemaValue(propSchema, item.value),
+              })),
+            },
+          }
+        } else {
+          // single oneOf
+          return {
+            default: defaultValue,
+            oneOf: items.map((item) => ({
+              title: item.label,
+              const: parseJsonSchemaValue(propSchema, item.value),
+            })),
+          }
         }
       }
       return {}
