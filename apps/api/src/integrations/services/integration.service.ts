@@ -8,9 +8,11 @@ import { Integration } from '../entities/integration'
 @Injectable()
 export class IntegrationService extends BaseService<Integration> {
   protected readonly logger = new Logger(IntegrationService.name)
+  static instance: IntegrationService
 
   constructor(@InjectModel(Integration) protected readonly model: ReturnModelType<typeof Integration>) {
     super(model)
+    IntegrationService.instance = this
   }
 
   async createOrUpdateOne(record: DeepPartial<Integration>): Promise<Integration> {

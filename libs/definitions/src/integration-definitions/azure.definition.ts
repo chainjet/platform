@@ -73,13 +73,7 @@ export class AzureDefinition extends MultiIntegrationDefinition {
       integrationVersion = integrationData.integrationVersion
       schemaUrl = integrationData.schemaUrl
     }
-    const integration = new MicrosoftIntegration(
-      this.schemaService,
-      this.integrationService,
-      this.integrationAccountService,
-      this.integrationActionService,
-      this.integrationTriggerService,
-    )
+    const integration = new MicrosoftIntegration()
     return await integration.createOrUpdateIntegrationAccount(schema)
   }
 }

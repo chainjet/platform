@@ -1,6 +1,6 @@
+import { ObjectID } from '@app/common/utils/mongodb'
 import { Test, TestingModule } from '@nestjs/testing'
 import { plainToClass } from 'class-transformer'
-import { ObjectID } from 'mongodb'
 import { TypegooseModule } from 'nestjs-typegoose'
 import { closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
 import { MockModule } from '../../../../../libs/common/test/mock.module'
@@ -17,13 +17,17 @@ describe('WorkflowRunService', () => {
   let mock: MockService
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testModule: TestingModule = await Test.createTestingModule({
       imports: [TypegooseModule.forFeature([WorkflowRun]), MockModule],
       providers: [WorkflowRunService, WorkflowRunAuthorizer],
     }).compile()
 
-    service = module.get<WorkflowRunService>(WorkflowRunService)
-    mock = module.get<MockService>(MockService)
+    service = testModule.get<WorkflowRunService>(WorkflowRunService)
+    mock = testModule.get<MockService>(MockService)
+  })
+
+  beforeEach(async () => {
+    await mock.createUser()
   })
 
   afterEach(async () => await mock.dropDatabase())

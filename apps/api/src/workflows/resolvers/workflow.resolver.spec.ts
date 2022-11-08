@@ -1,21 +1,29 @@
+import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { Test, TestingModule } from '@nestjs/testing'
-import { TypegooseModule } from 'nestjs-typegoose'
+import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
 import { MockModule } from '../../../../../libs/common/test/mock.module'
-import { Workflow } from '../entities/workflow'
+import { CompilerService } from '../../compiler/compiler.service'
+import { Workflow, WorkflowAuthorizer } from '../entities/workflow'
 import { WorkflowService } from '../services/workflow.service'
-import { WorkflowAuthorizer, WorkflowResolver } from './workflow.resolver'
+import { WorkflowResolver } from './workflow.resolver'
 
 describe('WorkflowResolver', () => {
   let resolver: WorkflowResolver
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([Workflow]), MockModule],
-      providers: [WorkflowResolver, WorkflowService, WorkflowAuthorizer],
+    const testModule: TestingModule = await Test.createTestingModule({
+      imports: [
+        NestjsQueryGraphQLModule.forFeature({
+          imports: [NestjsQueryTypegooseModule.forFeature([Workflow])],
+          dtos: [{ DTOClass: Workflow }],
+        }),
+        MockModule,
+      ],
+      providers: [WorkflowResolver, WorkflowService, WorkflowAuthorizer, CompilerService],
     }).compile()
 
-    resolver = module.get<WorkflowResolver>(WorkflowResolver)
+    resolver = testModule.get<WorkflowResolver>(WorkflowResolver)
   })
 
   afterAll(async () => await closeMongoConnection())

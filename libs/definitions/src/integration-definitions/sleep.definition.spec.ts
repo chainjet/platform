@@ -8,12 +8,12 @@ describe('Sleep definition', () => {
   let definition: SleepDefinition
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testModule: TestingModule = await Test.createTestingModule({
       imports: [TestDatabaseModule, DefinitionsModule],
       providers: [SleepDefinition],
     }).compile()
 
-    const factory = module.get<IntegrationDefinitionFactory>(IntegrationDefinitionFactory)
+    const factory = testModule.get<IntegrationDefinitionFactory>(IntegrationDefinitionFactory)
     definition = factory.getDefinition('sleep') as SleepDefinition
   })
 

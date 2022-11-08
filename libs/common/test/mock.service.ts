@@ -1,6 +1,10 @@
+import { Definition, RunResponse, SingleIntegrationDefinition } from '@app/definitions'
+import { OperationTrigger } from '@app/definitions/operation-trigger'
+import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { Injectable } from '@nestjs/common'
 import { DeepPartial } from '@ptc-org/nestjs-query-core'
-import { plainToClass } from 'class-transformer'
+import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
+import { Observable } from 'rxjs'
 import { AuthService } from '../../../apps/api/src/auth/services/auth.service'
 import { IntegrationAction } from '../../../apps/api/src/integration-actions/entities/integration-action'
 import { IntegrationActionService } from '../../../apps/api/src/integration-actions/services/integration-action.service'
@@ -56,27 +60,73 @@ export class MockService {
     return this.userService.Model.db.dropDatabase()
   }
 
+  getDefinition(opts: { integrationKey?: string; integrationVersion?: string; schemaUrl?: string }): Definition {
+    class MockDefinitionTrigger extends OperationTrigger {
+      key = 'test-integration-trigger'
+      name = ''
+      description = ''
+      version = '1'
+      inputs = {}
+      idKey = 'items[].id'
+
+      async run(opts: OperationRunOptions): Promise<RunResponse | Observable<RunResponse> | null> {
+        return {
+          outputs: {
+            items: [{ id: 1 }, { id: 2 }, { id: 3 }],
+          },
+        }
+      }
+    }
+
+    class MockDefinitionAction extends OperationOffChain {
+      key = 'test-integration-action'
+      name = ''
+      description = ''
+      version = '1'
+      inputs = {}
+
+      async run(opts: OperationRunOptions): Promise<RunResponse | Observable<RunResponse> | null> {
+        return {
+          outputs: {
+            foo: 'bar',
+          },
+        }
+      }
+    }
+
+    class MockDefinition extends SingleIntegrationDefinition {
+      integrationKey = opts.integrationKey ?? 'test-integration'
+      integrationVersion = opts.integrationVersion ?? '1'
+      schemaUrl = opts.schemaUrl ?? null
+
+      triggers = [new MockDefinitionTrigger()]
+      actions = [new MockDefinitionAction()]
+    }
+
+    return new MockDefinition()
+  }
+
   getInstanceOfUser(record: DeepPartial<User> = {}): User {
-    return plainToClass(User, {
+    return {
       address: '0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF',
       email: 'test@example.com',
       ...record,
-    })
+    } as User
   }
 
   async createUser(record: DeepPartial<User> = {}): Promise<User> {
-    this.user = (await this.userService.Model.create(this.getInstanceOfUser(record))).toObject({ virtuals: true })
+    this.user = await this.userService.createOne(this.getInstanceOfUser(record))
     return this.user
   }
 
   getInstanceOfIntegration(record: DeepPartial<Integration> = {}): Integration {
-    return plainToClass(Integration, {
+    return {
       name: 'Test Integration',
       key: 'test-integration',
       version: '1',
       deprecated: false,
       ...record,
-    })
+    } as Integration
   }
 
   async createIntegration(record: DeepPartial<Integration> = {}): Promise<Integration> {
@@ -87,14 +137,15 @@ export class MockService {
   }
 
   getInstanceOfIntegrationTrigger(record: DeepPartial<IntegrationTrigger> = {}): IntegrationTrigger {
-    return plainToClass(IntegrationTrigger, {
+    return {
       name: 'Test Integration Trigger',
       key: 'test-integration-trigger',
       integration: this.integration?._id,
       schemaRequest: {},
       schemaResponse: {},
+      idKey: 'items[].id',
       ...record,
-    })
+    } as IntegrationTrigger
   }
 
   async createIntegrationTrigger(record: DeepPartial<IntegrationTrigger> = {}): Promise<IntegrationTrigger> {
@@ -110,14 +161,14 @@ export class MockService {
   }
 
   getInstanceOfIntegrationAction(record: DeepPartial<IntegrationAction> = {}): IntegrationAction {
-    return plainToClass(IntegrationAction, {
+    return {
       name: 'Test Integration Action',
       key: 'test-integration-action',
       integration: this.integration?._id,
       schemaRequest: {},
       schemaResponse: {},
       ...record,
-    })
+    } as IntegrationAction
   }
 
   async createIntegrationAction(record: DeepPartial<IntegrationAction> = {}): Promise<IntegrationAction> {
@@ -133,17 +184,15 @@ export class MockService {
   }
 
   getInstanceOfWorkflow(record: DeepPartial<CreateWorkflowInput & Workflow> = {}): Workflow {
-    return plainToClass(Workflow, {
+    return {
       owner: this.user?._id,
       name: 'Test Workflow',
       ...record,
-    })
+    } as Workflow
   }
 
   async createWorkflow(record: DeepPartial<CreateWorkflowInput & Workflow> = {}): Promise<Workflow> {
-    this.workflow = (await this.workflowService.Model.create(this.getInstanceOfWorkflow(record))).toObject({
-      virtuals: true,
-    })
+    this.workflow = await this.workflowService.createOne(this.getInstanceOfWorkflow(record))
     return this.workflow
   }
 
@@ -154,14 +203,14 @@ export class MockService {
   getInstanceOfWorkflowTrigger(
     record: DeepPartial<CreateWorkflowTriggerInput & WorkflowTrigger> = {},
   ): WorkflowTrigger {
-    return plainToClass(WorkflowTrigger, {
+    return {
       owner: this.user?._id,
       workflow: this.workflow?._id,
       name: 'test',
       integrationTrigger: this.integrationTrigger?._id,
       inputs: {},
       ...record,
-    })
+    } as WorkflowTrigger
   }
 
   async createWorkflowTrigger(
@@ -182,14 +231,14 @@ export class MockService {
   }
 
   getInstanceOfWorkflowAction(record: DeepPartial<CreateWorkflowActionInput & WorkflowAction> = {}): WorkflowAction {
-    return plainToClass(WorkflowAction, {
+    return {
       owner: this.user?._id,
       workflow: this.workflow?._id,
       name: 'test',
       integrationAction: this.integrationAction?._id,
       inputs: {},
       ...record,
-    })
+    } as WorkflowAction
   }
 
   async createWorkflowAction(
@@ -210,13 +259,13 @@ export class MockService {
   }
 
   getInstanceOfWorkflowRun(record: DeepPartial<WorkflowRun> = {}): WorkflowRun {
-    return plainToClass(WorkflowRun, {
+    return {
       owner: this.user?._id,
       workflow: this.workflow?._id,
       status: WorkflowRunStatus.running,
       startedBy: WorkflowRunStartedByOptions.trigger,
       ...record,
-    })
+    } as WorkflowRun
   }
 
   async createWorkflowRun(record: DeepPartial<WorkflowRun> = {}): Promise<WorkflowRun> {

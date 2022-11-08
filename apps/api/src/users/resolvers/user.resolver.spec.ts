@@ -1,5 +1,6 @@
+import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { Test, TestingModule } from '@nestjs/testing'
-import { TypegooseModule } from 'nestjs-typegoose'
+import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { SecurityUtils } from '../../../../../libs/common/src/utils/security.utils'
 import { closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
 import { MockModule } from '../../../../../libs/common/test/mock.module'
@@ -15,7 +16,13 @@ describe('UserResolver', () => {
 
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([User]), MockModule],
+      imports: [
+        NestjsQueryGraphQLModule.forFeature({
+          imports: [NestjsQueryTypegooseModule.forFeature([User])],
+          dtos: [{ DTOClass: User }],
+        }),
+        MockModule,
+      ],
       providers: [UserResolver, UserService, UserAuthorizer],
     }).compile()
 

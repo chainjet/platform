@@ -9,12 +9,12 @@ describe('IntegrationAccountService', () => {
   let service: IntegrationAccountService
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testModule: TestingModule = await Test.createTestingModule({
       imports: [TypegooseModule.forFeature([IntegrationAccount]), MockModule],
       providers: [IntegrationAccountService],
     }).compile()
 
-    service = module.get<IntegrationAccountService>(IntegrationAccountService)
+    service = testModule.get<IntegrationAccountService>(IntegrationAccountService)
   })
 
   afterAll(async () => await closeMongoConnection())

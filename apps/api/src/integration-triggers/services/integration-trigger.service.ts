@@ -12,9 +12,11 @@ export class IntegrationTriggerAuthorizer extends NotOwnedAuthorizer<Integration
 @Injectable()
 export class IntegrationTriggerService extends BaseService<IntegrationTrigger> {
   protected readonly logger = new Logger(IntegrationTriggerService.name)
+  static instance: IntegrationTriggerService
 
   constructor(@InjectModel(IntegrationTrigger) protected readonly model: ReturnModelType<typeof IntegrationTrigger>) {
     super(model)
+    IntegrationTriggerService.instance = this
   }
 
   async createOrUpdateOne(record: DeepPartial<IntegrationTrigger>): Promise<IntegrationTrigger> {

@@ -8,13 +8,13 @@ describe('ExternalOAuth Controller', () => {
   let controller: ExternalOAuthController
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testModule: TestingModule = await Test.createTestingModule({
       imports: [MockModule],
       controllers: [ExternalOAuthController],
       providers: [OAuthStrategyFactory],
     }).compile()
 
-    controller = module.get<ExternalOAuthController>(ExternalOAuthController)
+    controller = testModule.get<ExternalOAuthController>(ExternalOAuthController)
   })
 
   afterAll(async () => await closeMongoConnection())

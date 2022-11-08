@@ -1,4 +1,5 @@
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
+import { IntegrationActionService } from 'apps/api/src/integration-actions/services/integration-action.service'
 import { StepInputs } from '..'
 import { IntegrationAccount } from '../../../../apps/api/src/integration-accounts/entities/integration-account'
 import { Integration } from '../../../../apps/api/src/integrations/entities/integration'
@@ -43,7 +44,7 @@ export class MediumDefinition extends SingleIntegrationDefinition {
     integrationAccount: IntegrationAccount | null,
     credentials: StepInputs,
   ): Promise<MediumProfile | null> {
-    const integrationAction = await this.integrationActionService.findOne({
+    const integrationAction = await IntegrationActionService.instance.findOne({
       integration: integration.id,
       key: '/me.get',
     })

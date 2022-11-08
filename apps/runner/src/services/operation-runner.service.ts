@@ -17,7 +17,7 @@ import {
   RunResponse,
   StepInputs,
 } from '../../../../libs/definitions/src'
-import { SchemaService } from '../../../../libs/definitions/src/schema/services/schema.service'
+import { SchemaUtils } from '../../../../libs/definitions/src/schema/utils/schema.utils'
 import { IntegrationAuthType } from '../../../../libs/definitions/src/types/IntegrationAuthDefinition'
 import { AccountCredential } from '../../../api/src/account-credentials/entities/account-credential'
 import { AccountCredentialService } from '../../../api/src/account-credentials/services/account-credentials.service'
@@ -57,7 +57,6 @@ export class OperationRunnerService {
   protected readonly logger: Logger = new Logger(OperationRunnerService.name)
 
   constructor(
-    private readonly schemaService: SchemaService,
     private readonly oauthStrategyFactory: OAuthStrategyFactory,
     private readonly integrationActionService: IntegrationActionService,
     @Inject(forwardRef(() => IntegrationDefinitionFactory))
@@ -113,7 +112,7 @@ export class OperationRunnerService {
 
     // TODO can we avoid fetching the entire schema from disk? can we generate it dynamically from our db?
     // Get the schema without specifying URL because we should never fetch external schemas on runtime
-    const schema = await this.schemaService.getSchema({
+    const schema = await SchemaUtils.getSchema({
       integrationKey: integration.key,
       integrationVersion: integration.version,
     })

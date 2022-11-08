@@ -1,24 +1,31 @@
+import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { Test, TestingModule } from '@nestjs/testing'
-import { TypegooseModule } from 'nestjs-typegoose'
+import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
 import { MockModule } from '../../../../../libs/common/test/mock.module'
 import { MockService } from '../../../../../libs/common/test/mock.service'
-import { AccountCredential } from '../entities/account-credential'
+import { AccountCredential, AccountCredentialAuthorizer } from '../entities/account-credential'
 import { AccountCredentialService } from '../services/account-credentials.service'
-import { AccountCredentialAuthorizer, AccountCredentialResolver } from './account-credentials.resolver'
+import { AccountCredentialResolver } from './account-credentials.resolver'
 
 describe('AccountCredentialResolver', () => {
   let resolver: AccountCredentialResolver
   let mock: MockService
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([AccountCredential]), MockModule],
+    const testModule: TestingModule = await Test.createTestingModule({
+      imports: [
+        NestjsQueryGraphQLModule.forFeature({
+          imports: [NestjsQueryTypegooseModule.forFeature([AccountCredential])],
+          dtos: [{ DTOClass: AccountCredential }],
+        }),
+        MockModule,
+      ],
       providers: [AccountCredentialResolver, AccountCredentialService, AccountCredentialAuthorizer],
     }).compile()
 
-    resolver = module.get<AccountCredentialResolver>(AccountCredentialResolver)
-    mock = module.get<MockService>(MockService)
+    resolver = testModule.get<AccountCredentialResolver>(AccountCredentialResolver)
+    mock = testModule.get<MockService>(MockService)
   })
 
   afterEach(async () => await mock.dropDatabase())

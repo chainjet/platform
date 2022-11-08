@@ -1,4 +1,6 @@
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
+import { IntegrationAccountService } from 'apps/api/src/integration-accounts/services/integration-account.service'
+import { IntegrationActionService } from 'apps/api/src/integration-actions/services/integration-action.service'
 import request from 'request'
 import { RequestInterceptorOptions, StepInputs } from '..'
 import { AccountCredential } from '../../../../apps/api/src/account-credentials/entities/account-credential'
@@ -48,7 +50,7 @@ export class AirtableDefinition extends SingleIntegrationDefinition {
       }
 
       this.logger.debug('Creating or updating integration account for Airtable')
-      this.integrationAccount = await this.integrationAccountService.createOrUpdateOne({
+      this.integrationAccount = await IntegrationAccountService.instance.createOrUpdateOne({
         key: this.integrationKey,
         name: 'Airtable',
         authType: authDefinition.authType,
@@ -97,7 +99,7 @@ export class AirtableDefinition extends SingleIntegrationDefinition {
     accountCredential: AccountCredential | null
   }): Promise<OperationRunOptions | null> {
     const { integration } = opts
-    const integrationAction = await this.integrationActionService.findOne({
+    const integrationAction = await IntegrationActionService.instance.findOne({
       integration: integration._id,
       key: 'listRecords',
     })

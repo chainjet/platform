@@ -1,5 +1,6 @@
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
 import { IntegrationAccount } from 'apps/api/src/integration-accounts/entities/integration-account'
+import { IntegrationAccountService } from 'apps/api/src/integration-accounts/services/integration-account.service'
 import { IntegrationAction } from 'apps/api/src/integration-actions/entities/integration-action'
 import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/integration-trigger'
 import { OpenAPIObject } from 'openapi3-ts'
@@ -16,7 +17,7 @@ export class RedditDefinition extends PipedreamMixin(SingleIntegrationDefinition
     if (!integrationAccount) {
       return null
     }
-    return await this.integrationAccountService.createOrUpdateOne({
+    return await IntegrationAccountService.instance.createOrUpdateOne({
       key: integrationAccount.key,
       authParams: {
         duration: 'permanent',

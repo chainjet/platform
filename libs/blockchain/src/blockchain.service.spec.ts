@@ -5,11 +5,11 @@ describe('BlockchainService', () => {
   let service: BlockchainService
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testModule: TestingModule = await Test.createTestingModule({
       providers: [BlockchainService],
     }).compile()
 
-    service = module.get<BlockchainService>(BlockchainService)
+    service = testModule.get<BlockchainService>(BlockchainService)
   })
 
   it('should be defined', () => {

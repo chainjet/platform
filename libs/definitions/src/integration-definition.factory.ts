@@ -7,7 +7,6 @@ import { GitlabDefinition } from '@app/definitions/integration-definitions/gitla
 import { SlackDefinition } from '@app/definitions/integration-definitions/slack.definition'
 import { TrelloDefinition } from '@app/definitions/integration-definitions/trello.definition'
 import { ZoomDefinition } from '@app/definitions/integration-definitions/zoom.definition'
-import { SchemaService } from '@app/definitions/schema/services/schema.service'
 import { Injectable } from '@nestjs/common'
 import { Class } from '@ptc-org/nestjs-query-core'
 import { IntegrationAccountService } from '../../../apps/api/src/integration-accounts/services/integration-account.service'
@@ -67,6 +66,7 @@ import { SnowtraceDefinition } from './integration-definitions/snowtrace.definit
 import { StatuspageDefinition } from './integration-definitions/statuspage.definition'
 import { TelegramBotDefinition } from './integration-definitions/telegram-bot.definition'
 import { TwitterDefinition } from './integration-definitions/twitter.definition'
+import { TypeFormDefinition } from './integration-definitions/typeform.definition'
 import { UniswapV2Definition } from './integration-definitions/uniswapv2.definition'
 import { UniswapV3Definition } from './integration-definitions/uniswapv3.definition'
 import { WebhookDefinition } from './integration-definitions/webhook.definition'
@@ -147,6 +147,7 @@ export class IntegrationDefinitionFactory {
     trello: TrelloDefinition,
     // twilio: TwilioDefinition,
     twitter: TwitterDefinition,
+    typeform: TypeFormDefinition,
     uniswapv2: UniswapV2Definition,
     uniswapv3: UniswapV3Definition,
     webhook: WebhookDefinition,
@@ -156,7 +157,6 @@ export class IntegrationDefinitionFactory {
   }
 
   constructor(
-    protected readonly schemaService: SchemaService,
     protected readonly integrationService: IntegrationService,
     protected readonly integrationAccountService: IntegrationAccountService,
     protected readonly integrationActionService: IntegrationActionService,
@@ -167,13 +167,7 @@ export class IntegrationDefinitionFactory {
     if (!this.definitions[key]) {
       throw new Error(`Service definitions not found for ${key}`)
     }
-    return new this.definitions[key](
-      this.schemaService,
-      this.integrationService,
-      this.integrationAccountService,
-      this.integrationActionService,
-      this.integrationTriggerService,
-    )
+    return new this.definitions[key]()
   }
 
   getAllDefinitions(): Definition[] {

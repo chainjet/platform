@@ -1,6 +1,6 @@
 import { deleteObjectKeysDeep } from '@app/common/utils/object.utils'
 import { OpenApiUtils } from '@app/definitions/schema/utils/openApiUtils'
-import { Injectable, Logger } from '@nestjs/common'
+import { Logger } from '@nestjs/common'
 import defaultsDeep from 'lodash.defaultsdeep'
 import { OpenAPIObject } from 'openapi3-ts'
 
@@ -19,14 +19,13 @@ export interface UpdateSchemaOptions {
   schema: OpenAPIObject
 }
 
-@Injectable()
-export class SchemaService {
-  private readonly logger = new Logger(SchemaService.name)
-  private readonly schemaCache: Map<string, OpenAPIObject> = new Map()
+export const SchemaUtils = {
+  logger: new Logger('SchemaUtils'),
+  schemaCache: new Map<string, OpenAPIObject>(),
 
   getSchemaKey(integrationKey: string, integrationVersion: string): string {
     return `${integrationKey}-${integrationVersion}`
-  }
+  },
 
   async getSchema({
     integrationKey,
@@ -68,11 +67,11 @@ export class SchemaService {
     this.schemaCache.set(schemaKey, schema as OpenAPIObject)
 
     return schema as OpenAPIObject
-  }
+  },
 
   updateSchema({ integrationKey, integrationVersion, schema }: UpdateSchemaOptions): Promise<void> {
     const schemaKey = this.getSchemaKey(integrationKey, integrationVersion)
     this.schemaCache.set(schemaKey, schema)
     return OpenApiUtils.saveSchema(schema, integrationKey, integrationVersion)
-  }
+  },
 }

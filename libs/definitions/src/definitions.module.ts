@@ -4,12 +4,11 @@ import { IntegrationActionsModule } from '../../../apps/api/src/integration-acti
 import { IntegrationTriggersModule } from '../../../apps/api/src/integration-triggers/integration-triggers.module'
 import { IntegrationsModule } from '../../../apps/api/src/integrations/integrations.module'
 import { IntegrationDefinitionFactory } from './integration-definition.factory'
-import { SchemaService } from './schema/services/schema.service'
 import { IntegrationInstallerService } from './services/integration-installer.service'
 
 @Module({
   imports: [IntegrationsModule, IntegrationAccountsModule, IntegrationActionsModule, IntegrationTriggersModule],
-  providers: [IntegrationDefinitionFactory, SchemaService, IntegrationInstallerService],
-  exports: [IntegrationDefinitionFactory, IntegrationInstallerService, SchemaService],
+  providers: [IntegrationDefinitionFactory, IntegrationInstallerService],
+  exports: [IntegrationDefinitionFactory, IntegrationInstallerService],
 })
 export class DefinitionsModule {}

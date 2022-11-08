@@ -7,25 +7,23 @@ import { closeMongoConnection, TestDatabaseModule } from '../../common/test/data
 import { IntegrationDefinitionFactory } from './integration-definition.factory'
 import { AwsDefinition } from './integration-definitions/aws.definition'
 import { GithubDefinition } from './integration-definitions/github.definition'
-import { SchemaService } from './schema/services/schema.service'
 
 describe('ServiceDefinitionFactory', () => {
   let service: IntegrationDefinitionFactory
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [IntegrationDefinitionFactory, SchemaService],
+    const testModule: TestingModule = await Test.createTestingModule({
+      providers: [IntegrationDefinitionFactory],
       imports: [
         TestDatabaseModule,
         IntegrationsModule,
         IntegrationAccountsModule,
         IntegrationActionsModule,
         IntegrationTriggersModule,
-        SchemaService,
       ],
     }).compile()
 
-    service = module.get<IntegrationDefinitionFactory>(IntegrationDefinitionFactory)
+    service = testModule.get<IntegrationDefinitionFactory>(IntegrationDefinitionFactory)
   })
 
   afterAll(async () => await closeMongoConnection())

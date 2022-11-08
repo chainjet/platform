@@ -1,3 +1,8 @@
+import { BlockchainModule } from '@blockchain/blockchain'
+import { blockchainConfigList, BlockchainConfigService } from '@blockchain/blockchain/blockchain.config'
+import { ContractService } from '@blockchain/blockchain/contract/contract.service'
+import { ExplorerService } from '@blockchain/blockchain/explorer/explorer.service'
+import { ConfigModule } from '@nestjs/config'
 import { Test, TestingModule } from '@nestjs/testing'
 import { ContractResolver } from './contract.resolver'
 
@@ -5,11 +10,12 @@ describe('ContractResolver', () => {
   let resolver: ContractResolver
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [ContractResolver],
+    const testModule: TestingModule = await Test.createTestingModule({
+      imports: [ConfigModule.forRoot({ load: [blockchainConfigList] }), BlockchainModule],
+      providers: [ContractResolver, ExplorerService, BlockchainConfigService, ContractService],
     }).compile()
 
-    resolver = module.get<ContractResolver>(ContractResolver)
+    resolver = testModule.get<ContractResolver>(ContractResolver)
   })
 
   it('should be defined', () => {

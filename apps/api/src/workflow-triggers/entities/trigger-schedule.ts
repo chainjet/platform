@@ -1,6 +1,6 @@
 interface TriggerScheduleOnce {
   frequency: 'once'
-  date: Date
+  date: Date | string
 }
 
 interface TriggerScheduleInterval {

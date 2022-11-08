@@ -1,21 +1,32 @@
+import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { Test, TestingModule } from '@nestjs/testing'
-import { TypegooseModule } from 'nestjs-typegoose'
-import { closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
-import { MockModule } from '../../../../../libs/common/test/mock.module'
-import { WorkflowTrigger } from '../entities/workflow-trigger'
+import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
+import { closeMongoConnection } from 'libs/common/test/database/test-database.module'
+import { MockModule } from 'libs/common/test/mock.module'
+import { WorkflowTrigger, WorkflowTriggerAuthorizer } from '../entities/workflow-trigger'
+import { WorkflowUsedId } from '../entities/workflow-used-id'
 import { WorkflowTriggerService } from '../services/workflow-trigger.service'
-import { WorkflowTriggerAuthorizer, WorkflowTriggerResolver } from './workflow-trigger.resolver'
+import { WorkflowTriggerResolver } from './workflow-trigger.resolver'
 
 describe('WorkflowTriggerResolver', () => {
   let resolver: WorkflowTriggerResolver
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([WorkflowTrigger]), MockModule],
+    const testModule: TestingModule = await Test.createTestingModule({
+      imports: [
+        NestjsQueryGraphQLModule.forFeature({
+          imports: [
+            NestjsQueryTypegooseModule.forFeature([WorkflowTrigger]),
+            NestjsQueryTypegooseModule.forFeature([WorkflowUsedId]),
+          ],
+          dtos: [{ DTOClass: WorkflowTrigger }, { DTOClass: WorkflowUsedId }],
+        }),
+        MockModule,
+      ],
       providers: [WorkflowTriggerResolver, WorkflowTriggerService, WorkflowTriggerAuthorizer],
     }).compile()
 
-    resolver = module.get<WorkflowTriggerResolver>(WorkflowTriggerResolver)
+    resolver = testModule.get<WorkflowTriggerResolver>(WorkflowTriggerResolver)
   })
 
   afterAll(async () => await closeMongoConnection())

@@ -5,11 +5,11 @@ describe('OwnershipService', () => {
   let service: OwnershipService
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testModule: TestingModule = await Test.createTestingModule({
       providers: [OwnershipService],
     }).compile()
 
-    service = module.get<OwnershipService>(OwnershipService)
+    service = testModule.get<OwnershipService>(OwnershipService)
   })
 
   it('should be defined', () => {

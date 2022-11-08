@@ -1,19 +1,26 @@
+import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { Test, TestingModule } from '@nestjs/testing'
-import { TypegooseModule } from 'nestjs-typegoose'
+import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { MockModule } from '../../../../../libs/common/test/mock.module'
 import { Integration } from '../entities/integration'
-import { IntegrationResolver } from './integration.resolver'
+import { IntegrationAuthorizer, IntegrationResolver } from './integration.resolver'
 
 describe('IntegrationResolver', () => {
   let resolver: IntegrationResolver
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([Integration]), MockModule],
-      providers: [IntegrationResolver],
+    const testModule: TestingModule = await Test.createTestingModule({
+      imports: [
+        NestjsQueryGraphQLModule.forFeature({
+          imports: [NestjsQueryTypegooseModule.forFeature([Integration])],
+          dtos: [{ DTOClass: Integration }],
+        }),
+        MockModule,
+      ],
+      providers: [IntegrationResolver, IntegrationAuthorizer],
     }).compile()
 
-    resolver = module.get<IntegrationResolver>(IntegrationResolver)
+    resolver = testModule.get<IntegrationResolver>(IntegrationResolver)
   })
 
   it('should be defined', () => {

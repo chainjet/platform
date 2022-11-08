@@ -6,12 +6,12 @@ describe('GraphqlGuard', () => {
   let guard: GraphqlGuard
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testModule: TestingModule = await Test.createTestingModule({
       imports: [MockModule],
       providers: [],
     }).compile()
 
-    guard = module.get<GraphqlGuard>(GraphqlGuard)
+    guard = testModule.get<GraphqlGuard>(GraphqlGuard)
   })
 
   it('should be defined', () => {

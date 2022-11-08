@@ -1,5 +1,6 @@
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
 import { IntegrationAccount } from 'apps/api/src/integration-accounts/entities/integration-account'
+import { IntegrationAccountService } from 'apps/api/src/integration-accounts/services/integration-account.service'
 import { OpenAPIObject } from 'openapi3-ts'
 import { PipedreamMixin } from '../mixins/pipedream.mixin'
 
@@ -15,7 +16,7 @@ export class MailchimpDefinition extends PipedreamMixin(SingleIntegrationDefinit
       return null
     }
     // mailchimp needs custom auth because we need to fetch the data center for the account
-    return await this.integrationAccountService.updateOne(integrationAccount.id, {
+    return await IntegrationAccountService.instance.updateOne(integrationAccount.id, {
       customStrategyKey: 'mailchimp',
     })
   }

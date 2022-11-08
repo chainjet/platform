@@ -52,9 +52,11 @@ describe('InputUtils', () => {
       expect(parseInput({ foo: 'Value: {{output.bar}}' }, { output: { bar: [1, 2] } })).toEqual({ foo: 'Value: 1,2' })
       expect(parseInput('{{output.bar}}', { output: { bar: {} } })).toEqual({})
       expect(parseInput({ foo: 'Value: {{output.bar}}' }, { output: { bar: {} } })).toEqual({ foo: 'Value: {}' })
-      expect(parseInput('{{output.bar}}', { output: { bar: new Date('01/01/2020') } })).toEqual(new Date('01/01/2020'))
-      expect(parseInput({ foo: 'Value: {{output.bar}}' }, { output: { bar: new Date('01/01/2020') } })).toEqual({
-        foo: 'Value: 2020-01-01T03:00:00.000Z',
+      expect(parseInput('{{output.bar}}', { output: { bar: new Date('01/01/2020 UTC') } })).toEqual(
+        new Date('01/01/2020 UTC'),
+      )
+      expect(parseInput({ foo: 'Value: {{output.bar}}' }, { output: { bar: new Date('01/01/2020 UTC') } })).toEqual({
+        foo: 'Value: 2020-01-01T00:00:00.000Z',
       })
     })
 

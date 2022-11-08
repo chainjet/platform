@@ -670,13 +670,7 @@ export class GoogleApisDefinition extends MultiIntegrationDefinition {
       integrationVersion = serviceData.integrationVersion
       schemaUrl = serviceData.schemaUrl
     }
-    return new GoogleService(
-      this.schemaService,
-      this.integrationService,
-      this.integrationAccountService,
-      this.integrationActionService,
-      this.integrationTriggerService,
-    )
+    return new GoogleService()
   }
 
   mapSchemaOperation(operationSchema: OperationObject): OperationObject {

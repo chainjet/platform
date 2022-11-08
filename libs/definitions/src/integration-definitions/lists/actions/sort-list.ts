@@ -33,7 +33,6 @@ export class SortListAction extends OperationOffChain {
     if (!inputs.list || !Array.isArray(inputs.list) || !inputs.sortBy || !inputs.direction) {
       return { outputs: { sorted: [] } }
     }
-    console.log(`inputs =>`, inputs.list)
     return {
       outputs: {
         sorted: inputs.list.sort((a, b) => {

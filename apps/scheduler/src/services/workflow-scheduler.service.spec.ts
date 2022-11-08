@@ -8,12 +8,12 @@ describe('WorkflowSchedulerService', () => {
   let service: WorkflowSchedulerService
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testModule: TestingModule = await Test.createTestingModule({
       imports: [ScheduleModule.forRoot(), MockModule],
       providers: [WorkflowSchedulerService],
     }).compile()
 
-    service = module.get<WorkflowSchedulerService>(WorkflowSchedulerService)
+    service = testModule.get<WorkflowSchedulerService>(WorkflowSchedulerService)
   })
 
   afterAll(async () => await closeMongoConnection())

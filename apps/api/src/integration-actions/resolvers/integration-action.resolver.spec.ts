@@ -1,5 +1,6 @@
+import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { Test, TestingModule } from '@nestjs/testing'
-import { TypegooseModule } from 'nestjs-typegoose'
+import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
 import { MockModule } from '../../../../../libs/common/test/mock.module'
 import { IntegrationAction } from '../entities/integration-action'
@@ -10,12 +11,18 @@ describe('IntegrationActionResolver', () => {
   let resolver: IntegrationActionResolver
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([IntegrationAction]), MockModule],
+    const testModule: TestingModule = await Test.createTestingModule({
+      imports: [
+        NestjsQueryGraphQLModule.forFeature({
+          imports: [NestjsQueryTypegooseModule.forFeature([IntegrationAction])],
+          dtos: [{ DTOClass: IntegrationAction }],
+        }),
+        MockModule,
+      ],
       providers: [IntegrationActionResolver, IntegrationActionService],
     }).compile()
 
-    resolver = module.get<IntegrationActionResolver>(IntegrationActionResolver)
+    resolver = testModule.get<IntegrationActionResolver>(IntegrationActionResolver)
   })
 
   afterAll(async () => await closeMongoConnection())

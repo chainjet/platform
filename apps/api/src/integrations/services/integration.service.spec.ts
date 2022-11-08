@@ -11,13 +11,13 @@ describe('IntegrationService', () => {
   let mock: MockService
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testModule: TestingModule = await Test.createTestingModule({
       imports: [TypegooseModule.forFeature([Integration]), MockModule],
       providers: [IntegrationService],
     }).compile()
 
-    service = module.get<IntegrationService>(IntegrationService)
-    mock = module.get<MockService>(MockService)
+    service = testModule.get<IntegrationService>(IntegrationService)
+    mock = testModule.get<MockService>(MockService)
   })
 
   afterEach(async () => await mock.dropDatabase())

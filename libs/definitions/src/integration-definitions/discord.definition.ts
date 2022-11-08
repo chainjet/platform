@@ -2,6 +2,7 @@ import { SingleIntegrationDefinition } from '@app/definitions/single-integration
 import { UnauthorizedException } from '@nestjs/common'
 import { AccountCredential } from 'apps/api/src/account-credentials/entities/account-credential'
 import { IntegrationAccount } from 'apps/api/src/integration-accounts/entities/integration-account'
+import { IntegrationAccountService } from 'apps/api/src/integration-accounts/services/integration-account.service'
 import { IntegrationAction } from 'apps/api/src/integration-actions/entities/integration-action'
 import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/integration-trigger'
 import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-action'
@@ -46,7 +47,7 @@ export class DiscordDefinition extends SingleIntegrationDefinition {
     if (!integrationAccount) {
       return integrationAccount
     }
-    return await this.integrationAccountService.createOrUpdateOne({
+    return await IntegrationAccountService.instance.createOrUpdateOne({
       key: integrationAccount.key,
       authParams: {
         permissions: 8,

@@ -11,12 +11,12 @@ describe('LogicDefinition', () => {
   let definition: LogicDefinition
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testModule: TestingModule = await Test.createTestingModule({
       imports: [TestDatabaseModule, DefinitionsModule],
       providers: [LogicDefinition],
     }).compile()
 
-    const factory = module.get<IntegrationDefinitionFactory>(IntegrationDefinitionFactory)
+    const factory = testModule.get<IntegrationDefinitionFactory>(IntegrationDefinitionFactory)
     definition = factory.getDefinition('logic') as LogicDefinition
   })
 

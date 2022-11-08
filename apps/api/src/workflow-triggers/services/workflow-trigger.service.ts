@@ -181,7 +181,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
 
     // If trigger is disabled, remove nextCheck
     if (update.enabled === false) {
-      update.nextCheck = undefined
+      update.nextCheck = null as any
       if (workflowTrigger.enabled) {
         this.logger.log(`Workflow ${workflowTrigger.workflow} was disabled`)
       }
@@ -306,7 +306,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     try {
       const nextCheck = this.getTriggerNextCheck(workflowTrigger)
       if (workflowTrigger.nextCheck !== nextCheck) {
-        await this.updateOne(workflowTrigger.id, { nextCheck })
+        await this.updateOneNative({ _id: workflowTrigger._id }, { nextCheck })
       }
     } catch (e) {
       this.logger.error(`Error updating nextCheck for ${workflowTrigger.id}: ${e.message}`)

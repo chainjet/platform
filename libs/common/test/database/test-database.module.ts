@@ -8,12 +8,12 @@ let mongod: MongoMemoryServer
   imports: [
     TypegooseModule.forRootAsync({
       useFactory: async () => {
-        mongod = new MongoMemoryServer()
+        mongod = await MongoMemoryServer.create({})
         return {
-          uri: await mongod.getUri(),
-          useNewUrlParser: true,
-          useFindAndModify: false,
-          useUnifiedTopology: true,
+          uri: mongod.getUri(),
+          // useNewUrlParser: true,
+          // useFindAndModify: false,
+          // useUnifiedTopology: true,
         }
       },
     }),

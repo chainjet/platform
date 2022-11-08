@@ -9,12 +9,12 @@ describe('IntegrationTriggerService', () => {
   let service: IntegrationTriggerService
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testModule: TestingModule = await Test.createTestingModule({
       imports: [TypegooseModule.forFeature([IntegrationTrigger]), MockModule],
       providers: [IntegrationTriggerService],
     }).compile()
 
-    service = module.get<IntegrationTriggerService>(IntegrationTriggerService)
+    service = testModule.get<IntegrationTriggerService>(IntegrationTriggerService)
   })
 
   afterAll(async () => await closeMongoConnection())

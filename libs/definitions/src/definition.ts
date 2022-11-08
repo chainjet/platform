@@ -1,4 +1,3 @@
-import { SchemaService } from '@app/definitions/schema/services/schema.service'
 import { Logger } from '@nestjs/common'
 import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/integration-trigger'
 import { WorkflowTriggerService } from 'apps/api/src/workflow-triggers/services/workflow-trigger.service'
@@ -10,12 +9,9 @@ import request from 'request'
 import { Observable } from 'rxjs'
 import { AccountCredential } from '../../../apps/api/src/account-credentials/entities/account-credential'
 import { IntegrationAccount } from '../../../apps/api/src/integration-accounts/entities/integration-account'
-import { IntegrationAccountService } from '../../../apps/api/src/integration-accounts/services/integration-account.service'
 import { IntegrationAction } from '../../../apps/api/src/integration-actions/entities/integration-action'
-import { IntegrationActionService } from '../../../apps/api/src/integration-actions/services/integration-action.service'
 import { IntegrationTriggerService } from '../../../apps/api/src/integration-triggers/services/integration-trigger.service'
 import { Integration } from '../../../apps/api/src/integrations/entities/integration'
-import { IntegrationService } from '../../../apps/api/src/integrations/services/integration.service'
 import { WorkflowAction } from '../../../apps/api/src/workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from '../../../apps/api/src/workflow-triggers/entities/workflow-trigger'
 import { OperationRunnerService, OperationRunOptions } from '../../../apps/runner/src/services/operation-runner.service'
@@ -74,13 +70,7 @@ export abstract class Definition {
   triggers: OperationTrigger[] = []
   actions: Operation[] = []
 
-  constructor(
-    protected readonly schemaService: SchemaService,
-    protected readonly integrationService: IntegrationService,
-    protected readonly integrationAccountService: IntegrationAccountService,
-    protected readonly integrationActionService: IntegrationActionService,
-    protected readonly integrationTriggerService: IntegrationTriggerService,
-  ) {}
+  constructor() {}
 
   get operations() {
     return [...this.triggers, ...this.actions]

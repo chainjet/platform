@@ -29,12 +29,12 @@ describe('BaseService', () => {
   }
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testModule: TestingModule = await Test.createTestingModule({
       imports: [TypegooseModule.forFeature([TestEntity]), TestDatabaseModule],
       providers: [TestService],
     }).compile()
 
-    service = module.get<TestService>(TestService)
+    service = testModule.get<TestService>(TestService)
     model = service.Model
     await model.collection.createIndex({ name: 'text' })
   })

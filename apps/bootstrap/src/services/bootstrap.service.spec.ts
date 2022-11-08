@@ -6,12 +6,12 @@ describe('BootstrapService', () => {
   let service: BootstrapService
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testModule: TestingModule = await Test.createTestingModule({
       imports: [MockModule],
       providers: [BootstrapService],
     }).compile()
 
-    service = module.get<BootstrapService>(BootstrapService)
+    service = testModule.get<BootstrapService>(BootstrapService)
   })
 
   it('should be defined', () => {

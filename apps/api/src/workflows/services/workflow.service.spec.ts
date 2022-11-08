@@ -11,17 +11,22 @@ describe('WorkflowService', () => {
   let mock: MockService
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testModule: TestingModule = await Test.createTestingModule({
       imports: [TypegooseModule.forFeature([Workflow]), MockModule],
       providers: [WorkflowService],
     }).compile()
 
-    service = module.get<WorkflowService>(WorkflowService)
-    mock = module.get<MockService>(MockService)
+    service = testModule.get<WorkflowService>(WorkflowService)
+    mock = testModule.get<MockService>(MockService)
   })
 
   afterEach(async () => await mock.dropDatabase())
   afterAll(async () => await closeMongoConnection())
+
+  beforeEach(async () => {
+    await mock.createUser()
+    await mock.createWorkflowDeep()
+  })
 
   it('should be defined', () => {
     expect(service).toBeDefined()
@@ -29,8 +34,7 @@ describe('WorkflowService', () => {
 
   describe('updateOne', () => {
     it('should throw an error if runOnFailure', async () => {
-      const workflow = await mock.createWorkflowDeep()
-      await expect(service.updateOne(workflow.id, { runOnFailure: workflow._id })).rejects.toThrow(
+      await expect(service.updateOne(mock.workflow.id, { runOnFailure: mock.workflow._id })).rejects.toThrow(
         /Run On Failure cannot be set with the same workflow ID./,
       )
     })

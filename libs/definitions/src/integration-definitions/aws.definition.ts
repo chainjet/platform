@@ -4,6 +4,7 @@ import { IntegrationAuthDefinition, IntegrationAuthType } from '@app/definitions
 import { HttpService } from '@nestjs/axios'
 import { Logger } from '@nestjs/common'
 import { IntegrationAccount } from 'apps/api/src/integration-accounts/entities/integration-account'
+import { IntegrationAccountService } from 'apps/api/src/integration-accounts/services/integration-account.service'
 import aws4 from 'aws4'
 import { Request } from 'express'
 import { JSONSchema7 } from 'json-schema'
@@ -101,7 +102,7 @@ export class AwsDefinition extends MultiIntegrationDefinition {
       }
 
       this.logger.debug(`Creating or updating integration account for ${this.parentKey}`)
-      this.integrationAccount = await this.integrationAccountService.createOrUpdateOne({
+      this.integrationAccount = await IntegrationAccountService.instance.createOrUpdateOne({
         key: this.parentKey,
         name: this.parentName,
         description: '', // TODO

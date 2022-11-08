@@ -17,18 +17,22 @@ describe('Hooks Controller', () => {
   let integrationDefinitionFactory: IntegrationDefinitionFactory
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testModule: TestingModule = await Test.createTestingModule({
       controllers: [HooksController],
       providers: [WorkflowTriggerService],
       imports: [TypegooseModule.forFeature([WorkflowTrigger]), MockModule],
     }).compile()
 
-    app = module.createNestApplication()
+    app = testModule.createNestApplication()
     await app.init()
 
-    controller = module.get<HooksController>(HooksController)
-    mock = module.get<MockService>(MockService)
-    integrationDefinitionFactory = module.get<IntegrationDefinitionFactory>(IntegrationDefinitionFactory)
+    controller = testModule.get<HooksController>(HooksController)
+    mock = testModule.get<MockService>(MockService)
+    integrationDefinitionFactory = testModule.get<IntegrationDefinitionFactory>(IntegrationDefinitionFactory)
+  })
+
+  beforeEach(async () => {
+    await mock.createUser()
   })
 
   afterEach(async () => await mock.dropDatabase())
@@ -49,6 +53,7 @@ describe('Hooks Controller', () => {
     it('should run the workflow if onHookReceived returns true', async () => {
       integrationDefinitionFactory.getDefinition = jest.fn(() => ({
         onHookReceived: () => true,
+        onHookReceivedForWorkflowTrigger: () => true,
       })) as jest.Mock
 
       const res = await supertest(app.getHttpServer()).get(`/hooks/${mock.workflowTrigger.hookId}`).expect(200)
@@ -61,6 +66,7 @@ describe('Hooks Controller', () => {
 
       const expectedOutputs = {
         [mock.workflowTrigger.id]: {},
+        trigger: {},
       }
       const workflowRun = await mock.workflowRunService.findOne({ workflow: mock.workflow })
       expect(mock.runnerService.runWorkflowActions).toHaveBeenCalledWith([], [expectedOutputs], workflowRun)
@@ -69,6 +75,7 @@ describe('Hooks Controller', () => {
     it('should merge query params with body params', async () => {
       integrationDefinitionFactory.getDefinition = jest.fn(() => ({
         onHookReceived: () => true,
+        onHookReceivedForWorkflowTrigger: () => true,
       })) as jest.Mock
 
       const res = await supertest(app.getHttpServer())
@@ -92,6 +99,12 @@ describe('Hooks Controller', () => {
           body1: 'foo',
           body2: 'bar',
         },
+        trigger: {
+          query1: 'foo',
+          query2: 'bar',
+          body1: 'foo',
+          body2: 'bar',
+        },
       }
       const workflowRun = await mock.workflowRunService.findOne({ workflow: mock.workflow })
       expect(mock.runnerService.runWorkflowActions).toHaveBeenCalledWith([], [expectedOutputs], workflowRun)
@@ -100,6 +113,7 @@ describe('Hooks Controller', () => {
     it('should not run the workflow if onHookReceived returns false', async () => {
       integrationDefinitionFactory.getDefinition = jest.fn(() => ({
         onHookReceived: () => false,
+        onHookReceivedForWorkflowTrigger: () => false,
       })) as jest.Mock
 
       await supertest(app.getHttpServer()).get(`/hooks/${mock.workflowTrigger.hookId}`).expect(200).expect({})

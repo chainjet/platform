@@ -12,9 +12,11 @@ export class IntegrationActionAuthorizer extends NotOwnedAuthorizer<IntegrationA
 @Injectable()
 export class IntegrationActionService extends BaseService<IntegrationAction> {
   protected readonly logger = new Logger(IntegrationActionService.name)
+  static instance: IntegrationActionService
 
   constructor(@InjectModel(IntegrationAction) protected readonly model: ReturnModelType<typeof IntegrationAction>) {
     super(model)
+    IntegrationActionService.instance = this
   }
 
   async createOrUpdateOne(record: DeepPartial<IntegrationAction>): Promise<IntegrationAction> {

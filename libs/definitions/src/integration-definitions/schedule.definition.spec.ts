@@ -7,18 +7,18 @@ describe('Schedule Definition', () => {
   let definition: ScheduleDefinition
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testModule: TestingModule = await Test.createTestingModule({
       imports: [TestDatabaseModule, DefinitionsModule],
       providers: [ScheduleDefinition],
     }).compile()
 
-    const factory = module.get<IntegrationDefinitionFactory>(IntegrationDefinitionFactory)
+    const factory = testModule.get<IntegrationDefinitionFactory>(IntegrationDefinitionFactory)
     definition = factory.getDefinition('schedule') as ScheduleDefinition
   })
 
   describe('Run', () => {
     beforeEach(() => {
-      Date.now = jest.fn(() => new Date('2020-01-01 00:00').getTime())
+      Date.now = jest.fn(() => new Date('2020-01-01 00:00 UTC').getTime())
     })
 
     it('should return the current date', async () => {
@@ -28,14 +28,14 @@ describe('Schedule Definition', () => {
           dayName: 'Wednesday',
           dayOfMonth: 1,
           hour: 0,
-          isoString: new Date('2020-01-01 00:00').toISOString(),
+          isoString: new Date('2020-01-01 00:00 UTC').toISOString(),
           minute: 0,
           monthName: 'January',
           monthNumber: 1,
           second: 0,
           time: '00:00:00',
-          timezoneOffset: new Date('2020-01-01 00:00').getTimezoneOffset(),
-          unixtime: 1577847600000,
+          timezoneOffset: new Date('2020-01-01 00:00 UTC').getTimezoneOffset(),
+          unixtime: 1577836800000,
           year: 2020,
         },
       })

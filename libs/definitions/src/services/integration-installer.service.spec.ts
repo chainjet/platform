@@ -4,15 +4,14 @@ import { IntegrationActionsModule } from '../../../../apps/api/src/integration-a
 import { IntegrationTriggersModule } from '../../../../apps/api/src/integration-triggers/integration-triggers.module'
 import { IntegrationsModule } from '../../../../apps/api/src/integrations/integrations.module'
 import { TestDatabaseModule } from '../../../common/test/database/test-database.module'
-import { SchemaService } from '../schema/services/schema.service'
 import { IntegrationInstallerService } from './integration-installer.service'
 
 describe('IntegrationInstallerService', () => {
   let service: IntegrationInstallerService
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [IntegrationInstallerService, SchemaService],
+    const testModule: TestingModule = await Test.createTestingModule({
+      providers: [IntegrationInstallerService],
       imports: [
         TestDatabaseModule,
         IntegrationsModule,
@@ -22,7 +21,7 @@ describe('IntegrationInstallerService', () => {
       ],
     }).compile()
 
-    service = module.get<IntegrationInstallerService>(IntegrationInstallerService)
+    service = testModule.get<IntegrationInstallerService>(IntegrationInstallerService)
   })
 
   it('should be defined', () => {

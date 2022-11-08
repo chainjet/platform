@@ -1,3 +1,4 @@
+import { IntegrationDefinitionFactory } from '@app/definitions'
 import { Test, TestingModule } from '@nestjs/testing'
 import { TypegooseModule } from 'nestjs-typegoose'
 import { closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
@@ -10,15 +11,22 @@ import { WorkflowTriggerService } from './workflow-trigger.service'
 describe('WorkflowTriggerService', () => {
   let service: WorkflowTriggerService
   let mock: MockService
+  let integrationDefinitionFactory: IntegrationDefinitionFactory
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testModule: TestingModule = await Test.createTestingModule({
       imports: [TypegooseModule.forFeature([WorkflowTrigger]), MockModule],
       providers: [WorkflowTriggerService, HooksController],
     }).compile()
 
-    service = module.get<WorkflowTriggerService>(WorkflowTriggerService)
-    mock = module.get<MockService>(MockService)
+    service = testModule.get<WorkflowTriggerService>(WorkflowTriggerService)
+    mock = testModule.get<MockService>(MockService)
+    integrationDefinitionFactory = testModule.get<IntegrationDefinitionFactory>(IntegrationDefinitionFactory)
+  })
+
+  beforeEach(async () => {
+    integrationDefinitionFactory.getDefinition = jest.fn(() => mock.getDefinition({}))
+    await mock.createUser()
   })
 
   afterEach(async () => await mock.dropDatabase())
@@ -27,6 +35,7 @@ describe('WorkflowTriggerService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined()
   })
+
   describe('updateOne', () => {
     it('should update nextCheck if frequency is updated', async () => {
       const nextCheck = new Date('01/01/2020 00:00:00 UTC')
@@ -114,6 +123,7 @@ describe('WorkflowTriggerService', () => {
     describe('once', () => {
       it('should return the next check for a date in the future', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
+          enabled: true,
           schedule: {
             frequency: 'once',
             date: new Date('2100-01-01 UTC').toISOString(),
@@ -124,6 +134,7 @@ describe('WorkflowTriggerService', () => {
 
       it('should return undefined for a date in the past', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
+          enabled: true,
           schedule: {
             frequency: 'once',
             date: new Date('2019-01-01').toISOString(),
@@ -134,6 +145,7 @@ describe('WorkflowTriggerService', () => {
 
       it('should throw an error if date is invalid', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
+          enabled: true,
           schedule: {
             frequency: 'once',
             date: 'invalid date',
@@ -146,6 +158,7 @@ describe('WorkflowTriggerService', () => {
     describe('interval', () => {
       it('should increse current date by the interval if trigger does not have next check', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
+          enabled: true,
           schedule: {
             frequency: 'interval',
             interval: 300,
@@ -157,6 +170,7 @@ describe('WorkflowTriggerService', () => {
 
       it('should increse current date by the interval if next check + interval is in the past', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
+          enabled: true,
           schedule: {
             frequency: 'interval',
             interval: 300,
@@ -169,6 +183,7 @@ describe('WorkflowTriggerService', () => {
 
       it('should increase next check by the interval only if the schedule did not change', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
+          enabled: true,
           schedule: {
             frequency: 'interval',
             interval: 300,
@@ -183,6 +198,7 @@ describe('WorkflowTriggerService', () => {
     describe('hour', () => {
       it('should return the same hour on the given minute', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
+          enabled: true,
           schedule: {
             frequency: 'hour',
             minute: 22,
@@ -195,6 +211,7 @@ describe('WorkflowTriggerService', () => {
         Date.now = jest.fn(() => new Date('2020-01-01 00:30').getTime())
 
         const trigger = mock.getInstanceOfWorkflowTrigger({
+          enabled: true,
           schedule: {
             frequency: 'hour',
             minute: 22,
@@ -207,6 +224,7 @@ describe('WorkflowTriggerService', () => {
     describe('day', () => {
       it('should return the same day on the given hour', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
+          enabled: true,
           schedule: {
             frequency: 'day',
             time: '12:23',
@@ -219,6 +237,7 @@ describe('WorkflowTriggerService', () => {
         Date.now = jest.fn(() => new Date('2020-01-01 16:00').getTime())
 
         const trigger = mock.getInstanceOfWorkflowTrigger({
+          enabled: true,
           schedule: {
             frequency: 'day',
             time: '12:23',
@@ -229,6 +248,7 @@ describe('WorkflowTriggerService', () => {
 
       it('should throw an error if time is invalid', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
+          enabled: true,
           schedule: {
             frequency: 'day',
             time: 'invalid time',
@@ -241,6 +261,7 @@ describe('WorkflowTriggerService', () => {
     describe('week', () => {
       it('should return the same week on the given date', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
+          enabled: true,
           schedule: {
             frequency: 'week',
             dayOfWeek: 5,
@@ -254,6 +275,7 @@ describe('WorkflowTriggerService', () => {
         Date.now = jest.fn(() => new Date('2020-01-05 16:00').getTime())
 
         const trigger = mock.getInstanceOfWorkflowTrigger({
+          enabled: true,
           schedule: {
             frequency: 'week',
             dayOfWeek: 5,
@@ -267,6 +289,7 @@ describe('WorkflowTriggerService', () => {
         Date.now = jest.fn(() => new Date('2020-01-06 00:00').getTime())
 
         const trigger = mock.getInstanceOfWorkflowTrigger({
+          enabled: true,
           schedule: {
             frequency: 'week',
             dayOfWeek: 5,
@@ -280,6 +303,7 @@ describe('WorkflowTriggerService', () => {
     describe('month', () => {
       it('should return the same week on the given date', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
+          enabled: true,
           schedule: {
             frequency: 'month',
             dayOfMonth: 12,
@@ -293,6 +317,7 @@ describe('WorkflowTriggerService', () => {
         Date.now = jest.fn(() => new Date('2020-01-12 16:00').getTime())
 
         const trigger = mock.getInstanceOfWorkflowTrigger({
+          enabled: true,
           schedule: {
             frequency: 'month',
             dayOfMonth: 12,
@@ -306,6 +331,7 @@ describe('WorkflowTriggerService', () => {
         Date.now = jest.fn(() => new Date('2020-01-13 00:00').getTime())
 
         const trigger = mock.getInstanceOfWorkflowTrigger({
+          enabled: true,
           schedule: {
             frequency: 'month',
             dayOfMonth: 12,
@@ -319,6 +345,7 @@ describe('WorkflowTriggerService', () => {
     describe('cron', () => {
       it('should return the next cron match', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
+          enabled: true,
           schedule: {
             frequency: 'cron',
             expression: '10 12 * * *',
@@ -329,6 +356,7 @@ describe('WorkflowTriggerService', () => {
 
       it('should thrown an error if cron is not valid', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
+          enabled: true,
           schedule: {
             frequency: 'cron',
             expression: '* 10 12 * * *',

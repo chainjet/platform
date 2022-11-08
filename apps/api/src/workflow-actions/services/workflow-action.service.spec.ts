@@ -1,4 +1,6 @@
 import { ObjectID } from '@app/common/utils/mongodb'
+import { IntegrationDefinitionFactory } from '@app/definitions'
+import { OperationType } from '@app/definitions/types/OperationType'
 import { Test, TestingModule } from '@nestjs/testing'
 import { DeepPartial } from '@ptc-org/nestjs-query-core'
 import { TypegooseModule } from 'nestjs-typegoose'
@@ -11,22 +13,26 @@ import { WorkflowActionService } from './workflow-action.service'
 describe('WorkflowActionService', () => {
   let service: WorkflowActionService
   let mock: MockService
+  let integrationDefinitionFactory: IntegrationDefinitionFactory
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testModule: TestingModule = await Test.createTestingModule({
       imports: [TypegooseModule.forFeature([WorkflowAction]), MockModule],
       providers: [WorkflowActionService],
     }).compile()
 
-    service = module.get<WorkflowActionService>(WorkflowActionService)
-    mock = module.get<MockService>(MockService)
+    service = testModule.get<WorkflowActionService>(WorkflowActionService)
+    mock = testModule.get<MockService>(MockService)
+    integrationDefinitionFactory = testModule.get<IntegrationDefinitionFactory>(IntegrationDefinitionFactory)
   })
 
   afterEach(async () => await mock.dropDatabase())
   afterAll(async () => await closeMongoConnection())
 
   beforeEach(async () => {
+    integrationDefinitionFactory.getDefinition = jest.fn(() => mock.getDefinition({}))
     await mock.createIntegrationActionDeep()
+    await mock.createUser()
     await mock.createWorkflowDeep()
   })
 
@@ -43,7 +49,6 @@ describe('WorkflowActionService', () => {
   describe('createOne', () => {
     it('should create an action on an empty workflow', async () => {
       const workflowAction = await createWorkflowAction()
-
       const doc = await service.Model.findOne()
       expect(doc?.toObject()).toEqual({
         _id: doc?._id,
@@ -51,6 +56,7 @@ describe('WorkflowActionService', () => {
         workflow: mock.workflow._id,
         integrationAction: workflowAction.integrationAction,
         name: 'Test Integration Action',
+        type: OperationType.OffChain,
         inputs: '{}',
         isRootAction: true,
         nextActions: [],
@@ -64,8 +70,8 @@ describe('WorkflowActionService', () => {
         nextAction: new ObjectID(existentAction.id),
       })
 
-      const existentActionDoc = (await service.Model.findOne({ _id: new ObjectID(existentAction.id) }))?.toObject()
-      const newActionDoc = (await service.Model.findOne({ _id: new ObjectID(newAction.id) }))?.toObject()
+      const existentActionDoc = (await service.Model.findOne({ _id: new ObjectID(existentAction.id) }))!.toObject()
+      const newActionDoc = (await service.Model.findOne({ _id: new ObjectID(newAction.id) }))!.toObject()
       expect(existentActionDoc.isRootAction).toEqual(false)
       expect(existentActionDoc.nextActions).toEqual([])
       expect(newActionDoc.isRootAction).toEqual(true)
@@ -78,8 +84,8 @@ describe('WorkflowActionService', () => {
         previousAction: new ObjectID(firstAction.id),
       })
 
-      const firstActionDoc = (await service.Model.findOne({ _id: new ObjectID(firstAction.id) }))?.toObject()
-      const secondActionDoc = (await service.Model.findOne({ _id: new ObjectID(lastAction.id) }))?.toObject()
+      const firstActionDoc = (await service.Model.findOne({ _id: new ObjectID(firstAction.id) }))!.toObject()
+      const secondActionDoc = (await service.Model.findOne({ _id: new ObjectID(lastAction.id) }))!.toObject()
       expect(firstActionDoc.isRootAction).toEqual(true)
       expect(firstActionDoc.nextActions).toEqual([{ action: new ObjectID(lastAction.id) }])
       expect(secondActionDoc.isRootAction).toEqual(false)
@@ -96,9 +102,9 @@ describe('WorkflowActionService', () => {
         nextAction: new ObjectID(lastAction.id),
       })
 
-      const firstActionDoc = (await service.Model.findOne({ _id: new ObjectID(firstAction.id) }))?.toObject()
-      const middleActionDoc = (await service.Model.findOne({ _id: new ObjectID(middleAction.id) }))?.toObject()
-      const lastActionDoc = (await service.Model.findOne({ _id: new ObjectID(lastAction.id) }))?.toObject()
+      const firstActionDoc = (await service.Model.findOne({ _id: new ObjectID(firstAction.id) }))!.toObject()
+      const middleActionDoc = (await service.Model.findOne({ _id: new ObjectID(middleAction.id) }))!.toObject()
+      const lastActionDoc = (await service.Model.findOne({ _id: new ObjectID(lastAction.id) }))!.toObject()
       expect(firstActionDoc.isRootAction).toEqual(true)
       expect(firstActionDoc.nextActions).toEqual([{ action: new ObjectID(middleAction.id) }])
       expect(middleActionDoc.isRootAction).toEqual(false)
@@ -114,7 +120,7 @@ describe('WorkflowActionService', () => {
         previousActionCondition: 'test condition',
       })
 
-      const firstActionDoc = (await service.Model.findOne({ _id: new ObjectID(firstAction.id) }))?.toObject()
+      const firstActionDoc = (await service.Model.findOne({ _id: new ObjectID(firstAction.id) }))!.toObject()
       expect(firstActionDoc.isRootAction).toEqual(true)
       expect(firstActionDoc.nextActions).toEqual([
         {
@@ -152,7 +158,7 @@ describe('WorkflowActionService', () => {
         inputs: {},
       })
       const firstAction = await createWorkflowAction()
-      await mock.workflowTriggerService.updateOne(trigger.id, { nextCheck: undefined })
+      await mock.workflowTriggerService.updateOneNative({ _id: trigger._id }, { nextCheck: null })
       await createWorkflowAction({ previousAction: new ObjectID(firstAction.id) })
       const updatedTrigger = await mock.workflowTriggerService.findById(trigger.id)
       expect(updatedTrigger?.nextCheck).toBeNull()
@@ -174,7 +180,7 @@ describe('WorkflowActionService', () => {
       })
       await service.deleteOne(firstAction.id)
 
-      const lastActionDoc = (await service.Model.findOne({ _id: new ObjectID(lastAction.id) }))?.toObject()
+      const lastActionDoc = (await service.Model.findOne({ _id: new ObjectID(lastAction.id) }))!.toObject()
       expect(lastActionDoc.isRootAction).toEqual(true)
       expect(lastActionDoc.nextActions).toEqual([])
     })
@@ -186,7 +192,7 @@ describe('WorkflowActionService', () => {
       })
       await service.deleteOne(lastAction.id)
 
-      const firstActionDoc = (await service.Model.findOne({ _id: new ObjectID(firstAction.id) }))?.toObject()
+      const firstActionDoc = (await service.Model.findOne({ _id: new ObjectID(firstAction.id) }))!.toObject()
       expect(firstActionDoc.isRootAction).toEqual(true)
       expect(firstActionDoc.nextActions).toEqual([])
     })
@@ -202,8 +208,8 @@ describe('WorkflowActionService', () => {
       })
       await service.deleteOne(middleAction.id)
 
-      const firstActionDoc = (await service.Model.findOne({ _id: new ObjectID(firstAction.id) }))?.toObject()
-      const lastActionDoc = (await service.Model.findOne({ _id: new ObjectID(lastAction.id) }))?.toObject()
+      const firstActionDoc = (await service.Model.findOne({ _id: new ObjectID(firstAction.id) }))!.toObject()
+      const lastActionDoc = (await service.Model.findOne({ _id: new ObjectID(lastAction.id) }))!.toObject()
       expect(firstActionDoc.isRootAction).toEqual(true)
       expect(firstActionDoc.nextActions).toEqual([{ action: new ObjectID(lastAction.id) }])
       expect(lastActionDoc.isRootAction).toEqual(false)

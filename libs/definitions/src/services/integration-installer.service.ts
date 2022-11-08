@@ -12,7 +12,6 @@ import { IntegrationService } from '../../../../apps/api/src/integrations/servic
 import { getItemSchemaFromRes } from '../../../../apps/runner/src/utils/trigger.utils'
 import { decycle, retrocycle } from '../../../common/src/utils/json.utils'
 import { addEllipsis, stripMarkdown, stripMarkdownSync } from '../../../common/src/utils/string.utils'
-import { SchemaService } from '../schema/services/schema.service'
 import {
   dereferenceJsonSchema,
   prepareInputsJsonSchema,
@@ -21,13 +20,13 @@ import {
 } from '../schema/utils/jsonSchemaUtils'
 import { openapi2schema } from '../schema/utils/openapi2schema'
 import { OpenApiUtils } from '../schema/utils/openApiUtils'
+import { SchemaUtils } from '../schema/utils/schema.utils'
 
 @Injectable()
 export class IntegrationInstallerService {
   private readonly logger = new Logger(IntegrationInstallerService.name)
 
   constructor(
-    private readonly schemaService: SchemaService,
     private readonly integrationService: IntegrationService,
     private readonly integrationTriggerService: IntegrationTriggerService,
     private readonly integrationActionService: IntegrationActionService,
@@ -80,7 +79,7 @@ export class IntegrationInstallerService {
 
       schemaRequest['x-asyncSchemas'] = trigger.asyncSchemas
 
-      await this.integrationTriggerService.createOrUpdateOne({
+      await IntegrationTriggerService.instance.createOrUpdateOne({
         key: trigger.key,
         name: trigger.name,
         integration: new mongoose.Types.ObjectId(integration.id),
@@ -114,7 +113,7 @@ export class IntegrationInstallerService {
 
       schemaRequest['x-asyncSchemas'] = action.asyncSchemas
 
-      await this.integrationActionService.createOrUpdateOne({
+      await IntegrationActionService.instance.createOrUpdateOne({
         type: action.type,
         key: action.key,
         name: action.name,
@@ -204,7 +203,7 @@ export class IntegrationInstallerService {
       }
 
       const plainTextDescription = operationObject.description && (await stripMarkdown(operationObject.description))
-      await this.integrationActionService.createOrUpdateOne({
+      await IntegrationActionService.instance.createOrUpdateOne({
         key: operationObject.operationId,
         name: operationObject.summary,
         integration: new mongoose.Types.ObjectId(integration.id),
@@ -245,7 +244,7 @@ export class IntegrationInstallerService {
         schemaRequest['x-asyncSchemas'] = operationObject['x-asyncSchemas']
       }
 
-      await this.integrationTriggerService.createOrUpdateOne({
+      await IntegrationTriggerService.instance.createOrUpdateOne({
         key: operationObject.operationId,
         name: triggerResponseData.name,
         integration: new mongoose.Types.ObjectId(integration.id),
@@ -280,7 +279,7 @@ export class IntegrationInstallerService {
 
     const { integrationKey, integrationVersion } = integrationData
 
-    let schema = await this.schemaService.getSchema({
+    let schema = await SchemaUtils.getSchema({
       integrationKey,
       integrationVersion,
       schemaUrl,
@@ -309,7 +308,7 @@ export class IntegrationInstallerService {
     schema = await definition.updateSchemaBeforeSave(schema, integrationData)
     schema = OpenApiUtils.removeUnusedComponents(schema)
 
-    await this.schemaService.updateSchema({
+    await SchemaUtils.updateSchema({
       schema,
       integrationKey,
       integrationVersion,
@@ -441,8 +440,8 @@ export class IntegrationInstallerService {
       integration: integration.id,
       deprecated: false,
     }
-    const triggers = await this.integrationTriggerService.find(query)
-    const actions = await this.integrationActionService.find(query)
+    const triggers = await IntegrationTriggerService.instance.find(query)
+    const actions = await IntegrationActionService.instance.find(query)
 
     const operationCategories: OperationCategory[] = (integration.operationCategories ?? [])
       .map((category) => ({
@@ -452,7 +451,7 @@ export class IntegrationInstallerService {
       }))
       .filter((category) => category.numberOfTriggers || category.numberOfActions)
 
-    await this.integrationService.updateOne(integration.id, {
+    await IntegrationService.instance.updateOne(integration.id, {
       operationCategories,
       numberOfTriggers: triggers.length,
       numberOfActions: actions.length,
@@ -471,7 +470,7 @@ export class IntegrationInstallerService {
   ): Promise<{ integrationAccount: IntegrationAccount | null; integration: Integration }> {
     this.logger.debug(`Creating or updating integration ${integrationData.integrationKey}`)
     const integrationAccount = await definition.createOrUpdateIntegrationAccount(schema, integrationData)
-    const integration = await this.integrationService.createOrUpdateOne({
+    const integration = await IntegrationService.instance.createOrUpdateOne({
       parentKey: integrationData.parentKey,
       key: integrationData.integrationKey,
       name: schema.info.title,
