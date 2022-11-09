@@ -95,6 +95,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     workflowRun: WorkflowRun,
     errorMessage: string | undefined,
     errorResponse?: string,
+    inputs?: Record<string, any>,
   ): Promise<void> {
     await this.updateById(workflowRun._id, {
       $set: {
@@ -103,6 +104,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
         'triggerRun.finishedAt': Date.now(),
         errorMessage,
         errorResponse,
+        inputs,
       },
       $inc: { operationsUsed: 1 },
     })
@@ -167,6 +169,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     workflowAction: WorkflowRunAction,
     errorMessage: string | undefined,
     errorResponse?: string,
+    inputs?: Record<string, any>,
   ): Promise<void> {
     await this.update(
       { _id: workflowRun._id, 'actionRuns._id': workflowAction._id },
@@ -176,6 +179,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
           'actionRuns.$.finishedAt': Date.now(),
           errorMessage,
           errorResponse,
+          inputs,
         },
         $inc: { operationsUsed: 1 },
       },

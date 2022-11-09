@@ -165,6 +165,7 @@ export class RunnerService {
         workflowRun,
         error?.toString(),
         e.response?.text || undefined,
+        inputs,
       )
       this.logger.error(`Run WorkflowTrigger ${workflowTrigger.id} failed with error ${error}`)
       return
@@ -410,6 +411,7 @@ export class RunnerService {
         workflowRunAction,
         error?.toString(),
         e.response?.text || undefined,
+        inputs,
       )
       this.logger.error(`Run WorkflowAction ${workflowAction.id} failed with error ${error}`)
       return
@@ -559,8 +561,10 @@ export class RunnerService {
     workflowRun: WorkflowRun,
     errorMessage: string | undefined,
     errorResponse?: string,
+    inputs?: Record<string, any>,
   ): Promise<void> {
-    await this.workflowRunService.markTriggerAsFailed(userId, workflowRun, errorMessage, errorResponse)
+    console.log(`=== onTriggerFailure ===`, inputs)
+    await this.workflowRunService.markTriggerAsFailed(userId, workflowRun, errorMessage, errorResponse, inputs)
     await this.runWorkflowOnFailure(workflowId)
   }
 
@@ -571,8 +575,16 @@ export class RunnerService {
     workflowAction: WorkflowRunAction,
     errorMessage: string | undefined,
     errorResponse?: string,
+    inputs?: Record<string, any>,
   ): Promise<void> {
-    await this.workflowRunService.markActionAsFailed(userId, workflowRun, workflowAction, errorMessage, errorResponse)
+    await this.workflowRunService.markActionAsFailed(
+      userId,
+      workflowRun,
+      workflowAction,
+      errorMessage,
+      errorResponse,
+      inputs,
+    )
     await this.runWorkflowOnFailure(workflowId)
   }
 

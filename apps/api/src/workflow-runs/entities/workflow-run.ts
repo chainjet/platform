@@ -1,8 +1,10 @@
 import { OwnedAuthorizer } from '@app/common/base/owned.authorizer'
+import { jsonProp } from '@app/common/decorators/props/json-prop.decorator'
 import { Injectable } from '@nestjs/common'
 import { Field, ID, Int, ObjectType } from '@nestjs/graphql'
 import { Authorize, FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
+import { GraphQLJSONObject } from 'graphql-type-json'
 import { BaseEntity } from '../../../../../libs/common/src/base/base-entity'
 import { EntityRef } from '../../../../../libs/common/src/decorators/entity-ref.decorator'
 import { Reference } from '../../../../../libs/common/src/typings/mongodb'
@@ -55,4 +57,8 @@ export class WorkflowRun extends BaseEntity {
   @Field({ nullable: true })
   @prop()
   errorResponse: string
+
+  @Field(() => GraphQLJSONObject, { nullable: true })
+  @jsonProp()
+  inputs?: Record<string, any>
 }

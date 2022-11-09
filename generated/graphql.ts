@@ -1001,6 +1001,7 @@ export interface WorkflowRun {
     operationsUsed: number;
     errorMessage?: Nullable<string>;
     errorResponse?: Nullable<string>;
+    inputs?: Nullable<JSONObject>;
 }
 
 export interface WorkflowRunEdge {
