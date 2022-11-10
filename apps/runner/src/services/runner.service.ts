@@ -369,6 +369,8 @@ export class RunnerService {
         workflowRun,
         workflowRunAction,
         `Invalid inputs (${e.message})`,
+        undefined,
+        workflowAction.inputs,
       )
       this.logger.error(`Parse step inputs for ${workflowAction.id} failed with error ${e.message}`)
       return
