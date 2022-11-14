@@ -66,7 +66,6 @@ import { SnowtraceDefinition } from './integration-definitions/snowtrace.definit
 import { StatuspageDefinition } from './integration-definitions/statuspage.definition'
 import { TelegramBotDefinition } from './integration-definitions/telegram-bot.definition'
 import { TwitterDefinition } from './integration-definitions/twitter.definition'
-import { TypeFormDefinition } from './integration-definitions/typeform.definition'
 import { UniswapV2Definition } from './integration-definitions/uniswapv2.definition'
 import { UniswapV3Definition } from './integration-definitions/uniswapv3.definition'
 import { WebhookDefinition } from './integration-definitions/webhook.definition'
@@ -147,7 +146,7 @@ export class IntegrationDefinitionFactory {
     trello: TrelloDefinition,
     // twilio: TwilioDefinition,
     twitter: TwitterDefinition,
-    typeform: TypeFormDefinition,
+    // typeform: TypeFormDefinition,
     uniswapv2: UniswapV2Definition,
     uniswapv3: UniswapV3Definition,
     webhook: WebhookDefinition,
