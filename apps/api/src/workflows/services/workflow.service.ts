@@ -117,7 +117,7 @@ export class WorkflowService extends BaseService<Workflow> {
       newTemplateFields.length === oldTemplateFields.length &&
       newTemplateFields.every((value) => oldTemplateFields.includes(value))
     ) {
-      return false
+      return !!workflow.isTemplate
     }
 
     const schema = workflow.templateSchema ?? {

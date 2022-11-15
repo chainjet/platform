@@ -88,8 +88,10 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     const workflowTrigger = await definition.beforeCreateWorkflowTrigger(record, integrationTrigger, accountCredential)
 
+    const isTemplate = await this.workflowService.updateTemplateSettings(workflow, workflowTrigger.inputs ?? {})
+
     // test workflow trigger and store outputs
-    if (!integrationTrigger.instant) {
+    if (!integrationTrigger.instant && !isTemplate) {
       let integrationAccount: IntegrationAccount | null = null
       if (integration.integrationAccount) {
         integrationAccount =
@@ -132,8 +134,6 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     await definition.afterCreateWorkflowTrigger(createdEntity, integrationTrigger, accountCredential, (data) =>
       super.updateOne(createdEntity.id, data),
     )
-
-    await this.workflowService.updateTemplateSettings(workflow, createdEntity.inputs ?? {})
 
     return createdEntity
   }
@@ -217,11 +217,17 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       accountCredential,
     )
 
+    const isTemplate = await this.workflowService.updateTemplateSettings(
+      workflow,
+      updatedWorkflowTrigger.inputs ?? {},
+      workflowTrigger.inputs,
+    )
+
     // test workflow trigger and store outputs
     const testNeeded =
       (updatedWorkflowTrigger.credentials && workflowTrigger.credentials !== updatedWorkflowTrigger.credentials) ||
       (updatedWorkflowTrigger.inputs && !_.isEqual(workflowTrigger.inputs, updatedWorkflowTrigger.inputs))
-    if (!integrationTrigger.instant && testNeeded) {
+    if (!integrationTrigger.instant && !isTemplate && testNeeded) {
       let integrationAccount: IntegrationAccount | null = null
       if (integration.integrationAccount) {
         integrationAccount =
@@ -256,8 +262,6 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     await definition.afterUpdateWorkflowTrigger(updatedEntity, integrationTrigger, accountCredential, (data) =>
       super.updateOne(updatedEntity.id, data, opts),
     )
-
-    await this.workflowService.updateTemplateSettings(workflow, updatedEntity.inputs ?? {}, workflowTrigger.inputs)
 
     return updatedEntity
   }
