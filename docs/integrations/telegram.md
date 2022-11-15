@@ -24,4 +24,4 @@ If the Telegram group is **public**, simply add @ to the beginning of the group 
 
 For **private groups**, you must use the telegram bot, [RawDataBot](https://t.me/raw_data_bot). Search for that user in telegram and share the group invitation link. The bot will return a message with the ID, just copy it and paste in the corresponding field in your workflow.
 
-![](https://33333.cdn.cke-cs.com/kSW7V9NHUXugvhoQeFaf/animations/c52286d8a1b25c3cb0fa21c994a5dab2dd80eda22a314fb6.gif)
+![](https://33333.cdn.cke-cs.com/kSW7V9NHUXugvhoQeFaf/animations/fe3fdf8789b385584d9e4129ed7342f487a50331ae0a429d.gif)
