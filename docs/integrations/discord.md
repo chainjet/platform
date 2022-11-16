@@ -1,6 +1,6 @@
 ## Discord 
 
-### How to Connect your Discord Server**  
+### How to Connect your Discord Server 
 
 To use the Discord integration, take into account that you will need a Discord server on which you are an administrator.
 
