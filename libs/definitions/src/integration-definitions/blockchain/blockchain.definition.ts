@@ -8,10 +8,9 @@ import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/i
 import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from 'apps/api/src/workflow-triggers/entities/workflow-trigger'
 import { EventAbi, MethodAbi } from 'ethereum-types'
+import { GetNativeBalanceAction } from './actions/get-native-balance'
 import { GetTokenBalanceAction } from './actions/get-token-balance'
-import GetTokenBalanceEvmAction from './actions/get-token-balance-evm'
 import { ReadContractAction } from './actions/read-contract'
-import TransferTokensEvmAction from './actions/transfer-tokens-evm'
 
 export class BlockchainDefinition extends SingleIntegrationDefinition {
   integrationKey = 'blockchain'
@@ -21,8 +20,9 @@ export class BlockchainDefinition extends SingleIntegrationDefinition {
   actions = [
     new GetTokenBalanceAction(),
     new ReadContractAction(),
-    new GetTokenBalanceEvmAction(),
-    new TransferTokensEvmAction(),
+    new GetNativeBalanceAction(),
+    // new GetTokenBalanceEvmAction(),
+    // new TransferTokensEvmAction(),
   ]
 
   async beforeCreateWorkflowAction(
