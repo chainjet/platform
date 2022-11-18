@@ -3,6 +3,7 @@ import { replaceTemplateFields } from '@app/definitions/utils/field.utils'
 import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
 import { DeepPartial, DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
+import { JSONSchema7Definition } from 'json-schema'
 import { ObjectId } from 'mongodb'
 import { InjectModel } from 'nestjs-typegoose'
 import { AccountCredentialService } from '../../account-credentials/services/account-credentials.service'
@@ -87,17 +88,18 @@ export class WorkflowService extends BaseService<Workflow> {
 
   async updateTemplateSettings(
     workflow: Workflow,
+    integrationOperationId: string,
     inputs: Record<string, any>,
     oldInputs?: Record<string, any>,
   ): Promise<boolean> {
-    const getTemplateFields = (inputs: Record<string, any>): string[] => {
-      const result = Object.values(inputs).reduce((acc, value) => {
+    const getTemplateFields = (inputs: Record<string, any>): { templateKey: string; inputKey: string }[] => {
+      const result = Object.entries(inputs).reduce((acc, [key, value]) => {
         if (typeof value === 'string') {
-          const matches = value.matchAll(/{{\s*([^}]+)\s*}}/g)
+          const matches: IterableIterator<RegExpMatchArray> = value.matchAll(/{{\s*([^}]+)\s*}}/g)
           const results = Array.from(matches)
             .filter((match) => match[1].includes('template.'))
             .map((match) => match[1].trim().replace('template.', ''))
-          return [...acc, ...results]
+          return [...acc, ...results.map((res) => ({ templateKey: res, inputKey: key }))]
         }
         return acc
       }, [])
@@ -126,16 +128,30 @@ export class WorkflowService extends BaseService<Workflow> {
     schema.properties = schema.properties ?? {}
 
     // delete old fields
-    const deletedTemplateFields = oldTemplateFields.filter((value) => !newTemplateFields.includes(value))
+    const deletedTemplateFields = oldTemplateFields.filter(
+      (value) => !newTemplateFields.some((field) => field.templateKey === value.templateKey),
+    )
     deletedTemplateFields.forEach((field) => {
-      delete schema.properties![field]
+      delete schema.properties![field.templateKey]
     })
 
     // add new fields
-    const addedTemplateFields = newTemplateFields.filter((value) => !oldTemplateFields.includes(value))
+    const addedTemplateFields = newTemplateFields.filter(
+      (value) => !oldTemplateFields.some((field) => field.templateKey === value.templateKey),
+    )
     addedTemplateFields.forEach((field) => {
-      schema.properties![field] = {
-        type: 'string',
+      if (inputs[field.inputKey].replace(/\s/g, '') === `{{template.${field.templateKey}}}`) {
+        schema.properties![field.templateKey] = {
+          type: 'string',
+          'x-inheritField': {
+            operationId: integrationOperationId,
+            key: field.inputKey,
+          },
+        } as JSONSchema7Definition
+      } else {
+        schema.properties![field.templateKey] = {
+          type: 'string',
+        }
       }
     })
 

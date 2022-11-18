@@ -166,7 +166,11 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
       }
     }
 
-    await this.workflowService.updateTemplateSettings(workflow, createdWorkflowAction.inputs ?? {})
+    await this.workflowService.updateTemplateSettings(
+      workflow,
+      integrationAction.id,
+      createdWorkflowAction.inputs ?? {},
+    )
 
     return createdWorkflowAction
   }
@@ -236,7 +240,12 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
       super.updateOne(updatedEntity.id, data, opts),
     )
 
-    await this.workflowService.updateTemplateSettings(workflow, updatedEntity.inputs ?? {}, workflowAction.inputs)
+    await this.workflowService.updateTemplateSettings(
+      workflow,
+      integrationAction.id,
+      updatedEntity.inputs ?? {},
+      workflowAction.inputs,
+    )
 
     return updatedEntity
   }
@@ -301,7 +310,7 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     const deletedEntity = super.deleteOne(id, opts)
     await definition.afterDeleteWorkflowAction(workflowAction, integrationAction, accountCredential)
 
-    await this.workflowService.updateTemplateSettings(workflow, {}, workflowAction.inputs)
+    await this.workflowService.updateTemplateSettings(workflow, integrationAction.id, {}, workflowAction.inputs)
 
     return deletedEntity
   }
