@@ -182,8 +182,7 @@ export class WorkflowService extends BaseService<Workflow> {
       owner: user._id,
       name: workflow.name,
       network: workflow.network,
-      isTemplate: workflow.isTemplate,
-      isPublic: workflow.isPublic,
+      isPublic: isOwner ? workflow.isPublic : false,
       templateSchema: workflow.templateSchema,
       runOnFailure: isOwner ? workflow.runOnFailure : undefined,
     })
