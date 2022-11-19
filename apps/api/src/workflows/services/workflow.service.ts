@@ -89,6 +89,7 @@ export class WorkflowService extends BaseService<Workflow> {
   async updateTemplateSettings(
     workflow: Workflow,
     integrationOperationId: string,
+    operationType: 'action' | 'trigger',
     inputs: Record<string, any>,
     oldInputs?: Record<string, any>,
   ): Promise<boolean> {
@@ -144,8 +145,10 @@ export class WorkflowService extends BaseService<Workflow> {
         schema.properties![field.templateKey] = {
           type: 'string',
           'x-inheritField': {
-            operationId: integrationOperationId,
             key: field.inputKey,
+            ...(operationType === 'action'
+              ? { integrationAction: integrationOperationId }
+              : { integrationTrigger: integrationOperationId }),
           },
         } as JSONSchema7Definition
       } else {

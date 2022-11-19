@@ -91,6 +91,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     const isTemplate = await this.workflowService.updateTemplateSettings(
       workflow,
       integrationTrigger.id,
+      'trigger',
       workflowTrigger.inputs ?? {},
     )
 
@@ -224,6 +225,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     const isTemplate = await this.workflowService.updateTemplateSettings(
       workflow,
       integrationTrigger.id,
+      'trigger',
       updatedWorkflowTrigger.inputs ?? {},
       workflowTrigger.inputs,
     )
@@ -305,7 +307,13 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
 
     const workflow = await this.workflowService.findById(workflowTrigger.workflow.toString())
     if (workflow) {
-      await this.workflowService.updateTemplateSettings(workflow, integrationTrigger.id, {}, workflowTrigger.inputs)
+      await this.workflowService.updateTemplateSettings(
+        workflow,
+        integrationTrigger.id,
+        'trigger',
+        {},
+        workflowTrigger.inputs,
+      )
     }
 
     return deletedEntity
