@@ -930,6 +930,16 @@ export interface CompileWorkflow {
     sourcecode: string;
 }
 
+export interface WorkflowEdge {
+    node: Workflow;
+    cursor: ConnectionCursor;
+}
+
+export interface WorkflowConnection {
+    pageInfo: PageInfo;
+    edges: WorkflowEdge[];
+}
+
 export interface WorkflowDeleteResponse {
     id?: Nullable<string>;
     createdAt?: Nullable<DateTime>;
@@ -942,16 +952,6 @@ export interface WorkflowDeleteResponse {
     isTemplate?: Nullable<boolean>;
     isPublic?: Nullable<boolean>;
     templateSchema?: Nullable<JSONObject>;
-}
-
-export interface WorkflowEdge {
-    node: Workflow;
-    cursor: ConnectionCursor;
-}
-
-export interface WorkflowConnection {
-    pageInfo: PageInfo;
-    edges: WorkflowEdge[];
 }
 
 export interface WorkflowActionEdge {
@@ -1139,6 +1139,7 @@ export interface IQuery {
     workflow(id: string): Workflow | Promise<Workflow>;
     workflows(paging?: Nullable<CursorPaging>, filter?: Nullable<WorkflowFilter>, sorting?: Nullable<WorkflowSort[]>): WorkflowConnection | Promise<WorkflowConnection>;
     compileWorkflow(workflowId: string): CompileWorkflow | Promise<CompileWorkflow>;
+    recommendedTemplates(paging?: Nullable<CursorPaging>, filter?: Nullable<WorkflowFilter>, sorting?: Nullable<WorkflowSort[]>): WorkflowConnection | Promise<WorkflowConnection>;
     workflowAction(id: string): WorkflowAction | Promise<WorkflowAction>;
     workflowActions(paging?: Nullable<CursorPaging>, filter?: Nullable<WorkflowActionFilter>, sorting?: Nullable<WorkflowActionSort[]>): WorkflowActionConnection | Promise<WorkflowActionConnection>;
     workflowNextAction(id: string): WorkflowNextAction | Promise<WorkflowNextAction>;

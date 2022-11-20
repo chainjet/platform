@@ -1,7 +1,14 @@
 import { BaseResolver } from '@app/common/base/base.resolver'
 import { BadRequestException, NotFoundException, UseGuards, UseInterceptors } from '@nestjs/common'
-import { Args, Field, Mutation, ObjectType, Query, Resolver } from '@nestjs/graphql'
-import { Authorizer, AuthorizerInterceptor, InjectAuthorizer } from '@ptc-org/nestjs-query-graphql'
+import { Args, ArgsType, Field, Mutation, ObjectType, Query, Resolver } from '@nestjs/graphql'
+import { Filter } from '@ptc-org/nestjs-query-core'
+import {
+  Authorizer,
+  AuthorizerInterceptor,
+  ConnectionType,
+  InjectAuthorizer,
+  QueryArgsType,
+} from '@ptc-org/nestjs-query-graphql'
 import { GraphQLID, GraphQLString } from 'graphql'
 import { GraphQLJSONObject } from 'graphql-type-json'
 import { Types } from 'mongoose'
@@ -22,6 +29,10 @@ export class CompileWorkflowDto {
   @Field(() => GraphQLString)
   sourcecode: string
 }
+
+@ArgsType()
+export class WorkflowQuery extends QueryArgsType(Workflow) {}
+export const WorkflowConnection = WorkflowQuery.ConnectionType
 
 @Resolver(() => Workflow)
 @UseGuards(GraphqlGuard)
@@ -55,6 +66,19 @@ export class WorkflowResolver extends BaseResolver(Workflow, {
     }
 
     return await this.compilerService.compile(workflow)
+  }
+
+  @Query(() => WorkflowConnection)
+  @UseGuards(GraphqlGuard)
+  async recommendedTemplates(
+    @UserId() userId: Types.ObjectId,
+    @Args() query: WorkflowQuery,
+  ): Promise<ConnectionType<Workflow>> {
+    const filter: Filter<Workflow> = {
+      ...query.filter,
+      ...{ isListed: { is: true }, isPublic: { is: true } },
+    }
+    return WorkflowConnection.createFromPromise((q) => this.service.query(q), { ...query, ...{ filter } })
   }
 
   @Mutation(() => Workflow)

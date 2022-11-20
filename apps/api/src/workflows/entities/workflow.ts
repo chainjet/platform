@@ -91,7 +91,10 @@ export class Workflow extends BaseEntity {
 
   @Field(() => GraphQLBoolean, { defaultValue: false })
   @prop()
-  isPublic?: boolean = false
+  isPublic?: boolean
+
+  @prop({ index: true })
+  isListed?: boolean
 
   @Field(() => GraphQLJSONObject, { nullable: true })
   @jsonProp()
