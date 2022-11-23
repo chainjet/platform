@@ -498,11 +498,11 @@ function getBindData(
   return {
     bindData: {
       ...appMethods,
-      ...opts.inputs,
       [appKey]: appMethods, // include methods defined at app level
       ...operation.methods, // include methods defined at operation level
       ...httpInterface,
       ...opts.accountCredential,
+      ...opts.inputs,
     },
     hookId,
   }
