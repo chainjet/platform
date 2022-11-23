@@ -109,7 +109,7 @@ export class CreateWorkflowInput {
   @Field(() => ID, { nullable: true })
   runOnFailure?: Reference<Workflow>
 
-  @Field(() => GraphQLBoolean, { defaultValue: false })
+  @Field(() => GraphQLBoolean, { nullable: true })
   isPublic?: boolean = false
 }
 
@@ -121,6 +121,6 @@ export class UpdateWorkflowInput {
   @Field(() => ID, { nullable: true })
   runOnFailure?: Reference<Workflow>
 
-  @Field(() => GraphQLBoolean, { defaultValue: false })
+  @Field(() => GraphQLBoolean, { nullable: true })
   isPublic?: boolean = false
 }
