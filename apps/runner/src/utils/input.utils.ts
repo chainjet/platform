@@ -103,6 +103,12 @@ export function calculateExpression(input: string, references: Record<string, Re
   parser.set('formatNumber', (value: number, locales?: Intl.LocalesArgument) => Number(value).toLocaleString(locales))
   parser.set('lowercase', (str: string) => (str ? ('' + str).toLowerCase() : str))
   parser.set('uppercase', (str: string) => (str ? ('' + str).toUpperCase() : str))
+  parser.set('replace', (str: string, searchValue: string, replaceValue: string) => {
+    if (!str) {
+      return str
+    }
+    return ('' + str).replace(searchValue.toString(), replaceValue.toString())
+  })
   parser.set('extract', (str: string, template: string, replace: string) => {
     const escaped = template.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
     const regex = escaped.replace(/\\\*\\\*\\\*+/g, '(.+)')
