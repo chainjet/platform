@@ -110,7 +110,7 @@ export class CreateWorkflowInput {
   runOnFailure?: Reference<Workflow>
 
   @Field(() => GraphQLBoolean, { nullable: true })
-  isPublic?: boolean = false
+  isPublic?: boolean
 }
 
 @InputType()
@@ -122,5 +122,5 @@ export class UpdateWorkflowInput {
   runOnFailure?: Reference<Workflow>
 
   @Field(() => GraphQLBoolean, { nullable: true })
-  isPublic?: boolean = false
+  isPublic?: boolean
 }
