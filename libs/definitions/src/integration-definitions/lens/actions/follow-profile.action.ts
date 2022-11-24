@@ -34,7 +34,7 @@ export class FollowProfileAction extends OperationOffChain {
   }
 
   async run({ inputs, credentials }: OperationRunOptions): Promise<RunResponse> {
-    if (!credentials?.refreshToken) {
+    if (!credentials?.refreshToken || !credentials?.profileId) {
       throw new Error('Authentication is expired, please connect the profile again')
     }
     const { profileId } = inputs
