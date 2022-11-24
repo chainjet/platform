@@ -177,12 +177,13 @@ export class WorkflowService extends BaseService<Workflow> {
       _id: { $in: Object.values(credentialIds) },
       owner: new ObjectId(userId),
     })
+    const isPublic = isOwner ? workflow.isPublic : false
 
     const forkedWorkflow = await this.createOne({
       owner: user._id,
       name: workflow.name,
       network: workflow.network,
-      isPublic: isOwner ? workflow.isPublic : false,
+      isPublic,
       templateSchema: workflow.templateSchema,
       runOnFailure: isOwner ? workflow.runOnFailure : undefined,
     })
@@ -220,7 +221,7 @@ export class WorkflowService extends BaseService<Workflow> {
       enabled: true,
       maxConsecutiveFailures: trigger.maxConsecutiveFailures,
       schemaResponse: isOwner ? trigger.schemaResponse : undefined,
-      isPublic: workflow.isPublic,
+      isPublic,
     })
     idsMap.set(trigger.id, forkedTrigger.id)
 
@@ -264,7 +265,7 @@ export class WorkflowService extends BaseService<Workflow> {
         credentials: credentialsForAction?.id,
         schemaResponse: isOwner ? action.schemaResponse : undefined,
         type: action.type,
-        isPublic: workflow.isPublic,
+        isPublic,
       })
       idsMap.set(action.id, forkedAction.id)
     }
