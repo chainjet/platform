@@ -163,7 +163,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       if (workflowEnabled) {
         workflowTrigger.enabled = true
       }
-      update.nextCheck = this.getTriggerNextCheck(workflowTrigger, true)
+      update.nextCheck = this.getTriggerNextCheck(workflowTrigger, true) as any
     }
 
     const workflow = await this.workflowService.findById(workflowTrigger.workflow.toString())
@@ -330,22 +330,22 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     }
   }
 
-  getTriggerNextCheck(workflowTrigger: WorkflowTrigger, scheduleChanged: boolean = false): Date | undefined {
+  getTriggerNextCheck(workflowTrigger: WorkflowTrigger, scheduleChanged: boolean = false): Date | null {
     if (!workflowTrigger.enabled) {
-      return
+      return null
     }
 
     const schedule: TriggerSchedule | undefined = workflowTrigger.schedule
     if (!schedule?.frequency) {
-      return
+      return null
     }
     switch (schedule.frequency) {
       case 'once':
-        const onceDate = new Date(schedule.date)
+        const onceDate = new Date(schedule.datetime)
         if (!isValidDate(onceDate)) {
           throw new BadRequestException('Date is not valid')
         }
-        return Date.now() < onceDate.getTime() ? onceDate : undefined
+        return Date.now() < onceDate.getTime() ? onceDate : null
 
       case 'interval':
         const nextCheck = new Date((workflowTrigger.nextCheck?.getTime() ?? 0) + schedule.interval * 1000)
@@ -414,6 +414,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       default:
         assertNever(schedule)
     }
+    return null
   }
 
   async incrementWorkflowRunFailures(workflowId: Reference<Workflow, mongoose.Types.ObjectId>): Promise<void> {

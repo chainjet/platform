@@ -104,20 +104,20 @@ describe('WorkflowTriggerService', () => {
       Date.now = jest.fn(() => new Date('01/01/2020').getTime())
     })
 
-    it('should return undefined if the trigger does not have schedule', () => {
+    it('should return null if the trigger does not have schedule', () => {
       const trigger = mock.getInstanceOfWorkflowTrigger()
-      expect(service.getTriggerNextCheck(trigger)).toBeUndefined()
+      expect(service.getTriggerNextCheck(trigger)).toBeNull()
     })
 
-    it('should return undefined if the trigger is not enabled', () => {
+    it('should return null if the trigger is not enabled', () => {
       const trigger = mock.getInstanceOfWorkflowTrigger({
         schedule: {
           frequency: 'once',
-          date: new Date('2100-01-01 UTC').toISOString(),
+          datetime: new Date('2100-01-01 UTC').toISOString(),
         },
         enabled: false,
       })
-      expect(service.getTriggerNextCheck(trigger)).toBeUndefined()
+      expect(service.getTriggerNextCheck(trigger)).toBeNull()
     })
 
     describe('once', () => {
@@ -126,21 +126,21 @@ describe('WorkflowTriggerService', () => {
           enabled: true,
           schedule: {
             frequency: 'once',
-            date: new Date('2100-01-01 UTC').toISOString(),
+            datetime: new Date('2100-01-01 UTC').toISOString(),
           },
         })
         expect(service.getTriggerNextCheck(trigger)).toEqual(new Date('2100-01-01 UTC'))
       })
 
-      it('should return undefined for a date in the past', () => {
+      it('should return null for a date in the past', () => {
         const trigger = mock.getInstanceOfWorkflowTrigger({
           enabled: true,
           schedule: {
             frequency: 'once',
-            date: new Date('2019-01-01').toISOString(),
+            datetime: new Date('2019-01-01').toISOString(),
           },
         })
-        expect(service.getTriggerNextCheck(trigger)).toBeUndefined()
+        expect(service.getTriggerNextCheck(trigger)).toBeNull()
       })
 
       it('should throw an error if date is invalid', () => {
@@ -148,7 +148,7 @@ describe('WorkflowTriggerService', () => {
           enabled: true,
           schedule: {
             frequency: 'once',
-            date: 'invalid date',
+            datetime: 'invalid date',
           },
         })
         expect(() => service.getTriggerNextCheck(trigger)).toThrow(/Date is not valid/)
