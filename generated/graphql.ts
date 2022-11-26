@@ -582,6 +582,7 @@ export interface CreateOneWorkflowActionInput {
 }
 
 export interface CreateWorkflowActionInput {
+    name?: Nullable<string>;
     workflow: string;
     integrationAction: string;
     inputs: JSONObject;
@@ -643,6 +644,7 @@ export interface CreateOneWorkflowTriggerInput {
 }
 
 export interface CreateWorkflowTriggerInput {
+    name?: Nullable<string>;
     workflow: string;
     integrationTrigger: string;
     inputs: JSONObject;

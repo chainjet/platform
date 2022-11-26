@@ -100,6 +100,9 @@ export class WorkflowAction extends BaseEntity {
 
 @InputType()
 export class CreateWorkflowActionInput {
+  @Field({ nullable: true })
+  name?: string
+
   @Field(() => ID)
   workflow: Reference<Workflow>
 

@@ -118,6 +118,9 @@ export class WorkflowTrigger extends BaseEntity {
 
 @InputType()
 export class CreateWorkflowTriggerInput {
+  @Field({ nullable: true })
+  name?: string
+
   @Field(() => ID)
   workflow: Reference<Workflow>
 
