@@ -83,7 +83,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       record.hookId = SecurityUtils.generateRandomString(48)
     }
 
-    record.name = capitalize(integrationTrigger.name)
+    record.name = record.name ?? capitalize(integrationTrigger.name)
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     const workflowTrigger = await definition.beforeCreateWorkflowTrigger(record, integrationTrigger, accountCredential)

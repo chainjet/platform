@@ -122,7 +122,7 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
       }
     }
 
-    record.name = capitalize(integrationAction.name)
+    record.name = record.name ?? capitalize(integrationAction.name)
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     const workflowAction = await definition.beforeCreateWorkflowAction(record, integrationAction, accountCredential)
