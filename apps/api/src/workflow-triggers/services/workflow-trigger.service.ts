@@ -322,8 +322,10 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
   async updateNextCheck(workflowTrigger: WorkflowTrigger): Promise<void> {
     try {
       const nextCheck = this.getTriggerNextCheck(workflowTrigger)
-      if (workflowTrigger.nextCheck !== nextCheck) {
+      if (nextCheck && workflowTrigger.nextCheck !== nextCheck) {
         await this.updateOneNative({ _id: workflowTrigger._id }, { nextCheck })
+      } else if (!nextCheck) {
+        await this.updateOneNative({ _id: workflowTrigger._id }, { nextCheck: null, enabled: false })
       }
     } catch (e) {
       this.logger.error(`Error updating nextCheck for ${workflowTrigger.id}: ${e.message}`)
