@@ -173,7 +173,7 @@ export class NewPostTrigger extends OperationTrigger {
       }
     `
     const res = await sendGraphqlQuery('https://api.lens.dev/', query)
-    if (!res?.data?.publications?.items.length) {
+    if (!res?.data?.publications?.items) {
       throw new Error(res.errors?.[0]?.message ?? 'Bad response from lens')
     }
     return {

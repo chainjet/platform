@@ -157,7 +157,7 @@ export class NewMentionTrigger extends OperationTrigger {
     const res = await sendGraphqlQuery('https://api.lens.dev/', query, {
       'x-access-token': refreshedCredentials.accessToken,
     })
-    if (!res?.data?.notifications?.items.length) {
+    if (!res?.data?.notifications?.items) {
       throw new Error(res.errors?.[0]?.message ?? 'Bad response from lens')
     }
     return {
