@@ -173,6 +173,8 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
       createdWorkflowAction.inputs ?? {},
     )
 
+    await this.workflowService.updateUsedIntegrations(workflow)
+
     return createdWorkflowAction
   }
 
@@ -319,6 +321,8 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
       {},
       workflowAction.inputs,
     )
+
+    await this.workflowService.updateUsedIntegrations(workflow)
 
     return deletedEntity
   }

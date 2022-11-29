@@ -140,6 +140,8 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       super.updateOne(createdEntity.id, data),
     )
 
+    await this.workflowService.updateUsedIntegrations(workflow)
+
     return createdEntity
   }
 
@@ -314,6 +316,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
         {},
         workflowTrigger.inputs,
       )
+      await this.workflowService.updateUsedIntegrations(workflow)
     }
 
     return deletedEntity

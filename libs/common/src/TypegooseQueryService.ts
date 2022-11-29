@@ -75,7 +75,14 @@ export class TypegooseQueryService<Entity> implements QueryService<Entity, DeepP
           [`$${key}`]: value.map((subFilter) => this.buildExpression(subFilter)),
         }
       }
-      const findConditions = Object.entries(value).reduce(
+      const valueEntries = Object.entries(value)
+      if (valueEntries.length === 1 && ['eq', 'is'].includes(valueEntries[0][0])) {
+        return {
+          ...prev,
+          [this.getSchemaKey(key)]: valueEntries[0][1],
+        }
+      }
+      const findConditions = valueEntries.reduce(
         (prevCondition: FilterQuery<new () => Entity>, [fieldKey, fieldValue]) => {
           if (this.mongoOperatorMapper[fieldKey]) {
             return {

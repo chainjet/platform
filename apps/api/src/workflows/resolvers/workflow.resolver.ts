@@ -6,15 +6,18 @@ import {
   Authorizer,
   AuthorizerInterceptor,
   ConnectionType,
+  FilterableField,
   InjectAuthorizer,
   QueryArgsType,
 } from '@ptc-org/nestjs-query-graphql'
 import { GraphQLID, GraphQLString } from 'graphql'
 import { GraphQLJSONObject } from 'graphql-type-json'
+import { ObjectId } from 'mongodb'
 import { Types } from 'mongoose'
 import { UserId } from '../../auth/decorators/user-id.decorator'
 import { GraphqlGuard } from '../../auth/guards/graphql.guard'
 import { CompilerService } from '../../compiler/compiler.service'
+import { IntegrationService } from '../../integrations/services/integration.service'
 import { CreateWorkflowInput, UpdateWorkflowInput, Workflow } from '../entities/workflow'
 import { WorkflowService } from '../services/workflow.service'
 
@@ -34,6 +37,15 @@ export class CompileWorkflowDto {
 export class WorkflowQuery extends QueryArgsType(Workflow) {}
 export const WorkflowConnection = WorkflowQuery.ConnectionType
 
+@ObjectType()
+class Template extends Workflow {
+  @FilterableField(() => GraphQLString, { nullable: true })
+  integrationKey?: string
+}
+
+@ArgsType()
+export class TemplateQuery extends QueryArgsType(Template) {}
+
 @Resolver(() => Workflow)
 @UseGuards(GraphqlGuard)
 @UseInterceptors(AuthorizerInterceptor(Workflow))
@@ -46,6 +58,7 @@ export class WorkflowResolver extends BaseResolver(Workflow, {
     protected workflowService: WorkflowService,
     @InjectAuthorizer(Workflow) readonly authorizer: Authorizer<Workflow>,
     protected compilerService: CompilerService,
+    protected integrationService: IntegrationService,
   ) {
     super(workflowService)
   }
@@ -72,11 +85,23 @@ export class WorkflowResolver extends BaseResolver(Workflow, {
   @UseGuards(GraphqlGuard)
   async recommendedTemplates(
     @UserId() userId: Types.ObjectId,
-    @Args() query: WorkflowQuery,
+    @Args() query: TemplateQuery,
   ): Promise<ConnectionType<Workflow>> {
+    let integrationId: ObjectId | undefined
+    if (query.filter?.integrationKey) {
+      const integrationKey = query.filter?.integrationKey?.eq
+      delete query.filter?.integrationKey
+      const integration = await this.integrationService.findOne({ key: integrationKey })
+      if (!integration) {
+        throw new NotFoundException('Integration not found')
+      }
+      integrationId = integration._id
+    }
+
     const filter: Filter<Workflow> = {
       ...query.filter,
       ...{ isListed: { is: true }, isPublic: { is: true } },
+      ...(integrationId ? ({ usedIntegrations: { eq: integrationId } } as Filter<Workflow>) : {}),
     }
     return WorkflowConnection.createFromPromise((q) => this.service.query(q), { ...query, ...{ filter } })
   }

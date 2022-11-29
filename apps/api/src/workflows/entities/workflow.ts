@@ -12,6 +12,7 @@ import { getAddress, isAddress } from 'ethers/lib/utils'
 import { GraphQLBoolean, GraphQLString } from 'graphql'
 import { GraphQLJSONObject } from 'graphql-type-json'
 import { JSONSchema7 } from 'json-schema'
+import { Integration } from '../../integrations/entities/integration'
 import { User } from '../../users/entities/user'
 import { WorkflowAction } from '../../workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from '../../workflow-triggers/entities/workflow-trigger'
@@ -99,6 +100,10 @@ export class Workflow extends BaseEntity {
   @Field(() => GraphQLJSONObject, { nullable: true })
   @jsonProp()
   templateSchema?: JSONSchema7
+
+  @Field(() => [GraphQLString], { nullable: true })
+  @prop({ ref: () => Integration })
+  usedIntegrations: Reference<Integration>[]
 }
 
 @InputType()

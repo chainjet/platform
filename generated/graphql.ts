@@ -107,6 +107,13 @@ export enum WorkflowSortFields {
     name = "name"
 }
 
+export enum TemplateSortFields {
+    id = "id",
+    createdAt = "createdAt",
+    name = "name",
+    integrationKey = "integrationKey"
+}
+
 export enum WorkflowNextActionSortFields {
     action = "action"
 }
@@ -352,6 +359,21 @@ export interface WorkflowFilter {
 
 export interface WorkflowSort {
     field: WorkflowSortFields;
+    direction: SortDirection;
+    nulls?: Nullable<SortNulls>;
+}
+
+export interface TemplateFilter {
+    and?: Nullable<TemplateFilter[]>;
+    or?: Nullable<TemplateFilter[]>;
+    id?: Nullable<IDFilterComparison>;
+    createdAt?: Nullable<DateFieldComparison>;
+    name?: Nullable<StringFieldComparison>;
+    integrationKey?: Nullable<StringFieldComparison>;
+}
+
+export interface TemplateSort {
+    field: TemplateSortFields;
     direction: SortDirection;
     nulls?: Nullable<SortNulls>;
 }
@@ -891,6 +913,7 @@ export interface Workflow {
     isTemplate?: Nullable<boolean>;
     isPublic: boolean;
     templateSchema?: Nullable<JSONObject>;
+    usedIntegrations?: Nullable<string[]>;
     trigger?: Nullable<WorkflowTrigger>;
     actions?: Nullable<WorkflowActionsConnection>;
 }
@@ -942,6 +965,29 @@ export interface WorkflowConnection {
     edges: WorkflowEdge[];
 }
 
+export interface Template {
+    id: string;
+    createdAt: DateTime;
+    ownerAddress: string;
+    name: string;
+    state?: Nullable<string>;
+    runOnFailure?: Nullable<string>;
+    address?: Nullable<string>;
+    network?: Nullable<string>;
+    isTemplate?: Nullable<boolean>;
+    isPublic: boolean;
+    templateSchema?: Nullable<JSONObject>;
+    usedIntegrations?: Nullable<string[]>;
+    trigger?: Nullable<WorkflowTrigger>;
+    actions?: Nullable<WorkflowActionsConnection>;
+    integrationKey?: Nullable<string>;
+}
+
+export interface TemplateEdge {
+    node: Template;
+    cursor: ConnectionCursor;
+}
+
 export interface WorkflowDeleteResponse {
     id?: Nullable<string>;
     createdAt?: Nullable<DateTime>;
@@ -954,6 +1000,7 @@ export interface WorkflowDeleteResponse {
     isTemplate?: Nullable<boolean>;
     isPublic?: Nullable<boolean>;
     templateSchema?: Nullable<JSONObject>;
+    usedIntegrations?: Nullable<string[]>;
 }
 
 export interface WorkflowActionEdge {
@@ -1141,7 +1188,7 @@ export interface IQuery {
     workflow(id: string): Workflow | Promise<Workflow>;
     workflows(paging?: Nullable<CursorPaging>, filter?: Nullable<WorkflowFilter>, sorting?: Nullable<WorkflowSort[]>): WorkflowConnection | Promise<WorkflowConnection>;
     compileWorkflow(workflowId: string): CompileWorkflow | Promise<CompileWorkflow>;
-    recommendedTemplates(paging?: Nullable<CursorPaging>, filter?: Nullable<WorkflowFilter>, sorting?: Nullable<WorkflowSort[]>): WorkflowConnection | Promise<WorkflowConnection>;
+    recommendedTemplates(paging?: Nullable<CursorPaging>, filter?: Nullable<TemplateFilter>, sorting?: Nullable<TemplateSort[]>): WorkflowConnection | Promise<WorkflowConnection>;
     workflowAction(id: string): WorkflowAction | Promise<WorkflowAction>;
     workflowActions(paging?: Nullable<CursorPaging>, filter?: Nullable<WorkflowActionFilter>, sorting?: Nullable<WorkflowActionSort[]>): WorkflowActionConnection | Promise<WorkflowActionConnection>;
     workflowNextAction(id: string): WorkflowNextAction | Promise<WorkflowNextAction>;

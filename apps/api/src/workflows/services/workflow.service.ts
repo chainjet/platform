@@ -271,4 +271,23 @@ export class WorkflowService extends BaseService<Workflow> {
     }
     return forkedWorkflow
   }
+
+  async updateUsedIntegrations(workflow: Workflow) {
+    const integrationIds = new Set<string>()
+    const trigger = await this.workflowTriggerService.findOne({ workflow: workflow.id })
+    if (trigger) {
+      const integrationTrigger = await this.integrationTriggerSerice.findById(trigger.integrationTrigger.toString())
+      if (integrationTrigger) {
+        integrationIds.add(integrationTrigger.integration.toString())
+      }
+    }
+    const actions = await this.workflowActionService.find({ workflow: workflow.id })
+    for (const action of actions) {
+      const integrationAction = await this.integrationActionService.findById(action.integrationAction.toString())
+      if (integrationAction) {
+        integrationIds.add(integrationAction.integration.toString())
+      }
+    }
+    await this.updateById(workflow._id, { usedIntegrations: Array.from(integrationIds) })
+  }
 }
