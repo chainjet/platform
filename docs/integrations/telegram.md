@@ -24,4 +24,10 @@ If the Telegram group is **public**, simply add @ to the beginning of the group 
 
 For **private groups**, you must use the telegram bot, [RawDataBot](https://t.me/raw_data_bot). Search for that user in telegram and share the group invitation link. The bot will return a message with the ID, just copy it and paste in the corresponding field in your workflow.
 
-![](https://33333.cdn.cke-cs.com/kSW7V9NHUXugvhoQeFaf/animations/fe3fdf8789b385584d9e4129ed7342f487a50331ae0a429d.gif)
+![](https://i.imgur.com/4R9OPKQ.png)
+
+### Give format to Telegram texts
+
+For Telegram format, you have to choose the formatting style in Parse Mode. You can use HTML, MarkdownV2 and Markdown. Remember to use in the text box the same style that you selected in Parse Mode.
+
+Here is a [link](https://core.telegram.org/bots/api#formatting-options) where you can see all the options from these three styles.
