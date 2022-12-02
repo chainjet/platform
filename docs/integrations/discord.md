@@ -16,7 +16,7 @@ Finish configuring the rest of the information on the ChainJet workflow accordin
 
 Below, there’s a video with the steps you’ll need to follow.
 
-![](https://33333.cdn.cke-cs.com/kSW7V9NHUXugvhoQeFaf/animations/7379898c95334de5e4d11a93591cfe2d2ebe5008a2ce442a.gif)
+![](../images/discord-how-to-connect.gif)
 
 ### Give format to Discord texts
 
