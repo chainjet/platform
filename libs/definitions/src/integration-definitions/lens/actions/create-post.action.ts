@@ -22,7 +22,7 @@ export class CreatePostAction extends OperationOffChain {
         title: 'Post content',
         type: 'string',
         'x-ui:widget': 'textarea',
-        description: 'Content of the post (max 1000 characters)',
+        description: 'Content of the post (max 5000 characters)',
       } as JSONSchema7Definition,
       imageUrl: {
         title: 'Image URL',
@@ -50,7 +50,7 @@ export class CreatePostAction extends OperationOffChain {
     if (!inputs.content) {
       throw new Error('Content is required')
     }
-    const content = inputs.content.slice(0, 1000)
+    const content = inputs.content.slice(0, 5000)
 
     const arweave = Arweave.init({
       host: 'arweave.net',
