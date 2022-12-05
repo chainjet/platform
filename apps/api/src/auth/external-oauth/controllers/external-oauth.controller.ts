@@ -49,6 +49,7 @@ export class ExternalOAuthController {
     session.authenticatingKey = key
     session.redirectTo = undefined
     session.oAuthLogin = undefined
+    session.accountId = req.query?.accountId
 
     const integrationAccount = await this.oauthStrategyFactory.ensureStrategy(key)
 
@@ -143,12 +144,18 @@ export class ExternalOAuthController {
         }
       }
 
-      await this.accountCredentialService.createOne({
-        owner: new mongoose.Types.ObjectId(user.id),
-        name: `${oauthResponse.integrationAccount.name} account`, // TODO get username, email or ID and include it here
-        integrationAccount: new mongoose.Types.ObjectId(oauthResponse.integrationAccount.id),
-        encryptedCredentials: CryptoJS.AES.encrypt(JSON.stringify(credentials), credentialKey).toString(),
-      })
+      if (session.accountId) {
+        await this.accountCredentialService.updateOne(session.accountId, {
+          encryptedCredentials: CryptoJS.AES.encrypt(JSON.stringify(credentials), credentialKey).toString(),
+        })
+      } else {
+        await this.accountCredentialService.createOne({
+          owner: new mongoose.Types.ObjectId(user.id),
+          name: `${oauthResponse.integrationAccount.name} account`, // TODO get username, email or ID and include it here
+          integrationAccount: new mongoose.Types.ObjectId(oauthResponse.integrationAccount.id),
+          encryptedCredentials: CryptoJS.AES.encrypt(JSON.stringify(credentials), credentialKey).toString(),
+        })
+      }
 
       if (session.redirectTo && session.redirectTo.startsWith('/')) {
         res.redirect(`${process.env.FRONTEND_ENDPOINT}${session.redirectTo}`)
