@@ -1,6 +1,7 @@
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
-import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { OpenAPIObject } from 'openapi3-ts'
+import { OptionsWithUrl } from 'request'
+import { RequestInterceptorOptions } from '../definition'
 import { OpenApiUtils } from '../schema/utils/openApiUtils'
 
 export class CronoscanDefinition extends SingleIntegrationDefinition {
@@ -22,10 +23,10 @@ export class CronoscanDefinition extends SingleIntegrationDefinition {
     return schema
   }
 
-  async beforeOperationRun(opts: OperationRunOptions): Promise<OperationRunOptions> {
-    if (!opts.credentials.token) {
-      opts.credentials.token = process.env.CRONOSCAN_KEY
+  requestInterceptor({ req, credentials }: RequestInterceptorOptions): OptionsWithUrl {
+    if (req.url) {
+      req.url += `&apikey=${credentials.token ?? process.env.CRONOSCAN_KEY}`
     }
-    return opts
+    return req
   }
 }
