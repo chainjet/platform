@@ -140,8 +140,8 @@ export class CreatePostAction extends OperationOffChain {
       if (res?.errors?.[0]?.message) {
         throw new Error(res.errors[0].message)
       }
-      this.logger.error(`Failed to create lens post: ${workflow?.id} ${res?.errors ?? res?.data}`)
-      throw new Error(`Failed to post message: ${res?.errors ?? res?.data}`)
+      this.logger.error(`Failed to create lens post: ${workflow?.id} ${JSON.stringify(res?.errors ?? res?.data)}`)
+      throw new Error(`Failed to post message: ${JSON.stringify(res?.errors ?? res?.data)}`)
     }
     return {
       outputs: {
