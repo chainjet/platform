@@ -84,6 +84,13 @@ export class WorkflowTrigger extends BaseEntity {
   maxConsecutiveFailures: number = 3
 
   /**
+   * Maximum number of items to process per run, or zero to disable it.
+   */
+  @Field(() => Int)
+  @prop({ default: 0 })
+  maxItemsPerRun?: number = 0
+
+  /**
    * Track consecutive workflow failures in order to disable the trigger if it keeps failing
    */
   @prop({ default: 0 })
