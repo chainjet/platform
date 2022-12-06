@@ -126,7 +126,9 @@ export class RunnerService {
       inputs = parseStepInputs({ ...workflowTrigger.inputs }, {})
     } catch (e) {
       await this.onTriggerFailure(workflowTrigger.workflow, userId, workflowRun, `Invalid inputs (${e.message})`)
-      this.logger.error(`Parse step inputs for ${workflowTrigger.id} failed with error ${e.message}`)
+      this.logger.error(
+        `Parse step inputs for ${workflowTrigger.id} for workflow ${workflow.id} failed with error ${e.message}`,
+      )
       return
     }
 
@@ -167,7 +169,9 @@ export class RunnerService {
         e.response?.text || undefined,
         inputs,
       )
-      this.logger.error(`Run WorkflowTrigger ${workflowTrigger.id} failed with error ${error}`)
+      this.logger.error(
+        `Run WorkflowTrigger ${workflowTrigger.id} for workflow ${workflow.id} failed with error ${error}`,
+      )
       return
     }
 
@@ -369,7 +373,9 @@ export class RunnerService {
         undefined,
         previousOutputs,
       )
-      this.logger.error(`Parse step inputs for ${workflowAction.id} failed with error ${e.message}`)
+      this.logger.error(
+        `Parse step inputs for ${workflowAction.id} for workflow ${workflow.id} failed with error ${e.message}`,
+      )
       return
     }
 
@@ -419,7 +425,9 @@ export class RunnerService {
         e.response?.text || undefined,
         inputs,
       )
-      this.logger.error(`Run WorkflowAction ${workflowAction.id} failed with error ${error}`)
+      this.logger.error(
+        `Run WorkflowAction ${workflowAction.id} for workflow ${workflow.id} failed with error ${error}`,
+      )
       return
     }
 
