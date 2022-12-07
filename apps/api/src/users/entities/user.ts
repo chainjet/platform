@@ -1,6 +1,6 @@
 import { BaseEntity } from '@app/common/base/base-entity'
 import { Field, InputType, Int, ObjectType } from '@nestjs/graphql'
-import { Authorize, FilterableField } from '@ptc-org/nestjs-query-graphql'
+import { Authorize } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
 import { IsEmail } from 'class-validator'
 import { getAddress, isAddress } from 'ethers/lib/utils'
@@ -18,8 +18,8 @@ export class User extends BaseEntity {
   })
   address: string
 
-  @FilterableField()
-  @prop({ required: false, unique: true, sparse: true, trim: true })
+  @Field()
+  @prop({ required: false, trim: true })
   @IsEmail()
   email: string
 
@@ -27,13 +27,13 @@ export class User extends BaseEntity {
   nonces: string[]
 
   /**
-   * @deprecated
+   * whether the user has verified their email
    */
   @prop()
   verified: boolean
 
   /**
-   * @deprecated
+   * the verification token used to verify the user's email
    */
   @prop()
   verificationToken?: string

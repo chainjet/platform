@@ -1,9 +1,6 @@
 import { DEFAULT_EMAIL } from '../email.consts'
 import { EmailTemplate } from './emailTemplate'
 
-/**
- * @deprecated
- */
 export class EmailVerificationTemplate implements EmailTemplate {
   name = 'EmailVerification'
   sendFrom = DEFAULT_EMAIL
@@ -19,9 +16,9 @@ export class EmailVerificationTemplate implements EmailTemplate {
   }
 
   getHtmlBody(): string {
-    return `Thank you for creating an account on <a href="https://chainjet.io">ChainJet</a>.<br/><br/>
+    return `Thank you being part of on <a href="https://chainjet.io">ChainJet</a>.<br/><br/>
 
     Follow this link to verify your email:
-    ${process.env.FRONTEND_ENDPOINT}/register/complete-signup?address=${this.address}&code=${this.verificationCode}`
+    ${process.env.FRONTEND_ENDPOINT}/verify-email?address=${this.address}&code=${this.verificationCode}`
   }
 }
