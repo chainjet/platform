@@ -422,13 +422,15 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     return null
   }
 
-  async incrementWorkflowRunFailures(workflowId: Reference<Workflow, mongoose.Types.ObjectId>): Promise<void> {
+  async incrementWorkflowRunFailures(
+    workflowId: Reference<Workflow, mongoose.Types.ObjectId>,
+  ): Promise<WorkflowTrigger | null> {
     const trigger = await this.findOne({ workflow: workflowId })
     if (trigger) {
       trigger.consecutiveWorkflowFails++
       const shouldDisableWorkflow =
         trigger.maxConsecutiveFailures && trigger.consecutiveWorkflowFails >= trigger.maxConsecutiveFailures
-      await this.updateOne(trigger.id, {
+      const updatedTrigger = await this.updateOne(trigger.id, {
         consecutiveWorkflowFails: trigger.consecutiveWorkflowFails,
         ...(shouldDisableWorkflow ? { enabled: false } : {}),
       })
@@ -437,6 +439,8 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
           `Workflow ${workflowId} was disabled due to ${trigger.maxConsecutiveFailures} consecutive failures`,
         )
       }
+      return updatedTrigger
     }
+    return trigger
   }
 }

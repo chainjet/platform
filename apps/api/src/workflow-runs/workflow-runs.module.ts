@@ -1,3 +1,4 @@
+import { EmailsModule } from '@app/emails'
 import { forwardRef, Module } from '@nestjs/common'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { NestjsQueryTypegooseModule } from '../../../../libs/common/src/NestjsQueryTypegooseModule'
@@ -41,6 +42,7 @@ import { WorkflowSleepService } from './services/workflow-sleep.service'
     UsersModule,
     WorkflowsModule,
     forwardRef(() => WorkflowTriggersModule),
+    EmailsModule,
   ],
   providers: [WorkflowRunService, WorkflowRunResolver, WorkflowRunAuthorizer, WorkflowSleepService],
   exports: [WorkflowRunService, WorkflowSleepService],

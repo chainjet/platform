@@ -1,4 +1,6 @@
 import { BaseService } from '@app/common/base/base.service'
+import { EmailService } from '@app/emails/services/email.service'
+import { WorkflowDisabledTemplate } from '@app/emails/templates/workflowDisabledTemplate'
 import { ChainId } from '@blockchain/blockchain/types/ChainId'
 import { Injectable, Logger } from '@nestjs/common'
 import { mongoose, ReturnModelType } from '@typegoose/typegoose'
@@ -26,6 +28,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     private readonly userService: UserService,
     private readonly workflowTriggerService: WorkflowTriggerService,
     private readonly workflowSleepService: WorkflowSleepService,
+    private readonly emailService: EmailService,
   ) {
     super(model)
   }
@@ -91,7 +94,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
 
   // TODO only increase operations used if failed was because of a client issue
   async markTriggerAsFailed(
-    userId: ObjectId,
+    workflow: Workflow,
     workflowRun: WorkflowRun,
     errorMessage: string | undefined,
     errorResponse?: string,
@@ -108,9 +111,17 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
       },
       $inc: { operationsUsed: 1 },
     })
-    await this.userService.incrementOperationsUsed(userId)
-    await this.workflowTriggerService.incrementWorkflowRunFailures(workflowRun.workflow)
+    await this.userService.incrementOperationsUsed(new ObjectId(workflow.owner.toString()))
+    const trigger = await this.workflowTriggerService.incrementWorkflowRunFailures(workflowRun.workflow)
     await this.updateWorkflowRunStatus(workflowRun._id, WorkflowRunStatus.failed)
+
+    if (trigger && !trigger.enabled && workflowRun.startedBy !== WorkflowRunStartedByOptions.user) {
+      const user = await this.userService.findById(workflow.owner._id.toString())
+      if (user?.email) {
+        const template = new WorkflowDisabledTemplate(workflow, workflowRun, trigger.consecutiveWorkflowFails)
+        await this.emailService.sendEmailTemplate(template, user.email)
+      }
+    }
   }
 
   async addRunningAction(
@@ -164,7 +175,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
 
   // TODO only increase operations used if failed was because of a client issue
   async markActionAsFailed(
-    userId: ObjectId,
+    workflow: Workflow,
     workflowRun: WorkflowRun,
     workflowAction: WorkflowRunAction,
     errorMessage: string | undefined,
@@ -184,9 +195,17 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
         $inc: { operationsUsed: 1 },
       },
     )
-    await this.userService.incrementOperationsUsed(userId)
-    await this.workflowTriggerService.incrementWorkflowRunFailures(workflowRun.workflow)
+    await this.userService.incrementOperationsUsed(new ObjectId(workflow.owner.toString()))
+    const trigger = await this.workflowTriggerService.incrementWorkflowRunFailures(workflowRun.workflow)
     await this.updateWorkflowRunStatus(workflowRun._id, WorkflowRunStatus.failed)
+
+    if (trigger && !trigger.enabled && workflowRun.startedBy !== WorkflowRunStartedByOptions.user) {
+      const user = await this.userService.findById(workflow.owner._id.toString())
+      if (user?.email) {
+        const template = new WorkflowDisabledTemplate(workflow, workflowRun, trigger.consecutiveWorkflowFails)
+        await this.emailService.sendEmailTemplate(template, user.email)
+      }
+    }
   }
 
   async sleepWorkflowRun(

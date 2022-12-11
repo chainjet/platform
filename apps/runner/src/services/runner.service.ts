@@ -118,14 +118,14 @@ export class RunnerService {
     const { credentials, accountCredential, integrationAccount } = await this.getCredentialsAndIntegrationAccount(
       workflowTrigger.credentials?.toString(),
       workflowTrigger.owner.toString(),
-      () => this.onTriggerFailure(workflowTrigger.workflow, userId, workflowRun, 'Credentials not found'),
+      () => this.onTriggerFailure(workflow, workflowRun, 'Credentials not found'),
     )
 
     let inputs: Record<string, unknown>
     try {
       inputs = parseStepInputs({ ...workflowTrigger.inputs }, {})
     } catch (e) {
-      await this.onTriggerFailure(workflowTrigger.workflow, userId, workflowRun, `Invalid inputs (${e.message})`)
+      await this.onTriggerFailure(workflow, workflowRun, `Invalid inputs (${e.message})`)
       this.logger.error(
         `Parse step inputs for ${workflowTrigger.id} for workflow ${workflow.id} failed with error ${e.message}`,
       )
@@ -161,14 +161,7 @@ export class RunnerService {
       if (!error || error.toString() === '[object Object]') {
         error = e.message
       }
-      await this.onTriggerFailure(
-        workflowTrigger.workflow,
-        userId,
-        workflowRun,
-        error?.toString(),
-        e.response?.text || undefined,
-        inputs,
-      )
+      await this.onTriggerFailure(workflow, workflowRun, error?.toString(), e.response?.text || undefined, inputs)
       this.logger.error(
         `Run WorkflowTrigger ${workflowTrigger.id} for workflow ${workflow.id} failed with error ${error}`,
       )
@@ -356,8 +349,7 @@ export class RunnerService {
     const { credentials, accountCredential, integrationAccount } = await this.getCredentialsAndIntegrationAccount(
       workflowAction.credentials?.toString(),
       workflowAction.owner.toString(),
-      () =>
-        this.onActionFailure(workflowAction.workflow, userId, workflowRun, workflowRunAction, 'Credentials not found'),
+      () => this.onActionFailure(workflow, workflowRun, workflowRunAction, 'Credentials not found'),
     )
 
     let inputs: Record<string, unknown>
@@ -365,8 +357,7 @@ export class RunnerService {
       inputs = parseStepInputs({ ...workflowAction.inputs }, previousOutputs)
     } catch (e) {
       await this.onActionFailure(
-        workflowAction.workflow,
-        userId,
+        workflow,
         workflowRun,
         workflowRunAction,
         `Invalid inputs (${e.message})`,
@@ -417,8 +408,7 @@ export class RunnerService {
         error = e.message
       }
       await this.onActionFailure(
-        workflowAction.workflow,
-        userId,
+        workflow,
         workflowRun,
         workflowRunAction,
         error?.toString(),
@@ -570,20 +560,18 @@ export class RunnerService {
   }
 
   private async onTriggerFailure(
-    workflowId: ObjectId | Reference<Workflow, mongoose.Types.ObjectId>,
-    userId: ObjectId,
+    workflow: Workflow,
     workflowRun: WorkflowRun,
     errorMessage: string | undefined,
     errorResponse?: string,
     inputs?: Record<string, any>,
   ): Promise<void> {
-    await this.workflowRunService.markTriggerAsFailed(userId, workflowRun, errorMessage, errorResponse, inputs)
-    await this.runWorkflowOnFailure(workflowId)
+    await this.workflowRunService.markTriggerAsFailed(workflow, workflowRun, errorMessage, errorResponse, inputs)
+    await this.runWorkflowOnFailure(workflow._id)
   }
 
   private async onActionFailure(
-    workflowId: ObjectId | Reference<Workflow, mongoose.Types.ObjectId>,
-    userId: ObjectId,
+    workflow: Workflow,
     workflowRun: WorkflowRun,
     workflowAction: WorkflowRunAction,
     errorMessage: string | undefined,
@@ -591,14 +579,14 @@ export class RunnerService {
     inputs?: Record<string, any>,
   ): Promise<void> {
     await this.workflowRunService.markActionAsFailed(
-      userId,
+      workflow,
       workflowRun,
       workflowAction,
       errorMessage,
       errorResponse,
       inputs,
     )
-    await this.runWorkflowOnFailure(workflowId)
+    await this.runWorkflowOnFailure(workflow._id)
   }
 
   private async runWorkflowOnFailure(
