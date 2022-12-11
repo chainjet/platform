@@ -488,6 +488,8 @@ export interface UpdateOneUserInput {
 export interface UpdateUserInput {
     name?: Nullable<string>;
     email?: Nullable<string>;
+    subscribedToNotifications?: Nullable<boolean>;
+    subscribedToNewsletter?: Nullable<boolean>;
 }
 
 export interface CreateOneAccountCredentialInput {
@@ -869,6 +871,8 @@ export interface User {
     email: string;
     operationsUsedMonth: number;
     name?: Nullable<string>;
+    subscribedToNotifications: boolean;
+    subscribedToNewsletter: boolean;
 }
 
 export interface AccountCredential {
@@ -935,14 +939,12 @@ export interface WorkflowTrigger {
     schemaResponse?: Nullable<JSONObject>;
 }
 
-export interface AuthToken {
-    accessToken: string;
-    accessTokenExpiration: DateTime;
-    refreshToken: string;
-}
-
 export interface RequestMigrationPayload {
     result: boolean;
+}
+
+export interface VerifyEmailPayload {
+    error?: Nullable<string>;
 }
 
 export interface UserEdge {
@@ -1209,6 +1211,7 @@ export interface IQuery {
 
 export interface IMutation {
     updateOneUser(input: UpdateOneUserInput): User | Promise<User>;
+    verifyEmail(address: string, code: string): VerifyEmailPayload | Promise<VerifyEmailPayload>;
     requestMigration(email: string): RequestMigrationPayload | Promise<RequestMigrationPayload>;
     completeMigration(email: string, code: string, data: string): RequestMigrationPayload | Promise<RequestMigrationPayload>;
     createOneAccountCredential(input: CreateOneAccountCredentialInput): AccountCredential | Promise<AccountCredential>;

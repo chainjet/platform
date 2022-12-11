@@ -117,7 +117,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
 
     if (trigger && !trigger.enabled && workflowRun.startedBy !== WorkflowRunStartedByOptions.user) {
       const user = await this.userService.findById(workflow.owner._id.toString())
-      if (user?.email) {
+      if (user?.email && user.verified && user.subscribedToNotifications) {
         const template = new WorkflowDisabledTemplate(workflow, workflowRun, trigger.consecutiveWorkflowFails)
         await this.emailService.sendEmailTemplate(template, user.email)
       }
@@ -201,7 +201,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
 
     if (trigger && !trigger.enabled && workflowRun.startedBy !== WorkflowRunStartedByOptions.user) {
       const user = await this.userService.findById(workflow.owner._id.toString())
-      if (user?.email) {
+      if (user?.email && user.verified && user.subscribedToNotifications) {
         const template = new WorkflowDisabledTemplate(workflow, workflowRun, trigger.consecutiveWorkflowFails)
         await this.emailService.sendEmailTemplate(template, user.email)
       }

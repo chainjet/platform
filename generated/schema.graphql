@@ -398,6 +398,8 @@ type User {
   email: String!
   operationsUsedMonth: Int!
   name: String
+  subscribedToNotifications: Boolean!
+  subscribedToNewsletter: Boolean!
 }
 
 type AccountCredential {
@@ -495,14 +497,12 @@ type WorkflowTrigger {
   schemaResponse: JSONObject
 }
 
-type AuthToken {
-  accessToken: String!
-  accessTokenExpiration: DateTime!
-  refreshToken: String!
-}
-
 type RequestMigrationPayload {
   result: Boolean!
+}
+
+type VerifyEmailPayload {
+  error: String
 }
 
 type UserEdge {
@@ -1280,6 +1280,7 @@ enum WorkflowRunActionSortFields {
 
 type Mutation {
   updateOneUser(input: UpdateOneUserInput!): User!
+  verifyEmail(address: String!, code: String!): VerifyEmailPayload!
   requestMigration(email: String!): RequestMigrationPayload!
   completeMigration(email: String!, code: String!, data: String!): RequestMigrationPayload!
   createOneAccountCredential(input: CreateOneAccountCredentialInput!): AccountCredential!
@@ -1323,6 +1324,8 @@ input UpdateOneUserInput {
 input UpdateUserInput {
   name: String
   email: String
+  subscribedToNotifications: Boolean
+  subscribedToNewsletter: Boolean
 }
 
 input CreateOneAccountCredentialInput {

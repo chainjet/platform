@@ -54,6 +54,14 @@ export class User extends BaseEntity {
 
   // updates once every 24 hours
   lastActiveAt?: Date
+
+  @Field({ defaultValue: false })
+  @prop()
+  subscribedToNotifications?: boolean
+
+  @Field({ defaultValue: false })
+  @prop()
+  subscribedToNewsletter?: boolean
 }
 
 @InputType()
@@ -63,4 +71,10 @@ export class UpdateUserInput {
 
   @Field({ nullable: true })
   email?: string
+
+  @Field({ nullable: true })
+  subscribedToNotifications?: boolean
+
+  @Field({ nullable: true })
+  subscribedToNewsletter?: boolean
 }
