@@ -18,7 +18,7 @@ export class User extends BaseEntity {
   })
   address: string
 
-  @Field()
+  @Field({ nullable: true })
   @prop({ required: false, trim: true })
   @IsEmail()
   email: string

@@ -868,7 +868,7 @@ export interface IntegrationTriggersConnection {
 export interface User {
     id: string;
     createdAt: DateTime;
-    email: string;
+    email?: Nullable<string>;
     operationsUsedMonth: number;
     name?: Nullable<string>;
     subscribedToNotifications: boolean;
