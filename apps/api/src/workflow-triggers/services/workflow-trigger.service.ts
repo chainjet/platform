@@ -86,14 +86,17 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     record.name = record.name ?? capitalize(integrationTrigger.name)
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-    const workflowTrigger = await definition.beforeCreateWorkflowTrigger(record, integrationTrigger, accountCredential)
 
     const isTemplate = await this.workflowService.updateTemplateSettings(
       workflow,
       integrationTrigger.id,
       'trigger',
-      workflowTrigger.inputs ?? {},
+      record.inputs ?? {},
     )
+
+    const workflowTrigger = isTemplate
+      ? record
+      : await definition.beforeCreateWorkflowTrigger(record, integrationTrigger, accountCredential)
 
     // test workflow trigger and store outputs
     if (!integrationTrigger.instant && !isTemplate) {
@@ -136,9 +139,11 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     }
 
     const createdEntity = await super.createOne(workflowTrigger)
-    await definition.afterCreateWorkflowTrigger(createdEntity, integrationTrigger, accountCredential, (data) =>
-      super.updateOne(createdEntity.id, data),
-    )
+    if (!isTemplate) {
+      await definition.afterCreateWorkflowTrigger(createdEntity, integrationTrigger, accountCredential, (data) =>
+        super.updateOne(createdEntity.id, data),
+      )
+    }
 
     await this.workflowService.updateUsedIntegrations(workflow)
 
@@ -220,19 +225,18 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     }
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-    const updatedWorkflowTrigger = await definition.beforeUpdateWorkflowTrigger(
-      update,
-      integrationTrigger,
-      accountCredential,
-    )
 
     const isTemplate = await this.workflowService.updateTemplateSettings(
       workflow,
       integrationTrigger.id,
       'trigger',
-      updatedWorkflowTrigger.inputs ?? {},
+      update.inputs ?? {},
       workflowTrigger.inputs,
     )
+
+    const updatedWorkflowTrigger = isTemplate
+      ? update
+      : await definition.beforeUpdateWorkflowTrigger(update, integrationTrigger, accountCredential)
 
     // test workflow trigger and store outputs
     const testNeeded =
@@ -270,9 +274,11 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     }
 
     const updatedEntity = await super.updateOne(id, updatedWorkflowTrigger, opts)
-    await definition.afterUpdateWorkflowTrigger(updatedEntity, integrationTrigger, accountCredential, (data) =>
-      super.updateOne(updatedEntity.id, data, opts),
-    )
+    if (isTemplate) {
+      await definition.afterUpdateWorkflowTrigger(updatedEntity, integrationTrigger, accountCredential, (data) =>
+        super.updateOne(updatedEntity.id, data, opts),
+      )
+    }
 
     return updatedEntity
   }
@@ -281,6 +287,10 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     const workflowTrigger = await this.findById(id, opts)
     if (!workflowTrigger) {
       throw new NotFoundException('Workflow trigger not found')
+    }
+    const workflow = await this.workflowService.findById(workflowTrigger.workflow.toString())
+    if (!workflow) {
+      return super.deleteOne(id, opts)
     }
 
     const integrationTrigger = await this.integrationTriggerService.findById(
@@ -305,21 +315,22 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     }
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-    await definition.beforeDeleteWorkflowTrigger(workflowTrigger, integrationTrigger, accountCredential)
-    const deletedEntity = super.deleteOne(id, opts)
-    await definition.afterDeleteWorkflowTrigger(workflowTrigger, integrationTrigger, accountCredential)
-
-    const workflow = await this.workflowService.findById(workflowTrigger.workflow.toString())
-    if (workflow) {
-      await this.workflowService.updateTemplateSettings(
-        workflow,
-        integrationTrigger.id,
-        'trigger',
-        {},
-        workflowTrigger.inputs,
-      )
-      await this.workflowService.updateUsedIntegrations(workflow)
+    if (!workflow.isTemplate) {
+      await definition.beforeDeleteWorkflowTrigger(workflowTrigger, integrationTrigger, accountCredential)
     }
+    const deletedEntity = super.deleteOne(id, opts)
+    if (!workflow.isTemplate) {
+      await definition.afterDeleteWorkflowTrigger(workflowTrigger, integrationTrigger, accountCredential)
+    }
+
+    await this.workflowService.updateTemplateSettings(
+      workflow,
+      integrationTrigger.id,
+      'trigger',
+      {},
+      workflowTrigger.inputs,
+    )
+    await this.workflowService.updateUsedIntegrations(workflow)
 
     return deletedEntity
   }

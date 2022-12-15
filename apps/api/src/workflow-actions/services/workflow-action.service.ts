@@ -124,14 +124,25 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
 
     record.name = record.name ?? capitalize(integrationAction.name)
 
+    const isTemplate = await this.workflowService.updateTemplateSettings(
+      workflow,
+      integrationAction.id,
+      'action',
+      record.inputs ?? {},
+    )
+
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-    const workflowAction = await definition.beforeCreateWorkflowAction(record, integrationAction, accountCredential)
+    const workflowAction = isTemplate
+      ? record
+      : await definition.beforeCreateWorkflowAction(record, integrationAction, accountCredential)
 
     this.logger.debug(`Creating workflow action: ${JSON.stringify(workflowAction)}`)
     const createdWorkflowAction = await super.createOne(workflowAction)
-    await definition.afterCreateWorkflowAction(createdWorkflowAction, integrationAction, accountCredential, (data) =>
-      super.updateOne(createdWorkflowAction.id, data),
-    )
+    if (!isTemplate) {
+      await definition.afterCreateWorkflowAction(createdWorkflowAction, integrationAction, accountCredential, (data) =>
+        super.updateOne(createdWorkflowAction.id, data),
+      )
+    }
 
     // Update the nextActions references on the previous action
     if (previousAction) {
@@ -165,13 +176,6 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
         await this.workflowTriggerService.updateNextCheck(workflowTrigger)
       }
     }
-
-    await this.workflowService.updateTemplateSettings(
-      workflow,
-      integrationAction.id,
-      'action',
-      createdWorkflowAction.inputs ?? {},
-    )
 
     await this.workflowService.updateUsedIntegrations(workflow)
 
@@ -232,24 +236,25 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
       }
     }
 
-    const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-    const updatedWorkflowAction = await definition.beforeUpdateWorkflowAction(
-      update,
-      integrationAction,
-      accountCredential,
-    )
-    const updatedEntity = await super.updateOne(id, updatedWorkflowAction, opts)
-    await definition.afterUpdateWorkflowAction(updatedEntity, integrationAction, accountCredential, (data) =>
-      super.updateOne(updatedEntity.id, data, opts),
-    )
-
-    await this.workflowService.updateTemplateSettings(
+    const isTemplate = await this.workflowService.updateTemplateSettings(
       workflow,
       integrationAction.id,
       'action',
-      updatedEntity.inputs ?? {},
+      update.inputs ?? {},
       workflowAction.inputs,
     )
+
+    const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
+    const updatedWorkflowAction = isTemplate
+      ? update
+      : await definition.beforeUpdateWorkflowAction(update, integrationAction, accountCredential)
+    const updatedEntity = await super.updateOne(id, updatedWorkflowAction, opts)
+
+    if (!isTemplate) {
+      await definition.afterUpdateWorkflowAction(updatedEntity, integrationAction, accountCredential, (data) =>
+        super.updateOne(updatedEntity.id, data, opts),
+      )
+    }
 
     return updatedEntity
   }
@@ -309,18 +314,22 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
       }
     }
 
-    const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-    await definition.beforeDeleteWorkflowAction(workflowAction, integrationAction, accountCredential)
-    const deletedEntity = super.deleteOne(id, opts)
-    await definition.afterDeleteWorkflowAction(workflowAction, integrationAction, accountCredential)
-
-    await this.workflowService.updateTemplateSettings(
+    const isTemplate = await this.workflowService.updateTemplateSettings(
       workflow,
       integrationAction.id,
       'action',
       {},
       workflowAction.inputs,
     )
+
+    const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
+    if (!isTemplate) {
+      await definition.beforeDeleteWorkflowAction(workflowAction, integrationAction, accountCredential)
+    }
+    const deletedEntity = super.deleteOne(id, opts)
+    if (!isTemplate) {
+      await definition.afterDeleteWorkflowAction(workflowAction, integrationAction, accountCredential)
+    }
 
     await this.workflowService.updateUsedIntegrations(workflow)
 
