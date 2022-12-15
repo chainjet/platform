@@ -227,6 +227,12 @@ export class RunnerService {
     if (newItems.length === 0) {
       this.logger.debug(`Trigger condition not satisfied for trigger ${workflowTrigger.id}`)
       await this.workflowRunService.markTriggerAsCompleted(userId, workflowRun._id, false, triggerIds.slice(0, 1))
+      if (runResponse.nextCheck) {
+        await this.workflowTriggerService.updateOneNative(
+          { _id: workflowTrigger._id },
+          { nextCheck: runResponse.nextCheck, enabled: true },
+        )
+      }
       return
     }
 
@@ -274,11 +280,17 @@ export class RunnerService {
       true,
       createdItems.map((item) => item.id.toString()),
     )
-    await this.workflowTriggerService.updateOne(workflowTrigger.id, {
-      lastId: triggerIds[0],
-      lastItem: triggerItems[0]?.item ?? {},
-      store: runResponse.store,
-    })
+
+    // use update native to avoid running WorkflowTrigger.updateOne hooks
+    await this.workflowTriggerService.updateOneNative(
+      { _id: workflowTrigger._id },
+      {
+        lastId: triggerIds[0],
+        lastItem: triggerItems[0]?.item ?? {},
+        store: runResponse.store,
+        ...(runResponse.nextCheck ? { nextCheck: runResponse.nextCheck, enabled: true } : {}),
+      },
+    )
 
     const triggerOutputsList = createdItems
       .reverse()

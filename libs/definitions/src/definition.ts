@@ -52,6 +52,7 @@ export interface RunResponse {
   store?: Record<string, any>
   refreshedCredentials?: Record<string, any>
   transactions?: Array<{ hash: string; chainId: number }>
+  nextCheck?: Date
 }
 
 export type GetAsyncSchemasProps = OperationRunOptions & {
@@ -114,6 +115,18 @@ export abstract class Definition {
   }
 
   /**
+   * Returns the response of a hook defined on the operation
+   */
+  private getOperationHookRes<T>(hookKey: string, operationKey: string, args: any[]): Promise<T> | null {
+    for (const operation of this.operations ?? []) {
+      if (operation.key === operationKey && hookKey in operation) {
+        return operation[hookKey](...args)
+      }
+    }
+    return null
+  }
+
+  /**
    * Allows definitions to modify the workflow trigger entity before it is created
    */
   async beforeCreateWorkflowTrigger(
@@ -121,6 +134,14 @@ export abstract class Definition {
     integrationTrigger: IntegrationTrigger,
     accountCredential: AccountCredential | null,
   ): Promise<Partial<WorkflowTrigger>> {
+    const hookRes = await this.getOperationHookRes<Partial<WorkflowTrigger>>('beforeCreate', integrationTrigger.key, [
+      workflowTrigger,
+      integrationTrigger,
+      accountCredential,
+    ])
+    if (hookRes) {
+      return hookRes
+    }
     return workflowTrigger
   }
 
@@ -132,6 +153,14 @@ export abstract class Definition {
     integrationTrigger: IntegrationTrigger,
     accountCredential: AccountCredential | null,
   ): Promise<Partial<WorkflowTrigger>> {
+    const hookRes = await this.getOperationHookRes<Partial<WorkflowTrigger>>('beforeUpdate', integrationTrigger.key, [
+      workflowTrigger,
+      integrationTrigger,
+      accountCredential,
+    ])
+    if (hookRes) {
+      return hookRes
+    }
     return workflowTrigger
   }
 
@@ -142,7 +171,13 @@ export abstract class Definition {
     workflowTrigger: Partial<WorkflowTrigger>,
     integrationTrigger: IntegrationTrigger,
     accountCredential: AccountCredential | null,
-  ) {}
+  ) {
+    await this.getOperationHookRes('beforeDelete', integrationTrigger.key, [
+      workflowTrigger,
+      integrationTrigger,
+      accountCredential,
+    ])
+  }
 
   /**
    * Allows definitions to modify the workflow action entity before it is created
@@ -152,6 +187,14 @@ export abstract class Definition {
     integrationAction: IntegrationAction,
     accountCredential: AccountCredential | null,
   ): Promise<Partial<WorkflowAction>> {
+    const hookRes = await this.getOperationHookRes<Partial<WorkflowAction>>('beforeCreate', integrationAction.key, [
+      workflowAction,
+      integrationAction,
+      accountCredential,
+    ])
+    if (hookRes) {
+      return hookRes
+    }
     return workflowAction
   }
 
@@ -163,6 +206,14 @@ export abstract class Definition {
     integrationAction: IntegrationAction,
     accountCredential: AccountCredential | null,
   ): Promise<Partial<WorkflowAction>> {
+    const hookRes = await this.getOperationHookRes<Partial<WorkflowAction>>('beforeUpdate', integrationAction.key, [
+      workflowAction,
+      integrationAction,
+      accountCredential,
+    ])
+    if (hookRes) {
+      return hookRes
+    }
     return workflowAction
   }
 
@@ -170,10 +221,16 @@ export abstract class Definition {
    * Called before a workflow action is deleted
    */
   async beforeDeleteWorkflowAction(
-    workflowTrigger: Partial<WorkflowAction>,
-    integrationTrigger: IntegrationAction,
+    workflowAction: Partial<WorkflowAction>,
+    integrationAction: IntegrationAction,
     accountCredential: AccountCredential | null,
-  ) {}
+  ) {
+    await this.getOperationHookRes('beforeDelete', integrationAction.key, [
+      workflowAction,
+      integrationAction,
+      accountCredential,
+    ])
+  }
 
   /**
    * Allows definitions to modify the workflow trigger entity after it is created
@@ -183,7 +240,14 @@ export abstract class Definition {
     integrationTrigger: IntegrationTrigger,
     accountCredential: AccountCredential | null,
     update: (data: Partial<WorkflowTrigger>) => Promise<WorkflowTrigger>,
-  ) {}
+  ) {
+    await this.getOperationHookRes('afterCreate', integrationTrigger.key, [
+      workflowTrigger,
+      integrationTrigger,
+      accountCredential,
+      update,
+    ])
+  }
 
   /**
    * Allows definitions to modify the workflow trigger entity after it is updated
@@ -193,7 +257,14 @@ export abstract class Definition {
     integrationTrigger: IntegrationTrigger,
     accountCredential: AccountCredential | null,
     update: (data: Partial<WorkflowTrigger>) => Promise<WorkflowTrigger>,
-  ) {}
+  ) {
+    await this.getOperationHookRes('afterUpdate', integrationTrigger.key, [
+      workflowTrigger,
+      integrationTrigger,
+      accountCredential,
+      update,
+    ])
+  }
 
   /**
    * Called after a workflow trigger is deleted
@@ -202,7 +273,13 @@ export abstract class Definition {
     workflowTrigger: WorkflowTrigger,
     integrationTrigger: IntegrationTrigger,
     accountCredential: AccountCredential | null,
-  ) {}
+  ) {
+    await this.getOperationHookRes('afterDelete', integrationTrigger.key, [
+      workflowTrigger,
+      integrationTrigger,
+      accountCredential,
+    ])
+  }
 
   /**
    * Allows definitions to modify the workflow action entity after it is created
@@ -212,7 +289,14 @@ export abstract class Definition {
     integrationAction: IntegrationAction,
     accountCredential: AccountCredential | null,
     update: (data: Partial<WorkflowAction>) => Promise<WorkflowAction>,
-  ) {}
+  ) {
+    await this.getOperationHookRes('afterCreate', integrationAction.key, [
+      workflowAction,
+      integrationAction,
+      accountCredential,
+      update,
+    ])
+  }
 
   /**
    * Allows definitions to modify the workflow action entity after it is updated
@@ -222,16 +306,29 @@ export abstract class Definition {
     integrationAction: IntegrationAction,
     accountCredential: AccountCredential | null,
     update: (data: Partial<WorkflowAction>) => Promise<WorkflowAction>,
-  ) {}
+  ) {
+    await this.getOperationHookRes('afterUpdate', integrationAction.key, [
+      workflowAction,
+      integrationAction,
+      accountCredential,
+      update,
+    ])
+  }
 
   /**
    * Called after a workflow action is deleted
    */
   async afterDeleteWorkflowAction(
     workflowAction: WorkflowAction,
-    integrationTrigger: IntegrationAction,
+    integrationAction: IntegrationAction,
     accountCredential: AccountCredential | null,
-  ) {}
+  ) {
+    await this.getOperationHookRes('afterDelete', integrationAction.key, [
+      workflowAction,
+      integrationAction,
+      accountCredential,
+    ])
+  }
 
   /**
    * Triggered when a hook is received for a specific integration. This hook has to figure it out which triggers should run.

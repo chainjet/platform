@@ -1,3 +1,6 @@
+import { AccountCredential } from 'apps/api/src/account-credentials/entities/account-credential'
+import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/integration-trigger'
+import { WorkflowTrigger } from 'apps/api/src/workflow-triggers/entities/workflow-trigger'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { Observable } from 'rxjs'
 import { RunResponse } from './definition'
@@ -17,4 +20,46 @@ export abstract class OperationTrigger extends Operation {
   triggerHookInstructions?: string
 
   abstract run(opts: OperationRunOptions): Promise<RunResponse | Observable<RunResponse> | null> | null
+
+  beforeCreate(
+    workflowTrigger: Partial<WorkflowTrigger>,
+    integrationTrigger: IntegrationTrigger,
+    accountCredential: AccountCredential | null,
+  ): Promise<Partial<WorkflowTrigger>> | null {
+    return null
+  }
+
+  beforeUpdate(
+    workflowTrigger: Partial<WorkflowTrigger>,
+    integrationTrigger: IntegrationTrigger,
+    accountCredential: AccountCredential | null,
+  ): Promise<Partial<WorkflowTrigger>> | null {
+    return null
+  }
+
+  beforeDelete(
+    workflowTrigger: Partial<WorkflowTrigger>,
+    integrationTrigger: IntegrationTrigger,
+    accountCredential: AccountCredential | null,
+  ) {}
+
+  afterCreate(
+    workflowTrigger: WorkflowTrigger,
+    integrationTrigger: IntegrationTrigger,
+    accountCredential: AccountCredential | null,
+    update: (data: Partial<WorkflowTrigger>) => Promise<WorkflowTrigger>,
+  ) {}
+
+  afterUpdate(
+    workflowTrigger: WorkflowTrigger,
+    integrationTrigger: IntegrationTrigger,
+    accountCredential: AccountCredential | null,
+    update: (data: Partial<WorkflowTrigger>) => Promise<WorkflowTrigger>,
+  ) {}
+
+  afterDelete(
+    workflowTrigger: WorkflowTrigger,
+    integrationTrigger: IntegrationTrigger,
+    accountCredential: AccountCredential | null,
+  ) {}
 }

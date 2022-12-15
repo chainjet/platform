@@ -155,6 +155,13 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       throw new NotFoundException('Worflow trigger not found')
     }
 
+    const integrationTrigger = await this.integrationTriggerService.findById(
+      workflowTrigger.integrationTrigger.toString(),
+    )
+    if (!integrationTrigger) {
+      throw new NotFoundException('Integration trigger not found')
+    }
+
     // If frequency was updated or workflow was enabled update nextCheck
     const scheduleUpdated = update.schedule && !_.isEqual(update.schedule, workflowTrigger.schedule ?? {})
     const workflowEnabled = update.enabled && !workflowTrigger.enabled
@@ -165,7 +172,9 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       if (workflowEnabled) {
         workflowTrigger.enabled = true
       }
-      update.nextCheck = this.getTriggerNextCheck(workflowTrigger, true) as any
+      if (!integrationTrigger.instant) {
+        update.nextCheck = this.getTriggerNextCheck(workflowTrigger, true) as any
+      }
     }
 
     const workflow = await this.workflowService.findById(workflowTrigger.workflow.toString())
@@ -192,13 +201,6 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       if (workflowTrigger.enabled) {
         this.logger.log(`Workflow ${workflowTrigger.workflow} was disabled`)
       }
-    }
-
-    const integrationTrigger = await this.integrationTriggerService.findById(
-      workflowTrigger.integrationTrigger.toString(),
-    )
-    if (!integrationTrigger) {
-      throw new NotFoundException('Integration trigger not found')
     }
 
     const integration = await this.integrationService.findById(integrationTrigger.integration.toString())
