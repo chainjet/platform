@@ -25,7 +25,7 @@ import { DecentralandMarketplaceDefinition } from './integration-definitions/dec
 import { DexScreenerDefinition } from './integration-definitions/dexscreener.definition'
 import { DiscordDefinition } from './integration-definitions/discord.definition'
 import { EmailDefinition } from './integration-definitions/email.definition'
-import { EnsDefinition } from './integration-definitions/ens.definition'
+import { EnsDefinition } from './integration-definitions/ens/ens.definition'
 import { EtherscanDefinition } from './integration-definitions/etherscan.definition'
 import { FtmscanDefinition } from './integration-definitions/ftmscan.definition'
 import { GnosisscanDefinition } from './integration-definitions/gnosisscan.definition'
