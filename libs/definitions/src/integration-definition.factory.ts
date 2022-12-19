@@ -24,6 +24,7 @@ import { CronoscanDefinition } from './integration-definitions/cronoscan.definit
 import { DecentralandMarketplaceDefinition } from './integration-definitions/decentraland-marketplace.definition'
 import { DexScreenerDefinition } from './integration-definitions/dexscreener.definition'
 import { DiscordDefinition } from './integration-definitions/discord.definition'
+import { DiscourseDefinition } from './integration-definitions/discourse.definition'
 import { EmailDefinition } from './integration-definitions/email.definition'
 import { EnsDefinition } from './integration-definitions/ens/ens.definition'
 import { EtherscanDefinition } from './integration-definitions/etherscan.definition'
@@ -85,6 +86,7 @@ export class IntegrationDefinitionFactory {
     'decentraland-marketplace': DecentralandMarketplaceDefinition,
     dexscreener: DexScreenerDefinition,
     discord: DiscordDefinition,
+    discourse: DiscourseDefinition,
     // docusign: DocusignDefinition,
     email: EmailDefinition,
     ens: EnsDefinition,
