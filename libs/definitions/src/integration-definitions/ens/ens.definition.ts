@@ -1,4 +1,5 @@
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
+import { ListEnsDomainsAction } from './actions/list-ens-domains.trigger'
 import { DomainExpiresTrigger } from './triggers/domain-expires.trigger'
 
 export class EnsDefinition extends SingleIntegrationDefinition {
@@ -7,5 +8,5 @@ export class EnsDefinition extends SingleIntegrationDefinition {
   schemaUrl = null
 
   triggers = [new DomainExpiresTrigger()]
-  actions = []
+  actions = [new ListEnsDomainsAction()]
 }
