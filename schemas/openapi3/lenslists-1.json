@@ -1,0 +1,318 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Lens Lists",
+    "version": "0.1.0",
+    "x-logo": {
+      "url": "https://raw.githubusercontent.com/chainjet/assets/master/dapps/lists.inlens.xyz.png"
+    }
+  },
+  "servers": [{ "url": "https://lists.inlens.xyz" }],
+  "paths": {
+    "/api/lists/{listId}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "listId",
+          "required": true,
+          "schema": { "title": "List ID", "type": "string" },
+          "description": "The ID of the list. You can find it in the list URL `https://lists.inlens.xyz/lists/[listId]`."
+        }
+      ],
+      "get": {
+        "operationId": "getList",
+        "summary": "Get a list",
+        "description": "Returns the information of a specific list",
+        "tags": ["Lists"],
+        "responses": {
+          "200": {
+            "description": "List response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/lists/{listId}/members/{profileId}": {
+      "delete": {
+        "operationId": "/api/lists/{listId}/members/{profileId}.delete",
+        "summary": "Remove a user from a list",
+        "description": "Remove a user from a given list",
+        "tags": ["List Members"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "listId",
+            "required": true,
+            "schema": { "type": "string", "title": "List ID" },
+            "description": "The ID of the list. You can find it in the list URL `https://lists.inlens.xyz/lists/[listId]`."
+          },
+          {
+            "in": "path",
+            "name": "profileId",
+            "required": true,
+            "schema": { "type": "string", "title": "Profile ID" },
+            "description": "A Lens profile ID (e.g. 0x012cd6). See [docs](https://docs.chainjet.io/integrations/lens#how-to-get-the-profile-id.) to learn how to find it."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/DeleteResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/lists/{listId}/members": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "listId",
+          "required": true,
+          "schema": { "type": "string", "title": "List ID" },
+          "description": "The ID of the list. You can find it in the list URL `https://lists.inlens.xyz/lists/[listId]`."
+        }
+      ],
+      "get": {
+        "operationId": "/api/lists/{listId}/members.get",
+        "summary": "List the members of a list",
+        "description": "Returns the members of a specific list",
+        "tags": ["List Members"],
+        "responses": {
+          "200": {
+            "description": "Members response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/MembersResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "/api/lists/{listId}/members.post",
+        "summary": "Add a user to a list",
+        "description": "Add a user to a given list",
+        "tags": ["List Members"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["profileId"],
+                "properties": {
+                  "profileId": {
+                    "type": "string",
+                    "title": "Profile ID",
+                    "description": "A Lens profile ID (e.g. 0x012cd6). See [docs](https://docs.chainjet.io/integrations/lens#how-to-get-the-profile-id.) to learn how to find it."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Member response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/MemberResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{profileId}/lists": {
+      "get": {
+        "operationId": "/api/users/{profileId}/lists.get",
+        "summary": "List your own lists",
+        "description": "Returns a collection of lists owned by the user",
+        "tags": ["Lists"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profileId",
+            "required": true,
+            "schema": { "type": "string", "title": "Profile ID" },
+            "description": "A Lens profile ID (e.g. 0x012cd6). See [docs](https://docs.chainjet.io/integrations/lens#how-to-get-the-profile-id.) to learn how to find it."
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": { "type": "integer", "minimum": 1, "maximum": 50 },
+            "description": "The number of items to be returned"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": { "type": "integer", "minimum": 0 },
+            "description": "The offset for the retrieved items to start from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User lists response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/UserListsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DeleteResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": { "deleted": { "type": "boolean" } }
+          }
+        }
+      },
+      "List": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "coverPictureUrl": { "type": "string" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "ownerProfile": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "handle": { "type": "string" }
+            }
+          },
+          "stats": {
+            "type": "object",
+            "properties": {
+              "totalMembers": { "type": "number" },
+              "totalFavorites": { "type": "number" }
+            }
+          }
+        }
+      },
+      "ListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "list": { "type": "object", "$ref": "#/components/schemas/List" }
+            }
+          }
+        }
+      },
+      "Member": {
+        "type": "object",
+        "properties": {
+          "profileId": { "type": "string", "title": "Profile ID" }
+        }
+      },
+      "MemberResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "member": {
+                "type": "object",
+                "properties": {
+                  "profileId": { "type": "string", "title": "Profile ID" },
+                  "listId": { "type": "string", "title": "List ID" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "MembersResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "lists": {
+                "type": "object",
+                "properties": {
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Member"
+                    }
+                  },
+                  "pageInfo": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/PageInfo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "PageInfo": {
+        "type": "object",
+        "properties": { "totalCount": { "type": "number" } }
+      },
+      "UserListsResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "lists": {
+                "type": "object",
+                "properties": {
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/List"
+                    }
+                  },
+                  "pageInfo": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/PageInfo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
