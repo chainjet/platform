@@ -138,6 +138,25 @@ export class NewPostTrigger extends OperationTrigger {
       hidden: {
         type: 'boolean',
       },
+      mirrorOf: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'string',
+          },
+          profile: {
+            type: 'object',
+            properties: {
+              id: {
+                type: 'string',
+              },
+              handle: {
+                type: 'string',
+              },
+            },
+          },
+        },
+      },
     },
   }
 
@@ -219,6 +238,15 @@ export class NewPostTrigger extends OperationTrigger {
         }
         appId
         hidden
+        mirrorOf {
+          ... on Post {
+            id
+            profile {
+              id
+              handle
+            }
+          }
+        }
       }
     `
 
