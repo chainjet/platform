@@ -9,7 +9,7 @@ export class NewPostTrigger extends OperationTrigger {
   key = 'newPost'
   name = 'New Post'
   description = 'Triggers when an account makes a new post'
-  version = '1.0.0'
+  version = '1.1.0'
   skipAuth = true
 
   inputs: JSONSchema7 = {
@@ -20,6 +20,26 @@ export class NewPostTrigger extends OperationTrigger {
         type: 'string',
         description:
           'A Lens profile ID (e.g. 0x012cd6). See [docs](https://docs.chainjet.io/integrations/lens#how-to-get-the-profile-id.) to learn how to find it.',
+      },
+      mirrors: {
+        title: 'Mirrors',
+        type: 'string',
+        default: 'include',
+        oneOf: [
+          {
+            const: 'include',
+            title: 'Include',
+          },
+          {
+            const: 'exclude',
+            title: 'Exclude',
+          },
+          {
+            const: 'only',
+            title: 'Only include mirrors',
+          },
+        ],
+        description: 'Whether to **include**, **exclude**, or **only include** mirrored posts.',
       },
     },
   }
@@ -122,52 +142,115 @@ export class NewPostTrigger extends OperationTrigger {
   }
 
   async run({ inputs }: OperationRunOptions): Promise<RunResponse | null> {
-    const { profileId } = inputs
+    const { profileId, mirrors = 'include' } = inputs
+
+    const postQuery = `
+      ... on Post {
+        id
+        profile {
+          id
+          name
+          bio
+          followNftAddress
+          metadata
+          handle
+          ownedBy
+          dispatcher {
+            address
+          }
+        }
+        metadata {
+          name
+          description
+          content
+          media {
+            original {
+              url
+              mimeType
+            }
+          }
+        }
+        createdAt
+        collectModule {
+          ... on FreeCollectModuleSettings {
+            type
+            followerOnly
+            contractAddress
+          }
+        }
+        appId
+        hidden
+      }
+    `
+
+    const mirrorQuery = `
+      ... on Mirror {
+        id
+        profile {
+          id
+          name
+          bio
+          followNftAddress
+          metadata
+          handle
+          ownedBy
+          dispatcher {
+            address
+          }
+        }
+        metadata {
+          name
+          description
+          content
+          media {
+            original {
+              url
+              mimeType
+            }
+          }
+        }
+        createdAt
+        collectModule {
+          ... on FreeCollectModuleSettings {
+            type
+            followerOnly
+            contractAddress
+          }
+        }
+        appId
+        hidden
+      }
+    `
+
+    let publicationTypes: string
+    let publicationQuery: string
+    switch (mirrors) {
+      case 'exclude':
+        publicationTypes = '[POST]'
+        publicationQuery = postQuery
+        break
+      case 'only':
+        publicationTypes = '[MIRROR]'
+        publicationQuery = mirrorQuery
+        break
+      case 'include':
+      default:
+        publicationTypes = '[POST, MIRROR]'
+        publicationQuery = `
+          ${postQuery}
+          ${mirrorQuery}
+        `
+    }
 
     const query = `
       query Publications {
         publications(request: {
           profileId: "${profileId}",
-          publicationTypes: [POST],
+          publicationTypes: ${publicationTypes},
           limit: 10
         }) {
           items {
-            ... on Post {
-              id
-              profile {
-                id
-                name
-                bio
-                followNftAddress
-                metadata
-                handle
-                ownedBy
-                dispatcher {
-                  address
-                }
-              }
-              metadata {
-                name
-                description
-                content
-                media {
-                  original {
-                    url
-                    mimeType
-                  }
-                }
-              }
-              createdAt
-              collectModule {
-                ... on FreeCollectModuleSettings {
-                  type
-                  followerOnly
-                  contractAddress
-                }
-              }
-              appId
-              hidden
-            }
+            ${publicationQuery}
           }
         }
       }
