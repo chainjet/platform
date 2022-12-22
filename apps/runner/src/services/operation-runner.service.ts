@@ -1,4 +1,5 @@
 import { MetricService } from '@app/common/metrics/metric.service'
+import { convertObservableToRunResponse } from '@app/common/utils/async.utils'
 import { OperationType } from '@app/definitions/types/OperationType'
 import { forwardRef, Inject, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common'
 import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-action'
@@ -7,7 +8,6 @@ import { Workflow } from 'apps/api/src/workflows/entities/workflow'
 import { OAuth } from 'oauth'
 import { OpenAPIObject } from 'openapi3-ts'
 import request from 'request'
-import { Observable } from 'rxjs'
 import SwaggerClient from 'swagger-client'
 import { isEmptyObj } from '../../../../libs/common/src/utils/object.utils'
 import {
@@ -255,7 +255,7 @@ export class OperationRunnerService {
     try {
       const runResponse = await definition.run(opts)
       if (runResponse) {
-        return await this.convertObservableToRunResponse(runResponse)
+        return await convertObservableToRunResponse(runResponse)
       }
       return runResponse
     } catch (e) {
@@ -268,34 +268,12 @@ export class OperationRunnerService {
         )
         const res = await definition.run(opts)
         if (res) {
-          return await this.convertObservableToRunResponse(res)
+          return await convertObservableToRunResponse(res)
         }
         return res
       }
       throw e
     }
-  }
-
-  private async convertObservableToRunResponse(res: RunResponse | Observable<RunResponse>): Promise<RunResponse> {
-    if ('outputs' in res) {
-      return res
-    }
-    return new Promise((resolve, reject) => {
-      const items: any[] = []
-      let store: RunResponse['store']
-      res.subscribe({
-        next(item) {
-          items.push(item.outputs)
-          store = item.store
-        },
-        error(err) {
-          reject(err)
-        },
-        complete() {
-          resolve({ outputs: { items }, store })
-        },
-      })
-    })
   }
 
   requestInterceptor(definition: Definition, opts: RequestInterceptorOptions): request.OptionsWithUrl {

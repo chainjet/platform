@@ -350,7 +350,10 @@ export abstract class Definition {
   /**
    * Triggered when a hook is received for a specific workflow trigger. Returns true if the hook should continue, false otherwise.
    */
-  async onHookReceivedForWorkflowTrigger(req: Request, opts: OperationRunOptions): Promise<boolean> {
+  async onHookReceivedForWorkflowTrigger(
+    req: Request,
+    opts: OperationRunOptions,
+  ): Promise<{ canContinue: boolean; response?: RunResponse }> {
     throw new Error(`Hook not supported by this integration`)
   }
 

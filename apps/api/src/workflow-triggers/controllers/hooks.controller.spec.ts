@@ -53,7 +53,7 @@ describe('Hooks Controller', () => {
     it('should run the workflow if onHookReceived returns true', async () => {
       integrationDefinitionFactory.getDefinition = jest.fn(() => ({
         onHookReceived: () => true,
-        onHookReceivedForWorkflowTrigger: () => true,
+        onHookReceivedForWorkflowTrigger: () => ({ canContinue: true }),
       })) as jest.Mock
 
       const res = await supertest(app.getHttpServer()).get(`/hooks/${mock.workflowTrigger.hookId}`).expect(200)
@@ -75,7 +75,7 @@ describe('Hooks Controller', () => {
     it('should merge query params with body params', async () => {
       integrationDefinitionFactory.getDefinition = jest.fn(() => ({
         onHookReceived: () => true,
-        onHookReceivedForWorkflowTrigger: () => true,
+        onHookReceivedForWorkflowTrigger: () => ({ canContinue: true }),
       })) as jest.Mock
 
       const res = await supertest(app.getHttpServer())
@@ -113,7 +113,7 @@ describe('Hooks Controller', () => {
     it('should not run the workflow if onHookReceived returns false', async () => {
       integrationDefinitionFactory.getDefinition = jest.fn(() => ({
         onHookReceived: () => false,
-        onHookReceivedForWorkflowTrigger: () => false,
+        onHookReceivedForWorkflowTrigger: () => ({ canContinue: false }),
       })) as jest.Mock
 
       await supertest(app.getHttpServer()).get(`/hooks/${mock.workflowTrigger.hookId}`).expect(200).expect({})

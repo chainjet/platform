@@ -1,3 +1,4 @@
+import { generateSchemaFromObject } from '@app/definitions/schema/utils/jsonSchemaUtils'
 import { All, Controller, Logger, Param, Req } from '@nestjs/common'
 import { NotFoundException } from '@nestjs/common/exceptions/not-found.exception'
 import { Request } from 'express'
@@ -80,6 +81,10 @@ export class HooksController {
 
   @All(':hookId')
   async receiveHook(@Param('hookId') hookId: string, @Req() req: Request): Promise<any> {
+    if (req.method === 'HEAD') {
+      return {}
+    }
+
     hookId = hookId?.trim() ?? ''
     this.logger.log(`${hookId} - Received hook`)
 
@@ -121,7 +126,7 @@ export class HooksController {
     }
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-    const canContinue = await definition.onHookReceivedForWorkflowTrigger(req, {
+    const { canContinue, response } = await definition.onHookReceivedForWorkflowTrigger(req, {
       workflowOperation: workflowTrigger,
       operation: integrationTrigger,
       integration: integration,
@@ -143,13 +148,10 @@ export class HooksController {
 
     this.logger.log(`${hookId} - Running workflow ${workflow.id}`)
 
-    let triggerOutputs: Record<string, unknown> = {
-      ...(req.query ?? {}),
-      ...(req.body ?? {}),
-    }
+    let triggerOutputs: Record<string, unknown> = response?.outputs ?? {}
 
     if (integrationTrigger.learnResponseWorkflow && !workflowTrigger.schemaResponse && !isEmptyObj(triggerOutputs)) {
-      const schemaResponse = definition.getDynamicSchemaResponseFromRequest(req)
+      const schemaResponse = generateSchemaFromObject(triggerOutputs)
       if (schemaResponse) {
         workflowTrigger.schemaResponse = schemaResponse
         await this.workflowTriggerService.updateOne(workflowTrigger.id, {

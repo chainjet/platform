@@ -1,6 +1,7 @@
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { Request } from 'express'
 import { JSONSchema7 } from 'json-schema'
+import { RunResponse } from '../definition'
 import { generateSchemaFromObject } from '../schema/utils/jsonSchemaUtils'
 import { SingleIntegrationDefinition } from '../single-integration.definition'
 
@@ -32,7 +33,19 @@ export class WebhookDefinition extends SingleIntegrationDefinition {
     }
   }
 
-  async onHookReceivedForWorkflowTrigger(req: Request, opts: OperationRunOptions): Promise<boolean> {
-    return true
+  async onHookReceivedForWorkflowTrigger(
+    req: Request,
+    opts: OperationRunOptions,
+  ): Promise<{ canContinue: boolean; response: RunResponse }> {
+    return {
+      canContinue: true,
+      response: {
+        outputs: {
+          query: req.query ?? {},
+          body: req.body ?? {},
+          headers: req.headers ?? {},
+        },
+      },
+    }
   }
 }

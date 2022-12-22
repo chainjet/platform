@@ -300,13 +300,13 @@ export class AwsDefinition extends MultiIntegrationDefinition {
     return schema
   }
 
-  async onHookReceivedForWorkflowTrigger(req: Request): Promise<boolean> {
+  async onHookReceivedForWorkflowTrigger(req: Request): Promise<{ canContinue: boolean }> {
     if (req.body.Type === 'SubscriptionConfirmation' && req.body.SubscribeURL) {
       this.logger.log(`Confirmed subscription for hook ${req.params.hookId}`)
-      await new HttpService().request(req.body.SubscribeURL).toPromise()
-      return false
+      await firstValueFrom(new HttpService().request(req.body.SubscribeURL))
+      return { canContinue: false }
     }
-    return true
+    return { canContinue: true }
   }
 }
 

@@ -1,3 +1,4 @@
+import { convertObservableToRunResponse } from '@app/common/utils/async.utils'
 import { isEmptyObj } from '@app/common/utils/object.utils'
 import { SecurityUtils } from '@app/common/utils/security.utils'
 import { AccountCredential } from 'apps/api/src/account-credentials/entities/account-credential'
@@ -132,18 +133,23 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
       return null
     }
 
-    // TODO
     async onHookReceivedForWorkflowTrigger(
       req: Request<ParamsDictionary, any, any, ParsedQs>,
       opts: OperationRunOptions,
-    ): Promise<boolean> {
+    ): Promise<{ canContinue: boolean; response?: RunResponse }> {
       const operations = await this.getOperations()
       const operation = operations.find((a) => a.key === opts.operation.key)
       if (operation) {
         console.log(`Workflow received for operation:`, operation.key)
-        await runPipedreamOperation(this.integrationKey, operation, opts)
+        const runResponse = await runPipedreamOperation(this.integrationKey, operation, opts, req)
+        if (runResponse) {
+          // wait for the response to ensure validations succeed
+          await convertObservableToRunResponse(runResponse)
+
+          return { canContinue: true, response: { outputs: req.body } }
+        }
       }
-      return false
+      return { canContinue: false }
     }
 
     async getAsyncSchemas(operation: IntegrationAction | IntegrationTrigger) {
@@ -478,13 +484,15 @@ function getBindData(
   }
 
   const httpProp = propEntries.find(
-    ([_, prop]) => typeof prop === 'object' && 'type' in prop && prop.type === '$.interface.http',
+    ([_, prop]) =>
+      (typeof prop === 'object' && 'type' in prop && prop.type === '$.interface.http') ||
+      (typeof prop === 'string' && prop === '$.interface.http'),
   )
   const httpInterface = {}
   let hookId: string | undefined
   if (httpProp) {
     hookId =
-      opts.workflowOperation && 'hookId' in opts.workflowOperation
+      opts.workflowOperation && 'hookId' in opts.workflowOperation && opts.workflowOperation.hookId
         ? opts.workflowOperation.hookId
         : SecurityUtils.generateRandomString(48)
     httpInterface[httpProp[0]] = {
@@ -512,6 +520,7 @@ async function runPipedreamOperation(
   integrationKey: string,
   operation: PipedreamOperation,
   opts: OperationRunOptions,
+  req?: Request,
 ): Promise<RunResponse | Observable<RunResponse>> {
   operation = {
     ...operation,
@@ -586,6 +595,7 @@ async function runPipedreamOperation(
       }
 
       const event = {
+        ...(req ? { headers: req.headers, body: req.body, query: req.query } : {}),
         timestamp: new Date(),
       }
 
