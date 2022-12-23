@@ -47,7 +47,99 @@
         "responses": {
           "200": {
             "description": "",
-            "content": { "application/json": { "schema": {} } }
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "post": {
+                            "type": "object",
+                            "properties": {
+                              "id": { "type": "number" },
+                              "name": { "type": "string", "minLength": 1 },
+                              "username": { "type": "string", "minLength": 1 },
+                              "avatar_template": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "created_at": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "cooked": { "type": "string", "minLength": 1 },
+                              "post_number": { "type": "number" },
+                              "post_type": { "type": "number" },
+                              "updated_at": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "reply_count": { "type": "number" },
+                              "reply_to_post_number": {},
+                              "quote_count": { "type": "number" },
+                              "incoming_link_count": { "type": "number" },
+                              "reads": { "type": "number" },
+                              "score": { "type": "number" },
+                              "topic_id": { "type": "number" },
+                              "topic_slug": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "topic_title": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "category_id": { "type": "number" },
+                              "display_username": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "primary_group_name": {},
+                              "flair_name": {},
+                              "version": { "type": "number" },
+                              "user_title": {},
+                              "bookmarked": { "type": "boolean" },
+                              "raw": { "type": "string", "minLength": 1 },
+                              "moderator": { "type": "boolean" },
+                              "admin": { "type": "boolean" },
+                              "staff": { "type": "boolean" },
+                              "user_id": { "type": "number" },
+                              "hidden": { "type": "boolean" },
+                              "trust_level": { "type": "number" },
+                              "deleted_at": {},
+                              "user_deleted": { "type": "boolean" },
+                              "edit_reason": {},
+                              "wiki": { "type": "boolean" },
+                              "reviewable_id": {},
+                              "reviewable_score_count": { "type": "number" },
+                              "reviewable_score_pending_count": {
+                                "type": "number"
+                              },
+                              "topic_posts_count": { "type": "number" },
+                              "topic_filtered_posts_count": {
+                                "type": "number"
+                              },
+                              "topic_archetype": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "category_slug": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -62,7 +154,105 @@
         "responses": {
           "200": {
             "description": "",
-            "content": { "application/json": { "schema": {} } }
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "topic": {
+                            "type": "object",
+                            "properties": {
+                              "tags": {
+                                "type": "array",
+                                "items": { "properties": {} }
+                              },
+                              "tags_descriptions": {
+                                "type": "object",
+                                "properties": {}
+                              },
+                              "id": { "type": "number" },
+                              "title": { "type": "string", "minLength": 1 },
+                              "fancy_title": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "posts_count": { "type": "number" },
+                              "created_at": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "views": { "type": "number" },
+                              "reply_count": { "type": "number" },
+                              "like_count": { "type": "number" },
+                              "last_posted_at": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "visible": { "type": "boolean" },
+                              "closed": { "type": "boolean" },
+                              "archived": { "type": "boolean" },
+                              "archetype": { "type": "string", "minLength": 1 },
+                              "slug": { "type": "string", "minLength": 1 },
+                              "category_id": { "type": "number" },
+                              "word_count": { "type": "number" },
+                              "deleted_at": {},
+                              "user_id": { "type": "number" },
+                              "featured_link": {},
+                              "pinned_globally": { "type": "boolean" },
+                              "pinned_at": {},
+                              "pinned_until": {},
+                              "unpinned": {},
+                              "pinned": { "type": "boolean" },
+                              "highest_post_number": { "type": "number" },
+                              "deleted_by": {},
+                              "has_deleted": { "type": "boolean" },
+                              "bookmarked": { "type": "boolean" },
+                              "participant_count": { "type": "number" },
+                              "thumbnails": {},
+                              "created_by": {
+                                "type": "object",
+                                "properties": {
+                                  "id": { "type": "number" },
+                                  "username": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "name": { "type": "string", "minLength": 1 },
+                                  "avatar_template": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                }
+                              },
+                              "last_poster": {
+                                "type": "object",
+                                "properties": {
+                                  "id": { "type": "number" },
+                                  "username": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "name": { "type": "string", "minLength": 1 },
+                                  "avatar_template": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -77,7 +267,311 @@
         "responses": {
           "200": {
             "description": "",
-            "content": { "application/json": { "schema": {} } }
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "user": {
+                            "type": "object",
+                            "properties": {
+                              "id": { "type": "number" },
+                              "username": { "type": "string", "minLength": 1 },
+                              "name": { "type": "string", "minLength": 1 },
+                              "avatar_template": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "email": { "type": "string", "minLength": 1 },
+                              "secondary_emails": {
+                                "type": "array",
+                                "items": { "properties": {} }
+                              },
+                              "last_posted_at": {},
+                              "last_seen_at": {},
+                              "created_at": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "muted": { "type": "boolean" },
+                              "trust_level": { "type": "number" },
+                              "moderator": { "type": "boolean" },
+                              "admin": { "type": "boolean" },
+                              "title": {},
+                              "badge_count": { "type": "number" },
+                              "time_read": { "type": "number" },
+                              "recent_time_read": { "type": "number" },
+                              "primary_group_id": {},
+                              "primary_group_name": {},
+                              "flair_group_id": {},
+                              "flair_name": {},
+                              "flair_url": {},
+                              "flair_bg_color": {},
+                              "flair_color": {},
+                              "featured_topic": {},
+                              "bio_excerpt": {},
+                              "staged": { "type": "boolean" },
+                              "display_sidebar_tags": { "type": "boolean" },
+                              "sidebar_tags": {
+                                "type": "array",
+                                "items": { "properties": {} }
+                              },
+                              "bio_cooked": {},
+                              "pending_count": { "type": "number" },
+                              "profile_view_count": { "type": "number" },
+                              "second_factor_enabled": { "type": "boolean" },
+                              "can_upload_profile_header": {
+                                "type": "boolean"
+                              },
+                              "can_upload_user_card_background": {
+                                "type": "boolean"
+                              },
+                              "post_count": { "type": "number" },
+                              "locale": {},
+                              "muted_category_ids": {
+                                "type": "array",
+                                "items": { "properties": {} }
+                              },
+                              "regular_category_ids": {
+                                "type": "array",
+                                "items": { "properties": {} }
+                              },
+                              "watched_tags": {
+                                "type": "array",
+                                "items": { "properties": {} }
+                              },
+                              "watching_first_post_tags": {
+                                "type": "array",
+                                "items": { "properties": {} }
+                              },
+                              "tracked_tags": {
+                                "type": "array",
+                                "items": { "properties": {} }
+                              },
+                              "muted_tags": {
+                                "type": "array",
+                                "items": { "properties": {} }
+                              },
+                              "tracked_category_ids": {
+                                "type": "array",
+                                "items": { "properties": {} }
+                              },
+                              "watched_category_ids": {
+                                "type": "array",
+                                "items": { "properties": {} }
+                              },
+                              "watched_first_post_category_ids": {
+                                "type": "array",
+                                "items": { "properties": {} }
+                              },
+                              "system_avatar_template": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "muted_usernames": {
+                                "type": "array",
+                                "items": { "properties": {} }
+                              },
+                              "ignored_usernames": {
+                                "type": "array",
+                                "items": { "properties": {} }
+                              },
+                              "allowed_pm_usernames": {
+                                "type": "array",
+                                "items": { "properties": {} }
+                              },
+                              "mailing_list_posts_per_day": {
+                                "type": "number"
+                              },
+                              "user_notification_schedule": {
+                                "type": "object",
+                                "properties": {
+                                  "enabled": { "type": "boolean" },
+                                  "day_0_start_time": { "type": "number" },
+                                  "day_0_end_time": { "type": "number" },
+                                  "day_1_start_time": { "type": "number" },
+                                  "day_1_end_time": { "type": "number" },
+                                  "day_2_start_time": { "type": "number" },
+                                  "day_2_end_time": { "type": "number" },
+                                  "day_3_start_time": { "type": "number" },
+                                  "day_3_end_time": { "type": "number" },
+                                  "day_4_start_time": { "type": "number" },
+                                  "day_4_end_time": { "type": "number" },
+                                  "day_5_start_time": { "type": "number" },
+                                  "day_5_end_time": { "type": "number" },
+                                  "day_6_start_time": { "type": "number" },
+                                  "day_6_end_time": { "type": "number" }
+                                }
+                              },
+                              "can_chat_user": { "type": "boolean" },
+                              "date_of_birth": {},
+                              "accepted_answers": { "type": "number" },
+                              "featured_user_badge_ids": {
+                                "type": "array",
+                                "items": { "properties": {} }
+                              },
+                              "invited_by": {
+                                "type": "object",
+                                "properties": {
+                                  "id": { "type": "number" },
+                                  "username": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "name": { "type": "string", "minLength": 1 },
+                                  "avatar_template": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                }
+                              },
+                              "groups": {
+                                "type": "array",
+                                "uniqueItems": true,
+                                "minItems": 1,
+                                "items": {
+                                  "properties": {
+                                    "id": { "type": "number" },
+                                    "automatic": { "type": "boolean" },
+                                    "name": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    "display_name": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    "user_count": { "type": "number" },
+                                    "mentionable_level": { "type": "number" },
+                                    "messageable_level": { "type": "number" },
+                                    "visibility_level": { "type": "number" },
+                                    "primary_group": { "type": "boolean" },
+                                    "title": {},
+                                    "grant_trust_level": {},
+                                    "incoming_email": {},
+                                    "has_messages": { "type": "boolean" },
+                                    "flair_url": {},
+                                    "flair_bg_color": {},
+                                    "flair_color": {},
+                                    "bio_raw": {},
+                                    "bio_cooked": {},
+                                    "bio_excerpt": {},
+                                    "public_admission": { "type": "boolean" },
+                                    "public_exit": { "type": "boolean" },
+                                    "allow_membership_requests": {
+                                      "type": "boolean"
+                                    },
+                                    "full_name": {},
+                                    "default_notification_level": {
+                                      "type": "number"
+                                    },
+                                    "membership_request_template": {},
+                                    "members_visibility_level": {
+                                      "type": "number"
+                                    },
+                                    "can_see_members": { "type": "boolean" },
+                                    "can_admin_group": { "type": "boolean" },
+                                    "publish_read_state": { "type": "boolean" }
+                                  }
+                                }
+                              },
+                              "user_option": {
+                                "type": "object",
+                                "properties": {
+                                  "user_id": { "type": "number" },
+                                  "mailing_list_mode": { "type": "boolean" },
+                                  "mailing_list_mode_frequency": {
+                                    "type": "number"
+                                  },
+                                  "email_digests": { "type": "boolean" },
+                                  "email_level": { "type": "number" },
+                                  "email_messages_level": { "type": "number" },
+                                  "external_links_in_new_tab": {
+                                    "type": "boolean"
+                                  },
+                                  "color_scheme_id": {},
+                                  "dark_scheme_id": {},
+                                  "dynamic_favicon": { "type": "boolean" },
+                                  "enable_quoting": { "type": "boolean" },
+                                  "enable_defer": { "type": "boolean" },
+                                  "digest_after_minutes": { "type": "number" },
+                                  "automatically_unpin_topics": {
+                                    "type": "boolean"
+                                  },
+                                  "auto_track_topics_after_msecs": {
+                                    "type": "number"
+                                  },
+                                  "notification_level_when_replying": {
+                                    "type": "number"
+                                  },
+                                  "new_topic_duration_minutes": {
+                                    "type": "number"
+                                  },
+                                  "email_previous_replies": {
+                                    "type": "number"
+                                  },
+                                  "email_in_reply_to": { "type": "boolean" },
+                                  "like_notification_frequency": {
+                                    "type": "number"
+                                  },
+                                  "include_tl0_in_digests": {
+                                    "type": "boolean"
+                                  },
+                                  "theme_ids": {
+                                    "type": "array",
+                                    "items": { "properties": {} }
+                                  },
+                                  "theme_key_seq": { "type": "number" },
+                                  "allow_private_messages": {
+                                    "type": "boolean"
+                                  },
+                                  "enable_allowed_pm_users": {
+                                    "type": "boolean"
+                                  },
+                                  "homepage_id": {},
+                                  "hide_profile_and_presence": {
+                                    "type": "boolean"
+                                  },
+                                  "text_size": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "text_size_seq": { "type": "number" },
+                                  "title_count_mode": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "timezone": {},
+                                  "skip_new_user_tips": { "type": "boolean" },
+                                  "default_calendar": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "oldest_search_log_date": {},
+                                  "seen_popups": {},
+                                  "chat_enabled": { "type": "boolean" },
+                                  "only_chat_push_notifications": {},
+                                  "ignore_channel_wide_mention": {},
+                                  "chat_email_frequency": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
