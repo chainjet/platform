@@ -227,12 +227,15 @@ export class RunnerService {
     if (newItems.length === 0) {
       this.logger.debug(`Trigger condition not satisfied for trigger ${workflowTrigger.id}`)
       await this.workflowRunService.markTriggerAsCompleted(userId, workflowRun._id, false, triggerIds.slice(0, 1))
-      if (runResponse.nextCheck) {
-        await this.workflowTriggerService.updateOneNative(
-          { _id: workflowTrigger._id },
-          { nextCheck: runResponse.nextCheck, enabled: true },
-        )
-      }
+
+      await this.workflowTriggerService.updateOneNative(
+        { _id: workflowTrigger._id },
+        {
+          store: runResponse.store,
+          ...(runResponse.nextCheck ? { nextCheck: runResponse.nextCheck, enabled: true } : {}),
+        },
+      )
+
       return
     }
 
