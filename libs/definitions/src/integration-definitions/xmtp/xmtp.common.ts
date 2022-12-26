@@ -44,6 +44,9 @@ export const xmtpMessageSchema: JSONSchema7 = {
         peerAddress: {
           type: 'string',
         },
+        link: {
+          type: 'string',
+        },
       },
     },
   },
@@ -64,6 +67,11 @@ export function mapXmtpMessageToOutput(message: DecodedMessage) {
       topic: message.conversation.topic,
       createdAt: message.conversation.createdAt,
       peerAddress: message.conversation.peerAddress,
+      link: message.conversation.context?.conversationId?.startsWith('lens.dev/dm/')
+        ? `https://lenster.xyz/messages/${message.conversation.peerAddress.toLowerCase()}/${
+            message.conversation.context.conversationId
+          }`
+        : `https://${message.conversation.context?.conversationId}`,
     },
   }
 }
