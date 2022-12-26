@@ -53,6 +53,13 @@ export const xmtpMessageSchema: JSONSchema7 = {
 }
 
 export function mapXmtpMessageToOutput(message: DecodedMessage) {
+  const link = !message.conversation.context?.conversationId
+    ? `https://xmtp.chat/dm/${message.conversation.peerAddress}`
+    : message.conversation.context?.conversationId?.startsWith('lens.dev/dm/')
+    ? `https://lenster.xyz/messages/${message.conversation.peerAddress.toLowerCase()}/${
+        message.conversation.context.conversationId
+      }`
+    : `https://${message.conversation.context?.conversationId}`
   return {
     id: message.id,
     senderAddress: message.senderAddress,
@@ -67,11 +74,7 @@ export function mapXmtpMessageToOutput(message: DecodedMessage) {
       topic: message.conversation.topic,
       createdAt: message.conversation.createdAt,
       peerAddress: message.conversation.peerAddress,
-      link: message.conversation.context?.conversationId?.startsWith('lens.dev/dm/')
-        ? `https://lenster.xyz/messages/${message.conversation.peerAddress.toLowerCase()}/${
-            message.conversation.context.conversationId
-          }`
-        : `https://${message.conversation.context?.conversationId}`,
+      link,
     },
   }
 }
