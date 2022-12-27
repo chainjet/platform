@@ -104,14 +104,24 @@ export function replaceTemplateFields(
       let newValue = value
       const matches = value.matchAll(/{{\s*([^}]+)\s*}}/g)
       for (const match of matches) {
+        // replace fields that only contain a template variable (the interpolation is removed)
         if (match[1].trim().startsWith('template.')) {
           newValue = newValue.replace(match[0], templateInputs[match[1].trim().replace('template.', '')])
-        } else {
-          // replace interpolated ids
-          const oldId = match[1].split('.')[0].trim()
-          const newId = idsMap.get(oldId)
-          if (newId) {
-            newValue = newValue.replace(oldId, newId)
+        }
+        // replace fields that contain template variables inside functions or other variables (the interpolation is kept)
+        else {
+          // replace "template." variables
+          const templateRegex = /template\.([a-zA-Z0-9_\[\]\.]+)/g
+          for (const templateMatch of Array.from((match[1].match(templateRegex) as RegExpMatchArray) ?? [])) {
+            newValue = newValue.replace(templateMatch, templateInputs[templateMatch.trim().replace('template.', '')])
+          }
+          // replace old IDs
+          const idRegex = /[0-9a-f]{24}/g
+          for (const idMatch of Array.from((match[1].match(idRegex) as RegExpMatchArray) ?? [])) {
+            const newId = idsMap.get(idMatch)
+            if (newId) {
+              newValue = newValue.replace(idMatch, newId)
+            }
           }
         }
       }
