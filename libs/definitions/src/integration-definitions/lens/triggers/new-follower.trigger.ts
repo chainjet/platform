@@ -91,11 +91,11 @@ export class NewFollowerTrigger extends OperationTrigger {
     },
   }
 
-  async run({ inputs }: OperationRunOptions): Promise<RunResponse | null> {
+  async run({ inputs, fetchAll }: OperationRunOptions): Promise<RunResponse | null> {
     const { profileId } = inputs
     const query = `
       query Followers {
-        followers(request: { profileId: "${profileId}", limit: 10 }) {
+        followers(request: { profileId: "${profileId}", limit: ${fetchAll ? 50 : 10} }) {
           items {
             wallet {
               address

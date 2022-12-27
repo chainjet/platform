@@ -26,6 +26,9 @@ export class WorkflowTriggerResolver extends BaseResolver(WorkflowTrigger, {
     super(workflowTriggerService)
   }
 
+  /**
+   * Check workflow trigger now and update next check
+   */
   @Mutation(() => WorkflowTrigger)
   async checkWorkflowTrigger(
     @UserId() userId: ObjectId,
@@ -40,6 +43,9 @@ export class WorkflowTriggerResolver extends BaseResolver(WorkflowTrigger, {
     return trigger
   }
 
+  /**
+   * Test just the workflow trigger. It doesn't continue the execution of the workflow.
+   */
   @Mutation(() => WorkflowTrigger)
   async testWorkflowTrigger(
     @UserId() userId: ObjectId,
@@ -49,7 +55,44 @@ export class WorkflowTriggerResolver extends BaseResolver(WorkflowTrigger, {
     if (!trigger || trigger.owner.toString() !== userId.toString() || !trigger.schedule?.frequency) {
       return trigger ?? null
     }
-    void this.runnerService.runWorkflowTriggerCheck(trigger, WorkflowRunStartedByOptions.user, { ignoreLastId: true })
+    await this.runnerService.runWorkflowTriggerCheck(trigger, WorkflowRunStartedByOptions.user, { testTrigger: true })
+    return trigger
+  }
+
+  /**
+   * Run the workflow with the latest event
+   */
+  @Mutation(() => WorkflowTrigger)
+  async runWorkflowTriggerLastEvent(
+    @UserId() userId: ObjectId,
+    @Args('id', { type: () => GraphQLString }) id: string,
+  ): Promise<WorkflowTrigger | null> {
+    const trigger = await this.workflowTriggerService.findById(id)
+    if (!trigger || trigger.owner.toString() !== userId.toString() || !trigger.schedule?.frequency) {
+      return trigger ?? null
+    }
+    void this.runnerService.runWorkflowTriggerCheck(trigger, WorkflowRunStartedByOptions.user, {
+      reRunItems: 'last',
+    })
+    await this.workflowTriggerService.updateNextCheck(trigger)
+    return trigger
+  }
+
+  /**
+   * Run the workflow with historical events
+   */
+  @Mutation(() => WorkflowTrigger)
+  async runWorkflowTriggerHistory(
+    @UserId() userId: ObjectId,
+    @Args('id', { type: () => GraphQLString }) id: string,
+  ): Promise<WorkflowTrigger | null> {
+    const trigger = await this.workflowTriggerService.findById(id)
+    if (!trigger || trigger.owner.toString() !== userId.toString() || !trigger.schedule?.frequency) {
+      return trigger ?? null
+    }
+    void this.runnerService.runWorkflowTriggerCheck(trigger, WorkflowRunStartedByOptions.user, {
+      reRunItems: 'all',
+    })
     await this.workflowTriggerService.updateNextCheck(trigger)
     return trigger
   }

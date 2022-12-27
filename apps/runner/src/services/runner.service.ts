@@ -54,7 +54,7 @@ export class RunnerService {
   async runWorkflowTriggerCheck(
     workflowTrigger: WorkflowTrigger,
     startedBy: WorkflowRunStartedByOptions,
-    opts?: { ignoreLastId?: boolean },
+    opts?: { testTrigger?: boolean; reRunItems?: 'last' | 'all' },
   ): Promise<void> {
     this.logger.debug(`Checking for trigger ${workflowTrigger.id}`)
 
@@ -155,6 +155,7 @@ export class RunnerService {
           address: user.address,
           email: user.email,
         },
+        fetchAll: opts?.reRunItems === 'all',
       })
     } catch (e) {
       let error = definition.parseError(e)
@@ -198,7 +199,7 @@ export class RunnerService {
 
     let newItems: Array<{ id: string | number; item: Record<string, unknown> }> = []
 
-    if (workflowTrigger.lastId && !opts?.ignoreLastId) {
+    if (workflowTrigger.lastId && !opts?.testTrigger && !opts?.reRunItems) {
       const lastItemIndex = triggerIds.indexOf(workflowTrigger.lastId?.toString())
 
       // filter out items older than lastId
@@ -216,6 +217,8 @@ export class RunnerService {
       newItems = newItems.filter(
         (item) => !usedIds.find((usedId) => usedId.triggerId.toString() === item.id.toString()),
       )
+    } else if (opts?.reRunItems === 'all') {
+      newItems = triggerItems
     } else {
       newItems = triggerItems.slice(0, 1)
     }
@@ -239,7 +242,7 @@ export class RunnerService {
       return
     }
 
-    this.logger.log(`Trigger condition satisfied for trigger ${workflowTrigger.id}`)
+    this.logger.log(`Trigger condition satisfied for trigger ${workflowTrigger.id} with ${newItems.length} items`)
 
     // Populate triggered items if x-triggerPopulate is set
     if (integrationTrigger.triggerPopulate?.operationId) {
@@ -269,10 +272,12 @@ export class RunnerService {
     const createdItems: Array<{ id: string | number; item: Record<string, unknown> }> = []
     for (const newItem of newItems) {
       try {
-        await this.workflowUsedIdService.createOne({
-          workflow: workflowTrigger.workflow,
-          triggerId: newItem.id.toString(),
-        })
+        if (!opts?.reRunItems) {
+          await this.workflowUsedIdService.createOne({
+            workflow: workflowTrigger.workflow,
+            triggerId: newItem.id.toString(),
+          })
+        }
         createdItems.push(newItem)
       } catch (e) {}
     }

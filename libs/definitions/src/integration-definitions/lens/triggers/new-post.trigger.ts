@@ -160,7 +160,7 @@ export class NewPostTrigger extends OperationTrigger {
     },
   }
 
-  async run({ inputs }: OperationRunOptions): Promise<RunResponse | null> {
+  async run({ inputs, fetchAll }: OperationRunOptions): Promise<RunResponse | null> {
     const { profileId, mirrors = 'include' } = inputs
 
     const postQuery = `
@@ -275,7 +275,7 @@ export class NewPostTrigger extends OperationTrigger {
         publications(request: {
           profileId: "${profileId}",
           publicationTypes: ${publicationTypes},
-          limit: 10
+          limit: ${fetchAll ? 50 : 10}
         }) {
           items {
             ${publicationQuery}

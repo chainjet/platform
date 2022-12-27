@@ -103,7 +103,7 @@ export class NewMentionTrigger extends OperationTrigger {
     },
   }
 
-  async run({ inputs, credentials }: OperationRunOptions): Promise<RunResponse | null> {
+  async run({ inputs, credentials, fetchAll }: OperationRunOptions): Promise<RunResponse | null> {
     if (!credentials?.refreshToken || !credentials?.profileId) {
       throw new Error('Authentication is expired, please connect the profile again')
     }
@@ -114,7 +114,9 @@ export class NewMentionTrigger extends OperationTrigger {
     const { profileId } = credentials
     const query = `
       query Notifications {
-        notifications(request: { profileId: "${profileId}", limit: 10, notificationTypes: [MENTION_POST, MENTION_COMMENT] }) {
+        notifications(request: { profileId: "${profileId}", notificationTypes: [MENTION_POST, MENTION_COMMENT], limit: ${
+      fetchAll ? 50 : 10
+    } }) {
           items {
             ... on NewMentionNotification {
               notificationId

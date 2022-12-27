@@ -46,6 +46,7 @@ export type OperationRunOptions = BaseRunOptions & {
   operation: IntegrationAction | IntegrationTrigger
   workflow?: Workflow
   workflowOperation?: WorkflowAction | WorkflowTrigger
+  fetchAll?: boolean
 }
 
 export type RunActionByKeyOptions = BaseRunOptions & {
