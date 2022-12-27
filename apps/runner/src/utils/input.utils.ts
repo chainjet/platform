@@ -123,6 +123,8 @@ export function calculateExpression(input: string, references: Record<string, Re
     }
     return ''
   })
+  parser.set('first', (...args: any[]) => (args ?? []).find((x) => !!x))
+  parser.set('last', (...args: any[]) => (args ?? []).reverse().find((x) => !!x))
   return parser.evaluate(expression)
 }
 
