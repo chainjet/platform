@@ -22,24 +22,24 @@ export class NewPostTrigger extends OperationTrigger {
           'A Lens profile ID (e.g. 0x012cd6). See [docs](https://docs.chainjet.io/integrations/lens#how-to-get-the-profile-id.) to learn how to find it.',
       },
       mirrors: {
-        title: 'Mirrors',
+        title: 'Include Mirrors',
         type: 'string',
         default: 'include',
         oneOf: [
           {
             const: 'include',
-            title: 'Include',
+            title: 'Posts & Mirrors',
           },
           {
             const: 'exclude',
-            title: 'Exclude',
+            title: 'Only Posts',
           },
           {
             const: 'only',
-            title: 'Only include mirrors',
+            title: 'Only Mirrors',
           },
         ],
-        description: 'Whether to **include**, **exclude**, or **only include** mirrored posts.',
+        description: 'Whether to trigger for both Posts and Mirrors, only posts, or only mirrors.',
       },
     },
   }
