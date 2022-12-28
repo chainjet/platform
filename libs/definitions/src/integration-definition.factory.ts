@@ -45,6 +45,7 @@ import { MongoDBDefinition } from './integration-definitions/mongodb.definition'
 import { MoonbeamMoonscanDefinition } from './integration-definitions/moonbeam-moonscan.definition'
 import { MoonriverMoonscanDefinition } from './integration-definitions/moonriver-moonscan.definition'
 import { MoralisDefinition } from './integration-definitions/moralis.definition'
+import { NotionDefinition } from './integration-definitions/notion/notion.definition'
 import { OptimisticEtherscanDefinition } from './integration-definitions/optimistic-etherscan.definition'
 import { PolygonscanDefinition } from './integration-definitions/polygonscan.definition'
 import { RedditDefinition } from './integration-definitions/reddit.definition'
@@ -118,6 +119,7 @@ export class IntegrationDefinitionFactory {
     'moonbeam-moonscan': MoonbeamMoonscanDefinition,
     'moonriver-moonscan': MoonriverMoonscanDefinition,
     moralis: MoralisDefinition,
+    notion: NotionDefinition,
     'optimistic-etherscan': OptimisticEtherscanDefinition,
     // pagerduty: PagerdutyDefinition,
     // pancakeswap: PancakeSwapDefinition,
