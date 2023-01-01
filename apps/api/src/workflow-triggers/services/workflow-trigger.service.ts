@@ -336,6 +336,20 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
   }
 
   async updateNextCheck(workflowTrigger: WorkflowTrigger): Promise<void> {
+    const integrationTrigger = await this.integrationTriggerService.findById(
+      workflowTrigger.integrationTrigger._id.toString(),
+    )
+    if (!integrationTrigger) {
+      this.logger.error(`Tring to update nextCheck for ${workflowTrigger.id} but integrationTrigger not found`)
+      await this.updateOneNative({ _id: workflowTrigger._id }, { nextCheck: null, enabled: false })
+      return
+    }
+
+    // instant triggers don't use next check
+    if (integrationTrigger.instant) {
+      return
+    }
+
     try {
       const nextCheck = this.getTriggerNextCheck(workflowTrigger)
       if (nextCheck && workflowTrigger.nextCheck !== nextCheck) {
