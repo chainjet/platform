@@ -1,6 +1,7 @@
 import { convertObservableToRunResponse } from '@app/common/utils/async.utils'
 import { isEmptyObj } from '@app/common/utils/object.utils'
 import { SecurityUtils } from '@app/common/utils/security.utils'
+import { Logger } from '@nestjs/common'
 import { AccountCredential } from 'apps/api/src/account-credentials/entities/account-credential'
 import { IntegrationAction } from 'apps/api/src/integration-actions/entities/integration-action'
 import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/integration-trigger'
@@ -65,6 +66,7 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
   abstract class _PipedreamMixin extends Base {
     abstract pipedreamKey: string
     operations: PipedreamOperation[]
+    logger = new Logger(PipedreamMixin.name)
 
     abstract getOperation(type: string, key: string): Promise<PipedreamOperation>
 
@@ -182,7 +184,8 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
         }
 
         return additionalSchemas
-      } catch {
+      } catch (e) {
+        this.logger.error(`Error fetching additional props for ${operation.integration} ${operation.key}: ${e.message}`)
         return {}
       }
     }
@@ -709,6 +712,15 @@ function getAsyncSchemasForPipedream(
 
         // items can be an array of strings or an array of { label: string, value: any }
         if (items.every((item) => typeof item === 'string')) {
+          if (pipedreamProp.type.endsWith('[]')) {
+            return {
+              type: 'array',
+              items: {
+                default: defaultValue,
+                enum: items,
+              },
+            }
+          }
           return {
             default: defaultValue,
             enum: items,
