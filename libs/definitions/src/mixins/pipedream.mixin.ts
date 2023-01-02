@@ -170,17 +170,21 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
       }
 
       const { bindData } = getBindData(this.integrationKey, pipedreamOperation, props)
-      const additionalProps = await pipedreamOperation.additionalProps.bind(bindData)({})
+      try {
+        const additionalProps = await pipedreamOperation.additionalProps.bind(bindData)({})
 
-      const additionalSchemas = {}
-      for (const [key, value] of Object.entries(additionalProps)) {
-        const schemaProp = mapPipedreamPropertyToJsonSchemaParam(key, value as PipedreaProp)
-        if (schemaProp && 'schema' in schemaProp) {
-          additionalSchemas[key] = schemaProp.schema
+        const additionalSchemas = {}
+        for (const [key, value] of Object.entries(additionalProps)) {
+          const schemaProp = mapPipedreamPropertyToJsonSchemaParam(key, value as PipedreaProp)
+          if (schemaProp && 'schema' in schemaProp) {
+            additionalSchemas[key] = schemaProp.schema
+          }
         }
-      }
 
-      return additionalSchemas
+        return additionalSchemas
+      } catch {
+        return {}
+      }
     }
 
     async getOperations(): Promise<PipedreamOperation[]> {
