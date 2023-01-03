@@ -1,4 +1,5 @@
 import $RefParser from '@apidevtools/json-schema-ref-parser'
+import { isEmptyObj } from '@app/common/utils/object.utils'
 import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
 import JsonSchemaGenerator from 'json-schema-generator'
 import defaultsDeep from 'lodash.defaultsdeep'
@@ -133,6 +134,12 @@ export function transformDynamicRefExtension(schema: JSONSchema7): JSONSchema7 {
 }
 
 export function prepareInputsJsonSchema(schema: JSONSchema7): JSONSchema7 {
+  if (isEmptyObj(schema)) {
+    return {
+      type: 'object',
+      properties: {},
+    }
+  }
   schema = hideParamsWithSingleEnum(schema)
   schema = fixSchemaWithOneOf(schema)
   schema = removeDeprecatedProperties(schema) ?? {}
