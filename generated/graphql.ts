@@ -882,6 +882,7 @@ export interface AccountCredential {
     name: string;
     fields?: Nullable<JSONObject>;
     schemaRefs?: Nullable<JSONObject>;
+    authExpired: boolean;
 }
 
 export interface WorkflowNextAction {
@@ -1151,6 +1152,7 @@ export interface AccountCredentialDeleteResponse {
     name?: Nullable<string>;
     fields?: Nullable<JSONObject>;
     schemaRefs?: Nullable<JSONObject>;
+    authExpired?: Nullable<boolean>;
 }
 
 export interface AccountCredentialEdge {

@@ -1,3 +1,4 @@
+import { AuthenticationError } from '@app/common/errors/authentication-error'
 import { RequestInterceptorOptions } from '@app/definitions'
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
 import { IntegrationAccount } from 'apps/api/src/integration-accounts/entities/integration-account'
@@ -20,11 +21,11 @@ export class LensListsDefinition extends SingleIntegrationDefinition {
   async beforeOperationRun(opts: OperationRunOptions): Promise<OperationRunOptions> {
     // refresh credentials
     if (!opts.credentials?.refreshToken || !opts.credentials?.profileId) {
-      throw new Error('Authentication is expired, please connect the profile again')
+      throw new AuthenticationError('Authentication is expired, please connect the profile again')
     }
     const refreshedCredentials = await refreshLensAccessToken(opts.credentials.refreshToken)
     if (!refreshedCredentials) {
-      throw new Error('Authentication is expired, please connect the profile again')
+      throw new AuthenticationError('Authentication is expired, please connect the profile again')
     }
     return {
       ...opts,

@@ -1,3 +1,4 @@
+import { AuthenticationError } from '@app/common/errors/authentication-error'
 import { RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { sendGraphqlQuery } from '@app/definitions/utils/subgraph.utils'
@@ -138,10 +139,10 @@ export class CreatePostAction extends OperationOffChain {
     })
     if (!res?.data?.createPostViaDispatcher?.txHash) {
       if (res?.errors?.[0]?.message) {
-        throw new Error(res.errors[0].message)
+        throw new AuthenticationError(res.errors[0].message)
       }
       this.logger.error(`Failed to create lens post: ${workflow?.id} ${JSON.stringify(res?.errors ?? res?.data)}`)
-      throw new Error(`Failed to post message: ${JSON.stringify(res?.errors ?? res?.data)}`)
+      throw new AuthenticationError(`Failed to post message: ${JSON.stringify(res?.errors ?? res?.data)}`)
     }
     return {
       outputs: {

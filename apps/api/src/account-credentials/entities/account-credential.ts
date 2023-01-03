@@ -9,6 +9,7 @@ import { Field, ID, InputType, ObjectType } from '@nestjs/graphql'
 import { Authorize, FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
 import CryptoJS from 'crypto-js'
+import { GraphQLBoolean } from 'graphql'
 import { GraphQLJSONObject } from 'graphql-type-json'
 import { JSONSchema7 } from 'json-schema'
 import { IntegrationAccount } from '../../integration-accounts/entities/integration-account'
@@ -68,6 +69,10 @@ export class AccountCredential extends BaseEntity {
   @Field(() => GraphQLJSONObject, { nullable: true })
   @jsonProp()
   schemaRefs?: Record<string, JSONSchema7>
+
+  @Field(() => GraphQLBoolean, { defaultValue: false })
+  @prop({ default: false })
+  authExpired?: boolean
 }
 
 @InputType()

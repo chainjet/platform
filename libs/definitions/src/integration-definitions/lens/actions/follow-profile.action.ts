@@ -1,3 +1,4 @@
+import { AuthenticationError } from '@app/common/errors/authentication-error'
 import { RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { sendGraphqlQuery } from '@app/definitions/utils/subgraph.utils'
@@ -35,12 +36,12 @@ export class FollowProfileAction extends OperationOffChain {
 
   async run({ inputs, credentials }: OperationRunOptions): Promise<RunResponse> {
     if (!credentials?.refreshToken || !credentials?.profileId) {
-      throw new Error('Authentication is expired, please connect the profile again')
+      throw new AuthenticationError('Authentication is expired, please connect the profile again')
     }
     const { profileId } = inputs
     const refreshedCredentials = await refreshLensAccessToken(credentials.refreshToken)
     if (!refreshedCredentials) {
-      throw new Error('Authentication is expired, please connect the profile again')
+      throw new AuthenticationError('Authentication is expired, please connect the profile again')
     }
     const query = `
     mutation ProxyAction {

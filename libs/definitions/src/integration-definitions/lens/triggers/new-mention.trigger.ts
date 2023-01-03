@@ -1,3 +1,4 @@
+import { AuthenticationError } from '@app/common/errors/authentication-error'
 import { RunResponse } from '@app/definitions/definition'
 import { OperationTrigger } from '@app/definitions/operation-trigger'
 import { sendGraphqlQuery } from '@app/definitions/utils/subgraph.utils'
@@ -105,11 +106,11 @@ export class NewMentionTrigger extends OperationTrigger {
 
   async run({ inputs, credentials, fetchAll }: OperationRunOptions): Promise<RunResponse | null> {
     if (!credentials?.refreshToken || !credentials?.profileId) {
-      throw new Error('Authentication is expired, please connect the profile again')
+      throw new AuthenticationError('Authentication is expired, please connect the profile again')
     }
     const refreshedCredentials = await refreshLensAccessToken(credentials.refreshToken)
     if (!refreshedCredentials) {
-      throw new Error('Authentication is expired, please connect the profile again')
+      throw new AuthenticationError('Authentication is expired, please connect the profile again')
     }
     const { profileId } = credentials
     const query = `

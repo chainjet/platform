@@ -1,3 +1,4 @@
+import { AuthenticationError } from '@app/common/errors/authentication-error'
 import { RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { Client } from '@xmtp/xmtp-js'
@@ -33,7 +34,7 @@ export class SendMessageWalletAction extends OperationOffChain {
 
   async run({ inputs, credentials }: OperationRunOptions): Promise<RunResponse> {
     if (!credentials.keys) {
-      throw new Error(`Missing keys for XMTP`)
+      throw new AuthenticationError(`Missing keys for XMTP`)
     }
     const keys = new Uint8Array(credentials.keys.split(',').map((key: string) => Number(key)))
     const client = await Client.create(null, { privateKeyOverride: keys, env: 'production' })

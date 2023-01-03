@@ -1,3 +1,4 @@
+import { AuthenticationError } from '@app/common/errors/authentication-error'
 import { RunResponse } from '@app/definitions/definition'
 import { OperationTrigger } from '@app/definitions/operation-trigger'
 import { Client, DecodedMessage } from '@xmtp/xmtp-js'
@@ -29,7 +30,7 @@ export class NewMessageTrigger extends OperationTrigger {
 
   async run({ inputs, credentials, workflowOperation }: OperationRunOptions): Promise<RunResponse | null> {
     if (!credentials.keys) {
-      throw new Error(`Missing keys for XMTP`)
+      throw new AuthenticationError(`Missing keys for XMTP`)
     }
     const keys = new Uint8Array(credentials.keys.split(',').map((key: string) => Number(key)))
     const client = await Client.create(null, { privateKeyOverride: keys, env: 'production' })

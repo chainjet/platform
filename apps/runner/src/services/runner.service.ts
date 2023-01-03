@@ -1,3 +1,4 @@
+import { AuthenticationError } from '@app/common/errors/authentication-error'
 import { isEmptyObj } from '@app/common/utils/object.utils'
 import { Definition, IntegrationDefinitionFactory, RunResponse } from '@app/definitions'
 import { generateSchemaFromObject } from '@app/definitions/schema/utils/jsonSchemaUtils'
@@ -158,6 +159,11 @@ export class RunnerService {
         fetchAll: opts?.reRunItems === 'all',
       })
     } catch (e) {
+      if (e instanceof AuthenticationError) {
+        if (accountCredential) {
+          await this.accountCredentialService.updateOne(accountCredential.id, { authExpired: true })
+        }
+      }
       let error = definition.parseError(e)
       if (!error || error.toString() === '[object Object]') {
         error = e.message
@@ -167,6 +173,11 @@ export class RunnerService {
         `Run WorkflowTrigger ${workflowTrigger.id} for workflow ${workflow.id} failed with error ${error}`,
       )
       return
+    }
+
+    // remove expired credentials
+    if (accountCredential?.authExpired) {
+      await this.accountCredentialService.updateOne(accountCredential.id, { authExpired: false })
     }
 
     // store refreshed credentials
@@ -408,6 +419,11 @@ export class RunnerService {
         runResponse.transactions,
       )
     } catch (e) {
+      if (e instanceof AuthenticationError) {
+        if (accountCredential) {
+          await this.accountCredentialService.updateOne(accountCredential.id, { authExpired: true })
+        }
+      }
       const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
       let error = definition.parseError(e)
       if (!error || error.toString() === '[object Object]') {
@@ -425,6 +441,11 @@ export class RunnerService {
         `Run WorkflowAction ${workflowAction.id} for workflow ${workflow.id} failed with error ${error}`,
       )
       return
+    }
+
+    // remove expired credentials
+    if (accountCredential?.authExpired) {
+      await this.accountCredentialService.updateOne(accountCredential.id, { authExpired: false })
     }
 
     // store refreshed credentials
