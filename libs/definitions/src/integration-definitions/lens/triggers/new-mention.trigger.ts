@@ -164,6 +164,7 @@ export class NewMentionTrigger extends OperationTrigger {
     }
     return {
       outputs: res.data.notifications,
+      refreshedCredentials,
     }
   }
 }
