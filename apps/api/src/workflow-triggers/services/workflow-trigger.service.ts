@@ -47,6 +47,8 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
   }
 
   async createOne(record: DeepPartial<WorkflowTrigger>): Promise<WorkflowTrigger> {
+    this.logger.debug(`Create workflow trigger request with data: ${JSON.stringify(record)}`)
+
     if (!record.owner || !record.workflow || !record.integrationTrigger) {
       throw new BadRequestException()
     }
@@ -78,6 +80,8 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     if (!integration) {
       throw new NotFoundException(`Integration ${integrationTrigger.integration} not found`)
     }
+
+    this.logger.log(`Creating workflow trigger for ${integration.key} - ${integrationTrigger.key} by ${record.owner}`)
 
     if (integrationTrigger.isWebhook) {
       record.hookId = SecurityUtils.generateRandomString(48)

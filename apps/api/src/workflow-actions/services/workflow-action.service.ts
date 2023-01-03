@@ -101,6 +101,8 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
       throw new NotFoundException(`Integration ${integrationAction.integration} not found`)
     }
 
+    this.logger.log(`Creating workflow action for ${integration.key} - ${integrationAction.key} by ${record.owner}`)
+
     const workflowTrigger = await this.workflowTriggerService.findOne({ workflow: workflow.id })
 
     if (integrationAction.type === OperationType.EVM) {
