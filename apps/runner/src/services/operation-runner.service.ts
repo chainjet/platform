@@ -112,6 +112,18 @@ export class OperationRunnerService {
       throw new InternalServerErrorException(`Operation ${operation.key} does not have schema data`)
     }
 
+    // set refreshed credentials if the credentials changed on beforeOperationRun
+    let refreshedCredentials: Record<string, any> | undefined = undefined
+    if (
+      credentials.accessToken !== opts.credentials.accessToken ||
+      credentials.refreshToken !== opts.credentials.refreshToken
+    ) {
+      refreshedCredentials = {
+        ...opts.credentials,
+        ...credentials,
+      }
+    }
+
     // TODO can we avoid fetching the entire schema from disk? can we generate it dynamically from our db?
     // Get the schema without specifying URL because we should never fetch external schemas on runtime
     const schema = await SchemaUtils.getSchema({
@@ -218,7 +230,7 @@ export class OperationRunnerService {
       this.logger.debug(`Completed ${operation.key} of ${integration.key} with status ${res?.status as number}`)
       const outputs = await definition.afterOperationRun(opts, res?.body || {})
       this.emitOperationRunMetric(true)
-      return { outputs }
+      return { outputs, refreshedCredentials }
     } catch (e) {
       const statusCode = e.status ?? e.statusCode
       // retry once 401 errors (authorization)
