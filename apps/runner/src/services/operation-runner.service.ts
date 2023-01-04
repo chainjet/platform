@@ -1,3 +1,4 @@
+import { AuthenticationError } from '@app/common/errors/authentication-error'
 import { MetricService } from '@app/common/metrics/metric.service'
 import { convertObservableToRunResponse } from '@app/common/utils/async.utils'
 import { OperationType } from '@app/definitions/types/OperationType'
@@ -234,6 +235,12 @@ export class OperationRunnerService {
         return this.runOperation(definition, opts, retryCount + 1)
       }
       this.emitOperationRunMetric(false)
+      // throw 401 errors as AuthenticationError so account credentials are marked as expired
+      if (statusCode === 401) {
+        const error = new AuthenticationError(e?.message)
+        error.stack = e?.stack
+        throw error
+      }
       throw e
     }
   }
