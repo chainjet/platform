@@ -1,4 +1,5 @@
 import { BaseService } from '@app/common/base/base.service'
+import { Definition } from '@app/definitions'
 import { forwardRef, Inject, Injectable, Logger } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { DeepPartial, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
@@ -6,7 +7,9 @@ import { ReturnModelType } from '@typegoose/typegoose'
 import CryptoJS from 'crypto-js'
 import { InjectModel } from 'nestjs-typegoose'
 import { OperationRunnerService } from '../../../../runner/src/services/operation-runner.service'
+import { OAuthStrategyFactory } from '../../auth/external-oauth/oauth-strategy.factory'
 import { IntegrationAccountService } from '../../integration-accounts/services/integration-account.service'
+import { Integration } from '../../integrations/entities/integration'
 import { IntegrationService } from '../../integrations/services/integration.service'
 import { AccountCredential } from '../entities/account-credential'
 
@@ -21,6 +24,7 @@ export class AccountCredentialService extends BaseService<AccountCredential> {
     protected readonly integrationService: IntegrationService,
     protected readonly integrationAccountService: IntegrationAccountService,
     @Inject(forwardRef(() => OperationRunnerService)) protected operationRunnerService: OperationRunnerService,
+    private readonly oauthStrategyFactory: OAuthStrategyFactory,
   ) {
     super(model)
   }
@@ -75,5 +79,51 @@ export class AccountCredentialService extends BaseService<AccountCredential> {
       update.encryptedCredentials = CryptoJS.AES.encrypt(JSON.stringify(update.credentialInputs), key).toString()
     }
     return await super.updateOne(id, update, opts)
+  }
+
+  async refreshCredentials(
+    accountCredential: AccountCredential,
+    definition: Definition,
+    integration: Integration,
+  ): Promise<AccountCredential | null> {
+    // refresh credentials with custom refresh logic set in the definition
+    const refreshedCredentials = await definition.refreshCredentials(accountCredential.credentials)
+    if (refreshedCredentials) {
+      if (
+        refreshedCredentials.accessToken !== accountCredential.credentials.accessToken ||
+        refreshedCredentials.refreshToken !== accountCredential.credentials.refreshToken
+      ) {
+        const newCredentials = {
+          ...accountCredential.credentials,
+          ...refreshedCredentials,
+        }
+        return await this.updateOne(accountCredential._id.toString(), {
+          credentialInputs: newCredentials,
+          authExpired: false,
+        })
+      }
+      return null
+    }
+    if (!integration.integrationAccount) {
+      return null
+    }
+    const integrationAccount = await this.integrationAccountService.findById(
+      integration.integrationAccount._id.toString(),
+    )
+    if (!integrationAccount) {
+      return null
+    }
+
+    // refresh credentials for standard oauth integrations
+    if (['oauth1', 'oauth2'].includes(integrationAccount.authType)) {
+      await this.oauthStrategyFactory.refreshOauth2AccessToken(
+        integrationAccount.key,
+        accountCredential,
+        accountCredential.credentials,
+      )
+      return (await this.findById(accountCredential._id.toString())) ?? null
+    }
+
+    return null
   }
 }

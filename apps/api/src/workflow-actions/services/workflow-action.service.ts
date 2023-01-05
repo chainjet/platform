@@ -134,6 +134,17 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     )
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
+
+    // refresh credentials if needed
+    if (accountCredential) {
+      const refreshedAccount = await this.accountCredentialService.refreshCredentials(
+        accountCredential,
+        definition,
+        integration,
+      )
+      accountCredential = refreshedAccount ?? accountCredential
+    }
+
     const workflowAction = isTemplate
       ? record
       : await definition.beforeCreateWorkflowAction(record, integrationAction, accountCredential)

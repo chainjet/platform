@@ -127,6 +127,14 @@ export abstract class Definition {
   }
 
   /**
+   * Allows definitions to use custom refresh credentials logic
+   * By default integrations refresh credentials based on their auth type (oauth1, ouath2)
+   */
+  refreshCredentials(credentials: Record<string, any>): Promise<Record<string, any>> | null {
+    return null
+  }
+
+  /**
    * Allows definitions to modify the workflow trigger entity before it is created
    */
   async beforeCreateWorkflowTrigger(

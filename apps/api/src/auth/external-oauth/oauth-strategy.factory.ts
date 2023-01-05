@@ -212,10 +212,13 @@ export class OAuthStrategyFactory {
     this.logger.log(`Refreshing access token for "${integrationAccountKey}" - user ${accountCredential?.owner}`)
     await this.ensureStrategy(integrationAccountKey)
     try {
-      credentials.accessToken = (await requestNewAccessToken(
+      const accessToken = (await requestNewAccessToken(
         this.getOAuthStrategyName(integrationAccountKey),
         credentials.refreshToken,
       )) as string
+      if (accessToken) {
+        credentials.accessToken = accessToken
+      }
     } catch (e) {
       this.logger.error(
         `Failed to refresh access token for "${integrationAccountKey}" - user ${accountCredential?.owner}`,
@@ -223,7 +226,13 @@ export class OAuthStrategyFactory {
       throw e
     }
     if (accountCredential) {
-      await this.accountCredentialService.updateOne(accountCredential.id, { credentialInputs: credentials })
+      await this.accountCredentialService.updateOne(accountCredential.id, {
+        credentialInputs: {
+          ...accountCredential.credentials,
+          ...credentials,
+        },
+        authExpired: false,
+      })
     }
     return credentials.accessToken
   }
