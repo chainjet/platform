@@ -46,11 +46,17 @@ export class CreatePostAction extends OperationOffChain {
 
   async run({ inputs, credentials, workflow }: OperationRunOptions): Promise<RunResponse> {
     if (!credentials?.refreshToken || !credentials?.profileId) {
-      throw new Error('Authentication is expired, please connect the profile again')
+      throw new AuthenticationError('Authentication is expired, please connect the profile again')
     }
     if (!inputs.content) {
       throw new Error('Content is required')
     }
+    const { profileId, refreshToken } = credentials
+    const refreshedCredentials = await refreshLensAccessToken(refreshToken)
+    if (!refreshedCredentials) {
+      throw new AuthenticationError('Authentication is expired, please connect the profile again')
+    }
+
     const content = inputs.content.slice(0, 5000)
 
     const arweave = Arweave.init({
@@ -107,11 +113,6 @@ export class CreatePostAction extends OperationOffChain {
 
     const fileUrl = `https://arweave.net/${transaction.id}`
 
-    const { profileId, refreshToken } = credentials
-    const refreshedCredentials = await refreshLensAccessToken(refreshToken)
-    if (!refreshedCredentials) {
-      throw new Error('Authentication is expired, please connect the profile again')
-    }
     this.logger.log(`Creating lens post: ${workflow?.id} ${profileId} ${fileUrl}`)
     const query = `
     mutation CreatePostViaDispatcher {
