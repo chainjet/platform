@@ -42,6 +42,11 @@ export class DiscordDefinition extends SingleIntegrationDefinition {
   integrationVersion = '10'
   schemaUrl = null
 
+  // standard oauth2 refresh token won't work for discord ()
+  async refreshCredentials(credentials: Record<string, any>): Promise<Record<string, any>> {
+    return credentials
+  }
+
   async createOrUpdateIntegrationAccount(schema: OpenAPIObject): Promise<IntegrationAccount | null> {
     const integrationAccount = await super.createOrUpdateIntegrationAccount(schema)
     if (!integrationAccount) {
