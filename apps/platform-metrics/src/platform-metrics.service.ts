@@ -13,7 +13,7 @@ export class PlatformMetricsService {
   ) {}
 
   async onModuleInit() {
-    await this.getActiveWorkflows()
+    await this.getActiveUsers()
   }
 
   async getActiveWorkflows(): Promise<number> {
@@ -36,5 +36,76 @@ export class PlatformMetricsService {
     }
     this.logger.log(`There are ${activeWorkflows} active workflows`)
     return activeWorkflows
+  }
+
+  async getWorkflowRunsPerDay() {
+    const workflowsPerDay = await this.workflowRunService.aggregateNative([
+      {
+        $group: {
+          _id: {
+            dateYMD: {
+              $dateFromParts: {
+                year: { $year: '$_id' },
+                month: { $month: '$_id' },
+                day: { $dayOfMonth: '$_id' },
+              },
+            },
+          },
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $sort: { '_id.dateYMD': -1 },
+      },
+      {
+        $project: {
+          _id: 0,
+          count: 1,
+          dateDMY: { $dateToString: { date: '$_id.dateYMD', format: '%d-%m-%Y' } },
+        },
+      },
+    ])
+    console.log(`workflowsPerDay`, workflowsPerDay)
+  }
+
+  async getActiveUsers() {
+    // request to get the number of active users per day trailing 30 days
+    const resPerDay = await this.workflowRunService.aggregateNative([
+      // Group the workflow runs by user and week, and count the number of workflow runs per group
+      {
+        $group: {
+          _id: {
+            user: '$owner',
+            week: {
+              $isoWeek: '$_id',
+            },
+          },
+          count: { $sum: 1 },
+        },
+      },
+      // Only include groups that have more than 0 workflow runs
+      {
+        $match: {
+          count: { $gt: 0 },
+        },
+      },
+      // Group the results by week and count the number of active users per week
+      {
+        $group: {
+          _id: '$_id.week',
+          activeUsers: { $sum: 1 },
+        },
+      },
+      // Sort the results in descending order by week
+      {
+        $sort: {
+          _id: -1,
+        },
+      },
+    ])
+
+    for (const res of resPerDay) {
+      console.log(`There were ${res.activeUsers} active users in week ${res._id}`)
+    }
   }
 }
