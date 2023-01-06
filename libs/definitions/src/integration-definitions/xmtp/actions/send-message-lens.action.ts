@@ -42,13 +42,6 @@ export class SendMessageAddressAction extends OperationOffChain {
     const client = await Client.create(null, { privateKeyOverride: keys, env: 'production' })
     const senderProfile = await getLensDefaultProfile(client.address)
     const receiverProfile = await getLensProfile(inputs.handle)
-    if (!receiverProfile) {
-      throw new Error(
-        `Could not find profile for handle: ${inputs.handle}. ${
-          !inputs.handle.endsWith('.lens') ? 'You might need to enter .lens at the end of the handle.' : ''
-        }`,
-      )
-    }
 
     const senderId = parseInt(senderProfile.id.substring(2), 16)
     const receiverId = parseInt(receiverProfile.id.substring(2), 16)

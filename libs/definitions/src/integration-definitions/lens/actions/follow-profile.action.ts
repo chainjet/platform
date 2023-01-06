@@ -4,7 +4,7 @@ import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { sendGraphqlQuery } from '@app/definitions/utils/subgraph.utils'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { JSONSchema7 } from 'json-schema'
-import { refreshLensAccessToken } from '../lens.common'
+import { getLensProfileId, refreshLensAccessToken } from '../lens.common'
 
 export class FollowProfileAction extends OperationOffChain {
   key = 'followProfile'
@@ -16,10 +16,9 @@ export class FollowProfileAction extends OperationOffChain {
     required: ['profileId'],
     properties: {
       profileId: {
-        title: 'Profile ID',
+        title: 'Profile ID or Handle',
         type: 'string',
-        description:
-          'A Lens profile ID (e.g. 0x012cd6). See [docs](https://docs.chainjet.io/integrations/lens#how-to-get-the-profile-id.) to learn how to find it.',
+        description: 'A Lens profile ID (e.g. 0x012cd6) or a Lens handle (e.g. chainjet.lens).',
       },
     },
   }
@@ -39,6 +38,9 @@ export class FollowProfileAction extends OperationOffChain {
       throw new AuthenticationError('Authentication is expired, please connect the profile again')
     }
     const { profileId } = inputs
+
+    const lensProfileId = await getLensProfileId(profileId)
+
     const refreshedCredentials = await refreshLensAccessToken(credentials.refreshToken)
     if (!refreshedCredentials) {
       throw new AuthenticationError('Authentication is expired, please connect the profile again')
@@ -48,7 +50,7 @@ export class FollowProfileAction extends OperationOffChain {
       proxyAction(request: {
         follow: {
           freeFollow: {
-            profileId: "${profileId}"
+            profileId: "${lensProfileId}"
           }
         }
       })

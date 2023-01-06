@@ -43,5 +43,20 @@ export async function getLensProfile(handle: string): Promise<{ id: string; owne
     }
   }`
   const res = await sendGraphqlQuery('https://api.lens.dev/', query)
-  return res?.data?.profiles?.items?.[0] ?? null
+  const profile = res?.data?.profiles?.items?.[0]
+  if (!profile?.id) {
+    throw new Error(
+      `Could not find Lens handle "${handle}".${handle.endsWith('.lens') ? '' : ' Did you forget the ".lens" suffix?'}`,
+    )
+  }
+  return profile
+}
+
+/**
+ * given a lens profile id or handle, return the profile id
+ */
+export async function getLensProfileId(profileIdOrHandle: string): Promise<string> {
+  // if the profile id is a lens handle, we need to fetch the profile id
+  const isLensHandle = !/^0x[a-fA-F0-9]+$/.test(profileIdOrHandle)
+  return isLensHandle ? (await getLensProfile(profileIdOrHandle)).id : profileIdOrHandle
 }

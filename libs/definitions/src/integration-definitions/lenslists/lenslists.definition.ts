@@ -5,7 +5,7 @@ import { IntegrationAccount } from 'apps/api/src/integration-accounts/entities/i
 import { IntegrationAccountService } from 'apps/api/src/integration-accounts/services/integration-account.service'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import request from 'request'
-import { refreshLensAccessToken } from '../lens/lens.common'
+import { getLensProfileId, refreshLensAccessToken } from '../lens/lens.common'
 
 export class LensListsDefinition extends SingleIntegrationDefinition {
   integrationKey = 'lenslists'
@@ -19,6 +19,11 @@ export class LensListsDefinition extends SingleIntegrationDefinition {
   }
 
   async beforeOperationRun(opts: OperationRunOptions): Promise<OperationRunOptions> {
+    // allow both profile ID and handle
+    if (opts.inputs.profileId) {
+      opts.inputs.profileId = await getLensProfileId(opts.inputs.profileId)
+    }
+
     // refresh credentials
     if (!opts.credentials?.refreshToken || !opts.credentials?.profileId) {
       throw new AuthenticationError('Authentication is expired, please connect the profile again')

@@ -3,6 +3,7 @@ import { OperationTrigger } from '@app/definitions/operation-trigger'
 import { sendGraphqlQuery } from '@app/definitions/utils/subgraph.utils'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { JSONSchema7 } from 'json-schema'
+import { getLensProfileId } from '../lens.common'
 
 export class NewPostTrigger extends OperationTrigger {
   idKey = 'items[].id'
@@ -16,10 +17,9 @@ export class NewPostTrigger extends OperationTrigger {
     required: ['profileId'],
     properties: {
       profileId: {
-        title: 'Profile ID',
+        title: 'Profile ID or Handle',
         type: 'string',
-        description:
-          'A Lens profile ID (e.g. 0x012cd6). See [docs](https://docs.chainjet.io/integrations/lens#how-to-get-the-profile-id.) to learn how to find it.',
+        description: 'A Lens profile ID (e.g. 0x012cd6) or a Lens handle (e.g. chainjet.lens).',
       },
       mirrors: {
         title: 'Include Mirrors',
@@ -163,6 +163,8 @@ export class NewPostTrigger extends OperationTrigger {
   async run({ inputs, fetchAll }: OperationRunOptions): Promise<RunResponse | null> {
     const { profileId, mirrors = 'include' } = inputs
 
+    const lensProfileId = await getLensProfileId(profileId)
+
     const postQuery = `
       ... on Post {
         id
@@ -273,7 +275,7 @@ export class NewPostTrigger extends OperationTrigger {
     const query = `
       query Publications {
         publications(request: {
-          profileId: "${profileId}",
+          profileId: "${lensProfileId}",
           publicationTypes: ${publicationTypes},
           limit: ${fetchAll ? 50 : 10}
         }) {

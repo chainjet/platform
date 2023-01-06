@@ -3,6 +3,7 @@ import { OperationTrigger } from '@app/definitions/operation-trigger'
 import { sendGraphqlQuery } from '@app/definitions/utils/subgraph.utils'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { JSONSchema7 } from 'json-schema'
+import { getLensProfileId } from '../lens.common'
 
 export class NewFollowerTrigger extends OperationTrigger {
   idKey = 'items[].wallet.address'
@@ -16,10 +17,9 @@ export class NewFollowerTrigger extends OperationTrigger {
     required: ['profileId'],
     properties: {
       profileId: {
-        title: 'Profile ID',
+        title: 'Profile ID or Handle',
         type: 'string',
-        description:
-          'A Lens profile ID (e.g. 0x012cd6). See [docs](https://docs.chainjet.io/integrations/lens#how-to-get-the-profile-id.) to learn how to find it.',
+        description: 'A Lens profile ID (e.g. 0x012cd6) or a Lens handle (e.g. chainjet.lens).',
       },
     },
   }
@@ -93,9 +93,12 @@ export class NewFollowerTrigger extends OperationTrigger {
 
   async run({ inputs, fetchAll }: OperationRunOptions): Promise<RunResponse | null> {
     const { profileId } = inputs
+
+    const lensProfileId = await getLensProfileId(profileId)
+
     const query = `
       query Followers {
-        followers(request: { profileId: "${profileId}", limit: ${fetchAll ? 50 : 10} }) {
+        followers(request: { profileId: "${lensProfileId}", limit: ${fetchAll ? 50 : 10} }) {
           items {
             wallet {
               address
