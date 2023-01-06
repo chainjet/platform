@@ -249,13 +249,15 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
       }
     }
 
-    const isTemplate = await this.workflowService.updateTemplateSettings(
-      workflow,
-      integrationAction.id,
-      'action',
-      update.inputs ?? {},
-      workflowAction.inputs,
-    )
+    const isTemplate = !update.inputs
+      ? workflow.isTemplate
+      : await this.workflowService.updateTemplateSettings(
+          workflow,
+          integrationAction.id,
+          'action',
+          update.inputs,
+          workflowAction.inputs,
+        )
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     const updatedWorkflowAction = isTemplate

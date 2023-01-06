@@ -230,13 +230,16 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
 
-    const isTemplate = await this.workflowService.updateTemplateSettings(
-      workflow,
-      integrationTrigger.id,
-      'trigger',
-      update.inputs ?? {},
-      workflowTrigger.inputs,
-    )
+    // only update template settings if update.inputs is defined
+    const isTemplate = !update.inputs
+      ? workflow.isTemplate
+      : await this.workflowService.updateTemplateSettings(
+          workflow,
+          integrationTrigger.id,
+          'trigger',
+          update.inputs,
+          workflowTrigger.inputs,
+        )
 
     const updatedWorkflowTrigger = isTemplate
       ? update
