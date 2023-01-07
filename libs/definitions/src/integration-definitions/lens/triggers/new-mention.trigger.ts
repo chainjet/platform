@@ -113,6 +113,36 @@ export class NewMentionTrigger extends OperationTrigger {
       throw new AuthenticationError('Authentication is expired, please connect the profile again')
     }
     const { profileId } = credentials
+
+    const postOrCommentQuery = `
+      id
+      stats {
+        totalAmountOfMirrors
+        totalAmountOfCollects
+        totalAmountOfComments
+      }
+      metadata {
+        name
+        description
+      }
+      profile {
+        id
+        name
+        bio
+        isDefault
+        handle
+        ownedBy
+        stats {
+          totalFollowers
+          totalFollowing
+          totalPosts
+          totalComments
+          totalMirrors
+          totalPublications
+          totalCollects
+        }
+      }`
+
     const query = `
       query Notifications {
         notifications(request: { profileId: "${profileId}", notificationTypes: [MENTION_POST, MENTION_COMMENT], limit: ${
@@ -123,33 +153,10 @@ export class NewMentionTrigger extends OperationTrigger {
               notificationId
               mentionPublication {
                 ... on Post {
-                  id
-                  stats {
-                    totalAmountOfMirrors
-                    totalAmountOfCollects
-                    totalAmountOfComments
-                  }
-                  metadata {
-                    name
-                    description
-                  }
-                  profile {
-                    id
-                    name
-                    bio
-                    isDefault
-                    handle
-                    ownedBy
-                    stats {
-                      totalFollowers
-                      totalFollowing
-                      totalPosts
-                      totalComments
-                      totalMirrors
-                      totalPublications
-                      totalCollects
-                    }
-                  }
+                  ${postOrCommentQuery}
+                }
+                ... on Comment {
+                  ${postOrCommentQuery}
                 }
               }
             }
