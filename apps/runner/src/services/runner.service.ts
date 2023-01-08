@@ -232,7 +232,9 @@ export class RunnerService {
         { _id: workflowTrigger._id },
         {
           store: runResponse.store,
-          ...(runResponse.nextCheck ? { nextCheck: runResponse.nextCheck, enabled: true } : {}),
+          ...(runResponse.nextCheck !== undefined
+            ? { nextCheck: runResponse.nextCheck, enabled: !!runResponse.nextCheck }
+            : {}),
         },
       )
 
@@ -293,7 +295,9 @@ export class RunnerService {
         lastId: triggerIds[0],
         lastItem: triggerItems[0]?.item ?? {},
         store: runResponse.store,
-        ...(runResponse.nextCheck ? { nextCheck: runResponse.nextCheck, enabled: true } : {}),
+        ...(runResponse.nextCheck !== undefined
+          ? { nextCheck: runResponse.nextCheck, enabled: !!runResponse.nextCheck }
+          : {}),
       },
     )
 

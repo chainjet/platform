@@ -122,6 +122,7 @@ export class DomainExpiresTrigger extends OperationTrigger {
           },
         ],
       },
+      nextCheck: null,
     }
   }
 }

@@ -52,7 +52,7 @@ export interface RunResponse {
   store?: Record<string, any>
   refreshedCredentials?: Record<string, any>
   transactions?: Array<{ hash: string; chainId: number }>
-  nextCheck?: Date
+  nextCheck?: Date | null
 }
 
 export type GetAsyncSchemasProps = OperationRunOptions & {
