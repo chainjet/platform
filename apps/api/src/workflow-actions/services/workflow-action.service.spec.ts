@@ -133,8 +133,9 @@ describe('WorkflowActionService', () => {
     it('should set the trigger next check if creating a root action', async () => {
       Date.now = jest.fn(() => new Date('2020-01-01 00:00').getTime())
 
+      const integrationTrigger = await mock.createIntegrationTrigger()
       const trigger = await mock.createWorkflowTrigger({
-        integrationTrigger: new ObjectID(),
+        integrationTrigger: integrationTrigger._id,
         schedule: {
           frequency: 'interval',
           interval: 300,

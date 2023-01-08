@@ -379,8 +379,8 @@ describe('WorkflowTriggerService', () => {
       expect((await service.findById(trigger.id))?.consecutiveWorkflowFails).toBe(3)
     })
 
-    it('should disable the workflow if failures new number of is 3 or more', async () => {
-      const trigger = await mock.createWorkflowTriggerDeep({ consecutiveWorkflowFails: 2 })
+    it('should disable the workflow if failures new number of is 5 or more', async () => {
+      const trigger = await mock.createWorkflowTriggerDeep({ consecutiveWorkflowFails: 4 })
       expect((await service.findById(trigger.id))?.enabled).toBe(true)
       await service.incrementWorkflowRunFailures(mock.workflow._id)
       expect((await service.findById(trigger.id))?.enabled).toBe(false)

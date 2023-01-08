@@ -151,6 +151,7 @@ describe('WorkflowRunService', () => {
 
   describe('markTriggerAsFailed', () => {
     it('should mark the trigger and run as failed', async () => {
+      const workflow = await mock.createWorkflow()
       const workflowRun = await mock.createWorkflowRunDeep({
         triggerRun: {
           integrationName: 'test',
@@ -159,7 +160,7 @@ describe('WorkflowRunService', () => {
           status: WorkflowRunStatus.running,
         },
       })
-      await service.markTriggerAsFailed(new ObjectID(), workflowRun, 'error message', 'response')
+      await service.markTriggerAsFailed(workflow, workflowRun, 'error message', 'response')
       const updated = await service.findById(workflowRun.id)
       expect(updated?.operationsUsed).toBe(1)
       expect(updated?.status).toBe(WorkflowRunStatus.failed)
@@ -213,6 +214,7 @@ describe('WorkflowRunService', () => {
 
   describe('markActionAsFailed', () => {
     it('should set the action status and workflow status to failed', async () => {
+      const workflow = await mock.createWorkflow()
       const workflowRunAction: WorkflowRunAction = plainToClass(WorkflowRunAction, {
         _id: new ObjectID(),
         integrationName: 'test',
@@ -221,7 +223,7 @@ describe('WorkflowRunService', () => {
         status: WorkflowRunStatus.running,
       })
       const workflowRun = await mock.createWorkflowRunDeep({ actionRuns: [workflowRunAction] })
-      await service.markActionAsFailed(new ObjectID(), workflowRun, workflowRunAction, 'error message', 'response')
+      await service.markActionAsFailed(workflow, workflowRun, workflowRunAction, 'error message', 'response')
       const updated = await service.findById(workflowRun.id)
       expect(updated?.operationsUsed).toBe(1)
       expect(updated?.status).toBe(WorkflowRunStatus.failed)

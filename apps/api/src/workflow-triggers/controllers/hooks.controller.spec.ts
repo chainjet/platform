@@ -1,5 +1,6 @@
 import { INestApplication } from '@nestjs/common'
 import { Test, TestingModule } from '@nestjs/testing'
+import { Request } from 'express'
 import { TypegooseModule } from 'nestjs-typegoose'
 import supertest from 'supertest'
 import { closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
@@ -75,7 +76,15 @@ describe('Hooks Controller', () => {
     it('should merge query params with body params', async () => {
       integrationDefinitionFactory.getDefinition = jest.fn(() => ({
         onHookReceived: () => true,
-        onHookReceivedForWorkflowTrigger: () => ({ canContinue: true }),
+        onHookReceivedForWorkflowTrigger: (req: Request) => ({
+          canContinue: true,
+          response: {
+            outputs: {
+              query: req.query ?? {},
+              body: req.body ?? {},
+            },
+          },
+        }),
       })) as jest.Mock
 
       const res = await supertest(app.getHttpServer())
@@ -92,19 +101,19 @@ describe('Hooks Controller', () => {
         }),
       )
 
+      const outputs = {
+        query: {
+          query1: 'foo',
+          query2: 'bar',
+        },
+        body: {
+          body1: 'foo',
+          body2: 'bar',
+        },
+      }
       const expectedOutputs = {
-        [mock.workflowTrigger.id]: {
-          query1: 'foo',
-          query2: 'bar',
-          body1: 'foo',
-          body2: 'bar',
-        },
-        trigger: {
-          query1: 'foo',
-          query2: 'bar',
-          body1: 'foo',
-          body2: 'bar',
-        },
+        [mock.workflowTrigger.id]: outputs,
+        trigger: outputs,
       }
       const workflowRun = await mock.workflowRunService.findOne({ workflow: mock.workflow })
       expect(mock.runnerService.runWorkflowActions).toHaveBeenCalledWith([], [expectedOutputs], workflowRun)
