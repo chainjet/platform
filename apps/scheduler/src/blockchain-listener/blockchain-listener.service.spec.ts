@@ -10,8 +10,6 @@ import { IntegrationsModule } from 'apps/api/src/integrations/integrations.modul
 import { WorkflowActionsModule } from 'apps/api/src/workflow-actions/workflow-actions.module'
 import { WorkflowRunsModule } from 'apps/api/src/workflow-runs/workflow-runs.module'
 import { WorkflowTriggersModule } from 'apps/api/src/workflow-triggers/workflow-triggers.module'
-import { Workflow } from 'apps/api/src/workflows/entities/workflow'
-import { WorkflowService } from 'apps/api/src/workflows/services/workflow.service'
 import { WorkflowsModule } from 'apps/api/src/workflows/workflows.module'
 import { RunnerModule } from 'apps/runner/src/runner.module'
 import { BlockchainListenerService } from './blockchain-listener.service'

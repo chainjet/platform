@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common'
 import { ContractAbi, MethodAbi } from 'ethereum-types'
 import { ethers } from 'ethers'
 import { getAddress } from 'ethers/lib/utils'
-import { ProviderService } from '../provider/provider.service'
-import { ChainId } from '../types/ChainId'
+import { ProviderService } from '../../provider/provider.service'
+import { ChainId } from '../../types/ChainId'
 
 @Injectable()
 export class ContractService {
