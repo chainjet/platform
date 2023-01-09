@@ -105,12 +105,13 @@ export class DiscordDefinition extends SingleIntegrationDefinition {
   }
 
   async beforeUpdateWorkflowAction(
-    workflowAction: Partial<WorkflowAction>,
+    update: Partial<WorkflowAction>,
+    prevWorkflowAction: WorkflowAction,
     integrationAction: IntegrationAction,
     accountCredential: AccountCredential | null,
   ): Promise<Partial<WorkflowAction>> {
-    await this.ensurePermissions(workflowAction.inputs ?? {}, accountCredential)
-    return workflowAction
+    await this.ensurePermissions(update.inputs ?? {}, accountCredential)
+    return update
   }
 
   async beforeCreateWorkflowTrigger(
@@ -137,12 +138,13 @@ export class DiscordDefinition extends SingleIntegrationDefinition {
   }
 
   async beforeUpdateWorkflowTrigger(
-    workflowTrigger: Partial<WorkflowTrigger>,
+    update: Partial<WorkflowTrigger>,
+    prevWorkflowTrigger: WorkflowTrigger,
     integrationTrigger: IntegrationTrigger,
     accountCredential: AccountCredential | null,
   ): Promise<Partial<WorkflowTrigger>> {
-    await this.ensurePermissions(workflowTrigger.inputs ?? {}, accountCredential)
-    return workflowTrigger
+    await this.ensurePermissions(update.inputs ?? {}, accountCredential)
+    return update
   }
 
   async beforeDeleteWorkflowTrigger(

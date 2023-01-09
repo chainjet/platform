@@ -48,10 +48,11 @@ export class BlockchainDefinition extends SingleIntegrationDefinition {
   }
 
   async beforeUpdateWorkflowAction(
-    workflowAction: DeepPartial<WorkflowAction>,
+    update: DeepPartial<WorkflowAction>,
+    prevWorkflowAction: WorkflowAction,
     integrationAction: IntegrationAction,
   ): Promise<DeepPartial<WorkflowAction>> {
-    return this.beforeCreateWorkflowAction(workflowAction, integrationAction)
+    return this.beforeCreateWorkflowAction(update, integrationAction)
   }
 
   async beforeCreateWorkflowTrigger(
@@ -82,10 +83,11 @@ export class BlockchainDefinition extends SingleIntegrationDefinition {
   }
 
   async beforeUpdateWorkflowTrigger(
-    workflowTrigger: DeepPartial<WorkflowTrigger>,
+    update: DeepPartial<WorkflowTrigger>,
+    prevWorkflowTrigger: WorkflowTrigger,
     integrationTrigger: IntegrationTrigger,
   ): Promise<DeepPartial<WorkflowTrigger>> {
-    return this.beforeCreateWorkflowTrigger(workflowTrigger, integrationTrigger)
+    return this.beforeCreateWorkflowTrigger(update, integrationTrigger)
   }
 
   parseError(e: any): string {

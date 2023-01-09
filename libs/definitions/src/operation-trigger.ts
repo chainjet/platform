@@ -30,7 +30,8 @@ export abstract class OperationTrigger extends Operation {
   }
 
   beforeUpdate(
-    workflowTrigger: Partial<WorkflowTrigger>,
+    update: Partial<WorkflowTrigger>,
+    prevWorkflowTrigger: WorkflowTrigger,
     integrationTrigger: IntegrationTrigger,
     accountCredential: AccountCredential | null,
   ): Promise<Partial<WorkflowTrigger>> | null {

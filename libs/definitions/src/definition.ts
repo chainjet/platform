@@ -157,19 +157,21 @@ export abstract class Definition {
    * Allows definitions to modify the workflow trigger entity before it is updated
    */
   async beforeUpdateWorkflowTrigger(
-    workflowTrigger: Partial<WorkflowTrigger>,
+    update: Partial<WorkflowTrigger>,
+    prevWorkflowTrigger: WorkflowTrigger,
     integrationTrigger: IntegrationTrigger,
     accountCredential: AccountCredential | null,
   ): Promise<Partial<WorkflowTrigger>> {
     const hookRes = await this.getOperationHookRes<Partial<WorkflowTrigger>>('beforeUpdate', integrationTrigger.key, [
-      workflowTrigger,
+      update,
+      prevWorkflowTrigger,
       integrationTrigger,
       accountCredential,
     ])
     if (hookRes) {
       return hookRes
     }
-    return workflowTrigger
+    return update
   }
 
   /**
@@ -210,19 +212,21 @@ export abstract class Definition {
    * Allows definitions to modify the workflow action entity before it is updated
    */
   async beforeUpdateWorkflowAction(
-    workflowAction: Partial<WorkflowAction>,
+    update: Partial<WorkflowAction>,
+    prevWorkflowAction: WorkflowAction,
     integrationAction: IntegrationAction,
     accountCredential: AccountCredential | null,
   ): Promise<Partial<WorkflowAction>> {
     const hookRes = await this.getOperationHookRes<Partial<WorkflowAction>>('beforeUpdate', integrationAction.key, [
-      workflowAction,
+      update,
+      prevWorkflowAction,
       integrationAction,
       accountCredential,
     ])
     if (hookRes) {
       return hookRes
     }
-    return workflowAction
+    return update
   }
 
   /**

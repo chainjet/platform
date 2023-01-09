@@ -8,7 +8,7 @@ import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.s
 import { JSONSchema7 } from 'json-schema'
 
 export class DomainExpiresTrigger extends OperationTrigger {
-  idKey = 'items[].expiryDate'
+  idKey = 'items[].id'
   key = 'domainExpires'
   name = 'Domain Expires'
   description = 'Triggers when a domain is about to expire'
@@ -82,21 +82,20 @@ export class DomainExpiresTrigger extends OperationTrigger {
   }
 
   async beforeUpdate(
-    workflowTrigger: Partial<WorkflowTrigger>,
+    update: Partial<WorkflowTrigger>,
+    prevWorkflowTrigger: WorkflowTrigger,
     integrationTrigger: IntegrationTrigger,
     accountCredential: AccountCredential | null,
   ): Promise<Partial<WorkflowTrigger>> {
-    if (!workflowTrigger.inputs?.name) {
-      return workflowTrigger
+    const inputs = update.inputs ?? prevWorkflowTrigger.inputs
+    if (!inputs?.name) {
+      return update
     }
-    if (!workflowTrigger.inputs.name.endsWith('.eth')) {
-      workflowTrigger.inputs.name = workflowTrigger.inputs.name + '.eth'
+    if (!inputs.name.endsWith('.eth')) {
+      inputs.name = inputs.name + '.eth'
     }
-    workflowTrigger.nextCheck = await this.getNextCheck(
-      workflowTrigger.inputs.name,
-      workflowTrigger.inputs.daysBefore ?? 0,
-    )
-    return workflowTrigger
+    update.nextCheck = await this.getNextCheck(inputs.name, inputs.daysBefore ?? 0)
+    return update
   }
 
   async run({ inputs }: OperationRunOptions): Promise<RunResponse | null> {
@@ -117,6 +116,7 @@ export class DomainExpiresTrigger extends OperationTrigger {
       outputs: {
         items: [
           {
+            id: Date.now(),
             name: inputs.name,
             expiryDate: expiryDate.toISOString(),
           },

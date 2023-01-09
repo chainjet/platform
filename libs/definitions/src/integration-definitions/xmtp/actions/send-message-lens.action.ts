@@ -19,7 +19,7 @@ export class SendMessageAddressAction extends OperationOffChain {
       handle: {
         title: 'Lens Handle',
         type: 'string',
-        description: 'Lens handle to send the message to (i.e. chainjet.lens)',
+        description: 'Lens handle to send the message to (e.g. chainjet.lens)',
         examples: ['chainjet.lens'],
       },
       message: {

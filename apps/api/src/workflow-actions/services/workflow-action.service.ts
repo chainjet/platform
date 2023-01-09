@@ -262,7 +262,7 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     const updatedWorkflowAction = isTemplate
       ? update
-      : await definition.beforeUpdateWorkflowAction(update, integrationAction, accountCredential)
+      : await definition.beforeUpdateWorkflowAction(update, workflowAction, integrationAction, accountCredential)
     const updatedEntity = await super.updateOne(id, updatedWorkflowAction, opts)
 
     if (!isTemplate) {

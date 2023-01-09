@@ -243,7 +243,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
 
     const updatedWorkflowTrigger = isTemplate
       ? update
-      : await definition.beforeUpdateWorkflowTrigger(update, integrationTrigger, accountCredential)
+      : await definition.beforeUpdateWorkflowTrigger(update, workflowTrigger, integrationTrigger, accountCredential)
 
     // test workflow trigger and store outputs
     const testNeeded =
