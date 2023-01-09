@@ -104,6 +104,9 @@ export class Workflow extends BaseEntity {
   @Field(() => [GraphQLString], { nullable: true })
   @prop({ ref: () => Integration })
   usedIntegrations: Reference<Integration>[]
+
+  @prop({ ref: Workflow })
+  readonly forkOf?: Reference<Workflow>
 }
 
 @InputType()

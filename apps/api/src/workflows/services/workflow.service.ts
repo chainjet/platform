@@ -186,6 +186,7 @@ export class WorkflowService extends BaseService<Workflow> {
       isPublic,
       templateSchema: workflow.templateSchema,
       runOnFailure: isOwner ? workflow.runOnFailure : undefined,
+      forkOf: workflow._id,
     })
 
     const trigger = await this.workflowTriggerService.findOne({ workflow: workflow.id })
