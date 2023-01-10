@@ -129,6 +129,7 @@ export class AsyncSchemaResolver {
             this.logger.error(`Error while getting async schema for ${operation.key} on ${integration.key}`, e)
           }
         }
+        throw e
       }
     }
 
