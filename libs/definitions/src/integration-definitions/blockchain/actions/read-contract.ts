@@ -1,13 +1,18 @@
 import { RunResponse } from '@app/definitions/definition'
-import { OperationOffChain } from '@app/definitions/opertion-offchain'
+import { OperationAction } from '@app/definitions/opertion-action'
 import { ExplorerService } from '@blockchain/blockchain/explorer/explorer.service'
 import { ProviderService } from '@blockchain/blockchain/provider/provider.service'
+import { methodsAbiToOutputJsonSchema } from '@blockchain/blockchain/utils/abi.utils'
+import { DeepPartial } from '@ptc-org/nestjs-query-core'
+import { IntegrationAction } from 'apps/api/src/integration-actions/entities/integration-action'
+import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-action'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { MethodAbi } from 'ethereum-types'
 import { ethers } from 'ethers'
 import { JSONSchema7 } from 'json-schema'
+import { BLOCKCHAIN_INPUTS } from '../blockchain.common'
 
-export class ReadContractAction extends OperationOffChain {
+export class ReadContractAction extends OperationAction {
   key = 'readContract'
   name = 'Read Contract'
   description = 'Make a call to read from a smart contract'
@@ -15,15 +20,40 @@ export class ReadContractAction extends OperationOffChain {
   inputs: JSONSchema7 = {
     required: ['network', 'address'],
     properties: {
-      network: {
-        title: 'Network',
-        $ref: '#/components/parameters/network/schema',
-      },
-      address: {
-        title: 'Contract Address',
-        $ref: '#/components/parameters/address/schema',
-      },
+      network: BLOCKCHAIN_INPUTS.network,
+      address: BLOCKCHAIN_INPUTS.address,
     },
+  }
+
+  async beforeCreate(
+    workflowAction: Partial<WorkflowAction>,
+    integrationAction: IntegrationAction,
+  ): Promise<Partial<WorkflowAction>> {
+    if (workflowAction.inputs?.network && workflowAction.inputs.address) {
+      const abi = await ExplorerService.instance.getContractAbi(
+        Number(workflowAction.inputs.network),
+        workflowAction.inputs.address.toString(),
+      )
+      if (!abi) {
+        return workflowAction
+      }
+      const operation = abi.find(
+        (def: MethodAbi) => def.name === workflowAction.inputs?.operation?.toString() && def.type === 'function',
+      ) as MethodAbi
+      workflowAction.schemaResponse = methodsAbiToOutputJsonSchema(operation)
+    }
+    return workflowAction
+  }
+
+  async beforeUpdate(
+    update: DeepPartial<WorkflowAction>,
+    prevWorkflowAction: WorkflowAction,
+    integrationAction: IntegrationAction,
+  ): Promise<DeepPartial<WorkflowAction>> {
+    if (update.inputs?.network || update.inputs?.address) {
+      return this.beforeCreate(update, integrationAction)
+    }
+    return update
   }
 
   async run({ inputs }: OperationRunOptions): Promise<RunResponse> {

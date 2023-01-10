@@ -4,6 +4,7 @@ import { MulticallService } from '@blockchain/blockchain/multicall/multicall.ser
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { BigNumber, ethers } from 'ethers'
 import { JSONSchema7 } from 'json-schema'
+import { BLOCKCHAIN_INPUTS } from '../blockchain.common'
 
 export class GetTokenBalanceAction extends OperationOffChain {
   key = 'getTokenBalance'
@@ -14,17 +15,14 @@ export class GetTokenBalanceAction extends OperationOffChain {
   inputs: JSONSchema7 = {
     required: ['network', 'tokenAddress', 'balanceOfAddress'],
     properties: {
-      network: {
-        title: 'Network',
-        $ref: '#/components/parameters/network/schema',
-      },
+      network: BLOCKCHAIN_INPUTS.network,
       tokenAddress: {
         title: 'Token Address',
-        $ref: '#/components/parameters/address/schema',
+        type: 'string',
       },
       balanceOfAddress: {
         title: 'Balance Of Address',
-        $ref: '#/components/parameters/address/schema',
+        type: 'string',
       },
     },
   }
