@@ -75,7 +75,7 @@ export class BlockchainListenerService {
         const abi = await this.explorerService.getContractAbi(network, address)
         if (!abi) {
           this.logger.error(`No ABI found for ${address} on chain ${network}`)
-          return
+          continue
         }
         const eventAbi = abi.find((def: EventAbi) => def.type === 'event' && def.name === event) as EventAbi
         const contract = new ethers.Contract(address, abi, provider)
