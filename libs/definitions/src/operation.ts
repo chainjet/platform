@@ -30,12 +30,12 @@ export abstract class Operation {
   }
 
   /**
-   * see definition.getAdditionalAsyncSchema
+   * see definition.getAsyncSchemaExtension
    */
-  async getAdditionalAsyncSchema(
+  async getAsyncSchemaExtension(
     operation: IntegrationAction | IntegrationTrigger,
     props: GetAsyncSchemasProps,
-  ): Promise<{ [key: string]: JSONSchema7 }> {
+  ): Promise<JSONSchema7> {
     return {}
   }
 }

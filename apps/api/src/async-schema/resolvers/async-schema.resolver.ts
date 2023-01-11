@@ -3,7 +3,6 @@ import { Logger, NotFoundException, UseGuards } from '@nestjs/common'
 import { Args, Field, ObjectType, Query, Resolver } from '@nestjs/graphql'
 import { OperationRunnerService } from 'apps/runner/src/services/operation-runner.service'
 import { RunnerService } from 'apps/runner/src/services/runner.service'
-import deepmerge from 'deepmerge'
 import { GraphQLString } from 'graphql'
 import { GraphQLJSONObject } from 'graphql-type-json'
 import { JSONSchema7 } from 'json-schema'
@@ -22,6 +21,9 @@ import { UserService } from '../../users/services/user.service'
 export class AsyncSchemaDto {
   @Field((type) => GraphQLJSONObject)
   schemas: { [key: string]: JSONSchema7 }
+
+  @Field((type) => GraphQLJSONObject)
+  schemaExtension: JSONSchema7
 }
 
 @Resolver('AsyncSchema')
@@ -144,11 +146,15 @@ export class AsyncSchemaResolver {
       }
     }
 
-    const additionalSchemas =
-      (await runWithRefreshCredentialsRetry(() => definition.getAdditionalAsyncSchema(operation, props))) ?? {}
+    const schemaExtension =
+      (await runWithRefreshCredentialsRetry(() => definition.getAsyncSchemaExtension(operation, props))) ?? {}
 
     return {
-      schemas: deepmerge(schemas, additionalSchemas),
+      // schemas for specific props
+      schemas: schemas,
+
+      // extend entire operation schema
+      schemaExtension,
     }
   }
 }

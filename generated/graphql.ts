@@ -1167,6 +1167,7 @@ export interface AccountCredentialConnection {
 
 export interface AsyncSchema {
     schemas: JSONObject;
+    schemaExtension: JSONObject;
 }
 
 export interface ContractSchema {

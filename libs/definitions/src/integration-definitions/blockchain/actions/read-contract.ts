@@ -1,14 +1,16 @@
-import { RunResponse } from '@app/definitions/definition'
+import { GetAsyncSchemasProps, RunResponse } from '@app/definitions/definition'
 import { OperationAction } from '@app/definitions/opertion-action'
+import { AsyncSchema } from '@app/definitions/types/AsyncSchema'
 import { ExplorerService } from '@blockchain/blockchain/explorer/explorer.service'
 import { ProviderService } from '@blockchain/blockchain/provider/provider.service'
-import { methodsAbiToOutputJsonSchema } from '@blockchain/blockchain/utils/abi.utils'
+import { methodsAbiToInputJsonSchema, methodsAbiToOutputJsonSchema } from '@blockchain/blockchain/utils/abi.utils'
 import { DeepPartial } from '@ptc-org/nestjs-query-core'
 import { IntegrationAction } from 'apps/api/src/integration-actions/entities/integration-action'
 import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-action'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { MethodAbi } from 'ethereum-types'
 import { ethers } from 'ethers'
+import { isAddress } from 'ethers/lib/utils'
 import { JSONSchema7 } from 'json-schema'
 import { BLOCKCHAIN_INPUTS } from '../blockchain.common'
 
@@ -24,6 +26,7 @@ export class ReadContractAction extends OperationAction {
       address: BLOCKCHAIN_INPUTS.address,
     },
   }
+  asyncSchemas: AsyncSchema[] = [{ name: 'operation', dependencies: ['network', 'address'] }]
 
   async beforeCreate(
     workflowAction: Partial<WorkflowAction>,
@@ -54,6 +57,27 @@ export class ReadContractAction extends OperationAction {
       return this.beforeCreate(update, integrationAction)
     }
     return update
+  }
+
+  async getAsyncSchemaExtension(operation: IntegrationAction, { inputs }: GetAsyncSchemasProps): Promise<JSONSchema7> {
+    if (!inputs.address) {
+      return {}
+    }
+    if (!isAddress(inputs.address)) {
+      throw new Error(`"${inputs.address}" is not a valid address`)
+    }
+    const abi = await ExplorerService.instance.getContractAbi(inputs.network, inputs.address)
+    if (!abi) {
+      throw new Error(`No abi found for contract ${inputs.address}`)
+    }
+    const viewMethods = abi.filter(
+      (def: MethodAbi) => def.type === 'function' && ['view', 'pure'].includes(def.stateMutability),
+    ) as MethodAbi[]
+    const schema = methodsAbiToInputJsonSchema(viewMethods)
+    if (typeof schema.properties?.operation === 'object') {
+      schema.properties.operation.title = 'Select Operation'
+    }
+    return schema
   }
 
   async run({ inputs }: OperationRunOptions): Promise<RunResponse> {

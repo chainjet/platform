@@ -530,15 +530,15 @@ export abstract class Definition {
   }
 
   /**
-   * Similar to getAsyncSchemas, but allows to add additional properties to the schemas
+   * Similar to getAsyncSchemas, but allows to extend the entire schema
    */
-  async getAdditionalAsyncSchema(
+  async getAsyncSchemaExtension(
     operation: IntegrationAction | IntegrationTrigger,
     props: GetAsyncSchemasProps,
-  ): Promise<{ [key: string]: JSONSchema7 }> {
+  ): Promise<JSONSchema7> {
     const defOperation = this.operations.find((op) => op.key === operation.key)
     if (defOperation) {
-      return defOperation.getAdditionalAsyncSchema(operation, props)
+      return defOperation.getAsyncSchemaExtension(operation, props)
     }
     return {}
   }

@@ -12,7 +12,7 @@ import deepmerge from 'deepmerge'
 import { Request } from 'express'
 import { ParamsDictionary } from 'express-serve-static-core'
 import fs from 'fs'
-import { JSONSchema7 } from 'json-schema'
+import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
 import { OpenAPIObject, OperationObject, ParameterObject, ReferenceObject, SchemaObject } from 'openapi3-ts'
 import path from 'path'
 import {
@@ -158,10 +158,10 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
       return getAsyncSchemasForPipedream(this.integrationKey, await this.getOperations(), operation)
     }
 
-    async getAdditionalAsyncSchema(
+    async getAsyncSchemaExtension(
       operation: IntegrationAction | IntegrationTrigger,
       props: GetAsyncSchemasProps,
-    ): Promise<{ [key: string]: JSONSchema7 }> {
+    ): Promise<JSONSchema7> {
       const operations = await this.getOperations()
       const pipedreamOperation = operations.find((a) => a.key === operation.key)
       if (!pipedreamOperation) {
@@ -175,15 +175,16 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
       try {
         const additionalProps = await pipedreamOperation.additionalProps.bind(bindData)({})
 
-        const additionalSchemas = {}
+        const schema: JSONSchema7 = {}
         for (const [key, value] of Object.entries(additionalProps)) {
           const schemaProp = mapPipedreamPropertyToJsonSchemaParam(key, value as PipedreaProp)
           if (schemaProp && 'schema' in schemaProp) {
-            additionalSchemas[key] = schemaProp.schema
+            schema.properties = schema.properties || {}
+            schema.properties![key] = schemaProp.schema as JSONSchema7Definition
           }
         }
 
-        return additionalSchemas
+        return schema
       } catch (e) {
         this.logger.error(`Error fetching additional props for ${operation.integration} ${operation.key}: ${e.message}`)
         return {}
