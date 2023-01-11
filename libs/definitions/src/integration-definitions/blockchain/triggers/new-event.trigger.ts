@@ -1,6 +1,7 @@
 import { GetAsyncSchemasProps, RunResponse } from '@app/definitions/definition'
 import { OperationTrigger } from '@app/definitions/operation-trigger'
 import { AsyncSchema } from '@app/definitions/types/AsyncSchema'
+import { hasInterpolation } from '@app/definitions/utils/field.utils'
 import { ExplorerService } from '@blockchain/blockchain/explorer/explorer.service'
 import { eventsAbiToInputJsonSchema, eventsAbiToOutputJsonSchema } from '@blockchain/blockchain/utils/abi.utils'
 import { AccountCredential } from 'apps/api/src/account-credentials/entities/account-credential'
@@ -89,7 +90,7 @@ export class NewEventTrigger extends OperationTrigger {
   }
 
   async getAsyncSchemaExtension(operation: IntegrationTrigger, { inputs }: GetAsyncSchemasProps): Promise<JSONSchema7> {
-    if (!inputs.address) {
+    if (!inputs.address || hasInterpolation(inputs.address) || hasInterpolation(inputs.network)) {
       return {}
     }
     if (!isAddress(inputs.address)) {

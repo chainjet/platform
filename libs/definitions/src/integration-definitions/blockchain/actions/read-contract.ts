@@ -1,6 +1,7 @@
 import { GetAsyncSchemasProps, RunResponse } from '@app/definitions/definition'
 import { OperationAction } from '@app/definitions/opertion-action'
 import { AsyncSchema } from '@app/definitions/types/AsyncSchema'
+import { hasInterpolation } from '@app/definitions/utils/field.utils'
 import { ExplorerService } from '@blockchain/blockchain/explorer/explorer.service'
 import { ProviderService } from '@blockchain/blockchain/provider/provider.service'
 import { methodsAbiToInputJsonSchema, methodsAbiToOutputJsonSchema } from '@blockchain/blockchain/utils/abi.utils'
@@ -60,7 +61,7 @@ export class ReadContractAction extends OperationAction {
   }
 
   async getAsyncSchemaExtension(operation: IntegrationAction, { inputs }: GetAsyncSchemasProps): Promise<JSONSchema7> {
-    if (!inputs.address) {
+    if (!inputs.address || hasInterpolation(inputs.address) || hasInterpolation(inputs.network)) {
       return {}
     }
     if (!isAddress(inputs.address)) {
