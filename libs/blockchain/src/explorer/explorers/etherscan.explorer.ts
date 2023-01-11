@@ -4,8 +4,15 @@ import fetch from 'node-fetch'
 import { BlockchainExplorer } from './blockchain-explorer'
 
 export class EtherScanExplorer extends BlockchainExplorer {
-  constructor(private apiUrl: string, private apiKey: string) {
+  private baseUrl: string
+  private apiUrl: string
+  private apiKey: string
+
+  constructor({ baseUrl, apiKey, apiUrl }: { baseUrl: string; apiKey: string; apiUrl?: string }) {
     super()
+    this.baseUrl = baseUrl
+    this.apiKey = apiKey
+    this.apiUrl = apiUrl || `https://api.${baseUrl}/api`
   }
 
   async getAbi(address: string): Promise<ContractAbi> {
@@ -23,5 +30,9 @@ export class EtherScanExplorer extends BlockchainExplorer {
     }
 
     return JSON.parse(data.result)
+  }
+
+  getTransactionUrl(txHash: string): string {
+    return `https://${this.baseUrl}/tx/${txHash}`
   }
 }

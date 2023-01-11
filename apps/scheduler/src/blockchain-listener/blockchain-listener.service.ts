@@ -110,6 +110,7 @@ export class BlockchainListenerService {
             ...log,
             eventName: updatedTrigger.inputs?.event,
             log: logArgs,
+            transactionUrl: ExplorerService.instance.getTransactionUrl(network, log.transactionHash),
           }
           const hookOutputs = {
             [workflowTrigger.id]: outputs,

@@ -3,8 +3,13 @@ import { ContractAbi } from 'ethereum-types'
 import { BlockchainExplorer } from './blockchain-explorer'
 
 export class BlockScoutExplorer extends BlockchainExplorer {
-  constructor(private apiUrl: string) {
+  private baseUrl: string
+  private apiUrl: string
+
+  constructor({ baseUrl, apiUrl }: { baseUrl: string; apiUrl: string }) {
     super()
+    this.baseUrl = baseUrl
+    this.apiUrl = apiUrl
   }
 
   async getAbi(address: string): Promise<ContractAbi> {
@@ -20,5 +25,9 @@ export class BlockScoutExplorer extends BlockchainExplorer {
     }
 
     return JSON.parse(data.result)
+  }
+
+  getTransactionUrl(txHash: string): string {
+    return `https://${this.baseUrl}/tx/${txHash}`
   }
 }

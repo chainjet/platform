@@ -68,4 +68,9 @@ export class ExplorerService {
     }
     return null
   }
+
+  getTransactionUrl(chainId: ChainId, txHash: string): string {
+    const explorer = this.blockchainConfig.get(chainId).explorers[0]
+    return explorer.getTransactionUrl(txHash)
+  }
 }

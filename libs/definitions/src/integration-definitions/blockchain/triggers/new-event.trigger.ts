@@ -42,6 +42,7 @@ export class NewEventTrigger extends OperationTrigger {
         items: { type: 'string' },
       },
       transactionHash: { type: 'string' },
+      transactionUrl: { type: 'string' },
       logIndex: { type: 'integer' },
     },
   }
