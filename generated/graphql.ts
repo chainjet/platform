@@ -1210,6 +1210,7 @@ export interface IQuery {
     workflowRunActions(paging?: Nullable<CursorPaging>, filter?: Nullable<WorkflowRunActionFilter>, sorting?: Nullable<WorkflowRunActionSort[]>): WorkflowRunActionConnection | Promise<WorkflowRunActionConnection>;
     contractSchema(chainId: number, address: string, type: string): ContractSchema | Promise<ContractSchema>;
     asyncSchemas(integrationId: string, accountCredentialId: string, names: string[], inputs?: Nullable<JSONObject>, integrationTriggerId?: Nullable<string>, integrationActionId?: Nullable<string>): AsyncSchema | Promise<AsyncSchema>;
+    manyAsyncSchemas(asyncSchemaInputs: JSONObject[]): AsyncSchema | Promise<AsyncSchema>;
 }
 
 export interface IMutation {

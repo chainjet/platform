@@ -3,6 +3,7 @@ import { Logger, NotFoundException, UseGuards } from '@nestjs/common'
 import { Args, Field, ObjectType, Query, Resolver } from '@nestjs/graphql'
 import { OperationRunnerService } from 'apps/runner/src/services/operation-runner.service'
 import { RunnerService } from 'apps/runner/src/services/runner.service'
+import deepmerge from 'deepmerge'
 import { GraphQLString } from 'graphql'
 import { GraphQLJSONObject } from 'graphql-type-json'
 import { JSONSchema7 } from 'json-schema'
@@ -15,6 +16,7 @@ import { IntegrationActionService } from '../../integration-actions/services/int
 import { IntegrationTrigger } from '../../integration-triggers/entities/integration-trigger'
 import { IntegrationTriggerService } from '../../integration-triggers/services/integration-trigger.service'
 import { IntegrationService } from '../../integrations/services/integration.service'
+import { User } from '../../users/entities/user'
 import { UserService } from '../../users/services/user.service'
 
 @ObjectType('AsyncSchema')
@@ -41,22 +43,23 @@ export class AsyncSchemaResolver {
     private readonly oauthStrategyFactory: OAuthStrategyFactory,
   ) {}
 
-  @Query(() => AsyncSchemaDto)
-  @UseGuards(GraphqlGuard)
-  async asyncSchemas(
-    @UserId() userId: ObjectId,
-    @Args({ name: 'integrationId', type: () => GraphQLString }) integrationId: string,
-    @Args({ name: 'accountCredentialId', type: () => GraphQLString }) accountCredentialId: string,
-    @Args({ name: 'names', type: () => [GraphQLString] }) names: string[],
-    @Args({ name: 'inputs', type: () => GraphQLJSONObject, nullable: true }) inputs?: Record<string, any>,
-    @Args({ name: 'integrationTriggerId', type: () => GraphQLString, nullable: true }) integrationTriggerId?: string,
-    @Args({ name: 'integrationActionId', type: () => GraphQLString, nullable: true }) integrationActionId?: string,
-  ): Promise<AsyncSchemaDto> {
-    const user = await this.userService.findOne({ _id: userId })
-    if (!user) {
-      throw new NotFoundException(`User with id ${userId} not found`)
-    }
-
+  private async getAsyncSchema({
+    user,
+    integrationId,
+    accountCredentialId,
+    names,
+    inputs,
+    integrationTriggerId,
+    integrationActionId,
+  }: {
+    user: User
+    integrationId: string
+    accountCredentialId: string
+    names: string[]
+    inputs?: Record<string, any>
+    integrationTriggerId?: string
+    integrationActionId?: string
+  }) {
     const integration = await this.integrationService.findOne({ _id: integrationId })
     if (!integration) {
       throw new NotFoundException('Integration not found')
@@ -93,7 +96,7 @@ export class AsyncSchemaResolver {
     }
 
     const { credentials, accountCredential, integrationAccount } =
-      await this.runnerService.getCredentialsAndIntegrationAccount(accountCredentialId, userId.toString(), () => {
+      await this.runnerService.getCredentialsAndIntegrationAccount(accountCredentialId, user.id, () => {
         throw new NotFoundException('Account credential not found')
       })
 
@@ -108,7 +111,7 @@ export class AsyncSchemaResolver {
       accountCredential,
       operationRunnerService: this.operationRunnerService,
       user: {
-        id: userId.toString(),
+        id: user.id,
         address: user.address,
         email: user.email,
       },
@@ -155,6 +158,62 @@ export class AsyncSchemaResolver {
 
       // extend entire operation schema
       schemaExtension,
+    }
+  }
+
+  @Query(() => AsyncSchemaDto)
+  @UseGuards(GraphqlGuard)
+  async asyncSchemas(
+    @UserId() userId: ObjectId,
+    @Args({ name: 'integrationId', type: () => GraphQLString }) integrationId: string,
+    @Args({ name: 'accountCredentialId', type: () => GraphQLString }) accountCredentialId: string,
+    @Args({ name: 'names', type: () => [GraphQLString] }) names: string[],
+    @Args({ name: 'inputs', type: () => GraphQLJSONObject, nullable: true }) inputs?: Record<string, any>,
+    @Args({ name: 'integrationTriggerId', type: () => GraphQLString, nullable: true }) integrationTriggerId?: string,
+    @Args({ name: 'integrationActionId', type: () => GraphQLString, nullable: true }) integrationActionId?: string,
+  ): Promise<AsyncSchemaDto> {
+    const user = await this.userService.findOne({ _id: userId })
+    if (!user) {
+      throw new NotFoundException(`User with id ${userId} not found`)
+    }
+    return this.getAsyncSchema({
+      user,
+      integrationId,
+      accountCredentialId,
+      names,
+      inputs,
+      integrationTriggerId,
+      integrationActionId,
+    })
+  }
+
+  @Query(() => AsyncSchemaDto)
+  @UseGuards(GraphqlGuard)
+  async manyAsyncSchemas(
+    @UserId() userId: ObjectId,
+    @Args({ name: 'asyncSchemaInputs', type: () => [GraphQLJSONObject] }) asyncSchemaInputs: Array<Record<string, any>>,
+  ): Promise<AsyncSchemaDto> {
+    const user = await this.userService.findOne({ _id: userId })
+    if (!user) {
+      throw new NotFoundException(`User with id ${userId} not found`)
+    }
+    const results: AsyncSchemaDto[] = []
+    for (const asyncSchemaInput of asyncSchemaInputs) {
+      const asyncSchemaResult = await this.getAsyncSchema({
+        user,
+        integrationId: asyncSchemaInput.integrationId,
+        accountCredentialId: asyncSchemaInput.accountCredentialId,
+        names: asyncSchemaInput.names,
+        inputs: asyncSchemaInput.inputs,
+        integrationTriggerId: asyncSchemaInput.integrationTriggerId,
+        integrationActionId: asyncSchemaInput.integrationActionId,
+      })
+      results.push(asyncSchemaResult)
+    }
+
+    return {
+      schemas: deepmerge.all(results.map((item) => item.schemas)) as { [key: string]: JSONSchema7 },
+      schemaExtension: deepmerge.all(results.map((item) => item.schemaExtension)),
     }
   }
 }

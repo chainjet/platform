@@ -1011,6 +1011,7 @@ type Query {
   ): WorkflowRunActionConnection!
   contractSchema(chainId: Int!, address: String!, type: String!): ContractSchema!
   asyncSchemas(integrationId: String!, accountCredentialId: String!, names: [String!]!, inputs: JSONObject, integrationTriggerId: String, integrationActionId: String): AsyncSchema!
+  manyAsyncSchemas(asyncSchemaInputs: [JSONObject!]!): AsyncSchema!
 }
 
 input AccountCredentialFilter {
