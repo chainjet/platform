@@ -216,7 +216,10 @@ export class WorkflowService extends BaseService<Workflow> {
       workflow: forkedWorkflow._id,
       integrationTrigger: trigger.integrationTrigger,
       name: trigger.name,
-      inputs: replaceTemplateFields(idsMap, trigger.inputs ?? {}, templateInputs),
+      inputs: {
+        ...templateInputs,
+        ...replaceTemplateFields(idsMap, trigger.inputs ?? {}, templateInputs),
+      },
       credentials: credentialsForTrigger?.id,
       schedule: trigger.schedule,
       enabled: true,
@@ -260,7 +263,10 @@ export class WorkflowService extends BaseService<Workflow> {
         isContractRootAction: action.isContractRootAction,
         integrationAction: action.integrationAction,
         name: action.name,
-        inputs: replaceTemplateFields(idsMap, action.inputs ?? {}, templateInputs),
+        inputs: {
+          ...templateInputs,
+          ...replaceTemplateFields(idsMap, action.inputs ?? {}, templateInputs),
+        },
         previousAction: idsMap.get(previousAction?.id ?? '') as any,
         previousActionCondition: previousAction?.condition,
         credentials: credentialsForAction?.id,
