@@ -28,7 +28,7 @@ export class DomainExpiresTrigger extends OperationTrigger {
         title: 'Days before expiry to trigger',
         type: 'number',
         description: 'How many days before the domain expires to trigger the workflow.',
-        default: 1,
+        default: 7,
       },
     },
   }
