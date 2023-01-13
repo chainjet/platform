@@ -219,6 +219,9 @@ export class DiscordDefinition extends SingleIntegrationDefinition {
   async getAsyncSchemas() {
     return {
       channelId: async (props: GetAsyncSchemasProps) => {
+        if (!props.credentials.guild_id) {
+          return {}
+        }
         const channelOutputs = await props.operationRunnerService.runActionByKey(this, {
           ...props,
           key: 'getGuildChannels',
