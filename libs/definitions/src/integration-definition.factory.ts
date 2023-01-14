@@ -51,6 +51,7 @@ import { PolygonscanDefinition } from './integration-definitions/polygonscan.def
 import { RedditDefinition } from './integration-definitions/reddit.definition'
 import { RssDefinition } from './integration-definitions/rss.definition'
 import { ScheduleDefinition } from './integration-definitions/schedule.definition'
+import { SlackDefinition } from './integration-definitions/slack.definition'
 import { SleepDefinition } from './integration-definitions/sleep.definition'
 import { SnowtraceDefinition } from './integration-definitions/snowtrace.definition'
 import { TelegramBotDefinition } from './integration-definitions/telegram-bot.definition'
@@ -128,7 +129,7 @@ export class IntegrationDefinitionFactory {
     rss: RssDefinition,
     schedule: ScheduleDefinition,
     // sendgrid: SendgridDefinition,
-    // slack: SlackDefinition,
+    slack: SlackDefinition,
     sleep: SleepDefinition,
     // snapshot: SnapshotDefinition,
     snowtrace: SnowtraceDefinition,

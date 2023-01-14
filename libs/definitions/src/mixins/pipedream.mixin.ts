@@ -130,7 +130,7 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
       const operations = await this.getOperations()
       const operation = operations.find((a) => a.key === opts.operation.key)
       if (operation) {
-        return runPipedreamOperation(this.integrationKey, operation, opts)
+        return runPipedreamOperation(this, operation, opts)
       }
       return null
     }
@@ -143,7 +143,7 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
       const operation = operations.find((a) => a.key === opts.operation.key)
       if (operation) {
         console.log(`Workflow received for operation:`, operation.key)
-        const runResponse = await runPipedreamOperation(this.integrationKey, operation, opts, req)
+        const runResponse = await runPipedreamOperation(this, operation, opts, req)
         if (runResponse) {
           // wait for the response to ensure validations succeed
           await convertObservableToRunResponse(runResponse)
@@ -197,10 +197,17 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
       }
       return this.operations
     }
+
+    extendBindData(bindData: Record<string, any>, opts: OperationRunOptions): Record<string, any> {
+      return bindData
+    }
   }
 
   return _PipedreamMixin
 }
+
+// type for an instance of a PipedreamMixin
+type PipedreamMixin = InstanceType<ReturnType<typeof PipedreamMixin>>
 
 function mapPipedreamTypeToOpenApi(type: PropType): SchemaObject {
   if (type.endsWith('[]')) {
@@ -525,7 +532,7 @@ function getBindData(
 }
 
 async function runPipedreamOperation(
-  integrationKey: string,
+  mixin: PipedreamMixin,
   operation: PipedreamOperation,
   opts: OperationRunOptions,
   req?: Request,
@@ -537,7 +544,7 @@ async function runPipedreamOperation(
     },
   }
 
-  const { bindData } = getBindData(integrationKey, operation, opts)
+  let { bindData } = getBindData(mixin.integrationKey, operation, opts)
 
   if (operation.type === 'action') {
     for (const key of Object.keys(operation.methods ?? {})) {
@@ -551,6 +558,8 @@ async function runPipedreamOperation(
         // console.log(`Export =>`, key, value)
       },
     }
+
+    bindData = mixin.extendBindData(bindData, opts)
 
     const outputs = await operation.run.bind(bindData)({ $ })
     return {
@@ -606,6 +615,8 @@ async function runPipedreamOperation(
         ...(req ? { headers: req.headers, body: req.body, query: req.query } : {}),
         timestamp: new Date(),
       }
+
+      bindData = mixin.extendBindData(bindData, opts)
 
       operation.run
         .bind(bindData)(event)
