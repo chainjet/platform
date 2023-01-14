@@ -14,7 +14,7 @@ export class SlackDefinition extends PipedreamMixin(SingleIntegrationDefinition)
 
   extendBindData(bindData: Record<string, any>, { workflow }: OperationRunOptions): Record<string, any> {
     bindData._makeSentViaPipedreamBlock = () => {
-      const link = workflow ? `https://chainjet.io/workflow/${workflow.id}` : `https://chainjet.io/integrations/slack`
+      const link = workflow ? `https://chainjet.io/workflows/${workflow.id}` : `https://chainjet.io/integrations/slack`
       return {
         type: 'context',
         elements: [
