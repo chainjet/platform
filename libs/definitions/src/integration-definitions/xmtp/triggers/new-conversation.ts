@@ -6,7 +6,7 @@ import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.s
 import { JSONSchema7 } from 'json-schema'
 
 export class NewConversationTrigger extends OperationTrigger {
-  idKey = 'items[].conversationId'
+  idKey = 'items[].id'
   key = 'newConversation'
   name = 'New Conversation'
   description =
@@ -47,9 +47,9 @@ export class NewConversationTrigger extends OperationTrigger {
       outputs: {
         items: conversations
           .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-          .filter((conversation) => !!conversation.context?.conversationId)
           .map((conversation) => ({
-            conversationId: conversation.context!.conversationId,
+            id: conversation.context?.conversationId ?? conversation.peerAddress,
+            conversationId: conversation.context?.conversationId,
             topic: conversation.topic,
             createdAt: conversation.createdAt,
             peerAddress: conversation.peerAddress,
