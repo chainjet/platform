@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing'
-import { DefinitionsModule, IntegrationDefinitionFactory } from '..'
-import { OperationRunOptions } from '../../../../apps/runner/src/services/operation-runner.service'
-import { TestDatabaseModule } from '../../../common/test/database/test-database.module'
+import { DefinitionsModule, IntegrationDefinitionFactory } from '../..'
+import { OperationRunOptions } from '../../../../../apps/runner/src/services/operation-runner.service'
+import { TestDatabaseModule } from '../../../../common/test/database/test-database.module'
 import { SleepDefinition } from './sleep.definition'
 
 describe('Sleep definition', () => {
