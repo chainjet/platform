@@ -1,5 +1,6 @@
 import { AuthenticationError } from '@app/common/errors/authentication-error'
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
+import { CreateCommentAction } from './actions/create-comment.action'
 import { CreatePostAction } from './actions/create-post.action'
 import { FollowProfileAction } from './actions/follow-profile.action'
 import { LikePostAction } from './actions/like-post.action'
@@ -14,7 +15,7 @@ export class LensDefinition extends SingleIntegrationDefinition {
   schemaUrl = null
 
   triggers = [new NewFollowerTrigger(), new NewPostTrigger(), new NewMentionTrigger()]
-  actions = [new FollowProfileAction(), new CreatePostAction(), new LikePostAction()]
+  actions = [new FollowProfileAction(), new CreatePostAction(), new LikePostAction(), new CreateCommentAction()]
 
   async refreshCredentials(credentials: Record<string, any>): Promise<Record<string, any>> {
     const refreshedCredentials = await refreshLensAccessToken(credentials.refreshToken)
