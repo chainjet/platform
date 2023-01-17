@@ -109,6 +109,12 @@ export function calculateExpression(input: string, references: Record<string, Re
     }
     return ('' + str).replace(searchValue.toString(), replaceValue.toString())
   })
+  parser.set('ireplace', (str: string, searchValue: string, replaceValue: string) => {
+    if (!str) {
+      return str
+    }
+    return ('' + str).replace(new RegExp(searchValue.toString(), 'i'), replaceValue.toString())
+  })
   parser.set('extract', (str: string, template: string, replace: string) => {
     const escaped = template.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
     const regex = escaped.replace(/\\\*\\\*\\\*+/g, '(.+)')
