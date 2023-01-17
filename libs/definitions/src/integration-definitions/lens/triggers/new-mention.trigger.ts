@@ -11,7 +11,7 @@ export class NewMentionTrigger extends OperationTrigger {
   key = 'newMention'
   name = 'New Mention'
   description = 'Triggers when someone mentions you in a post or comment'
-  version = '1.0.0'
+  version = '1.1.0'
 
   inputs: JSONSchema7 = {}
   outputs: JSONSchema7 = {
@@ -45,7 +45,7 @@ export class NewMentionTrigger extends OperationTrigger {
               name: {
                 type: 'string',
               },
-              description: {
+              content: {
                 type: 'string',
               },
             },
@@ -123,7 +123,7 @@ export class NewMentionTrigger extends OperationTrigger {
       }
       metadata {
         name
-        description
+        content
       }
       profile {
         id
