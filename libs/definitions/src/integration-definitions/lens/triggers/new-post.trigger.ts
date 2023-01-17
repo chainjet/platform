@@ -289,8 +289,17 @@ export class NewPostTrigger extends OperationTrigger {
     if (!res?.data?.publications?.items) {
       throw new Error(res.errors?.[0]?.message ?? 'Bad response from lens')
     }
+
+    // if mirrors are included, filter out mirror on comments
+    let items = res.data.publications.items
+    if (['include', 'only'].includes(mirrors)) {
+      items = items.filter((item: any) => !!item.mirrorOf?.id)
+    }
+
     return {
-      outputs: res.data.publications,
+      outputs: {
+        items,
+      },
     }
   }
 }
