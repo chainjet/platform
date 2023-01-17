@@ -9,7 +9,7 @@ export class SleepForAction extends OperationOffChain {
   key = 'sleepFor'
   name = 'Sleep For'
   description = 'Wait for a specific amount of time before running the next action.'
-  version = '2.0.0'
+  version = '2.0.1'
 
   inputs: JSONSchema7 = {
     required: ['duration'],
@@ -31,6 +31,7 @@ export class SleepForAction extends OperationOffChain {
   }
 
   async run({ inputs }: OperationRunOptions): Promise<RunResponse> {
+    inputs.duration = inputs.duration.trim()
     if (/^\d/.test(inputs.duration)) {
       inputs.duration = `in ${inputs.duration}`
     }
