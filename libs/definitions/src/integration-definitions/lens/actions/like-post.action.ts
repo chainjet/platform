@@ -8,7 +8,7 @@ import { getLensProfileId, refreshLensAccessToken } from '../lens.common'
 
 export class LikePostAction extends OperationOffChain {
   key = 'likePost'
-  name = 'Like a post'
+  name = 'Like Post'
   description = 'Lile a given post'
   version = '1.0.0'
 

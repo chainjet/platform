@@ -12,7 +12,7 @@ import { refreshLensAccessToken } from '../lens.common'
 
 export class CreatePostAction extends OperationOffChain {
   key = 'createPost'
-  name = 'Create a post'
+  name = 'Create Post'
   description = 'Creates a new post'
   version = '1.0.0'
 
