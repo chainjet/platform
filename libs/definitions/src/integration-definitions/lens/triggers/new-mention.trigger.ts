@@ -99,6 +99,11 @@ export class NewMentionTrigger extends OperationTrigger {
               },
             },
           },
+          canComment: {
+            title: 'Can comment on the post',
+            description: 'Whether the logged user can comment on the post',
+            type: 'boolean',
+          },
         },
       },
     },
@@ -141,7 +146,11 @@ export class NewMentionTrigger extends OperationTrigger {
           totalPublications
           totalCollects
         }
-      }`
+      }
+      canComment(profileId: "${profileId}") {
+        result
+      }
+    `
 
     const query = `
       query Notifications {
@@ -171,7 +180,15 @@ export class NewMentionTrigger extends OperationTrigger {
       throw new Error(res.errors?.[0]?.message ?? 'Bad response from lens')
     }
     return {
-      outputs: res.data.notifications,
+      outputs: {
+        items: res.data.notifications.items.map((item) => ({
+          ...item,
+          mentionPublication: {
+            ...item.mentionPublication,
+            canComment: item.mentionPublication.canComment.result,
+          },
+        })),
+      },
       refreshedCredentials,
     }
   }
