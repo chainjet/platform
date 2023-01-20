@@ -25,7 +25,12 @@ export class SleepForAction extends OperationOffChain {
   outputs: JSONSchema7 = {
     properties: {
       sleepUntil: {
+        title: 'Sleep Until',
         type: 'string',
+      },
+      sleepSeconds: {
+        title: 'Sleep Seconds',
+        type: 'number',
       },
     },
   }
@@ -42,6 +47,7 @@ export class SleepForAction extends OperationOffChain {
     return {
       outputs: {
         sleepUntil: sleepUntil.toISOString(),
+        sleepSeconds: Math.round((sleepUntil.getTime() - Date.now()) / 1000),
       },
       sleepUntil,
     }
