@@ -40,7 +40,7 @@ export class SleepForAction extends OperationOffChain {
     if (/^\d/.test(inputs.duration)) {
       inputs.duration = `in ${inputs.duration}`
     }
-    const sleepUntil = chrono.parseDate(inputs.duration)
+    const sleepUntil = chrono.parseDate(inputs.duration, undefined, { forwardDate: true })
     if (sleepUntil === null) {
       throw new BadRequestException('Invalid sleep duration')
     }
