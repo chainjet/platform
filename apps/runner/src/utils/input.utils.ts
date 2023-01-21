@@ -131,7 +131,9 @@ export function calculateExpression(input: string, references: Record<string, Re
   })
   parser.set('first', (...args: any[]) => (args ?? []).find((x) => !!x))
   parser.set('last', (...args: any[]) => (args ?? []).reverse().find((x) => !!x))
-  return parser.evaluate(expression)
+
+  // newlines need to be escaped before parsing the expression
+  return parser.evaluate(expression.replace(/\n/g, '\\n')).replace(/\\n/g, '\n')
 }
 
 function stringifyInput(input: unknown): string {
