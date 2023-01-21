@@ -598,7 +598,7 @@ export class RunnerService {
     inputs?: Record<string, any>,
   ): Promise<void> {
     await this.workflowRunService.markTriggerAsFailed(workflow, workflowRun, errorMessage, errorResponse, inputs)
-    await this.runWorkflowOnFailure(workflow._id)
+    await this.runWorkflowOnFailure(workflow._id, workflowRun, errorMessage, errorResponse, inputs)
   }
 
   private async onActionFailure(
@@ -617,21 +617,33 @@ export class RunnerService {
       errorResponse,
       inputs,
     )
-    await this.runWorkflowOnFailure(workflow._id)
+    await this.runWorkflowOnFailure(workflow._id, workflowRun, errorMessage, errorResponse, inputs)
   }
 
   private async runWorkflowOnFailure(
     workflowId: ObjectId | Reference<Workflow, mongoose.Types.ObjectId>,
+    workflowRun: WorkflowRun,
+    errorMessage: string | undefined,
+    errorResponse?: string,
+    inputs?: Record<string, any>,
   ): Promise<void> {
     const workflow = await this.workflowService.findById(workflowId.toString())
     if (workflow?.runOnFailure) {
-      const workflowRun = await this.workflowRunService.createOne({
+      const newWorkflowRun = await this.workflowRunService.createOne({
         owner: workflow.owner,
         workflow: workflow.runOnFailure,
         status: WorkflowRunStatus.running,
         startedBy: WorkflowRunStartedByOptions.workflowFailure,
       })
-      await this.startWorkflowRun(new ObjectId(workflow.runOnFailure.toString()), {}, workflowRun)
+      const triggerOutputs = {
+        trigger: {
+          workflowRunId: workflowRun._id,
+          errorMessage,
+          errorResponse,
+          inputs,
+        },
+      }
+      await this.startWorkflowRun(new ObjectId(workflow.runOnFailure.toString()), triggerOutputs, newWorkflowRun)
     }
   }
 }
