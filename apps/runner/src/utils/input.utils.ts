@@ -133,7 +133,11 @@ export function calculateExpression(input: string, references: Record<string, Re
   parser.set('last', (...args: any[]) => (args ?? []).reverse().find((x) => !!x))
 
   // newlines need to be escaped before parsing the expression
-  return parser.evaluate(expression.replace(/\n/g, '\\n')).replace(/\\n/g, '\n')
+  let parsed = parser.evaluate((expression ?? '').replace(/\n/g, '\\n'))
+  if (typeof parsed === 'string') {
+    parsed = parsed.replace(/\\n/g, '\n')
+  }
+  return parsed
 }
 
 function stringifyInput(input: unknown): string {
