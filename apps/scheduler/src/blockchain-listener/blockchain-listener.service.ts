@@ -11,7 +11,7 @@ import { WorkflowTriggerService } from 'apps/api/src/workflow-triggers/services/
 import { WorkflowUsedIdService } from 'apps/api/src/workflow-triggers/services/workflow-used-id.service'
 import { WorkflowService } from 'apps/api/src/workflows/services/workflow.service'
 import { RunnerService } from 'apps/runner/src/services/runner.service'
-import { EventAbi } from 'ethereum-types'
+import { ContractAbi, EventAbi } from 'ethereum-types'
 import { ethers } from 'ethers'
 import { shuffle } from 'lodash'
 
@@ -72,11 +72,23 @@ export class BlockchainListenerService {
         const event = workflowTrigger.inputs.event as string
 
         const provider = this.providerService.getReadOnlyProvider(network)
-        const abi = await this.explorerService.getContractAbi(network, address)
+
+        // get contract abi from trigger inputs or from explorer
+        let abi: ContractAbi | null = null
+        if (workflowTrigger.inputs.abi) {
+          try {
+            abi = JSON.parse(workflowTrigger.inputs.abi)
+          } catch {}
+        } else {
+          try {
+            abi = await this.explorerService.getContractAbi(network, address)
+          } catch {}
+        }
         if (!abi) {
           this.logger.error(`No ABI found for ${address} on chain ${network}`)
           continue
         }
+
         const eventAbi = abi.find((def: EventAbi) => def.type === 'event' && def.name === event) as EventAbi
         const contract = new ethers.Contract(address, abi, provider)
         const filter = contract.filters[event](

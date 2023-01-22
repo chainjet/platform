@@ -8,9 +8,10 @@ import { AccountCredential } from 'apps/api/src/account-credentials/entities/acc
 import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/integration-trigger'
 import { WorkflowTrigger } from 'apps/api/src/workflow-triggers/entities/workflow-trigger'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
-import { EventAbi } from 'ethereum-types'
+import deepmerge from 'deepmerge'
+import { ContractAbi, EventAbi } from 'ethereum-types'
 import { isAddress } from 'ethers/lib/utils'
-import { JSONSchema7 } from 'json-schema'
+import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
 import { BLOCKCHAIN_INPUTS } from '../blockchain.common'
 
 export class NewEventTrigger extends OperationTrigger {
@@ -46,7 +47,19 @@ export class NewEventTrigger extends OperationTrigger {
       logIndex: { type: 'integer' },
     },
   }
-  asyncSchemas: AsyncSchema[] = [{ name: 'event', dependencies: ['network', 'address'] }]
+  asyncSchemas: AsyncSchema[] = [{ name: 'event', dependencies: ['network', 'address', 'abi'] }]
+
+  abiSchema: JSONSchema7 = {
+    required: ['abi'],
+    properties: {
+      abi: {
+        type: 'string',
+        title: 'Contract ABI',
+        description: "We couldn't fetch the ABI for this contract. Please paste it here.",
+        'x-ui:widget': 'textarea',
+      } as JSONSchema7Definition,
+    },
+  }
 
   async beforeCreate(
     workflowTrigger: Partial<WorkflowTrigger>,
@@ -59,10 +72,12 @@ export class NewEventTrigger extends OperationTrigger {
     if (!workflowTrigger.inputs?.address) {
       throw new Error('Address is required')
     }
-    const abi = await ExplorerService.instance.getContractAbi(
-      Number(workflowTrigger.inputs.network),
-      workflowTrigger.inputs.address.toString(),
-    )
+    const abi = workflowTrigger.inputs.abi
+      ? JSON.parse(workflowTrigger.inputs.abi)
+      : await ExplorerService.instance.getContractAbi(
+          Number(workflowTrigger.inputs.network),
+          workflowTrigger.inputs.address.toString(),
+        )
     if (!abi) {
       return workflowTrigger
     }
@@ -97,16 +112,29 @@ export class NewEventTrigger extends OperationTrigger {
     if (!isAddress(inputs.address)) {
       throw new Error(`"${inputs.address}" is not a valid address`)
     }
-    const abi = await ExplorerService.instance.getContractAbi(inputs.network, inputs.address)
-    if (!abi) {
-      throw new Error(`No abi found for contract ${inputs.address}`)
+
+    let abi: ContractAbi | null = null
+    if (inputs.abi) {
+      try {
+        abi = JSON.parse(inputs.abi)
+      } catch {
+        return this.abiSchema
+      }
+    } else {
+      try {
+        abi = await ExplorerService.instance.getContractAbi(inputs.network, inputs.address)
+      } catch {}
     }
+    if (!abi) {
+      return this.abiSchema
+    }
+
     const events = abi.filter((def) => def.type === 'event') as EventAbi[]
     const schema = eventsAbiToInputJsonSchema(events)
     if (typeof schema.properties?.event === 'object') {
       schema.properties.event.title = 'Select Event'
     }
-    return schema
+    return inputs.abi ? deepmerge(this.abiSchema, schema) : schema
   }
 
   async run(opts: OperationRunOptions): Promise<RunResponse | null> {

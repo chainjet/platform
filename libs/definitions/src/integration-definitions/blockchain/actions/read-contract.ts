@@ -9,10 +9,11 @@ import { DeepPartial } from '@ptc-org/nestjs-query-core'
 import { IntegrationAction } from 'apps/api/src/integration-actions/entities/integration-action'
 import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-action'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
-import { MethodAbi } from 'ethereum-types'
+import deepmerge from 'deepmerge'
+import { ContractAbi, MethodAbi } from 'ethereum-types'
 import { ethers } from 'ethers'
 import { isAddress } from 'ethers/lib/utils'
-import { JSONSchema7 } from 'json-schema'
+import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
 import { BLOCKCHAIN_INPUTS } from '../blockchain.common'
 
 export class ReadContractAction extends OperationAction {
@@ -27,17 +28,31 @@ export class ReadContractAction extends OperationAction {
       address: BLOCKCHAIN_INPUTS.address,
     },
   }
-  asyncSchemas: AsyncSchema[] = [{ name: 'operation', dependencies: ['network', 'address'] }]
+  asyncSchemas: AsyncSchema[] = [{ name: 'operation', dependencies: ['network', 'address', 'abi'] }]
+
+  abiSchema: JSONSchema7 = {
+    required: ['abi'],
+    properties: {
+      abi: {
+        type: 'string',
+        title: 'Contract ABI',
+        description: "We couldn't fetch the ABI for this contract. Please paste it here.",
+        'x-ui:widget': 'textarea',
+      } as JSONSchema7Definition,
+    },
+  }
 
   async beforeCreate(
     workflowAction: Partial<WorkflowAction>,
     integrationAction: IntegrationAction,
   ): Promise<Partial<WorkflowAction>> {
     if (workflowAction.inputs?.network && workflowAction.inputs.address) {
-      const abi = await ExplorerService.instance.getContractAbi(
-        Number(workflowAction.inputs.network),
-        workflowAction.inputs.address.toString(),
-      )
+      const abi = workflowAction.inputs.abi
+        ? JSON.parse(workflowAction.inputs.abi)
+        : await ExplorerService.instance.getContractAbi(
+            Number(workflowAction.inputs.network),
+            workflowAction.inputs.address.toString(),
+          )
       if (!abi) {
         return workflowAction
       }
@@ -67,10 +82,23 @@ export class ReadContractAction extends OperationAction {
     if (!isAddress(inputs.address)) {
       throw new Error(`"${inputs.address}" is not a valid address`)
     }
-    const abi = await ExplorerService.instance.getContractAbi(inputs.network, inputs.address)
-    if (!abi) {
-      throw new Error(`No abi found for contract ${inputs.address}`)
+
+    let abi: ContractAbi | null = null
+    if (inputs.abi) {
+      try {
+        abi = JSON.parse(inputs.abi)
+      } catch {
+        return this.abiSchema
+      }
+    } else {
+      try {
+        abi = await ExplorerService.instance.getContractAbi(inputs.network, inputs.address)
+      } catch {}
     }
+    if (!abi) {
+      return this.abiSchema
+    }
+
     const viewMethods = abi.filter(
       (def: MethodAbi) => def.type === 'function' && ['view', 'pure'].includes(def.stateMutability),
     ) as MethodAbi[]
@@ -78,12 +106,14 @@ export class ReadContractAction extends OperationAction {
     if (typeof schema.properties?.operation === 'object') {
       schema.properties.operation.title = 'Select Operation'
     }
-    return schema
+    return inputs.abi ? deepmerge(this.abiSchema, schema) : schema
   }
 
   async run({ inputs }: OperationRunOptions): Promise<RunResponse> {
     const provider = ProviderService.instance.getReadOnlyProvider(Number(inputs.network))
-    const abi = await ExplorerService.instance.getContractAbi(Number(inputs.network), inputs.address.toString())
+    const abi = inputs.abi
+      ? JSON.parse(inputs.abi)
+      : await ExplorerService.instance.getContractAbi(Number(inputs.network), inputs.address.toString())
     if (!abi) {
       throw new Error(`ABI not found for ${inputs.address} on chain ${inputs.network}`)
     }
