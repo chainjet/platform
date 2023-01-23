@@ -464,10 +464,14 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       trigger.consecutiveWorkflowFails++
       const shouldDisableWorkflow =
         trigger.maxConsecutiveFailures && trigger.consecutiveWorkflowFails >= trigger.maxConsecutiveFailures
-      const updatedTrigger = await this.updateOne(trigger.id, {
-        consecutiveWorkflowFails: trigger.consecutiveWorkflowFails,
-        ...(shouldDisableWorkflow ? { enabled: false } : {}),
-      })
+      await this.updateOneNative(
+        { _id: trigger._id },
+        {
+          consecutiveWorkflowFails: trigger.consecutiveWorkflowFails,
+          ...(shouldDisableWorkflow ? { enabled: false } : {}),
+        },
+      )
+      const updatedTrigger = (await this.findById(trigger._id.toString())) || null
       if (shouldDisableWorkflow) {
         this.logger.log(
           `Workflow ${workflowId} was disabled due to ${trigger.maxConsecutiveFailures} consecutive failures`,

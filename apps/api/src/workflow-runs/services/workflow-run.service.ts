@@ -71,50 +71,56 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     return workflowRun
   }
 
-  async markTriggerAsCompleted(
+  async createCompletedTriggerRun(
     userId: ObjectId,
-    workflowRunId: ObjectId,
-    workflowTriggered: boolean,
+    workflowRunData: Partial<WorkflowRun>,
     triggerIds?: string[],
-  ): Promise<void> {
-    await this.updateById(workflowRunId, {
-      $set: {
-        'triggerRun.status': WorkflowRunStatus.completed,
-        'triggerRun.workflowTriggered': workflowTriggered,
-        'triggerRun.triggerIds': triggerIds,
-        'triggerRun.finishedAt': Date.now(),
-      },
-      $inc: { operationsUsed: 1 },
-    })
-    await this.userService.incrementOperationsUsed(userId)
-    if (!workflowTriggered) {
-      await this.markWorkflowRunAsCompleted(workflowRunId)
+  ): Promise<WorkflowRun> {
+    if (!workflowRunData.triggerRun) {
+      throw new Error('triggerRun is required')
     }
+    workflowRunData.triggerRun = {
+      ...workflowRunData.triggerRun,
+      status: WorkflowRunStatus.completed,
+      workflowTriggered: true,
+      triggerIds,
+      finishedAt: new Date(),
+    }
+    workflowRunData.operationsUsed = 1
+    workflowRunData.status = WorkflowRunStatus.running
+    const workflowRun = await this.createOne(workflowRunData)
+    await this.userService.incrementOperationsUsed(userId)
+    return workflowRun
   }
 
-  // TODO only increase operations used if failed was because of a client issue
-  async markTriggerAsFailed(
+  async createFailedTriggerRun(
     workflow: Workflow,
-    workflowRun: WorkflowRun,
+    workflowRunData: Partial<WorkflowRun>,
     errorMessage: string | undefined,
     errorResponse?: string,
     inputs?: Record<string, any>,
-  ): Promise<void> {
-    await this.updateById(workflowRun._id, {
-      $set: {
-        status: WorkflowRunStatus.failed,
-        'triggerRun.status': WorkflowRunStatus.failed,
-        'triggerRun.finishedAt': Date.now(),
-        errorMessage,
-        errorResponse,
-        inputs,
-      },
-      $inc: { operationsUsed: 1 },
-    })
+  ): Promise<WorkflowRun> {
+    if (!workflowRunData.triggerRun) {
+      throw new Error('triggerRun is required')
+    }
+    workflowRunData.triggerRun = {
+      ...workflowRunData.triggerRun,
+      status: WorkflowRunStatus.failed,
+      workflowTriggered: false,
+      finishedAt: new Date(),
+    }
+    workflowRunData.operationsUsed = 1
+    workflowRunData.status = WorkflowRunStatus.failed
+    workflowRunData.errorMessage = errorMessage
+    workflowRunData.errorResponse = errorResponse
+    workflowRunData.inputs = inputs
+    const workflowRun = await this.createOne(workflowRunData)
+
     await this.userService.incrementOperationsUsed(new ObjectId(workflow.owner.toString()))
     const trigger = await this.workflowTriggerService.incrementWorkflowRunFailures(workflowRun.workflow)
     await this.updateWorkflowRunStatus(workflowRun._id, WorkflowRunStatus.failed)
 
+    // if the trigger was disabled and user is subscribed to notifications, send an email
     if (trigger && !trigger.enabled && workflowRun.startedBy !== WorkflowRunStartedByOptions.user) {
       const user = await this.userService.findById(workflow.owner._id.toString())
       if (user?.email && user.verified && user.subscribedToNotifications) {
@@ -122,6 +128,8 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
         await this.emailService.sendEmailTemplate(template, user.email)
       }
     }
+
+    return workflowRun
   }
 
   async addRunningAction(

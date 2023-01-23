@@ -111,35 +111,24 @@ describe('WorkflowRunService', () => {
     })
   })
 
-  describe('markTriggerAsCompleted', () => {
-    it('should mark the trigger as completed and the workflow as not triggered', async () => {
-      const workflowRun = await mock.createWorkflowRunDeep({
+  describe('createCompletedTriggerRun', () => {
+    it('should create a workflow run with a completed trigger', async () => {
+      const integration = await mock.createIntegration()
+      const integrationTrigger = await mock.createIntegrationTrigger({ integration })
+      const workflowTrigger = await mock.createWorkflowTriggerDeep({ integrationTrigger })
+      const workflowRunData = {
+        owner: workflowTrigger.owner,
+        workflow: workflowTrigger.workflow,
+        status: WorkflowRunStatus.running,
+        startedBy: WorkflowRunStartedByOptions.trigger,
         triggerRun: {
-          integrationName: 'test',
-          operationName: 'test',
-          workflowTrigger: new ObjectID(),
+          integrationName: integration.name,
+          operationName: integrationTrigger.name,
+          workflowTrigger: workflowTrigger._id,
           status: WorkflowRunStatus.running,
         },
-      })
-      await service.markTriggerAsCompleted(new ObjectID(), workflowRun._id, false, ['123'])
-      const updated = await service.findById(workflowRun.id)
-      expect(updated?.operationsUsed).toBe(1)
-      expect(updated?.status).toBe(WorkflowRunStatus.completed)
-      expect(updated?.triggerRun.status).toBe(WorkflowRunStatus.completed)
-      expect(updated?.triggerRun.workflowTriggered).toBe(false)
-      expect(updated?.triggerRun.triggerIds).toEqual(['123'])
-    })
-
-    it('should mark the trigger as completed and the workflow as triggered', async () => {
-      const workflowRun = await mock.createWorkflowRunDeep({
-        triggerRun: {
-          integrationName: 'test',
-          operationName: 'test',
-          workflowTrigger: new ObjectID(),
-          status: WorkflowRunStatus.running,
-        },
-      })
-      await service.markTriggerAsCompleted(new ObjectID(), workflowRun._id, true, ['123'])
+      }
+      const workflowRun = await service.createCompletedTriggerRun(workflowTrigger.owner._id, workflowRunData, ['123'])
       const updated = await service.findById(workflowRun.id)
       expect(updated?.operationsUsed).toBe(1)
       expect(updated?.status).toBe(WorkflowRunStatus.running)
@@ -149,18 +138,25 @@ describe('WorkflowRunService', () => {
     })
   })
 
-  describe('markTriggerAsFailed', () => {
-    it('should mark the trigger and run as failed', async () => {
+  describe('createFailedTriggerRun', () => {
+    it('should create a workflow run with a failed trigger', async () => {
+      const integration = await mock.createIntegration()
+      const integrationTrigger = await mock.createIntegrationTrigger({ integration })
       const workflow = await mock.createWorkflow()
-      const workflowRun = await mock.createWorkflowRunDeep({
+      const workflowTrigger = await mock.createWorkflowTriggerDeep({ integrationTrigger, workflow })
+      const workflowRunData = {
+        owner: workflowTrigger.owner,
+        workflow: workflowTrigger.workflow,
+        status: WorkflowRunStatus.running,
+        startedBy: WorkflowRunStartedByOptions.trigger,
         triggerRun: {
-          integrationName: 'test',
-          operationName: 'test',
-          workflowTrigger: new ObjectID(),
+          integrationName: integration.name,
+          operationName: integrationTrigger.name,
+          workflowTrigger: workflowTrigger._id,
           status: WorkflowRunStatus.running,
         },
-      })
-      await service.markTriggerAsFailed(workflow, workflowRun, 'error message', 'response')
+      }
+      const workflowRun = await service.createFailedTriggerRun(workflow, workflowRunData, 'error message', 'response')
       const updated = await service.findById(workflowRun.id)
       expect(updated?.operationsUsed).toBe(1)
       expect(updated?.status).toBe(WorkflowRunStatus.failed)

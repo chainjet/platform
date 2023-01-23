@@ -68,6 +68,10 @@ export class WorkflowTrigger extends BaseEntity {
   @prop({ index: true })
   nextCheck?: Date
 
+  @Field({ nullable: true })
+  @prop()
+  lastCheck?: Date
+
   @Field(() => GraphQLJSONObject, { nullable: true })
   @prop({ type: Schema.Types.Mixed })
   schedule?: TriggerSchedule

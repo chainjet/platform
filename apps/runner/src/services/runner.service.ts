@@ -103,7 +103,8 @@ export class RunnerService {
       return
     }
 
-    const workflowRun = await this.workflowRunService.createOne({
+    // only create WorkflowRun if the workflow is triggered or if there is an error in the trigger
+    const workflowRunData: Partial<WorkflowRun> = {
       owner: workflowTrigger.owner,
       workflow: workflowTrigger.workflow,
       status: WorkflowRunStatus.running,
@@ -114,19 +115,23 @@ export class RunnerService {
         workflowTrigger: workflowTrigger._id,
         status: WorkflowRunStatus.running,
       },
-    })
+    }
 
     const { credentials, accountCredential, integrationAccount } = await this.getCredentialsAndIntegrationAccount(
       workflowTrigger.credentials?.toString(),
       workflowTrigger.owner.toString(),
-      () => this.onTriggerFailure(workflow, workflowRun, 'Credentials not found'),
+      async () => {
+        workflowTrigger.credentials?.toString(),
+          await this.onTriggerFailure(workflow, workflowTrigger, workflowRunData, 'Credentials not found')
+      },
     )
 
     let inputs: Record<string, unknown>
     try {
       inputs = parseStepInputs({ ...workflowTrigger.inputs }, {})
     } catch (e) {
-      await this.onTriggerFailure(workflow, workflowRun, `Invalid inputs (${e.message})`)
+      workflowTrigger.credentials?.toString(),
+        await this.onTriggerFailure(workflow, workflowTrigger, workflowRunData, `Invalid inputs (${e.message})`)
       this.logger.error(
         `Parse step inputs for trigger ${workflowTrigger.id} for workflow ${workflow.id} failed with error ${e.message}`,
       )
@@ -168,7 +173,15 @@ export class RunnerService {
       if (!error || error.toString() === '[object Object]') {
         error = e.message
       }
-      await this.onTriggerFailure(workflow, workflowRun, error?.toString(), e.response?.text || undefined, inputs)
+      workflowTrigger.credentials?.toString(),
+        await this.onTriggerFailure(
+          workflow,
+          workflowTrigger,
+          workflowRunData,
+          error?.toString(),
+          e.response?.text || undefined,
+          inputs,
+        )
       this.logger.error(
         `Run WorkflowTrigger ${workflowTrigger.id} for workflow ${workflow.id} failed with error ${error}`,
       )
@@ -224,24 +237,26 @@ export class RunnerService {
       newItems = newItems.slice(0, workflowTrigger.maxItemsPerRun)
     }
 
+    // If there are no new items, update the trigger, increase operations used and return. There is no need to create a workflow run.
     if (newItems.length === 0) {
-      this.logger.debug(`Trigger condition not satisfied for trigger ${workflowTrigger.id}`)
-      await this.workflowRunService.markTriggerAsCompleted(userId, workflowRun._id, false, triggerIds.slice(0, 1))
-
+      this.logger.debug(`Trigger condition not satisfied for trigger ${workflowTrigger.id} on workflow ${workflow.id}`)
+      await this.userService.incrementOperationsUsed(userId)
       await this.workflowTriggerService.updateOneNative(
         { _id: workflowTrigger._id },
         {
+          lastCheck: new Date(),
           store: runResponse.store,
           ...(runResponse.nextCheck !== undefined
             ? { nextCheck: runResponse.nextCheck, enabled: !!runResponse.nextCheck }
             : {}),
         },
       )
-
       return
     }
 
-    this.logger.log(`Trigger condition satisfied for trigger ${workflowTrigger.id} with ${newItems.length} items`)
+    this.logger.log(
+      `Trigger condition satisfied for trigger ${workflowTrigger.id} with ${newItems.length} items on workflow ${workflow.id}`,
+    )
 
     // Populate triggered items if x-triggerPopulate is set
     if (integrationTrigger.triggerPopulate?.operationId) {
@@ -281,10 +296,9 @@ export class RunnerService {
       } catch (e) {}
     }
 
-    await this.workflowRunService.markTriggerAsCompleted(
+    const workflowRun = await this.workflowRunService.createCompletedTriggerRun(
       userId,
-      workflowRun._id,
-      true,
+      workflowRunData,
       createdItems.map((item) => item.id.toString()),
     )
 
@@ -294,6 +308,7 @@ export class RunnerService {
       {
         lastId: triggerIds[0],
         lastItem: triggerItems[0]?.item ?? {},
+        lastCheck: new Date(),
         store: runResponse.store,
         ...(runResponse.nextCheck !== undefined
           ? { nextCheck: runResponse.nextCheck, enabled: !!runResponse.nextCheck }
@@ -592,12 +607,25 @@ export class RunnerService {
 
   private async onTriggerFailure(
     workflow: Workflow,
-    workflowRun: WorkflowRun,
+    workflowTrigger: WorkflowTrigger,
+    workflowRunData: Partial<WorkflowRun>,
     errorMessage: string | undefined,
     errorResponse?: string,
     inputs?: Record<string, any>,
   ): Promise<void> {
-    await this.workflowRunService.markTriggerAsFailed(workflow, workflowRun, errorMessage, errorResponse, inputs)
+    const workflowRun = await this.workflowRunService.createFailedTriggerRun(
+      workflow,
+      workflowRunData,
+      errorMessage,
+      errorResponse,
+      inputs,
+    )
+    await this.workflowTriggerService.updateOneNative(
+      { _id: workflowTrigger._id },
+      {
+        lastCheck: new Date(),
+      },
+    )
     await this.runWorkflowOnFailure(workflow._id, workflowRun, errorMessage, errorResponse, inputs)
   }
 
