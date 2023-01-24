@@ -48,6 +48,7 @@ import { MoralisDefinition } from './integration-definitions/moralis.definition'
 import { NotionDefinition } from './integration-definitions/notion/notion.definition'
 import { OptimisticEtherscanDefinition } from './integration-definitions/optimistic-etherscan.definition'
 import { PolygonscanDefinition } from './integration-definitions/polygonscan.definition'
+import { PricesDefinition } from './integration-definitions/prices/prices.definition'
 import { RedditDefinition } from './integration-definitions/reddit.definition'
 import { RssDefinition } from './integration-definitions/rss.definition'
 import { ScheduleDefinition } from './integration-definitions/schedule.definition'
@@ -125,6 +126,7 @@ export class IntegrationDefinitionFactory {
     // pagerduty: PagerdutyDefinition,
     // pancakeswap: PancakeSwapDefinition,
     polygonscan: PolygonscanDefinition,
+    prices: PricesDefinition,
     reddit: RedditDefinition,
     rss: RssDefinition,
     schedule: ScheduleDefinition,
