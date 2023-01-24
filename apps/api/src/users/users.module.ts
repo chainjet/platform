@@ -1,3 +1,4 @@
+import { CommonModule } from '@app/common'
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { Module } from '@nestjs/common'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
@@ -17,6 +18,7 @@ import { UserService } from './services/user.service'
     }),
     AuthModule, // required for GraphqlGuard
     EmailsModule,
+    CommonModule,
   ],
   providers: [UserResolver, UserService, UserAuthorizer, MigrationResolver],
   exports: [UserService],

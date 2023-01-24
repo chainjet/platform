@@ -2,6 +2,21 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type User {
+  id: ID!
+  createdAt: DateTime!
+  email: String
+  operationsUsedMonth: Int!
+  name: String
+  subscribedToNotifications: Boolean!
+  subscribedToNewsletter: Boolean!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type IntegrationAccount {
   id: ID!
   createdAt: DateTime!
@@ -11,11 +26,6 @@ type IntegrationAccount {
   authType: IntegrationAuthType!
   fieldsSchema: JSONObject
 }
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
 
 """Authentication strategy"""
 enum IntegrationAuthType {
@@ -390,16 +400,6 @@ type IntegrationTriggersConnection {
 
   """Array of edges."""
   edges: [IntegrationTriggerEdge!]!
-}
-
-type User {
-  id: ID!
-  createdAt: DateTime!
-  email: String
-  operationsUsedMonth: Int!
-  name: String
-  subscribedToNotifications: Boolean!
-  subscribedToNewsletter: Boolean!
 }
 
 type AccountCredential {

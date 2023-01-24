@@ -725,6 +725,16 @@ export interface WorkflowTriggerDeleteFilter {
     workflow?: Nullable<IDFilterComparison>;
 }
 
+export interface User {
+    id: string;
+    createdAt: DateTime;
+    email?: Nullable<string>;
+    operationsUsedMonth: number;
+    name?: Nullable<string>;
+    subscribedToNotifications: boolean;
+    subscribedToNewsletter: boolean;
+}
+
 export interface IntegrationAccount {
     id: string;
     createdAt: DateTime;
@@ -863,16 +873,6 @@ export interface IntegrationActionsConnection {
 export interface IntegrationTriggersConnection {
     pageInfo: PageInfo;
     edges: IntegrationTriggerEdge[];
-}
-
-export interface User {
-    id: string;
-    createdAt: DateTime;
-    email?: Nullable<string>;
-    operationsUsedMonth: number;
-    name?: Nullable<string>;
-    subscribedToNotifications: boolean;
-    subscribedToNewsletter: boolean;
 }
 
 export interface AccountCredential {
