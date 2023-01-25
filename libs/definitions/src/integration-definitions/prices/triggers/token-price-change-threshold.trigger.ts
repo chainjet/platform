@@ -22,7 +22,7 @@ export class TokenPriceChangeThresholdTrigger extends OperationTrigger {
         type: 'string',
       },
       threshold: {
-        title: 'Price Change Threshold',
+        title: 'Price change 24 hours threshold',
         type: 'number',
         description: 'The threshold in percentage (e.g. 5 for 5%)',
       },
