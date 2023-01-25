@@ -1,3 +1,4 @@
+import { CommonModule } from '@app/common'
 import { mongoForRoot } from '@app/common/utils/mongodb'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
@@ -27,6 +28,7 @@ import { PlatformMetricsService } from './platform-metrics.service'
     WorkflowTriggersModule,
     WorkflowActionsModule,
     WorkflowRunsModule,
+    CommonModule,
   ],
   providers: [PlatformMetricsService],
 })

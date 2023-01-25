@@ -1,3 +1,5 @@
+import { UserEventKey } from '@app/common/metrics/entities/user-event'
+import { UserEventService } from '@app/common/metrics/user-event.service'
 import { Injectable, Logger } from '@nestjs/common'
 import { WorkflowRunService } from 'apps/api/src/workflow-runs/services/workflow-run.service'
 import { WorkflowTriggerService } from 'apps/api/src/workflow-triggers/services/workflow-trigger.service'
@@ -13,6 +15,7 @@ export class PlatformMetricsService {
     private readonly workflowTriggerService: WorkflowTriggerService,
     private readonly workflowRunService: WorkflowRunService,
     private readonly workflowService: WorkflowService,
+    private readonly userEventService: UserEventService,
   ) {}
 
   async onModuleInit() {
@@ -71,44 +74,28 @@ export class PlatformMetricsService {
     console.log(`workflowsPerDay`, workflowsPerDay)
   }
 
-  async getActiveUsers() {
-    // request to get the number of active users per day trailing 7 days
-    const resPerDay = await this.workflowRunService.aggregateNative([
-      // Group the workflow runs by user and week, and count the number of workflow runs per group
-      {
-        $group: {
-          _id: {
-            user: '$owner',
-            week: {
-              $isoWeek: '$_id',
-            },
-          },
-          count: { $sum: 1 },
-        },
-      },
-      // Only include groups that have more than 0 workflow runs
-      {
-        $match: {
-          count: { $gt: 0 },
-        },
-      },
-      // Group the results by week and count the number of active users per week
-      {
-        $group: {
-          _id: '$_id.week',
-          activeUsers: { $sum: 1 },
-        },
-      },
-      // Sort the results in descending order by week
-      {
-        $sort: {
-          _id: -1,
-        },
-      },
-    ])
+  async getActiveUsers(trailingDays: number = 30) {
+    const events = await this.userEventService.find({ key: UserEventKey.OPERATION_SUCCEDED })
+    const sortedEvents = events.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
 
-    for (const res of resPerDay) {
-      console.log(`There were ${res.activeUsers} active users in week ${res._id}`)
+    const lastEventDate = new Date(sortedEvents[sortedEvents.length - 1].date)
+    const iteratorDate = new Date(sortedEvents[0].date)
+    while (iteratorDate <= lastEventDate) {
+      const trailingDate = new Date(iteratorDate.getTime())
+      trailingDate.setDate(trailingDate.getDate() - trailingDays)
+
+      const eventsTrailing = sortedEvents.filter(
+        (e) => new Date(e.date) >= trailingDate && new Date(e.date) <= iteratorDate,
+      )
+      const uniqueUsers = eventsTrailing.reduce((acc: string[], curr) => {
+        if (!acc.includes(curr.user._id.toString())) {
+          acc.push(curr.user._id.toString())
+        }
+        return acc
+      }, [])
+      console.log(`${iteratorDate.toISOString().split('T')[0]}: ${uniqueUsers.length}`)
+
+      iteratorDate.setDate(iteratorDate.getDate() + 1)
     }
   }
 
