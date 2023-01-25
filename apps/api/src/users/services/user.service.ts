@@ -25,14 +25,14 @@ export class UserService extends BaseService<User> {
     super(model)
   }
 
-  async incrementOperationsUsed(userId: ObjectId): Promise<void> {
+  async incrementOperationsUsed(userId: ObjectId, success: boolean): Promise<void> {
     await this.updateById(userId, {
       $inc: {
         operationsUsedMonth: 1,
         operationsUsedTotal: 1,
       },
     })
-    await this.userEventService.log(userId, UserEventKey.OPERATION_RAN)
+    await this.userEventService.log(userId, success ? UserEventKey.OPERATION_SUCCEDED : UserEventKey.OPERATION_FAILED)
   }
 
   async updateOne(id: string, record: DeepPartial<User>, opts?: UpdateOneOptions<User>): Promise<User> {

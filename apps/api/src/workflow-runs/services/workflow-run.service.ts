@@ -67,7 +67,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
         finishedAt: new Date(),
       },
     })
-    await this.userService.incrementOperationsUsed(workflow.owner as ObjectId)
+    await this.userService.incrementOperationsUsed(workflow.owner as ObjectId, true)
     return workflowRun
   }
 
@@ -89,7 +89,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     workflowRunData.operationsUsed = 1
     workflowRunData.status = WorkflowRunStatus.running
     const workflowRun = await this.createOne(workflowRunData)
-    await this.userService.incrementOperationsUsed(userId)
+    await this.userService.incrementOperationsUsed(userId, true)
     return workflowRun
   }
 
@@ -116,7 +116,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     workflowRunData.inputs = inputs
     const workflowRun = await this.createOne(workflowRunData)
 
-    await this.userService.incrementOperationsUsed(new ObjectId(workflow.owner.toString()))
+    await this.userService.incrementOperationsUsed(new ObjectId(workflow.owner.toString()), false)
     const trigger = await this.workflowTriggerService.incrementWorkflowRunFailures(workflowRun.workflow)
     await this.updateWorkflowRunStatus(workflowRun._id, WorkflowRunStatus.failed)
 
@@ -178,7 +178,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
         $inc: { operationsUsed: 1 },
       },
     )
-    await this.userService.incrementOperationsUsed(userId)
+    await this.userService.incrementOperationsUsed(userId, true)
   }
 
   // TODO only increase operations used if failed was because of a client issue
@@ -203,7 +203,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
         $inc: { operationsUsed: 1 },
       },
     )
-    await this.userService.incrementOperationsUsed(new ObjectId(workflow.owner.toString()))
+    await this.userService.incrementOperationsUsed(new ObjectId(workflow.owner.toString()), false)
     const trigger = await this.workflowTriggerService.incrementWorkflowRunFailures(workflowRun.workflow)
     await this.updateWorkflowRunStatus(workflowRun._id, WorkflowRunStatus.failed)
 

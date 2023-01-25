@@ -4,7 +4,8 @@ import { Index, prop } from '@typegoose/typegoose'
 import { User } from 'apps/api/src/users/entities/user'
 
 export enum UserEventKey {
-  OPERATION_RAN,
+  OPERATION_SUCCEDED,
+  OPERATION_FAILED,
 }
 
 @Index({ user: 1, key: 1, date: 1 }, { unique: true })

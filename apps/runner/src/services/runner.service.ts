@@ -240,7 +240,7 @@ export class RunnerService {
     // If there are no new items, update the trigger, increase operations used and return. There is no need to create a workflow run.
     if (newItems.length === 0) {
       this.logger.debug(`Trigger condition not satisfied for trigger ${workflowTrigger.id} on workflow ${workflow.id}`)
-      await this.userService.incrementOperationsUsed(userId)
+      await this.userService.incrementOperationsUsed(userId, true)
       await this.workflowTriggerService.updateOneNative(
         { _id: workflowTrigger._id },
         {
