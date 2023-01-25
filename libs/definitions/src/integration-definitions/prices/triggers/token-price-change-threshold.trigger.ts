@@ -11,10 +11,10 @@ export class TokenPriceChangeThresholdTrigger extends OperationTrigger {
   name = 'Token Price Change Threshold'
   description =
     'Triggers when the price change of a token in the last 24 hours is above/below a given threshold. The workflow is triggered up to 1 time every 24hs.'
-  version = '1.0.0'
+  version = '1.1.0'
 
   inputs: JSONSchema7 = {
-    required: ['network', 'address', 'threshold', 'direction'],
+    required: ['network', 'address', 'threshold'],
     properties: {
       network: APIREUM_NETWORK_FIELD,
       address: {
@@ -22,17 +22,9 @@ export class TokenPriceChangeThresholdTrigger extends OperationTrigger {
         type: 'string',
       },
       threshold: {
-        title: 'Price change 24 hours threshold',
+        title: 'Move percentage to trigger the workflow',
         type: 'number',
-        description: 'The threshold in percentage (e.g. 5 for 5%)',
-      },
-      direction: {
-        title: 'Trigger when the price is above or below the threshold',
-        type: 'string',
-        oneOf: [
-          { title: 'Above Threshold', const: 'above' },
-          { title: 'Below Threshold', const: 'below' },
-        ],
+        description: 'The threshold in percentage (e.g. 5 for 5%/-5%)',
       },
     },
   }
@@ -58,10 +50,7 @@ export class TokenPriceChangeThresholdTrigger extends OperationTrigger {
     const res = await fetch(url)
     const json = await res.json()
     const data = json.data
-    if (
-      (data.priceChange24h > inputs.threshold && inputs.direction === 'above') ||
-      (data.priceChange24h < inputs.threshold && inputs.direction === 'below')
-    ) {
+    if (Math.abs(data.priceChange24h) > inputs.threshold) {
       return {
         outputs: {
           items: [
