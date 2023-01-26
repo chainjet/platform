@@ -80,7 +80,6 @@ export class CheckPromptModerationAction extends OperationOffChain {
       }),
     })
     const json = await res.json()
-    console.log(`json:`, JSON.stringify(json, null, 2))
     return {
       outputs: {
         id: json.id,
