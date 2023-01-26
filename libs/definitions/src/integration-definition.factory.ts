@@ -46,6 +46,7 @@ import { MoonbeamMoonscanDefinition } from './integration-definitions/moonbeam-m
 import { MoonriverMoonscanDefinition } from './integration-definitions/moonriver-moonscan.definition'
 import { MoralisDefinition } from './integration-definitions/moralis.definition'
 import { NotionDefinition } from './integration-definitions/notion/notion.definition'
+import { OpenAiDefinition } from './integration-definitions/openai/openai.definition'
 import { OptimisticEtherscanDefinition } from './integration-definitions/optimistic-etherscan.definition'
 import { PolygonscanDefinition } from './integration-definitions/polygonscan.definition'
 import { PricesDefinition } from './integration-definitions/prices/prices.definition'
@@ -122,6 +123,7 @@ export class IntegrationDefinitionFactory {
     'moonriver-moonscan': MoonriverMoonscanDefinition,
     moralis: MoralisDefinition,
     notion: NotionDefinition,
+    openai: OpenAiDefinition,
     'optimistic-etherscan': OptimisticEtherscanDefinition,
     // pagerduty: PagerdutyDefinition,
     // pancakeswap: PancakeSwapDefinition,
