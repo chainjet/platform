@@ -6,7 +6,7 @@ import { JSONSchema7 } from 'json-schema'
 export class CheckPromptModerationAction extends OperationOffChain {
   key = 'checkPromptModeration'
   name = 'Check Prompt Moderation'
-  description = "Given a input text, outputs if the model classifies it as violating OpenAI's content policy"
+  description = "Given a input text, outputs if the model classifies it as violating OpenAI's content policy."
   version = '1.0.0'
   inputs: JSONSchema7 = {
     required: ['prompt'],

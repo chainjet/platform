@@ -6,11 +6,19 @@ import { JSONSchema7 } from 'json-schema'
 export class SendPromptAction extends OperationOffChain {
   key = 'sendPrompt'
   name = 'Send Prompt'
-  description = 'Generates a completion from a given prompt'
+  description =
+    'Generates a text completion from any prompt. Use it for text generation, summarization, question answering, and more.'
   version = '1.0.0'
   inputs: JSONSchema7 = {
-    required: ['model', 'prompt', 'temperature', 'maxTokens', 'presencePenalty', 'frequencyPenalty'],
+    required: ['prompt', 'model', 'temperature', 'maxTokens', 'presencePenalty', 'frequencyPenalty'],
     properties: {
+      prompt: {
+        title: 'Prompt',
+        type: 'string',
+        description:
+          'The text to generate a completion from. [Learn more](https://beta.openai.com/docs/guides/completion/introduction) or [try it out](https://beta.openai.com/playground).',
+        'x-ui:widget': 'textarea',
+      } as JSONSchema7,
       model: {
         title: 'Model',
         type: 'string',
@@ -30,14 +38,8 @@ export class SendPromptAction extends OperationOffChain {
           'ada',
         ],
         description:
-          '**text-davinci-003** is the most capable model. **text-curie-001** is a faster and cheaper option. [Learn More.](https://beta.openai.com/docs/models/gpt-3)',
+          '**text-davinci-003** is the most capable model. **text-curie-001** is a faster and cheaper option. [Learn more.](https://beta.openai.com/docs/models/gpt-3)',
       },
-      prompt: {
-        title: 'Prompt',
-        type: 'string',
-        description: 'The prompt to generate a completion from.',
-        'x-ui:widget': 'textarea',
-      } as JSONSchema7,
       temperature: {
         title: 'Temperature',
         type: 'number',
@@ -52,7 +54,7 @@ export class SendPromptAction extends OperationOffChain {
         type: 'number',
         default: 256,
         description:
-          'The maximum number of tokens to generate. 100 tokens are approximately 75 words. [Learn More.](https://beta.openai.com/tokenizer)',
+          'The maximum number of tokens to generate. 100 tokens are approximately 75 words. [Learn more.](https://beta.openai.com/tokenizer)',
       },
       stop: {
         title: 'Stop Sequences',

@@ -5,8 +5,8 @@ import { JSONSchema7 } from 'json-schema'
 
 export class GenerateImageAction extends OperationOffChain {
   key = 'generateImage'
-  name = 'Generate Image with DALL-E'
-  description = 'Generates an image from a given prompt using DALL-E'
+  name = 'Generate Image From Text'
+  description = 'Generates an image from any prompt (using DALL-E model).'
   version = '1.0.0'
   inputs: JSONSchema7 = {
     required: ['prompt', 'size', 'n'],

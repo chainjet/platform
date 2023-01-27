@@ -6,7 +6,7 @@ import { JSONSchema7 } from 'json-schema'
 export class EditPromptAction extends OperationOffChain {
   key = 'editPrompt'
   name = 'Edit Prompt'
-  description = 'Edits a prompt using an instruction'
+  description = 'Edits a text using an instruction. It can be used for spell checking, grammar correction, and more.'
   version = '1.0.0'
   inputs: JSONSchema7 = {
     required: ['prompt'],
