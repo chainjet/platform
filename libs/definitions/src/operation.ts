@@ -16,6 +16,7 @@ export abstract class Operation {
   asyncSchemas: AsyncSchema[] = []
   deprecated = false
   skipAuth = false
+  pinned = false
   learnResponseIntegration = false
   learnResponseWorkflow = false
   metadata: object

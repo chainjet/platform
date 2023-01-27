@@ -54,6 +54,10 @@ export class IntegrationAction extends BaseEntity {
   @prop({ default: false })
   skipAuth?: boolean
 
+  @Field({ defaultValue: false })
+  @prop({ default: false })
+  pinned?: boolean
+
   /**
    * Operation ID on the OpenAPI 3 schema
    */

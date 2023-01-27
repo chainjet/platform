@@ -780,6 +780,7 @@ export interface IntegrationTrigger {
     deprecated: boolean;
     category?: Nullable<string>;
     skipAuth: boolean;
+    pinned: boolean;
     schemaRequest: JSONObject;
     schemaResponse?: Nullable<JSONObject>;
     instant: boolean;
@@ -825,6 +826,7 @@ export interface IntegrationAction {
     category?: Nullable<string>;
     type: OperationType;
     skipAuth: boolean;
+    pinned: boolean;
     schemaRequest: JSONObject;
     schemaResponse?: Nullable<JSONObject>;
 }
