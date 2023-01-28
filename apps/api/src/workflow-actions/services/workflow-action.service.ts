@@ -59,6 +59,16 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
       }
     }
 
+    const integrationAction = await this.integrationActionService.findById(record.integrationAction.toString())
+    if (!integrationAction) {
+      throw new NotFoundException('Integration action not found')
+    }
+    record.type = integrationAction.type
+    const integration = await this.integrationService.findById(integrationAction.integration.toString())
+    if (!integration) {
+      throw new NotFoundException(`Integration ${integrationAction.integration} not found`)
+    }
+
     // Verify previous action exists and belongs to the same workflow
     let previousAction: WorkflowAction | undefined
     if (record.previousAction) {
@@ -84,21 +94,16 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
         throw new NotFoundException('Action not found')
       }
       record.nextActions = [{ action: nextAction._id }]
+
+      // If adding a decision before an action, default the condition branch to true
+      if (integration.key === 'logic' && integrationAction.key === 'decision') {
+        record.nextActions[0].condition = 'true'
+      }
     }
 
     // Mark the action as first action
     if (!previousAction) {
       record.isRootAction = true
-    }
-
-    const integrationAction = await this.integrationActionService.findById(record.integrationAction.toString())
-    if (!integrationAction) {
-      throw new NotFoundException('Integration action not found')
-    }
-    record.type = integrationAction.type
-    const integration = await this.integrationService.findById(integrationAction.integration.toString())
-    if (!integration) {
-      throw new NotFoundException(`Integration ${integrationAction.integration} not found`)
     }
 
     this.logger.log(`Creating workflow action for ${integration.key} - ${integrationAction.key} by ${record.owner}`)
