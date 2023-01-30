@@ -24,6 +24,11 @@ export class NotionDefinition extends PipedreamMixin(SingleIntegrationDefinition
     })
   }
 
+  // TODO notion refresh credentials always fails
+  async refreshCredentials(credentials: Record<string, any>): Promise<Record<string, any>> {
+    return {}
+  }
+
   async getOperation(type: string, key: string) {
     const op = await import(`../../../../../dist/pipedream/components/notion/${type}/${key}/${key}.mjs`)
     return op.default
