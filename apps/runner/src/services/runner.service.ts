@@ -510,6 +510,9 @@ export class RunnerService {
 
     // Filter out actions with conditions not met
     const nextActions = (workflowAction.nextActions ?? []).filter((nextAction) => {
+      if (runResponse.stop) {
+        return false
+      }
       if (!nextAction.condition) {
         return true
       }

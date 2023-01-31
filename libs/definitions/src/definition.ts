@@ -53,6 +53,7 @@ export interface RunResponse {
   refreshedCredentials?: Record<string, any>
   transactions?: Array<{ hash: string; chainId: number }>
   nextCheck?: Date | null // null disables the trigger
+  stop?: boolean // if true, stop the workflow
 }
 
 export type GetAsyncSchemasProps = OperationRunOptions & {
