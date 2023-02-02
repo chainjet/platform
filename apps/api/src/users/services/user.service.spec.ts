@@ -1,3 +1,4 @@
+import { CommonModule } from '@app/common'
 import { Test, TestingModule } from '@nestjs/testing'
 import { TypegooseModule } from 'nestjs-typegoose'
 import { SecurityUtils } from '../../../../../libs/common/src/utils/security.utils'
@@ -15,7 +16,7 @@ describe('UserService', () => {
 
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([User]), MockModule],
+      imports: [TypegooseModule.forFeature([User]), MockModule, CommonModule],
       providers: [UserService],
     }).compile()
 
@@ -44,7 +45,7 @@ describe('UserService', () => {
       const user = await mock.createUser()
       expect(user.operationsUsedTotal).toBe(0)
       expect(user.operationsUsedMonth).toBe(0)
-      await service.incrementOperationsUsed(user._id)
+      await service.incrementOperationsUsed(user._id, true)
       const updatedUser = await service.findById(user.id)
       expect(updatedUser?.operationsUsedTotal).toBe(1)
       expect(updatedUser?.operationsUsedMonth).toBe(1)

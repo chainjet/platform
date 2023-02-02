@@ -1,3 +1,4 @@
+import { CommonModule } from '@app/common'
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { Test, TestingModule } from '@nestjs/testing'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
@@ -22,6 +23,7 @@ describe('UserResolver', () => {
           dtos: [{ DTOClass: User }],
         }),
         MockModule,
+        CommonModule,
       ],
       providers: [UserResolver, UserService, UserAuthorizer],
     }).compile()
