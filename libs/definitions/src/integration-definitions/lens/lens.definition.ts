@@ -8,6 +8,7 @@ import { LikePostAction } from './actions/like-post.action'
 import { refreshLensAccessToken } from './lens.common'
 import { NewCollectionTrigger } from './triggers/new-collection.trigger'
 import { NewFollowerTrigger } from './triggers/new-follower.trigger'
+import { NewMentionChainJetBotTrigger } from './triggers/new-mention-chainjetbot.trigger'
 import { NewMentionTrigger } from './triggers/new-mention.trigger'
 import { NewPostTrigger } from './triggers/new-post.trigger'
 
@@ -16,7 +17,13 @@ export class LensDefinition extends SingleIntegrationDefinition {
   integrationVersion = '1'
   schemaUrl = null
 
-  triggers = [new NewFollowerTrigger(), new NewPostTrigger(), new NewMentionTrigger(), new NewCollectionTrigger()]
+  triggers = [
+    new NewFollowerTrigger(),
+    new NewPostTrigger(),
+    new NewMentionTrigger(),
+    new NewCollectionTrigger(),
+    new NewMentionChainJetBotTrigger(),
+  ]
   actions = [
     new FollowProfileAction(),
     new CreatePostAction(),

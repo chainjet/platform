@@ -12,6 +12,7 @@ import { UsersModule } from '../users/users.module'
 import { WorkflowActionsModule } from '../workflow-actions/workflow-actions.module'
 import { WorkflowRunsModule } from '../workflow-runs/workflow-runs.module'
 import { WorkflowsModule } from '../workflows/workflows.module'
+import { ChainJetBotController } from './controllers/chainjetbot.controller'
 import { HooksController } from './controllers/hooks.controller'
 import { WorkflowTrigger, WorkflowTriggerAuthorizer } from './entities/workflow-trigger'
 import { WorkflowUsedId } from './entities/workflow-used-id'
@@ -44,6 +45,6 @@ import { WorkflowUsedIdService } from './services/workflow-used-id.service'
   ],
   providers: [WorkflowTriggerResolver, WorkflowTriggerService, WorkflowTriggerAuthorizer, WorkflowUsedIdService],
   exports: [WorkflowTriggerService, WorkflowUsedIdService],
-  controllers: [HooksController],
+  controllers: [HooksController, ChainJetBotController],
 })
 export class WorkflowTriggersModule {}
