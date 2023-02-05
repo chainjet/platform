@@ -104,6 +104,14 @@ export class NewMentionTrigger extends OperationTrigger {
             description: 'Whether the logged user can comment on the post',
             type: 'boolean',
           },
+          mainPost: {
+            type: 'object',
+            properties: {
+              id: {
+                type: 'string',
+              },
+            },
+          },
         },
       },
     },
@@ -166,6 +174,14 @@ export class NewMentionTrigger extends OperationTrigger {
                 }
                 ... on Comment {
                   ${postOrCommentQuery}
+                  mainPost {
+                    ... on Post {
+                      id
+                    }
+                    ... on Mirror {
+                       id
+                    }
+                  }
                 }
               }
             }
