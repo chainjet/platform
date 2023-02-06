@@ -28,7 +28,7 @@ export class ChainJetBotController {
 
   @Post('/v1/chainjetbot')
   async processChainJetBotMention(@Req() req: Request) {
-    this.logger.log('Received webhook from ChainJetBot')
+    this.logger.log(`Received webhook from ChainJetBot ${JSON.stringify(req.body)}`)
     const { headers, body } = req
 
     // validate bearer token
