@@ -28,7 +28,7 @@ export class ChainJetBotController {
 
   @Post('/v1/chainjetbot')
   async processChainJetBotMention(@Req() req: Request) {
-    this.logger.log(`Received webhook from ChainJetBot ${JSON.stringify(req.body)}`)
+    this.logger.log(`Received webhook for ChainJetBot ${JSON.stringify(req.body)}`)
     const { headers, body } = req
 
     // validate bearer token
@@ -58,7 +58,7 @@ export class ChainJetBotController {
       integrationTrigger: botMentionIntegrationTrigger!.id,
     })
 
-    const content = body.content.replace('@ChainJetBot', '').trim()
+    const content = body.content.replace(/@ChainJetBot/i, '').trim()
     const matchingTriggers = workflowTriggers.filter(
       (trigger) => trigger.inputs?.startsWith && content.startsWith(trigger.inputs.startsWith),
     )
@@ -71,7 +71,7 @@ export class ChainJetBotController {
     for (const trigger of matchingTriggers) {
       const outputs = {
         id: body.mentionId,
-        mention: body.content.replace(new RegExp(`\\s*@ChainJetBot\\s+${trigger.inputs!.startsWith}`), '').trim(),
+        mention: body.content.replace(new RegExp(`\\s*@ChainJetBot\\s+${trigger.inputs!.startsWith}`, 'i'), '').trim(),
         fullContent: body.content,
         mainPost: body.mainPost,
       }
