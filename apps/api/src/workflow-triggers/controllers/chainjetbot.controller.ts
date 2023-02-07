@@ -56,9 +56,10 @@ export class ChainJetBotController {
     const workflowTriggers = await this.workflowTriggerService.find({
       owner: user._id.toString(),
       integrationTrigger: botMentionIntegrationTrigger!.id,
+      enabled: true,
     })
 
-    const content = body.content.replace(/@ChainJetBot/i, '').trim()
+    const content = body.content.replace(/@ChainJetBot\.lens/i, '').trim()
     const matchingTriggers = workflowTriggers.filter(
       (trigger) => trigger.inputs?.startsWith && content.startsWith(trigger.inputs.startsWith),
     )
@@ -71,7 +72,9 @@ export class ChainJetBotController {
     for (const trigger of matchingTriggers) {
       const outputs = {
         id: body.mentionId,
-        mention: body.content.replace(new RegExp(`\\s*@ChainJetBot\\s+${trigger.inputs!.startsWith}`, 'i'), '').trim(),
+        mention: body.content
+          .replace(new RegExp(`\\s*@ChainJetBot\\.lens\\s+${trigger.inputs!.startsWith}`, 'i'), '')
+          .trim(),
         fullContent: body.content,
         mainPost: body.mainPost,
       }
