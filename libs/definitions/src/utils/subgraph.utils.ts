@@ -130,7 +130,7 @@ export async function sendGraphqlQuery(
   query: string,
   headers: Record<string, any> = {},
 ): Promise<any> {
-  const res = await fetch(endpoint, {
+  const req = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -138,13 +138,14 @@ export async function sendGraphqlQuery(
       ...headers,
     },
     body: JSON.stringify({ query }),
-  })
+  }
+  const res = await fetch(endpoint, req)
   const resClone = res.clone()
   try {
     return await res.json()
   } catch (e) {
     console.log(
-      `Error fetching ${endpoint}. Status: ${res.status} (${res.statusText}). Response: ${(
+      `Error fetching ${endpoint}. Req: ${JSON.stringify(req)}. Status: ${res.status} (${res.statusText}). Response: ${(
         await resClone.text()
       ).replace(/\n/g, '')}`,
     )

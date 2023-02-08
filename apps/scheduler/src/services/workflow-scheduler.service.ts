@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common'
 import { Interval } from '@nestjs/schedule'
+import { WorkflowTrigger } from 'apps/api/src/workflow-triggers/entities/workflow-trigger'
 import { WorkflowRunStartedByOptions } from '../../../api/src/workflow-runs/entities/workflow-run-started-by-options'
 import { WorkflowSleepService } from '../../../api/src/workflow-runs/services/workflow-sleep.service'
 import { WorkflowTriggerService } from '../../../api/src/workflow-triggers/services/workflow-trigger.service'
@@ -40,15 +41,18 @@ export class WorkflowSchedulerService {
       },
     })
 
-    this.logger.log(`Found ${triggers.length} triggers to be checked`)
-
     // Update next check time
+    const triggersToRun: WorkflowTrigger[] = []
     for (const trigger of triggers) {
-      await this.workflowTriggerService.updateNextCheck(trigger)
+      const res = await this.workflowTriggerService.updateNextCheck(trigger)
+      if (res) {
+        triggersToRun.push(trigger)
+      }
     }
 
-    // TODO use a queue
-    const promises = triggers.map((trigger) =>
+    this.logger.log(`Found ${triggersToRun.length} triggers to be checked`)
+
+    const promises = triggersToRun.map((trigger) =>
       this.runnerService.runWorkflowTriggerCheck(trigger, WorkflowRunStartedByOptions.trigger),
     )
     await Promise.all(promises)

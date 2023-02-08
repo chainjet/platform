@@ -4,7 +4,15 @@ import { Injectable, Logger } from '@nestjs/common'
 import { DeepPartial, Filter, Query, UpdateManyResponse, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { mongoose, ReturnModelType } from '@typegoose/typegoose'
 import { ObjectId, UpdateResult } from 'mongodb'
-import { FilterQuery, HydratedDocument, ProjectionType, QueryOptions, UpdateQuery } from 'mongoose'
+import {
+  AggregateOptions,
+  FilterQuery,
+  HydratedDocument,
+  PipelineStage,
+  ProjectionType,
+  QueryOptions,
+  UpdateQuery,
+} from 'mongoose'
 
 @Injectable()
 export abstract class BaseService<T extends BaseEntity> extends TypegooseQueryService<T> {
@@ -131,6 +139,9 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
   }
 
   updateOneNative(conditions: FilterQuery<new () => T>, query: UpdateQuery<new () => T>): Promise<UpdateResult> {
+    if (Number.isFinite(conditions.__v) && !Number.isFinite(query.__v)) {
+      query.__v = conditions.__v + 1
+    }
     return this.model.updateOne(conditions, query).exec()
   }
 
@@ -144,6 +155,10 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
 
   async deleteManyNative(conditions: FilterQuery<new () => T>): Promise<void> {
     await this.model.deleteMany(conditions).exec()
+  }
+
+  aggregateNative(pipeline?: PipelineStage[], options?: AggregateOptions) {
+    return this.model.aggregate(pipeline).exec()
   }
 
   findByIdAndUpdate(

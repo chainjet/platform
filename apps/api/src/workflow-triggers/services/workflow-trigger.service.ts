@@ -342,31 +342,35 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     return deletedEntity
   }
 
-  async updateNextCheck(workflowTrigger: WorkflowTrigger): Promise<void> {
+  async updateNextCheck(workflowTrigger: WorkflowTrigger): Promise<boolean> {
     const integrationTrigger = await this.integrationTriggerService.findById(
       workflowTrigger.integrationTrigger._id.toString(),
     )
+    const __v = (workflowTrigger as any).__v
     if (!integrationTrigger) {
       this.logger.error(`Tring to update nextCheck for ${workflowTrigger.id} but integrationTrigger not found`)
-      await this.updateOneNative({ _id: workflowTrigger._id }, { nextCheck: null, enabled: false })
-      return
+      await this.updateOneNative({ _id: workflowTrigger._id, __v }, { nextCheck: null, enabled: false })
+      return false
     }
 
     // instant triggers don't use next check
     if (integrationTrigger.instant) {
-      return
+      return false
     }
 
     try {
       const nextCheck = this.getTriggerNextCheck(workflowTrigger)
       if (nextCheck && workflowTrigger.nextCheck !== nextCheck) {
-        await this.updateOneNative({ _id: workflowTrigger._id }, { nextCheck })
+        const res = await this.updateOneNative({ _id: workflowTrigger._id, __v }, { nextCheck })
+        return res.modifiedCount === 1
       } else if (!nextCheck) {
-        await this.updateOneNative({ _id: workflowTrigger._id }, { nextCheck: null, enabled: false })
+        await this.updateOneNative({ _id: workflowTrigger._id, __v }, { nextCheck: null, enabled: false })
+        return false
       }
     } catch (e) {
       this.logger.error(`Error updating nextCheck for ${workflowTrigger.id}: ${e.message}`)
     }
+    return false
   }
 
   getTriggerNextCheck(workflowTrigger: WorkflowTrigger, scheduleChanged: boolean = false): Date | null {
