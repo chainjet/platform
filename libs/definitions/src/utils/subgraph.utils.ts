@@ -139,7 +139,17 @@ export async function sendGraphqlQuery(
     },
     body: JSON.stringify({ query }),
   })
-  return await res.json()
+  const resClone = res.clone()
+  try {
+    return await res.json()
+  } catch (e) {
+    console.log(
+      `Error fetching ${endpoint}. Status: ${res.status} (${res.statusText}). Response: ${(
+        await resClone.text()
+      ).replace(/\n/g, '')}`,
+    )
+    throw e
+  }
 }
 
 export async function runSubgraphOperation(
