@@ -1,6 +1,7 @@
 import { isEmptyObj } from '@app/common/utils/object.utils'
 import { capitalize, humanize } from '@app/common/utils/string.utils'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
+import axios from 'axios'
 import { isAddress } from 'ethers/lib/utils'
 import { JSONSchema7 } from 'json-schema'
 import { OpenAPIObject, OperationObject, ParameterObject, SchemaObject } from 'openapi3-ts'
@@ -130,27 +131,19 @@ export async function sendGraphqlQuery(
   query: string,
   headers: Record<string, any> = {},
 ): Promise<any> {
-  const req = {
+  const res = await axios({
     method: 'POST',
+    url: endpoint,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
       ...headers,
     },
-    body: JSON.stringify({ query }),
-  }
-  const res = await fetch(endpoint, req)
-  const resClone = res.clone()
-  try {
-    return await res.json()
-  } catch (e) {
-    console.log(
-      `Error fetching ${endpoint}. Req: ${JSON.stringify(req)}. Status: ${res.status} (${res.statusText}). Response: ${(
-        await resClone.text()
-      ).replace(/\n/g, '')}`,
-    )
-    throw e
-  }
+    data: {
+      query,
+    },
+  })
+  return res.data
 }
 
 export async function runSubgraphOperation(
