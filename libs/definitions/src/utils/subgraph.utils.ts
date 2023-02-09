@@ -130,6 +130,7 @@ export async function sendGraphqlQuery(
   endpoint: string,
   query: string,
   headers: Record<string, any> = {},
+  retries = 1,
 ): Promise<any> {
   const res = await axios({
     method: 'POST',
@@ -143,6 +144,12 @@ export async function sendGraphqlQuery(
       query,
     },
   })
+
+  // retry 5xx errors
+  if (res.status >= 500 && retries) {
+    return sendGraphqlQuery(endpoint, query, headers, retries - 1)
+  }
+
   return res.data
 }
 
