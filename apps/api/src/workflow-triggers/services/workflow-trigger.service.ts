@@ -217,19 +217,6 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       throw new NotFoundException(`Integration ${integrationTrigger.integration} not found`)
     }
 
-    // Verify credentials exists and the user has access to it
-    let accountCredential: AccountCredential | null = null
-    let credentialsId = update.credentials?.toString() ?? workflowTrigger.credentials?.toString()
-    if (credentialsId) {
-      accountCredential = (await this.accountCredentialService.findById(credentialsId)) ?? null
-      if (!accountCredential?.owner || accountCredential.owner.toString() !== workflowTrigger.owner.toString()) {
-        accountCredential = null
-        credentialsId = undefined
-      }
-    }
-
-    const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-
     // only update template settings if update.inputs is defined
     const isTemplate = !update.inputs
       ? workflow.isTemplate
@@ -241,9 +228,27 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
           workflowTrigger.inputs,
         )
 
+    // Verify credentials exists and the user has access to it
+    let accountCredential: AccountCredential | null | undefined
+    let credentialsId = update.credentials?.toString() ?? workflowTrigger.credentials?.toString()
+    if (credentialsId && !isTemplate) {
+      accountCredential = await this.accountCredentialService.findById(credentialsId)
+      if (!accountCredential?.owner || accountCredential.owner.toString() !== workflowTrigger.owner.toString()) {
+        accountCredential = null
+        credentialsId = undefined
+      }
+    }
+
+    const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
+
     const updatedWorkflowTrigger = isTemplate
       ? update
-      : await definition.beforeUpdateWorkflowTrigger(update, workflowTrigger, integrationTrigger, accountCredential)
+      : await definition.beforeUpdateWorkflowTrigger(
+          update,
+          workflowTrigger,
+          integrationTrigger,
+          accountCredential ?? null,
+        )
 
     // test workflow trigger and store outputs
     const testNeeded =
@@ -262,7 +267,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
         integrationAccount,
         inputs: updatedWorkflowTrigger.inputs ?? {},
         credentials: accountCredential?.credentials ?? {},
-        accountCredential,
+        accountCredential: accountCredential ?? null,
         user: {
           id: user.id,
           address: user.address,
@@ -282,8 +287,11 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
 
     const updatedEntity = await super.updateOne(id, updatedWorkflowTrigger, opts)
     if (isTemplate) {
-      await definition.afterUpdateWorkflowTrigger(updatedEntity, integrationTrigger, accountCredential, (data) =>
-        super.updateOne(updatedEntity.id, data, opts),
+      await definition.afterUpdateWorkflowTrigger(
+        updatedEntity,
+        integrationTrigger,
+        accountCredential ?? null,
+        (data) => super.updateOne(updatedEntity.id, data, opts),
       )
     }
 
@@ -312,9 +320,9 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       return super.deleteOne(id, opts)
     }
 
-    let accountCredential: AccountCredential | null = null
-    if (workflowTrigger.credentials) {
-      accountCredential = (await this.accountCredentialService.findById(workflowTrigger.credentials.toString())) ?? null
+    let accountCredential: AccountCredential | undefined
+    if (workflowTrigger.credentials && !workflow.isTemplate) {
+      accountCredential = await this.accountCredentialService.findById(workflowTrigger.credentials.toString())
       // this check isn't needed, but doesn't hurt either
       if (accountCredential && accountCredential.owner.toString() !== workflowTrigger.owner.toString()) {
         throw new BadRequestException()
@@ -323,11 +331,11 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     if (!workflow.isTemplate) {
-      await definition.beforeDeleteWorkflowTrigger(workflowTrigger, integrationTrigger, accountCredential)
+      await definition.beforeDeleteWorkflowTrigger(workflowTrigger, integrationTrigger, accountCredential ?? null)
     }
     const deletedEntity = super.deleteOne(id, opts)
     if (!workflow.isTemplate) {
-      await definition.afterDeleteWorkflowTrigger(workflowTrigger, integrationTrigger, accountCredential)
+      await definition.afterDeleteWorkflowTrigger(workflowTrigger, integrationTrigger, accountCredential ?? null)
     }
 
     await this.workflowService.updateTemplateSettings(
