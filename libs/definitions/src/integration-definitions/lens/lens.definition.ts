@@ -1,5 +1,6 @@
 import { AuthenticationError } from '@app/common/errors/authentication-error'
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
+import { CreateCommentChainJetBotAction } from './actions/create-comment-chainjetbot.action'
 import { CreateCommentAction } from './actions/create-comment.action'
 import { CreatePostAction } from './actions/create-post.action'
 import { FollowProfileAction } from './actions/follow-profile.action'
@@ -30,6 +31,7 @@ export class LensDefinition extends SingleIntegrationDefinition {
     new LikePostAction(),
     new CreateCommentAction(),
     new GetPublicationAction(),
+    new CreateCommentChainJetBotAction(),
   ]
 
   async refreshCredentials(credentials: Record<string, any>): Promise<Record<string, any>> {

@@ -6,8 +6,8 @@ import { JSONSchema7 } from 'json-schema'
 export class NewMentionChainJetBotTrigger extends OperationTrigger {
   idKey = 'items[].id'
   key = 'newMentionToChainJetBot'
-  name = 'New Mention to @ChainJetBot'
-  description = 'Triggers when you mention @ChainJetBot in a post or comment'
+  name = 'New Mention to @ChainJetBot.lens'
+  description = 'Triggers when you mention @ChainJetBot.lens in a post or comment'
   version = '1.0.0'
   triggerInstant = true
 
