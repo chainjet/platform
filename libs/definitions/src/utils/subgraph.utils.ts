@@ -1,3 +1,4 @@
+import { wait } from '@app/common/utils/async.utils'
 import { isEmptyObj } from '@app/common/utils/object.utils'
 import { capitalize, humanize } from '@app/common/utils/string.utils'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
@@ -131,6 +132,7 @@ export async function sendGraphqlQuery(
   query: string,
   headers: Record<string, any> = {},
   retries = 1,
+  waitMillis = 300,
 ): Promise<any> {
   const res = await axios({
     method: 'POST',
@@ -147,6 +149,7 @@ export async function sendGraphqlQuery(
 
   // retry 5xx errors
   if (res.status >= 500 && retries) {
+    await wait(waitMillis)
     return sendGraphqlQuery(endpoint, query, headers, retries - 1)
   }
 

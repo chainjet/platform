@@ -22,3 +22,7 @@ export async function convertObservableToRunResponse(res: RunResponse | Observab
     })
   })
 }
+
+export function wait(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
