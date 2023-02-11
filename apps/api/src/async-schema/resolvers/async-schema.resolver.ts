@@ -121,7 +121,7 @@ export class AsyncSchemaResolver {
       try {
         return await cb()
       } catch (e) {
-        if (integrationAccount) {
+        if (integrationAccount && ['oauth1', 'oauth2'].includes(integrationAccount.authType)) {
           // refresh credentials and try again
           props.credentials.accessToken = await this.oauthStrategyFactory.refreshOauth2AccessToken(
             integrationAccount.key,
