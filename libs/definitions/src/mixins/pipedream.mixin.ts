@@ -563,7 +563,8 @@ async function runPipedreamOperation(
 
     const outputs = await operation.run.bind(bindData)({ $ })
     return {
-      outputs,
+      // outputs need to be an object
+      outputs: Array.isArray(outputs) ? { items: outputs } : outputs,
     }
   } else {
     return new Observable((subscriber) => {
