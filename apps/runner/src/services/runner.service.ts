@@ -352,6 +352,7 @@ export class RunnerService {
         this.runWorkflowActionsTree(workflow, action, triggerOutputs, workflowRun),
       )
       await Promise.all(promises)
+      await wait(200)
     }
     await this.workflowRunService.markWorkflowRunAsCompleted(workflowRun._id)
   }
