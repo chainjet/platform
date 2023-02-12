@@ -54,6 +54,7 @@ export interface RunResponse {
   transactions?: Array<{ hash: string; chainId: number }>
   nextCheck?: Date | null // null disables the trigger
   stop?: boolean // if true, stop the workflow
+  repeatKey?: string
 }
 
 export type GetAsyncSchemasProps = OperationRunOptions & {

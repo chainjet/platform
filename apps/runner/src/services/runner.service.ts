@@ -1,4 +1,5 @@
 import { AuthenticationError } from '@app/common/errors/authentication-error'
+import { wait } from '@app/common/utils/async.utils'
 import { isEmptyObj } from '@app/common/utils/object.utils'
 import { Definition, IntegrationDefinitionFactory, RunResponse } from '@app/definitions'
 import { generateSchemaFromObject } from '@app/definitions/schema/utils/jsonSchemaUtils'
@@ -6,6 +7,7 @@ import { Injectable, Logger } from '@nestjs/common'
 import { UserService } from 'apps/api/src/users/services/user.service'
 import { WorkflowUsedIdService } from 'apps/api/src/workflow-triggers/services/workflow-used-id.service'
 import { ObjectId } from 'bson'
+import _ from 'lodash'
 import mongoose from 'mongoose'
 import { Reference } from '../../../../libs/common/src/typings/mongodb'
 import { AccountCredential } from '../../../api/src/account-credentials/entities/account-credential'
@@ -480,13 +482,13 @@ export class RunnerService {
     // learn schema response at integration or workflow level
     if (!isEmptyObj(runResponse?.outputs ?? {})) {
       if (integrationAction.learnResponseIntegration && !integrationAction.schemaResponse) {
-        integrationAction.schemaResponse = generateSchemaFromObject(runResponse.outputs)
+        integrationAction.schemaResponse = this.getSchemaResponse(runResponse)
         await this.integrationActionService.updateOne(integrationAction.id, {
           schemaResponse: integrationAction.schemaResponse,
         })
       }
       if (integrationAction.learnResponseWorkflow && !workflowAction.schemaResponse) {
-        workflowAction.schemaResponse = generateSchemaFromObject(runResponse.outputs)
+        workflowAction.schemaResponse = this.getSchemaResponse(runResponse)
         await this.workflowActionService.updateOne(workflowAction.id, {
           schemaResponse: workflowAction.schemaResponse,
         })
@@ -518,6 +520,28 @@ export class RunnerService {
       }
       return nextAction.condition === `${runResponse.condition}`
     })
+
+    if (runResponse.repeatKey) {
+      const repeatItems = _.get(runResponse.outputs, runResponse.repeatKey)
+
+      if (!Array.isArray(repeatItems)) {
+        throw new Error(`Invalid repeatKey ${runResponse.repeatKey} for action ${workflowAction.id}`)
+      }
+
+      for (const workflowNextAction of nextActions) {
+        const nextAction = await this.workflowActionService.findById(workflowNextAction.action.toString())
+        if (!nextAction) {
+          this.logger.error(`WorkflowAction ${workflowNextAction.action} not found`)
+          return
+        }
+        for (const item of repeatItems) {
+          nextActionInputs[workflowAction.id] = item
+          await this.runWorkflowActionsTree(workflow, nextAction, nextActionInputs, workflowRun)
+          await wait(200)
+        }
+      }
+      return
+    }
 
     for (const workflowNextAction of nextActions) {
       const nextAction = await this.workflowActionService.findById(workflowNextAction.action.toString())
@@ -676,5 +700,13 @@ export class RunnerService {
       }
       await this.startWorkflowRun(new ObjectId(workflow.runOnFailure.toString()), triggerOutputs, newWorkflowRun)
     }
+  }
+
+  private getSchemaResponse(runResponse: RunResponse) {
+    if (runResponse.repeatKey) {
+      const item = _.get(runResponse.outputs, runResponse.repeatKey) as Record<string, any>
+      return generateSchemaFromObject(item?.[0])
+    }
+    return generateSchemaFromObject(runResponse.outputs)
   }
 }

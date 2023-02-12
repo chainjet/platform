@@ -115,7 +115,6 @@ export class GetDefaultProfileAction extends OperationOffChain {
 
   async run({ inputs }: OperationRunOptions): Promise<RunResponse> {
     const address = getAddress(inputs.address.toLowerCase())
-    console.log(`Getting profile for ${address}`)
     const query = `
     query {
       defaultProfile(request: { ethereumAddress: "${address}"}) {
