@@ -4,6 +4,7 @@ import { CreateCommentChainJetBotAction } from './actions/create-comment-chainje
 import { CreateCommentAction } from './actions/create-comment.action'
 import { CreatePostAction } from './actions/create-post.action'
 import { FollowProfileAction } from './actions/follow-profile.action'
+import { GetDefaultProfileAction } from './actions/get-default-profile.action'
 import { GetPublicationAction } from './actions/get-publication.action'
 import { LikePostAction } from './actions/like-post.action'
 import { refreshLensAccessToken } from './lens.common'
@@ -19,19 +20,20 @@ export class LensDefinition extends SingleIntegrationDefinition {
   schemaUrl = null
 
   triggers = [
-    new NewFollowerTrigger(),
-    new NewPostTrigger(),
-    new NewMentionTrigger(),
     new NewCollectionTrigger(),
+    new NewFollowerTrigger(),
     new NewMentionChainJetBotTrigger(),
+    new NewMentionTrigger(),
+    new NewPostTrigger(),
   ]
   actions = [
-    new FollowProfileAction(),
-    new CreatePostAction(),
-    new LikePostAction(),
     new CreateCommentAction(),
-    new GetPublicationAction(),
     new CreateCommentChainJetBotAction(),
+    new CreatePostAction(),
+    new FollowProfileAction(),
+    new GetDefaultProfileAction(),
+    new GetPublicationAction(),
+    new LikePostAction(),
   ]
 
   async refreshCredentials(credentials: Record<string, any>): Promise<Record<string, any>> {
