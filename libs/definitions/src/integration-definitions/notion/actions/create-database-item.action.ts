@@ -27,7 +27,8 @@ export class CreateDatabaseItemAction extends OperationOffChain {
       pageContent: {
         type: 'string',
         title: 'Page Content',
-        description: 'If you want to create a new page, enter the content here.',
+        description:
+          'If you want to create a new page, enter the content here. You can use Markdown syntax. [See docs](https://www.notion.so/help/writing-and-editing-basics#markdown-&-shortcuts).',
         'x-ui:widget': 'textarea',
       } as JSONSchema7,
     },
