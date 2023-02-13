@@ -195,12 +195,12 @@ function appendParameters(resultSchema: JSONSchema7, spec: any, schemaOptions: S
   schema = mergeAllOf(schema, mergeAllOfOptions)
 
   const parameters = schema.parameters.filter((param) => !param['x-ignore'])
+  const propertiesFromParams = {}
   for (const param of parameters) {
     if (param.required) {
       resultSchema.required = resultSchema.required ?? []
       resultSchema.required.push(param.name)
     }
-    resultSchema.properties = resultSchema.properties ?? {}
     const property: JSONSchema7 = fromParameter(param, options)
     if (property.$schema) {
       delete property.$schema
@@ -209,7 +209,13 @@ function appendParameters(resultSchema: JSONSchema7, spec: any, schemaOptions: S
     // Where the parameter should be sent
     property['x-in'] = param.in ?? 'query'
 
-    resultSchema.properties[param.name] = property
+    propertiesFromParams[param.name] = property
+  }
+
+  // add param properties before requestBody properties
+  resultSchema.properties = {
+    ...propertiesFromParams,
+    ...(resultSchema.properties ?? {}),
   }
 
   return resultSchema
