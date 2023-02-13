@@ -19,6 +19,11 @@ export class CreateDatabaseItemAction extends OperationOffChain {
         title: 'Database ID',
         description: 'The ID of the Notion database to add the item to.',
       },
+      props: {
+        type: 'object',
+        title: 'Item Properties',
+        properties: {},
+      },
       pageContent: {
         type: 'string',
         title: 'Page Content',
