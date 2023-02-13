@@ -79,7 +79,7 @@ export abstract class Definition {
     return [...this.triggers, ...this.actions]
   }
 
-  protected _triggerNamePrefixes = ['get', 'gets', 'list all', 'lists all', 'list', 'lists', 'returns a list of']
+  _triggerNamePrefixes = ['get', 'gets', 'list all', 'lists all', 'list', 'lists', 'returns a list of']
 
   get triggerNamePrefixes(): string[] {
     return this._triggerNamePrefixes
@@ -119,7 +119,7 @@ export abstract class Definition {
   /**
    * Returns the response of a hook defined on the operation
    */
-  private getOperationHookRes<T>(hookKey: string, operationKey: string, args: any[]): Promise<T> | null {
+  _getOperationHookRes<T>(hookKey: string, operationKey: string, args: any[]): Promise<T> | null {
     for (const operation of this.operations ?? []) {
       if (operation.key === operationKey && hookKey in operation) {
         return operation[hookKey](...args)
@@ -144,7 +144,7 @@ export abstract class Definition {
     integrationTrigger: IntegrationTrigger,
     accountCredential: AccountCredential | null,
   ): Promise<Partial<WorkflowTrigger>> {
-    const hookRes = await this.getOperationHookRes<Partial<WorkflowTrigger>>('beforeCreate', integrationTrigger.key, [
+    const hookRes = await this._getOperationHookRes<Partial<WorkflowTrigger>>('beforeCreate', integrationTrigger.key, [
       workflowTrigger,
       integrationTrigger,
       accountCredential,
@@ -164,7 +164,7 @@ export abstract class Definition {
     integrationTrigger: IntegrationTrigger,
     accountCredential: AccountCredential | null,
   ): Promise<Partial<WorkflowTrigger>> {
-    const hookRes = await this.getOperationHookRes<Partial<WorkflowTrigger>>('beforeUpdate', integrationTrigger.key, [
+    const hookRes = await this._getOperationHookRes<Partial<WorkflowTrigger>>('beforeUpdate', integrationTrigger.key, [
       update,
       prevWorkflowTrigger,
       integrationTrigger,
@@ -184,7 +184,7 @@ export abstract class Definition {
     integrationTrigger: IntegrationTrigger,
     accountCredential: AccountCredential | null,
   ) {
-    await this.getOperationHookRes('beforeDelete', integrationTrigger.key, [
+    await this._getOperationHookRes('beforeDelete', integrationTrigger.key, [
       workflowTrigger,
       integrationTrigger,
       accountCredential,
@@ -199,7 +199,7 @@ export abstract class Definition {
     integrationAction: IntegrationAction,
     accountCredential: AccountCredential | null,
   ): Promise<Partial<WorkflowAction>> {
-    const hookRes = await this.getOperationHookRes<Partial<WorkflowAction>>('beforeCreate', integrationAction.key, [
+    const hookRes = await this._getOperationHookRes<Partial<WorkflowAction>>('beforeCreate', integrationAction.key, [
       workflowAction,
       integrationAction,
       accountCredential,
@@ -219,7 +219,7 @@ export abstract class Definition {
     integrationAction: IntegrationAction,
     accountCredential: AccountCredential | null,
   ): Promise<Partial<WorkflowAction>> {
-    const hookRes = await this.getOperationHookRes<Partial<WorkflowAction>>('beforeUpdate', integrationAction.key, [
+    const hookRes = await this._getOperationHookRes<Partial<WorkflowAction>>('beforeUpdate', integrationAction.key, [
       update,
       prevWorkflowAction,
       integrationAction,
@@ -239,7 +239,7 @@ export abstract class Definition {
     integrationAction: IntegrationAction,
     accountCredential: AccountCredential | null,
   ) {
-    await this.getOperationHookRes('beforeDelete', integrationAction.key, [
+    await this._getOperationHookRes('beforeDelete', integrationAction.key, [
       workflowAction,
       integrationAction,
       accountCredential,
@@ -255,7 +255,7 @@ export abstract class Definition {
     accountCredential: AccountCredential | null,
     update: (data: Partial<WorkflowTrigger>) => Promise<WorkflowTrigger>,
   ) {
-    await this.getOperationHookRes('afterCreate', integrationTrigger.key, [
+    await this._getOperationHookRes('afterCreate', integrationTrigger.key, [
       workflowTrigger,
       integrationTrigger,
       accountCredential,
@@ -272,7 +272,7 @@ export abstract class Definition {
     accountCredential: AccountCredential | null,
     update: (data: Partial<WorkflowTrigger>) => Promise<WorkflowTrigger>,
   ) {
-    await this.getOperationHookRes('afterUpdate', integrationTrigger.key, [
+    await this._getOperationHookRes('afterUpdate', integrationTrigger.key, [
       workflowTrigger,
       integrationTrigger,
       accountCredential,
@@ -288,7 +288,7 @@ export abstract class Definition {
     integrationTrigger: IntegrationTrigger,
     accountCredential: AccountCredential | null,
   ) {
-    await this.getOperationHookRes('afterDelete', integrationTrigger.key, [
+    await this._getOperationHookRes('afterDelete', integrationTrigger.key, [
       workflowTrigger,
       integrationTrigger,
       accountCredential,
@@ -304,7 +304,7 @@ export abstract class Definition {
     accountCredential: AccountCredential | null,
     update: (data: Partial<WorkflowAction>) => Promise<WorkflowAction>,
   ) {
-    await this.getOperationHookRes('afterCreate', integrationAction.key, [
+    await this._getOperationHookRes('afterCreate', integrationAction.key, [
       workflowAction,
       integrationAction,
       accountCredential,
@@ -321,7 +321,7 @@ export abstract class Definition {
     accountCredential: AccountCredential | null,
     update: (data: Partial<WorkflowAction>) => Promise<WorkflowAction>,
   ) {
-    await this.getOperationHookRes('afterUpdate', integrationAction.key, [
+    await this._getOperationHookRes('afterUpdate', integrationAction.key, [
       workflowAction,
       integrationAction,
       accountCredential,
@@ -337,7 +337,7 @@ export abstract class Definition {
     integrationAction: IntegrationAction,
     accountCredential: AccountCredential | null,
   ) {
-    await this.getOperationHookRes('afterDelete', integrationAction.key, [
+    await this._getOperationHookRes('afterDelete', integrationAction.key, [
       workflowAction,
       integrationAction,
       accountCredential,

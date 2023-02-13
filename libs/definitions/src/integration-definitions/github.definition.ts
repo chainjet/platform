@@ -15,7 +15,7 @@ export class GithubDefinition extends PipedreamMixin(SingleIntegrationDefinition
     return req
   }
 
-  async getOperation(type: string, key: string) {
+  async getExternalOperation(type: string, key: string) {
     const op = await import(`../../../../dist/pipedream/components/github/${type}/${key}/${key}.mjs`)
     return op.default
   }

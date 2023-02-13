@@ -50,7 +50,7 @@ export class DiscourseDefinition extends PipedreamMixin(SingleIntegrationDefinit
     return this.integrationAccount
   }
 
-  async getOperation(type: string, key: string) {
+  async getExternalOperation(type: string, key: string) {
     const op = await import(`../../../../dist/pipedream/components/discourse/${type}/${key}/${key}.mjs`)
     return op.default
   }

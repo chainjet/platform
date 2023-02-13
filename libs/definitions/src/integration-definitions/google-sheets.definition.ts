@@ -25,7 +25,7 @@ export class GoogleSheetsDefinition extends PipedreamMixin(SingleIntegrationDefi
     return super.updateSchemaBeforeSave(schema)
   }
 
-  async getOperation(type: string, key: string) {
+  async getExternalOperation(type: string, key: string) {
     const op = await import(`../../../../dist/pipedream/components/google_sheets/${type}/${key}/${key}.mjs`)
     return op.default
   }

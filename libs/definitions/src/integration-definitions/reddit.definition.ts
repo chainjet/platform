@@ -32,7 +32,7 @@ export class RedditDefinition extends PipedreamMixin(SingleIntegrationDefinition
     return {}
   }
 
-  async getOperation(type: string, key: string) {
+  async getExternalOperation(type: string, key: string) {
     const op = await import(`../../../../dist/pipedream/components/reddit/${type}/${key}/${key}.mjs`)
     return op.default
   }

@@ -7,7 +7,7 @@ export class SlackDefinition extends PipedreamMixin(SingleIntegrationDefinition)
   pipedreamKey = 'slack'
   integrationVersion = '1'
 
-  async getOperation(type: string, key: string) {
+  async getExternalOperation(type: string, key: string) {
     const op = await import(`../../../../dist/pipedream/components/slack/${type}/${key}/${key}.mjs`)
     return op.default
   }

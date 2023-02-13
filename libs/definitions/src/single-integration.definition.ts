@@ -16,7 +16,7 @@ export abstract class SingleIntegrationDefinition extends Definition {
   parentKey?: string
   abstract readonly integrationKey: string
   abstract readonly integrationVersion: string
-  abstract readonly schemaUrl: string | null
+  readonly schemaUrl: string | null = null
 
   /**
    * Return an array containing only the single integration
@@ -33,7 +33,7 @@ export abstract class SingleIntegrationDefinition extends Definition {
   }
 
   async createOrUpdateIntegrationAccount(schema: OpenAPIObject): Promise<IntegrationAccount | null> {
-    const authDefinition = await this.getAuthDefinition()
+    const authDefinition = await this._getAuthDefinition()
     if (!authDefinition) {
       return null
     }
@@ -47,7 +47,7 @@ export abstract class SingleIntegrationDefinition extends Definition {
     })
   }
 
-  protected async getAuthDefinition(): Promise<IntegrationAuthDefinition | null> {
+  async _getAuthDefinition(): Promise<IntegrationAuthDefinition | null> {
     const integrationSchema = await SchemaUtils.getSchema({
       integrationKey: this.integrationKey,
       integrationVersion: this.integrationVersion,

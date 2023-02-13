@@ -3,12 +3,15 @@ import { SingleIntegrationDefinition } from '@app/definitions/single-integration
 import { IntegrationAccount } from 'apps/api/src/integration-accounts/entities/integration-account'
 import { IntegrationAccountService } from 'apps/api/src/integration-accounts/services/integration-account.service'
 import { OpenAPIObject } from 'openapi3-ts'
+import { CreateDatabaseItemAction } from './actions/create-database-item.action'
 
 export class NotionDefinition extends PipedreamMixin(SingleIntegrationDefinition) {
   integrationKey = 'notion'
   pipedreamKey = 'notion'
   integrationVersion = '1'
   schemaUrl = null
+
+  actions = [new CreateDatabaseItemAction()]
 
   async createOrUpdateIntegrationAccount(schema: OpenAPIObject): Promise<IntegrationAccount | null> {
     const integrationAccount = await super.createOrUpdateIntegrationAccount(schema)
@@ -29,7 +32,7 @@ export class NotionDefinition extends PipedreamMixin(SingleIntegrationDefinition
     return {}
   }
 
-  async getOperation(type: string, key: string) {
+  async getExternalOperation(type: string, key: string) {
     const op = await import(`../../../../../dist/pipedream/components/notion/${type}/${key}/${key}.mjs`)
     return op.default
   }

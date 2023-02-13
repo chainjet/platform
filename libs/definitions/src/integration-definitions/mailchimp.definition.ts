@@ -21,7 +21,7 @@ export class MailchimpDefinition extends PipedreamMixin(SingleIntegrationDefinit
     })
   }
 
-  async getOperation(type: string, key: string) {
+  async getExternalOperation(type: string, key: string) {
     const op = await import(`../../../../dist/pipedream/components/mailchimp/${type}/${key}/${key}.mjs`)
     return op.default
   }

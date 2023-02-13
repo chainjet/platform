@@ -34,8 +34,10 @@ import {
 } from 'pipedream/types/src'
 import { ParsedQs } from 'qs'
 import { Observable } from 'rxjs'
-import { GetAsyncSchemasProps, RunResponse, SingleIntegrationData } from '../definition'
+import { GetAsyncSchemasProps, RunResponse } from '../definition'
+import { OperationOffChain } from '../opertion-offchain'
 import { parseJsonSchemaValue } from '../schema/utils/jsonSchemaUtils'
+import { SingleIntegrationDefinition } from '../single-integration.definition'
 import { AsyncSchema } from '../types/AsyncSchema'
 
 type PipedreamAction = Action<Methods, AppPropDefinitions>
@@ -62,22 +64,32 @@ type OperationGetter = (type: string, key: string) => Promise<PipedreamOperation
 
 type AbstractConstructor<T> = abstract new (...args: any[]) => T
 
-export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationData>>(Base: T) {
+export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDefinition>>(Base: T) {
   abstract class _PipedreamMixin extends Base {
     abstract pipedreamKey: string
-    operations: PipedreamOperation[]
+    externalOperations: PipedreamOperation[]
     logger = new Logger(PipedreamMixin.name)
 
-    abstract getOperation(type: string, key: string): Promise<PipedreamOperation>
+    abstract getExternalOperation(type: string, key: string): Promise<PipedreamOperation>
 
     async beforeCreateWorkflowTrigger(
       workflowTrigger: WorkflowTrigger,
       integrationTrigger: IntegrationTrigger,
       accountCredential: AccountCredential | null,
     ): Promise<WorkflowTrigger> {
+      // native operations
+      const hookRes = await this._getOperationHookRes<WorkflowTrigger>('beforeCreate', integrationTrigger.key, [
+        workflowTrigger,
+        integrationTrigger,
+        accountCredential,
+      ])
+      if (hookRes) {
+        return hookRes
+      }
+
       return await runPipedreamBeforeCreateWorkflowTrigger(
         this.integrationKey,
-        await this.getOperations(),
+        await this.getExternalOperations(),
         workflowTrigger,
         integrationTrigger,
         accountCredential,
@@ -91,9 +103,11 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
       accountCredential: AccountCredential | null,
       update: (data: Partial<WorkflowTrigger>) => Promise<WorkflowTrigger>,
     ) {
+      await super.afterUpdateWorkflowTrigger(workflowTrigger, integrationTrigger, accountCredential, update)
+
       await runPipedreamAfterUpdateWorkflowTrigger(
         this.integrationKey,
-        await this.getOperations(),
+        await this.getExternalOperations(),
         workflowTrigger,
         integrationTrigger,
         accountCredential,
@@ -107,9 +121,11 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
       integrationTrigger: IntegrationTrigger,
       accountCredential: AccountCredential | null,
     ) {
+      await super.afterDeleteWorkflowTrigger(workflowTrigger, integrationTrigger, accountCredential)
+
       await runPipedreamAfterDeleteWorkflowTrigger(
         this.integrationKey,
-        await this.getOperations(),
+        await this.getExternalOperations(),
         workflowTrigger,
         integrationTrigger,
         accountCredential,
@@ -117,17 +133,24 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
     }
 
     async updateSchemaBeforeSave(schema: OpenAPIObject): Promise<OpenAPIObject> {
-      const operations = await this.getOperations()
+      const operations = await this.getExternalOperations()
       return updatePipedreamSchemaBeforeSave(schema, operations)
     }
 
     async updateSchemaBeforeInstall(schema: OpenAPIObject): Promise<OpenAPIObject> {
-      const operations = await this.getOperations()
+      const operations = await this.getExternalOperations()
       return updatePipedreamSchemaBeforeInstall(schema, operations)
     }
 
     async run(opts: OperationRunOptions): Promise<RunResponse | Observable<RunResponse> | null> {
-      const operations = await this.getOperations()
+      // native operations
+      for (const operation of this.operations) {
+        if (operation.key === opts.operation.key && 'run' in operation) {
+          return (operation as OperationOffChain).run(opts)
+        }
+      }
+
+      const operations = await this.getExternalOperations()
       const operation = operations.find((a) => a.key === opts.operation.key)
       if (operation) {
         return runPipedreamOperation(this, operation, opts)
@@ -139,7 +162,7 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
       req: Request<ParamsDictionary, any, any, ParsedQs>,
       opts: OperationRunOptions,
     ): Promise<{ canContinue: boolean; response?: RunResponse }> {
-      const operations = await this.getOperations()
+      const operations = await this.getExternalOperations()
       const operation = operations.find((a) => a.key === opts.operation.key)
       if (operation) {
         console.log(`Workflow received for operation:`, operation.key)
@@ -155,14 +178,26 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
     }
 
     async getAsyncSchemas(operation: IntegrationAction | IntegrationTrigger) {
-      return getAsyncSchemasForPipedream(this.integrationKey, await this.getOperations(), operation)
+      // native operations
+      const defOperation = this.operations.find((op) => op.key === operation.key)
+      if (defOperation) {
+        return defOperation.getAsyncSchemas(operation)
+      }
+
+      return getAsyncSchemasForPipedream(this.integrationKey, await this.getExternalOperations(), operation)
     }
 
     async getAsyncSchemaExtension(
       operation: IntegrationAction | IntegrationTrigger,
       props: GetAsyncSchemasProps,
     ): Promise<JSONSchema7> {
-      const operations = await this.getOperations()
+      // native operations
+      const defOperation = this.operations.find((op) => op.key === operation.key)
+      if (defOperation) {
+        return defOperation.getAsyncSchemaExtension(operation, props)
+      }
+
+      const operations = await this.getExternalOperations()
       const pipedreamOperation = operations.find((a) => a.key === operation.key)
       if (!pipedreamOperation) {
         throw new Error(`Operation ${operation.key} not found`)
@@ -191,11 +226,11 @@ export function PipedreamMixin<T extends AbstractConstructor<SingleIntegrationDa
       }
     }
 
-    async getOperations(): Promise<PipedreamOperation[]> {
-      if (!this.operations) {
-        this.operations = await getPipedreamOperations(this.pipedreamKey, this.getOperation)
+    async getExternalOperations(): Promise<PipedreamOperation[]> {
+      if (!this.externalOperations) {
+        this.externalOperations = await getPipedreamOperations(this.pipedreamKey, this.getExternalOperation)
       }
-      return this.operations
+      return this.externalOperations
     }
 
     extendBindData(bindData: Record<string, any>, opts: OperationRunOptions): Record<string, any> {

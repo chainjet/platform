@@ -7,7 +7,7 @@ export class TelegramBotDefinition extends PipedreamMixin(SingleIntegrationDefin
   integrationVersion = '1'
   schemaUrl = null
 
-  async getOperation(type: string, key: string) {
+  async getExternalOperation(type: string, key: string) {
     const op = await import(`../../../../dist/pipedream/components/telegram_bot_api/${type}/${key}/${key}.mjs`)
     return op.default
   }

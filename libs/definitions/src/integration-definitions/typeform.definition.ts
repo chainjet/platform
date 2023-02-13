@@ -7,7 +7,7 @@ export class TypeFormDefinition extends PipedreamMixin(SingleIntegrationDefiniti
   integrationVersion = '1'
   schemaUrl = null
 
-  async getOperation(type: string, key: string) {
+  async getExternalOperation(type: string, key: string) {
     const op = await import(`../../../../dist/pipedream/components/typeform/${type}/${key}/${key}.mjs`)
     return op.default
   }
