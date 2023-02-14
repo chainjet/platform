@@ -111,6 +111,90 @@ export class PlatformMetricsService {
     }
   }
 
+  async getSignupsPerDay() {
+    const users = await this.userService.find({})
+    console.log(`There are ${users.length} users`)
+    const usersPerDay = new Map<string, number>()
+    for (const user of users) {
+      const date = new Date(getDateFromObjectId(user._id)).toISOString().split('T')[0]
+      if (usersPerDay.has(date)) {
+        usersPerDay.set(date, usersPerDay.get(date)! + 1)
+      } else {
+        usersPerDay.set(date, 1)
+      }
+    }
+    for (const [date, count] of usersPerDay.entries()) {
+      console.log(`${date}: ${count}`)
+    }
+  }
+
+  /**
+   * Get the percentage of users that have been active during their first week
+   */
+  async getPercentageOfUsersActiveAfterOneWeek() {
+    const oneWeekAgo = new Date(new Date().setDate(new Date().getDate() - 7))
+    const users = await this.userService.find({
+      _id: {
+        $lt: new ObjectId(Math.floor(oneWeekAgo.getTime() / 1000).toString(16) + '0000000000000000'),
+      },
+    })
+    console.log(`There are ${users.length} users until ${oneWeekAgo.toISOString()}`)
+    const usersPerWeekTotal = new Map<string, number>()
+    const usersPerWeekActive = new Map<string, number>()
+    for (const user of users) {
+      const date = new Date(getDateFromObjectId(user._id))
+      const weekNumber = getWeekNumber(date)
+      const year = date.getFullYear()
+      const weekKey = `${year}-W${weekNumber}`
+
+      if (usersPerWeekTotal.has(weekKey)) {
+        usersPerWeekTotal.set(weekKey, usersPerWeekTotal.get(weekKey)! + 1)
+      } else {
+        usersPerWeekTotal.set(weekKey, 1)
+      }
+      const startDate = new Date(getDateFromObjectId(user._id)).getTime()
+      const endDate = new Date(startDate + 7 * 24 * 60 * 60 * 1000).getTime()
+
+      let isActive = false
+
+      // user is active if they have an enabled workflow trigger AND a workflow action, or a succesful user event
+      const workflowTriggers = await this.workflowTriggerService.find({
+        owner: user._id,
+        _id: {
+          $gte: new ObjectId(Math.floor(startDate / 1000).toString(16) + '0000000000000000'),
+          $lt: new ObjectId(Math.floor(endDate / 1000).toString(16) + '0000000000000000'),
+        },
+        enabled: true,
+      })
+      if (workflowTriggers.length) {
+        const workflowActions = await this.workflowActionService.find({
+          workflow: { $in: workflowTriggers.map((t) => t.workflow) },
+        })
+        isActive = workflowActions.length > 0
+      } else {
+        const userEvents = await this.userEventService.find({
+          user: user._id,
+          key: UserEventKey.OPERATION_SUCCEDED,
+          date: {
+            $gte: new Date(startDate).toISOString().split('T')[0],
+            $lt: new Date(endDate).toISOString().split('T')[0],
+          },
+        })
+        isActive = userEvents.length > 0
+      }
+      if (isActive) {
+        if (usersPerWeekActive.has(weekKey)) {
+          usersPerWeekActive.set(weekKey, usersPerWeekActive.get(weekKey)! + 1)
+        } else {
+          usersPerWeekActive.set(weekKey, 1)
+        }
+      }
+    }
+    for (const [weekKey, count] of usersPerWeekTotal.entries()) {
+      console.log(`${weekKey}: ${((usersPerWeekActive.get(weekKey) ?? 0) / count) * 100}% (total: ${count})`)
+    }
+  }
+
   async countTemplatesUses() {
     const dashboards = await this.workflowService.find({ isListed: true })
     const dashboardUses = new Map<Workflow, number>()
@@ -211,4 +295,10 @@ export class PlatformMetricsService {
       workflows: uniqueWorkflows.size,
     }
   }
+}
+
+function getWeekNumber(date: Date): number {
+  const firstDayOfYear = new Date(date.getFullYear(), 0, 1)
+  const pastDaysOfYear = (date.getTime() - firstDayOfYear.getTime()) / 86400000
+  return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7)
 }
