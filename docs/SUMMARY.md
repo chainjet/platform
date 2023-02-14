@@ -3,6 +3,7 @@
 * [Introduction](README.md)
 * [Quickstart](quickstart.md)
 * [Workflows](workflows.md)
+* [Formatting inputs](formatting-inputs.md)
 
 ## Integrations
 

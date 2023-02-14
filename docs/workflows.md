@@ -26,13 +26,13 @@ Forking a workflow allows you to create an exact copy of any workflow. When you 
 
 _**"RUN HISTORY"**_&#x20;
 
-<figure><img src=".gitbook/assets/Screen Shot 2023-02-14 at 11.59.28.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/wfhistory.png" alt=""><figcaption></figcaption></figure>
 
 In this section, you will be able to check the entire history of your workflow, such as the last time it was executed, the number of times it was executed, whether it ran correctly or failed, the number of operations that were performed during execution, and a detail of the logs to which you can access and in case of failure you can check what the problem was.
 
 _**"SETTINGS"**_&#x20;
 
-<figure><img src=".gitbook/assets/Screen Shot 2023-02-14 at 12.06.22.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/settings.png" alt=""><figcaption></figcaption></figure>
 
 _Workflow Name:_ Enter the name of your workflow.
 
