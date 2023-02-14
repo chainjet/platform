@@ -18,8 +18,9 @@ For example, if a user connects its Lens Protocol profile to ChainJet, they migh
 
 In essence, ChainJet integrations provide a curated set of the most important features of a web2 or web3 service, allowing users to automate their workflows in a flexible and efficient manner. By connecting services together, users can build complex task automations that fit their specific needs without having to code custom solutions.
 
-\
+### Open Source
 
+ChainJet is an open-source platform, which means that its source code is publicly available for users to view and modify. This gives users the ability to self-host ChainJet in their own servers. At the same time, it allows users to know exactly what code the platform is running.
 
-###
+We welcome contributions by the community. Feel free to send any pull request, or if you prefer, you can talk to us on [Discord](https://discord.gg/pcQkJ4yD). We also welcome new integrations!
 
