@@ -10,7 +10,6 @@ import { mongoForRoot } from '../../../libs/common/src/utils/mongodb'
 import { WorkflowRunsModule } from '../../api/src/workflow-runs/workflow-runs.module'
 import { WorkflowTriggersModule } from '../../api/src/workflow-triggers/workflow-triggers.module'
 import { RunnerModule } from '../../runner/src/runner.module'
-import { BlockchainListenerService } from './blockchain-listener/blockchain-listener.service'
 import { WorkflowSchedulerService } from './services/workflow-scheduler.service'
 
 @Module({
@@ -27,6 +26,6 @@ import { WorkflowSchedulerService } from './services/workflow-scheduler.service'
     WorkflowActionsModule,
     WorkflowsModule,
   ],
-  providers: [WorkflowSchedulerService, BlockchainListenerService],
+  providers: [WorkflowSchedulerService],
 })
 export class SchedulerModule {}
