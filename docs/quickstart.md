@@ -20,4 +20,4 @@ Then, select where you want to be notified: Email, Discord, Telegram, or DMs via
 
 _**“Schedule Task” -**_ Easily schedule a task to be executed at a specific date and time. Use the Select Task button to choose the task to schedule, and then enter when it should happen.
 
-<figure><img src=".gitbook/assets/schedule (1).jpg" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/schedule.jpg" alt=""><figcaption></figcaption></figure>
