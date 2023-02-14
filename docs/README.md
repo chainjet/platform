@@ -6,9 +6,9 @@ description: This page will help you get started with ChainJet
 
 ### Overview
 
-ChainJet is a no-code platform that enables entrepreneurs and communities to build web3 automations. The platform allows users to create on-chain or off-chain task automations using our +100 integrations.
+Welcome to ChainJet, the no-code platform that makes web3 automation simple and accessible to everyone. ChainJet allows users to create task automations by connecting together the +100 integrations available.
 
-ChainJet automations are built using workflows. Each workflow has a trigger and a set of actions that are executed when the trigger condition is met. Each trigger and action accept a set of inputs and provide a set of outputs, the outputs of each operation can be used as inputs for their following operations.
+ChainJet enables you to create task automations through workflows. These workflows consist of a trigger and a series of actions. When the trigger conditions are met, all the actions are automatically executed. Each trigger and action accepts inputs and provides outputs, allowing you to pass information seamlessly between operations.
 
 ### Why do I need web3 automation?
 
