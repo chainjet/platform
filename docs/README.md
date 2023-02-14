@@ -10,12 +10,16 @@ Welcome to ChainJet, the no-code platform that makes web3 automation simple and 
 
 ChainJet enables you to create task automations through workflows. These workflows consist of a trigger and a series of actions. When the trigger conditions are met, all the actions are automatically executed. Each trigger and action accepts inputs and provides outputs, allowing you to pass information seamlessly between operations.
 
-### Why do I need web3 automation?
+### What is an integration?
 
-One of the best advantages of web3 protocols is that they can all interact with each other through their smart contracts. For example, on web2, if you want to connect your bank with a third-party service, you depend on your bank to give you access to their API and on a third party to build the integration.
+An integration is a single service or protocol supported by ChainJet. It enables users to automate tasks that involve the connected service. Users can access the most important features of the connected service through a set of triggers and actions. Triggers are API calls that tell ChainJet when new items are available in the connected service, while actions are API calls that allow ChainJet to perform specific tasks within the connected service.
 
-The real power of web3 doesn't come from a single protocol, but from the interconnection of all of them. ChainJet empowers all users to create workflows that span multiple protocols in a simple, cost-efficient, and secure manner.
+For example, if a user connects its Lens Protocol profile to ChainJet, they might set up a trigger to watch for new posts on their Lens feed. When a new post is detected, the trigger would activate a set of actions, such as automatically sharing the post on another social media platform or sending a notification to a Discord channel.
 
-### How does it work?
+In essence, ChainJet integrations provide a curated set of the most important features of a web2 or web3 service, allowing users to automate their workflows in a flexible and efficient manner. By connecting services together, users can build complex task automations that fit their specific needs without having to code custom solutions.
 
-On ChainJet, every task automation is represented as a workflow. A workflow consists of a single trigger that defines the condition that will initiate its execution, and a series of steps to be performed once the trigger condition is met.
+\
+
+
+###
+
