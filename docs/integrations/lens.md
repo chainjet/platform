@@ -1,9 +1,22 @@
-## Lens
+---
+description: >-
+  With ChainJet you can connect Lens Protocol to any of our other web3 or web2
+  integrations.
+---
 
-### How to get the profile ID.
+# Lens Protocol 🌿
 
-When working with the Lens Protocol integration, you need to enter the profile ID. You will find the profile ID on the [Lenster](https://lenster.xyz/) site, go to the profile of the user on which you want to perform the workflow, as shown in the image below:
+### Fields that require additional information
 
-![](https://i.imgur.com/hfeTbdE.jpg)
+* _**Profile ID or Handle**:_&#x20;
 
-Once you have completed this field in the Trigger, you can now perform the actions you want!
+The simplest thing here is to complete with your Lens Handle, your lens profile followed by .lens.
+
+![](../.gitbook/assets/LensHandle.png)
+
+For instance, our handle is **ChainJet.lens**.
+
+* _**Publication ID:**_&#x20;
+
+Every post, comment, and mirror on Lens Protocol has an unique ID. The easiest way to find it is on the Lenster url. For instance, for the post with URL [https://lenster.xyz/posts/0x012cd6-0x3b](https://lenster.xyz/posts/0x012cd6-0x3b), the publication ID is 0x012cd6-0x3b.
+
