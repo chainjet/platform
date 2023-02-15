@@ -295,6 +295,20 @@ export class PlatformMetricsService {
       workflows: uniqueWorkflows.size,
     }
   }
+
+  async updateOperationsUsedMonth() {
+    const users = await this.userService.find({})
+    for (const user of users) {
+      const userEvents = await this.userEventService.find({
+        user: user._id,
+        date: {
+          $gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString().split('T')[0],
+        },
+      })
+      const operationsUsedMonth = userEvents.reduce((acc, curr) => acc + curr.value, 0)
+      await this.userService.updateOneNative({ _id: user._id }, { operationsUsedMonth: operationsUsedMonth })
+    }
+  }
 }
 
 function getWeekNumber(date: Date): number {
