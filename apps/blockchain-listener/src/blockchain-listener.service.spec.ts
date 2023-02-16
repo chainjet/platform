@@ -12,7 +12,7 @@ import { WorkflowRunsModule } from 'apps/api/src/workflow-runs/workflow-runs.mod
 import { WorkflowTriggersModule } from 'apps/api/src/workflow-triggers/workflow-triggers.module'
 import { WorkflowsModule } from 'apps/api/src/workflows/workflows.module'
 import { RunnerModule } from 'apps/runner/src/runner.module'
-import { BlockchainListenerService } from '../../scheduler/src/blockchain-listener/blockchain-listener.service'
+import { BlockchainListenerService } from './blockchain-listener.service'
 
 describe('BlockchainListenerService', () => {
   let service: BlockchainListenerService
