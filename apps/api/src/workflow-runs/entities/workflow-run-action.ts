@@ -23,6 +23,13 @@ export class WorkflowRunAction extends BaseEntity {
   @prop({ required: true })
   operationName: string
 
+  /**
+   * ID of the trigger item that started this action
+   */
+  @Field(() => ID)
+  @prop({ required: true })
+  itemId: string | number
+
   @FilterableField(() => WorkflowRunStatus)
   @prop({ enum: WorkflowRunStatus, type: String, required: true })
   status: WorkflowRunStatus

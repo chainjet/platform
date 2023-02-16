@@ -135,6 +135,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
   async addRunningAction(
     workflowRunId: mongoose.Types.ObjectId,
     workflowAction: mongoose.Types.ObjectId,
+    triggerItemId: string | number,
     integrationName: string,
     operationName: string,
   ): Promise<WorkflowRunAction> {
@@ -143,6 +144,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
       {
         $push: {
           actionRuns: {
+            itemId: triggerItemId,
             integrationName,
             operationName,
             workflowAction,
@@ -221,12 +223,14 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     workflowAction: WorkflowAction,
     nextActionInputs: Record<string, Record<string, unknown>>,
     sleepUntil: Date,
+    triggerItemId: string | number,
   ): Promise<void> {
     await this.workflowSleepService.createOne({
       workflowRun: workflowRun._id,
       workflowAction: workflowAction._id,
       nextActionInputs,
       sleepUntil,
+      itemId: triggerItemId,
     })
     await this.updateOne(workflowRun.id, { status: WorkflowRunStatus.sleeping })
   }

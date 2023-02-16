@@ -34,6 +34,13 @@ import { parseStepInputs } from '../utils/input.utils'
 import { extractTriggerItems } from '../utils/trigger.utils'
 import { OperationRunnerService, OperationRunOptions } from './operation-runner.service'
 
+type TriggerItemId = string | number
+
+interface TriggerOutputs {
+  id: TriggerItemId
+  outputs: Record<string, Record<string, unknown>>
+}
+
 @Injectable()
 export class RunnerService {
   private readonly logger = new Logger(RunnerService.name)
@@ -209,7 +216,7 @@ export class RunnerService {
 
     const triggerIds = triggerItems.map((item) => item.id.toString())
 
-    let newItems: Array<{ id: string | number; item: Record<string, unknown> }> = []
+    let newItems: Array<{ id: TriggerItemId; item: Record<string, unknown> }> = []
 
     if (workflowTrigger.lastId && !opts?.testTrigger && !opts?.reRunItems) {
       const lastItemIndex = triggerIds.indexOf(workflowTrigger.lastId?.toString())
@@ -285,7 +292,7 @@ export class RunnerService {
       }
     }
 
-    const createdItems: Array<{ id: string | number; item: Record<string, unknown> }> = []
+    const createdItems: Array<{ id: TriggerItemId; item: Record<string, unknown> }> = []
     for (const newItem of newItems) {
       try {
         if (!opts?.reRunItems) {
@@ -320,13 +327,13 @@ export class RunnerService {
 
     const triggerOutputsList = createdItems
       .reverse()
-      .map((data) => ({ [workflowTrigger.id]: data.item, trigger: data.item }))
+      .map((data) => ({ id: data.id, outputs: { [workflowTrigger.id]: data.item, trigger: data.item } }))
     await this.runWorkflowActions(rootActions, triggerOutputsList, workflowRun)
   }
 
   async startWorkflowRun(
     workflowId: ObjectId,
-    triggerOutputs: Record<string, Record<string, unknown>>,
+    triggerOutputs: TriggerOutputs,
     workflowRun: WorkflowRun,
   ): Promise<void> {
     const rootActions = await this.workflowActionService.find({ workflow: workflowId, isRootAction: true })
@@ -335,7 +342,7 @@ export class RunnerService {
 
   async runWorkflowActions(
     rootActions: WorkflowAction[],
-    triggerOutputsList: Array<Record<string, Record<string, unknown>>>,
+    triggerOutputsList: TriggerOutputs[],
     workflowRun: WorkflowRun,
   ): Promise<void> {
     const workflow = await this.workflowService.findById(workflowRun.workflow.toString())
@@ -349,7 +356,7 @@ export class RunnerService {
     }
     for (const triggerOutputs of triggerOutputsList) {
       const promises = rootActions.map((action) =>
-        this.runWorkflowActionsTree(workflow, action, triggerOutputs, workflowRun),
+        this.runWorkflowActionsTree(workflow, action, triggerOutputs.outputs, workflowRun, triggerOutputs.id),
       )
       await Promise.all(promises)
       await wait(200)
@@ -362,6 +369,7 @@ export class RunnerService {
     workflowAction: WorkflowAction,
     previousOutputs: Record<string, Record<string, unknown>>,
     workflowRun: WorkflowRun,
+    triggerItemId: TriggerItemId,
   ): Promise<void> {
     this.logger.log(`Running workflow action ${workflowAction.id} for workflow ${workflowAction.workflow}`)
 
@@ -381,6 +389,7 @@ export class RunnerService {
     const workflowRunAction = await this.workflowRunService.addRunningAction(
       workflowRun._id,
       workflowAction._id,
+      triggerItemId,
       integration.name,
       integrationAction.name,
     )
@@ -507,6 +516,7 @@ export class RunnerService {
         workflowAction,
         nextActionInputs,
         runResponse.sleepUntil,
+        triggerItemId,
       )
       return
     }
@@ -537,7 +547,7 @@ export class RunnerService {
         }
         for (const item of repeatItems) {
           nextActionInputs[workflowAction.id] = item
-          await this.runWorkflowActionsTree(workflow, nextAction, nextActionInputs, workflowRun)
+          await this.runWorkflowActionsTree(workflow, nextAction, nextActionInputs, workflowRun, triggerItemId)
           await wait(200)
         }
       }
@@ -550,7 +560,7 @@ export class RunnerService {
         this.logger.error(`WorkflowAction ${workflowNextAction.action} not found`)
         return
       }
-      await this.runWorkflowActionsTree(workflow, nextAction, nextActionInputs, workflowRun)
+      await this.runWorkflowActionsTree(workflow, nextAction, nextActionInputs, workflowRun, triggerItemId)
     }
   }
 
@@ -626,7 +636,7 @@ export class RunnerService {
         workflowAction.nextActions.map((next) => next.action) as mongoose.Types.ObjectId[],
       )
       const promises = actions.map((action) =>
-        this.runWorkflowActionsTree(workflow, action, nextActionInputs, workflowRun),
+        this.runWorkflowActionsTree(workflow, action, nextActionInputs, workflowRun, workflowSleep.itemId),
       )
       await Promise.all(promises)
       await this.workflowRunService.markWorkflowRunAsCompleted(workflowRun._id)
@@ -691,12 +701,15 @@ export class RunnerService {
         status: WorkflowRunStatus.running,
         startedBy: WorkflowRunStartedByOptions.workflowFailure,
       })
-      const triggerOutputs = {
-        trigger: {
-          workflowRunId: workflowRun._id,
-          errorMessage,
-          errorResponse,
-          inputs,
+      const triggerOutputs: TriggerOutputs = {
+        id: workflowRun._id.toString(),
+        outputs: {
+          trigger: {
+            workflowRunId: workflowRun._id,
+            errorMessage,
+            errorResponse,
+            inputs,
+          },
         },
       }
       await this.startWorkflowRun(new ObjectId(workflow.runOnFailure.toString()), triggerOutputs, newWorkflowRun)

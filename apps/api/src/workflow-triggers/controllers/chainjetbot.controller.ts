@@ -78,9 +78,12 @@ export class ChainJetBotController {
         fullContent: body.content,
         mainPost: body.mainPost,
       }
-      const hookOutputs = {
-        trigger: outputs,
-        [trigger.id]: outputs,
+      const hookTriggerOutputs = {
+        id: body.mentionId,
+        outputs: {
+          trigger: outputs,
+          [trigger.id]: outputs,
+        },
       }
 
       const workflow = await this.workflowService.findOne({ _id: trigger.workflow._id.toString() })
@@ -104,7 +107,7 @@ export class ChainJetBotController {
       await this.workflowTriggerService.updateById(trigger._id, {
         lastItem: outputs,
       })
-      void this.runnerService.runWorkflowActions(rootActions, [hookOutputs], workflowRun)
+      void this.runnerService.runWorkflowActions(rootActions, [hookTriggerOutputs], workflowRun)
     }
 
     return {}

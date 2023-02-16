@@ -111,7 +111,7 @@ export class BlockchainListenerService {
             delete this.listeners[workflowTrigger.id]
             return
           }
-          this.logger.log(`Running workflow ${workflow.id}`)
+          this.logger.log(`Running workflow ${workflow.id} started by transaction ${log.transactionHash}`)
 
           const logArgs = {}
           for (const logKey of Object.keys(log.args)) {
@@ -124,9 +124,12 @@ export class BlockchainListenerService {
             log: logArgs,
             transactionUrl: ExplorerService.instance.getTransactionUrl(network, log.transactionHash),
           }
-          const hookOutputs = {
-            [workflowTrigger.id]: outputs,
-            trigger: outputs,
+          const hookTriggerOutputs = {
+            id: log.transactionHash,
+            outputs: {
+              [workflowTrigger.id]: outputs,
+              trigger: outputs,
+            },
           }
 
           try {
@@ -146,7 +149,7 @@ export class BlockchainListenerService {
               lastId: log.transactionHash,
               lastItem: outputs,
             })
-            void this.runnerService.runWorkflowActions(rootActions, [hookOutputs], workflowRun)
+            void this.runnerService.runWorkflowActions(rootActions, [hookTriggerOutputs], workflowRun)
           } catch (e) {
             this.logger.error(`Error running workflow ${workflow.id}: ${e?.message}`)
           }

@@ -17,4 +17,10 @@ export class WorkflowSleep extends BaseEntity {
 
   @jsonProp()
   nextActionInputs: Record<string, unknown>
+
+  /**
+   * ID of the trigger item that started this action
+   */
+  @prop({ required: true })
+  itemId: string | number
 }

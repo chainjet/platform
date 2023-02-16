@@ -2,6 +2,7 @@ import { generateSchemaFromObject } from '@app/definitions/schema/utils/jsonSche
 import { All, Controller, Logger, Param, Req } from '@nestjs/common'
 import { NotFoundException } from '@nestjs/common/exceptions/not-found.exception'
 import { Request } from 'express'
+import { v4 as uuidv4 } from 'uuid'
 import { isEmptyObj } from '../../../../../libs/common/src/utils/object.utils'
 import { IntegrationDefinitionFactory } from '../../../../../libs/definitions/src'
 import { RunnerService } from '../../../../runner/src/services/runner.service'
@@ -39,7 +40,11 @@ export class HooksController {
     if (!integration) {
       throw new NotFoundException(`Integration ${integrationKey} not found`)
     }
-    this.logger.log(`Received webhook for integration ${integrationKey}`)
+
+    // unique id for this hook run
+    const hookRunId = uuidv4()
+
+    this.logger.log(`Received webhook for integration ${integrationKey} (${hookRunId})`)
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     const { response, runs } = await definition.onHookReceived(req, {
@@ -57,9 +62,12 @@ export class HooksController {
       }
       this.logger.log(`Running workflow ${workflow.id} triggered by hook on ${integrationKey}`)
 
-      const hookOutputs = {
-        trigger: run.outputs,
-        [run.workflowTrigger.id]: run.outputs,
+      const hookTriggerOutputs = {
+        id: hookRunId,
+        outputs: {
+          trigger: run.outputs,
+          [run.workflowTrigger.id]: run.outputs,
+        },
       }
 
       const rootActions = await this.workflowActionService.find({ workflow: workflow.id, isRootAction: true })
@@ -73,7 +81,7 @@ export class HooksController {
       await this.workflowTriggerService.updateById(run.workflowTrigger._id, {
         lastItem: run.outputs,
       })
-      void this.runnerService.runWorkflowActions(rootActions, [hookOutputs], workflowRun)
+      void this.runnerService.runWorkflowActions(rootActions, [hookTriggerOutputs], workflowRun)
     }
 
     return response
@@ -84,9 +92,12 @@ export class HooksController {
     if (req.method === 'HEAD') {
       return {}
     }
-
     hookId = hookId?.trim() ?? ''
-    this.logger.log(`${hookId} - Received hook`)
+
+    // unique id for this hook run
+    const hookRunId = uuidv4()
+
+    this.logger.log(`${hookId} - Received hook (${hookRunId})`)
 
     const workflowTrigger = await this.workflowTriggerService.findOne({ hookId })
     if (!workflowTrigger) {
@@ -164,9 +175,12 @@ export class HooksController {
       triggerOutputs = await definition.getDynamicSchemaOutputs(req)
     }
 
-    const hookOutputs = {
-      trigger: triggerOutputs,
-      [workflowTrigger.id]: triggerOutputs,
+    const hookTriggerOutputs = {
+      id: hookRunId,
+      outputs: {
+        trigger: triggerOutputs,
+        [workflowTrigger.id]: triggerOutputs,
+      },
     }
 
     const rootActions = await this.workflowActionService.find({ workflow: workflow.id, isRootAction: true })
@@ -180,7 +194,7 @@ export class HooksController {
     await this.workflowTriggerService.updateById(workflowTrigger._id, {
       lastItem: triggerOutputs,
     })
-    void this.runnerService.runWorkflowActions(rootActions, [hookOutputs], workflowRun)
+    void this.runnerService.runWorkflowActions(rootActions, [hookTriggerOutputs], workflowRun)
 
     return {
       message: 'Hook successfuly received',

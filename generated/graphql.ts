@@ -1031,6 +1031,7 @@ export interface WorkflowRunAction {
     workflowAction: WorkflowAction;
     integrationName: string;
     operationName: string;
+    itemId: string;
     status: WorkflowRunStatus;
     finishedAt?: Nullable<DateTime>;
     transactions?: Nullable<BlockchainTransaction[]>;
