@@ -15,3 +15,4 @@
   * [🤖 ChainJetBot](integrations/lens/chainjetbot/README.md)
     * [Share post on Discord](integrations/lens/chainjetbot/share-post-on-discord.md)
     * [Add a user to a Lens list](integrations/lens/chainjetbot/add-a-user-to-a-lens-list.md)
+    * [Send a post by DM](integrations/lens/chainjetbot/send-a-post-by-dm.md)
