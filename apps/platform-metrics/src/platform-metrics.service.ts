@@ -87,7 +87,12 @@ export class PlatformMetricsService {
   }
 
   async getActiveUsers(trailingDays: number = 30) {
-    const events = await this.userEventService.find({ key: UserEventKey.OPERATION_SUCCEDED })
+    let events = await this.userEventService.find({ key: UserEventKey.OPERATION_SUCCEDED })
+
+    // ignore flagged users
+    const flaggedUsers = await this.userService.find({ flagged: true })
+    events = events.filter((e) => !flaggedUsers.some((user) => user._id.toString() === e.user._id.toString()))
+
     const sortedEvents = events.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
 
     const lastEventDate = new Date(sortedEvents[sortedEvents.length - 1].date)
@@ -112,7 +117,7 @@ export class PlatformMetricsService {
   }
 
   async getSignupsPerDay() {
-    const users = await this.userService.find({})
+    const users = await this.userService.find({ flagged: false })
     console.log(`There are ${users.length} users`)
     const usersPerDay = new Map<string, number>()
     for (const user of users) {
@@ -137,6 +142,7 @@ export class PlatformMetricsService {
       _id: {
         $lt: new ObjectId(Math.floor(oneWeekAgo.getTime() / 1000).toString(16) + '0000000000000000'),
       },
+      flagged: false,
     })
     console.log(`There are ${users.length} users until ${oneWeekAgo.toISOString()}`)
     const usersPerWeekTotal = new Map<string, number>()
