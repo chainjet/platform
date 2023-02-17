@@ -62,6 +62,9 @@ export class User extends BaseEntity {
   @Field({ defaultValue: false })
   @prop()
   subscribedToNewsletter?: boolean
+
+  @prop()
+  flagged?: boolean
 }
 
 @InputType()

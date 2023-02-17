@@ -55,6 +55,11 @@ export class WorkflowService extends BaseService<Workflow> {
     if (!user) {
       throw new NotFoundException(`User ${record.owner} not found.`)
     }
+    if (user.flagged) {
+      throw new BadRequestException(
+        'User is flagged as an automated bot. If you believe this is a mistake, please contact us at support@chainjet.io',
+      )
+    }
 
     record.ownerAddress = user.address
     return await super.createOne(record)
