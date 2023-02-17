@@ -20,6 +20,6 @@ Here's how to do it:
 
 <figure><img src="../../../.gitbook/assets/Discord.jpg" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/workflow.png" alt=""><figcaption></figcaption></figure>
-
 This is it, your workflow is ready! Now comment on the Lens post you want to share on your Discord: @ChainJetBot Discord.
+
+<figure><img src="../../../.gitbook/assets/workflow.png" alt=""><figcaption></figcaption></figure>
