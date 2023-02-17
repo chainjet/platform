@@ -134,26 +134,37 @@ export async function sendGraphqlQuery(
   retries = 1,
   waitMillis = 300,
 ): Promise<any> {
-  const res = await axios({
-    method: 'POST',
-    url: endpoint,
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      ...headers,
-    },
-    data: {
-      query,
-    },
-  })
+  try {
+    const res = await axios({
+      method: 'POST',
+      url: endpoint,
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        ...headers,
+      },
+      data: {
+        query,
+      },
+    })
 
-  // retry 5xx errors
-  if (res.status >= 500 && retries) {
-    await wait(waitMillis)
-    return sendGraphqlQuery(endpoint, query, headers, retries - 1)
+    // retry 5xx errors
+    if (res.status >= 500 && retries) {
+      await wait(waitMillis)
+      return sendGraphqlQuery(endpoint, query, headers, retries - 1)
+    }
+
+    return res.data
+  } catch (e) {
+    if (e.response?.status >= 500 && retries) {
+      await wait(waitMillis)
+      return sendGraphqlQuery(endpoint, query, headers, retries - 1)
+    }
+    if (e.response?.data?.errors?.[0]?.message) {
+      throw new Error(e.response.data.errors[0].message)
+    }
+    throw e
   }
-
-  return res.data
 }
 
 export async function runSubgraphOperation(
