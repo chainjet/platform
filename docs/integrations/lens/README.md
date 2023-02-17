@@ -12,7 +12,7 @@ description: >-
 
 The simplest thing here is to complete with your Lens Handle, your lens profile followed by .lens.
 
-![](../.gitbook/assets/LensHandle.png)
+![](../../.gitbook/assets/LensHandle.png)
 
 For instance, our handle is **ChainJet.lens**.
 
