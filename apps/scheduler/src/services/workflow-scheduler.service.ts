@@ -70,8 +70,8 @@ export class WorkflowSchedulerService {
     this.logger.log(`Found ${workflowSleeps.length} workflows to be woken up`)
 
     await this.workflowSleepService.deleteManyNative({
-      sleepUntil: {
-        $lt: new Date(),
+      _id: {
+        $in: workflowSleeps.map((workflowSleep) => workflowSleep._id),
       },
     })
 
