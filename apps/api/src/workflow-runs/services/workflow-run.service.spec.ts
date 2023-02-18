@@ -128,10 +128,16 @@ describe('WorkflowRunService', () => {
           status: WorkflowRunStatus.running,
         },
       }
-      const workflowRun = await service.createCompletedTriggerRun(workflowTrigger.owner._id, workflowRunData, ['123'])
+      const workflowRun = await service.createCompletedTriggerRun(
+        workflowTrigger.owner._id,
+        workflowRunData,
+        ['123'],
+        [{ id: '123' }],
+      )
       const updated = await service.findById(workflowRun.id)
       expect(updated?.operationsUsed).toBe(1)
       expect(updated?.status).toBe(WorkflowRunStatus.running)
+      expect(updated?.triggerItems).toEqual([{ id: '123' }])
       expect(updated?.triggerRun.status).toBe(WorkflowRunStatus.completed)
       expect(updated?.triggerRun.workflowTriggered).toBe(true)
       expect(updated?.triggerRun.triggerIds).toEqual(['123'])
@@ -173,6 +179,7 @@ describe('WorkflowRunService', () => {
       const workflowRunAction = await service.addRunningAction(
         workflowRun._id,
         workflowActionId,
+        '123',
         'service',
         'operation',
       )
@@ -180,6 +187,7 @@ describe('WorkflowRunService', () => {
       expect(updated?.actionRuns).toHaveLength(1)
       expect(updated?.actionRuns[0].status).toBe(WorkflowRunStatus.running)
       expect(updated?.actionRuns[0].workflowAction).toEqual(workflowActionId)
+      expect(updated?.actionRuns[0].itemId).toEqual('123')
       expect(updated?.operationsUsed).toBe(0)
       expect(workflowRunAction._id).toEqual(updated?.actionRuns[0]._id)
       expect(workflowRunAction.status).toBe(WorkflowRunStatus.running)
@@ -197,6 +205,7 @@ describe('WorkflowRunService', () => {
         operationName: 'test',
         workflowAction: new ObjectID(),
         status: WorkflowRunStatus.running,
+        itemId: '123',
       })
       const workflowRun = await mock.createWorkflowRunDeep({ actionRuns: [workflowRunAction] })
       await service.markActionAsCompleted(new ObjectID(), workflowRun._id, workflowRunAction)
@@ -217,6 +226,7 @@ describe('WorkflowRunService', () => {
         operationName: 'test',
         workflowAction: new ObjectID(),
         status: WorkflowRunStatus.running,
+        itemId: '123',
       })
       const workflowRun = await mock.createWorkflowRunDeep({ actionRuns: [workflowRunAction] })
       await service.markActionAsFailed(workflow, workflowRun, workflowRunAction, 'error message', 'response')

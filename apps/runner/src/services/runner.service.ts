@@ -292,7 +292,7 @@ export class RunnerService {
       }
     }
 
-    const createdItems: Array<{ id: TriggerItemId; item: Record<string, unknown> }> = []
+    const newUniqueItems: Array<{ id: TriggerItemId; item: Record<string, unknown> }> = []
     for (const newItem of newItems) {
       try {
         if (!opts?.reRunItems) {
@@ -301,14 +301,15 @@ export class RunnerService {
             triggerId: newItem.id.toString(),
           })
         }
-        createdItems.push(newItem)
+        newUniqueItems.push(newItem)
       } catch (e) {}
     }
 
     const workflowRun = await this.workflowRunService.createCompletedTriggerRun(
       userId,
       workflowRunData,
-      createdItems.map((item) => item.id.toString()),
+      newUniqueItems.map((item) => item.id.toString()),
+      newUniqueItems,
     )
 
     // use update native to avoid running WorkflowTrigger.updateOne hooks
@@ -325,7 +326,7 @@ export class RunnerService {
       },
     )
 
-    const triggerOutputsList = createdItems
+    const triggerOutputsList = newUniqueItems
       .reverse()
       .map((data) => ({ id: data.id, outputs: { [workflowTrigger.id]: data.item, trigger: data.item } }))
     await this.runWorkflowActions(rootActions, triggerOutputsList, workflowRun)

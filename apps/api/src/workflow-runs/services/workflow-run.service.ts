@@ -42,7 +42,16 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
    * Once the status is completed or failed it's final and cannot be updated
    */
   protected async updateWorkflowRunStatus(workflowRunId: ObjectId, status: WorkflowRunStatus): Promise<void> {
-    await this.updateOneNative({ _id: workflowRunId, status: WorkflowRunStatus.running }, { $set: { status } })
+    await this.updateOneNative(
+      { _id: workflowRunId, status: WorkflowRunStatus.running },
+      {
+        $set: {
+          status,
+        },
+        // If the workflow run is completed, remove the trigger items
+        ...(status === WorkflowRunStatus.completed ? { $unset: { triggerItems: '' } } : {}),
+      },
+    )
   }
 
   async createOneByInstantTrigger(
@@ -74,7 +83,8 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
   async createCompletedTriggerRun(
     userId: ObjectId,
     workflowRunData: Partial<WorkflowRun>,
-    triggerIds?: string[],
+    triggerIds: string[],
+    triggerItems: Array<Record<string, any>>,
   ): Promise<WorkflowRun> {
     if (!workflowRunData.triggerRun) {
       throw new Error('triggerRun is required')
@@ -88,6 +98,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     }
     workflowRunData.operationsUsed = 1
     workflowRunData.status = WorkflowRunStatus.running
+    workflowRunData.triggerItems = triggerItems
     const workflowRun = await this.createOne(workflowRunData)
     await this.userService.incrementOperationsUsed(userId, true)
     return workflowRun
