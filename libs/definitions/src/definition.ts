@@ -388,6 +388,15 @@ export abstract class Definition {
     return outputs
   }
 
+  limits(opts: OperationRunOptions): { daily: number } | null {
+    for (const operation of this.operations) {
+      if (operation.key === opts.operation.key && 'limits' in operation) {
+        return (operation as OperationOffChain).limits(opts)
+      }
+    }
+    return null
+  }
+
   /**
    * Allows integrations to entirely replace the run functionality
    * Response is either directly the object with the response or an observable which emits one or more responses

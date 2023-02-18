@@ -8,4 +8,8 @@ export abstract class OperationOffChain extends Operation {
   type = OperationType.OffChain
 
   abstract run(opts: OperationRunOptions): Promise<RunResponse | Observable<RunResponse> | null> | null
+
+  limits(opts: OperationRunOptions): { daily: number } | null {
+    return null
+  }
 }

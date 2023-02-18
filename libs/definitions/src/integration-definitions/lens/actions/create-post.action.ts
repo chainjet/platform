@@ -44,6 +44,12 @@ export class CreatePostAction extends OperationOffChain {
 
   protected readonly logger = new Logger(CreatePostAction.name)
 
+  limits(): { daily: number } {
+    return {
+      daily: 5,
+    }
+  }
+
   async run({ inputs, credentials, workflow }: OperationRunOptions): Promise<RunResponse> {
     if (!credentials?.refreshToken || !credentials?.profileId) {
       throw new AuthenticationError('Authentication is expired, please connect the profile again')

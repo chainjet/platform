@@ -14,7 +14,7 @@ export class UserEvent extends BaseEntity {
   readonly user: Reference<User>
 
   @prop({ required: true })
-  readonly key: UserEventKey
+  readonly key: UserEventKey | string
 
   /**
    * date is in the format of YYYY-MM-DD

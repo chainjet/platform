@@ -1,11 +1,13 @@
 import { AuthenticationError } from '@app/common/errors/authentication-error'
 import { MetricService } from '@app/common/metrics/metric.service'
+import { UserEventService } from '@app/common/metrics/user-event.service'
 import { convertObservableToRunResponse } from '@app/common/utils/async.utils'
 import { OperationType } from '@app/definitions/types/OperationType'
 import { forwardRef, Inject, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common'
 import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from 'apps/api/src/workflow-triggers/entities/workflow-trigger'
 import { Workflow } from 'apps/api/src/workflows/entities/workflow'
+import { ObjectId } from 'mongodb'
 import { OAuth } from 'oauth'
 import { OpenAPIObject } from 'openapi3-ts'
 import request from 'request'
@@ -66,6 +68,7 @@ export class OperationRunnerService {
     @Inject(forwardRef(() => AccountCredentialService)) protected accountCredentialService: AccountCredentialService,
     private readonly metricService: MetricService,
     private readonly evmRunnerService: EvmRunnerService,
+    private readonly userEventService: UserEventService,
   ) {}
 
   async runTriggerCheck(definition: Definition, opts: OperationRunOptions): Promise<RunResponse> {
@@ -91,6 +94,18 @@ export class OperationRunnerService {
       return this.evmRunnerService.run(definition, opts)
     }
 
+    const limits = definition.limits(opts)
+    if (limits?.daily && opts.user) {
+      const usedToday = await this.userEventService.findOne({
+        user: opts.user.id,
+        key: `run-${opts.operation._id.toString()}`,
+        date: new Date().toISOString().split('T')[0],
+      })
+      if (usedToday && usedToday.value >= limits.daily) {
+        throw new Error(`Daily limit reached for ${opts.operation.key}`)
+      }
+    }
+
     this.logger.debug(
       `Running action ${opts.operation.key} of ${opts.integration.key} with inputs "${JSON.stringify(opts.inputs)}"`,
     )
@@ -98,6 +113,9 @@ export class OperationRunnerService {
     // If the definition has its own run definition, use it
     const definitionRunOutputs = await this.runDefinitionWithRefreshCredentials(definition, opts)
     if (definitionRunOutputs && !isEmptyObj(definitionRunOutputs)) {
+      if (limits?.daily && opts.user) {
+        await this.userEventService.log(new ObjectId(opts.user.id), `run-${opts.operation._id.toString()}`)
+      }
       return definitionRunOutputs
     }
 

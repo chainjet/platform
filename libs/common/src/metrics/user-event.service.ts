@@ -16,7 +16,7 @@ export class UserEventService extends BaseService<UserEvent> {
     UserEventService.instance = this
   }
 
-  async log(userId: ObjectId, key: UserEventKey): Promise<{ _id: ObjectId }> {
+  async log(userId: ObjectId, key: UserEventKey | string): Promise<{ _id: ObjectId }> {
     const date = new Date().toISOString().split('T')[0]
     const query = {
       user: userId as Types.ObjectId,
