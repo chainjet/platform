@@ -30,6 +30,7 @@ import { WorkflowTrigger } from '../../../api/src/workflow-triggers/entities/wor
 import { WorkflowTriggerService } from '../../../api/src/workflow-triggers/services/workflow-trigger.service'
 import { Workflow } from '../../../api/src/workflows/entities/workflow'
 import { WorkflowService } from '../../../api/src/workflows/services/workflow.service'
+import { OperationDailyLimitError } from '../errors/operation-daily-limit.error'
 import { parseStepInputs } from '../utils/input.utils'
 import { extractTriggerItems } from '../utils/trigger.utils'
 import { OperationRunnerService, OperationRunOptions } from './operation-runner.service'
@@ -454,6 +455,22 @@ export class RunnerService {
       if (e instanceof AuthenticationError) {
         if (accountCredential) {
           await this.accountCredentialService.updateOne(accountCredential.id, { authExpired: true })
+        }
+      }
+      if (e instanceof OperationDailyLimitError) {
+        // since the daily limit has been exceeded, there is no need of checking the trigger until the next day
+        const workflowTrigger = await this.workflowTriggerService.findOne({ workflow: workflow._id })
+        const nextCheck = new Date(Date.now() + 24 * 60 * 60 * 1000)
+        if (workflowTrigger?.nextCheck && nextCheck.getTime() > workflowTrigger.nextCheck.getTime()) {
+          this.logger.log(
+            `An oepration of workflow ${workflow.id} has reached its daily limit. Next check: ${nextCheck}`,
+          )
+          await this.workflowTriggerService.updateOneNative(
+            { _id: workflowTrigger._id },
+            {
+              nextCheck: nextCheck.toISOString().split('T')[0],
+            },
+          )
         }
       }
       const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)

@@ -30,6 +30,7 @@ import { IntegrationAction } from '../../../api/src/integration-actions/entities
 import { IntegrationActionService } from '../../../api/src/integration-actions/services/integration-action.service'
 import { IntegrationTrigger } from '../../../api/src/integration-triggers/entities/integration-trigger'
 import { Integration } from '../../../api/src/integrations/entities/integration'
+import { OperationDailyLimitError } from '../errors/operation-daily-limit.error'
 import { EvmRunnerService } from './evm-runner.service'
 
 export type BaseRunOptions = {
@@ -102,7 +103,7 @@ export class OperationRunnerService {
         date: new Date().toISOString().split('T')[0],
       })
       if (usedToday && usedToday.value >= limits.daily) {
-        throw new Error(`Daily limit reached for ${opts.operation.key}`)
+        throw new OperationDailyLimitError(`Daily limit reached for ${opts.operation.key}`)
       }
     }
 
