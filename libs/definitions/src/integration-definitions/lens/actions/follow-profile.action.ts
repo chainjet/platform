@@ -2,6 +2,7 @@ import { AuthenticationError } from '@app/common/errors/authentication-error'
 import { RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { sendGraphqlQuery } from '@app/definitions/utils/subgraph.utils'
+import { OperationDailyLimitError } from 'apps/runner/src/errors/operation-daily-limit.error'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { JSONSchema7 } from 'json-schema'
 import { getLensProfileId, refreshLensAccessToken } from '../lens.common'
@@ -33,7 +34,7 @@ export class FollowProfileAction extends OperationOffChain {
     },
   }
 
-  async run({ inputs, credentials }: OperationRunOptions): Promise<RunResponse> {
+  async run({ inputs, credentials, workflow }: OperationRunOptions): Promise<RunResponse> {
     if (!credentials?.refreshToken || !credentials?.profileId) {
       throw new AuthenticationError('Authentication is expired, please connect the profile again')
     }
@@ -60,7 +61,11 @@ export class FollowProfileAction extends OperationOffChain {
     })
     if (!res?.data?.proxyAction) {
       if (res?.errors?.[0]?.message) {
-        throw new Error(res.errors[0].message)
+        const error = res.errors[0].message
+        if (error.includes('Usage limit exceeded')) {
+          throw new OperationDailyLimitError(error)
+        }
+        throw new Error(error)
       }
       throw new Error('Failed to follow profile')
     }
