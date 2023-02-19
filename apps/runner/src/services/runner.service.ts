@@ -463,7 +463,9 @@ export class RunnerService {
         const nextCheck = new Date(Date.now() + 24 * 60 * 60 * 1000)
         if (workflowTrigger?.nextCheck && nextCheck.getTime() > workflowTrigger.nextCheck.getTime()) {
           this.logger.log(
-            `An oepration of workflow ${workflow.id} has reached its daily limit. Next check: ${nextCheck}`,
+            `An operation of workflow ${workflow.id} has reached its daily limit (${
+              integrationAction.key
+            }). Next check: ${nextCheck.toISOString().split('T')[0]}`,
           )
           await this.workflowTriggerService.updateOneNative(
             { _id: workflowTrigger._id },
