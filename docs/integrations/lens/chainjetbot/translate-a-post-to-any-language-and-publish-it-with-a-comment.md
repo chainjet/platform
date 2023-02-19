@@ -14,7 +14,7 @@ The next action we need to select is the OpenAI integration. Click on the "+" sy
 
 * Fill in the "Prompt" field by typing "Translate to" and then selecting "Mention" from the Mention to ChainJetBot drop-down menu and "Metadata.Content" from the Get Publication options.&#x20;
 
-_\*If this is your first time using the OpenAI integration, you will need to connect your account with the_ [_API Key_](https://docs.chainjet.io/openai)_._&#x20;
+_\*If this is your first time using the OpenAI integration, you will need to connect your account with the_ [_API Key_](https://docs.chainjet.io/integrations/openai)_._&#x20;
 
 <figure><img src="../../../.gitbook/assets/openai (1).jpg" alt=""><figcaption></figcaption></figure>
 
