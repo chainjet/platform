@@ -70,4 +70,7 @@ export class WorkflowRun extends BaseEntity {
 
   @prop({ index: true })
   lockedAt?: Date
+
+  @prop()
+  retries?: number
 }

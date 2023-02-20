@@ -41,7 +41,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
    * Update workflow run status respecting the status state machine.
    * Once the status is completed or failed it's final and cannot be updated
    */
-  protected async updateWorkflowRunStatus(workflowRunId: ObjectId, status: WorkflowRunStatus): Promise<void> {
+  async updateWorkflowRunStatus(workflowRunId: ObjectId, status: WorkflowRunStatus): Promise<void> {
     await this.updateOneNative(
       { _id: workflowRunId, status: WorkflowRunStatus.running },
       {
