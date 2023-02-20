@@ -67,4 +67,7 @@ export class WorkflowRun extends BaseEntity {
   @Field(() => GraphQLJSONObject, { nullable: true })
   @jsonProp()
   inputs?: Record<string, any>
+
+  @prop({ index: true })
+  lockedAt?: Date
 }

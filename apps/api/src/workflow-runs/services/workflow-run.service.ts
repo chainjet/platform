@@ -48,8 +48,10 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
         $set: {
           status,
         },
-        // If the workflow run is completed, remove the trigger items
-        ...(status === WorkflowRunStatus.completed ? { $unset: { triggerItems: '' } } : {}),
+        // If the workflow run is completed, remove the trigger items and lock
+        ...(status === WorkflowRunStatus.completed ? { $unset: { triggerItems: '', lockedAt: '' } } : {}),
+        // If the workflow run failed, remove the lock
+        ...(status === WorkflowRunStatus.failed ? { $unset: { lockedAt: '' } } : {}),
       },
     )
   }
@@ -67,6 +69,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
       status: hasRootAction ? WorkflowRunStatus.running : WorkflowRunStatus.completed,
       startedBy: WorkflowRunStartedByOptions.trigger,
       operationsUsed: 1,
+      lockedAt: new Date(),
       triggerRun: {
         integrationName: integration.name,
         operationName: integrationTrigger.name,
@@ -99,6 +102,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     workflowRunData.operationsUsed = 1
     workflowRunData.status = WorkflowRunStatus.running
     workflowRunData.triggerItems = triggerItems
+    workflowRunData.lockedAt = new Date()
     const workflowRun = await this.createOne(workflowRunData)
     await this.userService.incrementOperationsUsed(userId, true)
     return workflowRun
@@ -125,6 +129,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     workflowRunData.errorMessage = errorMessage
     workflowRunData.errorResponse = errorResponse
     workflowRunData.inputs = inputs
+    delete workflowRunData.lockedAt
     const workflowRun = await this.createOne(workflowRunData)
 
     await this.userService.incrementOperationsUsed(new ObjectId(workflow.owner.toString()), false)
@@ -187,6 +192,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
           'actionRuns.$.status': WorkflowRunStatus.completed,
           'actionRuns.$.finishedAt': Date.now(),
           'actionRuns.$.transactions': transactions,
+          lockedAt: new Date(),
         },
         $inc: { operationsUsed: 1 },
       },
@@ -212,6 +218,9 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
           errorMessage,
           errorResponse,
           inputs,
+        },
+        $unset: {
+          lockedAt: '',
         },
         $inc: { operationsUsed: 1 },
       },
@@ -248,6 +257,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
 
   async wakeUpWorkflowRun(workflowRun: WorkflowRun): Promise<void> {
     workflowRun.status = WorkflowRunStatus.running
-    await this.updateOne(workflowRun.id, { status: workflowRun.status })
+    workflowRun.lockedAt = new Date()
+    await this.updateOne(workflowRun.id, { status: workflowRun.status, lockedAt: workflowRun.lockedAt })
   }
 }
