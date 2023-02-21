@@ -12,6 +12,7 @@ import { RunnerService } from '../../../runner/src/services/runner.service'
 @Injectable()
 export class WorkflowSchedulerService {
   private readonly logger = new Logger(WorkflowSchedulerService.name)
+  private processStopped: boolean = false
 
   constructor(
     private readonly runnerService: RunnerService,
@@ -23,27 +24,27 @@ export class WorkflowSchedulerService {
 
   @Interval(10 * 1000)
   async scheduleTriggerChecksInterval(): Promise<void> {
-    if (process.env.NODE_ENV !== 'test') {
+    if (process.env.NODE_ENV !== 'test' && !this.processStopped) {
       await this.scheduleTriggerChecks()
     }
   }
 
   @Interval(10 * 1000)
   async scheduleSleepChecksInterval(): Promise<void> {
-    if (process.env.NODE_ENV !== 'test') {
+    if (process.env.NODE_ENV !== 'test' && !this.processStopped) {
       await this.scheduleSleepChecks()
     }
   }
 
   @Interval(10 * 1000)
   async scheduleTimedOutWorkflowsRetries(): Promise<void> {
-    if (process.env.NODE_ENV !== 'test') {
+    if (process.env.NODE_ENV !== 'test' && !this.processStopped) {
       await this.retryTimedOutWorkflows()
     }
   }
 
   async onModuleInit() {
-    await this.retryTimedOutWorkflows()
+    process.on('SIGTERM', () => (this.processStopped = true))
   }
 
   async scheduleTriggerChecks(): Promise<void> {
