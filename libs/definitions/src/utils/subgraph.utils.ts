@@ -4,6 +4,7 @@ import { capitalize, humanize } from '@app/common/utils/string.utils'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import axios from 'axios'
 import { isAddress } from 'ethers/lib/utils'
+import compress from 'graphql-query-compress'
 import { JSONSchema7 } from 'json-schema'
 import { OpenAPIObject, OperationObject, ParameterObject, SchemaObject } from 'openapi3-ts'
 import pluralize from 'pluralize'
@@ -144,7 +145,7 @@ export async function sendGraphqlQuery(
         ...headers,
       },
       data: {
-        query,
+        query: compress(query),
       },
     })
 
