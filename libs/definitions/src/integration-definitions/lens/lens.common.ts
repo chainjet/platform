@@ -13,6 +13,9 @@ export async function refreshLensAccessToken(
     }
   }`
   const res = await sendGraphqlQuery('https://api.lens.dev/', query)
+  if (!res?.data?.refresh) {
+    console.log(`refreshLensAccessToken failed: ${JSON.stringify(res)}`)
+  }
   return res?.data?.refresh ?? null
 }
 
