@@ -1,5 +1,6 @@
 import { BaseService } from '@app/common/base/base.service'
 import { Definition } from '@app/definitions'
+import { IntegrationAuthType } from '@app/definitions/types/IntegrationAuthDefinition'
 import { forwardRef, Inject, Injectable, Logger } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { DeepPartial, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
@@ -115,7 +116,7 @@ export class AccountCredentialService extends BaseService<AccountCredential> {
     }
 
     // refresh credentials for standard oauth integrations
-    if (['oauth1', 'oauth2'].includes(integrationAccount.authType)) {
+    if (integrationAccount.authType === IntegrationAuthType.oauth2) {
       await this.oauthStrategyFactory.refreshOauth2AccessToken(
         integrationAccount.key,
         accountCredential,

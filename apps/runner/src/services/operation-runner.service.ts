@@ -253,7 +253,13 @@ export class OperationRunnerService {
     } catch (e) {
       const statusCode = e.status ?? e.statusCode
       // retry once 401 errors (authorization)
-      if (!retryCount && statusCode === 401 && credentials.refreshToken && integrationAccount?.key) {
+      if (
+        !retryCount &&
+        statusCode === 401 &&
+        credentials.refreshToken &&
+        integrationAccount?.key &&
+        integrationAccount.authType === IntegrationAuthType.oauth2
+      ) {
         opts.credentials.accessToken = await this.oauthStrategyFactory.refreshOauth2AccessToken(
           integrationAccount.key,
           accountCredential,
@@ -298,7 +304,7 @@ export class OperationRunnerService {
       }
       return runResponse
     } catch (e) {
-      if (opts.integrationAccount && [IntegrationAuthType.oauth2].includes(opts.integrationAccount.authType)) {
+      if (opts.integrationAccount && opts.integrationAccount.authType === IntegrationAuthType.oauth2) {
         // refresh credentials and try again
         opts.credentials.accessToken = await this.oauthStrategyFactory.refreshOauth2AccessToken(
           opts.integrationAccount.key,

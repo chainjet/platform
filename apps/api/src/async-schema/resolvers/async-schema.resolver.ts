@@ -1,4 +1,5 @@
 import { IntegrationDefinitionFactory } from '@app/definitions'
+import { IntegrationAuthType } from '@app/definitions/types/IntegrationAuthDefinition'
 import { Logger, NotFoundException, UseGuards } from '@nestjs/common'
 import { Args, Field, ObjectType, Query, Resolver } from '@nestjs/graphql'
 import { OperationRunnerService } from 'apps/runner/src/services/operation-runner.service'
@@ -121,7 +122,7 @@ export class AsyncSchemaResolver {
       try {
         return await cb()
       } catch (e) {
-        if (integrationAccount && ['oauth1', 'oauth2'].includes(integrationAccount.authType)) {
+        if (integrationAccount && integrationAccount.authType === IntegrationAuthType.oauth2) {
           // refresh credentials and try again
           props.credentials.accessToken = await this.oauthStrategyFactory.refreshOauth2AccessToken(
             integrationAccount.key,
