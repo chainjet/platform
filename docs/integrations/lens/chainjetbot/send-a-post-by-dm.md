@@ -20,5 +20,3 @@ Here's how to do it:
 <figure><img src="../../../.gitbook/assets/XMTPintegration.jpg" alt=""><figcaption></figcaption></figure>
 
 That's it! Your workflow is ready. Now, comment on a post in Lens Protocol as follows: "@ChainJetBot dm @ChainJet.lens" (you can replace "@ChainJet.lens" with the username of the Lens user you want to send the post to).
-
-<figure><img src="../../../.gitbook/assets/workflow (1).png" alt=""><figcaption></figcaption></figure>
