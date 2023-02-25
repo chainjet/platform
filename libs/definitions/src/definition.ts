@@ -55,6 +55,7 @@ export interface RunResponse {
   nextCheck?: Date | null // null disables the trigger
   stop?: boolean // if true, stop the workflow
   repeatKey?: string
+  cursor?: string // cursor for pagination when fetching all items
 }
 
 export type GetAsyncSchemasProps = OperationRunOptions & {

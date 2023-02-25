@@ -2,6 +2,7 @@ import { AuthenticationError } from '@app/common/errors/authentication-error'
 import { MetricService } from '@app/common/metrics/metric.service'
 import { UserEventService } from '@app/common/metrics/user-event.service'
 import { convertObservableToRunResponse } from '@app/common/utils/async.utils'
+import { OperationTrigger } from '@app/definitions/operation-trigger'
 import { OperationType } from '@app/definitions/types/OperationType'
 import { forwardRef, Inject, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common'
 import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-action'
@@ -51,6 +52,7 @@ export type OperationRunOptions = BaseRunOptions & {
   workflow?: Workflow
   workflowOperation?: WorkflowAction | WorkflowTrigger
   fetchAll?: boolean
+  cursor?: string
 }
 
 export type RunActionByKeyOptions = BaseRunOptions & {
@@ -78,9 +80,36 @@ export class OperationRunnerService {
     )
 
     // If the definition has its own run definition, use it
-    const definitionRunOutputs = await this.runDefinitionWithRefreshCredentials(definition, opts)
-    if (definitionRunOutputs && !isEmptyObj(definitionRunOutputs)) {
-      return definitionRunOutputs
+    const runResponse = await this.runDefinitionWithRefreshCredentials(definition, opts)
+    if (runResponse && !isEmptyObj(runResponse)) {
+      const doPagination =
+        opts.fetchAll &&
+        runResponse.cursor &&
+        (definition.operations.find((op) => op.key === opts.operation.key) as OperationTrigger).supportsPagination
+      if (!doPagination) {
+        return runResponse
+      }
+
+      // fetch all the items paginating the response
+      let itResponse = runResponse
+      let cursor = ''
+      while ((itResponse.outputs?.items as [])?.length && itResponse.cursor && itResponse.cursor !== cursor) {
+        cursor = itResponse.cursor!
+        const nextRunResponse = await this.runDefinitionWithRefreshCredentials(definition, {
+          ...opts,
+          cursor,
+        })
+        if (nextRunResponse?.outputs?.items) {
+          itResponse = {
+            ...itResponse,
+            ...nextRunResponse,
+            outputs: {
+              items: [...(itResponse.outputs.items as []), ...(nextRunResponse.outputs.items as [])],
+            },
+          }
+        }
+      }
+      return itResponse!
     }
 
     return this.runOperation(definition, opts)
@@ -123,7 +152,11 @@ export class OperationRunnerService {
     return this.runOperation(definition, opts)
   }
 
-  private async runOperation(definition: Definition, opts: OperationRunOptions, retryCount: number = 0) {
+  private async runOperation(
+    definition: Definition,
+    opts: OperationRunOptions,
+    retryCount: number = 0,
+  ): Promise<RunResponse> {
     const { integration, integrationAccount, operation, inputs, credentials, accountCredential } =
       await definition.beforeOperationRun(opts)
 

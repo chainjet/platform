@@ -19,6 +19,8 @@ export abstract class OperationTrigger extends Operation {
   triggerHook?: boolean
   triggerHookInstructions?: string
 
+  supportsPagination = false
+
   abstract run(opts: OperationRunOptions): Promise<RunResponse | Observable<RunResponse> | null> | null
 
   beforeCreate(
