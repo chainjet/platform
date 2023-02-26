@@ -44,7 +44,17 @@ export class WorkflowSchedulerService {
   }
 
   async onModuleInit() {
-    process.on('SIGTERM', () => (this.processStopped = true))
+    process.on('SIGTERM', () => this.onProcessInterrupted())
+    process.on('SIGINT', () => this.onProcessInterrupted())
+  }
+
+  onModuleDestroy() {
+    this.onProcessInterrupted()
+  }
+
+  onProcessInterrupted() {
+    this.logger.log('Process interrupted, stopping schedulers')
+    this.processStopped = true
   }
 
   async scheduleTriggerChecks(): Promise<void> {
