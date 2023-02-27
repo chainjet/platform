@@ -43,18 +43,27 @@ export class WorkflowSchedulerService {
     }
   }
 
-  async onModuleInit() {
+  onModuleInit() {
+    this.logger.debug('Lifecycle hook: onModuleInit')
     process.on('SIGTERM', () => this.onProcessInterrupted())
     process.on('SIGINT', () => this.onProcessInterrupted())
   }
 
   onModuleDestroy() {
+    this.logger.debug('Lifecycle hook: onModuleDestroy')
+    this.onProcessInterrupted()
+  }
+
+  onApplicationShutdown() {
+    this.logger.debug('Lifecycle hook: onApplicationShutdown')
     this.onProcessInterrupted()
   }
 
   onProcessInterrupted() {
     this.logger.log('Process interrupted, stopping schedulers')
     this.processStopped = true
+    // TODO delete this
+    fetch('https://api.chainjet.io/hooks/3d40995deaa4f1c6fc8ece6835024e2556ee46ca3ac9321f')
   }
 
   async scheduleTriggerChecks(): Promise<void> {
