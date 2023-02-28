@@ -117,7 +117,7 @@ export class NewCollectionTrigger extends OperationTrigger {
     }
 
     let items: any[]
-    if (inputs.publicationId) {
+    if (inputs.publicationId && !['undefined', 'null'].includes(inputs.publicationId)) {
       items = await this.getCollectionsForSpecificPublication(inputs.publicationId, credentials, !!fetchAll)
     } else {
       items = await this.getCollectionsForAllPublications(credentials, !!fetchAll)
