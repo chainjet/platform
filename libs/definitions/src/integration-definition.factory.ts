@@ -41,6 +41,7 @@ import { ListsDefinition } from './integration-definitions/lists/list.definition
 import { LogicDefinition } from './integration-definitions/logic/logic.definition'
 import { MailchimpDefinition } from './integration-definitions/mailchimp.definition'
 import { MediumDefinition } from './integration-definitions/medium.definition'
+import { MirrorDefinition } from './integration-definitions/mirror/mirror.definition'
 import { MongoDBDefinition } from './integration-definitions/mongodb.definition'
 import { MoonbeamMoonscanDefinition } from './integration-definitions/moonbeam-moonscan.definition'
 import { MoonriverMoonscanDefinition } from './integration-definitions/moonriver-moonscan.definition'
@@ -119,6 +120,7 @@ export class IntegrationDefinitionFactory {
     // makerdao: MakerDaoDefinition,
     // makerlog: MakerlogDefinition,
     medium: MediumDefinition,
+    mirror: MirrorDefinition,
     mongodb: MongoDBDefinition,
     'moonbeam-moonscan': MoonbeamMoonscanDefinition,
     'moonriver-moonscan': MoonriverMoonscanDefinition,
