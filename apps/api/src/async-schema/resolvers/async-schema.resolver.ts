@@ -111,11 +111,7 @@ export class AsyncSchemaResolver {
       credentials,
       accountCredential,
       operationRunnerService: this.operationRunnerService,
-      user: {
-        id: user.id,
-        address: user.address,
-        email: user.email,
-      },
+      user,
     }
 
     const runWithRefreshCredentialsRetry = async <T>(cb: () => Promise<T>) => {

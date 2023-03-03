@@ -44,6 +44,7 @@ export type BaseRunOptions = {
     id: string
     address: string
     email?: string
+    limits?: Record<string, number>
   }
 }
 

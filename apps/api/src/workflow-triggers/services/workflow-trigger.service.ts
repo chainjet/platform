@@ -117,11 +117,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
         inputs: workflowTrigger.inputs ?? {},
         credentials: accountCredential?.credentials ?? {},
         accountCredential,
-        user: {
-          id: user.id,
-          address: user.address,
-          email: user.email,
-        },
+        user,
         operation: integrationTrigger,
         workflowOperation: workflowTrigger as WorkflowTrigger,
       })
@@ -268,11 +264,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
         inputs: updatedWorkflowTrigger.inputs ?? {},
         credentials: accountCredential?.credentials ?? {},
         accountCredential: accountCredential ?? null,
-        user: {
-          id: user.id,
-          address: user.address,
-          email: user.email,
-        },
+        user,
         operation: integrationTrigger,
         workflowOperation: workflowTrigger as WorkflowTrigger,
       })

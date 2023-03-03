@@ -101,11 +101,7 @@ export class WorkflowActionResolver extends BaseResolver(WorkflowAction, {
       inputs,
       credentials,
       accountCredential,
-      user: {
-        id: user.id,
-        address: user.address,
-        email: user.email,
-      },
+      user,
       operation: integrationAction,
       workflow,
       workflowOperation: action,

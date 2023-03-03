@@ -46,6 +46,9 @@ interface TriggerOutputs {
 export class RunnerService {
   private readonly logger = new Logger(RunnerService.name)
 
+  // true if we've received a SIGTERM
+  private processInterrupted = false
+
   constructor(
     private readonly operationRunnerService: OperationRunnerService,
     private readonly userService: UserService,
@@ -61,6 +64,20 @@ export class RunnerService {
     private readonly accountCredentialService: AccountCredentialService,
     private readonly integrationDefinitionFactory: IntegrationDefinitionFactory,
   ) {}
+
+  // async onModuleInit() {
+  //   process.on('SIGTERM', () => this.onProcessInterrupted())
+  //   process.on('SIGINT', () => this.onProcessInterrupted())
+  // }
+
+  // onModuleDestroy() {
+  //   this.onProcessInterrupted()
+  // }
+
+  // onProcessInterrupted() {
+  //   this.logger.log('Process interrupted, interrupting all runs')
+  //   this.processInterrupted = true
+  // }
 
   async runWorkflowTriggerCheck(
     workflowTrigger: WorkflowTrigger,
@@ -154,6 +171,10 @@ export class RunnerService {
       return
     }
 
+    if (this.processInterrupted) {
+      return
+    }
+
     let runResponse: RunResponse
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
     try {
@@ -166,11 +187,7 @@ export class RunnerService {
         credentials,
         accountCredential,
         workflowOperation: workflowTrigger,
-        user: {
-          id: userId.toString(),
-          address: user.address,
-          email: user.email,
-        },
+        user,
         fetchAll: opts?.reRunItems === 'all',
       })
     } catch (e) {
@@ -280,11 +297,7 @@ export class RunnerService {
           credentials,
           accountCredential,
           workflowOperation: workflowTrigger,
-          user: {
-            id: userId.toString(),
-            address: user.address,
-            email: user.email,
-          },
+          user,
         })
         newItem.item = {
           ...populatedOutputs,
@@ -426,6 +439,12 @@ export class RunnerService {
       return
     }
 
+    if (this.processInterrupted) {
+      // TODO: interrupt workflow run
+      // await this.workflowRunService.interruptRun(workflowRun)
+      return
+    }
+
     let runResponse: RunResponse
     try {
       const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
@@ -438,11 +457,7 @@ export class RunnerService {
         credentials,
         accountCredential,
         workflowOperation: workflowAction,
-        user: {
-          id: userId.toString(),
-          address: user.address,
-          email: user.email,
-        },
+        user,
       })
       await this.workflowActionService.updateById(workflowAction._id, { lastItem: runResponse.outputs ?? {} })
       await this.workflowRunService.markActionAsCompleted(

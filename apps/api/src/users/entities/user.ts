@@ -65,6 +65,9 @@ export class User extends BaseEntity {
 
   @prop()
   flagged?: boolean
+
+  @prop()
+  limits?: Record<string, number>
 }
 
 @InputType()
