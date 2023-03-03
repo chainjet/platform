@@ -248,6 +248,14 @@ export class NewPostTrigger extends OperationTrigger {
               handle
             }
           }
+          ... on Comment {
+            id
+            mainPost {
+              ... on Post {
+                id
+              }
+            }
+          }
         }
       }
     `
@@ -293,7 +301,7 @@ export class NewPostTrigger extends OperationTrigger {
     // if mirrors are included, filter out mirror on comments
     let items = res.data.publications.items
     if (['include', 'only'].includes(mirrors)) {
-      items = items.filter((item: any) => !!item.mirrorOf?.id)
+      items = items.filter((item: any) => !(item.mirrorOf?.id && item.mirrorOf?.mainPost?.id))
     }
 
     return {
