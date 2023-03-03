@@ -29,6 +29,9 @@ export class NewPostTrigger extends OperationTrigger {
       digest: {
         type: 'string',
       },
+      url: {
+        type: 'string',
+      },
       title: {
         type: 'string',
       },
@@ -71,7 +74,10 @@ export class NewPostTrigger extends OperationTrigger {
     const data = await res.json()
     return {
       outputs: {
-        items: data.posts,
+        items: data.posts.map((post: any) => ({
+          ...post,
+          url: `https://mirror.xyz/${address}/${post.digest}`,
+        })),
       },
     }
   }
