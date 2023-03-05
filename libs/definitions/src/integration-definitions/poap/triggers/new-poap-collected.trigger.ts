@@ -97,13 +97,28 @@ export class NewPoapCollected extends OperationTrigger {
       throw new Error(`"${address}" is not a valid address`)
     }
 
-    const url = `https://api.apireum.com/v1/poap/tokens/${address}?key=${process.env.APIREUM_API_KEY}`
-    const res = await fetch(url)
-    const data = await res.json()
+    const tokens = fetchAll ? await this.fetchAllPoaps(address) : await this.fetchLatestPoaps(address)
     return {
       outputs: {
-        items: data.tokens,
+        items: tokens,
       },
     }
+  }
+
+  async fetchLatestPoaps(address: string) {
+    const url = `https://api.apireum.com/v1/poap/tokens/${address}?key=${process.env.APIREUM_API_KEY}&sort=-mintedAt`
+    const res = await fetch(url)
+    const data = await res.json()
+    return data.tokens
+  }
+
+  async fetchAllPoaps(address: string, page = 1) {
+    const url = `https://api.apireum.com/v1/poap/tokens/${address}?key=${process.env.APIREUM_API_KEY}&sort=-mintedAt&page=${page}`
+    const res = await fetch(url)
+    const data = await res.json()
+    if (data.tokens && data.tokens.length) {
+      return [...data.tokens, ...(await this.fetchAllPoaps(address, page + 1))]
+    }
+    return []
   }
 }
