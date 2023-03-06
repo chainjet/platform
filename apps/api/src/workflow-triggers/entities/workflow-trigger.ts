@@ -101,6 +101,12 @@ export class WorkflowTrigger extends BaseEntity {
   consecutiveWorkflowFails: number = 0
 
   /**
+   * Tracks the last time the workflow failed. Used to increase the consecutiveWorkflowFails counter.
+   */
+  @prop()
+  lastWorkflowFailure?: Date
+
+  /**
    * Last ID fetched from the integration. Triggers fire if last ID changes.
    */
   @prop()

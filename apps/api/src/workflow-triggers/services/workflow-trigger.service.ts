@@ -464,7 +464,8 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     workflowId: Reference<Workflow, mongoose.Types.ObjectId>,
   ): Promise<WorkflowTrigger | null> {
     const trigger = await this.findOne({ workflow: workflowId })
-    if (trigger) {
+    const threeHoursAgo = new Date(Date.now() - 1000 * 3 * 60 * 60)
+    if (trigger && (!trigger.lastWorkflowFailure || threeHoursAgo > trigger.lastWorkflowFailure)) {
       trigger.consecutiveWorkflowFails++
       const shouldDisableWorkflow =
         trigger.maxConsecutiveFailures && trigger.consecutiveWorkflowFails >= trigger.maxConsecutiveFailures
@@ -472,6 +473,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
         { _id: trigger._id },
         {
           consecutiveWorkflowFails: trigger.consecutiveWorkflowFails,
+          lastWorkflowFailure: new Date(),
           ...(shouldDisableWorkflow ? { enabled: false } : {}),
         },
       )
