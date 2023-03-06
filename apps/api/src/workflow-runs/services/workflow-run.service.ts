@@ -226,14 +226,17 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
       },
     )
     await this.userService.incrementOperationsUsed(new ObjectId(workflow.owner.toString()), false)
-    const trigger = await this.workflowTriggerService.incrementWorkflowRunFailures(workflowRun.workflow)
-    await this.updateWorkflowRunStatus(workflowRun._id, WorkflowRunStatus.failed)
+    if (workflowRun.status !== WorkflowRunStatus.failed) {
+      const trigger = await this.workflowTriggerService.incrementWorkflowRunFailures(workflowRun.workflow)
+      await this.updateWorkflowRunStatus(workflowRun._id, WorkflowRunStatus.failed)
+      workflowRun.status = WorkflowRunStatus.failed
 
-    if (trigger && !trigger.enabled && workflowRun.startedBy !== WorkflowRunStartedByOptions.user) {
-      const user = await this.userService.findById(workflow.owner._id.toString())
-      if (user?.email && user.verified && user.subscribedToNotifications) {
-        const template = new WorkflowDisabledTemplate(workflow, workflowRun, trigger.consecutiveWorkflowFails)
-        await this.emailService.sendEmailTemplate(template, user.email)
+      if (trigger && !trigger.enabled && workflowRun.startedBy !== WorkflowRunStartedByOptions.user) {
+        const user = await this.userService.findById(workflow.owner._id.toString())
+        if (user?.email && user.verified && user.subscribedToNotifications) {
+          const template = new WorkflowDisabledTemplate(workflow, workflowRun, trigger.consecutiveWorkflowFails)
+          await this.emailService.sendEmailTemplate(template, user.email)
+        }
       }
     }
   }
