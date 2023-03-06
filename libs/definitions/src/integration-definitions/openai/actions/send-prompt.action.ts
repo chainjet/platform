@@ -136,6 +136,9 @@ export class SendPromptAction extends OperationOffChain {
       }),
     })
     const json = await res.json()
+    if (json.error) {
+      throw new Error(json.error?.message ?? `Bad request sent to OpenAI: ${JSON.stringify(json.error)}`)
+    }
     return {
       outputs: {
         id: json.id,
