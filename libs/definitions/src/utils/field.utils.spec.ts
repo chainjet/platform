@@ -11,6 +11,9 @@ describe('FieldUtils', () => {
         'a.b.c',
       ])
       expect(getInterpolatedVariables({ a: 'pre {{ output.foo }} post' })).toEqual(['output.foo'])
+      expect(getInterpolatedVariables({ a: '{{640770e9f509e2b6a9a1cb2f.foo}}' })).toEqual([
+        '640770e9f509e2b6a9a1cb2f.foo',
+      ])
     })
 
     it('should extract interpolated variables from nested objects', () => {
