@@ -95,18 +95,26 @@ export class WorkflowActionResolver extends BaseResolver(WorkflowAction, {
       )
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-    const runResponse = await this.operationRunnerService.runAction(definition, {
-      integration,
-      integrationAccount,
-      inputs,
-      credentials,
-      accountCredential,
-      user,
-      operation: integrationAction,
-      workflow,
-      workflowOperation: action,
-    })
-    await this.workflowActionService.updateById(action._id, { lastItem: runResponse.outputs ?? {} })
+    try {
+      const runResponse = await this.operationRunnerService.runAction(definition, {
+        integration,
+        integrationAccount,
+        inputs,
+        credentials,
+        accountCredential,
+        user,
+        operation: integrationAction,
+        workflow,
+        workflowOperation: action,
+      })
+      await this.workflowActionService.updateById(action._id, { lastItem: runResponse.outputs ?? {} })
+    } catch (e) {
+      let error = definition.parseError(e)
+      if (!error || error.toString() === '[object Object]') {
+        error = e.message
+      }
+      throw new Error(error)
+    }
     return action
   }
 }
