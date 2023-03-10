@@ -24,10 +24,11 @@
 ***
 
 * [Tutorials](tutorials/README.md)
+  * [Translate a Lens post into any language and automatically post it as a comment with ChatGPT](https://mirror.xyz/chainjet.eth/scu1QfNykteAtwQLqMtGpv5N1pXKA0YGs\_Pw8tGIPnE)
   * [How to create Discord commands to retrieve token information](https://mirror.xyz/chainjet.eth/g1YdoRorsMfpnzIdYwlurfppNjNKzLdAk-FwSWE9TRE)
   * [Receive a notification in Telegram whenever a new transaction is made on an address](https://mirror.xyz/chainjet.eth/YMbosbf6EYCq4JOsHGUtVdxOaZZLNuOB7cV4vkh8W2g)
   * [Receive a Discord notification whenever there’s a new event in a Smart Contract](https://mirror.xyz/chainjet.eth/56TMMadcH6Uj5LGQ5wTRCMetmTb-VlbxhwAYFerQtA4)
-* [SUPPORT AND COMMUNITY](support-and-community/README.md)
+* [Support and Community](support-and-community/README.md)
   * [🌐 WebSite](https://chainjet.io/)
   * [👥 Discord](https://discord.gg/sUS3BPMa)
   * [📧 Email](mailto:support@chainjet.io)
