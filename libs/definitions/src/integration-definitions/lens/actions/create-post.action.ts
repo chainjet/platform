@@ -8,7 +8,7 @@ import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.s
 import axios from 'axios'
 import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
 import { v4 as uuid } from 'uuid'
-import { refreshLensAccessToken } from '../lens.common'
+import { getLensCollectModule, refreshLensAccessToken } from '../lens.common'
 
 export class CreatePostAction extends OperationOffChain {
   key = 'createPost'
@@ -30,7 +30,114 @@ export class CreatePostAction extends OperationOffChain {
         description: 'URL of the image to be attached to the post. It will be uploaded to IPFS.',
         type: 'string',
       },
+      collect: {
+        title: 'Who can collect?',
+        type: 'string',
+        default: 'anyone',
+        oneOf: [
+          {
+            title: 'Anyone',
+            const: 'anyone',
+          },
+          {
+            title: 'Only followers',
+            const: 'followers',
+          },
+          {
+            title: 'No one',
+            const: 'none',
+          },
+        ],
+      },
     },
+    allOf: [
+      {
+        if: {
+          properties: {
+            collect: {
+              enum: ['anyone', 'followers'],
+            },
+          },
+        },
+        then: {
+          properties: {
+            paidCollect: {
+              title: 'Charge for collecting',
+              description: 'Set a fee to collect the post',
+              type: 'boolean',
+              default: false,
+            },
+          },
+        },
+      },
+      {
+        if: {
+          properties: {
+            paidCollect: {
+              const: true,
+            },
+          },
+        },
+        then: {
+          properties: {
+            collectFee: {
+              title: 'Collection fee',
+              description: 'Fee to collect the post',
+              default: 1,
+              type: 'number',
+            },
+            // https://github.com/lens-protocol/token-list/blob/main/mainnet-token-list.json
+            collectCurrency: {
+              title: 'Select Currency',
+              type: 'string',
+              default: '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
+              oneOf: [
+                {
+                  title: 'USDC (USD Coin)',
+                  const: '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174',
+                },
+                {
+                  title: 'DAI (Dai Stablecoin)',
+                  const: '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
+                },
+                {
+                  title: 'WETH (Wrapped Ether)',
+                  const: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
+                },
+                {
+                  title: 'WMATIC (Wrapped Matic)',
+                  const: '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
+                },
+                {
+                  title: 'NCT (Nature Carbon Tonne)',
+                  const: '0xD838290e877E0188a4A44700463419ED96c16107',
+                },
+              ],
+            },
+            mirrorReferral: {
+              title: 'Mirror referral percentage',
+              description: 'Share your fee with people who mirrors your content',
+              type: 'number',
+              default: 0,
+              minimum: 0,
+              maximum: 100,
+            },
+            maxCollects: {
+              title: 'Max number of collects allowed',
+              description: 'Limit the maximum number of collects allowed. Set to 0 to disable.',
+              type: 'integer',
+              default: 0,
+            },
+            collectTimeLimit: {
+              title: 'Limit collecting to the first 24h',
+              description: 'Limit the collection to the first 24h after the post is created',
+              type: 'boolean',
+              default: false,
+            },
+          },
+        },
+      },
+    ],
   }
   outputs: JSONSchema7 = {
     properties: {
@@ -55,7 +162,7 @@ export class CreatePostAction extends OperationOffChain {
     }
   }
 
-  async run({ inputs, credentials, workflow }: OperationRunOptions): Promise<RunResponse> {
+  async run({ inputs, credentials, workflow, user }: OperationRunOptions): Promise<RunResponse> {
     if (!credentials?.refreshToken || !credentials?.profileId) {
       throw new AuthenticationError('Authentication is expired, please connect the profile again')
     }
@@ -129,6 +236,18 @@ export class CreatePostAction extends OperationOffChain {
     }
     const fileUrl = 'ipfs://' + postRes.data.file.cid
 
+    const { collect, paidCollect, collectFee, collectCurrency, mirrorReferral, maxCollects, collectTimeLimit } = inputs
+    const collectModule = getLensCollectModule({
+      recipientAddress: user!.address,
+      collect,
+      paidCollect,
+      collectFee,
+      collectCurrency,
+      mirrorReferral,
+      maxCollects,
+      collectTimeLimit,
+    })
+
     this.logger.log(`Creating lens post: ${workflow?.id} ${profileId} ${fileUrl}`)
     const query = `
     mutation CreatePostViaDispatcher {
@@ -136,7 +255,9 @@ export class CreatePostAction extends OperationOffChain {
         request: {
           profileId: "${profileId}"
           contentURI: "${fileUrl}"
-          collectModule: { freeCollectModule: { followerOnly: false } }
+          collectModule: {
+            ${collectModule}
+          }
           referenceModule: { followerOnlyReferenceModule: false }
         }
       ) {

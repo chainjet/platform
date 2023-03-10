@@ -1,3 +1,4 @@
+import { removeScientificNotation } from '@app/common/utils/number.utils'
 import { sendGraphqlQuery } from '@app/definitions/utils/subgraph.utils'
 
 export async function refreshLensAccessToken(
@@ -59,4 +60,55 @@ export async function getLensProfileId(profileIdOrHandle: string): Promise<strin
   // if the profile id is a lens handle, we need to fetch the profile id
   const isLensHandle = !/^0x[a-fA-F0-9]+$/.test(profileIdOrHandle)
   return isLensHandle ? (await getLensProfile(profileIdOrHandle)).id : profileIdOrHandle
+}
+
+export function getLensCollectModule({
+  recipientAddress,
+  collect,
+  paidCollect,
+  collectFee,
+  collectCurrency,
+  mirrorReferral,
+  maxCollects,
+  collectTimeLimit,
+}: {
+  recipientAddress: string
+  collect: 'anyone' | 'followers' | 'none'
+  paidCollect: boolean
+  collectFee: number
+  collectCurrency: string
+  mirrorReferral: number
+  maxCollects: number
+  collectTimeLimit: boolean
+}): string {
+  // for backwards compatibility
+  if (!collect) {
+    collect = 'anyone'
+    paidCollect = false
+  }
+
+  if (collect === 'none') {
+    return 'revertCollectModule: true'
+  }
+  if (!paidCollect) {
+    return `freeCollectModule: { followerOnly: ${collect === 'followers'} }`
+  }
+  const moduleName = collectTimeLimit
+    ? maxCollects
+      ? 'limitedTimedFeeCollectModule'
+      : 'timedFeeCollectModule'
+    : maxCollects
+    ? 'limitedFeeCollectModule'
+    : 'feeCollectModule'
+  return `
+  ${moduleName}: {
+    amount: {
+      currency: "${collectCurrency}"
+      value: "${removeScientificNotation(collectFee)}"
+    }
+    recipient: "${recipientAddress}"
+    referralFee: ${Math.round(mirrorReferral * 100) / 100}
+    followerOnly: ${collect === 'followers'}
+    ${maxCollects ? `collectLimit: "${maxCollects}"` : ''}
+  }`
 }
