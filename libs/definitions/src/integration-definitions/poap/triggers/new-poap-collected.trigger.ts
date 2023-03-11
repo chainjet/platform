@@ -113,12 +113,12 @@ export class NewPoapCollected extends OperationTrigger {
   }
 
   async fetchAllPoaps(address: string, page = 1) {
-    const url = `https://api.apireum.com/v1/poap/tokens/${address}?key=${process.env.APIREUM_API_KEY}&sort=-mintedAt&page=${page}`
+    const url = `https://api.apireum.com/v1/poap/tokens/${address}?key=${process.env.APIREUM_API_KEY}&sort=-mintedAt&page=${page}&limit=100`
     const res = await fetch(url)
     const data = await res.json()
-    if (data.tokens && data.tokens.length) {
+    if (data.tokens && data.tokens.length >= 100) {
       return [...data.tokens, ...(await this.fetchAllPoaps(address, page + 1))]
     }
-    return []
+    return data.tokens ? data.tokens : []
   }
 }
