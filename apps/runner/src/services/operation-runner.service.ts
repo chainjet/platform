@@ -1,7 +1,7 @@
 import { AuthenticationError } from '@app/common/errors/authentication-error'
 import { MetricService } from '@app/common/metrics/metric.service'
 import { UserEventService } from '@app/common/metrics/user-event.service'
-import { convertObservableToRunResponse } from '@app/common/utils/async.utils'
+import { convertObservableToRunResponse, wait } from '@app/common/utils/async.utils'
 import { OperationTrigger } from '@app/definitions/operation-trigger'
 import { OperationType } from '@app/definitions/types/OperationType'
 import { forwardRef, Inject, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common'
@@ -303,6 +303,10 @@ export class OperationRunnerService {
       }
       // retry once 429 errors (rate limiting) and 500 errors (server errors)
       if (!retryCount && (statusCode === 429 || statusCode >= 500)) {
+        // if rate limited, wait 500ms before retrying
+        if (statusCode === 429) {
+          await wait(500)
+        }
         return this.runOperation(definition, opts, retryCount + 1)
       }
       this.emitOperationRunMetric(false)
