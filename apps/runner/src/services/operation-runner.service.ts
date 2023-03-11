@@ -342,20 +342,20 @@ export class OperationRunnerService {
       }
       return runResponse
     } catch (e) {
-      if (opts.integrationAccount && opts.integrationAccount.authType === IntegrationAuthType.oauth2) {
-        // refresh credentials and try again
+      if (opts.integrationAccount?.authType === IntegrationAuthType.oauth2) {
+        // refresh credentials
         opts.credentials.accessToken = await this.oauthStrategyFactory.refreshOauth2AccessToken(
           opts.integrationAccount.key,
           opts.accountCredential,
           opts.credentials,
         )
-        const res = await definition.run(opts)
-        if (res) {
-          return await convertObservableToRunResponse(res)
-        }
-        return res
       }
-      throw e
+      // retry once
+      const res = await definition.run(opts)
+      if (res) {
+        return await convertObservableToRunResponse(res)
+      }
+      return res
     }
   }
 
