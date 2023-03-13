@@ -365,7 +365,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
         return res.modifiedCount === 1
       } else if (!nextCheck) {
         await this.updateOneNative({ _id: workflowTrigger._id, __v }, { nextCheck: null, enabled: false })
-        return false
+        return workflowTrigger.enabled // if it was enabled before, run it one last time
       }
     } catch (e) {
       this.logger.error(`Error updating nextCheck for ${workflowTrigger.id}: ${e.message}`)
