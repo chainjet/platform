@@ -26,6 +26,8 @@ export const LOGIC_FIELD_DEFS = {
           { title: 'Greather or Equal Than', 'x-const': '>=' },
           { title: 'Less Than', 'x-const': '<' },
           { title: 'Less or Equal Than', 'x-const': '<=' },
+          { title: 'Text Length Greather Than', 'x-const': 'length>' },
+          { title: 'Text Length Less Than', 'x-const': 'length<' },
         ],
       },
       rightValue: { title: 'Value', type: 'string' },
@@ -74,6 +76,10 @@ export function logicEvaluateNotNegatedCondition(expression: LogicExpression): b
       return Number(leftValue) < Number(rightValue)
     case '<=':
       return Number(leftValue) <= Number(rightValue)
+    case 'length>':
+      return `${leftValue}`.length > Number(rightValue)
+    case 'length<':
+      return `${leftValue}`.length < Number(rightValue)
   }
   throw new Error(`Unknown expression comparator ${comparator}`)
 }
