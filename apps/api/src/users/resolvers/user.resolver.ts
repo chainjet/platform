@@ -1,15 +1,17 @@
 import { BaseResolver } from '@app/common/base/base.resolver'
+import { SubscriptionService } from '@app/common/subscriptions/subscription.service'
 import { SecurityUtils } from '@app/common/utils/security.utils'
 import { Logger, UseGuards, UseInterceptors } from '@nestjs/common'
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
 import { AuthorizerInterceptor } from '@ptc-org/nestjs-query-graphql'
 import { getAddress } from 'ethers/lib/utils'
 import { GraphQLString } from 'graphql'
+import { ObjectId } from 'mongodb'
 import { Types } from 'mongoose'
 import { UserId } from '../../auth/decorators/user-id.decorator'
 import { GraphqlGuard } from '../../auth/guards/graphql.guard'
 import { UpdateUserInput, User } from '../entities/user'
-import { VerifyEmailPayload } from '../payloads/user.payloads'
+import { UserCheckoutSessionPayload, VerifyEmailPayload } from '../payloads/user.payloads'
 import { UserService } from '../services/user.service'
 
 @Resolver(() => User)
@@ -25,7 +27,10 @@ export class UserResolver extends BaseResolver(User, {
 }) {
   private readonly logger = new Logger(UserResolver.name)
 
-  constructor(protected readonly userService: UserService) {
+  constructor(
+    protected readonly userService: UserService,
+    protected readonly subscriptionService: SubscriptionService,
+  ) {
     super(userService)
   }
 
@@ -33,6 +38,25 @@ export class UserResolver extends BaseResolver(User, {
   @UseGuards(GraphqlGuard)
   viewer(@UserId() userId: Types.ObjectId): Promise<User | null> {
     return this.userService.findOne({ _id: userId })
+  }
+
+  @Mutation(() => UserCheckoutSessionPayload)
+  async createCheckoutSession(
+    @UserId() userId: ObjectId,
+    @Args({ name: 'planId', type: () => GraphQLString }) planId: string,
+  ): Promise<{ sessionId: string }> {
+    if (!userId) {
+      throw new Error('Not logged in')
+    }
+    const successUrl = `${process.env.FRONTEND_ENDPOINT}/dashboard`
+    const cancelUrl = `${process.env.FRONTEND_ENDPOINT}/dashboard`
+    const sessionId = await this.subscriptionService.createCheckoutSession(
+      userId.toString(),
+      planId,
+      successUrl,
+      cancelUrl,
+    )
+    return { sessionId }
   }
 
   @Mutation(() => VerifyEmailPayload)

@@ -168,4 +168,8 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
   ): Promise<T | null> {
     return this.model.findByIdAndUpdate(id, query, options).exec()
   }
+
+  countNative(conditions: FilterQuery<new () => T>): Promise<number> {
+    return this.model.countDocuments(conditions).exec()
+  }
 }

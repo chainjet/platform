@@ -7,6 +7,8 @@ type User {
   createdAt: DateTime!
   email: String
   operationsUsedMonth: Int!
+  plan: String
+  planExpires: DateTime
   name: String
   subscribedToNotifications: Boolean!
   subscribedToNewsletter: Boolean!
@@ -503,6 +505,10 @@ type WorkflowTrigger {
 
 type RequestMigrationPayload {
   result: Boolean!
+}
+
+type UserCheckoutSessionPayload {
+  sessionId: String!
 }
 
 type VerifyEmailPayload {
@@ -1289,6 +1295,7 @@ enum WorkflowRunActionSortFields {
 
 type Mutation {
   updateOneUser(input: UpdateOneUserInput!): User!
+  createCheckoutSession(planId: String!): UserCheckoutSessionPayload!
   verifyEmail(address: String!, code: String!): VerifyEmailPayload!
   requestMigration(email: String!): RequestMigrationPayload!
   completeMigration(email: String!, code: String!, data: String!): RequestMigrationPayload!

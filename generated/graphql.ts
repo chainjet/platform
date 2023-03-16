@@ -730,6 +730,8 @@ export interface User {
     createdAt: DateTime;
     email?: Nullable<string>;
     operationsUsedMonth: number;
+    plan?: Nullable<string>;
+    planExpires?: Nullable<DateTime>;
     name?: Nullable<string>;
     subscribedToNotifications: boolean;
     subscribedToNewsletter: boolean;
@@ -945,6 +947,10 @@ export interface WorkflowTrigger {
 
 export interface RequestMigrationPayload {
     result: boolean;
+}
+
+export interface UserCheckoutSessionPayload {
+    sessionId: string;
 }
 
 export interface VerifyEmailPayload {
@@ -1220,6 +1226,7 @@ export interface IQuery {
 
 export interface IMutation {
     updateOneUser(input: UpdateOneUserInput): User | Promise<User>;
+    createCheckoutSession(planId: string): UserCheckoutSessionPayload | Promise<UserCheckoutSessionPayload>;
     verifyEmail(address: string, code: string): VerifyEmailPayload | Promise<VerifyEmailPayload>;
     requestMigration(email: string): RequestMigrationPayload | Promise<RequestMigrationPayload>;
     completeMigration(email: string, code: string, data: string): RequestMigrationPayload | Promise<RequestMigrationPayload>;

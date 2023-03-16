@@ -45,15 +45,26 @@ export class User extends BaseEntity {
   @prop({ default: 0 })
   operationsUsedTotal: number
 
+  @Field({ nullable: true })
+  @prop()
+  plan?: string
+
+  @Field({ nullable: true })
+  @prop()
+  planExpires?: Date
+
+  @prop()
+  stripeCustomerId?: string
+
+  @prop()
+  stripeSubscriptionId?: string
+
   /**
    * @deprecated
    */
   @Field({ nullable: true })
   @prop()
   name?: string
-
-  // updates once every 24 hours
-  lastActiveAt?: Date
 
   @Field({ defaultValue: false })
   @prop()
