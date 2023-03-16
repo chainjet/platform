@@ -1,3 +1,4 @@
+import { redisForRoot } from '@app/common/utils/redis.utils'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { AccountCredentialsModule } from 'apps/api/src/account-credentials/account-credentials.module'
@@ -19,6 +20,7 @@ import { Migration0003 } from './migrations/0003-add-workflow-owner-address'
   imports: [
     ConfigModule.forRoot(),
     mongoForRoot(),
+    redisForRoot(),
     UsersModule,
     IntegrationAccountsModule,
     IntegrationsModule,

@@ -1,5 +1,6 @@
 import { CommonModule } from '@app/common'
 import { mongoForRoot } from '@app/common/utils/mongodb'
+import { redisForRoot } from '@app/common/utils/redis.utils'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { AccountCredentialsModule } from 'apps/api/src/account-credentials/account-credentials.module'
@@ -18,6 +19,7 @@ import { PlatformMetricsService } from './platform-metrics.service'
   imports: [
     ConfigModule.forRoot(),
     mongoForRoot(),
+    redisForRoot(),
     UsersModule,
     IntegrationAccountsModule,
     IntegrationsModule,

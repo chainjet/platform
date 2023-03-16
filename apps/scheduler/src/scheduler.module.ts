@@ -1,3 +1,4 @@
+import { redisForRoot } from '@app/common/utils/redis.utils'
 import { BlockchainModule } from '@blockchain/blockchain'
 import { forwardRef, Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
@@ -16,6 +17,7 @@ import { WorkflowSchedulerService } from './services/workflow-scheduler.service'
   imports: [
     ConfigModule.forRoot(),
     mongoForRoot(),
+    redisForRoot(),
     ScheduleModule.forRoot(),
     forwardRef(() => WorkflowTriggersModule),
     forwardRef(() => WorkflowRunsModule),
