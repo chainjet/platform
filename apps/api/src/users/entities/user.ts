@@ -4,6 +4,7 @@ import { Authorize } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
 import { IsEmail } from 'class-validator'
 import { getAddress, isAddress } from 'ethers/lib/utils'
+import { defaultPlan, PlanConfig, plansConfig } from '../config/plans.config'
 import { UserAuthorizer } from '../resolvers/user.authorizer'
 
 @ObjectType()
@@ -42,6 +43,9 @@ export class User extends BaseEntity {
   @prop({ default: 0 })
   operationsUsedMonth: number
 
+  @prop()
+  operationsReset: Date
+
   @prop({ default: 0 })
   operationsUsedTotal: number
 
@@ -51,7 +55,7 @@ export class User extends BaseEntity {
 
   @Field({ nullable: true })
   @prop()
-  planExpires?: Date
+  planPeriodEnds?: Date
 
   @prop()
   stripeCustomerId?: string
@@ -79,6 +83,10 @@ export class User extends BaseEntity {
 
   @prop()
   limits?: Record<string, number>
+
+  get planConfig(): PlanConfig {
+    return plansConfig[this.plan ?? defaultPlan]
+  }
 }
 
 @InputType()

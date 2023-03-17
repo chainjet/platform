@@ -4,7 +4,6 @@ import { Module } from '@nestjs/common'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { EmailsModule } from '../../../../libs/emails/src'
 import { AuthModule } from '../auth/auth.module'
-import { UserController } from './controllers/user.controller'
 import { User } from './entities/user'
 import { MigrationResolver } from './resolvers/migration.resolver'
 import { UserAuthorizer } from './resolvers/user.authorizer'
@@ -21,7 +20,6 @@ import { UserService } from './services/user.service'
     EmailsModule,
     CommonModule,
   ],
-  controllers: [UserController],
   providers: [UserResolver, UserService, UserAuthorizer, MigrationResolver],
   exports: [UserService],
 })

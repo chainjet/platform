@@ -81,6 +81,13 @@ export class WorkflowTrigger extends BaseEntity {
   enabled: boolean = true
 
   /**
+   * Whether the user has reached the limit of the plan.
+   * It's reseted when the plan period ends or the plan is upgraded.
+   */
+  @prop()
+  planLimited?: boolean
+
+  /**
    * Number of consecutive failures to stop the workflow, or zero to disable it.
    */
   @Field(() => Int)

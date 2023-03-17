@@ -1,5 +1,4 @@
 import { mongoForRoot } from '@app/common/utils/mongodb'
-import { redisForRoot } from '@app/common/utils/redis.utils'
 import { BlockchainModule } from '@blockchain/blockchain'
 import { BlockchainConfigService } from '@blockchain/blockchain/blockchain.config'
 import { ProviderService } from '@blockchain/blockchain/provider/provider.service'
@@ -23,7 +22,7 @@ describe('BlockchainListenerService', () => {
       imports: [
         ConfigModule.forRoot(),
         mongoForRoot(),
-        redisForRoot(),
+        // redisForRoot(),
         ScheduleModule.forRoot(),
         IntegrationsModule,
         IntegrationTriggersModule,

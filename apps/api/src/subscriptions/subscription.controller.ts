@@ -2,16 +2,21 @@ import { SubscriptionService } from '@app/common/subscriptions/subscription.serv
 import { BadRequestException, Controller, Logger, Post, Req } from '@nestjs/common'
 import { Request } from 'express'
 import Stripe from 'stripe'
-import { UserService } from '../services/user.service'
+import { UserService } from '../users/services/user.service'
+import { WorkflowTriggerService } from '../workflow-triggers/services/workflow-trigger.service'
 
-@Controller('/users')
-export class UserController {
-  private readonly logger = new Logger(UserController.name)
+@Controller('/subscriptions')
+export class SubscriptionController {
+  private readonly logger = new Logger(SubscriptionController.name)
 
-  constructor(private readonly subscriptionService: SubscriptionService, private userService: UserService) {}
+  constructor(
+    private readonly subscriptionService: SubscriptionService,
+    private userService: UserService,
+    private workflowTriggerService: WorkflowTriggerService,
+  ) {}
 
-  @Post('/checkout-webhook')
-  async checkoutWebhook(@Req() req: Request): Promise<any> {
+  @Post('/stripe-webhook')
+  async stripeWebhook(@Req() req: Request): Promise<any> {
     const payload = (req as any).rawBody as string
     const signature = req.headers['stripe-signature'] as string
     if (!signature) {
@@ -48,12 +53,15 @@ export class UserController {
             planExpires: new Date(subscription.current_period_end * 1000),
             stripeCustomerId: session.customer,
             stripeSubscriptionId: session.subscription,
+            operationsUsedMonth: 0,
+            operationsReset: this.subscriptionService.getNextOperationResetDate(),
           },
         )
         const subscriptionEmail = session.customer_details?.email ?? session.customer_email
         if (!user.email && subscriptionEmail) {
           await this.userService.updateOneNative({ _id: user._id }, { email: subscriptionEmail, verified: false })
         }
+        await this.workflowTriggerService.unmarkUserPlanAsLimited(user._id)
     }
     return {}
   }

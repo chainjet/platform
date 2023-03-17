@@ -9,6 +9,7 @@ import { OperationRunnerService } from 'apps/runner/src/services/operation-runne
 import { extractTriggerItems } from 'apps/runner/src/utils/trigger.utils'
 import cronParser from 'cron-parser'
 import _ from 'lodash'
+import { ObjectId } from 'mongodb'
 import { InjectModel } from 'nestjs-typegoose'
 import { Reference } from '../../../../../libs/common/src/typings/mongodb'
 import { isValidDate, parseTime } from '../../../../../libs/common/src/utils/date.utils'
@@ -486,5 +487,16 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       return updatedTrigger
     }
     return trigger
+  }
+
+  /**
+   * When the user reaches the limit of the plan, we mark all his triggers as limited
+   */
+  async markUserPlanAsLimited(userId: ObjectId): Promise<void> {
+    await this.updateManyNative({ owner: userId }, { planLimited: true })
+  }
+
+  async unmarkUserPlanAsLimited(userId: ObjectId): Promise<void> {
+    await this.updateManyNative({ owner: userId }, { planLimited: false })
   }
 }

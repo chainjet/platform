@@ -1,5 +1,4 @@
 import { CommonModule } from '@app/common'
-import { redisForRoot } from '@app/common/utils/redis.utils'
 import { DefinitionsModule } from '@app/definitions'
 import { BlockchainModule } from '@blockchain/blockchain'
 import { forwardRef, Module } from '@nestjs/common'
@@ -25,7 +24,7 @@ import { StaticRunner } from './services/static-runner.service'
   imports: [
     ConfigModule.forRoot(),
     mongoForRoot(),
-    redisForRoot(),
+    // redisForRoot(),
     CommonModule,
     UsersModule,
     IntegrationsModule,

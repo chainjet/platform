@@ -1,4 +1,4 @@
-import { redisForRoot } from '@app/common/utils/redis.utils'
+import { DefinitionsModule } from '@app/definitions'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { AccountCredentialsModule } from 'apps/api/src/account-credentials/account-credentials.module'
@@ -11,6 +11,7 @@ import { WorkflowActionsModule } from 'apps/api/src/workflow-actions/workflow-ac
 import { WorkflowRunsModule } from 'apps/api/src/workflow-runs/workflow-runs.module'
 import { WorkflowTriggersModule } from 'apps/api/src/workflow-triggers/workflow-triggers.module'
 import { WorkflowsModule } from 'apps/api/src/workflows/workflows.module'
+import { RunnerModule } from 'apps/runner/src/runner.module'
 import { mongoForRoot } from '../../../libs/common/src/utils/mongodb'
 import { MigrationsService } from './migrations.service'
 import { Migration0002 } from './migrations/0002-remove-integration'
@@ -20,7 +21,7 @@ import { Migration0003 } from './migrations/0003-add-workflow-owner-address'
   imports: [
     ConfigModule.forRoot(),
     mongoForRoot(),
-    redisForRoot(),
+    // redisForRoot(),
     UsersModule,
     IntegrationAccountsModule,
     IntegrationsModule,
@@ -31,6 +32,8 @@ import { Migration0003 } from './migrations/0003-add-workflow-owner-address'
     WorkflowTriggersModule,
     WorkflowActionsModule,
     WorkflowRunsModule,
+    RunnerModule,
+    DefinitionsModule,
   ],
   controllers: [],
   providers: [MigrationsService, Migration0002, Migration0003],

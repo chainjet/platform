@@ -731,7 +731,7 @@ export interface User {
     email?: Nullable<string>;
     operationsUsedMonth: number;
     plan?: Nullable<string>;
-    planExpires?: Nullable<DateTime>;
+    planPeriodEnds?: Nullable<DateTime>;
     name?: Nullable<string>;
     subscribedToNotifications: boolean;
     subscribedToNewsletter: boolean;
