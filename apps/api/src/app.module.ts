@@ -1,4 +1,4 @@
-import { redisForRoot } from '@app/common/utils/redis.utils'
+import { CommonModule } from '@app/common'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
@@ -16,6 +16,7 @@ import { IntegrationAccountsModule } from './integration-accounts/integration-ac
 import { IntegrationActionsModule } from './integration-actions/integration-actions.module'
 import { IntegrationTriggersModule } from './integration-triggers/integration-triggers.module'
 import { IntegrationsModule } from './integrations/integrations.module'
+import { SubscriptionController } from './subscriptions/subscription.controller'
 import { TemplatesModule } from './templates/templates.module'
 import { UsersModule } from './users/users.module'
 import { WorkflowActionsModule } from './workflow-actions/workflow-actions.module'
@@ -27,7 +28,7 @@ import { WorkflowsModule } from './workflows/workflows.module'
   imports: [
     ConfigModule.forRoot(),
     mongoForRoot(),
-    redisForRoot(),
+    // redisForRoot(),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       context: ({ req }) => ({ req }),
@@ -37,6 +38,7 @@ import { WorkflowsModule } from './workflows/workflows.module'
         // emitTypenameField: true,
       },
     }),
+    CommonModule,
     AuthModule,
     UsersModule,
     IntegrationsModule,
@@ -53,7 +55,7 @@ import { WorkflowsModule } from './workflows/workflows.module'
     CompilerModule,
     TemplatesModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, SubscriptionController],
   providers: [AppService],
 })
 export class AppModule {}
