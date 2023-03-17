@@ -1,4 +1,5 @@
 import { SubscriptionService } from '@app/common/subscriptions/subscription.service'
+import { addOneMonth } from '@app/common/utils/date.utils'
 import { BadRequestException, Controller, Logger, Post, Req } from '@nestjs/common'
 import { Request } from 'express'
 import Stripe from 'stripe'
@@ -45,16 +46,16 @@ export class SubscriptionController {
         }
         const subscription = await this.subscriptionService.getSubscription(session.subscription.toString())
         this.logger.log(`User ${userId} activated subscription ${subscription.id} (${session.id})`)
-        const planId = subscription.items.data[0].price.id
+        const productId = subscription.items.data[0].price.product
         await this.userService.updateOneNative(
           { _id: user._id },
           {
-            plan: planId,
+            plan: productId,
             planExpires: new Date(subscription.current_period_end * 1000),
             stripeCustomerId: session.customer,
             stripeSubscriptionId: session.subscription,
             operationsUsedMonth: 0,
-            operationsReset: this.subscriptionService.getNextOperationResetDate(),
+            operationsReset: addOneMonth(),
           },
         )
         const subscriptionEmail = session.customer_details?.email ?? session.customer_email

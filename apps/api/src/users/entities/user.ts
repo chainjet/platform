@@ -1,4 +1,5 @@
 import { BaseEntity } from '@app/common/base/base-entity'
+import { addOneMonth } from '@app/common/utils/date.utils'
 import { Field, InputType, Int, ObjectType } from '@nestjs/graphql'
 import { Authorize } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
@@ -43,7 +44,7 @@ export class User extends BaseEntity {
   @prop({ default: 0 })
   operationsUsedMonth: number
 
-  @prop()
+  @prop({ default: addOneMonth })
   operationsReset: Date
 
   @prop({ default: 0 })

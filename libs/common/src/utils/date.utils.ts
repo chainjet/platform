@@ -11,3 +11,12 @@ export function parseTime(time: string): [number, number] {
   }
   return [hours, minutes]
 }
+
+/**
+ * Returns the date in exactly one month from now or a given start date
+ * If now is March 14th at 13:15, it will return April 14th at 13:15
+ */
+export function addOneMonth(start: Date = new Date()): Date {
+  start.setMonth(start.getMonth() + 1)
+  return start
+}

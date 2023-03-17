@@ -42,10 +42,4 @@ export class SubscriptionService {
   async getSubscription(subscriptionId: string): Promise<Stripe.Subscription> {
     return this.stripe.subscriptions.retrieve(subscriptionId)
   }
-
-  getNextOperationResetDate(): Date {
-    const now = new Date()
-    now.setMonth(now.getMonth() + 1)
-    return now
-  }
 }
