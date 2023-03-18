@@ -40,23 +40,33 @@ export class User extends BaseEntity {
   @prop()
   verificationToken?: string
 
+  /**
+   * Operations used during the current period. Resets on operationsReset date.
+   */
   @Field(() => Int)
   @prop({ default: 0 })
   operationsUsedMonth: number
 
-  @prop({ default: () => addOneMonth() })
-  operationsReset: Date
-
   @prop({ default: 0 })
   operationsUsedTotal: number
+
+  @prop({ default: () => addOneMonth() })
+  operationsReset: Date
 
   @Field({ nullable: true })
   @prop()
   plan?: string
 
+  /**
+   * When the user is downgrading, this is the plan they are downgrading to.
+   */
   @Field({ nullable: true })
   @prop()
-  planPeriodEnds?: Date
+  nextPlan?: string
+
+  @Field({ nullable: true })
+  @prop()
+  planPeriodEnd?: Date
 
   @prop()
   stripeCustomerId?: string

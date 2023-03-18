@@ -51,11 +51,15 @@ export class SubscriptionController {
           { _id: user._id },
           {
             plan: productId,
-            planExpires: new Date(subscription.current_period_end * 1000),
+            subscriptionActive: true,
+            planPeriodEnd: new Date(subscription.current_period_end * 1000),
             stripeCustomerId: session.customer,
             stripeSubscriptionId: session.subscription,
             operationsUsedMonth: 0,
             operationsReset: addOneMonth(),
+            $unset: {
+              nextPlan: '',
+            },
           },
         )
         const subscriptionEmail = session.customer_details?.email ?? session.customer_email

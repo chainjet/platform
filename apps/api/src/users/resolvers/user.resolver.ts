@@ -11,7 +11,7 @@ import { Types } from 'mongoose'
 import { UserId } from '../../auth/decorators/user-id.decorator'
 import { GraphqlGuard } from '../../auth/guards/graphql.guard'
 import { UpdateUserInput, User } from '../entities/user'
-import { UserCheckoutSessionPayload, VerifyEmailPayload } from '../payloads/user.payloads'
+import { ResultPayload, UserCheckoutSessionPayload, VerifyEmailPayload } from '../payloads/user.payloads'
 import { UserService } from '../services/user.service'
 
 @Resolver(() => User)
@@ -43,20 +43,53 @@ export class UserResolver extends BaseResolver(User, {
   @Mutation(() => UserCheckoutSessionPayload)
   async createCheckoutSession(
     @UserId() userId: ObjectId,
-    @Args({ name: 'planId', type: () => GraphQLString }) planId: string,
+    @Args({ name: 'priceId', type: () => GraphQLString }) priceId: string,
   ): Promise<{ sessionId: string }> {
     if (!userId) {
       throw new Error('Not logged in')
     }
+    const user = await this.userService.findOne({ _id: userId })
+    if (!user) {
+      throw new Error('User not found')
+    }
+    this.logger.log(`Creating checkout session for user ${user.id} with price ${priceId}`)
     const successUrl = `${process.env.FRONTEND_ENDPOINT}/dashboard`
     const cancelUrl = `${process.env.FRONTEND_ENDPOINT}/dashboard`
-    const sessionId = await this.subscriptionService.createCheckoutSession(
-      userId.toString(),
-      planId,
-      successUrl,
-      cancelUrl,
-    )
+    const sessionId = await this.subscriptionService.createCheckoutSession(user, priceId, successUrl, cancelUrl)
     return { sessionId }
+  }
+
+  @Mutation(() => ResultPayload)
+  async resumeSubscription(@UserId() userId: ObjectId): Promise<{ success: boolean }> {
+    if (!userId) {
+      throw new Error('Not logged in')
+    }
+    const user = await this.userService.findOne({ _id: userId })
+    if (!user) {
+      throw new Error('User not found')
+    }
+    this.logger.log(`Resuming subscription ${user.stripeSubscriptionId} for user ${user.id}`)
+    await this.subscriptionService.resumeSubscription(user)
+    await this.userService.updateOneNative({ _id: user._id }, { $unset: { nextPlan: 'free' } })
+    return { success: true }
+  }
+
+  @Mutation(() => ResultPayload)
+  async cancelSubscription(@UserId() userId: ObjectId): Promise<{ success: boolean }> {
+    if (!userId) {
+      throw new Error('Not logged in')
+    }
+    const user = await this.userService.findOne({ _id: userId })
+    if (!user) {
+      throw new Error('User not found')
+    }
+    this.logger.log(`Cancelling subscription ${user.stripeSubscriptionId} for user ${user.id}`)
+    await this.subscriptionService.cancelSubscription(user)
+
+    // plan won't change until the next billing cycle
+    await this.userService.updateOneNative({ _id: user._id }, { nextPlan: 'free' })
+
+    return { success: true }
   }
 
   @Mutation(() => VerifyEmailPayload)
