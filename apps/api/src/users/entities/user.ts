@@ -44,7 +44,7 @@ export class User extends BaseEntity {
   @prop({ default: 0 })
   operationsUsedMonth: number
 
-  @prop({ default: addOneMonth })
+  @prop({ default: () => addOneMonth() })
   operationsReset: Date
 
   @prop({ default: 0 })
