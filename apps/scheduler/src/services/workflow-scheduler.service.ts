@@ -12,7 +12,7 @@ import { RunnerService } from '../../../runner/src/services/runner.service'
 @Injectable()
 export class WorkflowSchedulerService {
   private readonly logger = new Logger(WorkflowSchedulerService.name)
-  private processStopped: boolean = false
+  private processInterrupted: boolean = false
 
   constructor(
     private readonly runnerService: RunnerService,
@@ -24,46 +24,28 @@ export class WorkflowSchedulerService {
 
   @Interval(10 * 1000)
   async scheduleTriggerChecksInterval(): Promise<void> {
-    if (process.env.NODE_ENV !== 'test' && !this.processStopped) {
+    if (process.env.NODE_ENV !== 'test' && !this.processInterrupted) {
       await this.scheduleTriggerChecks()
     }
   }
 
   @Interval(10 * 1000)
   async scheduleSleepChecksInterval(): Promise<void> {
-    if (process.env.NODE_ENV !== 'test' && !this.processStopped) {
+    if (process.env.NODE_ENV !== 'test' && !this.processInterrupted) {
       await this.scheduleSleepChecks()
     }
   }
 
   @Interval(10 * 1000)
   async scheduleTimedOutWorkflowsRetries(): Promise<void> {
-    if (process.env.NODE_ENV !== 'test' && !this.processStopped) {
+    if (process.env.NODE_ENV !== 'test' && !this.processInterrupted) {
       await this.retryTimedOutWorkflows()
     }
   }
 
-  onModuleInit() {
-    this.logger.debug('Lifecycle hook: onModuleInit')
-    process.on('SIGTERM', () => this.onProcessInterrupted())
-    process.on('SIGINT', () => this.onProcessInterrupted())
-  }
-
   onModuleDestroy() {
-    this.logger.debug('Lifecycle hook: onModuleDestroy')
-    this.onProcessInterrupted()
-  }
-
-  onApplicationShutdown() {
-    this.logger.debug('Lifecycle hook: onApplicationShutdown')
-    this.onProcessInterrupted()
-  }
-
-  onProcessInterrupted() {
     this.logger.log('Process interrupted, stopping schedulers')
-    this.processStopped = true
-    // TODO delete this
-    fetch('https://api.chainjet.io/hooks/3d40995deaa4f1c6fc8ece6835024e2556ee46ca3ac9321f')
+    this.processInterrupted = true
   }
 
   async scheduleTriggerChecks(): Promise<void> {

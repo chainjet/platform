@@ -65,19 +65,10 @@ export class RunnerService {
     private readonly integrationDefinitionFactory: IntegrationDefinitionFactory,
   ) {}
 
-  // async onModuleInit() {
-  //   process.on('SIGTERM', () => this.onProcessInterrupted())
-  //   process.on('SIGINT', () => this.onProcessInterrupted())
-  // }
-
-  // onModuleDestroy() {
-  //   this.onProcessInterrupted()
-  // }
-
-  // onProcessInterrupted() {
-  //   this.logger.log('Process interrupted, interrupting all runs')
-  //   this.processInterrupted = true
-  // }
+  onModuleDestroy() {
+    this.logger.log('Process interrupted, interrupting all runs')
+    this.processInterrupted = true
+  }
 
   async runWorkflowTriggerCheck(
     workflowTrigger: WorkflowTrigger,
