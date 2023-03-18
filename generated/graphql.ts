@@ -1233,7 +1233,7 @@ export interface IMutation {
     updateOneUser(input: UpdateOneUserInput): User | Promise<User>;
     createCheckoutSession(priceId: string): UserCheckoutSessionPayload | Promise<UserCheckoutSessionPayload>;
     resumeSubscription(): ResultPayload | Promise<ResultPayload>;
-    cancelSubscription(): ResultPayload | Promise<ResultPayload>;
+    changeSubscriptionPlan(priceId: string): ResultPayload | Promise<ResultPayload>;
     verifyEmail(address: string, code: string): VerifyEmailPayload | Promise<VerifyEmailPayload>;
     requestMigration(email: string): RequestMigrationPayload | Promise<RequestMigrationPayload>;
     completeMigration(email: string, code: string, data: string): RequestMigrationPayload | Promise<RequestMigrationPayload>;

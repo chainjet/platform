@@ -75,7 +75,10 @@ export class UserResolver extends BaseResolver(User, {
   }
 
   @Mutation(() => ResultPayload)
-  async cancelSubscription(@UserId() userId: ObjectId): Promise<{ success: boolean }> {
+  async changeSubscriptionPlan(
+    @UserId() userId: ObjectId,
+    @Args({ name: 'priceId', type: () => GraphQLString }) priceId: string,
+  ): Promise<{ success: boolean }> {
     if (!userId) {
       throw new Error('Not logged in')
     }
@@ -83,11 +86,22 @@ export class UserResolver extends BaseResolver(User, {
     if (!user) {
       throw new Error('User not found')
     }
-    this.logger.log(`Cancelling subscription ${user.stripeSubscriptionId} for user ${user.id}`)
-    await this.subscriptionService.cancelSubscription(user)
 
-    // plan won't change until the next billing cycle
-    await this.userService.updateOneNative({ _id: user._id }, { nextPlan: 'free' })
+    if (priceId === 'free') {
+      this.logger.log(`Cancelling subscription ${user.stripeSubscriptionId} for user ${user.id}`)
+      await this.subscriptionService.cancelSubscription(user)
+
+      // plan won't change until the next billing cycle
+      await this.userService.updateOneNative({ _id: user._id }, { nextPlan: 'free' })
+      return { success: true }
+    }
+
+    this.logger.log(`Changing subscription ${user.stripeSubscriptionId} for user ${user.id} to price ${priceId}`)
+    const productId = await this.subscriptionService.changeSubscription(user, priceId)
+    await this.userService.updateOneNative(
+      { _id: user._id },
+      { plan: productId, subscriptionActive: true, $unset: { nextPlan: '' } },
+    )
 
     return { success: true }
   }

@@ -63,6 +63,32 @@ export class SubscriptionService {
     })
   }
 
+  async changeSubscription(user: User, priceId: string): Promise<string> {
+    if (!user.stripeSubscriptionId) {
+      throw new Error('You do not have an active subscription')
+    }
+    const stripePrice = await this.stripe.prices.retrieve(priceId)
+    if (!stripePrice) {
+      throw new Error('Price not found')
+    }
+    if (stripePrice.product === user.plan) {
+      throw new Error('You already have this plan')
+    }
+    const currentSubscription = await this.stripe.subscriptions.retrieve(user.stripeSubscriptionId)
+    if (!currentSubscription) {
+      throw new Error(`Subscription ${user.stripeSubscriptionId} not found`)
+    }
+    await this.stripe.subscriptions.update(user.stripeSubscriptionId, {
+      items: [
+        {
+          id: currentSubscription.items.data[0].id,
+          price: priceId,
+        },
+      ],
+    })
+    return stripePrice.product.toString()
+  }
+
   async getWebhookEvent(payload: any, signature: string): Promise<Stripe.Event | null> {
     return this.stripe.webhooks.constructEvent(
       payload,
