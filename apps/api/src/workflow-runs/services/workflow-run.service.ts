@@ -69,7 +69,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
       status: hasRootAction ? WorkflowRunStatus.running : WorkflowRunStatus.completed,
       startedBy: WorkflowRunStartedByOptions.trigger,
       operationsUsed: 1,
-      lockedAt: new Date(),
+      ...(hasRootAction ? { lockedAt: new Date() } : {}),
       triggerRun: {
         integrationName: integration.name,
         operationName: integrationTrigger.name,
