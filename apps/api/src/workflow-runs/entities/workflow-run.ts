@@ -61,7 +61,7 @@ export class WorkflowRun extends BaseEntity {
   /**
    * Trigger run response data. This is stored while the workflow is running or if it failed.
    */
-  @jsonProp()
+  @jsonProp({ set: (val) => (Array.isArray(val) && val.length ? JSON.stringify(val) : undefined) })
   triggerItems?: Array<Record<string, any>>
 
   @Field(() => GraphQLJSONObject, { nullable: true })
