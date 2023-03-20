@@ -110,7 +110,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     workflowRunData.status = WorkflowRunStatus.running
     workflowRunData.lockedAt = new Date()
     const workflowRun = await this.createOne(workflowRunData)
-    await this.cacheManager.set(`TRIGGER_ITEMS_${workflowRun.id}`, triggerItems, 60 * 60 * 3)
+    await this.cacheManager.set(`TRIGGER_ITEMS_${workflowRun.id}`, triggerItems, { ttl: 60 * 60 * 3 } as any)
     await this.userService.incrementOperationsUsed(userId, true)
     return workflowRun
   }
@@ -278,7 +278,9 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
   ): Promise<void> {
     delete workflowRun.lockedAt
     await this.updateOneNative({ _id: workflowRun._id }, { $unset: { lockedAt: '' } })
-    await this.cacheManager.set(`RUN_ACTION_OUTPUTS_${workflowRunAction.id}`, previousOutputs, 60 * 60 * 3)
+    await this.cacheManager.set(`RUN_ACTION_OUTPUTS_${workflowRunAction.id}`, previousOutputs, {
+      ttl: 60 * 60 * 3,
+    } as any)
   }
 
   async getTriggerItems(workflowRunId: ObjectId): Promise<TriggerItem[] | undefined> {
