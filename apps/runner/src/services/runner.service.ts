@@ -8,6 +8,7 @@ import { UserService } from 'apps/api/src/users/services/user.service'
 import { WorkflowUsedIdService } from 'apps/api/src/workflow-triggers/services/workflow-used-id.service'
 import { ObjectId } from 'bson'
 import _ from 'lodash'
+import { Document } from 'mongodb'
 import mongoose from 'mongoose'
 import { Reference } from '../../../../libs/common/src/typings/mongodb'
 import { AccountCredential } from '../../../api/src/account-credentials/entities/account-credential'
@@ -25,7 +26,7 @@ import { WorkflowRunAction } from '../../../api/src/workflow-runs/entities/workf
 import { WorkflowRunStartedByOptions } from '../../../api/src/workflow-runs/entities/workflow-run-started-by-options'
 import { WorkflowRunStatus } from '../../../api/src/workflow-runs/entities/workflow-run-status'
 import { WorkflowSleep } from '../../../api/src/workflow-runs/entities/workflow-sleep'
-import { WorkflowRunService } from '../../../api/src/workflow-runs/services/workflow-run.service'
+import { TriggerItem, WorkflowRunService } from '../../../api/src/workflow-runs/services/workflow-run.service'
 import { WorkflowTrigger } from '../../../api/src/workflow-triggers/entities/workflow-trigger'
 import { WorkflowTriggerService } from '../../../api/src/workflow-triggers/services/workflow-trigger.service'
 import { Workflow } from '../../../api/src/workflows/entities/workflow'
@@ -384,6 +385,7 @@ export class RunnerService {
     previousOutputs: Record<string, Record<string, unknown>>,
     workflowRun: WorkflowRun,
     triggerItemId: TriggerItemId,
+    resumingWorkflowRunAction?: WorkflowRunAction,
   ): Promise<void> {
     this.logger.log(`Running workflow action ${workflowAction.id} for workflow ${workflowAction.workflow}`)
 
@@ -405,13 +407,15 @@ export class RunnerService {
       return
     }
 
-    const workflowRunAction = await this.workflowRunService.addRunningAction(
-      workflowRun._id,
-      workflowAction._id,
-      triggerItemId,
-      integration.name,
-      integrationAction.name,
-    )
+    const workflowRunAction =
+      resumingWorkflowRunAction ??
+      (await this.workflowRunService.addRunningAction(
+        workflowRun._id,
+        workflowAction._id,
+        triggerItemId,
+        integration.name,
+        integrationAction.name,
+      ))
 
     const { credentials, accountCredential, integrationAccount } = await this.getCredentialsAndIntegrationAccount(
       workflowAction.credentials?.toString(),
@@ -421,7 +425,7 @@ export class RunnerService {
 
     if (this.processInterrupted) {
       this.logger.log(`Interrupting workflow run ${workflowRun.id} of workflow ${workflow.id}`)
-      await this.workflowRunService.interruptWorkflowRun(workflowRun)
+      await this.workflowRunService.interruptWorkflowRun(workflowRun, workflowRunAction, previousOutputs)
       return
     }
 
@@ -628,6 +632,106 @@ export class RunnerService {
       }
     }
     return { credentials, accountCredential, integrationAccount }
+  }
+
+  /**
+   * Run specific trigger items from their latest completed action
+   * Useful for continuing an interrupted workflow run (for trigger items already started)
+   */
+  async runTriggerItemsFromLatestAction(workflowRun: WorkflowRun, triggerItems: TriggerItem[]): Promise<boolean> {
+    const workflow = await this.workflowService.findOne(workflowRun.workflow)
+    if (!workflow) {
+      return false
+    }
+    const workflowActions = await this.workflowActionService.find({
+      workflow: workflowRun.workflow,
+    })
+    for (const triggerItem of triggerItems) {
+      // find the incompleted action for the trigger id
+      const workflowRunAction = workflowRun.actionRuns.find(
+        (runAction) =>
+          runAction.itemId.toString() === triggerItem.id.toString() && runAction.status === WorkflowRunStatus.running,
+      )
+      const workflowAction = workflowActions.find(
+        (action) => action.id.toString() === workflowRunAction?.workflowAction.toString(),
+      )
+      if (!workflowAction || !workflowRunAction) {
+        this.logger.error(
+          `Error resuming a workflow run: A running action was not found for workflow run ${workflowRun.id} and item ${triggerItem.id}`,
+        )
+        continue
+      }
+      const previousOutputs = await this.workflowRunService.getWorkflowRunActionPreviousOutputs(workflowRunAction._id)
+      if (!previousOutputs) {
+        this.logger.error(
+          `Error resuming a workflow run: the previous outputs were not found for workflow run ${workflowRun.id} and item ${triggerItem.id}`,
+        )
+        continue
+      }
+      await this.runWorkflowActionsTree(
+        workflow,
+        workflowAction,
+        previousOutputs,
+        workflowRun,
+        triggerItem.id,
+        workflowRunAction,
+      )
+    }
+    return true
+  }
+
+  /**
+   * Run specific trigger items from the workflow's root action
+   * Useful for continuing an interrupted workflow run (for trigger items never started)
+   */
+  async runTriggerItemsFromRootAction(workflowRun: WorkflowRun, triggerItems: TriggerItem[]): Promise<void> {
+    const workflowTrigger = await this.workflowTriggerService.findOne({
+      workflow: workflowRun.workflow,
+    })
+    const workflowActions = await this.workflowActionService.find({
+      workflow: workflowRun.workflow,
+      isRootAction: true,
+    })
+
+    // workflow trigger or all workflow actions were removed
+    if (!workflowTrigger || !workflowActions.length) {
+      await this.workflowRunService.updateOneNative(
+        { _id: workflowRun._id },
+        {
+          $set: { status: !workflowTrigger ? WorkflowRunStatus.failed : WorkflowRunStatus.completed },
+          $unset: { lockedAt: '' },
+        },
+      )
+      return
+    }
+
+    if (workflowRun.retries && workflowRun.retries >= 2) {
+      this.logger.log(`Workflow run timed out after too many retries: ${workflowRun._id}`)
+      await this.workflowRunService.updateWorkflowRunStatus(workflowRun._id, WorkflowRunStatus.failed)
+      return
+    }
+
+    // lock the execution if we have the latest version of the object (to avoid concurrent runs between workers)
+    const res = await this.workflowRunService.updateOneNative(
+      { _id: workflowRun._id, __v: (workflowRun as Document).__v },
+      {
+        $set: {
+          lockedAt: new Date(),
+          ...(!workflowRun.retries ? { retries: 1 } : {}),
+        },
+        ...(workflowRun.retries ? { $inc: { retries: 1 } } : {}),
+      },
+    )
+    if (!res.modifiedCount) {
+      return
+    }
+
+    const triggerOutputs = triggerItems.map((item) => ({
+      id: item.id,
+      outputs: { [workflowTrigger.id]: item.item, trigger: item.item },
+    }))
+    this.logger.log(`Retrying workflow run: ${workflowRun._id} with ${triggerOutputs.length} items`)
+    await this.runWorkflowActions(workflowActions, triggerOutputs, workflowRun)
   }
 
   /**

@@ -20,6 +20,11 @@ import { WorkflowRunStartedByOptions } from '../entities/workflow-run-started-by
 import { WorkflowRunStatus } from '../entities/workflow-run-status'
 import { WorkflowSleepService } from './workflow-sleep.service'
 
+export interface TriggerItem {
+  id: string | number
+  item: any
+}
+
 @Injectable()
 export class WorkflowRunService extends BaseService<WorkflowRun> {
   protected readonly logger = new Logger(WorkflowRunService.name)
@@ -266,12 +271,21 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     await this.updateOne(workflowRun.id, { status: workflowRun.status, lockedAt: workflowRun.lockedAt })
   }
 
-  async interruptWorkflowRun(workflowRun: WorkflowRun): Promise<void> {
+  async interruptWorkflowRun(
+    workflowRun: WorkflowRun,
+    workflowRunAction: WorkflowRunAction,
+    previousOutputs: Record<string, Record<string, unknown>>,
+  ): Promise<void> {
     delete workflowRun.lockedAt
     await this.updateOneNative({ _id: workflowRun._id }, { $unset: { lockedAt: '' } })
+    await this.cacheManager.set(`RUN_ACTION_OUTPUTS_${workflowRunAction.id}`, previousOutputs, 60 * 60 * 3)
   }
 
-  async getTriggerItems(workflowRunId: ObjectId): Promise<any[] | undefined> {
+  async getTriggerItems(workflowRunId: ObjectId): Promise<TriggerItem[] | undefined> {
     return await this.cacheManager.get(`TRIGGER_ITEMS_${workflowRunId}`)
+  }
+
+  async getWorkflowRunActionPreviousOutputs(workflowRunActionId: ObjectId): Promise<Record<string, any> | undefined> {
+    return await this.cacheManager.get(`RUN_ACTION_OUTPUTS_${workflowRunActionId}`)
   }
 }

@@ -1,7 +1,6 @@
 import { getDateFromObjectId } from '@app/common/utils/mongodb'
 import { Injectable, Logger } from '@nestjs/common'
 import { Interval } from '@nestjs/schedule'
-import { WorkflowActionService } from 'apps/api/src/workflow-actions/services/workflow-action.service'
 import { WorkflowRunStatus } from 'apps/api/src/workflow-runs/entities/workflow-run-status'
 import { WorkflowRunService } from 'apps/api/src/workflow-runs/services/workflow-run.service'
 import { WorkflowTrigger } from 'apps/api/src/workflow-triggers/entities/workflow-trigger'
@@ -18,7 +17,6 @@ export class WorkflowSchedulerService {
   constructor(
     private readonly runnerService: RunnerService,
     private readonly workflowTriggerService: WorkflowTriggerService,
-    private readonly workflowActionService: WorkflowActionService,
     private readonly workflowSleepService: WorkflowSleepService,
     private readonly workflowRunService: WorkflowRunService,
   ) {}
@@ -30,17 +28,17 @@ export class WorkflowSchedulerService {
     }
   }
 
-  @Interval(10 * 1000)
+  @Interval(11 * 1000)
   async scheduleSleepChecksInterval(): Promise<void> {
     if (process.env.NODE_ENV !== 'test' && !this.processInterrupted) {
       await this.scheduleSleepChecks()
     }
   }
 
-  @Interval(10 * 1000)
+  @Interval(12 * 1000)
   async scheduleTimedOutWorkflowsRetries(): Promise<void> {
     if (process.env.NODE_ENV !== 'test' && !this.processInterrupted) {
-      await this.retryTimedOutWorkflows()
+      await this.resumeWorkflowRuns()
     }
   }
 
@@ -104,7 +102,7 @@ export class WorkflowSchedulerService {
    * Retry workflows that are still running 20 minutes after the last action was started
    * Also retry runs interrupted. When we receive a SIGTERM, the lock on the run is immediately released
    */
-  async retryTimedOutWorkflows(): Promise<void> {
+  async resumeWorkflowRuns(): Promise<void> {
     const twentyMinutesAgo = new Date(new Date().getTime() - 20 * 60 * 1000)
     const workflowRuns = await this.workflowRunService.find({
       $or: [
@@ -159,71 +157,35 @@ export class WorkflowSchedulerService {
 
       const triggerItems = await this.workflowRunService.getTriggerItems(workflowRun._id)
       const notCompletedTriggerItems = triggerItems?.filter((trigger) => {
-        const action = workflowRun.actionRuns.find((action) => action.itemId === trigger.id)
-        return !action || action.status === WorkflowRunStatus.running
+        const actions = workflowRun.actionRuns.filter((action) => action.itemId === trigger.id)
+        return !actions.length || actions.some((action) => action.status === WorkflowRunStatus.running)
       })
       if (!notCompletedTriggerItems?.length) {
         continue
       }
 
-      const notStartedTriggerItems = notCompletedTriggerItems.filter((trigger) => {
-        return !workflowRun.actionRuns.some(
+      const startedTriggerItems = notCompletedTriggerItems.filter((trigger) => {
+        return workflowRun.actionRuns.some(
           (action) => action.itemId === trigger.id && action.status === WorkflowRunStatus.completed,
         )
       })
 
-      // TODO at the moment we can only retry runs that have not succesfully run any actions
-      if (!notStartedTriggerItems.length) {
-        continue
-      }
+      // Run started trigger items (from the latest completed action)
+      const success = await this.runnerService.runTriggerItemsFromLatestAction(workflowRun, startedTriggerItems)
 
-      const workflowTrigger = await this.workflowTriggerService.findOne({
-        workflow: workflowRun.workflow,
-      })
-      const workflowActions = await this.workflowActionService.find({
-        workflow: workflowRun.workflow,
-        isRootAction: true,
-      })
-
-      // workflow trigger or all workflow actions were removed
-      if (!workflowTrigger || !workflowActions.length) {
-        await this.workflowRunService.updateOneNative(
-          { _id: workflowRun._id },
-          {
-            $set: { status: !workflowTrigger ? WorkflowRunStatus.failed : WorkflowRunStatus.completed },
-            $unset: { lockedAt: '' },
-          },
-        )
-        continue
-      }
-
-      if (workflowRun.retries && workflowRun.retries >= 2) {
-        this.logger.log(`Workflow run timed out after too many retries: ${workflowRun._id}`)
-        await this.workflowRunService.updateWorkflowRunStatus(workflowRun._id, WorkflowRunStatus.failed)
-        continue
-      }
-
-      // lock the execution if we have the latest version of the object (to avoid concurrent runs between workers)
-      const res = await this.workflowRunService.updateOneNative(
-        { _id: workflowRun._id, __v: workflowRun.__v },
-        {
-          $set: {
-            lockedAt: new Date(),
-            ...(!workflowRun.retries ? { retries: 1 } : {}),
-          },
-          ...(workflowRun.retries ? { $inc: { retries: 1 } } : {}),
-        },
+      // Run not started trigger items (from the root action)
+      const notStartedTriggerItems = notCompletedTriggerItems.filter(
+        (trigger) => !startedTriggerItems.some((startedTrigger) => startedTrigger.id === trigger.id),
       )
-      if (!res.modifiedCount) {
-        continue
-      }
 
-      const triggerOutputs = notStartedTriggerItems.map((item) => ({
-        id: item.id,
-        outputs: { [workflowTrigger.id]: item.item, trigger: item.item },
-      }))
-      this.logger.log(`Retrying workflow run: ${workflowRun._id} with ${triggerOutputs.length} items`)
-      await this.runnerService.runWorkflowActions(workflowActions, triggerOutputs, workflowRun)
+      if (notStartedTriggerItems.length) {
+        await this.runnerService.runTriggerItemsFromRootAction(workflowRun, notStartedTriggerItems)
+      } else if (!this.processInterrupted) {
+        await this.workflowRunService.updateWorkflowRunStatus(
+          workflowRun._id,
+          success ? WorkflowRunStatus.completed : WorkflowRunStatus.failed,
+        )
+      }
     }
   }
 }
