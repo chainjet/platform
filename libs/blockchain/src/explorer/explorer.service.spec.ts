@@ -1,5 +1,6 @@
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { mongoForRoot } from '@app/common/utils/mongodb'
+import { redisForRoot } from '@app/common/utils/redis.utils'
 import { ConfigModule } from '@nestjs/config'
 import { Test, TestingModule } from '@nestjs/testing'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
@@ -18,6 +19,7 @@ describe('ExplorerService', () => {
       imports: [
         ConfigModule.forRoot({ load: [blockchainConfigList] }),
         mongoForRoot(),
+        redisForRoot(),
         NestjsQueryGraphQLModule.forFeature({
           imports: [NestjsQueryTypegooseModule.forFeature([EvmContract])],
           dtos: [{ DTOClass: EvmContract }],

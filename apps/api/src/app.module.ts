@@ -1,4 +1,5 @@
 import { CommonModule } from '@app/common'
+import { redisForRoot } from '@app/common/utils/redis.utils'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
@@ -28,7 +29,7 @@ import { WorkflowsModule } from './workflows/workflows.module'
   imports: [
     ConfigModule.forRoot(),
     mongoForRoot(),
-    // redisForRoot(),
+    redisForRoot(),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       context: ({ req }) => ({ req }),

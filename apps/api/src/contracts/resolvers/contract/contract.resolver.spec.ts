@@ -1,4 +1,5 @@
 import { mongoForRoot } from '@app/common/utils/mongodb'
+import { redisForRoot } from '@app/common/utils/redis.utils'
 import { BlockchainModule } from '@blockchain/blockchain'
 import { blockchainConfigList, BlockchainConfigService } from '@blockchain/blockchain/blockchain.config'
 import { ContractService } from '@blockchain/blockchain/contract/services/contract.service'
@@ -15,7 +16,7 @@ describe('ContractResolver', () => {
       imports: [
         ConfigModule.forRoot({ load: [blockchainConfigList] }),
         mongoForRoot(),
-        // redisForRoot(),
+        redisForRoot(),
         BlockchainModule,
       ],
       providers: [ContractResolver, ExplorerService, BlockchainConfigService, ContractService],
