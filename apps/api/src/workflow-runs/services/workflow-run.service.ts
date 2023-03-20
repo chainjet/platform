@@ -2,9 +2,10 @@ import { BaseService } from '@app/common/base/base.service'
 import { EmailService } from '@app/emails/services/email.service'
 import { WorkflowDisabledTemplate } from '@app/emails/templates/workflowDisabledTemplate'
 import { ChainId } from '@blockchain/blockchain/types/ChainId'
-import { Injectable, Logger } from '@nestjs/common'
+import { CACHE_MANAGER, Inject, Injectable, Logger } from '@nestjs/common'
 import { mongoose, ReturnModelType } from '@typegoose/typegoose'
 import { ObjectId } from 'bson'
+import { Cache } from 'cache-manager'
 import { InjectModel } from 'nestjs-typegoose'
 import { IntegrationTrigger } from '../../integration-triggers/entities/integration-trigger'
 import { Integration } from '../../integrations/entities/integration'
@@ -24,6 +25,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
   protected readonly logger = new Logger(WorkflowRunService.name)
 
   constructor(
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
     @InjectModel(WorkflowRun) protected readonly model: ReturnModelType<typeof WorkflowRun>,
     private readonly userService: UserService,
     private readonly workflowTriggerService: WorkflowTriggerService,
@@ -101,9 +103,9 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     }
     workflowRunData.operationsUsed = 1
     workflowRunData.status = WorkflowRunStatus.running
-    workflowRunData.triggerItems = triggerItems
     workflowRunData.lockedAt = new Date()
     const workflowRun = await this.createOne(workflowRunData)
+    await this.cacheManager.set(`TRIGGER_ITEMS_${workflowRun.id}`, triggerItems, 60 * 60 * 3)
     await this.userService.incrementOperationsUsed(userId, true)
     return workflowRun
   }
@@ -262,5 +264,14 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     workflowRun.status = WorkflowRunStatus.running
     workflowRun.lockedAt = new Date()
     await this.updateOne(workflowRun.id, { status: workflowRun.status, lockedAt: workflowRun.lockedAt })
+  }
+
+  async interruptWorkflowRun(workflowRun: WorkflowRun): Promise<void> {
+    delete workflowRun.lockedAt
+    await this.updateOneNative({ _id: workflowRun._id }, { $unset: { lockedAt: '' } })
+  }
+
+  async getTriggerItems(workflowRunId: ObjectId): Promise<any[] | undefined> {
+    return await this.cacheManager.get(`TRIGGER_ITEMS_${workflowRunId}`)
   }
 }

@@ -1,3 +1,4 @@
+import { getDateFromObjectId } from '@app/common/utils/mongodb'
 import { Injectable, Logger } from '@nestjs/common'
 import { Interval } from '@nestjs/schedule'
 import { WorkflowActionService } from 'apps/api/src/workflow-actions/services/workflow-action.service'
@@ -101,19 +102,34 @@ export class WorkflowSchedulerService {
 
   /**
    * Retry workflows that are still running 20 minutes after the last action was started
+   * Also retry runs interrupted. When we receive a SIGTERM, the lock on the run is immediately released
    */
   async retryTimedOutWorkflows(): Promise<void> {
     const twentyMinutesAgo = new Date(new Date().getTime() - 20 * 60 * 1000)
     const workflowRuns = await this.workflowRunService.find({
-      lockedAt: {
-        $lt: twentyMinutesAgo,
-      },
-
-      // we run must have triggerItems to continue the run
-      triggerItems: {
-        $exists: true,
-      },
+      $or: [
+        // interrupted runs
+        {
+          lockedAt: {
+            $exists: false,
+          },
+          status: WorkflowRunStatus.running,
+        },
+        // timed out runs
+        {
+          lockedAt: {
+            $lt: twentyMinutesAgo,
+          },
+        },
+      ],
     })
+
+    const timedOutRuns = workflowRuns.filter(
+      (workflowRun) => workflowRun.lockedAt && workflowRun.lockedAt < twentyMinutesAgo,
+    )
+    const interruptedRuns = workflowRuns.filter((workflowRun) => !workflowRun.lockedAt)
+    this.logger.log(`Found ${timedOutRuns.length} timed out workflow runs`)
+    this.logger.log(`Found ${interruptedRuns.length} interrupted workflow runs`)
 
     for (const workflowRun of workflowRuns) {
       if (workflowRun.status !== WorkflowRunStatus.running) {
@@ -129,8 +145,9 @@ export class WorkflowSchedulerService {
       }
 
       const sixHoursAgo = new Date(new Date().getTime() - 6 * 60 * 60 * 1000)
-      if (workflowRun.lockedAt!.getTime() < sixHoursAgo.getTime()) {
-        this.logger.log(`Workflow run lock is too old (${workflowRun.lockedAt}): ${workflowRun._id}`)
+      const runCreatedAt = getDateFromObjectId(workflowRun._id)
+      if (runCreatedAt.getTime() < sixHoursAgo.getTime()) {
+        this.logger.log(`Workflow run is too old (${runCreatedAt}): ${workflowRun._id}`)
         await this.workflowRunService.updateWorkflowRunStatus(workflowRun._id, WorkflowRunStatus.failed)
         continue
       }
@@ -140,7 +157,7 @@ export class WorkflowSchedulerService {
         continue
       }
 
-      const triggerItems = workflowRun.triggerItems
+      const triggerItems = await this.workflowRunService.getTriggerItems(workflowRun._id)
       const notCompletedTriggerItems = triggerItems?.filter((trigger) => {
         const action = workflowRun.actionRuns.find((action) => action.itemId === trigger.id)
         return !action || action.status === WorkflowRunStatus.running

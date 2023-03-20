@@ -162,6 +162,12 @@ export class RunnerService {
       return
     }
 
+    // if (user.operationsUsedMonth >= user.planConfig.maxOperations) {
+    //   this.logger.log(`User ${user.id} has reached the monthly operation limit`)
+    //   await this.workflowTriggerService.markUserPlanAsLimited(user._id)
+    //   return
+    // }
+
     if (this.processInterrupted) {
       return
     }
@@ -367,7 +373,9 @@ export class RunnerService {
       await Promise.all(promises)
       await wait(200)
     }
-    await this.workflowRunService.markWorkflowRunAsCompleted(workflowRun._id)
+    if (!this.processInterrupted) {
+      await this.workflowRunService.markWorkflowRunAsCompleted(workflowRun._id)
+    }
   }
 
   private async runWorkflowActionsTree(
@@ -380,6 +388,11 @@ export class RunnerService {
     this.logger.log(`Running workflow action ${workflowAction.id} for workflow ${workflowAction.workflow}`)
 
     const userId = new ObjectId(workflowAction.owner.toString())
+    const user = await this.userService.findById(userId.toString())
+    if (!user) {
+      this.logger.error(`User ${userId} not found`)
+      return
+    }
 
     const integrationAction = await this.integrationActionService.findById(workflowAction.integrationAction.toString())
     if (!integrationAction) {
@@ -406,6 +419,12 @@ export class RunnerService {
       () => this.onActionFailure(workflow, workflowRun, workflowRunAction, 'Credentials not found'),
     )
 
+    if (this.processInterrupted) {
+      this.logger.log(`Interrupting workflow run ${workflowRun.id} of workflow ${workflow.id}`)
+      await this.workflowRunService.interruptWorkflowRun(workflowRun)
+      return
+    }
+
     let inputs: Record<string, unknown>
     try {
       inputs = parseStepInputs({ ...workflowAction.inputs }, previousOutputs)
@@ -421,18 +440,6 @@ export class RunnerService {
       this.logger.error(
         `Parse step inputs for action ${workflowAction.id} for workflow ${workflow.id} failed with error ${e.message}`,
       )
-      return
-    }
-
-    const user = await this.userService.findById(userId.toString())
-    if (!user) {
-      this.logger.error(`User ${userId} not found`)
-      return
-    }
-
-    if (this.processInterrupted) {
-      // TODO: interrupt workflow run
-      // await this.workflowRunService.interruptRun(workflowRun)
       return
     }
 
