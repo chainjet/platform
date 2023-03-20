@@ -31,7 +31,7 @@ export class WorkflowRun extends BaseEntity {
   workflow: Reference<Workflow>
 
   @FilterableField(() => WorkflowRunStatus)
-  @prop({ enum: WorkflowRunStatus, type: String, required: true })
+  @prop({ enum: WorkflowRunStatus, type: String, required: true, index: true })
   status: WorkflowRunStatus
 
   @Field(() => WorkflowRunTrigger, { nullable: true })
