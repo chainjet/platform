@@ -1,8 +1,16 @@
 import { BaseEntity } from '@app/common/base/base-entity'
 import { TypegooseQueryService } from '@app/common/TypegooseQueryService'
 import { Injectable, Logger } from '@nestjs/common'
-import { DeepPartial, Filter, Query, UpdateManyResponse, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
+import {
+  DeepPartial,
+  Filter,
+  FindByIdOptions,
+  Query,
+  UpdateManyResponse,
+  UpdateOneOptions,
+} from '@ptc-org/nestjs-query-core'
 import { mongoose, ReturnModelType } from '@typegoose/typegoose'
+import { Cache } from 'cache-manager'
 import { ObjectId, UpdateResult } from 'mongodb'
 import {
   AggregateOptions,
@@ -17,6 +25,10 @@ import {
 @Injectable()
 export abstract class BaseService<T extends BaseEntity> extends TypegooseQueryService<T> {
   protected abstract readonly logger: Logger
+  protected cacheManager: Cache
+
+  // cache is only enabled when cacheKey is set
+  protected cacheKey: string | null = null
 
   constructor(protected readonly model: ReturnModelType<new () => T>) {
     super(model, { documentToObjectOptions: { virtuals: true, getters: true } })
@@ -90,6 +102,23 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
     return (
       (await this.model.findOne(conditions, projection, options).exec())?.toObject(this.documentToObjectOptions) ?? null
     )
+  }
+
+  async findById(id: string, opts?: FindByIdOptions<T> | undefined): Promise<T | undefined> {
+    if (!this.cacheKey || opts) {
+      return super.findById(id, opts)
+    }
+    const cacheKey = `${this.cacheKey}:${id}`
+    const cachedResult = await this.cacheManager.get<T>(cacheKey)
+    if (cachedResult) {
+      return this.hydrate(cachedResult)
+    } else {
+      const result = await super.findById(id)
+      if (result) {
+        await this.cacheManager.set(cacheKey, result)
+      }
+      return result
+    }
   }
 
   async findByIds(ids: mongoose.Types.ObjectId[], projection?: any | null, options?: QueryOptions): Promise<T[]> {
@@ -171,5 +200,13 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
 
   countNative(conditions: FilterQuery<new () => T>): Promise<number> {
     return this.model.countDocuments(conditions).exec()
+  }
+
+  hydrate(doc: any): T {
+    const res = this.model.hydrate(doc)
+    if (res?.createdAt) {
+      res.createdAt = new Date(res.createdAt)
+    }
+    return res
   }
 }

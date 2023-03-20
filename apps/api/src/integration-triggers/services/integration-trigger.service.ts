@@ -1,8 +1,9 @@
 import { BaseService } from '@app/common/base/base.service'
 import { NotOwnedAuthorizer } from '@app/common/base/owned.authorizer'
-import { Injectable, Logger } from '@nestjs/common'
+import { CACHE_MANAGER, Inject, Injectable, Logger } from '@nestjs/common'
 import { DeepPartial } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
+import { Cache } from 'cache-manager'
 import { InjectModel } from 'nestjs-typegoose'
 import { IntegrationTrigger } from '../entities/integration-trigger'
 
@@ -13,8 +14,12 @@ export class IntegrationTriggerAuthorizer extends NotOwnedAuthorizer<Integration
 export class IntegrationTriggerService extends BaseService<IntegrationTrigger> {
   protected readonly logger = new Logger(IntegrationTriggerService.name)
   static instance: IntegrationTriggerService
+  protected cacheKey = 'integration-trigger'
 
-  constructor(@InjectModel(IntegrationTrigger) protected readonly model: ReturnModelType<typeof IntegrationTrigger>) {
+  constructor(
+    @Inject(CACHE_MANAGER) protected cacheManager: Cache,
+    @InjectModel(IntegrationTrigger) protected readonly model: ReturnModelType<typeof IntegrationTrigger>,
+  ) {
     super(model)
     IntegrationTriggerService.instance = this
   }

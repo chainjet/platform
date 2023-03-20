@@ -1,7 +1,8 @@
 import { BaseService } from '@app/common/base/base.service'
-import { Injectable, Logger } from '@nestjs/common'
+import { CACHE_MANAGER, Inject, Injectable, Logger } from '@nestjs/common'
 import { DeepPartial } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
+import { Cache } from 'cache-manager'
 import { InjectModel } from 'nestjs-typegoose'
 import { Integration } from '../entities/integration'
 
@@ -9,8 +10,12 @@ import { Integration } from '../entities/integration'
 export class IntegrationService extends BaseService<Integration> {
   protected readonly logger = new Logger(IntegrationService.name)
   static instance: IntegrationService
+  protected cacheKey = 'integration'
 
-  constructor(@InjectModel(Integration) protected readonly model: ReturnModelType<typeof Integration>) {
+  constructor(
+    @Inject(CACHE_MANAGER) protected cacheManager: Cache,
+    @InjectModel(Integration) protected readonly model: ReturnModelType<typeof Integration>,
+  ) {
     super(model)
     IntegrationService.instance = this
   }

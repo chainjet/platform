@@ -30,7 +30,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
   protected readonly logger = new Logger(WorkflowRunService.name)
 
   constructor(
-    @Inject(CACHE_MANAGER) private cacheManager: Cache,
+    @Inject(CACHE_MANAGER) protected cacheManager: Cache,
     @InjectModel(WorkflowRun) protected readonly model: ReturnModelType<typeof WorkflowRun>,
     private readonly userService: UserService,
     private readonly workflowTriggerService: WorkflowTriggerService,
