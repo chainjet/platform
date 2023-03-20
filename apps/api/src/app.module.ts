@@ -4,6 +4,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { GraphQLModule } from '@nestjs/graphql'
+import { ScheduleModule } from '@nestjs/schedule'
 import path from 'path'
 import { mongoForRoot } from '../../../libs/common/src/utils/mongodb'
 import { AccountCredentialsModule } from './account-credentials/account-credentials.module'
@@ -17,6 +18,7 @@ import { IntegrationAccountsModule } from './integration-accounts/integration-ac
 import { IntegrationActionsModule } from './integration-actions/integration-actions.module'
 import { IntegrationTriggersModule } from './integration-triggers/integration-triggers.module'
 import { IntegrationsModule } from './integrations/integrations.module'
+import { PlanSchedulerService } from './subscriptions/plan-scheduler.service'
 import { SubscriptionController } from './subscriptions/subscription.controller'
 import { TemplatesModule } from './templates/templates.module'
 import { UsersModule } from './users/users.module'
@@ -39,6 +41,7 @@ import { WorkflowsModule } from './workflows/workflows.module'
         // emitTypenameField: true,
       },
     }),
+    ScheduleModule.forRoot(),
     CommonModule,
     AuthModule,
     UsersModule,
@@ -57,6 +60,6 @@ import { WorkflowsModule } from './workflows/workflows.module'
     TemplatesModule,
   ],
   controllers: [AppController, SubscriptionController],
-  providers: [AppService],
+  providers: [AppService, PlanSchedulerService],
 })
 export class AppModule {}

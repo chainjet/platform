@@ -47,8 +47,8 @@ export const plansConfig: Record<string, PlanConfig> = {
       executeWorkflowOnError: true,
     },
   },
-  internal: {
-    key: 'internal',
+  unlimited: {
+    key: 'unlimited',
     maxOperations: Infinity,
     maxActiveWorkflows: Infinity,
     minPollingInterval: 15,
