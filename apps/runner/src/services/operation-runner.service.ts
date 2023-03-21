@@ -8,6 +8,7 @@ import { forwardRef, Inject, Injectable, InternalServerErrorException, Logger, N
 import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from 'apps/api/src/workflow-triggers/entities/workflow-trigger'
 import { Workflow } from 'apps/api/src/workflows/entities/workflow'
+import { HttpStatusCode } from 'axios'
 import { ObjectId } from 'mongodb'
 import { OAuth } from 'oauth'
 import { OpenAPIObject } from 'openapi3-ts'
@@ -113,7 +114,7 @@ export class OperationRunnerService {
       return itResponse!
     }
 
-    return this.runOperation(definition, opts)
+    return this.runOpenApiOperation(definition, opts)
   }
 
   async runAction(definition: Definition, opts: OperationRunOptions): Promise<RunResponse> {
@@ -150,10 +151,10 @@ export class OperationRunnerService {
       return definitionRunOutputs
     }
 
-    return this.runOperation(definition, opts)
+    return this.runOpenApiOperation(definition, opts)
   }
 
-  private async runOperation(
+  private async runOpenApiOperation(
     definition: Definition,
     opts: OperationRunOptions,
     retryCount: number = 0,
@@ -299,7 +300,7 @@ export class OperationRunnerService {
           accountCredential,
           credentials,
         )
-        return this.runOperation(definition, opts, retryCount + 1)
+        return this.runOpenApiOperation(definition, opts, retryCount + 1)
       }
       // retry once 429 errors (rate limiting) and 500 errors (server errors)
       if (!retryCount && (statusCode === 429 || statusCode >= 500)) {
@@ -307,7 +308,7 @@ export class OperationRunnerService {
         if (statusCode === 429) {
           await wait(500)
         }
-        return this.runOperation(definition, opts, retryCount + 1)
+        return this.runOpenApiOperation(definition, opts, retryCount + 1)
       }
       this.emitOperationRunMetric(false)
       // throw 401 errors as AuthenticationError so account credentials are marked as expired
@@ -334,6 +335,8 @@ export class OperationRunnerService {
   private async runDefinitionWithRefreshCredentials(
     definition: Definition,
     opts: OperationRunOptions,
+    maxRetries = 3, // only for 429 errors, other errors retry once
+    retryCount = 0,
   ): Promise<RunResponse | null> {
     try {
       const runResponse = await definition.run(opts)
@@ -341,16 +344,23 @@ export class OperationRunnerService {
         return await convertObservableToRunResponse(runResponse)
       }
       return runResponse
-    } catch (e) {
+    } catch (err) {
+      // if rate limited, retry up to maxRetries using exponential backoff
+      if (err.status === HttpStatusCode.TooManyRequests) {
+        await wait(3000 * Math.pow(2, retryCount) + 1000 * Math.random())
+        if (retryCount < maxRetries) {
+          return this.runDefinitionWithRefreshCredentials(definition, opts, maxRetries, retryCount + 1)
+        }
+      }
+
+      // for other errors, refresh credentials and retry once
       if (opts.integrationAccount?.authType === IntegrationAuthType.oauth2) {
-        // refresh credentials
         opts.credentials.accessToken = await this.oauthStrategyFactory.refreshOauth2AccessToken(
           opts.integrationAccount.key,
           opts.accountCredential,
           opts.credentials,
         )
       }
-      // retry once
       const res = await definition.run(opts)
       if (res) {
         return await convertObservableToRunResponse(res)
