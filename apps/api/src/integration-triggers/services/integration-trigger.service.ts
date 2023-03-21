@@ -14,7 +14,7 @@ export class IntegrationTriggerAuthorizer extends NotOwnedAuthorizer<Integration
 export class IntegrationTriggerService extends BaseService<IntegrationTrigger> {
   protected readonly logger = new Logger(IntegrationTriggerService.name)
   static instance: IntegrationTriggerService
-  protected cacheKey = 'integration-trigger'
+  // protected cacheKey = 'integration-trigger'
 
   constructor(
     @Inject(CACHE_MANAGER) protected cacheManager: Cache,
