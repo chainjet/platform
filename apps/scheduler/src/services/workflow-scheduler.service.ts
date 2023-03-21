@@ -21,21 +21,21 @@ export class WorkflowSchedulerService {
     private readonly workflowRunService: WorkflowRunService,
   ) {}
 
-  @Interval(10 * 1000)
+  @Interval(10 * 1000 + Math.floor(Math.random() * 3000))
   async scheduleTriggerChecksInterval(): Promise<void> {
     if (process.env.NODE_ENV !== 'test' && !this.processInterrupted) {
       await this.scheduleTriggerChecks()
     }
   }
 
-  @Interval(11 * 1000)
+  @Interval(10 * 1000 + Math.floor(Math.random() * 3000))
   async scheduleSleepChecksInterval(): Promise<void> {
     if (process.env.NODE_ENV !== 'test' && !this.processInterrupted) {
       await this.scheduleSleepChecks()
     }
   }
 
-  @Interval(12 * 1000)
+  @Interval(10 * 1000 + Math.floor(Math.random() * 3000))
   async scheduleTimedOutWorkflowsRetries(): Promise<void> {
     if (process.env.NODE_ENV !== 'test' && !this.processInterrupted) {
       await this.resumeWorkflowRuns()
