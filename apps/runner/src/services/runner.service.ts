@@ -228,8 +228,7 @@ export class RunnerService {
       })
     }
 
-    let triggerItems = extractTriggerItems(integrationTrigger.idKey, runResponse.outputs)
-
+    const triggerItems = extractTriggerItems(integrationTrigger.idKey, runResponse.outputs)
     const triggerIds = triggerItems.map((item) => item.id.toString())
 
     let newItems: Array<{ id: TriggerItemId; item: Record<string, unknown> }> = []
@@ -270,6 +269,7 @@ export class RunnerService {
         { _id: workflowTrigger._id },
         {
           lastCheck: new Date(),
+          consecutiveTriggerFails: 0,
           store: runResponse.store,
           ...(runResponse.nextCheck !== undefined
             ? { nextCheck: runResponse.nextCheck, enabled: !!runResponse.nextCheck }
@@ -331,6 +331,7 @@ export class RunnerService {
         lastId: triggerIds[0],
         lastItem: triggerItems[0]?.item ?? {},
         lastCheck: new Date(),
+        consecutiveTriggerFails: 0,
         store: runResponse.store,
         ...(runResponse.nextCheck !== undefined
           ? { nextCheck: runResponse.nextCheck, enabled: !!runResponse.nextCheck }
@@ -376,6 +377,7 @@ export class RunnerService {
     }
     if (!this.processInterrupted) {
       await this.workflowRunService.markWorkflowRunAsCompleted(workflowRun._id)
+      await this.workflowTriggerService.updateOneNative({ workflow: workflow._id }, { consecutiveActionFails: 0 })
     }
   }
 

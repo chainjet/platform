@@ -197,7 +197,8 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
 
     // Restart workflow failures if workflow is reenabled
     if (workflowEnabled) {
-      update.consecutiveWorkflowFails = 0
+      update.consecutiveTriggerFails = 0
+      update.consecutiveActionFails = 0
       this.logger.log(`Workflow ${workflowTrigger.workflow} was enabled`)
     }
 
@@ -463,17 +464,20 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
 
   async incrementWorkflowRunFailures(
     workflowId: Reference<Workflow, mongoose.Types.ObjectId>,
+    operation: 'trigger' | 'action',
   ): Promise<WorkflowTrigger | null> {
     const trigger = await this.findOne({ workflow: workflowId })
     const threeHoursAgo = new Date(Date.now() - 1000 * 3 * 60 * 60)
     if (trigger && (!trigger.lastWorkflowFailure || threeHoursAgo > trigger.lastWorkflowFailure)) {
-      trigger.consecutiveWorkflowFails++
+      const consecutiveFailures =
+        operation === 'trigger' ? trigger.consecutiveTriggerFails : trigger.consecutiveActionFails
+      const newConsecutiveFailures = consecutiveFailures + 1
       const shouldDisableWorkflow =
-        trigger.maxConsecutiveFailures && trigger.consecutiveWorkflowFails >= trigger.maxConsecutiveFailures
+        trigger.maxConsecutiveFailures && newConsecutiveFailures >= trigger.maxConsecutiveFailures
       await this.updateOneNative(
         { _id: trigger._id },
         {
-          consecutiveWorkflowFails: trigger.consecutiveWorkflowFails,
+          [operation === 'trigger' ? 'consecutiveTriggerFails' : 'consecutiveActionFails']: newConsecutiveFailures,
           lastWorkflowFailure: new Date(),
           ...(shouldDisableWorkflow ? { enabled: false } : {}),
         },

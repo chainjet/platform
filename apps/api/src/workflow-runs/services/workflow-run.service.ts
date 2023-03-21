@@ -140,14 +140,14 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     const workflowRun = await this.createOne(workflowRunData)
 
     await this.userService.incrementOperationsUsed(new ObjectId(workflow.owner.toString()), false)
-    const trigger = await this.workflowTriggerService.incrementWorkflowRunFailures(workflowRun.workflow)
+    const trigger = await this.workflowTriggerService.incrementWorkflowRunFailures(workflowRun.workflow, 'trigger')
     await this.updateWorkflowRunStatus(workflowRun._id, WorkflowRunStatus.failed)
 
     // if the trigger was disabled and user is subscribed to notifications, send an email
     if (trigger && !trigger.enabled && workflowRun.startedBy !== WorkflowRunStartedByOptions.user) {
       const user = await this.userService.findById(workflow.owner._id.toString())
       if (user?.email && user.verified && user.subscribedToNotifications) {
-        const template = new WorkflowDisabledTemplate(workflow, workflowRun, trigger.consecutiveWorkflowFails)
+        const template = new WorkflowDisabledTemplate(workflow, workflowRun, trigger.consecutiveTriggerFails)
         await this.emailService.sendEmailTemplate(template, user.email)
       }
     }
@@ -234,14 +234,14 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     )
     await this.userService.incrementOperationsUsed(new ObjectId(workflow.owner.toString()), false)
     if (workflowRun.status !== WorkflowRunStatus.failed) {
-      const trigger = await this.workflowTriggerService.incrementWorkflowRunFailures(workflowRun.workflow)
+      const trigger = await this.workflowTriggerService.incrementWorkflowRunFailures(workflowRun.workflow, 'action')
       await this.updateWorkflowRunStatus(workflowRun._id, WorkflowRunStatus.failed)
       workflowRun.status = WorkflowRunStatus.failed
 
       if (trigger && !trigger.enabled && workflowRun.startedBy !== WorkflowRunStartedByOptions.user) {
         const user = await this.userService.findById(workflow.owner._id.toString())
         if (user?.email && user.verified && user.subscribedToNotifications) {
-          const template = new WorkflowDisabledTemplate(workflow, workflowRun, trigger.consecutiveWorkflowFails)
+          const template = new WorkflowDisabledTemplate(workflow, workflowRun, trigger.consecutiveActionFails)
           await this.emailService.sendEmailTemplate(template, user.email)
         }
       }

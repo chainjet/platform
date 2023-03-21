@@ -102,10 +102,16 @@ export class WorkflowTrigger extends BaseEntity {
   maxItemsPerRun?: number = 0
 
   /**
-   * Track consecutive workflow failures in order to disable the trigger if it keeps failing
+   * Track consecutive workflow trigger failures in order to disable the trigger if it keeps failing
    */
   @prop({ default: 0 })
-  consecutiveWorkflowFails: number = 0
+  consecutiveTriggerFails: number = 0
+
+  /**
+   * Track consecutive workflow action failures in order to disable the trigger if it keeps failing
+   */
+  @prop({ default: 0 })
+  consecutiveActionFails: number = 0
 
   /**
    * Tracks the last time the workflow failed. Used to increase the consecutiveWorkflowFails counter.
