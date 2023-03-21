@@ -479,17 +479,17 @@ export class RunnerService {
       if (e instanceof OperationDailyLimitError) {
         // since the daily limit has been exceeded, there is no need of checking the trigger until the next day
         const workflowTrigger = await this.workflowTriggerService.findOne({ workflow: workflow._id })
-        const nextCheck = new Date(Date.now() + 24 * 60 * 60 * 1000)
+        const nextDayAtMidnight = new Date(new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().split('T')[0])
+        // nextCheck is at a random time between midnight and 2am
+        const nextCheck = new Date(nextDayAtMidnight.getTime() + Math.round(2 * 60 * 60 * 1000 * Math.random()))
         if (workflowTrigger?.nextCheck && nextCheck.getTime() > workflowTrigger.nextCheck.getTime()) {
           this.logger.log(
-            `An operation of workflow ${workflow.id} has reached its daily limit (${
-              integrationAction.key
-            }). Next check: ${nextCheck.toISOString().split('T')[0]}`,
+            `An operation of workflow ${workflow.id} has reached its daily limit (${integrationAction.key}). Next check: ${nextCheck}`,
           )
           await this.workflowTriggerService.updateOneNative(
             { _id: workflowTrigger._id },
             {
-              nextCheck: nextCheck.toISOString().split('T')[0],
+              nextCheck,
             },
           )
         }
