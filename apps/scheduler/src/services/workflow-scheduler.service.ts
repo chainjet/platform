@@ -104,23 +104,30 @@ export class WorkflowSchedulerService {
    */
   async resumeWorkflowRuns(): Promise<void> {
     const twentyMinutesAgo = new Date(new Date().getTime() - 20 * 60 * 1000)
-    const workflowRuns = await this.workflowRunService.find({
-      $or: [
-        // interrupted runs
-        {
-          lockedAt: {
-            $exists: false,
+    const workflowRuns = await this.workflowRunService.find(
+      {
+        $or: [
+          // interrupted runs
+          {
+            lockedAt: {
+              $exists: false,
+            },
+            status: WorkflowRunStatus.running,
           },
-          status: WorkflowRunStatus.running,
-        },
-        // timed out runs
-        {
-          lockedAt: {
-            $lt: twentyMinutesAgo,
+          // timed out runs
+          {
+            lockedAt: {
+              $lt: twentyMinutesAgo,
+            },
           },
-        },
-      ],
-    })
+        ],
+      },
+      undefined,
+      {
+        // limit to 100 runs to prevent single workers from running out of memory if a large queue builds up
+        limit: 100,
+      },
+    )
 
     const timedOutRuns = workflowRuns.filter(
       (workflowRun) => workflowRun.lockedAt && workflowRun.lockedAt < twentyMinutesAgo,
@@ -152,6 +159,7 @@ export class WorkflowSchedulerService {
 
       // this is required only for old runs, in new ones itemId is a required field
       if (workflowRun.actionRuns.some((action) => !action.itemId)) {
+        await this.workflowRunService.updateWorkflowRunStatus(workflowRun._id, WorkflowRunStatus.failed)
         continue
       }
 
@@ -161,6 +169,8 @@ export class WorkflowSchedulerService {
         return !actions.length || actions.some((action) => action.status === WorkflowRunStatus.running)
       })
       if (!notCompletedTriggerItems?.length) {
+        // everything was completed but workflow not marked as completed
+        await this.workflowRunService.updateWorkflowRunStatus(workflowRun._id, WorkflowRunStatus.completed)
         continue
       }
 
