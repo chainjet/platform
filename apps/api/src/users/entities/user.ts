@@ -53,9 +53,9 @@ export class User extends BaseEntity {
   @prop({ default: () => addOneMonth() })
   operationsReset: Date
 
-  @Field({ nullable: true })
-  @prop()
-  plan?: string
+  @Field({})
+  @prop({ required: true, default: defaultPlan })
+  plan: string
 
   /**
    * When the user is downgrading, this is the plan they are downgrading to.
@@ -96,7 +96,7 @@ export class User extends BaseEntity {
   limits?: Record<string, number>
 
   get planConfig(): PlanConfig {
-    return plansConfig[this.plan ?? defaultPlan]
+    return plansConfig[this.plan]
   }
 }
 

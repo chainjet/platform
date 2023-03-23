@@ -730,7 +730,7 @@ export interface User {
     createdAt: DateTime;
     email?: Nullable<string>;
     operationsUsedMonth: number;
-    plan?: Nullable<string>;
+    plan: string;
     nextPlan?: Nullable<string>;
     planPeriodEnd?: Nullable<DateTime>;
     name?: Nullable<string>;
