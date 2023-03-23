@@ -236,8 +236,8 @@ export class RunnerService {
     if (workflowTrigger.lastId && !opts?.testTrigger && !opts?.reRunItems) {
       const lastItemIndex = triggerIds.indexOf(workflowTrigger.lastId?.toString())
 
-      // filter out items older than lastId
-      if (lastItemIndex === -1) {
+      // filter out items older than lastId (only if we know the creation date of the items)
+      if (lastItemIndex === -1 || !triggerItems?.[0].createdAt) {
         newItems = triggerItems
       } else {
         newItems = triggerItems.slice(0, lastItemIndex)
@@ -255,6 +255,17 @@ export class RunnerService {
       newItems = triggerItems
     } else {
       newItems = triggerItems.slice(0, 1)
+      // on the first (non test) run, store all the existing IDs so we don't use them (critical for items without createdAt)
+      if (!workflowTrigger.lastId && !opts?.reRunItems) {
+        for (const newItem of triggerItems) {
+          try {
+            await this.workflowUsedIdService.createOne({
+              workflow: workflowTrigger.workflow,
+              triggerId: newItem.id.toString(),
+            })
+          } catch (e) {}
+        }
+      }
     }
 
     if (workflowTrigger.maxItemsPerRun && newItems.length > workflowTrigger.maxItemsPerRun) {
