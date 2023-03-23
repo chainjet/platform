@@ -14,7 +14,7 @@ export const plansConfig: Record<string, PlanConfig> = {
   free: {
     key: 'free',
     maxOperations: 10000,
-    maxActiveWorkflows: 3,
+    maxActiveWorkflows: 10,
     minPollingInterval: 60 * 15,
     features: {
       executeWorkflowOnError: false,
