@@ -555,6 +555,7 @@ export interface CreateWorkflowInput {
     name: string;
     runOnFailure?: Nullable<string>;
     isPublic?: Nullable<boolean>;
+    templateSchema?: Nullable<JSONObject>;
 }
 
 export interface CreateManyWorkflowsInput {
@@ -570,6 +571,7 @@ export interface UpdateWorkflowInput {
     name?: Nullable<string>;
     runOnFailure?: Nullable<string>;
     isPublic?: Nullable<boolean>;
+    templateSchema?: Nullable<JSONObject>;
 }
 
 export interface UpdateManyWorkflowsInput {

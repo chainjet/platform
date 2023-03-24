@@ -119,6 +119,9 @@ export class CreateWorkflowInput {
 
   @Field(() => GraphQLBoolean, { nullable: true })
   isPublic?: boolean
+
+  @Field(() => GraphQLJSONObject, { nullable: true })
+  templateSchema?: JSONSchema7
 }
 
 @InputType()
@@ -131,4 +134,7 @@ export class UpdateWorkflowInput {
 
   @Field(() => GraphQLBoolean, { nullable: true })
   isPublic?: boolean
+
+  @Field(() => GraphQLJSONObject, { nullable: true })
+  templateSchema?: JSONSchema7
 }
