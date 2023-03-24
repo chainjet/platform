@@ -38,6 +38,7 @@ export class HooksController {
   async receiveIntegrationHook(@Param('integrationKey') integrationKey: string, @Req() req: Request) {
     const integration = await this.integrationService.findOne({ key: integrationKey })
     if (!integration) {
+      this.logger.debug(`receiveIntegrationHook body: ${JSON.stringify(req.body)}`)
       throw new NotFoundException(`Integration ${integrationKey} not found`)
     }
 
