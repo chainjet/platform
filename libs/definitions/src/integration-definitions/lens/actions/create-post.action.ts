@@ -153,6 +153,9 @@ export class CreatePostAction extends OperationOffChain {
   protected readonly logger = new Logger(CreatePostAction.name)
 
   limits({ user }: OperationRunOptions): { daily: number } | null {
+    if (user?.planConfig.key && !['free', 'early'].includes(user.planConfig.key)) {
+      return null
+    }
     const userLimit = user?.limits?.['daily-lens-posts']
     if (userLimit === 0) {
       return null

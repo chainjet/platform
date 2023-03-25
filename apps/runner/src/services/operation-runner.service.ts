@@ -5,6 +5,7 @@ import { convertObservableToRunResponse, wait } from '@app/common/utils/async.ut
 import { OperationTrigger } from '@app/definitions/operation-trigger'
 import { OperationType } from '@app/definitions/types/OperationType'
 import { forwardRef, Inject, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common'
+import { PlanConfig } from 'apps/api/src/users/config/plans.config'
 import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from 'apps/api/src/workflow-triggers/entities/workflow-trigger'
 import { Workflow } from 'apps/api/src/workflows/entities/workflow'
@@ -46,6 +47,7 @@ export type BaseRunOptions = {
     address: string
     email?: string
     limits?: Record<string, number>
+    planConfig: PlanConfig
   }
 }
 
@@ -134,7 +136,9 @@ export class OperationRunnerService {
         date: new Date().toISOString().split('T')[0],
       })
       if (usedToday && usedToday.value >= limits.daily) {
-        throw new OperationDailyLimitError(`Daily limit reached for ${opts.operation.key}`)
+        throw new OperationDailyLimitError(
+          `Daily limit reached for ${opts.operation.key} on ${opts.integration.name}. Please consider upgrading your plan.`,
+        )
       }
     }
 
