@@ -57,6 +57,7 @@ import { RssDefinition } from './integration-definitions/rss.definition'
 import { ScheduleDefinition } from './integration-definitions/schedule.definition'
 import { SlackDefinition } from './integration-definitions/slack.definition'
 import { SleepDefinition } from './integration-definitions/sleep/sleep.definition'
+import { SnapshotDefinition } from './integration-definitions/snapshot/snapshot.definition'
 import { SnowtraceDefinition } from './integration-definitions/snowtrace.definition'
 import { TelegramBotDefinition } from './integration-definitions/telegram-bot.definition'
 import { TwitterDefinition } from './integration-definitions/twitter.definition'
@@ -139,7 +140,7 @@ export class IntegrationDefinitionFactory {
     // sendgrid: SendgridDefinition,
     slack: SlackDefinition,
     sleep: SleepDefinition,
-    // snapshot: SnapshotDefinition,
+    snapshot: SnapshotDefinition,
     snowtrace: SnowtraceDefinition,
     // statuspage: StatuspageDefinition,
     'telegram-bot': TelegramBotDefinition,
