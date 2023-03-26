@@ -1,4 +1,15 @@
-import { Controller, HttpException, HttpStatus, Post, Req, Session, UseGuards } from '@nestjs/common'
+import {
+  CACHE_MANAGER,
+  Controller,
+  HttpException,
+  HttpStatus,
+  Inject,
+  Post,
+  Req,
+  Session,
+  UseGuards,
+} from '@nestjs/common'
+import { Cache } from 'cache-manager'
 import { Request } from 'express'
 import { generateNonce } from 'siwe'
 import { User } from '../../users/entities/user'
@@ -8,12 +19,21 @@ import { AuthService } from '../services/auth.service'
 
 @Controller('auth')
 export class AuthController {
-  constructor(private userService: UserService, private authService: AuthService) {}
+  constructor(
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
+    private userService: UserService,
+    private authService: AuthService,
+  ) {}
 
   @Post('nonce')
-  async getNonce(@Session() session: Record<string, any>) {
-    session.nonce = generateNonce()
-    return session.nonce
+  async getNonce(@Req() req: Request, @Session() session: Record<string, any>) {
+    const nonce = generateNonce()
+    if (req.body.uuid) {
+      await this.cacheManager.set(`siwe-nonce:${req.body.uuid}`, nonce, { ttl: 60 * 10 } as any)
+    } else {
+      session.nonce = nonce
+    }
+    return nonce
   }
 
   @Post('login')
@@ -21,12 +41,24 @@ export class AuthController {
     @Req() req: Request,
     @Session() session: Record<string, any>,
   ): Promise<{ ok: boolean; error?: string }> {
-    if (!session.nonce) {
+    const { message, signature, uuid } = req.body
+    if (!uuid && !session.nonce) {
       throw new HttpException({ ok: false, error: 'Expired' }, HttpStatus.BAD_REQUEST)
     }
-    const { message, signature } = req.body
+    let nonce: string
+    if (uuid) {
+      nonce = (await this.cacheManager.get(`siwe-nonce:${uuid}`)) as string
+      if (!nonce) {
+        throw new HttpException({ ok: false, error: 'Expired' }, HttpStatus.BAD_REQUEST)
+      }
+    } else {
+      nonce = session.nonce
+    }
     try {
-      const { fields, externalApp } = await this.authService.validateSignature(message, signature, session.nonce, true)
+      const { fields, externalApp } = await this.authService.validateSignature(message, signature, nonce, true)
+      if (uuid) {
+        await this.cacheManager.del(`siwe-nonce:${uuid}`)
+      }
       await this.userService.createAccountFromSignature(fields, externalApp)
       return { ok: true }
     } catch (e) {
