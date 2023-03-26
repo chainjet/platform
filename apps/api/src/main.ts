@@ -8,7 +8,7 @@ async function bootstrap(): Promise<void> {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     rawBody: true, // exposes req.rawBody which is needed by the discord hook
     cors: {
-      origin: process.env.FRONTEND_ENDPOINT,
+      origin: true,
       credentials: true,
     },
   })
