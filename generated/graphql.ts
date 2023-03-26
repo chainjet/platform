@@ -731,6 +731,7 @@ export interface User {
     id: string;
     createdAt: DateTime;
     email?: Nullable<string>;
+    externalApps?: Nullable<JSONObject>;
     operationsUsedMonth: number;
     plan: string;
     nextPlan?: Nullable<string>;

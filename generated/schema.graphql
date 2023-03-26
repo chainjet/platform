@@ -6,6 +6,7 @@ type User {
   id: ID!
   createdAt: DateTime!
   email: String
+  externalApps: JSONObject
   operationsUsedMonth: Int!
   plan: String!
   nextPlan: String
@@ -19,6 +20,11 @@ type User {
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
+
+"""
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSONObject @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
 
 type IntegrationAccount {
   id: ID!
@@ -39,11 +45,6 @@ enum IntegrationAuthType {
   openIdConnect
   custom
 }
-
-"""
-The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSONObject @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
 
 type DeleteManyResponse {
   """The number of records deleted."""

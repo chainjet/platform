@@ -8,28 +8,37 @@ import { UserService } from '../../users/services/user.service'
 export class AuthService {
   constructor(protected readonly userService: UserService) {}
 
-  async validateSignature(message: string, signature: string, nonce: string | null) {
+  async validateSignature(message: string, signature: string, nonce: string | null, allowExternal: boolean) {
     const siweMessage = new SiweMessage(message)
     const fields = await siweMessage.validate(signature)
 
     const validSignature =
-      (!nonce || fields.nonce === nonce) &&
-      fields.statement === 'Sign-In on ChainJet.' &&
-      fields.version === '1' &&
-      fields.uri === process.env.FRONTEND_ENDPOINT &&
-      fields.domain === process.env.FRONTEND_ENDPOINT.replace('https://', '').replace('http://', '')
+      (!nonce || fields.nonce === nonce) && fields.statement === 'Sign-In on ChainJet.' && fields.version === '1'
 
     if (!validSignature) {
       throw new Error('Invalid Signature')
     }
 
-    return fields
+    const isExternalDomain =
+      fields.uri !== process.env.FRONTEND_ENDPOINT ||
+      fields.domain !== process.env.FRONTEND_ENDPOINT.replace('https://', '').replace('http://', '')
+
+    if (isExternalDomain && !allowExternal) {
+      throw new Error('Invalid Domain')
+    }
+
+    return { fields, externalApp: isExternalDomain ? fields.domain : null }
   }
 
   async validateUserWithSignature(message: string, signature: string): Promise<{ user?: User; fields?: SiweMessage }> {
-    const fields = await this.validateSignature(message, signature, null)
+    const { fields, externalApp } = await this.validateSignature(message, signature, null, true)
     const user = await this.userService.findOne({ address: getAddress(fields.address) })
     if (user && user.nonces.includes(fields.nonce)) {
+      // If the user is logging in from an external app, make sure they have authorized it
+      if (externalApp && !user.externalApps?.[externalApp]) {
+        return {}
+      }
+
       return { user, fields }
     }
     return {}

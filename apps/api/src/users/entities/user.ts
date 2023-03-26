@@ -5,6 +5,8 @@ import { Authorize } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
 import { IsEmail } from 'class-validator'
 import { getAddress, isAddress } from 'ethers/lib/utils'
+import { GraphQLJSONObject } from 'graphql-type-json'
+import { Schema } from 'mongoose'
 import { defaultPlan, PlanConfig, plansConfig } from '../config/plans.config'
 import { UserAuthorizer } from '../resolvers/user.authorizer'
 
@@ -27,6 +29,10 @@ export class User extends BaseEntity {
 
   @prop({ type: () => [String], default: [] })
   nonces: string[]
+
+  @Field(() => GraphQLJSONObject, { nullable: true })
+  @prop({ type: Schema.Types.Mixed })
+  externalApps?: Record<string, number>
 
   /**
    * whether the user has verified their email

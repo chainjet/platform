@@ -26,8 +26,8 @@ export class AuthController {
     }
     const { message, signature } = req.body
     try {
-      const fields = await this.authService.validateSignature(message, signature, session.nonce)
-      await this.userService.createAccountFromSignature(fields)
+      const { fields, externalApp } = await this.authService.validateSignature(message, signature, session.nonce, true)
+      await this.userService.createAccountFromSignature(fields, externalApp)
       return { ok: true }
     } catch (e) {
       throw new HttpException({ ok: false, error: e.message }, HttpStatus.UNPROCESSABLE_ENTITY)

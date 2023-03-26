@@ -42,7 +42,7 @@ export class MigrationResolver {
     ) {
       try {
         const { message, signature } = JSON.parse(data)
-        const fields = await this.authService.validateSignature(message, signature, null)
+        const { fields } = await this.authService.validateSignature(message, signature, null, false)
         await this.userService.updateById(user._id, { verificationToken: null, address: getAddress(fields.address) })
         return { result: true }
       } catch (e) {}

@@ -51,18 +51,25 @@ export class UserService extends BaseService<User> {
     return await super.updateOne(id, record, opts)
   }
 
-  async createAccountFromSignature(message: SiweMessage) {
+  async createAccountFromSignature(message: SiweMessage, externalApp: string | null) {
     const user = await this.findOne({ address: getAddress(message.address) })
     if (user) {
       if (user.nonces?.length > 10) {
         user.nonces = user.nonces.slice(-10)
       }
       user.nonces.push(message.nonce)
+      if (externalApp) {
+        if (!user.externalApps) {
+          user.externalApps = {}
+        }
+        user.externalApps[externalApp] = 1
+      }
       await this.updateById(user._id, user)
     } else {
       await this.createOne({
         address: getAddress(message.address),
         nonces: [message.nonce],
+        ...(externalApp && { externalApps: { [externalApp]: 1 } }),
       })
       if (process.env.SIGN_UP_WORKFLOW_HOOK) {
         await fetch(process.env.SIGN_UP_WORKFLOW_HOOK, {
