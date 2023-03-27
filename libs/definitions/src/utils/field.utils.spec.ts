@@ -117,5 +117,12 @@ describe('FieldUtils', () => {
         bar: 'BAR',
       })
     })
+
+    it('should replace undefined template variables with empty string', () => {
+      const res = replaceTemplateFields(idsMap, { foo: 'Test {{ template.foo }}' }, {})
+      expect(res).toEqual({
+        foo: 'Test ',
+      })
+    })
   })
 })
