@@ -13,6 +13,7 @@ import { IntegrationService } from '../../integrations/services/integration.serv
 import { UserService } from '../../users/services/user.service'
 import { sortActionTree } from '../../workflow-actions/actions.utils'
 import { WorkflowActionService } from '../../workflow-actions/services/workflow-action.service'
+import { TriggerSchedule } from '../../workflow-triggers/entities/trigger-schedule'
 import { WorkflowTriggerService } from '../../workflow-triggers/services/workflow-trigger.service'
 import { Workflow } from '../entities/workflow'
 
@@ -226,7 +227,10 @@ export class WorkflowService extends BaseService<Workflow> {
         ...replaceTemplateFields(idsMap, trigger.inputs ?? {}, templateInputs),
       },
       credentials: credentialsForTrigger?.id,
-      schedule: trigger.schedule,
+      schedule: {
+        ...trigger.schedule,
+        ...replaceTemplateFields(idsMap, trigger.schedule ?? {}, templateInputs),
+      } as TriggerSchedule,
       enabled: true,
       maxConsecutiveFailures: trigger.maxConsecutiveFailures,
       schemaResponse: isOwner ? trigger.schemaResponse : undefined,
