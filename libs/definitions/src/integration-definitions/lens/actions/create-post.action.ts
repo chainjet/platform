@@ -183,14 +183,29 @@ export class CreatePostAction extends OperationOffChain {
     const metadataId = uuid()
 
     const { imageUrl } = inputs
-    let imageMimeType = imageUrl ? `image/${imageUrl.split('.').pop()}` : null
-    if (!imageMimeType || ![3, 4].includes(imageMimeType.length)) {
-      imageMimeType = imageUrl ? 'image/jpeg' : null
+    let imageUrls: string[] = []
+    if (imageUrl && typeof imageUrl === 'string') {
+      imageUrls = [imageUrl]
+    } else if (Array.isArray(imageUrl)) {
+      imageUrls = imageUrl
     }
 
+    // up to 1 non IPFS image is allowed
+    if (imageUrls.length > 1 && imageUrls.some((imageUrl) => !imageUrl.startsWith('ipfs://'))) {
+      throw new Error('Maximum of 1 image is allowed')
+    }
+
+    const imageMimeTypes = imageUrls.map((imageUrl) => {
+      let imageMimeType = imageUrl ? `image/${imageUrl.split('.').pop()}` : null
+      if (!imageMimeType || ![3, 4].includes(imageMimeType.length)) {
+        imageMimeType = imageUrl ? 'image/jpeg' : null
+      }
+      return imageMimeType
+    })
+
     // upload image to IPFS
-    let imageIpfs: string | undefined
-    if (imageUrl) {
+    let ipfsImages: string[] = []
+    if (imageUrls.length && !imageUrls[0].startsWith('ipfs://')) {
       const uploadFileUrl = `https://api.apireum.com/v1/ipfs/upload-file-url?key=${process.env.APIREUM_API_KEY}`
       const res = await axios.post(uploadFileUrl, {
         url: imageUrl,
@@ -199,7 +214,9 @@ export class CreatePostAction extends OperationOffChain {
       if (!res?.data?.file?.cid) {
         throw new Error('Failed to upload image to IPFS')
       }
-      imageIpfs = `ipfs://${res.data.file.cid}`
+      ipfsImages = [`ipfs://${res.data.file.cid}`]
+    } else {
+      ipfsImages = imageUrls
     }
 
     const data = {
@@ -208,22 +225,18 @@ export class CreatePostAction extends OperationOffChain {
       description: content,
       content,
       external_url: credentials.handle ? `https://lenster.xyz/u/${credentials.handle}` : 'https://chainjet.io',
-      image: imageIpfs || null,
-      imageMimeType,
+      image: ipfsImages[0] || null,
+      imageMimeType: imageMimeTypes[0],
       name: credentials.handle ? `New Post by @${credentials.handle}` : 'New Post',
       tags: (content.match(/#[a-zA-Z0-9]+/g) ?? []).map((tag: string) => tag.slice(1)),
-      mainContentFocus: imageIpfs ? 'IMAGE' : 'TEXT_ONLY',
+      mainContentFocus: ipfsImages.length ? 'IMAGE' : 'TEXT_ONLY',
       contentWarning: null,
       attributes: [{ traitType: 'type', displayType: 'string', value: 'post' }],
-      media: imageIpfs
-        ? [
-            {
-              item: imageIpfs,
-              type: imageMimeType,
-              altTag: '',
-            },
-          ]
-        : [],
+      media: ipfsImages.map((imageUrl, index) => ({
+        item: imageUrl,
+        type: imageMimeTypes[index],
+        altTag: '',
+      })),
       locale: 'en-US',
       createdOn: new Date().toISOString(),
       appId: 'ChainJet',
