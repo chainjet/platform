@@ -14,14 +14,23 @@ export const plansConfig: Record<string, PlanConfig> = {
   free: {
     key: 'free',
     maxOperations: 10000,
-    maxActiveWorkflows: 10,
+    maxActiveWorkflows: 5,
     minPollingInterval: 60 * 15,
     features: {
       executeWorkflowOnError: false,
     },
   },
-  prod_NYG90VSEfU0TfQ: {
+  prod_NbsBYZA9BxFF7r: {
     key: 'starter',
+    maxOperations: 30000,
+    maxActiveWorkflows: 25,
+    minPollingInterval: 60 * 5,
+    features: {
+      executeWorkflowOnError: true,
+    },
+  },
+  prod_NYG90VSEfU0TfQ: {
+    key: 'core',
     maxOperations: 1e5,
     maxActiveWorkflows: Infinity,
     minPollingInterval: 60,
@@ -70,6 +79,9 @@ export const plansConfig: Record<string, PlanConfig> = {
 // Plans on Stripe test mode
 if (process.env.NODE_ENV === 'development') {
   // starter
+  plansConfig['prod_NbsFKhWJ6PMBpx'] = plansConfig['prod_NbsBYZA9BxFF7r']
+  delete plansConfig['prod_NbsBYZA9BxFF7r']
+  // core
   plansConfig['prod_NXQOvZowLlwuaH'] = plansConfig['prod_NYG90VSEfU0TfQ']
   delete plansConfig['prod_NYG90VSEfU0TfQ']
   // pro
