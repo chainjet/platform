@@ -257,7 +257,7 @@ export class RunnerService {
       newItems = triggerItems.slice(0, 1)
       // on the first (non test) run, store all the existing IDs so we don't use them (critical for items without createdAt)
       if (!workflowTrigger.lastId && !opts?.reRunItems) {
-        for (const newItem of triggerItems) {
+        for (const newItem of triggerItems.slice(1)) {
           try {
             await this.workflowUsedIdService.createOne({
               workflow: workflowTrigger.workflow,
