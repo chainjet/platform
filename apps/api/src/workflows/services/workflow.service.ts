@@ -1,5 +1,5 @@
 import { BaseService } from '@app/common/base/base.service'
-import { replaceTemplateFields } from '@app/definitions/utils/field.utils'
+import { fixObjectTypes, replaceTemplateFields } from '@app/definitions/utils/field.utils'
 import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
 import { DeepPartial, DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
@@ -224,7 +224,10 @@ export class WorkflowService extends BaseService<Workflow> {
       name: trigger.name,
       inputs: {
         ...templateInputs,
-        ...replaceTemplateFields(idsMap, trigger.inputs ?? {}, templateInputs),
+        ...fixObjectTypes(
+          replaceTemplateFields(idsMap, trigger.inputs ?? {}, templateInputs),
+          workflow.templateSchema ?? {},
+        ),
       },
       credentials: credentialsForTrigger?.id,
       schedule: {
@@ -274,7 +277,10 @@ export class WorkflowService extends BaseService<Workflow> {
         name: action.name,
         inputs: {
           ...templateInputs,
-          ...replaceTemplateFields(idsMap, action.inputs ?? {}, templateInputs),
+          ...fixObjectTypes(
+            replaceTemplateFields(idsMap, action.inputs ?? {}, templateInputs),
+            workflow.templateSchema ?? {},
+          ),
         },
         previousAction: idsMap.get(previousAction?.id ?? '') as any,
         previousActionCondition: previousAction?.condition,

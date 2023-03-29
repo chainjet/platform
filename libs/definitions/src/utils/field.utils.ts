@@ -1,4 +1,5 @@
 import { getAddress, isAddress } from 'ethers/lib/utils'
+import { JSONSchema7, JSONSchema7TypeName } from 'json-schema'
 import { VarEvm } from '../operation-evm'
 
 export function hasInterpolation(str: string) {
@@ -134,4 +135,52 @@ export function replaceTemplateFields(
     }
   }
   return result
+}
+
+export function fixObjectTypes(obj: Record<string, any>, schema: JSONSchema7): Record<string, any> {
+  if (!schema?.properties) {
+    return obj
+  }
+  if (!obj || typeof obj !== 'object') {
+    return obj
+  }
+  for (const [key, value] of Object.entries(obj)) {
+    const type: JSONSchema7TypeName = schema.properties[key] && (schema.properties[key] as any).type
+    switch (type) {
+      case 'object':
+        obj[key] = fixObjectTypes(value, schema.properties![key] as JSONSchema7)
+        break
+      case 'array':
+        if (Array.isArray(value)) {
+          obj[key] = value.map((item) => {
+            if (typeof item === 'object') {
+              return fixObjectTypes(item, (schema.properties![key] as any).items as JSONSchema7)
+            } else {
+              return item
+            }
+          })
+        } else {
+          obj[key] = value
+        }
+
+        break
+      case 'boolean':
+        obj[key] = value === 'true' ? true : value === 'false' ? false : value
+        break
+      case 'number':
+        obj[key] = Number.isFinite(Number(value)) ? Number(value) : value
+        break
+      case 'integer':
+        obj[key] = Number.isInteger(Number(value)) ? Number(value) : value
+        break
+      case 'null':
+        obj[key] = value === 'null' ? null : value
+        break
+      case 'string':
+      default:
+        obj[key] = value
+        break
+    }
+  }
+  return obj
 }

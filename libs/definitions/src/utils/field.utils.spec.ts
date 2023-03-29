@@ -1,4 +1,5 @@
-import { getInterpolatedVariables, replaceTemplateFields } from './field.utils'
+import { JSONSchema7 } from 'json-schema'
+import { fixObjectTypes, getInterpolatedVariables, replaceTemplateFields } from './field.utils'
 
 describe('FieldUtils', () => {
   describe('getInterpolatedVariables', () => {
@@ -123,6 +124,191 @@ describe('FieldUtils', () => {
       expect(res).toEqual({
         foo: 'Test ',
       })
+    })
+  })
+
+  describe('fixObjectTypes', () => {
+    const schema: JSONSchema7 = {
+      type: 'object',
+      properties: {
+        name: { type: 'string' },
+        age: { type: 'integer' },
+        active: { type: 'boolean' },
+        score: { type: 'number' },
+        hobbies: {
+          type: 'array',
+          items: { type: 'string' },
+        },
+        address: {
+          type: 'object',
+          properties: {
+            street: { type: 'string' },
+            city: { type: 'string' },
+          },
+        },
+        friends: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              name: { type: 'string' },
+              age: { type: 'integer' },
+              active: { type: 'boolean' },
+            },
+          },
+        },
+      },
+    }
+
+    it('should fix object types according to schema', () => {
+      const input = {
+        name: 'John Doe',
+        age: '30',
+        active: 'true',
+        score: '100.5',
+        hobbies: ['reading', 'sports'],
+        address: {
+          street: '123 Main St',
+          city: 'New York',
+        },
+      }
+
+      const expectedOutput = {
+        name: 'John Doe',
+        age: 30,
+        active: true,
+        score: 100.5,
+        hobbies: ['reading', 'sports'],
+        address: {
+          street: '123 Main St',
+          city: 'New York',
+        },
+      }
+
+      expect(fixObjectTypes(input, schema)).toEqual(expectedOutput)
+    })
+
+    it('should not change the value of items not following the schema', () => {
+      const input = {
+        name: 'John Doe',
+        age: '{{template.age}}',
+        active: '{{template.active}}',
+        score: '{{template.score}}',
+        hobbies: '{{template.hobbies}}',
+        address: '{{template.address}}',
+      }
+
+      const expectedOutput = {
+        name: 'John Doe',
+        age: '{{template.age}}',
+        active: '{{template.active}}',
+        score: '{{template.score}}',
+        hobbies: '{{template.hobbies}}',
+        address: '{{template.address}}',
+      }
+
+      expect(fixObjectTypes(input, schema)).toEqual(expectedOutput)
+    })
+
+    it('should not modify values with the correct type', () => {
+      const input = {
+        name: 'Jane Doe',
+        age: 28,
+        active: false,
+        hobbies: ['painting', 'music'],
+        address: {
+          street: '456 Elm St',
+          city: 'Los Angeles',
+        },
+      }
+
+      expect(fixObjectTypes(input, schema)).toEqual(input)
+    })
+
+    it('should handle nested objects and arrays', () => {
+      const input = {
+        name: 'John Doe',
+        age: '30',
+        active: 'true',
+        hobbies: ['reading', 'sports'],
+        address: {
+          street: '123 Main St',
+          city: 'New York',
+        },
+        friends: [
+          {
+            name: 'Alice',
+            age: '35',
+            active: 'false',
+          },
+          {
+            name: 'Bob',
+            age: '32',
+            active: 'true',
+          },
+        ],
+      }
+
+      const expectedOutput = {
+        name: 'John Doe',
+        age: 30,
+        active: true,
+        hobbies: ['reading', 'sports'],
+        address: {
+          street: '123 Main St',
+          city: 'New York',
+        },
+        friends: [
+          {
+            name: 'Alice',
+            age: 35,
+            active: false,
+          },
+          {
+            name: 'Bob',
+            age: 32,
+            active: true,
+          },
+        ],
+      }
+
+      expect(fixObjectTypes(input, schema)).toEqual(expectedOutput)
+    })
+
+    it('should handle empty objects and arrays', () => {
+      const input = {
+        name: 'John Doe',
+        age: '30',
+        active: 'true',
+        hobbies: [],
+        address: {},
+      }
+
+      const expectedOutput = {
+        name: 'John Doe',
+        age: 30,
+        active: true,
+        hobbies: [],
+        address: {},
+      }
+
+      expect(fixObjectTypes(input, schema)).toEqual(expectedOutput)
+    })
+
+    it('should handle missing properties', () => {
+      const input = {
+        name: 'John Doe',
+        age: '30',
+        active: 'true',
+      }
+
+      const expectedOutput = {
+        name: 'John Doe',
+        age: 30,
+        active: true,
+      }
+
+      expect(fixObjectTypes(input, schema)).toEqual(expectedOutput)
     })
   })
 })
