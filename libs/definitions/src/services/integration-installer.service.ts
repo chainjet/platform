@@ -85,6 +85,7 @@ export class IntegrationInstallerService {
         integration: new mongoose.Types.ObjectId(integration.id),
         description: trigger.description,
         fullDescription: trigger.description,
+        unlisted: trigger.unlisted || trigger.deprecated,
         deprecated: trigger.deprecated,
         skipAuth: trigger.skipAuth,
         pinned: trigger.pinned,
@@ -121,6 +122,7 @@ export class IntegrationInstallerService {
         integration: new mongoose.Types.ObjectId(integration.id),
         description: action.description,
         fullDescription: action.description,
+        unlisted: action.unlisted || action.deprecated,
         deprecated: action.deprecated,
         skipAuth: action.skipAuth,
         pinned: action.pinned,
@@ -211,6 +213,7 @@ export class IntegrationInstallerService {
         integration: new mongoose.Types.ObjectId(integration.id),
         description: plainTextDescription && addEllipsis(plainTextDescription, 500),
         fullDescription: operationObject.description,
+        unlisted: !!operationObject['x-unlisted'] || !!operationObject.deprecated,
         deprecated: !!operationObject.deprecated,
         category: operationObject.tags?.[0],
         skipAuth: !!operationObject['x-skipAuth'],
@@ -253,6 +256,7 @@ export class IntegrationInstallerService {
         integration: new mongoose.Types.ObjectId(integration.id),
         description: triggerResponseData.description,
         fullDescription: triggerResponseData.description,
+        unlisted: !!operationObject['x-unlisted'] || !!operationObject.deprecated,
         deprecated: !!operationObject.deprecated,
         category: operationObject.tags?.[0],
         skipAuth: !!operationObject['x-skipAuth'],
@@ -305,6 +309,7 @@ export class IntegrationInstallerService {
     }
     if (integrationData.deprecated) {
       schema.info['x-deprecated'] = true
+      schema.info['x-unlisted'] = true
     }
 
     schema = await OpenApiUtils.stripSchemaMarkdown(schema)
@@ -442,7 +447,7 @@ export class IntegrationInstallerService {
 
     const query = {
       integration: integration.id,
-      deprecated: false,
+      unlisted: false,
     }
     const triggers = await IntegrationTriggerService.instance.find(query)
     const actions = await IntegrationActionService.instance.find(query)

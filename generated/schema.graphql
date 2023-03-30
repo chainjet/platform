@@ -96,6 +96,7 @@ type IntegrationTrigger {
   key: String!
   name: String!
   description: String
+  unlisted: Boolean!
   deprecated: Boolean!
   category: String
   skipAuth: Boolean!
@@ -174,6 +175,7 @@ input IntegrationTriggerFilter {
   integration: IDFilterComparison
   key: StringFieldComparison
   name: StringFieldComparison
+  unlisted: BooleanFieldComparison
   deprecated: BooleanFieldComparison
   category: StringFieldComparison
   skipAuth: BooleanFieldComparison
@@ -250,6 +252,7 @@ enum IntegrationTriggerSortFields {
   integration
   key
   name
+  unlisted
   deprecated
   category
   skipAuth
@@ -275,6 +278,7 @@ input IntegrationActionFilter {
   integration: IDFilterComparison
   key: StringFieldComparison
   name: StringFieldComparison
+  unlisted: BooleanFieldComparison
   deprecated: BooleanFieldComparison
   category: StringFieldComparison
   type: OperationTypeFilterComparison
@@ -316,6 +320,7 @@ enum IntegrationActionSortFields {
   integration
   key
   name
+  unlisted
   deprecated
   category
   type
@@ -329,6 +334,7 @@ type IntegrationAction {
   key: String!
   name: String!
   description: String
+  unlisted: Boolean!
   deprecated: Boolean!
   category: String
   type: OperationType!

@@ -14,6 +14,7 @@ export abstract class Operation {
   abstract inputs: JSONSchema7
   outputs: JSONSchema7 = {}
   asyncSchemas: AsyncSchema[] = []
+  unlisted = false
   deprecated = false
   skipAuth = false
   pinned = false

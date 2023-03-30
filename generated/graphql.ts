@@ -23,6 +23,7 @@ export enum IntegrationTriggerSortFields {
     integration = "integration",
     key = "key",
     name = "name",
+    unlisted = "unlisted",
     deprecated = "deprecated",
     category = "category",
     skipAuth = "skipAuth"
@@ -49,6 +50,7 @@ export enum IntegrationActionSortFields {
     integration = "integration",
     key = "key",
     name = "name",
+    unlisted = "unlisted",
     deprecated = "deprecated",
     category = "category",
     type = "type",
@@ -157,6 +159,7 @@ export interface IntegrationTriggerFilter {
     integration?: Nullable<IDFilterComparison>;
     key?: Nullable<StringFieldComparison>;
     name?: Nullable<StringFieldComparison>;
+    unlisted?: Nullable<BooleanFieldComparison>;
     deprecated?: Nullable<BooleanFieldComparison>;
     category?: Nullable<StringFieldComparison>;
     skipAuth?: Nullable<BooleanFieldComparison>;
@@ -235,6 +238,7 @@ export interface IntegrationActionFilter {
     integration?: Nullable<IDFilterComparison>;
     key?: Nullable<StringFieldComparison>;
     name?: Nullable<StringFieldComparison>;
+    unlisted?: Nullable<BooleanFieldComparison>;
     deprecated?: Nullable<BooleanFieldComparison>;
     category?: Nullable<StringFieldComparison>;
     type?: Nullable<OperationTypeFilterComparison>;
@@ -783,6 +787,7 @@ export interface IntegrationTrigger {
     key: string;
     name: string;
     description?: Nullable<string>;
+    unlisted: boolean;
     deprecated: boolean;
     category?: Nullable<string>;
     skipAuth: boolean;
@@ -828,6 +833,7 @@ export interface IntegrationAction {
     key: string;
     name: string;
     description?: Nullable<string>;
+    unlisted: boolean;
     deprecated: boolean;
     category?: Nullable<string>;
     type: OperationType;

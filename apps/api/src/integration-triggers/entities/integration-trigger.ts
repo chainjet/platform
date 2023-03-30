@@ -42,6 +42,11 @@ export class IntegrationTrigger extends BaseEntity {
 
   @FilterableField()
   @prop({ default: false, index: true })
+  unlisted: boolean
+
+  // TODO remove index and filterable. Filter by unlisted instead.
+  @FilterableField()
+  @prop({ default: false, index: true })
   deprecated: boolean
 
   @FilterableField({ nullable: true })
