@@ -1,4 +1,5 @@
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
+import { DefinitionsModule } from '@app/definitions'
 import { forwardRef, Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
@@ -23,6 +24,7 @@ import { AccountCredentialService } from './services/account-credentials.service
     IntegrationsModule,
     IntegrationAccountsModule,
     forwardRef(() => RunnerModule),
+    DefinitionsModule,
   ],
   providers: [AccountCredentialResolver, AccountCredentialService, AccountCredentialAuthorizer],
   exports: [AccountCredentialService],

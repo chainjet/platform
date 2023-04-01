@@ -413,6 +413,13 @@ export abstract class Definition {
   }
 
   /**
+   * Integrations may need to return custom data to allow users to connect. This method allows to do that.
+   */
+  async getAccountCreationData(userId: string): Promise<Record<string, any>> {
+    return {}
+  }
+
+  /**
    * Intercepts requests and allows to modify the request object before calling the integration
    */
   requestInterceptor({ req }: RequestInterceptorOptions): request.OptionsWithUrl {

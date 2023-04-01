@@ -1170,6 +1170,10 @@ export interface WorkflowNextActionConnection {
     edges: WorkflowNextActionEdge[];
 }
 
+export interface ConnectAccountDataPayload {
+    data: JSONObject;
+}
+
 export interface AccountCredentialDeleteResponse {
     id?: Nullable<string>;
     createdAt?: Nullable<DateTime>;
@@ -1207,6 +1211,7 @@ export interface IQuery {
     viewer(): User | Promise<User>;
     accountCredential(id: string): AccountCredential | Promise<AccountCredential>;
     accountCredentials(paging?: Nullable<CursorPaging>, filter?: Nullable<AccountCredentialFilter>, sorting?: Nullable<AccountCredentialSort[]>): AccountCredentialConnection | Promise<AccountCredentialConnection>;
+    accountCreationData(key: string): ConnectAccountDataPayload | Promise<ConnectAccountDataPayload>;
     integration(id: string): Integration | Promise<Integration>;
     integrations(search?: Nullable<string>, paging?: Nullable<CursorPaging>, filter?: Nullable<IntegrationFilter>, sorting?: Nullable<IntegrationSort[]>): IntegrationConnection | Promise<IntegrationConnection>;
     integrationCategories(): IntegrationCategory[] | Promise<IntegrationCategory[]>;

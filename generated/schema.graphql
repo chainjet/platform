@@ -801,6 +801,10 @@ type WorkflowNextActionConnection {
   edges: [WorkflowNextActionEdge!]!
 }
 
+type ConnectAccountDataPayload {
+  data: JSONObject!
+}
+
 type AccountCredentialDeleteResponse {
   id: ID
   createdAt: DateTime
@@ -859,6 +863,7 @@ type Query {
     """Specify to sort results."""
     sorting: [AccountCredentialSort!] = []
   ): AccountCredentialConnection!
+  accountCreationData(key: String!): ConnectAccountDataPayload!
   integration(
     """The id of the record to find."""
     id: ID!
