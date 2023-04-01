@@ -1,4 +1,6 @@
 import { Logger } from '@nestjs/common'
+import { AccountCredentialService } from 'apps/api/src/account-credentials/services/account-credentials.service'
+import { IntegrationAccountService } from 'apps/api/src/integration-accounts/services/integration-account.service'
 import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/integration-trigger'
 import { WorkflowTriggerService } from 'apps/api/src/workflow-triggers/services/workflow-trigger.service'
 import { Request } from 'express'
@@ -65,6 +67,8 @@ export type GetAsyncSchemasProps = OperationRunOptions & {
 export interface IntegrationHookInjects {
   integrationTriggerService: IntegrationTriggerService
   workflowTriggerService: WorkflowTriggerService
+  integrationAccountService: IntegrationAccountService
+  accountCredentialsService: AccountCredentialService
 }
 
 export abstract class Definition {

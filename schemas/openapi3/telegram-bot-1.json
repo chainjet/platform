@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Telegram Bot",
+    "title": "Telegram Custom Bot",
     "version": "1",
-    "x-categories": ["popular", "chat"],
+    "x-categories": ["chat"],
     "x-logo": {
       "url": "https://raw.githubusercontent.com/chainjet/assets/master/integrations/telegram.svg"
     }
@@ -415,6 +415,20 @@
     "/telegram_bot_api-new-updates": {
       "get": {
         "operationId": "telegram_bot_api-new-updates",
+        "x-triggerOnly": true,
+        "x-learnResponseWorkflow": true,
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": {} } }
+          }
+        }
+      }
+    },
+    "/telegram_bot_api-new-bot-command-received": {
+      "get": {
+        "operationId": "telegram_bot_api-new-bot-command-received",
         "x-triggerOnly": true,
         "x-learnResponseWorkflow": true,
         "summary": "",

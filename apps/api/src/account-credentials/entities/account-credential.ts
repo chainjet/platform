@@ -61,7 +61,7 @@ export class AccountCredential extends BaseEntity {
 
   @Field(() => GraphQLJSONObject, { nullable: true })
   @jsonProp()
-  fields: Record<string, string>
+  fields: Record<string, string | number>
 
   /**
    * Stores references for operations with dynamic schemas.

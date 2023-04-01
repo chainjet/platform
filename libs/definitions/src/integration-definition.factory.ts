@@ -60,7 +60,8 @@ import { SleepDefinition } from './integration-definitions/sleep/sleep.definitio
 import { SnapshotDefinition } from './integration-definitions/snapshot/snapshot.definition'
 import { SnowtraceDefinition } from './integration-definitions/snowtrace.definition'
 import { TelegramBotDefinition } from './integration-definitions/telegram-bot.definition'
-import { TwitterDefinition } from './integration-definitions/twitter.definition'
+import { TelegramDefinition } from './integration-definitions/telegram/telegram.definition'
+import { TwitterDefinition } from './integration-definitions/twitter/twitter.definition'
 import { WebhookDefinition } from './integration-definitions/webhook.definition'
 import { WorkflowsDefinition } from './integration-definitions/workflows/workflows.definition'
 import { XmtpDefinition } from './integration-definitions/xmtp/xmtp.definition'
@@ -143,6 +144,7 @@ export class IntegrationDefinitionFactory {
     snapshot: SnapshotDefinition,
     snowtrace: SnowtraceDefinition,
     // statuspage: StatuspageDefinition,
+    telegram: TelegramDefinition,
     'telegram-bot': TelegramBotDefinition,
     trello: TrelloDefinition,
     // twilio: TwilioDefinition,

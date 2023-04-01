@@ -51,6 +51,8 @@ export class HooksController {
     const { response, runs } = await definition.onHookReceived(req, {
       integrationTriggerService: this.integrationTriggerService,
       workflowTriggerService: this.workflowTriggerService,
+      integrationAccountService: this.integrationAccountService,
+      accountCredentialsService: this.accountCredentialService,
     })
 
     for (const run of runs) {
