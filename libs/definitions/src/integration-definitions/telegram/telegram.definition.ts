@@ -9,7 +9,9 @@ import { Request } from 'express'
 import { ParamsDictionary } from 'express-serve-static-core'
 import { Message } from 'node-telegram-bot-api'
 import { ParsedQs } from 'qs'
+import { SendImageAction } from './actions/send-image.action'
 import { SendMessageAction } from './actions/send-message.action'
+import { SendVideoAction } from './actions/send-video.action'
 
 export class TelegramDefinition extends SingleIntegrationDefinition {
   protected readonly logger = new Logger(TelegramDefinition.name)
@@ -17,7 +19,8 @@ export class TelegramDefinition extends SingleIntegrationDefinition {
   integrationKey = 'telegram'
   integrationVersion = '1'
 
-  actions = [new SendMessageAction()]
+  triggers = []
+  actions = [new SendMessageAction(), new SendImageAction(), new SendVideoAction()]
 
   async onHookReceived(
     req: Request<ParamsDictionary, any, any, ParsedQs>,

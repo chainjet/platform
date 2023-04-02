@@ -6,26 +6,27 @@ import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.s
 import { JSONSchema7 } from 'json-schema'
 import { TelegramLib } from '../telegram.lib'
 
-export class SendMessageAction extends OperationOffChain {
-  key = 'sendMessage'
-  name = 'Send Text Message'
-  description = 'Send a text message or reply'
+export class SendVideoAction extends OperationOffChain {
+  key = 'sendVideo'
+  name = 'Send Video'
+  description = 'Send a Video'
   version = '1.0.0'
   inputs: JSONSchema7 = {
-    required: ['text'],
+    required: ['video'],
     properties: {
-      text: {
-        title: 'Message Text',
+      video: {
+        title: 'Video URL',
         type: 'string',
-        description: 'The text message that the bot will send',
-        'x-ui:widget': 'textarea',
-      } as JSONSchema7,
-      disableNotification: TelegramLib.fields.disableNotification,
-      disableLinkPreview: {
-        title: 'Disable Link Preview',
-        type: 'boolean',
-        description: 'Whether to disable link previews for links in this message.',
+        description:
+          'URL of the video to send. You can also pass a file_id as String to send a video that exists on the Telegram servers.',
       },
+      caption: {
+        title: 'Video Caption',
+        type: 'string',
+        description: 'Add a caption below the video.',
+        maxLength: 1024,
+      },
+      disableNotification: TelegramLib.fields.disableNotification,
       replyToMessageId: TelegramLib.fields.replyToMessageId,
     },
   }
@@ -49,10 +50,10 @@ export class SendMessageAction extends OperationOffChain {
     if (!credentials.chatId) {
       throw new UnauthorizedException('Telegram account disconected')
     }
-    const res = await TelegramLib.getClient().sendMessage(credentials.chatId, inputs.text, {
+    const res = await TelegramLib.getClient().sendVideo(credentials.chatId, inputs.video, {
+      caption: inputs.caption,
       parse_mode: 'Markdown',
       disable_notification: inputs.disableNotification,
-      disable_web_page_preview: inputs.disableLinkPreview,
       reply_to_message_id: inputs.replyToMessageId,
       message_thread_id: inputs.topicId,
     })
