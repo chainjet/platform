@@ -354,6 +354,7 @@ export abstract class Definition {
    */
   async onHookReceived(
     req: Request,
+    integration: Integration,
     injects: IntegrationHookInjects,
   ): Promise<{
     response: any

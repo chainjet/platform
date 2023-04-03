@@ -33,8 +33,9 @@ export const TelegramLib = {
   },
 
   async setWebhook(client: TelegramBot = this.getClient()) {
-    await client.setWebHook('https://api.chainjet.io/hooks/integration/telegram', {
+    await client.setWebHook(`${process.env.API_ENDPOINT}/hooks/integration/telegram`, {
       secret_token: `${process.env.TELEGRAM_BOT_API_KEY!.split(':')[1]}`,
+      allowed_updates: ['message'],
     } as any)
   },
 

@@ -2,6 +2,7 @@ import { IntegrationHookInjects } from '@app/definitions/definition'
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
 import { UnauthorizedException } from '@nestjs/common'
 import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/integration-trigger'
+import { Integration } from 'apps/api/src/integrations/entities/integration'
 import { WorkflowTrigger } from 'apps/api/src/workflow-triggers/entities/workflow-trigger'
 import { Request } from 'express'
 import { ParamsDictionary } from 'express-serve-static-core'
@@ -30,6 +31,7 @@ export class SnapshotDefinition extends SingleIntegrationDefinition {
 
   async onHookReceived(
     req: Request<ParamsDictionary, any, any, ParsedQs>,
+    integration: Integration,
     { integrationTriggerService, workflowTriggerService }: IntegrationHookInjects,
   ): Promise<{
     response: any

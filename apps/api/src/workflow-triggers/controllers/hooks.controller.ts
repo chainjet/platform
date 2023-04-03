@@ -48,7 +48,7 @@ export class HooksController {
     this.logger.log(`Received webhook for integration ${integrationKey} (${hookRunId})`)
 
     const definition = this.integrationDefinitionFactory.getDefinition(integration.parentKey ?? integration.key)
-    const { response, runs } = await definition.onHookReceived(req, {
+    const { response, runs } = await definition.onHookReceived(req, integration, {
       integrationTriggerService: this.integrationTriggerService,
       workflowTriggerService: this.workflowTriggerService,
       integrationAccountService: this.integrationAccountService,

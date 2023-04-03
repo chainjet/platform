@@ -5,6 +5,7 @@ import { IntegrationAccount } from 'apps/api/src/integration-accounts/entities/i
 import { IntegrationAccountService } from 'apps/api/src/integration-accounts/services/integration-account.service'
 import { IntegrationAction } from 'apps/api/src/integration-actions/entities/integration-action'
 import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/integration-trigger'
+import { Integration } from 'apps/api/src/integrations/entities/integration'
 import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from 'apps/api/src/workflow-triggers/entities/workflow-trigger'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
@@ -161,6 +162,7 @@ export class DiscordDefinition extends SingleIntegrationDefinition {
 
   async onHookReceived(
     req: Request,
+    integration: Integration,
     injects: IntegrationHookInjects,
   ): Promise<{
     response: any
