@@ -48,4 +48,15 @@ export const TelegramLib = {
     }
     return this.fields.topicId
   },
+
+  async getPinMessageAsyncSchema({ credentials }: GetAsyncSchemasProps): Promise<JSONSchema7> {
+    if (credentials.type === 'private') {
+      return {}
+    }
+    return {
+      title: 'Pin Message',
+      type: 'boolean',
+      description: 'Whether to pin the message in the chat.',
+    }
+  },
 }

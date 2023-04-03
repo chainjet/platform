@@ -9,7 +9,7 @@ import { TelegramLib } from '../telegram.lib'
 export class SendImageAction extends OperationOffChain {
   key = 'sendImage'
   name = 'Send Image'
-  description = 'Send an image'
+  description = 'Send an image by URL'
   version = '1.0.0'
   inputs: JSONSchema7 = {
     required: ['image'],
@@ -44,7 +44,7 @@ export class SendImageAction extends OperationOffChain {
       },
     },
   }
-  asyncSchemas: AsyncSchema[] = [{ name: 'topicId' }]
+  asyncSchemas: AsyncSchema[] = [{ name: 'pinMessage' }, { name: 'topicId' }]
 
   async run({ inputs, credentials }: OperationRunOptions): Promise<RunResponse> {
     if (!credentials.chatId) {
@@ -57,6 +57,9 @@ export class SendImageAction extends OperationOffChain {
       reply_to_message_id: inputs.replyToMessageId,
       message_thread_id: inputs.topicId,
     })
+    if (inputs.pinMessage) {
+      await TelegramLib.getClient().pinChatMessage(credentials.chatId, res.message_id)
+    }
     return {
       outputs: {
         message: {
@@ -68,6 +71,7 @@ export class SendImageAction extends OperationOffChain {
 
   async getAsyncSchemas(): Promise<{ [key: string]: (props: GetAsyncSchemasProps) => Promise<JSONSchema7> }> {
     return {
+      pinMessage: (props) => TelegramLib.getPinMessageAsyncSchema(props),
       topicId: (props) => TelegramLib.getTopicIdAsyncSchema(props),
     }
   }
