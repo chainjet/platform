@@ -190,6 +190,10 @@ export class CreatePostAction extends OperationOffChain {
       imageUrls = imageUrl
     }
 
+    if (imageUrls.length > 4) {
+      throw new Error('Maximum of 4 images is allowed')
+    }
+
     // up to 1 non IPFS image is allowed
     if (imageUrls.length > 1 && imageUrls.some((imageUrl) => !imageUrl.startsWith('ipfs://'))) {
       throw new Error('Maximum of 1 image is allowed')
