@@ -272,6 +272,10 @@ export class RunnerService {
       newItems = newItems.slice(0, workflowTrigger.maxItemsPerRun)
     }
 
+    if (user.planConfig.maxTriggerItems) {
+      newItems = newItems.slice(0, user.planConfig.maxTriggerItems)
+    }
+
     // If there are no new items, update the trigger, increase operations used and return. There is no need to create a workflow run.
     if (newItems.length === 0) {
       this.logger.debug(`Trigger condition not satisfied for trigger ${workflowTrigger.id} on workflow ${workflow.id}`)

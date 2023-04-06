@@ -3,6 +3,7 @@ export interface PlanConfig {
   maxOperations: number
   maxActiveWorkflows: number
   minPollingInterval: number
+  maxTriggerItems: number
   features: {
     executeWorkflowOnError: boolean
   }
@@ -16,6 +17,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxOperations: 10000,
     maxActiveWorkflows: 5,
     minPollingInterval: 60 * 15,
+    maxTriggerItems: 50,
     features: {
       executeWorkflowOnError: false,
     },
@@ -25,6 +27,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxOperations: 30000,
     maxActiveWorkflows: 25,
     minPollingInterval: 60 * 5,
+    maxTriggerItems: 1000,
     features: {
       executeWorkflowOnError: true,
     },
@@ -34,6 +37,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxOperations: 1e5,
     maxActiveWorkflows: Infinity,
     minPollingInterval: 60,
+    maxTriggerItems: 10000,
     features: {
       executeWorkflowOnError: true,
     },
@@ -43,6 +47,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxOperations: 3e5,
     maxActiveWorkflows: Infinity,
     minPollingInterval: 15,
+    maxTriggerItems: 10000,
     features: {
       executeWorkflowOnError: true,
     },
@@ -52,6 +57,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxOperations: 750000,
     maxActiveWorkflows: Infinity,
     minPollingInterval: 15,
+    maxTriggerItems: 10000,
     features: {
       executeWorkflowOnError: true,
     },
@@ -61,6 +67,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxOperations: Infinity,
     maxActiveWorkflows: Infinity,
     minPollingInterval: 15,
+    maxTriggerItems: 10000,
     features: {
       executeWorkflowOnError: true,
     },
@@ -70,6 +77,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxOperations: Infinity,
     maxActiveWorkflows: Infinity,
     minPollingInterval: 60,
+    maxTriggerItems: 50,
     features: {
       executeWorkflowOnError: true,
     },
