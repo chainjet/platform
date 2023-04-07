@@ -56,6 +56,7 @@ export class User extends BaseEntity {
   @prop({ default: 0 })
   operationsUsedTotal: number
 
+  @Field()
   @prop({ default: () => addOneMonth() })
   operationsReset: Date
 
