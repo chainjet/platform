@@ -163,11 +163,11 @@ export class RunnerService {
       return
     }
 
-    // if (user.operationsUsedMonth >= user.planConfig.maxOperations) {
-    //   this.logger.log(`User ${user.id} has reached the monthly operation limit`)
-    //   await this.workflowTriggerService.markUserPlanAsLimited(user._id)
-    //   return
-    // }
+    if (user.operationsUsedMonth >= user.planConfig.maxOperations) {
+      this.logger.log(`User ${user.id} has reached the monthly operation limit`)
+      await this.workflowTriggerService.markUserPlanAsLimited(user._id)
+      return
+    }
 
     if (this.processInterrupted) {
       return
