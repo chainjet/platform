@@ -63,6 +63,17 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
 
     record.isPublic = workflow.isPublic
 
+    const user = (await this.userService.findById(record.owner.toString()))!
+
+    if (record.enabled !== false && Number.isFinite(user.planConfig.maxActiveWorkflows)) {
+      const enabledWorkflows = await this.countNative({ owner: user._id, enabled: true })
+      if (enabledWorkflows >= user.planConfig.maxActiveWorkflows) {
+        throw new BadRequestException(
+          `You have reached the maximum number of active workflows allowed by your plan (${user.planConfig.maxActiveWorkflows}). Please consider upgrading your plan or disabling other workflows.`,
+        )
+      }
+    }
+
     // Verify credentials exists and the user has access to it
     let accountCredential: AccountCredential | null = null
     if (record.credentials) {
@@ -111,7 +122,6 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
         integrationAccount =
           (await this.integrationAccountService.findById(integration.integrationAccount.toString())) ?? null
       }
-      const user = (await this.userService.findById(record.owner.toString()))!
 
       const runResponse = await this.operationRunnerService.runTriggerCheck(definition, {
         integration,
@@ -184,20 +194,29 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       }
     }
 
+    const user = (await this.userService.findById(workflowTrigger.owner.toString()))!
+
     const workflow = await this.workflowService.findById(workflowTrigger.workflow.toString())
     if (!workflow) {
       throw new NotFoundException(`Workflow for trigger ${workflowTrigger.id} not found`)
     }
 
-    // If the workflow has on-chain actions, the workflow needs to be deployed first
     if (workflowEnabled) {
+      // If the workflow has on-chain actions, the workflow needs to be deployed first
       if (workflow.network && !workflow.address) {
         throw new BadRequestException('Workflow is not deployed yet')
       }
-    }
 
-    // Restart workflow failures if workflow is reenabled
-    if (workflowEnabled) {
+      if (Number.isFinite(user.planConfig.maxActiveWorkflows)) {
+        const enabledWorkflows = await this.countNative({ owner: user._id, enabled: true })
+        if (enabledWorkflows >= user.planConfig.maxActiveWorkflows) {
+          throw new BadRequestException(
+            `You have reached the maximum number of active workflows allowed by your plan (${user.planConfig.maxActiveWorkflows}). Please consider upgrading your plan or disabling other workflows.`,
+          )
+        }
+      }
+
+      // Restart workflow failures if workflow is reenabled
       update.consecutiveTriggerFails = 0
       update.consecutiveActionFails = 0
       this.logger.log(`Workflow ${workflowTrigger.workflow} was enabled`)
@@ -259,7 +278,6 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
         integrationAccount =
           (await this.integrationAccountService.findById(integration.integrationAccount.toString())) ?? null
       }
-      const user = (await this.userService.findById(workflowTrigger.owner.toString()))!
 
       const runResponse = await this.operationRunnerService.runTriggerCheck(definition, {
         integration,
