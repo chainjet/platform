@@ -22,6 +22,7 @@ import { IntegrationAccount } from '../../integration-accounts/entities/integrat
 import { IntegrationAccountService } from '../../integration-accounts/services/integration-account.service'
 import { IntegrationTriggerService } from '../../integration-triggers/services/integration-trigger.service'
 import { IntegrationService } from '../../integrations/services/integration.service'
+import { PlanConfig } from '../../users/config/plans.config'
 import { UserService } from '../../users/services/user.service'
 import { Workflow } from '../../workflows/entities/workflow'
 import { WorkflowService } from '../../workflows/services/workflow.service'
@@ -502,5 +503,16 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
 
   async unmarkUserPlanAsLimited(userId: ObjectId): Promise<void> {
     await this.updateManyNative({ owner: userId }, { planLimited: false })
+  }
+
+  async updateFeaturesOnPlanChange(userId: ObjectId, newPlan: PlanConfig): Promise<void> {
+    const triggers = await this.find({
+      owner: userId,
+      'schedule.interval': { $exists: true, $lt: newPlan.minPollingInterval },
+    })
+    await this.updateManyNative(
+      { _id: { $in: triggers.map((t) => t._id) } },
+      { $set: { 'schedule.interval': newPlan.minPollingInterval } },
+    )
   }
 }

@@ -2,6 +2,7 @@ import { addOneMonth } from '@app/common/utils/date.utils'
 import { Injectable, Logger } from '@nestjs/common'
 import { Interval } from '@nestjs/schedule'
 import { UserService } from 'apps/api/src/users/services/user.service'
+import { plansConfig } from '../users/config/plans.config'
 import { WorkflowTriggerService } from '../workflow-triggers/services/workflow-trigger.service'
 
 @Injectable()
@@ -31,8 +32,13 @@ export class PlanSchedulerService {
         {
           operationsUsedMonth: 0,
           operationsReset: addOneMonth(user.operationsReset),
+          ...(user.nextPlan ? { plan: user.nextPlan } : {}),
+          $unset: { nextPlan: '' },
         },
       )
+      if (user.nextPlan && user.plan !== user.nextPlan) {
+        await this.workflowTriggerSerive.updateFeaturesOnPlanChange(user._id, plansConfig[user.nextPlan])
+      }
       await this.workflowTriggerSerive.unmarkUserPlanAsLimited(user._id)
       this.logger.log(`Reset operations for user ${user._id}`)
     }
