@@ -132,6 +132,32 @@ export const blockchainConfigList = () => ({
       multicall2Address: '0xc39aBB6c4451089dE48Cffb013c39d3110530e5C',
       nativeSymbol: 'METIS',
     },
+    [ChainId.MOONBEAM]: {
+      key: 'moonbeam',
+      url: process.env.MOONBEAM_RPC_URL!,
+      explorers: [
+        new EtherScanExplorer({
+          baseUrl: 'moonbeam.moonscan.io',
+          apiUrl: 'https://api-moonbeam.moonscan.io/api',
+          apiKey: process.env.MOONBEAMSCAN_KEY!,
+        }),
+      ],
+      multicall2Address: '0x34c471ddceb20018bbb73f6d13709936fc870acc',
+      nativeSymbol: 'GLMR',
+    },
+    [ChainId.MOONRIVER]: {
+      key: 'moonriver',
+      url: process.env.MOONRIVER_RPC_URL!,
+      explorers: [
+        new EtherScanExplorer({
+          baseUrl: 'moonriver.moonscan.io',
+          apiUrl: 'https://api-moonriver.moonscan.io/api',
+          apiKey: process.env.MOONRIVERSCAN_KEY!,
+        }),
+      ],
+      multicall2Address: '0x8C8BF5Dea280A1eC68219D66E8A21E60585830F5',
+      nativeSymbol: 'MOVR',
+    },
     [ChainId.OPTIMISM]: {
       key: 'optimism',
       url: process.env.OPTIMISM_RPC_URL!,
