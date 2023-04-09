@@ -42,6 +42,7 @@ export const blockchainConfigList = () => ({
       key: 'celo',
       url: process.env.CELO_RPC_URL!,
       explorers: [
+        new EtherScanExplorer({ baseUrl: 'celoscan.io', apiKey: process.env.CELOSCAN_KEY! }),
         new BlockScoutExplorer({
           baseUrl: 'explorer.celo.org/mainnet',
           apiUrl: 'https://explorer.celo.org/api',
