@@ -8,6 +8,7 @@ import { GetDefaultProfileAction } from './actions/get-default-profile.action'
 import { GetPublicationAction } from './actions/get-publication.action'
 import { LikePostAction } from './actions/like-post.action'
 import { refreshLensAccessToken } from './lens.common'
+import { NewCollectionBulkTrigger } from './triggers/new-collection-bulk.trigger'
 import { NewCollectionTrigger } from './triggers/new-collection.trigger'
 import { NewFollowerBulkTrigger } from './triggers/new-follower-bulk.trigger'
 import { NewFollowerTrigger } from './triggers/new-follower.trigger'
@@ -22,6 +23,7 @@ export class LensDefinition extends SingleIntegrationDefinition {
 
   triggers = [
     new NewCollectionTrigger(),
+    new NewCollectionBulkTrigger(),
     new NewFollowerTrigger(),
     new NewFollowerBulkTrigger(),
     new NewMentionChainJetBotTrigger(),
