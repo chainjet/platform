@@ -1,6 +1,6 @@
 import { IntegrationHookInjects } from '@app/definitions/definition'
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
-import { UnauthorizedException } from '@nestjs/common'
+import { Logger, UnauthorizedException } from '@nestjs/common'
 import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/integration-trigger'
 import { Integration } from 'apps/api/src/integrations/entities/integration'
 import { WorkflowTrigger } from 'apps/api/src/workflow-triggers/entities/workflow-trigger'
@@ -13,6 +13,8 @@ import { ProposalEnded } from './triggers/proposal-ended.trigger'
 import { ProposalStarted } from './triggers/proposal-started.trigger'
 
 export class SnapshotDefinition extends SingleIntegrationDefinition {
+  protected readonly logger = new Logger(SnapshotDefinition.name)
+
   integrationKey = 'snapshot'
   integrationVersion = '1'
 
@@ -38,14 +40,17 @@ export class SnapshotDefinition extends SingleIntegrationDefinition {
     runs: { workflowTrigger: WorkflowTrigger; integrationTrigger: IntegrationTrigger; outputs: Record<string, any> }[]
   }> {
     if (req.headers.authentication !== process.env.SNAPSHOT_AUTHENTICATION_KEY) {
+      this.logger.error(`Received proposal with invalid authentication key ${req.headers.authentication}`)
       throw new UnauthorizedException(`Invalid authentication key`)
     }
 
     const proposalId = req.body.id?.split('/')[1]
     if (!proposalId || !proposalId.startsWith('0x')) {
+      this.logger.error(`Received proposal with invalid id ${proposalId}`)
       throw new Error(`Invalid proposal id ${proposalId}`)
     }
     if (!req.body.space) {
+      this.logger.error(`Received proposal without space ${proposalId}`)
       throw new Error(`Space is required`)
     }
 
@@ -65,17 +70,20 @@ export class SnapshotDefinition extends SingleIntegrationDefinition {
         break
     }
     if (!key) {
+      this.logger.error(`Received proposal with invalid event ${req.body.event}`)
       throw new Error(`Unknown snapshot event ${req.body.event}`)
     }
 
     const integrationTrigger = await integrationTriggerService.findOne({ key })
     if (!integrationTrigger) {
+      this.logger.error(`Integration trigger with key ${key} not found for proposal ${proposalId}`)
       throw new Error(`Integration trigger ${key} not found`)
     }
 
     // TODO find only triggers for the space using an indexed field
     let workflowTriggers = await workflowTriggerService.find({
       integrationTrigger: integrationTrigger._id,
+      enabled: true,
     })
     workflowTriggers = workflowTriggers.filter(
       (workflowTrigger) => workflowTrigger.inputs?.space?.toLowerCase() === req.body.space?.toLowerCase(),
@@ -87,6 +95,8 @@ export class SnapshotDefinition extends SingleIntegrationDefinition {
         runs: [],
       }
     }
+
+    this.logger.log(`Found ${workflowTriggers.length} workflow triggers for ${key} on snapshot space ${req.body.space}`)
 
     let proposal: Record<string, any> = {}
     if (key !== this.proposalDeletedTrigger.key) {
