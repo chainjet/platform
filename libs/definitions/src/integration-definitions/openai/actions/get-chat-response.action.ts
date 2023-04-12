@@ -5,8 +5,8 @@ import { JSONSchema7 } from 'json-schema'
 
 export class GetChatResponseAction extends OperationOffChain {
   key = 'getChatResponse'
-  name = 'Get Chat Response (ChatGPT)'
-  description = 'Uses ChatGPT to generate a response to a chat message.'
+  name = 'Get ChatGPT Response'
+  description = 'Uses ChatGPT assistant to generate a response to a message.'
   version = '1.0.0'
   inputs: JSONSchema7 = {
     required: ['system', 'message', 'temperature'],
