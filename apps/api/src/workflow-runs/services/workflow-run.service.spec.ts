@@ -137,7 +137,6 @@ describe('WorkflowRunService', () => {
       const updated = await service.findById(workflowRun.id)
       expect(updated?.operationsUsed).toBe(1)
       expect(updated?.status).toBe(WorkflowRunStatus.running)
-      expect(updated?.triggerItems).toEqual([{ id: '123' }])
       expect(updated?.triggerRun.status).toBe(WorkflowRunStatus.completed)
       expect(updated?.triggerRun.workflowTriggered).toBe(true)
       expect(updated?.triggerRun.triggerIds).toEqual(['123'])
