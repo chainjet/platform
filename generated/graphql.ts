@@ -1075,6 +1075,8 @@ export interface WorkflowRun {
     status: WorkflowRunStatus;
     triggerRun?: Nullable<WorkflowRunTrigger>;
     actionRuns: WorkflowRunAction[];
+    totalItems?: Nullable<number>;
+    itemsProcessed?: Nullable<number>;
     startedBy: WorkflowRunStartedByOptions;
     operationsUsed: number;
     errorMessage?: Nullable<string>;

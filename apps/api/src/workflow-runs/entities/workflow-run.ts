@@ -42,6 +42,19 @@ export class WorkflowRun extends BaseEntity {
   @prop({ type: WorkflowRunAction, default: [] })
   actionRuns: WorkflowRunAction[]
 
+  @Field(() => Int, { nullable: true })
+  get totalItems(): number | undefined {
+    return this.triggerRun?.triggerIds?.length
+  }
+
+  @Field(() => Int, { nullable: true })
+  get itemsProcessed(): number | undefined {
+    if (!this.actionRuns) {
+      return 0
+    }
+    return new Set(this.actionRuns.map((actionRun) => actionRun.itemId.toString())).size
+  }
+
   @FilterableField(() => WorkflowRunStartedByOptions)
   @prop({ enum: WorkflowRunStartedByOptions, type: String, required: true })
   startedBy: WorkflowRunStartedByOptions
