@@ -1,8 +1,9 @@
 import { AuthenticationError } from '@app/common/errors/authentication-error'
 import { RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
-import { Client } from '@xmtp/xmtp-js'
+import { Client, Conversation } from '@xmtp/xmtp-js'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
+import { isAddress } from 'ethers/lib/utils'
 import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
 import { mapXmtpMessageToOutput, xmtpMessageSchema } from '../xmtp.common'
 
@@ -40,10 +41,20 @@ export class SendMessageConversationAction extends OperationOffChain {
     const client = await Client.create(null, { privateKeyOverride: keys, env: 'production' })
     const conversations = (await client.conversations.list()).reverse()
 
-    let conversation = conversations.find(
-      (conversation) =>
-        conversation.context?.conversationId && conversation.context.conversationId === inputs.conversationId,
-    )
+    let conversation: Conversation | undefined
+
+    if (inputs.conversationId.startsWith('*0x') && isAddress(inputs.conversationId.slice(1))) {
+      conversation = conversations.find(
+        (conversation) =>
+          !conversation.context?.conversationId && conversation.peerAddress === inputs.conversationId.slice(1),
+      )
+    }
+    if (!conversation) {
+      conversation = conversations.find(
+        (conversation) =>
+          conversation.context?.conversationId && conversation.context.conversationId === inputs.conversationId,
+      )
+    }
 
     if (!conversation) {
       throw new Error(`Conversation ${inputs.conversationId} not found`)

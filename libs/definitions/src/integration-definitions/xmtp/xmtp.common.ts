@@ -70,7 +70,7 @@ export function mapXmtpMessageToOutput(message: DecodedMessage) {
     error: message.error,
     messageVersion: message.messageVersion,
     conversation: {
-      id: message.conversation.context?.conversationId,
+      id: message.conversation.context?.conversationId ?? `*${message.senderAddress}`,
       topic: message.conversation.topic,
       createdAt: message.conversation.createdAt,
       peerAddress: message.conversation.peerAddress,
