@@ -17,9 +17,9 @@ export class NewFollowerBulkTrigger extends OperationTrigger {
     required: ['profileId'],
     properties: {
       profileId: {
-        title: 'Profile ID or Handle',
+        title: 'Lens Handle',
         type: 'string',
-        description: 'A Lens profile ID (e.g. 0x012cd6) or a Lens handle (e.g. chainjet.lens).',
+        description: 'The Lens handle to get the followers from. Normally this is your own handle.',
       },
     },
   }
@@ -27,15 +27,18 @@ export class NewFollowerBulkTrigger extends OperationTrigger {
     properties: {
       address: {
         type: 'string',
+        examples: ['0x0A8e06E4e62a281A770aF8B3399D6ebF231C08d5'],
       },
       defaultProfile: {
         type: 'object',
         properties: {
           id: {
             type: 'string',
+            examples: ['0x012cd6'],
           },
           handle: {
             type: 'string',
+            examples: ['chainjet.lens'],
           },
         },
       },
@@ -44,6 +47,9 @@ export class NewFollowerBulkTrigger extends OperationTrigger {
 
   async run({ inputs, fetchAll }: OperationRunOptions): Promise<RunResponse | null> {
     const { profileId } = inputs
+    if (!profileId) {
+      throw new Error(`Lens Handle or Profile ID required.`)
+    }
 
     const lensProfileId = await getLensProfileId(profileId)
 
