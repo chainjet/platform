@@ -3,6 +3,7 @@ import { RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { Client } from '@xmtp/xmtp-js'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
+import { isAddress } from 'ethers/lib/utils'
 import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
 import { getLensDefaultProfile, getLensProfile } from '../../lens/lens.common'
 import { mapXmtpMessageToOutput, xmtpMessageSchema } from '../xmtp.common'
@@ -41,7 +42,21 @@ export class SendMessageAddressAction extends OperationOffChain {
     const keys = new Uint8Array(credentials.keys.split(',').map((key: string) => Number(key)))
     const client = await Client.create(null, { privateKeyOverride: keys, env: 'production' })
     const senderProfile = await getLensDefaultProfile(client.address)
-    const receiverProfile = await getLensProfile(inputs.handle)
+
+    if (!inputs.handle) {
+      throw new Error(`Lens handle is required`)
+    }
+
+    let handle = inputs.handle
+    if (handle.startsWith('0x') && isAddress(handle)) {
+      const defaultProfile = await getLensDefaultProfile(handle)
+      if (!defaultProfile) {
+        throw new Error(`Address ${handle} does not have a default Lens profile`)
+      }
+      handle = defaultProfile.handle
+    }
+
+    const receiverProfile = await getLensProfile(handle)
 
     const senderId = parseInt(senderProfile.id.substring(2), 16)
     const receiverId = parseInt(receiverProfile.id.substring(2), 16)
