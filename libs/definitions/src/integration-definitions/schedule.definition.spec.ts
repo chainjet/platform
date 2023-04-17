@@ -1,3 +1,4 @@
+import { redisForRoot } from '@app/common/utils/redis.utils'
 import { Test, TestingModule } from '@nestjs/testing'
 import { DefinitionsModule, IntegrationDefinitionFactory } from '..'
 import { TestDatabaseModule } from '../../../common/test/database/test-database.module'
@@ -8,7 +9,7 @@ describe('Schedule Definition', () => {
 
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
-      imports: [TestDatabaseModule, DefinitionsModule],
+      imports: [TestDatabaseModule, redisForRoot(), DefinitionsModule],
       providers: [ScheduleDefinition],
     }).compile()
 

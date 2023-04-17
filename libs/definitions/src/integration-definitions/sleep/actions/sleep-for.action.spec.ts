@@ -1,3 +1,4 @@
+import { redisForRoot } from '@app/common/utils/redis.utils'
 import { Test, TestingModule } from '@nestjs/testing'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import * as chrono from 'chrono-node'
@@ -10,7 +11,7 @@ describe('Sleep for action', () => {
 
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
-      imports: [TestDatabaseModule, DefinitionsModule],
+      imports: [TestDatabaseModule, redisForRoot(), DefinitionsModule],
       providers: [SleepDefinition],
     }).compile()
 

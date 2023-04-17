@@ -368,21 +368,75 @@ describe('WorkflowTriggerService', () => {
   })
 
   describe('incrementWorkflowRunFailures', () => {
-    it('should incremente workflow run failures', async () => {
-      const trigger = await mock.createWorkflowTriggerDeep()
-      expect((await service.findById(trigger.id))?.consecutiveWorkflowFails).toBe(0)
-      await service.incrementWorkflowRunFailures(mock.workflow._id)
-      expect((await service.findById(trigger.id))?.consecutiveWorkflowFails).toBe(1)
-      await service.incrementWorkflowRunFailures(mock.workflow._id)
-      expect((await service.findById(trigger.id))?.consecutiveWorkflowFails).toBe(2)
-      await service.incrementWorkflowRunFailures(mock.workflow._id)
-      expect((await service.findById(trigger.id))?.consecutiveWorkflowFails).toBe(3)
+    beforeAll(() => {
+      jest.useFakeTimers({ doNotFake: ['nextTick', 'setImmediate'] } as any)
     })
 
-    it('should disable the workflow if failures new number of is 5 or more', async () => {
-      const trigger = await mock.createWorkflowTriggerDeep({ consecutiveWorkflowFails: 4 })
+    afterAll(() => {
+      jest.useRealTimers()
+    })
+
+    it('should incremente workflow trigger run failures', async () => {
+      const trigger = await mock.createWorkflowTriggerDeep()
+      expect((await service.findById(trigger.id))?.consecutiveTriggerFails).toBe(0)
+      await service.incrementWorkflowRunFailures(mock.workflow._id, 'trigger')
+      expect((await service.findById(trigger.id))?.consecutiveTriggerFails).toBe(1)
+      jest.advanceTimersByTime(1000 * 60 * 60 * 4)
+      await service.incrementWorkflowRunFailures(mock.workflow._id, 'trigger')
+      expect((await service.findById(trigger.id))?.consecutiveTriggerFails).toBe(2)
+      jest.advanceTimersByTime(1000 * 60 * 60 * 4)
+      await service.incrementWorkflowRunFailures(mock.workflow._id, 'trigger')
+      expect((await service.findById(trigger.id))?.consecutiveTriggerFails).toBe(3)
+    })
+
+    it('should not increment trigger run failures if less than 3 hours passed from last failure', async () => {
+      const trigger = await mock.createWorkflowTriggerDeep()
+      expect((await service.findById(trigger.id))?.consecutiveTriggerFails).toBe(0)
+      await service.incrementWorkflowRunFailures(mock.workflow._id, 'trigger')
+      expect((await service.findById(trigger.id))?.consecutiveTriggerFails).toBe(1)
+      jest.advanceTimersByTime(1000 * 60 * 60 * 2.5)
+      await service.incrementWorkflowRunFailures(mock.workflow._id, 'trigger')
+      expect((await service.findById(trigger.id))?.consecutiveTriggerFails).toBe(1)
+      await service.incrementWorkflowRunFailures(mock.workflow._id, 'trigger')
+      expect((await service.findById(trigger.id))?.consecutiveTriggerFails).toBe(1)
+    })
+
+    it('should incremente workflow action run failures', async () => {
+      const trigger = await mock.createWorkflowTriggerDeep()
+      expect((await service.findById(trigger.id))?.consecutiveActionFails).toBe(0)
+      await service.incrementWorkflowRunFailures(mock.workflow._id, 'action')
+      expect((await service.findById(trigger.id))?.consecutiveActionFails).toBe(1)
+      jest.advanceTimersByTime(1000 * 60 * 60 * 4)
+      await service.incrementWorkflowRunFailures(mock.workflow._id, 'action')
+      expect((await service.findById(trigger.id))?.consecutiveActionFails).toBe(2)
+      jest.advanceTimersByTime(1000 * 60 * 60 * 4)
+      await service.incrementWorkflowRunFailures(mock.workflow._id, 'action')
+      expect((await service.findById(trigger.id))?.consecutiveActionFails).toBe(3)
+    })
+
+    it('should not increment actio  run failures if less than 3 hours passed from last failure', async () => {
+      const trigger = await mock.createWorkflowTriggerDeep()
+      expect((await service.findById(trigger.id))?.consecutiveActionFails).toBe(0)
+      await service.incrementWorkflowRunFailures(mock.workflow._id, 'action')
+      expect((await service.findById(trigger.id))?.consecutiveActionFails).toBe(1)
+      jest.advanceTimersByTime(1000 * 60 * 60 * 2.5)
+      await service.incrementWorkflowRunFailures(mock.workflow._id, 'action')
+      expect((await service.findById(trigger.id))?.consecutiveActionFails).toBe(1)
+      await service.incrementWorkflowRunFailures(mock.workflow._id, 'action')
+      expect((await service.findById(trigger.id))?.consecutiveActionFails).toBe(1)
+    })
+
+    it('should disable the workflow if trigger failures is 5 or more', async () => {
+      const trigger = await mock.createWorkflowTriggerDeep({ consecutiveTriggerFails: 4 })
       expect((await service.findById(trigger.id))?.enabled).toBe(true)
-      await service.incrementWorkflowRunFailures(mock.workflow._id)
+      await service.incrementWorkflowRunFailures(mock.workflow._id, 'trigger')
+      expect((await service.findById(trigger.id))?.enabled).toBe(false)
+    })
+
+    it('should disable the workflow if action failures is 5 or more', async () => {
+      const trigger = await mock.createWorkflowTriggerDeep({ consecutiveActionFails: 4 })
+      expect((await service.findById(trigger.id))?.enabled).toBe(true)
+      await service.incrementWorkflowRunFailures(mock.workflow._id, 'action')
       expect((await service.findById(trigger.id))?.enabled).toBe(false)
     })
   })

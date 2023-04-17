@@ -1,3 +1,4 @@
+import { redisForRoot } from '@app/common/utils/redis.utils'
 import { Test, TestingModule } from '@nestjs/testing'
 import { IntegrationAccountsModule } from '../../../apps/api/src/integration-accounts/integration-accounts.module'
 import { IntegrationActionsModule } from '../../../apps/api/src/integration-actions/integration-actions.module'
@@ -16,6 +17,7 @@ describe('ServiceDefinitionFactory', () => {
       providers: [IntegrationDefinitionFactory],
       imports: [
         TestDatabaseModule,
+        redisForRoot(),
         IntegrationsModule,
         IntegrationAccountsModule,
         IntegrationActionsModule,

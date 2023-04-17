@@ -66,8 +66,11 @@ describe('Hooks Controller', () => {
       )
 
       const expectedOutputs = {
-        [mock.workflowTrigger.id]: {},
-        trigger: {},
+        id: expect.any(String),
+        outputs: {
+          [mock.workflowTrigger.id]: {},
+          trigger: {},
+        },
       }
       const workflowRun = await mock.workflowRunService.findOne({ workflow: mock.workflow })
       expect(mock.runnerService.runWorkflowActions).toHaveBeenCalledWith([], [expectedOutputs], workflowRun)
@@ -112,8 +115,11 @@ describe('Hooks Controller', () => {
         },
       }
       const expectedOutputs = {
-        [mock.workflowTrigger.id]: outputs,
-        trigger: outputs,
+        id: expect.any(String),
+        outputs: {
+          [mock.workflowTrigger.id]: outputs,
+          trigger: outputs,
+        },
       }
       const workflowRun = await mock.workflowRunService.findOne({ workflow: mock.workflow })
       expect(mock.runnerService.runWorkflowActions).toHaveBeenCalledWith([], [expectedOutputs], workflowRun)
