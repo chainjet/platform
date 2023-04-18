@@ -10,7 +10,7 @@ import { Integration } from '../entities/integration'
 export class IntegrationService extends BaseService<Integration> {
   protected readonly logger = new Logger(IntegrationService.name)
   static instance: IntegrationService
-  // protected cacheKey = 'integration'
+  protected cacheKey = 'integration'
 
   constructor(
     @Inject(CACHE_MANAGER) protected cacheManager: Cache,

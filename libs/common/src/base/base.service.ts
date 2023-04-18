@@ -34,14 +34,6 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
     super(model, { documentToObjectOptions: { virtuals: true, getters: true } })
   }
 
-  /**
-   * Returns whether an entity can be created or updated.
-   * At integration level authentication has already been handled and owner ID can be trusted.
-   * CRUD authorization has also been handled by the resolver.
-   * This method is responsible to check whether references are allowed.
-   */
-  // abstract canCreateOrUpdate (record: DeepPartial<T>): Promise<boolean> | boolean
-
   async query(query: Query<T>): Promise<T[]> {
     // if a search was given, include it on the filter
     const search = (query as any).search as string
@@ -56,6 +48,19 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
         field: sort.field === 'createdAt' ? '_id' : sort.field,
       }))
     }
+
+    // cache queries for 1 hour if cache is enabled
+    // if (this.cacheKey) {
+    //   const cacheKey = `${this.cacheKey}:query:${JSON.stringify(query)}`
+    //   const cachedResult = await this.cacheManager.get<T[]>(cacheKey)
+    //   if (cachedResult) {
+    //     return cachedResult.map((item) => this.hydrate(item))
+    //   } else {
+    //     const result = await super.query(query)
+    //     await this.cacheManager.set(cacheKey, result, { ttl: 60 * 60 } as any)
+    //     return result
+    //   }
+    // }
 
     return await super.query(query)
   }
@@ -204,9 +209,12 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
 
   hydrate(doc: any): T {
     const res = this.model.hydrate(doc)
-    if (res?.createdAt) {
-      res.createdAt = new Date(res.createdAt)
+    const item = {
+      ...res.toObject(this.documentToObjectOptions),
     }
-    return res
+    if (res?.createdAt) {
+      item.createdAt = new Date(res.createdAt)
+    }
+    return item as T
   }
 }
