@@ -55,6 +55,18 @@ export class WorkflowRun extends BaseEntity {
     return new Set(this.actionRuns.map((actionRun) => actionRun.itemId.toString())).size
   }
 
+  @Field(() => Int, { nullable: true })
+  get itemsFailed(): number | undefined {
+    if (!this.actionRuns) {
+      return 0
+    }
+    return new Set(
+      this.actionRuns
+        .filter((actionRun) => actionRun.status === WorkflowRunStatus.failed)
+        .map((actionRun) => actionRun.itemId.toString()),
+    ).size
+  }
+
   @FilterableField(() => WorkflowRunStartedByOptions)
   @prop({ enum: WorkflowRunStartedByOptions, type: String, required: true })
   startedBy: WorkflowRunStartedByOptions

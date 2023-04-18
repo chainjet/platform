@@ -1077,6 +1077,7 @@ export interface WorkflowRun {
     actionRuns: WorkflowRunAction[];
     totalItems?: Nullable<number>;
     itemsProcessed?: Nullable<number>;
+    itemsFailed?: Nullable<number>;
     startedBy: WorkflowRunStartedByOptions;
     operationsUsed: number;
     errorMessage?: Nullable<string>;
