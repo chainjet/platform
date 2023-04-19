@@ -56,8 +56,20 @@ export class AccountCredential extends BaseEntity {
     }
   }
 
+  public set credentials(credentials: Record<string, string>) {
+    const key = process.env.CREDENTIALS_AES_KEY
+    if (!key) {
+      throw new InternalServerErrorException('Credentials key not set')
+    }
+    this.encryptedCredentials = CryptoJS.AES.encrypt(JSON.stringify(credentials), key).toString()
+    this.lastCredentialUpdate = new Date()
+  }
+
   @prop()
   encryptedCredentials?: string
+
+  @prop()
+  lastCredentialUpdate?: Date
 
   @Field(() => GraphQLJSONObject, { nullable: true })
   @jsonProp()

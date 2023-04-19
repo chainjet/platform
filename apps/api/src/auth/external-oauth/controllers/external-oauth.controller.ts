@@ -147,6 +147,7 @@ export class ExternalOAuthController {
       if (session.accountId) {
         await this.accountCredentialService.updateOne(session.accountId, {
           encryptedCredentials: CryptoJS.AES.encrypt(JSON.stringify(credentials), credentialKey).toString(),
+          lastCredentialUpdate: new Date(),
         })
       } else {
         await this.accountCredentialService.createOne({
@@ -154,6 +155,7 @@ export class ExternalOAuthController {
           name: `${oauthResponse.integrationAccount.name} account`, // TODO get username, email or ID and include it here
           integrationAccount: new mongoose.Types.ObjectId(oauthResponse.integrationAccount.id),
           encryptedCredentials: CryptoJS.AES.encrypt(JSON.stringify(credentials), credentialKey).toString(),
+          lastCredentialUpdate: new Date(),
         })
       }
 
