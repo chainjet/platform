@@ -1,5 +1,6 @@
 import { removeScientificNotation } from '@app/common/utils/number.utils'
 import { sendGraphqlQuery } from '@app/definitions/utils/subgraph.utils'
+import { isAddress } from 'ethers/lib/utils'
 
 export async function refreshLensAccessToken(
   refreshToken: string,
@@ -57,6 +58,9 @@ export async function getLensProfile(handle: string): Promise<{ id: string; owne
  * given a lens profile id or handle, return the profile id
  */
 export async function getLensProfileId(profileIdOrHandle: string): Promise<string> {
+  if (isAddress(profileIdOrHandle.toLowerCase())) {
+    return (await getLensDefaultProfile(profileIdOrHandle)).id
+  }
   // if the profile id is a lens handle, we need to fetch the profile id
   const isLensHandle = !/^0x[a-fA-F0-9]+$/.test(profileIdOrHandle)
   return isLensHandle ? (await getLensProfile(profileIdOrHandle)).id : profileIdOrHandle
