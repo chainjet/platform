@@ -1,5 +1,6 @@
 import { CacheModule } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
+import { caching } from 'cache-manager'
 import { redisStore } from 'cache-manager-redis-store'
 import { RedisClientOptions } from 'redis'
 
@@ -9,6 +10,12 @@ export function redisForRoot() {
     imports: [ConfigModule],
     inject: [ConfigService],
     useFactory: async (configService: ConfigService) => {
+      if (configService.get<string>('NODE_ENV') === 'test') {
+        return (await caching('memory', {
+          max: 100,
+          ttl: 1000 * 60,
+        })) as any
+      }
       const store = await redisStore({
         url: configService.get<string>('REDIS_URL'),
         pingInterval: 1000 * 60 * 4,
