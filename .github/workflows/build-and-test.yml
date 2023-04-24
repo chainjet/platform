@@ -10,7 +10,19 @@ jobs:
         with:
           node-version: '16.x'
           cache: 'yarn'
+      - name: Load MongoDB binary cache
+        id: cache-mongodb-binaries
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/mongodb-binaries
+          key: '16.x'
       - name: Install dependencies
         run: yarn
       - name: Build
         run: yarn build
+      - name: Prepare environment
+        run: cp .env.example .env && sed -i "s/NODE_ENV=development/NODE_ENV=test/g" .env
+      - name: Test
+        run: NODE_ENV=test && yarn test
+        env:
+          NODE_ENV: test
