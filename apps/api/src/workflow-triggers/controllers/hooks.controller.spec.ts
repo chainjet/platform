@@ -3,7 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing'
 import { Request } from 'express'
 import { TypegooseModule } from 'nestjs-typegoose'
 import supertest from 'supertest'
-import { closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
+import { TestDatabaseModule, closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
 import { MockModule } from '../../../../../libs/common/test/mock.module'
 import { MockService } from '../../../../../libs/common/test/mock.service'
 import { IntegrationDefinitionFactory } from '../../../../../libs/definitions/src'
@@ -21,7 +21,7 @@ describe('Hooks Controller', () => {
     const testModule: TestingModule = await Test.createTestingModule({
       controllers: [HooksController],
       providers: [WorkflowTriggerService],
-      imports: [TypegooseModule.forFeature([WorkflowTrigger]), MockModule],
+      imports: [TypegooseModule.forFeature([WorkflowTrigger]), MockModule, TestDatabaseModule],
     }).compile()
 
     app = testModule.createNestApplication()

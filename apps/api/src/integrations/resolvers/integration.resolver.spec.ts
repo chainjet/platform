@@ -1,6 +1,7 @@
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { Test, TestingModule } from '@nestjs/testing'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
+import { TestDatabaseModule } from 'libs/common/test/database/test-database.module'
 import { MockModule } from '../../../../../libs/common/test/mock.module'
 import { Integration } from '../entities/integration'
 import { IntegrationAuthorizer, IntegrationResolver } from './integration.resolver'
@@ -16,6 +17,7 @@ describe('IntegrationResolver', () => {
           dtos: [{ DTOClass: Integration }],
         }),
         MockModule,
+        TestDatabaseModule,
       ],
       providers: [IntegrationResolver, IntegrationAuthorizer],
     }).compile()

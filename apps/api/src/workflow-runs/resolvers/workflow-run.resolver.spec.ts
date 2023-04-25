@@ -1,6 +1,7 @@
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { Test, TestingModule } from '@nestjs/testing'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
+import { TestDatabaseModule } from 'libs/common/test/database/test-database.module'
 import { MockModule } from '../../../../../libs/common/test/mock.module'
 import { WorkflowRun } from '../entities/workflow-run'
 import { WorkflowRunAction } from '../entities/workflow-run-action'
@@ -17,6 +18,7 @@ describe('WorkflowRunResolver', () => {
         NestjsQueryGraphQLModule.forFeature({
           imports: [
             NestjsQueryTypegooseModule.forFeature([WorkflowRun, WorkflowRunTrigger, WorkflowRunAction, WorkflowSleep]),
+            TestDatabaseModule,
           ],
           resolvers: [
             {

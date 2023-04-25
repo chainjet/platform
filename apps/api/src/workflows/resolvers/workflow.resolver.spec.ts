@@ -1,7 +1,7 @@
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { Test, TestingModule } from '@nestjs/testing'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
-import { closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
+import { TestDatabaseModule, closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
 import { MockModule } from '../../../../../libs/common/test/mock.module'
 import { CompilerService } from '../../compiler/compiler.service'
 import { Workflow, WorkflowAuthorizer } from '../entities/workflow'
@@ -19,6 +19,7 @@ describe('WorkflowResolver', () => {
           dtos: [{ DTOClass: Workflow }],
         }),
         MockModule,
+        TestDatabaseModule,
       ],
       providers: [WorkflowResolver, WorkflowService, WorkflowAuthorizer, CompilerService],
     }).compile()

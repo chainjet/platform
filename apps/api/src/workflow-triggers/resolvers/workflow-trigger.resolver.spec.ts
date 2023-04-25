@@ -1,7 +1,7 @@
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { Test, TestingModule } from '@nestjs/testing'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
-import { closeMongoConnection } from 'libs/common/test/database/test-database.module'
+import { TestDatabaseModule, closeMongoConnection } from 'libs/common/test/database/test-database.module'
 import { MockModule } from 'libs/common/test/mock.module'
 import { WorkflowTrigger, WorkflowTriggerAuthorizer } from '../entities/workflow-trigger'
 import { WorkflowUsedId } from '../entities/workflow-used-id'
@@ -22,6 +22,7 @@ describe('WorkflowTriggerResolver', () => {
           dtos: [{ DTOClass: WorkflowTrigger }, { DTOClass: WorkflowUsedId }],
         }),
         MockModule,
+        TestDatabaseModule,
       ],
       providers: [WorkflowTriggerResolver, WorkflowTriggerService, WorkflowTriggerAuthorizer],
     }).compile()

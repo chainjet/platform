@@ -1,7 +1,7 @@
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { Test, TestingModule } from '@nestjs/testing'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
-import { closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
+import { TestDatabaseModule, closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
 import { MockModule } from '../../../../../libs/common/test/mock.module'
 import { MockService } from '../../../../../libs/common/test/mock.service'
 import { AccountCredential, AccountCredentialAuthorizer } from '../entities/account-credential'
@@ -20,6 +20,7 @@ describe('AccountCredentialResolver', () => {
           dtos: [{ DTOClass: AccountCredential }],
         }),
         MockModule,
+        TestDatabaseModule,
       ],
       providers: [AccountCredentialResolver, AccountCredentialService, AccountCredentialAuthorizer],
     }).compile()

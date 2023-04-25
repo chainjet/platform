@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing'
-import { closeMongoConnection } from 'libs/common/test/database/test-database.module'
+import { TestDatabaseModule, closeMongoConnection } from 'libs/common/test/database/test-database.module'
 import { MockModule } from 'libs/common/test/mock.module'
 import { MockService } from 'libs/common/test/mock.service'
 import { TypegooseModule } from 'nestjs-typegoose'
@@ -13,7 +13,7 @@ describe('EvmContract', () => {
 
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([EvmContract]), MockModule],
+      imports: [TypegooseModule.forFeature([EvmContract]), MockModule, TestDatabaseModule],
       providers: [EvmContractService],
     }).compile()
 

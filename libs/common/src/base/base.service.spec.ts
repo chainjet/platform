@@ -1,9 +1,9 @@
 import { BaseEntity } from '@app/common/base/base-entity'
 import { Injectable, Logger } from '@nestjs/common'
 import { Test, TestingModule } from '@nestjs/testing'
-import { prop, ReturnModelType } from '@typegoose/typegoose'
+import { ReturnModelType, prop } from '@typegoose/typegoose'
 import { InjectModel, TypegooseModule } from 'nestjs-typegoose'
-import { closeMongoConnection, TestDatabaseModule } from '../../test/database/test-database.module'
+import { TestDatabaseModule, closeMongoConnection } from '../../test/database/test-database.module'
 import { BaseService } from './base.service'
 
 class TestEntity extends BaseEntity {

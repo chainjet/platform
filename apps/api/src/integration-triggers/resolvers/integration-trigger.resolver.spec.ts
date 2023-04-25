@@ -1,7 +1,7 @@
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { Test, TestingModule } from '@nestjs/testing'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
-import { closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
+import { TestDatabaseModule, closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
 import { MockModule } from '../../../../../libs/common/test/mock.module'
 import { IntegrationTrigger } from '../entities/integration-trigger'
 import { IntegrationTriggerService } from '../services/integration-trigger.service'
@@ -14,7 +14,7 @@ describe('IntegrationTriggerResolver', () => {
     const testModule: TestingModule = await Test.createTestingModule({
       imports: [
         NestjsQueryGraphQLModule.forFeature({
-          imports: [NestjsQueryTypegooseModule.forFeature([IntegrationTrigger])],
+          imports: [NestjsQueryTypegooseModule.forFeature([IntegrationTrigger]), TestDatabaseModule],
           dtos: [{ DTOClass: IntegrationTrigger }],
         }),
         MockModule,

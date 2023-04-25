@@ -2,7 +2,7 @@ import { CommonModule } from '@app/common'
 import { Test, TestingModule } from '@nestjs/testing'
 import { TypegooseModule } from 'nestjs-typegoose'
 import { SecurityUtils } from '../../../../../libs/common/src/utils/security.utils'
-import { closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
+import { TestDatabaseModule, closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
 import { MockModule } from '../../../../../libs/common/test/mock.module'
 import { MockService } from '../../../../../libs/common/test/mock.service'
 import { EmailService } from '../../../../../libs/emails/src/services/email.service'
@@ -16,7 +16,7 @@ describe('UserService', () => {
 
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([User]), MockModule, CommonModule],
+      imports: [TypegooseModule.forFeature([User]), MockModule, CommonModule, TestDatabaseModule],
       providers: [UserService],
     }).compile()
 

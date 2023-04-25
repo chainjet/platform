@@ -1,7 +1,7 @@
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { Test, TestingModule } from '@nestjs/testing'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
-import { closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
+import { TestDatabaseModule, closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
 import { MockModule } from '../../../../../libs/common/test/mock.module'
 import { WorkflowNextActionAssembler } from '../assemblers/workflow-next-action.assembler'
 import { WorkflowAction, WorkflowActionAuthorizer } from '../entities/workflow-action'
@@ -15,7 +15,7 @@ describe('WorkflowActionResolver', () => {
     const testModule: TestingModule = await Test.createTestingModule({
       imports: [
         NestjsQueryGraphQLModule.forFeature({
-          imports: [NestjsQueryTypegooseModule.forFeature([WorkflowAction, WorkflowNextAction])],
+          imports: [NestjsQueryTypegooseModule.forFeature([WorkflowAction, WorkflowNextAction]), TestDatabaseModule],
           dtos: [{ DTOClass: WorkflowAction }, { DTOClass: WorkflowNextAction }],
           assemblers: [WorkflowNextActionAssembler],
           resolvers: [

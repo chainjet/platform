@@ -2,7 +2,7 @@ import { ObjectID } from '@app/common/utils/mongodb'
 import { Test, TestingModule } from '@nestjs/testing'
 import { plainToClass } from 'class-transformer'
 import { TypegooseModule } from 'nestjs-typegoose'
-import { closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
+import { TestDatabaseModule, closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
 import { MockModule } from '../../../../../libs/common/test/mock.module'
 import { MockService } from '../../../../../libs/common/test/mock.service'
 import { WorkflowRun } from '../entities/workflow-run'
@@ -18,7 +18,7 @@ describe('WorkflowRunService', () => {
 
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([WorkflowRun]), MockModule],
+      imports: [TypegooseModule.forFeature([WorkflowRun]), MockModule, TestDatabaseModule],
       providers: [WorkflowRunService, WorkflowRunAuthorizer],
     }).compile()
 

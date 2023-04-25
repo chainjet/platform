@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { TypegooseModule } from 'nestjs-typegoose'
-import { closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
+import { TestDatabaseModule, closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
 import { MockModule } from '../../../../../libs/common/test/mock.module'
 import { IntegrationTrigger } from '../entities/integration-trigger'
 import { IntegrationTriggerService } from './integration-trigger.service'
@@ -10,7 +10,7 @@ describe('IntegrationTriggerService', () => {
 
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([IntegrationTrigger]), MockModule],
+      imports: [TypegooseModule.forFeature([IntegrationTrigger]), MockModule, TestDatabaseModule],
       providers: [IntegrationTriggerService],
     }).compile()
 

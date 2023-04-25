@@ -1,10 +1,10 @@
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
-import { mongoForRoot } from '@app/common/utils/mongodb'
 import { redisForRoot } from '@app/common/utils/redis.utils'
 import { ConfigModule } from '@nestjs/config'
 import { Test, TestingModule } from '@nestjs/testing'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
-import { blockchainConfigList, BlockchainConfigService } from '../blockchain.config'
+import { TestDatabaseModule } from 'libs/common/test/database/test-database.module'
+import { BlockchainConfigService, blockchainConfigList } from '../blockchain.config'
 import { EvmContract } from '../contract/entities/evm-contracts'
 import { ContractService } from '../contract/services/contract.service'
 import { EvmContractService } from '../contract/services/evm-contract.service'
@@ -18,7 +18,7 @@ describe('ExplorerService', () => {
     const testModule: TestingModule = await Test.createTestingModule({
       imports: [
         ConfigModule.forRoot({ load: [blockchainConfigList] }),
-        mongoForRoot(),
+        TestDatabaseModule,
         redisForRoot(),
         NestjsQueryGraphQLModule.forFeature({
           imports: [NestjsQueryTypegooseModule.forFeature([EvmContract])],

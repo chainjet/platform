@@ -1,7 +1,7 @@
 import { IntegrationDefinitionFactory } from '@app/definitions'
 import { Test, TestingModule } from '@nestjs/testing'
 import { TypegooseModule } from 'nestjs-typegoose'
-import { closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
+import { TestDatabaseModule, closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
 import { MockModule } from '../../../../../libs/common/test/mock.module'
 import { MockService } from '../../../../../libs/common/test/mock.service'
 import { HooksController } from '../controllers/hooks.controller'
@@ -15,7 +15,7 @@ describe('WorkflowTriggerService', () => {
 
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([WorkflowTrigger]), MockModule],
+      imports: [TypegooseModule.forFeature([WorkflowTrigger]), MockModule, TestDatabaseModule],
       providers: [WorkflowTriggerService, HooksController],
     }).compile()
 

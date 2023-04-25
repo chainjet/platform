@@ -1,4 +1,3 @@
-import { mongoForRoot } from '@app/common/utils/mongodb'
 import { redisForRoot } from '@app/common/utils/redis.utils'
 import { BlockchainModule } from '@blockchain/blockchain'
 import { blockchainConfigList, BlockchainConfigService } from '@blockchain/blockchain/blockchain.config'
@@ -6,6 +5,7 @@ import { ContractService } from '@blockchain/blockchain/contract/services/contra
 import { ExplorerService } from '@blockchain/blockchain/explorer/explorer.service'
 import { ConfigModule } from '@nestjs/config'
 import { Test, TestingModule } from '@nestjs/testing'
+import { TestDatabaseModule } from 'libs/common/test/database/test-database.module'
 import { ContractResolver } from './contract.resolver'
 
 describe('ContractResolver', () => {
@@ -15,7 +15,7 @@ describe('ContractResolver', () => {
     const testModule: TestingModule = await Test.createTestingModule({
       imports: [
         ConfigModule.forRoot({ load: [blockchainConfigList] }),
-        mongoForRoot(),
+        TestDatabaseModule,
         redisForRoot(),
         BlockchainModule,
       ],

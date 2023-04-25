@@ -1,8 +1,7 @@
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { Test, TestingModule } from '@nestjs/testing'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
-import { TypegooseModule } from 'nestjs-typegoose'
-import { closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
+import { TestDatabaseModule, closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
 import { MockModule } from '../../../../../libs/common/test/mock.module'
 import { IntegrationActionAuthorizer } from '../../integration-actions/services/integration-action.service'
 import { IntegrationAccount } from '../entities/integration-account'
@@ -20,6 +19,7 @@ describe('IntegrationAccountResolver', () => {
           dtos: [{ DTOClass: IntegrationAccount }],
         }),
         MockModule,
+        TestDatabaseModule,
       ],
       providers: [IntegrationAccountResolver, IntegrationAccountService, IntegrationActionAuthorizer],
     }).compile()
