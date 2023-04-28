@@ -23,7 +23,7 @@ import { CoinMarketCapDefinition } from './integration-definitions/coinmarketcap
 import { CronoscanDefinition } from './integration-definitions/cronoscan.definition'
 import { DecentralandMarketplaceDefinition } from './integration-definitions/decentraland-marketplace.definition'
 import { DexScreenerDefinition } from './integration-definitions/dexscreener.definition'
-import { DiscordDefinition } from './integration-definitions/discord.definition'
+import { DiscordDefinition } from './integration-definitions/discord/discord.definition'
 import { DiscourseDefinition } from './integration-definitions/discourse.definition'
 import { EmailDefinition } from './integration-definitions/email.definition'
 import { EnsDefinition } from './integration-definitions/ens/ens.definition'

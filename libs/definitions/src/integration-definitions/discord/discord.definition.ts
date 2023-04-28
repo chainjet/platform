@@ -9,12 +9,13 @@ import { Integration } from 'apps/api/src/integrations/entities/integration'
 import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from 'apps/api/src/workflow-triggers/entities/workflow-trigger'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
-import { StaticRunner } from 'apps/runner/src/services/static-runner.service'
 import { InteractionResponseType, InteractionType, verifyKey } from 'discord-interactions'
 import { Request } from 'express'
 import { OpenAPIObject } from 'openapi3-ts'
 import { OptionsWithUrl } from 'request'
-import { GetAsyncSchemasProps, IntegrationHookInjects, RequestInterceptorOptions, StepInputs } from '../definition'
+import { GetAsyncSchemasProps, IntegrationHookInjects, RequestInterceptorOptions } from '../../definition'
+import { DiscordLib } from './discord.lib'
+import { NewSlashCommandGuild } from './triggers/new-slash-command-guild.trigger'
 
 const CHANNEL_TYPES = {
   GUILD_TEXT: 0,
@@ -42,6 +43,8 @@ export class DiscordDefinition extends SingleIntegrationDefinition {
   integrationKey = 'discord'
   integrationVersion = '10'
   schemaUrl = null
+
+  triggers = [new NewSlashCommandGuild()]
 
   // standard oauth2 refresh token won't work for discord ()
   async refreshCredentials(credentials: Record<string, any>): Promise<Record<string, any>> {
@@ -73,36 +76,13 @@ export class DiscordDefinition extends SingleIntegrationDefinition {
     return opts
   }
 
-  // We need to ensure the user has access to the guild id and the channel id belongs to the user
-  // This must be run before create and update triggers and actions
-  private async ensurePermissions(inputs: StepInputs, accountCredential?: AccountCredential | null) {
-    const credentials = accountCredential?.credentials ?? {}
-    inputs.guildId = credentials.guild_id // enforce guild id
-    if (inputs.channelId) {
-      const { outputs: channels } = await StaticRunner.run({
-        definition: this,
-        actionKey: 'getGuildChannels',
-        inputs: {
-          guildId: credentials.guild_id,
-        },
-        accountCredential,
-      })
-      const hasChannel = (channels as unknown as any[]).some(
-        (channel) => channel.id.toString() === inputs.channelId.toString(),
-      )
-      if (!hasChannel) {
-        throw new Error(`Invalid permissions to access channel ${inputs.channelId}`)
-      }
-    }
-  }
-
   async beforeCreateWorkflowAction(
     workflowAction: Partial<WorkflowAction>,
     integrationAction: IntegrationAction,
     accountCredential: AccountCredential | null,
   ): Promise<Partial<WorkflowAction>> {
-    await this.ensurePermissions(workflowAction.inputs ?? {}, accountCredential)
-    return workflowAction
+    await DiscordLib.ensurePermissions(workflowAction.inputs ?? {}, accountCredential!.credentials)
+    return super.beforeCreateWorkflowAction(workflowAction, integrationAction, accountCredential)
   }
 
   async beforeUpdateWorkflowAction(
@@ -111,8 +91,8 @@ export class DiscordDefinition extends SingleIntegrationDefinition {
     integrationAction: IntegrationAction,
     accountCredential: AccountCredential | null,
   ): Promise<Partial<WorkflowAction>> {
-    await this.ensurePermissions(update.inputs ?? {}, accountCredential)
-    return update
+    await DiscordLib.ensurePermissions(update.inputs ?? {}, accountCredential!.credentials)
+    return super.beforeUpdateWorkflowAction(update, prevWorkflowAction, integrationAction, accountCredential)
   }
 
   async beforeCreateWorkflowTrigger(
@@ -120,22 +100,8 @@ export class DiscordDefinition extends SingleIntegrationDefinition {
     integrationTrigger: IntegrationTrigger,
     accountCredential: AccountCredential | null,
   ): Promise<Partial<WorkflowTrigger>> {
-    await this.ensurePermissions(workflowTrigger.inputs ?? {}, accountCredential)
-    switch (integrationTrigger.key) {
-      case 'newSlashCommandGuild':
-        await StaticRunner.run({
-          definition: this,
-          actionKey: 'createGuildCommand',
-          inputs: {
-            applicationId: process.env.DISCORD_CLIENT_ID,
-            guildId: accountCredential?.credentials.guild_id,
-            name: workflowTrigger.inputs?.name,
-            description: workflowTrigger.inputs?.description,
-          },
-          accountCredential,
-        })
-    }
-    return workflowTrigger
+    await DiscordLib.ensurePermissions(workflowTrigger.inputs ?? {}, accountCredential!.credentials)
+    return super.beforeCreateWorkflowTrigger(workflowTrigger, integrationTrigger, accountCredential)
   }
 
   async beforeUpdateWorkflowTrigger(
@@ -144,20 +110,8 @@ export class DiscordDefinition extends SingleIntegrationDefinition {
     integrationTrigger: IntegrationTrigger,
     accountCredential: AccountCredential | null,
   ): Promise<Partial<WorkflowTrigger>> {
-    await this.ensurePermissions(update.inputs ?? {}, accountCredential)
-    return update
-  }
-
-  async beforeDeleteWorkflowTrigger(
-    workflowTrigger: Partial<WorkflowTrigger>,
-    integrationTrigger: IntegrationTrigger,
-    accountCredential: AccountCredential | null,
-  ): Promise<void> {
-    switch (integrationTrigger.key) {
-      case 'newSlashCommandGuild':
-        // TODO delete command
-        break
-    }
+    await DiscordLib.ensurePermissions(update.inputs ?? {}, accountCredential!.credentials)
+    return super.beforeUpdateWorkflowTrigger(update, prevWorkflowTrigger, integrationTrigger, accountCredential)
   }
 
   async onHookReceived(
@@ -191,6 +145,8 @@ export class DiscordDefinition extends SingleIntegrationDefinition {
     // Handle slash command requests. See https://discord.com/developers/docs/interactions/application-commands#slash-commands
     if (type === InteractionType.APPLICATION_COMMAND) {
       const { name, guild_id } = data
+
+      console.log(`Received slash command ${name} in guild ${guild_id}`, data)
 
       const integrationTrigger = await injects.integrationTriggerService.findOne({ key: 'newSlashCommandGuild' }) // TODO check integration = discord
       if (!integrationTrigger) {
