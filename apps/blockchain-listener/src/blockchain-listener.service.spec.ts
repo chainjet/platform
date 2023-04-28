@@ -21,8 +21,8 @@ describe('BlockchainListenerService', () => {
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
       imports: [
-        ConfigModule.forRoot(),
         TestDatabaseModule,
+        ConfigModule.forRoot(),
         redisForRoot(),
         ScheduleModule.forRoot(),
         IntegrationsModule,

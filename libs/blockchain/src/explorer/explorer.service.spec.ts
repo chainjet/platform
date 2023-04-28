@@ -17,8 +17,8 @@ describe('ExplorerService', () => {
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
       imports: [
-        ConfigModule.forRoot({ load: [blockchainConfigList] }),
         TestDatabaseModule,
+        ConfigModule.forRoot({ load: [blockchainConfigList] }),
         redisForRoot(),
         NestjsQueryGraphQLModule.forFeature({
           imports: [NestjsQueryTypegooseModule.forFeature([EvmContract])],

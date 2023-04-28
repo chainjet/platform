@@ -14,8 +14,8 @@ describe('ContractResolver', () => {
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
       imports: [
-        ConfigModule.forRoot({ load: [blockchainConfigList] }),
         TestDatabaseModule,
+        ConfigModule.forRoot({ load: [blockchainConfigList] }),
         redisForRoot(),
         BlockchainModule,
       ],

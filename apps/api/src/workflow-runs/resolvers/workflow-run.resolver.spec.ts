@@ -15,10 +15,10 @@ describe('WorkflowRunResolver', () => {
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
       imports: [
+        TestDatabaseModule,
         NestjsQueryGraphQLModule.forFeature({
           imports: [
             NestjsQueryTypegooseModule.forFeature([WorkflowRun, WorkflowRunTrigger, WorkflowRunAction, WorkflowSleep]),
-            TestDatabaseModule,
           ],
           resolvers: [
             {

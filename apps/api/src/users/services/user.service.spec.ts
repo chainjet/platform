@@ -16,7 +16,7 @@ describe('UserService', () => {
 
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([User]), MockModule, CommonModule, TestDatabaseModule],
+      imports: [TestDatabaseModule, TypegooseModule.forFeature([User]), MockModule, CommonModule],
       providers: [UserService],
     }).compile()
 

@@ -12,7 +12,7 @@ describe('AccountCredentialService', () => {
 
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([AccountCredential]), MockModule, TestDatabaseModule],
+      imports: [TestDatabaseModule, TypegooseModule.forFeature([AccountCredential]), MockModule],
       providers: [AccountCredentialService],
     }).compile()
 

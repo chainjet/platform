@@ -10,7 +10,7 @@ describe('IntegrationTriggerService', () => {
 
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([IntegrationTrigger]), MockModule, TestDatabaseModule],
+      imports: [TestDatabaseModule, TypegooseModule.forFeature([IntegrationTrigger]), MockModule],
       providers: [IntegrationTriggerService],
     }).compile()
 

@@ -15,7 +15,7 @@ describe('WorkflowTriggerService', () => {
 
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([WorkflowTrigger]), MockModule, TestDatabaseModule],
+      imports: [TestDatabaseModule, TypegooseModule.forFeature([WorkflowTrigger]), MockModule],
       providers: [WorkflowTriggerService, HooksController],
     }).compile()
 

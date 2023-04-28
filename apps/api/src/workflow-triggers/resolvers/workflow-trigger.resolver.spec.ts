@@ -14,6 +14,7 @@ describe('WorkflowTriggerResolver', () => {
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
       imports: [
+        TestDatabaseModule,
         NestjsQueryGraphQLModule.forFeature({
           imports: [
             NestjsQueryTypegooseModule.forFeature([WorkflowTrigger]),
@@ -22,7 +23,6 @@ describe('WorkflowTriggerResolver', () => {
           dtos: [{ DTOClass: WorkflowTrigger }, { DTOClass: WorkflowUsedId }],
         }),
         MockModule,
-        TestDatabaseModule,
       ],
       providers: [WorkflowTriggerResolver, WorkflowTriggerService, WorkflowTriggerAuthorizer],
     }).compile()

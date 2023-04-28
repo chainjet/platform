@@ -14,12 +14,12 @@ describe('WorkflowResolver', () => {
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
       imports: [
+        TestDatabaseModule,
         NestjsQueryGraphQLModule.forFeature({
           imports: [NestjsQueryTypegooseModule.forFeature([Workflow])],
           dtos: [{ DTOClass: Workflow }],
         }),
         MockModule,
-        TestDatabaseModule,
       ],
       providers: [WorkflowResolver, WorkflowService, WorkflowAuthorizer, CompilerService],
     }).compile()

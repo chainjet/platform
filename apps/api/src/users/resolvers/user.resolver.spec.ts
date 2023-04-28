@@ -18,13 +18,13 @@ describe('UserResolver', () => {
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
       imports: [
+        TestDatabaseModule,
         NestjsQueryGraphQLModule.forFeature({
           imports: [NestjsQueryTypegooseModule.forFeature([User])],
           dtos: [{ DTOClass: User }],
         }),
         MockModule,
         CommonModule,
-        TestDatabaseModule,
       ],
       providers: [UserResolver, UserService, UserAuthorizer],
     }).compile()

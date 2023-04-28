@@ -21,7 +21,7 @@ describe('Hooks Controller', () => {
     const testModule: TestingModule = await Test.createTestingModule({
       controllers: [HooksController],
       providers: [WorkflowTriggerService],
-      imports: [TypegooseModule.forFeature([WorkflowTrigger]), MockModule, TestDatabaseModule],
+      imports: [TestDatabaseModule, TypegooseModule.forFeature([WorkflowTrigger]), MockModule],
     }).compile()
 
     app = testModule.createNestApplication()

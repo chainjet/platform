@@ -12,12 +12,12 @@ describe('IntegrationResolver', () => {
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
       imports: [
+        TestDatabaseModule,
         NestjsQueryGraphQLModule.forFeature({
           imports: [NestjsQueryTypegooseModule.forFeature([Integration])],
           dtos: [{ DTOClass: Integration }],
         }),
         MockModule,
-        TestDatabaseModule,
       ],
       providers: [IntegrationResolver, IntegrationAuthorizer],
     }).compile()

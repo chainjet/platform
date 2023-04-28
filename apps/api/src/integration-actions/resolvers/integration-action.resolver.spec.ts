@@ -14,7 +14,7 @@ describe('IntegrationActionResolver', () => {
     const testModule: TestingModule = await Test.createTestingModule({
       imports: [
         NestjsQueryGraphQLModule.forFeature({
-          imports: [NestjsQueryTypegooseModule.forFeature([IntegrationAction]), TestDatabaseModule],
+          imports: [TestDatabaseModule, NestjsQueryTypegooseModule.forFeature([IntegrationAction])],
           dtos: [{ DTOClass: IntegrationAction }],
         }),
         MockModule,

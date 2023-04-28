@@ -15,12 +15,12 @@ describe('AccountCredentialResolver', () => {
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
       imports: [
+        TestDatabaseModule,
         NestjsQueryGraphQLModule.forFeature({
           imports: [NestjsQueryTypegooseModule.forFeature([AccountCredential])],
           dtos: [{ DTOClass: AccountCredential }],
         }),
         MockModule,
-        TestDatabaseModule,
       ],
       providers: [AccountCredentialResolver, AccountCredentialService, AccountCredentialAuthorizer],
     }).compile()

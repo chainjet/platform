@@ -30,7 +30,7 @@ describe('BaseService', () => {
 
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([TestEntity]), TestDatabaseModule],
+      imports: [TestDatabaseModule, TypegooseModule.forFeature([TestEntity])],
       providers: [TestService],
     }).compile()
 

@@ -15,7 +15,7 @@ describe('WorkflowActionResolver', () => {
     const testModule: TestingModule = await Test.createTestingModule({
       imports: [
         NestjsQueryGraphQLModule.forFeature({
-          imports: [NestjsQueryTypegooseModule.forFeature([WorkflowAction, WorkflowNextAction]), TestDatabaseModule],
+          imports: [TestDatabaseModule, NestjsQueryTypegooseModule.forFeature([WorkflowAction, WorkflowNextAction])],
           dtos: [{ DTOClass: WorkflowAction }, { DTOClass: WorkflowNextAction }],
           assemblers: [WorkflowNextActionAssembler],
           resolvers: [

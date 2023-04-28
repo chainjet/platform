@@ -14,7 +14,7 @@ describe('IntegrationTriggerResolver', () => {
     const testModule: TestingModule = await Test.createTestingModule({
       imports: [
         NestjsQueryGraphQLModule.forFeature({
-          imports: [NestjsQueryTypegooseModule.forFeature([IntegrationTrigger]), TestDatabaseModule],
+          imports: [TestDatabaseModule, NestjsQueryTypegooseModule.forFeature([IntegrationTrigger])],
           dtos: [{ DTOClass: IntegrationTrigger }],
         }),
         MockModule,

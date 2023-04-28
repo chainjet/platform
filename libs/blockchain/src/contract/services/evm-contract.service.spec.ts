@@ -13,7 +13,7 @@ describe('EvmContract', () => {
 
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([EvmContract]), MockModule, TestDatabaseModule],
+      imports: [TestDatabaseModule, TypegooseModule.forFeature([EvmContract]), MockModule],
       providers: [EvmContractService],
     }).compile()
 

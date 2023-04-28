@@ -12,7 +12,7 @@ describe('WorkflowService', () => {
 
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
-      imports: [TypegooseModule.forFeature([Workflow]), MockModule, TestDatabaseModule],
+      imports: [TestDatabaseModule, TypegooseModule.forFeature([Workflow]), MockModule],
       providers: [WorkflowService],
     }).compile()
 
