@@ -34,7 +34,7 @@ import { WorkflowService } from '../../../api/src/workflows/services/workflow.se
 import { OperationDailyLimitError } from '../errors/operation-daily-limit.error'
 import { parseStepInputs } from '../utils/input.utils'
 import { extractTriggerItems } from '../utils/trigger.utils'
-import { OperationRunnerService, OperationRunOptions } from './operation-runner.service'
+import { OperationRunOptions, OperationRunnerService } from './operation-runner.service'
 
 type TriggerItemId = string | number
 
@@ -383,14 +383,16 @@ export class RunnerService {
       this.logger.error(`Workflow ${workflow.id} is a template and cannot be run`)
       return
     }
+    const statuses: WorkflowRunStatus[] = []
     for (const triggerOutputs of triggerOutputsList) {
       const promises = rootActions.map((action) =>
         this.runWorkflowActionsTree(workflow, action, triggerOutputs.outputs, workflowRun, triggerOutputs.id),
       )
-      await Promise.all(promises)
+      const res = await Promise.all(promises)
+      statuses.push(...res)
       await wait(200)
     }
-    if (!this.processInterrupted) {
+    if (!this.processInterrupted && statuses.every((status) => status === WorkflowRunStatus.completed)) {
       await this.workflowRunService.markWorkflowRunAsCompleted(workflowRun._id)
       await this.workflowTriggerService.updateOneNative({ workflow: workflow._id }, { consecutiveActionFails: 0 })
     }
@@ -403,25 +405,25 @@ export class RunnerService {
     workflowRun: WorkflowRun,
     triggerItemId: TriggerItemId,
     resumingWorkflowRunAction?: WorkflowRunAction,
-  ): Promise<void> {
+  ): Promise<WorkflowRunStatus> {
     this.logger.log(`Running workflow action ${workflowAction.id} for workflow ${workflowAction.workflow}`)
 
     const userId = new ObjectId(workflowAction.owner.toString())
     const user = await this.userService.findById(userId.toString())
     if (!user) {
       this.logger.error(`User ${userId} not found`)
-      return
+      return WorkflowRunStatus.failed
     }
 
     const integrationAction = await this.integrationActionService.findById(workflowAction.integrationAction.toString())
     if (!integrationAction) {
       this.logger.error(`IntegrationAction ${workflowAction.integrationAction} not found`)
-      return
+      return WorkflowRunStatus.failed
     }
     const integration = await this.integrationService.findById(integrationAction.integration.toString())
     if (!integration) {
       this.logger.error(`Integration ${integrationAction.integration} not found`)
-      return
+      return WorkflowRunStatus.failed
     }
 
     const workflowRunAction =
@@ -443,7 +445,7 @@ export class RunnerService {
     if (this.processInterrupted) {
       this.logger.log(`Interrupting workflow run ${workflowRun.id} of workflow ${workflow.id}`)
       await this.workflowRunService.interruptWorkflowRun(workflowRun, workflowRunAction, previousOutputs)
-      return
+      return WorkflowRunStatus.running
     }
 
     let inputs: Record<string, unknown>
@@ -461,7 +463,7 @@ export class RunnerService {
       this.logger.error(
         `Parse step inputs for action ${workflowAction.id} for workflow ${workflow.id} failed with error ${e.message}`,
       )
-      return
+      return WorkflowRunStatus.failed
     }
 
     let runResponse: RunResponse
@@ -525,7 +527,7 @@ export class RunnerService {
       this.logger.error(
         `Run WorkflowAction ${workflowAction.id} for workflow ${workflow.id} failed with error ${error}`,
       )
-      return
+      return WorkflowRunStatus.failed
     }
 
     // remove expired credentials
@@ -572,7 +574,7 @@ export class RunnerService {
         runResponse.sleepUntil,
         triggerItemId,
       )
-      return
+      return WorkflowRunStatus.sleeping
     }
 
     // Filter out actions with conditions not met
@@ -597,7 +599,7 @@ export class RunnerService {
         const nextAction = await this.workflowActionService.findById(workflowNextAction.action.toString())
         if (!nextAction) {
           this.logger.error(`WorkflowAction ${workflowNextAction.action} not found`)
-          return
+          return WorkflowRunStatus.failed
         }
         for (const item of repeatItems) {
           nextActionInputs[workflowAction.id] = item
@@ -605,17 +607,18 @@ export class RunnerService {
           await wait(200)
         }
       }
-      return
+      return WorkflowRunStatus.completed
     }
 
     for (const workflowNextAction of nextActions) {
       const nextAction = await this.workflowActionService.findById(workflowNextAction.action.toString())
       if (!nextAction) {
         this.logger.error(`WorkflowAction ${workflowNextAction.action} not found`)
-        return
+        return WorkflowRunStatus.failed
       }
       await this.runWorkflowActionsTree(workflow, nextAction, nextActionInputs, workflowRun, triggerItemId)
     }
+    return WorkflowRunStatus.completed
   }
 
   async getCredentialsAndIntegrationAccount(
