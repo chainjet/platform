@@ -57,6 +57,7 @@ export class WorkflowSchedulerService {
       nextCheck: {
         $lt: new Date(),
       },
+      numberOfActions: { $gt: 0 },
     })
 
     // Update next check time
