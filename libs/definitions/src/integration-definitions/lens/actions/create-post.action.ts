@@ -299,9 +299,16 @@ export class CreatePostAction extends OperationOffChain {
       if (res?.errors?.[0]?.message) {
         throw new AuthenticationError(res.errors[0].message)
       }
-      this.logger.error(`Failed to create lens post: ${workflow?.id} ${JSON.stringify(res?.errors ?? res?.data)}`)
+      this.logger.error(
+        `Failed to create lens post: ${workflow?.id} ${fileUrl} ${JSON.stringify(res?.errors ?? res?.data)}`,
+      )
       throw new AuthenticationError(`Failed to post message: ${JSON.stringify(res?.errors ?? res?.data)}`)
     }
+
+    this.logger.log(
+      `Created lens post: ${workflow?.id} ${profileId} ${res.data.createPostViaDispatcher.txHash} ${fileUrl}`,
+    )
+
     return {
       outputs: {
         txHash: res.data.createPostViaDispatcher.txHash,
