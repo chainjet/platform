@@ -139,7 +139,7 @@ export const DiscordLib = {
   async ensurePermissions(inputs: Record<string, any>, credentials: Record<string, any>) {
     inputs.guildId = credentials.guild_id // enforce guild id
     if (inputs.channelId) {
-      const { outputs: channels } = this.getGuildChannels(inputs.guildId)
+      const channels = await this.getGuildChannels(inputs.guildId)
       const hasChannel = (channels as unknown as any[]).some(
         (channel) => channel.id.toString() === inputs.channelId.toString(),
       )
