@@ -195,6 +195,10 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
       }
     }
 
+    if (workflowTrigger) {
+      await this.workflowTriggerService.updateOneNative({ _id: workflowTrigger._id }, { $inc: { numberOfActions: 1 } })
+    }
+
     await this.workflowService.updateUsedIntegrations(workflow)
 
     return createdWorkflowAction
@@ -354,6 +358,11 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     const deletedEntity = super.deleteOne(id, opts)
     if (!isTemplate) {
       await definition.afterDeleteWorkflowAction(workflowAction, integrationAction, accountCredential ?? null)
+    }
+
+    const workflowTrigger = await this.workflowTriggerService.findOne({ workflow: workflow.id })
+    if (workflowTrigger) {
+      await this.workflowTriggerService.updateOneNative({ _id: workflowTrigger._id }, { $inc: { numberOfActions: -1 } })
     }
 
     await this.workflowService.updateUsedIntegrations(workflow)

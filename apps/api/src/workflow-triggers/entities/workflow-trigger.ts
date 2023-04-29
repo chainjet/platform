@@ -80,6 +80,10 @@ export class WorkflowTrigger extends BaseEntity {
   @prop({ default: true, required: true })
   enabled: boolean = true
 
+  @Field(() => Int)
+  @prop({ default: 0 })
+  numberOfActions: number = 0
+
   /**
    * Whether the user has reached the limit of the plan.
    * It's reseted when the plan period ends or the plan is upgraded.

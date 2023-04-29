@@ -949,6 +949,7 @@ export interface WorkflowTrigger {
     lastCheck?: Nullable<DateTime>;
     schedule?: Nullable<JSONObject>;
     enabled: boolean;
+    numberOfActions: number;
     maxConsecutiveFailures: number;
     maxItemsPerRun: number;
     lastItem?: Nullable<JSONObject>;
@@ -1126,6 +1127,7 @@ export interface WorkflowTriggerDeleteResponse {
     lastCheck?: Nullable<DateTime>;
     schedule?: Nullable<JSONObject>;
     enabled?: Nullable<boolean>;
+    numberOfActions?: Nullable<number>;
     maxConsecutiveFailures?: Nullable<number>;
     maxItemsPerRun?: Nullable<number>;
     lastItem?: Nullable<JSONObject>;
