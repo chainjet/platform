@@ -7,7 +7,7 @@ import { Reference } from '@app/common/typings/mongodb'
 import { Injectable } from '@nestjs/common'
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql'
 import { Authorize, FilterableField } from '@ptc-org/nestjs-query-graphql'
-import { pre, prop } from '@typegoose/typegoose'
+import { prop } from '@typegoose/typegoose'
 import { getAddress, isAddress } from 'ethers/lib/utils'
 import { GraphQLBoolean, GraphQLString } from 'graphql'
 import { GraphQLJSONObject } from 'graphql-type-json'
@@ -36,11 +36,6 @@ export class WorkflowAuthorizer extends OwnedAuthorizerWithCustomPrivacy<Workflo
   ]
 }
 
-@pre<Workflow>('save', function () {
-  if (this.isModified('state')) {
-    this.lastStateChange = new Date()
-  }
-})
 @ObjectType()
 @OwnedEntity()
 @Authorize<Workflow>(WorkflowAuthorizer)
@@ -65,13 +60,6 @@ export class Workflow extends BaseEntity {
   @Field({ nullable: true })
   @prop({ enum: WorkflowState })
   state: WorkflowState
-
-  /**
-   * When was the last time the workflow state was changed.
-   * Used to timeout workflow states.
-   */
-  @prop()
-  lastStateChange: Date
 
   @Field(() => ID, { nullable: true })
   @prop({ ref: Workflow })
