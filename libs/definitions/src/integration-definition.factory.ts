@@ -39,6 +39,7 @@ import { LensDefinition } from './integration-definitions/lens/lens.definition'
 import { LensListsDefinition } from './integration-definitions/lenslists/lenslists.definition'
 import { ListsDefinition } from './integration-definitions/lists/list.definition'
 import { LogicDefinition } from './integration-definitions/logic/logic.definition'
+import { MailChainDefinition } from './integration-definitions/mailchain/mailchain.definition'
 import { MailchimpDefinition } from './integration-definitions/mailchimp.definition'
 import { MediumDefinition } from './integration-definitions/medium.definition'
 import { MirrorDefinition } from './integration-definitions/mirror/mirror.definition'
@@ -117,6 +118,7 @@ export class IntegrationDefinitionFactory {
     // linode: LinodeDefinition,
     lists: ListsDefinition,
     logic: LogicDefinition,
+    mailchain: MailChainDefinition,
     mailchimp: MailchimpDefinition,
     // 'mailchimp-marketing': MailchimpMarketingDefinition,
     // makerdao: MakerDaoDefinition,
