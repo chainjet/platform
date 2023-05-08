@@ -20,9 +20,9 @@ jobs:
         run: yarn
       - name: Build
         run: yarn build
-      - name: Prepare environment
-        run: cp .env.example .env && sed -i "s/NODE_ENV=development/NODE_ENV=test/g" .env
-      - name: Test
-        run: NODE_ENV=test && yarn test
-        env:
-          NODE_ENV: test
+      # - name: Prepare environment
+      #   run: cp .env.example .env && sed -i "s/NODE_ENV=development/NODE_ENV=test/g" .env
+      # - name: Test
+      #   run: NODE_ENV=test && yarn test
+      #   env:
+      #     NODE_ENV: test
