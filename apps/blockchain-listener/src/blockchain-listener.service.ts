@@ -61,6 +61,8 @@ export class BlockchainListenerService {
     const workflowTriggers = await this.workflowTriggerService.find({
       integrationTrigger: integrationTrigger.id,
       enabled: true,
+      planLimited: { $ne: true },
+      numberOfActions: { $gt: 0 },
     })
     const triggersWithoutListener = workflowTriggers.filter((trigger) => !this.listeners[trigger.id])
     const shuffledTriggers = shuffle(triggersWithoutListener)
