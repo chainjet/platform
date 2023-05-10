@@ -1,6 +1,5 @@
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
-import { HttpService } from '@nestjs/axios'
-import { firstValueFrom } from 'rxjs'
+import axios from 'axios'
 import { RunResponse } from '..'
 import { OperationRunOptions } from '../../../../apps/runner/src/services/operation-runner.service'
 import { convertKeys } from '../../../common/src/utils/object.utils'
@@ -35,17 +34,15 @@ export class HttpDefinition extends SingleIntegrationDefinition {
       : undefined
 
     try {
-      const res = await firstValueFrom(
-        new HttpService().request({
-          url: inputs.url,
-          method: inputs.method ?? 'GET',
-          headers,
-          params: inputs.queryParams ?? {},
-          data: inputs.body ?? {},
-          auth,
-          proxy,
-        }),
-      )
+      const res = await axios({
+        url: inputs.url,
+        method: inputs.method ?? 'GET',
+        headers,
+        params: inputs.queryParams ?? {},
+        data: inputs.body ?? (inputs.method === 'GET' ? undefined : {}),
+        auth,
+        proxy,
+      })
 
       return {
         outputs: {
