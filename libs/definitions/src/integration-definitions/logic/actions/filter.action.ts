@@ -2,7 +2,7 @@ import { RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { JSONSchema7 } from 'json-schema'
-import { LogicExpression, logicExpressionSatisfied, LOGIC_FIELD_DEFS } from '../logic.common'
+import { LOGIC_FIELD_DEFS, LogicExpression, logicExpressionSatisfied } from '../logic.common'
 
 export class FilterAction extends OperationOffChain {
   key = 'filter'
@@ -25,6 +25,9 @@ export class FilterAction extends OperationOffChain {
   } as JSONSchema7
 
   async run({ inputs }: OperationRunOptions): Promise<RunResponse> {
+    if (inputs.filters && !Array.isArray(inputs.filters)) {
+      inputs.filters = [inputs.filters]
+    }
     const results = (inputs.filters ?? []).map((filter: LogicExpression) => logicExpressionSatisfied(filter))
     return {
       outputs: {},
