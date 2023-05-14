@@ -107,6 +107,13 @@ export const blockchainConfigList = () => ({
       multicall2Address: '0xdDCbf776dF3dE60163066A5ddDF2277cB445E0F3',
       nativeSymbol: 'ONE',
     },
+    [ChainId.KAVA]: {
+      key: 'kava',
+      url: process.env.KAVA_RPC_URL!,
+      explorers: [new BlockScoutExplorer({ baseUrl: 'explorer.kava.io', apiUrl: 'https://kava4.data.kava.io/api' })],
+      multicall2Address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+      nativeSymbol: 'KAVA',
+    },
     // TODO kovan explorer has been deprecated
     [ChainId.KOVAN]: {
       key: 'kovan',

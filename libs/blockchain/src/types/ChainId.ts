@@ -21,6 +21,7 @@ export enum ChainId {
   HARMONY_TESTNET = 1666700000,
   HECO = 128,
   HECO_TESTNET = 256,
+  KAVA = 2222,
   KOVAN = 42,
   METIS = 1088,
   MOONBEAM = 1284,
