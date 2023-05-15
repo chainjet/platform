@@ -78,11 +78,11 @@ export class WorkflowTrigger extends BaseEntity {
 
   @Field()
   @prop({ default: true, required: true })
-  enabled: boolean = true
+  enabled: boolean
 
   @Field(() => Int)
   @prop({ default: 0 })
-  numberOfActions: number = 0
+  numberOfActions: number
 
   /**
    * Whether the user has reached the limit of the plan.
@@ -96,26 +96,26 @@ export class WorkflowTrigger extends BaseEntity {
    */
   @Field(() => Int)
   @prop({ default: 5 })
-  maxConsecutiveFailures: number = 5
+  maxConsecutiveFailures: number
 
   /**
    * Maximum number of items to process per run, or zero to disable it.
    */
   @Field(() => Int)
   @prop({ default: 0 })
-  maxItemsPerRun?: number = 0
+  maxItemsPerRun?: number
 
   /**
    * Track consecutive workflow trigger failures in order to disable the trigger if it keeps failing
    */
   @prop({ default: 0 })
-  consecutiveTriggerFails: number = 0
+  consecutiveTriggerFails: number
 
   /**
    * Track consecutive workflow action failures in order to disable the trigger if it keeps failing
    */
   @prop({ default: 0 })
-  consecutiveActionFails: number = 0
+  consecutiveActionFails: number
 
   /**
    * Tracks the last time the workflow failed. Used to increase the consecutiveWorkflowFails counter.
