@@ -15,6 +15,7 @@ export const BLOCKCHAIN_INPUTS: Record<string, JSONSchema7> = {
       { title: 'Gnosis', const: 100 },
       { title: 'Görli', const: 5 },
       { title: 'Harmony', const: 1666600000 },
+      { title: 'Kava', const: 2222 },
       { title: 'Kovan', const: 42 },
       { title: 'Metis', const: 1088 },
       { title: 'Optimism', const: 10 },
