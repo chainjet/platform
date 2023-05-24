@@ -52,6 +52,9 @@ export class SendEmailAction extends OperationOffChain {
     if (!inputs.address) {
       throw new BadRequestException(`Address is required`)
     }
+    if (!credentials.privateMessagingKey || !credentials.email) {
+      throw new BadRequestException(`Private messaging key and email are required`)
+    }
 
     const recoveredPrivateMessagingKey = MailChain.privateMessagingKeyFromHex(credentials.privateMessagingKey)
     const mailSender = MailChain.MailSender.fromSenderMessagingKey(recoveredPrivateMessagingKey)
@@ -92,7 +95,7 @@ export class SendEmailAction extends OperationOffChain {
     }
 
     const res = await mailSender.sendMail({
-      from: `${user?.address}@mailchain.com`, // TODO depends on the key
+      from: credentials.email,
       to: [address],
       subject: inputs.subject,
       content: {
