@@ -23,7 +23,7 @@ export class MailChainDefinition extends SingleIntegrationDefinition {
         type: 'string',
         title: 'Private Messaging Key',
         description:
-          'To find the key, go to https://app.mailchain.com/settings and select the account you want to connect. Then click on "View messaging key".',
+          'To find the key, go to [https://app.mailchain.com/settings](https://app.mailchain.com/settings) and select the account you want to connect. Then click on "View messaging key".\n\n**Best Practice**: We recommend creating and registering a wallet address for the purpose of sending notifications.',
       },
       email: {
         type: 'string',
