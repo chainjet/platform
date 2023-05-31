@@ -15,9 +15,10 @@ export const DiscordLib = {
     description: string
     options: any[]
   }) {
+    const commandName = name.startsWith('/') ? name.substring(1).toLowerCase() : name.toLowerCase()
     const url = `https://discord.com/api/v9/applications/${process.env.DISCORD_CLIENT_ID}/guilds/${guildId}/commands`
     const command = {
-      name,
+      name: commandName,
       description,
       options,
     }
@@ -43,9 +44,10 @@ export const DiscordLib = {
     description: string
     options: any[]
   }) {
+    const commandName = name.startsWith('/') ? name.substring(1).toLowerCase() : name.toLowerCase()
     const url = `https://discord.com/api/v9/applications/${process.env.DISCORD_CLIENT_ID}/guilds/${guildId}/commands/${commandId}`
     const command = {
-      name,
+      name: commandName,
       description,
       options,
     }
