@@ -20,6 +20,12 @@ export class GetDefaultProfileAction extends OperationOffChain {
         type: 'string',
         description: 'The wallet address of the profile to get.',
       },
+      failIfNotFound: {
+        title: 'Fail if not found',
+        type: 'boolean',
+        description: 'If selected, the workflow will fail if the profile is not found.',
+        default: true,
+      },
     },
   }
   outputs: JSONSchema7 = {
@@ -159,7 +165,10 @@ export class GetDefaultProfileAction extends OperationOffChain {
     }`
     const res = await sendGraphqlQuery('https://api.lens.dev/', query)
     if (!res?.data?.defaultProfile) {
-      throw new Error(res.errors?.[0]?.message ?? 'Wallet address does not have a default Lens profile.')
+      if (inputs.failIfNotFound) {
+        throw new Error(res.errors?.[0]?.message ?? 'Wallet address does not have a default Lens profile.')
+      }
+      return { outputs: {} }
     }
     return {
       outputs: {
