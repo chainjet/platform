@@ -1,4 +1,5 @@
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
+import { CheckXmtpEnabled } from './actions/check-xmtp-enabled'
 import { SendMessageConversationAction } from './actions/send-message-conversation.action'
 import { SendMessageAddressAction } from './actions/send-message-lens.action'
 import { SendMessageWalletAction } from './actions/send-message-wallet.action'
@@ -11,5 +12,10 @@ export class XmtpDefinition extends SingleIntegrationDefinition {
   schemaUrl = null
 
   triggers = [new NewConversationTrigger(), new NewMessageTrigger()]
-  actions = [new SendMessageConversationAction(), new SendMessageAddressAction(), new SendMessageWalletAction()]
+  actions = [
+    new SendMessageConversationAction(),
+    new SendMessageAddressAction(),
+    new SendMessageWalletAction(),
+    new CheckXmtpEnabled(),
+  ]
 }
