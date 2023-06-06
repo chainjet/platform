@@ -67,6 +67,8 @@ export class BlockchainListenerService {
     const triggersWithoutListener = workflowTriggers.filter((trigger) => !this.listeners[trigger.id])
     const shuffledTriggers = shuffle(triggersWithoutListener)
 
+    this.logger.log(`Found ${workflowTriggers.length} blockchain triggers`)
+
     for (const workflowTrigger of shuffledTriggers) {
       if (workflowTrigger.inputs?.network && workflowTrigger.inputs?.address && workflowTrigger.inputs?.event) {
         const network = Number(workflowTrigger.inputs.network)
@@ -80,14 +82,18 @@ export class BlockchainListenerService {
         if (workflowTrigger.inputs.abi) {
           try {
             abi = JSON.parse(workflowTrigger.inputs.abi)
-          } catch {}
+          } catch {
+            this.logger.error(`Invalid ABI for ${address} on trigger ${workflowTrigger.id}`)
+          }
         } else {
           try {
             abi = await this.explorerService.getContractAbi(network, address)
-          } catch {}
+          } catch {
+            this.logger.error(`Invalid ABI for ${address} on trigger ${workflowTrigger.id}`)
+          }
         }
         if (!abi) {
-          this.logger.error(`No ABI found for ${address} on chain ${network}`)
+          this.logger.error(`No ABI found for ${address} on trigger ${workflowTrigger.id}`)
           continue
         }
 
@@ -158,6 +164,10 @@ export class BlockchainListenerService {
         }
 
         contract.on(filter, this.listeners[workflowTrigger.id])
+
+        contract.on(filter, this.listeners[workflowTrigger.id]).once('error', (error) => {
+          this.logger.error(`Listener encountered an error for trigger ${workflowTrigger.id}: ${error.message}`)
+        })
       }
     }
   }
