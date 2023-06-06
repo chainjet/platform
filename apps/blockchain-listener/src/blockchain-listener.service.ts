@@ -105,42 +105,42 @@ export class BlockchainListenerService {
 
         this.logger.log(`Starting listener for trigger ${workflowTrigger.id}`)
         this.listeners[workflowTrigger.id] = async (...args) => {
-          const log = args.pop()
-
-          const workflow = await this.workflowService.findById(workflowTrigger.workflow.toString())
-          if (!workflow) {
-            this.logger.error(`Workflow not found for workflow trigger ${workflowTrigger.id}`)
-            return
-          }
-          const updatedTrigger = await this.workflowTriggerService.findById(workflowTrigger.id)
-          if (!updatedTrigger?.enabled) {
-            this.logger.log(`Received an event for a disabled trigger ${workflowTrigger.id}`)
-            contract.off(filter, this.listeners[workflowTrigger.id])
-            delete this.listeners[workflowTrigger.id]
-            return
-          }
-          this.logger.log(`Running workflow ${workflow.id} started by transaction ${log.transactionHash}`)
-
-          const logArgs = {}
-          for (const logKey of Object.keys(log.args)) {
-            logArgs[logKey] = log.args[logKey].toString()
-          }
-
-          const outputs = {
-            ...log,
-            eventName: updatedTrigger.inputs?.event,
-            log: logArgs,
-            transactionUrl: ExplorerService.instance.getTransactionUrl(network, log.transactionHash),
-          }
-          const hookTriggerOutputs = {
-            id: log.transactionHash,
-            outputs: {
-              [workflowTrigger.id]: outputs,
-              trigger: outputs,
-            },
-          }
-
           try {
+            const log = args.pop()
+
+            const workflow = await this.workflowService.findById(workflowTrigger.workflow.toString())
+            if (!workflow) {
+              this.logger.error(`Workflow not found for workflow trigger ${workflowTrigger.id}`)
+              return
+            }
+            const updatedTrigger = await this.workflowTriggerService.findById(workflowTrigger.id)
+            if (!updatedTrigger?.enabled) {
+              this.logger.log(`Received an event for a disabled trigger ${workflowTrigger.id}`)
+              contract.off(filter, this.listeners[workflowTrigger.id])
+              delete this.listeners[workflowTrigger.id]
+              return
+            }
+            this.logger.log(`Running workflow ${workflow.id} started by transaction ${log.transactionHash}`)
+
+            const logArgs = {}
+            for (const logKey of Object.keys(log.args)) {
+              logArgs[logKey] = log.args[logKey].toString()
+            }
+
+            const outputs = {
+              ...log,
+              eventName: updatedTrigger.inputs?.event,
+              log: logArgs,
+              transactionUrl: ExplorerService.instance.getTransactionUrl(network, log.transactionHash),
+            }
+            const hookTriggerOutputs = {
+              id: log.transactionHash,
+              outputs: {
+                [workflowTrigger.id]: outputs,
+                trigger: outputs,
+              },
+            }
+
             await this.workflowUsedIdService.createOne({
               workflow: workflowTrigger.workflow,
               triggerId: log.transactionHash,
@@ -158,16 +158,16 @@ export class BlockchainListenerService {
               lastItem: outputs,
             })
             void this.runnerService.runWorkflowActions(rootActions, [hookTriggerOutputs], workflowRun)
+
+            contract.on(filter, this.listeners[workflowTrigger.id])
+
+            contract.on(filter, this.listeners[workflowTrigger.id]).once('error', (error) => {
+              this.logger.error(`Listener encountered an error for trigger ${workflowTrigger.id}: ${error.message}`)
+            })
           } catch (e) {
-            this.logger.error(`Error running workflow ${workflow.id}: ${e?.message}`)
+            this.logger.error(`Error running trigger ${workflowTrigger.workflow}: ${e?.message}`)
           }
         }
-
-        contract.on(filter, this.listeners[workflowTrigger.id])
-
-        contract.on(filter, this.listeners[workflowTrigger.id]).once('error', (error) => {
-          this.logger.error(`Listener encountered an error for trigger ${workflowTrigger.id}: ${error.message}`)
-        })
       }
     }
   }
