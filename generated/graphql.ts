@@ -494,6 +494,7 @@ export interface UpdateUserInput {
     email?: Nullable<string>;
     subscribedToNotifications?: Nullable<boolean>;
     subscribedToNewsletter?: Nullable<boolean>;
+    features?: Nullable<JSONObject>;
 }
 
 export interface CreateOneAccountCredentialInput {
@@ -744,6 +745,7 @@ export interface User {
     name?: Nullable<string>;
     subscribedToNotifications: boolean;
     subscribedToNewsletter: boolean;
+    features?: Nullable<JSONObject>;
 }
 
 export interface IntegrationAccount {
@@ -1255,6 +1257,7 @@ export interface IMutation {
     resumeSubscription(): ResultPayload | Promise<ResultPayload>;
     changeSubscriptionPlan(priceId: string): ResultPayload | Promise<ResultPayload>;
     verifyEmail(address: string, code: string): VerifyEmailPayload | Promise<VerifyEmailPayload>;
+    aiUseCase(use: string): ResultPayload | Promise<ResultPayload>;
     requestMigration(email: string): RequestMigrationPayload | Promise<RequestMigrationPayload>;
     completeMigration(email: string, code: string, data: string): RequestMigrationPayload | Promise<RequestMigrationPayload>;
     createOneAccountCredential(input: CreateOneAccountCredentialInput): AccountCredential | Promise<AccountCredential>;

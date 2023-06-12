@@ -7,7 +7,7 @@ import { IsEmail } from 'class-validator'
 import { getAddress, isAddress } from 'ethers/lib/utils'
 import { GraphQLJSONObject } from 'graphql-type-json'
 import { Schema } from 'mongoose'
-import { defaultPlan, PlanConfig, plansConfig } from '../config/plans.config'
+import { PlanConfig, defaultPlan, plansConfig } from '../config/plans.config'
 import { UserAuthorizer } from '../resolvers/user.authorizer'
 
 @ObjectType()
@@ -96,6 +96,10 @@ export class User extends BaseEntity {
   @prop()
   subscribedToNewsletter?: boolean
 
+  @Field(() => GraphQLJSONObject, { nullable: true })
+  @prop({ type: Schema.Types.Mixed })
+  features?: Record<string, boolean>
+
   @prop()
   flagged?: boolean
 
@@ -120,4 +124,7 @@ export class UpdateUserInput {
 
   @Field({ nullable: true })
   subscribedToNewsletter?: boolean
+
+  @Field(() => GraphQLJSONObject, { nullable: true })
+  features?: Record<string, boolean>
 }

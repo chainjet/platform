@@ -48,6 +48,24 @@ export class UserService extends BaseService<User> {
       await this.emailService.sendEmailTemplate(template, record.email)
     }
 
+    // The user just joined the AI waitlist
+    if (record.features?.aiwaitlist && !user.features?.aiwaitlist) {
+      const workflowHook = process.env.AI_WAITLIST_WORKFLOW_HOOK
+      if (workflowHook) {
+        // send the promise but don't wait for it
+        fetch(workflowHook, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            address: user.address,
+          }),
+        })
+      }
+    }
+
     return await super.updateOne(id, record, opts)
   }
 

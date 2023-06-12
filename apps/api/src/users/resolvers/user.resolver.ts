@@ -121,4 +121,29 @@ export class UserResolver extends BaseResolver(User, {
     }
     return { error: 'Verification code is invalid or it has expired.' }
   }
+
+  @Mutation(() => ResultPayload)
+  async aiUseCase(
+    @UserId() userId: ObjectId,
+    @Args({ name: 'use', type: () => GraphQLString }) use: string,
+  ): Promise<{ success: boolean }> {
+    this.logger.log(`New use case from ${userId}: ${use}`)
+    const workflowHook = process.env.AI_USE_WORKFLOW_HOOK
+    const user = await this.userService.findOne({ _id: userId })
+    if (workflowHook && user) {
+      await fetch(workflowHook, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          address: user.address,
+          use,
+        }),
+      })
+    }
+
+    return { success: true }
+  }
 }
