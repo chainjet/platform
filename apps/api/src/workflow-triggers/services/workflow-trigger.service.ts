@@ -208,7 +208,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       }
 
       if (Number.isFinite(user.planConfig.maxActiveWorkflows)) {
-        const enabledWorkflows = await this.countNative({ owner: user._id, enabled: true })
+        const enabledWorkflows = await this.countNative({ owner: user._id, enabled: true, numberOfActions: { $gt: 0 } })
         if (enabledWorkflows >= user.planConfig.maxActiveWorkflows) {
           throw new BadRequestException(
             `You have reached the maximum number of active workflows allowed by your plan (${user.planConfig.maxActiveWorkflows}). Please consider upgrading your plan or disabling other workflows.`,
