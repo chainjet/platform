@@ -62,14 +62,7 @@ export class XmtpListenerService {
       return
     }
 
-    // TODO remove this
-    const user = await this.userService.findOne({ address: '0x0A8e06E4e62a281A770aF8B3399D6ebF231C08d5' })
-    if (!user) {
-      return
-    }
-
     const workflowTriggers = await this.workflowTriggerService.find({
-      owner: user.id,
       integrationTrigger: integrationTrigger.id,
       enabled: true,
       planLimited: { $ne: true },
