@@ -43,6 +43,9 @@ export class BlockchainListenerService {
   //      it could be more efficient if the api notifies when this happens rather than polling every 30 seconds.
   @Interval(30 * 1000)
   async startBlockchainEventsListener() {
+    if (process.env.BLOCKCHAIN_LISTENER_DISABLED === 'true') {
+      return
+    }
     const integration = await this.integrationService.findOne({ key: 'blockchain', version: '1' })
     if (!integration) {
       this.logger.error(`Blockchain integration not found`)
