@@ -20,6 +20,7 @@ import { IntegrationAccountService } from '../integration-accounts/services/inte
 import { IntegrationActionService } from '../integration-actions/services/integration-action.service'
 import { IntegrationTriggerService } from '../integration-triggers/services/integration-trigger.service'
 import { IntegrationService } from '../integrations/services/integration.service'
+import { UserService } from '../users/services/user.service'
 import { WorkflowActionService } from '../workflow-actions/services/workflow-action.service'
 import { WorkflowTriggerService } from '../workflow-triggers/services/workflow-trigger.service'
 import { WorkflowService } from '../workflows/services/workflow.service'
@@ -98,6 +99,7 @@ export class AiResolver {
   private readonly logger = new Logger(AiResolver.name)
 
   constructor(
+    private userService: UserService,
     private integrationService: IntegrationService,
     private integrationTriggerService: IntegrationTriggerService,
     private integrationActionService: IntegrationActionService,
@@ -118,9 +120,13 @@ export class AiResolver {
     if (!process.env.CHAINJET_AI_ENDPOINT) {
       throw new Error('Not supported')
     }
-    this.logger.log(`Prompt: ${prompt}`)
+    this.logger.log(`Prompt by ${userId}: ${prompt}`)
+    const user = await this.userService.findOne({ _id: userId })
+    if (!user) {
+      throw new BadRequestException(`User ${userId} not found`)
+    }
     const res = await axios.post(process.env.CHAINJET_AI_ENDPOINT, {
-      userId,
+      userAddress: user.address,
       prompt,
     })
     const data = res.data
