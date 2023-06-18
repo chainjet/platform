@@ -1,5 +1,5 @@
-import { RunResponse, SingleIntegrationDefinition, StepInputs } from '@app/definitions'
-import { forwardRef, Inject, Injectable, Logger } from '@nestjs/common'
+import { IntegrationDefinitionFactory, RunResponse, SingleIntegrationDefinition, StepInputs } from '@app/definitions'
+import { Inject, Injectable, Logger, forwardRef } from '@nestjs/common'
 import { AccountCredential } from 'apps/api/src/account-credentials/entities/account-credential'
 import { AccountCredentialService } from 'apps/api/src/account-credentials/services/account-credentials.service'
 import { IntegrationAccountService } from 'apps/api/src/integration-accounts/services/integration-account.service'
@@ -26,6 +26,8 @@ export class StaticRunner {
     private readonly integrationAccountService: IntegrationAccountService,
     @Inject(forwardRef(() => OperationRunnerService)) protected operationRunnerService: OperationRunnerService,
     @Inject(forwardRef(() => AccountCredentialService)) protected accountCredentialService: AccountCredentialService,
+    @Inject(forwardRef(() => IntegrationDefinitionFactory))
+    public integrationDefinitionFactory: IntegrationDefinitionFactory,
   ) {
     StaticRunner.instance = this
   }

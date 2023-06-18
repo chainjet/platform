@@ -1202,6 +1202,33 @@ export interface AccountCredentialConnection {
     edges: AccountCredentialEdge[];
 }
 
+export interface ActionSendPrompt {
+    integrationId: string;
+    integrationName: string;
+    integrationLogo?: Nullable<string>;
+    id: string;
+    name: string;
+    description?: Nullable<string>;
+    inputs: JSONObject;
+}
+
+export interface TriggerSendPrompt {
+    integrationId: string;
+    integrationName: string;
+    integrationLogo?: Nullable<string>;
+    id: string;
+    name: string;
+    description?: Nullable<string>;
+    inputs: JSONObject;
+    integrationAccountId?: Nullable<string>;
+}
+
+export interface SendPromptPayload {
+    id: string;
+    trigger: TriggerSendPrompt;
+    actions: ActionSendPrompt[];
+}
+
 export interface AsyncSchema {
     schemas: JSONObject;
     schemaExtension: JSONObject;
@@ -1252,6 +1279,8 @@ export interface IQuery {
 }
 
 export interface IMutation {
+    sendPrompt(prompt: string): SendPromptPayload | Promise<SendPromptPayload>;
+    createWorkflowPrompt(id: string, credentialIds: JSONObject): SendPromptPayload | Promise<SendPromptPayload>;
     updateOneUser(input: UpdateOneUserInput): User | Promise<User>;
     createCheckoutSession(priceId: string): UserCheckoutSessionPayload | Promise<UserCheckoutSessionPayload>;
     resumeSubscription(): ResultPayload | Promise<ResultPayload>;

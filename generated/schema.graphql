@@ -838,6 +838,33 @@ type AccountCredentialConnection {
   edges: [AccountCredentialEdge!]!
 }
 
+type ActionSendPrompt {
+  integrationId: String!
+  integrationName: String!
+  integrationLogo: String
+  id: String!
+  name: String!
+  description: String
+  inputs: JSONObject!
+}
+
+type TriggerSendPrompt {
+  integrationId: String!
+  integrationName: String!
+  integrationLogo: String
+  id: String!
+  name: String!
+  description: String
+  inputs: JSONObject!
+  integrationAccountId: String
+}
+
+type SendPromptPayload {
+  id: String!
+  trigger: TriggerSendPrompt!
+  actions: [ActionSendPrompt!]!
+}
+
 type AsyncSchema {
   schemas: JSONObject!
   schemaExtension: JSONObject!
@@ -1318,6 +1345,8 @@ enum WorkflowRunActionSortFields {
 }
 
 type Mutation {
+  sendPrompt(prompt: String!): SendPromptPayload!
+  createWorkflowPrompt(id: String!, credentialIds: JSONObject!): SendPromptPayload!
   updateOneUser(input: UpdateOneUserInput!): User!
   createCheckoutSession(priceId: String!): UserCheckoutSessionPayload!
   resumeSubscription: ResultPayload!

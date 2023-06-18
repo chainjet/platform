@@ -8,6 +8,7 @@ import { ScheduleModule } from '@nestjs/schedule'
 import path from 'path'
 import { mongoForRoot } from '../../../libs/common/src/utils/mongodb'
 import { AccountCredentialsModule } from './account-credentials/account-credentials.module'
+import { AiResolver } from './ai/ai.resolver'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { AsyncSchemaModule } from './async-schema/async-schema.module'
@@ -60,6 +61,6 @@ import { WorkflowsModule } from './workflows/workflows.module'
     TemplatesModule,
   ],
   controllers: [AppController, SubscriptionController],
-  providers: [AppService, PlanSchedulerService],
+  providers: [AppService, PlanSchedulerService, AiResolver],
 })
 export class AppModule {}

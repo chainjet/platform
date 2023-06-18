@@ -4,7 +4,7 @@ import { UserEventService } from '@app/common/metrics/user-event.service'
 import { convertObservableToRunResponse, wait } from '@app/common/utils/async.utils'
 import { OperationTrigger } from '@app/definitions/operation-trigger'
 import { OperationType } from '@app/definitions/types/OperationType'
-import { forwardRef, Inject, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common'
+import { Inject, Injectable, InternalServerErrorException, Logger, NotFoundException, forwardRef } from '@nestjs/common'
 import { PlanConfig } from 'apps/api/src/users/config/plans.config'
 import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from 'apps/api/src/workflow-triggers/entities/workflow-trigger'
@@ -57,6 +57,7 @@ export type OperationRunOptions = BaseRunOptions & {
   workflowOperation?: WorkflowAction | WorkflowTrigger
   fetchAll?: boolean
   cursor?: string
+  previousOutputs?: StepInputs
 }
 
 export type RunActionByKeyOptions = BaseRunOptions & {

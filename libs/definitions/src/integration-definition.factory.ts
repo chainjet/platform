@@ -35,6 +35,7 @@ import { GoogleSheetsDefinition } from './integration-definitions/google-sheets.
 import { GraphqlDefinition } from './integration-definitions/graphql.definition'
 import { HetznerCloudDefinition } from './integration-definitions/hetzner-cloud.definition'
 import { HttpDefinition } from './integration-definitions/http.definition'
+import { InternalDefinition } from './integration-definitions/internal/internal.definition'
 import { LensDefinition } from './integration-definitions/lens/lens.definition'
 import { LensListsDefinition } from './integration-definitions/lenslists/lenslists.definition'
 import { ListsDefinition } from './integration-definitions/lists/list.definition'
@@ -112,6 +113,7 @@ export class IntegrationDefinitionFactory {
     // gumroad: GumroadDefinition,
     'hetzner-cloud': HetznerCloudDefinition,
     http: HttpDefinition,
+    internal: InternalDefinition,
     // kubernetes: KubernetesDefinition,
     lens: LensDefinition,
     lenslists: LensListsDefinition,

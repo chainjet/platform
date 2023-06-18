@@ -450,7 +450,12 @@ export class RunnerService {
 
     let inputs: Record<string, unknown>
     try {
-      inputs = parseStepInputs({ ...workflowAction.inputs }, previousOutputs)
+      // don't parse inputs for the internal code action
+      if (integration.key === 'internal' && integrationAction.key === 'runInternalCode') {
+        inputs = workflowAction.inputs
+      } else {
+        inputs = parseStepInputs({ ...workflowAction.inputs }, previousOutputs)
+      }
     } catch (e) {
       await this.onActionFailure(
         workflow,
@@ -479,6 +484,7 @@ export class RunnerService {
         accountCredential,
         workflowOperation: workflowAction,
         user,
+        previousOutputs,
       })
       await this.workflowActionService.updateById(workflowAction._id, { lastItem: runResponse.outputs ?? {} })
       await this.workflowRunService.markActionAsCompleted(

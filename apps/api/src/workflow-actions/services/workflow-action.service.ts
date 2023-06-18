@@ -17,6 +17,10 @@ import { WorkflowService } from '../../workflows/services/workflow.service'
 import { CreateWorkflowActionInput, WorkflowAction } from '../entities/workflow-action'
 import { WorkflowNextAction } from '../entities/workflow-next-action'
 
+interface Options {
+  allowInternal?: boolean
+}
+
 @Injectable()
 export class WorkflowActionService extends BaseService<WorkflowAction> {
   protected readonly logger = new Logger(WorkflowActionService.name)
@@ -35,7 +39,10 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
   }
 
   // TODO verify record complies with schema
-  async createOne(record: CreateWorkflowActionInput & DeepPartial<WorkflowAction>): Promise<WorkflowAction> {
+  async createOne(
+    record: CreateWorkflowActionInput & DeepPartial<WorkflowAction>,
+    options: Options = {},
+  ): Promise<WorkflowAction> {
     this.logger.debug(`Create workflow action request with data: ${JSON.stringify(record)}`)
 
     if (!record.workflow || !record.owner || !record.integrationAction) {
@@ -67,6 +74,10 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     const integration = await this.integrationService.findById(integrationAction.integration.toString())
     if (!integration) {
       throw new NotFoundException(`Integration ${integrationAction.integration} not found`)
+    }
+
+    if (integration.key === 'internal' && !options.allowInternal) {
+      throw new BadRequestException('Internal integration actions cannot be created directly')
     }
 
     // Verify previous action exists and belongs to the same workflow
@@ -207,7 +218,7 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
   async updateOne(
     id: string,
     update: DeepPartial<WorkflowAction>,
-    opts?: UpdateOneOptions<WorkflowAction> | undefined,
+    opts?: (UpdateOneOptions<WorkflowAction> & Options) | undefined,
   ): Promise<WorkflowAction> {
     const workflowAction = await this.findById(id, opts)
     if (!workflowAction) {
@@ -246,6 +257,10 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     const integration = await this.integrationService.findById(integrationAction.integration.toString())
     if (!integration) {
       throw new NotFoundException(`Integration ${integrationAction.integration} not found`)
+    }
+
+    if (integration.key === 'internal' && !opts?.allowInternal) {
+      throw new BadRequestException('Internal integration actions cannot be updated directly')
     }
 
     const isTemplate = !update.inputs
