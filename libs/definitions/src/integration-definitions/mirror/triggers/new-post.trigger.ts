@@ -74,7 +74,7 @@ export class NewPostTrigger extends OperationTrigger {
     const data = await res.json()
     return {
       outputs: {
-        items: data.posts.map((post: any) => ({
+        items: data.posts?.map((post: any) => ({
           ...post,
           url: `https://mirror.xyz/${address}/${post.digest}`,
         })),
