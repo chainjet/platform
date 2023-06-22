@@ -1,7 +1,7 @@
 import { mapXmtpMessageToOutput } from '@app/definitions/integration-definitions/xmtp/xmtp.common'
+import { XmtpLib } from '@app/definitions/integration-definitions/xmtp/xmtp.lib'
 import { Injectable, Logger } from '@nestjs/common'
 import { Interval } from '@nestjs/schedule'
-import { Client } from '@xmtp/xmtp-js'
 import { AccountCredentialService } from 'apps/api/src/account-credentials/services/account-credentials.service'
 import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/integration-trigger'
 import { IntegrationTriggerService } from 'apps/api/src/integration-triggers/services/integration-trigger.service'
@@ -95,13 +95,15 @@ export class XmtpListenerService {
         return
       }
       const credentials = accountCredentials.credentials
-      const keys = new Uint8Array(credentials.keys.split(',').map((key: string) => Number(key)))
-      const client = await Client.create(null, { privateKeyOverride: keys, env: 'production' })
+      const client = await XmtpLib.getClient(credentials.keys)
 
       this.listeners[workflowTrigger._id.toString()] = true
 
+      const streams = await client.conversations.streamAllMessages()
+
       this.logger.log(`Streaming all messages for workflow ${workflowTrigger.workflow}`)
-      for await (const message of await client.conversations.streamAllMessages()) {
+
+      for await (const message of streams) {
         // Ignore messages sent by the current user
         if (message.senderAddress === client.address) {
           continue

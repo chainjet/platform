@@ -1,9 +1,9 @@
 import { AuthenticationError } from '@app/common/errors/authentication-error'
 import { RunResponse } from '@app/definitions/definition'
 import { OperationTrigger } from '@app/definitions/operation-trigger'
-import { Client } from '@xmtp/xmtp-js'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { JSONSchema7 } from 'json-schema'
+import { XmtpLib } from '../xmtp.lib'
 
 export class NewConversationTrigger extends OperationTrigger {
   idKey = 'items[].id'
@@ -39,8 +39,7 @@ export class NewConversationTrigger extends OperationTrigger {
     if (!credentials.keys) {
       throw new AuthenticationError(`Missing keys for XMTP`)
     }
-    const keys = new Uint8Array(credentials.keys.split(',').map((key: string) => Number(key)))
-    const client = await Client.create(null, { privateKeyOverride: keys, env: 'production' })
+    const client = await XmtpLib.getClient(credentials.keys)
     const conversations = await client.conversations.list()
     await client.close()
     return {

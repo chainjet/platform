@@ -1,12 +1,12 @@
 import { AuthenticationError } from '@app/common/errors/authentication-error'
 import { RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
-import { Client } from '@xmtp/xmtp-js'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { isAddress } from 'ethers/lib/utils'
 import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
 import { getLensDefaultProfile, getLensProfile } from '../../lens/lens.common'
 import { mapXmtpMessageToOutput, xmtpMessageSchema } from '../xmtp.common'
+import { XmtpLib } from '../xmtp.lib'
 
 export class SendMessageAddressAction extends OperationOffChain {
   key = 'sendMessageLens'
@@ -39,8 +39,7 @@ export class SendMessageAddressAction extends OperationOffChain {
     if (!credentials.keys) {
       throw new AuthenticationError(`Missing keys for XMTP`)
     }
-    const keys = new Uint8Array(credentials.keys.split(',').map((key: string) => Number(key)))
-    const client = await Client.create(null, { privateKeyOverride: keys, env: 'production' })
+    const client = await XmtpLib.getClient(credentials.keys)
     const senderProfile = await getLensDefaultProfile(client.address)
 
     if (!inputs.handle) {
