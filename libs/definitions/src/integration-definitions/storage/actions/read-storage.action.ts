@@ -7,7 +7,7 @@ import { StorageClient } from '../storage.client'
 export class ReadStorageAction extends OperationOffChain {
   key = 'readStorage'
   name = 'Read Storage'
-  description = 'Get an item from storage by key'
+  description = 'Get an item previously stored'
   version = '1.0.0'
   skipAuth = true
 

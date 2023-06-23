@@ -7,7 +7,7 @@ import { StorageClient } from '../storage.client'
 export class WriteStorageAction extends OperationOffChain {
   key = 'writeStorage'
   name = 'Write Storage'
-  description = 'Get an item from storage by key'
+  description = 'Create or update an item'
   version = '1.0.0'
   skipAuth = true
 
