@@ -22,6 +22,7 @@ import { IntegrationsModule } from './integrations/integrations.module'
 import { PlanSchedulerService } from './subscriptions/plan-scheduler.service'
 import { SubscriptionController } from './subscriptions/subscription.controller'
 import { TemplatesModule } from './templates/templates.module'
+import { UserDatabaseModule } from './user-database/user-database.module'
 import { UsersModule } from './users/users.module'
 import { WorkflowActionsModule } from './workflow-actions/workflow-actions.module'
 import { WorkflowRunsModule } from './workflow-runs/workflow-runs.module'
@@ -59,6 +60,7 @@ import { WorkflowsModule } from './workflows/workflows.module'
     AsyncSchemaModule,
     CompilerModule,
     TemplatesModule,
+    UserDatabaseModule,
   ],
   controllers: [AppController, SubscriptionController],
   providers: [AppService, PlanSchedulerService, AiResolver],

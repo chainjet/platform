@@ -61,6 +61,7 @@ import { SlackDefinition } from './integration-definitions/slack.definition'
 import { SleepDefinition } from './integration-definitions/sleep/sleep.definition'
 import { SnapshotDefinition } from './integration-definitions/snapshot/snapshot.definition'
 import { SnowtraceDefinition } from './integration-definitions/snowtrace.definition'
+import { StorageDefinition } from './integration-definitions/storage/storage.definition'
 import { TelegramBotDefinition } from './integration-definitions/telegram-bot.definition'
 import { TelegramDefinition } from './integration-definitions/telegram/telegram.definition'
 import { TwitterDefinition } from './integration-definitions/twitter/twitter.definition'
@@ -147,6 +148,7 @@ export class IntegrationDefinitionFactory {
     sleep: SleepDefinition,
     snapshot: SnapshotDefinition,
     snowtrace: SnowtraceDefinition,
+    storage: StorageDefinition,
     // statuspage: StatuspageDefinition,
     telegram: TelegramDefinition,
     'telegram-bot': TelegramBotDefinition,

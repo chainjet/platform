@@ -144,6 +144,16 @@ export enum WorkflowRunActionSortFields {
     status = "status"
 }
 
+export enum UserDatabaseSortFields {
+    id = "id",
+    createdAt = "createdAt"
+}
+
+export enum UserDatabaseItemSortFields {
+    id = "id",
+    createdAt = "createdAt"
+}
+
 export interface CursorPaging {
     before?: Nullable<ConnectionCursor>;
     after?: Nullable<ConnectionCursor>;
@@ -484,6 +494,32 @@ export interface WorkflowRunActionSort {
     nulls?: Nullable<SortNulls>;
 }
 
+export interface UserDatabaseFilter {
+    and?: Nullable<UserDatabaseFilter[]>;
+    or?: Nullable<UserDatabaseFilter[]>;
+    id?: Nullable<IDFilterComparison>;
+    createdAt?: Nullable<DateFieldComparison>;
+}
+
+export interface UserDatabaseSort {
+    field: UserDatabaseSortFields;
+    direction: SortDirection;
+    nulls?: Nullable<SortNulls>;
+}
+
+export interface UserDatabaseItemFilter {
+    and?: Nullable<UserDatabaseItemFilter[]>;
+    or?: Nullable<UserDatabaseItemFilter[]>;
+    id?: Nullable<IDFilterComparison>;
+    createdAt?: Nullable<DateFieldComparison>;
+}
+
+export interface UserDatabaseItemSort {
+    field: UserDatabaseItemSortFields;
+    direction: SortDirection;
+    nulls?: Nullable<SortNulls>;
+}
+
 export interface UpdateOneUserInput {
     id: string;
     update: UpdateUserInput;
@@ -732,6 +768,106 @@ export interface WorkflowTriggerDeleteFilter {
     workflow?: Nullable<IDFilterComparison>;
 }
 
+export interface CreateOneUserDatabaseInput {
+    userDatabase: CreateUserDatabase;
+}
+
+export interface CreateUserDatabase {
+    id?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
+}
+
+export interface CreateManyUserDatabasesInput {
+    userDatabases: CreateUserDatabase[];
+}
+
+export interface UpdateOneUserDatabaseInput {
+    id: string;
+    update: UpdateUserDatabase;
+}
+
+export interface UpdateUserDatabase {
+    id?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
+}
+
+export interface UpdateManyUserDatabasesInput {
+    filter: UserDatabaseUpdateFilter;
+    update: UpdateUserDatabase;
+}
+
+export interface UserDatabaseUpdateFilter {
+    and?: Nullable<UserDatabaseUpdateFilter[]>;
+    or?: Nullable<UserDatabaseUpdateFilter[]>;
+    id?: Nullable<IDFilterComparison>;
+    createdAt?: Nullable<DateFieldComparison>;
+}
+
+export interface DeleteOneUserDatabaseInput {
+    id: string;
+}
+
+export interface DeleteManyUserDatabasesInput {
+    filter: UserDatabaseDeleteFilter;
+}
+
+export interface UserDatabaseDeleteFilter {
+    and?: Nullable<UserDatabaseDeleteFilter[]>;
+    or?: Nullable<UserDatabaseDeleteFilter[]>;
+    id?: Nullable<IDFilterComparison>;
+    createdAt?: Nullable<DateFieldComparison>;
+}
+
+export interface CreateOneUserDatabaseItemInput {
+    userDatabaseItem: CreateUserDatabaseItem;
+}
+
+export interface CreateUserDatabaseItem {
+    id?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
+}
+
+export interface CreateManyUserDatabaseItemsInput {
+    userDatabaseItems: CreateUserDatabaseItem[];
+}
+
+export interface UpdateOneUserDatabaseItemInput {
+    id: string;
+    update: UpdateUserDatabaseItem;
+}
+
+export interface UpdateUserDatabaseItem {
+    id?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
+}
+
+export interface UpdateManyUserDatabaseItemsInput {
+    filter: UserDatabaseItemUpdateFilter;
+    update: UpdateUserDatabaseItem;
+}
+
+export interface UserDatabaseItemUpdateFilter {
+    and?: Nullable<UserDatabaseItemUpdateFilter[]>;
+    or?: Nullable<UserDatabaseItemUpdateFilter[]>;
+    id?: Nullable<IDFilterComparison>;
+    createdAt?: Nullable<DateFieldComparison>;
+}
+
+export interface DeleteOneUserDatabaseItemInput {
+    id: string;
+}
+
+export interface DeleteManyUserDatabaseItemsInput {
+    filter: UserDatabaseItemDeleteFilter;
+}
+
+export interface UserDatabaseItemDeleteFilter {
+    and?: Nullable<UserDatabaseItemDeleteFilter[]>;
+    or?: Nullable<UserDatabaseItemDeleteFilter[]>;
+    id?: Nullable<IDFilterComparison>;
+    createdAt?: Nullable<DateFieldComparison>;
+}
+
 export interface User {
     id: string;
     createdAt: DateTime;
@@ -900,6 +1036,17 @@ export interface AccountCredential {
     fields?: Nullable<JSONObject>;
     schemaRefs?: Nullable<JSONObject>;
     authExpired: boolean;
+}
+
+export interface UserDatabase {
+    id: string;
+    createdAt: DateTime;
+}
+
+export interface UserDatabaseItem {
+    id: string;
+    createdAt: DateTime;
+    database: UserDatabase;
 }
 
 export interface WorkflowNextAction {
@@ -1241,6 +1388,36 @@ export interface ContractSchema {
     schema: JSONObject;
 }
 
+export interface UserDatabaseItemDeleteResponse {
+    id?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
+}
+
+export interface UserDatabaseItemEdge {
+    node: UserDatabaseItem;
+    cursor: ConnectionCursor;
+}
+
+export interface UserDatabaseItemConnection {
+    pageInfo: PageInfo;
+    edges: UserDatabaseItemEdge[];
+}
+
+export interface UserDatabaseDeleteResponse {
+    id?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
+}
+
+export interface UserDatabaseEdge {
+    node: UserDatabase;
+    cursor: ConnectionCursor;
+}
+
+export interface UserDatabaseConnection {
+    pageInfo: PageInfo;
+    edges: UserDatabaseEdge[];
+}
+
 export interface IQuery {
     user(id: string): User | Promise<User>;
     viewer(): User | Promise<User>;
@@ -1276,6 +1453,10 @@ export interface IQuery {
     contractSchema(chainId: number, address: string, type: string): ContractSchema | Promise<ContractSchema>;
     asyncSchemas(integrationId: string, accountCredentialId: string, names: string[], inputs?: Nullable<JSONObject>, integrationTriggerId?: Nullable<string>, integrationActionId?: Nullable<string>): AsyncSchema | Promise<AsyncSchema>;
     manyAsyncSchemas(asyncSchemaInputs: JSONObject[]): AsyncSchema | Promise<AsyncSchema>;
+    userDatabase(id: string): UserDatabase | Promise<UserDatabase>;
+    userDatabases(paging?: Nullable<CursorPaging>, filter?: Nullable<UserDatabaseFilter>, sorting?: Nullable<UserDatabaseSort[]>): UserDatabaseConnection | Promise<UserDatabaseConnection>;
+    userDatabaseItem(id: string): UserDatabaseItem | Promise<UserDatabaseItem>;
+    userDatabaseItems(paging?: Nullable<CursorPaging>, filter?: Nullable<UserDatabaseItemFilter>, sorting?: Nullable<UserDatabaseItemSort[]>): UserDatabaseItemConnection | Promise<UserDatabaseItemConnection>;
 }
 
 export interface IMutation {
@@ -1319,6 +1500,18 @@ export interface IMutation {
     testWorkflowTrigger(id: string): WorkflowTrigger | Promise<WorkflowTrigger>;
     runWorkflowTriggerLastEvent(id: string): WorkflowTrigger | Promise<WorkflowTrigger>;
     runWorkflowTriggerHistory(id: string): WorkflowTrigger | Promise<WorkflowTrigger>;
+    createOneUserDatabase(input: CreateOneUserDatabaseInput): UserDatabase | Promise<UserDatabase>;
+    createManyUserDatabases(input: CreateManyUserDatabasesInput): UserDatabase[] | Promise<UserDatabase[]>;
+    updateOneUserDatabase(input: UpdateOneUserDatabaseInput): UserDatabase | Promise<UserDatabase>;
+    updateManyUserDatabases(input: UpdateManyUserDatabasesInput): UpdateManyResponse | Promise<UpdateManyResponse>;
+    deleteOneUserDatabase(input: DeleteOneUserDatabaseInput): UserDatabaseDeleteResponse | Promise<UserDatabaseDeleteResponse>;
+    deleteManyUserDatabases(input: DeleteManyUserDatabasesInput): DeleteManyResponse | Promise<DeleteManyResponse>;
+    createOneUserDatabaseItem(input: CreateOneUserDatabaseItemInput): UserDatabaseItem | Promise<UserDatabaseItem>;
+    createManyUserDatabaseItems(input: CreateManyUserDatabaseItemsInput): UserDatabaseItem[] | Promise<UserDatabaseItem[]>;
+    updateOneUserDatabaseItem(input: UpdateOneUserDatabaseItemInput): UserDatabaseItem | Promise<UserDatabaseItem>;
+    updateManyUserDatabaseItems(input: UpdateManyUserDatabaseItemsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
+    deleteOneUserDatabaseItem(input: DeleteOneUserDatabaseItemInput): UserDatabaseItemDeleteResponse | Promise<UserDatabaseItemDeleteResponse>;
+    deleteManyUserDatabaseItems(input: DeleteManyUserDatabaseItemsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
 }
 
 export type DateTime = any;

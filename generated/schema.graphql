@@ -426,6 +426,17 @@ type AccountCredential {
   authExpired: Boolean!
 }
 
+type UserDatabase {
+  id: ID!
+  createdAt: DateTime!
+}
+
+type UserDatabaseItem {
+  id: ID!
+  createdAt: DateTime!
+  database: UserDatabase!
+}
+
 type WorkflowNextAction {
   action: WorkflowAction!
   condition: String
@@ -877,6 +888,48 @@ type ContractSchema {
   schema: JSONObject!
 }
 
+type UserDatabaseItemDeleteResponse {
+  id: ID
+  createdAt: DateTime
+}
+
+type UserDatabaseItemEdge {
+  """The node containing the UserDatabaseItem"""
+  node: UserDatabaseItem!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type UserDatabaseItemConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [UserDatabaseItemEdge!]!
+}
+
+type UserDatabaseDeleteResponse {
+  id: ID
+  createdAt: DateTime
+}
+
+type UserDatabaseEdge {
+  """The node containing the UserDatabase"""
+  node: UserDatabase!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type UserDatabaseConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [UserDatabaseEdge!]!
+}
+
 type Query {
   user(
     """The id of the record to find."""
@@ -1074,6 +1127,34 @@ type Query {
   contractSchema(chainId: Int!, address: String!, type: String!): ContractSchema!
   asyncSchemas(integrationId: String!, accountCredentialId: String!, names: [String!]!, inputs: JSONObject, integrationTriggerId: String, integrationActionId: String): AsyncSchema!
   manyAsyncSchemas(asyncSchemaInputs: [JSONObject!]!): AsyncSchema!
+  userDatabase(
+    """The id of the record to find."""
+    id: ID!
+  ): UserDatabase!
+  userDatabases(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: UserDatabaseFilter = {}
+
+    """Specify to sort results."""
+    sorting: [UserDatabaseSort!] = []
+  ): UserDatabaseConnection!
+  userDatabaseItem(
+    """The id of the record to find."""
+    id: ID!
+  ): UserDatabaseItem!
+  userDatabaseItems(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: UserDatabaseItemFilter = {}
+
+    """Specify to sort results."""
+    sorting: [UserDatabaseItemSort!] = []
+  ): UserDatabaseItemConnection!
 }
 
 input AccountCredentialFilter {
@@ -1344,6 +1425,42 @@ enum WorkflowRunActionSortFields {
   status
 }
 
+input UserDatabaseFilter {
+  and: [UserDatabaseFilter!]
+  or: [UserDatabaseFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+}
+
+input UserDatabaseSort {
+  field: UserDatabaseSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum UserDatabaseSortFields {
+  id
+  createdAt
+}
+
+input UserDatabaseItemFilter {
+  and: [UserDatabaseItemFilter!]
+  or: [UserDatabaseItemFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+}
+
+input UserDatabaseItemSort {
+  field: UserDatabaseItemSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum UserDatabaseItemSortFields {
+  id
+  createdAt
+}
+
 type Mutation {
   sendPrompt(prompt: String!): SendPromptPayload!
   createWorkflowPrompt(id: String!, credentialIds: JSONObject!): SendPromptPayload!
@@ -1385,6 +1502,18 @@ type Mutation {
   testWorkflowTrigger(id: String!): WorkflowTrigger!
   runWorkflowTriggerLastEvent(id: String!): WorkflowTrigger!
   runWorkflowTriggerHistory(id: String!): WorkflowTrigger!
+  createOneUserDatabase(input: CreateOneUserDatabaseInput!): UserDatabase!
+  createManyUserDatabases(input: CreateManyUserDatabasesInput!): [UserDatabase!]!
+  updateOneUserDatabase(input: UpdateOneUserDatabaseInput!): UserDatabase!
+  updateManyUserDatabases(input: UpdateManyUserDatabasesInput!): UpdateManyResponse!
+  deleteOneUserDatabase(input: DeleteOneUserDatabaseInput!): UserDatabaseDeleteResponse!
+  deleteManyUserDatabases(input: DeleteManyUserDatabasesInput!): DeleteManyResponse!
+  createOneUserDatabaseItem(input: CreateOneUserDatabaseItemInput!): UserDatabaseItem!
+  createManyUserDatabaseItems(input: CreateManyUserDatabaseItemsInput!): [UserDatabaseItem!]!
+  updateOneUserDatabaseItem(input: UpdateOneUserDatabaseItemInput!): UserDatabaseItem!
+  updateManyUserDatabaseItems(input: UpdateManyUserDatabaseItemsInput!): UpdateManyResponse!
+  deleteOneUserDatabaseItem(input: DeleteOneUserDatabaseItemInput!): UserDatabaseItemDeleteResponse!
+  deleteManyUserDatabaseItems(input: DeleteManyUserDatabaseItemsInput!): DeleteManyResponse!
 }
 
 input UpdateOneUserInput {
@@ -1676,4 +1805,124 @@ input WorkflowTriggerDeleteFilter {
   id: IDFilterComparison
   createdAt: DateFieldComparison
   workflow: IDFilterComparison
+}
+
+input CreateOneUserDatabaseInput {
+  """The record to create"""
+  userDatabase: CreateUserDatabase!
+}
+
+input CreateUserDatabase {
+  id: ID
+  createdAt: DateTime
+}
+
+input CreateManyUserDatabasesInput {
+  """Array of records to create"""
+  userDatabases: [CreateUserDatabase!]!
+}
+
+input UpdateOneUserDatabaseInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateUserDatabase!
+}
+
+input UpdateUserDatabase {
+  id: ID
+  createdAt: DateTime
+}
+
+input UpdateManyUserDatabasesInput {
+  """Filter used to find fields to update"""
+  filter: UserDatabaseUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateUserDatabase!
+}
+
+input UserDatabaseUpdateFilter {
+  and: [UserDatabaseUpdateFilter!]
+  or: [UserDatabaseUpdateFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+}
+
+input DeleteOneUserDatabaseInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyUserDatabasesInput {
+  """Filter to find records to delete"""
+  filter: UserDatabaseDeleteFilter!
+}
+
+input UserDatabaseDeleteFilter {
+  and: [UserDatabaseDeleteFilter!]
+  or: [UserDatabaseDeleteFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+}
+
+input CreateOneUserDatabaseItemInput {
+  """The record to create"""
+  userDatabaseItem: CreateUserDatabaseItem!
+}
+
+input CreateUserDatabaseItem {
+  id: ID
+  createdAt: DateTime
+}
+
+input CreateManyUserDatabaseItemsInput {
+  """Array of records to create"""
+  userDatabaseItems: [CreateUserDatabaseItem!]!
+}
+
+input UpdateOneUserDatabaseItemInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateUserDatabaseItem!
+}
+
+input UpdateUserDatabaseItem {
+  id: ID
+  createdAt: DateTime
+}
+
+input UpdateManyUserDatabaseItemsInput {
+  """Filter used to find fields to update"""
+  filter: UserDatabaseItemUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateUserDatabaseItem!
+}
+
+input UserDatabaseItemUpdateFilter {
+  and: [UserDatabaseItemUpdateFilter!]
+  or: [UserDatabaseItemUpdateFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+}
+
+input DeleteOneUserDatabaseItemInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyUserDatabaseItemsInput {
+  """Filter to find records to delete"""
+  filter: UserDatabaseItemDeleteFilter!
+}
+
+input UserDatabaseItemDeleteFilter {
+  and: [UserDatabaseItemDeleteFilter!]
+  or: [UserDatabaseItemDeleteFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
 }
