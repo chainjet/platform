@@ -1,7 +1,9 @@
+import { getDateFromObjectId } from '@app/common/utils/mongodb'
 import { RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { JSONSchema7 } from 'json-schema'
+import { ObjectId } from 'mongodb'
 import { StorageClient } from '../storage.client'
 
 export class ReadStorageAction extends OperationOffChain {
@@ -35,6 +37,9 @@ export class ReadStorageAction extends OperationOffChain {
       value: {
         type: 'string',
       },
+      createdAt: {
+        type: 'string',
+      },
     },
   }
 
@@ -45,7 +50,13 @@ export class ReadStorageAction extends OperationOffChain {
     const client = new StorageClient({ user })
     const item = await client.get(inputs.database, inputs.key)
     return {
-      outputs: item ?? {},
+      outputs: item
+        ? {
+            id: item.id,
+            value: item.value,
+            createdAt: getDateFromObjectId(new ObjectId(item.id)).toISOString(),
+          }
+        : {},
     }
   }
 }
