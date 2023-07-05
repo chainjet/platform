@@ -38,6 +38,9 @@ export class CreateCommentAction extends OperationOffChain {
   }
   outputs: JSONSchema7 = {
     properties: {
+      dataAvailabilityId: {
+        type: 'string',
+      },
       txHash: {
         type: 'string',
       },
@@ -126,51 +129,92 @@ export class CreateCommentAction extends OperationOffChain {
     }
     const fileUrl = 'ipfs://' + postRes.data.file.cid
 
-    this.logger.log(`Creating lens comment: ${workflow?.id} ${profileId} ${fileUrl}`)
-    const query = `
-    mutation CreatePostViaDispatcher {
-      createCommentViaDispatcher(
-        request: {
-          profileId: "${profileId}"
-          publicationId: "${inputs.publicationId}",
+    const isDAPublication = inputs.publicationId.includes('-DA-')
+
+    this.logger.log(
+      `Creating lens comment${isDAPublication ? ' on DA publication' : ''}: ${workflow?.id} ${profileId} ${fileUrl}`,
+    )
+
+    let query: string
+    if (isDAPublication) {
+      query = `
+      mutation CreateDataAvailabilityCommentViaDispatcher {
+        createDataAvailabilityCommentViaDispatcher(request: {
+          from: "${profileId}"
+          commentOn: "${inputs.publicationId}"
           contentURI: "${fileUrl}"
-          collectModule: { freeCollectModule: { followerOnly: false } }
-          referenceModule: { followerOnlyReferenceModule: false }
+        }) {
+          ... on CreateDataAvailabilityPublicationResult {
+            id
+            proofs
+            dataAvailabilityId
+          }
+          ... on RelayError {
+            reason
+          }
         }
-      ) {
-        ... on RelayerResult {
-          txHash
-          txId
+      }`
+    } else {
+      query = `
+      mutation CreatePostViaDispatcher {
+        createCommentViaDispatcher(
+          request: {
+            profileId: "${profileId}"
+            publicationId: "${inputs.publicationId}",
+            contentURI: "${fileUrl}"
+            collectModule: { freeCollectModule: { followerOnly: false } }
+            referenceModule: { followerOnlyReferenceModule: false }
+          }
+        ) {
+          ... on RelayerResult {
+            txHash
+            txId
+          }
+          ... on RelayError {
+            reason
+          }
         }
-        ... on RelayError {
-          reason
-        }
-      }
-    }`
+      }`
+    }
 
     const res = await sendGraphqlQuery('https://api.lens.dev/', query, {
       'x-access-token': refreshedCredentials.accessToken,
       origin: process.env.LORIGIN,
     })
-    if (!res?.data?.createCommentViaDispatcher?.txHash) {
+    const resData = isDAPublication
+      ? res?.data?.createDataAvailabilityCommentViaDispatcher
+      : res?.data?.createCommentViaDispatcher
+
+    // only non-DA publications have a txHash
+    if ((isDAPublication && !resData?.dataAvailabilityId) || (!isDAPublication && !resData?.txHash)) {
       if (res?.errors?.[0]?.message) {
         throw new AuthenticationError(res.errors[0].message)
       }
       this.logger.error(`Failed to create lens comment: ${workflow?.id} ${JSON.stringify(res?.errors ?? res?.data)}`)
       throw new AuthenticationError(`Failed to post message: ${JSON.stringify(res?.errors ?? res?.data)}`)
     }
-    return {
-      outputs: {
-        txHash: res.data.createCommentViaDispatcher.txHash,
-        txId: res.data.createCommentViaDispatcher.txId,
-      },
-      refreshedCredentials,
-      transactions: [
-        {
-          chainId: ChainId.POLYGON,
-          hash: res.data.createCommentViaDispatcher.txHash,
+
+    if (isDAPublication) {
+      return {
+        outputs: {
+          dataAvailabilityId: resData.dataAvailabilityId,
         },
-      ],
+        refreshedCredentials,
+      }
+    } else {
+      return {
+        outputs: {
+          txHash: res.data.createCommentViaDispatcher.txHash,
+          txId: res.data.createCommentViaDispatcher.txId,
+        },
+        refreshedCredentials,
+        transactions: [
+          {
+            chainId: ChainId.POLYGON,
+            hash: res.data.createCommentViaDispatcher.txHash,
+          },
+        ],
+      }
     }
   }
 }
