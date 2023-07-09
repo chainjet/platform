@@ -1,5 +1,7 @@
 # OpenAI
 
+<figure><img src="../.gitbook/assets/openai.png" alt=""><figcaption></figcaption></figure>
+
 ### Fields that require additional information
 
 * _**Api Key**_

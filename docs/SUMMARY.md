@@ -6,6 +6,8 @@
 * [Formatting inputs](formatting-inputs/README.md)
   * [Formatting Text](formatting-inputs/formatting-text.md)
   * [Formatting Numbers](formatting-inputs/formatting-numbers.md)
+* [ChainJet AI](chainjet-ai.md)
+* [Bulk Action](bulk-action.md)
 * [Templates](templates.md)
 * [Credentials](credentials.md)
 
@@ -13,17 +15,22 @@
 
 * [Discord](integrations/discord.md)
 * [OpenAI](integrations/openai.md)
-* [Telegram](integrations/telegram.md)
+* [Telegram Custom Bot](integrations/telegram.md)
 * [Lens Protocol 🌿](integrations/lens.md)
   * [🤖 ChainJetBot](integrations/lens/chainjetbot/README.md)
     * [Translate a post to any language and publish it with a comment](integrations/lens/chainjetbot/translate-a-post-to-any-language-and-publish-it-with-a-comment.md)
     * [Send a post by DM](integrations/lens/chainjetbot/send-a-post-by-dm.md)
     * [Add a user to a Lens list](integrations/lens/chainjetbot/add-a-user-to-a-lens-list.md)
     * [Share post on Discord](integrations/lens/chainjetbot/share-post-on-discord.md)
+* [Mirror](integrations/mirror.md)
+* [POAP](integrations/poap.md)
+* [XMTP](integrations/xmtp.md)
 
 ***
 
 * [Tutorials](tutorials/README.md)
+  * [Automate messages to all users who claim your POAP](https://mirror.xyz/chainjet.eth/-aKenKp20QxTcmpaZKzREBuqeBRqJmMqTEh0\_kmASp0)
+  * [Export ALL of your Lens followers to Notion](https://mirror.xyz/chainjet.eth/iGMIDsCIO300pbdbAHdWT-3cmGoBxEcgQe0UQH9oufY)
   * [Add Notion Database Item for Every New Lens Follower.](https://mirror.xyz/chainjet.eth/h20rEhxUmCMhWXRRLFDTMdUPc4cdyfW1VhUeY4NT4mE)
   * [Add New POAP Holders to Your Notion Database](https://mirror.xyz/chainjet.eth/GG-uTu3J0kFMPnzubG4xmbbucdkhhtZIxucOsPngXDg)
   * [Translate a Lens post to any language](https://mirror.xyz/chainjet.eth/scu1QfNykteAtwQLqMtGpv5N1pXKA0YGs\_Pw8tGIPnE)
