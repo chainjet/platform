@@ -7,6 +7,7 @@ import { ScheduleModule } from '@nestjs/schedule'
 import { AccountCredentialsModule } from 'apps/api/src/account-credentials/account-credentials.module'
 import { IntegrationTriggersModule } from 'apps/api/src/integration-triggers/integration-triggers.module'
 import { IntegrationsModule } from 'apps/api/src/integrations/integrations.module'
+import { UserDatabaseModule } from 'apps/api/src/user-database/user-database.module'
 import { UsersModule } from 'apps/api/src/users/users.module'
 import { WorkflowActionsModule } from 'apps/api/src/workflow-actions/workflow-actions.module'
 import { WorkflowRunsModule } from 'apps/api/src/workflow-runs/workflow-runs.module'
@@ -32,6 +33,7 @@ import { XmtpListenerService } from './xmtp-listener.service'
     WorkflowsModule,
     AccountCredentialsModule,
     UsersModule,
+    UserDatabaseModule,
   ],
   providers: [BlockchainListenerService, XmtpListenerService],
 })
