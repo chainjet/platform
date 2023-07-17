@@ -1,4 +1,5 @@
 import { AuthenticationError } from '@app/common/errors/authentication-error'
+import { wait } from '@app/common/utils/async.utils'
 import { RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { sendGraphqlQuery } from '@app/definitions/utils/subgraph.utils'
@@ -134,6 +135,13 @@ export class CreateCommentAction extends OperationOffChain {
     this.logger.log(
       `Creating lens comment${isDAPublication ? ' on DA publication' : ''}: ${workflow?.id} ${profileId} ${fileUrl}`,
     )
+
+    // Lens DA now requires to wait until more nows seen the IPFS file, so we need to wait
+    // TODO we should schedule the wait
+    if (isDAPublication) {
+      await wait(60 * 5 * 1000)
+      this.logger.log(`Waited for 5 minutes for IPFS on DA publication for workflow ${workflow?.id}`)
+    }
 
     let query: string
     if (isDAPublication) {
