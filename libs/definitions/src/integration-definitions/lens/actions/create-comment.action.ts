@@ -139,7 +139,7 @@ export class CreateCommentAction extends OperationOffChain {
     // Lens DA now requires to wait until more nows seen the IPFS file, so we need to wait
     // TODO we should schedule the wait
     if (isDAPublication) {
-      await wait(60 * 5 * 1000)
+      await wait(60 * 10 * 1000)
       this.logger.log(`Waited for 5 minutes for IPFS on DA publication for workflow ${workflow?.id}`)
     }
 
