@@ -6,15 +6,16 @@ import {
   Inject,
   Post,
   Req,
+  Res,
   Session,
   UseGuards,
 } from '@nestjs/common'
 import { Cache } from 'cache-manager'
-import { Request } from 'express'
+import { Request, Response } from 'express'
 import { generateNonce } from 'siwe'
 import { User } from '../../users/entities/user'
 import { UserService } from '../../users/services/user.service'
-import { CookieGuard } from '../external-oauth/guards/cookie.guard'
+import { NotAuthRequiredCookieGuard } from '../external-oauth/guards/cookie.guard'
 import { AuthService } from '../services/auth.service'
 
 @Controller('auth')
@@ -66,16 +67,22 @@ export class AuthController {
     }
   }
 
-  @UseGuards(CookieGuard)
+  @UseGuards(NotAuthRequiredCookieGuard)
   @Post('logout')
-  async logout(@Req() req: Request, @Session() session: Record<string, any>) {
-    const user = req.user as User
-    const nonce = (req as any).nonce as string
-    if (user && nonce && user.nonces.includes(nonce)) {
-      user.nonces = user.nonces.filter((un) => un !== nonce)
-      await this.userService.updateById(user._id, { nonces: user.nonces })
+  async logout(@Req() req: Request, @Res() res: Response, @Session() session: Record<string, any>) {
+    if (req.user) {
+      const user = req.user as User
+      const nonce = (req as any).nonce as string
+      if (user && nonce && user.nonces.includes(nonce)) {
+        user.nonces = user.nonces.filter((un) => un !== nonce)
+        await this.userService.updateById(user._id, { nonces: user.nonces })
+      }
     }
-    session.destroy(() => {})
+    try {
+      session.destroy(() => {})
+    } catch {}
+    res.clearCookie('cj-token', { path: '/', domain: '.chainjet.io' })
+    res.send({ success: true })
     return { ok: true }
   }
 }
