@@ -85,4 +85,11 @@ export class AuthController {
     res.send({ success: true })
     return { ok: true }
   }
+
+  @Post('delete-cookie')
+  async deleteCookie(@Res() res: Response) {
+    res.clearCookie('cj-token', { path: '/', domain: '.chainjet.io' })
+    res.send({ success: true })
+    return { ok: true }
+  }
 }
