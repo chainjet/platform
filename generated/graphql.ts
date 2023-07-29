@@ -594,6 +594,7 @@ export interface CreateOneWorkflowInput {
 
 export interface CreateWorkflowInput {
     name: string;
+    type?: Nullable<string>;
     runOnFailure?: Nullable<string>;
     isPublic?: Nullable<boolean>;
     templateSchema?: Nullable<JSONObject>;
@@ -1079,6 +1080,7 @@ export interface Workflow {
     runOnFailure?: Nullable<string>;
     address?: Nullable<string>;
     network?: Nullable<string>;
+    type?: Nullable<string>;
     isTemplate?: Nullable<boolean>;
     isPublic: boolean;
     templateSchema?: Nullable<JSONObject>;
@@ -1152,6 +1154,7 @@ export interface Template {
     runOnFailure?: Nullable<string>;
     address?: Nullable<string>;
     network?: Nullable<string>;
+    type?: Nullable<string>;
     isTemplate?: Nullable<boolean>;
     isPublic: boolean;
     templateSchema?: Nullable<JSONObject>;
@@ -1175,6 +1178,7 @@ export interface WorkflowDeleteResponse {
     runOnFailure?: Nullable<string>;
     address?: Nullable<string>;
     network?: Nullable<string>;
+    type?: Nullable<string>;
     isTemplate?: Nullable<boolean>;
     isPublic?: Nullable<boolean>;
     templateSchema?: Nullable<JSONObject>;

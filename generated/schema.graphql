@@ -467,6 +467,7 @@ type Workflow {
   runOnFailure: ID
   address: String
   network: String
+  type: String
   isTemplate: Boolean
   isPublic: Boolean!
   templateSchema: JSONObject
@@ -580,6 +581,7 @@ type Template {
   runOnFailure: ID
   address: String
   network: String
+  type: String
   isTemplate: Boolean
   isPublic: Boolean!
   templateSchema: JSONObject
@@ -615,6 +617,7 @@ type WorkflowDeleteResponse {
   runOnFailure: ID
   address: String
   network: String
+  type: String
   isTemplate: Boolean
   isPublic: Boolean
   templateSchema: JSONObject
@@ -1604,6 +1607,7 @@ input CreateOneWorkflowInput {
 
 input CreateWorkflowInput {
   name: String!
+  type: String
   runOnFailure: ID
   isPublic: Boolean
   templateSchema: JSONObject

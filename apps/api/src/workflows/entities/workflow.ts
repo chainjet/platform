@@ -74,6 +74,13 @@ export class Workflow extends BaseEntity {
   @prop()
   network?: string
 
+  /**
+   * Special workflow type
+   */
+  @Field(() => GraphQLString, { nullable: true })
+  @prop()
+  type?: 'chatbot'
+
   @Field(() => GraphQLBoolean, { nullable: true })
   @prop()
   isTemplate?: boolean
@@ -101,6 +108,9 @@ export class Workflow extends BaseEntity {
 export class CreateWorkflowInput {
   @Field()
   name: string
+
+  @Field(() => GraphQLString, { nullable: true })
+  type?: 'chatbot'
 
   @Field(() => ID, { nullable: true })
   runOnFailure?: Reference<Workflow>

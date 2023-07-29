@@ -17,6 +17,7 @@ import { BobascanDefinition } from './integration-definitions/bobascan.definitio
 import { BscscanDefinition } from './integration-definitions/bscscan.definition'
 import { BttcscanDefinition } from './integration-definitions/bttcscan.definition'
 import { CeloscanDefinition } from './integration-definitions/celoscan.definition'
+import { ChatbotDefinition } from './integration-definitions/chatbot/chatbot.definition'
 import { ClvscanDefinition } from './integration-definitions/clvscan.definition'
 import { CoinbaseDefinition } from './integration-definitions/coinbase.definition'
 import { CoinMarketCapDefinition } from './integration-definitions/coinmarketcap.definition'
@@ -89,6 +90,7 @@ export class IntegrationDefinitionFactory {
     bttcscan: BttcscanDefinition,
     // calendly: CalendlyDefinition,
     celoscan: CeloscanDefinition,
+    chatbot: ChatbotDefinition,
     // checkly: ChecklyDefinition,
     // circleci: CircleciDefinition,
     clvscan: ClvscanDefinition,
