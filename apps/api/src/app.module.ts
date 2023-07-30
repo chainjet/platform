@@ -14,6 +14,7 @@ import { AppService } from './app.service'
 import { AsyncSchemaModule } from './async-schema/async-schema.module'
 import { AuthModule } from './auth/auth.module'
 import { CompilerModule } from './compiler/compiler.module'
+import { ContactsModule } from './contacts/contacts.module'
 import { ContractsModule } from './contracts/contracts.module'
 import { IntegrationAccountsModule } from './integration-accounts/integration-accounts.module'
 import { IntegrationActionsModule } from './integration-actions/integration-actions.module'
@@ -61,6 +62,7 @@ import { WorkflowsModule } from './workflows/workflows.module'
     CompilerModule,
     TemplatesModule,
     UserDatabaseModule,
+    ContactsModule,
   ],
   controllers: [AppController, SubscriptionController],
   providers: [AppService, PlanSchedulerService, AiResolver],

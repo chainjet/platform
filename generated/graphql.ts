@@ -154,6 +154,11 @@ export enum UserDatabaseItemSortFields {
     createdAt = "createdAt"
 }
 
+export enum ContactSortFields {
+    id = "id",
+    createdAt = "createdAt"
+}
+
 export interface CursorPaging {
     before?: Nullable<ConnectionCursor>;
     after?: Nullable<ConnectionCursor>;
@@ -520,6 +525,19 @@ export interface UserDatabaseItemSort {
     nulls?: Nullable<SortNulls>;
 }
 
+export interface ContactFilter {
+    and?: Nullable<ContactFilter[]>;
+    or?: Nullable<ContactFilter[]>;
+    id?: Nullable<IDFilterComparison>;
+    createdAt?: Nullable<DateFieldComparison>;
+}
+
+export interface ContactSort {
+    field: ContactSortFields;
+    direction: SortDirection;
+    nulls?: Nullable<SortNulls>;
+}
+
 export interface UpdateOneUserInput {
     id: string;
     update: UpdateUserInput;
@@ -865,6 +883,60 @@ export interface DeleteManyUserDatabaseItemsInput {
 export interface UserDatabaseItemDeleteFilter {
     and?: Nullable<UserDatabaseItemDeleteFilter[]>;
     or?: Nullable<UserDatabaseItemDeleteFilter[]>;
+    id?: Nullable<IDFilterComparison>;
+    createdAt?: Nullable<DateFieldComparison>;
+}
+
+export interface CreateOneContactInput {
+    contact: CreateContact;
+}
+
+export interface CreateContact {
+    id?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
+    address?: Nullable<string>;
+    tags?: Nullable<string[]>;
+}
+
+export interface CreateManyContactsInput {
+    contacts: CreateContact[];
+}
+
+export interface UpdateOneContactInput {
+    id: string;
+    update: UpdateContact;
+}
+
+export interface UpdateContact {
+    id?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
+    address?: Nullable<string>;
+    tags?: Nullable<string[]>;
+}
+
+export interface UpdateManyContactsInput {
+    filter: ContactUpdateFilter;
+    update: UpdateContact;
+}
+
+export interface ContactUpdateFilter {
+    and?: Nullable<ContactUpdateFilter[]>;
+    or?: Nullable<ContactUpdateFilter[]>;
+    id?: Nullable<IDFilterComparison>;
+    createdAt?: Nullable<DateFieldComparison>;
+}
+
+export interface DeleteOneContactInput {
+    id: string;
+}
+
+export interface DeleteManyContactsInput {
+    filter: ContactDeleteFilter;
+}
+
+export interface ContactDeleteFilter {
+    and?: Nullable<ContactDeleteFilter[]>;
+    or?: Nullable<ContactDeleteFilter[]>;
     id?: Nullable<IDFilterComparison>;
     createdAt?: Nullable<DateFieldComparison>;
 }
@@ -1385,6 +1457,30 @@ export interface AsyncSchema {
     schemaExtension: JSONObject;
 }
 
+export interface Contact {
+    id: string;
+    createdAt: DateTime;
+    address: string;
+    tags?: Nullable<string[]>;
+}
+
+export interface ContactDeleteResponse {
+    id?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
+    address?: Nullable<string>;
+    tags?: Nullable<string[]>;
+}
+
+export interface ContactEdge {
+    node: Contact;
+    cursor: ConnectionCursor;
+}
+
+export interface ContactConnection {
+    pageInfo: PageInfo;
+    edges: ContactEdge[];
+}
+
 export interface ContractSchema {
     id: string;
     chainId: number;
@@ -1461,6 +1557,8 @@ export interface IQuery {
     userDatabases(paging?: Nullable<CursorPaging>, filter?: Nullable<UserDatabaseFilter>, sorting?: Nullable<UserDatabaseSort[]>): UserDatabaseConnection | Promise<UserDatabaseConnection>;
     userDatabaseItem(id: string): UserDatabaseItem | Promise<UserDatabaseItem>;
     userDatabaseItems(paging?: Nullable<CursorPaging>, filter?: Nullable<UserDatabaseItemFilter>, sorting?: Nullable<UserDatabaseItemSort[]>): UserDatabaseItemConnection | Promise<UserDatabaseItemConnection>;
+    contact(id: string): Contact | Promise<Contact>;
+    contacts(paging?: Nullable<CursorPaging>, filter?: Nullable<ContactFilter>, sorting?: Nullable<ContactSort[]>): ContactConnection | Promise<ContactConnection>;
 }
 
 export interface IMutation {
@@ -1516,6 +1614,12 @@ export interface IMutation {
     updateManyUserDatabaseItems(input: UpdateManyUserDatabaseItemsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
     deleteOneUserDatabaseItem(input: DeleteOneUserDatabaseItemInput): UserDatabaseItemDeleteResponse | Promise<UserDatabaseItemDeleteResponse>;
     deleteManyUserDatabaseItems(input: DeleteManyUserDatabaseItemsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
+    createOneContact(input: CreateOneContactInput): Contact | Promise<Contact>;
+    createManyContacts(input: CreateManyContactsInput): Contact[] | Promise<Contact[]>;
+    updateOneContact(input: UpdateOneContactInput): Contact | Promise<Contact>;
+    updateManyContacts(input: UpdateManyContactsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
+    deleteOneContact(input: DeleteOneContactInput): ContactDeleteResponse | Promise<ContactDeleteResponse>;
+    deleteManyContacts(input: DeleteManyContactsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
 }
 
 export type DateTime = any;
