@@ -9,6 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        dockerfile: [api, blockchain-listener, scheduler]
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -22,10 +26,10 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-      - name: Build and push Docker image API
+      - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./apps/api/Dockerfile
+          file: ./apps/${{ matrix.dockerfile }}/Dockerfile
           push: true
-          tags: chainjet/api:latest
+          tags: chainjet/${{ matrix.dockerfile }}:latest

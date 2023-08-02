@@ -1,10 +1,11 @@
-FROM node:14
+FROM node:18
 
-# context path: ./backend
-COPY . /app/chainjet/backend
-WORKDIR /app/chainjet/backend
+COPY ../.. /app
+WORKDIR /app
 
 RUN yarn
 RUN yarn build scheduler
 
-CMD ["yarn", "start:prod:scheduler"]
+CMD [ "node", "dist/apps/scheduler/main" ]
+
+EXPOSE 8000

@@ -1,7 +1,7 @@
 FROM node:18
 
-COPY ../.. /app/chainjet/backend
-WORKDIR /app/chainjet/backend
+COPY ../.. /app
+WORKDIR /app
 
 RUN yarn
 RUN yarn build api
