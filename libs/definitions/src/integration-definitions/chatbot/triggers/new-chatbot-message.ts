@@ -3,7 +3,7 @@ import { OperationTrigger } from '@app/definitions/operation-trigger'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { JSONSchema7 } from 'json-schema'
 
-export class NewMessageTrigger extends OperationTrigger {
+export class NewChatbotMessageTrigger extends OperationTrigger {
   idKey = 'items[].id'
   key = 'newChatbotMessage'
   name = 'New Chatbot Message'
@@ -37,9 +37,31 @@ export class NewMessageTrigger extends OperationTrigger {
     },
   }
   outputs: JSONSchema7 = {
-    type: 'object',
     properties: {
-      // TODO
+      id: {
+        title: 'Message ID',
+        type: 'string',
+      },
+      content: {
+        type: 'string',
+      },
+      contentTopic: {
+        type: 'string',
+      },
+      sent: {
+        type: 'string',
+      },
+      conversation: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'string',
+          },
+          createdAt: {
+            type: 'string',
+          },
+        },
+      },
     },
   }
 

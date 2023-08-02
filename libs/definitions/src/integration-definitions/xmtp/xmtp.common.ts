@@ -1,6 +1,18 @@
 import { DecodedMessage } from '@xmtp/xmtp-js'
 import { JSONSchema7 } from 'json-schema'
 
+export interface XmtpMessageOutput {
+  id: string
+  senderAddress: string
+  recipientAddress: string | undefined
+  content: any
+  contentTopic: string
+  sent: Date
+  error: Error | undefined
+  messageVersion: 'v1' | 'v2'
+  conversation: { id: string; topic: string; createdAt: Date; peerAddress: string; link: string }
+}
+
 export const xmtpMessageSchema: JSONSchema7 = {
   type: 'object',
   properties: {
@@ -52,7 +64,7 @@ export const xmtpMessageSchema: JSONSchema7 = {
   },
 }
 
-export function mapXmtpMessageToOutput(message: DecodedMessage) {
+export function mapXmtpMessageToOutput(message: DecodedMessage): XmtpMessageOutput {
   const link = !message.conversation.context?.conversationId
     ? `https://xmtp.chat/dm/${message.conversation.peerAddress}`
     : message.conversation.context?.conversationId?.startsWith('lens.dev/dm/')

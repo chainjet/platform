@@ -71,7 +71,7 @@ export class SendMessageAddressAction extends OperationOffChain {
     const message = await conversation.send(inputs.message)
 
     return {
-      outputs: mapXmtpMessageToOutput(message),
+      outputs: mapXmtpMessageToOutput(message) as any,
     }
   }
 }
