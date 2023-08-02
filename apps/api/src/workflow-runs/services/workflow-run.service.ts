@@ -3,7 +3,7 @@ import { EmailService } from '@app/emails/services/email.service'
 import { WorkflowDisabledTemplate } from '@app/emails/templates/workflowDisabledTemplate'
 import { ChainId } from '@blockchain/blockchain/types/ChainId'
 import { CACHE_MANAGER, Inject, Injectable, Logger } from '@nestjs/common'
-import { mongoose, ReturnModelType } from '@typegoose/typegoose'
+import { ReturnModelType, mongoose } from '@typegoose/typegoose'
 import { ObjectId } from 'bson'
 import { Cache } from 'cache-manager'
 import { InjectModel } from 'nestjs-typegoose'
@@ -191,12 +191,13 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     workflowRunId: ObjectId,
     workflowRunAction: WorkflowRunAction,
     transactions?: Array<{ hash: string; chainId: ChainId }>,
+    sleeping?: boolean,
   ): Promise<void> {
     await this.update(
       { _id: workflowRunId, 'actionRuns._id': workflowRunAction._id },
       {
         $set: {
-          'actionRuns.$.status': WorkflowRunStatus.completed,
+          'actionRuns.$.status': sleeping ? WorkflowRunStatus.sleeping : WorkflowRunStatus.completed,
           'actionRuns.$.finishedAt': Date.now(),
           'actionRuns.$.transactions': transactions,
           lockedAt: new Date(),
@@ -207,7 +208,6 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     await this.userService.incrementOperationsUsed(userId, true)
   }
 
-  // TODO only increase operations used if failed was because of a client issue
   async markActionAsFailed(
     workflow: Workflow,
     workflowRun: WorkflowRun,
@@ -249,18 +249,22 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
   }
 
   async sleepWorkflowRun(
+    workflow: Workflow,
     workflowRun: WorkflowRun,
     workflowAction: WorkflowAction,
     nextActionInputs: Record<string, Record<string, unknown>>,
-    sleepUntil: Date,
     triggerItemId: string | number,
+    sleepUntil?: Date,
+    uniqueGroup?: string,
   ): Promise<void> {
     await this.workflowSleepService.createOne({
+      workflow: workflow._id,
       workflowRun: workflowRun._id,
       workflowAction: workflowAction._id,
       nextActionInputs,
-      sleepUntil,
       itemId: triggerItemId,
+      sleepUntil,
+      uniqueGroup,
     })
     await this.updateOne(workflowRun.id, { status: WorkflowRunStatus.sleeping })
   }

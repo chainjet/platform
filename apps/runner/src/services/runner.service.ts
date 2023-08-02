@@ -398,7 +398,7 @@ export class RunnerService {
     }
   }
 
-  private async runWorkflowActionsTree(
+  async runWorkflowActionsTree(
     workflow: Workflow,
     workflowAction: WorkflowAction,
     previousOutputs: Record<string, Record<string, unknown>>,
@@ -492,6 +492,7 @@ export class RunnerService {
         workflowRun._id,
         workflowRunAction,
         runResponse.transactions,
+        !!runResponse.sleepUniqueGroup,
       )
     } catch (e) {
       if (e instanceof AuthenticationError) {
@@ -572,13 +573,15 @@ export class RunnerService {
       [workflowAction.id]: runResponse.outputs,
     }
 
-    if (runResponse.sleepUntil) {
+    if (runResponse.sleepUntil || runResponse.sleepUniqueGroup) {
       await this.workflowRunService.sleepWorkflowRun(
+        workflow,
         workflowRun,
         workflowAction,
         nextActionInputs,
-        runResponse.sleepUntil,
         triggerItemId,
+        runResponse.sleepUntil,
+        runResponse.sleepUniqueGroup,
       )
       return WorkflowRunStatus.sleeping
     }

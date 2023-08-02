@@ -51,6 +51,7 @@ export interface RunResponse {
   outputs: RunOutputs
   condition?: boolean
   sleepUntil?: Date
+  sleepUniqueGroup?: string
   store?: Record<string, any>
   refreshedCredentials?: Record<string, any>
   transactions?: Array<{ hash: string; chainId: number }>
