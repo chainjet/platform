@@ -747,6 +747,13 @@ type WorkflowRunActionConnection {
   edges: [WorkflowRunActionEdge!]!
 }
 
+type Contact {
+  id: ID!
+  createdAt: DateTime!
+  address: String!
+  tags: [String!]
+}
+
 type WorkflowTriggerDeleteResponse {
   id: ID
   createdAt: DateTime
@@ -822,6 +829,29 @@ type WorkflowNextActionConnection {
   edges: [WorkflowNextActionEdge!]!
 }
 
+type ContactDeleteResponse {
+  id: ID
+  createdAt: DateTime
+  address: String
+  tags: [String!]
+}
+
+type ContactEdge {
+  """The node containing the Contact"""
+  node: Contact!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type ContactConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [ContactEdge!]!
+}
+
 type ConnectAccountDataPayload {
   data: JSONObject!
 }
@@ -882,36 +912,6 @@ type SendPromptPayload {
 type AsyncSchema {
   schemas: JSONObject!
   schemaExtension: JSONObject!
-}
-
-type Contact {
-  id: ID!
-  createdAt: DateTime!
-  address: String!
-  tags: [String!]
-}
-
-type ContactDeleteResponse {
-  id: ID
-  createdAt: DateTime
-  address: String
-  tags: [String!]
-}
-
-type ContactEdge {
-  """The node containing the Contact"""
-  node: Contact!
-
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
-}
-
-type ContactConnection {
-  """Paging information"""
-  pageInfo: PageInfo!
-
-  """Array of edges."""
-  edges: [ContactEdge!]!
 }
 
 type ContractSchema {
@@ -1157,6 +1157,20 @@ type Query {
     """Specify to sort results."""
     sorting: [WorkflowRunActionSort!] = []
   ): WorkflowRunActionConnection!
+  contact(
+    """The id of the record to find."""
+    id: ID!
+  ): Contact!
+  contacts(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: ContactFilter = {}
+
+    """Specify to sort results."""
+    sorting: [ContactSort!] = []
+  ): ContactConnection!
   contractSchema(chainId: Int!, address: String!, type: String!): ContractSchema!
   asyncSchemas(integrationId: String!, accountCredentialId: String!, names: [String!]!, inputs: JSONObject, integrationTriggerId: String, integrationActionId: String): AsyncSchema!
   manyAsyncSchemas(asyncSchemaInputs: [JSONObject!]!): AsyncSchema!
@@ -1188,20 +1202,6 @@ type Query {
     """Specify to sort results."""
     sorting: [UserDatabaseItemSort!] = []
   ): UserDatabaseItemConnection!
-  contact(
-    """The id of the record to find."""
-    id: ID!
-  ): Contact!
-  contacts(
-    """Limit or page results."""
-    paging: CursorPaging = {first: 10}
-
-    """Specify to filter the records returned."""
-    filter: ContactFilter = {}
-
-    """Specify to sort results."""
-    sorting: [ContactSort!] = []
-  ): ContactConnection!
 }
 
 input AccountCredentialFilter {
@@ -1472,6 +1472,24 @@ enum WorkflowRunActionSortFields {
   status
 }
 
+input ContactFilter {
+  and: [ContactFilter!]
+  or: [ContactFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+}
+
+input ContactSort {
+  field: ContactSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum ContactSortFields {
+  id
+  createdAt
+}
+
 input UserDatabaseFilter {
   and: [UserDatabaseFilter!]
   or: [UserDatabaseFilter!]
@@ -1504,24 +1522,6 @@ input UserDatabaseItemSort {
 }
 
 enum UserDatabaseItemSortFields {
-  id
-  createdAt
-}
-
-input ContactFilter {
-  and: [ContactFilter!]
-  or: [ContactFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-}
-
-input ContactSort {
-  field: ContactSortFields!
-  direction: SortDirection!
-  nulls: SortNulls
-}
-
-enum ContactSortFields {
   id
   createdAt
 }
@@ -1567,6 +1567,12 @@ type Mutation {
   testWorkflowTrigger(id: String!): WorkflowTrigger!
   runWorkflowTriggerLastEvent(id: String!): WorkflowTrigger!
   runWorkflowTriggerHistory(id: String!): WorkflowTrigger!
+  createOneContact(input: CreateOneContactInput!): Contact!
+  createManyContacts(input: CreateManyContactsInput!): [Contact!]!
+  updateOneContact(input: UpdateOneContactInput!): Contact!
+  updateManyContacts(input: UpdateManyContactsInput!): UpdateManyResponse!
+  deleteOneContact(input: DeleteOneContactInput!): ContactDeleteResponse!
+  deleteManyContacts(input: DeleteManyContactsInput!): DeleteManyResponse!
   createOneUserDatabase(input: CreateOneUserDatabaseInput!): UserDatabase!
   createManyUserDatabases(input: CreateManyUserDatabasesInput!): [UserDatabase!]!
   updateOneUserDatabase(input: UpdateOneUserDatabaseInput!): UserDatabase!
@@ -1579,12 +1585,6 @@ type Mutation {
   updateManyUserDatabaseItems(input: UpdateManyUserDatabaseItemsInput!): UpdateManyResponse!
   deleteOneUserDatabaseItem(input: DeleteOneUserDatabaseItemInput!): UserDatabaseItemDeleteResponse!
   deleteManyUserDatabaseItems(input: DeleteManyUserDatabaseItemsInput!): DeleteManyResponse!
-  createOneContact(input: CreateOneContactInput!): Contact!
-  createManyContacts(input: CreateManyContactsInput!): [Contact!]!
-  updateOneContact(input: UpdateOneContactInput!): Contact!
-  updateManyContacts(input: UpdateManyContactsInput!): UpdateManyResponse!
-  deleteOneContact(input: DeleteOneContactInput!): ContactDeleteResponse!
-  deleteManyContacts(input: DeleteManyContactsInput!): DeleteManyResponse!
 }
 
 input UpdateOneUserInput {
@@ -1879,6 +1879,70 @@ input WorkflowTriggerDeleteFilter {
   workflow: IDFilterComparison
 }
 
+input CreateOneContactInput {
+  """The record to create"""
+  contact: CreateContact!
+}
+
+input CreateContact {
+  id: ID
+  createdAt: DateTime
+  address: String
+  tags: [String!]
+}
+
+input CreateManyContactsInput {
+  """Array of records to create"""
+  contacts: [CreateContact!]!
+}
+
+input UpdateOneContactInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateContact!
+}
+
+input UpdateContact {
+  id: ID
+  createdAt: DateTime
+  address: String
+  tags: [String!]
+}
+
+input UpdateManyContactsInput {
+  """Filter used to find fields to update"""
+  filter: ContactUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateContact!
+}
+
+input ContactUpdateFilter {
+  and: [ContactUpdateFilter!]
+  or: [ContactUpdateFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+}
+
+input DeleteOneContactInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyContactsInput {
+  """Filter to find records to delete"""
+  filter: ContactDeleteFilter!
+}
+
+input ContactDeleteFilter {
+  and: [ContactDeleteFilter!]
+  or: [ContactDeleteFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+}
+
 input CreateOneUserDatabaseInput {
   """The record to create"""
   userDatabase: CreateUserDatabase!
@@ -1995,70 +2059,6 @@ input DeleteManyUserDatabaseItemsInput {
 input UserDatabaseItemDeleteFilter {
   and: [UserDatabaseItemDeleteFilter!]
   or: [UserDatabaseItemDeleteFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-}
-
-input CreateOneContactInput {
-  """The record to create"""
-  contact: CreateContact!
-}
-
-input CreateContact {
-  id: ID
-  createdAt: DateTime
-  address: String
-  tags: [String!]
-}
-
-input CreateManyContactsInput {
-  """Array of records to create"""
-  contacts: [CreateContact!]!
-}
-
-input UpdateOneContactInput {
-  """The id of the record to update"""
-  id: ID!
-
-  """The update to apply."""
-  update: UpdateContact!
-}
-
-input UpdateContact {
-  id: ID
-  createdAt: DateTime
-  address: String
-  tags: [String!]
-}
-
-input UpdateManyContactsInput {
-  """Filter used to find fields to update"""
-  filter: ContactUpdateFilter!
-
-  """The update to apply to all records found using the filter"""
-  update: UpdateContact!
-}
-
-input ContactUpdateFilter {
-  and: [ContactUpdateFilter!]
-  or: [ContactUpdateFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-}
-
-input DeleteOneContactInput {
-  """The id of the record to delete."""
-  id: ID!
-}
-
-input DeleteManyContactsInput {
-  """Filter to find records to delete"""
-  filter: ContactDeleteFilter!
-}
-
-input ContactDeleteFilter {
-  and: [ContactDeleteFilter!]
-  or: [ContactDeleteFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
 }

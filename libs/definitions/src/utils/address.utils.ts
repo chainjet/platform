@@ -25,3 +25,29 @@ export async function resolveAddressName(addressName: string) {
   }
   return addressName
 }
+
+export async function getWalletName(address: string) {
+  const query = `
+  query {
+    Wallet(input: {identity: "${address}", blockchain: ethereum}) {
+      primaryDomain {
+        name
+      }
+      socials {
+        dappName
+        profileName
+      }
+    }
+  }`
+  const res = await sendGraphqlQuery('https://api.airstack.xyz/gql', query, {
+    Authorization: process.env.AIRSTACK_API_KEY,
+  })
+  const wallet = res?.data?.Wallet
+  if (wallet?.primaryDomain?.name) {
+    return wallet.primaryDomain.name
+  }
+  if (wallet?.socials?.[0]?.dappName) {
+    return wallet.socials[0].dappName
+  }
+  return ''
+}

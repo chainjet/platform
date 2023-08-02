@@ -1,4 +1,4 @@
-import { calculateExpression, parseInput } from './input.utils'
+import { calculateExpression, findContactKeys, parseInput } from './input.utils'
 
 describe('InputUtils', () => {
   describe('parseInputs', () => {
@@ -124,6 +124,49 @@ describe('InputUtils', () => {
           calculateExpression('substring(foo.str, foo.s, foo.e)', { foo: { str: 'some string', s: 5, e: 8 } }),
         ).toBe('str')
       })
+    })
+  })
+
+  describe('findContactKeys', () => {
+    it('should find all keys in a given object', () => {
+      const input = { a: 'foo', b: '{{contact.bar}}', c: 'foo {{ contact.baz }} bla', d: { e: '{{ contact.abc }}' } }
+      const result = findContactKeys(input)
+      expect(result).toEqual(['bar', 'baz', 'abc'])
+    })
+
+    it('should find keys in a deeply nested object', () => {
+      const input = { a: 'foo', b: 'bar', c: { d: { e: { f: '{{contact.abc}}' } } } }
+      const result = findContactKeys(input)
+      expect(result).toEqual(['abc'])
+    })
+
+    it('should find multiple keys in a string', () => {
+      const input = { a: 'foo', b: 'bar', c: 'foo {{ contact.baz }} bla {{contact.abc}}' }
+      const result = findContactKeys(input)
+      expect(result).toEqual(['baz', 'abc'])
+    })
+
+    it('should find keys in an array', () => {
+      const input = { a: 'foo', b: [{ c: 'test {{ contact.bar }}' }, { d: '{{contact.abc}}' }] }
+      const result = findContactKeys(input)
+      expect(result).toEqual(['bar', 'abc'])
+    })
+
+    it('should return an empty array when no keys are found', () => {
+      const input = { a: 'foo', b: 'bar', c: 'baz', d: { e: 'abc' } }
+      const result = findContactKeys(input)
+      expect(result).toEqual([])
+    })
+
+    it('should not replace other interpolations', () => {
+      const input = {
+        a: 'foo',
+        b: '{{trigger.bar}}',
+        c: 'foo {{ trigger.baz }} {{ contact.xyz }}.',
+        d: { e: '{{ trigger.abc }}' },
+      }
+      const result = findContactKeys(input)
+      expect(result).toEqual(['xyz'])
     })
   })
 })

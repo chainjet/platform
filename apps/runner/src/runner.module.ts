@@ -21,6 +21,8 @@ import { OperationRunnerService } from './services/operation-runner.service'
 import { RunnerService } from './services/runner.service'
 import { StaticRunner } from './services/static-runner.service'
 
+import { ContactsModule } from 'apps/api/src/contacts/contacts.module'
+
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -43,6 +45,7 @@ import { StaticRunner } from './services/static-runner.service'
     AuthModule,
     DefinitionsModule,
     BlockchainModule,
+    ContactsModule,
   ],
   providers: [RunnerService, OperationRunnerService, StaticRunner, EvmRunnerService],
   exports: [RunnerService, OperationRunnerService, StaticRunner],

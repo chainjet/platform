@@ -148,3 +148,24 @@ function stringifyInput(input: unknown): string {
   }
   return (input as string) ?? ''
 }
+
+export function findContactKeys(input: Record<string, any>): string[] {
+  const regex = /{{\s*contact\.(\w+)\s*}}/g
+  let matches: string[] = []
+
+  for (let key in input) {
+    if (typeof input[key] === 'object' && input[key] !== null) {
+      let keys = findContactKeys(input[key])
+      for (let key of keys) {
+        matches.push(key)
+      }
+    } else if (typeof input[key] === 'string') {
+      let match
+      while ((match = regex.exec(input[key])) !== null) {
+        matches.push(match[1])
+      }
+    }
+  }
+
+  return matches
+}

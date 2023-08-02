@@ -4,6 +4,8 @@ import { isEmptyObj } from '@app/common/utils/object.utils'
 import { Definition, IntegrationDefinitionFactory, RunResponse } from '@app/definitions'
 import { generateSchemaFromObject } from '@app/definitions/schema/utils/jsonSchemaUtils'
 import { Injectable, Logger } from '@nestjs/common'
+import { ContactService } from 'apps/api/src/contacts/services/contact.service'
+import { User } from 'apps/api/src/users/entities/user'
 import { UserService } from 'apps/api/src/users/services/user.service'
 import { WorkflowUsedIdService } from 'apps/api/src/workflow-triggers/services/workflow-used-id.service'
 import { ObjectId } from 'bson'
@@ -32,7 +34,7 @@ import { WorkflowTriggerService } from '../../../api/src/workflow-triggers/servi
 import { Workflow } from '../../../api/src/workflows/entities/workflow'
 import { WorkflowService } from '../../../api/src/workflows/services/workflow.service'
 import { OperationDailyLimitError } from '../errors/operation-daily-limit.error'
-import { parseStepInputs } from '../utils/input.utils'
+import { findContactKeys, parseStepInputs } from '../utils/input.utils'
 import { extractTriggerItems } from '../utils/trigger.utils'
 import { OperationRunOptions, OperationRunnerService } from './operation-runner.service'
 
@@ -64,6 +66,7 @@ export class RunnerService {
     private readonly workflowUsedIdService: WorkflowUsedIdService,
     private readonly accountCredentialService: AccountCredentialService,
     private readonly integrationDefinitionFactory: IntegrationDefinitionFactory,
+    private readonly contactService: ContactService,
   ) {}
 
   onModuleDestroy() {
@@ -450,6 +453,14 @@ export class RunnerService {
 
     let inputs: Record<string, unknown>
     try {
+      if (workflow.type === 'chatbot' && previousOutputs.contact?.address) {
+        previousOutputs.contact = await this.addRequestedContactDetails(
+          previousOutputs.contact,
+          workflowAction.inputs,
+          user,
+        )
+      }
+
       // don't parse inputs for the internal code action
       if (integration.key === 'internal' && integrationAction.key === 'runInternalCode') {
         inputs = workflowAction.inputs
@@ -807,6 +818,16 @@ export class RunnerService {
       await Promise.all(promises)
       await this.workflowRunService.markWorkflowRunAsCompleted(workflowRun._id)
     }
+  }
+
+  async addRequestedContactDetails(contact: Record<string, any>, inputs: Record<string, unknown>, user: User) {
+    const contactKeys = findContactKeys(inputs)
+    for (const key of contactKeys) {
+      if (!contact[key]) {
+        contact[key] = await this.contactService.resolveContactData(contact.address, key, user)
+      }
+    }
+    return contact
   }
 
   private async onTriggerFailure(
