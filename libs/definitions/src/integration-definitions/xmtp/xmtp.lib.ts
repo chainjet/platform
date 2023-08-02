@@ -6,7 +6,11 @@ export const XmtpLib = {
   async getClient(key: string): Promise<Client> {
     if (!clientsCache.has(key)) {
       const keys = new Uint8Array(key.split(',').map((key: string) => Number(key)))
-      const client = await Client.create(null, { privateKeyOverride: keys, env: 'production' })
+      const client = await Client.create(null, {
+        privateKeyOverride: keys,
+        env: 'production',
+        appVersion: 'ChainJet/1.0.0',
+      })
       clientsCache.set(key, client)
     }
     return clientsCache.get(key)!
