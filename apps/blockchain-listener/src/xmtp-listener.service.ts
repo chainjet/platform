@@ -112,8 +112,8 @@ export class XmtpListenerService {
         const hookTriggerOutputs = {
           id: outputs.id,
           outputs: {
-            [workflowTrigger.id]: outputs,
-            trigger: outputs,
+            [workflowTrigger.id]: outputs as Record<string, any>,
+            trigger: outputs as Record<string, any>,
           },
         }
 
