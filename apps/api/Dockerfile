@@ -1,12 +1,11 @@
-FROM node:14
+FROM node:18
 
-# context path: ./backend
 COPY ../.. /app/chainjet/backend
 WORKDIR /app/chainjet/backend
 
 RUN yarn
 RUN yarn build api
 
-CMD [ "yarn", "start:prod:api" ]
+CMD [ "node", "dist/apps/api/main" ]
 
 EXPOSE 8000
