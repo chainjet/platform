@@ -4,6 +4,7 @@ import { Injectable, Logger } from '@nestjs/common'
 import { Interval } from '@nestjs/schedule'
 import { Client, DecodedMessage } from '@xmtp/xmtp-js'
 import { AccountCredentialService } from 'apps/api/src/account-credentials/services/account-credentials.service'
+import { ContactService } from 'apps/api/src/contacts/services/contact.service'
 import { IntegrationAccount } from 'apps/api/src/integration-accounts/entities/integration-account'
 import { IntegrationAccountService } from 'apps/api/src/integration-accounts/services/integration-account.service'
 import { IntegrationTrigger } from 'apps/api/src/integration-triggers/entities/integration-trigger'
@@ -21,7 +22,7 @@ import { WorkflowUsedIdService } from 'apps/api/src/workflow-triggers/services/w
 import { Workflow } from 'apps/api/src/workflows/entities/workflow'
 import { WorkflowService } from 'apps/api/src/workflows/services/workflow.service'
 import { RunnerService } from 'apps/runner/src/services/runner.service'
-import { shuffle } from 'lodash'
+import { shuffle, uniq } from 'lodash'
 import { Types } from 'mongoose'
 
 @Injectable()
@@ -46,12 +47,13 @@ export class ChatbotListenerService {
     private runnerService: RunnerService,
     private accountCredentialService: AccountCredentialService,
     private integrationAccountService: IntegrationAccountService,
+    private contactService: ContactService,
   ) {}
 
   async onModuleInit() {
     this.logger.log(`Starting XMTP events listener`)
     await this.fetchIntegrationData()
-    this.startXmtpListener()
+    this.startChatbotListener()
   }
 
   async fetchIntegrationData() {
@@ -75,7 +77,7 @@ export class ChatbotListenerService {
   // TODO we need the interval to start listening for new triggers after the server has started.
   //      it could be more efficient if the api notifies when this happens rather than polling every 30 seconds.
   @Interval(30 * 1000)
-  async startXmtpListener() {
+  async startChatbotListener() {
     if (process.env.XMTP_LISTENER_DISABLED === 'true') {
       return
     }
@@ -154,6 +156,26 @@ export class ChatbotListenerService {
     if (workflowSleeps.length > 0) {
       void this.continueConversation(workflow, workflowTrigger, workflowSleeps, outputs)
       return
+    }
+
+    const tags = workflowTrigger.inputs?.tags?.split(',').map((tag) => tag.trim()) ?? []
+    const contact = await this.contactService.findOne({
+      owner: workflow.owner,
+      address: outputs.senderAddress,
+    })
+    if (!contact) {
+      await this.contactService.createOne({
+        owner: workflow.owner,
+        address: outputs.senderAddress,
+        tags,
+      })
+    } else if (workflowTrigger.inputs?.tags) {
+      const newTags = uniq([...contact.tags, ...tags])
+      if (newTags.length !== contact.tags.length) {
+        await this.contactService.updateById(contact._id, {
+          tags: contact.tags,
+        })
+      }
     }
 
     const hookTriggerOutputs = {

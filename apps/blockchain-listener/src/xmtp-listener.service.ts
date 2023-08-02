@@ -23,6 +23,9 @@ export class XmtpListenerService {
 
   private listeners: { [key: string]: boolean } = {}
 
+  private integration: Integration
+  private integrationTrigger: IntegrationTrigger
+
   constructor(
     private integrationService: IntegrationService,
     private integrationTriggerService: IntegrationTriggerService,
@@ -36,9 +39,24 @@ export class XmtpListenerService {
     private userService: UserService,
   ) {}
 
-  onModuleInit() {
+  async onModuleInit() {
     this.logger.log(`Starting XMTP events listener`)
+    await this.fetchIntegrationData()
     this.startXmtpListener()
+  }
+
+  async fetchIntegrationData() {
+    this.integration = (await this.integrationService.findOne({ key: 'xmtp', version: '1' })) as Integration
+    if (!this.integration) {
+      throw new Error(`XMTP integration not found`)
+    }
+    this.integrationTrigger = (await this.integrationTriggerService.findOne({
+      key: 'newMessage',
+      integration: this.integration.id,
+    })) as IntegrationTrigger
+    if (!this.integrationTrigger) {
+      throw new Error(`newMessage trigger from XMTP integration not found`)
+    }
   }
 
   // TODO we need the interval to start listening for new triggers after the server has started.
@@ -48,22 +66,9 @@ export class XmtpListenerService {
     if (process.env.XMTP_LISTENER_DISABLED === 'true') {
       return
     }
-    const integration = await this.integrationService.findOne({ key: 'xmtp', version: '1' })
-    if (!integration) {
-      this.logger.error(`XMTP integration not found`)
-      return
-    }
-    const integrationTrigger = await this.integrationTriggerService.findOne({
-      key: 'newMessage',
-      integration: integration.id,
-    })
-    if (!integrationTrigger) {
-      this.logger.error(`newMessage trigger from XMTP integration not found`)
-      return
-    }
 
     const workflowTriggers = await this.workflowTriggerService.find({
-      integrationTrigger: integrationTrigger.id,
+      integrationTrigger: this.integrationTrigger.id,
       enabled: true,
       planLimited: { $ne: true },
       numberOfActions: { $gt: 0 },
@@ -75,15 +80,11 @@ export class XmtpListenerService {
 
     // Listen for new messages without blocking the event loop
     for (const workflowTrigger of shuffledTriggers) {
-      this.listenForNewMessages(integration, integrationTrigger, workflowTrigger)
+      this.listenForNewMessages(workflowTrigger)
     }
   }
 
-  async listenForNewMessages(
-    integration: Integration,
-    integrationTrigger: IntegrationTrigger,
-    workflowTrigger: WorkflowTrigger,
-  ) {
+  async listenForNewMessages(workflowTrigger: WorkflowTrigger) {
     const workflow = await this.workflowService.findOne({ _id: workflowTrigger.workflow })
     if (!workflow) {
       return
@@ -123,8 +124,8 @@ export class XmtpListenerService {
         })
         const rootActions = await this.workflowActionService.find({ workflow: workflow._id, isRootAction: true })
         const workflowRun = await this.workflowRunService.createOneByInstantTrigger(
-          integration,
-          integrationTrigger,
+          this.integration,
+          this.integrationTrigger,
           workflow,
           workflowTrigger,
           rootActions.length > 0,
