@@ -5,6 +5,7 @@ import { forwardRef, Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { ScheduleModule } from '@nestjs/schedule'
 import { AccountCredentialsModule } from 'apps/api/src/account-credentials/account-credentials.module'
+import { ContactsModule } from 'apps/api/src/contacts/contacts.module'
 import { IntegrationAccountsModule } from 'apps/api/src/integration-accounts/integration-accounts.module'
 import { IntegrationTriggersModule } from 'apps/api/src/integration-triggers/integration-triggers.module'
 import { IntegrationsModule } from 'apps/api/src/integrations/integrations.module'
@@ -37,6 +38,7 @@ import { XmtpListenerService } from './xmtp-listener.service'
     AccountCredentialsModule,
     UsersModule,
     UserDatabaseModule,
+    ContactsModule,
   ],
   providers: [BlockchainListenerService, XmtpListenerService, ChatbotListenerService],
 })
