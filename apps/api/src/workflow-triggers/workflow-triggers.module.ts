@@ -5,6 +5,7 @@ import { DefinitionsModule } from '../../../../libs/definitions/src'
 import { RunnerModule } from '../../../runner/src/runner.module'
 import { AccountCredentialsModule } from '../account-credentials/account-credentials.module'
 import { AuthModule } from '../auth/auth.module'
+import { ContactsModule } from '../contacts/contacts.module'
 import { IntegrationAccountsModule } from '../integration-accounts/integration-accounts.module'
 import { IntegrationTriggersModule } from '../integration-triggers/integration-triggers.module'
 import { IntegrationsModule } from '../integrations/integrations.module'
@@ -13,6 +14,7 @@ import { WorkflowActionsModule } from '../workflow-actions/workflow-actions.modu
 import { WorkflowRunsModule } from '../workflow-runs/workflow-runs.module'
 import { WorkflowsModule } from '../workflows/workflows.module'
 import { ChainJetBotController } from './controllers/chainjetbot.controller'
+import { ChatbotController } from './controllers/chatbot.controller'
 import { HooksController } from './controllers/hooks.controller'
 import { WorkflowTrigger, WorkflowTriggerAuthorizer } from './entities/workflow-trigger'
 import { WorkflowUsedId } from './entities/workflow-used-id'
@@ -42,9 +44,10 @@ import { WorkflowUsedIdService } from './services/workflow-used-id.service'
 
     // TODO remove forwardRef once Runner calls are replaced with queues
     forwardRef(() => RunnerModule),
+    ContactsModule,
   ],
   providers: [WorkflowTriggerResolver, WorkflowTriggerService, WorkflowTriggerAuthorizer, WorkflowUsedIdService],
   exports: [WorkflowTriggerService, WorkflowUsedIdService],
-  controllers: [HooksController, ChainJetBotController],
+  controllers: [HooksController, ChainJetBotController, ChatbotController],
 })
 export class WorkflowTriggersModule {}

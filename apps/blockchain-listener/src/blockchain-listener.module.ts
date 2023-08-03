@@ -17,7 +17,6 @@ import { WorkflowTriggersModule } from 'apps/api/src/workflow-triggers/workflow-
 import { WorkflowsModule } from 'apps/api/src/workflows/workflows.module'
 import { RunnerModule } from 'apps/runner/src/runner.module'
 import { BlockchainListenerService } from './blockchain-listener.service'
-import { ChatbotListenerService } from './chatbot-listener.service'
 import { XmtpListenerService } from './xmtp-listener.service'
 
 @Module({
@@ -40,6 +39,6 @@ import { XmtpListenerService } from './xmtp-listener.service'
     UserDatabaseModule,
     ContactsModule,
   ],
-  providers: [BlockchainListenerService, XmtpListenerService, ChatbotListenerService],
+  providers: [BlockchainListenerService, XmtpListenerService],
 })
 export class BlockchainListenerModule {}
