@@ -550,6 +550,36 @@ type UserEdge {
   cursor: ConnectionCursor!
 }
 
+type Contact {
+  id: ID!
+  createdAt: DateTime!
+  address: String!
+  tags: [String!]
+}
+
+type ContactDeleteResponse {
+  id: ID
+  createdAt: DateTime
+  address: String
+  tags: [String!]
+}
+
+type ContactEdge {
+  """The node containing the Contact"""
+  node: Contact!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type ContactConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [ContactEdge!]!
+}
+
 type CompileWorkflow {
   bytecode: String!
   abi: [JSONObject!]!
@@ -747,13 +777,6 @@ type WorkflowRunActionConnection {
   edges: [WorkflowRunActionEdge!]!
 }
 
-type Contact {
-  id: ID!
-  createdAt: DateTime!
-  address: String!
-  tags: [String!]
-}
-
 type WorkflowTriggerDeleteResponse {
   id: ID
   createdAt: DateTime
@@ -827,29 +850,6 @@ type WorkflowNextActionConnection {
 
   """Array of edges."""
   edges: [WorkflowNextActionEdge!]!
-}
-
-type ContactDeleteResponse {
-  id: ID
-  createdAt: DateTime
-  address: String
-  tags: [String!]
-}
-
-type ContactEdge {
-  """The node containing the Contact"""
-  node: Contact!
-
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
-}
-
-type ContactConnection {
-  """Paging information"""
-  pageInfo: PageInfo!
-
-  """Array of edges."""
-  edges: [ContactEdge!]!
 }
 
 type ConnectAccountDataPayload {
@@ -1306,6 +1306,7 @@ input WorkflowFilter {
   id: IDFilterComparison
   createdAt: DateFieldComparison
   name: StringFieldComparison
+  type: StringFieldComparison
 }
 
 input WorkflowSort {
@@ -1318,6 +1319,7 @@ enum WorkflowSortFields {
   id
   createdAt
   name
+  type
 }
 
 input TemplateFilter {
@@ -1326,6 +1328,7 @@ input TemplateFilter {
   id: IDFilterComparison
   createdAt: DateFieldComparison
   name: StringFieldComparison
+  type: StringFieldComparison
   integrationKey: StringFieldComparison
 }
 
@@ -1339,6 +1342,7 @@ enum TemplateSortFields {
   id
   createdAt
   name
+  type
   integrationKey
 }
 
@@ -1715,6 +1719,7 @@ input WorkflowUpdateFilter {
   id: IDFilterComparison
   createdAt: DateFieldComparison
   name: StringFieldComparison
+  type: StringFieldComparison
 }
 
 input DeleteOneWorkflowInput {
@@ -1733,6 +1738,7 @@ input WorkflowDeleteFilter {
   id: IDFilterComparison
   createdAt: DateFieldComparison
   name: StringFieldComparison
+  type: StringFieldComparison
 }
 
 input CreateOneWorkflowActionInput {

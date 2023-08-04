@@ -77,7 +77,7 @@ export class Workflow extends BaseEntity {
   /**
    * Special workflow type
    */
-  @Field(() => GraphQLString, { nullable: true })
+  @FilterableField(() => GraphQLString, { nullable: true })
   @prop()
   type?: 'chatbot'
 

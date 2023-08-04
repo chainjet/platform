@@ -106,13 +106,15 @@ export enum IntegrationAccountSortFields {
 export enum WorkflowSortFields {
     id = "id",
     createdAt = "createdAt",
-    name = "name"
+    name = "name",
+    type = "type"
 }
 
 export enum TemplateSortFields {
     id = "id",
     createdAt = "createdAt",
     name = "name",
+    type = "type",
     integrationKey = "integrationKey"
 }
 
@@ -374,6 +376,7 @@ export interface WorkflowFilter {
     id?: Nullable<IDFilterComparison>;
     createdAt?: Nullable<DateFieldComparison>;
     name?: Nullable<StringFieldComparison>;
+    type?: Nullable<StringFieldComparison>;
 }
 
 export interface WorkflowSort {
@@ -388,6 +391,7 @@ export interface TemplateFilter {
     id?: Nullable<IDFilterComparison>;
     createdAt?: Nullable<DateFieldComparison>;
     name?: Nullable<StringFieldComparison>;
+    type?: Nullable<StringFieldComparison>;
     integrationKey?: Nullable<StringFieldComparison>;
 }
 
@@ -645,6 +649,7 @@ export interface WorkflowUpdateFilter {
     id?: Nullable<IDFilterComparison>;
     createdAt?: Nullable<DateFieldComparison>;
     name?: Nullable<StringFieldComparison>;
+    type?: Nullable<StringFieldComparison>;
 }
 
 export interface DeleteOneWorkflowInput {
@@ -661,6 +666,7 @@ export interface WorkflowDeleteFilter {
     id?: Nullable<IDFilterComparison>;
     createdAt?: Nullable<DateFieldComparison>;
     name?: Nullable<StringFieldComparison>;
+    type?: Nullable<StringFieldComparison>;
 }
 
 export interface CreateOneWorkflowActionInput {
@@ -1201,6 +1207,30 @@ export interface UserEdge {
     cursor: ConnectionCursor;
 }
 
+export interface Contact {
+    id: string;
+    createdAt: DateTime;
+    address: string;
+    tags?: Nullable<string[]>;
+}
+
+export interface ContactDeleteResponse {
+    id?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
+    address?: Nullable<string>;
+    tags?: Nullable<string[]>;
+}
+
+export interface ContactEdge {
+    node: Contact;
+    cursor: ConnectionCursor;
+}
+
+export interface ContactConnection {
+    pageInfo: PageInfo;
+    edges: ContactEdge[];
+}
+
 export interface CompileWorkflow {
     bytecode: string;
     abi: JSONObject[];
@@ -1341,13 +1371,6 @@ export interface WorkflowRunActionConnection {
     edges: WorkflowRunActionEdge[];
 }
 
-export interface Contact {
-    id: string;
-    createdAt: DateTime;
-    address: string;
-    tags?: Nullable<string[]>;
-}
-
 export interface WorkflowTriggerDeleteResponse {
     id?: Nullable<string>;
     createdAt?: Nullable<DateTime>;
@@ -1406,23 +1429,6 @@ export interface WorkflowNextActionEdge {
 export interface WorkflowNextActionConnection {
     pageInfo: PageInfo;
     edges: WorkflowNextActionEdge[];
-}
-
-export interface ContactDeleteResponse {
-    id?: Nullable<string>;
-    createdAt?: Nullable<DateTime>;
-    address?: Nullable<string>;
-    tags?: Nullable<string[]>;
-}
-
-export interface ContactEdge {
-    node: Contact;
-    cursor: ConnectionCursor;
-}
-
-export interface ContactConnection {
-    pageInfo: PageInfo;
-    edges: ContactEdge[];
 }
 
 export interface ConnectAccountDataPayload {
