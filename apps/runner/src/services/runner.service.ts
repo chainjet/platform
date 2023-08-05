@@ -5,6 +5,7 @@ import { Definition, IntegrationDefinitionFactory, RunResponse } from '@app/defi
 import { generateSchemaFromObject } from '@app/definitions/schema/utils/jsonSchemaUtils'
 import { Injectable, Logger } from '@nestjs/common'
 import { ContactService } from 'apps/api/src/contacts/services/contact.service'
+import { Integration } from 'apps/api/src/integrations/entities/integration'
 import { User } from 'apps/api/src/users/entities/user'
 import { UserService } from 'apps/api/src/users/services/user.service'
 import { WorkflowUsedIdService } from 'apps/api/src/workflow-triggers/services/workflow-used-id.service'
@@ -439,7 +440,10 @@ export class RunnerService {
         integrationAction.name,
       ))
 
-    const { credentials, accountCredential, integrationAccount } = await this.getCredentialsAndIntegrationAccount(
+    const { credentials, accountCredential, integrationAccount } = await this.getCredentialsDataForWorkflowAction(
+      integration,
+      workflow,
+      previousOutputs,
       workflowAction.credentials?.toString(),
       workflowAction.owner.toString(),
       () => this.onActionFailure(workflow, workflowRun, workflowRunAction, 'Credentials not found'),
@@ -641,6 +645,58 @@ export class RunnerService {
     return WorkflowRunStatus.completed
   }
 
+  async getCredentialsDataForWorkflowAction(
+    integration: Integration,
+    workflow: Workflow,
+    previousOutputs: Record<string, Record<string, unknown>>,
+    credentialsId: string | undefined,
+    ownerId: string,
+    onError: () => any,
+  ) {
+    if (workflow.type !== 'chatbot' || integration.key !== 'chatbot') {
+      return this.getCredentialsAndIntegrationAccount(credentialsId, ownerId, onError)
+    }
+
+    if (!ownerId) {
+      await onError()
+      return {
+        credentials: {},
+        accountCredential: null,
+        integrationAccount: null,
+      }
+    }
+
+    const env = previousOutputs?.trigger?.env
+    if (!env || typeof env !== 'string') {
+      await onError()
+      return {
+        credentials: {},
+        accountCredential: null,
+        integrationAccount: null,
+      }
+    }
+
+    const integrationAccount = await this.integrationAccountService.findOne({ key: 'xmtp' })
+    const xmtpEnv = env.split(':')[1]
+    const accountCredentials = await this.accountCredentialService.find({
+      owner: ownerId,
+      integrationAccount: integrationAccount!.id,
+    })
+    const accountCredential = accountCredentials.find(
+      (ac) => ac.fields?.env === xmtpEnv || (xmtpEnv === 'production' && !ac.fields?.env),
+    )
+    if (!accountCredential || accountCredential.owner.toString() !== ownerId) {
+      await onError()
+      return {
+        credentials: {},
+        accountCredential: null,
+        integrationAccount,
+      }
+    }
+    const credentials = accountCredential.credentials ?? {}
+    return { credentials, accountCredential, integrationAccount }
+  }
+
   async getCredentialsAndIntegrationAccount(
     credentialsId: string | undefined,
     ownerId: string,
@@ -650,6 +706,14 @@ export class RunnerService {
     accountCredential: AccountCredential | null
     integrationAccount: IntegrationAccount | null
   }> {
+    if (!ownerId) {
+      await onError()
+      return {
+        credentials: {},
+        accountCredential: null,
+        integrationAccount: null,
+      }
+    }
     let integrationAccount: IntegrationAccount | null = null
     let accountCredential: AccountCredential | null = null
     let credentials = {}
