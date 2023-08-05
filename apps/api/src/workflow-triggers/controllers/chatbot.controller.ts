@@ -66,27 +66,59 @@ export class ChatbotController {
       throw new BadRequestException()
     }
 
-    const chatbotWorkflowTriggers = await this.workflowTriggerService.find({
-      owner: new ObjectId(body.user),
-      integrationTrigger: this.chatbotIntegrationTrigger._id,
-      enabled: true,
-      planLimited: { $ne: true },
-    })
-    const chatbotPromises = chatbotWorkflowTriggers.map(async (workflowTrigger) =>
-      this.processChatbotMessage(body.message, workflowTrigger),
-    )
-    await Promise.all(chatbotPromises)
+    if (body.triggers.chatbot.length) {
+      let chatbotWorkflowTriggers = await this.workflowTriggerService.find({
+        _id: { $in: body.triggers.chatbot.map((trigger: string) => new ObjectId(trigger)) },
+      })
+      chatbotWorkflowTriggers = chatbotWorkflowTriggers.filter((trigger) => {
+        if (trigger.owner.toString() !== body.user) {
+          return false
+        }
+        if (trigger.integrationTrigger.toString() !== this.chatbotIntegrationTrigger._id.toString()) {
+          return false
+        }
+        if (trigger.planLimited) {
+          return false
+        }
+        if (body.message.env.split(':')[1] === 'production') {
+          if (!trigger.enabled) {
+            return false
+          }
+        } else {
+          if (!trigger.inputs?.testEnabled) {
+            return false
+          }
+        }
+        return true
+      })
+      const chatbotPromises = chatbotWorkflowTriggers.map(async (workflowTrigger) =>
+        this.processChatbotMessage(body.message, workflowTrigger),
+      )
+      await Promise.all(chatbotPromises)
+    }
 
-    const xmtpWorkflowTriggers = await this.workflowTriggerService.find({
-      owner: new ObjectId(body.user),
-      integrationTrigger: this.xmtpIntegrationTrigger._id,
-      enabled: true,
-      planLimited: { $ne: true },
-    })
-    const xmtpPromises = xmtpWorkflowTriggers.map(async (workflowTrigger) =>
-      this.processXmtpMessage(body.message, workflowTrigger),
-    )
-    await Promise.all(xmtpPromises)
+    if (body.triggers.xmtp.length) {
+      let xmtpWorkflowTriggers = await this.workflowTriggerService.find({
+        _id: { $in: body.triggers.xmtp.map((trigger: string) => new ObjectId(trigger)) },
+      })
+      xmtpWorkflowTriggers = xmtpWorkflowTriggers.filter((trigger) => {
+        if (trigger.owner.toString() !== body.user) {
+          return false
+        }
+        if (trigger.integrationTrigger.toString() !== this.xmtpIntegrationTrigger._id.toString()) {
+          return false
+        }
+        if (!trigger.enabled || trigger.planLimited) {
+          return false
+        }
+        return true
+      })
+
+      const xmtpPromises = xmtpWorkflowTriggers.map(async (workflowTrigger) =>
+        this.processXmtpMessage(body.message, workflowTrigger),
+      )
+      await Promise.all(xmtpPromises)
+    }
 
     return { ok: true }
   }
@@ -98,6 +130,7 @@ export class ChatbotController {
         triggerId: message.id,
       })
     } catch (e) {
+      this.logger.log(`Message ${message.id} already processed`)
       return
     }
 
@@ -118,6 +151,16 @@ export class ChatbotController {
       void this.continueConversation(workflow, workflowTrigger, workflowSleeps, message)
       return
     }
+
+    // filter keywords on activateForKeywords
+    if (workflowTrigger.inputs?.activateForKeywords) {
+      const keywords = workflowTrigger.inputs.keywords.split(',').map((keyword: string) => keyword.trim().toLowerCase())
+      if (!keywords.some((keyword: string) => message.content.toLowerCase().includes(keyword))) {
+        return
+      }
+    }
+
+    // TODO apply activateForNewConversations
 
     const tags = workflowTrigger.inputs?.tags?.split(',').map((tag) => tag.trim()) ?? []
     const contact = await this.contactService.findOne({
@@ -217,6 +260,7 @@ export class ChatbotController {
         triggerId: message.id,
       })
     } catch (e) {
+      this.logger.log(`Message ${message.id} already processed`)
       return
     }
 
