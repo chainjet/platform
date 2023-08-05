@@ -83,7 +83,7 @@ export class SendChatbotMessageAction extends OperationOffChain {
     if (!credentials.keys) {
       throw new AuthenticationError(`Missing keys for XMTP`)
     }
-    const client = await XmtpLib.getClient(credentials.keys)
+    const client = await XmtpLib.getClient(credentials.keys, credentials.env ?? 'production')
     const conversations = (await client.conversations.list()).reverse()
 
     let conversation: Conversation | undefined
