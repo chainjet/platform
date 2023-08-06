@@ -1,5 +1,10 @@
 import { BaseService } from '@app/common/base/base.service'
-import { getWalletName } from '@app/definitions/utils/address.utils'
+import {
+  getWalletEns,
+  getWalletFarcasterProfile,
+  getWalletLensProfile,
+  getWalletName,
+} from '@app/definitions/utils/address.utils'
 import { Injectable, Logger } from '@nestjs/common'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
@@ -18,6 +23,12 @@ export class ContactService extends BaseService<Contact> {
     switch (key) {
       case 'walletName':
         return getWalletName(address)
+      case 'ens':
+        return getWalletEns(address)
+      case 'lens':
+        return getWalletLensProfile(address)
+      case 'farcaster':
+        return getWalletFarcasterProfile(address)
     }
   }
 }
