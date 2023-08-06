@@ -1,3 +1,4 @@
+import { CommonModule } from '@app/common'
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { forwardRef, Module } from '@nestjs/common'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
@@ -31,6 +32,7 @@ import { WorkflowUsedIdService } from './services/workflow-used-id.service'
       ],
       dtos: [{ DTOClass: WorkflowTrigger }, { DTOClass: WorkflowUsedId }],
     }),
+    CommonModule,
     AuthModule,
     UsersModule,
     IntegrationsModule,

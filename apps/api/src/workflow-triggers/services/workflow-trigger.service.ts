@@ -1,4 +1,5 @@
 import { BaseService } from '@app/common/base/base.service'
+import { RedisPubSubService } from '@app/common/cache/redis-pubsub.service'
 import { isEmptyObj } from '@app/common/utils/object.utils'
 import { IntegrationDefinitionFactory } from '@app/definitions'
 import { generateSchemaFromObject } from '@app/definitions/schema/utils/jsonSchemaUtils'
@@ -44,6 +45,7 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     @Inject(forwardRef(() => IntegrationDefinitionFactory))
     protected integrationDefinitionFactory: IntegrationDefinitionFactory,
     protected operationRunnerService: OperationRunnerService,
+    protected redisPubSubService: RedisPubSubService,
   ) {
     super(model)
   }
@@ -158,6 +160,15 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
     }
 
     await this.workflowService.updateUsedIntegrations(workflow)
+
+    this.redisPubSubService.publish(
+      'workflowTriggerCreated',
+      JSON.stringify({
+        id: createdEntity.id,
+        integrationKey: integration.key,
+        integrationTriggerKey: integrationTrigger.key,
+      }),
+    )
 
     return createdEntity
   }
@@ -308,6 +319,15 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       )
     }
 
+    this.redisPubSubService.publish(
+      'workflowTriggerUpdated',
+      JSON.stringify({
+        id,
+        integrationKey: integration.key,
+        integrationTriggerKey: integrationTrigger.key,
+      }),
+    )
+
     return updatedEntity
   }
 
@@ -359,6 +379,15 @@ export class WorkflowTriggerService extends BaseService<WorkflowTrigger> {
       workflowTrigger.inputs,
     )
     await this.workflowService.updateUsedIntegrations(workflow)
+
+    this.redisPubSubService.publish(
+      'workflowTriggerDeleted',
+      JSON.stringify({
+        id,
+        integrationKey: integration.key,
+        integrationTriggerKey: integrationTrigger.key,
+      }),
+    )
 
     return deletedEntity
   }

@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
+import { NestjsQueryTypegooseModule } from './NestjsQueryTypegooseModule'
+import { RedisPubSubService } from './cache/redis-pubsub.service'
 import { StaticCacheManagerService } from './cache/static-cache-manager.service'
 import { UserEvent } from './metrics/entities/user-event'
 import { MetricService } from './metrics/metric.service'
 import { UserEventService } from './metrics/user-event.service'
-import { NestjsQueryTypegooseModule } from './NestjsQueryTypegooseModule'
 import { SubscriptionService } from './subscriptions/subscription.service'
 
 @Module({
@@ -16,7 +17,7 @@ import { SubscriptionService } from './subscriptions/subscription.service'
       dtos: [{ DTOClass: UserEvent }],
     }),
   ],
-  providers: [MetricService, UserEventService, SubscriptionService, StaticCacheManagerService],
-  exports: [MetricService, UserEventService, SubscriptionService, StaticCacheManagerService],
+  providers: [MetricService, UserEventService, SubscriptionService, StaticCacheManagerService, RedisPubSubService],
+  exports: [MetricService, UserEventService, SubscriptionService, StaticCacheManagerService, RedisPubSubService],
 })
 export class CommonModule {}
