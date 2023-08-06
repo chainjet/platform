@@ -416,6 +416,13 @@ type IntegrationTriggersConnection {
   edges: [IntegrationTriggerEdge!]!
 }
 
+type Contact {
+  id: ID!
+  createdAt: DateTime!
+  address: String!
+  tags: [String!]
+}
+
 type AccountCredential {
   id: ID!
   createdAt: DateTime!
@@ -548,13 +555,6 @@ type UserEdge {
 
   """Cursor for this node."""
   cursor: ConnectionCursor!
-}
-
-type Contact {
-  id: ID!
-  createdAt: DateTime!
-  address: String!
-  tags: [String!]
 }
 
 type ContactDeleteResponse {

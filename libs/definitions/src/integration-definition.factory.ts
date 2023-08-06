@@ -21,6 +21,7 @@ import { ChatbotDefinition } from './integration-definitions/chatbot/chatbot.def
 import { ClvscanDefinition } from './integration-definitions/clvscan.definition'
 import { CoinbaseDefinition } from './integration-definitions/coinbase.definition'
 import { CoinMarketCapDefinition } from './integration-definitions/coinmarketcap.definition'
+import { ContactsDefinition } from './integration-definitions/contacts/contacts.definition'
 import { CronoscanDefinition } from './integration-definitions/cronoscan.definition'
 import { DecentralandMarketplaceDefinition } from './integration-definitions/decentraland-marketplace.definition'
 import { DexScreenerDefinition } from './integration-definitions/dexscreener.definition'
@@ -96,6 +97,7 @@ export class IntegrationDefinitionFactory {
     clvscan: ClvscanDefinition,
     coinbase: CoinbaseDefinition,
     coinmarketcap: CoinMarketCapDefinition,
+    contacts: ContactsDefinition,
     cronoscan: CronoscanDefinition,
     // compoundv2: CompoundV2Definition,
     'decentraland-marketplace': DecentralandMarketplaceDefinition,

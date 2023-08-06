@@ -1107,6 +1107,13 @@ export interface IntegrationTriggersConnection {
     edges: IntegrationTriggerEdge[];
 }
 
+export interface Contact {
+    id: string;
+    createdAt: DateTime;
+    address: string;
+    tags?: Nullable<string[]>;
+}
+
 export interface AccountCredential {
     id: string;
     createdAt: DateTime;
@@ -1205,13 +1212,6 @@ export interface VerifyEmailPayload {
 export interface UserEdge {
     node: User;
     cursor: ConnectionCursor;
-}
-
-export interface Contact {
-    id: string;
-    createdAt: DateTime;
-    address: string;
-    tags?: Nullable<string[]>;
 }
 
 export interface ContactDeleteResponse {

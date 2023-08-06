@@ -1,7 +1,6 @@
 import { XmtpMessageOutput } from '@app/definitions/integration-definitions/xmtp/xmtp.common'
 import { BadRequestException, Body, Controller, Logger, Post, Req, UnauthorizedException } from '@nestjs/common'
 import { Request } from 'express'
-import { uniq } from 'lodash'
 import { ObjectId } from 'mongodb'
 import { Types } from 'mongoose'
 import { RunnerService } from '../../../../runner/src/services/runner.service'
@@ -162,25 +161,9 @@ export class ChatbotController {
 
     // TODO apply activateForNewConversations
 
-    const tags = workflowTrigger.inputs?.tags?.split(',').map((tag) => tag.trim()) ?? []
-    const contact = await this.contactService.findOne({
-      owner: workflow.owner,
-      address: message.senderAddress,
-    })
-    if (!contact) {
-      await this.contactService.createOne({
-        owner: workflow.owner,
-        address: message.senderAddress,
-        tags,
-      })
-    } else if (workflowTrigger.inputs?.tags) {
-      const newTags = uniq([...contact.tags, ...tags])
-      if (newTags.length !== contact.tags.length) {
-        await this.contactService.updateById(contact._id, {
-          tags: contact.tags,
-        })
-      }
-    }
+    // add tags to the contact
+    const tags: string[] = workflowTrigger.inputs?.tags?.split(',').map((tag: string) => tag.trim()) ?? []
+    await this.contactService.addTags(message.senderAddress, tags, workflow.owner._id)
 
     const hookTriggerOutputs = {
       id: message.id,
