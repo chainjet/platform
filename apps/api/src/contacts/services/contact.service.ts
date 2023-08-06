@@ -29,6 +29,9 @@ export class ContactService extends BaseService<Contact> {
         return getWalletLensProfile(address)
       case 'farcaster':
         return getWalletFarcasterProfile(address)
+      case 'tags':
+        const contact = await this.findOne({ address, owner: contactOwner })
+        return contact?.tags ?? []
     }
   }
 }
