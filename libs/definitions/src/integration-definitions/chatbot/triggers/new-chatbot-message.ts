@@ -19,10 +19,10 @@ export class NewChatbotMessageTrigger extends OperationTrigger {
         title: 'Only activate for specific keywords',
         description: 'Whether this chatbot should be run for any keyword or only specific keywords.',
       },
-      activateForNewConversations: {
+      activateOncePerContact: {
         type: 'boolean',
-        title: 'Only activate for new conversations',
-        description: 'Whether this chatbot should be run for new conversations.',
+        title: 'Only activate once per contact',
+        description: 'Whether this chatbot should be run only once per wallet.',
       },
       keywords: {
         type: 'string',

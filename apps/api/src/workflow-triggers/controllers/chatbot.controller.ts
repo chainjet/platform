@@ -159,7 +159,17 @@ export class ChatbotController {
       }
     }
 
-    // TODO apply activateForNewConversations
+    if (workflowTrigger.inputs?.activateOncePerContact) {
+      try {
+        await this.workflowUsedIdService.createOne({
+          workflow: workflowTrigger._id,
+          triggerId: message.senderAddress,
+        })
+      } catch {
+        this.logger.log(`Contact ${message.senderAddress} already processed for workflow ${workflowTrigger.workflow}`)
+        return
+      }
+    }
 
     // add tags to the contact
     const tags: string[] = workflowTrigger.inputs?.tags?.split(',').map((tag: string) => tag.trim()) ?? []
