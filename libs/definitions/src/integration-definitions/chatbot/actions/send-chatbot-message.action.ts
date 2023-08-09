@@ -9,8 +9,8 @@ import { XmtpLib } from '../../xmtp/xmtp.lib'
 
 export class SendChatbotMessageAction extends OperationOffChain {
   key = 'sendChatbotMessage'
-  name = 'Reply to a message'
-  description = 'Send a message reply'
+  name = 'Send Message'
+  description = 'Send a message response'
   version = '1.0.0'
 
   inputs: JSONSchema7 = {

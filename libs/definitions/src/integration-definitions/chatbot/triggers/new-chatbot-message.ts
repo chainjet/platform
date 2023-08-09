@@ -45,9 +45,6 @@ export class NewChatbotMessageTrigger extends OperationTrigger {
       content: {
         type: 'string',
       },
-      contentTopic: {
-        type: 'string',
-      },
       sent: {
         type: 'string',
       },
