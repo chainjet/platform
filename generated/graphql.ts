@@ -694,10 +694,16 @@ export interface UpdateOneWorkflowActionInput {
 }
 
 export interface UpdateWorkflowActionInput {
-    name: string;
+    name?: Nullable<string>;
     inputs?: Nullable<JSONObject>;
     credentials?: Nullable<string>;
     address?: Nullable<string>;
+    nextActions?: Nullable<WorkflowNextActionInput[]>;
+}
+
+export interface WorkflowNextActionInput {
+    action: string;
+    condition?: Nullable<string>;
 }
 
 export interface UpdateManyWorkflowActionsInput {

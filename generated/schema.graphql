@@ -1771,10 +1771,16 @@ input UpdateOneWorkflowActionInput {
 }
 
 input UpdateWorkflowActionInput {
-  name: String!
+  name: String
   inputs: JSONObject
   credentials: ID
   address: String
+  nextActions: [WorkflowNextActionInput!]
+}
+
+input WorkflowNextActionInput {
+  action: ID!
+  condition: String
 }
 
 input UpdateManyWorkflowActionsInput {

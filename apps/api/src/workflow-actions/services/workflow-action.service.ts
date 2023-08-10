@@ -263,6 +263,19 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
       throw new BadRequestException('Internal integration actions cannot be updated directly')
     }
 
+    if (update.nextActions?.length) {
+      // next action cannot be itself
+      if (update.nextActions.some((next) => next.action.toString() === id.toString())) {
+        throw new BadRequestException('Cannot set next action to itself')
+      }
+      // verify next actions belong to the same workflow
+      const nextActionIds = update.nextActions.map((next) => next.action)
+      const nextActions = await this.find({ _id: { $in: nextActionIds }, workflow: workflow.id })
+      if (nextActions.length !== nextActionIds.length) {
+        throw new NotFoundException('Next action not found')
+      }
+    }
+
     const isTemplate = !update.inputs
       ? workflow.isTemplate
       : await this.workflowService.updateTemplateSettings(

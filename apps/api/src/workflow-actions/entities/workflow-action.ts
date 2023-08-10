@@ -16,7 +16,7 @@ import { AccountCredential } from '../../account-credentials/entities/account-cr
 import { IntegrationAction } from '../../integration-actions/entities/integration-action'
 import { User } from '../../users/entities/user'
 import { Workflow } from '../../workflows/entities/workflow'
-import { WorkflowNextAction } from './workflow-next-action'
+import { WorkflowNextAction, WorkflowNextActionInput } from './workflow-next-action'
 
 @Injectable()
 export class WorkflowActionAuthorizer extends OwnedAuthorizerWithCustomPrivacy<WorkflowAction> {
@@ -127,8 +127,8 @@ export class CreateWorkflowActionInput {
 
 @InputType()
 export class UpdateWorkflowActionInput {
-  @Field()
-  name: string
+  @Field({ nullable: true })
+  name?: string
 
   @Field(() => GraphQLJSONObject, { nullable: true })
   inputs?: Record<string, any>
@@ -138,4 +138,7 @@ export class UpdateWorkflowActionInput {
 
   @Field(() => GraphQLString, { nullable: true })
   address?: string
+
+  @Field(() => [WorkflowNextActionInput], { nullable: true })
+  nextActions?: WorkflowNextActionInput[]
 }
