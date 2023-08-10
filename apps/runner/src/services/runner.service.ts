@@ -609,7 +609,7 @@ export class RunnerService {
       if (!nextAction.condition) {
         return true
       }
-      return nextAction.condition === `${runResponse.condition}`
+      return nextAction.condition === runResponse.condition
     })
 
     if (runResponse.repeatKey) {

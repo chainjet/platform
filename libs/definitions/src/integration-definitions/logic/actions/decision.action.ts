@@ -2,7 +2,7 @@ import { RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { JSONSchema7 } from 'json-schema'
-import { LogicExpression, logicExpressionSatisfied, LOGIC_FIELD_DEFS } from '../logic.common'
+import { LOGIC_FIELD_DEFS, LogicExpression, logicExpressionSatisfied } from '../logic.common'
 
 export class DecisionAction extends OperationOffChain {
   key = 'decision'
@@ -26,7 +26,7 @@ export class DecisionAction extends OperationOffChain {
     )
     return {
       outputs: {},
-      condition,
+      condition: `${condition}`,
     }
   }
 }

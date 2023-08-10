@@ -49,7 +49,7 @@ export type RunOutputs = Record<string, unknown> // TODO outputs can be an array
 
 export interface RunResponse {
   outputs: RunOutputs
-  condition?: boolean
+  condition?: string
   sleepUntil?: Date
   sleepUniqueGroup?: string
   store?: Record<string, any>
