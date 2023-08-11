@@ -6,7 +6,7 @@ import { JSONSchema7 } from 'json-schema'
 export class NewChatbotMessageTrigger extends OperationTrigger {
   idKey = 'items[].id'
   key = 'newChatbotMessage'
-  name = 'New Chatbot Message'
+  name = 'New Message'
   description = 'Triggers when you receive a new chatbot message.'
   version = '1.0.0'
   triggerInstant = true
@@ -14,11 +14,6 @@ export class NewChatbotMessageTrigger extends OperationTrigger {
   inputs: JSONSchema7 = {
     required: [],
     properties: {
-      activateForKeywords: {
-        type: 'boolean',
-        title: 'Only activate for specific keywords',
-        description: 'Whether this chatbot should be run for any keyword or only specific keywords.',
-      },
       activateOncePerContact: {
         type: 'boolean',
         title: 'Only activate once per contact',
@@ -27,12 +22,13 @@ export class NewChatbotMessageTrigger extends OperationTrigger {
       keywords: {
         type: 'string',
         title: 'Keywords',
-        description: 'Enter one or more keywords separated by commas. Keywords are case insensitive.',
+        description:
+          'Only activate this chatbot when the user sends one of these keywords. Enter one or more keywords separated by commas. Leave blank to activate on any message.',
       },
       tags: {
         type: 'string',
         title: 'Tags',
-        description: 'Enter one or more tags separated by commas.',
+        description: 'Tag contacts who message this chatbot. Enter one or more tags separated by commas.',
       },
     },
   }
@@ -62,7 +58,7 @@ export class NewChatbotMessageTrigger extends OperationTrigger {
     },
   }
 
-  async run({ inputs, credentials, workflowOperation }: OperationRunOptions): Promise<RunResponse | null> {
+  async run({}: OperationRunOptions): Promise<RunResponse | null> {
     return {
       outputs: {
         items: [],

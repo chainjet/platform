@@ -151,8 +151,8 @@ export class ChatbotController {
       return
     }
 
-    // filter keywords on activateForKeywords
-    if (workflowTrigger.inputs?.activateForKeywords) {
+    // filter by allowed keywords
+    if (workflowTrigger.inputs?.keywords?.trim()) {
       const keywords = workflowTrigger.inputs.keywords.split(',').map((keyword: string) => keyword.trim().toLowerCase())
       if (!keywords.some((keyword: string) => message.content.toLowerCase().includes(keyword))) {
         return
