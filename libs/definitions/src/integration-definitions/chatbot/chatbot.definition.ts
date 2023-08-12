@@ -1,4 +1,5 @@
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
+import { GetUserIntentAction } from './actions/get-user-intent.action'
 import { SendChatbotMessageAction } from './actions/send-chatbot-message.action'
 import { NewChatbotMessageTrigger } from './triggers/new-chatbot-message'
 
@@ -8,5 +9,5 @@ export class ChatbotDefinition extends SingleIntegrationDefinition {
   schemaUrl = null
 
   triggers = [new NewChatbotMessageTrigger()]
-  actions = [new SendChatbotMessageAction()]
+  actions = [new SendChatbotMessageAction(), new GetUserIntentAction()]
 }
