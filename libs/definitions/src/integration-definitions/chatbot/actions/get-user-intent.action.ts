@@ -23,7 +23,7 @@ export class GetUserIntentAction extends OperationAction {
         title: 'User Message',
         type: 'string',
         'x-ui:widget': 'hidden',
-        default: '{{trigger.content}}', // TODO use context
+        default: '{{message.content}}',
       } as JSONSchema7Definition,
       intents: {
         title: 'List of User Intents',

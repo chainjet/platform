@@ -183,6 +183,10 @@ export class ChatbotController {
         contact: {
           address: message.senderAddress,
         },
+        message: {
+          id: message.id,
+          content: message.content,
+        },
       },
     }
     const rootActions = await this.workflowActionService.find({ workflow: workflow._id, isRootAction: true })
@@ -204,7 +208,7 @@ export class ChatbotController {
     workflow: Workflow,
     workflowTrigger: WorkflowTrigger,
     workflowSleeps: WorkflowSleep[],
-    outputs: XmtpMessageOutput,
+    message: XmtpMessageOutput,
   ) {
     const workflowSleep = workflowSleeps[0]
 
@@ -231,8 +235,13 @@ export class ChatbotController {
       ...(workflowSleep.nextActionInputs ?? {}),
       [workflowAction.id]: {
         ...((workflowSleep.nextActionInputs?.[workflowAction.id] as any) ?? {}),
-        responseId: outputs.id,
-        responseContent: outputs.content,
+        responseId: message.id,
+        responseContent: message.content,
+      },
+      // message output should always contain the latest message
+      message: {
+        id: message.id,
+        content: message.content,
       },
     } as Record<string, Record<string, unknown>>
     const actions = await this.workflowActionService.findByIds(
