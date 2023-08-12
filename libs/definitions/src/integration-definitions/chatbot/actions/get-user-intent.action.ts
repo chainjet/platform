@@ -72,53 +72,67 @@ export class GetUserIntentAction extends OperationAction {
     integrationAction: IntegrationAction,
     accountCredential: AccountCredential | null,
   ): Promise<Partial<WorkflowAction>> {
+    if (update.inputs?.intents) {
+      // All intents must have a unique non-empty name
+      const intentNames = update.inputs.intents.map((intent) => intent.name.toLowerCase().trim())
+      if (intentNames.some((name) => !name)) {
+        throw new Error('All intents must have a name.')
+      }
+      if (new Set(intentNames).size !== intentNames.length) {
+        throw new Error('Intents cannot have duplicate names.')
+      }
+    }
+    const intents: UserIntent[] = update.inputs?.intents ?? prevWorkflowAction.inputs?.intents ?? []
+
     if (update.nextActions) {
-      if (update.nextActions.some((action) => !action.condition)) {
-        throw new Error('All actions must have a condition.')
+      // All next actions must have a unique non-empty condition, and all conditions must be an intent
+      const conditions = update.nextActions.map((action) => action.condition)
+      if (conditions.some((condition) => !condition)) {
+        throw new Error('All next actions must have a condition.')
       }
-      return update
-    }
-
-    const newIntents: UserIntent[] = update.inputs?.intents ?? []
-    const oldIntents: UserIntent[] = prevWorkflowAction.inputs?.intents ?? []
-    let nextActions = [...(prevWorkflowAction.nextActions ?? [])]
-
-    // Check if there are any duplicate intent names
-    const intentNames = newIntents.map((intent) => intent.name.toLowerCase().trim())
-    const hasDuplicateNames = new Set(intentNames).size !== intentNames.length
-
-    if (hasDuplicateNames) {
-      throw new Error('Intents cannot have duplicate names.')
-    }
-
-    // Mapping of old intent names to new ones
-    const nameMap: Record<string, string> = {}
-
-    oldIntents.forEach((oldIntent, index) => {
-      if (newIntents[index]) {
-        nameMap[oldIntent.name] = newIntents[index].name
+      if (new Set(conditions).size !== conditions.length) {
+        throw new Error('All next actions must have a unique condition.')
       }
-    })
+    }
+    let nextActions = update.nextActions ?? prevWorkflowAction.nextActions ?? []
 
-    // Update conditions based on changed intent names
-    nextActions = nextActions.map((action) => {
-      if (nameMap[action.condition!]) {
-        return {
-          ...action,
-          condition: nameMap[action.condition!],
+    if (update.inputs?.intents) {
+      const newIntents: UserIntent[] = update.inputs?.intents ?? []
+      const oldIntents: UserIntent[] = prevWorkflowAction.inputs?.intents ?? []
+
+      // Mapping of old intent names to new ones
+      const nameMap: Record<string, string> = {}
+
+      oldIntents.forEach((oldIntent, index) => {
+        if (newIntents[index]) {
+          nameMap[oldIntent.name] = newIntents[index].name
         }
-      }
-      return action
-    })
+      })
+
+      // Update conditions based on changed intent names
+      const newNextActions = nextActions.map((action) => {
+        if (nameMap[action.condition!]) {
+          return {
+            ...action,
+            condition: nameMap[action.condition!],
+          }
+        }
+        return action
+      })
+
+      nextActions = newNextActions
+    }
+
+    if (nextActions.some((action) => !intents.some((intent) => intent.name === action.condition))) {
+      throw new Error('All actions must be associated with a valid intent.')
+    }
 
     // Reorder actions based on the order of intents
-    const reorderedActions: WorkflowNextAction[] = newIntents
-      .map((intent) => {
-        return nextActions.find((action) => action.condition === intent.name) || null
-      })
-      .filter((action): action is WorkflowNextAction => action !== null)
-
+    const reorderedActions: WorkflowNextAction[] = intents
+      .map((intent) => nextActions.find((action) => action.condition === intent.name))
+      .filter((action): action is WorkflowNextAction => action !== undefined)
     update.nextActions = reorderedActions
+
     return update
   }
 
