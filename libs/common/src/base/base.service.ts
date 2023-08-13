@@ -16,6 +16,7 @@ import {
   AggregateOptions,
   FilterQuery,
   HydratedDocument,
+  InsertManyOptions,
   PipelineStage,
   ProjectionType,
   QueryOptions,
@@ -153,6 +154,10 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
 
   createMany(records: Array<DeepPartial<T>>): Promise<T[]> {
     return super.createMany(records)
+  }
+
+  insertMany(docs: DeepPartial<T>[], options: InsertManyOptions): Promise<any> {
+    return this.model.insertMany(docs, options)
   }
 
   updateOne(id: string, update: DeepPartial<T>, opts?: UpdateOneOptions<T>): Promise<T> {

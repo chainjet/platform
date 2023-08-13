@@ -1,5 +1,6 @@
 export interface PlanConfig {
   key: string
+  maxContacts: number
   maxOperations: number
   maxActiveWorkflows: number
   minPollingInterval: number
@@ -15,6 +16,7 @@ export const plansConfig: Record<string, PlanConfig> = {
   // TODO update plan limits
   free: {
     key: 'free',
+    maxContacts: 50,
     maxOperations: 10000,
     maxActiveWorkflows: 5,
     minPollingInterval: 60 * 15,
@@ -25,6 +27,7 @@ export const plansConfig: Record<string, PlanConfig> = {
   },
   prod_OPe3MZ5ynuDahA: {
     key: 'starter',
+    maxContacts: 1000,
     maxOperations: 30000,
     maxActiveWorkflows: 20,
     minPollingInterval: 60,
@@ -35,6 +38,7 @@ export const plansConfig: Record<string, PlanConfig> = {
   },
   prod_NYGB1kY91pq5g6: {
     key: 'pro',
+    maxContacts: 5000,
     maxOperations: 3e5,
     maxActiveWorkflows: Infinity,
     minPollingInterval: 15,
@@ -45,6 +49,7 @@ export const plansConfig: Record<string, PlanConfig> = {
   },
   prod_NYGCd7KzrCjd7Y: {
     key: 'business',
+    maxContacts: 20000,
     maxOperations: 750000,
     maxActiveWorkflows: Infinity,
     minPollingInterval: 15,
@@ -55,6 +60,7 @@ export const plansConfig: Record<string, PlanConfig> = {
   },
   unlimited: {
     key: 'unlimited',
+    maxContacts: Infinity,
     maxOperations: Infinity,
     maxActiveWorkflows: Infinity,
     minPollingInterval: 15,
@@ -63,9 +69,11 @@ export const plansConfig: Record<string, PlanConfig> = {
       executeWorkflowOnError: true,
     },
   },
-  // this plan is deprecated
+
+  // these plans are deprecated
   prod_NYG90VSEfU0TfQ: {
     key: 'core',
+    maxContacts: 50,
     maxOperations: 1e5,
     maxActiveWorkflows: Infinity,
     minPollingInterval: 60,
@@ -76,6 +84,7 @@ export const plansConfig: Record<string, PlanConfig> = {
   },
   early: {
     key: 'early',
+    maxContacts: 50,
     maxOperations: Infinity,
     maxActiveWorkflows: Infinity,
     minPollingInterval: 60,

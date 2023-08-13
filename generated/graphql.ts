@@ -1620,6 +1620,7 @@ export interface IMutation {
     updateManyContacts(input: UpdateManyContactsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
     deleteOneContact(input: DeleteOneContactInput): ContactDeleteResponse | Promise<ContactDeleteResponse>;
     deleteManyContacts(input: DeleteManyContactsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
+    addContacts(addresses: string[], tags?: Nullable<string[]>): ResultPayload | Promise<ResultPayload>;
     createOneUserDatabase(input: CreateOneUserDatabaseInput): UserDatabase | Promise<UserDatabase>;
     createManyUserDatabases(input: CreateManyUserDatabasesInput): UserDatabase[] | Promise<UserDatabase[]>;
     updateOneUserDatabase(input: UpdateOneUserDatabaseInput): UserDatabase | Promise<UserDatabase>;
