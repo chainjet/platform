@@ -151,6 +151,11 @@ export enum ContactSortFields {
     createdAt = "createdAt"
 }
 
+export enum CampaignSortFields {
+    id = "id",
+    createdAt = "createdAt"
+}
+
 export enum UserDatabaseSortFields {
     id = "id",
     createdAt = "createdAt"
@@ -516,6 +521,19 @@ export interface ContactSort {
     nulls?: Nullable<SortNulls>;
 }
 
+export interface CampaignFilter {
+    and?: Nullable<CampaignFilter[]>;
+    or?: Nullable<CampaignFilter[]>;
+    id?: Nullable<IDFilterComparison>;
+    createdAt?: Nullable<DateFieldComparison>;
+}
+
+export interface CampaignSort {
+    field: CampaignSortFields;
+    direction: SortDirection;
+    nulls?: Nullable<SortNulls>;
+}
+
 export interface UserDatabaseFilter {
     and?: Nullable<UserDatabaseFilter[]>;
     or?: Nullable<UserDatabaseFilter[]>;
@@ -849,6 +867,58 @@ export interface DeleteManyContactsInput {
 export interface ContactDeleteFilter {
     and?: Nullable<ContactDeleteFilter[]>;
     or?: Nullable<ContactDeleteFilter[]>;
+    id?: Nullable<IDFilterComparison>;
+    createdAt?: Nullable<DateFieldComparison>;
+}
+
+export interface CreateOneCampaignInput {
+    campaign: CreateCampaignInput;
+}
+
+export interface CreateCampaignInput {
+    accountCredentialId: string;
+    name: string;
+    message: string;
+    includeTags?: Nullable<string[]>;
+    excludeTags?: Nullable<string[]>;
+}
+
+export interface CreateManyCampaignsInput {
+    campaigns: CreateCampaignInput[];
+}
+
+export interface UpdateOneCampaignInput {
+    id: string;
+    update: UpdateCampaignInput;
+}
+
+export interface UpdateCampaignInput {
+    name?: Nullable<string>;
+}
+
+export interface UpdateManyCampaignsInput {
+    filter: CampaignUpdateFilter;
+    update: UpdateCampaignInput;
+}
+
+export interface CampaignUpdateFilter {
+    and?: Nullable<CampaignUpdateFilter[]>;
+    or?: Nullable<CampaignUpdateFilter[]>;
+    id?: Nullable<IDFilterComparison>;
+    createdAt?: Nullable<DateFieldComparison>;
+}
+
+export interface DeleteOneCampaignInput {
+    id: string;
+}
+
+export interface DeleteManyCampaignsInput {
+    filter: CampaignDeleteFilter;
+}
+
+export interface CampaignDeleteFilter {
+    and?: Nullable<CampaignDeleteFilter[]>;
+    or?: Nullable<CampaignDeleteFilter[]>;
     id?: Nullable<IDFilterComparison>;
     createdAt?: Nullable<DateFieldComparison>;
 }
@@ -1220,6 +1290,40 @@ export interface UserEdge {
     cursor: ConnectionCursor;
 }
 
+export interface Campaign {
+    id: string;
+    createdAt: DateTime;
+    name: string;
+    message: string;
+    delivered: number;
+    processed: number;
+    total?: Nullable<number>;
+    includeTags?: Nullable<string[]>;
+    excludeTags?: Nullable<string[]>;
+}
+
+export interface CampaignDeleteResponse {
+    id?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
+    name?: Nullable<string>;
+    message?: Nullable<string>;
+    delivered?: Nullable<number>;
+    processed?: Nullable<number>;
+    total?: Nullable<number>;
+    includeTags?: Nullable<string[]>;
+    excludeTags?: Nullable<string[]>;
+}
+
+export interface CampaignEdge {
+    node: Campaign;
+    cursor: ConnectionCursor;
+}
+
+export interface CampaignConnection {
+    pageInfo: PageInfo;
+    edges: CampaignEdge[];
+}
+
 export interface ContactDeleteResponse {
     id?: Nullable<string>;
     createdAt?: Nullable<DateTime>;
@@ -1564,6 +1668,8 @@ export interface IQuery {
     workflowRunActions(paging?: Nullable<CursorPaging>, filter?: Nullable<WorkflowRunActionFilter>, sorting?: Nullable<WorkflowRunActionSort[]>): WorkflowRunActionConnection | Promise<WorkflowRunActionConnection>;
     contact(id: string): Contact | Promise<Contact>;
     contacts(paging?: Nullable<CursorPaging>, filter?: Nullable<ContactFilter>, sorting?: Nullable<ContactSort[]>): ContactConnection | Promise<ContactConnection>;
+    campaign(id: string): Campaign | Promise<Campaign>;
+    campaigns(paging?: Nullable<CursorPaging>, filter?: Nullable<CampaignFilter>, sorting?: Nullable<CampaignSort[]>): CampaignConnection | Promise<CampaignConnection>;
     contractSchema(chainId: number, address: string, type: string): ContractSchema | Promise<ContractSchema>;
     asyncSchemas(integrationId: string, accountCredentialId: string, names: string[], inputs?: Nullable<JSONObject>, integrationTriggerId?: Nullable<string>, integrationActionId?: Nullable<string>): AsyncSchema | Promise<AsyncSchema>;
     manyAsyncSchemas(asyncSchemaInputs: JSONObject[]): AsyncSchema | Promise<AsyncSchema>;
@@ -1621,6 +1727,12 @@ export interface IMutation {
     deleteOneContact(input: DeleteOneContactInput): ContactDeleteResponse | Promise<ContactDeleteResponse>;
     deleteManyContacts(input: DeleteManyContactsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
     addContacts(addresses: string[], tags?: Nullable<string[]>): ResultPayload | Promise<ResultPayload>;
+    createOneCampaign(input: CreateOneCampaignInput): Campaign | Promise<Campaign>;
+    createManyCampaigns(input: CreateManyCampaignsInput): Campaign[] | Promise<Campaign[]>;
+    updateOneCampaign(input: UpdateOneCampaignInput): Campaign | Promise<Campaign>;
+    updateManyCampaigns(input: UpdateManyCampaignsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
+    deleteOneCampaign(input: DeleteOneCampaignInput): CampaignDeleteResponse | Promise<CampaignDeleteResponse>;
+    deleteManyCampaigns(input: DeleteManyCampaignsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
     createOneUserDatabase(input: CreateOneUserDatabaseInput): UserDatabase | Promise<UserDatabase>;
     createManyUserDatabases(input: CreateManyUserDatabasesInput): UserDatabase[] | Promise<UserDatabase[]>;
     updateOneUserDatabase(input: UpdateOneUserDatabaseInput): UserDatabase | Promise<UserDatabase>;

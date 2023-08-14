@@ -1,3 +1,4 @@
+import { BullModule } from '@nestjs/bull'
 import { CacheModule } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { caching } from 'cache-manager'
@@ -22,5 +23,11 @@ export function redisForRoot() {
       })
       return store as unknown as RedisClientOptions
     },
+  })
+}
+
+export function bullForRoot() {
+  return BullModule.forRoot({
+    redis: process.env.REDIS_URL,
   })
 }

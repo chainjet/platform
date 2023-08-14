@@ -2,7 +2,7 @@ import { AuthenticationError } from '@app/common/errors/authentication-error'
 import { RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { resolveAddressName } from '@app/definitions/utils/address.utils'
-import { Conversation } from '@xmtp/xmtp-js'
+import { sendXmtpMessage } from '@chainjet/tools/dist/messages'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { isAddress } from 'ethers/lib/utils'
 import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
@@ -50,23 +50,7 @@ export class SendMessageWalletAction extends OperationOffChain {
     }
 
     const client = await XmtpLib.getClient(credentials.keys)
-    const conversations = await client.conversations.list()
-    const conversationsWithAddress = conversations.filter(
-      (conversation) => conversation.peerAddress.toLowerCase() === inputs.address.toLowerCase(),
-    )
-    let conversation: Conversation | undefined
-    if (conversationsWithAddress.length > 1) {
-      conversation = conversationsWithAddress.find((conversation) => !conversation.context?.conversationId)
-      if (!conversation) {
-        conversation = conversationsWithAddress[0]
-      }
-    } else if (conversationsWithAddress.length === 1) {
-      conversation = conversationsWithAddress[0]
-    } else {
-      conversation = await client.conversations.newConversation(inputs.address)
-    }
-
-    const message = await conversation.send(inputs.message)
+    const message = await sendXmtpMessage(client, inputs.address, inputs.message)
 
     return {
       outputs: mapXmtpMessageToOutput(message) as any,

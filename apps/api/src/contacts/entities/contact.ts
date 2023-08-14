@@ -31,5 +31,5 @@ export class Contact extends BaseEntity {
   tags: string[]
 
   @jsonProp()
-  store?: Record<string, any>
+  fields?: Record<string, any>
 }

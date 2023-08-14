@@ -557,6 +557,46 @@ type UserEdge {
   cursor: ConnectionCursor!
 }
 
+type Campaign {
+  id: ID!
+  createdAt: DateTime!
+  name: String!
+  message: String!
+  delivered: Float!
+  processed: Float!
+  total: Float
+  includeTags: [String!]
+  excludeTags: [String!]
+}
+
+type CampaignDeleteResponse {
+  id: ID
+  createdAt: DateTime
+  name: String
+  message: String
+  delivered: Float
+  processed: Float
+  total: Float
+  includeTags: [String!]
+  excludeTags: [String!]
+}
+
+type CampaignEdge {
+  """The node containing the Campaign"""
+  node: Campaign!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type CampaignConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [CampaignEdge!]!
+}
+
 type ContactDeleteResponse {
   id: ID
   createdAt: DateTime
@@ -1171,6 +1211,20 @@ type Query {
     """Specify to sort results."""
     sorting: [ContactSort!] = []
   ): ContactConnection!
+  campaign(
+    """The id of the record to find."""
+    id: ID!
+  ): Campaign!
+  campaigns(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: CampaignFilter = {}
+
+    """Specify to sort results."""
+    sorting: [CampaignSort!] = []
+  ): CampaignConnection!
   contractSchema(chainId: Int!, address: String!, type: String!): ContractSchema!
   asyncSchemas(integrationId: String!, accountCredentialId: String!, names: [String!]!, inputs: JSONObject, integrationTriggerId: String, integrationActionId: String): AsyncSchema!
   manyAsyncSchemas(asyncSchemaInputs: [JSONObject!]!): AsyncSchema!
@@ -1494,6 +1548,24 @@ enum ContactSortFields {
   createdAt
 }
 
+input CampaignFilter {
+  and: [CampaignFilter!]
+  or: [CampaignFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+}
+
+input CampaignSort {
+  field: CampaignSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum CampaignSortFields {
+  id
+  createdAt
+}
+
 input UserDatabaseFilter {
   and: [UserDatabaseFilter!]
   or: [UserDatabaseFilter!]
@@ -1578,6 +1650,12 @@ type Mutation {
   deleteOneContact(input: DeleteOneContactInput!): ContactDeleteResponse!
   deleteManyContacts(input: DeleteManyContactsInput!): DeleteManyResponse!
   addContacts(addresses: [String!]!, tags: [String!]): ResultPayload!
+  createOneCampaign(input: CreateOneCampaignInput!): Campaign!
+  createManyCampaigns(input: CreateManyCampaignsInput!): [Campaign!]!
+  updateOneCampaign(input: UpdateOneCampaignInput!): Campaign!
+  updateManyCampaigns(input: UpdateManyCampaignsInput!): UpdateManyResponse!
+  deleteOneCampaign(input: DeleteOneCampaignInput!): CampaignDeleteResponse!
+  deleteManyCampaigns(input: DeleteManyCampaignsInput!): DeleteManyResponse!
   createOneUserDatabase(input: CreateOneUserDatabaseInput!): UserDatabase!
   createManyUserDatabases(input: CreateManyUserDatabasesInput!): [UserDatabase!]!
   updateOneUserDatabase(input: UpdateOneUserDatabaseInput!): UserDatabase!
@@ -1952,6 +2030,68 @@ input DeleteManyContactsInput {
 input ContactDeleteFilter {
   and: [ContactDeleteFilter!]
   or: [ContactDeleteFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+}
+
+input CreateOneCampaignInput {
+  """The record to create"""
+  campaign: CreateCampaignInput!
+}
+
+input CreateCampaignInput {
+  accountCredentialId: String!
+  name: String!
+  message: String!
+  includeTags: [String!]
+  excludeTags: [String!]
+}
+
+input CreateManyCampaignsInput {
+  """Array of records to create"""
+  campaigns: [CreateCampaignInput!]!
+}
+
+input UpdateOneCampaignInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateCampaignInput!
+}
+
+input UpdateCampaignInput {
+  name: String
+}
+
+input UpdateManyCampaignsInput {
+  """Filter used to find fields to update"""
+  filter: CampaignUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateCampaignInput!
+}
+
+input CampaignUpdateFilter {
+  and: [CampaignUpdateFilter!]
+  or: [CampaignUpdateFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+}
+
+input DeleteOneCampaignInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyCampaignsInput {
+  """Filter to find records to delete"""
+  filter: CampaignDeleteFilter!
+}
+
+input CampaignDeleteFilter {
+  and: [CampaignDeleteFilter!]
+  or: [CampaignDeleteFilter!]
   id: IDFilterComparison
   createdAt: DateFieldComparison
 }
