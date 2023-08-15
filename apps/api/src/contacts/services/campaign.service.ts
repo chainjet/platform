@@ -33,6 +33,7 @@ export class CampaignService extends BaseService<Campaign> {
 
     const campaign = await super.createOne(record)
 
+    this.logger.debug(`Queuing campaign ${campaign.id} for broadcast`)
     this.broadcastQueue.add(
       {
         ownerId: campaign.owner,
