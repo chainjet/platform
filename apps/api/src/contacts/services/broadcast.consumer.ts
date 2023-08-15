@@ -6,6 +6,7 @@ import { Logger } from '@nestjs/common'
 import { Job } from 'bull'
 import { AccountCredentialService } from '../../account-credentials/services/account-credentials.service'
 import { UserService } from '../../users/services/user.service'
+import { CampaignState } from '../entities/campaign'
 import { CampaignMessageService } from './campaign-message.service'
 import { CampaignService } from './campaign.service'
 import { ContactService } from './contact.service'
@@ -47,6 +48,7 @@ export class BroadcastConsumer {
     }
     let contacts = await this.contactsService.find({
       owner: campaign.owner,
+      ...(campaign.includeTags?.length && { tags: { $in: campaign.includeTags } }),
     })
     const client = await XmtpLib.getClient(accountCredential.credentials.keys)
 
@@ -57,6 +59,22 @@ export class BroadcastConsumer {
       })
       const campaignMessageAddresses = campaignMessages.map((campaignMessage) => campaignMessage.address)
       contacts = contacts.filter((contact) => !campaignMessageAddresses.includes(contact.address))
+    }
+
+    this.logger.log(`Sending campaign ${campaign._id} to ${contacts.length} contacts`)
+
+    if (campaign.state === CampaignState.Pending) {
+      campaign.state = CampaignState.Running
+      await this.campaignService.updateOneNative(
+        {
+          _id: campaign._id,
+        },
+        {
+          $set: {
+            state: campaign.state,
+          },
+        },
+      )
     }
 
     campaign.delivered = 0
@@ -86,6 +104,7 @@ export class BroadcastConsumer {
           delivered: campaign.delivered,
           processed: campaign.processed,
           total: campaign.total,
+          state: CampaignState.Completed,
         },
       },
     )

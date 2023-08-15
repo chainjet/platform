@@ -8,6 +8,12 @@ import { Authorize } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
 import { User } from '../../users/entities/user'
 
+export enum CampaignState {
+  Pending = 'pending',
+  Running = 'running',
+  Completed = 'completed',
+}
+
 @Injectable()
 export class CampaignAuthorizer extends OwnedAuthorizer<Campaign> {}
 
@@ -42,9 +48,14 @@ export class Campaign extends BaseEntity {
   @Field(() => [String], { nullable: true })
   includeTags: string[]
 
-  @prop()
-  @Field(() => [String], { nullable: true })
-  excludeTags: string[]
+  @prop({ default: CampaignState.Pending })
+  @Field()
+  state: CampaignState
+
+  // TODO
+  // @prop()
+  // @Field(() => [String], { nullable: true })
+  // excludeTags: string[]
 }
 
 @InputType()

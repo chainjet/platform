@@ -1299,7 +1299,7 @@ export interface Campaign {
     processed: number;
     total?: Nullable<number>;
     includeTags?: Nullable<string[]>;
-    excludeTags?: Nullable<string[]>;
+    state: string;
 }
 
 export interface CampaignDeleteResponse {
@@ -1311,7 +1311,7 @@ export interface CampaignDeleteResponse {
     processed?: Nullable<number>;
     total?: Nullable<number>;
     includeTags?: Nullable<string[]>;
-    excludeTags?: Nullable<string[]>;
+    state?: Nullable<string>;
 }
 
 export interface CampaignEdge {
