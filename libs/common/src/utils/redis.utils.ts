@@ -3,6 +3,7 @@ import { CacheModule } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { caching } from 'cache-manager'
 import { redisStore } from 'cache-manager-redis-store'
+import Redis from 'ioredis'
 import { RedisClientOptions } from 'redis'
 
 export function redisForRoot() {
@@ -28,6 +29,12 @@ export function redisForRoot() {
 
 export function bullForRoot() {
   return BullModule.forRoot({
-    redis: process.env.REDIS_URL,
+    createClient: () => {
+      return new Redis(process.env.REDIS_URL!, {
+        maxRetriesPerRequest: null,
+        enableReadyCheck: false,
+        tls: {},
+      })
+    },
   })
 }
