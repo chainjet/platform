@@ -79,7 +79,7 @@ export class SendChatbotMessageAction extends OperationOffChain {
     },
   }
 
-  async run({ inputs, credentials }: OperationRunOptions): Promise<RunResponse> {
+  async run({ inputs, credentials, previousOutputs }: OperationRunOptions): Promise<RunResponse> {
     if (!credentials.keys) {
       throw new AuthenticationError(`Missing keys for XMTP`)
     }
@@ -106,6 +106,9 @@ export class SendChatbotMessageAction extends OperationOffChain {
     }
 
     const message = await conversation.send(inputs.message)
+    if (previousOutputs?.messages) {
+      previousOutputs.messages.push({ content: inputs.message, from: 'bot' })
+    }
 
     return {
       outputs: {

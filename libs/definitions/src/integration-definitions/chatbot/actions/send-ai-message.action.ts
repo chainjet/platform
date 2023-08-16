@@ -82,11 +82,19 @@ export class SendAiMessageAction extends OperationAction {
       throw new Error(`Conversation ${inputs.conversationId} not found`)
     }
 
+    const messages = (previousOutputs?.messages ?? []).map((message) => ({
+      content: message.content,
+      role: message.from === 'user' ? 'user' : 'assistant',
+    }))
     const content = await getChatCompletion([
       { role: 'system', content: inputs.prompt },
+      ...messages,
       { role: 'user', content: previousOutputs!.message.content },
     ])
     const message = await conversation.send(content)
+    if (previousOutputs?.messages) {
+      previousOutputs.messages.push({ content, from: 'bot' })
+    }
 
     return {
       outputs: {

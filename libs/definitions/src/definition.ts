@@ -59,6 +59,7 @@ export interface RunResponse {
   stop?: boolean // if true, stop the workflow
   repeatKey?: string
   cursor?: string // cursor for pagination when fetching all items
+  credits?: number // number of credits used
 }
 
 export type GetAsyncSchemasProps = OperationRunOptions & {

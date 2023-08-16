@@ -25,7 +25,7 @@ export class BroadcastConsumer {
 
   @Process()
   async send(job: Job<{ campaignId: string; ownerId: string; accountCredentialId: string }>) {
-    console.log(`Broadcasting campaign ${job.data.campaignId}`)
+    this.logger.log(`Broadcasting campaign ${job.data.campaignId}`)
     const user = await this.userService.findOne({
       _id: job.data.ownerId,
     })

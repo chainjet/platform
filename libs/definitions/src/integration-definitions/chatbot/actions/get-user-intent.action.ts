@@ -136,7 +136,7 @@ export class GetUserIntentAction extends OperationAction {
     return update
   }
 
-  async run({ inputs }: OperationRunOptions): Promise<RunResponse> {
+  async run({ inputs, previousOutputs }: OperationRunOptions): Promise<RunResponse> {
     if (!inputs.message?.trim()) {
       throw new BadRequestException(`Expected message to be defined`)
     }
@@ -145,7 +145,13 @@ export class GetUserIntentAction extends OperationAction {
     }
     let intent: string | null
     if (inputs.intents.length) {
-      intent = await getUserIntent(inputs.intents, inputs.message.trim())
+      const messages = (previousOutputs?.messages ?? [])
+        .map((message) => ({
+          content: message.content,
+          role: message.from === 'user' ? 'user' : 'assistant',
+        }))
+        .slice(0, -1)
+      intent = await getUserIntent(inputs.intents, inputs.message.trim(), messages)
     } else {
       intent = 'Other'
     }

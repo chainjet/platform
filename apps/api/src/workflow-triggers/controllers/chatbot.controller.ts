@@ -187,6 +187,7 @@ export class ChatbotController {
           id: message.id,
           content: message.content,
         },
+        messages: [{ content: message.content, from: 'user' }],
       },
     }
     const rootActions = await this.workflowActionService.find({ workflow: workflow._id, isRootAction: true })
@@ -243,6 +244,10 @@ export class ChatbotController {
         id: message.id,
         content: message.content,
       },
+      messages: [
+        ...((workflowSleep.nextActionInputs as any)?.messages ?? []),
+        { content: message.content, from: 'user' },
+      ],
     } as Record<string, Record<string, unknown>>
     const actions = await this.workflowActionService.findByIds(
       workflowAction.nextActions.map((next) => next.action) as Types.ObjectId[],
