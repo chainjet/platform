@@ -3,6 +3,7 @@ import { OperationTrigger } from '@app/definitions/operation-trigger'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { isAddress } from 'ethers/lib/utils'
 import { JSONSchema7 } from 'json-schema'
+import { PoapLib } from '../poap.lib'
 
 export class NewPoapCollected extends OperationTrigger {
   idKey = 'items[].id'
@@ -97,28 +98,11 @@ export class NewPoapCollected extends OperationTrigger {
       throw new Error(`"${address}" is not a valid address`)
     }
 
-    const tokens = fetchAll ? await this.fetchAllPoaps(address) : await this.fetchLatestPoaps(address)
+    const tokens = fetchAll ? await PoapLib.fetchAllPoaps(address) : await PoapLib.fetchLatestPoaps(address)
     return {
       outputs: {
         items: tokens,
       },
     }
-  }
-
-  async fetchLatestPoaps(address: string) {
-    const url = `https://api.apireum.com/v1/poap/tokens/${address}?key=${process.env.APIREUM_API_KEY}&sort=-mintedAt`
-    const res = await fetch(url)
-    const data = await res.json()
-    return data.tokens
-  }
-
-  async fetchAllPoaps(address: string, page = 1) {
-    const url = `https://api.apireum.com/v1/poap/tokens/${address}?key=${process.env.APIREUM_API_KEY}&sort=-mintedAt&page=${page}&limit=100`
-    const res = await fetch(url)
-    const data = await res.json()
-    if (data.tokens && data.tokens.length >= 100) {
-      return [...data.tokens, ...(await this.fetchAllPoaps(address, page + 1))]
-    }
-    return data.tokens ? data.tokens : []
   }
 }

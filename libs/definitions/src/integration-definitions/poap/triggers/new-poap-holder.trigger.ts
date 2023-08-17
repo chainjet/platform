@@ -2,6 +2,7 @@ import { RunResponse } from '@app/definitions/definition'
 import { OperationTrigger } from '@app/definitions/operation-trigger'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { JSONSchema7 } from 'json-schema'
+import { PoapLib } from '../poap.lib'
 
 export class NewPoapHolder extends OperationTrigger {
   idKey = 'items[].id'
@@ -49,28 +50,11 @@ export class NewPoapHolder extends OperationTrigger {
   async run({ inputs, fetchAll }: OperationRunOptions): Promise<RunResponse | null> {
     const { eventId } = inputs
 
-    const tokens = fetchAll ? await this.fetchAllPoaps(eventId) : await this.fetchLatestPoaps(eventId)
+    const tokens = fetchAll ? await PoapLib.fetchAllEventTokens(eventId) : await PoapLib.fetchLatestEventTokens(eventId)
     return {
       outputs: {
         items: tokens,
       },
     }
-  }
-
-  async fetchLatestPoaps(eventId: string) {
-    const url = `https://api.apireum.com/v1/poap/event/${eventId}/tokens?key=${process.env.APIREUM_API_KEY}&sort=-mintedAt`
-    const res = await fetch(url)
-    const data = await res.json()
-    return data.tokens
-  }
-
-  async fetchAllPoaps(eventId: string, page = 1) {
-    const url = `https://api.apireum.com/v1/poap/event/${eventId}/tokens?key=${process.env.APIREUM_API_KEY}&sort=-mintedAt&page=${page}&limit=300`
-    const res = await fetch(url)
-    const data = await res.json()
-    if (data.tokens && data.tokens.length >= 300) {
-      return [...data.tokens, ...(await this.fetchAllPoaps(eventId, page + 1))]
-    }
-    return data.tokens ? data.tokens : []
   }
 }

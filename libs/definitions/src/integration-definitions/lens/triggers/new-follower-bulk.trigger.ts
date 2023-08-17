@@ -3,6 +3,7 @@ import { OperationTrigger } from '@app/definitions/operation-trigger'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { JSONSchema7 } from 'json-schema'
 import { getLensProfileId } from '../lens.common'
+import { LensLib } from '../lens.lib'
 
 export class NewFollowerBulkTrigger extends OperationTrigger {
   idKey = 'items[].address'
@@ -53,7 +54,9 @@ export class NewFollowerBulkTrigger extends OperationTrigger {
 
     const lensProfileId = await getLensProfileId(profileId)
 
-    const followers = fetchAll ? await this.fetchAll(lensProfileId) : await this.fetchLatest(lensProfileId)
+    const followers = fetchAll
+      ? await LensLib.fetchAllFollowers(lensProfileId)
+      : await LensLib.fetchLatestFollowers(lensProfileId)
     return {
       outputs: {
         items: followers.map((follower) => ({
@@ -62,22 +65,5 @@ export class NewFollowerBulkTrigger extends OperationTrigger {
         })),
       },
     }
-  }
-
-  async fetchLatest(profileId: string) {
-    const url = `https://api.apireum.com/v1/lens/followers/${profileId}?key=${process.env.APIREUM_API_KEY}&sort=-followedAt`
-    const res = await fetch(url)
-    const data = await res.json()
-    return data.followers
-  }
-
-  async fetchAll(profileId: string, cursor = '') {
-    const url = `https://api.apireum.com/v1/lens/followers/${profileId}?key=${process.env.APIREUM_API_KEY}&sort=-followedAt&cursor=${cursor}&limit=1000`
-    const res = await fetch(url)
-    const data = await res.json()
-    if (data.followers && data.followers.length >= 1000) {
-      return [...data.followers, ...(await this.fetchAll(profileId, data.cursor))]
-    }
-    return data.followers ? data.followers : []
   }
 }

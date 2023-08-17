@@ -1727,6 +1727,10 @@ export interface IMutation {
     deleteOneContact(input: DeleteOneContactInput): ContactDeleteResponse | Promise<ContactDeleteResponse>;
     deleteManyContacts(input: DeleteManyContactsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
     addContacts(addresses: string[], tags?: Nullable<string[]>): ResultPayload | Promise<ResultPayload>;
+    importXmtpContacts(tags?: Nullable<string[]>): ResultPayload | Promise<ResultPayload>;
+    importPoapContacts(eventId: string, tags?: Nullable<string[]>): ResultPayload | Promise<ResultPayload>;
+    importLensFollowersContacts(handle: string, tags?: Nullable<string[]>): ResultPayload | Promise<ResultPayload>;
+    importLensCollectorsContacts(publicationId: string, tags?: Nullable<string[]>): ResultPayload | Promise<ResultPayload>;
     createOneCampaign(input: CreateOneCampaignInput): Campaign | Promise<Campaign>;
     createManyCampaigns(input: CreateManyCampaignsInput): Campaign[] | Promise<Campaign[]>;
     updateOneCampaign(input: UpdateOneCampaignInput): Campaign | Promise<Campaign>;

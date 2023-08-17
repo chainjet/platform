@@ -1650,6 +1650,10 @@ type Mutation {
   deleteOneContact(input: DeleteOneContactInput!): ContactDeleteResponse!
   deleteManyContacts(input: DeleteManyContactsInput!): DeleteManyResponse!
   addContacts(addresses: [String!]!, tags: [String!]): ResultPayload!
+  importXmtpContacts(tags: [String!]): ResultPayload!
+  importPoapContacts(eventId: String!, tags: [String!]): ResultPayload!
+  importLensFollowersContacts(handle: String!, tags: [String!]): ResultPayload!
+  importLensCollectorsContacts(publicationId: String!, tags: [String!]): ResultPayload!
   createOneCampaign(input: CreateOneCampaignInput!): Campaign!
   createManyCampaigns(input: CreateManyCampaignsInput!): [Campaign!]!
   updateOneCampaign(input: UpdateOneCampaignInput!): Campaign!

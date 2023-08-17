@@ -2,6 +2,7 @@ import { RunResponse } from '@app/definitions/definition'
 import { OperationTrigger } from '@app/definitions/operation-trigger'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { JSONSchema7 } from 'json-schema'
+import { LensLib } from '../lens.lib'
 
 export class NewCollectionBulkTrigger extends OperationTrigger {
   idKey = 'items[].address'
@@ -44,28 +45,13 @@ export class NewCollectionBulkTrigger extends OperationTrigger {
 
   async run({ inputs, fetchAll }: OperationRunOptions): Promise<RunResponse | null> {
     const { publicationId } = inputs
-    const collections = fetchAll ? await this.fetchAll(publicationId) : await this.fetchLatest(publicationId)
+    const collections = fetchAll
+      ? await LensLib.fetchAllCollectors(publicationId)
+      : await LensLib.fetchLatestCollectors(publicationId)
     return {
       outputs: {
         items: collections,
       },
     }
-  }
-
-  async fetchLatest(publicationId: string) {
-    const url = `https://api.apireum.com/v1/lens/posts/${publicationId}/collections?key=${process.env.APIREUM_API_KEY}`
-    const res = await fetch(url)
-    const data = await res.json()
-    return data.collections
-  }
-
-  async fetchAll(publicationId: string, cursor = '') {
-    const url = `https://api.apireum.com/v1/lens/posts/${publicationId}/collections?key=${process.env.APIREUM_API_KEY}&limit=50&cursor=${cursor}`
-    const res = await fetch(url)
-    const data = await res.json()
-    if (data.collections && data.collections.length >= 50) {
-      return [...data.collections, ...(await this.fetchAll(publicationId, data.cursor))]
-    }
-    return data.collections ? data.collections : []
   }
 }

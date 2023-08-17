@@ -6,10 +6,11 @@ import {
   getWalletLensProfile,
   getWalletName,
 } from '@app/definitions/utils/address.utils'
-import { Injectable, Logger } from '@nestjs/common'
+import { BadRequestException, Injectable, Logger } from '@nestjs/common'
 import { ReturnModelType } from '@typegoose/typegoose'
+import { getAddress } from 'ethers/lib/utils'
 import { uniq } from 'lodash'
-import { ObjectId } from 'mongodb'
+import { ObjectId, WriteError } from 'mongodb'
 import { InjectModel } from 'nestjs-typegoose'
 import { User } from '../../users/entities/user'
 import { Contact } from '../entities/contact'
@@ -38,6 +39,48 @@ export class ContactService extends BaseService<Contact> {
         const contact = await this.findOne({ address, owner: contactOwner })
         return contact?.tags ?? []
     }
+  }
+
+  async addContacts(addresses: string[], user: User, tags?: string[]) {
+    const total = await this.countNative({ owner: user._id })
+    if (total + addresses.length > user.planConfig.maxContacts) {
+      throw new BadRequestException(
+        `Your current plan only allows you to have ${user.planConfig.maxContacts} contacts. Please upgrade to add more.`,
+      )
+    }
+    const contacts = addresses.map((address) => ({
+      owner: user._id,
+      address,
+      tags: tags?.map((tag) => tag.toString()),
+    }))
+
+    // create contacts in bulk
+    const duplicatedAddresses: string[] = []
+    try {
+      await this.insertMany(contacts, { ordered: false })
+    } catch (e) {
+      if (e.writeErrors && e.insertedIds) {
+        for (const error of e.writeErrors as WriteError[]) {
+          if (error.code === 11000) {
+            duplicatedAddresses.push(getAddress(addresses[error.index]))
+          }
+        }
+      }
+    }
+
+    // for contacts that already existed, add the tags
+    let updatedContacts = 0
+    if (duplicatedAddresses.length && tags?.length) {
+      const res = await this.updateManyNative(
+        { address: { $in: duplicatedAddresses }, owner: user._id },
+        { $addToSet: { tags: { $each: tags } } },
+      )
+      updatedContacts = res.modifiedCount
+    }
+
+    this.logger.log(
+      `Added ${addresses.length - duplicatedAddresses.length} contacts and updated ${updatedContacts} for ${user.id}`,
+    )
   }
 
   async addTags(address: string, tags: string[], ownerId: ObjectId): Promise<string[]> {

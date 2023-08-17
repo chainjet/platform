@@ -4,6 +4,7 @@ import { forwardRef, Module } from '@nestjs/common'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { AccountCredentialsModule } from '../account-credentials/account-credentials.module'
 import { AuthModule } from '../auth/auth.module'
+import { IntegrationAccountsModule } from '../integration-accounts/integration-accounts.module'
 import { UsersModule } from '../users/users.module'
 import { Campaign, CampaignAuthorizer } from './entities/campaign'
 import { CampaignMessage } from './entities/campaign-message'
@@ -39,6 +40,7 @@ import { ContactService } from './services/contact.service'
     }),
     AuthModule, // required for GraphqlGuard
     UsersModule, // required for GraphqlGuard
+    IntegrationAccountsModule,
     forwardRef(() => AccountCredentialsModule),
   ],
   providers: [
