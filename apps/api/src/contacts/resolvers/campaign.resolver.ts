@@ -13,6 +13,7 @@ export class CampaignResolver extends BaseResolver(Campaign, {
   CreateDTOClass: CreateCampaignInput,
   UpdateDTOClass: UpdateCampaignInput,
   guards: [GraphqlGuard],
+  enableTotalCount: true,
 }) {
   constructor(
     protected campaignService: CampaignService,

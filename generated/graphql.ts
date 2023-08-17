@@ -584,10 +584,6 @@ export interface CreateAccountCredentialInput {
     fields?: Nullable<JSONObject>;
 }
 
-export interface CreateManyAccountCredentialsInput {
-    accountCredentials: CreateAccountCredentialInput[];
-}
-
 export interface UpdateOneAccountCredentialInput {
     id: string;
     update: UpdateAccountCredentialInput;
@@ -599,33 +595,8 @@ export interface UpdateAccountCredentialInput {
     fields?: Nullable<JSONObject>;
 }
 
-export interface UpdateManyAccountCredentialsInput {
-    filter: AccountCredentialUpdateFilter;
-    update: UpdateAccountCredentialInput;
-}
-
-export interface AccountCredentialUpdateFilter {
-    and?: Nullable<AccountCredentialUpdateFilter[]>;
-    or?: Nullable<AccountCredentialUpdateFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
-    integrationAccount?: Nullable<IDFilterComparison>;
-}
-
 export interface DeleteOneAccountCredentialInput {
     id: string;
-}
-
-export interface DeleteManyAccountCredentialsInput {
-    filter: AccountCredentialDeleteFilter;
-}
-
-export interface AccountCredentialDeleteFilter {
-    and?: Nullable<AccountCredentialDeleteFilter[]>;
-    or?: Nullable<AccountCredentialDeleteFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
-    integrationAccount?: Nullable<IDFilterComparison>;
 }
 
 export interface CreateOneWorkflowInput {
@@ -640,10 +611,6 @@ export interface CreateWorkflowInput {
     templateSchema?: Nullable<JSONObject>;
 }
 
-export interface CreateManyWorkflowsInput {
-    workflows: CreateWorkflowInput[];
-}
-
 export interface UpdateOneWorkflowInput {
     id: string;
     update: UpdateWorkflowInput;
@@ -656,35 +623,8 @@ export interface UpdateWorkflowInput {
     templateSchema?: Nullable<JSONObject>;
 }
 
-export interface UpdateManyWorkflowsInput {
-    filter: WorkflowUpdateFilter;
-    update: UpdateWorkflowInput;
-}
-
-export interface WorkflowUpdateFilter {
-    and?: Nullable<WorkflowUpdateFilter[]>;
-    or?: Nullable<WorkflowUpdateFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
-    name?: Nullable<StringFieldComparison>;
-    type?: Nullable<StringFieldComparison>;
-}
-
 export interface DeleteOneWorkflowInput {
     id: string;
-}
-
-export interface DeleteManyWorkflowsInput {
-    filter: WorkflowDeleteFilter;
-}
-
-export interface WorkflowDeleteFilter {
-    and?: Nullable<WorkflowDeleteFilter[]>;
-    or?: Nullable<WorkflowDeleteFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
-    name?: Nullable<StringFieldComparison>;
-    type?: Nullable<StringFieldComparison>;
 }
 
 export interface CreateOneWorkflowActionInput {
@@ -700,10 +640,6 @@ export interface CreateWorkflowActionInput {
     previousActionCondition?: Nullable<string>;
     nextAction?: Nullable<string>;
     credentials?: Nullable<string>;
-}
-
-export interface CreateManyWorkflowActionsInput {
-    workflowActions: CreateWorkflowActionInput[];
 }
 
 export interface UpdateOneWorkflowActionInput {
@@ -724,35 +660,8 @@ export interface WorkflowNextActionInput {
     condition?: Nullable<string>;
 }
 
-export interface UpdateManyWorkflowActionsInput {
-    filter: WorkflowActionUpdateFilter;
-    update: UpdateWorkflowActionInput;
-}
-
-export interface WorkflowActionUpdateFilter {
-    and?: Nullable<WorkflowActionUpdateFilter[]>;
-    or?: Nullable<WorkflowActionUpdateFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
-    workflow?: Nullable<IDFilterComparison>;
-    isRootAction?: Nullable<BooleanFieldComparison>;
-}
-
 export interface DeleteOneWorkflowActionInput {
     id: string;
-}
-
-export interface DeleteManyWorkflowActionsInput {
-    filter: WorkflowActionDeleteFilter;
-}
-
-export interface WorkflowActionDeleteFilter {
-    and?: Nullable<WorkflowActionDeleteFilter[]>;
-    or?: Nullable<WorkflowActionDeleteFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
-    workflow?: Nullable<IDFilterComparison>;
-    isRootAction?: Nullable<BooleanFieldComparison>;
 }
 
 export interface CreateOneWorkflowTriggerInput {
@@ -770,10 +679,6 @@ export interface CreateWorkflowTriggerInput {
     maxConsecutiveFailures?: Nullable<number>;
 }
 
-export interface CreateManyWorkflowTriggersInput {
-    workflowTriggers: CreateWorkflowTriggerInput[];
-}
-
 export interface UpdateOneWorkflowTriggerInput {
     id: string;
     update: UpdateWorkflowTriggerInput;
@@ -788,33 +693,8 @@ export interface UpdateWorkflowTriggerInput {
     maxConsecutiveFailures?: Nullable<number>;
 }
 
-export interface UpdateManyWorkflowTriggersInput {
-    filter: WorkflowTriggerUpdateFilter;
-    update: UpdateWorkflowTriggerInput;
-}
-
-export interface WorkflowTriggerUpdateFilter {
-    and?: Nullable<WorkflowTriggerUpdateFilter[]>;
-    or?: Nullable<WorkflowTriggerUpdateFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
-    workflow?: Nullable<IDFilterComparison>;
-}
-
 export interface DeleteOneWorkflowTriggerInput {
     id: string;
-}
-
-export interface DeleteManyWorkflowTriggersInput {
-    filter: WorkflowTriggerDeleteFilter;
-}
-
-export interface WorkflowTriggerDeleteFilter {
-    and?: Nullable<WorkflowTriggerDeleteFilter[]>;
-    or?: Nullable<WorkflowTriggerDeleteFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
-    workflow?: Nullable<IDFilterComparison>;
 }
 
 export interface CreateOneContactInput {
@@ -826,10 +706,6 @@ export interface CreateContact {
     createdAt?: Nullable<DateTime>;
     address?: Nullable<string>;
     tags?: Nullable<string[]>;
-}
-
-export interface CreateManyContactsInput {
-    contacts: CreateContact[];
 }
 
 export interface UpdateOneContactInput {
@@ -844,31 +720,8 @@ export interface UpdateContact {
     tags?: Nullable<string[]>;
 }
 
-export interface UpdateManyContactsInput {
-    filter: ContactUpdateFilter;
-    update: UpdateContact;
-}
-
-export interface ContactUpdateFilter {
-    and?: Nullable<ContactUpdateFilter[]>;
-    or?: Nullable<ContactUpdateFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
-}
-
 export interface DeleteOneContactInput {
     id: string;
-}
-
-export interface DeleteManyContactsInput {
-    filter: ContactDeleteFilter;
-}
-
-export interface ContactDeleteFilter {
-    and?: Nullable<ContactDeleteFilter[]>;
-    or?: Nullable<ContactDeleteFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
 }
 
 export interface CreateOneCampaignInput {
@@ -883,10 +736,6 @@ export interface CreateCampaignInput {
     excludeTags?: Nullable<string[]>;
 }
 
-export interface CreateManyCampaignsInput {
-    campaigns: CreateCampaignInput[];
-}
-
 export interface UpdateOneCampaignInput {
     id: string;
     update: UpdateCampaignInput;
@@ -896,31 +745,8 @@ export interface UpdateCampaignInput {
     name?: Nullable<string>;
 }
 
-export interface UpdateManyCampaignsInput {
-    filter: CampaignUpdateFilter;
-    update: UpdateCampaignInput;
-}
-
-export interface CampaignUpdateFilter {
-    and?: Nullable<CampaignUpdateFilter[]>;
-    or?: Nullable<CampaignUpdateFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
-}
-
 export interface DeleteOneCampaignInput {
     id: string;
-}
-
-export interface DeleteManyCampaignsInput {
-    filter: CampaignDeleteFilter;
-}
-
-export interface CampaignDeleteFilter {
-    and?: Nullable<CampaignDeleteFilter[]>;
-    or?: Nullable<CampaignDeleteFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
 }
 
 export interface CreateOneUserDatabaseInput {
@@ -930,10 +756,6 @@ export interface CreateOneUserDatabaseInput {
 export interface CreateUserDatabase {
     id?: Nullable<string>;
     createdAt?: Nullable<DateTime>;
-}
-
-export interface CreateManyUserDatabasesInput {
-    userDatabases: CreateUserDatabase[];
 }
 
 export interface UpdateOneUserDatabaseInput {
@@ -946,31 +768,8 @@ export interface UpdateUserDatabase {
     createdAt?: Nullable<DateTime>;
 }
 
-export interface UpdateManyUserDatabasesInput {
-    filter: UserDatabaseUpdateFilter;
-    update: UpdateUserDatabase;
-}
-
-export interface UserDatabaseUpdateFilter {
-    and?: Nullable<UserDatabaseUpdateFilter[]>;
-    or?: Nullable<UserDatabaseUpdateFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
-}
-
 export interface DeleteOneUserDatabaseInput {
     id: string;
-}
-
-export interface DeleteManyUserDatabasesInput {
-    filter: UserDatabaseDeleteFilter;
-}
-
-export interface UserDatabaseDeleteFilter {
-    and?: Nullable<UserDatabaseDeleteFilter[]>;
-    or?: Nullable<UserDatabaseDeleteFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
 }
 
 export interface CreateOneUserDatabaseItemInput {
@@ -980,10 +779,6 @@ export interface CreateOneUserDatabaseItemInput {
 export interface CreateUserDatabaseItem {
     id?: Nullable<string>;
     createdAt?: Nullable<DateTime>;
-}
-
-export interface CreateManyUserDatabaseItemsInput {
-    userDatabaseItems: CreateUserDatabaseItem[];
 }
 
 export interface UpdateOneUserDatabaseItemInput {
@@ -996,31 +791,8 @@ export interface UpdateUserDatabaseItem {
     createdAt?: Nullable<DateTime>;
 }
 
-export interface UpdateManyUserDatabaseItemsInput {
-    filter: UserDatabaseItemUpdateFilter;
-    update: UpdateUserDatabaseItem;
-}
-
-export interface UserDatabaseItemUpdateFilter {
-    and?: Nullable<UserDatabaseItemUpdateFilter[]>;
-    or?: Nullable<UserDatabaseItemUpdateFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
-}
-
 export interface DeleteOneUserDatabaseItemInput {
     id: string;
-}
-
-export interface DeleteManyUserDatabaseItemsInput {
-    filter: UserDatabaseItemDeleteFilter;
-}
-
-export interface UserDatabaseItemDeleteFilter {
-    and?: Nullable<UserDatabaseItemDeleteFilter[]>;
-    or?: Nullable<UserDatabaseItemDeleteFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
 }
 
 export interface User {
@@ -1047,14 +819,6 @@ export interface IntegrationAccount {
     description?: Nullable<string>;
     authType: IntegrationAuthType;
     fieldsSchema?: Nullable<JSONObject>;
-}
-
-export interface DeleteManyResponse {
-    deletedCount: number;
-}
-
-export interface UpdateManyResponse {
-    updatedCount: number;
 }
 
 export interface IntegrationAccountEdge {
@@ -1322,6 +1086,7 @@ export interface CampaignEdge {
 export interface CampaignConnection {
     pageInfo: PageInfo;
     edges: CampaignEdge[];
+    totalCount: number;
 }
 
 export interface ContactDeleteResponse {
@@ -1339,6 +1104,7 @@ export interface ContactEdge {
 export interface ContactConnection {
     pageInfo: PageInfo;
     edges: ContactEdge[];
+    totalCount: number;
 }
 
 export interface CompileWorkflow {
@@ -1405,6 +1171,7 @@ export interface WorkflowActionEdge {
 export interface WorkflowActionsConnection {
     pageInfo: PageInfo;
     edges: WorkflowActionEdge[];
+    totalCount: number;
 }
 
 export interface BlockchainTransaction {
@@ -1691,64 +1458,40 @@ export interface IMutation {
     requestMigration(email: string): RequestMigrationPayload | Promise<RequestMigrationPayload>;
     completeMigration(email: string, code: string, data: string): RequestMigrationPayload | Promise<RequestMigrationPayload>;
     createOneAccountCredential(input: CreateOneAccountCredentialInput): AccountCredential | Promise<AccountCredential>;
-    createManyAccountCredentials(input: CreateManyAccountCredentialsInput): AccountCredential[] | Promise<AccountCredential[]>;
     updateOneAccountCredential(input: UpdateOneAccountCredentialInput): AccountCredential | Promise<AccountCredential>;
-    updateManyAccountCredentials(input: UpdateManyAccountCredentialsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
     deleteOneAccountCredential(input: DeleteOneAccountCredentialInput): AccountCredentialDeleteResponse | Promise<AccountCredentialDeleteResponse>;
-    deleteManyAccountCredentials(input: DeleteManyAccountCredentialsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
     createOneWorkflow(input: CreateOneWorkflowInput): Workflow | Promise<Workflow>;
-    createManyWorkflows(input: CreateManyWorkflowsInput): Workflow[] | Promise<Workflow[]>;
     updateOneWorkflow(input: UpdateOneWorkflowInput): Workflow | Promise<Workflow>;
-    updateManyWorkflows(input: UpdateManyWorkflowsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
     deleteOneWorkflow(input: DeleteOneWorkflowInput): WorkflowDeleteResponse | Promise<WorkflowDeleteResponse>;
-    deleteManyWorkflows(input: DeleteManyWorkflowsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
     forkWorkflow(workflowId: string, templateInputs?: Nullable<JSONObject>, credentialIds?: Nullable<JSONObject>): Workflow | Promise<Workflow>;
     createOneWorkflowAction(input: CreateOneWorkflowActionInput): WorkflowAction | Promise<WorkflowAction>;
-    createManyWorkflowActions(input: CreateManyWorkflowActionsInput): WorkflowAction[] | Promise<WorkflowAction[]>;
     updateOneWorkflowAction(input: UpdateOneWorkflowActionInput): WorkflowAction | Promise<WorkflowAction>;
-    updateManyWorkflowActions(input: UpdateManyWorkflowActionsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
     deleteOneWorkflowAction(input: DeleteOneWorkflowActionInput): WorkflowActionDeleteResponse | Promise<WorkflowActionDeleteResponse>;
-    deleteManyWorkflowActions(input: DeleteManyWorkflowActionsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
     testWorkflowAction(id: string): WorkflowAction | Promise<WorkflowAction>;
     createOneWorkflowTrigger(input: CreateOneWorkflowTriggerInput): WorkflowTrigger | Promise<WorkflowTrigger>;
-    createManyWorkflowTriggers(input: CreateManyWorkflowTriggersInput): WorkflowTrigger[] | Promise<WorkflowTrigger[]>;
     updateOneWorkflowTrigger(input: UpdateOneWorkflowTriggerInput): WorkflowTrigger | Promise<WorkflowTrigger>;
-    updateManyWorkflowTriggers(input: UpdateManyWorkflowTriggersInput): UpdateManyResponse | Promise<UpdateManyResponse>;
     deleteOneWorkflowTrigger(input: DeleteOneWorkflowTriggerInput): WorkflowTriggerDeleteResponse | Promise<WorkflowTriggerDeleteResponse>;
-    deleteManyWorkflowTriggers(input: DeleteManyWorkflowTriggersInput): DeleteManyResponse | Promise<DeleteManyResponse>;
     checkWorkflowTrigger(id: string): WorkflowTrigger | Promise<WorkflowTrigger>;
     testWorkflowTrigger(id: string): WorkflowTrigger | Promise<WorkflowTrigger>;
     runWorkflowTriggerLastEvent(id: string): WorkflowTrigger | Promise<WorkflowTrigger>;
     runWorkflowTriggerHistory(id: string): WorkflowTrigger | Promise<WorkflowTrigger>;
     createOneContact(input: CreateOneContactInput): Contact | Promise<Contact>;
-    createManyContacts(input: CreateManyContactsInput): Contact[] | Promise<Contact[]>;
     updateOneContact(input: UpdateOneContactInput): Contact | Promise<Contact>;
-    updateManyContacts(input: UpdateManyContactsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
     deleteOneContact(input: DeleteOneContactInput): ContactDeleteResponse | Promise<ContactDeleteResponse>;
-    deleteManyContacts(input: DeleteManyContactsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
     addContacts(addresses: string[], tags?: Nullable<string[]>): ResultPayload | Promise<ResultPayload>;
     importXmtpContacts(tags?: Nullable<string[]>): ResultPayload | Promise<ResultPayload>;
     importPoapContacts(eventId: string, tags?: Nullable<string[]>): ResultPayload | Promise<ResultPayload>;
     importLensFollowersContacts(handle: string, tags?: Nullable<string[]>): ResultPayload | Promise<ResultPayload>;
     importLensCollectorsContacts(publicationId: string, tags?: Nullable<string[]>): ResultPayload | Promise<ResultPayload>;
     createOneCampaign(input: CreateOneCampaignInput): Campaign | Promise<Campaign>;
-    createManyCampaigns(input: CreateManyCampaignsInput): Campaign[] | Promise<Campaign[]>;
     updateOneCampaign(input: UpdateOneCampaignInput): Campaign | Promise<Campaign>;
-    updateManyCampaigns(input: UpdateManyCampaignsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
     deleteOneCampaign(input: DeleteOneCampaignInput): CampaignDeleteResponse | Promise<CampaignDeleteResponse>;
-    deleteManyCampaigns(input: DeleteManyCampaignsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
     createOneUserDatabase(input: CreateOneUserDatabaseInput): UserDatabase | Promise<UserDatabase>;
-    createManyUserDatabases(input: CreateManyUserDatabasesInput): UserDatabase[] | Promise<UserDatabase[]>;
     updateOneUserDatabase(input: UpdateOneUserDatabaseInput): UserDatabase | Promise<UserDatabase>;
-    updateManyUserDatabases(input: UpdateManyUserDatabasesInput): UpdateManyResponse | Promise<UpdateManyResponse>;
     deleteOneUserDatabase(input: DeleteOneUserDatabaseInput): UserDatabaseDeleteResponse | Promise<UserDatabaseDeleteResponse>;
-    deleteManyUserDatabases(input: DeleteManyUserDatabasesInput): DeleteManyResponse | Promise<DeleteManyResponse>;
     createOneUserDatabaseItem(input: CreateOneUserDatabaseItemInput): UserDatabaseItem | Promise<UserDatabaseItem>;
-    createManyUserDatabaseItems(input: CreateManyUserDatabaseItemsInput): UserDatabaseItem[] | Promise<UserDatabaseItem[]>;
     updateOneUserDatabaseItem(input: UpdateOneUserDatabaseItemInput): UserDatabaseItem | Promise<UserDatabaseItem>;
-    updateManyUserDatabaseItems(input: UpdateManyUserDatabaseItemsInput): UpdateManyResponse | Promise<UpdateManyResponse>;
     deleteOneUserDatabaseItem(input: DeleteOneUserDatabaseItemInput): UserDatabaseItemDeleteResponse | Promise<UserDatabaseItemDeleteResponse>;
-    deleteManyUserDatabaseItems(input: DeleteManyUserDatabaseItemsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
 }
 
 export type DateTime = any;

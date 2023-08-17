@@ -24,6 +24,7 @@ import { ContactService } from '../services/contact.service'
 @UseInterceptors(AuthorizerInterceptor(Contact))
 export class ContactResolver extends BaseResolver(Contact, {
   guards: [GraphqlGuard],
+  enableTotalCount: true,
 }) {
   private readonly logger = new Logger(ContactResolver.name)
 

@@ -48,16 +48,6 @@ enum IntegrationAuthType {
   custom
 }
 
-type DeleteManyResponse {
-  """The number of records deleted."""
-  deletedCount: Int!
-}
-
-type UpdateManyResponse {
-  """The number of records updated."""
-  updatedCount: Int!
-}
-
 type IntegrationAccountEdge {
   """The node containing the IntegrationAccount"""
   node: IntegrationAccount!
@@ -595,6 +585,9 @@ type CampaignConnection {
 
   """Array of edges."""
   edges: [CampaignEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 type ContactDeleteResponse {
@@ -618,6 +611,9 @@ type ContactConnection {
 
   """Array of edges."""
   edges: [ContactEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 type CompileWorkflow {
@@ -708,6 +704,9 @@ type WorkflowActionsConnection {
 
   """Array of edges."""
   edges: [WorkflowActionEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 type BlockchainTransaction {
@@ -1614,64 +1613,40 @@ type Mutation {
   requestMigration(email: String!): RequestMigrationPayload!
   completeMigration(email: String!, code: String!, data: String!): RequestMigrationPayload!
   createOneAccountCredential(input: CreateOneAccountCredentialInput!): AccountCredential!
-  createManyAccountCredentials(input: CreateManyAccountCredentialsInput!): [AccountCredential!]!
   updateOneAccountCredential(input: UpdateOneAccountCredentialInput!): AccountCredential!
-  updateManyAccountCredentials(input: UpdateManyAccountCredentialsInput!): UpdateManyResponse!
   deleteOneAccountCredential(input: DeleteOneAccountCredentialInput!): AccountCredentialDeleteResponse!
-  deleteManyAccountCredentials(input: DeleteManyAccountCredentialsInput!): DeleteManyResponse!
   createOneWorkflow(input: CreateOneWorkflowInput!): Workflow!
-  createManyWorkflows(input: CreateManyWorkflowsInput!): [Workflow!]!
   updateOneWorkflow(input: UpdateOneWorkflowInput!): Workflow!
-  updateManyWorkflows(input: UpdateManyWorkflowsInput!): UpdateManyResponse!
   deleteOneWorkflow(input: DeleteOneWorkflowInput!): WorkflowDeleteResponse!
-  deleteManyWorkflows(input: DeleteManyWorkflowsInput!): DeleteManyResponse!
   forkWorkflow(workflowId: ID!, templateInputs: JSONObject, credentialIds: JSONObject): Workflow!
   createOneWorkflowAction(input: CreateOneWorkflowActionInput!): WorkflowAction!
-  createManyWorkflowActions(input: CreateManyWorkflowActionsInput!): [WorkflowAction!]!
   updateOneWorkflowAction(input: UpdateOneWorkflowActionInput!): WorkflowAction!
-  updateManyWorkflowActions(input: UpdateManyWorkflowActionsInput!): UpdateManyResponse!
   deleteOneWorkflowAction(input: DeleteOneWorkflowActionInput!): WorkflowActionDeleteResponse!
-  deleteManyWorkflowActions(input: DeleteManyWorkflowActionsInput!): DeleteManyResponse!
   testWorkflowAction(id: String!): WorkflowAction!
   createOneWorkflowTrigger(input: CreateOneWorkflowTriggerInput!): WorkflowTrigger!
-  createManyWorkflowTriggers(input: CreateManyWorkflowTriggersInput!): [WorkflowTrigger!]!
   updateOneWorkflowTrigger(input: UpdateOneWorkflowTriggerInput!): WorkflowTrigger!
-  updateManyWorkflowTriggers(input: UpdateManyWorkflowTriggersInput!): UpdateManyResponse!
   deleteOneWorkflowTrigger(input: DeleteOneWorkflowTriggerInput!): WorkflowTriggerDeleteResponse!
-  deleteManyWorkflowTriggers(input: DeleteManyWorkflowTriggersInput!): DeleteManyResponse!
   checkWorkflowTrigger(id: String!): WorkflowTrigger!
   testWorkflowTrigger(id: String!): WorkflowTrigger!
   runWorkflowTriggerLastEvent(id: String!): WorkflowTrigger!
   runWorkflowTriggerHistory(id: String!): WorkflowTrigger!
   createOneContact(input: CreateOneContactInput!): Contact!
-  createManyContacts(input: CreateManyContactsInput!): [Contact!]!
   updateOneContact(input: UpdateOneContactInput!): Contact!
-  updateManyContacts(input: UpdateManyContactsInput!): UpdateManyResponse!
   deleteOneContact(input: DeleteOneContactInput!): ContactDeleteResponse!
-  deleteManyContacts(input: DeleteManyContactsInput!): DeleteManyResponse!
   addContacts(addresses: [String!]!, tags: [String!]): ResultPayload!
   importXmtpContacts(tags: [String!]): ResultPayload!
   importPoapContacts(eventId: String!, tags: [String!]): ResultPayload!
   importLensFollowersContacts(handle: String!, tags: [String!]): ResultPayload!
   importLensCollectorsContacts(publicationId: String!, tags: [String!]): ResultPayload!
   createOneCampaign(input: CreateOneCampaignInput!): Campaign!
-  createManyCampaigns(input: CreateManyCampaignsInput!): [Campaign!]!
   updateOneCampaign(input: UpdateOneCampaignInput!): Campaign!
-  updateManyCampaigns(input: UpdateManyCampaignsInput!): UpdateManyResponse!
   deleteOneCampaign(input: DeleteOneCampaignInput!): CampaignDeleteResponse!
-  deleteManyCampaigns(input: DeleteManyCampaignsInput!): DeleteManyResponse!
   createOneUserDatabase(input: CreateOneUserDatabaseInput!): UserDatabase!
-  createManyUserDatabases(input: CreateManyUserDatabasesInput!): [UserDatabase!]!
   updateOneUserDatabase(input: UpdateOneUserDatabaseInput!): UserDatabase!
-  updateManyUserDatabases(input: UpdateManyUserDatabasesInput!): UpdateManyResponse!
   deleteOneUserDatabase(input: DeleteOneUserDatabaseInput!): UserDatabaseDeleteResponse!
-  deleteManyUserDatabases(input: DeleteManyUserDatabasesInput!): DeleteManyResponse!
   createOneUserDatabaseItem(input: CreateOneUserDatabaseItemInput!): UserDatabaseItem!
-  createManyUserDatabaseItems(input: CreateManyUserDatabaseItemsInput!): [UserDatabaseItem!]!
   updateOneUserDatabaseItem(input: UpdateOneUserDatabaseItemInput!): UserDatabaseItem!
-  updateManyUserDatabaseItems(input: UpdateManyUserDatabaseItemsInput!): UpdateManyResponse!
   deleteOneUserDatabaseItem(input: DeleteOneUserDatabaseItemInput!): UserDatabaseItemDeleteResponse!
-  deleteManyUserDatabaseItems(input: DeleteManyUserDatabaseItemsInput!): DeleteManyResponse!
 }
 
 input UpdateOneUserInput {
@@ -1702,11 +1677,6 @@ input CreateAccountCredentialInput {
   fields: JSONObject
 }
 
-input CreateManyAccountCredentialsInput {
-  """Array of records to create"""
-  accountCredentials: [CreateAccountCredentialInput!]!
-}
-
 input UpdateOneAccountCredentialInput {
   """The id of the record to update"""
   id: ID!
@@ -1721,38 +1691,9 @@ input UpdateAccountCredentialInput {
   fields: JSONObject
 }
 
-input UpdateManyAccountCredentialsInput {
-  """Filter used to find fields to update"""
-  filter: AccountCredentialUpdateFilter!
-
-  """The update to apply to all records found using the filter"""
-  update: UpdateAccountCredentialInput!
-}
-
-input AccountCredentialUpdateFilter {
-  and: [AccountCredentialUpdateFilter!]
-  or: [AccountCredentialUpdateFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-  integrationAccount: IDFilterComparison
-}
-
 input DeleteOneAccountCredentialInput {
   """The id of the record to delete."""
   id: ID!
-}
-
-input DeleteManyAccountCredentialsInput {
-  """Filter to find records to delete"""
-  filter: AccountCredentialDeleteFilter!
-}
-
-input AccountCredentialDeleteFilter {
-  and: [AccountCredentialDeleteFilter!]
-  or: [AccountCredentialDeleteFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-  integrationAccount: IDFilterComparison
 }
 
 input CreateOneWorkflowInput {
@@ -1766,11 +1707,6 @@ input CreateWorkflowInput {
   runOnFailure: ID
   isPublic: Boolean
   templateSchema: JSONObject
-}
-
-input CreateManyWorkflowsInput {
-  """Array of records to create"""
-  workflows: [CreateWorkflowInput!]!
 }
 
 input UpdateOneWorkflowInput {
@@ -1788,40 +1724,9 @@ input UpdateWorkflowInput {
   templateSchema: JSONObject
 }
 
-input UpdateManyWorkflowsInput {
-  """Filter used to find fields to update"""
-  filter: WorkflowUpdateFilter!
-
-  """The update to apply to all records found using the filter"""
-  update: UpdateWorkflowInput!
-}
-
-input WorkflowUpdateFilter {
-  and: [WorkflowUpdateFilter!]
-  or: [WorkflowUpdateFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-  name: StringFieldComparison
-  type: StringFieldComparison
-}
-
 input DeleteOneWorkflowInput {
   """The id of the record to delete."""
   id: ID!
-}
-
-input DeleteManyWorkflowsInput {
-  """Filter to find records to delete"""
-  filter: WorkflowDeleteFilter!
-}
-
-input WorkflowDeleteFilter {
-  and: [WorkflowDeleteFilter!]
-  or: [WorkflowDeleteFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-  name: StringFieldComparison
-  type: StringFieldComparison
 }
 
 input CreateOneWorkflowActionInput {
@@ -1838,11 +1743,6 @@ input CreateWorkflowActionInput {
   previousActionCondition: String
   nextAction: ID
   credentials: ID
-}
-
-input CreateManyWorkflowActionsInput {
-  """Array of records to create"""
-  workflowActions: [CreateWorkflowActionInput!]!
 }
 
 input UpdateOneWorkflowActionInput {
@@ -1866,40 +1766,9 @@ input WorkflowNextActionInput {
   condition: String
 }
 
-input UpdateManyWorkflowActionsInput {
-  """Filter used to find fields to update"""
-  filter: WorkflowActionUpdateFilter!
-
-  """The update to apply to all records found using the filter"""
-  update: UpdateWorkflowActionInput!
-}
-
-input WorkflowActionUpdateFilter {
-  and: [WorkflowActionUpdateFilter!]
-  or: [WorkflowActionUpdateFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-  workflow: IDFilterComparison
-  isRootAction: BooleanFieldComparison
-}
-
 input DeleteOneWorkflowActionInput {
   """The id of the record to delete."""
   id: ID!
-}
-
-input DeleteManyWorkflowActionsInput {
-  """Filter to find records to delete"""
-  filter: WorkflowActionDeleteFilter!
-}
-
-input WorkflowActionDeleteFilter {
-  and: [WorkflowActionDeleteFilter!]
-  or: [WorkflowActionDeleteFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-  workflow: IDFilterComparison
-  isRootAction: BooleanFieldComparison
 }
 
 input CreateOneWorkflowTriggerInput {
@@ -1916,11 +1785,6 @@ input CreateWorkflowTriggerInput {
   schedule: JSONObject
   enabled: Boolean
   maxConsecutiveFailures: Int
-}
-
-input CreateManyWorkflowTriggersInput {
-  """Array of records to create"""
-  workflowTriggers: [CreateWorkflowTriggerInput!]!
 }
 
 input UpdateOneWorkflowTriggerInput {
@@ -1940,38 +1804,9 @@ input UpdateWorkflowTriggerInput {
   maxConsecutiveFailures: Int
 }
 
-input UpdateManyWorkflowTriggersInput {
-  """Filter used to find fields to update"""
-  filter: WorkflowTriggerUpdateFilter!
-
-  """The update to apply to all records found using the filter"""
-  update: UpdateWorkflowTriggerInput!
-}
-
-input WorkflowTriggerUpdateFilter {
-  and: [WorkflowTriggerUpdateFilter!]
-  or: [WorkflowTriggerUpdateFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-  workflow: IDFilterComparison
-}
-
 input DeleteOneWorkflowTriggerInput {
   """The id of the record to delete."""
   id: ID!
-}
-
-input DeleteManyWorkflowTriggersInput {
-  """Filter to find records to delete"""
-  filter: WorkflowTriggerDeleteFilter!
-}
-
-input WorkflowTriggerDeleteFilter {
-  and: [WorkflowTriggerDeleteFilter!]
-  or: [WorkflowTriggerDeleteFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-  workflow: IDFilterComparison
 }
 
 input CreateOneContactInput {
@@ -1984,11 +1819,6 @@ input CreateContact {
   createdAt: DateTime
   address: String
   tags: [String!]
-}
-
-input CreateManyContactsInput {
-  """Array of records to create"""
-  contacts: [CreateContact!]!
 }
 
 input UpdateOneContactInput {
@@ -2006,36 +1836,9 @@ input UpdateContact {
   tags: [String!]
 }
 
-input UpdateManyContactsInput {
-  """Filter used to find fields to update"""
-  filter: ContactUpdateFilter!
-
-  """The update to apply to all records found using the filter"""
-  update: UpdateContact!
-}
-
-input ContactUpdateFilter {
-  and: [ContactUpdateFilter!]
-  or: [ContactUpdateFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-}
-
 input DeleteOneContactInput {
   """The id of the record to delete."""
   id: ID!
-}
-
-input DeleteManyContactsInput {
-  """Filter to find records to delete"""
-  filter: ContactDeleteFilter!
-}
-
-input ContactDeleteFilter {
-  and: [ContactDeleteFilter!]
-  or: [ContactDeleteFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
 }
 
 input CreateOneCampaignInput {
@@ -2051,11 +1854,6 @@ input CreateCampaignInput {
   excludeTags: [String!]
 }
 
-input CreateManyCampaignsInput {
-  """Array of records to create"""
-  campaigns: [CreateCampaignInput!]!
-}
-
 input UpdateOneCampaignInput {
   """The id of the record to update"""
   id: ID!
@@ -2068,36 +1866,9 @@ input UpdateCampaignInput {
   name: String
 }
 
-input UpdateManyCampaignsInput {
-  """Filter used to find fields to update"""
-  filter: CampaignUpdateFilter!
-
-  """The update to apply to all records found using the filter"""
-  update: UpdateCampaignInput!
-}
-
-input CampaignUpdateFilter {
-  and: [CampaignUpdateFilter!]
-  or: [CampaignUpdateFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-}
-
 input DeleteOneCampaignInput {
   """The id of the record to delete."""
   id: ID!
-}
-
-input DeleteManyCampaignsInput {
-  """Filter to find records to delete"""
-  filter: CampaignDeleteFilter!
-}
-
-input CampaignDeleteFilter {
-  and: [CampaignDeleteFilter!]
-  or: [CampaignDeleteFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
 }
 
 input CreateOneUserDatabaseInput {
@@ -2108,11 +1879,6 @@ input CreateOneUserDatabaseInput {
 input CreateUserDatabase {
   id: ID
   createdAt: DateTime
-}
-
-input CreateManyUserDatabasesInput {
-  """Array of records to create"""
-  userDatabases: [CreateUserDatabase!]!
 }
 
 input UpdateOneUserDatabaseInput {
@@ -2128,36 +1894,9 @@ input UpdateUserDatabase {
   createdAt: DateTime
 }
 
-input UpdateManyUserDatabasesInput {
-  """Filter used to find fields to update"""
-  filter: UserDatabaseUpdateFilter!
-
-  """The update to apply to all records found using the filter"""
-  update: UpdateUserDatabase!
-}
-
-input UserDatabaseUpdateFilter {
-  and: [UserDatabaseUpdateFilter!]
-  or: [UserDatabaseUpdateFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-}
-
 input DeleteOneUserDatabaseInput {
   """The id of the record to delete."""
   id: ID!
-}
-
-input DeleteManyUserDatabasesInput {
-  """Filter to find records to delete"""
-  filter: UserDatabaseDeleteFilter!
-}
-
-input UserDatabaseDeleteFilter {
-  and: [UserDatabaseDeleteFilter!]
-  or: [UserDatabaseDeleteFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
 }
 
 input CreateOneUserDatabaseItemInput {
@@ -2168,11 +1907,6 @@ input CreateOneUserDatabaseItemInput {
 input CreateUserDatabaseItem {
   id: ID
   createdAt: DateTime
-}
-
-input CreateManyUserDatabaseItemsInput {
-  """Array of records to create"""
-  userDatabaseItems: [CreateUserDatabaseItem!]!
 }
 
 input UpdateOneUserDatabaseItemInput {
@@ -2188,34 +1922,7 @@ input UpdateUserDatabaseItem {
   createdAt: DateTime
 }
 
-input UpdateManyUserDatabaseItemsInput {
-  """Filter used to find fields to update"""
-  filter: UserDatabaseItemUpdateFilter!
-
-  """The update to apply to all records found using the filter"""
-  update: UpdateUserDatabaseItem!
-}
-
-input UserDatabaseItemUpdateFilter {
-  and: [UserDatabaseItemUpdateFilter!]
-  or: [UserDatabaseItemUpdateFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-}
-
 input DeleteOneUserDatabaseItemInput {
   """The id of the record to delete."""
   id: ID!
-}
-
-input DeleteManyUserDatabaseItemsInput {
-  """Filter to find records to delete"""
-  filter: UserDatabaseItemDeleteFilter!
-}
-
-input UserDatabaseItemDeleteFilter {
-  and: [UserDatabaseItemDeleteFilter!]
-  or: [UserDatabaseItemDeleteFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
 }

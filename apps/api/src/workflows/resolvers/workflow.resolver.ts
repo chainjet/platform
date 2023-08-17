@@ -53,6 +53,7 @@ export class WorkflowResolver extends BaseResolver(Workflow, {
   CreateDTOClass: CreateWorkflowInput,
   UpdateDTOClass: UpdateWorkflowInput,
   guards: [GraphqlGuard],
+  enableTotalCount: true,
 }) {
   constructor(
     protected workflowService: WorkflowService,
