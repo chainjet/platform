@@ -27,7 +27,7 @@ export class Contact extends BaseEntity {
   address: string
 
   @Field(() => [GraphQLString], { nullable: true })
-  @prop({ default: [] })
+  @prop({ default: [], index: true })
   tags: string[]
 
   @jsonProp()
