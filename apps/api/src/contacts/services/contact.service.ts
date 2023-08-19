@@ -41,6 +41,35 @@ export class ContactService extends BaseService<Contact> {
     }
   }
 
+  async addSingleContact(address: string, user: User, tags?: string[]): Promise<Contact> {
+    const total = await this.countNative({ owner: user._id })
+    if (total + 1 > user.planConfig.maxContacts) {
+      throw new BadRequestException(
+        `Your current plan only allows you to have ${user.planConfig.maxContacts} contacts. Please upgrade to add more.`,
+      )
+    }
+    const contact = await this.findOne({ owner: user._id, address })
+    if (contact) {
+      if (tags?.length) {
+        const newTags = uniq([...contact.tags, ...tags])
+        if (newTags.length !== contact.tags.length) {
+          await this.updateById(contact._id, {
+            tags: newTags,
+          })
+          this.logger.log(`Updated contact ${address} for ${user.id}`)
+        }
+      }
+      return contact
+    }
+    const newContact = await this.createOne({
+      owner: user._id as Reference<User>,
+      address,
+      tags,
+    })
+    this.logger.log(`Added contact ${address} for ${user.id}`)
+    return newContact
+  }
+
   async addContacts(addresses: string[], user: User, tags?: string[]) {
     const total = await this.countNative({ owner: user._id })
     if (total + addresses.length > user.planConfig.maxContacts) {
