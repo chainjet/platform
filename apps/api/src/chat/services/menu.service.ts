@@ -2,6 +2,7 @@ import { BaseService } from '@app/common/base/base.service'
 import { Injectable, Logger } from '@nestjs/common'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
+import { User } from '../../users/entities/user'
 import { Menu } from '../entities/menu'
 
 @Injectable()
@@ -12,7 +13,16 @@ export class MenuService extends BaseService<Menu> {
     super(model)
   }
 
-  // async createOne(record: Partial<Menu>): Promise<Menu> {
-  //   return super.createOne(record)
-  // }
+  async resolveMenu(id: string, menuOwner: User) {
+    const menu = await this.findOne({ _id: id, owner: menuOwner })
+    if (!menu) {
+      return ''
+    }
+    return menu.items
+      .map(
+        (item, index) =>
+          `${index + 1}. ${item.name}${menu.currency && item.price ? ` (${item.price} ${menu.currency})` : ''}`,
+      )
+      .join('\n')
+  }
 }

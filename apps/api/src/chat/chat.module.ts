@@ -69,6 +69,6 @@ import { MenuService } from './services/menu.service'
 
     BroadcastConsumer,
   ],
-  exports: [ContactService, CampaignService],
+  exports: [ContactService, CampaignService, MenuService],
 })
 export class ChatsModule {}

@@ -5,6 +5,7 @@ import { Definition, IntegrationDefinitionFactory, RunResponse } from '@app/defi
 import { generateSchemaFromObject } from '@app/definitions/schema/utils/jsonSchemaUtils'
 import { Injectable, Logger } from '@nestjs/common'
 import { ContactService } from 'apps/api/src/chat/services/contact.service'
+import { MenuService } from 'apps/api/src/chat/services/menu.service'
 import { Integration } from 'apps/api/src/integrations/entities/integration'
 import { User } from 'apps/api/src/users/entities/user'
 import { UserService } from 'apps/api/src/users/services/user.service'
@@ -35,7 +36,7 @@ import { WorkflowTriggerService } from '../../../api/src/workflow-triggers/servi
 import { Workflow } from '../../../api/src/workflows/entities/workflow'
 import { WorkflowService } from '../../../api/src/workflows/services/workflow.service'
 import { OperationDailyLimitError } from '../errors/operation-daily-limit.error'
-import { findContactKeys, parseStepInputs } from '../utils/input.utils'
+import { findOutputKeys, parseStepInputs } from '../utils/input.utils'
 import { extractTriggerItems } from '../utils/trigger.utils'
 import { OperationRunnerService, OperationRunOptions } from './operation-runner.service'
 
@@ -68,6 +69,7 @@ export class RunnerService {
     private readonly accountCredentialService: AccountCredentialService,
     private readonly integrationDefinitionFactory: IntegrationDefinitionFactory,
     private readonly contactService: ContactService,
+    private readonly menuService: MenuService,
   ) {}
 
   onModuleDestroy() {
@@ -457,9 +459,16 @@ export class RunnerService {
 
     let inputs: Record<string, unknown>
     try {
-      if (workflow.type === 'chatbot' && previousOutputs.contact?.address) {
-        previousOutputs.contact = await this.addRequestedContactDetails(
-          previousOutputs.contact,
+      if (workflow.type === 'chatbot') {
+        if (previousOutputs.contact?.address) {
+          previousOutputs.contact = await this.addRequestedContactDetails(
+            previousOutputs.contact,
+            workflowAction.inputs,
+            user,
+          )
+        }
+        previousOutputs.menu = await this.addRequestedMenuDetails(
+          previousOutputs.menu ?? {},
           workflowAction.inputs,
           user,
         )
@@ -885,13 +894,23 @@ export class RunnerService {
   }
 
   async addRequestedContactDetails(contact: Record<string, any>, inputs: Record<string, unknown>, user: User) {
-    const contactKeys = findContactKeys(inputs)
+    const contactKeys = findOutputKeys(inputs, 'contact')
     for (const key of contactKeys) {
       if (!contact[key]) {
         contact[key] = await this.contactService.resolveContactData(contact.address, key, user)
       }
     }
     return contact
+  }
+
+  async addRequestedMenuDetails(menu: Record<string, any>, inputs: Record<string, unknown>, user: User) {
+    const menuKeys = findOutputKeys(inputs, 'menu')
+    for (const key of menuKeys) {
+      if (!menu[key] && typeof key === 'string') {
+        menu[key] = await this.menuService.resolveMenu(key, user)
+      }
+    }
+    return menu
   }
 
   private async onTriggerFailure(
