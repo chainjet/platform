@@ -1,7 +1,7 @@
 import { AuthenticationError } from '@app/common/errors/authentication-error'
 import { RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
-import { ContactService } from 'apps/api/src/contacts/services/contact.service'
+import { ContactService } from 'apps/api/src/chat/services/contact.service'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { isAddress } from 'ethers/lib/utils'
 import { JSONSchema7, JSONSchema7Definition } from 'json-schema'

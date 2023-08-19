@@ -6,7 +6,7 @@ import { DefinitionsModule } from '../../../../libs/definitions/src'
 import { RunnerModule } from '../../../runner/src/runner.module'
 import { AccountCredentialsModule } from '../account-credentials/account-credentials.module'
 import { AuthModule } from '../auth/auth.module'
-import { ContactsModule } from '../contacts/contacts.module'
+import { ChatsModule } from '../chat/chat.module'
 import { IntegrationAccountsModule } from '../integration-accounts/integration-accounts.module'
 import { IntegrationTriggersModule } from '../integration-triggers/integration-triggers.module'
 import { IntegrationsModule } from '../integrations/integrations.module'
@@ -46,7 +46,7 @@ import { WorkflowUsedIdService } from './services/workflow-used-id.service'
 
     // TODO remove forwardRef once Runner calls are replaced with queues
     forwardRef(() => RunnerModule),
-    ContactsModule,
+    ChatsModule,
   ],
   providers: [WorkflowTriggerResolver, WorkflowTriggerService, WorkflowTriggerAuthorizer, WorkflowUsedIdService],
   exports: [WorkflowTriggerService, WorkflowUsedIdService],

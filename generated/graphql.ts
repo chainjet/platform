@@ -156,6 +156,11 @@ export enum CampaignSortFields {
     createdAt = "createdAt"
 }
 
+export enum MenuSortFields {
+    id = "id",
+    createdAt = "createdAt"
+}
+
 export enum UserDatabaseSortFields {
     id = "id",
     createdAt = "createdAt"
@@ -534,6 +539,19 @@ export interface CampaignSort {
     nulls?: Nullable<SortNulls>;
 }
 
+export interface MenuFilter {
+    and?: Nullable<MenuFilter[]>;
+    or?: Nullable<MenuFilter[]>;
+    id?: Nullable<IDFilterComparison>;
+    createdAt?: Nullable<DateFieldComparison>;
+}
+
+export interface MenuSort {
+    field: MenuSortFields;
+    direction: SortDirection;
+    nulls?: Nullable<SortNulls>;
+}
+
 export interface UserDatabaseFilter {
     and?: Nullable<UserDatabaseFilter[]>;
     or?: Nullable<UserDatabaseFilter[]>;
@@ -746,6 +764,41 @@ export interface UpdateCampaignInput {
 }
 
 export interface DeleteOneCampaignInput {
+    id: string;
+}
+
+export interface CreateOneMenuInput {
+    menu: CreateMenuInput;
+}
+
+export interface CreateMenuInput {
+    name: string;
+    currency?: Nullable<string>;
+    items: CreateMenuItemInput[];
+}
+
+export interface CreateMenuItemInput {
+    name: string;
+    price?: Nullable<number>;
+}
+
+export interface UpdateOneMenuInput {
+    id: string;
+    update: UpdateMenuInput;
+}
+
+export interface UpdateMenuInput {
+    name?: Nullable<string>;
+    currency?: Nullable<string>;
+    items?: Nullable<UpdateMenuItemInput[]>;
+}
+
+export interface UpdateMenuItemInput {
+    name?: Nullable<string>;
+    price?: Nullable<number>;
+}
+
+export interface DeleteOneMenuInput {
     id: string;
 }
 
@@ -1066,6 +1119,19 @@ export interface Campaign {
     state: string;
 }
 
+export interface MenuItem {
+    name: string;
+    price: number;
+}
+
+export interface Menu {
+    id: string;
+    createdAt: DateTime;
+    name: string;
+    currency?: Nullable<string>;
+    items: MenuItem[];
+}
+
 export interface CampaignDeleteResponse {
     id?: Nullable<string>;
     createdAt?: Nullable<DateTime>;
@@ -1105,6 +1171,24 @@ export interface ContactConnection {
     pageInfo: PageInfo;
     edges: ContactEdge[];
     totalCount: number;
+}
+
+export interface MenuDeleteResponse {
+    id?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
+    name?: Nullable<string>;
+    currency?: Nullable<string>;
+    items?: Nullable<MenuItem[]>;
+}
+
+export interface MenuEdge {
+    node: Menu;
+    cursor: ConnectionCursor;
+}
+
+export interface MenuConnection {
+    pageInfo: PageInfo;
+    edges: MenuEdge[];
 }
 
 export interface CompileWorkflow {
@@ -1437,6 +1521,8 @@ export interface IQuery {
     contacts(paging?: Nullable<CursorPaging>, filter?: Nullable<ContactFilter>, sorting?: Nullable<ContactSort[]>): ContactConnection | Promise<ContactConnection>;
     campaign(id: string): Campaign | Promise<Campaign>;
     campaigns(paging?: Nullable<CursorPaging>, filter?: Nullable<CampaignFilter>, sorting?: Nullable<CampaignSort[]>): CampaignConnection | Promise<CampaignConnection>;
+    menu(id: string): Menu | Promise<Menu>;
+    menus(paging?: Nullable<CursorPaging>, filter?: Nullable<MenuFilter>, sorting?: Nullable<MenuSort[]>): MenuConnection | Promise<MenuConnection>;
     contractSchema(chainId: number, address: string, type: string): ContractSchema | Promise<ContractSchema>;
     asyncSchemas(integrationId: string, accountCredentialId: string, names: string[], inputs?: Nullable<JSONObject>, integrationTriggerId?: Nullable<string>, integrationActionId?: Nullable<string>): AsyncSchema | Promise<AsyncSchema>;
     manyAsyncSchemas(asyncSchemaInputs: JSONObject[]): AsyncSchema | Promise<AsyncSchema>;
@@ -1486,6 +1572,9 @@ export interface IMutation {
     createOneCampaign(input: CreateOneCampaignInput): Campaign | Promise<Campaign>;
     updateOneCampaign(input: UpdateOneCampaignInput): Campaign | Promise<Campaign>;
     deleteOneCampaign(input: DeleteOneCampaignInput): CampaignDeleteResponse | Promise<CampaignDeleteResponse>;
+    createOneMenu(input: CreateOneMenuInput): Menu | Promise<Menu>;
+    updateOneMenu(input: UpdateOneMenuInput): Menu | Promise<Menu>;
+    deleteOneMenu(input: DeleteOneMenuInput): MenuDeleteResponse | Promise<MenuDeleteResponse>;
     createOneUserDatabase(input: CreateOneUserDatabaseInput): UserDatabase | Promise<UserDatabase>;
     updateOneUserDatabase(input: UpdateOneUserDatabaseInput): UserDatabase | Promise<UserDatabase>;
     deleteOneUserDatabase(input: DeleteOneUserDatabaseInput): UserDatabaseDeleteResponse | Promise<UserDatabaseDeleteResponse>;

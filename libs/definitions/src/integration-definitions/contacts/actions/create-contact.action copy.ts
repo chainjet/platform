@@ -1,7 +1,7 @@
 import { AuthenticationError } from '@app/common/errors/authentication-error'
 import { RunResponse } from '@app/definitions/definition'
 import { OperationAction } from '@app/definitions/opertion-action'
-import { ContactService } from 'apps/api/src/contacts/services/contact.service'
+import { ContactService } from 'apps/api/src/chat/services/contact.service'
 import { User } from 'apps/api/src/users/entities/user'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { getAddress, isAddress } from 'ethers/lib/utils'

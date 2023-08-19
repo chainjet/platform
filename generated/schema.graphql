@@ -559,6 +559,19 @@ type Campaign {
   state: String!
 }
 
+type MenuItem {
+  name: String!
+  price: Float!
+}
+
+type Menu {
+  id: ID!
+  createdAt: DateTime!
+  name: String!
+  currency: String
+  items: [MenuItem!]!
+}
+
 type CampaignDeleteResponse {
   id: ID
   createdAt: DateTime
@@ -614,6 +627,30 @@ type ContactConnection {
 
   """Fetch total count of records"""
   totalCount: Int!
+}
+
+type MenuDeleteResponse {
+  id: ID
+  createdAt: DateTime
+  name: String
+  currency: String
+  items: [MenuItem!]
+}
+
+type MenuEdge {
+  """The node containing the Menu"""
+  node: Menu!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type MenuConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [MenuEdge!]!
 }
 
 type CompileWorkflow {
@@ -1224,6 +1261,20 @@ type Query {
     """Specify to sort results."""
     sorting: [CampaignSort!] = []
   ): CampaignConnection!
+  menu(
+    """The id of the record to find."""
+    id: ID!
+  ): Menu!
+  menus(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: MenuFilter = {}
+
+    """Specify to sort results."""
+    sorting: [MenuSort!] = []
+  ): MenuConnection!
   contractSchema(chainId: Int!, address: String!, type: String!): ContractSchema!
   asyncSchemas(integrationId: String!, accountCredentialId: String!, names: [String!]!, inputs: JSONObject, integrationTriggerId: String, integrationActionId: String): AsyncSchema!
   manyAsyncSchemas(asyncSchemaInputs: [JSONObject!]!): AsyncSchema!
@@ -1565,6 +1616,24 @@ enum CampaignSortFields {
   createdAt
 }
 
+input MenuFilter {
+  and: [MenuFilter!]
+  or: [MenuFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+}
+
+input MenuSort {
+  field: MenuSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum MenuSortFields {
+  id
+  createdAt
+}
+
 input UserDatabaseFilter {
   and: [UserDatabaseFilter!]
   or: [UserDatabaseFilter!]
@@ -1641,6 +1710,9 @@ type Mutation {
   createOneCampaign(input: CreateOneCampaignInput!): Campaign!
   updateOneCampaign(input: UpdateOneCampaignInput!): Campaign!
   deleteOneCampaign(input: DeleteOneCampaignInput!): CampaignDeleteResponse!
+  createOneMenu(input: CreateOneMenuInput!): Menu!
+  updateOneMenu(input: UpdateOneMenuInput!): Menu!
+  deleteOneMenu(input: DeleteOneMenuInput!): MenuDeleteResponse!
   createOneUserDatabase(input: CreateOneUserDatabaseInput!): UserDatabase!
   updateOneUserDatabase(input: UpdateOneUserDatabaseInput!): UserDatabase!
   deleteOneUserDatabase(input: DeleteOneUserDatabaseInput!): UserDatabaseDeleteResponse!
@@ -1867,6 +1939,46 @@ input UpdateCampaignInput {
 }
 
 input DeleteOneCampaignInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input CreateOneMenuInput {
+  """The record to create"""
+  menu: CreateMenuInput!
+}
+
+input CreateMenuInput {
+  name: String!
+  currency: String
+  items: [CreateMenuItemInput!]!
+}
+
+input CreateMenuItemInput {
+  name: String!
+  price: Float
+}
+
+input UpdateOneMenuInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateMenuInput!
+}
+
+input UpdateMenuInput {
+  name: String
+  currency: String
+  items: [UpdateMenuItemInput!]
+}
+
+input UpdateMenuItemInput {
+  name: String
+  price: Float
+}
+
+input DeleteOneMenuInput {
   """The id of the record to delete."""
   id: ID!
 }

@@ -4,7 +4,7 @@ import { isEmptyObj } from '@app/common/utils/object.utils'
 import { Definition, IntegrationDefinitionFactory, RunResponse } from '@app/definitions'
 import { generateSchemaFromObject } from '@app/definitions/schema/utils/jsonSchemaUtils'
 import { Injectable, Logger } from '@nestjs/common'
-import { ContactService } from 'apps/api/src/contacts/services/contact.service'
+import { ContactService } from 'apps/api/src/chat/services/contact.service'
 import { Integration } from 'apps/api/src/integrations/entities/integration'
 import { User } from 'apps/api/src/users/entities/user'
 import { UserService } from 'apps/api/src/users/services/user.service'
@@ -37,7 +37,7 @@ import { WorkflowService } from '../../../api/src/workflows/services/workflow.se
 import { OperationDailyLimitError } from '../errors/operation-daily-limit.error'
 import { findContactKeys, parseStepInputs } from '../utils/input.utils'
 import { extractTriggerItems } from '../utils/trigger.utils'
-import { OperationRunOptions, OperationRunnerService } from './operation-runner.service'
+import { OperationRunnerService, OperationRunOptions } from './operation-runner.service'
 
 type TriggerItemId = string | number
 

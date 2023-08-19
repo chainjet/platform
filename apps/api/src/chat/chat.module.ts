@@ -9,12 +9,15 @@ import { UsersModule } from '../users/users.module'
 import { Campaign, CampaignAuthorizer } from './entities/campaign'
 import { CampaignMessage } from './entities/campaign-message'
 import { Contact, ContactAuthorizer } from './entities/contact'
+import { Menu, MenuAuthorizer } from './entities/menu'
 import { CampaignResolver } from './resolvers/campaign.resolver'
 import { ContactResolver } from './resolvers/contact.resolver'
+import { MenuResolver } from './resolvers/menu.resolver'
 import { BroadcastConsumer } from './services/broadcast.consumer'
 import { CampaignMessageService } from './services/campaign-message.service'
 import { CampaignService } from './services/campaign.service'
 import { ContactService } from './services/contact.service'
+import { MenuService } from './services/menu.service'
 
 @Module({
   imports: [
@@ -29,6 +32,10 @@ import { ContactService } from './services/contact.service'
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([CampaignMessage])],
       // dtos: [{ DTOClass: Campaign }],
+    }),
+    NestjsQueryGraphQLModule.forFeature({
+      imports: [NestjsQueryTypegooseModule.forFeature([Menu])],
+      dtos: [{ DTOClass: Menu }],
     }),
     BullModule.registerQueue({
       name: 'broadcast',
@@ -47,18 +54,21 @@ import { ContactService } from './services/contact.service'
     // Resolvers
     ContactResolver,
     CampaignResolver,
+    MenuResolver,
 
     // Services
     ContactService,
     CampaignService,
     CampaignMessageService,
+    MenuService,
 
     // Authorizers
     ContactAuthorizer,
     CampaignAuthorizer,
+    MenuAuthorizer,
 
     BroadcastConsumer,
   ],
   exports: [ContactService, CampaignService],
 })
-export class ContactsModule {}
+export class ChatsModule {}

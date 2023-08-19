@@ -21,7 +21,7 @@ import { OperationRunnerService } from './services/operation-runner.service'
 import { RunnerService } from './services/runner.service'
 import { StaticRunner } from './services/static-runner.service'
 
-import { ContactsModule } from 'apps/api/src/contacts/contacts.module'
+import { ChatsModule } from 'apps/api/src/chat/chat.module'
 
 @Module({
   imports: [
@@ -45,7 +45,7 @@ import { ContactsModule } from 'apps/api/src/contacts/contacts.module'
     AuthModule,
     DefinitionsModule,
     BlockchainModule,
-    ContactsModule,
+    ChatsModule,
   ],
   providers: [RunnerService, OperationRunnerService, StaticRunner, EvmRunnerService],
   exports: [RunnerService, OperationRunnerService, StaticRunner],
