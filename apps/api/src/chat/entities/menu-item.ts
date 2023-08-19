@@ -7,7 +7,7 @@ export class MenuItem {
   @prop({ required: true, set: (name) => name.trim() })
   name: string
 
-  @Field()
+  @Field({ defaultValue: 0 })
   @prop({ required: true, default: 0 })
   price: number
 }
