@@ -3,7 +3,7 @@ import { EmailService } from '@app/emails/services/email.service'
 import { WorkflowDisabledTemplate } from '@app/emails/templates/workflowDisabledTemplate'
 import { ChainId } from '@blockchain/blockchain/types/ChainId'
 import { CACHE_MANAGER, Inject, Injectable, Logger } from '@nestjs/common'
-import { ReturnModelType, mongoose } from '@typegoose/typegoose'
+import { mongoose, ReturnModelType } from '@typegoose/typegoose'
 import { ObjectId } from 'bson'
 import { Cache } from 'cache-manager'
 import { InjectModel } from 'nestjs-typegoose'
@@ -256,6 +256,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     triggerItemId: string | number,
     sleepUntil?: Date,
     uniqueGroup?: string,
+    repeatOnWakeUp?: boolean,
   ): Promise<void> {
     await this.workflowSleepService.createOne({
       workflow: workflow._id,
@@ -265,6 +266,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
       itemId: triggerItemId,
       sleepUntil,
       uniqueGroup,
+      repeat: repeatOnWakeUp,
     })
     await this.updateOne(workflowRun.id, { status: WorkflowRunStatus.sleeping })
   }

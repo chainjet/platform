@@ -249,6 +249,18 @@ export class ChatbotController {
         { content: message.content, from: 'user' },
       ],
     } as Record<string, Record<string, unknown>>
+
+    if (workflowSleep.repeat) {
+      await this.runnerService.runWorkflowActionsTree(
+        workflow,
+        workflowAction,
+        nextActionInputs,
+        workflowRun,
+        workflowSleep.itemId,
+      )
+      return this.workflowRunService.markWorkflowRunAsCompleted(workflowRun._id)
+    }
+
     const actions = await this.workflowActionService.findByIds(
       workflowAction.nextActions.map((next) => next.action) as Types.ObjectId[],
     )

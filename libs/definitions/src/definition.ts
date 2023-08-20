@@ -16,7 +16,7 @@ import { IntegrationTriggerService } from '../../../apps/api/src/integration-tri
 import { Integration } from '../../../apps/api/src/integrations/entities/integration'
 import { WorkflowAction } from '../../../apps/api/src/workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from '../../../apps/api/src/workflow-triggers/entities/workflow-trigger'
-import { OperationRunOptions, OperationRunnerService } from '../../../apps/runner/src/services/operation-runner.service'
+import { OperationRunnerService, OperationRunOptions } from '../../../apps/runner/src/services/operation-runner.service'
 import { Operation } from './operation'
 import { OperationTrigger } from './operation-trigger'
 import { OperationOffChain } from './opertion-offchain'
@@ -52,6 +52,7 @@ export interface RunResponse {
   condition?: string
   sleepUntil?: Date
   sleepUniqueGroup?: string
+  repeatOnWakeUp?: boolean
   store?: Record<string, any>
   refreshedCredentials?: Record<string, any>
   transactions?: Array<{ hash: string; chainId: number }>

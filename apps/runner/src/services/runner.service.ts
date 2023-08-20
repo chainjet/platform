@@ -606,6 +606,7 @@ export class RunnerService {
         triggerItemId,
         runResponse.sleepUntil,
         runResponse.sleepUniqueGroup,
+        runResponse.repeatOnWakeUp,
       )
       return WorkflowRunStatus.sleeping
     }

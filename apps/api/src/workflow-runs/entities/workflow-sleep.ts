@@ -30,4 +30,7 @@ export class WorkflowSleep extends BaseEntity {
 
   @prop()
   uniqueGroup?: string
+
+  @prop()
+  repeat?: boolean
 }
