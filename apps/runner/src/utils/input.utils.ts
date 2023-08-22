@@ -131,6 +131,14 @@ export function calculateExpression(input: string, references: Record<string, Re
   })
   parser.set('first', (...args: any[]) => (args ?? []).find((x) => !!x))
   parser.set('last', (...args: any[]) => (args ?? []).reverse().find((x) => !!x))
+  parser.set('map', (list: any[], path: any) => {
+    try {
+      const data = JSON.parse(list[0].value)
+      return _.map(data, list[1].value)
+    } catch {
+      return ''
+    }
+  })
 
   // newlines need to be escaped before parsing the expression
   let parsed = parser.evaluate((expression ?? '').replace(/\n/g, '\\n'))
@@ -140,11 +148,15 @@ export function calculateExpression(input: string, references: Record<string, Re
   return parsed
 }
 
-function stringifyInput(input: unknown): string {
+export function stringifyInput(input: unknown): string {
   if (_.isPlainObject(input)) {
-    return JSON.stringify(input)
-  } else if (_.isDate(input)) {
+    return JSON.stringify(input).replace(/"/g, '\\"')
+  }
+  if (_.isDate(input)) {
     return input.toISOString()
+  }
+  if (Array.isArray(input)) {
+    return `[${input.map((x) => stringifyInput(x)).join(',')}]`
   }
   return (input as string) ?? ''
 }
