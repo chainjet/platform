@@ -37,13 +37,13 @@ export const LOGIC_FIELD_DEFS = {
     type: 'array',
     items: { $ref: '#/$defs/Expression' },
     minItems: 1,
-    maxItems: 1,
+    'x-addLabel': 'And',
   },
   OrExpressions: {
     type: 'array',
     items: { $ref: '#/$defs/AndExpressions' },
     minItems: 1,
-    maxItems: 1,
+    'x-addLabel': 'Or',
   },
 }
 
