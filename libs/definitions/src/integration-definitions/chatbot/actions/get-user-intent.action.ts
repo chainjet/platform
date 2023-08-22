@@ -1,7 +1,7 @@
 import { RunResponse } from '@app/definitions/definition'
 import { OperationAction } from '@app/definitions/opertion-action'
 import { getUserIntent } from '@chainjet/tools'
-import { UserIntent } from '@chainjet/tools/dist/ai/ai.utils'
+import { UserIntent } from '@chainjet/tools/dist/ai/ai'
 import { BadRequestException } from '@nestjs/common'
 import { AccountCredential } from 'apps/api/src/account-credentials/entities/account-credential'
 import { IntegrationAction } from 'apps/api/src/integration-actions/entities/integration-action'

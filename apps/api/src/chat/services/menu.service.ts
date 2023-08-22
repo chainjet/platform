@@ -8,9 +8,11 @@ import { Menu } from '../entities/menu'
 @Injectable()
 export class MenuService extends BaseService<Menu> {
   protected readonly logger = new Logger(MenuService.name)
+  static instance: MenuService
 
   constructor(@InjectModel(Menu) protected readonly model: ReturnModelType<typeof Menu>) {
     super(model)
+    MenuService.instance = this
   }
 
   async resolveMenu(id: string, menuOwner: User) {

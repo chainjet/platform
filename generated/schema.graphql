@@ -406,6 +406,19 @@ type IntegrationTriggersConnection {
   edges: [IntegrationTriggerEdge!]!
 }
 
+type MenuItem {
+  name: String!
+  price: Float!
+}
+
+type Menu {
+  id: ID!
+  createdAt: DateTime!
+  name: String!
+  currency: String
+  items: [MenuItem!]!
+}
+
 type Contact {
   id: ID!
   createdAt: DateTime!
@@ -557,19 +570,6 @@ type Campaign {
   total: Float
   includeTags: [String!]
   state: String!
-}
-
-type MenuItem {
-  name: String!
-  price: Float!
-}
-
-type Menu {
-  id: ID!
-  createdAt: DateTime!
-  name: String!
-  currency: String
-  items: [MenuItem!]!
 }
 
 type CampaignDeleteResponse {

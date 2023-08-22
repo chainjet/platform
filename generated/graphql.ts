@@ -1000,6 +1000,19 @@ export interface IntegrationTriggersConnection {
     edges: IntegrationTriggerEdge[];
 }
 
+export interface MenuItem {
+    name: string;
+    price: number;
+}
+
+export interface Menu {
+    id: string;
+    createdAt: DateTime;
+    name: string;
+    currency?: Nullable<string>;
+    items: MenuItem[];
+}
+
 export interface Contact {
     id: string;
     createdAt: DateTime;
@@ -1117,19 +1130,6 @@ export interface Campaign {
     total?: Nullable<number>;
     includeTags?: Nullable<string[]>;
     state: string;
-}
-
-export interface MenuItem {
-    name: string;
-    price: number;
-}
-
-export interface Menu {
-    id: string;
-    createdAt: DateTime;
-    name: string;
-    currency?: Nullable<string>;
-    items: MenuItem[];
 }
 
 export interface CampaignDeleteResponse {

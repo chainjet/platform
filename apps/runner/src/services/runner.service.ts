@@ -584,7 +584,10 @@ export class RunnerService {
           schemaResponse: integrationAction.schemaResponse,
         })
       }
-      if (integrationAction.learnResponseWorkflow && !workflowAction.schemaResponse) {
+      if (
+        (integrationAction.learnResponseWorkflow && !workflowAction.schemaResponse) ||
+        runResponse.learnResponseWorkflow
+      ) {
         workflowAction.schemaResponse = this.getSchemaResponse(runResponse)
         await this.workflowActionService.updateOne(workflowAction.id, {
           schemaResponse: workflowAction.schemaResponse,
