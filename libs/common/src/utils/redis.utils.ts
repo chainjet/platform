@@ -33,7 +33,7 @@ export function bullForRoot() {
       return new Redis(process.env.REDIS_URL!, {
         maxRetriesPerRequest: null,
         enableReadyCheck: false,
-        tls: {},
+        ...(process.env.NODE_ENV === 'development' ? {} : { tls: {} }),
       })
     },
   })
