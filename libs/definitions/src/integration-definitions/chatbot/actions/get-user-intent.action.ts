@@ -73,6 +73,13 @@ export class GetUserIntentAction extends OperationAction {
     accountCredential: AccountCredential | null,
   ): Promise<Partial<WorkflowAction>> {
     if (update.inputs?.intents) {
+      // Trim names and descriptions
+      update.inputs.intents = update.inputs.intents.map((intent) => ({
+        ...intent,
+        name: intent.name.trim(),
+        description: intent.description?.trim(),
+      }))
+
       // All intents must have a unique non-empty name
       const intentNames = update.inputs.intents.map((intent) => intent.name.toLowerCase().trim())
       if (intentNames.some((name) => !name)) {
