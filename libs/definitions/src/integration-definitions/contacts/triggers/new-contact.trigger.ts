@@ -17,39 +17,10 @@ export class NewContactTrigger extends OperationTrigger {
   }
   outputs: JSONSchema7 = {
     properties: {
-      address: {
-        type: 'string',
-        title: 'Wallet Address',
-        examples: ['0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'],
-      },
-      walletName: {
-        type: 'string',
-        title: 'Wallet Name',
-        examples: ['vitalik.eth'],
-      },
-      ens: {
-        type: 'string',
-        title: 'ENS Name',
-        examples: ['vitalik.eth'],
-      },
-      lens: {
-        type: 'string',
-        title: 'Lens Profile',
-        examples: ['vitalik.lens'],
-      },
-      farcaster: {
-        type: 'string',
-        title: 'Farcaster Profile',
-        examples: ['vitalik.eth'],
-      },
-      tags: {
-        type: 'array',
-        title: 'Tags',
-        items: {
-          type: 'string',
-        },
-        examples: [['Chatbot', 'Eth Paris', 'Eth NYC']],
-      },
+      contact: {
+        type: 'object',
+        'x-type': 'contact',
+      } as JSONSchema7,
     },
   }
 

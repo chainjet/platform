@@ -459,14 +459,14 @@ export class RunnerService {
 
     let inputs: Record<string, unknown>
     try {
+      if (previousOutputs.contact?.address) {
+        previousOutputs.contact = await this.addRequestedContactDetails(
+          previousOutputs.contact,
+          workflowAction.inputs,
+          user,
+        )
+      }
       if (workflow.type === 'chatbot') {
-        if (previousOutputs.contact?.address) {
-          previousOutputs.contact = await this.addRequestedContactDetails(
-            previousOutputs.contact,
-            workflowAction.inputs,
-            user,
-          )
-        }
         previousOutputs.menu = await this.addRequestedMenuDetails(
           previousOutputs.menu ?? {},
           workflowAction.inputs,

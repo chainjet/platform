@@ -1120,77 +1120,6 @@ export interface UserEdge {
     cursor: ConnectionCursor;
 }
 
-export interface Campaign {
-    id: string;
-    createdAt: DateTime;
-    name: string;
-    message: string;
-    delivered: number;
-    processed: number;
-    total?: Nullable<number>;
-    includeTags?: Nullable<string[]>;
-    state: string;
-}
-
-export interface CampaignDeleteResponse {
-    id?: Nullable<string>;
-    createdAt?: Nullable<DateTime>;
-    name?: Nullable<string>;
-    message?: Nullable<string>;
-    delivered?: Nullable<number>;
-    processed?: Nullable<number>;
-    total?: Nullable<number>;
-    includeTags?: Nullable<string[]>;
-    state?: Nullable<string>;
-}
-
-export interface CampaignEdge {
-    node: Campaign;
-    cursor: ConnectionCursor;
-}
-
-export interface CampaignConnection {
-    pageInfo: PageInfo;
-    edges: CampaignEdge[];
-    totalCount: number;
-}
-
-export interface ContactDeleteResponse {
-    id?: Nullable<string>;
-    createdAt?: Nullable<DateTime>;
-    address?: Nullable<string>;
-    tags?: Nullable<string[]>;
-}
-
-export interface ContactEdge {
-    node: Contact;
-    cursor: ConnectionCursor;
-}
-
-export interface ContactConnection {
-    pageInfo: PageInfo;
-    edges: ContactEdge[];
-    totalCount: number;
-}
-
-export interface MenuDeleteResponse {
-    id?: Nullable<string>;
-    createdAt?: Nullable<DateTime>;
-    name?: Nullable<string>;
-    currency?: Nullable<string>;
-    items?: Nullable<MenuItem[]>;
-}
-
-export interface MenuEdge {
-    node: Menu;
-    cursor: ConnectionCursor;
-}
-
-export interface MenuConnection {
-    pageInfo: PageInfo;
-    edges: MenuEdge[];
-}
-
 export interface CompileWorkflow {
     bytecode: string;
     abi: JSONObject[];
@@ -1330,6 +1259,77 @@ export interface WorkflowRunActionEdge {
 export interface WorkflowRunActionConnection {
     pageInfo: PageInfo;
     edges: WorkflowRunActionEdge[];
+}
+
+export interface Campaign {
+    id: string;
+    createdAt: DateTime;
+    name: string;
+    message: string;
+    delivered: number;
+    processed: number;
+    total?: Nullable<number>;
+    includeTags?: Nullable<string[]>;
+    state: string;
+}
+
+export interface CampaignDeleteResponse {
+    id?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
+    name?: Nullable<string>;
+    message?: Nullable<string>;
+    delivered?: Nullable<number>;
+    processed?: Nullable<number>;
+    total?: Nullable<number>;
+    includeTags?: Nullable<string[]>;
+    state?: Nullable<string>;
+}
+
+export interface CampaignEdge {
+    node: Campaign;
+    cursor: ConnectionCursor;
+}
+
+export interface CampaignConnection {
+    pageInfo: PageInfo;
+    edges: CampaignEdge[];
+    totalCount: number;
+}
+
+export interface ContactDeleteResponse {
+    id?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
+    address?: Nullable<string>;
+    tags?: Nullable<string[]>;
+}
+
+export interface ContactEdge {
+    node: Contact;
+    cursor: ConnectionCursor;
+}
+
+export interface ContactConnection {
+    pageInfo: PageInfo;
+    edges: ContactEdge[];
+    totalCount: number;
+}
+
+export interface MenuDeleteResponse {
+    id?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
+    name?: Nullable<string>;
+    currency?: Nullable<string>;
+    items?: Nullable<MenuItem[]>;
+}
+
+export interface MenuEdge {
+    node: Menu;
+    cursor: ConnectionCursor;
+}
+
+export interface MenuConnection {
+    pageInfo: PageInfo;
+    edges: MenuEdge[];
 }
 
 export interface WorkflowTriggerDeleteResponse {

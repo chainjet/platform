@@ -560,99 +560,6 @@ type UserEdge {
   cursor: ConnectionCursor!
 }
 
-type Campaign {
-  id: ID!
-  createdAt: DateTime!
-  name: String!
-  message: String!
-  delivered: Float!
-  processed: Float!
-  total: Float
-  includeTags: [String!]
-  state: String!
-}
-
-type CampaignDeleteResponse {
-  id: ID
-  createdAt: DateTime
-  name: String
-  message: String
-  delivered: Float
-  processed: Float
-  total: Float
-  includeTags: [String!]
-  state: String
-}
-
-type CampaignEdge {
-  """The node containing the Campaign"""
-  node: Campaign!
-
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
-}
-
-type CampaignConnection {
-  """Paging information"""
-  pageInfo: PageInfo!
-
-  """Array of edges."""
-  edges: [CampaignEdge!]!
-
-  """Fetch total count of records"""
-  totalCount: Int!
-}
-
-type ContactDeleteResponse {
-  id: ID
-  createdAt: DateTime
-  address: String
-  tags: [String!]
-}
-
-type ContactEdge {
-  """The node containing the Contact"""
-  node: Contact!
-
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
-}
-
-type ContactConnection {
-  """Paging information"""
-  pageInfo: PageInfo!
-
-  """Array of edges."""
-  edges: [ContactEdge!]!
-
-  """Fetch total count of records"""
-  totalCount: Int!
-}
-
-type MenuDeleteResponse {
-  id: ID
-  createdAt: DateTime
-  name: String
-  currency: String
-  items: [MenuItem!]
-}
-
-type MenuEdge {
-  """The node containing the Menu"""
-  node: Menu!
-
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
-}
-
-type MenuConnection {
-  """Paging information"""
-  pageInfo: PageInfo!
-
-  """Array of edges."""
-  edges: [MenuEdge!]!
-}
-
 type CompileWorkflow {
   bytecode: String!
   abi: [JSONObject!]!
@@ -851,6 +758,99 @@ type WorkflowRunActionConnection {
 
   """Array of edges."""
   edges: [WorkflowRunActionEdge!]!
+}
+
+type Campaign {
+  id: ID!
+  createdAt: DateTime!
+  name: String!
+  message: String!
+  delivered: Float!
+  processed: Float!
+  total: Float
+  includeTags: [String!]
+  state: String!
+}
+
+type CampaignDeleteResponse {
+  id: ID
+  createdAt: DateTime
+  name: String
+  message: String
+  delivered: Float
+  processed: Float
+  total: Float
+  includeTags: [String!]
+  state: String
+}
+
+type CampaignEdge {
+  """The node containing the Campaign"""
+  node: Campaign!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type CampaignConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [CampaignEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type ContactDeleteResponse {
+  id: ID
+  createdAt: DateTime
+  address: String
+  tags: [String!]
+}
+
+type ContactEdge {
+  """The node containing the Contact"""
+  node: Contact!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type ContactConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [ContactEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type MenuDeleteResponse {
+  id: ID
+  createdAt: DateTime
+  name: String
+  currency: String
+  items: [MenuItem!]
+}
+
+type MenuEdge {
+  """The node containing the Menu"""
+  node: Menu!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type MenuConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [MenuEdge!]!
 }
 
 type WorkflowTriggerDeleteResponse {

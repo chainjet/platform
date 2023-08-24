@@ -2,10 +2,17 @@ import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModu
 import { BullModule } from '@nestjs/bull'
 import { forwardRef, Module } from '@nestjs/common'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
+import { RunnerModule } from 'apps/runner/src/runner.module'
 import { AccountCredentialsModule } from '../account-credentials/account-credentials.module'
 import { AuthModule } from '../auth/auth.module'
 import { IntegrationAccountsModule } from '../integration-accounts/integration-accounts.module'
+import { IntegrationTriggersModule } from '../integration-triggers/integration-triggers.module'
+import { IntegrationsModule } from '../integrations/integrations.module'
 import { UsersModule } from '../users/users.module'
+import { WorkflowActionsModule } from '../workflow-actions/workflow-actions.module'
+import { WorkflowRunsModule } from '../workflow-runs/workflow-runs.module'
+import { WorkflowTriggersModule } from '../workflow-triggers/workflow-triggers.module'
+import { WorkflowsModule } from '../workflows/workflows.module'
 import { Campaign, CampaignAuthorizer } from './entities/campaign'
 import { CampaignMessage } from './entities/campaign-message'
 import { Contact, ContactAuthorizer } from './entities/contact'
@@ -16,6 +23,7 @@ import { MenuResolver } from './resolvers/menu.resolver'
 import { BroadcastConsumer } from './services/broadcast.consumer'
 import { CampaignMessageService } from './services/campaign-message.service'
 import { CampaignService } from './services/campaign.service'
+import { ContactsConsumer } from './services/contact.consumer'
 import { ContactService } from './services/contact.service'
 import { MenuService } from './services/menu.service'
 
@@ -45,10 +53,25 @@ import { MenuService } from './services/menu.service'
         maxStalledCount: 3,
       },
     }),
+    BullModule.registerQueue({
+      name: 'contacts',
+      settings: {
+        lockDuration: 60000,
+        stalledInterval: 30000,
+        maxStalledCount: 3,
+      },
+    }),
     AuthModule, // required for GraphqlGuard
     UsersModule, // required for GraphqlGuard
     IntegrationAccountsModule,
+    IntegrationsModule,
+    IntegrationTriggersModule,
     forwardRef(() => AccountCredentialsModule),
+    WorkflowsModule,
+    forwardRef(() => WorkflowTriggersModule),
+    forwardRef(() => WorkflowActionsModule),
+    WorkflowRunsModule,
+    forwardRef(() => RunnerModule),
   ],
   providers: [
     // Resolvers
@@ -68,6 +91,7 @@ import { MenuService } from './services/menu.service'
     MenuAuthorizer,
 
     BroadcastConsumer,
+    ContactsConsumer,
   ],
   exports: [ContactService, CampaignService, MenuService],
 })

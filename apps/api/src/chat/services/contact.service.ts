@@ -6,11 +6,14 @@ import {
   getWalletLensProfile,
   getWalletName,
 } from '@app/definitions/utils/address.utils'
+import { InjectQueue } from '@nestjs/bull'
 import { BadRequestException, Injectable, Logger } from '@nestjs/common'
 import { ReturnModelType } from '@typegoose/typegoose'
+import { Queue } from 'bull'
 import { getAddress } from 'ethers/lib/utils'
 import { uniq } from 'lodash'
 import { ObjectId, WriteError } from 'mongodb'
+import { InsertManyOptions } from 'mongoose'
 import { InjectModel } from 'nestjs-typegoose'
 import { User } from '../../users/entities/user'
 import { Contact } from '../entities/contact'
@@ -20,7 +23,10 @@ export class ContactService extends BaseService<Contact> {
   protected readonly logger = new Logger(ContactService.name)
   static instance: ContactService
 
-  constructor(@InjectModel(Contact) protected readonly model: ReturnModelType<typeof Contact>) {
+  constructor(
+    @InjectModel(Contact) protected readonly model: ReturnModelType<typeof Contact>,
+    @InjectQueue('contacts') private contactsQueue: Queue,
+  ) {
     super(model)
     ContactService.instance = this
   }
@@ -70,6 +76,22 @@ export class ContactService extends BaseService<Contact> {
     return newContact
   }
 
+  async createOne(record: Partial<Contact>): Promise<Contact> {
+    const contact = await super.createOne(record)
+    this.contactsQueue.add(
+      {
+        type: 'contactAdded',
+        contactId: contact._id,
+        contactAddress: contact.address,
+        ownerId: contact.owner,
+      },
+      {
+        attempts: 1,
+      },
+    )
+    return contact
+  }
+
   async addContacts(addresses: string[], user: User, tags?: string[]) {
     const total = await this.countNative({ owner: user._id })
     if (total + addresses.length > user.planConfig.maxContacts) {
@@ -110,6 +132,22 @@ export class ContactService extends BaseService<Contact> {
     this.logger.log(
       `Added ${addresses.length - duplicatedAddresses.length} contacts and updated ${updatedContacts} for ${user.id}`,
     )
+  }
+
+  async insertMany(docs: Partial<Contact>[], options: InsertManyOptions): Promise<any> {
+    const contacts = await this.model.insertMany(docs, options)
+    this.contactsQueue.add(
+      {
+        type: 'contactsAdded',
+        contactIds: contacts.map((contact) => contact._id),
+        contactAddresses: contacts.map((contact) => contact.address),
+        ownerId: docs[0].owner,
+      },
+      {
+        attempts: 1,
+      },
+    )
+    return contacts
   }
 
   async addTags(address: string, tags: string[], ownerId: ObjectId): Promise<string[]> {
