@@ -16,12 +16,13 @@ export class AddTagContactAction extends OperationOffChain {
   inputs: JSONSchema7 = {
     required: ['address', 'tags'],
     properties: {
-      // TODO this should be auto-filled on chatbots but not automations
       address: {
         title: 'Wallet Address',
         type: 'string',
-        'x-ui:widget': 'hidden',
-        default: '{{contact.address}}',
+        'x-if:chatbot': {
+          'x-ui:widget': 'hidden',
+          default: '{{contact.address}}',
+        },
       } as JSONSchema7Definition,
       tags: {
         title: 'Tags',

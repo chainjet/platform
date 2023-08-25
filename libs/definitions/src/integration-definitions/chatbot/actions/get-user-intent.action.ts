@@ -22,8 +22,10 @@ export class GetUserIntentAction extends OperationAction {
       message: {
         title: 'User Message',
         type: 'string',
-        'x-ui:widget': 'hidden',
-        default: '{{message.content}}',
+        'x-if:chatbot': {
+          'x-ui:widget': 'hidden',
+          default: '{{message.content}}',
+        },
       } as JSONSchema7Definition,
       intents: {
         title: 'List of User Intents',

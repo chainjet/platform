@@ -19,8 +19,10 @@ export class SendChatbotMessageAction extends OperationOffChain {
         title: 'Conversation ID',
         type: 'string',
         description: 'ID of the conversation to send the message to',
-        'x-ui:widget': 'hidden',
-        default: '{{trigger.conversation.id}}',
+        'x-if:chatbot': {
+          'x-ui:widget': 'hidden',
+          default: '{{trigger.conversation.id}}',
+        },
       } as JSONSchema7Definition,
       message: {
         title: 'Message',
