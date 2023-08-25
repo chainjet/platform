@@ -148,33 +148,36 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
     }
   }
 
-  createOne(record: DeepPartial<T>): Promise<T> {
-    return super.createOne(record)
+  async createOne(record: DeepPartial<T>): Promise<T> {
+    const doc = await super.createOne(record)
+    await this.afterCreateOne(doc)
+    return doc
   }
 
+  /**
+   * @deprecated use insertMany instead
+   * createMany just loops over records and calls createOne
+   */
   createMany(records: Array<DeepPartial<T>>): Promise<T[]> {
     return super.createMany(records)
   }
 
-  insertMany(docs: DeepPartial<T>[], options: InsertManyOptions): Promise<any> {
-    return this.model.insertMany(docs, options)
+  async insertMany(docs: DeepPartial<T>[], options: InsertManyOptions) {
+    const items = await this.model.insertMany(docs, options)
+    await this.afterCreateMany(items as T[])
+    return items
+  }
+
+  async afterCreateOne(record: T) {
+    // noop
+  }
+
+  async afterCreateMany(records: T[]) {
+    // noop
   }
 
   updateOne(id: string, update: DeepPartial<T>, opts?: UpdateOneOptions<T>): Promise<T> {
     return super.updateOne(id, update, opts)
-  }
-
-  updateMany(update: DeepPartial<T>, filter: Filter<T>): Promise<UpdateManyResponse> {
-    return super.updateMany(update, filter)
-  }
-
-  update(conditions: FilterQuery<new () => T>, query: UpdateQuery<new () => T>): Promise<UpdateResult> {
-    return this.model.updateMany(conditions, query).exec()
-  }
-
-  updateById(id: ObjectId, query: UpdateQuery<new () => T>): Promise<UpdateResult> {
-    const conditions: FilterQuery<new () => T> = { _id: id }
-    return this.model.updateOne(conditions, query).exec()
   }
 
   updateOneNative(conditions: FilterQuery<new () => T>, query: UpdateQuery<new () => T>): Promise<UpdateResult> {
@@ -182,6 +185,15 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
       query.__v = conditions.__v + 1
     }
     return this.model.updateOne(conditions, query).exec()
+  }
+
+  updateById(id: ObjectId, query: UpdateQuery<new () => T>): Promise<UpdateResult> {
+    const conditions: FilterQuery<new () => T> = { _id: id }
+    return this.updateOneNative(conditions, query)
+  }
+
+  updateMany(update: DeepPartial<T>, filter: Filter<T>): Promise<UpdateManyResponse> {
+    return super.updateMany(update, filter)
   }
 
   updateManyNative(conditions: FilterQuery<new () => T>, query: UpdateQuery<new () => T>): Promise<UpdateResult> {

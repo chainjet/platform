@@ -2,6 +2,7 @@ import { SingleIntegrationDefinition } from '@app/definitions/single-integration
 import { AddTagContactAction } from './actions/add-tag-contact.action'
 import { CreateContactAction } from './actions/create-contact.action copy'
 import { RemoveTagContactAction } from './actions/remove-tag-contact.action'
+import { ContactTaggedTrigger } from './triggers/contact-tagged.trigger'
 import { NewContactTrigger } from './triggers/new-contact.trigger'
 
 export class ContactsDefinition extends SingleIntegrationDefinition {
@@ -9,6 +10,6 @@ export class ContactsDefinition extends SingleIntegrationDefinition {
   integrationVersion = '1'
   schemaUrl = null
 
-  triggers = [new NewContactTrigger()]
+  triggers = [new NewContactTrigger(), new ContactTaggedTrigger()]
   actions = [new CreateContactAction(), new AddTagContactAction(), new RemoveTagContactAction()]
 }

@@ -193,7 +193,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     transactions?: Array<{ hash: string; chainId: ChainId }>,
     sleeping?: boolean,
   ): Promise<void> {
-    await this.update(
+    await this.updateManyNative(
       { _id: workflowRunId, 'actionRuns._id': workflowRunAction._id },
       {
         $set: {
@@ -216,7 +216,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     errorResponse?: string,
     inputs?: Record<string, any>,
   ): Promise<void> {
-    await this.update(
+    await this.updateManyNative(
       { _id: workflowRun._id, 'actionRuns._id': workflowAction._id },
       {
         $set: {

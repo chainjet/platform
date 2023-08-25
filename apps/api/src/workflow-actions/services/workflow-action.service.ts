@@ -335,7 +335,7 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     // Update isRootAction on next actions
     if (workflowAction.isRootAction && workflowAction.nextActions.length) {
       const nextActionIds = workflowAction.nextActions.map((next) => next.action)
-      await this.update({ _id: { $in: nextActionIds } }, { $set: { isRootAction: true } })
+      await this.updateManyNative({ _id: { $in: nextActionIds } }, { $set: { isRootAction: true } })
     }
 
     // Remove action from nextActions references. The workflow is included on the query so the index is used.
