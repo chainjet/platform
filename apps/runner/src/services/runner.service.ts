@@ -459,6 +459,7 @@ export class RunnerService {
 
     let inputs: Record<string, unknown>
     try {
+      // add contact info on-demand
       if (previousOutputs.contact?.address) {
         previousOutputs.contact = await this.addRequestedContactDetails(
           previousOutputs.contact,
@@ -466,6 +467,18 @@ export class RunnerService {
           user,
         )
       }
+      for (const [key, value] of Object.entries(previousOutputs)) {
+        if ((value.contact as any)?.address && !['trigger', 'contact'].includes(key)) {
+          previousOutputs[key].contact = await this.addRequestedContactDetails(
+            previousOutputs[key].contact as any,
+            workflowAction.inputs,
+            user,
+            `${key}.contact`,
+          )
+        }
+      }
+
+      // add menu info on-demand
       if (workflow.type === 'chatbot') {
         previousOutputs.menu = await this.addRequestedMenuDetails(
           previousOutputs.menu ?? {},
@@ -897,8 +910,13 @@ export class RunnerService {
     }
   }
 
-  async addRequestedContactDetails(contact: Record<string, any>, inputs: Record<string, unknown>, user: User) {
-    const contactKeys = findOutputKeys(inputs, 'contact')
+  async addRequestedContactDetails(
+    contact: Record<string, any>,
+    inputs: Record<string, unknown>,
+    user: User,
+    inputsKey: string = 'contact',
+  ) {
+    const contactKeys = findOutputKeys(inputs, inputsKey)
     for (const key of contactKeys) {
       if (!contact[key]) {
         contact[key] = await this.contactService.resolveContactData(contact.address, key, user)

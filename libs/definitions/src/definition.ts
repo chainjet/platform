@@ -62,6 +62,7 @@ export interface RunResponse {
   cursor?: string // cursor for pagination when fetching all items
   credits?: number // number of credits used
   learnResponseWorkflow?: boolean
+  contact?: string
 }
 
 export type GetAsyncSchemasProps = OperationRunOptions & {
