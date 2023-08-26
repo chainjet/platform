@@ -1,3 +1,4 @@
+import { wait } from '@app/common/utils/async.utils'
 import { RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { BadRequestException } from '@nestjs/common'
@@ -44,10 +45,23 @@ export class SleepForAction extends OperationOffChain {
     if (sleepUntil === null) {
       throw new BadRequestException('Invalid sleep duration')
     }
+    const sleepSeconds = Math.round((sleepUntil.getTime() - Date.now()) / 1000)
+
+    // short sleeps don't need to be scheduled
+    if (sleepSeconds <= 60) {
+      await wait(sleepSeconds * 1000)
+      return {
+        outputs: {
+          sleepUntil: sleepUntil.toISOString(),
+          sleepSeconds,
+        },
+      }
+    }
+
     return {
       outputs: {
         sleepUntil: sleepUntil.toISOString(),
-        sleepSeconds: Math.round((sleepUntil.getTime() - Date.now()) / 1000),
+        sleepSeconds,
       },
       sleepUntil,
     }
