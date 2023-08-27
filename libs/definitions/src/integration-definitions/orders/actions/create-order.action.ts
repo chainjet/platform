@@ -177,6 +177,7 @@ export class CreateOrderAction extends OperationAction {
       owner: user,
       address,
       total,
+      menu,
       items: data.Order.map((item) => ({
         name: item.item,
         quantity: item.quantity ?? 1,

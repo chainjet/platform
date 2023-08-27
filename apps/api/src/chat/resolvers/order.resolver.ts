@@ -13,6 +13,7 @@ export class OrderResolver extends BaseResolver(Order, {
   CreateDTOClass: CreateOrderInput,
   UpdateDTOClass: UpdateOrderInput,
   guards: [GraphqlGuard],
+  enableTotalCount: true,
 }) {
   constructor(protected orderService: OrderService, @InjectAuthorizer(Order) readonly authorizer: Authorizer<Order>) {
     super(orderService)

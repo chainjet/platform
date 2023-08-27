@@ -417,6 +417,7 @@ type Menu {
   name: String!
   currency: String
   items: [MenuItem!]!
+  order: Menu!
 }
 
 type Contact {
@@ -448,6 +449,7 @@ type Order {
   total: Float!
   state: String!
   items: [OrderItem!]!
+  menu: Menu!
 }
 
 type UserDatabase {
@@ -890,6 +892,9 @@ type OrderConnection {
 
   """Array of edges."""
   edges: [OrderEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 type WorkflowTriggerDeleteResponse {
@@ -2066,6 +2071,7 @@ input CreateOrderInput {
   address: String!
   total: Float
   state: String!
+  menu: String!
   items: [CreateOrderItemInput!]!
 }
 

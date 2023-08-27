@@ -828,6 +828,7 @@ export interface CreateOrderInput {
     address: string;
     total?: Nullable<number>;
     state: string;
+    menu: string;
     items: CreateOrderItemInput[];
 }
 
@@ -1066,6 +1067,7 @@ export interface Menu {
     name: string;
     currency?: Nullable<string>;
     items: MenuItem[];
+    order: Menu;
 }
 
 export interface Contact {
@@ -1097,6 +1099,7 @@ export interface Order {
     total: number;
     state: string;
     items: OrderItem[];
+    menu: Menu;
 }
 
 export interface UserDatabase {
@@ -1418,6 +1421,7 @@ export interface OrderEdge {
 export interface OrderConnection {
     pageInfo: PageInfo;
     edges: OrderEdge[];
+    totalCount: number;
 }
 
 export interface WorkflowTriggerDeleteResponse {

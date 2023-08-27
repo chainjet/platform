@@ -1,5 +1,6 @@
 import { BaseEntity } from '@app/common/base/base-entity'
 import { OwnedAuthorizer } from '@app/common/base/owned.authorizer'
+import { EntityRef } from '@app/common/decorators/entity-ref.decorator'
 import { OwnedEntity } from '@app/common/decorators/owned-entity.decorator'
 import { Reference } from '@app/common/typings/mongodb'
 import { Injectable } from '@nestjs/common'
@@ -15,6 +16,7 @@ export class MenuAuthorizer extends OwnedAuthorizer<Menu> {}
 @ObjectType()
 @OwnedEntity()
 @Authorize<Menu>(MenuAuthorizer)
+@EntityRef('order', () => Menu, { relationName: '.menu' })
 export class Menu extends BaseEntity {
   @prop({ ref: User, required: true, index: true })
   readonly owner!: Reference<User>

@@ -1,5 +1,6 @@
 import { BaseEntity } from '@app/common/base/base-entity'
 import { OwnedAuthorizer } from '@app/common/base/owned.authorizer'
+import { EntityRef } from '@app/common/decorators/entity-ref.decorator'
 import { OwnedEntity } from '@app/common/decorators/owned-entity.decorator'
 import { Reference } from '@app/common/typings/mongodb'
 import { Injectable } from '@nestjs/common'
@@ -7,7 +8,9 @@ import { Field, InputType, ObjectType } from '@nestjs/graphql'
 import { Authorize } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
 import { getAddress, isAddress } from 'ethers/lib/utils'
+import { GraphQLString } from 'graphql'
 import { User } from '../../users/entities/user'
+import { Menu } from './menu'
 import { CreateOrderItemInput, OrderItem, UpdateOrderItemInput } from './order-item'
 
 export enum OrderState {
@@ -22,6 +25,7 @@ export class OrderAuthorizer extends OwnedAuthorizer<Order> {}
 @ObjectType()
 @OwnedEntity()
 @Authorize<Order>(OrderAuthorizer)
+@EntityRef('menu', () => Menu)
 export class Order extends BaseEntity {
   @prop({ ref: User, required: true, index: true })
   readonly owner!: Reference<User>
@@ -38,6 +42,9 @@ export class Order extends BaseEntity {
   @Field()
   state: OrderState
 
+  @prop({ ref: Menu, required: true })
+  readonly menu!: Reference<Menu>
+
   @Field(() => [OrderItem])
   @prop({ default: [] })
   items: OrderItem[]
@@ -53,6 +60,9 @@ export class CreateOrderInput {
 
   @Field()
   state: OrderState
+
+  @Field(() => GraphQLString)
+  menu: Reference<Menu>
 
   @Field(() => [CreateOrderItemInput])
   items: CreateOrderItemInput[]
