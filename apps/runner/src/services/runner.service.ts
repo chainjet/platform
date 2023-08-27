@@ -679,7 +679,7 @@ export class RunnerService {
     ownerId: string,
     onError: () => any,
   ) {
-    if (workflow.type !== 'chatbot' || integration.key !== 'chatbot') {
+    if (workflow.type !== 'chatbot' || !['chatbot', 'orders'].includes(integration.key)) {
       return this.getCredentialsAndIntegrationAccount(credentialsId, ownerId, onError)
     }
 

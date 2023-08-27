@@ -1,6 +1,6 @@
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
 import { AddTagContactAction } from './actions/add-tag-contact.action'
-import { CreateContactAction } from './actions/create-contact.action copy'
+import { CreateContactAction } from './actions/create-contact.action'
 import { FindContactAction } from './actions/find-contact.action'
 import { RemoveTagContactAction } from './actions/remove-tag-contact.action'
 import { ContactTaggedTrigger } from './triggers/contact-tagged.trigger'

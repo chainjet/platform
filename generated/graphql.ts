@@ -161,6 +161,11 @@ export enum MenuSortFields {
     createdAt = "createdAt"
 }
 
+export enum OrderSortFields {
+    id = "id",
+    createdAt = "createdAt"
+}
+
 export enum UserDatabaseSortFields {
     id = "id",
     createdAt = "createdAt"
@@ -552,6 +557,19 @@ export interface MenuSort {
     nulls?: Nullable<SortNulls>;
 }
 
+export interface OrderFilter {
+    and?: Nullable<OrderFilter[]>;
+    or?: Nullable<OrderFilter[]>;
+    id?: Nullable<IDFilterComparison>;
+    createdAt?: Nullable<DateFieldComparison>;
+}
+
+export interface OrderSort {
+    field: OrderSortFields;
+    direction: SortDirection;
+    nulls?: Nullable<SortNulls>;
+}
+
 export interface UserDatabaseFilter {
     and?: Nullable<UserDatabaseFilter[]>;
     or?: Nullable<UserDatabaseFilter[]>;
@@ -802,6 +820,43 @@ export interface DeleteOneMenuInput {
     id: string;
 }
 
+export interface CreateOneOrderInput {
+    order: CreateOrderInput;
+}
+
+export interface CreateOrderInput {
+    address: string;
+    total?: Nullable<number>;
+    state: string;
+    items: CreateOrderItemInput[];
+}
+
+export interface CreateOrderItemInput {
+    name: string;
+    quantity: number;
+}
+
+export interface UpdateOneOrderInput {
+    id: string;
+    update: UpdateOrderInput;
+}
+
+export interface UpdateOrderInput {
+    address?: Nullable<string>;
+    total?: Nullable<number>;
+    state?: Nullable<string>;
+    items?: Nullable<UpdateOrderItemInput[]>;
+}
+
+export interface UpdateOrderItemInput {
+    name?: Nullable<string>;
+    quantity?: Nullable<number>;
+}
+
+export interface DeleteOneOrderInput {
+    id: string;
+}
+
 export interface CreateOneUserDatabaseInput {
     userDatabase: CreateUserDatabase;
 }
@@ -1028,6 +1083,20 @@ export interface AccountCredential {
     fields?: Nullable<JSONObject>;
     schemaRefs?: Nullable<JSONObject>;
     authExpired: boolean;
+}
+
+export interface OrderItem {
+    name: string;
+    quantity: number;
+}
+
+export interface Order {
+    id: string;
+    createdAt: DateTime;
+    address: string;
+    total: number;
+    state: string;
+    items: OrderItem[];
 }
 
 export interface UserDatabase {
@@ -1332,6 +1401,25 @@ export interface MenuConnection {
     edges: MenuEdge[];
 }
 
+export interface OrderDeleteResponse {
+    id?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
+    address?: Nullable<string>;
+    total?: Nullable<number>;
+    state?: Nullable<string>;
+    items?: Nullable<OrderItem[]>;
+}
+
+export interface OrderEdge {
+    node: Order;
+    cursor: ConnectionCursor;
+}
+
+export interface OrderConnection {
+    pageInfo: PageInfo;
+    edges: OrderEdge[];
+}
+
 export interface WorkflowTriggerDeleteResponse {
     id?: Nullable<string>;
     createdAt?: Nullable<DateTime>;
@@ -1523,6 +1611,8 @@ export interface IQuery {
     campaigns(paging?: Nullable<CursorPaging>, filter?: Nullable<CampaignFilter>, sorting?: Nullable<CampaignSort[]>): CampaignConnection | Promise<CampaignConnection>;
     menu(id: string): Menu | Promise<Menu>;
     menus(paging?: Nullable<CursorPaging>, filter?: Nullable<MenuFilter>, sorting?: Nullable<MenuSort[]>): MenuConnection | Promise<MenuConnection>;
+    order(id: string): Order | Promise<Order>;
+    orders(paging?: Nullable<CursorPaging>, filter?: Nullable<OrderFilter>, sorting?: Nullable<OrderSort[]>): OrderConnection | Promise<OrderConnection>;
     contractSchema(chainId: number, address: string, type: string): ContractSchema | Promise<ContractSchema>;
     asyncSchemas(integrationId: string, accountCredentialId: string, names: string[], inputs?: Nullable<JSONObject>, integrationTriggerId?: Nullable<string>, integrationActionId?: Nullable<string>): AsyncSchema | Promise<AsyncSchema>;
     manyAsyncSchemas(asyncSchemaInputs: JSONObject[]): AsyncSchema | Promise<AsyncSchema>;
@@ -1575,6 +1665,9 @@ export interface IMutation {
     createOneMenu(input: CreateOneMenuInput): Menu | Promise<Menu>;
     updateOneMenu(input: UpdateOneMenuInput): Menu | Promise<Menu>;
     deleteOneMenu(input: DeleteOneMenuInput): MenuDeleteResponse | Promise<MenuDeleteResponse>;
+    createOneOrder(input: CreateOneOrderInput): Order | Promise<Order>;
+    updateOneOrder(input: UpdateOneOrderInput): Order | Promise<Order>;
+    deleteOneOrder(input: DeleteOneOrderInput): OrderDeleteResponse | Promise<OrderDeleteResponse>;
     createOneUserDatabase(input: CreateOneUserDatabaseInput): UserDatabase | Promise<UserDatabase>;
     updateOneUserDatabase(input: UpdateOneUserDatabaseInput): UserDatabase | Promise<UserDatabase>;
     deleteOneUserDatabase(input: DeleteOneUserDatabaseInput): UserDatabaseDeleteResponse | Promise<UserDatabaseDeleteResponse>;

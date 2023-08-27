@@ -17,15 +17,18 @@ import { Campaign, CampaignAuthorizer } from './entities/campaign'
 import { CampaignMessage } from './entities/campaign-message'
 import { Contact, ContactAuthorizer } from './entities/contact'
 import { Menu, MenuAuthorizer } from './entities/menu'
+import { Order, OrderAuthorizer } from './entities/order'
 import { CampaignResolver } from './resolvers/campaign.resolver'
 import { ContactResolver } from './resolvers/contact.resolver'
 import { MenuResolver } from './resolvers/menu.resolver'
+import { OrderResolver } from './resolvers/order.resolver'
 import { BroadcastConsumer } from './services/broadcast.consumer'
 import { CampaignMessageService } from './services/campaign-message.service'
 import { CampaignService } from './services/campaign.service'
 import { ContactsConsumer } from './services/contact.consumer'
 import { ContactService } from './services/contact.service'
 import { MenuService } from './services/menu.service'
+import { OrderService } from './services/order.service'
 
 @Module({
   imports: [
@@ -44,6 +47,10 @@ import { MenuService } from './services/menu.service'
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([Menu])],
       dtos: [{ DTOClass: Menu }],
+    }),
+    NestjsQueryGraphQLModule.forFeature({
+      imports: [NestjsQueryTypegooseModule.forFeature([Order])],
+      dtos: [{ DTOClass: Order }],
     }),
     BullModule.registerQueue({
       name: 'broadcast',
@@ -78,18 +85,22 @@ import { MenuService } from './services/menu.service'
     ContactResolver,
     CampaignResolver,
     MenuResolver,
+    OrderResolver,
 
     // Services
     ContactService,
     CampaignService,
     CampaignMessageService,
     MenuService,
+    OrderService,
 
     // Authorizers
     ContactAuthorizer,
     CampaignAuthorizer,
     MenuAuthorizer,
+    OrderAuthorizer,
 
+    // Consumers
     BroadcastConsumer,
     ContactsConsumer,
   ],

@@ -53,6 +53,7 @@ import { MoralisDefinition } from './integration-definitions/moralis.definition'
 import { NotionDefinition } from './integration-definitions/notion/notion.definition'
 import { OpenAiDefinition } from './integration-definitions/openai/openai.definition'
 import { OptimisticEtherscanDefinition } from './integration-definitions/optimistic-etherscan.definition'
+import { OrdersDefinition } from './integration-definitions/orders/orders.definition'
 import { PoapDefinition } from './integration-definitions/poap/poap.definition'
 import { PolygonscanDefinition } from './integration-definitions/polygonscan.definition'
 import { PricesDefinition } from './integration-definitions/prices/prices.definition'
@@ -139,6 +140,7 @@ export class IntegrationDefinitionFactory {
     notion: NotionDefinition,
     openai: OpenAiDefinition,
     'optimistic-etherscan': OptimisticEtherscanDefinition,
+    orders: OrdersDefinition,
     // pagerduty: PagerdutyDefinition,
     // pancakeswap: PancakeSwapDefinition,
     poap: PoapDefinition,
