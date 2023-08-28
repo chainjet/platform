@@ -11,6 +11,7 @@ import { SiweMessage } from 'siwe'
 import { SecurityUtils } from '../../../../../libs/common/src/utils/security.utils'
 import { EmailService } from '../../../../../libs/emails/src/services/email.service'
 import { EmailVerificationTemplate } from '../../../../../libs/emails/src/templates/emailVerificationTemplate'
+import { Contact } from '../../chat/entities/contact'
 import { User } from '../entities/user'
 
 @Injectable()
@@ -107,6 +108,44 @@ export class UserService extends BaseService<User> {
     const verificationToken = await SecurityUtils.hashWithBcrypt(plainVerificationToken, 12)
     await this.updateOne(user.id, { verificationToken, verified: false })
     return plainVerificationToken
+  }
+
+  async addContactDataKeys(userId: ObjectId, contact: Contact[]): Promise<void> {
+    const allTags = contact.flatMap((contact) => contact.tags)
+    const uniqueTags = Array.from(new Set(allTags))
+
+    const allFields = contact.flatMap((contact) => Object.keys(contact.fields ?? {}))
+    const uniqueFields = Array.from(new Set(allFields))
+
+    if (!uniqueTags.length && !uniqueFields.length) {
+      return
+    }
+
+    const user = await this.findById(userId.toString())
+    if (!user) {
+      throw new NotFoundException(`User ${userId} not found`)
+    }
+
+    const existingTags = user.contactTags ?? []
+    const existingFields = user.contactFields ?? []
+
+    const newTags = uniqueTags.filter((tag) => !existingTags.includes(tag))
+    const newFields = uniqueFields.filter((field) => !existingFields.includes(field))
+
+    if (!newTags.length && !newFields.length) {
+      return
+    }
+
+    await this.updateOneNative(
+      { _id: userId },
+      {
+        $addToSet: {
+          ...(newTags.length && { contactTags: { $each: newTags } }),
+          ...(newFields.length && { contactFields: { $each: newFields } }),
+        },
+      },
+    )
+    this.logger.log(`Added ${newTags.length} tags and ${newFields.length} fields to user ${userId}`)
   }
 
   async syncIndexes() {

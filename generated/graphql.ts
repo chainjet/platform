@@ -734,26 +734,23 @@ export interface DeleteOneWorkflowTriggerInput {
 }
 
 export interface CreateOneContactInput {
-    contact: CreateContact;
+    contact: CreateContactInput;
 }
 
-export interface CreateContact {
-    id?: Nullable<string>;
-    createdAt?: Nullable<DateTime>;
-    address?: Nullable<string>;
+export interface CreateContactInput {
+    address: string;
     tags?: Nullable<string[]>;
+    fields?: Nullable<JSONObject>;
 }
 
 export interface UpdateOneContactInput {
     id: string;
-    update: UpdateContact;
+    update: UpdateContactInput;
 }
 
-export interface UpdateContact {
-    id?: Nullable<string>;
-    createdAt?: Nullable<DateTime>;
-    address?: Nullable<string>;
+export interface UpdateContactInput {
     tags?: Nullable<string[]>;
+    fields?: Nullable<JSONObject>;
 }
 
 export interface DeleteOneContactInput {
@@ -918,6 +915,8 @@ export interface User {
     subscribedToNotifications: boolean;
     subscribedToNewsletter: boolean;
     features?: Nullable<JSONObject>;
+    contactTags?: Nullable<string[]>;
+    contactFields?: Nullable<string[]>;
 }
 
 export interface IntegrationAccount {

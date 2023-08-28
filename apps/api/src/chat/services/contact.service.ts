@@ -16,6 +16,7 @@ import { uniq } from 'lodash'
 import { ObjectId, WriteError } from 'mongodb'
 import { InjectModel } from 'nestjs-typegoose'
 import { User } from '../../users/entities/user'
+import { UserService } from '../../users/services/user.service'
 import { Contact } from '../entities/contact'
 
 @Injectable()
@@ -26,6 +27,7 @@ export class ContactService extends BaseService<Contact> {
   constructor(
     @InjectModel(Contact) protected readonly model: ReturnModelType<typeof Contact>,
     @InjectQueue('contacts') private contactsQueue: Queue,
+    private userService: UserService,
   ) {
     super(model)
     ContactService.instance = this
@@ -140,6 +142,7 @@ export class ContactService extends BaseService<Contact> {
         const existingTags = contact.tags.map((tag) => tag.toLowerCase())
         const tagsAdded = tags.filter((tag) => !existingTags.includes(tag.toLowerCase()))
         await this.onTagsAdded(contact, tagsAdded)
+        await this.userService.addContactDataKeys(contact.owner._id, [contact])
         return newTags
       }
     }
@@ -176,6 +179,7 @@ export class ContactService extends BaseService<Contact> {
     if (contact.tags?.length) {
       await this.onTagsAdded(contact, contact.tags)
     }
+    await this.userService.addContactDataKeys(contact.owner._id, [contact])
   }
 
   async afterCreateMany(contacts: Contact[]) {
@@ -195,6 +199,7 @@ export class ContactService extends BaseService<Contact> {
         tags: contactsWithTags.flatMap((contact) => contact.tags),
       })
     }
+    await this.userService.addContactDataKeys(contacts[0].owner._id, contacts)
   }
 
   async updateOne(
@@ -202,7 +207,7 @@ export class ContactService extends BaseService<Contact> {
     update: Partial<Contact>,
     opts?: UpdateOneOptions<Contact> | undefined,
   ): Promise<Contact> {
-    if (!update.tags) {
+    if (!update.tags && !update.fields) {
       return super.updateOne(id, update, opts)
     }
 
@@ -212,11 +217,17 @@ export class ContactService extends BaseService<Contact> {
       throw new NotFoundException(`Contact with id ${id} not found`)
     }
     const contact = await super.updateOne(id, update, opts)
-    const existingTags = contactBefore.tags.map((tag) => tag.toLowerCase())
-    const tagsAdded = update.tags.filter((tag) => !existingTags.includes(tag.toLowerCase()))
-    if (tagsAdded?.length) {
-      await this.onTagsAdded(contact, tagsAdded)
+
+    if (update.tags) {
+      const existingTags = contactBefore.tags.map((tag) => tag.toLowerCase())
+      const tagsAdded = update.tags.filter((tag) => !existingTags.includes(tag.toLowerCase()))
+      if (tagsAdded?.length) {
+        await this.onTagsAdded(contact, tagsAdded)
+      }
     }
+
+    await this.userService.addContactDataKeys(contact.owner._id, [contact])
+
     return contact
   }
 

@@ -16,13 +16,15 @@ import { GraphqlGuard } from '../../auth/guards/graphql.guard'
 import { IntegrationAccountService } from '../../integration-accounts/services/integration-account.service'
 import { ResultPayload } from '../../users/payloads/user.payloads'
 import { UserService } from '../../users/services/user.service'
-import { Contact } from '../entities/contact'
+import { Contact, CreateContactInput, UpdateContactInput } from '../entities/contact'
 import { ContactService } from '../services/contact.service'
 
 @Resolver(() => Contact)
 @UseGuards(GraphqlGuard)
 @UseInterceptors(AuthorizerInterceptor(Contact))
 export class ContactResolver extends BaseResolver(Contact, {
+  CreateDTOClass: CreateContactInput,
+  UpdateDTOClass: UpdateContactInput,
   guards: [GraphqlGuard],
   enableTotalCount: true,
 }) {

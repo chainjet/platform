@@ -16,6 +16,8 @@ type User {
   subscribedToNotifications: Boolean!
   subscribedToNewsletter: Boolean!
   features: JSONObject
+  contactTags: [String!]
+  contactFields: [String!]
 }
 
 """
@@ -1962,14 +1964,13 @@ input DeleteOneWorkflowTriggerInput {
 
 input CreateOneContactInput {
   """The record to create"""
-  contact: CreateContact!
+  contact: CreateContactInput!
 }
 
-input CreateContact {
-  id: ID
-  createdAt: DateTime
-  address: String
+input CreateContactInput {
+  address: String!
   tags: [String!]
+  fields: JSONObject
 }
 
 input UpdateOneContactInput {
@@ -1977,14 +1978,12 @@ input UpdateOneContactInput {
   id: ID!
 
   """The update to apply."""
-  update: UpdateContact!
+  update: UpdateContactInput!
 }
 
-input UpdateContact {
-  id: ID
-  createdAt: DateTime
-  address: String
+input UpdateContactInput {
   tags: [String!]
+  fields: JSONObject
 }
 
 input DeleteOneContactInput {

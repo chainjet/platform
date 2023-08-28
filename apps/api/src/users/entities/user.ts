@@ -5,9 +5,10 @@ import { Authorize } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
 import { IsEmail } from 'class-validator'
 import { getAddress, isAddress } from 'ethers/lib/utils'
+import { GraphQLString } from 'graphql'
 import { GraphQLJSONObject } from 'graphql-type-json'
 import { Schema } from 'mongoose'
-import { PlanConfig, defaultPlan, plansConfig } from '../config/plans.config'
+import { defaultPlan, PlanConfig, plansConfig } from '../config/plans.config'
 import { UserAuthorizer } from '../resolvers/user.authorizer'
 
 @ObjectType()
@@ -105,6 +106,14 @@ export class User extends BaseEntity {
 
   @prop()
   limits?: Record<string, number>
+
+  @Field(() => [GraphQLString], { nullable: true })
+  @prop()
+  contactTags?: string[]
+
+  @Field(() => [GraphQLString], { nullable: true })
+  @prop()
+  contactFields?: string[]
 
   get planConfig(): PlanConfig {
     return plansConfig[this.plan]

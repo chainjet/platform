@@ -4,11 +4,12 @@ import { OwnedEntity } from '@app/common/decorators/owned-entity.decorator'
 import { jsonProp } from '@app/common/decorators/props/json-prop.decorator'
 import { Reference } from '@app/common/typings/mongodb'
 import { Injectable } from '@nestjs/common'
-import { Field, ObjectType } from '@nestjs/graphql'
+import { Field, InputType, ObjectType } from '@nestjs/graphql'
 import { Authorize } from '@ptc-org/nestjs-query-graphql'
 import { Index, prop } from '@typegoose/typegoose'
 import { getAddress, isAddress } from 'ethers/lib/utils'
 import { GraphQLString } from 'graphql'
+import { GraphQLJSONObject } from 'graphql-type-json'
 import { User } from '../../users/entities/user'
 
 @Injectable()
@@ -31,5 +32,26 @@ export class Contact extends BaseEntity {
   tags: string[]
 
   @jsonProp()
+  fields?: Record<string, any>
+}
+
+@InputType()
+export class CreateContactInput {
+  @Field()
+  address: string
+
+  @Field(() => [GraphQLString], { nullable: true })
+  tags?: string[]
+
+  @Field(() => GraphQLJSONObject, { nullable: true })
+  fields?: Record<string, any>
+}
+
+@InputType()
+export class UpdateContactInput {
+  @Field(() => [GraphQLString], { nullable: true })
+  tags?: string[]
+
+  @Field(() => GraphQLJSONObject, { nullable: true })
   fields?: Record<string, any>
 }
