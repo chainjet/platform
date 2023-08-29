@@ -51,6 +51,13 @@ export function parseInput(input: unknown, outputs: Record<string, Record<string
   return input
 }
 
+// Your custom handler for undefined functions
+const customFunctionHandler = (name, args) => {
+  console.log(`Unknown function ${name} called with arguments:`, args)
+  // You can return whatever you like here or throw an error
+  return null
+}
+
 /**
  * Replace references with their values and calculate expression
  * Example:
@@ -60,7 +67,7 @@ export function parseInput(input: unknown, outputs: Record<string, Record<string
  */
 export function calculateExpression(input: string, references: Record<string, Record<string, unknown>>): unknown {
   // each "[\w[\]]" group matches the allowed characters for variables, including array access (e.g. a.b[0].c)
-  const operatorsRegex = /[\w\s[\]]+(\.[\w\s[\]]+|\[\d+\])*/g
+  const operatorsRegex = /(\w+\[\w+\]|\w+)\.[\w\[\]]+(\.[\w\[\]]+)*/g
 
   const operators = [...input.matchAll(operatorsRegex)]
 
@@ -99,6 +106,11 @@ export function calculateExpression(input: string, references: Record<string, Re
       return str
     }
     return ('' + str).substring(start, end)
+  })
+  parser.set('contact', (str: string, params: string) => {
+    console.log(`get: ${str}`, params)
+    console.log(`references:`, references)
+    return _.get(references, `${str}[${params}]`)
   })
   parser.set('formatNumber', (value: number, locales?: Intl.LocalesArgument) => Number(value).toLocaleString(locales))
   parser.set('lowercase', (str: string) => (str ? ('' + str).toLowerCase() : str))
@@ -180,4 +192,8 @@ export function findOutputKeys(input: Record<string, any>, key: string): string[
   }
 
   return matches
+}
+
+export function strToInterpolationKey(str: string): string {
+  return str.replace(/[^a-zA-Z0-9]/g, '_')
 }

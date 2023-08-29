@@ -1060,6 +1060,7 @@ export interface Contact {
     createdAt: DateTime;
     address: string;
     tags?: Nullable<string[]>;
+    fields?: Nullable<JSONObject>;
 }
 
 export interface AccountCredential {
@@ -1372,6 +1373,7 @@ export interface ContactDeleteResponse {
     createdAt?: Nullable<DateTime>;
     address?: Nullable<string>;
     tags?: Nullable<string[]>;
+    fields?: Nullable<JSONObject>;
 }
 
 export interface ContactEdge {

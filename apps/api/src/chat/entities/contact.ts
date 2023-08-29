@@ -31,6 +31,7 @@ export class Contact extends BaseEntity {
   @prop({ default: [], index: true })
   tags: string[]
 
+  @Field(() => GraphQLJSONObject, { nullable: true })
   @jsonProp()
   fields?: Record<string, any>
 }
