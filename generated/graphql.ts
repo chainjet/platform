@@ -1055,20 +1055,6 @@ export interface IntegrationTriggersConnection {
     edges: IntegrationTriggerEdge[];
 }
 
-export interface MenuItem {
-    name: string;
-    price: number;
-}
-
-export interface Menu {
-    id: string;
-    createdAt: DateTime;
-    name: string;
-    currency?: Nullable<string>;
-    items: MenuItem[];
-    order: Menu;
-}
-
 export interface Contact {
     id: string;
     createdAt: DateTime;
@@ -1084,6 +1070,20 @@ export interface AccountCredential {
     fields?: Nullable<JSONObject>;
     schemaRefs?: Nullable<JSONObject>;
     authExpired: boolean;
+}
+
+export interface MenuItem {
+    name: string;
+    price: number;
+}
+
+export interface Menu {
+    id: string;
+    createdAt: DateTime;
+    name: string;
+    currency?: Nullable<string>;
+    items: MenuItem[];
+    order: Menu;
 }
 
 export interface OrderItem {

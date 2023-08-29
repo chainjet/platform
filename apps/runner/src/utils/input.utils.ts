@@ -60,7 +60,7 @@ export function parseInput(input: unknown, outputs: Record<string, Record<string
  */
 export function calculateExpression(input: string, references: Record<string, Record<string, unknown>>): unknown {
   // each "[\w[\]]" group matches the allowed characters for variables, including array access (e.g. a.b[0].c)
-  const operatorsRegex = /[\w[\]]+\.[\w[\]]+(\.[\w[\]]+)*/g
+  const operatorsRegex = /[\w\s[\]]+(\.[\w\s[\]]+|\[\d+\])*/g
 
   const operators = [...input.matchAll(operatorsRegex)]
 

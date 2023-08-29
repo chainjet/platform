@@ -408,20 +408,6 @@ type IntegrationTriggersConnection {
   edges: [IntegrationTriggerEdge!]!
 }
 
-type MenuItem {
-  name: String!
-  price: Float!
-}
-
-type Menu {
-  id: ID!
-  createdAt: DateTime!
-  name: String!
-  currency: String
-  items: [MenuItem!]!
-  order: Menu!
-}
-
 type Contact {
   id: ID!
   createdAt: DateTime!
@@ -437,6 +423,20 @@ type AccountCredential {
   fields: JSONObject
   schemaRefs: JSONObject
   authExpired: Boolean!
+}
+
+type MenuItem {
+  name: String!
+  price: Float!
+}
+
+type Menu {
+  id: ID!
+  createdAt: DateTime!
+  name: String!
+  currency: String
+  items: [MenuItem!]!
+  order: Menu!
 }
 
 type OrderItem {
