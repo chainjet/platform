@@ -827,6 +827,7 @@ export interface CreateOrderInput {
     state: string;
     menu: string;
     items: CreateOrderItemInput[];
+    fields?: Nullable<JSONObject>;
 }
 
 export interface CreateOrderItemInput {
@@ -844,6 +845,7 @@ export interface UpdateOrderInput {
     total?: Nullable<number>;
     state?: Nullable<string>;
     items?: Nullable<UpdateOrderItemInput[]>;
+    fields?: Nullable<JSONObject>;
 }
 
 export interface UpdateOrderItemInput {
@@ -1099,6 +1101,7 @@ export interface Order {
     total: number;
     state: string;
     items: OrderItem[];
+    fields?: Nullable<JSONObject>;
     menu: Menu;
 }
 
@@ -1412,6 +1415,7 @@ export interface OrderDeleteResponse {
     total?: Nullable<number>;
     state?: Nullable<string>;
     items?: Nullable<OrderItem[]>;
+    fields?: Nullable<JSONObject>;
 }
 
 export interface OrderEdge {

@@ -452,6 +452,7 @@ type Order {
   total: Float!
   state: String!
   items: [OrderItem!]!
+  fields: JSONObject
   menu: Menu!
 }
 
@@ -880,6 +881,7 @@ type OrderDeleteResponse {
   total: Float
   state: String
   items: [OrderItem!]
+  fields: JSONObject
 }
 
 type OrderEdge {
@@ -2074,6 +2076,7 @@ input CreateOrderInput {
   state: String!
   menu: String!
   items: [CreateOrderItemInput!]!
+  fields: JSONObject
 }
 
 input CreateOrderItemInput {
@@ -2094,6 +2097,7 @@ input UpdateOrderInput {
   total: Float
   state: String
   items: [UpdateOrderItemInput!]
+  fields: JSONObject
 }
 
 input UpdateOrderItemInput {

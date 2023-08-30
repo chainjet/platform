@@ -2,6 +2,7 @@ import { BaseEntity } from '@app/common/base/base-entity'
 import { OwnedAuthorizer } from '@app/common/base/owned.authorizer'
 import { EntityRef } from '@app/common/decorators/entity-ref.decorator'
 import { OwnedEntity } from '@app/common/decorators/owned-entity.decorator'
+import { jsonProp } from '@app/common/decorators/props/json-prop.decorator'
 import { Reference } from '@app/common/typings/mongodb'
 import { Injectable } from '@nestjs/common'
 import { Field, InputType, ObjectType } from '@nestjs/graphql'
@@ -9,6 +10,7 @@ import { Authorize } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
 import { getAddress, isAddress } from 'ethers/lib/utils'
 import { GraphQLString } from 'graphql'
+import { GraphQLJSONObject } from 'graphql-type-json'
 import { User } from '../../users/entities/user'
 import { Menu } from './menu'
 import { CreateOrderItemInput, OrderItem, UpdateOrderItemInput } from './order-item'
@@ -48,6 +50,10 @@ export class Order extends BaseEntity {
   @Field(() => [OrderItem])
   @prop({ default: [] })
   items: OrderItem[]
+
+  @Field(() => GraphQLJSONObject, { nullable: true })
+  @jsonProp()
+  fields?: Record<string, any>
 }
 
 @InputType()
@@ -66,6 +72,9 @@ export class CreateOrderInput {
 
   @Field(() => [CreateOrderItemInput])
   items: CreateOrderItemInput[]
+
+  @Field(() => GraphQLJSONObject, { nullable: true })
+  fields?: Record<string, any>
 }
 
 @InputType()
@@ -81,4 +90,7 @@ export class UpdateOrderInput {
 
   @Field(() => [UpdateOrderItemInput], { nullable: true })
   items: UpdateOrderItemInput[]
+
+  @Field(() => GraphQLJSONObject, { nullable: true })
+  fields?: Record<string, any>
 }
