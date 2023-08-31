@@ -100,7 +100,9 @@ export function replaceTemplateFields(
 ): Record<string, any> {
   const result = {}
   for (const [key, value] of Object.entries(inputs)) {
-    if (typeof value === 'object') {
+    if (Array.isArray(value)) {
+      result[key] = value.map((item) => replaceTemplateFields(idsMap, item, templateInputs))
+    } else if (typeof value === 'object') {
       result[key] = replaceTemplateFields(idsMap, value, templateInputs)
     } else if (typeof value === 'string') {
       let newValue = value
