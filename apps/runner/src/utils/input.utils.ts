@@ -72,6 +72,16 @@ export function calculateExpression(input: string, references: Record<string, Re
   const operators = [...input.matchAll(operatorsRegex)]
 
   if (operators.length === 1 && operators[0][0] === input.trim()) {
+    // support mapping arrays with {{ array[prop] }} interpolation
+    if (input.trim().endsWith(']')) {
+      const arrayAccessor = input.trim().split('[').slice(-1).join('').slice(0, -1)
+      const parentInput = input.trim().split('[').slice(0, -1).join('')
+      const parentValue = _.get(references, parentInput)
+      if (Array.isArray(parentValue)) {
+        return parentValue.map((item) => item[arrayAccessor])
+      }
+    }
+
     return _.get(references, input)
   }
 
