@@ -96,6 +96,7 @@ export function replaceTemplateFields(
   idsMap: Map<string, string>,
   inputs: Record<string, any>,
   templateInputs: Record<string, any> = {},
+  menuMap: Map<string, string> = new Map(),
 ): Record<string, any> {
   const result = {}
   for (const [key, value] of Object.entries(inputs)) {
@@ -108,6 +109,11 @@ export function replaceTemplateFields(
         // replace fields that only contain a template variable (the interpolation is removed)
         if (match[1].trim().startsWith('template.')) {
           newValue = newValue.replace(match[0], templateInputs[match[1].trim().replace('template.', '')] ?? '')
+        } else if (match[1].trim().startsWith('menu.')) {
+          const key = match[1].trim().replace('menu.', '')
+          if (menuMap.has(key)) {
+            newValue = newValue.replace(key, menuMap.get(key)!)
+          }
         }
         // replace fields that contain template variables inside functions or other variables (the interpolation is kept)
         else {

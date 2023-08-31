@@ -3,15 +3,20 @@ import { fixObjectTypes, replaceTemplateFields } from '@app/definitions/utils/fi
 import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
 import { DeepPartial, DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
+import { findOutputKeys } from 'apps/runner/src/utils/input.utils'
 import { JSONSchema7Definition } from 'json-schema'
 import { ObjectId } from 'mongodb'
 import { InjectModel } from 'nestjs-typegoose'
 import { AccountCredentialService } from '../../account-credentials/services/account-credentials.service'
+import { MenuService } from '../../chat/services/menu.service'
 import { IntegrationActionService } from '../../integration-actions/services/integration-action.service'
 import { IntegrationTriggerService } from '../../integration-triggers/services/integration-trigger.service'
+import { Integration } from '../../integrations/entities/integration'
 import { IntegrationService } from '../../integrations/services/integration.service'
+import { User } from '../../users/entities/user'
 import { UserService } from '../../users/services/user.service'
 import { sortActionTree } from '../../workflow-actions/actions.utils'
+import { WorkflowAction } from '../../workflow-actions/entities/workflow-action'
 import { WorkflowActionService } from '../../workflow-actions/services/workflow-action.service'
 import { TriggerSchedule } from '../../workflow-triggers/entities/trigger-schedule'
 import { WorkflowTriggerService } from '../../workflow-triggers/services/workflow-trigger.service'
@@ -31,6 +36,7 @@ export class WorkflowService extends BaseService<Workflow> {
     protected workflowActionService: WorkflowActionService,
     protected userService: UserService,
     protected accountCredentialService: AccountCredentialService,
+    protected menuService: MenuService,
   ) {
     super(model)
     WorkflowService.instance = this
@@ -190,6 +196,7 @@ export class WorkflowService extends BaseService<Workflow> {
       name: workflow.name,
       network: workflow.network,
       isPublic,
+      type: workflow.type,
       templateSchema: workflow.templateSchema,
       runOnFailure: isOwner ? workflow.runOnFailure : undefined,
       forkOf: workflow._id,
@@ -234,7 +241,7 @@ export class WorkflowService extends BaseService<Workflow> {
         ...trigger.schedule,
         ...replaceTemplateFields(idsMap, trigger.schedule ?? {}, templateInputs),
       } as TriggerSchedule,
-      enabled: true,
+      enabled: workflow.type !== 'chatbot', // chatbots are disabled by default
       maxConsecutiveFailures: trigger.maxConsecutiveFailures,
       schemaResponse: isOwner ? trigger.schemaResponse : undefined,
       isPublic,
@@ -245,6 +252,7 @@ export class WorkflowService extends BaseService<Workflow> {
     const sortedActions = sortActionTree(actions)
 
     const previousActionMap = new Map<string, { id: string; condition: string | undefined }>()
+    let menuMap = new Map<string, string>()
     for (const action of sortedActions) {
       // we need to previous action to create the new action
       for (const nextAction of action.nextActions) {
@@ -268,6 +276,7 @@ export class WorkflowService extends BaseService<Workflow> {
         )
 
       const previousAction = previousActionMap.get(action.id)
+      menuMap = await this.forkMenu(user, integrationForAction, action, menuMap)
       const forkedAction = await this.workflowActionService.createOne({
         owner: user._id,
         workflow: forkedWorkflow._id,
@@ -278,9 +287,13 @@ export class WorkflowService extends BaseService<Workflow> {
         inputs: {
           ...templateInputs,
           ...fixObjectTypes(
-            replaceTemplateFields(idsMap, action.inputs ?? {}, templateInputs),
+            replaceTemplateFields(idsMap, action.inputs ?? {}, templateInputs, menuMap),
             workflow.templateSchema ?? {},
           ),
+          // replace order menu
+          ...(integrationForAction.key === 'orders' && action.inputs.menu && menuMap.has(action.inputs.menu)
+            ? { menu: menuMap.get(action.inputs.menu) }
+            : {}),
         },
         previousAction: idsMap.get(previousAction?.id ?? '') as any,
         previousActionCondition: previousAction?.condition,
@@ -292,6 +305,52 @@ export class WorkflowService extends BaseService<Workflow> {
       idsMap.set(action.id, forkedAction.id)
     }
     return forkedWorkflow
+  }
+
+  async forkMenu(
+    user: User,
+    integration: Integration,
+    workflowAction: WorkflowAction,
+    menuMap: Map<string, string> = new Map(),
+  ) {
+    // don't need to fork the menu if the chatbot is copied in the same account
+    if (workflowAction.owner.toString() === user._id.toString()) {
+      return menuMap
+    }
+
+    if (!workflowAction?.inputs) {
+      return menuMap
+    }
+    const menuKeys = findOutputKeys(workflowAction.inputs, 'menu')
+    if (integration.key === 'orders' && workflowAction.inputs.menu) {
+      menuKeys.push(workflowAction.inputs.menu)
+    }
+
+    for (const key of menuKeys) {
+      if (!menuMap.has(key)) {
+        const originalMenu = await this.menuService.findOne({
+          _id: new ObjectId(key),
+          owner: workflowAction.owner._id,
+        })
+        if (!originalMenu) {
+          throw new NotFoundException(`This chatbot uses the menu ${key} which was deleted by the original owner.`)
+        }
+        const userMenus = await this.menuService.find({ owner: user._id })
+        const useMenu = userMenus.find((menu) => menu.name === originalMenu.name)
+        let menuId: string | undefined = useMenu?.id
+        if (!useMenu) {
+          const newMenu = await this.menuService.createOne({
+            owner: user._id,
+            name: originalMenu.name,
+            currency: originalMenu.currency,
+            items: originalMenu.items,
+          })
+          menuId = newMenu.id
+        }
+        menuMap.set(key, menuId!)
+      }
+    }
+    return menuMap
   }
 
   async updateUsedIntegrations(workflow: Workflow) {
