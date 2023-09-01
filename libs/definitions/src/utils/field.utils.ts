@@ -94,11 +94,14 @@ export function getInterpolatedVariables(inputs: Record<string, any>): string[] 
  */
 export function replaceTemplateFields(
   idsMap: Map<string, string>,
-  inputs: Record<string, any>,
+  inputs: Record<string, any> | any[],
   templateInputs: Record<string, any> = {},
   menuMap: Map<string, string> = new Map(),
 ): Record<string, any> {
   const result = {}
+  if (Array.isArray(inputs)) {
+    return inputs.map((item) => replaceTemplateFields(idsMap, item, templateInputs))
+  }
   for (const [key, value] of Object.entries(inputs)) {
     if (Array.isArray(value)) {
       result[key] = value.map((item) => replaceTemplateFields(idsMap, item, templateInputs))
