@@ -16,7 +16,7 @@ export function sortActionTree(
     return []
   }
   if (visited.has(rootAction.id)) {
-    return []
+    return [rootAction]
   }
   visited.add(rootAction.id)
   const nextActions = rootAction.nextActions

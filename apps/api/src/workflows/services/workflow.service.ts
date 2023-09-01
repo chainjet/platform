@@ -259,6 +259,11 @@ export class WorkflowService extends BaseService<Workflow> {
         previousActionMap.set(nextAction.action.toString(), { id: action.id, condition: nextAction.condition })
       }
 
+      // don't fork the same action twice (can happen with workflows with loops)
+      if (idsMap.has(action.id)) {
+        continue
+      }
+
       // get account credentials for the action
       const integrationAction = await this.integrationActionService.findById(action.integrationAction.toString())
       if (!integrationAction) {
@@ -296,6 +301,12 @@ export class WorkflowService extends BaseService<Workflow> {
             : {}),
         },
         previousAction: idsMap.get(previousAction?.id ?? '') as any,
+        nextActions: action.nextActions
+          .map((nextAction) => ({
+            ...nextAction,
+            action: idsMap.get(nextAction.action.toString()),
+          }))
+          .filter((nextAction) => !!nextAction.action) as any,
         previousActionCondition: previousAction?.condition,
         credentials: credentialsForAction?.id,
         schemaResponse: isOwner ? action.schemaResponse : undefined,
@@ -304,6 +315,28 @@ export class WorkflowService extends BaseService<Workflow> {
       })
       idsMap.set(action.id, forkedAction.id)
     }
+
+    // this suppors the case of an action referencing a future action with go to
+    for (const action of sortedActions) {
+      const forkedId = idsMap.get(action.id)
+      const forkedAction = await this.workflowActionService.findById(forkedId!)
+      if (action.nextActions.length !== forkedAction!.nextActions.length) {
+        await this.workflowActionService.updateOneNative(
+          {
+            _id: new ObjectId(forkedId!),
+          },
+          {
+            $set: {
+              nextActions: action.nextActions.map((nextAction) => ({
+                condition: nextAction.condition,
+                action: idsMap.get(nextAction.action.toString()),
+              })),
+            },
+          },
+        )
+      }
+    }
+
     return forkedWorkflow
   }
 
