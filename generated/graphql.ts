@@ -1209,6 +1209,7 @@ export interface WorkflowEdge {
 export interface WorkflowConnection {
     pageInfo: PageInfo;
     edges: WorkflowEdge[];
+    totalCount: number;
 }
 
 export interface Template {

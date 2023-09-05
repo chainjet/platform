@@ -34,7 +34,9 @@ export class CompileWorkflowDto {
 }
 
 @ArgsType()
-export class WorkflowQuery extends QueryArgsType(Workflow) {}
+export class WorkflowQuery extends QueryArgsType(Workflow, {
+  enableTotalCount: true,
+}) {}
 export const WorkflowConnection = WorkflowQuery.ConnectionType
 
 @ObjectType()
