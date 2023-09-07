@@ -1,5 +1,6 @@
-import { RunResponse } from '@app/definitions/definition'
+import { RunResponse, StepInputs } from '@app/definitions/definition'
 import { OperationAction } from '@app/definitions/opertion-action'
+import { BlockchainConfigService } from '@blockchain/blockchain/blockchain.config'
 import { getChatCompletion, getConversationMenu, getUserIntent, UserIntent } from '@chainjet/tools/dist/ai/ai'
 import { BadRequestException } from '@nestjs/common'
 import { Menu } from 'apps/api/src/chat/entities/menu'
@@ -94,9 +95,14 @@ export class CreateOrderAction extends OperationAction {
           user as User,
           previousOutputs!.contact.address,
         )
-        return {
-          outputs: this.getOrderOutputs(latestOutputs.conversationInfo, menu, order),
-        }
+        return await this.processOrderAndGetOutputs(
+          latestOutputs.conversationInfo,
+          menu,
+          order,
+          credentials,
+          inputs,
+          previousOutputs,
+        )
       }
     }
 
@@ -139,16 +145,45 @@ export class CreateOrderAction extends OperationAction {
     }
 
     const order = await this.createOrder(data, menu, user as User, previousOutputs!.contact.address)
-    return {
-      outputs: this.getOrderOutputs(data, menu, order),
-    }
+    return await this.processOrderAndGetOutputs(data, menu, order, credentials, inputs, previousOutputs)
   }
 
   getOrderList(data: { Order: Array<{ item: string; quantity?: number }> }) {
     return data.Order.map((item) => `${item.quantity ?? 1} ${item.item}`).join('\n') + '\n'
   }
 
-  getOrderOutputs(data: { Order: Array<{ item: string; quantity?: number }> }, menu: Menu, order: Order) {
+  async processOrderAndGetOutputs(
+    data: { Order: Array<{ item: string; quantity?: number }> },
+    menu: Menu,
+    order: Order,
+    credentials: StepInputs,
+    inputs: StepInputs,
+    previousOutputs: StepInputs,
+  ) {
+    if (inputs.requestPayment && order.total > 0) {
+      let payMessage = `The order total is ${order.total} ${menu.currency}. `
+      if (inputs.networks.length === 1) {
+        payMessage += `You can send the payment to this address on the ${this.getNetworkName(
+          inputs.networks[0],
+        )} network.`
+      } else {
+        payMessage += `You can send the payment to this address on the following networks:\n${inputs.networks
+          .map((network: number) => `- ${this.getNetworkName(network)}`)
+          .join('\n')}\n`
+      }
+      const client = await XmtpLib.getClient(credentials.keys, credentials.env ?? 'production')
+      const conversationId = previousOutputs?.trigger.conversation.id
+      await XmtpLib.sendMessage(client, conversationId, payMessage, previousOutputs?.messages)
+      return {
+        outputs: {
+          ...inputs,
+          confirmingPayment: true,
+        },
+        sleepUniqueGroup: conversationId,
+        repeatOnWakeUp: true,
+      }
+    }
+
     const outputs: Record<string, any> = {
       id: order.id,
       total: data.Order.reduce((acc, item) => {
@@ -160,7 +195,13 @@ export class CreateOrderAction extends OperationAction {
         quantity: item.quantity ?? 1,
       })),
     }
-    return outputs
+    return {
+      outputs: outputs,
+    }
+  }
+
+  getNetworkName(chainId: number) {
+    return BlockchainConfigService.instance.get(chainId)?.name ?? `Chain ID ${chainId}`
   }
 
   async createOrder(
