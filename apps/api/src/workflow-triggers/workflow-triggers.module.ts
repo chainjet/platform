@@ -1,5 +1,6 @@
 import { CommonModule } from '@app/common'
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
+import { BlockchainModule } from '@blockchain/blockchain'
 import { forwardRef, Module } from '@nestjs/common'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
 import { DefinitionsModule } from '../../../../libs/definitions/src'
@@ -20,6 +21,7 @@ import { HooksController } from './controllers/hooks.controller'
 import { WorkflowTrigger, WorkflowTriggerAuthorizer } from './entities/workflow-trigger'
 import { WorkflowUsedId } from './entities/workflow-used-id'
 import { WorkflowTriggerResolver } from './resolvers/workflow-trigger.resolver'
+import { BlockchainConsumer } from './services/blockchain.consumer'
 import { WorkflowTriggerService } from './services/workflow-trigger.service'
 import { WorkflowUsedIdService } from './services/workflow-used-id.service'
 
@@ -43,12 +45,19 @@ import { WorkflowUsedIdService } from './services/workflow-used-id.service'
     forwardRef(() => WorkflowActionsModule),
     forwardRef(() => WorkflowRunsModule),
     DefinitionsModule,
+    BlockchainModule,
 
     // TODO remove forwardRef once Runner calls are replaced with queues
     forwardRef(() => RunnerModule),
     ChatsModule,
   ],
-  providers: [WorkflowTriggerResolver, WorkflowTriggerService, WorkflowTriggerAuthorizer, WorkflowUsedIdService],
+  providers: [
+    WorkflowTriggerResolver,
+    WorkflowTriggerService,
+    WorkflowTriggerAuthorizer,
+    WorkflowUsedIdService,
+    BlockchainConsumer,
+  ],
   exports: [WorkflowTriggerService, WorkflowUsedIdService],
   controllers: [HooksController, ChainJetBotController, ChatbotController],
 })

@@ -19,8 +19,8 @@ export class RedisPubSubService implements OnModuleDestroy {
     this.client.quit()
   }
 
-  publish(channel: string, message: string): void {
-    this.client.publish(channel, message)
+  publish(channel: string, message: string) {
+    return this.client.publish(channel, message)
   }
 
   subscribe(channel: string, callback: (channel: string, message: any) => void) {
