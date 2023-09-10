@@ -5,6 +5,7 @@ import Redis, { Redis as RedisType } from 'ioredis'
 @Injectable()
 export class RedisPubSubService implements OnModuleDestroy {
   private readonly client: RedisType
+  private readonly subscriber: RedisType
 
   constructor(private configService: ConfigService) {
     const redisUrl = this.configService.get<string>('REDIS_URL')
@@ -13,10 +14,12 @@ export class RedisPubSubService implements OnModuleDestroy {
     }
 
     this.client = new Redis(redisUrl)
+    this.subscriber = new Redis(redisUrl) // creating a separate instance for subscribing
   }
 
   onModuleDestroy(): void {
     this.client.quit()
+    this.subscriber.quit()
   }
 
   publish(channel: string, message: string) {
@@ -24,6 +27,11 @@ export class RedisPubSubService implements OnModuleDestroy {
   }
 
   subscribe(channel: string, callback: (channel: string, message: any) => void) {
-    return this.client.on(channel, callback)
+    this.subscriber.subscribe(channel)
+    this.subscriber.on('message', (chan: string, message: string) => {
+      if (chan === channel) {
+        callback(chan, message)
+      }
+    })
   }
 }
