@@ -13,11 +13,10 @@ export interface PlanConfig {
 export const defaultPlan = 'free'
 
 export const plansConfig: Record<string, PlanConfig> = {
-  // TODO update plan limits
   free: {
     key: 'free',
     maxContacts: 50,
-    maxOperations: 10000,
+    maxOperations: 3000,
     maxActiveWorkflows: 5,
     minPollingInterval: 60 * 15,
     maxTriggerItems: 50,
@@ -39,7 +38,7 @@ export const plansConfig: Record<string, PlanConfig> = {
   prod_NYGB1kY91pq5g6: {
     key: 'pro',
     maxContacts: 5000,
-    maxOperations: 3e5,
+    maxOperations: 1e5,
     maxActiveWorkflows: Infinity,
     minPollingInterval: 15,
     maxTriggerItems: Infinity,
@@ -50,7 +49,7 @@ export const plansConfig: Record<string, PlanConfig> = {
   prod_NYGCd7KzrCjd7Y: {
     key: 'business',
     maxContacts: 20000,
-    maxOperations: 750000,
+    maxOperations: 5e5,
     maxActiveWorkflows: Infinity,
     minPollingInterval: 15,
     maxTriggerItems: Infinity,
@@ -78,17 +77,6 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxActiveWorkflows: Infinity,
     minPollingInterval: 60,
     maxTriggerItems: Infinity,
-    features: {
-      executeWorkflowOnError: true,
-    },
-  },
-  early: {
-    key: 'early',
-    maxContacts: 50,
-    maxOperations: Infinity,
-    maxActiveWorkflows: Infinity,
-    minPollingInterval: 60,
-    maxTriggerItems: 50,
     features: {
       executeWorkflowOnError: true,
     },
