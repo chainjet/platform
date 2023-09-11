@@ -48,6 +48,7 @@ export class GetUserIntentAction extends OperationAction {
             },
           },
           minItems: 1,
+          'x-addLabel': 'Add Intent',
         },
         description: 'List of user intents to match against. You will be able to add specific actions for each intent.',
         default: [

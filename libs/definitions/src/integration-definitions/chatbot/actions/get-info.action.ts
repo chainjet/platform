@@ -34,6 +34,7 @@ export class GetInfoAction extends OperationAction {
         title: 'List of Entities',
         type: 'array',
         minItems: 1,
+        'x-addLabel': 'Add Entity',
         items: {
           type: 'object',
           required: ['name', 'type'],
@@ -97,7 +98,7 @@ export class GetInfoAction extends OperationAction {
             },
           },
         },
-      },
+      } as JSONSchema7Definition,
       confirm: {
         type: 'boolean',
         title: 'Ask for confirmation?',
