@@ -63,6 +63,14 @@ export class BlockchainConsumer {
       this.logger.log(`Workflow trigger ${data.triggerId} not found`)
       return
     }
+    try {
+      await this.workflowUsedIdService.createOne({
+        workflow: workflowTrigger.workflow,
+        triggerId: data.transactionHash,
+      })
+    } catch {
+      return // Already processed
+    }
     const workflow = await this.workflowService.findOne({ _id: workflowTrigger.workflow })
     if (!workflow) {
       this.logger.log(`Workflow ${workflowTrigger.workflow} not found`)
@@ -81,10 +89,6 @@ export class BlockchainConsumer {
         trigger: outputs,
       },
     }
-    await this.workflowUsedIdService.createOne({
-      workflow: workflow._id,
-      triggerId: data.transactionHash,
-    })
     const rootActions = await this.workflowActionService.find({
       workflow: workflow._id,
       isRootAction: true,
