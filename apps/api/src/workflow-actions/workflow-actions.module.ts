@@ -1,3 +1,4 @@
+import { CommonModule } from '@app/common'
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { forwardRef, Module } from '@nestjs/common'
 import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
@@ -33,6 +34,7 @@ import { WorkflowActionService } from './services/workflow-action.service'
         },
       ],
     }),
+    CommonModule,
     UsersModule, // required for GraphqlGuard
     AuthModule,
     IntegrationsModule,

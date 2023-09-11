@@ -1,4 +1,5 @@
 import { BaseService } from '@app/common/base/base.service'
+import { RedisPubSubService } from '@app/common/cache/redis-pubsub.service'
 import { ObjectID } from '@app/common/utils/mongodb'
 import { OperationType } from '@app/definitions/types/OperationType'
 import { BadRequestException, forwardRef, Inject, Injectable, Logger, NotFoundException } from '@nestjs/common'
@@ -34,6 +35,7 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     protected accountCredentialService: AccountCredentialService,
     @Inject(forwardRef(() => IntegrationDefinitionFactory))
     protected integrationDefinitionFactory: IntegrationDefinitionFactory,
+    protected redisPubSubService: RedisPubSubService,
   ) {
     super(model)
   }
@@ -212,6 +214,15 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
 
     await this.workflowService.updateUsedIntegrations(workflow)
 
+    this.redisPubSubService.publish(
+      'workflowActionCreated',
+      JSON.stringify({
+        id: createdWorkflowAction.id,
+        integrationKey: integration.key,
+        integrationActionKey: integrationAction.key,
+      }),
+    )
+
     return createdWorkflowAction
   }
 
@@ -313,6 +324,15 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
       )
     }
 
+    this.redisPubSubService.publish(
+      'workflowActionUpdated',
+      JSON.stringify({
+        id,
+        integrationKey: integration.key,
+        integrationActionKey: integrationAction.key,
+      }),
+    )
+
     return updatedEntity
   }
 
@@ -394,6 +414,15 @@ export class WorkflowActionService extends BaseService<WorkflowAction> {
     }
 
     await this.workflowService.updateUsedIntegrations(workflow)
+
+    this.redisPubSubService.publish(
+      'workflowActionDeleted',
+      JSON.stringify({
+        id,
+        integrationKey: integration.key,
+        integrationActionKey: integrationAction.key,
+      }),
+    )
 
     return deletedEntity
   }
