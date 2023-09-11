@@ -7,7 +7,7 @@ import { Reference } from '@app/common/typings/mongodb'
 import { Injectable } from '@nestjs/common'
 import { Field, InputType, ObjectType } from '@nestjs/graphql'
 import { Authorize } from '@ptc-org/nestjs-query-graphql'
-import { prop } from '@typegoose/typegoose'
+import { Index, prop } from '@typegoose/typegoose'
 import { getAddress, isAddress } from 'ethers/lib/utils'
 import { GraphQLString } from 'graphql'
 import { GraphQLJSONObject } from 'graphql-type-json'
@@ -18,6 +18,7 @@ import { CreateOrderItemInput, OrderItem, UpdateOrderItemInput } from './order-i
 export enum OrderState {
   PendingPayment = 'pending-payment',
   PendingDelivery = 'pending-delivery',
+  PaymentExpired = 'payment-expired',
   Completed = 'completed',
 }
 
@@ -28,6 +29,7 @@ export class OrderAuthorizer extends OwnedAuthorizer<Order> {}
 @OwnedEntity()
 @Authorize<Order>(OrderAuthorizer)
 @EntityRef('menu', () => Menu)
+@Index({ waitTx: 1 }, { partialFilterExpression: { waitTx: true } })
 export class Order extends BaseEntity {
   @prop({ ref: User, required: true, index: true })
   readonly owner!: Reference<User>
@@ -43,6 +45,17 @@ export class Order extends BaseEntity {
   @prop({ required: true })
   @Field()
   state: OrderState
+
+  @prop({})
+  @Field({ nullable: true })
+  currency?: string
+
+  @prop({})
+  @Field(() => [Number], { nullable: true })
+  networks?: number[]
+
+  @prop({})
+  waitTx?: boolean
 
   @prop({ ref: Menu, required: true })
   readonly menu!: Reference<Menu>

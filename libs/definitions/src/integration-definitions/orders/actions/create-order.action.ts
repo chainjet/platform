@@ -59,9 +59,15 @@ export class CreateOrderAction extends OperationAction {
     if (!previousOutputs?.contact?.address) {
       throw new BadRequestException(`A contact address is required to create an order`)
     }
+    if (inputs.requestPayment && (!Array.isArray(inputs.networks) || !inputs.networks.length)) {
+      throw new BadRequestException(`At least one network is required to request payment`)
+    }
     const menu = await MenuService.instance.findOne({ _id: inputs.menu, owner: user })
     if (!menu) {
       throw new BadRequestException(`Menu ${inputs.menu} not found`)
+    }
+    if (inputs.requestPayment && !menu.currency) {
+      throw new BadRequestException(`You must set a currency on the menu before requesting payments`)
     }
 
     const latestMessage = previousOutputs?.message
@@ -70,6 +76,7 @@ export class CreateOrderAction extends OperationAction {
       content: message.content,
       role: message.from === 'user' ? 'user' : 'assistant',
     }))
+    const networks: number[] = (inputs.networks ?? []).map((network: number) => Number(network))
 
     // If we're confirming the order, check for the message intent
     if (latestOutputs.confirmingOrder) {
@@ -94,6 +101,8 @@ export class CreateOrderAction extends OperationAction {
           menu,
           user as User,
           previousOutputs!.contact.address,
+          networks,
+          !!inputs.requestPayment,
         )
         return await this.processOrderAndGetOutputs(
           latestOutputs.conversationInfo,
@@ -144,7 +153,14 @@ export class CreateOrderAction extends OperationAction {
       }
     }
 
-    const order = await this.createOrder(data, menu, user as User, previousOutputs!.contact.address)
+    const order = await this.createOrder(
+      data,
+      menu,
+      user as User,
+      previousOutputs!.contact.address,
+      networks,
+      !!inputs.requestPayment,
+    )
     return await this.processOrderAndGetOutputs(data, menu, order, credentials, inputs, previousOutputs)
   }
 
@@ -160,14 +176,13 @@ export class CreateOrderAction extends OperationAction {
     inputs: StepInputs,
     previousOutputs: StepInputs,
   ) {
+    const networks: number[] = (inputs.networks ?? []).map((network: number) => Number(network))
     if (inputs.requestPayment && order.total > 0) {
       let payMessage = `The order total is ${order.total} ${menu.currency}. `
-      if (inputs.networks.length === 1) {
-        payMessage += `You can send the payment to this address on the ${this.getNetworkName(
-          inputs.networks[0],
-        )} network.`
+      if (networks.length === 1) {
+        payMessage += `You can send the payment to this address on the ${this.getNetworkName(networks[0])} network.`
       } else {
-        payMessage += `You can send the payment to this address on the following networks:\n${inputs.networks
+        payMessage += `You can send the payment to this address on the following networks:\n${networks
           .map((network: number) => `- ${this.getNetworkName(network)}`)
           .join('\n')}\n`
       }
@@ -209,6 +224,8 @@ export class CreateOrderAction extends OperationAction {
     menu: Menu,
     user: User,
     address: string,
+    networks: number[] | undefined,
+    requestPayment: boolean,
   ) {
     const total = data.Order.reduce((acc, item) => {
       const menuItem = menu.items.find((menuItem) => menuItem.name === item.item)
@@ -219,6 +236,9 @@ export class CreateOrderAction extends OperationAction {
       address,
       total,
       menu,
+      currency: menu.currency,
+      networks,
+      waitTx: requestPayment,
       items: data.Order.map((item) => ({
         name: item.item,
         quantity: item.quantity ?? 1,
