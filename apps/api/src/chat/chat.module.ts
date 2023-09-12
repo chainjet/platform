@@ -112,6 +112,6 @@ import { OrderService } from './services/order.service'
     BroadcastConsumer,
     ContactsConsumer,
   ],
-  exports: [ContactService, CampaignService, MenuService],
+  exports: [ContactService, CampaignService, MenuService, OrderService],
 })
 export class ChatsModule {}

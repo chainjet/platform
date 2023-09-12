@@ -1102,6 +1102,8 @@ export interface Order {
     state: string;
     currency?: Nullable<string>;
     networks?: Nullable<number[]>;
+    txHash?: Nullable<string>;
+    txNetwork?: Nullable<number>;
     items: OrderItem[];
     fields?: Nullable<JSONObject>;
     menu: Menu;
@@ -1419,6 +1421,8 @@ export interface OrderDeleteResponse {
     state?: Nullable<string>;
     currency?: Nullable<string>;
     networks?: Nullable<number[]>;
+    txHash?: Nullable<string>;
+    txNetwork?: Nullable<number>;
     items?: Nullable<OrderItem[]>;
     fields?: Nullable<JSONObject>;
 }

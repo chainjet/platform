@@ -1,9 +1,12 @@
+import { assertNever } from '@app/common/utils/typescript.utils'
 import { ExplorerService } from '@blockchain/blockchain/explorer/explorer.service'
 import { Process, Processor } from '@nestjs/bull'
 import { Logger } from '@nestjs/common'
 import { Job } from 'bull'
 import { ObjectId } from 'mongodb'
 import { RunnerService } from '../../../../runner/src/services/runner.service'
+import { OrderState } from '../../chat/entities/order'
+import { OrderService } from '../../chat/services/order.service'
 import { IntegrationTrigger } from '../../integration-triggers/entities/integration-trigger'
 import { IntegrationTriggerService } from '../../integration-triggers/services/integration-trigger.service'
 import { Integration } from '../../integrations/entities/integration'
@@ -14,8 +17,7 @@ import { WorkflowService } from '../../workflows/services/workflow.service'
 import { WorkflowTriggerService } from './workflow-trigger.service'
 import { WorkflowUsedIdService } from './workflow-used-id.service'
 
-interface BlockchainEvent {
-  triggerId: string
+interface BaseBlockchainEvent {
   network: number
   address: string
   eventName: string
@@ -23,6 +25,18 @@ interface BlockchainEvent {
   blockNumber: number
   log: { [key: string]: string }
 }
+
+interface TriggerNewEvent extends BaseBlockchainEvent {
+  triggerId: string
+  type: 'trigger:newEvent'
+}
+
+interface OrderNewPayment extends BaseBlockchainEvent {
+  orderId: string
+  type: 'order:newPayment'
+}
+
+type BlockchainEvent = TriggerNewEvent | OrderNewPayment
 
 @Processor('blockchainEvent')
 export class BlockchainConsumer {
@@ -41,6 +55,7 @@ export class BlockchainConsumer {
     private readonly runnerService: RunnerService,
     private readonly workflowUsedIdService: WorkflowUsedIdService,
     private readonly explorerService: ExplorerService,
+    private readonly orderService: OrderService,
   ) {}
 
   async onModuleInit() {
@@ -53,6 +68,19 @@ export class BlockchainConsumer {
 
   @Process()
   async onBlockchainEvent(job: Job<BlockchainEvent>) {
+    switch (job.data.type) {
+      case 'trigger:newEvent':
+        await this.processNewEventTrigger(job as Job<TriggerNewEvent>)
+        break
+      case 'order:newPayment':
+        await this.processNewOrderPayment(job as Job<OrderNewPayment>)
+        break
+      default:
+        assertNever(job.data)
+    }
+  }
+
+  async processNewEventTrigger(job: Job<TriggerNewEvent>) {
     const data = job.data
     const workflowTrigger = await this.workflowTriggerService.findOne({
       _id: new ObjectId(data.triggerId),
@@ -105,5 +133,31 @@ export class BlockchainConsumer {
       lastItem: outputs,
     })
     void this.runnerService.runWorkflowActions(rootActions, [hookTriggerOutputs], workflowRun)
+  }
+
+  async processNewOrderPayment(job: Job<OrderNewPayment>) {
+    this.logger.log(`Processing new order payment ${job.data.transactionHash}`)
+    const data = job.data
+
+    const order = await this.orderService.findById(data.orderId)
+    if (!order) {
+      this.logger.log(`Order ${data.orderId} not found`)
+      return
+    }
+    if (order.state !== OrderState.PendingPayment) {
+      this.logger.log(`Order ${data.orderId} is not in pending-payment state`)
+      return
+    }
+    await this.orderService.updateOneNative(
+      { _id: new ObjectId(order._id) },
+      {
+        $set: {
+          state: OrderState.PendingDelivery,
+          txHash: data.transactionHash,
+          txNetwork: data.network,
+        },
+      },
+    )
+    this.logger.log(`Order ${data.orderId} payment confirmed`)
   }
 }

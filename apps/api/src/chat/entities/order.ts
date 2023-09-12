@@ -57,6 +57,14 @@ export class Order extends BaseEntity {
   @prop({})
   waitTx?: boolean
 
+  @prop({})
+  @Field({ nullable: true })
+  txHash?: string
+
+  @prop({})
+  @Field({ nullable: true })
+  txNetwork?: number
+
   @prop({ ref: Menu, required: true })
   readonly menu!: Reference<Menu>
 
