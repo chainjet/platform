@@ -13,6 +13,7 @@ import { Integration } from '../../integrations/entities/integration'
 import { IntegrationService } from '../../integrations/services/integration.service'
 import { WorkflowActionService } from '../../workflow-actions/services/workflow-action.service'
 import { WorkflowRunService } from '../../workflow-runs/services/workflow-run.service'
+import { WorkflowSleepService } from '../../workflow-runs/services/workflow-sleep.service'
 import { WorkflowService } from '../../workflows/services/workflow.service'
 import { WorkflowTriggerService } from './workflow-trigger.service'
 import { WorkflowUsedIdService } from './workflow-used-id.service'
@@ -54,6 +55,7 @@ export class BlockchainConsumer {
     private readonly workflowRunService: WorkflowRunService,
     private readonly runnerService: RunnerService,
     private readonly workflowUsedIdService: WorkflowUsedIdService,
+    private readonly workflowSleepService: WorkflowSleepService,
     private readonly explorerService: ExplorerService,
     private readonly orderService: OrderService,
   ) {}
@@ -155,9 +157,30 @@ export class BlockchainConsumer {
           state: OrderState.PendingDelivery,
           txHash: data.transactionHash,
           txNetwork: data.network,
+          waitTx: false,
         },
       },
     )
     this.logger.log(`Order ${data.orderId} payment confirmed`)
+
+    // wake up workflows waiting for the payment
+    const workflowSleeps = await this.workflowSleepService.find({
+      uniqueGroup: `${order.owner.id}-${order.id}`,
+    })
+    if (!workflowSleeps.length) {
+      return
+    }
+
+    // clean up
+    await this.workflowSleepService.deleteManyNative({
+      _id: {
+        $in: workflowSleeps.map((workflowSleep) => workflowSleep._id),
+      },
+    })
+
+    this.logger.log(`Waking up ${workflowSleeps.length} workflows after payment received`)
+
+    const promises = workflowSleeps.map((workflowSleep) => this.runnerService.wakeUpWorkflowRun(workflowSleep))
+    await Promise.all(promises)
   }
 }

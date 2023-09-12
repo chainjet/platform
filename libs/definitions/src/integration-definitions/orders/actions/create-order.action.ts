@@ -194,8 +194,7 @@ export class CreateOrderAction extends OperationAction {
           ...inputs,
           confirmingPayment: true,
         },
-        sleepUniqueGroup: conversationId,
-        repeatOnWakeUp: true,
+        sleepUniqueGroup: `${order.owner.id}-${order.id}`,
       }
     }
 

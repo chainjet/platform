@@ -1,3 +1,4 @@
+import { CommonModule } from '@app/common'
 import { NestjsQueryTypegooseModule } from '@app/common/NestjsQueryTypegooseModule'
 import { BullModule } from '@nestjs/bull'
 import { forwardRef, Module } from '@nestjs/common'
@@ -76,6 +77,7 @@ import { OrderService } from './services/order.service'
         maxStalledCount: 3,
       },
     }),
+    CommonModule,
     AuthModule, // required for GraphqlGuard
     UsersModule, // required for GraphqlGuard
     IntegrationAccountsModule,

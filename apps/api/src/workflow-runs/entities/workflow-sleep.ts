@@ -28,7 +28,7 @@ export class WorkflowSleep extends BaseEntity {
   @prop({ required: true })
   itemId: string | number
 
-  @prop()
+  @prop({ index: true, sparse: true })
   uniqueGroup?: string
 
   @prop()
