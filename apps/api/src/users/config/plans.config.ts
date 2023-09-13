@@ -57,6 +57,17 @@ export const plansConfig: Record<string, PlanConfig> = {
       executeWorkflowOnError: true,
     },
   },
+  prod_Od9KDPvYZXLb4d: {
+    key: 'enterprise',
+    maxContacts: 60000,
+    maxOperations: 1500000,
+    maxActiveWorkflows: Infinity,
+    minPollingInterval: 15,
+    maxTriggerItems: Infinity,
+    features: {
+      executeWorkflowOnError: true,
+    },
+  },
   unlimited: {
     key: 'unlimited',
     maxContacts: Infinity,
@@ -94,4 +105,7 @@ if (process.env.NODE_ENV === 'development') {
   // business
   plansConfig['prod_NXsy6KRk62T4yx'] = plansConfig['prod_NYGCd7KzrCjd7Y']
   delete plansConfig['prod_NYGCd7KzrCjd7Y']
+  // enterprise
+  plansConfig['prod_Od9NgQofi2S8w3'] = plansConfig['prod_Od9KDPvYZXLb4d']
+  delete plansConfig['prod_Od9KDPvYZXLb4d']
 }
