@@ -5,6 +5,7 @@ export interface PlanConfig {
   maxActiveWorkflows: number
   minPollingInterval: number
   maxTriggerItems: number
+  hardLimits: boolean
   features: {
     executeWorkflowOnError: boolean
   }
@@ -20,6 +21,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxActiveWorkflows: 5,
     minPollingInterval: 60 * 15,
     maxTriggerItems: 50,
+    hardLimits: true,
     features: {
       executeWorkflowOnError: false,
     },
@@ -31,6 +33,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxActiveWorkflows: 20,
     minPollingInterval: 60,
     maxTriggerItems: Infinity,
+    hardLimits: true,
     features: {
       executeWorkflowOnError: true,
     },
@@ -42,6 +45,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxActiveWorkflows: Infinity,
     minPollingInterval: 15,
     maxTriggerItems: Infinity,
+    hardLimits: false,
     features: {
       executeWorkflowOnError: true,
     },
@@ -53,6 +57,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxActiveWorkflows: Infinity,
     minPollingInterval: 15,
     maxTriggerItems: Infinity,
+    hardLimits: false,
     features: {
       executeWorkflowOnError: true,
     },
@@ -64,6 +69,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxActiveWorkflows: Infinity,
     minPollingInterval: 15,
     maxTriggerItems: Infinity,
+    hardLimits: false,
     features: {
       executeWorkflowOnError: true,
     },
@@ -75,6 +81,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxActiveWorkflows: Infinity,
     minPollingInterval: 15,
     maxTriggerItems: Infinity,
+    hardLimits: false,
     features: {
       executeWorkflowOnError: true,
     },
@@ -88,6 +95,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxActiveWorkflows: Infinity,
     minPollingInterval: 60,
     maxTriggerItems: Infinity,
+    hardLimits: true,
     features: {
       executeWorkflowOnError: true,
     },

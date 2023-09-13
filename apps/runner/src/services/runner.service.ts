@@ -169,7 +169,7 @@ export class RunnerService {
       return
     }
 
-    if (user.operationsUsedMonth >= user.planConfig.maxOperations) {
+    if (user.operationsUsedMonth >= user.planConfig.maxOperations && user.planConfig.hardLimits) {
       this.logger.log(`User ${user.id} has reached the monthly operation limit`)
       await this.workflowTriggerService.markUserPlanAsLimited(user._id)
       return
@@ -420,7 +420,7 @@ export class RunnerService {
       this.logger.error(`User ${userId} not found`)
       return WorkflowRunStatus.failed
     }
-    if (user.operationsUsedMonth >= user.planConfig.maxOperations) {
+    if (user.operationsUsedMonth >= user.planConfig.maxOperations && user.planConfig.hardLimits) {
       this.logger.log(`User ${user.id} has reached the monthly operation limit`)
       await this.workflowTriggerService.markUserPlanAsLimited(user._id)
       return WorkflowRunStatus.failed

@@ -51,7 +51,7 @@ export class ContactService extends BaseService<Contact> {
 
   async addSingleContact(address: string, user: User, tags?: string[]): Promise<Contact> {
     const total = await this.countNative({ owner: user._id })
-    if (total + 1 > user.planConfig.maxContacts) {
+    if (total + 1 > user.planConfig.maxContacts && user.planConfig.hardLimits) {
       throw new BadRequestException(
         `Your current plan only allows you to have ${user.planConfig.maxContacts} contacts. Please upgrade to add more.`,
       )
@@ -80,7 +80,7 @@ export class ContactService extends BaseService<Contact> {
 
   async addContacts(addresses: string[], user: User, tags?: string[]) {
     const total = await this.countNative({ owner: user._id })
-    if (total + addresses.length > user.planConfig.maxContacts) {
+    if (total + addresses.length > user.planConfig.maxContacts && user.planConfig.hardLimits) {
       throw new BadRequestException(
         `Your current plan only allows you to have ${user.planConfig.maxContacts} contacts. Please upgrade to add more.`,
       )
