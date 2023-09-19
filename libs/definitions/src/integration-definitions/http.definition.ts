@@ -53,7 +53,7 @@ export class HttpDefinition extends SingleIntegrationDefinition {
         },
       }
     } catch (e) {
-      throw new Error(e.response.data)
+      throw new Error(e.response.data?.message ?? e.message)
     }
   }
 }
