@@ -148,7 +148,8 @@ export enum WorkflowRunActionSortFields {
 
 export enum ContactSortFields {
     id = "id",
-    createdAt = "createdAt"
+    createdAt = "createdAt",
+    address = "address"
 }
 
 export enum CampaignSortFields {
@@ -523,6 +524,7 @@ export interface ContactFilter {
     or?: Nullable<ContactFilter[]>;
     id?: Nullable<IDFilterComparison>;
     createdAt?: Nullable<DateFieldComparison>;
+    address?: Nullable<StringFieldComparison>;
 }
 
 export interface ContactSort {
