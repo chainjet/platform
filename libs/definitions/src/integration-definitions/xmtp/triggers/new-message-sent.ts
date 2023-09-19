@@ -4,11 +4,11 @@ import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.s
 import { JSONSchema7 } from 'json-schema'
 import { xmtpMessageSchema } from '../xmtp.common'
 
-export class NewMessageTrigger extends OperationTrigger {
+export class NewMessageSentTrigger extends OperationTrigger {
   idKey = 'items[].id'
-  key = 'newMessage'
-  name = 'New Message'
-  description = 'Triggers when you receive a new message.'
+  key = 'newMessageSent'
+  name = 'New Message Sent'
+  description = 'Triggers when you send a new message.'
   version = '1.0.0'
   triggerInstant = true
 
