@@ -27,7 +27,8 @@ export class ChatbotController {
   private chatbotIntegration: Integration
   private chatbotIntegrationTrigger: IntegrationTrigger
   private xmtpIntegration: Integration
-  private xmtpIntegrationTrigger: IntegrationTrigger
+  private xmtpNewMessageIntegrationTrigger: IntegrationTrigger
+  private xmtpMessageSentIntegrationTrigger: IntegrationTrigger
 
   constructor(
     private readonly integrationService: IntegrationService,
@@ -50,9 +51,13 @@ export class ChatbotController {
     })) as IntegrationTrigger
 
     this.xmtpIntegration = (await this.integrationService.findOne({ key: 'xmtp' })) as Integration
-    this.xmtpIntegrationTrigger = (await this.integrationTriggerService.findOne({
+    this.xmtpNewMessageIntegrationTrigger = (await this.integrationTriggerService.findOne({
       integration: this.xmtpIntegration._id,
       key: 'newMessage',
+    })) as IntegrationTrigger
+    this.xmtpMessageSentIntegrationTrigger = (await this.integrationTriggerService.findOne({
+      integration: this.xmtpIntegration._id,
+      key: 'newMessageSent',
     })) as IntegrationTrigger
   }
 
@@ -104,7 +109,10 @@ export class ChatbotController {
         if (trigger.owner.toString() !== body.user) {
           return false
         }
-        if (trigger.integrationTrigger.toString() !== this.xmtpIntegrationTrigger._id.toString()) {
+        if (
+          trigger.integrationTrigger.toString() !== this.xmtpNewMessageIntegrationTrigger._id.toString() &&
+          trigger.integrationTrigger.toString() !== this.xmtpMessageSentIntegrationTrigger._id.toString()
+        ) {
           return false
         }
         if (!trigger.enabled || trigger.planLimited) {
@@ -299,9 +307,13 @@ export class ChatbotController {
     }
 
     const rootActions = await this.workflowActionService.find({ workflow: workflow._id, isRootAction: true })
+    const integrationTrigger =
+      workflowTrigger.integrationTrigger.toString() === this.xmtpNewMessageIntegrationTrigger._id.toString()
+        ? this.xmtpNewMessageIntegrationTrigger
+        : this.xmtpMessageSentIntegrationTrigger
     const workflowRun = await this.workflowRunService.createOneByInstantTrigger(
       this.xmtpIntegration,
-      this.xmtpIntegrationTrigger,
+      integrationTrigger,
       workflow,
       workflowTrigger,
       rootActions.length > 0,
