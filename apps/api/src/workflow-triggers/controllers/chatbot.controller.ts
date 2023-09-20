@@ -101,9 +101,10 @@ export class ChatbotController {
       await Promise.all(chatbotPromises)
     }
 
-    if (body.triggers.xmtp.length) {
+    if (body.triggers.xmtp.length || body.triggers.xmtpMessageSent.length) {
+      let triggerIds = body.triggers.xmtp.concat(body.triggers.xmtpMessageSent)
       let xmtpWorkflowTriggers = await this.workflowTriggerService.find({
-        _id: { $in: body.triggers.xmtp.map((trigger: string) => new ObjectId(trigger)) },
+        _id: { $in: triggerIds.map((trigger: string) => new ObjectId(trigger)) },
       })
       xmtpWorkflowTriggers = xmtpWorkflowTriggers.filter((trigger) => {
         if (trigger.owner.toString() !== body.user) {
