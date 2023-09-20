@@ -528,7 +528,10 @@ export class RunnerService {
         user,
         previousOutputs,
       })
-      await this.workflowActionService.updateById(workflowAction._id, { lastItem: runResponse.outputs ?? {} })
+      await this.workflowActionService.updateById(workflowAction._id, {
+        lastItem: runResponse.outputs ?? {},
+        ...(runResponse.store && { store: runResponse.store }),
+      })
       await this.workflowRunService.markActionAsCompleted(
         userId,
         workflowRun._id,

@@ -11,6 +11,7 @@ export class NewPoapCollected extends OperationTrigger {
   name = 'New POAP collected'
   description = 'Triggers when any POAP is collected by a given wallet'
   version = '1.0.0'
+  skipAuth = true
 
   inputs: JSONSchema7 = {
     required: ['address'],

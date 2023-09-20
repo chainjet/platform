@@ -1,4 +1,5 @@
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
+import { DistributePoapAction } from './actions/distribute-poap.action'
 import { GetPoapEventAction } from './actions/get-poap-event.action'
 import { GetPoapTokenAction } from './actions/get-poap-token.action'
 import { NewPoapCollected } from './triggers/new-poap-collected.trigger'
@@ -10,5 +11,5 @@ export class PoapDefinition extends SingleIntegrationDefinition {
   schemaUrl = null
 
   triggers = [new NewPoapCollected(), new NewPoapHolder()]
-  actions = [new GetPoapEventAction(), new GetPoapTokenAction()]
+  actions = [new GetPoapEventAction(), new GetPoapTokenAction(), new DistributePoapAction()]
 }
