@@ -69,7 +69,7 @@ export class ContactsConsumer {
     this.contactsIntegration = (await this.integrationService.findOne({ key: 'contacts' })) as Integration
     this.newContactIntegrationTrigger = (await this.integrationTriggerService.findOne({
       integration: this.contactsIntegration._id,
-      key: 'newContact',
+      key: 'newContactTrigger',
     })) as IntegrationTrigger
     this.contactTaggedIntegrationTrigger = (await this.integrationTriggerService.findOne({
       integration: this.contactsIntegration._id,
