@@ -12,6 +12,7 @@ import { IntegrationsModule } from '../integrations/integrations.module'
 import { UsersModule } from '../users/users.module'
 import { WorkflowActionsModule } from '../workflow-actions/workflow-actions.module'
 import { WorkflowRunsModule } from '../workflow-runs/workflow-runs.module'
+import { ChatbotConsumer } from '../workflow-triggers/services/chatbot.consumer'
 import { WorkflowTriggersModule } from '../workflow-triggers/workflow-triggers.module'
 import { WorkflowsModule } from '../workflows/workflows.module'
 import { Campaign, CampaignAuthorizer } from './entities/campaign'
@@ -52,6 +53,14 @@ import { OrderService } from './services/order.service'
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([Order])],
       dtos: [{ DTOClass: Order }],
+    }),
+    BullModule.registerQueue({
+      name: 'chatbotMessage',
+      settings: {
+        lockDuration: 60000,
+        stalledInterval: 30000,
+        maxStalledCount: 3,
+      },
     }),
     BullModule.registerQueue({
       name: 'broadcast',
@@ -111,6 +120,7 @@ import { OrderService } from './services/order.service'
     OrderAuthorizer,
 
     // Consumers
+    ChatbotConsumer,
     BroadcastConsumer,
     ContactsConsumer,
   ],
