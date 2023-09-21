@@ -140,6 +140,10 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
             if (!doc[key].equals(value)) {
               return false
             }
+          } else if (doc[key] instanceof mongoose.Types.ObjectId && typeof value === 'string') {
+            if (doc[key].toString() !== value) {
+              return false
+            }
           } else if (doc[key] !== value) {
             return false
           }
