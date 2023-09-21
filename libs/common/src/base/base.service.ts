@@ -28,11 +28,25 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
   protected abstract readonly logger: Logger
   protected cacheManager: Cache
 
-  // cache is only enabled when cacheKey is set
+  // redis cache is only enabled when cacheKey is set
   protected cacheKey: string | null = null
+
+  protected enableFullCache = false
+  private useFullCache = false
+  private docsCache: Map<string, HydratedDocument<T>> = new Map()
 
   constructor(protected readonly model: ReturnModelType<new () => T>) {
     super(model, { documentToObjectOptions: { virtuals: true, getters: true } })
+  }
+
+  async onModuleInit() {
+    if (this.enableFullCache) {
+      this.logger.log(`Caching all ${this.model.modelName}s`)
+      const docs = await this.model.find().exec()
+      docs.forEach((doc) => this.docsCache.set(doc.id, doc))
+      this.useFullCache = true
+      this.logger.log(`Cached ${this.docsCache.size} ${this.model.modelName}s`)
+    }
   }
 
   async query(query: Query<T>): Promise<T[]> {
@@ -94,6 +108,19 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
     projection?: any | null,
     options?: QueryOptions,
   ): Promise<HydratedDocument<T>[]> {
+    const bypassCache = !!projection || !!options || this.conditionsContainObject(conditions)
+    if (this.useFullCache && !bypassCache) {
+      const filteredDocs = Array.from(this.docsCache.values()).filter((doc) => {
+        for (const [key, value] of Object.entries(conditions)) {
+          if (doc[key] !== value) {
+            return false
+          }
+        }
+        return true
+      })
+      return Promise.resolve(filteredDocs)
+    }
+
     return this.model.find(conditions, projection, options).exec()
   }
 
@@ -105,12 +132,32 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
     if (!conditions) {
       return null
     }
+    const bypassCache = !!projection || !!options || this.conditionsContainObject(conditions)
+    if (this.useFullCache && !bypassCache) {
+      const doc = Array.from(this.docsCache.values()).find((doc) => {
+        for (const [key, value] of Object.entries(conditions)) {
+          if (value instanceof mongoose.Types.ObjectId) {
+            if (!doc[key].equals(value)) {
+              return false
+            }
+          } else if (doc[key] !== value) {
+            return false
+          }
+        }
+        return true
+      })
+      return doc ? (doc.toObject(this.documentToObjectOptions) as T) : null
+    }
     return (
       (await this.model.findOne(conditions, projection, options).exec())?.toObject(this.documentToObjectOptions) ?? null
     )
   }
 
   async findById(id: string, opts?: FindByIdOptions<T> | undefined): Promise<T | undefined> {
+    if (this.useFullCache && !opts) {
+      const doc = this.docsCache.get(id)
+      return doc ? (doc.toObject(this.documentToObjectOptions) as T) : undefined
+    }
     if (!this.cacheKey || opts) {
       return super.findById(id, opts)
     }
@@ -220,7 +267,12 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
     return this.model.findByIdAndUpdate(id, query, options).exec()
   }
 
-  countNative(conditions: FilterQuery<new () => T>): Promise<number> {
+  async countNative(conditions: FilterQuery<new () => T>): Promise<number> {
+    const bypassCache = this.conditionsContainObject(conditions)
+    if (this.useFullCache && !bypassCache) {
+      const docs = await this.find(conditions)
+      return docs.length
+    }
     return this.model.countDocuments(conditions).exec()
   }
 
@@ -233,5 +285,14 @@ export abstract class BaseService<T extends BaseEntity> extends TypegooseQuerySe
       item.createdAt = new Date(res.createdAt)
     }
     return item as T
+  }
+
+  private conditionsContainObject(conditions: FilterQuery<new () => T>): boolean {
+    for (const [key, value] of Object.entries(conditions)) {
+      if (typeof value === 'object' && !(value instanceof mongoose.Types.ObjectId)) {
+        return true
+      }
+    }
+    return false
   }
 }

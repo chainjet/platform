@@ -13,6 +13,7 @@ export class IntegrationAccountAuthorizer extends NotOwnedAuthorizer<Integration
 export class IntegrationAccountService extends BaseService<IntegrationAccount> {
   protected readonly logger = new Logger(IntegrationAccountService.name)
   static instance: IntegrationAccountService
+  protected enableFullCache = true
 
   constructor(@InjectModel(IntegrationAccount) protected readonly model: ReturnModelType<typeof IntegrationAccount>) {
     super(model)

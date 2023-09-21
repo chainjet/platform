@@ -15,6 +15,7 @@ export class IntegrationActionService extends BaseService<IntegrationAction> {
   protected readonly logger = new Logger(IntegrationActionService.name)
   static instance: IntegrationActionService
   // protected cacheKey = 'integration-action'
+  protected enableFullCache = true
 
   constructor(
     @Inject(CACHE_MANAGER) protected cacheManager: Cache,

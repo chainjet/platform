@@ -15,6 +15,7 @@ export class IntegrationTriggerService extends BaseService<IntegrationTrigger> {
   protected readonly logger = new Logger(IntegrationTriggerService.name)
   static instance: IntegrationTriggerService
   // protected cacheKey = 'integration-trigger'
+  protected enableFullCache = true
 
   constructor(
     @Inject(CACHE_MANAGER) protected cacheManager: Cache,
