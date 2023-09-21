@@ -164,7 +164,8 @@ export enum MenuSortFields {
 
 export enum OrderSortFields {
     id = "id",
-    createdAt = "createdAt"
+    createdAt = "createdAt",
+    address = "address"
 }
 
 export enum UserDatabaseSortFields {
@@ -564,6 +565,7 @@ export interface OrderFilter {
     or?: Nullable<OrderFilter[]>;
     id?: Nullable<IDFilterComparison>;
     createdAt?: Nullable<DateFieldComparison>;
+    address?: Nullable<StringFieldComparison>;
 }
 
 export interface OrderSort {

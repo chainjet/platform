@@ -6,7 +6,7 @@ import { jsonProp } from '@app/common/decorators/props/json-prop.decorator'
 import { Reference } from '@app/common/typings/mongodb'
 import { Injectable } from '@nestjs/common'
 import { Field, InputType, ObjectType } from '@nestjs/graphql'
-import { Authorize } from '@ptc-org/nestjs-query-graphql'
+import { Authorize, FilterableField } from '@ptc-org/nestjs-query-graphql'
 import { Index, prop } from '@typegoose/typegoose'
 import { getAddress, isAddress } from 'ethers/lib/utils'
 import { GraphQLString } from 'graphql'
@@ -34,7 +34,7 @@ export class Order extends BaseEntity {
   @prop({ ref: User, required: true, index: true })
   readonly owner!: Reference<User>
 
-  @Field()
+  @FilterableField()
   @prop({ required: true, validate: isAddress, set: (addr) => addr && getAddress(addr) })
   address: string
 
