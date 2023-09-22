@@ -1,5 +1,6 @@
 import { SingleIntegrationDefinition } from '@app/definitions/single-integration.definition'
 import { CreateOrderAction } from './actions/create-order.action'
+import { GetLatestOrderAction } from './actions/get-latest-order.action'
 import { UpdateOrderAction } from './actions/update-order.action'
 
 export class OrdersDefinition extends SingleIntegrationDefinition {
@@ -8,5 +9,5 @@ export class OrdersDefinition extends SingleIntegrationDefinition {
   schemaUrl = null
 
   triggers = []
-  actions = [new CreateOrderAction(), new UpdateOrderAction()]
+  actions = [new CreateOrderAction(), new UpdateOrderAction(), new GetLatestOrderAction()]
 }
