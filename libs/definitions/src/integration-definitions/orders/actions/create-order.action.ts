@@ -78,6 +78,19 @@ export class CreateOrderAction extends OperationAction {
     }))
     const networks: number[] = (inputs.networks ?? []).map((network: number) => Number(network))
 
+    // cancel the order if the user says cancel
+    if (['cancel', 'exit'].includes(latestMessage?.content?.toLowerCase())) {
+      const client = await XmtpLib.getClient(credentials.keys, credentials.env ?? 'production')
+      const conversationId = previousOutputs?.trigger.conversation.id
+      await XmtpLib.sendMessage(client, conversationId, 'The order has been cancelled', previousOutputs?.messages)
+      return {
+        outputs: {
+          ...inputs,
+          cancelled: true,
+        },
+      }
+    }
+
     // If we're confirming the order, check for the message intent
     if (latestOutputs.confirmingOrder) {
       const confirmIntents: UserIntent[] = [
@@ -112,6 +125,17 @@ export class CreateOrderAction extends OperationAction {
           inputs,
           previousOutputs,
         )
+      }
+      if (intent?.toLowerCase() === 'cancel') {
+        const client = await XmtpLib.getClient(credentials.keys, credentials.env ?? 'production')
+        const conversationId = previousOutputs?.trigger.conversation.id
+        await XmtpLib.sendMessage(client, conversationId, 'The order has been cancelled', previousOutputs?.messages)
+        return {
+          outputs: {
+            ...inputs,
+            cancelled: true,
+          },
+        }
       }
     }
 
