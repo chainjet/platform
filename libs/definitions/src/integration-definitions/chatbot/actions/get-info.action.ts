@@ -19,6 +19,7 @@ interface Entity {
   description?: string
   required?: boolean
   store?: boolean
+  requestMessage?: string
 }
 
 export class GetInfoAction extends OperationAction {
