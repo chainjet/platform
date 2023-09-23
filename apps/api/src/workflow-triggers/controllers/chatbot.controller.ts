@@ -70,7 +70,7 @@ export class ChatbotController {
       throw new BadRequestException()
     }
 
-    if (body.triggers.chatbot.length) {
+    if (body.triggers.chatbot?.length) {
       let chatbotWorkflowTriggers = await this.workflowTriggerService.find({
         _id: { $in: body.triggers.chatbot.map((trigger: string) => new ObjectId(trigger)) },
       })
@@ -101,7 +101,7 @@ export class ChatbotController {
       await Promise.all(chatbotPromises)
     }
 
-    if (body.triggers.xmtp.length || body.triggers.xmtpMessageSent.length) {
+    if (body.triggers.xmtp?.length || body.triggers.xmtpMessageSent?.length) {
       let triggerIds = body.triggers.xmtp.concat(body.triggers.xmtpMessageSent)
       let xmtpWorkflowTriggers = await this.workflowTriggerService.find({
         _id: { $in: triggerIds.map((trigger: string) => new ObjectId(trigger)) },

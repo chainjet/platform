@@ -76,7 +76,7 @@ export class ChatbotConsumer {
   async onMessageRecieved(job: Job<XmtpMessage>) {
     const data = job.data
 
-    if (data.triggers.chatbot.length) {
+    if (data.triggers.chatbot?.length) {
       let chatbotWorkflowTriggers = await this.workflowTriggerService.find({
         _id: { $in: data.triggers.chatbot.map((trigger: string) => new ObjectId(trigger)) },
       })
@@ -107,7 +107,7 @@ export class ChatbotConsumer {
       await Promise.all(chatbotPromises)
     }
 
-    if (data.triggers.xmtp.length || data.triggers.xmtpMessageSent.length) {
+    if (data.triggers.xmtp?.length || data.triggers.xmtpMessageSent?.length) {
       let triggerIds = data.triggers.xmtp.concat(data.triggers.xmtpMessageSent)
       let xmtpWorkflowTriggers = await this.workflowTriggerService.find({
         _id: { $in: triggerIds.map((trigger: string) => new ObjectId(trigger)) },
