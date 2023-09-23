@@ -89,6 +89,16 @@ export class BroadcastConsumer {
           address: contact.address,
           messageId: message.id,
         })
+        await this.contactsService.updateOneNative(
+          {
+            _id: contact._id,
+          },
+          {
+            $inc: {
+              campaigns: 1,
+            },
+          },
+        )
         this.logger.log(`Sent broadcast message from ${user.address} to ${contact.address}`)
       } catch {}
       campaign.processed++

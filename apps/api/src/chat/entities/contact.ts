@@ -34,6 +34,10 @@ export class Contact extends BaseEntity {
   @Field(() => GraphQLJSONObject, { nullable: true })
   @jsonProp()
   fields?: Record<string, any>
+
+  @Field()
+  @prop({ default: 0 })
+  campaigns: number
 }
 
 @InputType()
