@@ -15,11 +15,10 @@ export class NewMessageSentTrigger extends OperationTrigger {
   inputs: JSONSchema7 = {
     required: [],
     properties: {
-      conversationPrefix: {
+      contentIncludes: {
         type: 'string',
-        title: 'Conversation prefix',
-        description:
-          'Only trigger on messages from conversation Ids that start with this value. Leave blank to trigger on all messages. (i.e. "lens.dev/dm/")',
+        title: 'Message Content Includes:',
+        description: 'Only trigger if the message you send contains this text. This is case insensitive.',
       },
     },
   }
