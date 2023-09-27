@@ -3,8 +3,10 @@ import { RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { resolveAddressName } from '@app/definitions/utils/address.utils'
 import { sendXmtpMessage } from '@chainjet/tools/dist/messages'
+import { ContactService } from 'apps/api/src/chat/services/contact.service'
+import { User } from 'apps/api/src/users/entities/user'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
-import { isAddress } from 'ethers/lib/utils'
+import { getAddress, isAddress } from 'ethers/lib/utils'
 import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
 import { mapXmtpMessageToOutput, xmtpMessageSchema } from '../xmtp.common'
 import { XmtpLib } from '../xmtp.lib'
@@ -35,7 +37,7 @@ export class SendMessageWalletAction extends OperationOffChain {
     ...xmtpMessageSchema,
   }
 
-  async run({ inputs, credentials }: OperationRunOptions): Promise<RunResponse> {
+  async run({ inputs, credentials, user }: OperationRunOptions): Promise<RunResponse> {
     if (!credentials.keys) {
       throw new AuthenticationError(`Missing keys for XMTP`)
     }
@@ -51,6 +53,7 @@ export class SendMessageWalletAction extends OperationOffChain {
 
     const client = await XmtpLib.getClient(credentials.keys)
     const message = await sendXmtpMessage(client, inputs.address, inputs.message)
+    await ContactService.instance.addSingleContact(getAddress(inputs.address), user as User)
 
     return {
       outputs: mapXmtpMessageToOutput(message) as any,
