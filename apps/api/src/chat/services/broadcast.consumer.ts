@@ -79,10 +79,15 @@ export class BroadcastConsumer {
 
     campaign.delivered = 0
     campaign.total = contacts.length
+    const uniqueAddresses = new Set<string>()
 
     for (const contact of contacts) {
+      const sendTo = contact.notificationAddress ?? contact.address
+      if (uniqueAddresses.has(sendTo)) {
+        continue
+      }
       try {
-        const message = await sendXmtpMessage(client, contact.address, campaign.message)
+        const message = await sendXmtpMessage(client, sendTo, campaign.message)
         campaign.delivered++
         await this.campaignMessageService.createOne({
           campaign: campaign._id,
@@ -99,7 +104,7 @@ export class BroadcastConsumer {
             },
           },
         )
-        this.logger.log(`Sent broadcast message from ${user.address} to ${contact.address}`)
+        this.logger.log(`Sent broadcast message from ${user.address} to ${sendTo}`)
       } catch {}
       campaign.processed++
       job.progress(campaign.processed / campaign.total)

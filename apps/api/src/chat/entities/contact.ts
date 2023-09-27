@@ -27,6 +27,21 @@ export class Contact extends BaseEntity {
   @prop({ required: true, validate: isAddress, set: (addr) => addr && getAddress(addr) })
   address: string
 
+  @Field({ nullable: true })
+  @prop({
+    validate: isAddress,
+    set: function (addr) {
+      if (!addr) {
+        return
+      }
+      const parsed = getAddress(addr)
+      if (parsed && parsed !== this.address) {
+        return parsed
+      }
+    },
+  })
+  notificationAddress?: string
+
   @Field(() => [GraphQLString], { nullable: true })
   @prop({ default: [], index: true })
   tags: string[]
