@@ -1065,8 +1065,11 @@ export interface Contact {
     id: string;
     createdAt: DateTime;
     address: string;
+    notificationAddress?: Nullable<string>;
     tags?: Nullable<string[]>;
     fields?: Nullable<JSONObject>;
+    campaigns: number;
+    unsubscribed?: Nullable<boolean>;
 }
 
 export interface AccountCredential {
@@ -1180,6 +1183,10 @@ export interface WorkflowTrigger {
     lastItem?: Nullable<JSONObject>;
     hookId?: Nullable<string>;
     schemaResponse?: Nullable<JSONObject>;
+}
+
+export interface ViewerContact {
+    notificationAddress?: Nullable<string>;
 }
 
 export interface RequestMigrationPayload {
@@ -1384,8 +1391,11 @@ export interface ContactDeleteResponse {
     id?: Nullable<string>;
     createdAt?: Nullable<DateTime>;
     address?: Nullable<string>;
+    notificationAddress?: Nullable<string>;
     tags?: Nullable<string[]>;
     fields?: Nullable<JSONObject>;
+    campaigns?: Nullable<number>;
+    unsubscribed?: Nullable<boolean>;
 }
 
 export interface ContactEdge {
@@ -1415,6 +1425,10 @@ export interface MenuEdge {
 export interface MenuConnection {
     pageInfo: PageInfo;
     edges: MenuEdge[];
+}
+
+export interface OrderSummary {
+    total: number;
 }
 
 export interface OrderDeleteResponse {
@@ -1598,6 +1612,7 @@ export interface UserDatabaseConnection {
 export interface IQuery {
     user(id: string): User | Promise<User>;
     viewer(): User | Promise<User>;
+    viewerContact(): ViewerContact | Promise<ViewerContact>;
     accountCredential(id: string): AccountCredential | Promise<AccountCredential>;
     accountCredentials(paging?: Nullable<CursorPaging>, filter?: Nullable<AccountCredentialFilter>, sorting?: Nullable<AccountCredentialSort[]>): AccountCredentialConnection | Promise<AccountCredentialConnection>;
     accountCreationData(key: string): ConnectAccountDataPayload | Promise<ConnectAccountDataPayload>;
@@ -1635,6 +1650,7 @@ export interface IQuery {
     menus(paging?: Nullable<CursorPaging>, filter?: Nullable<MenuFilter>, sorting?: Nullable<MenuSort[]>): MenuConnection | Promise<MenuConnection>;
     order(id: string): Order | Promise<Order>;
     orders(paging?: Nullable<CursorPaging>, filter?: Nullable<OrderFilter>, sorting?: Nullable<OrderSort[]>): OrderConnection | Promise<OrderConnection>;
+    orderSummary(from: DateTime, to: DateTime): OrderSummary | Promise<OrderSummary>;
     contractSchema(chainId: number, address: string, type: string): ContractSchema | Promise<ContractSchema>;
     asyncSchemas(integrationId: string, accountCredentialId: string, names: string[], inputs?: Nullable<JSONObject>, integrationTriggerId?: Nullable<string>, integrationActionId?: Nullable<string>): AsyncSchema | Promise<AsyncSchema>;
     manyAsyncSchemas(asyncSchemaInputs: JSONObject[]): AsyncSchema | Promise<AsyncSchema>;

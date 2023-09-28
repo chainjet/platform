@@ -412,8 +412,11 @@ type Contact {
   id: ID!
   createdAt: DateTime!
   address: String!
+  notificationAddress: String
   tags: [String!]
   fields: JSONObject
+  campaigns: Float!
+  unsubscribed: Boolean
 }
 
 type AccountCredential {
@@ -558,6 +561,10 @@ type WorkflowTrigger {
   lastItem: JSONObject
   hookId: String
   schemaResponse: JSONObject
+}
+
+type ViewerContact {
+  notificationAddress: String
 }
 
 type RequestMigrationPayload {
@@ -834,8 +841,11 @@ type ContactDeleteResponse {
   id: ID
   createdAt: DateTime
   address: String
+  notificationAddress: String
   tags: [String!]
   fields: JSONObject
+  campaigns: Float
+  unsubscribed: Boolean
 }
 
 type ContactEdge {
@@ -879,6 +889,10 @@ type MenuConnection {
 
   """Array of edges."""
   edges: [MenuEdge!]!
+}
+
+type OrderSummary {
+  total: Int!
 }
 
 type OrderDeleteResponse {
@@ -1106,6 +1120,7 @@ type Query {
     id: ID!
   ): User!
   viewer: User!
+  viewerContact: ViewerContact!
   accountCredential(
     """The id of the record to find."""
     id: ID!
@@ -1350,6 +1365,7 @@ type Query {
     """Specify to sort results."""
     sorting: [OrderSort!] = []
   ): OrderConnection!
+  orderSummary(from: DateTime!, to: DateTime!): OrderSummary!
   contractSchema(chainId: Int!, address: String!, type: String!): ContractSchema!
   asyncSchemas(integrationId: String!, accountCredentialId: String!, names: [String!]!, inputs: JSONObject, integrationTriggerId: String, integrationActionId: String): AsyncSchema!
   manyAsyncSchemas(asyncSchemaInputs: [JSONObject!]!): AsyncSchema!

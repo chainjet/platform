@@ -11,7 +11,6 @@ import { getAddress, isAddress } from 'ethers/lib/utils'
 import { GraphQLString } from 'graphql'
 import { GraphQLJSONObject } from 'graphql-type-json'
 import { User } from '../../users/entities/user'
-import { SubscriptionGroup } from './subscription-group'
 
 @Injectable()
 export class ContactAuthorizer extends OwnedAuthorizer<Contact> {}
@@ -55,13 +54,9 @@ export class Contact extends BaseEntity {
   @prop({ default: 0 })
   campaigns: number
 
-  @Field(() => [SubscriptionGroup], { nullable: true })
-  @prop({ ref: SubscriptionGroup, default: [] })
-  subscribedTo: Reference<SubscriptionGroup>[]
-
-  @Field(() => [SubscriptionGroup], { nullable: true })
-  @prop({ ref: SubscriptionGroup, default: [] })
-  unsubscribedFrom: Reference<SubscriptionGroup>[]
+  @Field({ nullable: true })
+  @prop({ default: false })
+  unsubscribed: boolean
 }
 
 @InputType()

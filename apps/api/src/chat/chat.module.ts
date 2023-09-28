@@ -20,12 +20,10 @@ import { CampaignMessage } from './entities/campaign-message'
 import { Contact, ContactAuthorizer } from './entities/contact'
 import { Menu, MenuAuthorizer } from './entities/menu'
 import { Order, OrderAuthorizer } from './entities/order'
-import { SubscriptionGroup, SubscriptionGroupAuthorizer } from './entities/subscription-group'
 import { CampaignResolver } from './resolvers/campaign.resolver'
 import { ContactResolver } from './resolvers/contact.resolver'
 import { MenuResolver } from './resolvers/menu.resolver'
 import { OrderResolver } from './resolvers/order.resolver'
-import { SubscriptionGroupResolver } from './resolvers/subscription-group.resolver'
 import { BroadcastConsumer } from './services/broadcast.consumer'
 import { CampaignMessageService } from './services/campaign-message.service'
 import { CampaignService } from './services/campaign.service'
@@ -33,7 +31,6 @@ import { ContactsConsumer } from './services/contact.consumer'
 import { ContactService } from './services/contact.service'
 import { MenuService } from './services/menu.service'
 import { OrderService } from './services/order.service'
-import { SubscriptionGroupService } from './services/subscription-group.service'
 
 @Module({
   imports: [
@@ -56,10 +53,6 @@ import { SubscriptionGroupService } from './services/subscription-group.service'
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([Order])],
       dtos: [{ DTOClass: Order }],
-    }),
-    NestjsQueryGraphQLModule.forFeature({
-      imports: [NestjsQueryTypegooseModule.forFeature([SubscriptionGroup])],
-      dtos: [{ DTOClass: SubscriptionGroup }],
     }),
     BullModule.registerQueue({
       name: 'chatbotMessage',
@@ -112,7 +105,6 @@ import { SubscriptionGroupService } from './services/subscription-group.service'
     CampaignResolver,
     MenuResolver,
     OrderResolver,
-    SubscriptionGroupResolver,
 
     // Services
     ContactService,
@@ -120,14 +112,12 @@ import { SubscriptionGroupService } from './services/subscription-group.service'
     CampaignMessageService,
     MenuService,
     OrderService,
-    SubscriptionGroupService,
 
     // Authorizers
     ContactAuthorizer,
     CampaignAuthorizer,
     MenuAuthorizer,
     OrderAuthorizer,
-    SubscriptionGroupAuthorizer,
 
     // Consumers
     ChatbotConsumer,

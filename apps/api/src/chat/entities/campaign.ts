@@ -6,9 +6,7 @@ import { Injectable } from '@nestjs/common'
 import { Field, InputType, ObjectType } from '@nestjs/graphql'
 import { Authorize } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
-import { GraphQLString } from 'graphql'
 import { User } from '../../users/entities/user'
-import { SubscriptionGroup } from './subscription-group'
 
 export enum CampaignState {
   Pending = 'pending',
@@ -58,10 +56,6 @@ export class Campaign extends BaseEntity {
   @prop({ default: CampaignState.Pending })
   @Field()
   state: CampaignState
-
-  @prop({ ref: SubscriptionGroup })
-  @Field(() => GraphQLString, { nullable: true })
-  subscriptionGroup?: Reference<SubscriptionGroup>
 }
 
 @InputType()
@@ -80,9 +74,6 @@ export class CreateCampaignInput {
 
   @Field(() => [String], { nullable: true })
   excludeTags: string[]
-
-  @Field(() => GraphQLString, { nullable: true })
-  subscriptionGroup?: Reference<SubscriptionGroup>
 }
 
 @InputType()

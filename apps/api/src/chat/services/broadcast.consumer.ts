@@ -10,7 +10,6 @@ import { CampaignState } from '../entities/campaign'
 import { CampaignMessageService } from './campaign-message.service'
 import { CampaignService } from './campaign.service'
 import { ContactService } from './contact.service'
-import { SubscriptionGroupService } from './subscription-group.service'
 
 @Processor('broadcast')
 export class BroadcastConsumer {
@@ -22,7 +21,6 @@ export class BroadcastConsumer {
     private contactsService: ContactService,
     private accountCredentialService: AccountCredentialService,
     private userService: UserService,
-    private subscriptionGroupService: SubscriptionGroupService,
   ) {}
 
   @Process()
@@ -48,28 +46,10 @@ export class BroadcastConsumer {
     if (!accountCredential) {
       throw new JobNonRetriableError(job, `AccountCredential ${job.data.accountCredentialId} not found`)
     }
-    let subscriptionGroup = await this.subscriptionGroupService.findOne({
-      owner: job.data.ownerId,
-      ...(campaign.subscriptionGroup ? { _id: campaign.subscriptionGroup } : { defaultGroup: true }),
-    })
-    if (campaign.subscriptionGroup && !subscriptionGroup) {
-      throw new JobNonRetriableError(job, `SubscriptionGroup ${campaign.subscriptionGroup} not found`)
-    }
-    if (!subscriptionGroup) {
-      this.logger.log(`Creating default subscription group for user ${user.address}`)
-      subscriptionGroup = await this.subscriptionGroupService.createOne({
-        owner: user._id,
-        name: 'Default',
-        defaultGroup: true,
-        subscribedByDefault: true,
-      })
-    }
     let contacts = await this.contactsService.find({
       owner: campaign.owner,
       ...(campaign.includeTags?.length && { tags: { $in: campaign.includeTags } }),
-      ...(subscriptionGroup.subscribedByDefault
-        ? { unsubscribedFrom: { $nin: [subscriptionGroup] } }
-        : { subscribedTo: { $in: [subscriptionGroup] } }),
+      unsubscribed: { $ne: false },
     })
     const client = await XmtpLib.getClient(accountCredential.credentials.keys)
 
