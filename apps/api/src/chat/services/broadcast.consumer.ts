@@ -49,7 +49,7 @@ export class BroadcastConsumer {
     let contacts = await this.contactsService.find({
       owner: campaign.owner,
       ...(campaign.includeTags?.length && { tags: { $in: campaign.includeTags } }),
-      unsubscribed: { $ne: false },
+      subscribed: true,
     })
     const client = await XmtpLib.getClient(accountCredential.credentials.keys)
 

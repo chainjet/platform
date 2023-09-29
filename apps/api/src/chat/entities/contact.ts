@@ -54,9 +54,9 @@ export class Contact extends BaseEntity {
   @prop({ default: 0 })
   campaigns: number
 
-  @Field({ nullable: true })
-  @prop({ default: false })
-  unsubscribed: boolean
+  @Field()
+  @prop({ default: true })
+  subscribed: boolean
 }
 
 @InputType()
@@ -69,6 +69,9 @@ export class CreateContactInput {
 
   @Field(() => GraphQLJSONObject, { nullable: true })
   fields?: Record<string, any>
+
+  @Field({ nullable: true })
+  subscribed?: boolean
 }
 
 @InputType()
@@ -78,4 +81,7 @@ export class UpdateContactInput {
 
   @Field(() => GraphQLJSONObject, { nullable: true })
   fields?: Record<string, any>
+
+  @Field({ nullable: true })
+  subscribed?: boolean
 }
