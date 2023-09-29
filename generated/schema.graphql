@@ -416,7 +416,7 @@ type Contact {
   tags: [String!]
   fields: JSONObject
   campaigns: Float!
-  unsubscribed: Boolean
+  subscribed: Boolean!
 }
 
 type AccountCredential {
@@ -563,14 +563,6 @@ type WorkflowTrigger {
   schemaResponse: JSONObject
 }
 
-type ViewerContact {
-  notificationAddress: String
-}
-
-type RequestMigrationPayload {
-  result: Boolean!
-}
-
 type ResultPayload {
   success: Boolean!
 }
@@ -581,6 +573,16 @@ type UserCheckoutSessionPayload {
 
 type VerifyEmailPayload {
   error: String
+}
+
+type ViewerContact {
+  notificationAddress: String
+  subscribedNewsletter: Boolean!
+  subscribedNotifications: Boolean!
+}
+
+type RequestMigrationPayload {
+  result: Boolean!
 }
 
 type UserEdge {
@@ -845,7 +847,7 @@ type ContactDeleteResponse {
   tags: [String!]
   fields: JSONObject
   campaigns: Float
-  unsubscribed: Boolean
+  subscribed: Boolean
 }
 
 type ContactEdge {
@@ -1794,6 +1796,7 @@ type Mutation {
   aiUseCase(use: String!): ResultPayload!
   requestMigration(email: String!): RequestMigrationPayload!
   completeMigration(email: String!, code: String!, data: String!): RequestMigrationPayload!
+  updateViewerContact(notificationAddress: String, subscribedNewsletter: Boolean, subscribedNotifications: Boolean): ResultPayload!
   createOneAccountCredential(input: CreateOneAccountCredentialInput!): AccountCredential!
   updateOneAccountCredential(input: UpdateOneAccountCredentialInput!): AccountCredential!
   deleteOneAccountCredential(input: DeleteOneAccountCredentialInput!): AccountCredentialDeleteResponse!
@@ -2006,6 +2009,7 @@ input CreateContactInput {
   address: String!
   tags: [String!]
   fields: JSONObject
+  subscribed: Boolean
 }
 
 input UpdateOneContactInput {
@@ -2019,6 +2023,7 @@ input UpdateOneContactInput {
 input UpdateContactInput {
   tags: [String!]
   fields: JSONObject
+  subscribed: Boolean
 }
 
 input DeleteOneContactInput {

@@ -17,12 +17,14 @@ export class User extends BaseEntity {
   @prop({
     required: true,
     unique: true,
-    sparse: true, // TODO remove after migration
     validate: isAddress,
     set: (addr) => addr && getAddress(addr),
   })
   address: string
 
+  /**
+   * @deprecated
+   */
   @Field({ nullable: true })
   @prop({ required: false, trim: true })
   @IsEmail()
@@ -37,12 +39,14 @@ export class User extends BaseEntity {
 
   /**
    * whether the user has verified their email
+   * @deprecated
    */
   @prop()
   verified: boolean
 
   /**
    * the verification token used to verify the user's email
+   * @deprecated
    */
   @prop()
   verificationToken?: string
@@ -89,10 +93,16 @@ export class User extends BaseEntity {
   @prop()
   name?: string
 
+  /**
+   * @deprecated
+   */
   @Field({ defaultValue: false })
   @prop()
   subscribedToNotifications?: boolean
 
+  /**
+   * @deprecated
+   */
   @Field({ defaultValue: false })
   @prop()
   subscribedToNewsletter?: boolean

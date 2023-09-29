@@ -745,6 +745,7 @@ export interface CreateContactInput {
     address: string;
     tags?: Nullable<string[]>;
     fields?: Nullable<JSONObject>;
+    subscribed?: Nullable<boolean>;
 }
 
 export interface UpdateOneContactInput {
@@ -755,6 +756,7 @@ export interface UpdateOneContactInput {
 export interface UpdateContactInput {
     tags?: Nullable<string[]>;
     fields?: Nullable<JSONObject>;
+    subscribed?: Nullable<boolean>;
 }
 
 export interface DeleteOneContactInput {
@@ -1069,7 +1071,7 @@ export interface Contact {
     tags?: Nullable<string[]>;
     fields?: Nullable<JSONObject>;
     campaigns: number;
-    unsubscribed?: Nullable<boolean>;
+    subscribed: boolean;
 }
 
 export interface AccountCredential {
@@ -1185,14 +1187,6 @@ export interface WorkflowTrigger {
     schemaResponse?: Nullable<JSONObject>;
 }
 
-export interface ViewerContact {
-    notificationAddress?: Nullable<string>;
-}
-
-export interface RequestMigrationPayload {
-    result: boolean;
-}
-
 export interface ResultPayload {
     success: boolean;
 }
@@ -1203,6 +1197,16 @@ export interface UserCheckoutSessionPayload {
 
 export interface VerifyEmailPayload {
     error?: Nullable<string>;
+}
+
+export interface ViewerContact {
+    notificationAddress?: Nullable<string>;
+    subscribedNewsletter: boolean;
+    subscribedNotifications: boolean;
+}
+
+export interface RequestMigrationPayload {
+    result: boolean;
 }
 
 export interface UserEdge {
@@ -1395,7 +1399,7 @@ export interface ContactDeleteResponse {
     tags?: Nullable<string[]>;
     fields?: Nullable<JSONObject>;
     campaigns?: Nullable<number>;
-    unsubscribed?: Nullable<boolean>;
+    subscribed?: Nullable<boolean>;
 }
 
 export interface ContactEdge {
@@ -1671,6 +1675,7 @@ export interface IMutation {
     aiUseCase(use: string): ResultPayload | Promise<ResultPayload>;
     requestMigration(email: string): RequestMigrationPayload | Promise<RequestMigrationPayload>;
     completeMigration(email: string, code: string, data: string): RequestMigrationPayload | Promise<RequestMigrationPayload>;
+    updateViewerContact(notificationAddress?: Nullable<string>, subscribedNewsletter?: Nullable<boolean>, subscribedNotifications?: Nullable<boolean>): ResultPayload | Promise<ResultPayload>;
     createOneAccountCredential(input: CreateOneAccountCredentialInput): AccountCredential | Promise<AccountCredential>;
     updateOneAccountCredential(input: UpdateOneAccountCredentialInput): AccountCredential | Promise<AccountCredential>;
     deleteOneAccountCredential(input: DeleteOneAccountCredentialInput): AccountCredentialDeleteResponse | Promise<AccountCredentialDeleteResponse>;

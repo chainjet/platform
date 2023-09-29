@@ -12,7 +12,7 @@ import { SecurityUtils } from '../../../../../libs/common/src/utils/security.uti
 import { EmailService } from '../../../../../libs/emails/src/services/email.service'
 import { EmailVerificationTemplate } from '../../../../../libs/emails/src/templates/emailVerificationTemplate'
 import { Contact } from '../../chat/entities/contact'
-import { User } from '../entities/user'
+import { UpdateUserInput, User } from '../entities/user'
 
 @Injectable()
 export class UserService extends BaseService<User> {
@@ -36,7 +36,11 @@ export class UserService extends BaseService<User> {
     await this.userEventService.log(userId, success ? UserEventKey.OPERATION_SUCCEDED : UserEventKey.OPERATION_FAILED)
   }
 
-  async updateOne(id: string, record: DeepPartial<User>, opts?: UpdateOneOptions<User>): Promise<User> {
+  async updateOne(
+    id: string,
+    record: DeepPartial<User> | UpdateUserInput,
+    opts?: UpdateOneOptions<User>,
+  ): Promise<User> {
     const user = await this.findById(id, opts)
     if (!user) {
       throw new NotFoundException()
@@ -47,24 +51,6 @@ export class UserService extends BaseService<User> {
       const plainVerificationToken = await this.generateAndSaveVerificationToken(user)
       const template = new EmailVerificationTemplate(user.address, plainVerificationToken)
       await this.emailService.sendEmailTemplate(template, record.email)
-    }
-
-    // The user just joined the AI waitlist
-    if (record.features?.aiwaitlist && !user.features?.aiwaitlist) {
-      const workflowHook = process.env.AI_WAITLIST_WORKFLOW_HOOK
-      if (workflowHook) {
-        // send the promise but don't wait for it
-        fetch(workflowHook, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify({
-            address: user.address,
-          }),
-        })
-      }
     }
 
     return await super.updateOne(id, record, opts)
