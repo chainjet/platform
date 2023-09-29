@@ -25,6 +25,12 @@ export class CreateContactAction extends OperationAction {
         type: 'string',
         description: 'Tags to add to the contact. Separate multiple tags with a comma.',
       },
+      subscribed: {
+        title: 'Subscribed',
+        type: 'boolean',
+        description: 'Whether the contact is subscribed to marketing messages.',
+        default: true,
+      },
     },
   }
   outputs: JSONSchema7 = {

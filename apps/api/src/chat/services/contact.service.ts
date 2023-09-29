@@ -49,7 +49,7 @@ export class ContactService extends BaseService<Contact> {
     }
   }
 
-  async addSingleContact(address: string, user: User, tags?: string[]): Promise<Contact> {
+  async addSingleContact(address: string, user: User, tags?: string[], subscribed: boolean = true): Promise<Contact> {
     const total = await this.countNative({ owner: user._id })
     if (total + 1 > user.planConfig.maxContacts && user.planConfig.hardLimits) {
       throw new BadRequestException(
@@ -73,6 +73,7 @@ export class ContactService extends BaseService<Contact> {
       owner: user._id as Reference<User>,
       address,
       tags,
+      subscribed,
     })
     this.logger.log(`Added contact ${address} for ${user.id}`)
     return newContact
