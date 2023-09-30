@@ -1,6 +1,4 @@
 import { BaseService } from '@app/common/base/base.service'
-import { EmailService } from '@app/emails/services/email.service'
-import { WorkflowDisabledTemplate } from '@app/emails/templates/workflowDisabledTemplate'
 import { ChainId } from '@blockchain/blockchain/types/ChainId'
 import { CACHE_MANAGER, Inject, Injectable, Logger } from '@nestjs/common'
 import { mongoose, ReturnModelType } from '@typegoose/typegoose'
@@ -9,6 +7,8 @@ import { Cache } from 'cache-manager'
 import { InjectModel } from 'nestjs-typegoose'
 import { IntegrationTrigger } from '../../integration-triggers/entities/integration-trigger'
 import { Integration } from '../../integrations/entities/integration'
+import { NotificationMessages } from '../../users/notification-messages'
+import { NotificationService } from '../../users/services/notifications.service'
 import { UserService } from '../../users/services/user.service'
 import { WorkflowAction } from '../../workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from '../../workflow-triggers/entities/workflow-trigger'
@@ -35,7 +35,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     private readonly userService: UserService,
     private readonly workflowTriggerService: WorkflowTriggerService,
     private readonly workflowSleepService: WorkflowSleepService,
-    private readonly emailService: EmailService,
+    private readonly notificationService: NotificationService,
   ) {
     super(model)
   }
@@ -145,11 +145,10 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
 
     // if the trigger was disabled and user is subscribed to notifications, send an email
     if (trigger && !trigger.enabled && workflowRun.startedBy !== WorkflowRunStartedByOptions.user) {
-      const user = await this.userService.findById(workflow.owner._id.toString())
-      if (user?.email && user.verified && user.subscribedToNotifications) {
-        const template = new WorkflowDisabledTemplate(workflow, workflowRun, trigger.consecutiveTriggerFails)
-        await this.emailService.sendEmailTemplate(template, user.email)
-      }
+      await this.notificationService.sendNotification(
+        workflow.ownerAddress,
+        NotificationMessages.workflowDisabled(workflow, trigger.consecutiveTriggerFails),
+      )
     }
 
     return workflowRun
@@ -239,11 +238,10 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
       workflowRun.status = WorkflowRunStatus.failed
 
       if (trigger && !trigger.enabled && workflowRun.startedBy !== WorkflowRunStartedByOptions.user) {
-        const user = await this.userService.findById(workflow.owner._id.toString())
-        if (user?.email && user.verified && user.subscribedToNotifications) {
-          const template = new WorkflowDisabledTemplate(workflow, workflowRun, trigger.consecutiveActionFails)
-          await this.emailService.sendEmailTemplate(template, user.email)
-        }
+        await this.notificationService.sendNotification(
+          workflow.ownerAddress,
+          NotificationMessages.workflowDisabled(workflow, trigger.consecutiveTriggerFails),
+        )
       }
     }
   }

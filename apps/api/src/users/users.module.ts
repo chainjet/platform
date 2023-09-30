@@ -10,6 +10,7 @@ import { MigrationResolver } from './resolvers/migration.resolver'
 import { UserAuthorizer } from './resolvers/user.authorizer'
 import { UserResolver } from './resolvers/user.resolver'
 import { CoreContactService } from './services/core-contact.service'
+import { NotificationService } from './services/notifications.service'
 import { UserService } from './services/user.service'
 
 @Module({
@@ -22,7 +23,15 @@ import { UserService } from './services/user.service'
     EmailsModule,
     CommonModule,
   ],
-  providers: [UserResolver, UserService, UserAuthorizer, MigrationResolver, CoreContactService, CoreContactResolver],
-  exports: [UserService],
+  providers: [
+    UserResolver,
+    UserService,
+    UserAuthorizer,
+    MigrationResolver,
+    NotificationService,
+    CoreContactService,
+    CoreContactResolver,
+  ],
+  exports: [UserService, NotificationService],
 })
 export class UsersModule {}

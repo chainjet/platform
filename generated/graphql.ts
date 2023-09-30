@@ -607,9 +607,6 @@ export interface UpdateOneUserInput {
 
 export interface UpdateUserInput {
     name?: Nullable<string>;
-    email?: Nullable<string>;
-    subscribedToNotifications?: Nullable<boolean>;
-    subscribedToNewsletter?: Nullable<boolean>;
     features?: Nullable<JSONObject>;
 }
 
@@ -920,8 +917,6 @@ export interface User {
     nextPlan?: Nullable<string>;
     planPeriodEnd?: Nullable<DateTime>;
     name?: Nullable<string>;
-    subscribedToNotifications: boolean;
-    subscribedToNewsletter: boolean;
     features?: Nullable<JSONObject>;
     contactTags?: Nullable<string[]>;
     contactFields?: Nullable<string[]>;

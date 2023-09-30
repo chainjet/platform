@@ -1,9 +1,12 @@
 import { AuthenticationError } from '@app/common/errors/authentication-error'
+import { ContactsExceededError } from '@app/common/errors/contacts-exceeded.error'
 import { RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { Conversation } from '@xmtp/xmtp-js'
 import { ContactService } from 'apps/api/src/chat/services/contact.service'
 import { User } from 'apps/api/src/users/entities/user'
+import { NotificationMessages } from 'apps/api/src/users/notification-messages'
+import { NotificationService } from 'apps/api/src/users/services/notifications.service'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { isAddress } from 'ethers/lib/utils'
 import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
@@ -63,7 +66,13 @@ export class SendMessageConversationAction extends OperationOffChain {
     }
 
     const message = await conversation.send(inputs.message)
-    await ContactService.instance.addSingleContact(conversation.peerAddress, user as User)
+    try {
+      await ContactService.instance.addSingleContact(conversation.peerAddress, user as User)
+    } catch (e) {
+      if (!(e instanceof ContactsExceededError)) {
+        throw e
+      }
+    }
 
     return {
       outputs: mapXmtpMessageToOutput(message) as any,

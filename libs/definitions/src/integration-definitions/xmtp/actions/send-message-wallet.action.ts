@@ -1,4 +1,5 @@
 import { AuthenticationError } from '@app/common/errors/authentication-error'
+import { ContactsExceededError } from '@app/common/errors/contacts-exceeded.error'
 import { RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { resolveAddressName } from '@app/definitions/utils/address.utils'
@@ -53,7 +54,13 @@ export class SendMessageWalletAction extends OperationOffChain {
 
     const client = await XmtpLib.getClient(credentials.keys)
     const message = await sendXmtpMessage(client, inputs.address, inputs.message)
-    await ContactService.instance.addSingleContact(getAddress(inputs.address), user as User)
+    try {
+      await ContactService.instance.addSingleContact(getAddress(inputs.address), user as User)
+    } catch (e) {
+      if (!(e instanceof ContactsExceededError)) {
+        throw e
+      }
+    }
 
     return {
       outputs: mapXmtpMessageToOutput(message) as any,

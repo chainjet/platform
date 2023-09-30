@@ -93,20 +93,6 @@ export class User extends BaseEntity {
   @prop()
   name?: string
 
-  /**
-   * @deprecated
-   */
-  @Field({ defaultValue: false })
-  @prop()
-  subscribedToNotifications?: boolean
-
-  /**
-   * @deprecated
-   */
-  @Field({ defaultValue: false })
-  @prop()
-  subscribedToNewsletter?: boolean
-
   @Field(() => GraphQLJSONObject, { nullable: true })
   @prop({ type: Schema.Types.Mixed })
   features?: Record<string, boolean>
@@ -134,15 +120,6 @@ export class User extends BaseEntity {
 export class UpdateUserInput {
   @Field({ nullable: true })
   name?: string
-
-  @Field({ nullable: true })
-  email?: string
-
-  @Field({ nullable: true })
-  subscribedToNotifications?: boolean
-
-  @Field({ nullable: true })
-  subscribedToNewsletter?: boolean
 
   @Field(() => GraphQLJSONObject, { nullable: true })
   features?: Record<string, boolean>
