@@ -4,7 +4,7 @@ description: Use ChainJetBot to add a profile to your Lens list with a comment
 
 # Add a user to a Lens list
 
-In this tutorial, we will show you how to use [@ChainJetBot.lens](https://lenster.xyz/u/chainjetbot) to add a user to a Lens list simply by commenting on a post.
+In this tutorial, we will show you how to use [@ChainJetBot.lens](https://hey.xyz/u/chainjetbot) to add a user to a Lens list simply by commenting on a post.
 
 * Login on [ChainJet](https://chainjet.io) with your wallet. Once you're in your dashboard, click on "Create Workflow".
 * The first step is to select a trigger. Click on "Add trigger" and then select the Lens Protocol integration.

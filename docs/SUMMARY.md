@@ -42,6 +42,6 @@
   * [👥 Discord](https://discord.gg/sUS3BPMa)
   * [📧 Email](mailto:support@chainjet.io)
   * [🐦 Twitter](https://twitter.com/chainjetio)
-  * [🌼 Lenster](https://lenster.xyz/u/chainjet)
+  * [🌼 Hey](https://hey.xyz/u/chainjet)
   * [⚫ GitHub](https://github.com/chainjet/platform)
   * [🗞 Newsletter](https://chainjet.substack.com/)

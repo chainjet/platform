@@ -228,7 +228,7 @@ export class CreatePostAction extends OperationOffChain {
       metadata_id: metadataId,
       description: content,
       content,
-      external_url: credentials.handle ? `https://lenster.xyz/u/${credentials.handle}` : 'https://chainjet.io',
+      external_url: credentials.handle ? `https://hey.xyz/u/${credentials.handle}` : 'https://chainjet.io',
       image: ipfsImages[0] || null,
       imageMimeType: imageMimeTypes[0],
       name: credentials.handle ? `New Post by @${credentials.handle}` : 'New Post',
