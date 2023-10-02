@@ -1,6 +1,6 @@
 # 🤖 ChainJetBot
 
-[@ChainJetBot.lens](https://lenster.xyz/u/chainjetbot) allows you to trigger a workflow from Lens by mentioning the bot in a post or comment.
+[@ChainJetBot.lens](https://hey.xyz/u/chainjetbot) allows you to trigger a workflow from Lens by mentioning the bot in a post or comment.
 ChainJetBot is a general-purpose bot that can help you to automate any tasks on Lens. You can automate saving posts to Notion, adding users to Lens Lists, translating posts, generating summaries, and much more!
 
 ### How does it work?

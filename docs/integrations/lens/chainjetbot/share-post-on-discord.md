@@ -4,7 +4,7 @@ description: Use ChainJetBot to share a Lens post on Discord through a comment
 
 # Share post on Discord
 
-In this tutorial, you'll learn how to use [@ChainJetBot.lens](https://lenster.xyz/u/chainjetbot) to send a Lens post to your Discord by simply mentioning the bot in a comment.
+In this tutorial, you'll learn how to use [@ChainJetBot.lens](https://hey.xyz/u/chainjetbot) to send a Lens post to your Discord by simply mentioning the bot in a comment.
 
 Here's how to do it:
 

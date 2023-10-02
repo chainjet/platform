@@ -98,7 +98,7 @@ export class CreateCommentAction extends OperationOffChain {
       metadata_id: uuid(),
       description: content,
       content,
-      external_url: credentials.handle ? `https://lenster.xyz/u/${credentials.handle}` : 'https://chainjet.io',
+      external_url: credentials.handle ? `https://hey.xyz/u/${credentials.handle}` : 'https://chainjet.io',
       image: imageIpfs || null,
       imageMimeType,
       name: credentials.handle ? `New Comment by @${credentials.handle}` : 'New Comment',

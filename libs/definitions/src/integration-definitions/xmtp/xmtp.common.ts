@@ -68,7 +68,7 @@ export function mapXmtpMessageToOutput(message: DecodedMessage): XmtpMessageOutp
   const link = !message.conversation.context?.conversationId
     ? `https://xmtp.chat/dm/${message.conversation.peerAddress}`
     : message.conversation.context?.conversationId?.startsWith('lens.dev/dm/')
-    ? `https://lenster.xyz/messages/${message.conversation.peerAddress.toLowerCase()}/${
+    ? `https://hey.xyz/messages/${message.conversation.peerAddress.toLowerCase()}/${
         message.conversation.context.conversationId
       }`
     : `https://${message.conversation.context?.conversationId}`
