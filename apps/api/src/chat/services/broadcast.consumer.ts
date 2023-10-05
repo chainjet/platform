@@ -1,5 +1,6 @@
 import { JobNonRetriableError } from '@app/common/errors/job-non-retriable-error'
 import { XmtpLib } from '@app/definitions/integration-definitions/xmtp/xmtp.lib'
+import { getWalletName } from '@app/definitions/utils/address.utils'
 import { sendXmtpMessage } from '@chainjet/tools/dist/messages'
 import { Process, Processor } from '@nestjs/bull'
 import { Logger } from '@nestjs/common'
@@ -82,13 +83,16 @@ export class BroadcastConsumer {
     campaign.total = contacts.length
     const uniqueAddresses = new Set<string>()
 
+    const walletName = (await getWalletName(user.address)) ?? user.address
+    const unsubscribeMessage = `To unsubscribe from these messages: https://unsubscribe.chainjet.io/${walletName}`
+
     for (const contact of contacts) {
       const sendTo = contact.notificationAddress ?? contact.address
       if (uniqueAddresses.has(sendTo)) {
         continue
       }
       try {
-        const message = await sendXmtpMessage(client, sendTo, campaign.message)
+        const message = await sendXmtpMessage(client, sendTo, campaign.message + '\n\n' + unsubscribeMessage)
         campaign.delivered++
         await this.campaignMessageService.createOne({
           campaign: campaign._id,
