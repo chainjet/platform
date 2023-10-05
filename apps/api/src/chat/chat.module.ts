@@ -15,6 +15,7 @@ import { WorkflowRunsModule } from '../workflow-runs/workflow-runs.module'
 import { ChatbotConsumer } from '../workflow-triggers/services/chatbot.consumer'
 import { WorkflowTriggersModule } from '../workflow-triggers/workflow-triggers.module'
 import { WorkflowsModule } from '../workflows/workflows.module'
+import { ContactSubscriptionController } from './controllers/contact-subscription.controller'
 import { Campaign, CampaignAuthorizer } from './entities/campaign'
 import { CampaignMessage } from './entities/campaign-message'
 import { Contact, ContactAuthorizer } from './entities/contact'
@@ -124,6 +125,7 @@ import { OrderService } from './services/order.service'
     BroadcastConsumer,
     ContactsConsumer,
   ],
+  controllers: [ContactSubscriptionController],
   exports: [ContactService, CampaignService, MenuService, OrderService],
 })
 export class ChatsModule {}
