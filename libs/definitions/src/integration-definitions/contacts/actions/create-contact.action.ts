@@ -42,7 +42,7 @@ export class CreateContactAction extends OperationAction {
       throw new AuthenticationError('Invalid address')
     }
     const tags: string[] = inputs?.tags?.split(',').map((tag: string) => tag.trim()) ?? []
-    await ContactService.instance.addSingleContact(getAddress(inputs.address), user as User, tags)
+    await ContactService.instance.addSingleContact(getAddress(inputs.address), user as User, tags, inputs.subscribed)
     return {
       outputs: {},
     }
