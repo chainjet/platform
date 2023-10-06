@@ -8,6 +8,7 @@ import { ContactService } from 'apps/api/src/chat/services/contact.service'
 import { MenuService } from 'apps/api/src/chat/services/menu.service'
 import { Integration } from 'apps/api/src/integrations/entities/integration'
 import { User } from 'apps/api/src/users/entities/user'
+import { UserNotificationService } from 'apps/api/src/users/services/user-notifications.service'
 import { UserService } from 'apps/api/src/users/services/user.service'
 import { WorkflowUsedIdService } from 'apps/api/src/workflow-triggers/services/workflow-used-id.service'
 import { ObjectId } from 'bson'
@@ -70,6 +71,7 @@ export class RunnerService {
     private readonly integrationDefinitionFactory: IntegrationDefinitionFactory,
     private readonly contactService: ContactService,
     private readonly menuService: MenuService,
+    private readonly userNotificationService: UserNotificationService,
   ) {}
 
   onModuleDestroy() {
@@ -169,10 +171,20 @@ export class RunnerService {
       return
     }
 
-    if (user.operationsUsedMonth >= user.planConfig.maxOperations && user.planConfig.hardLimits) {
-      this.logger.log(`User ${user.id} has reached the monthly operation limit`)
-      await this.workflowTriggerService.markUserPlanAsLimited(user._id)
-      return
+    // check credit limits
+    if (user.planConfig.hardLimits) {
+      if (user.operationsUsedMonth >= user.planConfig.maxOperations) {
+        this.logger.log(`User ${user.id} has reached the monthly operation limit`)
+        await this.workflowTriggerService.markUserPlanAsLimited(user._id)
+        await this.userNotificationService.sendCreditsReachedNotification(user)
+        return
+      }
+
+      // send a warning at 80% of the monthly limit
+      if (user.operationsUsedMonth >= user.planConfig.maxOperations * 0.75) {
+        this.logger.log(`User ${user.id} has reached 75% of the monthly operation limit`)
+        await this.userNotificationService.sendCreditsWarningNotification(user)
+      }
     }
 
     if (this.processInterrupted) {

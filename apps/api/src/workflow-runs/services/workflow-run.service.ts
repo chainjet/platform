@@ -8,7 +8,7 @@ import { InjectModel } from 'nestjs-typegoose'
 import { IntegrationTrigger } from '../../integration-triggers/entities/integration-trigger'
 import { Integration } from '../../integrations/entities/integration'
 import { NotificationMessages } from '../../users/notification-messages'
-import { NotificationService } from '../../users/services/notifications.service'
+import { UserNotificationService } from '../../users/services/user-notifications.service'
 import { UserService } from '../../users/services/user.service'
 import { WorkflowAction } from '../../workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from '../../workflow-triggers/entities/workflow-trigger'
@@ -35,7 +35,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     private readonly userService: UserService,
     private readonly workflowTriggerService: WorkflowTriggerService,
     private readonly workflowSleepService: WorkflowSleepService,
-    private readonly notificationService: NotificationService,
+    private readonly notificationService: UserNotificationService,
   ) {
     super(model)
   }

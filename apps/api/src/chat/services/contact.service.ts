@@ -18,7 +18,7 @@ import { ObjectId, WriteError } from 'mongodb'
 import { InjectModel } from 'nestjs-typegoose'
 import { User } from '../../users/entities/user'
 import { NotificationMessages } from '../../users/notification-messages'
-import { NotificationService } from '../../users/services/notifications.service'
+import { UserNotificationService } from '../../users/services/user-notifications.service'
 import { UserService } from '../../users/services/user.service'
 import { Contact } from '../entities/contact'
 
@@ -31,7 +31,7 @@ export class ContactService extends BaseService<Contact> {
     @InjectModel(Contact) protected readonly model: ReturnModelType<typeof Contact>,
     @InjectQueue('contacts') private contactsQueue: Queue,
     private userService: UserService,
-    private notificationService: NotificationService,
+    private notificationService: UserNotificationService,
   ) {
     super(model)
     ContactService.instance = this
