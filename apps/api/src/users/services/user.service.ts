@@ -23,11 +23,14 @@ export class UserService extends BaseService<User> {
     super(model)
   }
 
-  async incrementOperationsUsed(userId: ObjectId, success: boolean): Promise<void> {
+  async incrementOperationsUsed(userId: ObjectId, success: boolean, creditsUsed?: number): Promise<void> {
+    if (!creditsUsed || creditsUsed < 0) {
+      return
+    }
     await this.updateById(userId, {
       $inc: {
-        operationsUsedMonth: 1,
-        operationsUsedTotal: 1,
+        operationsUsedMonth: creditsUsed ?? 1,
+        operationsUsedTotal: creditsUsed ?? 1,
       },
     })
     await this.userEventService.log(userId, success ? UserEventKey.OPERATION_SUCCEDED : UserEventKey.OPERATION_FAILED)

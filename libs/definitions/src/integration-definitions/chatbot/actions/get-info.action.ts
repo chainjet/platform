@@ -266,6 +266,7 @@ export class GetInfoAction extends OperationAction {
         }
         return outputs
       }, {}),
+      credits: 5,
     }
   }
 }

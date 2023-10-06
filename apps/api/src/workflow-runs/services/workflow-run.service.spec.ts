@@ -2,7 +2,7 @@ import { ObjectID } from '@app/common/utils/mongodb'
 import { Test, TestingModule } from '@nestjs/testing'
 import { plainToClass } from 'class-transformer'
 import { TypegooseModule } from 'nestjs-typegoose'
-import { TestDatabaseModule, closeMongoConnection } from '../../../../../libs/common/test/database/test-database.module'
+import { closeMongoConnection, TestDatabaseModule } from '../../../../../libs/common/test/database/test-database.module'
 import { MockModule } from '../../../../../libs/common/test/mock.module'
 import { MockService } from '../../../../../libs/common/test/mock.service'
 import { WorkflowRun } from '../entities/workflow-run'
@@ -133,6 +133,7 @@ describe('WorkflowRunService', () => {
         workflowRunData,
         ['123'],
         [{ id: '123' }],
+        1,
       )
       const updated = await service.findById(workflowRun.id)
       expect(updated?.operationsUsed).toBe(1)
@@ -207,7 +208,7 @@ describe('WorkflowRunService', () => {
         itemId: '123',
       })
       const workflowRun = await mock.createWorkflowRunDeep({ actionRuns: [workflowRunAction] })
-      await service.markActionAsCompleted(new ObjectID(), workflowRun._id, workflowRunAction)
+      await service.markActionAsCompleted(new ObjectID(), workflowRun._id, workflowRunAction, 1)
       const updated = await service.findById(workflowRun.id)
       expect(updated?.operationsUsed).toBe(1)
       expect(updated?.status).toBe(WorkflowRunStatus.running)

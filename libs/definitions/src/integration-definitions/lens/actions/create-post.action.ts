@@ -321,6 +321,7 @@ export class CreatePostAction extends OperationOffChain {
           hash: res.data.createPostViaDispatcher.txHash,
         },
       ],
+      credits: 50,
     }
   }
 }

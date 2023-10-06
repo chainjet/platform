@@ -106,6 +106,7 @@ export class CreateCommentChainJetBotAction extends OperationOffChain {
         // txId: res.data.createCommentViaDispatcher.txId,
       },
       refreshedCredentials,
+      credits: 50,
     }
   }
 }

@@ -50,6 +50,7 @@ export class LikePostAction extends OperationOffChain {
     return {
       outputs: {},
       refreshedCredentials,
+      credits: 25,
     }
   }
 }

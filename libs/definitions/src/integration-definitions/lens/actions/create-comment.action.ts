@@ -222,6 +222,7 @@ export class CreateCommentAction extends OperationOffChain {
             hash: res.data.createCommentViaDispatcher.txHash,
           },
         ],
+        credits: 50,
       }
     }
   }

@@ -95,6 +95,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     workflowRunData: Partial<WorkflowRun>,
     triggerIds: string[],
     triggerItems: Array<Record<string, any>>,
+    creditsUsed: number,
   ): Promise<WorkflowRun> {
     if (!workflowRunData.triggerRun) {
       throw new Error('triggerRun is required')
@@ -106,12 +107,12 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
       triggerIds,
       finishedAt: new Date(),
     }
-    workflowRunData.operationsUsed = 1
+    workflowRunData.operationsUsed = creditsUsed
     workflowRunData.status = WorkflowRunStatus.running
     workflowRunData.lockedAt = new Date()
     const workflowRun = await this.createOne(workflowRunData)
     await this.cacheManager.set(`TRIGGER_ITEMS_${workflowRun.id}`, triggerItems, { ttl: 60 * 60 * 3 } as any)
-    await this.userService.incrementOperationsUsed(userId, true)
+    await this.userService.incrementOperationsUsed(userId, true, creditsUsed)
     return workflowRun
   }
 
@@ -189,6 +190,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     userId: ObjectId,
     workflowRunId: ObjectId,
     workflowRunAction: WorkflowRunAction,
+    creditsUsed: number,
     transactions?: Array<{ hash: string; chainId: ChainId }>,
     sleeping?: boolean,
   ): Promise<void> {
@@ -201,10 +203,10 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
           'actionRuns.$.transactions': transactions,
           lockedAt: new Date(),
         },
-        $inc: { operationsUsed: 1 },
+        $inc: { operationsUsed: creditsUsed },
       },
     )
-    await this.userService.incrementOperationsUsed(userId, true)
+    await this.userService.incrementOperationsUsed(userId, true, creditsUsed)
   }
 
   async markActionAsFailed(

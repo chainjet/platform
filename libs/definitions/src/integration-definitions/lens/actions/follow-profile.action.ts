@@ -91,6 +91,7 @@ export class FollowProfileAction extends OperationOffChain {
         queuedAt: resStatus?.data?.proxyActionStatus?.queuedAt,
       },
       refreshedCredentials,
+      credits: 25,
     }
   }
 }

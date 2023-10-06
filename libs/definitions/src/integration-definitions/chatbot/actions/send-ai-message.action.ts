@@ -103,6 +103,7 @@ export class SendAiMessageAction extends OperationAction {
         id: message.id,
       },
       sleepUniqueGroup: inputs.waitForResponse ? inputs.conversationId : undefined,
+      credits: 5,
     }
   }
 }

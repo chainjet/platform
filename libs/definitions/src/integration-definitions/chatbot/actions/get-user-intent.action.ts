@@ -171,6 +171,7 @@ export class GetUserIntentAction extends OperationAction {
           intent,
         },
         condition: intent,
+        credits: 5,
       }
     }
     throw new Error(`Failed to get user intent`)
