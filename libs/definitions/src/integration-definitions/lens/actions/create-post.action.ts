@@ -167,7 +167,7 @@ export class CreatePostAction extends OperationOffChain {
 
   async run({ inputs, credentials, workflow, user }: OperationRunOptions): Promise<RunResponse> {
     if (!credentials?.refreshToken || !credentials?.profileId) {
-      throw new AuthenticationError('Authentication is expired, please connect the profile again')
+      throw new AuthenticationError('Authentication failed, please connect the profile again')
     }
     if (!inputs.content) {
       throw new Error('Content is required')
