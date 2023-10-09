@@ -36,7 +36,7 @@ import { GoogleApisDefinition } from './integration-definitions/google-apis.defi
 import { GoogleSheetsDefinition } from './integration-definitions/google-sheets.definition'
 import { GraphqlDefinition } from './integration-definitions/graphql.definition'
 import { HetznerCloudDefinition } from './integration-definitions/hetzner-cloud.definition'
-import { HttpDefinition } from './integration-definitions/http.definition'
+import { HttpDefinition } from './integration-definitions/http/http.definition'
 import { InternalDefinition } from './integration-definitions/internal/internal.definition'
 import { LensDefinition } from './integration-definitions/lens/lens.definition'
 import { LensListsDefinition } from './integration-definitions/lenslists/lenslists.definition'
