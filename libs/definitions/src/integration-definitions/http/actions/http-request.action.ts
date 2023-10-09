@@ -69,6 +69,7 @@ export class HttpRequestAction extends OperationAction {
       headers: { type: 'object' },
     },
   }
+  learnResponseWorkflow = true
 
   async run({ inputs }: OperationRunOptions): Promise<RunResponse> {
     if (!inputs.url) {
@@ -112,7 +113,6 @@ export class HttpRequestAction extends OperationAction {
           statusText: res.statusText,
           headers: res.headers,
         },
-        learnResponseWorkflow: true,
       }
     } catch (e) {
       throw new Error(e.response.data?.message ?? e.message)

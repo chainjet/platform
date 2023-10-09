@@ -8,47 +8,5 @@
       "url": "https://raw.githubusercontent.com/chainjet/assets/master/integrations/graphql.svg"
     }
   },
-  "paths": {
-    "/": {
-      "post": {
-        "x-actionOnly": true,
-        "x-learnResponseWorkflow": true,
-        "operationId": "graphqlRequest",
-        "summary": "GraphQL Request",
-        "description": "Make a GraphQL API request",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["url", "query"],
-                "properties": {
-                  "url": {
-                    "title": "GraphQL endpoint",
-                    "type": "string",
-                    "format": "uri"
-                  },
-                  "query": {
-                    "type": "string",
-                    "x-ui:widget": "textarea",
-                    "title": "GraphQL query"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "HTTP Response",
-            "content": {
-              "application/json": {
-                "schema": { "type": "object", "properties": {} }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+  "paths": {}
 }
