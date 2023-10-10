@@ -5,6 +5,7 @@ import { Cache } from 'cache-manager'
 import { InjectModel } from 'nestjs-typegoose'
 import { User } from '../entities/user'
 import { UserNotification } from '../entities/user-notification'
+import { NotificationMessages } from '../notification-messages'
 import { CoreContactService } from './core-contact.service'
 
 @Injectable()
@@ -30,12 +31,6 @@ export class UserNotificationService extends BaseService<UserNotification> {
       return
     }
     const notificationAddress = contact?.notificationAddress || address
-
-    // Prevent sending multiple notifications in a short period of time
-    if (await this.cacheManager.get(`user-notification-${notificationAddress}`)) {
-      return
-    }
-    await this.cacheManager.set(`user-notification-${notificationAddress}`, true, { ttl: 60 } as any)
 
     await fetch(process.env.NOTIFICATIONS_WORKFLOW_HOOK!, {
       method: 'POST',
@@ -94,5 +89,18 @@ export class UserNotificationService extends BaseService<UserNotification> {
         `Best,\n` +
         `The ChainJet Team`,
     )
+  }
+
+  async sendContactsExceededNotification(user: User) {
+    const year = user.operationsReset.getFullYear()
+    const month = String(user.operationsReset.getMonth() + 1).padStart(2, '0')
+    const day = String(user.operationsReset.getDate()).padStart(2, '0')
+    const operationsResetKey = `${year}-${month}-${day}`
+    try {
+      await this.createOne({ user: user._id, key: `contacts-exceeded-${operationsResetKey}` })
+    } catch (e) {
+      return
+    }
+    await this.sendNotification(user.address, NotificationMessages.contactsExceeded(user))
   }
 }

@@ -17,7 +17,6 @@ import { uniq } from 'lodash'
 import { ObjectId, WriteError } from 'mongodb'
 import { InjectModel } from 'nestjs-typegoose'
 import { User } from '../../users/entities/user'
-import { NotificationMessages } from '../../users/notification-messages'
 import { UserNotificationService } from '../../users/services/user-notifications.service'
 import { UserService } from '../../users/services/user.service'
 import { Contact } from '../entities/contact'
@@ -56,7 +55,7 @@ export class ContactService extends BaseService<Contact> {
   async addSingleContact(address: string, user: User, tags?: string[], subscribed: boolean = true): Promise<Contact> {
     const total = await this.countNative({ owner: user._id })
     if (total + 1 > user.planConfig.maxContacts && user.planConfig.hardLimits) {
-      await this.notificationService.sendNotification(user.address, NotificationMessages.contactsExceeded(user))
+      await this.notificationService.sendContactsExceededNotification(user)
       throw new ContactsExceededError(
         `Your current plan only allows you to have ${user.planConfig.maxContacts} contacts. Please upgrade to add more.`,
       )
@@ -87,7 +86,7 @@ export class ContactService extends BaseService<Contact> {
   async addContacts(addresses: string[], user: User, tags?: string[]) {
     const total = await this.countNative({ owner: user._id })
     if (total + addresses.length > user.planConfig.maxContacts && user.planConfig.hardLimits) {
-      await this.notificationService.sendNotification(user.address, NotificationMessages.contactsExceeded(user))
+      await this.notificationService.sendContactsExceededNotification(user)
       throw new ContactsExceededError(
         `Your current plan only allows you to have ${user.planConfig.maxContacts} contacts. Please upgrade to add more.`,
       )

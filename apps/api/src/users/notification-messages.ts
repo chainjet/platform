@@ -6,7 +6,10 @@ export const NotificationMessages = {
     return (
       `You've reached the maximum number of contacts (${user.planConfig.maxContacts}) allowed by your current plan. Please upgrade to add more.\n\n` +
       `ChainJet contacts enable you to build an audience to which you can send message campaigns.\n\n` +
-      `You can see our plan options and upgrade here: https://chainjet.io/pricing`
+      `You can see our plan options and upgrade here: https://chainjet.io/pricing\n\n` +
+      `If you have any questions, please reply this message, we're happy to help.\n\n` +
+      `Best,\n` +
+      `The ChainJet Team`
     )
   },
   workflowDisabled(workflow: Workflow, consecutiveFailures: number) {
