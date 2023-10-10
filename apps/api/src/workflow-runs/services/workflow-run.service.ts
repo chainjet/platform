@@ -148,7 +148,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
     if (trigger && !trigger.enabled && workflowRun.startedBy !== WorkflowRunStartedByOptions.user) {
       await this.notificationService.sendNotification(
         workflow.ownerAddress,
-        NotificationMessages.workflowDisabled(workflow, trigger.consecutiveTriggerFails),
+        NotificationMessages.workflowDisabled(workflow, trigger.consecutiveTriggerFails + 1),
       )
     }
 
@@ -242,7 +242,7 @@ export class WorkflowRunService extends BaseService<WorkflowRun> {
       if (trigger && !trigger.enabled && workflowRun.startedBy !== WorkflowRunStartedByOptions.user) {
         await this.notificationService.sendNotification(
           workflow.ownerAddress,
-          NotificationMessages.workflowDisabled(workflow, trigger.consecutiveTriggerFails),
+          NotificationMessages.workflowDisabled(workflow, trigger.consecutiveTriggerFails + 1),
         )
       }
     }
