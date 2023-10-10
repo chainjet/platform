@@ -1,6 +1,7 @@
 import { BaseService } from '@app/common/base/base.service'
-import { Injectable, Logger } from '@nestjs/common'
+import { CACHE_MANAGER, Inject, Injectable, Logger } from '@nestjs/common'
 import { ReturnModelType } from '@typegoose/typegoose'
+import { Cache } from 'cache-manager'
 import { InjectModel } from 'nestjs-typegoose'
 import { User } from '../entities/user'
 import { UserNotification } from '../entities/user-notification'
@@ -14,6 +15,7 @@ export class UserNotificationService extends BaseService<UserNotification> {
   constructor(
     @InjectModel(UserNotification) protected readonly model: ReturnModelType<typeof UserNotification>,
     private coreContractService: CoreContactService,
+    @Inject(CACHE_MANAGER) protected cacheManager: Cache,
   ) {
     super(model)
     UserNotificationService.instance = this
@@ -28,6 +30,13 @@ export class UserNotificationService extends BaseService<UserNotification> {
       return
     }
     const notificationAddress = contact?.notificationAddress || address
+
+    // Prevent sending multiple notifications in a short period of time
+    if (await this.cacheManager.get(`user-notification-${notificationAddress}`)) {
+      return
+    }
+    await this.cacheManager.set(`user-notification-${notificationAddress}`, true, { ttl: 60 } as any)
+
     await fetch(process.env.NOTIFICATIONS_WORKFLOW_HOOK!, {
       method: 'POST',
       headers: {
