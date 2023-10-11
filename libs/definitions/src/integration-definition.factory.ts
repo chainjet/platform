@@ -68,6 +68,7 @@ import { StorageDefinition } from './integration-definitions/storage/storage.def
 import { TelegramBotDefinition } from './integration-definitions/telegram-bot.definition'
 import { TelegramDefinition } from './integration-definitions/telegram/telegram.definition'
 import { TwitterDefinition } from './integration-definitions/twitter/twitter.definition'
+import { UnlonelyDefinition } from './integration-definitions/unlonely/unlonely.definition'
 import { WebhookDefinition } from './integration-definitions/webhook.definition'
 import { WorkflowsDefinition } from './integration-definitions/workflows/workflows.definition'
 import { XmtpDefinition } from './integration-definitions/xmtp/xmtp.definition'
@@ -164,6 +165,7 @@ export class IntegrationDefinitionFactory {
     // typeform: TypeFormDefinition,
     // uniswapv2: UniswapV2Definition,
     // uniswapv3: UniswapV3Definition,
+    unlonely: UnlonelyDefinition,
     webhook: WebhookDefinition,
     workflows: WorkflowsDefinition,
     xmtp: XmtpDefinition,
