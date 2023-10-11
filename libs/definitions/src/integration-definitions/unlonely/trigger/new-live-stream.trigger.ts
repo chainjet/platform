@@ -10,8 +10,6 @@ export class NewLiveStreamTrigger extends OperationTrigger {
   name = 'New Live Stream'
   description = 'Triggers when a new live stream is started'
   version = '1.0.0'
-  skipAuth = true
-  learnResponseWorkflow = true
 
   inputs: JSONSchema7 = {
     required: [],
