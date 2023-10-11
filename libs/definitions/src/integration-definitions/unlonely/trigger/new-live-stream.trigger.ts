@@ -5,7 +5,7 @@ import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.s
 import { JSONSchema7 } from 'json-schema'
 
 export class NewLiveStreamTrigger extends OperationTrigger {
-  idKey = 'items[].id'
+  idKey = 'items[].timestamp'
   key = 'newLiveStream'
   name = 'New Live Stream'
   description = 'Triggers when a new live stream is started'
@@ -72,6 +72,7 @@ export class NewLiveStreamTrigger extends OperationTrigger {
         items: newLives.map((item) => ({
           ...item,
           link: `https://www.unlonely.app/channels/${item.slug}`,
+          timestamp: Date.now(),
         })),
       },
       store: {
