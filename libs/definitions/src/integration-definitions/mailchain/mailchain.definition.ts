@@ -13,7 +13,7 @@ export class MailChainDefinition extends SingleIntegrationDefinition {
   actions = [new SendEmailAction()]
 
   async createOrUpdateIntegrationAccount(schema: OpenAPIObject): Promise<IntegrationAccount | null> {
-    const authDefinition = await this._getAuthDefinition()
+    const authDefinition = await this.getAuthDefinition()
     if (!authDefinition) {
       return null
     }

@@ -33,7 +33,7 @@ export abstract class SingleIntegrationDefinition extends Definition {
   }
 
   async createOrUpdateIntegrationAccount(schema: OpenAPIObject): Promise<IntegrationAccount | null> {
-    const authDefinition = await this._getAuthDefinition()
+    const authDefinition = await this.getAuthDefinition()
     if (!authDefinition) {
       return null
     }
@@ -47,7 +47,7 @@ export abstract class SingleIntegrationDefinition extends Definition {
     })
   }
 
-  async _getAuthDefinition(): Promise<IntegrationAuthDefinition | null> {
+  protected async getAuthDefinition(): Promise<IntegrationAuthDefinition | null> {
     const integrationSchema = await SchemaUtils.getSchema({
       integrationKey: this.integrationKey,
       integrationVersion: this.integrationVersion,

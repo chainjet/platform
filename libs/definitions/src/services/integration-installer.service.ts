@@ -12,6 +12,7 @@ import { IntegrationService } from '../../../../apps/api/src/integrations/servic
 import { getItemSchemaFromRes } from '../../../../apps/runner/src/utils/trigger.utils'
 import { decycle, retrocycle } from '../../../common/src/utils/json.utils'
 import { addEllipsis, stripMarkdown, stripMarkdownSync } from '../../../common/src/utils/string.utils'
+import { BaseIntegrationDefinition } from '../base-integration.definition'
 import {
   dereferenceJsonSchema,
   prepareInputsJsonSchema,
@@ -26,11 +27,7 @@ import { SchemaUtils } from '../schema/utils/schema.utils'
 export class IntegrationInstallerService {
   private readonly logger = new Logger(IntegrationInstallerService.name)
 
-  constructor(
-    private readonly integrationService: IntegrationService,
-    private readonly integrationTriggerService: IntegrationTriggerService,
-    private readonly integrationActionService: IntegrationActionService,
-  ) {}
+  constructor() {}
 
   /**
    * Creates or updates integration(s), integration account(s) and integration operations
@@ -285,7 +282,26 @@ export class IntegrationInstallerService {
   ): Promise<OpenAPIObject | null> {
     const schemaUrl = fetchSchemas ? integrationData.schemaUrl : null
 
-    const { integrationKey, integrationVersion } = integrationData
+    const { integrationKey, integrationVersion, noSchemaFile } = integrationData
+
+    if (noSchemaFile) {
+      const baseDefinition = definition as BaseIntegrationDefinition
+      if (!baseDefinition.title) {
+        throw new Error('Missing integration title')
+      }
+      return {
+        openapi: '3.0.0',
+        info: {
+          title: baseDefinition.title,
+          version: '1',
+          'x-categories': baseDefinition.categories,
+          'x-logo': {
+            url: baseDefinition.logo,
+          },
+        },
+        paths: {},
+      }
+    }
 
     let schema = await SchemaUtils.getSchema({
       integrationKey,

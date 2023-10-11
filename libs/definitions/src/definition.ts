@@ -32,6 +32,7 @@ export interface SingleIntegrationData {
   schemaUrl: string | null
   deprecated?: boolean
   metadata?: any
+  noSchemaFile?: boolean
 }
 
 export interface RequestInterceptorOptions {
