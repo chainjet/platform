@@ -72,6 +72,7 @@ import { UnlonelyDefinition } from './integration-definitions/unlonely/unlonely.
 import { WebhookDefinition } from './integration-definitions/webhook.definition'
 import { WorkflowsDefinition } from './integration-definitions/workflows/workflows.definition'
 import { XmtpDefinition } from './integration-definitions/xmtp/xmtp.definition'
+import { ZoraDefinition } from './integration-definitions/zora/zora.definition'
 
 @Injectable()
 export class IntegrationDefinitionFactory {
@@ -169,8 +170,7 @@ export class IntegrationDefinitionFactory {
     webhook: WebhookDefinition,
     workflows: WorkflowsDefinition,
     xmtp: XmtpDefinition,
-    // youcanbookme: YoucanbookmeDefinition,
-    // zoom: ZoomDefinition,
+    zora: ZoraDefinition,
   }
 
   constructor(
