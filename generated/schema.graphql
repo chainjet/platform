@@ -1816,11 +1816,11 @@ type Mutation {
   createOneContact(input: CreateOneContactInput!): Contact!
   updateOneContact(input: UpdateOneContactInput!): Contact!
   deleteOneContact(input: DeleteOneContactInput!): ContactDeleteResponse!
-  addContacts(addresses: [String!]!, tags: [String!]): ResultPayload!
-  importXmtpContacts(tags: [String!]): ResultPayload!
-  importPoapContacts(eventId: String!, tags: [String!]): ResultPayload!
-  importLensFollowersContacts(handle: String!, tags: [String!]): ResultPayload!
-  importLensCollectorsContacts(publicationId: String!, tags: [String!]): ResultPayload!
+  addContacts(addresses: [String!]!, tags: [String!], limitToPlan: Boolean): ResultPayload!
+  importXmtpContacts(tags: [String!], limitToPlan: Boolean): ResultPayload!
+  importPoapContacts(eventId: String!, tags: [String!], limitToPlan: Boolean): ResultPayload!
+  importLensFollowersContacts(handle: String!, tags: [String!], limitToPlan: Boolean): ResultPayload!
+  importLensCollectorsContacts(publicationId: String!, tags: [String!], limitToPlan: Boolean): ResultPayload!
   createOneCampaign(input: CreateOneCampaignInput!): Campaign!
   updateOneCampaign(input: UpdateOneCampaignInput!): Campaign!
   deleteOneCampaign(input: DeleteOneCampaignInput!): CampaignDeleteResponse!

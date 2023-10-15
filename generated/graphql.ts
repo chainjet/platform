@@ -1692,11 +1692,11 @@ export interface IMutation {
     createOneContact(input: CreateOneContactInput): Contact | Promise<Contact>;
     updateOneContact(input: UpdateOneContactInput): Contact | Promise<Contact>;
     deleteOneContact(input: DeleteOneContactInput): ContactDeleteResponse | Promise<ContactDeleteResponse>;
-    addContacts(addresses: string[], tags?: Nullable<string[]>): ResultPayload | Promise<ResultPayload>;
-    importXmtpContacts(tags?: Nullable<string[]>): ResultPayload | Promise<ResultPayload>;
-    importPoapContacts(eventId: string, tags?: Nullable<string[]>): ResultPayload | Promise<ResultPayload>;
-    importLensFollowersContacts(handle: string, tags?: Nullable<string[]>): ResultPayload | Promise<ResultPayload>;
-    importLensCollectorsContacts(publicationId: string, tags?: Nullable<string[]>): ResultPayload | Promise<ResultPayload>;
+    addContacts(addresses: string[], tags?: Nullable<string[]>, limitToPlan?: Nullable<boolean>): ResultPayload | Promise<ResultPayload>;
+    importXmtpContacts(tags?: Nullable<string[]>, limitToPlan?: Nullable<boolean>): ResultPayload | Promise<ResultPayload>;
+    importPoapContacts(eventId: string, tags?: Nullable<string[]>, limitToPlan?: Nullable<boolean>): ResultPayload | Promise<ResultPayload>;
+    importLensFollowersContacts(handle: string, tags?: Nullable<string[]>, limitToPlan?: Nullable<boolean>): ResultPayload | Promise<ResultPayload>;
+    importLensCollectorsContacts(publicationId: string, tags?: Nullable<string[]>, limitToPlan?: Nullable<boolean>): ResultPayload | Promise<ResultPayload>;
     createOneCampaign(input: CreateOneCampaignInput): Campaign | Promise<Campaign>;
     updateOneCampaign(input: UpdateOneCampaignInput): Campaign | Promise<Campaign>;
     deleteOneCampaign(input: DeleteOneCampaignInput): CampaignDeleteResponse | Promise<CampaignDeleteResponse>;

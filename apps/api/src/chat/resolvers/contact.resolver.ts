@@ -8,7 +8,7 @@ import { BadRequestException, Logger, UnauthorizedException, UseGuards, UseInter
 import { Args, Mutation, Resolver } from '@nestjs/graphql'
 import { Authorizer, AuthorizerInterceptor, InjectAuthorizer } from '@ptc-org/nestjs-query-graphql'
 import { getAddress, isAddress } from 'ethers/lib/utils'
-import { GraphQLString } from 'graphql'
+import { GraphQLBoolean, GraphQLString } from 'graphql'
 import { ObjectId } from 'mongoose'
 import { AccountCredentialService } from '../../account-credentials/services/account-credentials.service'
 import { UserId } from '../../auth/decorators/user-id.decorator'
@@ -45,6 +45,7 @@ export class ContactResolver extends BaseResolver(Contact, {
     @UserId() userId: ObjectId,
     @Args({ name: 'addresses', type: () => [GraphQLString] }) addresses: string[],
     @Args({ name: 'tags', type: () => [GraphQLString], nullable: true }) tags?: string[],
+    @Args({ name: 'limitToPlan', type: () => GraphQLBoolean, nullable: true }) limitToPlan?: boolean,
   ): Promise<ResultPayload> {
     if (!userId) {
       throw new UnauthorizedException('Not logged in')
@@ -62,7 +63,7 @@ export class ContactResolver extends BaseResolver(Contact, {
       throw new BadRequestException('User not found')
     }
     this.logger.log(`Importing ${addresses.length} addresses - user ${user.id}`)
-    await this.contactService.addContacts(addresses, user, tags)
+    await this.contactService.addContacts(addresses, user, tags, limitToPlan)
     return {
       success: true,
     }
@@ -72,6 +73,7 @@ export class ContactResolver extends BaseResolver(Contact, {
   async importXmtpContacts(
     @UserId() userId: ObjectId,
     @Args({ name: 'tags', type: () => [GraphQLString], nullable: true }) tags?: string[],
+    @Args({ name: 'limitToPlan', type: () => GraphQLBoolean, nullable: true }) limitToPlan?: boolean,
   ) {
     if (!userId) {
       throw new UnauthorizedException('Not logged in')
@@ -89,7 +91,7 @@ export class ContactResolver extends BaseResolver(Contact, {
     }
     const client = await XmtpLib.getClient(account.credentials.keys)
     const addresses = await getXmtpContacts(client)
-    await this.contactService.addContacts(addresses, user, tags)
+    await this.contactService.addContacts(addresses, user, tags, limitToPlan)
     return {
       success: true,
     }
@@ -100,6 +102,7 @@ export class ContactResolver extends BaseResolver(Contact, {
     @UserId() userId: ObjectId,
     @Args({ name: 'eventId', type: () => GraphQLString }) eventId: string,
     @Args({ name: 'tags', type: () => [GraphQLString], nullable: true }) tags?: string[],
+    @Args({ name: 'limitToPlan', type: () => GraphQLBoolean, nullable: true }) limitToPlan?: boolean,
   ) {
     if (!userId) {
       throw new UnauthorizedException('Not logged in')
@@ -116,7 +119,7 @@ export class ContactResolver extends BaseResolver(Contact, {
       holders.add(getAddress(token.owner))
     }
     const addresses = Array.from(holders)
-    await this.contactService.addContacts(addresses, user, tags)
+    await this.contactService.addContacts(addresses, user, tags, limitToPlan)
     return {
       success: true,
     }
@@ -127,6 +130,7 @@ export class ContactResolver extends BaseResolver(Contact, {
     @UserId() userId: ObjectId,
     @Args({ name: 'handle', type: () => GraphQLString }) handle: string,
     @Args({ name: 'tags', type: () => [GraphQLString], nullable: true }) tags?: string[],
+    @Args({ name: 'limitToPlan', type: () => GraphQLBoolean, nullable: true }) limitToPlan?: boolean,
   ) {
     if (!userId) {
       throw new UnauthorizedException('Not logged in')
@@ -143,8 +147,8 @@ export class ContactResolver extends BaseResolver(Contact, {
     for (const follower of followers) {
       ids.add(getAddress(follower.id))
     }
-    const addresses = Array.from(ids)
-    await this.contactService.addContacts(addresses, user, tags)
+    let addresses = Array.from(ids)
+    await this.contactService.addContacts(addresses, user, tags, limitToPlan)
     return {
       success: true,
     }
@@ -155,6 +159,7 @@ export class ContactResolver extends BaseResolver(Contact, {
     @UserId() userId: ObjectId,
     @Args({ name: 'publicationId', type: () => GraphQLString }) publicationId: string,
     @Args({ name: 'tags', type: () => [GraphQLString], nullable: true }) tags?: string[],
+    @Args({ name: 'limitToPlan', type: () => GraphQLBoolean, nullable: true }) limitToPlan?: boolean,
   ) {
     if (!userId) {
       throw new UnauthorizedException('Not logged in')
@@ -171,7 +176,7 @@ export class ContactResolver extends BaseResolver(Contact, {
       ids.add(getAddress(collector.address))
     }
     const addresses = Array.from(ids)
-    await this.contactService.addContacts(addresses, user, tags)
+    await this.contactService.addContacts(addresses, user, tags, limitToPlan)
     return {
       success: true,
     }

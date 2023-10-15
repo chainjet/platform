@@ -83,13 +83,16 @@ export class ContactService extends BaseService<Contact> {
     return newContact
   }
 
-  async addContacts(addresses: string[], user: User, tags?: string[]) {
+  async addContacts(addresses: string[], user: User, tags?: string[], limitToPlan = false) {
     const total = await this.countNative({ owner: user._id })
     if (total + addresses.length > user.planConfig.maxContacts && user.planConfig.hardLimits) {
-      await this.notificationService.sendContactsExceededNotification(user)
-      throw new ContactsExceededError(
-        `Your current plan only allows you to have ${user.planConfig.maxContacts} contacts. Please upgrade to add more.`,
-      )
+      if (!limitToPlan) {
+        await this.notificationService.sendContactsExceededNotification(user)
+        throw new ContactsExceededError(
+          `Your current plan only allows you to have ${user.planConfig.maxContacts} contacts. Please upgrade to add more.`,
+        )
+      }
+      addresses = addresses.slice(0, user.planConfig.maxContacts - total)
     }
     const contacts = addresses.map((address) => ({
       owner: user._id,
