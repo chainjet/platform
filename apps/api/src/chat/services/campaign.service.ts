@@ -20,9 +20,7 @@ export class CampaignService extends BaseService<Campaign> {
   }
 
   async createOne(record: Partial<Campaign>): Promise<Campaign> {
-    // TODO remove accountCredentialId after migration
-    const accountCredentialId: string = (record as any).accountCredentialId ?? record.credentials?.toString()
-    delete (record as any).accountCredentialId
+    const accountCredentialId = record.credentials?.toString()
     if (!accountCredentialId) {
       throw new BadRequestException('Account credential ID is required')
     }

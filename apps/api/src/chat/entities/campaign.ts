@@ -77,9 +77,6 @@ export class Campaign extends BaseEntity {
 
 @InputType()
 export class CreateCampaignInput {
-  @Field({ nullable: true })
-  accountCredentialId: string
-
   @Field()
   name: string
 

@@ -765,7 +765,6 @@ export interface CreateOneCampaignInput {
 }
 
 export interface CreateCampaignInput {
-    accountCredentialId?: Nullable<string>;
     name: string;
     message: string;
     credentials?: Nullable<string>;

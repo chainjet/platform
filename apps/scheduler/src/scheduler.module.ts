@@ -1,4 +1,4 @@
-import { redisForRoot } from '@app/common/utils/redis.utils'
+import { bullForRoot, redisForRoot } from '@app/common/utils/redis.utils'
 import { BlockchainModule } from '@blockchain/blockchain'
 import { BullModule } from '@nestjs/bull'
 import { forwardRef, Module } from '@nestjs/common'
@@ -24,6 +24,7 @@ import { WorkflowSchedulerService } from './services/workflow-scheduler.service'
     ConfigModule.forRoot(),
     mongoForRoot(),
     redisForRoot(),
+    bullForRoot(),
     BullModule.registerQueue({
       name: 'broadcast',
       settings: {
