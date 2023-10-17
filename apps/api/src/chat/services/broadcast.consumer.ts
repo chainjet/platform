@@ -40,6 +40,14 @@ export class BroadcastConsumer {
     if (!campaign) {
       throw new JobNonRetriableError(job, `Campaign ${job.data.campaignId} not found`)
     }
+    if (user.operationsUsedMonth >= user.planConfig.maxOperations && user.planConfig.hardLimits) {
+      await this.campaignService.updateOneNative(
+        { _id: campaign._id },
+        { $set: { state: CampaignState.Failed, error: `You have reached your plan's credit limit` } },
+      )
+      throw new JobNonRetriableError(job, `User ${job.data.ownerId} has reached their monthly credits limit`)
+    }
+
     const accountCredential = await this.accountCredentialService.findOne({
       _id: job.data.accountCredentialId,
       owner: job.data.ownerId,

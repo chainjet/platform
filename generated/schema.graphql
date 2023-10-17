@@ -802,8 +802,11 @@ type Campaign {
   delivered: Float!
   processed: Float!
   total: Float
+  credentials: AccountCredential
+  scheduleDate: DateTime
   includeTags: [String!]
   state: String!
+  error: String
 }
 
 type CampaignDeleteResponse {
@@ -814,8 +817,11 @@ type CampaignDeleteResponse {
   delivered: Float
   processed: Float
   total: Float
+  credentials: AccountCredential
+  scheduleDate: DateTime
   includeTags: [String!]
   state: String
+  error: String
 }
 
 type CampaignEdge {
@@ -2032,9 +2038,11 @@ input CreateOneCampaignInput {
 }
 
 input CreateCampaignInput {
-  accountCredentialId: String!
+  accountCredentialId: String
   name: String!
   message: String!
+  credentials: ID
+  scheduleDate: DateTime
   includeTags: [String!]
   excludeTags: [String!]
 }
@@ -2049,6 +2057,7 @@ input UpdateOneCampaignInput {
 
 input UpdateCampaignInput {
   name: String
+  scheduleDate: DateTime
 }
 
 input DeleteOneCampaignInput {

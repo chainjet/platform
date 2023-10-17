@@ -765,9 +765,11 @@ export interface CreateOneCampaignInput {
 }
 
 export interface CreateCampaignInput {
-    accountCredentialId: string;
+    accountCredentialId?: Nullable<string>;
     name: string;
     message: string;
+    credentials?: Nullable<string>;
+    scheduleDate?: Nullable<DateTime>;
     includeTags?: Nullable<string[]>;
     excludeTags?: Nullable<string[]>;
 }
@@ -779,6 +781,7 @@ export interface UpdateOneCampaignInput {
 
 export interface UpdateCampaignInput {
     name?: Nullable<string>;
+    scheduleDate?: Nullable<DateTime>;
 }
 
 export interface DeleteOneCampaignInput {
@@ -1359,8 +1362,11 @@ export interface Campaign {
     delivered: number;
     processed: number;
     total?: Nullable<number>;
+    credentials?: Nullable<AccountCredential>;
+    scheduleDate?: Nullable<DateTime>;
     includeTags?: Nullable<string[]>;
     state: string;
+    error?: Nullable<string>;
 }
 
 export interface CampaignDeleteResponse {
@@ -1371,8 +1377,11 @@ export interface CampaignDeleteResponse {
     delivered?: Nullable<number>;
     processed?: Nullable<number>;
     total?: Nullable<number>;
+    credentials?: Nullable<AccountCredential>;
+    scheduleDate?: Nullable<DateTime>;
     includeTags?: Nullable<string[]>;
     state?: Nullable<string>;
+    error?: Nullable<string>;
 }
 
 export interface CampaignEdge {

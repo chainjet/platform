@@ -1,9 +1,11 @@
 import { redisForRoot } from '@app/common/utils/redis.utils'
 import { BlockchainModule } from '@blockchain/blockchain'
+import { BullModule } from '@nestjs/bull'
 import { forwardRef, Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { ScheduleModule } from '@nestjs/schedule'
 import { AccountCredentialsModule } from 'apps/api/src/account-credentials/account-credentials.module'
+import { ChatsModule } from 'apps/api/src/chat/chat.module'
 import { IntegrationAccountsModule } from 'apps/api/src/integration-accounts/integration-accounts.module'
 import { IntegrationTriggersModule } from 'apps/api/src/integration-triggers/integration-triggers.module'
 import { IntegrationsModule } from 'apps/api/src/integrations/integrations.module'
@@ -14,6 +16,7 @@ import { WorkflowRunsModule } from '../../api/src/workflow-runs/workflow-runs.mo
 import { WorkflowTriggersModule } from '../../api/src/workflow-triggers/workflow-triggers.module'
 import { RunnerModule } from '../../runner/src/runner.module'
 import { AccountRefreshSchedulerService } from './services/account-refresh-scheduler.service'
+import { CampaignSchedulerService } from './services/campaign-scheduler.service'
 import { WorkflowSchedulerService } from './services/workflow-scheduler.service'
 
 @Module({
@@ -21,6 +24,14 @@ import { WorkflowSchedulerService } from './services/workflow-scheduler.service'
     ConfigModule.forRoot(),
     mongoForRoot(),
     redisForRoot(),
+    BullModule.registerQueue({
+      name: 'broadcast',
+      settings: {
+        lockDuration: 60000,
+        stalledInterval: 30000,
+        maxStalledCount: 3,
+      },
+    }),
     ScheduleModule.forRoot(),
     forwardRef(() => WorkflowTriggersModule),
     forwardRef(() => WorkflowRunsModule),
@@ -32,7 +43,8 @@ import { WorkflowSchedulerService } from './services/workflow-scheduler.service'
     WorkflowsModule,
     IntegrationAccountsModule,
     AccountCredentialsModule,
+    ChatsModule,
   ],
-  providers: [WorkflowSchedulerService, AccountRefreshSchedulerService],
+  providers: [WorkflowSchedulerService, AccountRefreshSchedulerService, CampaignSchedulerService],
 })
 export class SchedulerModule {}
