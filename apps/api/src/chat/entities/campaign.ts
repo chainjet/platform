@@ -101,6 +101,12 @@ export class UpdateCampaignInput {
   @Field({ nullable: true })
   name: string
 
+  @Field()
+  message: string
+
   @Field({ nullable: true })
   scheduleDate: Date
+
+  @Field(() => [String], { nullable: true })
+  includeTags: string[]
 }

@@ -780,7 +780,9 @@ export interface UpdateOneCampaignInput {
 
 export interface UpdateCampaignInput {
     name?: Nullable<string>;
+    message: string;
     scheduleDate?: Nullable<DateTime>;
+    includeTags?: Nullable<string[]>;
 }
 
 export interface DeleteOneCampaignInput {

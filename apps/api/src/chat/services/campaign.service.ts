@@ -1,6 +1,7 @@
 import { BaseService } from '@app/common/base/base.service'
 import { InjectQueue } from '@nestjs/bull'
 import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
+import { UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { Queue } from 'bull'
 import { InjectModel } from 'nestjs-typegoose'
@@ -54,6 +55,26 @@ export class CampaignService extends BaseService<Campaign> {
     }
 
     return campaign
+  }
+
+  async updateOne(
+    id: string,
+    update: Partial<Campaign>,
+    opts?: UpdateOneOptions<Campaign> | undefined,
+  ): Promise<Campaign> {
+    const campaign = await this.findOne({ _id: id })
+    if (!campaign) {
+      throw new NotFoundException(`Campaign ${id} not found`)
+    }
+
+    // these values can only be updated if the campaign is scheduled
+    if (campaign.state !== CampaignState.Scheduled) {
+      delete update.message
+      delete update.scheduleDate
+      delete update.includeTags
+    }
+
+    return super.updateOne(id, update, opts)
   }
 
   async processSchedule(campaign: Campaign): Promise<boolean> {
