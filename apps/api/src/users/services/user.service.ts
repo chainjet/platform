@@ -126,6 +126,31 @@ export class UserService extends BaseService<User> {
     this.logger.log(`Added ${newTags.length} tags and ${newFields.length} fields to user ${userId}`)
   }
 
+  async addContactTags(user: User, tags: string[]): Promise<void> {
+    const uniqueTags = Array.from(new Set(tags))
+
+    if (!uniqueTags.length) {
+      return
+    }
+
+    const existingTags = user.contactTags ?? []
+    const newTags = uniqueTags.filter((tag) => !existingTags.includes(tag))
+
+    if (!newTags.length) {
+      return
+    }
+
+    await this.updateOneNative(
+      { _id: user._id },
+      {
+        $addToSet: {
+          ...(newTags.length && { contactTags: { $each: newTags } }),
+        },
+      },
+    )
+    this.logger.log(`Added ${newTags.length} tags to user ${user.id}`)
+  }
+
   async syncIndexes() {
     return this.model.syncIndexes()
   }

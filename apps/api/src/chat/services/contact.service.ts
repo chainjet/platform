@@ -101,31 +101,35 @@ export class ContactService extends BaseService<Contact> {
     }))
 
     // create contacts in bulk
-    const duplicatedAddresses: string[] = []
+    const existingAddresses: string[] = []
     try {
       await this.insertMany(contacts, { ordered: false })
     } catch (e) {
       if (e.writeErrors && e.insertedIds) {
         for (const error of e.writeErrors as WriteError[]) {
           if (error.code === 11000) {
-            duplicatedAddresses.push(getAddress(addresses[error.index]))
+            existingAddresses.push(getAddress(addresses[error.index]))
           }
         }
+      }
+      // if an exception was thrown, the afterCreateMany hook won't be called, so we need to add the tags here
+      if (tags && tags.length) {
+        await this.userService.addContactTags(user, tags)
       }
     }
 
     // for contacts that already existed, add the tags
     let updatedContacts = 0
-    if (duplicatedAddresses.length && tags?.length) {
+    if (existingAddresses.length && tags?.length) {
       const res = await this.updateManyNative(
-        { address: { $in: duplicatedAddresses }, owner: user._id },
+        { address: { $in: existingAddresses }, owner: user._id },
         { $addToSet: { tags: { $each: tags } } },
       )
       updatedContacts = res.modifiedCount
     }
 
     this.logger.log(
-      `Added ${addresses.length - duplicatedAddresses.length} contacts and updated ${updatedContacts} for ${user.id}`,
+      `Added ${addresses.length - existingAddresses.length} contacts and updated ${updatedContacts} for ${user.id}`,
     )
   }
 
