@@ -1,10 +1,10 @@
 # Quickstart
 
-To start using ChainJet, connect your wallet and sign the message. We use the standard [ERC-4361](https://eips.ethereum.org/EIPS/eip-4361) for the signature authentication.
+To start using ChainJet, connect your wallet and sign the message. We use the standard [ERC-4361](https://eips.ethereum.org/EIPS/eip-4361) to ensure a secure authentication.
 
-![](.gitbook/assets/walletconnect.jpg)
+<figure><img src="https://lh7-us.googleusercontent.com/qSOGeT_WWjbNJZhbXvMuolHGM80lTYF4y1rG9hWjlxpXCM1WCJTphn53b0LREi1nJ-lSC13CXqoigLAeBK8J9DOj25dr73Gnimw375mIiH9_CTtoJw2pYhetBE_EnDilivFciMRIIQhVnXe0ZM2QbSA" alt=""><figcaption></figcaption></figure>
 
-After you sign-in, you'll find yourself in the Dashboard page, where you'll have different options to get started.
+After you sign in, you'll find yourself on the Dashboard page, where you'll have different options to get started.
 
 <figure><img src=".gitbook/assets/dashboard.jpg" alt=""><figcaption></figcaption></figure>
 

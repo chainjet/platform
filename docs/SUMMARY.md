@@ -2,7 +2,8 @@
 
 * [Introduction](README.md)
 * [Quickstart](quickstart.md)
-* [Workflows](workflows.md)
+* [Campaigns](campaigns.md)
+* [Automations](automations.md)
 * [Formatting inputs](formatting-inputs/README.md)
   * [Formatting Text](formatting-inputs/formatting-text.md)
   * [Formatting Numbers](formatting-inputs/formatting-numbers.md)
