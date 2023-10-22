@@ -27,6 +27,6 @@ Finally, we need to add a last action by selecting the "+" symbol under the prev
 
 Your workflow is now ready to use! To translate a Lens post, make a comment using the following format: @ChainJetBot.lens translate to \[language]. A comment will be published below with the post in the selected language.
 
-<figure><img src="../../../.gitbook/assets/workflow traslate to (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/workflow traslate to.png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/traslatetopost.jpg" alt=""><figcaption></figcaption></figure>

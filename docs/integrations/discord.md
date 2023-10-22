@@ -16,7 +16,7 @@ Finish configuring the rest of the information on the ChainJet workflow accordin
 
 Below, there’s a video with the steps you’ll need to follow.
 
-![](../images/discord-how-to-connect.gif)
+![](../.gitbook/assets/discord-how-to-connect.gif)
 
 ## Give format to Discord texts
 

@@ -6,8 +6,6 @@
 * [Formatting inputs](formatting-inputs/README.md)
   * [Formatting Text](formatting-inputs/formatting-text.md)
   * [Formatting Numbers](formatting-inputs/formatting-numbers.md)
-* [ChainJet AI](chainjet-ai.md)
-* [Bulk Action](bulk-action.md)
 * [Templates](templates.md)
 * [Credentials](credentials.md)
 
@@ -16,7 +14,7 @@
 * [Discord](integrations/discord.md)
 * [OpenAI](integrations/openai.md)
 * [Telegram Custom Bot](integrations/telegram.md)
-* [Lens Protocol 🌿](integrations/lens.md)
+* [Lens Protocol 🌿](integrations/lens/README.md)
   * [🤖 ChainJetBot](integrations/lens/chainjetbot/README.md)
     * [Translate a post to any language and publish it with a comment](integrations/lens/chainjetbot/translate-a-post-to-any-language-and-publish-it-with-a-comment.md)
     * [Send a post by DM](integrations/lens/chainjetbot/send-a-post-by-dm.md)

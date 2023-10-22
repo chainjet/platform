@@ -1,26 +1,29 @@
----
-description: This page will help you get started with ChainJet
----
-
 # Introduction
 
-### Overview
+ChainJet is a Web3 CRM Automation platform that addresses the communication gap between Web3 protocols and their users. Unlike traditional systems where companies can easily reach out to customers via email, Web3 protocols didn't have a simple way of directly reaching their users.
 
-Welcome to ChainJet, the no-code platform that makes web3 automation simple and accessible to everyone. ChainJet allows users to create task automations by connecting together the +100 integrations available.
+ChainJet enables Web3 businesses to send targeted messaging campaigns directly to their user's wallets, allowing for a new channel of communication that doesn't require email or social network platforms. The best part is that users don't need to use special applications or configure anything. They will receive the messages on apps they are already using, like Coinbase Wallet, Lens Protocol, Converse, XMTP Inbox, Unstoppable Domains, and many more.
 
-ChainJet enables you to create task automations through workflows. These workflows consist of a trigger and a series of actions. When the trigger conditions are met, all the actions are automatically executed. Each trigger and action accepts inputs and provides outputs, allowing you to pass information seamlessly between operations.
+If your user is using at least one of the dozens of supported apps, they will get your message there, in most cases, with a notification on their phone.
 
-### What is an integration?
+<figure><img src=".gitbook/assets/celular.png" alt="" width="375"><figcaption><p>Example message sent by your project</p></figcaption></figure>
 
-An integration is a single service or protocol supported by ChainJet. It enables users to automate tasks that involve the connected service. Users can access the most important features of the connected service through a set of triggers and actions. Triggers are API calls that tell ChainJet when new items are available in the connected service, while actions are API calls that allow ChainJet to perform specific tasks within the connected service.
+### Why ChainJet?
 
-For example, if a user connects its Lens Protocol profile to ChainJet, they might set up a trigger to watch for new posts on their Lens feed. When a new post is detected, the trigger would activate a set of actions, such as automatically sharing the post on another social media platform or sending a notification to a Discord channel.
+ChainJet is designed to fill a specific void in the Web3 ecosystem: direct and targeted communication between Web3 projects and their user base. Our platform enables you to reach users directly through their wallets. This approach creates a new communication channel with your audience without the need to increase your onboarding friction by asking and verifying email addresses, allowing for a seamless interaction that users will find both convenient and secure.
 
-In essence, ChainJet integrations provide a curated set of the most important features of a web2 or web3 service, allowing users to automate their workflows in a flexible and efficient manner. By connecting services together, users can build complex task automations that fit their specific needs without having to code custom solutions.
+ChainJet goes beyond simple messaging, offering a suite of features like automated campaigns and AI-powered chatbots to enrich user engagement. Detailed analytics and user segmentation options further allow you to tailor your communication strategies for maximum impact. Whether it's sending out important updates, automating customer service, or implementing targeted marketing campaigns, ChainJet provides a one-stop solution to enhance your customer relationship management in the Web3 environment.
 
-### Open Source
+### Campaigns
 
-ChainJet is an open-source platform, which means that its source code is publicly available for users to view and modify. This gives users the ability to self-host ChainJet in their own servers. At the same time, it allows users to know exactly what code the platform is running.
+Campaigns in ChainJet allow you to send messages to all your users or a segment of your users. You can use Campaigns to send newsletters or updates directly to your user's wallets.
 
-We welcome contributions by the community. Feel free to send any pull request, or if you prefer, you can talk to us on [Discord](https://discord.gg/pcQkJ4yD). We also welcome new integrations!
+### Chatbots
 
+ChatBots on ChainJet are AI-powered conversational agents that can be attached directly to your wallet or ENS. These ChatBots are built to handle a range of functions, including customer support, events management, offering products and services, in-chat payments, and many more. They can be trained with your company's specific documentation and practices, allowing for automated yet personalized interactions.
+
+### Automations
+
+Automations on ChainJet allow you to send a message to your users when a specific on-chain or off-chain action occurs. This feature is designed to automate interactions based on triggers such as completed transactions, new NFT or collectibles minted, decentralized social media activity, and many more. ChainJet supports dozens of integrations that you can connect with your messaging campaigns.
+
+For example, you can use automations to deliver a welcome or confirmation message when someone connects their wallet to your dApp, mints your NFT, buys your token, collects your POAP, votes on your Snapshot proposal, etc.
