@@ -9,6 +9,7 @@ import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-
 import { WorkflowNextAction } from 'apps/api/src/workflow-actions/entities/workflow-next-action'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
+import { ChatbotLib } from '../chatbot.lib'
 
 export class GetUserIntentAction extends OperationAction {
   key = 'getUserIntent'
@@ -155,13 +156,17 @@ export class GetUserIntentAction extends OperationAction {
     }
     let intent: string | null
     if (inputs.intents.length) {
-      const messages = (previousOutputs?.messages ?? [])
-        .map((message) => ({
-          content: message.content,
-          role: message.from === 'user' ? 'user' : 'assistant',
-        }))
-        .slice(0, -1)
-      intent = await getUserIntent(inputs.intents, inputs.message.trim(), messages)
+      const intents = inputs.intents.map((intent) => intent.name.trim().toLowerCase())
+      intent = ChatbotLib.getStaticUserIntent(inputs.message.trim().toLowerCase(), intents)
+      if (!intent) {
+        const messages = (previousOutputs?.messages ?? [])
+          .map((message) => ({
+            content: message.content,
+            role: message.from === 'user' ? 'user' : 'assistant',
+          }))
+          .slice(0, -1)
+        intent = await getUserIntent(inputs.intents, inputs.message.trim(), messages)
+      }
     } else {
       intent = 'Other'
     }
