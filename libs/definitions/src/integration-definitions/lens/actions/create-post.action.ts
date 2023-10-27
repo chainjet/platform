@@ -232,7 +232,7 @@ export class CreatePostAction extends OperationOffChain {
       image: ipfsImages[0] || null,
       imageMimeType: imageMimeTypes[0],
       name: credentials.handle ? `New Post by @${credentials.handle}` : 'New Post',
-      tags: (content.match(/#[a-zA-Z0-9]+/g) ?? []).map((tag: string) => tag.slice(1)),
+      tags: [...(content.match(/#[a-zA-Z0-9]+/g) ?? []).map((tag: string) => tag.slice(1)), ...(inputs.tags ?? [])],
       mainContentFocus: ipfsImages.length ? 'IMAGE' : 'TEXT_ONLY',
       contentWarning: null,
       attributes: [{ traitType: 'type', displayType: 'string', value: 'post' }],
