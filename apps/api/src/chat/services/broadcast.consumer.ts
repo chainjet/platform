@@ -117,10 +117,28 @@ export class BroadcastConsumer {
             },
           },
         )
-        this.logger.log(`Sent broadcast message from ${user.address} to ${sendTo}`)
+        this.logger.log(
+          `Sent broadcast message from ${user.address} to ${sendTo} (${campaign.processed}/${campaign.total})`,
+        )
       } catch {}
       campaign.processed++
       job.progress(campaign.processed / campaign.total)
+
+      // update the campaign status every 100 contacts
+      if (campaign.processed > 0 && campaign.processed % 100 === 0) {
+        await this.campaignService.updateOneNative(
+          {
+            _id: campaign._id,
+          },
+          {
+            $set: {
+              delivered: campaign.delivered,
+              processed: campaign.processed,
+              total: campaign.total,
+            },
+          },
+        )
+      }
     }
 
     await this.campaignService.updateOneNative(
