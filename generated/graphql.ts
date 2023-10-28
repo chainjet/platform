@@ -1703,6 +1703,8 @@ export interface IMutation {
     updateOneContact(input: UpdateOneContactInput): Contact | Promise<Contact>;
     deleteOneContact(input: DeleteOneContactInput): ContactDeleteResponse | Promise<ContactDeleteResponse>;
     addContacts(addresses: string[], tags?: Nullable<string[]>, limitToPlan?: Nullable<boolean>): ResultPayload | Promise<ResultPayload>;
+    generateContactsPresignedUrl(id: string): string | Promise<string>;
+    addContactsFile(id: string, tags?: Nullable<string[]>, limitToPlan?: Nullable<boolean>): ResultPayload | Promise<ResultPayload>;
     importXmtpContacts(tags?: Nullable<string[]>, limitToPlan?: Nullable<boolean>): ResultPayload | Promise<ResultPayload>;
     importPoapContacts(eventId: string, tags?: Nullable<string[]>, limitToPlan?: Nullable<boolean>): ResultPayload | Promise<ResultPayload>;
     importLensFollowersContacts(handle: string, tags?: Nullable<string[]>, limitToPlan?: Nullable<boolean>): ResultPayload | Promise<ResultPayload>;

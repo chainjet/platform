@@ -7,6 +7,7 @@ import { getXmtpContacts } from '@chainjet/tools/dist/messages'
 import { BadRequestException, Logger, UnauthorizedException, UseGuards, UseInterceptors } from '@nestjs/common'
 import { Args, Mutation, Resolver } from '@nestjs/graphql'
 import { Authorizer, AuthorizerInterceptor, InjectAuthorizer } from '@ptc-org/nestjs-query-graphql'
+import AWS from 'aws-sdk'
 import { getAddress, isAddress } from 'ethers/lib/utils'
 import { GraphQLBoolean, GraphQLString } from 'graphql'
 import { ObjectId } from 'mongoose'
@@ -18,6 +19,13 @@ import { ResultPayload } from '../../users/payloads/user.payloads'
 import { UserService } from '../../users/services/user.service'
 import { Contact, CreateContactInput, UpdateContactInput } from '../entities/contact'
 import { ContactService } from '../services/contact.service'
+
+AWS.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: 'us-east-2',
+})
+const s3 = new AWS.S3()
 
 @Resolver(() => Contact)
 @UseGuards(GraphqlGuard)
@@ -61,6 +69,85 @@ export class ContactResolver extends BaseResolver(Contact, {
     const user = await this.userService.findOne({ _id: userId })
     if (!user) {
       throw new BadRequestException('User not found')
+    }
+    this.logger.log(`Importing ${addresses.length} addresses - user ${user.id}`)
+    await this.contactService.addContacts(addresses, user, tags, limitToPlan)
+    return {
+      success: true,
+    }
+  }
+
+  @Mutation(() => GraphQLString)
+  async generateContactsPresignedUrl(
+    @UserId() userId: ObjectId,
+    @Args({ name: 'id', type: () => GraphQLString }) id: string,
+  ): Promise<string> {
+    if (!userId) {
+      throw new UnauthorizedException('Not logged in')
+    }
+    const user = await this.userService.findOne({ _id: userId })
+    if (!user) {
+      throw new BadRequestException('User not found')
+    }
+    const threeDays = new Date()
+    threeDays.setDate(threeDays.getDate() + 3)
+    const params = {
+      Bucket: 'chainjet-contacts',
+      Fields: {
+        key: `${userId}/${id}.txt`,
+      },
+      Expires: 60,
+      Metadata: {
+        Expires: threeDays.toISOString(),
+      },
+      Conditions: [['content-length-range', 0, 52428800]], // up to 50MB
+    }
+    return new Promise((resolve, reject) => {
+      s3.createPresignedPost(params, function (err, data) {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(JSON.stringify(data))
+        }
+      })
+    })
+  }
+
+  @Mutation(() => ResultPayload)
+  async addContactsFile(
+    @UserId() userId: ObjectId,
+    @Args({ name: 'id', type: () => GraphQLString }) id: string,
+    @Args({ name: 'tags', type: () => [GraphQLString], nullable: true }) tags?: string[],
+    @Args({ name: 'limitToPlan', type: () => GraphQLBoolean, nullable: true }) limitToPlan?: boolean,
+  ): Promise<ResultPayload> {
+    if (!userId) {
+      throw new UnauthorizedException('Not logged in')
+    }
+    const user = await this.userService.findOne({ _id: userId })
+    if (!user) {
+      throw new BadRequestException('User not found')
+    }
+
+    const params = {
+      Bucket: 'chainjet-contacts',
+      Key: `${userId}/${id}.txt`,
+    }
+
+    let fileContent = ''
+    try {
+      const data = await s3.getObject(params).promise()
+      fileContent = data.Body?.toString('utf-8') || ''
+    } catch (error) {
+      throw new Error(`Failed to import the contacts: ${error.message}`)
+    }
+    const addresses = fileContent.split('\n')
+    if (!addresses || addresses.length === 0) {
+      throw new BadRequestException('Addresses cannot be empty')
+    }
+    if (addresses.some((address) => !address || !isAddress(address))) {
+      throw new BadRequestException(
+        `Address ${addresses.find((address) => !address || !isAddress(address))} is not valid`,
+      )
     }
     this.logger.log(`Importing ${addresses.length} addresses - user ${user.id}`)
     await this.contactService.addContacts(addresses, user, tags, limitToPlan)

@@ -1823,6 +1823,8 @@ type Mutation {
   updateOneContact(input: UpdateOneContactInput!): Contact!
   deleteOneContact(input: DeleteOneContactInput!): ContactDeleteResponse!
   addContacts(addresses: [String!]!, tags: [String!], limitToPlan: Boolean): ResultPayload!
+  generateContactsPresignedUrl(id: String!): String!
+  addContactsFile(id: String!, tags: [String!], limitToPlan: Boolean): ResultPayload!
   importXmtpContacts(tags: [String!], limitToPlan: Boolean): ResultPayload!
   importPoapContacts(eventId: String!, tags: [String!], limitToPlan: Boolean): ResultPayload!
   importLensFollowersContacts(handle: String!, tags: [String!], limitToPlan: Boolean): ResultPayload!
