@@ -1,6 +1,8 @@
 import { AuthenticationError } from '@app/common/errors/authentication-error'
-import { RunResponse } from '@app/definitions/definition'
+import { GetAsyncSchemasProps, RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
+import { AsyncSchema } from '@app/definitions/types/AsyncSchema'
+import { getNFTBalancePolygon } from '@app/definitions/utils/balance.utils'
 import { sendGraphqlQuery } from '@app/definitions/utils/subgraph.utils'
 import { ChainId } from '@blockchain/blockchain/types/ChainId'
 import { Logger } from '@nestjs/common'
@@ -149,6 +151,7 @@ export class CreatePostAction extends OperationOffChain {
       },
     },
   }
+  asyncSchemas: AsyncSchema[] = [{ name: 'group' }]
 
   protected readonly logger = new Logger(CreatePostAction.name)
 
@@ -232,7 +235,11 @@ export class CreatePostAction extends OperationOffChain {
       image: ipfsImages[0] || null,
       imageMimeType: imageMimeTypes[0],
       name: credentials.handle ? `New Post by @${credentials.handle}` : 'New Post',
-      tags: [...(content.match(/#[a-zA-Z0-9]+/g) ?? []).map((tag: string) => tag.slice(1)), ...(inputs.tags ?? [])],
+      tags: [
+        ...(content.match(/#[a-zA-Z0-9]+/g) ?? []).map((tag: string) => tag.slice(1)),
+        ...(inputs.tags ?? []),
+        ...(inputs.group ? [inputs.group] : []),
+      ],
       mainContentFocus: ipfsImages.length ? 'IMAGE' : 'TEXT_ONLY',
       contentWarning: null,
       attributes: [{ traitType: 'type', displayType: 'string', value: 'post' }],
@@ -322,6 +329,33 @@ export class CreatePostAction extends OperationOffChain {
         },
       ],
       credits: 50,
+    }
+  }
+
+  async getAsyncSchemas(): Promise<{ [key: string]: (props: GetAsyncSchemasProps) => Promise<JSONSchema7> }> {
+    return {
+      group: async ({ credentials }) => {
+        if (!credentials?.erc6551Address) {
+          return {}
+        }
+        const balance = await getNFTBalancePolygon(
+          '0xed97678450405fc37fcd08f026c0bbdc3af835f2',
+          credentials.erc6551Address,
+        )
+        if (Number(balance) >= 1) {
+          return {
+            title: 'Group',
+            type: 'string',
+            oneOf: [
+              {
+                title: 'Artists by Refraction',
+                const: 'orbcommunitiesrefraction',
+              },
+            ],
+          }
+        }
+        return {}
+      },
     }
   }
 }
