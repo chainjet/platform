@@ -3,9 +3,10 @@ import { wait } from '@app/common/utils/async.utils'
 import { XmtpLib } from '@app/definitions/integration-definitions/xmtp/xmtp.lib'
 import { getWalletName } from '@app/definitions/utils/address.utils'
 import { sendXmtpMessage } from '@chainjet/tools/dist/messages'
-import { Process, Processor } from '@nestjs/bull'
+import { InjectQueue, Process, Processor } from '@nestjs/bull'
 import { Logger } from '@nestjs/common'
-import { Job } from 'bull'
+import { Interval } from '@nestjs/schedule'
+import { Job, Queue } from 'bull'
 import { AccountCredentialService } from '../../account-credentials/services/account-credentials.service'
 import { UserService } from '../../users/services/user.service'
 import { CampaignState } from '../entities/campaign'
@@ -18,12 +19,17 @@ export class BroadcastConsumer {
   private readonly logger = new Logger(BroadcastConsumer.name)
 
   constructor(
+    @InjectQueue('broadcast') private broadcastQueue: Queue,
     private campaignService: CampaignService,
     private campaignMessageService: CampaignMessageService,
     private contactsService: ContactService,
     private accountCredentialService: AccountCredentialService,
     private userService: UserService,
   ) {}
+
+  onModuleInit() {
+    this.retryFailed()
+  }
 
   @Process()
   async send(job: Job<{ campaignId: string; ownerId: string; accountCredentialId: string }>) {
@@ -85,7 +91,8 @@ export class BroadcastConsumer {
       )
     }
 
-    campaign.delivered = campaignMessages.length
+    campaign.delivered = campaignMessages.filter((campaignMessage) => !!campaignMessage.messageId).length
+    campaign.processed = campaignMessages.length
     campaign.total = totalContacts
     const uniqueAddresses = new Set<string>()
     let failed = 0
@@ -102,7 +109,6 @@ export class BroadcastConsumer {
       }
       try {
         const message = await sendXmtpMessage(client, sendTo, campaign.message + '\n\n' + unsubscribeMessage)
-        campaign.delivered++
         await this.campaignMessageService.createOne({
           campaign: campaign._id,
           address: contact.address,
@@ -121,6 +127,7 @@ export class BroadcastConsumer {
         this.logger.log(
           `Sent broadcast message from ${user.address} to ${sendTo} (${campaign.processed}/${campaign.total})`,
         )
+        campaign.delivered++
         campaign.processed++
         job.progress(campaign.processed / campaign.total)
       } catch (e) {
@@ -199,5 +206,23 @@ export class BroadcastConsumer {
     )
 
     return {}
+  }
+
+  // random interval between 45 and 60 minutes
+  @Interval(Math.floor(Math.random() * 1000 * 60 * 15) + 1000 * 60 * 45)
+  async retryFailed() {
+    const running = await this.campaignService.find({ state: CampaignState.Running })
+    this.logger.log(`There are ${running.length} running campaigns`)
+    for (const campaign of running) {
+      const job = await this.broadcastQueue.getJob(`broadcast-${campaign.id}`)
+      if (job) {
+        if (await job.isFailed()) {
+          this.logger.log(`Retrying failed campaign job ${job.id}`)
+          await job.retry()
+        }
+      } else {
+        this.logger.error(`Campaign ${campaign.id} is running but no job found.`)
+      }
+    }
   }
 }
