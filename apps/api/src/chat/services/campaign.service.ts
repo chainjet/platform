@@ -1,7 +1,7 @@
 import { BaseService } from '@app/common/base/base.service'
 import { InjectQueue } from '@nestjs/bull'
 import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
-import { UpdateOneOptions } from '@ptc-org/nestjs-query-core'
+import { DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { Queue } from 'bull'
 import { InjectModel } from 'nestjs-typegoose'
@@ -75,6 +75,15 @@ export class CampaignService extends BaseService<Campaign> {
     }
 
     return super.updateOne(id, update, opts)
+  }
+
+  async deleteOne(id: string, opts?: DeleteOneOptions<Campaign> | undefined): Promise<Campaign> {
+    const campaign = await super.deleteOne(id, opts)
+    const job = await this.broadcastQueue.getJob(`broadcast-${id}`)
+    if (job) {
+      await job.remove()
+    }
+    return campaign
   }
 
   async processSchedule(campaign: Campaign): Promise<boolean> {
