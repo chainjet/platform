@@ -11,6 +11,6 @@ export class CampaignMessage extends BaseEntity {
   @prop({ required: true })
   readonly address: string
 
-  @prop({ required: true })
+  @prop()
   messageId: string
 }

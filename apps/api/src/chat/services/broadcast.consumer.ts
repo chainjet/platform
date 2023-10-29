@@ -1,4 +1,5 @@
 import { JobNonRetriableError } from '@app/common/errors/job-non-retriable-error'
+import { wait } from '@app/common/utils/async.utils'
 import { XmtpLib } from '@app/definitions/integration-definitions/xmtp/xmtp.lib'
 import { getWalletName } from '@app/definitions/utils/address.utils'
 import { sendXmtpMessage } from '@chainjet/tools/dist/messages'
@@ -62,16 +63,13 @@ export class BroadcastConsumer {
     })
     const client = await XmtpLib.getClient(accountCredential.credentials.keys)
 
-    // if this is a retry, filter out contacts that have already been sent a message
-    if (job.attemptsMade > 0) {
-      const campaignMessages = await this.campaignMessageService.find({
-        campaign: campaign._id,
-      })
-      const campaignMessageAddresses = campaignMessages.map((campaignMessage) => campaignMessage.address)
-      contacts = contacts.filter((contact) => !campaignMessageAddresses.includes(contact.address))
-    }
-
-    this.logger.log(`Sending campaign ${campaign._id} to ${contacts.length} contacts`)
+    // filter out contacts that have already been sent a message for this campaign
+    const campaignMessages = await this.campaignMessageService.find({
+      campaign: campaign._id,
+    })
+    const campaignMessageAddresses = campaignMessages.map((campaignMessage) => campaignMessage.address)
+    const totalContacts = contacts.length
+    contacts = contacts.filter((contact) => !campaignMessageAddresses.includes(contact.address))
 
     if (campaign.state === CampaignState.Pending) {
       campaign.state = CampaignState.Running
@@ -87,12 +85,15 @@ export class BroadcastConsumer {
       )
     }
 
-    campaign.delivered = 0
-    campaign.total = contacts.length
+    campaign.delivered = campaignMessages.length
+    campaign.total = totalContacts
     const uniqueAddresses = new Set<string>()
+    let failed = 0
 
     const walletName = (await getWalletName(user.address)) ?? user.address
     const unsubscribeMessage = `To unsubscribe from these messages: https://unsubscribe.chainjet.io/${walletName}`
+
+    this.logger.log(`Sending campaign ${campaign._id} to ${contacts.length} contacts`)
 
     for (const contact of contacts) {
       const sendTo = contact.notificationAddress ?? contact.address
@@ -120,10 +121,21 @@ export class BroadcastConsumer {
         this.logger.log(
           `Sent broadcast message from ${user.address} to ${sendTo} (${campaign.processed}/${campaign.total})`,
         )
-      } catch {}
-      campaign.processed++
-      job.progress(campaign.processed / campaign.total)
-
+        campaign.processed++
+        job.progress(campaign.processed / campaign.total)
+      } catch (e) {
+        if (e.message.includes('is not on the XMTP network')) {
+          await this.campaignMessageService.createOne({
+            campaign: campaign._id,
+            address: contact.address,
+          })
+          campaign.processed++
+          job.progress(campaign.processed / campaign.total)
+        } else {
+          this.logger.error(`Failed to send broadcast message from ${user.address} to ${sendTo}: ${e.message}`)
+          failed++
+        }
+      }
       // update the campaign status every 100 contacts
       if (campaign.processed > 0 && campaign.processed % 100 === 0) {
         await this.campaignService.updateOneNative(
@@ -139,6 +151,25 @@ export class BroadcastConsumer {
           },
         )
       }
+    }
+
+    // if any messages failed to send with unexpected reasons, retry the job
+    if (failed > 0) {
+      await this.campaignService.updateOneNative(
+        {
+          _id: campaign._id,
+        },
+        {
+          $set: {
+            delivered: campaign.delivered,
+            processed: campaign.processed,
+            total: campaign.total,
+          },
+        },
+      )
+      this.logger.error(`Failed to send ${failed}/${campaign.total} messages for campaign ${campaign._id}. Retrying...`)
+      await wait(10000)
+      return await this.send(job)
     }
 
     await this.campaignService.updateOneNative(
