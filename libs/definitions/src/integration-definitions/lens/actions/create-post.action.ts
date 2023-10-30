@@ -32,6 +32,10 @@ export class CreatePostAction extends OperationOffChain {
         description: 'URL of the image to be attached to the post. It will be uploaded to IPFS.',
         type: 'string',
       },
+      group: {
+        type: 'string',
+        'x-hidden': true,
+      } as JSONSchema7Definition,
       collect: {
         title: 'Who can collect?',
         type: 'string',
@@ -344,7 +348,7 @@ export class CreatePostAction extends OperationOffChain {
         )
         if (Number(balance) >= 1) {
           return {
-            title: 'Group',
+            title: 'Lens Group (Orb Community)',
             type: 'string',
             oneOf: [
               {
@@ -352,6 +356,8 @@ export class CreatePostAction extends OperationOffChain {
                 const: 'orbcommunitiesrefraction',
               },
             ],
+            description: 'Select a group to post to or leave empty to post to your profile.',
+            'x-hidden': false,
           }
         }
         return {}
