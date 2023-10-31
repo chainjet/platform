@@ -49,6 +49,9 @@ export class CreateOrderAction extends OperationAction {
           },
         },
       },
+      claimCode: {
+        type: 'string',
+      },
     },
   }
 
@@ -232,6 +235,7 @@ export class CreateOrderAction extends OperationAction {
         name: item.item,
         quantity: item.quantity ?? 1,
       })),
+      claimCode: order.claimCode,
     }
     return {
       outputs: outputs,

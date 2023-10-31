@@ -9,8 +9,15 @@ export const SecurityUtils = {
 
   bcryptHashIsValid: async (value: string, hash: string) => await bcryptjs.compare(value, hash),
 
-  generateRandomString: (chars: number): string => {
-    const buffer = randomBytes((chars + 1) / 2)
-    return buffer.toString('hex').substr(0, chars)
+  generateRandomString: (length: number): string => {
+    const charset = 'abcdefghijklmnopqrstuvwxyz0123456789'
+    let result = ''
+
+    const bytes = randomBytes(length)
+    for (const byte of bytes) {
+      result += charset[byte % charset.length]
+    }
+
+    return result
   },
 }

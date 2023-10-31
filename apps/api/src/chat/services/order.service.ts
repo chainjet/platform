@@ -1,9 +1,10 @@
 import { BaseService } from '@app/common/base/base.service'
 import { RedisPubSubService } from '@app/common/cache/redis-pubsub.service'
+import { SecurityUtils } from '@app/common/utils/security.utils'
 import { Injectable, Logger } from '@nestjs/common'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
-import { Order } from '../entities/order'
+import { Order, OrderState } from '../entities/order'
 
 @Injectable()
 export class OrderService extends BaseService<Order> {
@@ -19,6 +20,9 @@ export class OrderService extends BaseService<Order> {
   }
 
   async createOne(record: Partial<Order>): Promise<Order> {
+    if (record.state === OrderState.PendingDelivery) {
+      record.claimCode = this.generateClaimCode()
+    }
     const order = await super.createOne(record)
     this.redisPubSubService.publish(
       'orderCreated',
@@ -27,5 +31,9 @@ export class OrderService extends BaseService<Order> {
       }),
     )
     return order
+  }
+
+  generateClaimCode(): string {
+    return SecurityUtils.generateRandomString(10).toUpperCase()
   }
 }

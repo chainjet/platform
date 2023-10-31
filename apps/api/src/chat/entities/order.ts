@@ -30,6 +30,7 @@ export class OrderAuthorizer extends OwnedAuthorizer<Order> {}
 @Authorize<Order>(OrderAuthorizer)
 @EntityRef('menu', () => Menu)
 @Index({ waitTx: 1 }, { partialFilterExpression: { waitTx: true } })
+@Index({ owner: 1, claimCode: 1 }, { unique: true, sparse: true })
 export class Order extends BaseEntity {
   @prop({ ref: User, required: true, index: true })
   readonly owner!: Reference<User>
@@ -75,6 +76,9 @@ export class Order extends BaseEntity {
   @Field(() => GraphQLJSONObject, { nullable: true })
   @jsonProp()
   fields?: Record<string, any>
+
+  @prop({})
+  claimCode?: string
 }
 
 @InputType()
