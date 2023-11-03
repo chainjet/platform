@@ -31,6 +31,12 @@ export class AuthService {
   }
 
   async validateUserWithSignature(message: string, signature: string): Promise<{ user?: User; fields?: SiweMessage }> {
+    // For ease of development, allow a mock address to be used
+    if (process.env.NODE_ENV === 'development' && process.env.MOCK_ADDRESS) {
+      const user = await this.userService.findOne({ address: process.env.MOCK_ADDRESS })
+      return user ? { user } : {}
+    }
+
     const { fields, externalApp } = await this.validateSignature(message, signature, null, true)
     const user = await this.userService.findOne({ address: getAddress(fields.address) })
     if (user && user.nonces.includes(fields.nonce)) {
