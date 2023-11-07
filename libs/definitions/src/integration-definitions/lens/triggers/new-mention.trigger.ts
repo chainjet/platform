@@ -189,7 +189,7 @@ export class NewMentionTrigger extends OperationTrigger {
         }
       }
     `
-    const res = await sendGraphqlQuery('https://api.lens.dev/', query, {
+    const res = await sendGraphqlQuery('https://api-v2.lens.dev/', query, {
       'x-access-token': refreshedCredentials.accessToken,
     })
     if (!res?.data?.notifications?.items) {

@@ -358,7 +358,7 @@ export class GetPublicationAction extends OperationOffChain {
         contractAddress
       }
     }`
-    const res = await sendGraphqlQuery('https://api.lens.dev/', query)
+    const res = await sendGraphqlQuery('https://api-v2.lens.dev/', query)
     if (!res?.data?.publication) {
       throw new Error(res.errors?.[0]?.message ?? 'Bad response from lens')
     }

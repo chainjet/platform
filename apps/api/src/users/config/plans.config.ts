@@ -8,6 +8,7 @@ export interface PlanConfig {
   hardLimits: boolean
   features: {
     executeWorkflowOnError: boolean
+    importContactsFile: boolean
   }
 }
 
@@ -24,6 +25,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     hardLimits: true,
     features: {
       executeWorkflowOnError: false,
+      importContactsFile: false,
     },
   },
   prod_OPe3MZ5ynuDahA: {
@@ -36,6 +38,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     hardLimits: true,
     features: {
       executeWorkflowOnError: true,
+      importContactsFile: true,
     },
   },
   prod_NYGB1kY91pq5g6: {
@@ -48,6 +51,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     hardLimits: false,
     features: {
       executeWorkflowOnError: true,
+      importContactsFile: true,
     },
   },
   prod_NYGCd7KzrCjd7Y: {
@@ -60,6 +64,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     hardLimits: false,
     features: {
       executeWorkflowOnError: true,
+      importContactsFile: true,
     },
   },
   prod_Od9KDPvYZXLb4d: {
@@ -72,6 +77,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     hardLimits: false,
     features: {
       executeWorkflowOnError: true,
+      importContactsFile: true,
     },
   },
   unlimited: {
@@ -84,6 +90,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     hardLimits: false,
     features: {
       executeWorkflowOnError: true,
+      importContactsFile: true,
     },
   },
 
@@ -98,6 +105,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     hardLimits: true,
     features: {
       executeWorkflowOnError: true,
+      importContactsFile: false,
     },
   },
 }

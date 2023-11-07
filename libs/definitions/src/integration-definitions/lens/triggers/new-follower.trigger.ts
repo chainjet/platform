@@ -128,7 +128,7 @@ export class NewFollowerTrigger extends OperationTrigger {
         }
       }
     `
-    const res = await sendGraphqlQuery('https://api.lens.dev/', query)
+    const res = await sendGraphqlQuery('https://api-v2.lens.dev/', query)
     if (!res?.data?.followers?.items) {
       throw new Error(res.errors?.[0]?.message ?? 'Bad response from lens')
     }

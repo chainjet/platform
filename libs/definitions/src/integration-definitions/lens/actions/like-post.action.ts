@@ -43,7 +43,7 @@ export class LikePostAction extends OperationOffChain {
       addReaction(request: { profileId: "${lensProfileId}", reaction: UPVOTE, publicationId: "${inputs.publicationId}" })
     }`
 
-    const res = await sendGraphqlQuery('https://api.lens.dev/', query, {
+    const res = await sendGraphqlQuery('https://api-v2.lens.dev/', query, {
       'x-access-token': refreshedCredentials.accessToken,
       origin: process.env.LORIGIN,
     })

@@ -163,7 +163,7 @@ export class GetDefaultProfileAction extends OperationOffChain {
         }
       }
     }`
-    const res = await sendGraphqlQuery('https://api.lens.dev/', query)
+    const res = await sendGraphqlQuery('https://api-v2.lens.dev/', query)
     if (!res?.data?.defaultProfile) {
       if (inputs.failIfNotFound) {
         throw new Error(res.errors?.[0]?.message ?? 'Wallet address does not have a default Lens profile.')

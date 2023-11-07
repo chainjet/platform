@@ -1,11 +1,12 @@
 import { AuthenticationError } from '@app/common/errors/authentication-error'
+import { wait } from '@app/common/utils/async.utils'
 import { GetAsyncSchemasProps, RunResponse } from '@app/definitions/definition'
 import { OperationOffChain } from '@app/definitions/opertion-offchain'
 import { AsyncSchema } from '@app/definitions/types/AsyncSchema'
 import { getNFTBalancePolygon } from '@app/definitions/utils/balance.utils'
 import { sendGraphqlQuery } from '@app/definitions/utils/subgraph.utils'
-import { ChainId } from '@blockchain/blockchain/types/ChainId'
-import { Logger } from '@nestjs/common'
+import { image, MediaImageMimeType, PublicationMetadataSchema, textOnly } from '@lens-protocol/metadata'
+import { BadRequestException, Logger } from '@nestjs/common'
 import { OperationRunOptions } from 'apps/runner/src/services/operation-runner.service'
 import axios from 'axios'
 import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
@@ -230,32 +231,27 @@ export class CreatePostAction extends OperationOffChain {
       ipfsImages = imageUrls
     }
 
-    const data = {
-      version: '2.0.0',
-      metadata_id: metadataId,
-      description: content,
-      content,
-      external_url: credentials.handle ? `https://hey.xyz/u/${credentials.handle}` : 'https://chainjet.io',
-      image: ipfsImages[0] || null,
-      imageMimeType: imageMimeTypes[0],
-      name: credentials.handle ? `New Post by @${credentials.handle}` : 'New Post',
-      tags: [
-        ...(content.match(/#[a-zA-Z0-9]+/g) ?? []).map((tag: string) => tag.slice(1)),
-        ...(inputs.tags ?? []),
-        ...(inputs.group ? [inputs.group] : []),
-      ],
-      mainContentFocus: ipfsImages.length ? 'IMAGE' : 'TEXT_ONLY',
-      contentWarning: null,
-      attributes: [{ traitType: 'type', displayType: 'string', value: 'post' }],
-      media: ipfsImages.map((imageUrl, index) => ({
-        item: imageUrl,
-        type: imageMimeTypes[index],
-        altTag: '',
-      })),
-      locale: 'en-US',
-      createdOn: new Date().toISOString(),
-      appId: 'ChainJet',
-    }
+    const tags = [
+      ...(content.match(/#[a-zA-Z0-9]+/g) ?? []).map((tag: string) => tag.slice(1)),
+      ...(inputs.tags ?? []),
+      ...(inputs.group ? [inputs.group] : []),
+    ]
+    const appId = 'ChainJet'
+    const data = ipfsImages.length
+      ? image({
+          content,
+          image: {
+            item: ipfsImages[0],
+            type: imageMimeTypes[0] as MediaImageMimeType,
+          },
+          tags,
+          appId,
+        })
+      : textOnly({
+          content,
+          tags,
+          appId,
+        })
 
     const uploadTextUrl = `https://api.apireum.com/v1/ipfs/upload-text-file?key=${process.env.APIREUM_API_KEY}`
     const postRes = await axios.post(uploadTextUrl, {
@@ -266,6 +262,8 @@ export class CreatePostAction extends OperationOffChain {
       throw new Error('Failed to upload post')
     }
     const fileUrl = 'ipfs://' + postRes.data.file.cid
+
+    await wait(1000 * 60 * 3)
 
     const { collect, paidCollect, collectFee, collectCurrency, mirrorReferral, maxCollects, collectTimeLimit } = inputs
     const collectModule = getLensCollectModule({
@@ -281,57 +279,51 @@ export class CreatePostAction extends OperationOffChain {
 
     this.logger.log(`Creating lens post: ${workflow?.id} ${profileId} ${fileUrl}`)
     const query = `
-    mutation CreatePostViaDispatcher {
-      createPostViaDispatcher(
+    mutation {
+      postOnMomoka(
         request: {
-          profileId: "${profileId}"
           contentURI: "${fileUrl}"
-          collectModule: {
-            ${collectModule}
-          }
-          referenceModule: { followerOnlyReferenceModule: false }
         }
       ) {
-        ... on RelayerResult {
-          txHash
-          txId
+        ... on CreateMomokaPublicationResult {
+          id
+          momokaId
         }
-        ... on RelayError {
+        ... on LensProfileManagerRelayError {
           reason
         }
       }
     }`
 
-    const res = await sendGraphqlQuery('https://api.lens.dev/', query, {
+    const res = await sendGraphqlQuery('https://api-v2.lens.dev/', query, {
       'x-access-token': refreshedCredentials.accessToken,
       origin: process.env.LORIGIN,
     })
-    if (!res?.data?.createPostViaDispatcher?.txHash) {
+    if (!res?.data?.postOnMomoka?.id) {
       if (res?.errors?.[0]?.message) {
         throw new AuthenticationError(res.errors[0].message)
       }
       this.logger.error(
         `Failed to create lens post: ${workflow?.id} ${fileUrl} ${JSON.stringify(res?.errors ?? res?.data)}`,
       )
-      throw new AuthenticationError(`Failed to post message: ${JSON.stringify(res?.errors ?? res?.data)}`)
+      throw new BadRequestException(`Failed to post message: ${JSON.stringify(res?.errors ?? res?.data)}`)
     }
 
-    this.logger.log(
-      `Created lens post: ${workflow?.id} ${profileId} ${res.data.createPostViaDispatcher.txHash} ${fileUrl}`,
-    )
+    this.logger.log(`Created lens post: ${workflow?.id} ${profileId} ${res.data.postOnMomoka?.id} ${fileUrl}`)
 
     return {
       outputs: {
-        txHash: res.data.createPostViaDispatcher.txHash,
-        txId: res.data.createPostViaDispatcher.txId,
+        id: res.data.postOnMomoka.id,
+        // txHash: res.data.postOnchain.txHash,
+        // txId: res.data.postOnchain.txId,
       },
       refreshedCredentials,
-      transactions: [
-        {
-          chainId: ChainId.POLYGON,
-          hash: res.data.createPostViaDispatcher.txHash,
-        },
-      ],
+      // transactions: [
+      //   {
+      //     chainId: ChainId.POLYGON,
+      //     hash: res.data.postOnchain.txHash,
+      //   },
+      // ],
       credits: 50,
     }
   }

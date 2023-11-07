@@ -56,7 +56,7 @@ export class FollowProfileAction extends OperationOffChain {
         }
       })
     }`
-    const res = await sendGraphqlQuery('https://api.lens.dev/', query, {
+    const res = await sendGraphqlQuery('https://api-v2.lens.dev/', query, {
       'x-access-token': refreshedCredentials.accessToken,
     })
     if (!res?.data?.proxyAction) {
@@ -82,7 +82,7 @@ export class FollowProfileAction extends OperationOffChain {
         }
       }
     }`
-    const resStatus = await sendGraphqlQuery('https://api.lens.dev/', statusQuery, {
+    const resStatus = await sendGraphqlQuery('https://api-v2.lens.dev/', statusQuery, {
       'x-access-token': refreshedCredentials.accessToken,
     })
     return {

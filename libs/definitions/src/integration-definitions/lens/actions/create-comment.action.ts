@@ -185,7 +185,7 @@ export class CreateCommentAction extends OperationOffChain {
       }`
     }
 
-    const res = await sendGraphqlQuery('https://api.lens.dev/', query, {
+    const res = await sendGraphqlQuery('https://api-v2.lens.dev/', query, {
       'x-access-token': refreshedCredentials.accessToken,
       origin: process.env.LORIGIN,
     })

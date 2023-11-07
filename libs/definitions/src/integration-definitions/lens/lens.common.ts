@@ -14,7 +14,7 @@ export async function refreshLensAccessToken(
       refreshToken
     }
   }`
-  const res = await sendGraphqlQuery('https://api.lens.dev/', query)
+  const res = await sendGraphqlQuery('https://api-v2.lens.dev/', query)
   return res?.data?.refresh ?? null
 }
 
@@ -27,7 +27,7 @@ export async function getLensDefaultProfile(address: string): Promise<{ id: stri
       ownedBy
     }
   }`
-  const res = await sendGraphqlQuery('https://api.lens.dev/', query)
+  const res = await sendGraphqlQuery('https://api-v2.lens.dev/', query)
   return res?.data?.defaultProfile ?? null
 }
 
@@ -44,7 +44,7 @@ export async function getLensProfile(handle: string): Promise<{ id: string; owne
       }
     }
   }`
-  const res = await sendGraphqlQuery('https://api.lens.dev/', query)
+  const res = await sendGraphqlQuery('https://api-v2.lens.dev/', query)
   const profile = res?.data?.profiles?.items?.[0]
   if (!profile?.id) {
     throw new Error(
