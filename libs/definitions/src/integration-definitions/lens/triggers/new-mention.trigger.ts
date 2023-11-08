@@ -71,32 +71,6 @@ export class NewMentionTrigger extends OperationTrigger {
               ownedBy: {
                 type: 'string',
               },
-              stats: {
-                type: 'object',
-                properties: {
-                  totalFollowers: {
-                    type: 'number',
-                  },
-                  totalFollowing: {
-                    type: 'number',
-                  },
-                  totalPosts: {
-                    type: 'number',
-                  },
-                  totalComments: {
-                    type: 'number',
-                  },
-                  totalMirrors: {
-                    type: 'number',
-                  },
-                  totalPublications: {
-                    type: 'number',
-                  },
-                  totalCollects: {
-                    type: 'number',
-                  },
-                },
-              },
             },
           },
           canComment: {
@@ -127,61 +101,87 @@ export class NewMentionTrigger extends OperationTrigger {
     }
     const { profileId } = credentials
 
+    // const postOrCommentQuery = `
+    //   id
+    //   stats {
+    //     totalAmountOfMirrors
+    //     totalAmountOfCollects
+    //     totalAmountOfComments
+    //   }
+    //   metadata {
+    //     name
+    //     content
+    //   }
+    //   profile {
+    //     id
+    //     name
+    //     bio
+    //     isDefault
+    //     handle
+    //     ownedBy
+    //     stats {
+    //       totalFollowers
+    //       totalFollowing
+    //       totalPosts
+    //       totalComments
+    //       totalMirrors
+    //       totalPublications
+    //       totalCollects
+    //     }
+    //   }
+    //   canComment(profileId: "${profileId}") {
+    //     result
+    //   }
+    // `
     const postOrCommentQuery = `
-      id
-      stats {
-        totalAmountOfMirrors
-        totalAmountOfCollects
-        totalAmountOfComments
-      }
-      metadata {
-        name
+    id
+    stats {
+      mirrors
+      comments
+    }
+    metadata {
+      ... on TextOnlyMetadataV3 {
+        id
         content
       }
-      profile {
+      ... on ArticleMetadataV3 {
         id
-        name
-        bio
-        isDefault
-        handle
-        ownedBy
-        stats {
-          totalFollowers
-          totalFollowing
-          totalPosts
-          totalComments
-          totalMirrors
-          totalPublications
-          totalCollects
-        }
+        content
       }
-      canComment(profileId: "${profileId}") {
-        result
+      ... on ImageMetadataV3 {
+        id
+        content
       }
-    `
+      ... on LinkMetadataV3 {
+        id
+        content
+      }
+    }
+    by {
+      id
+      handle {
+        fullHandle
+      }
+      ownedBy {
+        address
+      }
+      metadata {
+        displayName
+      }
+    }`
 
     const query = `
       query Notifications {
-        notifications(request: { profileId: "${profileId}", notificationTypes: [MENTION_POST, MENTION_COMMENT], limit: ${
-      fetchAll ? 50 : 10
-    } }) {
+        notifications(request: { where: { notificationTypes: [MENTIONED, MENTIONED] } }) {
           items {
-            ... on NewMentionNotification {
-              notificationId
-              mentionPublication {
+            ... on MentionNotification {
+              id
+              publication {
                 ... on Post {
                   ${postOrCommentQuery}
                 }
                 ... on Comment {
                   ${postOrCommentQuery}
-                  mainPost {
-                    ... on Post {
-                      id
-                    }
-                    ... on Mirror {
-                       id
-                    }
-                  }
                 }
               }
             }
@@ -195,15 +195,26 @@ export class NewMentionTrigger extends OperationTrigger {
     if (!res?.data?.notifications?.items) {
       throw new Error(res.errors?.[0]?.message ?? 'Bad response from lens')
     }
+
     return {
       outputs: {
-        items: res.data.notifications.items.map((item) => ({
-          ...item,
-          mentionPublication: {
-            ...item.mentionPublication,
-            canComment: item.mentionPublication.canComment.result,
-          },
-        })),
+        items: res.data.notifications.items.map((item) => {
+          item.profile = item.publication.by
+          item.profile.name = item.publication.by.metadata?.displayName
+          item.profile.handle = item.publication.by.handle?.fullHandle
+          item.profile.ownedBy = item.publication.by.ownedBy?.address
+          delete item.publication.by
+          delete item.profile.metadata
+
+          item.mentionPublication = item.publication
+          if (item.stats) {
+            item.stats.totalAmountOfMirrors = item.stats.mirrors
+            item.stats.totalAmountOfComments = item.stats.comments
+            // item.stats.totalAmountOfCollects = item.stats.collects // TODO
+          }
+          delete item.publication
+          return item
+        }),
       },
       refreshedCredentials,
     }
