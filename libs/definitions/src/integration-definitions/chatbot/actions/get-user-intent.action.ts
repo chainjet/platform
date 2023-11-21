@@ -154,10 +154,13 @@ export class GetUserIntentAction extends OperationAction {
     if (!Array.isArray(inputs.intents)) {
       throw new BadRequestException(`Expected intents to be an array`)
     }
-    let intent: string | null
+    let intent: string | null = null
     if (inputs.intents.length) {
       const intents = inputs.intents.map((intent) => intent.name.trim().toLowerCase())
-      intent = ChatbotLib.getStaticUserIntent(inputs.message.trim().toLowerCase(), intents)
+      const staticIntent = ChatbotLib.getStaticUserIntent(inputs.message.trim().toLowerCase(), intents)
+      if (intents.includes(staticIntent)) {
+        intent = staticIntent
+      }
       if (!intent) {
         const messages = (previousOutputs?.messages ?? [])
           .map((message) => ({
