@@ -158,8 +158,16 @@ export class GetUserIntentAction extends OperationAction {
     if (inputs.intents.length) {
       const intents = inputs.intents.map((intent) => intent.name.trim().toLowerCase())
       const staticIntent = ChatbotLib.getStaticUserIntent(inputs.message.trim().toLowerCase(), intents)
-      if (intents.includes(staticIntent)) {
-        intent = staticIntent
+      if (staticIntent) {
+        intent = inputs.intents.find((intent) => intent.name.trim().toLowerCase() === staticIntent)?.name
+        if (intent) {
+          return {
+            outputs: {
+              intent,
+            },
+            condition: intent,
+          }
+        }
       }
       if (!intent) {
         const messages = (previousOutputs?.messages ?? [])
