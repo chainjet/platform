@@ -131,7 +131,7 @@ export class BroadcastConsumer {
         campaign.processed++
         job.progress(campaign.processed / campaign.total)
       } catch (e) {
-        if (e.message.includes('is not on the XMTP network')) {
+        if (e.message.includes('is not on the XMTP network') || e.message.includes('self messaging not supported')) {
           await this.campaignMessageService.createOne({
             campaign: campaign._id,
             address: contact.address,
