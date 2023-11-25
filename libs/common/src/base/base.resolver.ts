@@ -77,13 +77,19 @@ export const BaseResolver = <
 ): ResolverClass<DTO, QueryService<DTO>, CRUDResolver<DTO, C, U, MergePagingStrategyOpts<DTO, R, PS>>> => {
   // const { baseNameLower, pluralBaseNameLower, baseName } = getDTONames(DTOClass, opts.read);
 
-  // disable all many mutations
+  // disable all many mutations by default
   opts.create = opts.create ?? {}
-  opts.create.many = { disabled: true }
+  if (opts.create.many?.disabled !== false) {
+    opts.create.many = { disabled: true }
+  }
   opts.update = opts.update ?? {}
-  opts.update.many = { disabled: true }
+  if (!opts.update.many?.disabled !== false) {
+    opts.update.many = { disabled: true }
+  }
   opts.delete = opts.delete ?? {}
-  opts.delete.many = { disabled: true }
+  if (!opts.delete.many?.disabled !== false) {
+    opts.delete.many = { disabled: true }
+  }
 
   // create default assembler service
   class Service extends AssemblerQueryService<DTO, DTO> {

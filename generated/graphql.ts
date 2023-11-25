@@ -760,6 +760,18 @@ export interface DeleteOneContactInput {
     id: string;
 }
 
+export interface DeleteManyContactsInput {
+    filter: ContactDeleteFilter;
+}
+
+export interface ContactDeleteFilter {
+    and?: Nullable<ContactDeleteFilter[]>;
+    or?: Nullable<ContactDeleteFilter[]>;
+    id?: Nullable<IDFilterComparison>;
+    createdAt?: Nullable<DateFieldComparison>;
+    address?: Nullable<StringFieldComparison>;
+}
+
 export interface CreateOneCampaignInput {
     campaign: CreateCampaignInput;
 }
@@ -934,6 +946,10 @@ export interface IntegrationAccount {
     description?: Nullable<string>;
     authType: IntegrationAuthType;
     fieldsSchema?: Nullable<JSONObject>;
+}
+
+export interface DeleteManyResponse {
+    deletedCount: number;
 }
 
 export interface IntegrationAccountEdge {
@@ -1702,6 +1718,7 @@ export interface IMutation {
     createOneContact(input: CreateOneContactInput): Contact | Promise<Contact>;
     updateOneContact(input: UpdateOneContactInput): Contact | Promise<Contact>;
     deleteOneContact(input: DeleteOneContactInput): ContactDeleteResponse | Promise<ContactDeleteResponse>;
+    deleteManyContacts(input: DeleteManyContactsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
     addContacts(addresses: string[], tags?: Nullable<string[]>, limitToPlan?: Nullable<boolean>): ResultPayload | Promise<ResultPayload>;
     generateContactsPresignedUrl(id: string): string | Promise<string>;
     addContactsFile(id: string, tags?: Nullable<string[]>, limitToPlan?: Nullable<boolean>): ResultPayload | Promise<ResultPayload>;

@@ -48,6 +48,11 @@ enum IntegrationAuthType {
   custom
 }
 
+type DeleteManyResponse {
+  """The number of records deleted."""
+  deletedCount: Int!
+}
+
 type IntegrationAccountEdge {
   """The node containing the IntegrationAccount"""
   node: IntegrationAccount!
@@ -1822,6 +1827,7 @@ type Mutation {
   createOneContact(input: CreateOneContactInput!): Contact!
   updateOneContact(input: UpdateOneContactInput!): Contact!
   deleteOneContact(input: DeleteOneContactInput!): ContactDeleteResponse!
+  deleteManyContacts(input: DeleteManyContactsInput!): DeleteManyResponse!
   addContacts(addresses: [String!]!, tags: [String!], limitToPlan: Boolean): ResultPayload!
   generateContactsPresignedUrl(id: String!): String!
   addContactsFile(id: String!, tags: [String!], limitToPlan: Boolean): ResultPayload!
@@ -2032,6 +2038,19 @@ input UpdateContactInput {
 input DeleteOneContactInput {
   """The id of the record to delete."""
   id: ID!
+}
+
+input DeleteManyContactsInput {
+  """Filter to find records to delete"""
+  filter: ContactDeleteFilter!
+}
+
+input ContactDeleteFilter {
+  and: [ContactDeleteFilter!]
+  or: [ContactDeleteFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  address: StringFieldComparison
 }
 
 input CreateOneCampaignInput {

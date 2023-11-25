@@ -35,6 +35,7 @@ export class ContactResolver extends BaseResolver(Contact, {
   UpdateDTOClass: UpdateContactInput,
   guards: [GraphqlGuard],
   enableTotalCount: true,
+  delete: { many: { disabled: false } },
 }) {
   private readonly logger = new Logger(ContactResolver.name)
 
