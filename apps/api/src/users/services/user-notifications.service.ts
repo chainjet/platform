@@ -32,6 +32,11 @@ export class UserNotificationService extends BaseService<UserNotification> {
     }
     const notificationAddress = contact?.notificationAddress || address
 
+    // don't send notifications to the notification address (notifications.chainjet.eth)
+    if (address === '0x1fa7C6B435D367DeBe23b7E0ffa91A1713e1952f') {
+      return
+    }
+
     await fetch(process.env.NOTIFICATIONS_WORKFLOW_HOOK!, {
       method: 'POST',
       headers: {
