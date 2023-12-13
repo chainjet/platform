@@ -168,6 +168,11 @@ export enum OrderSortFields {
     address = "address"
 }
 
+export enum AssistantSortFields {
+    id = "id",
+    createdAt = "createdAt"
+}
+
 export enum UserDatabaseSortFields {
     id = "id",
     createdAt = "createdAt"
@@ -574,6 +579,19 @@ export interface OrderSort {
     nulls?: Nullable<SortNulls>;
 }
 
+export interface AssistantFilter {
+    and?: Nullable<AssistantFilter[]>;
+    or?: Nullable<AssistantFilter[]>;
+    id?: Nullable<IDFilterComparison>;
+    createdAt?: Nullable<DateFieldComparison>;
+}
+
+export interface AssistantSort {
+    field: AssistantSortFields;
+    direction: SortDirection;
+    nulls?: Nullable<SortNulls>;
+}
+
 export interface UserDatabaseFilter {
     and?: Nullable<UserDatabaseFilter[]>;
     or?: Nullable<UserDatabaseFilter[]>;
@@ -760,18 +778,6 @@ export interface DeleteOneContactInput {
     id: string;
 }
 
-export interface DeleteManyContactsInput {
-    filter: ContactDeleteFilter;
-}
-
-export interface ContactDeleteFilter {
-    and?: Nullable<ContactDeleteFilter[]>;
-    or?: Nullable<ContactDeleteFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
-    address?: Nullable<StringFieldComparison>;
-}
-
 export interface CreateOneCampaignInput {
     campaign: CreateCampaignInput;
 }
@@ -876,6 +882,27 @@ export interface DeleteOneOrderInput {
     id: string;
 }
 
+export interface CreateOneAssistantInput {
+    assistant: CreateAssistantInput;
+}
+
+export interface CreateAssistantInput {
+    instructions: string;
+}
+
+export interface UpdateOneAssistantInput {
+    id: string;
+    update: UpdateAssistantInput;
+}
+
+export interface UpdateAssistantInput {
+    instructions?: Nullable<string>;
+}
+
+export interface DeleteOneAssistantInput {
+    id: string;
+}
+
 export interface CreateOneUserDatabaseInput {
     userDatabase: CreateUserDatabase;
 }
@@ -946,10 +973,6 @@ export interface IntegrationAccount {
     description?: Nullable<string>;
     authType: IntegrationAuthType;
     fieldsSchema?: Nullable<JSONObject>;
-}
-
-export interface DeleteManyResponse {
-    deletedCount: number;
 }
 
 export interface IntegrationAccountEdge {
@@ -1371,6 +1394,12 @@ export interface WorkflowRunActionConnection {
     edges: WorkflowRunActionEdge[];
 }
 
+export interface Assistant {
+    id: string;
+    createdAt: DateTime;
+    instructions: string;
+}
+
 export interface Campaign {
     id: string;
     createdAt: DateTime;
@@ -1384,6 +1413,22 @@ export interface Campaign {
     includeTags?: Nullable<string[]>;
     state: string;
     error?: Nullable<string>;
+}
+
+export interface AssistantDeleteResponse {
+    id?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
+    instructions?: Nullable<string>;
+}
+
+export interface AssistantEdge {
+    node: Assistant;
+    cursor: ConnectionCursor;
+}
+
+export interface AssistantConnection {
+    pageInfo: PageInfo;
+    edges: AssistantEdge[];
 }
 
 export interface CampaignDeleteResponse {
@@ -1676,6 +1721,8 @@ export interface IQuery {
     order(id: string): Order | Promise<Order>;
     orders(paging?: Nullable<CursorPaging>, filter?: Nullable<OrderFilter>, sorting?: Nullable<OrderSort[]>): OrderConnection | Promise<OrderConnection>;
     orderSummary(from: DateTime, to: DateTime): OrderSummary | Promise<OrderSummary>;
+    assistant(id: string): Assistant | Promise<Assistant>;
+    assistants(paging?: Nullable<CursorPaging>, filter?: Nullable<AssistantFilter>, sorting?: Nullable<AssistantSort[]>): AssistantConnection | Promise<AssistantConnection>;
     contractSchema(chainId: number, address: string, type: string): ContractSchema | Promise<ContractSchema>;
     asyncSchemas(integrationId: string, accountCredentialId: string, names: string[], inputs?: Nullable<JSONObject>, integrationTriggerId?: Nullable<string>, integrationActionId?: Nullable<string>): AsyncSchema | Promise<AsyncSchema>;
     manyAsyncSchemas(asyncSchemaInputs: JSONObject[]): AsyncSchema | Promise<AsyncSchema>;
@@ -1718,7 +1765,6 @@ export interface IMutation {
     createOneContact(input: CreateOneContactInput): Contact | Promise<Contact>;
     updateOneContact(input: UpdateOneContactInput): Contact | Promise<Contact>;
     deleteOneContact(input: DeleteOneContactInput): ContactDeleteResponse | Promise<ContactDeleteResponse>;
-    deleteManyContacts(input: DeleteManyContactsInput): DeleteManyResponse | Promise<DeleteManyResponse>;
     addContacts(addresses: string[], tags?: Nullable<string[]>, limitToPlan?: Nullable<boolean>): ResultPayload | Promise<ResultPayload>;
     generateContactsPresignedUrl(id: string): string | Promise<string>;
     addContactsFile(id: string, tags?: Nullable<string[]>, limitToPlan?: Nullable<boolean>): ResultPayload | Promise<ResultPayload>;
@@ -1735,6 +1781,9 @@ export interface IMutation {
     createOneOrder(input: CreateOneOrderInput): Order | Promise<Order>;
     updateOneOrder(input: UpdateOneOrderInput): Order | Promise<Order>;
     deleteOneOrder(input: DeleteOneOrderInput): OrderDeleteResponse | Promise<OrderDeleteResponse>;
+    createOneAssistant(input: CreateOneAssistantInput): Assistant | Promise<Assistant>;
+    updateOneAssistant(input: UpdateOneAssistantInput): Assistant | Promise<Assistant>;
+    deleteOneAssistant(input: DeleteOneAssistantInput): AssistantDeleteResponse | Promise<AssistantDeleteResponse>;
     createOneUserDatabase(input: CreateOneUserDatabaseInput): UserDatabase | Promise<UserDatabase>;
     updateOneUserDatabase(input: UpdateOneUserDatabaseInput): UserDatabase | Promise<UserDatabase>;
     deleteOneUserDatabase(input: DeleteOneUserDatabaseInput): UserDatabaseDeleteResponse | Promise<UserDatabaseDeleteResponse>;

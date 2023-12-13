@@ -16,15 +16,18 @@ import { ChatbotConsumer } from '../workflow-triggers/services/chatbot.consumer'
 import { WorkflowTriggersModule } from '../workflow-triggers/workflow-triggers.module'
 import { WorkflowsModule } from '../workflows/workflows.module'
 import { ContactSubscriptionController } from './controllers/contact-subscription.controller'
+import { Assistant, AssistantAuthorizer } from './entities/assistant'
 import { Campaign, CampaignAuthorizer } from './entities/campaign'
 import { CampaignMessage } from './entities/campaign-message'
 import { Contact, ContactAuthorizer } from './entities/contact'
 import { Menu, MenuAuthorizer } from './entities/menu'
 import { Order, OrderAuthorizer } from './entities/order'
+import { AssistantResolver } from './resolvers/assistant.resolver'
 import { CampaignResolver } from './resolvers/campaign.resolver'
 import { ContactResolver } from './resolvers/contact.resolver'
 import { MenuResolver } from './resolvers/menu.resolver'
 import { OrderResolver } from './resolvers/order.resolver'
+import { AssistantService } from './services/assistant.service'
 import { BroadcastConsumer } from './services/broadcast.consumer'
 import { CampaignMessageService } from './services/campaign-message.service'
 import { CampaignService } from './services/campaign.service'
@@ -54,6 +57,10 @@ import { OrderService } from './services/order.service'
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypegooseModule.forFeature([Order])],
       dtos: [{ DTOClass: Order }],
+    }),
+    NestjsQueryGraphQLModule.forFeature({
+      imports: [NestjsQueryTypegooseModule.forFeature([Assistant])],
+      dtos: [{ DTOClass: Assistant }],
     }),
     BullModule.registerQueue({
       name: 'chatbotMessage',
@@ -106,6 +113,7 @@ import { OrderService } from './services/order.service'
     CampaignResolver,
     MenuResolver,
     OrderResolver,
+    AssistantResolver,
 
     // Services
     ContactService,
@@ -113,12 +121,14 @@ import { OrderService } from './services/order.service'
     CampaignMessageService,
     MenuService,
     OrderService,
+    AssistantService,
 
     // Authorizers
     ContactAuthorizer,
     CampaignAuthorizer,
     MenuAuthorizer,
     OrderAuthorizer,
+    AssistantAuthorizer,
 
     // Consumers
     ChatbotConsumer,

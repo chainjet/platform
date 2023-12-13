@@ -4,7 +4,7 @@ import { UserEventService } from '@app/common/metrics/user-event.service'
 import { convertObservableToRunResponse, wait } from '@app/common/utils/async.utils'
 import { OperationTrigger } from '@app/definitions/operation-trigger'
 import { OperationType } from '@app/definitions/types/OperationType'
-import { Inject, Injectable, InternalServerErrorException, Logger, NotFoundException, forwardRef } from '@nestjs/common'
+import { forwardRef, Inject, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common'
 import { PlanConfig } from 'apps/api/src/users/config/plans.config'
 import { WorkflowAction } from 'apps/api/src/workflow-actions/entities/workflow-action'
 import { WorkflowTrigger } from 'apps/api/src/workflow-triggers/entities/workflow-trigger'
@@ -130,7 +130,7 @@ export class OperationRunnerService {
     }
 
     const limits = definition.limits(opts)
-    if (limits?.daily && opts.user) {
+    if (limits?.daily && opts.user && opts.user.planConfig.key === 'free') {
       const usedToday = await this.userEventService.findOne({
         user: opts.user.id,
         key: `run-${opts.operation._id.toString()}`,

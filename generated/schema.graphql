@@ -48,11 +48,6 @@ enum IntegrationAuthType {
   custom
 }
 
-type DeleteManyResponse {
-  """The number of records deleted."""
-  deletedCount: Int!
-}
-
 type IntegrationAccountEdge {
   """The node containing the IntegrationAccount"""
   node: IntegrationAccount!
@@ -799,6 +794,12 @@ type WorkflowRunActionConnection {
   edges: [WorkflowRunActionEdge!]!
 }
 
+type Assistant {
+  id: ID!
+  createdAt: DateTime!
+  instructions: String!
+}
+
 type Campaign {
   id: ID!
   createdAt: DateTime!
@@ -812,6 +813,28 @@ type Campaign {
   includeTags: [String!]
   state: String!
   error: String
+}
+
+type AssistantDeleteResponse {
+  id: ID
+  createdAt: DateTime
+  instructions: String
+}
+
+type AssistantEdge {
+  """The node containing the Assistant"""
+  node: Assistant!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type AssistantConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [AssistantEdge!]!
 }
 
 type CampaignDeleteResponse {
@@ -1377,6 +1400,20 @@ type Query {
     sorting: [OrderSort!] = []
   ): OrderConnection!
   orderSummary(from: DateTime!, to: DateTime!): OrderSummary!
+  assistant(
+    """The id of the record to find."""
+    id: ID!
+  ): Assistant!
+  assistants(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: AssistantFilter = {}
+
+    """Specify to sort results."""
+    sorting: [AssistantSort!] = []
+  ): AssistantConnection!
   contractSchema(chainId: Int!, address: String!, type: String!): ContractSchema!
   asyncSchemas(integrationId: String!, accountCredentialId: String!, names: [String!]!, inputs: JSONObject, integrationTriggerId: String, integrationActionId: String): AsyncSchema!
   manyAsyncSchemas(asyncSchemaInputs: [JSONObject!]!): AsyncSchema!
@@ -1758,6 +1795,24 @@ enum OrderSortFields {
   address
 }
 
+input AssistantFilter {
+  and: [AssistantFilter!]
+  or: [AssistantFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+}
+
+input AssistantSort {
+  field: AssistantSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum AssistantSortFields {
+  id
+  createdAt
+}
+
 input UserDatabaseFilter {
   and: [UserDatabaseFilter!]
   or: [UserDatabaseFilter!]
@@ -1827,7 +1882,6 @@ type Mutation {
   createOneContact(input: CreateOneContactInput!): Contact!
   updateOneContact(input: UpdateOneContactInput!): Contact!
   deleteOneContact(input: DeleteOneContactInput!): ContactDeleteResponse!
-  deleteManyContacts(input: DeleteManyContactsInput!): DeleteManyResponse!
   addContacts(addresses: [String!]!, tags: [String!], limitToPlan: Boolean): ResultPayload!
   generateContactsPresignedUrl(id: String!): String!
   addContactsFile(id: String!, tags: [String!], limitToPlan: Boolean): ResultPayload!
@@ -1844,6 +1898,9 @@ type Mutation {
   createOneOrder(input: CreateOneOrderInput!): Order!
   updateOneOrder(input: UpdateOneOrderInput!): Order!
   deleteOneOrder(input: DeleteOneOrderInput!): OrderDeleteResponse!
+  createOneAssistant(input: CreateOneAssistantInput!): Assistant!
+  updateOneAssistant(input: UpdateOneAssistantInput!): Assistant!
+  deleteOneAssistant(input: DeleteOneAssistantInput!): AssistantDeleteResponse!
   createOneUserDatabase(input: CreateOneUserDatabaseInput!): UserDatabase!
   updateOneUserDatabase(input: UpdateOneUserDatabaseInput!): UserDatabase!
   deleteOneUserDatabase(input: DeleteOneUserDatabaseInput!): UserDatabaseDeleteResponse!
@@ -2040,19 +2097,6 @@ input DeleteOneContactInput {
   id: ID!
 }
 
-input DeleteManyContactsInput {
-  """Filter to find records to delete"""
-  filter: ContactDeleteFilter!
-}
-
-input ContactDeleteFilter {
-  and: [ContactDeleteFilter!]
-  or: [ContactDeleteFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-  address: StringFieldComparison
-}
-
 input CreateOneCampaignInput {
   """The record to create"""
   campaign: CreateCampaignInput!
@@ -2168,6 +2212,32 @@ input UpdateOrderItemInput {
 }
 
 input DeleteOneOrderInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input CreateOneAssistantInput {
+  """The record to create"""
+  assistant: CreateAssistantInput!
+}
+
+input CreateAssistantInput {
+  instructions: String!
+}
+
+input UpdateOneAssistantInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateAssistantInput!
+}
+
+input UpdateAssistantInput {
+  instructions: String
+}
+
+input DeleteOneAssistantInput {
   """The id of the record to delete."""
   id: ID!
 }
