@@ -798,6 +798,7 @@ type Assistant {
   id: ID!
   createdAt: DateTime!
   instructions: String!
+  enabled: Boolean
 }
 
 type Campaign {
@@ -819,6 +820,7 @@ type AssistantDeleteResponse {
   id: ID
   createdAt: DateTime
   instructions: String
+  enabled: Boolean
 }
 
 type AssistantEdge {
@@ -835,6 +837,9 @@ type AssistantConnection {
 
   """Array of edges."""
   edges: [AssistantEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 type CampaignDeleteResponse {
@@ -2223,6 +2228,7 @@ input CreateOneAssistantInput {
 
 input CreateAssistantInput {
   instructions: String!
+  enabled: Boolean
 }
 
 input UpdateOneAssistantInput {
@@ -2235,6 +2241,7 @@ input UpdateOneAssistantInput {
 
 input UpdateAssistantInput {
   instructions: String
+  enabled: Boolean
 }
 
 input DeleteOneAssistantInput {

@@ -13,6 +13,8 @@ export class AssistantResolver extends BaseResolver(Assistant, {
   CreateDTOClass: CreateAssistantInput,
   UpdateDTOClass: UpdateAssistantInput,
   guards: [GraphqlGuard],
+  enableTotalCount: true,
+  delete: { many: { disabled: false } },
 }) {
   constructor(
     protected assistantService: AssistantService,

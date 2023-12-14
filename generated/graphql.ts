@@ -888,6 +888,7 @@ export interface CreateOneAssistantInput {
 
 export interface CreateAssistantInput {
     instructions: string;
+    enabled?: Nullable<boolean>;
 }
 
 export interface UpdateOneAssistantInput {
@@ -897,6 +898,7 @@ export interface UpdateOneAssistantInput {
 
 export interface UpdateAssistantInput {
     instructions?: Nullable<string>;
+    enabled?: Nullable<boolean>;
 }
 
 export interface DeleteOneAssistantInput {
@@ -1398,6 +1400,7 @@ export interface Assistant {
     id: string;
     createdAt: DateTime;
     instructions: string;
+    enabled?: Nullable<boolean>;
 }
 
 export interface Campaign {
@@ -1419,6 +1422,7 @@ export interface AssistantDeleteResponse {
     id?: Nullable<string>;
     createdAt?: Nullable<DateTime>;
     instructions?: Nullable<string>;
+    enabled?: Nullable<boolean>;
 }
 
 export interface AssistantEdge {
@@ -1429,6 +1433,7 @@ export interface AssistantEdge {
 export interface AssistantConnection {
     pageInfo: PageInfo;
     edges: AssistantEdge[];
+    totalCount: number;
 }
 
 export interface CampaignDeleteResponse {
