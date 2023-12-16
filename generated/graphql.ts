@@ -887,7 +887,9 @@ export interface CreateOneAssistantInput {
 }
 
 export interface CreateAssistantInput {
+    name: string;
     instructions: string;
+    tags?: Nullable<string[]>;
     enabled?: Nullable<boolean>;
 }
 
@@ -897,7 +899,9 @@ export interface UpdateOneAssistantInput {
 }
 
 export interface UpdateAssistantInput {
+    name?: Nullable<string>;
     instructions?: Nullable<string>;
+    tags?: Nullable<string[]>;
     enabled?: Nullable<boolean>;
 }
 
@@ -1399,7 +1403,9 @@ export interface WorkflowRunActionConnection {
 export interface Assistant {
     id: string;
     createdAt: DateTime;
+    name: string;
     instructions: string;
+    tags?: Nullable<string[]>;
     enabled?: Nullable<boolean>;
 }
 
@@ -1421,7 +1427,9 @@ export interface Campaign {
 export interface AssistantDeleteResponse {
     id?: Nullable<string>;
     createdAt?: Nullable<DateTime>;
+    name?: Nullable<string>;
     instructions?: Nullable<string>;
+    tags?: Nullable<string[]>;
     enabled?: Nullable<boolean>;
 }
 

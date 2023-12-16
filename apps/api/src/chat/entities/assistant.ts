@@ -20,16 +20,34 @@ export class Assistant extends BaseEntity {
 
   @Field()
   @prop({ required: true })
+  name: string
+
+  @Field()
+  @prop({ required: true })
   instructions: string
 
+  @Field(() => [String], { nullable: true })
+  @prop({ type: () => [String] })
+  tags?: string[]
+
   @Field({ nullable: true })
+  @prop()
   enabled?: boolean
+
+  @prop()
+  assistantId: string
 }
 
 @InputType()
 export class CreateAssistantInput {
   @Field()
+  name: string
+
+  @Field()
   instructions: string
+
+  @Field(() => [String], { nullable: true })
+  tags?: string[]
 
   @Field({ nullable: true })
   enabled?: boolean
@@ -38,7 +56,13 @@ export class CreateAssistantInput {
 @InputType()
 export class UpdateAssistantInput {
   @Field({ nullable: true })
+  name: string
+
+  @Field({ nullable: true })
   instructions: string
+
+  @Field(() => [String], { nullable: true })
+  tags?: string[]
 
   @Field({ nullable: true })
   enabled?: boolean

@@ -797,7 +797,9 @@ type WorkflowRunActionConnection {
 type Assistant {
   id: ID!
   createdAt: DateTime!
+  name: String!
   instructions: String!
+  tags: [String!]
   enabled: Boolean
 }
 
@@ -819,7 +821,9 @@ type Campaign {
 type AssistantDeleteResponse {
   id: ID
   createdAt: DateTime
+  name: String
   instructions: String
+  tags: [String!]
   enabled: Boolean
 }
 
@@ -2227,7 +2231,9 @@ input CreateOneAssistantInput {
 }
 
 input CreateAssistantInput {
+  name: String!
   instructions: String!
+  tags: [String!]
   enabled: Boolean
 }
 
@@ -2240,7 +2246,9 @@ input UpdateOneAssistantInput {
 }
 
 input UpdateAssistantInput {
+  name: String
   instructions: String
+  tags: [String!]
   enabled: Boolean
 }
 

@@ -94,6 +94,14 @@ import { OrderService } from './services/order.service'
         maxStalledCount: 3,
       },
     }),
+    BullModule.registerQueue({
+      name: 'assistants',
+      settings: {
+        lockDuration: 60000,
+        stalledInterval: 30000,
+        maxStalledCount: 3,
+      },
+    }),
     CommonModule,
     AuthModule, // required for GraphqlGuard
     UsersModule, // required for GraphqlGuard
