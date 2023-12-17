@@ -24,6 +24,17 @@ export class AssistantService extends BaseService<Assistant> {
     AssistantService.instance = this
   }
 
+  async createOne(record: Partial<Assistant>): Promise<Assistant> {
+    if (record.enabled) {
+      const existing = await this.findOne({ owner: record.owner, enabled: true })
+      if (existing) {
+        throw new Error('You can only have one enabled assistant at a time')
+      }
+    }
+    const assistant = await super.createOne(record)
+    return assistant
+  }
+
   async afterCreateOne(assistant: Assistant) {
     this.assistantsQueue.add({
       type: 'created',
@@ -31,11 +42,17 @@ export class AssistantService extends BaseService<Assistant> {
     })
   }
 
-  updateOne(
+  async updateOne(
     id: string,
     update: Partial<Assistant>,
     opts?: UpdateOneOptions<Assistant> | undefined,
   ): Promise<Assistant> {
+    if (update.enabled) {
+      const existing = await this.findOne({ _id: { $ne: id }, enabled: true })
+      if (existing) {
+        throw new Error('You can only have one enabled assistant at a time')
+      }
+    }
     this.assistantsQueue.add({
       type: 'updated',
       id,
