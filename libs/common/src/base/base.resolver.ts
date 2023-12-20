@@ -83,11 +83,11 @@ export const BaseResolver = <
     opts.create.many = { disabled: true }
   }
   opts.update = opts.update ?? {}
-  if (!opts.update.many?.disabled !== false) {
+  if (opts.update.many?.disabled !== false) {
     opts.update.many = { disabled: true }
   }
   opts.delete = opts.delete ?? {}
-  if (!opts.delete.many?.disabled !== false) {
+  if (opts.delete.many?.disabled !== false) {
     opts.delete.many = { disabled: true }
   }
 

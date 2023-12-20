@@ -14,7 +14,6 @@ export class AssistantResolver extends BaseResolver(Assistant, {
   UpdateDTOClass: UpdateAssistantInput,
   guards: [GraphqlGuard],
   enableTotalCount: true,
-  delete: { many: { disabled: false } },
 }) {
   constructor(
     protected assistantService: AssistantService,
