@@ -1,14 +1,18 @@
 import { BaseService } from '@app/common/base/base.service'
-import { RedisPubSubService } from '@app/common/cache/redis-pubsub.service'
+import { assertNever } from '@app/common/utils/typescript.utils'
 import { InjectQueue } from '@nestjs/bull'
-import { Injectable, Logger } from '@nestjs/common'
+import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common'
 import { DeleteOneOptions, UpdateOneOptions } from '@ptc-org/nestjs-query-core'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { Queue } from 'bull'
+import { camelCase } from 'lodash'
 import { UpdateResult } from 'mongodb'
 import { FilterQuery, UpdateQuery } from 'mongoose'
 import { InjectModel } from 'nestjs-typegoose'
+import { User } from '../../users/entities/user'
+import { UserService } from '../../users/services/user.service'
 import { Assistant } from '../entities/assistant'
+import { AssistantSkill, AssistantSkillKey } from '../entities/assistant-skill'
 
 @Injectable()
 export class AssistantService extends BaseService<Assistant> {
@@ -18,19 +22,30 @@ export class AssistantService extends BaseService<Assistant> {
   constructor(
     @InjectModel(Assistant) protected readonly model: ReturnModelType<typeof Assistant>,
     @InjectQueue('assistants') private assistantsQueue: Queue,
-    protected redisPubSubService: RedisPubSubService,
+    private userService: UserService,
   ) {
     super(model)
     AssistantService.instance = this
   }
 
   async createOne(record: Partial<Assistant>): Promise<Assistant> {
+    if (!record.owner) {
+      throw new BadRequestException()
+    }
+    const user = await this.userService.findById(record.owner.toString())
+    if (!user) {
+      throw new BadRequestException()
+    }
+
     if (record.enabled) {
       const existing = await this.findOne({ owner: record.owner, enabled: true })
       if (existing) {
         throw new Error('You can only have one enabled assistant at a time')
       }
     }
+
+    this.validateSkills(record.skills || [], user)
+
     const assistant = await super.createOne(record)
     return assistant
   }
@@ -47,12 +62,26 @@ export class AssistantService extends BaseService<Assistant> {
     update: Partial<Assistant>,
     opts?: UpdateOneOptions<Assistant> | undefined,
   ): Promise<Assistant> {
+    const assistant = await this.findById(id)
+    if (!assistant) {
+      throw new NotFoundException(`Assistant not found: ${id}`)
+    }
+    const user = await this.userService.findOne({ _id: assistant.owner })
+    if (!user) {
+      throw new BadRequestException()
+    }
+
     if (update.enabled) {
       const existing = await this.findOne({ _id: { $ne: id }, enabled: true })
       if (existing) {
         throw new Error('You can only have one enabled assistant at a time')
       }
     }
+
+    if (update.skills?.length) {
+      this.validateSkills(update.skills, user)
+    }
+
     this.assistantsQueue.add({
       type: 'updated',
       id,
@@ -81,5 +110,26 @@ export class AssistantService extends BaseService<Assistant> {
       })
     }
     return super.deleteOne(id, opts)
+  }
+
+  private validateSkills(skills: AssistantSkill[], user: User) {
+    if (!user.planConfig.assistantSkills) {
+      throw new BadRequestException('Please upgrade your plan to use chatbot skills')
+    }
+    for (const skill of skills) {
+      switch (skill.key) {
+        case AssistantSkillKey.api:
+          for (const requiredKey of ['name', 'url', 'method', 'contentType']) {
+            if (!skill.inputs?.[requiredKey]) {
+              throw new Error(`${requiredKey} is required for API skill`)
+            }
+          }
+          skill.inputs['key'] = camelCase(skill.inputs['name'])
+          break
+        default:
+          assertNever(skill.key)
+          throw new Error(`Invalid skill key: ${skill.key}`)
+      }
+    }
   }
 }

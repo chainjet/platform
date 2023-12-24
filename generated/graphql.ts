@@ -173,12 +173,6 @@ export enum AssistantSortFields {
     createdAt = "createdAt"
 }
 
-export enum AssistantSkillSortFields {
-    id = "id",
-    createdAt = "createdAt",
-    assistant = "assistant"
-}
-
 export enum UserDatabaseSortFields {
     id = "id",
     createdAt = "createdAt"
@@ -598,20 +592,6 @@ export interface AssistantSort {
     nulls?: Nullable<SortNulls>;
 }
 
-export interface AssistantSkillFilter {
-    and?: Nullable<AssistantSkillFilter[]>;
-    or?: Nullable<AssistantSkillFilter[]>;
-    id?: Nullable<IDFilterComparison>;
-    createdAt?: Nullable<DateFieldComparison>;
-    assistant?: Nullable<IDFilterComparison>;
-}
-
-export interface AssistantSkillSort {
-    field: AssistantSkillSortFields;
-    direction: SortDirection;
-    nulls?: Nullable<SortNulls>;
-}
-
 export interface UserDatabaseFilter {
     and?: Nullable<UserDatabaseFilter[]>;
     or?: Nullable<UserDatabaseFilter[]>;
@@ -921,8 +901,14 @@ export interface CreateOneAssistantInput {
 export interface CreateAssistantInput {
     name: string;
     instructions: string;
+    skills: CreateAssistantSkillInput[];
     tags?: Nullable<string[]>;
     enabled?: Nullable<boolean>;
+}
+
+export interface CreateAssistantSkillInput {
+    key: string;
+    inputs: JSONObject;
 }
 
 export interface UpdateOneAssistantInput {
@@ -933,35 +919,12 @@ export interface UpdateOneAssistantInput {
 export interface UpdateAssistantInput {
     name?: Nullable<string>;
     instructions?: Nullable<string>;
+    skills?: Nullable<CreateAssistantSkillInput[]>;
     tags?: Nullable<string[]>;
     enabled?: Nullable<boolean>;
 }
 
 export interface DeleteOneAssistantInput {
-    id: string;
-}
-
-export interface CreateOneAssistantSkillInput {
-    assistantSkill: CreateAssistantSkillInput;
-}
-
-export interface CreateAssistantSkillInput {
-    assistant: string;
-    name: string;
-    inputs: JSONObject;
-}
-
-export interface UpdateOneAssistantSkillInput {
-    id: string;
-    update: UpdateAssistantSkillInput;
-}
-
-export interface UpdateAssistantSkillInput {
-    name?: Nullable<string>;
-    inputs?: Nullable<JSONObject>;
-}
-
-export interface DeleteOneAssistantSkillInput {
     id: string;
 }
 
@@ -1460,21 +1423,19 @@ export interface WorkflowRunActionConnection {
     edges: WorkflowRunActionEdge[];
 }
 
+export interface AssistantSkill {
+    key: string;
+    inputs: JSONObject;
+}
+
 export interface Assistant {
     id: string;
     createdAt: DateTime;
     name: string;
     instructions: string;
+    skills: AssistantSkill[];
     tags?: Nullable<string[]>;
     enabled?: Nullable<boolean>;
-}
-
-export interface AssistantSkill {
-    id: string;
-    createdAt: DateTime;
-    assistant: string;
-    name: string;
-    inputs: JSONObject;
 }
 
 export interface Campaign {
@@ -1492,29 +1453,12 @@ export interface Campaign {
     error?: Nullable<string>;
 }
 
-export interface AssistantSkillDeleteResponse {
-    id?: Nullable<string>;
-    createdAt?: Nullable<DateTime>;
-    assistant?: Nullable<string>;
-    name?: Nullable<string>;
-    inputs?: Nullable<JSONObject>;
-}
-
-export interface AssistantSkillEdge {
-    node: AssistantSkill;
-    cursor: ConnectionCursor;
-}
-
-export interface AssistantSkillConnection {
-    pageInfo: PageInfo;
-    edges: AssistantSkillEdge[];
-}
-
 export interface AssistantDeleteResponse {
     id?: Nullable<string>;
     createdAt?: Nullable<DateTime>;
     name?: Nullable<string>;
     instructions?: Nullable<string>;
+    skills?: Nullable<AssistantSkill[]>;
     tags?: Nullable<string[]>;
     enabled?: Nullable<boolean>;
 }
@@ -1822,8 +1766,6 @@ export interface IQuery {
     orderSummary(from: DateTime, to: DateTime): OrderSummary | Promise<OrderSummary>;
     assistant(id: string): Assistant | Promise<Assistant>;
     assistants(paging?: Nullable<CursorPaging>, filter?: Nullable<AssistantFilter>, sorting?: Nullable<AssistantSort[]>): AssistantConnection | Promise<AssistantConnection>;
-    assistantSkill(id: string): AssistantSkill | Promise<AssistantSkill>;
-    assistantSkills(paging?: Nullable<CursorPaging>, filter?: Nullable<AssistantSkillFilter>, sorting?: Nullable<AssistantSkillSort[]>): AssistantSkillConnection | Promise<AssistantSkillConnection>;
     contractSchema(chainId: number, address: string, type: string): ContractSchema | Promise<ContractSchema>;
     asyncSchemas(integrationId: string, accountCredentialId: string, names: string[], inputs?: Nullable<JSONObject>, integrationTriggerId?: Nullable<string>, integrationActionId?: Nullable<string>): AsyncSchema | Promise<AsyncSchema>;
     manyAsyncSchemas(asyncSchemaInputs: JSONObject[]): AsyncSchema | Promise<AsyncSchema>;
@@ -1886,9 +1828,6 @@ export interface IMutation {
     createOneAssistant(input: CreateOneAssistantInput): Assistant | Promise<Assistant>;
     updateOneAssistant(input: UpdateOneAssistantInput): Assistant | Promise<Assistant>;
     deleteOneAssistant(input: DeleteOneAssistantInput): AssistantDeleteResponse | Promise<AssistantDeleteResponse>;
-    createOneAssistantSkill(input: CreateOneAssistantSkillInput): AssistantSkill | Promise<AssistantSkill>;
-    updateOneAssistantSkill(input: UpdateOneAssistantSkillInput): AssistantSkill | Promise<AssistantSkill>;
-    deleteOneAssistantSkill(input: DeleteOneAssistantSkillInput): AssistantSkillDeleteResponse | Promise<AssistantSkillDeleteResponse>;
     createOneUserDatabase(input: CreateOneUserDatabaseInput): UserDatabase | Promise<UserDatabase>;
     updateOneUserDatabase(input: UpdateOneUserDatabaseInput): UserDatabase | Promise<UserDatabase>;
     deleteOneUserDatabase(input: DeleteOneUserDatabaseInput): UserDatabaseDeleteResponse | Promise<UserDatabaseDeleteResponse>;

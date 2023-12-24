@@ -5,6 +5,7 @@ export interface PlanConfig {
   maxActiveWorkflows: number
   minPollingInterval: number
   maxTriggerItems: number
+  assistantSkills: boolean
   hardLimits: boolean
   features: {
     executeWorkflowOnError: boolean
@@ -22,6 +23,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxActiveWorkflows: 5,
     minPollingInterval: 60 * 15,
     maxTriggerItems: 50,
+    assistantSkills: false,
     hardLimits: true,
     features: {
       executeWorkflowOnError: false,
@@ -35,6 +37,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxActiveWorkflows: 20,
     minPollingInterval: 60,
     maxTriggerItems: Infinity,
+    assistantSkills: true,
     hardLimits: true,
     features: {
       executeWorkflowOnError: true,
@@ -48,6 +51,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxActiveWorkflows: Infinity,
     minPollingInterval: 15,
     maxTriggerItems: Infinity,
+    assistantSkills: true,
     hardLimits: false,
     features: {
       executeWorkflowOnError: true,
@@ -61,6 +65,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxActiveWorkflows: Infinity,
     minPollingInterval: 15,
     maxTriggerItems: Infinity,
+    assistantSkills: true,
     hardLimits: false,
     features: {
       executeWorkflowOnError: true,
@@ -74,6 +79,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxActiveWorkflows: Infinity,
     minPollingInterval: 15,
     maxTriggerItems: Infinity,
+    assistantSkills: true,
     hardLimits: false,
     features: {
       executeWorkflowOnError: true,
@@ -87,6 +93,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxActiveWorkflows: Infinity,
     minPollingInterval: 15,
     maxTriggerItems: Infinity,
+    assistantSkills: true,
     hardLimits: false,
     features: {
       executeWorkflowOnError: true,
@@ -102,6 +109,7 @@ export const plansConfig: Record<string, PlanConfig> = {
     maxActiveWorkflows: Infinity,
     minPollingInterval: 60,
     maxTriggerItems: Infinity,
+    assistantSkills: true,
     hardLimits: true,
     features: {
       executeWorkflowOnError: true,

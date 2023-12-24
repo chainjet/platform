@@ -17,19 +17,17 @@ import { WorkflowTriggersModule } from '../workflow-triggers/workflow-triggers.m
 import { WorkflowsModule } from '../workflows/workflows.module'
 import { ContactSubscriptionController } from './controllers/contact-subscription.controller'
 import { Assistant, AssistantAuthorizer } from './entities/assistant'
-import { AssistantSkill, AssistantSkillAuthorizer } from './entities/assistant-skill'
+import { AssistantSkill } from './entities/assistant-skill'
 import { Campaign, CampaignAuthorizer } from './entities/campaign'
 import { CampaignMessage } from './entities/campaign-message'
 import { Contact, ContactAuthorizer } from './entities/contact'
 import { Menu, MenuAuthorizer } from './entities/menu'
 import { Order, OrderAuthorizer } from './entities/order'
-import { AssistantSkillResolver } from './resolvers/assistant-skill.resolver'
 import { AssistantResolver } from './resolvers/assistant.resolver'
 import { CampaignResolver } from './resolvers/campaign.resolver'
 import { ContactResolver } from './resolvers/contact.resolver'
 import { MenuResolver } from './resolvers/menu.resolver'
 import { OrderResolver } from './resolvers/order.resolver'
-import { AssistantSkillService } from './services/assistant-skill.service'
 import { AssistantService } from './services/assistant.service'
 import { BroadcastConsumer } from './services/broadcast.consumer'
 import { CampaignMessageService } from './services/campaign-message.service'
@@ -129,7 +127,6 @@ import { OrderService } from './services/order.service'
     MenuResolver,
     OrderResolver,
     AssistantResolver,
-    AssistantSkillResolver,
 
     // Services
     ContactService,
@@ -138,7 +135,6 @@ import { OrderService } from './services/order.service'
     MenuService,
     OrderService,
     AssistantService,
-    AssistantSkillService,
 
     // Authorizers
     ContactAuthorizer,
@@ -146,7 +142,6 @@ import { OrderService } from './services/order.service'
     MenuAuthorizer,
     OrderAuthorizer,
     AssistantAuthorizer,
-    AssistantSkillAuthorizer,
 
     // Consumers
     ChatbotConsumer,

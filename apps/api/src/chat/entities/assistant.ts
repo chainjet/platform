@@ -7,6 +7,7 @@ import { Field, InputType, ObjectType } from '@nestjs/graphql'
 import { Authorize } from '@ptc-org/nestjs-query-graphql'
 import { prop } from '@typegoose/typegoose'
 import { User } from '../../users/entities/user'
+import { AssistantSkill, CreateAssistantSkillInput } from './assistant-skill'
 
 @Injectable()
 export class AssistantAuthorizer extends OwnedAuthorizer<Assistant> {}
@@ -25,6 +26,10 @@ export class Assistant extends BaseEntity {
   @Field()
   @prop({ required: true })
   instructions: string
+
+  @Field(() => [AssistantSkill])
+  @prop({ _id: false, type: AssistantSkill, default: [] })
+  skills: AssistantSkill[]
 
   @Field(() => [String], { nullable: true })
   @prop({ type: () => [String] })
@@ -46,6 +51,9 @@ export class CreateAssistantInput {
   @Field()
   instructions: string
 
+  @Field(() => [CreateAssistantSkillInput])
+  skills: AssistantSkill[]
+
   @Field(() => [String], { nullable: true })
   tags?: string[]
 
@@ -56,10 +64,13 @@ export class CreateAssistantInput {
 @InputType()
 export class UpdateAssistantInput {
   @Field({ nullable: true })
-  name: string
+  name?: string
 
   @Field({ nullable: true })
-  instructions: string
+  instructions?: string
+
+  @Field(() => [CreateAssistantSkillInput], { nullable: true })
+  skills?: AssistantSkill[]
 
   @Field(() => [String], { nullable: true })
   tags?: string[]

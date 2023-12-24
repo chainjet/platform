@@ -799,21 +799,19 @@ type WorkflowRunActionConnection {
   edges: [WorkflowRunActionEdge!]!
 }
 
+type AssistantSkill {
+  key: String!
+  inputs: JSONObject!
+}
+
 type Assistant {
   id: ID!
   createdAt: DateTime!
   name: String!
   instructions: String!
+  skills: [AssistantSkill!]!
   tags: [String!]
   enabled: Boolean
-}
-
-type AssistantSkill {
-  id: ID!
-  createdAt: DateTime!
-  assistant: ID!
-  name: String!
-  inputs: JSONObject!
 }
 
 type Campaign {
@@ -831,35 +829,12 @@ type Campaign {
   error: String
 }
 
-type AssistantSkillDeleteResponse {
-  id: ID
-  createdAt: DateTime
-  assistant: ID
-  name: String
-  inputs: JSONObject
-}
-
-type AssistantSkillEdge {
-  """The node containing the AssistantSkill"""
-  node: AssistantSkill!
-
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
-}
-
-type AssistantSkillConnection {
-  """Paging information"""
-  pageInfo: PageInfo!
-
-  """Array of edges."""
-  edges: [AssistantSkillEdge!]!
-}
-
 type AssistantDeleteResponse {
   id: ID
   createdAt: DateTime
   name: String
   instructions: String
+  skills: [AssistantSkill!]
   tags: [String!]
   enabled: Boolean
 }
@@ -1460,20 +1435,6 @@ type Query {
     """Specify to sort results."""
     sorting: [AssistantSort!] = []
   ): AssistantConnection!
-  assistantSkill(
-    """The id of the record to find."""
-    id: ID!
-  ): AssistantSkill!
-  assistantSkills(
-    """Limit or page results."""
-    paging: CursorPaging = {first: 10}
-
-    """Specify to filter the records returned."""
-    filter: AssistantSkillFilter = {}
-
-    """Specify to sort results."""
-    sorting: [AssistantSkillSort!] = []
-  ): AssistantSkillConnection!
   contractSchema(chainId: Int!, address: String!, type: String!): ContractSchema!
   asyncSchemas(integrationId: String!, accountCredentialId: String!, names: [String!]!, inputs: JSONObject, integrationTriggerId: String, integrationActionId: String): AsyncSchema!
   manyAsyncSchemas(asyncSchemaInputs: [JSONObject!]!): AsyncSchema!
@@ -1873,26 +1834,6 @@ enum AssistantSortFields {
   createdAt
 }
 
-input AssistantSkillFilter {
-  and: [AssistantSkillFilter!]
-  or: [AssistantSkillFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-  assistant: IDFilterComparison
-}
-
-input AssistantSkillSort {
-  field: AssistantSkillSortFields!
-  direction: SortDirection!
-  nulls: SortNulls
-}
-
-enum AssistantSkillSortFields {
-  id
-  createdAt
-  assistant
-}
-
 input UserDatabaseFilter {
   and: [UserDatabaseFilter!]
   or: [UserDatabaseFilter!]
@@ -1982,9 +1923,6 @@ type Mutation {
   createOneAssistant(input: CreateOneAssistantInput!): Assistant!
   updateOneAssistant(input: UpdateOneAssistantInput!): Assistant!
   deleteOneAssistant(input: DeleteOneAssistantInput!): AssistantDeleteResponse!
-  createOneAssistantSkill(input: CreateOneAssistantSkillInput!): AssistantSkill!
-  updateOneAssistantSkill(input: UpdateOneAssistantSkillInput!): AssistantSkill!
-  deleteOneAssistantSkill(input: DeleteOneAssistantSkillInput!): AssistantSkillDeleteResponse!
   createOneUserDatabase(input: CreateOneUserDatabaseInput!): UserDatabase!
   updateOneUserDatabase(input: UpdateOneUserDatabaseInput!): UserDatabase!
   deleteOneUserDatabase(input: DeleteOneUserDatabaseInput!): UserDatabaseDeleteResponse!
@@ -2321,8 +2259,14 @@ input CreateOneAssistantInput {
 input CreateAssistantInput {
   name: String!
   instructions: String!
+  skills: [CreateAssistantSkillInput!]!
   tags: [String!]
   enabled: Boolean
+}
+
+input CreateAssistantSkillInput {
+  key: String!
+  inputs: JSONObject!
 }
 
 input UpdateOneAssistantInput {
@@ -2336,40 +2280,12 @@ input UpdateOneAssistantInput {
 input UpdateAssistantInput {
   name: String
   instructions: String
+  skills: [CreateAssistantSkillInput!]
   tags: [String!]
   enabled: Boolean
 }
 
 input DeleteOneAssistantInput {
-  """The id of the record to delete."""
-  id: ID!
-}
-
-input CreateOneAssistantSkillInput {
-  """The record to create"""
-  assistantSkill: CreateAssistantSkillInput!
-}
-
-input CreateAssistantSkillInput {
-  assistant: ID!
-  name: String!
-  inputs: JSONObject!
-}
-
-input UpdateOneAssistantSkillInput {
-  """The id of the record to update"""
-  id: ID!
-
-  """The update to apply."""
-  update: UpdateAssistantSkillInput!
-}
-
-input UpdateAssistantSkillInput {
-  name: String
-  inputs: JSONObject
-}
-
-input DeleteOneAssistantSkillInput {
   """The id of the record to delete."""
   id: ID!
 }
