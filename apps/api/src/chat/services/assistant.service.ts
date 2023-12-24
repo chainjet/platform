@@ -72,7 +72,7 @@ export class AssistantService extends BaseService<Assistant> {
     }
 
     if (update.enabled) {
-      const existing = await this.findOne({ _id: { $ne: id }, enabled: true })
+      const existing = await this.findOne({ _id: { $ne: id }, owner: user._id, enabled: true })
       if (existing) {
         throw new Error('You can only have one enabled assistant at a time')
       }
