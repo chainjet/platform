@@ -113,7 +113,7 @@ export class AssistantService extends BaseService<Assistant> {
   }
 
   private validateSkills(skills: AssistantSkill[], user: User) {
-    if (!user.planConfig.assistantSkills) {
+    if (skills?.length && !user.planConfig.assistantSkills) {
       throw new BadRequestException('Please upgrade your plan to use chatbot skills')
     }
     for (const skill of skills) {
