@@ -2,7 +2,6 @@ import { JobNonRetriableError } from '@app/common/errors/job-non-retriable-error
 import { wait } from '@app/common/utils/async.utils'
 import { XmtpLib } from '@app/definitions/integration-definitions/xmtp/xmtp.lib'
 import { getWalletName } from '@app/definitions/utils/address.utils'
-import { sendXmtpMessage } from '@chainjet/tools/dist/messages'
 import { InjectQueue, Process, Processor } from '@nestjs/bull'
 import { Logger } from '@nestjs/common'
 import { Interval } from '@nestjs/schedule'
@@ -108,7 +107,12 @@ export class BroadcastConsumer {
         continue
       }
       try {
-        const message = await sendXmtpMessage(client, sendTo, campaign.message + '\n\n' + unsubscribeMessage)
+        const message = await XmtpLib.sendDirectMessageWithTimeout(
+          client,
+          sendTo,
+          campaign.message + '\n\n' + unsubscribeMessage,
+          10 * 1000,
+        )
         await this.campaignMessageService.createOne({
           campaign: campaign._id,
           address: contact.address,

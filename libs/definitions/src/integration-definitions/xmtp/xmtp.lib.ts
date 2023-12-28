@@ -1,4 +1,5 @@
-import { Client, Conversation } from '@xmtp/xmtp-js'
+import { sendXmtpMessage } from '@chainjet/tools/dist/messages'
+import { Client, Conversation, DecodedMessage } from '@xmtp/xmtp-js'
 import { isAddress } from 'ethers/lib/utils'
 
 const clientsCache = new Map<string, Client>()
@@ -47,5 +48,30 @@ export const XmtpLib = {
       previousMessages.push({ content: message, from: 'bot' })
     }
     return xmtpMessage
+  },
+
+  sendDirectMessageWithTimeout: async (
+    client: Client,
+    sendTo: string,
+    message: string,
+    timeoutMs: number,
+  ): Promise<DecodedMessage> => {
+    let timeoutHandle: NodeJS.Timeout | undefined
+
+    const timeoutPromise = new Promise<DecodedMessage>((_, reject) => {
+      timeoutHandle = setTimeout(() => {
+        reject(new Error('Message sending timed out'))
+      }, timeoutMs)
+    })
+
+    const sendMessagePromise: Promise<DecodedMessage> = sendXmtpMessage(client, sendTo, message)
+
+    try {
+      return await Promise.race([sendMessagePromise, timeoutPromise])
+    } catch (error) {
+      throw error
+    } finally {
+      clearTimeout(timeoutHandle)
+    }
   },
 }
