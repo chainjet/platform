@@ -146,4 +146,15 @@ export class UserResolver extends BaseResolver(User, {
 
     return { success: true }
   }
+
+  @Query(() => GraphQLString)
+  @UseGuards(GraphqlGuard)
+  async subscriptionPortalUrl(@UserId() userId: Types.ObjectId): Promise<string> {
+    const user = await this.userService.findOne({ _id: userId })
+    if (!user) {
+      throw new Error('User not found')
+    }
+    const url = await this.subscriptionService.getSubscriptionPortal(user)
+    return url
+  }
 }

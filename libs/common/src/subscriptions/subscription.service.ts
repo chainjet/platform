@@ -100,4 +100,19 @@ export class SubscriptionService {
   async getSubscription(subscriptionId: string): Promise<Stripe.Subscription> {
     return this.stripe.subscriptions.retrieve(subscriptionId)
   }
+
+  async getSubscriptionPortal(user: User): Promise<string> {
+    if (!user.stripeCustomerId) {
+      throw new Error('You do not have an active subscription')
+    }
+    const customer = await this.stripe.customers.retrieve(user.stripeCustomerId)
+    if (!customer) {
+      throw new Error(`Customer ${user.stripeCustomerId} not found`)
+    }
+    const portalSession = await this.stripe.billingPortal.sessions.create({
+      customer: user.stripeCustomerId,
+      return_url: 'https://chainjet.io/dashboard',
+    })
+    return portalSession.url
+  }
 }

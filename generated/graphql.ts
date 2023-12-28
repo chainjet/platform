@@ -1725,6 +1725,7 @@ export interface UserDatabaseConnection {
 export interface IQuery {
     user(id: string): User | Promise<User>;
     viewer(): User | Promise<User>;
+    subscriptionPortalUrl(): string | Promise<string>;
     viewerContact(): ViewerContact | Promise<ViewerContact>;
     accountCredential(id: string): AccountCredential | Promise<AccountCredential>;
     accountCredentials(paging?: Nullable<CursorPaging>, filter?: Nullable<AccountCredentialFilter>, sorting?: Nullable<AccountCredentialSort[]>): AccountCredentialConnection | Promise<AccountCredentialConnection>;
