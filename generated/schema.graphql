@@ -946,10 +946,6 @@ type MenuConnection {
   edges: [MenuEdge!]!
 }
 
-type OrderSummary {
-  total: Int!
-}
-
 type OrderDeleteResponse {
   id: ID
   createdAt: DateTime
@@ -1421,7 +1417,6 @@ type Query {
     """Specify to sort results."""
     sorting: [OrderSort!] = []
   ): OrderConnection!
-  orderSummary(from: DateTime!, to: DateTime!): OrderSummary!
   assistant(
     """The id of the record to find."""
     id: ID!

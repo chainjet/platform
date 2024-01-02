@@ -1540,10 +1540,6 @@ export interface MenuConnection {
     edges: MenuEdge[];
 }
 
-export interface OrderSummary {
-    total: number;
-}
-
 export interface OrderDeleteResponse {
     id?: Nullable<string>;
     createdAt?: Nullable<DateTime>;
@@ -1764,7 +1760,6 @@ export interface IQuery {
     menus(paging?: Nullable<CursorPaging>, filter?: Nullable<MenuFilter>, sorting?: Nullable<MenuSort[]>): MenuConnection | Promise<MenuConnection>;
     order(id: string): Order | Promise<Order>;
     orders(paging?: Nullable<CursorPaging>, filter?: Nullable<OrderFilter>, sorting?: Nullable<OrderSort[]>): OrderConnection | Promise<OrderConnection>;
-    orderSummary(from: DateTime, to: DateTime): OrderSummary | Promise<OrderSummary>;
     assistant(id: string): Assistant | Promise<Assistant>;
     assistants(paging?: Nullable<CursorPaging>, filter?: Nullable<AssistantFilter>, sorting?: Nullable<AssistantSort[]>): AssistantConnection | Promise<AssistantConnection>;
     contractSchema(chainId: number, address: string, type: string): ContractSchema | Promise<ContractSchema>;
