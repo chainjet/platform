@@ -111,7 +111,7 @@ export class BroadcastConsumer {
           client,
           sendTo,
           campaign.message + '\n\n' + unsubscribeMessage,
-          10 * 1000,
+          60 * 1000,
         )
         await this.campaignMessageService.createOne({
           campaign: campaign._id,
