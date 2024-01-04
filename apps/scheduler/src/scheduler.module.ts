@@ -6,9 +6,11 @@ import { ConfigModule } from '@nestjs/config'
 import { ScheduleModule } from '@nestjs/schedule'
 import { AccountCredentialsModule } from 'apps/api/src/account-credentials/account-credentials.module'
 import { ChatsModule } from 'apps/api/src/chat/chat.module'
+import { BroadcastConsumer } from 'apps/api/src/chat/services/broadcast.consumer'
 import { IntegrationAccountsModule } from 'apps/api/src/integration-accounts/integration-accounts.module'
 import { IntegrationTriggersModule } from 'apps/api/src/integration-triggers/integration-triggers.module'
 import { IntegrationsModule } from 'apps/api/src/integrations/integrations.module'
+import { UsersModule } from 'apps/api/src/users/users.module'
 import { WorkflowActionsModule } from 'apps/api/src/workflow-actions/workflow-actions.module'
 import { WorkflowsModule } from 'apps/api/src/workflows/workflows.module'
 import { mongoForRoot } from '../../../libs/common/src/utils/mongodb'
@@ -37,6 +39,7 @@ import { WorkflowSchedulerService } from './services/workflow-scheduler.service'
     forwardRef(() => WorkflowTriggersModule),
     forwardRef(() => WorkflowRunsModule),
     forwardRef(() => RunnerModule),
+    UsersModule,
     BlockchainModule,
     IntegrationsModule,
     IntegrationTriggersModule,
@@ -46,6 +49,6 @@ import { WorkflowSchedulerService } from './services/workflow-scheduler.service'
     AccountCredentialsModule,
     ChatsModule,
   ],
-  providers: [WorkflowSchedulerService, AccountRefreshSchedulerService, CampaignSchedulerService],
+  providers: [WorkflowSchedulerService, AccountRefreshSchedulerService, CampaignSchedulerService, BroadcastConsumer],
 })
 export class SchedulerModule {}

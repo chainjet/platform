@@ -29,7 +29,6 @@ import { ContactResolver } from './resolvers/contact.resolver'
 import { MenuResolver } from './resolvers/menu.resolver'
 import { OrderResolver } from './resolvers/order.resolver'
 import { AssistantService } from './services/assistant.service'
-import { BroadcastConsumer } from './services/broadcast.consumer'
 import { CampaignMessageService } from './services/campaign-message.service'
 import { CampaignService } from './services/campaign.service'
 import { ContactsConsumer } from './services/contact.consumer'
@@ -145,10 +144,9 @@ import { OrderService } from './services/order.service'
 
     // Consumers
     ChatbotConsumer,
-    BroadcastConsumer,
     ContactsConsumer,
   ],
   controllers: [ContactSubscriptionController],
-  exports: [ContactService, CampaignService, MenuService, OrderService],
+  exports: [ContactService, CampaignService, CampaignMessageService, MenuService, OrderService],
 })
 export class ChatsModule {}
