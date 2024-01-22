@@ -126,6 +126,19 @@ export class AssistantService extends BaseService<Assistant> {
           }
           skill.inputs['key'] = camelCase(skill.inputs['name'])
           break
+        case AssistantSkillKey.tags:
+          if (skills.filter((s) => s.key === AssistantSkillKey.tags).length > 1) {
+            throw new Error(`You can only have one Tags skill`)
+          }
+          if (!Array.isArray(skill.inputs?.['tags']) || !skill.inputs['tags'].length) {
+            throw new Error(`tags is required for the Tags skill`)
+          }
+          for (const tag of skill.inputs['tags']) {
+            if (!tag.name || !tag.description) {
+              throw new Error(`name and description are required for every tag`)
+            }
+          }
+          break
         default:
           assertNever(skill.key)
           throw new Error(`Invalid skill key: ${skill.key}`)

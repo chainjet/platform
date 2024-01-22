@@ -5,6 +5,7 @@ import { GraphQLJSONObject } from 'graphql-type-json'
 
 export enum AssistantSkillKey {
   api = 'api',
+  tags = 'tags',
 }
 
 @ObjectType()
