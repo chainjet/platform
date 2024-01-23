@@ -79,7 +79,7 @@ export class AssistantService extends BaseService<Assistant> {
     }
 
     if (update.skills?.length) {
-      this.validateSkills(update.skills, user)
+      await this.validateSkills(update.skills, user)
     }
 
     this.assistantsQueue.add({
@@ -112,7 +112,7 @@ export class AssistantService extends BaseService<Assistant> {
     return super.deleteOne(id, opts)
   }
 
-  private validateSkills(skills: AssistantSkill[], user: User) {
+  private async validateSkills(skills: AssistantSkill[], user: User) {
     if (skills?.length && !user.planConfig.assistantSkills) {
       throw new BadRequestException('Please upgrade your plan to use chatbot skills')
     }
@@ -138,6 +138,10 @@ export class AssistantService extends BaseService<Assistant> {
               throw new Error(`name and description are required for every tag`)
             }
           }
+          await this.userService.addContactTags(
+            user,
+            skill.inputs['tags'].map((t) => t.name),
+          )
           break
         default:
           assertNever(skill.key)
