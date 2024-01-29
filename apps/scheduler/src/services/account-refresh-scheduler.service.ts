@@ -19,7 +19,7 @@ export class AccountRefreshSchedulerService {
     this.processInterrupted = true
   }
 
-  @Interval(1000 * 60 * 30)
+  @Interval(1000 * 60 * 60 * 3)
   async scheduleRefreshAccounts(): Promise<void> {
     if (process.env.NODE_ENV !== 'test' && !this.processInterrupted) {
       await this.refreshAccounts()
@@ -31,11 +31,17 @@ export class AccountRefreshSchedulerService {
     this.logger.log(`Refreshing Lens credentials`)
     const fiveDaysAgo = new Date()
     fiveDaysAgo.setDate(fiveDaysAgo.getDate() - 5)
+    const thertyDaysAgo = new Date()
+    thertyDaysAgo.setDate(thertyDaysAgo.getDate() - 30)
 
     const lensAccount = await this.integrationAccountService.findOne({ key: 'lens' })
     const accounts = await this.accountCredentialsService.find({
       integrationAccount: lensAccount!._id,
-      lastCredentialUpdate: { $exists: true, $lte: fiveDaysAgo },
+      lastCredentialUpdate: {
+        $exists: true,
+        $lte: fiveDaysAgo,
+        $gte: thertyDaysAgo,
+      },
     })
     for (const account of accounts) {
       try {
