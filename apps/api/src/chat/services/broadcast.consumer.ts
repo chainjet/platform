@@ -136,12 +136,22 @@ export class BroadcastConsumer {
         job.progress(campaign.processed / campaign.total)
       } catch (e) {
         if (e.message.includes('is not on the XMTP network') || e.message.includes('self messaging not supported')) {
-          await this.campaignMessageService.createOne({
-            campaign: campaign._id,
-            address: contact.address,
-          })
-          campaign.processed++
-          job.progress(campaign.processed / campaign.total)
+          try {
+            await this.campaignMessageService.createOne({
+              campaign: campaign._id,
+              address: contact.address,
+            })
+            campaign.processed++
+            job.progress(campaign.processed / campaign.total)
+          } catch (e) {
+            await wait(5000)
+            await this.campaignMessageService.createOne({
+              campaign: campaign._id,
+              address: contact.address,
+            })
+            campaign.processed++
+            job.progress(campaign.processed / campaign.total)
+          }
         } else {
           this.logger.error(`Failed to send broadcast message from ${user.address} to ${sendTo}: ${e.message}`)
           failed++
