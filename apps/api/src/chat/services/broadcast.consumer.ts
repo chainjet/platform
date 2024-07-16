@@ -76,6 +76,8 @@ export class BroadcastConsumer {
     const totalContacts = contacts.length
     contacts = contacts.filter((contact) => !campaignMessageAddresses.includes(contact.address))
 
+    contacts = contacts.sort(() => Math.random() - 0.5)
+
     if (campaign.state === CampaignState.Pending) {
       campaign.state = CampaignState.Running
       await this.campaignService.updateOneNative(
@@ -135,7 +137,11 @@ export class BroadcastConsumer {
         campaign.processed++
         job.progress(campaign.processed / campaign.total)
       } catch (e) {
-        if (e.message.includes('is not on the XMTP network') || e.message.includes('self messaging not supported')) {
+        if (
+          e.message.includes('is not on the XMTP network') ||
+          e.message.includes('self messaging not supported') ||
+          e.message.includes('Message sending timed out')
+        ) {
           try {
             await this.campaignMessageService.createOne({
               campaign: campaign._id,
